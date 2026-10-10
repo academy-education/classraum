@@ -1,0 +1,546 @@
+[
+ {
+  "id": "AM29G-10",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "surface area of a pyramid whose apex is above a base vertex",
+  "subskill": "oblique pyramid: two vertical and two slanted right-triangle faces",
+  "prompt": "A solid pyramid has rectangular base ABCD with AB = 15 centimeters and BC = 11 centimeters. Its apex V is directly above vertex A, so that edge VA is perpendicular to the base, and VA = 10 centimeters. To the nearest hundredth of a square centimeter, what is the total surface area of the pyramid, including its base?",
+  "choices": [
+   "473.69",
+   "505.65",
+   "467.99",
+   "488.26"
+  ],
+  "correct_answer": "505.65",
+  "explanation": "The base has area 15·11 = 165. Faces VAB and VAD are right triangles with the right angle at A: areas (1/2)(15)(10) = 75 and (1/2)(11)(10) = 55. Since BC is perpendicular to the plane of VAB, face VBC is a right triangle with the right angle at B: VB = √(15² + 10²) = √325, so its area is (1/2)(11)√325 ≈ 99.15. Likewise face VDC has the right angle at D: VD = √(11² + 10²) = √221, area (1/2)(15)√221 ≈ 111.50. Total ≈ 165 + 75 + 55 + 99.15 + 111.50 ≈ 505.65. The option \"473.69\" treats the pyramid as a right pyramid with its apex 10 cm above the center of the base. The option \"467.99\" finds VB as √(15² − 10²). The option \"488.26\" uses VD = √221 as the height of both slanted faces.",
+  "solve": "const l=15,w=11,h=10,H=Math.hypot,base=l*w,vert=l*h/2+w*h/2,VB=H(l,h),VD=H(w,h);return (base+vert+w*VB/2+l*VD/2).toFixed(2);",
+  "distractor_solve": {
+   "473.69": "const l=15,w=11,h=10,H=Math.hypot,base=l*w,vert=l*h/2+w*h/2,VB=H(l,h),VD=H(w,h);return (base+l*H(h,w/2)+w*H(h,l/2)).toFixed(2);",
+   "467.99": "const l=15,w=11,h=10,H=Math.hypot,base=l*w,vert=l*h/2+w*h/2,VB=H(l,h),VD=H(w,h);return (base+vert+w*Math.sqrt(l*l-h*h)/2+l*VD/2).toFixed(2);",
+   "488.26": "const l=15,w=11,h=10,H=Math.hypot,base=l*w,vert=l*h/2+w*h/2,VB=H(l,h),VD=H(w,h);return (base+vert+(l+w)*VD/2).toFixed(2);"
+  },
+  "quantity_asked": "the total surface area of the pyramid (base, two vertical faces, two slanted faces): 295 + (11/2)√325 + (15/2)√221 ≈ 505.65 cm².",
+  "distractor_kind": {
+   "473.69": "symmetry assumption: computed as a right pyramid with the apex above the center of the base (slant heights √130.25 and 12.5). (a) no parameter extreme. (b) neighbouring setup: the right pyramid with the same base and height. (c) cheapest bounds: VB > AB = 15 and VD > AD = 11, so v > 165 + 130 + (1/2)(11)(15) + (1/2)(15)(11) = 460; VB, VD < VC = √446, so v < 295 + 13√446 ≈ 569.5; 473.69 strictly inside. (d) real: ignoring where the apex is.",
+   "467.99": "Pythagorean sign slip: VB = √(15² − 10²) = √125 instead of √(15² + 10²). (a) no. (b) none. (c) strictly inside (460, 569.5). (d) real: subtracting squares for a hypotenuse.",
+   "488.26": "same height for both slanted faces: VD = √221 used for face VBC as well. (a) no. (b) none. (c) strictly inside (460, 569.5). (d) real: assuming the two slanted faces have equal heights."
+  },
+  "distractor_meta": {
+   "473.69": {
+    "direction": "under",
+    "error_kind": "apex assumed above base center"
+   },
+   "467.99": {
+    "direction": "under",
+    "error_kind": "Pythagorean sign slip"
+   },
+   "488.26": {
+    "direction": "under",
+    "error_kind": "one slant height for both slanted faces"
+   }
+  },
+  "bounds": [
+   "v > 460 (VB > AB = 15 and VD > AD = 11)",
+   "v < 295 + 13√446 ≈ 569.5 (each slanted face's height is less than VC = √446)"
+  ],
+  "mechanism": [
+   "pyramid with apex directly above a vertex of the base",
+   "slanted faces are right triangles (edge perpendicular to a face)",
+   "surface area of an oblique rectangular pyramid"
+  ],
+  "arith_class_check": "Key 295 + 5.5√325 + 7.5√221 is irrational, shown to two decimals like every option; nothing implies a whole-number or rational area.",
+  "one_sided_check": "Key largest. Three different errors (center-apex assumption, sign slip in a hypotenuse, one slant for both faces). Natural errors also go the other way: pairing the slant heights with the wrong bases ((1/2)(11)√221 + (1/2)(15)√325) gives 511.97, using VB for both slanted faces gives 529.36, and dropping the 1/2 on the vertical faces gives 635.65, all above the key.",
+  "interior_parity_check": "Interior options by value: 473.69 and 488.26, both two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: VB > AB and VD > AD give v > 460, below every option; VB, VD < VC = √446 gives v < 569.5, above the key. No cheap bound separates 505.65 from 488.26 (3.4% apart); the counter-direction errors (511.97, 529.36) sit just above the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; one natural over-error (swapped pairing) is close above, but a grader may read 'symmetric assumptions understate' as one-way. No live oblique-pyramid item found."
+  }
+ },
+ {
+  "id": "AM29G-11",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "surface area of a box with one corner sliced off",
+  "subskill": "remove three corner triangles, add an equilateral cut face",
+  "prompt": "A solid wooden block is a rectangular prism measuring 20 centimeters by 15 centimeters by 10 centimeters. One corner of the block is sawed off by a single flat cut through the three points that lie on the three edges meeting at that corner, each 4.5 centimeters from the corner. To the nearest hundredth of a square centimeter, what is the total surface area of the block that remains?",
+  "choices": [
+   "1283.94",
+   "1289.88",
+   "1287.16",
+   "1282.03"
+  ],
+  "correct_answer": "1287.16",
+  "explanation": "The original block has surface area 2(20·15 + 20·10 + 15·10) = 1,300 cm². The cut removes from each of the three faces at the corner a right isosceles triangle with legs 4.5, area 4.5²/2 = 10.125, for 30.375 in all. It adds a new face whose three sides are each a face diagonal of a 4.5-by-4.5 square, 4.5√2, so the new face is an equilateral triangle with area (√3/4)(4.5√2)² = (√3/2)(20.25) ≈ 17.537. The surface area is 1,300 − 30.375 + 17.537 ≈ 1,287.16. The option \"1289.88\" finds the new face's area as if it were a right triangle with legs 4.5√2, (1/2)(4.5√2)² = 20.25. The option \"1282.03\" squares 4.5√2 as 4.5²·√2. The option \"1283.94\" takes the height of the new triangular face to be 4.5, giving (1/2)(4.5√2)(4.5).",
+  "solve": "const L=20,W=15,H=10,s=4.5,orig=2*(L*W+L*H+W*H),rem=3*s*s/2,side=s*Math.SQRT2;return (orig-rem+Math.sqrt(3)/4*side*side).toFixed(2);",
+  "distractor_solve": {
+   "1289.88": "const L=20,W=15,H=10,s=4.5,orig=2*(L*W+L*H+W*H),rem=3*s*s/2,side=s*Math.SQRT2;return (orig-rem+side*side/2).toFixed(2);",
+   "1282.03": "const L=20,W=15,H=10,s=4.5,orig=2*(L*W+L*H+W*H),rem=3*s*s/2,side=s*Math.SQRT2;return (orig-rem+Math.sqrt(3)/4*s*s*Math.SQRT2).toFixed(2);",
+   "1283.94": "const L=20,W=15,H=10,s=4.5,orig=2*(L*W+L*H+W*H),rem=3*s*s/2,side=s*Math.SQRT2;return (orig-rem+side*s/2).toFixed(2);"
+  },
+  "quantity_asked": "the total surface area of the block after the corner is cut off: 1,300 − 30.375 + (√3/2)(20.25) ≈ 1,287.16 cm².",
+  "distractor_kind": {
+   "1289.88": "cut face treated as a right triangle with legs 4.5√2. (a) no parameter extreme. (b) neighbouring setup: the area of a right triangle on two face diagonals, not an intermediate. (c) cheapest bounds: the new face is larger than each removed triangle (its projection onto a face, 10.125) and smaller than the three together (30.375), so 1,279.75 < v < 1,300; 1289.88 strictly inside. (d) real: using (1/2)(leg)(leg) for a triangle that is not right.",
+   "1282.03": "(4.5√2)² evaluated as 4.5²·√2 = 28.64 instead of 40.5. (a) no. (b) none. (c) strictly inside (1,279.75, 1,300). (d) real: squaring only the rational factor.",
+   "1283.94": "height of the equilateral cut face taken as 4.5 (the edge cut length) instead of 4.5√2·(√3/2). (a) no. (b) none. (c) strictly inside (1,279.75, 1,300). (d) real: confusing the cut length along an edge with the face's altitude."
+  },
+  "distractor_meta": {
+   "1289.88": {
+    "direction": "over",
+    "error_kind": "non-right triangle area as half leg times leg"
+   },
+   "1282.03": {
+    "direction": "under",
+    "error_kind": "(a√2)² slip"
+   },
+   "1283.94": {
+    "direction": "under",
+    "error_kind": "wrong altitude for the cut face"
+   }
+  },
+  "bounds": [
+   "v < 1,300 (the new face is smaller than the three removed triangles together, 30.375)",
+   "v > 1,300 − 30.375 + 10.125 = 1,279.75 (the new face is larger than any one removed triangle, its projection)"
+  ],
+  "mechanism": [
+   "corner of a rectangular box sliced off by a plane",
+   "equilateral triangle cut face with face-diagonal sides",
+   "surface area: subtract three right triangles, add the cut face"
+  ],
+  "arith_class_check": "Key 1,269.625 + (√3/2)(20.25) is irrational, shown to two decimals like every option; nothing in the stem implies a whole number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 1283.94 and 1287.16, both two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides from different slips on the cut face; live corner-cut item (ssat ee520dbf) asks volume after 8 midpoint cuts, not surface area."
+  }
+ },
+ {
+  "id": "AM29G-12",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "translating a circle until it is tangent to another circle",
+  "subskill": "external tangency after a horizontal translation",
+  "prompt": "In the standard (x,y) coordinate plane, circle P has equation x² + y² + 14x + 4y + 37 = 0, and circle Q has equation (x − 10)² + (y + 7)² = 64. Circle P is translated to the right, parallel to the x-axis, until it first touches circle Q. To the nearest hundredth of a coordinate unit, how far is circle P translated?",
+  "choices": [
+   "9.06",
+   "6.09",
+   "9.58",
+   "6.68"
+  ],
+  "correct_answer": "6.09",
+  "explanation": "Completing the square, x² + 14x + 49 + y² + 4y + 4 = −37 + 49 + 4, so circle P is (x + 7)² + (y + 2)² = 16: center (−7, −2), radius 4. Circle Q has center (10, −7) and radius 8. Translating P to the right by t moves its center to (−7 + t, −2). P first touches Q when the distance between the centers equals 4 + 8 = 12: (17 − t)² + 5² = 12², so 17 − t = √119 and t = 17 − √119 ≈ 6.09 (the other root is the second, later contact). The option \"6.68\" drops the +4 when completing the square in y, giving radius √12 for P. The option \"9.06\" reads the center of P as (−7, 2), so the vertical offset is 9 instead of 5. The option \"9.58\" sets (17 − t)² + 5² equal to 4² + 8² instead of (4 + 8)².",
+  "solve": "const h1=-7,k1=-2,F=37,h2=10,k2=-7,r2=8;const r1=Math.sqrt(h1*h1+k1*k1-F),dx=h2-h1,dy=Math.abs(k2-k1),R=r1+r2;return (dx-Math.sqrt(R*R-dy*dy)).toFixed(2);",
+  "distractor_solve": {
+   "6.68": "const h1=-7,k1=-2,F=37,h2=10,k2=-7,r2=8;const r1=Math.sqrt(h1*h1-F),dx=h2-h1,dy=Math.abs(k2-k1),R=r1+r2;return (dx-Math.sqrt(R*R-dy*dy)).toFixed(2);",
+   "9.06": "const h1=-7,k1=-2,F=37,h2=10,k2=-7,r2=8;const r1=Math.sqrt(h1*h1+k1*k1-F),dx=h2-h1,dy=Math.abs(k2+k1),R=r1+r2;return (dx-Math.sqrt(R*R-dy*dy)).toFixed(2);",
+   "9.58": "const h1=-7,k1=-2,F=37,h2=10,k2=-7,r2=8;const r1s=h1*h1+k1*k1-F,dx=h2-h1,dy=Math.abs(k2-k1);return (dx-Math.sqrt(r1s+r2*r2-dy*dy)).toFixed(2);"
+  },
+  "quantity_asked": "the horizontal translation distance t at which circle P first becomes tangent to circle Q, 17 − √119 ≈ 6.09.",
+  "distractor_kind": {
+   "6.68": "completing-the-square slip: the +4 added for y is left off the right side, so r² = 12 instead of 16. (a) no parameter extreme. (b) neighbouring setup: a different radius, not an intermediate of this process. (c) cheapest bounds: t > d − 12 = √314 − 12 ≈ 5.72 (centers must close from √314 to 12) and t < 17 − (12 − 5) = 10 (at tangency the horizontal separation is at least 12 − 5); 6.68 strictly inside. (d) real: a dropped completing constant.",
+   "9.06": "sign slip on the center: +4y read as center y = +2, so the vertical offset is 9. (a) no. (b) none. (c) strictly inside (5.72, 10). (d) real: the classic sign error reading a center from a general-form equation.",
+   "9.58": "(a+b)² taken as a² + b²: tangency distance squared written as 4² + 8² = 80 instead of 144. (a) no. (b) none. (c) strictly inside (5.72, 10). (d) real: squaring a sum term by term."
+  },
+  "distractor_meta": {
+   "6.68": {
+    "direction": "over",
+    "error_kind": "completing-square constant dropped"
+   },
+   "9.06": {
+    "direction": "over",
+    "error_kind": "center sign slip"
+   },
+   "9.58": {
+    "direction": "over",
+    "error_kind": "square of a sum as sum of squares"
+   }
+  },
+  "bounds": [
+   "t > √314 − 12 ≈ 5.72 (a translation by t changes the center distance by at most t)",
+   "t < 17 − (12 − 5) = 10 (at tangency the horizontal separation of the centers is at least 12 − 5)",
+   "t < 17 (contact happens before the centers line up vertically)"
+  ],
+  "mechanism": [
+   "translate a circle until tangent to another circle",
+   "external tangency: center distance equals sum of radii",
+   "complete the square for center and radius",
+   "horizontal translation, solve a quadratic for the shift"
+  ],
+  "arith_class_check": "Key 17 − √119 is irrational and shown to two decimals like every option; nothing in the stem implies an integer or a rational shift.",
+  "one_sided_check": "Key smallest. The three distractors come from three different slips (radius constant, center sign, square of a sum). Natural errors also go the other way: the opposite completing-square slip (adding 37 instead of subtracting, r² = 90) gives t ≈ 0.24, and moving along the line of centers gives √314 − 12 ≈ 5.72, both below the key; a student cannot read a direction from the stem.",
+  "interior_parity_check": "Interior options by value: 6.68 and 9.06, both two-decimal values with nonzero final digits; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: t > √314 − 12 ≈ 5.72 (below the key; every option is above it) and, one step finer than t < 17, t < 17 − (12 − 5) = 10, which every option is below. No cheap bound separates 6.09 from 6.68 (they differ by 0.59, about 10%).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; radius slips run both ways (r² = 90 gives 0.24); options inside the (5.72, 10) cheap window; no live translate-to-tangency item found (0 hits)."
+  }
+ },
+ {
+  "id": "AM29G-13",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circle defined as a set of points by a distance ratio",
+  "subskill": "derive a circle's equation from PA = 2PB, then its radius",
+  "prompt": "In the standard (x,y) coordinate plane, point A is at (−3, 6) and point B is at (1, −2). The set of all points P for which the distance from P to A is twice the distance from P to B is a circle. To the nearest hundredth of a coordinate unit, what is the radius of this circle?",
+  "choices": [
+   "6.37",
+   "4.71",
+   "7.23",
+   "5.96"
+  ],
+  "correct_answer": "5.96",
+  "explanation": "Squaring PA = 2PB gives (x + 3)² + (y − 6)² = 4[(x − 1)² + (y + 2)²]. Expanding, x² + y² + 6x − 12y + 45 = 4x² + 4y² − 8x + 16y + 20, so 3x² + 3y² − 14x + 28y − 25 = 0. Dividing by 3: x² + y² − (14/3)x + (28/3)y − 25/3 = 0. Completing the square, the center is (7/3, −14/3) and r² = 49/9 + 196/9 + 25/3 = 320/9, so r = √320/3 ≈ 5.96. The option \"6.37\" multiplies the x², y² and x, y terms on the right by 4 but leaves the constant 5 unmultiplied. The option \"4.71\" multiplies only the x² and y² terms on the right by 4. The option \"7.23\" divides the x², y², x and y terms by 3 but not the constant −25.",
+  "solve": "const xa=-3,ya=6,xb=1,yb=-2;function rad(m,mq,ml,mc,dc){const a=mq-1;const Lx=-2*ml*xb+2*xa,Ly=-2*ml*yb+2*ya;const C=mc*(xb*xb+yb*yb)-(xa*xa+ya*ya);const D=Lx/a,E=Ly/a,F=dc?C/a:C;const h=-D/2,k=-E/2;return Math.sqrt(h*h+k*k-F);}return rad(0,4,4,4,true).toFixed(2);",
+  "distractor_solve": {
+   "6.37": "const xa=-3,ya=6,xb=1,yb=-2;function rad(m,mq,ml,mc,dc){const a=mq-1;const Lx=-2*ml*xb+2*xa,Ly=-2*ml*yb+2*ya;const C=mc*(xb*xb+yb*yb)-(xa*xa+ya*ya);const D=Lx/a,E=Ly/a,F=dc?C/a:C;const h=-D/2,k=-E/2;return Math.sqrt(h*h+k*k-F);}return rad(0,4,4,1,true).toFixed(2);",
+   "4.71": "const xa=-3,ya=6,xb=1,yb=-2;function rad(m,mq,ml,mc,dc){const a=mq-1;const Lx=-2*ml*xb+2*xa,Ly=-2*ml*yb+2*ya;const C=mc*(xb*xb+yb*yb)-(xa*xa+ya*ya);const D=Lx/a,E=Ly/a,F=dc?C/a:C;const h=-D/2,k=-E/2;return Math.sqrt(h*h+k*k-F);}return rad(0,4,1,1,true).toFixed(2);",
+   "7.23": "const xa=-3,ya=6,xb=1,yb=-2;function rad(m,mq,ml,mc,dc){const a=mq-1;const Lx=-2*ml*xb+2*xa,Ly=-2*ml*yb+2*ya;const C=mc*(xb*xb+yb*yb)-(xa*xa+ya*ya);const D=Lx/a,E=Ly/a,F=dc?C/a:C;const h=-D/2,k=-E/2;return Math.sqrt(h*h+k*k-F);}return rad(0,4,4,4,false).toFixed(2);"
+  },
+  "quantity_asked": "the radius of the circle of points P with PA = 2PB, √320/3 = 8√5/3 ≈ 5.96.",
+  "distractor_kind": {
+   "6.37": "distribution slip: the 4 is applied to every term on the right except the constant (+5 instead of +20). (a) no parameter extreme. (b) neighbouring setup: not an intermediate. (c) cheapest one-step estimates: the only cheap bounds are r > 0 and r < AB = √80 ≈ 8.94 (the circle meets line AB at the internal and external 2:1 division points, 2AB/3 and 2AB from A, so its diameter is 4AB/3 < 2AB); 6.37 strictly inside. (d) real: a partial distribution of a multiplier.",
+   "4.71": "distribution slip: only the x² and y² terms on the right are multiplied by 4. (a) no. (b) none. (c) strictly inside (0, 8.94). (d) real: multiplying the leading terms only.",
+   "7.23": "division slip: dividing 3x² + 3y² − 14x + 28y − 25 = 0 by 3 but leaving −25 as is. (a) no. (b) none. (c) strictly inside (0, 8.94). (d) real: dividing every term except the constant."
+  },
+  "distractor_meta": {
+   "6.37": {
+    "direction": "over",
+    "error_kind": "constant not multiplied by 4"
+   },
+   "4.71": {
+    "direction": "under",
+    "error_kind": "only squared terms multiplied by 4"
+   },
+   "7.23": {
+    "direction": "over",
+    "error_kind": "constant not divided by 3"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < AB = √80 ≈ 8.94 (the diameter of the circle is the segment between the internal and external 2:1 division points of AB, which is (4/3)AB, so r < AB)"
+  ],
+  "mechanism": [
+   "set of points with PA = 2PB is a circle",
+   "expand distance equation, divide by leading coefficient",
+   "complete the square for the radius",
+   "Apollonius circle in the coordinate plane"
+  ],
+  "arith_class_check": "Key √320/3 is irrational, shown to two decimals like every option; nothing in the stem implies an integer or simple-radical radius.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 4.71 is the smallest and 7.23 the largest, so the interior pair is 5.96 and 6.37, both two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three different algebra slips on the two sides of the key; no live locus/Apollonius item (0 hits); the 2:1 segment-division items are internal points only."
+  }
+ },
+ {
+  "id": "AM29G-14",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "length of a helical stripe on a right circular cylinder",
+  "subskill": "unrolling a cylinder's lateral surface; Pythagorean theorem",
+  "prompt": "A decorative stripe is painted on a column shaped like a right circular cylinder that is 7.5 meters tall and 0.45 meter in diameter. The stripe starts at a point on the bottom edge and winds up around the column at a constant slope. On its way up it passes directly above its starting point exactly 2 times, and it ends on the top edge at the point diametrically opposite the point directly above its start. Treating the stripe as a curve with no width, to the nearest hundredth of a meter, how long is the stripe?",
+  "choices": [
+   "7.83",
+   "8.29",
+   "7.71",
+   "8.02"
+  ],
+  "correct_answer": "8.29",
+  "explanation": "Passing above the start 2 times and then ending on the opposite side means the stripe makes 2½ turns. Unroll the lateral surface into a rectangle: the stripe becomes a straight segment whose horizontal run is 2.5 circumferences, 2.5π(0.45) ≈ 3.534 m, and whose rise is 7.5 m. Its length is √(3.534² + 7.5²) ≈ 8.29 m. The option \"8.02\" counts only the 2 complete turns (run 2π(0.45)). The option \"7.71\" uses π times the radius, 0.225, as the circumference of one turn. The option \"7.83\" squares only the circumference, writing the run squared as 2.5(π · 0.45)² instead of (2.5π · 0.45)².",
+  "solve": "const d=0.45,h=7.5;return Math.hypot(2.5*Math.PI*d,h).toFixed(2);",
+  "distractor_solve": {
+   "8.02": "const d=0.45,h=7.5;return Math.hypot(2*Math.PI*d,h).toFixed(2);",
+   "7.71": "const d=0.45,h=7.5;return Math.hypot(2.5*Math.PI*d/2,h).toFixed(2);",
+   "7.83": "const d=0.45,h=7.5;return Math.sqrt(2.5*(Math.PI*d)**2+h*h).toFixed(2);"
+  },
+  "quantity_asked": "the length of the stripe: the hypotenuse of a right triangle with legs 7.5 m and 2.5 circumferences (2.5π · 0.45 m), ≈ 8.29 m.",
+  "distractor_kind": {
+   "8.02": "turn-count slip: the final half turn to the opposite side is ignored (2 turns). (a) no parameter extreme. (b) neighbouring setup: a stripe ending directly above its start; strictly inside the bounds. (c) cheapest bounds: L > 7.5 (the rise) and L < 7.5 + 3.53 = 11.03 (rise plus run); the binomial estimate 7.5 + 3.53²/15 ≈ 8.33 is also an upper bound; 8.02 strictly inside (7.5, 8.33). (d) real: miscounting turns.",
+   "7.71": "circumference taken as π times the radius (radius used where the diameter belongs). (a) no. (b) none. (c) strictly inside (7.5, 8.33). (d) real: radius/diameter confusion.",
+   "7.83": "squaring slip: (2.5 · πd)² computed as 2.5 · (πd)². (a) no. (b) none. (c) strictly inside (7.5, 8.33). (d) real: squaring only one factor of a product."
+  },
+  "distractor_meta": {
+   "8.02": {
+    "direction": "under",
+    "error_kind": "turn count (half turn dropped)"
+   },
+   "7.71": {
+    "direction": "under",
+    "error_kind": "radius used for diameter"
+   },
+   "7.83": {
+    "direction": "under",
+    "error_kind": "factor not squared"
+   }
+  },
+  "bounds": [
+   "L > 7.5 (the stripe rises 7.5 m)",
+   "L > 2.5π(0.45) ≈ 3.53 (horizontal run)",
+   "L < 7.5 + 3.53 ≈ 11.03",
+   "L < 7.5 + 3.53²/(2 · 7.5) ≈ 8.33 (√(h² + x²) < h + x²/(2h))"
+  ],
+  "mechanism": [
+   "helical stripe on a cylinder",
+   "unroll the lateral surface into a rectangle",
+   "turns times circumference as the horizontal leg",
+   "Pythagorean theorem on the unrolled stripe"
+  ],
+  "arith_class_check": "Key √(7.5² + (1.125π)²) is irrational, shown to two decimals like every option; nothing implies an integer or rational length.",
+  "one_sided_check": "Key largest. Distractors from three different error kinds (turn count, radius/diameter, squaring a product). Natural errors also go UP: counting the end as a third full turn (3 turns) gives 8.62, and using 2π times the diameter per turn gives 10.31; the stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 7.83 and 8.02, both two-decimal values with nonzero hundredths; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds: L > 7.5 (all four options above it) and L < 7.5 + 3.53²/15 ≈ 8.33 (all four below it, key included). No cheap bound separates 8.29 from 8.02 (3% apart); every distractor lies on the key's side of both bounds.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three distinct slips under, natural over errors (3 turns 8.62, 2πd 10.31); options inside (7.5, 8.33); no live helix/stripe item (0 hits)."
+  }
+ },
+ {
+  "id": "AM29G-15",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle subtended by a mural above eye level",
+  "subskill": "difference of two elevation angles",
+  "prompt": "A visitor stands on level floor facing a mural painted on a vertical wall. The bottom edge of the mural is 1.5 meters above the visitor's eye level, and the top edge is 2.4 meters above the bottom edge. The midpoint of the top edge is directly above the midpoint of the bottom edge, and the straight-line distance from the visitor's eyes to the midpoint of the bottom edge is 4.0 meters. To the nearest hundredth of a degree, what is the measure of the angle at the visitor's eyes between the line of sight to the midpoint of the bottom edge and the line of sight to the midpoint of the top edge?",
+  "choices": [
+   "23.05",
+   "30.96",
+   "24.42",
+   "13.53"
+  ],
+  "correct_answer": "24.42",
+  "explanation": "The horizontal distance from the eyes to the wall is √(4.0² − 1.5²) = √13.75 ≈ 3.708 m. The top edge is 1.5 + 2.4 = 3.9 m above eye level. The angle of elevation of the top is arctan(3.9/3.708) ≈ 46.44°, and of the bottom is arctan(1.5/3.708) ≈ 22.02°, so the angle between the lines of sight is about 46.44° − 22.02° ≈ 24.42°. The option \"23.05\" treats the 4.0 m as a leg and the horizontal distance as √(4.0² + 1.5²). The option \"30.96\" takes arctan(2.4/4.0), as if the mural were perpendicular to the 4.0 m line of sight. The option \"13.53\" subtracts the elevation angle of a point 2.4 m above eye level (the mural's height) instead of the bottom edge's 1.5 m.",
+  "solve": "const r=Math.PI/180,at=x=>Math.atan(x)/r;const D=Math.sqrt(16-2.25);return (at(3.9/D)-at(1.5/D)).toFixed(2);",
+  "distractor_solve": {
+   "23.05": "const r=Math.PI/180,at=x=>Math.atan(x)/r;const D=Math.sqrt(16+2.25);return (at(3.9/D)-at(1.5/D)).toFixed(2);",
+   "30.96": "const r=Math.PI/180,at=x=>Math.atan(x)/r;return at(2.4/4.0).toFixed(2);",
+   "13.53": "const r=Math.PI/180,at=x=>Math.atan(x)/r;const D=Math.sqrt(16-2.25);return (at(3.9/D)-at(2.4/D)).toFixed(2);"
+  },
+  "quantity_asked": "the angle at the eyes between the sight lines to the bottom and top edges: arctan(3.9/√13.75) − arctan(1.5/√13.75) ≈ 24.42°.",
+  "distractor_kind": {
+   "23.05": "Pythagorean leg/hypotenuse swap: horizontal distance √(4.0² + 1.5²) = 4.272. (a) no parameter extreme. (b) neighbouring setup: the 4.0 m read as horizontal gives 23.72, not an option; inside. (c) cheapest bounds: angle < arctan(2.4/D) = 32.91 (mural starting at eye level) and < arctan(3.9/D) = 46.44; inside. (d) real: treats the given line of sight as a leg.",
+   "30.96": "arctan(height/distance) shortcut: arctan(2.4/4.0). (a) not a limiting case (the offset-0 limit is arctan(2.4/3.708) = 32.91, not this). (b) none. (c) strictly below the 32.91 cap. (d) real: the classic 'angle subtended = arctan(height/distance)' misconception, using the 4.0 m line as one leg and the mural as the other.",
+   "13.53": "wrong subtraction: arctan(3.9/D) − arctan(2.4/D), subtracting the angle to a point 2.4 m up (the mural height) rather than 1.5 m (the offset). (a) no. (b) none. (c) inside (0, 32.91). (d) real: confuses the mural's height with its bottom edge's height."
+  },
+  "distractor_meta": {
+   "23.05": {
+    "direction": "under",
+    "error_kind": "Pythagorean leg/hypotenuse swap"
+   },
+   "30.96": {
+    "direction": "over",
+    "error_kind": "arctan(height/distance) shortcut"
+   },
+   "13.53": {
+    "direction": "under",
+    "error_kind": "subtracted the wrong elevation angle"
+   }
+  },
+  "bounds": [
+   "angle < arctan(2.4/3.708) = 32.91 (the angle decreases as the mural is raised above eye level)",
+   "angle < arctan(3.9/3.708) = 46.44 (contained in the top edge's elevation angle)",
+   "angle > 0"
+  ],
+  "mechanism": [
+   "angle subtended by a vertical mural",
+   "difference of two angles of elevation",
+   "eye level offset",
+   "line of sight hypotenuse to horizontal distance"
+  ],
+  "arith_class_check": "Key ≈ 24.42 from a difference of two arctangents; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one distractor above, two below, from three different errors).",
+  "interior_parity_check": "Interior options by value: 23.05 and 24.42, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options under the 32.91 offset-0 cap; three distinct errors; no live subtended-angle item (grep subtend/viewing angle/mural/eye level)."
+  }
+ },
+ {
+  "id": "AM29G-16",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "height from two elevation angles at perpendicular positions",
+  "subskill": "elevation angles in 3D: right angle in the ground plane",
+  "prompt": "A vertical tower stands on level ground. Point A on the ground is due south of the base of the tower, and from A the angle of elevation of the top of the tower is 42°. A surveyor walks 50 meters due east from A to point B, where the angle of elevation of the top of the tower is 30°. To the nearest hundredth of a meter, what is the height of the tower?",
+  "choices": [
+   "45.02",
+   "37.62",
+   "72.37",
+   "41.78"
+  ],
+  "correct_answer": "37.62",
+  "explanation": "Let h be the height and T the base. The ground distances are TA = h/tan 42° and TB = h/tan 30°. Because A is due south of T and B is due east of A, angle TAB is a right angle, so TB² = TA² + 50². Then h²(1/tan²30° − 1/tan²42°) = 2,500, so h = 50/√(3 − 1/tan²42°) ≈ 50/1.3291 ≈ 37.62 m. The option \"41.78\" is the ground distance TA ≈ 37.62/tan 42° rather than the height. The option \"45.02\" uses the 50 m as the horizontal distance from A to the base, giving 50 tan 42°. The option \"72.37\" writes the ground distances as h·tan 42° and h·tan 30° instead of h/tan, giving 50/√(tan²42° − tan²30°).",
+  "solve": "const r=Math.PI/180,t=x=>Math.tan(x*r),ct=x=>1/Math.tan(x*r);return (50/Math.sqrt(ct(30)**2-ct(42)**2)).toFixed(2);",
+  "distractor_solve": {
+   "41.78": "const r=Math.PI/180,t=x=>Math.tan(x*r),ct=x=>1/Math.tan(x*r);const h=50/Math.sqrt(ct(30)**2-ct(42)**2);return (h*ct(42)).toFixed(2);",
+   "45.02": "const r=Math.PI/180,t=x=>Math.tan(x*r),ct=x=>1/Math.tan(x*r);return (50*t(42)).toFixed(2);",
+   "72.37": "const r=Math.PI/180,t=x=>Math.tan(x*r),ct=x=>1/Math.tan(x*r);return (50/Math.sqrt(t(42)**2-t(30)**2)).toFixed(2);"
+  },
+  "quantity_asked": "the height h of the tower: 50/√(cot²30° − cot²42°) ≈ 37.62 m.",
+  "distractor_kind": {
+   "41.78": "answered the intermediate TA = h cot 42° (ground distance from A) instead of h. (a) no. (b) an intermediate of the item's own process: 41.78 lies strictly inside (28.87, 80.46). (c) cheapest bounds: TB > AB gives h > 50 tan 30° = 28.87; TB < TA + AB gives h < 50/(cot30° − cot42°) = 80.46; with cot 42° > 1, 3h² > h² + 2500 gives h > 35.36; inside all. (d) real: stops one step early.",
+   "45.02": "single right triangle: the 50 m treated as A's horizontal distance to the base, h = 50 tan 42°. (a) no (not a bound: TA is unrelated to AB). (b) neighbouring setup (A 50 m from the base); strictly inside. (c) inside. (d) real: ignores that AB is perpendicular to AT.",
+   "72.37": "inverted ratio: ground distance written as h·tan(angle) instead of h/tan(angle). (a) no. (b) none. (c) strictly below the 80.46 triangle-inequality cap. (d) real: SOH-CAH-TOA opposite/adjacent swap."
+  },
+  "distractor_meta": {
+   "41.78": {
+    "direction": "over",
+    "error_kind": "answered ground distance TA"
+   },
+   "45.02": {
+    "direction": "over",
+    "error_kind": "single-triangle setup (AB as horizontal distance)"
+   },
+   "72.37": {
+    "direction": "over",
+    "error_kind": "tan used for cot (inverted ratio)"
+   }
+  },
+  "bounds": [
+   "TB > AB: h > 50 tan 30° = 28.87",
+   "TB < TA + AB (triangle TAB non-degenerate): h < 50/(cot 30° − cot 42°) = 80.46",
+   "cot 42° > 1, so TB² = 3h² > h² + 2500: h > 35.36"
+  ],
+  "mechanism": [
+   "angles of elevation from two points not in line with the base",
+   "due south then due east",
+   "right angle in the ground plane",
+   "Pythagorean theorem on ground distances h cot"
+  ],
+  "arith_class_check": "Key ≈ 37.62 from a square root; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "Key smallest. Distractors come from three different errors (stopped at an intermediate, wrong configuration, inverted ratio). Natural errors that move DOWN exist and are not options: adding the squares as if B were on the other axis (AB as hypotenuse), 50/√(cot²30° + cot²42°) = 24.30; reading the 50 m as the hypotenuse TB, 50 tan 30° = 28.87; forgetting the square root, 50/(cot²30° − cot²42°) = 28.30. The stem does not say which way a slip moves h.",
+  "interior_parity_check": "Interior options by value: 41.78 and 45.02, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bounds are LOWER bounds: TB > AB gives h > 28.87; cot 42° > 1 gives h > 35.36. Key and all three distractors lie above both (on the key's side). The only upper bound is the triangle inequality, h < 80.46, and every option is below it. Nearest distractor 41.78 is 4.16 above the key; no stem-readable bound separates them. Gaps toward the key 27.35, 3.24, 4.16 do not shrink geometrically (no CONV).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural downward errors (added squares 24.30, AB as TB 28.87, no root 28.30); not a live two-observer-in-line item (that value 80.46 is excluded as the cap)."
+  }
+ },
+ {
+  "id": "AM29G-17",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angles of depression to two boats, then law of cosines for an angle",
+  "subskill": "depression angles to ground distances; law of cosines for an angle",
+  "prompt": "The top of a lighthouse is 46.8 meters above sea level, and F is the point at sea level directly below the top. From the top of the lighthouse, the angle of depression to boat P is 10° and the angle of depression to boat Q is 16°. Boats P and Q are 261 meters apart. To the nearest hundredth of a degree, what is the measure of ∠PFQ ?",
+  "choices": [
+   "68.63",
+   "73.42",
+   "48.04",
+   "70.47"
+  ],
+  "correct_answer": "70.47",
+  "explanation": "The horizontal distances are FP = 46.8/tan 10° ≈ 265.42 m and FQ = 46.8/tan 16° ≈ 163.21 m. In triangle PFQ, by the law of cosines, cos∠PFQ = (FP² + FQ² − PQ²)/(2·FP·FQ) = (265.42² + 163.21² − 261²)/(2·265.42·163.21) ≈ 0.3343, so ∠PFQ ≈ 70.47°. The option \"68.63\" uses the lines of sight from the top, 46.8/sin 10° and 46.8/sin 16°, as the sides FP and FQ. The option \"48.04\" drops the factor 2 from the denominator. The option \"73.42\" puts PQ in the wrong place in the law of cosines and finds ∠FQP instead.",
+  "solve": "const r=Math.PI/180,t=x=>Math.tan(x*r),s=x=>Math.sin(x*r),ac=x=>Math.acos(x)/r;const p=46.8/t(10),q=46.8/t(16),d=261;return ac((p*p+q*q-d*d)/(2*p*q)).toFixed(2);",
+  "distractor_solve": {
+   "68.63": "const r=Math.PI/180,t=x=>Math.tan(x*r),s=x=>Math.sin(x*r),ac=x=>Math.acos(x)/r;const p=46.8/t(10),q=46.8/t(16),d=261;const a=46.8/s(10),b=46.8/s(16);return ac((a*a+b*b-d*d)/(2*a*b)).toFixed(2);",
+   "48.04": "const r=Math.PI/180,t=x=>Math.tan(x*r),s=x=>Math.sin(x*r),ac=x=>Math.acos(x)/r;const p=46.8/t(10),q=46.8/t(16),d=261;return ac((p*p+q*q-d*d)/(p*q)).toFixed(2);",
+   "73.42": "const r=Math.PI/180,t=x=>Math.tan(x*r),s=x=>Math.sin(x*r),ac=x=>Math.acos(x)/r;const p=46.8/t(10),q=46.8/t(16),d=261;return ac((q*q+d*d-p*p)/(2*q*d)).toFixed(2);"
+  },
+  "quantity_asked": "the horizontal angle ∠PFQ at the foot of the lighthouse, from the law of cosines with FP = 46.8 cot 10°, FQ = 46.8 cot 16°, PQ = 261: ≈ 70.47°.",
+  "distractor_kind": {
+   "68.63": "slant distances: the lines of sight 46.8/sin(depression) used as the horizontal sides. (a) no. (b) neighbouring setup (the angle at the top of the lighthouse uses these sides but is a different angle); inside. (c) cheapest bounds: PQ² < FP² + FQ² so the angle is acute (< 90); FP·sin∠PFQ ≤ PQ gives sin ≤ 261/265.42, angle < 79.53; inside. (d) real: 3-D sight line taken for the horizontal distance.",
+   "48.04": "law of cosines with the factor 2 dropped: cos = (FP² + FQ² − PQ²)/(FP·FQ). (a) no. (b) none. (c) inside (0, 79.53). (d) real: formula slip.",
+   "73.42": "law of cosines with the wrong side opposite the angle: the angle at Q. (a) no. (b) none. (c) below the 79.53 cap. (d) real: side/angle assignment error."
+  },
+  "distractor_meta": {
+   "68.63": {
+    "direction": "under",
+    "error_kind": "line-of-sight length for horizontal distance"
+   },
+   "48.04": {
+    "direction": "under",
+    "error_kind": "dropped factor 2 in law of cosines"
+   },
+   "73.42": {
+    "direction": "over",
+    "error_kind": "wrong side opposite the angle"
+   }
+  },
+  "bounds": [
+   "261² < FP² + FQ², so ∠PFQ < 90°",
+   "the distance from P to line FQ is FP·sin∠PFQ ≤ PQ: sin∠PFQ ≤ 261/265.42, so ∠PFQ < 79.53°",
+   "PQ > FP − FQ, so the angle is positive"
+  ],
+  "mechanism": [
+   "angles of depression from a lighthouse to two boats",
+   "horizontal distance 46.8 cot",
+   "law of cosines solved for an angle",
+   "angle at the foot between two boats"
+  ],
+  "arith_class_check": "Key ≈ 70.47 from an arccosine; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one distractor above, two below).",
+  "interior_parity_check": "Interior options by value: 68.63 and 70.47, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; every option under the 79.53 containment cap and 90; three different errors; live depression items find one distance only."
+  }
+ },
+ {
+  "id": "AM29G-18",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "running fix from two bearings (law of sines)",
+  "subskill": "bearings to triangle angles; law of sines",
+  "prompt": "A ship sails due east at a constant speed of 14 kilometers per hour. At 9:00 a.m., a lighthouse is on a bearing of 047° from the ship (that is, 47° clockwise from due north). At 10:25 a.m., the lighthouse is on a bearing of 352° from the ship. To the nearest hundredth of a kilometer, how far is the ship from the lighthouse at 10:25 a.m.?",
+  "choices": [
+   "17.41",
+   "14.57",
+   "18.66",
+   "16.51"
+  ],
+  "correct_answer": "16.51",
+  "explanation": "From 9:00 to 10:25 is 1 hour 25 minutes = 85/60 hour, so the ship travels 14(85/60) ≈ 19.833 km from S1 to S2. At S1 the course (bearing 090°) and the line to the lighthouse L (bearing 047°) form an angle of 90° − 47° = 43°. At S2 the line back to S1 has bearing 270°, and the line to L has bearing 352°, so the angle at S2 is 352° − 270° = 82°. The angle at L is 180° − 43° − 82° = 55°. By the law of sines, S2L = 19.833·sin 43°/sin 55° ≈ 16.51 km. The option \"14.57\" writes 1 hour 25 minutes as 1.25 hours. The option \"17.41\" takes the angle at S2 as 8°, the angle between the line to L and due north. The option \"18.66\" uses the bearing 47° itself as the angle at S1.",
+  "solve": "const r=Math.PI/180,s=x=>Math.sin(x*r);const d=14*85/60;return (d*s(43)/s(55)).toFixed(2);",
+  "distractor_solve": {
+   "14.57": "const r=Math.PI/180,s=x=>Math.sin(x*r);const d=14*1.25;return (d*s(43)/s(55)).toFixed(2);",
+   "17.41": "const r=Math.PI/180,s=x=>Math.sin(x*r);const d=14*85/60;return (d*s(43)/s(180-43-8)).toFixed(2);",
+   "18.66": "const r=Math.PI/180,s=x=>Math.sin(x*r);const d=14*85/60;return (d*s(47)/s(180-47-82)).toFixed(2);"
+  },
+  "quantity_asked": "the distance from the ship at 10:25 a.m. to the lighthouse: (14·85/60)·sin 43°/sin 55° ≈ 16.51 km.",
+  "distractor_kind": {
+   "14.57": "time unit slip on an intermediate: 1 h 25 min written as 1.25 h (d = 17.5 km). (a) no. (b) none. (c) cheapest bounds: S2L is opposite the smallest angle (43°), so S2L < S1S2 = 19.83; S2L = d sin 43°/sin 55° > d sin 43° = 13.53; inside. (d) real: minutes read as a decimal. Only min:dec slip in this run.",
+   "17.41": "bearing at S2 read as the angle from north (8°) instead of from the reversed course (82°). (a) no. (b) none. (c) inside (13.53, 19.83). (d) real: bearing-to-angle conversion at the second fix.",
+   "18.66": "bearing 047° used directly as the interior angle at S1 instead of 90° − 47°. (a) no. (b) none. (c) strictly below the 19.83 cap. (d) real: bearing-to-angle conversion at the first fix."
+  },
+  "distractor_meta": {
+   "14.57": {
+    "direction": "under",
+    "error_kind": "minutes written as a decimal hour"
+   },
+   "17.41": {
+    "direction": "over",
+    "error_kind": "angle at second fix measured from north"
+   },
+   "18.66": {
+    "direction": "over",
+    "error_kind": "bearing used as interior angle at first fix"
+   }
+  },
+  "bounds": [
+   "S2L is opposite the 43° angle, the smallest in the triangle: S2L < S1S2 = 19.83 km",
+   "S2L = 19.83 sin 43°/sin 55° > 19.83 sin 43° = 13.53 km"
+  ],
+  "mechanism": [
+   "running fix from two bearings",
+   "ship sailing due east",
+   "law of sines with bearings",
+   "distance travelled from speed and elapsed time"
+  ],
+  "arith_class_check": "Key ≈ 16.51; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "key interior (two distractors above, one below).",
+  "interior_parity_check": "Interior options by value: 16.51 and 17.41, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options inside (13.53, 19.83); live bearing item 231efc68 is a two-leg law-of-cosines path, live survey 2554ad89 is fixed stations and perpendicular distance."
+  }
+ }
+]

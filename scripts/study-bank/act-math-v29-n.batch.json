@@ -1,0 +1,785 @@
+[
+ {
+  "id": "AM29N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "vector sum with a fixed-magnitude component",
+  "subskill": "heading into a crosswind",
+  "prompt": "On a map, the positive x-axis points east and the positive y-axis points north. The wind velocity is ⟨−90, −70⟩ kilometers per hour. A plane flies with an airspeed of 300 kilometers per hour, which is the magnitude of its velocity relative to the air, and its velocity relative to the ground is the sum of its velocity relative to the air and the wind velocity. The pilot points the plane so that its velocity relative to the ground is directed due north. To the nearest tenth of a kilometer per hour, what is the plane's ground speed, the magnitude of its velocity relative to the ground?",
+  "choices": [
+   "211.7",
+   "216.2",
+   "201.7",
+   "207.5"
+  ],
+  "correct_answer": "216.2",
+  "explanation": "Let the velocity relative to the air be ⟨p, q⟩ with p² + q² = 300². The ground velocity ⟨p − 90, q − 70⟩ points due north, so p − 90 = 0 and p = 90. Then q = √(90,000 − 8,100) = √81,900 ≈ 286.18, and the ground velocity is ⟨0, 286.18 − 70⟩, so the ground speed is about 216.2 km/h. The option \"211.7\" subtracts the 70 km/h headwind from the airspeed first and then cancels the crosswind: √(230² − 90²). The option \"207.5\" cancels the whole wind speed √(90² + 70²) instead of its east-west component, √(300² − 90² − 70²) − 70. The option \"201.7\" swaps the components, cancelling 70 and then subtracting 90: √(300² − 70²) − 90.",
+  "solve": "const a=300,c=90,h=70;return (Math.sqrt(a*a-c*c)-h).toFixed(1);",
+  "distractor_solve": {
+   "211.7": "const a=300,c=90,h=70;return Math.sqrt((a-h)**2-c*c).toFixed(1);",
+   "207.5": "const a=300,c=90,h=70;return (Math.sqrt(a*a-c*c-h*h)-h).toFixed(1);",
+   "201.7": "const a=300,c=90,h=70;return (Math.sqrt(a*a-h*h)-c).toFixed(1);"
+  },
+  "quantity_asked": "the plane's ground speed when its ground velocity points due north: √(300² − 90²) − 70 ≈ 216.2 km/h.",
+  "distractor_kind": {
+   "211.7": "headwind subtracted before the crosswind is cancelled, √(230² − 90²). (a) no parameter extreme on a bound (c = 0 gives 230, the upper bound; this is strictly below it). (b) neighbouring setup: the heading for a plane whose airspeed were already reduced by the headwind; strictly inside (186.0, 230). (c) cheapest bounds: ground speed ≤ 300 − 70 = 230 (the air velocity's north part is at most 300) and ≥ 300 − |wind| ≈ 186.0 (triangle inequality); 211.7 strictly inside. (d) real: order of operations on the two wind components.",
+   "207.5": "whole wind speed cancelled, √(300² − 114.0²) − 70. (a) no. (b) neighbouring: the case where the crosswind were the full 114.0 km/h; strictly inside. (c) inside (186.0, 230). (d) real: |wind| used where only its east-west component must be cancelled.",
+   "201.7": "components swapped: √(300² − 70²) − 90. (a) no. (b) neighbouring: the same plane flying due east into this wind's other component; strictly inside. (c) inside (186.0, 230). (d) real: x- and y-components of ⟨−90, −70⟩ exchanged."
+  },
+  "distractor_meta": {
+   "211.7": {
+    "direction": "under",
+    "error_kind": "headwind before crosswind"
+   },
+   "207.5": {
+    "direction": "under",
+    "error_kind": "whole wind speed cancelled"
+   },
+   "201.7": {
+    "direction": "under",
+    "error_kind": "components swapped"
+   }
+  },
+  "bounds": [
+   "ground speed ≤ 300 − 70 = 230 (north part of the air velocity is at most 300)",
+   "ground speed ≥ 300 − √(90² + 70²) ≈ 186.0 (triangle inequality)",
+   "ground speed > 0"
+  ],
+  "mechanism": [
+   "heading into a crosswind so the ground track is due north",
+   "air velocity plus wind velocity equals ground velocity",
+   "cancel the east-west wind component with a fixed airspeed",
+   "Pythagorean north component then subtract the headwind"
+  ],
+  "arith_class_check": "All four are one-decimal values of differences of square roots; none is an integer or a multiple of 5, none singled out.",
+  "one_sided_check": "Key largest. Distractors from three different error kinds (order of the two corrections, wrong vector cancelled, components swapped). Errors that move the answer UP are as natural: finding the heading angle with tan instead of sin, 300·cos(arctan(90/300)) − 70 ≈ 217.3, and adding the headwind (286.2 + 70 = 356.2); nothing in the stem says every slip lowers the speed.",
+  "interior_parity_check": "Interior options by value: 207.5 and 211.7, both three-digit with one nonzero decimal; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: ground speed ≤ 230 (no crosswind) and ≥ 186.0 (triangle inequality); all three distractors lie inside. Finer one-step bounds 300 − 90²/300 ≤ √(300² − 90²) ≤ 300 − 90²/600 put the speed in (203.0, 216.5): that removes 201.7, while 207.5 and 211.7 stay on the key's side. The nearest distractor is 4.5 below the key, inside the 13.5-wide estimate.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest; three distinct under-errors, natural over-error (tan heading 217.3). Bounds (186.0, 230) hold all. Not live: 05ceffa1 aims straight across and asks the drift."
+  }
+ },
+ {
+  "id": "AM29N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "vector equation for a scalar",
+  "subskill": "magnitude condition on u + kv",
+  "prompt": "In the standard (x,y) coordinate plane, u = ⟨3, 5⟩ and v = ⟨4, −1⟩. For a certain positive number k, the vector u + kv has a magnitude of 11. To the nearest hundredth, what is the value of k ?",
+  "choices": [
+   "1.47",
+   "2.71",
+   "1.89",
+   "2.07"
+  ],
+  "correct_answer": "1.89",
+  "explanation": "u + kv = ⟨3 + 4k, 5 − k⟩, so (3 + 4k)² + (5 − k)² = 121. Expanding, 9 + 24k + 16k² + 25 − 10k + k² = 121, so 17k² + 14k − 87 = 0. The positive root is k = (−14 + √(196 + 5,916))/34 = (−14 + √6,112)/34 ≈ 1.89. The option \"1.47\" expands (5 − k)² as 25 + 10k + k², giving 17k² + 34k − 87 = 0. The option \"2.07\" forgets to double the cross terms (3·4k and 5·k), giving 17k² + 7k − 87 = 0. The option \"2.71\" drops the minus sign on −b in the quadratic formula, k = (14 + √6,112)/34.",
+  "solve": "const u=[3,5],v=[4,-1],c=11;const A=v[0]**2+v[1]**2,C=u[0]**2+u[1]**2-c*c;const B=2*(u[0]*v[0]+u[1]*v[1]);return ((-B+Math.sqrt(B*B-4*A*C))/(2*A)).toFixed(2);",
+  "distractor_solve": {
+   "1.47": "const u=[3,5],v=[4,-1],c=11;const A=v[0]**2+v[1]**2,C=u[0]**2+u[1]**2-c*c;const B=2*(u[0]*v[0]-u[1]*v[1]);return ((-B+Math.sqrt(B*B-4*A*C))/(2*A)).toFixed(2);",
+   "2.07": "const u=[3,5],v=[4,-1],c=11;const A=v[0]**2+v[1]**2,C=u[0]**2+u[1]**2-c*c;const B=(u[0]*v[0]+u[1]*v[1]);return ((-B+Math.sqrt(B*B-4*A*C))/(2*A)).toFixed(2);",
+   "2.71": "const u=[3,5],v=[4,-1],c=11;const A=v[0]**2+v[1]**2,C=u[0]**2+u[1]**2-c*c;const B=2*(u[0]*v[0]+u[1]*v[1]);return ((B+Math.sqrt(B*B-4*A*C))/(2*A)).toFixed(2);"
+  },
+  "quantity_asked": "the positive k with |u + kv| = 11: root of 17k² + 14k − 87 = 0, k ≈ 1.89.",
+  "distractor_kind": {
+   "1.47": "sign slip squaring (5 − k): 17k² + 34k − 87 = 0. (a) no parameter extreme. (b) neighbouring setup: u + kv' with v' = ⟨4, 1⟩; strictly inside. (c) cheapest bounds from the triangle inequality: (11 − √34)/√17 ≈ 1.25 ≤ k ≤ (11 + √34)/√17 ≈ 4.08; 1.47 strictly inside. (d) real: (a − b)² expanded with +2ab.",
+   "2.07": "cross term not doubled: 17k² + 7k − 87 = 0. (a) no. (b) neighbouring: none exact; lies between the key and the perpendicular case √(87/17) ≈ 2.26; strictly inside. (c) inside (1.25, 4.08). (d) real: (a + b)² taken as a² + ab + b².",
+   "2.71": "quadratic-formula sign slip on −b: (14 + √6112)/34 (also |u − kv| = 11, or the size of the negative root). (a) no. (b) neighbouring: |u − kv| = 11; strictly inside. (c) inside (1.25, 4.08). (d) real: −b written as b."
+  },
+  "distractor_meta": {
+   "1.47": {
+    "direction": "under",
+    "error_kind": "sign slip in a square"
+   },
+   "2.07": {
+    "direction": "over",
+    "error_kind": "cross term not doubled"
+   },
+   "2.71": {
+    "direction": "over",
+    "error_kind": "quadratic formula -b sign"
+   }
+  },
+  "bounds": [
+   "k > 0",
+   "k ≥ (11 − |u|)/|v| = (11 − √34)/√17 ≈ 1.25",
+   "k ≤ (11 + |u|)/|v| ≈ 4.08"
+  ],
+  "mechanism": [
+   "magnitude of u + kv set equal to a number",
+   "quadratic in the scalar k",
+   "vector equation solved for a scalar",
+   "positive root of 17k² + 14k − 87 = 0"
+  ],
+  "arith_class_check": "All four are two-decimal roots of quadratics with irrational discriminants; none is an integer, none is singled out.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 1.89 (key) and 2.07, both two-decimal with a nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under (sign slip), two over (cross term, formula sign) of three kinds. Triangle-inequality interval (1.25, 4.08) holds all four. Not live: 3447bd48 is a perpendicularity condition."
+  }
+ },
+ {
+  "id": "AM29N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "weighted sum of position vectors",
+  "subskill": "center of mass from position vectors",
+  "prompt": "In the standard (x,y) coordinate plane, objects with masses of 4 kilograms, 2 kilograms, and 3 kilograms are placed at the points A(8, 1), B(9, 9), and C(−6, −2), respectively. The center of mass of the 3 objects is the point whose position vector is the weighted average of the 3 position vectors, each weighted by its object's mass. To the nearest hundredth of a coordinate unit, what is the distance from the center of mass to point A ?",
+  "choices": [
+   "4.92",
+   "4.64",
+   "5.09",
+   "4.51"
+  ],
+  "correct_answer": "4.51",
+  "explanation": "The center of mass has position vector (4⟨8, 1⟩ + 2⟨9, 9⟩ + 3⟨−6, −2⟩)/(4 + 2 + 3) = ⟨32, 16⟩/9 ≈ ⟨3.556, 1.778⟩. Its distance from A(8, 1) is √((8 − 32/9)² + (16/9 − 1)²) = √((40/9)² + (7/9)²) = √1,649/9 ≈ 4.51. The option \"4.64\" ignores the masses and averages the 3 points, (11/3, 8/3). The option \"5.09\" divides the weighted sum by 3, the number of objects, instead of by the total mass 9, giving (32/3, 16/3). The option \"4.92\" reads C's y-coordinate as 2 instead of −2.",
+  "solve": "const m=[4,2,3],P=[[8,1],[9,9],[-6,-2]];const c=(m,P,d)=>[m.reduce((s,x,i)=>s+x*P[i][0],0)/d,m.reduce((s,x,i)=>s+x*P[i][1],0)/d];const g=q=>Math.hypot(q[0]-8,q[1]-1).toFixed(2);return g(c(m,P,9));",
+  "distractor_solve": {
+   "4.64": "const m=[4,2,3],P=[[8,1],[9,9],[-6,-2]];const c=(m,P,d)=>[m.reduce((s,x,i)=>s+x*P[i][0],0)/d,m.reduce((s,x,i)=>s+x*P[i][1],0)/d];const g=q=>Math.hypot(q[0]-8,q[1]-1).toFixed(2);return g(c([1,1,1],P,3));",
+   "5.09": "const m=[4,2,3],P=[[8,1],[9,9],[-6,-2]];const c=(m,P,d)=>[m.reduce((s,x,i)=>s+x*P[i][0],0)/d,m.reduce((s,x,i)=>s+x*P[i][1],0)/d];const g=q=>Math.hypot(q[0]-8,q[1]-1).toFixed(2);return g(c(m,P,3));",
+   "4.92": "const m=[4,2,3],P=[[8,1],[9,9],[-6,-2]];const c=(m,P,d)=>[m.reduce((s,x,i)=>s+x*P[i][0],0)/d,m.reduce((s,x,i)=>s+x*P[i][1],0)/d];const g=q=>Math.hypot(q[0]-8,q[1]-1).toFixed(2);const Q=[[8,1],[9,9],[-6,2]];return g(c(m,Q,9));"
+  },
+  "quantity_asked": "the distance from the center of mass (32/9, 16/9) to A(8, 1): √1649/9 ≈ 4.51.",
+  "distractor_kind": {
+   "4.64": "weights ignored: plain average of the 3 points, (11/3, 8/3). (a) no parameter extreme (equal masses is a different stem). (b) neighbouring setup: the centroid of triangle ABC; strictly inside the bounds. (c) cheapest one-sided bound: by the triangle inequality the distance is at most (2|AB| + 3|AC|)/9 = (2√65 + 3√205)/9 ≈ 6.56, and the center lies in triangle ABC so it is at most |AC| ≈ 14.32; 4.64 strictly below. (d) real: unweighted mean.",
+   "5.09": "weighted sum divided by the number of objects (3) instead of the total mass (9): (32/3, 16/3). (a) no. (b) neighbouring: weighted sum over count; inside. (c) below 6.56. (d) real: the classic weighted-average denominator slip.",
+   "4.92": "sign slip: C's y-coordinate −2 read as 2, center (32/9, 28/9). (a) no. (b) neighbouring: the same slip on C's x-coordinate gives about 0.90, below the key. (c) below 6.56. (d) real: dropped negative sign."
+  },
+  "distractor_meta": {
+   "4.64": {
+    "direction": "over",
+    "error_kind": "weights ignored"
+   },
+   "5.09": {
+    "direction": "over",
+    "error_kind": "divided by count not total mass"
+   },
+   "4.92": {
+    "direction": "over",
+    "error_kind": "coordinate sign slip"
+   }
+  },
+  "bounds": [
+   "v ≤ (2|AB| + 3|AC|)/9 ≈ 6.56 (triangle inequality on the weighted sum)",
+   "v ≤ max(|AB|, |AC|) ≈ 14.32 (the center lies in triangle ABC)",
+   "v ≥ 0"
+  ],
+  "mechanism": [
+   "center of mass as weighted average of position vectors",
+   "scalar multiples and sums of vectors",
+   "distance from a weighted average point to a vertex",
+   "divide by total mass"
+  ],
+  "arith_class_check": "All four are two-decimal values of irrational square roots; none integer or round.",
+  "one_sided_check": "Key smallest. Kinds: weights ignored, wrong denominator, coordinate sign slip. Not stem-readable as one-way: the same sign slip on C's x-coordinate gives 0.90 (below), an unweighted mean or a wrong denominator moves the point in a direction that depends on where the origin and the masses sit.",
+  "interior_parity_check": "Interior options by value: 4.64 and 4.92, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bound that could cut distractors above the key: the triangle-inequality cap (2|AB| + 3|AC|)/9 ≈ 6.56 and the containment cap |AC| ≈ 14.32; all three distractors lie on the key's side (below) of both. Lower bounds (v ≥ 0, or v ≥ the x-gap 40/9 ≈ 4.44 once the center is found) do not cut anything above the key. Nearest distractor 4.64 is 0.13 above the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key; three kinds; the natural opposite sign slip (C's x) gives 0.90. Risk: a grader may file center of mass as a weighted mean rather than vectors."
+  }
+ },
+ {
+  "id": "AM29N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vector as a linear combination",
+  "subskill": "scalars a, b with au + bv = w",
+  "prompt": "In the standard (x,y) coordinate plane, u = ⟨3, 1⟩, v = ⟨2, −5⟩, and w = ⟨9, −4⟩. The real numbers a and b satisfy au + bv = w. To the nearest hundredth, what is the value of a + b ?",
+  "choices": [
+   "4.18",
+   "2.46",
+   "3.41",
+   "4.46"
+  ],
+  "correct_answer": "3.41",
+  "explanation": "au + bv = ⟨3a + 2b, a − 5b⟩, so 3a + 2b = 9 and a − 5b = −4. From the second equation a = 5b − 4; then 3(5b − 4) + 2b = 9 gives 17b = 21, so b = 21/17 and a = 37/17. Then a + b = 58/17 ≈ 3.41. The option \"4.18\" builds each equation from one vector's components (3a + b = 9 and 2a − 5b = −4), giving 71/17. The option \"4.46\" uses Cramer's rule with the determinant computed as 3(−5) + 2(1) = −13 instead of 3(−5) − 2(1) = −17, giving 58/13. The option \"2.46\" drops the negative sign on v's second component (a + 5b = −4), giving 32/13.",
+  "solve": "function sv(u,v,w,d){d=d??(u[0]*v[1]-v[0]*u[1]);return [(w[0]*v[1]-v[0]*w[1])/d,(u[0]*w[1]-w[0]*u[1])/d];}const [a,b]=sv([3,1],[2,-5],[9,-4]);return (a+b).toFixed(2);",
+  "distractor_solve": {
+   "4.18": "function sv(u,v,w,d){d=d??(u[0]*v[1]-v[0]*u[1]);return [(w[0]*v[1]-v[0]*w[1])/d,(u[0]*w[1]-w[0]*u[1])/d];}const [a,b]=sv([3,2],[1,-5],[9,-4]);return (a+b).toFixed(2);",
+   "4.46": "function sv(u,v,w,d){d=d??(u[0]*v[1]-v[0]*u[1]);return [(w[0]*v[1]-v[0]*w[1])/d,(u[0]*w[1]-w[0]*u[1])/d];}const [a,b]=sv([3,1],[2,-5],[9,-4],3*(-5)+2*1);return (a+b).toFixed(2);",
+   "2.46": "function sv(u,v,w,d){d=d??(u[0]*v[1]-v[0]*u[1]);return [(w[0]*v[1]-v[0]*w[1])/d,(u[0]*w[1]-w[0]*u[1])/d];}const [a,b]=sv([3,1],[2,5],[9,-4]);return (a+b).toFixed(2);"
+  },
+  "quantity_asked": "a + b where au + bv = w: 58/17 ≈ 3.41.",
+  "distractor_kind": {
+   "4.18": "system transposed: each vector's components used as one equation's coefficients. (a) no parameter extreme. (b) neighbouring setup: the combination problem with u and v written as the rows instead of the columns; strictly inside the spread of the options. (c) no stem-forced bound on a + b beyond sign reasoning (a, b both positive since w lies between the directions of u and v); 4.18 positive, inside. (d) real: rows and columns confused.",
+   "4.46": "Cramer's-rule determinant sign slip, d = −15 + 2 = −13. (a) no. (b) neighbouring: same numerators over a wrong determinant; strictly inside. (c) positive, inside. (d) real: ad − bc computed as ad + bc.",
+   "2.46": "sign slip on v's y-component (a + 5b = −4). (a) no. (b) neighbouring: v = ⟨2, 5⟩; strictly inside. (c) positive, inside. (d) real: dropped negative sign."
+  },
+  "distractor_meta": {
+   "4.18": {
+    "direction": "over",
+    "error_kind": "system transposed"
+   },
+   "4.46": {
+    "direction": "over",
+    "error_kind": "determinant sign"
+   },
+   "2.46": {
+    "direction": "under",
+    "error_kind": "component sign dropped"
+   }
+  },
+  "bounds": [
+   "a > 0 and b > 0 (w lies between the directions of u and v)",
+   "no cheap numeric bound on a + b without solving"
+  ],
+  "mechanism": [
+   "write w as a linear combination of u and v",
+   "two-by-two system from vector components",
+   "solve for the scalars a and b",
+   "sum of the coefficients"
+  ],
+  "arith_class_check": "All four are two-decimal non-terminating fractions (58/17, 71/17, 58/13, 32/13); none is an integer, none singled out.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 3.41 (key) and 4.18, both two-decimal with a nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two over (transposed system, determinant sign) and one under (sign slip). Not live: AM23N-04 solves a vector system for u and v, not scalars."
+  }
+ },
+ {
+  "id": "AM29N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "position vectors of two movers",
+  "subskill": "distance between two moving points",
+  "prompt": "On a map grid measured in kilometers, drone A starts at the point (−7, −4) and flies with constant velocity ⟨−1, −4⟩, and drone B starts at the point (−2, 7) and flies with constant velocity ⟨5, −6⟩, where velocities are in kilometers per hour. Both drones start at the same moment, and t hours later each drone's position vector is its starting position vector plus t times its velocity vector. To the nearest hundredth of a kilometer, how far apart are the drones 2.25 hours after they start?",
+  "choices": [
+   "18.12",
+   "16.44",
+   "19.61",
+   "17.68"
+  ],
+  "correct_answer": "19.61",
+  "explanation": "The vector from A to B at time t is (B₀ − A₀) + t(v_B − v_A) = ⟨5, 11⟩ + t⟨6, −2⟩. At t = 2.25 it is ⟨5 + 13.5, 11 − 4.5⟩ = ⟨18.5, 6.5⟩, of length √(342.25 + 42.25) = √384.5 ≈ 19.61. The option \"18.12\" adds the velocities instead of subtracting them: ⟨5, 11⟩ + 2.25⟨4, −10⟩ = ⟨14, −11.5⟩. The option \"17.68\" subtracts the starting points in the opposite order from the velocities: ⟨−5, −11⟩ + 2.25⟨6, −2⟩ = ⟨8.5, −15.5⟩. The option \"16.44\" lets only drone B move: ⟨5, 11⟩ + 2.25⟨5, −6⟩ = ⟨16.25, −2.5⟩.",
+  "solve": "const PA=[-7,-4],PB=[-2,7],vA=[-1,-4],vB=[5,-6],t=2.25;const f=(x,y)=>Math.hypot(x,y).toFixed(2);return f(PB[0]-PA[0]+t*(vB[0]-vA[0]),PB[1]-PA[1]+t*(vB[1]-vA[1]));",
+  "distractor_solve": {
+   "18.12": "const PA=[-7,-4],PB=[-2,7],vA=[-1,-4],vB=[5,-6],t=2.25;const f=(x,y)=>Math.hypot(x,y).toFixed(2);return f(PB[0]-PA[0]+t*(vB[0]+vA[0]),PB[1]-PA[1]+t*(vB[1]+vA[1]));",
+   "17.68": "const PA=[-7,-4],PB=[-2,7],vA=[-1,-4],vB=[5,-6],t=2.25;const f=(x,y)=>Math.hypot(x,y).toFixed(2);return f(PA[0]-PB[0]+t*(vB[0]-vA[0]),PA[1]-PB[1]+t*(vB[1]-vA[1]));",
+   "16.44": "const PA=[-7,-4],PB=[-2,7],vA=[-1,-4],vB=[5,-6],t=2.25;const f=(x,y)=>Math.hypot(x,y).toFixed(2);return f(PB[0]-PA[0]+t*vB[0],PB[1]-PA[1]+t*vB[1]);"
+  },
+  "quantity_asked": "|(B₀ − A₀) + 2.25(v_B − v_A)| = |⟨18.5, 6.5⟩| = √384.5 ≈ 19.61 km.",
+  "distractor_kind": {
+   "18.12": "relative velocity taken as v_B + v_A (sign slip). (a) no parameter extreme. (b) neighbouring setup: drones' velocities combined the wrong way; strictly inside. (c) cheapest bounds from the triangle inequality: | |⟨5, 11⟩| − 2.25|⟨6, −2⟩| | ≈ 2.15 ≤ v ≤ 12.08 + 14.23 ≈ 26.31; 18.12 strictly inside. (d) real: velocities added rather than subtracted.",
+   "17.68": "mixed subtraction order: (A₀ − B₀) + t(v_B − v_A). (a) no. (b) neighbouring: the separation with the starting offset reversed; strictly inside. (c) inside (2.15, 26.31). (d) real: one difference taken A − B and the other B − A.",
+   "16.44": "omission: only drone B moves, ⟨5, 11⟩ + t v_B. (a) no. (b) neighbouring: A held at its start; the same omission for B (only A moves) gives 21.27, above the key. (c) inside (2.15, 26.31). (d) real: forgets that A's position also changes."
+  },
+  "distractor_meta": {
+   "18.12": {
+    "direction": "under",
+    "error_kind": "velocities added"
+   },
+   "17.68": {
+    "direction": "under",
+    "error_kind": "mixed subtraction order"
+   },
+   "16.44": {
+    "direction": "under",
+    "error_kind": "one mover held fixed"
+   }
+  },
+  "bounds": [
+   "v ≥ | |B₀ − A₀| − 2.25|v_B − v_A| | ≈ 2.15",
+   "v ≤ |B₀ − A₀| + 2.25|v_B − v_A| ≈ 26.31"
+  ],
+  "mechanism": [
+   "relative position vector of two movers",
+   "starting position plus t times velocity",
+   "distance between two drones at a given time",
+   "v_B − v_A relative velocity"
+  ],
+  "arith_class_check": "All four are two-decimal square roots of non-squares (√270.3125, √312.5, √328.25, √384.5); none integer or round.",
+  "one_sided_check": "Key largest. Kinds: velocity sign slip, mixed subtraction order, omission of one mover. No direction is stem-readable: holding A fixed instead of B gives 21.27 (above), and subtracting B's velocity from A's alone (A₀ − B₀ with v_A − v_B) is the same length as the key; adding velocities could go either way with other numbers.",
+  "interior_parity_check": "Interior options by value: 17.68 and 18.12, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bound from the stem without solving: the triangle inequality gives 2.15 ≤ v ≤ 26.31; the lower bound is far below all three distractors (all on the key's side of it). A one-step estimate, the initial separation |⟨5, 11⟩| ≈ 12.08, is not a bound in either direction. Nearest distractor 18.12 is 1.49 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; three kinds; the natural opposite omission (only A moves, 21.27) lands above. Not live: AM23F-09 (held) minimizes ship distance; 336446ef is a line-crossing time."
+  }
+ },
+ {
+  "id": "AM29N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "complex solutions of quadratics in the complex plane",
+  "subskill": "distance between nonreal roots",
+  "prompt": "In the complex plane, the complex number a + bi, where a and b are real numbers, is represented by the point (a, b). For i = √(−1), each of the equations x² − 5x + 13 = 0 and 4x² + 2x + 3 = 0 has two nonreal complex solutions. Let P be the point that represents the solution of the first equation that has a positive imaginary part, and let Q be the point that represents the solution of the second equation that has a positive imaginary part. To the nearest hundredth of a unit, what is the distance between P and Q ?",
+  "choices": [
+   "4.39",
+   "3.27",
+   "4.88",
+   "3.57"
+  ],
+  "correct_answer": "3.27",
+  "explanation": "By the quadratic formula, the first equation has solutions (5 ± √(25 − 52))/2 = 2.5 ± (√27/2)i, so P = (2.5, √27/2) ≈ (2.5, 2.598). The second has solutions (−2 ± √(4 − 48))/8 = −0.25 ± (√44/8)i, so Q = (−0.25, √44/8) ≈ (−0.25, 0.829). PQ = √(2.75² + 1.769²) = √10.69 ≈ 3.27. The option \"3.57\" divides by 2 instead of 2a = 8 for the second equation, taking Q = (−1, √44/2). The option \"4.39\" uses the second equation's solution with the negative imaginary part, Q = (−0.25, −0.829). The option \"4.88\" divides only −b by 2a, leaving the imaginary part as √44, so Q = (−0.25, 6.633).",
+  "solve": "const r=(a,b,c)=>[-b/(2*a),Math.sqrt(4*a*c-b*b)/(2*a)];const P=r(1,-5,13);const Q=r(4,2,3);return Math.hypot(P[0]-Q[0],P[1]-Q[1]).toFixed(2);",
+  "distractor_solve": {
+   "3.57": "const r=(a,b,c)=>[-b/(2*a),Math.sqrt(4*a*c-b*b)/(2*a)];const P=r(1,-5,13);const Q=[-2/2,Math.sqrt(44)/2];return Math.hypot(P[0]-Q[0],P[1]-Q[1]).toFixed(2);",
+   "4.39": "const r=(a,b,c)=>[-b/(2*a),Math.sqrt(4*a*c-b*b)/(2*a)];const P=r(1,-5,13);const Q=r(4,2,3);return Math.hypot(P[0]-Q[0],P[1]+Q[1]).toFixed(2);",
+   "4.88": "const r=(a,b,c)=>[-b/(2*a),Math.sqrt(4*a*c-b*b)/(2*a)];const P=r(1,-5,13);const Q=[-2/8,Math.sqrt(44)];return Math.hypot(P[0]-Q[0],P[1]-Q[1]).toFixed(2);"
+  },
+  "quantity_asked": "the distance in the complex plane between the upper solution of x² − 5x + 13 = 0 and the upper solution of 4x² + 2x + 3 = 0: √(2.75² + (√27/2 − √44/8)²) ≈ 3.27.",
+  "distractor_kind": {
+   "3.57": "denominator 2 in place of 2a for the second equation, Q = (−1, 3.317). (a) no parameter extreme. (b) neighbouring setup: the monic x² + 2x + 3 (a = 1) gives Q = (−1, 1.414), PQ = 3.78; 3.57 strictly inside. (c) cheapest one-step bound: PQ ≥ horizontal gap of the real parts −b/2a, 2.75; strictly above it. (d) real: forgetting the leading coefficient in 2a.",
+   "4.39": "pairs P with the conjugate (lower) solution of the second equation. (a) no. (b) neighbouring: distance to the lower root; that IS this option, strictly inside (2.75, horizontal + sum of imaginary parts 6.18). (c) inside. (d) real: ignoring 'positive imaginary part' for one equation.",
+   "4.88": "divides only −b by 2a, leaving √(b² − 4ac) undivided: Q = (−0.25, √44). (a) no. (b) neighbouring: none exact; strictly inside (2.75, 6.18). (c) above the 2.75 bound. (d) real: fraction bar written under −b only."
+  },
+  "distractor_meta": {
+   "3.57": {
+    "direction": "over",
+    "error_kind": "2a written as 2"
+   },
+   "4.39": {
+    "direction": "over",
+    "error_kind": "conjugate root paired"
+   },
+   "4.88": {
+    "direction": "over",
+    "error_kind": "fraction bar under -b only"
+   }
+  },
+  "bounds": [
+   "PQ ≥ |2.5 − (−0.25)| = 2.75 (horizontal gap of the real parts)",
+   "PQ ≤ 2.75 + (√27/2 + √44/8) ≈ 6.18 (any pairing)"
+  ],
+  "mechanism": [
+   "quadratic formula with a negative discriminant",
+   "nonreal roots plotted in the complex plane",
+   "distance between two complex numbers",
+   "solution with positive imaginary part"
+  ],
+  "arith_class_check": "All four are two-decimal square roots of non-square decimals; none is an integer or a multiple of a stem number.",
+  "one_sided_check": "Key smallest. Distractors come from three different kinds (2a slip, conjugate pairing, fraction-bar slip). A natural error goes the other way: the sign slip −b/2a → +b/2a on either equation puts the real parts 2.25 apart and gives 2.86, below the key. Not an option.",
+  "interior_parity_check": "Interior options by value: 3.57 and 4.39, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: PQ ≥ horizontal gap 2.75 (real parts read off −b/2a). Key 3.27 and all three distractors lie on the feasible side; nothing is killed, and the vertical gap 1.77 keeps the key 0.52 above the bound, so 'smallest option just above 2.75' is not a tell (3.57 is also within 0.82). The −b sign slip lands at 2.86, also above the bound, below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three error kinds all over, natural −b sign slip under (2.86). Nearest distractor 0.30 above. No live item computes nonreal roots of two quadratics."
+  }
+ },
+ {
+  "id": "AM29N-07",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex impedance in series",
+  "subskill": "modulus of a sum of impedances",
+  "prompt": "In an alternating-current circuit, the impedance of each component, in ohms, is a complex number a + bi, where a and b are real numbers and i = √(−1). When components are connected in series, the total impedance Z of the circuit is the sum of the components' impedances, and the magnitude of the current, in amperes, is V/|Z|, where V is the source voltage, in volts, and |a + bi| = √(a² + b²). Three components with impedances 5 + 9i, 4 − 11i, and 2 − 4i are connected in series to a 120-volt source. To the nearest hundredth of an ampere, what is the magnitude of the current?",
+  "choices": [
+   "6.18",
+   "10.73",
+   "7.43",
+   "9.58"
+  ],
+  "correct_answer": "9.58",
+  "explanation": "Z = (5 + 4 + 2) + (9 − 11 − 4)i = 11 − 6i, so |Z| = √(121 + 36) = √157 ≈ 12.530 and the current is 120/12.530 ≈ 9.58 amperes. The option \"10.73\" reads 2 − 4i as 2 + 4i, giving Z = 11 + 2i and |Z| = √125. The option \"6.18\" reads 4 − 11i as 4 + 11i, giving Z = 11 + 16i and |Z| = √377. The option \"7.43\" leaves out the first component, using Z = 6 − 15i and |Z| = √261.",
+  "solve": "const Z=[[5,9],[4,-11],[2,-4]],V=120;const a=Z.reduce((s,z)=>s+z[0],0),b=Z.reduce((s,z)=>s+z[1],0);return (V/Math.hypot(a,b)).toFixed(2);",
+  "distractor_solve": {
+   "10.73": "const Z=[[5,9],[4,-11],[2,-4]],V=120;Z[2]=[2,4];const a=Z.reduce((s,z)=>s+z[0],0),b=Z.reduce((s,z)=>s+z[1],0);return (V/Math.hypot(a,b)).toFixed(2);",
+   "6.18": "const Z=[[5,9],[4,-11],[2,-4]],V=120;Z[1]=[4,11];const a=Z.reduce((s,z)=>s+z[0],0),b=Z.reduce((s,z)=>s+z[1],0);return (V/Math.hypot(a,b)).toFixed(2);",
+   "7.43": "const Z=[[5,9],[4,-11],[2,-4]],V=120;Z.shift();const a=Z.reduce((s,z)=>s+z[0],0),b=Z.reduce((s,z)=>s+z[1],0);return (V/Math.hypot(a,b)).toFixed(2);"
+  },
+  "quantity_asked": "the current magnitude 120/|Z| for Z = (5 + 9i) + (4 − 11i) + (2 − 4i) = 11 − 6i: 120/√157 ≈ 9.58 A.",
+  "distractor_kind": {
+   "10.73": "sign slip on the small reactance −4i, Z = 11 + 2i. (a) the zero-reactance limit V/R = 10.91 is a bound; 10.73 is strictly below it. (b) neighbouring setup: the circuit without the third component's reactance; strictly inside. (c) cheapest bound I < V/(sum of resistances) = 10.91 (|Z| > Re Z): strictly inside. (d) real: a minus sign dropped on one component.",
+   "6.18": "sign slip on the large reactance −11i, Z = 11 + 16i. (a) no. (b) neighbouring: all reactances added as positive gives 120/√(121 + 576) = 4.55; 6.18 strictly inside (4.55, 10.91). (c) inside. (d) real: the same dropped sign on the other negative component.",
+   "7.43": "omits the first component (5 + 9i), Z = 6 − 15i. (a) no. (b) neighbouring: a two-component circuit; strictly inside (4.53, 10.91). (c) inside the I < 10.91 bound. (d) real: one listed component dropped from the sum."
+  },
+  "distractor_meta": {
+   "10.73": {
+    "direction": "over",
+    "error_kind": "sign slip, small reactance"
+   },
+   "6.18": {
+    "direction": "under",
+    "error_kind": "sign slip, large reactance"
+   },
+   "7.43": {
+    "direction": "under",
+    "error_kind": "component omitted"
+   }
+  },
+  "bounds": [
+   "I < 120/11 ≈ 10.91 (|Z| > Re Z = 11 because Im Z ≠ 0)",
+   "I ≥ 120/(√106 + √137 + √20) ≈ 4.53 (triangle inequality; equality impossible here)"
+  ],
+  "mechanism": [
+   "impedances added in series",
+   "modulus of a complex sum",
+   "current equals voltage over |Z|",
+   "alternating-current circuit"
+  ],
+  "arith_class_check": "All four are two-decimal quotients 120/√n for non-square n (or a sum of roots); none is an integer or a multiple of a stem number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 7.43 and 9.58, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one over (small-reactance sign slip), two under (large-reactance slip, omitted component). 10.73 sits 0.18 below the V/R bound, strictly inside. Live impedance item 8e67a233 is the parallel formula's real part."
+  }
+ },
+ {
+  "id": "AM29N-08",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "iterating a complex quadratic map",
+  "subskill": "recursive complex sequence",
+  "prompt": "For i = √(−1), a sequence of complex numbers is defined by z₁ = c and zₙ₊₁ = (zₙ)² + c for every positive integer n, where c = −0.85 + 1.2i. The absolute value of a complex number a + bi, where a and b are real numbers, is |a + bi| = √(a² + b²). To the nearest hundredth, what is |z₃| ?",
+  "choices": [
+   "3.16",
+   "1.82",
+   "3.94",
+   "1.78"
+  ],
+  "correct_answer": "3.94",
+  "explanation": "c² = 0.7225 − 1.44 + 2(−0.85)(1.2)i = −0.7175 − 2.04i, so z₂ = c² + c = −1.5675 − 0.84i. Then z₂² = 2.4571 − 0.7056 + 2(−1.5675)(−0.84)i = 1.7515 + 2.6334i, so z₃ = z₂² + c = 0.9015 + 3.8334i and |z₃| = √(0.8126 + 14.695) ≈ 3.94. The option \"3.16\" forgets to add c in the last step, giving |z₂²| = |z₂|² ≈ 3.16. The option \"1.78\" stops one step early and gives |z₂|. The option \"1.82\" squares without doubling the cross term, (a + bi)² = a² − b² + abi, at both steps.",
+  "solve": "const c=[-0.85,1.2];const sq=([a,b])=>[a*a-b*b,2*a*b];const add=(z,w)=>[z[0]+w[0],z[1]+w[1]];let z=c;for(let n=1;n<3;n++)z=add(sq(z),c);return Math.hypot(...z).toFixed(2);",
+  "distractor_solve": {
+   "3.16": "const c=[-0.85,1.2];const sq=([a,b])=>[a*a-b*b,2*a*b];const add=(z,w)=>[z[0]+w[0],z[1]+w[1]];const z2=add(sq(c),c);return Math.hypot(...sq(z2)).toFixed(2);",
+   "1.78": "const c=[-0.85,1.2];const sq=([a,b])=>[a*a-b*b,2*a*b];const add=(z,w)=>[z[0]+w[0],z[1]+w[1]];const z2=add(sq(c),c);return Math.hypot(...z2).toFixed(2);",
+   "1.82": "const c=[-0.85,1.2];const sq=([a,b])=>[a*a-b*b,2*a*b];const add=(z,w)=>[z[0]+w[0],z[1]+w[1]];const h=([a,b])=>[a*a-b*b,a*b];let z=c;for(let n=1;n<3;n++)z=add(h(z),c);return Math.hypot(...z).toFixed(2);"
+  },
+  "quantity_asked": "|z₃| where z₁ = c, z₂ = c² + c, z₃ = z₂² + c, c = −0.85 + 1.2i: |0.9015 + 3.8334i| ≈ 3.94.",
+  "distractor_kind": {
+   "3.16": "omits the final + c: |z₂²| = |z₂|² ≈ 3.1627. (a) no parameter extreme. (b) neighbouring setup: z₂² is the item's own intermediate; it is the CENTRE of the triangle-inequality interval [|z₂|² − |c|, |z₂|² + |c|] = [1.69, 4.63], strictly inside. (c) no one-step estimate of |z₃| exists without computing z₂; inside (1.69, 4.63). (d) real: last step of the recursion left unfinished.",
+   "1.78": "stops at z₂ (index off by one). (a) no. (b) neighbouring: |z₂| is the adjacent term; inside (1.69, 4.63). The other neighbour |z₄| ≈ 16.8 overshoots. (c) inside. (d) real: counting z₁ = c as the first squaring.",
+   "1.82": "cross term not doubled in both squarings. (a) no. (b) neighbouring: none exact; inside (1.69, 4.63). (c) inside. (d) real: (a + bi)² written as a² − b² + abi."
+  },
+  "distractor_meta": {
+   "3.16": {
+    "direction": "under",
+    "error_kind": "final + c omitted"
+   },
+   "1.78": {
+    "direction": "under",
+    "error_kind": "index off by one (early)"
+   },
+   "1.82": {
+    "direction": "under",
+    "error_kind": "cross term not doubled"
+   }
+  },
+  "bounds": [
+   "|z₃| ≥ |z₂|² − |c| ≈ 1.69",
+   "|z₃| ≤ |z₂|² + |c| ≈ 4.63 (both need z₂, i.e. two thirds of the work)"
+  ],
+  "mechanism": [
+   "recursive sequence of complex numbers",
+   "z(n+1) = z(n)² + c iteration",
+   "absolute value of a complex number",
+   "Mandelbrot-type quadratic map"
+  ],
+  "arith_class_check": "All four are two-decimal moduli of non-terminating square roots; none is an integer or a multiple of a stem number.",
+  "one_sided_check": "Key largest. Three error kinds (omitted final step, early stop, undoubled cross term). Natural errors go the other way: taking i² = +1 in the final squaring gives |(2.4571 + 0.7056 + 2.6334i) + c| ≈ 4.48, above the key; one step too many gives |z₄| ≈ 16.8. Taking i² = +1 throughout gives 1.87, below the key — the i² slip's direction is not readable from the stem.",
+  "interior_parity_check": "Interior options by value: 1.82 and 3.16, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "The cheapest bound on |z₃| is the triangle-inequality interval [1.69, 4.63] around |z₂|² = 3.16, which needs z₂ first. All three distractors lie on the key's side of its upper end 4.63 and above its lower end, so it kills nothing. The nearest distractor, 3.16, is 0.78 below the key; the over-error i² = +1 at the last step lands at 4.48.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three under kinds, over counter-errors i² = +1 at last step (4.48) and one extra term. No live item iterates a complex map; nearest live items square one binomial."
+  }
+ },
+ {
+  "id": "AM29N-09",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "power of a complex number in trigonometric form",
+  "subskill": "real part of z^4 from trig form",
+  "prompt": "A complex number z has absolute value 1.4, and in the complex plane the ray from the origin to z makes an angle of 32° with the positive real axis, so z = 1.4(cos 32° + i sin 32°), where i = √(−1). The real part of a complex number a + bi, where a and b are real numbers, is a. To the nearest hundredth, what is the real part of z⁴ ?",
+  "choices": [
+   "3.26",
+   "-2.37",
+   "1.99",
+   "-3.45"
+  ],
+  "correct_answer": "-2.37",
+  "explanation": "Multiplying complex numbers multiplies their absolute values and adds their angles, so z⁴ = 1.4⁴(cos 128° + i sin 128°) = 3.8416(cos 128° + i sin 128°). Then a = 3.8416 cos 128° ≈ 3.8416(−0.6157) ≈ −2.37. (Equivalently, z ≈ 1.1873 + 0.7419i, z² ≈ 0.8592 + 1.7616i, and z⁴ = (z²)² ≈ −2.365 + 3.027i.) The option \"-3.45\" multiplies the absolute value by 4 instead of raising it to the 4th power: 5.6 cos 128°. The option \"3.26\" raises the absolute value to the 4th power but keeps the angle 32°: 3.8416 cos 32°. The option \"1.99\" raises the real part of z to the 4th power, (1.4 cos 32°)⁴.",
+  "solve": "const d=Math.PI/180,r=1.4,t=32,n=4;return (r**n*Math.cos(n*t*d)).toFixed(2);",
+  "distractor_solve": {
+   "-3.45": "const d=Math.PI/180,r=1.4,t=32,n=4;return (n*r*Math.cos(n*t*d)).toFixed(2);",
+   "3.26": "const d=Math.PI/180,r=1.4,t=32,n=4;return (r**n*Math.cos(t*d)).toFixed(2);",
+   "1.99": "const d=Math.PI/180,r=1.4,t=32,n=4;return ((r*Math.cos(t*d))**n).toFixed(2);"
+  },
+  "quantity_asked": "the real part of z⁴ for z = 1.4(cos 32° + i sin 32°): 1.4⁴ cos 128° ≈ −2.37.",
+  "distractor_kind": {
+   "-3.45": "absolute value multiplied by 4 instead of raised to the 4th power: 5.6 cos 128°. (a) no parameter extreme. (b) neighbouring setup: none exact (4z has real part 4.75); |5.6 cos 128°| = 3.45 < 3.84 = |z⁴|, strictly inside. (c) cheapest bound |a| ≤ |z⁴| = 3.84: strictly inside. (d) real: (r cis θ)ⁿ taken as n·r cis nθ.",
+   "3.26": "angle not multiplied: 1.4⁴ cos 32°. (a) no. (b) neighbouring: the real part of 1.4⁴(cos 32° + i sin 32°); inside (−3.84, 3.84). (c) inside. (d) real: De Moivre applied to the modulus only.",
+   "1.99": "(Re z)⁴: the real part raised to the 4th power. (a) no. (b) neighbouring: none exact; inside (−3.84, 3.84). (c) inside. (d) real: 'the real part of a power is the power of the real part'."
+  },
+  "distractor_meta": {
+   "-3.45": {
+    "direction": "under",
+    "error_kind": "modulus times n"
+   },
+   "3.26": {
+    "direction": "over",
+    "error_kind": "angle not multiplied"
+   },
+   "1.99": {
+    "direction": "over",
+    "error_kind": "power of the real part"
+   }
+  },
+  "bounds": [
+   "|a| ≤ |z⁴| = 1.4⁴ = 3.8416",
+   "a < 0 because 128° is in the second quadrant (needs the angle rule)"
+  ],
+  "mechanism": [
+   "complex number in trigonometric form",
+   "De Moivre: raise modulus to n, multiply angle by n",
+   "real part of a power of a complex number",
+   "cos 128 degrees"
+  ],
+  "arith_class_check": "All four are two-decimal values of r·cos θ products; none is an integer or a multiple of a stem number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: -2.37 (key) and 1.99, both two-decimal with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under (modulus times 4), two over (angle kept, power of real part). All inside |a| ≤ 3.84. No live item uses trigonometric form or De Moivre."
+  }
+ },
+ {
+  "id": "AM29N-11",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "precious-metal value through troy units and pennyweights",
+  "subskill": "mixed-unit mass chain with karat fraction",
+  "prompt": "A jeweler buys an 18-karat gold chain whose mass is 12.8 pennyweights. That mass includes a steel clasp of 1.5 grams, which contains no gold, and the rest of the chain is 18-karat gold, which is 18/24 gold by mass. The jeweler pays the spot price of gold, $2,405 per troy ounce, minus a refining charge of $330 per troy ounce of pure gold in the chain. Using 1 troy ounce = 20 pennyweights = 31.1035 grams, how much does the jeweler pay for the chain, to the nearest dollar?",
+  "choices": [
+   "879",
+   "921",
+   "856",
+   "896"
+  ],
+  "correct_answer": "921",
+  "explanation": "The chain's mass is 12.8 × 31.1035/20 ≈ 19.906 grams, so the 18-karat part is 19.906 − 1.5 = 18.406 grams and the pure gold is (18/24)(18.406) ≈ 13.805 grams = 13.805/31.1035 ≈ 0.44384 troy ounce. The jeweler pays 0.44384 × (2,405 − 330) = 0.44384 × 2,075 ≈ $921. The option 896 applies 18/24 to the whole chain and then subtracts the full 1.5 grams of clasp from the gold. The option 879 subtracts the clasp's 1.5 as pennyweights instead of grams (12.8 − 1.5 = 11.3 pennyweights). The option 856 charges the $330 on the chain's whole mass, 12.8/20 = 0.64 troy ounce, instead of on the pure gold.",
+  "solve": "return String(Math.round((12.8*31.1035/20-1.5)*18/24/31.1035*(2405-330)));",
+  "distractor_solve": {
+   "856": "return String(Math.round((12.8*31.1035/20-1.5)*18/24/31.1035*2405-12.8/20*330));",
+   "879": "return String(Math.round((12.8-1.5)*31.1035/20*18/24/31.1035*(2405-330)));",
+   "896": "return String(Math.round((12.8*31.1035/20*18/24-1.5)/31.1035*(2405-330)));"
+  },
+  "quantity_asked": "the amount paid: pure-gold troy ounces ((12.8 × 31.1035/20 − 1.5) × 18/24 / 31.1035 = 0.44384) times (2,405 − 330), = 920.97, rounded to 921.",
+  "distractor_kind": {
+   "856": "refining charge applied to the chain's whole mass: 0.44384 × 2,405 − 0.64 × 330. (a) no. (b) neighbouring: a per-ounce charge on the wrong base (total mass, not pure gold); inside. (c) below the no-charge value 0.44384 × 2,405 = 1,067 and below 996. (d) real: wrong reference quantity for a per-ounce deduction.",
+   "879": "clasp read in the chain's unit: (12.8 − 1.5) pennyweights. (a) no. (b) neighbouring: a unit slip on one term of a mixed-unit subtraction; inside. (c) strictly below the clasp-ignored 996. (d) real: subtracts grams from pennyweights.",
+   "896": "clasp subtracted after the karat fraction: (18/24)(19.906) − 1.5 grams of gold. (a) not on a bound. (b) neighbouring: equals treating the clasp as if it had been pure gold removed from the gold; strictly inside (0, 996). (c) the cheapest bound is the clasp-ignored value 0.4800 oz × 2,075 = 996; strictly below it. (d) real: subtracts a non-gold mass from the gold instead of from the alloy."
+  },
+  "distractor_meta": {
+   "856": {
+    "direction": "under",
+    "error_kind": "charge on whole chain mass"
+   },
+   "879": {
+    "direction": "under",
+    "error_kind": "grams subtracted from pennyweights"
+   },
+   "896": {
+    "direction": "under",
+    "error_kind": "clasp subtracted after karat fraction"
+   }
+  },
+  "bounds": [
+   "v < 0.48000 × 2,075 = 996 (clasp ignored)",
+   "v < 0.44384 × 2,405 = 1,067 (charge ignored)"
+  ],
+  "mechanism": [
+   "pennyweights to grams to troy ounces",
+   "karat fraction of an alloy mass",
+   "non-gold clasp subtracted before karat",
+   "per-ounce refining charge on pure gold"
+  ],
+  "arith_class_check": "All four are three-digit integers with nonzero last digits (856, 879, 896, 921); two are odd and two even; no parity, multiple-of-10 or divisibility property singles out the key.",
+  "one_sided_check": "key largest: the three distractors come from three different slips (order of operations on the clasp, a unit slip on the clasp, a wrong base for the charge). Natural errors push UP as readily: ignoring the non-gold clasp (996), ignoring the refining charge (1,067). The stem does not read one-way: the clasp and the charge lower the payment, the karat fraction is a multiplication either way.",
+  "interior_parity_check": "Interior options by value: 879 and 896, both three-digit integers with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds are the clasp-ignored value 996 and the charge-ignored value 1,067, both upper bounds; all four options lie below them, so they eliminate nothing. A one-step estimate (about 0.44 oz × 2,075 ≈ 913) sits between 896 and 921 and cannot separate the key from 896 (gap 25, 2.7%).",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; three distinct slips all over-deduct; the natural upward errors are omissions (clasp ignored, charge ignored), so a grader may read misapplied deductions as one-way."
+  }
+ },
+ {
+  "id": "AM29N-12",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "least possible capacity from rounded measurements",
+  "subskill": "rounding interval through diameter, wall, and height",
+  "prompt": "A cylindrical tank has a wall that is exactly 0.8 centimeter thick. Its outside diameter is measured as 88 centimeters, rounded to the nearest centimeter, and its inside height is measured as 130 centimeters, rounded to the nearest 10 centimeters. The inside diameter equals the outside diameter minus twice the wall thickness. An engineer uses the least possible inside volume of the tank as its safe capacity. To the nearest liter, what is that least possible volume? (1 liter = 1,000 cubic centimeters)",
+  "choices": [
+   "716",
+   "738",
+   "698",
+   "724"
+  ],
+  "correct_answer": "724",
+  "explanation": "The outside diameter is at least 88 − 0.5 = 87.5 cm, so the inside diameter is at least 87.5 − 2(0.8) = 85.9 cm and the inside radius at least 42.95 cm. The height is at least 130 − 5 = 125 cm. The least possible volume is π(42.95)²(125) ≈ 724,413 cubic centimeters ≈ 724 liters. The option 716 finds the inside radius from the measured diameter, (88 − 1.6)/2 = 43.2, and then subtracts the diameter's 0.5 cm from the radius, giving 42.7 cm. The option 698 halves the least outside diameter, 87.5/2 = 43.75, and then subtracts twice the wall thickness from that radius, giving 42.15 cm. The option 738 subtracts the wall thickness only once from the diameter, giving an inside diameter of 87.5 − 0.8 = 86.7 cm.",
+  "solve": "return String(Math.round(Math.PI*42.95*42.95*125/1000));",
+  "distractor_solve": {
+   "698": "return String(Math.round(Math.PI*42.15*42.15*125/1000));",
+   "716": "return String(Math.round(Math.PI*42.7*42.7*125/1000));",
+   "738": "return String(Math.round(Math.PI*43.35*43.35*125/1000));"
+  },
+  "quantity_asked": "the least possible inside volume in liters: π((88 − 0.5 − 1.6)/2)²(130 − 5)/1000 = 724.4, rounded to 724.",
+  "distractor_kind": {
+   "698": "wall subtracted twice from the radius: r = 87.5/2 − 1.6. (a) no. (b) neighbouring: an inside radius two wall thicknesses short of the outside radius; above the floor 687. (c) inside (687, 762). (d) real: applies the diameter rule (minus twice the wall) to the radius.",
+   "716": "half-unit of the diameter applied to the radius: r = 43.2 − 0.5. (a) not on a bound: the floor using full units on both measurements is 687. (b) neighbouring: equals the diameter a full centimeter short; strictly inside (687, 762). (c) cheapest estimate: floor 687 (both measurements a full unit short) and the recorded-value volume 762; strictly inside. (d) real: forgets that half a centimeter on the diameter is a quarter centimeter on the radius.",
+   "738": "wall subtracted once from the diameter: 87.5 − 0.8. (a) no. (b) neighbouring: an inside diameter one wall short; inside (687, 762). (c) inside. (d) real: subtracts one wall from a diameter that crosses two walls."
+  },
+  "distractor_meta": {
+   "698": {
+    "direction": "under",
+    "error_kind": "wall subtracted twice from radius"
+   },
+   "716": {
+    "direction": "under",
+    "error_kind": "diameter half-unit applied to radius"
+   },
+   "738": {
+    "direction": "over",
+    "error_kind": "wall subtracted once from diameter"
+   }
+  },
+  "bounds": [
+   "v > π(42.7)²(120)/1000 = 687.4 (both measurements a full unit short)",
+   "v < π(43.2)²(130)/1000 = 762.2 (the recorded-value volume)"
+  ],
+  "mechanism": [
+   "least possible volume from rounded measurements",
+   "inside diameter from outside diameter and wall thickness",
+   "nearest 10 centimeters half-unit",
+   "cylinder capacity in liters"
+  ],
+  "arith_class_check": "All four are three-digit even integers (nearest liter) with nonzero last digits; no parity or roundness singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 716 and 724, both three-digit integers with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two unders from two different slips (radius half-unit; wall twice on the radius) and one over (wall once); all inside (687, 762)."
+  }
+ },
+ {
+  "id": "AM29N-13",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "precision of a computed area from rounded measurements",
+  "subskill": "greatest possible area, mixed precision, yd to m",
+  "prompt": "A rectangular garden plot was measured in yards. The width was paced off and recorded as 40 yards, rounded to the nearest 10 yards, and the length was taped and recorded as 47 yards, rounded to the nearest yard. A city permit form asks for the area in square meters, where 1 yard = 0.9144 meter. To the nearest square meter, what is the greatest possible actual area of the plot?",
+  "choices": [
+   "1806",
+   "1955",
+   "1787",
+   "1986"
+  ],
+  "correct_answer": "1787",
+  "explanation": "A width rounded to the nearest 10 yards can be at most 5 yards more than recorded, and a length rounded to the nearest yard at most 0.5 yard more. The greatest possible area is (40 + 5)(47 + 0.5) = 45(47.5) = 2,137.5 square yards. One square yard is (0.9144)² = 0.83612736 square meter, so the area is 2,137.5(0.83612736) ≈ 1,787.22, or 1,787 square meters. The option 1806 adds a full yard to the length: 45(48)(0.83612736). The option 1986 adds the full 10 yards to the width: 50(47.5)(0.83612736). The option 1955 converts square yards to square meters with 0.9144 instead of (0.9144)².",
+  "solve": "return String(Math.round(45*47.5*0.9144*0.9144));",
+  "distractor_solve": {
+   "1806": "return String(Math.round(45*48*0.9144*0.9144));",
+   "1955": "return String(Math.round(45*47.5*0.9144));",
+   "1986": "return String(Math.round(50*47.5*0.9144*0.9144));"
+  },
+  "quantity_asked": "the greatest possible actual area in square meters: (40 + 5)(47 + 0.5) square yards times 0.9144² = 1,787.22, rounded to 1787.",
+  "distractor_kind": {
+   "1806": "full rounding unit on the length: 45(48) square yards converted. (a) not on a bound. (b) neighbouring: the length taken to the next whole yard; strictly inside the full-unit cap 50(48)(0.836) = 2007. (c) cheapest estimate: cap 2007 above, recorded-value area 1572 below; strictly inside. (d) real: reads nearest yard as up to one more yard.",
+   "1955": "wrong power of the conversion factor: 2,137.5 square yards times 0.9144. (a) no. (b) neighbouring: a length conversion applied to an area; below the cap 2007. (c) inside (1572, 2007). (d) real: forgets to square the length conversion.",
+   "1986": "full rounding unit on the width: 50(47.5) square yards converted. (a) not on a bound: below the cap 50(48)(0.836) = 2007, which uses full units on both sides. (b) neighbouring: the width taken a whole 10 yards up; strictly inside (1572, 2007). (c) cheapest estimate: inside. (d) real: reads nearest 10 yards as up to 10 more yards."
+  },
+  "distractor_meta": {
+   "1806": {
+    "direction": "over",
+    "error_kind": "full rounding unit on one measurement"
+   },
+   "1955": {
+    "direction": "over",
+    "error_kind": "linear factor for area conversion"
+   },
+   "1986": {
+    "direction": "over",
+    "error_kind": "full rounding unit on the other measurement"
+   }
+  },
+  "bounds": [
+   "v > 40(47)(0.83612736) = 1571.9 (the recorded-value area; the greatest possible exceeds it)",
+   "v < (40 + 10)(47 + 1)(0.83612736) = 2007.1 (no measurement is off by a full rounding unit)"
+  ],
+  "mechanism": [
+   "greatest possible area from rounded measurements",
+   "half of the rounding unit, nearest 10 and nearest 1",
+   "square yards to square meters",
+   "precision of a computed quantity"
+  ],
+  "arith_class_check": "All four options are four-digit integers with nonzero last digits (nearest square meter); two odd (1787, 1955) and two even (1806, 1986); no option is round.",
+  "one_sided_check": "Key smallest. The overshoots come from two different misreadings (a full rounding unit on one side - the length in 1806, the width in 1986 - and the linear factor for an area in 1955). Natural errors that move the answer DOWN: reading nearest 10 yards as within half a yard gives (40.5)(47.5)(0.836) = 1608, and ignoring the rounding gives 1572; nothing in the stem says which way a precision slip goes.",
+  "interior_parity_check": "Interior options by value: 1806 and 1955, both four-digit integers ending in nonzero digits; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest upper bound read off the stem: no measurement is off by a whole rounding unit, so the area < 50(48)(0.836) = 2007; all three distractors (1806, 1955, 1986) lie below it, on the key side. The lower bound (recorded-value area 1572) is below every option. Nearest distractor 1806 is 19 above the key (1.1%).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; overshoots from full-unit misreads on each side and a linear area factor; natural under-misreadings exist (finer half-unit, ignoring rounding). All inside the cap 2007."
+  }
+ },
+ {
+  "id": "AM29N-X2",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "orbital speed with mixed length units and a minutes-seconds period",
+  "subskill": "orbit radius from km radius plus mile altitude; speed in km/h",
+  "prompt": "A satellite travels in a circular orbit 254 miles above Earth's surface. Earth is modeled as a sphere with a radius of 6,371 kilometers, and the satellite completes one orbit every 92 minutes 41 seconds. Using 1 mile = 1.609344 kilometers, what is the satellite's speed, to the nearest kilometer per hour?",
+  "choices": [
+   "26947",
+   "27658",
+   "26556",
+   "27577"
+  ],
+  "correct_answer": "27577",
+  "explanation": "The orbit's radius is Earth's radius plus the altitude: 6,371 + 254(1.609344) ≈ 6,371 + 408.77 = 6,779.77 kilometers, so one orbit is 2π(6,779.77) ≈ 42,598.4 kilometers. The period is 92 + 41/60 ≈ 92.683 minutes ≈ 1.54472 hours, so the speed is 42,598.4/1.54472 ≈ 27577 kilometers per hour. The option 26947 adds the 254 miles to the radius without converting it to kilometers. The option 26556 converts the altitude by dividing by 1.609344 instead of multiplying (157.83 kilometers). The option 27658 reads 92 minutes 41 seconds as 92.41 minutes.",
+  "solve": "return String(Math.round(2*Math.PI*(6371+254*1.609344)/((92+41/60)/60)));",
+  "distractor_solve": {
+   "26556": "return String(Math.round(2*Math.PI*(6371+254/1.609344)/((92+41/60)/60)));",
+   "26947": "return String(Math.round(2*Math.PI*(6371+254)/((92+41/60)/60)));",
+   "27658": "return String(Math.round(2*Math.PI*(6371+254*1.609344)/(92.41/60)));"
+  },
+  "quantity_asked": "the orbital speed in km/h: 2π(6,371 + 254 × 1.609344) ÷ ((92 + 41/60)/60) = 42,598.4/1.54472 = 27,576.8, rounded to 27,577.",
+  "distractor_kind": {
+   "26556": "altitude converted the wrong way: 254/1.609344 = 157.83 km. (a) no. (b) neighbouring: an inverted conversion factor; above the floor 25,914. (c) inside. (d) real: divides by the km-per-mile factor.",
+   "26947": "altitude left in miles: r = 6,371 + 254. (a) not on a bound. (b) neighbouring: a unit slip on one term of the radius sum; strictly inside (2π(6,371)/1.54472 = 25,914, 2π(6,371 + 2 × 254)/1.54472 ...). (c) cheapest bounds: the speed exceeds Earth's own circumference over the period, 2π(6,371)/1.5447 = 25,914, and a one-step estimate 2π(6,780)/1.545 ≈ 27,570 sits between this option and the key, so it is inside. (d) real: adds miles to kilometers.",
+   "27658": "period read as 92.41 minutes. (a) no. (b) neighbouring: a minutes-seconds slip of an intermediate (the period), not of the key; inside. (c) inside: below the upper estimate with a 92-minute period, 2π(6,779.8)/(92/60) = 27,782. (d) real: treats 41 seconds as 0.41 minute."
+  },
+  "distractor_meta": {
+   "26556": {
+    "direction": "under",
+    "error_kind": "inverted mile conversion"
+   },
+   "26947": {
+    "direction": "under",
+    "error_kind": "altitude left in miles"
+   },
+   "27658": {
+    "direction": "over",
+    "error_kind": "min:sec read as decimal minutes"
+   }
+  },
+  "bounds": [
+   "v > 2π(6,371)/1.54472 = 25,914 (Earth's surface circumference over the period)",
+   "v < 2π(6,779.77)/(92/60) = 27,782 (period truncated to 92 minutes)"
+  ],
+  "mechanism": [
+   "orbit radius = planet radius + altitude",
+   "mixed miles and kilometers in one sum",
+   "period in minutes and seconds to hours",
+   "circumference over period"
+  ],
+  "arith_class_check": "All four are five-digit integers with nonzero last digits (26,556, 26,947, 27,577, 27,658); no parity or divisibility property singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 26947 and 27577, both five-digit integers with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key; two unders share the altitude-conversion step (unconverted, inverted); the over is a period min:sec slip only 0.3% above the key."
+  }
+ }
+]

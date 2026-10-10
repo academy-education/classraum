@@ -1,0 +1,1226 @@
+[
+ {
+  "id": "AM29I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "time for a four-machine bottling line to finish a run of jugs, paced by the filler's rate, with periodic drum changes",
+  "subskill": "throughput of machines in sequence",
+  "prompt": "A bottling line fills 3.7-liter water jugs. Every jug passes through four machines in this order: a rinser (24 seconds per jug), a filler, a capper (11 seconds per jug), and a labeler (38 seconds per jug). The filler pumps water at a constant 4.3 liters per minute and fills each jug completely. Each machine works on one jug at a time, and a jug moves on to the next machine as soon as it is finished and the next machine is empty. The filler starts the run with a full supply drum; after every 60 jugs it fills, it stops for 85 seconds while the drum is replaced, and then continues. At the start, the line is empty and 215 jugs are waiting at the rinser. To the nearest tenth of a minute, how many minutes after the first jug enters the rinser does the 215th jug leave the labeler?",
+  "choices": [
+   "191.9",
+   "255.3",
+   "190.5",
+   "191.3"
+  ],
+  "correct_answer": "190.5",
+  "explanation": "The filler takes 3.7/4.3 minute = 51.63 seconds per jug, longer than any other machine, so it sets the pace. The first jug leaves the labeler after 24 + 51.63 + 11 + 38 = 124.63 seconds. Each later jug leaves 51.63 seconds after the one before it, except that the filler stops for 85 seconds after its 60th, 120th, and 180th jugs (3 drum changes; none is needed after the 215th). Total: 124.63 + 214(51.63) + 3(85) = 124.63 + 11,048.37 + 255 = 11,428.0 seconds = 190.47 minutes, or 190.5 to the nearest tenth. The option 191.3 adds 215 filler cycles to the first jug's trip, counting the first jug twice. The option 191.9 rounds 215/60 = 3.58 up to 4 drum changes. The option 255.3 uses 4.3/3.7 minute per jug (the pump rate inverted), 69.77 seconds per jug.",
+  "solve": "const N=215,V=3.7,R=4.3,rin=24,cap=11,lab=38,every=60,p=85;const f=60*V/R,np=Math.floor((N-1)/every);return ((rin+f+cap+lab+(N-1)*f+np*p)/60).toFixed(1);",
+  "distractor_solve": {
+   "191.3": "const N=215,V=3.7,R=4.3,rin=24,cap=11,lab=38,every=60,p=85;const f=60*V/R,np=Math.floor((N-1)/every);return ((rin+f+cap+lab+N*f+np*p)/60).toFixed(1);",
+   "191.9": "const N=215,V=3.7,R=4.3,rin=24,cap=11,lab=38,every=60,p=85;const f=60*V/R,np=Math.floor((N-1)/every);return ((rin+f+cap+lab+(N-1)*f+Math.ceil(N/every)*p)/60).toFixed(1);",
+   "255.3": "const N=215,V=3.7,R=4.3,rin=24,cap=11,lab=38,every=60,p=85;const f=60*V/R,np=Math.floor((N-1)/every);const g=60*R/V;return ((rin+g+cap+lab+(N-1)*g+np*p)/60).toFixed(1);"
+  },
+  "quantity_asked": "minutes from the first jug entering the rinser to the 215th jug leaving the labeler: the first jug's pass through all four machines, 214 more filler cycles, and 3 drum changes.",
+  "distractor_kind": {
+   "191.3": "error path: first jug's pass (124.63 s) plus 215 filler cycles plus 3 drum changes = 191.33 min (first jug counted twice). (a) no extreme. (b) neighbouring setup: one extra cycle, inside (0.86 min above the key). (c) inside every cheap estimate. (d) real fencepost error.",
+   "191.9": "error path: 215/60 = 3.58 drum changes rounded up to 4 = 191.88 min. (a) no extreme. (b) not an intermediate. (c) inside. (d) real counting error (a drum change after the last jug is not needed).",
+   "255.3": "error path: 4.3/3.7 min = 69.77 s per jug (liters per minute used as minutes per liter) through the same method = 255.33 min. (a) no extreme. (b) not an intermediate. (c) below the cheapest upper bound, 215 jugs at the full four-machine time each (446.6 min). (d) real inverted rate."
+  },
+  "distractor_meta": {
+   "191.3": {
+    "direction": "over",
+    "error_kind": "fencepost: first jug counted twice"
+   },
+   "191.9": {
+    "direction": "over",
+    "error_kind": "drum changes rounded up"
+   },
+   "255.3": {
+    "direction": "over",
+    "error_kind": "pump rate inverted"
+   }
+  },
+  "bounds": [
+   "time > 215 x 51.63 s = 185.0 min: every jug must pass the filler",
+   "time < 215 x 124.63 s = 446.6 min plus drum changes: jugs handled one at a time through the whole line"
+  ],
+  "mechanism": [
+   "machines in sequence paced by the slowest machine",
+   "fill time from pump rate and jug volume",
+   "first item passes every machine",
+   "periodic stops after every 60 items"
+  ],
+  "arith_class_check": "No. All four are tenths of a minute with non-zero tenths; none is a multiple of a stem number.",
+  "one_sided_check": "Key smallest. Distractors from three error kinds (fencepost, rounding the stop count up, inverted rate). Natural errors under the key: timing all 215 jugs at the filler pace without the first jug's trip through the other machines (189.3) and leaving out the drum changes (186.2); neither is an option.",
+  "interior_parity_check": "Interior by value: 191.3 and 191.9, both one-decimal minutes with non-zero tenths; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: every jug passes the filler, so time > 215(51.63 s) = 185.0 min; all options exceed it. Upper: one jug at a time through the whole line, 446.6 min; all options are below it, so all three distractors lie on the key's side of it. The nearest distractor, 191.3, is 0.9 min above the key, finer than any estimate short of the full count.",
+  "trap_check": "Clauses: \"in this order ... one jug at a time\" - ignoring the first jug's trip pushes DOWN (189.3, not an option), counting it twice pushes UP (191.3); \"after every 60 jugs it fills\" - leaving the stops out pushes DOWN (186.2, not an option), rounding 3.58 up pushes UP (191.9); \"starts with a full supply drum\" - adding a change before the first jug pushes UP (191.9, the same value); \"4.3 liters per minute\" - inverting pushes UP (255.3). At most one distractor per clause.",
+  "direction_declaration": {
+   "191.3": {
+    "step": "jug count after the first jug",
+    "error_type": "other: fencepost, first jug counted twice",
+    "direction": "over"
+   },
+   "191.9": {
+    "step": "number of drum changes",
+    "error_type": "other: rounds the change count up",
+    "direction": "over"
+   },
+   "255.3": {
+    "step": "fill time per jug from the pump rate",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "line fill (first jug's pass through the other machines)",
+    "error_type": "omission",
+    "solve": "const N=215,V=3.7,R=4.3,rin=24,cap=11,lab=38,every=60,p=85;const f=60*V/R,np=Math.floor((N-1)/every);return Number(((N*f+np*p)/60).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "drum change of 85 s after every 60 jugs",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "filler starts with a full drum (no change before the first jug)",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "line starts empty (first jug passes all four machines)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "one jug per machine, moves when the next machine is empty",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; overs from fencepost, rounded-up stop count, inverted pump rate; natural unders (no line-fill time, stops left out) not options; stated rules split."
+  }
+ },
+ {
+  "id": "AM29I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "hours to finish a knitted blanket: squares still to knit plus sewing every shared edge",
+  "subskill": "work rates with a count of shared edges",
+  "prompt": "Ines is making a blanket from 48 identical knitted squares, each 9 inches on a side, arranged in 6 rows of 8 squares. She has already knitted 11 of the squares, but 3 of those came out too small and must be knitted again. She knits at a steady rate of one square every 32 minutes. When all 48 squares are ready, she will sew together every pair of squares that share an edge, along the whole 9-inch shared edge, and she sews at a steady 5 inches per minute. To the nearest hundredth of an hour, how many hours of knitting and sewing does Ines have left?",
+  "choices": [
+   "22.09",
+   "23.79",
+   "20.59",
+   "22.77"
+  ],
+  "correct_answer": "23.79",
+  "explanation": "She must knit 48 - 11 + 3 = 40 more squares, taking 40(32) = 1,280 minutes. In 6 rows of 8, each row has 7 shared edges between neighbors (6 x 7 = 42), and each of the 8 columns has 5 shared edges (8 x 5 = 40), so there are 82 shared edges. Each takes 9/5 = 1.8 minutes to sew, so sewing takes 82(1.8) = 147.6 minutes. The total is 1,280 + 147.6 = 1,427.6 minutes = 23.79 hours. The option 20.59 subtracts the 3 squares to be redone instead of adding them (34 squares). The option 22.09 computes the time per edge as 5/9 minute instead of 9/5. The option 22.77 sews one edge per square (48 edges).",
+  "solve": "const r=6,c=8,t=32,L=9,v=5,F=11,X=3;const n=r*c,seams=r*(c-1)+c*(r-1);const tot=(sq,sm,per)=>(sq*t+sm*per)/60;return tot(n-F+X,seams,L/v).toFixed(2);",
+  "distractor_solve": {
+   "20.59": "const r=6,c=8,t=32,L=9,v=5,F=11,X=3;const n=r*c,seams=r*(c-1)+c*(r-1);const tot=(sq,sm,per)=>(sq*t+sm*per)/60;return tot(n-F-X,seams,L/v).toFixed(2);",
+   "22.09": "const r=6,c=8,t=32,L=9,v=5,F=11,X=3;const n=r*c,seams=r*(c-1)+c*(r-1);const tot=(sq,sm,per)=>(sq*t+sm*per)/60;return tot(n-F+X,seams,v/L).toFixed(2);",
+   "22.77": "const r=6,c=8,t=32,L=9,v=5,F=11,X=3;const n=r*c,seams=r*(c-1)+c*(r-1);const tot=(sq,sm,per)=>(sq*t+sm*per)/60;return tot(n-F+X,n,L/v).toFixed(2);"
+  },
+  "quantity_asked": "hours left: 40 squares at 32 minutes each plus 82 shared 9-inch edges sewn at 5 inches per minute.",
+  "distractor_kind": {
+   "20.59": "error path: 48 - 11 - 3 = 34 squares left (the 3 redone squares subtracted). (a) no extreme. (b) not an intermediate. (c) inside: knitting alone for 40 squares is 21.33 h, but nothing in the stem gives a one-step bound that excludes 34 squares' worth. (d) real sign slip.",
+   "22.09": "error path: minutes per edge = 5/9 instead of 9/5 (82 edges take 45.6 minutes). (a) no extreme. (b) not an intermediate. (c) inside. (d) real inverted-rate error.",
+   "22.77": "error path: one shared edge per square, 48 edges. (a) no extreme. (b) not an intermediate. (c) inside. (d) real counting error (edges per square instead of shared edges in the grid)."
+  },
+  "distractor_meta": {
+   "20.59": {
+    "direction": "under",
+    "error_kind": "redone squares subtracted (sign slip)"
+   },
+   "22.09": {
+    "direction": "under",
+    "error_kind": "sewing rate inverted"
+   },
+   "22.77": {
+    "direction": "under",
+    "error_kind": "one seam per square"
+   }
+  },
+  "bounds": [
+   "hours > 0; knitting alone for the 40 squares is 21.33 hours",
+   "hours < 51(32)/60 + 110(1.8)/60 = 30.5 (every square knitted, every grid line sewn)"
+  ],
+  "mechanism": [
+   "knitting squares at a steady rate",
+   "counting shared edges in a rectangular grid",
+   "sewing rate in inches per minute",
+   "squares to redo added to the remaining work"
+  ],
+  "arith_class_check": "No. All four are two-decimal hours with non-zero hundredths; none is a stem number or a simple multiple of another.",
+  "one_sided_check": "Key largest; distractors from three clauses and three kinds (sign slip on the redone squares, inverted sewing rate, one seam per square). Errors that push UP are as natural: forgetting the 11 finished squares gives 29.66, counting 2 seams per square (96) gives 24.21, and counting every grid line including the border (110) gives 24.63; so a student cannot tell from the stem that slips lower the answer.",
+  "interior_parity_check": "Interior by value: 22.09 and 22.77, both two-decimal hours with non-zero hundredths; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: knitting alone, 40 x 32 minutes = 21.33 hours, is a lower bound; 22.09 and 22.77 lie above it on the key's side, and only 20.59 (which miscounts the squares) lies below it. The nearest distractor, 22.77, is 1.02 hours (4.3%) below the key; sewing time is the only part that separates them and no one-step estimate fixes it.",
+  "trap_check": "Clauses: \"already knitted 11\" - ignoring it pushes UP (29.66, not an option); \"3 of those ... knitted again\" - subtracting them pushes DOWN (20.59), ignoring them pushes DOWN (22.19, not an option); \"every pair of squares that share an edge\" - one per square pushes DOWN (22.77), two per square or all grid lines pushes UP (24.21 / 24.63, not options); \"5 inches per minute\" with 9-inch edges - 5/9 minute per edge pushes DOWN (22.09). One distractor per clause; none from ignoring a clause.",
+  "direction_declaration": {
+   "20.59": {
+    "step": "squares still to knit",
+    "error_type": "sign slip",
+    "direction": "under"
+   },
+   "22.09": {
+    "step": "minutes per sewn edge",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "22.77": {
+    "step": "number of shared edges",
+    "error_type": "other: one seam per square",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "squares still to knit",
+    "error_type": "omission",
+    "solve": "const r=6,c=8,t=32,L=9,v=5,F=11,X=3;const n=r*c,seams=r*(c-1)+c*(r-1);const tot=(sq,sm,per)=>(sq*t+sm*per)/60;return Number(tot(n+X,seams,L/v).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "11 squares already knitted",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "3 of those must be knitted again",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "sew every pair of squares that share an edge, full 9-inch edge",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "one square every 32 minutes; 5 inches per minute",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under errors from three clauses (sign slip, inverted rate, edge count); natural UP errors: finished squares ignored, 96 or 110 seams counted."
+  }
+ },
+ {
+  "id": "AM29I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "hotel balance charged in euros using a cross rate built from two dollar quotes, after a euro deposit",
+  "subskill": "cross exchange rate from two quotes",
+  "prompt": "A currency website lists these exchange rates: 1 U.S. dollar = 0.9216 euro, and 1 U.S. dollar = 0.7848 British pound. Sofia, who lives in Spain, stayed 3 nights at a London hotel that charges 168 British pounds per night. When she booked the room, she paid a deposit of 140 euros, which the hotel credited toward her bill. At checkout, the hotel charged the rest of the bill, in pounds, to Sofia's card, and her bank converted that charge to euros. The hotel and the bank both converted between pounds and euros at the rate implied by the website's two rates, with no fees. To the nearest cent, how many euros did the bank charge Sofia at checkout?",
+  "choices": [
+   "427.45",
+   "556.83",
+   "398.79",
+   "451.85"
+  ],
+  "correct_answer": "451.85",
+  "explanation": "One pound is worth 1/0.7848 dollar, and each dollar is worth 0.9216 euro, so 1 pound = 0.9216/0.7848 = about 1.1743 euros. The bill is 3(168) = 504 pounds, which is worth 504(0.9216/0.7848) = about 591.85 euros. The deposit of 140 euros was credited toward it, so the bank charged 591.85 - 140 = 451.85 euros. (Equivalently, the deposit is worth 140(0.7848/0.9216) = 119.22 pounds, the hotel charged 384.78 pounds, and 384.78 pounds is 451.85 euros.) The option 427.45 subtracts the deposit as if it were 140 pounds. The option 398.79 converts the 140-euro deposit to pounds by multiplying by 1.1743 instead of dividing. The option 556.83 converts the bill to dollars correctly but then divides by 0.9216 instead of multiplying to get euros.",
+  "solve": "const e=0.9216,p=0.7848,N=3,R=168,D=140;const cr=e/p,bill=N*R;return (bill*cr-D).toFixed(2);",
+  "distractor_solve": {
+   "427.45": "const e=0.9216,p=0.7848,N=3,R=168,D=140;const cr=e/p,bill=N*R;return ((bill-D)*cr).toFixed(2);",
+   "398.79": "const e=0.9216,p=0.7848,N=3,R=168,D=140;const cr=e/p,bill=N*R;return ((bill-D*cr)*cr).toFixed(2);",
+   "556.83": "const e=0.9216,p=0.7848,N=3,R=168,D=140;const cr=e/p,bill=N*R;return (bill/p/e-D).toFixed(2);"
+  },
+  "quantity_asked": "euros charged at checkout: the 504-pound bill in euros at 0.9216/0.7848 euro per pound, minus the 140-euro deposit.",
+  "distractor_kind": {
+   "427.45": "error path: the 140-euro deposit subtracted from the bill as 140 pounds, then the rest converted. (a) not a parameter extreme. (b) not an intermediate (the bill in euros is 591.85, the deposit in pounds 119.22). (c) inside every one-step estimate: euros owed must exceed 504 - 140 = 364 and be below 591.85. (d) real wrong-currency (wrong base) error.",
+   "398.79": "error path: the deposit converted to pounds with the rate the wrong way (140 x 1.1743 = 164.40 pounds), then the rest converted. (a) no extreme. (b) not an intermediate. (c) above the 364 floor and below 591.85; inside. (d) real inverted-rate error on the deposit step.",
+   "556.83": "error path: 504 pounds = 642.20 dollars correctly, then dollars to euros by dividing by 0.9216 instead of multiplying; minus 140. (a) no extreme. (b) not an intermediate. (c) inside 364 to 591.85. (d) real inverted-rate error on the second conversion."
+  },
+  "distractor_meta": {
+   "427.45": {
+    "direction": "under",
+    "error_kind": "deposit subtracted in the wrong currency"
+   },
+   "398.79": {
+    "direction": "under",
+    "error_kind": "deposit converted with the rate inverted"
+   },
+   "556.83": {
+    "direction": "over",
+    "error_kind": "dollars to euros by division (rate inverted)"
+   }
+  },
+  "bounds": [
+   "euros charged > 504 - 140 = 364, since a pound is worth more than a euro (0.7848 < 0.9216 pounds vs euros per dollar)",
+   "euros charged < 504 pounds in euros = 591.85, since the deposit is positive"
+  ],
+  "mechanism": [
+   "cross exchange rate from two dollar quotes",
+   "pounds to euros via dollars",
+   "deposit credited in another currency",
+   "hotel bill nights times nightly rate"
+  ],
+  "arith_class_check": "No. All four are two-decimal amounts with non-zero last digits (398.79, 427.45, 451.85, 556.83); none is a stem number times another, none is an integer.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 427.45 and 451.85, both two-decimal euro amounts with non-zero hundredths; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"deposit of 140 euros\" - taking it as pounds pushes DOWN (427.45), ignoring it pushes UP (591.85, not an option); \"1 dollar = 0.9216 euro\" - dividing instead of multiplying pushes UP (556.83); \"1 dollar = 0.7848 pound\" - multiplying instead of dividing pushes DOWN (224.53, not an option); converting the deposit with the cross rate inverted pushes DOWN (398.79). At most one distractor from ignoring a clause: none comes from ignoring a clause.",
+  "direction_declaration": {
+   "427.45": {
+    "step": "subtracting the deposit",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "398.79": {
+    "step": "converting the deposit to pounds",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "556.83": {
+    "step": "converting dollars to euros",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "subtracting the deposit",
+    "error_type": "omission",
+    "solve": "const e=0.9216,p=0.7848,N=3,R=168,D=140;const cr=e/p,bill=N*R;return Number((bill*cr).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "the 140-euro deposit is credited toward the bill",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "3 nights at 168 pounds per night",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "conversions at the rate implied by the two dollar quotes, no fees",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two under errors (deposit currency, deposit inverted) and one over (euro quote inverted); no option violates the 364-591.85 bracket."
+  }
+ },
+ {
+  "id": "AM29I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "cost per 1,000 miles of a new set of tires with per-tire, per-car and rebate items",
+  "subskill": "unit cost from mixed per-item and per-order charges",
+  "prompt": "Dana buys a set of 4 tires at $138.75 per tire. Installation costs $22.00 per tire, except that the fourth tire is installed free. A wheel alignment costs $94.95 for the car. After the purchase, Dana receives a $70.00 mail-in rebate on the set. She drives 12,500 miles per year and will replace the tires after 4 years or 55,000 miles, whichever comes first. Counting the tires, installation, alignment, and rebate, what will Dana's tires cost per 1,000 miles driven on them, to the nearest cent?",
+  "choices": [
+   "15.72",
+   "12.92",
+   "18.62",
+   "13.36"
+  ],
+  "correct_answer": "12.92",
+  "explanation": "The tires cost 4(138.75) = $555.00, installation is 3(22.00) = $66.00, and the alignment is $94.95, a total of $715.95; the rebate brings it to $645.95. In 4 years she drives 4(12,500) = 50,000 miles, which comes before 55,000 miles, so the tires are used for 50,000 miles. The cost per 1,000 miles is 645.95/50 = $12.92. The option 13.36 pays installation on all 4 tires. The option 15.72 adds the $70.00 rebate instead of subtracting it. The option 18.62 charges the alignment once per tire.",
+  "solve": "const p=138.75,inst=22,al=94.95,rb=70,y=12500,yrs=4,w=55000;const miles=Math.min(y*yrs,w);return ((4*p+3*inst+al-rb)/(miles/1000)).toFixed(2);",
+  "distractor_solve": {
+   "13.36": "const p=138.75,inst=22,al=94.95,rb=70,y=12500,yrs=4,w=55000;const miles=Math.min(y*yrs,w);return ((4*p+4*inst+al-rb)/(miles/1000)).toFixed(2);",
+   "15.72": "const p=138.75,inst=22,al=94.95,rb=70,y=12500,yrs=4,w=55000;const miles=Math.min(y*yrs,w);return ((4*p+3*inst+al+rb)/(miles/1000)).toFixed(2);",
+   "18.62": "const p=138.75,inst=22,al=94.95,rb=70,y=12500,yrs=4,w=55000;const miles=Math.min(y*yrs,w);return ((4*p+3*inst+4*al-rb)/(miles/1000)).toFixed(2);"
+  },
+  "quantity_asked": "dollars per 1,000 miles: (555 + 66 + 94.95 - 70) over 50 thousand miles.",
+  "distractor_kind": {
+   "13.36": "error path: installation paid on all 4 tires (the free fourth ignored). (a) no extreme. (b) not an intermediate. (c) 0.44 above the key, finer than any one-step estimate; strictly inside. (d) real omission of the free-installation condition.",
+   "15.72": "error path: the $70 rebate added to the cost. (a) no extreme. (b) not an intermediate. (c) inside. (d) real sign slip.",
+   "18.62": "error path: the $94.95 alignment charged for each of the 4 tires. (a) no extreme. (b) not an intermediate. (c) inside the 11-to-20 range of one-step estimates. (d) real error: a per-car charge treated as per-tire."
+  },
+  "distractor_meta": {
+   "13.36": {
+    "direction": "over",
+    "error_kind": "free fourth installation ignored"
+   },
+   "15.72": {
+    "direction": "over",
+    "error_kind": "rebate added (sign slip)"
+   },
+   "18.62": {
+    "direction": "over",
+    "error_kind": "per-car charge counted per tire"
+   }
+  },
+  "bounds": [
+   "cost per 1,000 miles > (555 - 70)/55 = 8.82 (tires and rebate only, longest possible life)",
+   "cost per 1,000 miles < (555 + 88 + 4(94.95) + 70)/50 = 21.86"
+  ],
+  "mechanism": [
+   "cost per 1,000 miles of tires",
+   "per-tire versus per-car charges",
+   "mail-in rebate",
+   "replacement after years or miles whichever first"
+  ],
+  "arith_class_check": "No. All four are two-decimal dollar amounts with non-zero hundredths; none is a stem number or a simple multiple of another.",
+  "one_sided_check": "Key smallest; distractors from three clauses and three kinds (free installation ignored, rebate sign slip, per-car alignment counted per tire). Errors that push DOWN are as natural: using the 55,000-mile limit instead of the 50,000 miles actually driven gives 11.74, leaving out the alignment gives 11.02, and taking the $70 rebate off each tire gives 8.72; so the stem does not tell a student that slips raise the answer.",
+  "interior_parity_check": "Interior by value: 13.36 and 15.72, both two-decimal amounts with non-zero hundredths; neither is rounder.",
+  "cheap_bound_check": "Cheapest bounds: tires minus rebate over the longest life, 485/55 = 8.82, lies below every option; the tires alone over 50,000 miles, 555/50 = 11.10, also lies below every option, so neither separates the key. The nearest distractor, 13.36, is 0.44 (3.4%) above the key, finer than any one-step estimate.",
+  "trap_check": "Clauses: \"fourth tire is installed free\" - ignoring it pushes UP (13.36); \"$94.95 for the car\" - per tire pushes UP (18.62), ignoring it pushes DOWN (11.02, not an option); \"$70.00 mail-in rebate\" - adding it pushes UP (15.72), ignoring it pushes UP (14.32, not an option), taking it per tire pushes DOWN (8.72, not an option); \"4 years or 55,000 miles, whichever comes first\" - using 55,000 pushes DOWN (11.74, not an option). One distractor per clause; one (13.36) from ignoring a condition.",
+  "direction_declaration": {
+   "13.36": {
+    "step": "installation charge",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "15.72": {
+    "step": "applying the rebate",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "18.62": {
+    "step": "alignment charge",
+    "error_type": "other: per-car charge counted per tire",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "miles the tires are used",
+    "error_type": "other: wrong limit of whichever comes first",
+    "solve": "const p=138.75,inst=22,al=94.95,rb=70,y=12500,yrs=4,w=55000;const miles=Math.min(y*yrs,w);return Number(((4*p+3*inst+al-rb)/(w/1000)).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "fourth tire installed free",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "alignment $94.95 for the car",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "$70.00 rebate",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "4 years or 55,000 miles, whichever comes first",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "installation $22.00 per tire",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; over errors from three clauses (free install, rebate sign, per-car alignment); natural DOWN errors: 55,000-mile limit, alignment omitted."
+  }
+ },
+ {
+  "id": "AM29I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "hours to haul topsoil when a weight limit, not the truck bed, sets the load size, with loader rate, loaded and empty speeds and no final return",
+  "subskill": "rates with a binding capacity limit",
+  "prompt": "A landscaper must haul 37 cubic yards of wet topsoil from a supply yard to a job site 11 miles away, using one truck. Wet topsoil weighs 2,300 pounds per cubic yard. The truck's bed holds up to 7 cubic yards, but the truck may carry at most 14,000 pounds of topsoil on any one load. At the yard, a loader puts topsoil into the truck at a rate of 0.55 cubic yard per minute, and at the job site each load takes 9 minutes to dump. The truck averages 40 miles per hour when loaded and 50 miles per hour when empty. The job starts when the loader begins filling the first load and ends when the last load has been dumped; the truck does not return to the yard after the last load. Every load except possibly the last carries as much topsoil as allowed. To the nearest hundredth of an hour, how long does the job take?",
+  "choices": [
+   "4.63",
+   "5.35",
+   "5.42",
+   "4.82"
+  ],
+  "correct_answer": "5.42",
+  "explanation": "The weight limit allows 14,000/2,300 = 6.087 cubic yards per load, less than the 7-cubic-yard bed, so 37/6.087 = 6.08 loads means 7 loads are needed. Loading all 37 cubic yards takes 37/0.55 = 67.27 minutes in all (the last load is partial). Each of the 7 loads is driven 11 miles at 40 mph (16.5 minutes) and dumped (9 minutes): 7(25.5) = 178.5 minutes. The truck returns empty 6 times, 11 miles at 50 mph (13.2 minutes) each: 79.2 minutes. Total 67.27 + 178.5 + 79.2 = 324.97 minutes = 5.416, or 5.42, hours. The option 4.63 finds the loading time as 37(0.55) minutes (the loader rate inverted). The option 4.82 uses 6.08 loads instead of rounding up to 7. The option 5.35 uses the average of the two speeds, 45 mph, for every drive.",
+  "solve": "const V=37,D=2300,B=7,C=14000,d=11,vL=40,vE=50,r=0.55,u=9;const per=Math.min(B,C/D),nf=V/per,n=Math.ceil(nf);return ((V/r+n*(60*d/vL+u)+(n-1)*60*d/vE)/60).toFixed(2);",
+  "distractor_solve": {
+   "4.63": "const V=37,D=2300,B=7,C=14000,d=11,vL=40,vE=50,r=0.55,u=9;const per=Math.min(B,C/D),nf=V/per,n=Math.ceil(nf);return ((V*r+n*(60*d/vL+u)+(n-1)*60*d/vE)/60).toFixed(2);",
+   "4.82": "const V=37,D=2300,B=7,C=14000,d=11,vL=40,vE=50,r=0.55,u=9;const per=Math.min(B,C/D),nf=V/per,n=Math.ceil(nf);return ((V/r+nf*(60*d/vL+u)+(nf-1)*60*d/vE)/60).toFixed(2);",
+   "5.35": "const V=37,D=2300,B=7,C=14000,d=11,vL=40,vE=50,r=0.55,u=9;const per=Math.min(B,C/D),nf=V/per,n=Math.ceil(nf);const a=(vL+vE)/2;return ((V/r+n*(60*d/a+u)+(n-1)*60*d/a)/60).toFixed(2);"
+  },
+  "quantity_asked": "total hours from the start of loading to the end of the last dump: loading time for 37 cubic yards, 7 loaded drives and dumps, 6 empty returns.",
+  "distractor_kind": {
+   "4.63": "error path: loading time 37 x 0.55 = 20.35 minutes (cubic yards per minute used as minutes per cubic yard). (a) no parameter extreme. (b) not an intermediate (load size 6.087, loads 6.08 / 7, loading 67.27 min, drive 16.5, return 13.2). (c) inside: above the 7 drives + dumps + 6 returns alone (4.30 h), below the key. (d) real inverted rate.",
+   "4.82": "error path: 6.08 loads (37/6.087) used without rounding up, so 6.08 loaded drives and dumps and 5.08 returns. (a) no extreme. (b) not an intermediate. (c) inside the interval; no one-step estimate separates it without the load count. (d) real error: fractional trip count.",
+   "5.35": "error path: every drive at the average speed 45 mph (14.67 minutes each way). (a) no extreme. (b) not an intermediate. (c) 0.07 h below the key, inside every cheap estimate. (d) real error: averaging the two speeds instead of using each for its leg."
+  },
+  "distractor_meta": {
+   "4.63": {
+    "direction": "under",
+    "error_kind": "loader rate inverted"
+   },
+   "4.82": {
+    "direction": "under",
+    "error_kind": "fractional number of loads"
+   },
+   "5.35": {
+    "direction": "under",
+    "error_kind": "average of the two speeds for every leg"
+   }
+  },
+  "bounds": [
+   "job > 4.30 h: 7 loaded drives and dumps plus 6 returns, before any loading time (needs the load count 7)",
+   "job < 5.64 h: the key with a 7th return trip added (the truck does not return)"
+  ],
+  "mechanism": [
+   "weight limit binds before truck bed volume",
+   "number of loads rounded up",
+   "loader rate cubic yards per minute",
+   "loaded and empty speeds",
+   "no return after the last load"
+  ],
+  "arith_class_check": "No. All four are hundredths with non-zero last digits; none is a multiple of a stem number or a clean fraction of an hour.",
+  "one_sided_check": "Key largest. Distractors from three error kinds (inverted loader rate, fractional loads, averaged speed). Natural errors over the key: filling the partial last load as a full 6.087-cubic-yard load (5.59) and adding a return after the last load (5.64); neither is an option.",
+  "interior_parity_check": "Interior by value: 4.82 and 5.35, both two-decimal hours with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest bounds: with 7 loads, job > 7(16.5 + 9) + 6(13.2) minutes = 4.30 h, which every option exceeds; adding a 7th return gives 5.64 h, which every option is below, so all three distractors lie on the key's side of both. The nearest distractor, 5.35, is 0.07 h (4 minutes) below the key, inside any estimate short of the full sum.",
+  "trap_check": "Clauses: \"at most 14,000 pounds\" - ignoring it (bed-limited, 6 loads) pushes DOWN (4.77, not an option); \"0.55 cubic yard per minute\" - inverting it pushes DOWN (4.63); \"40 ... loaded and 50 ... empty\" - averaging pushes DOWN (5.35); \"does not return after the last load\" - ignoring it pushes UP (5.64, not an option); \"except possibly the last\" - filling a full last load pushes UP (5.59, not an option); rounding loads up - skipping it pushes DOWN (4.82). One distractor per clause.",
+  "direction_declaration": {
+   "4.63": {
+    "step": "loading time from the loader rate",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "4.82": {
+    "step": "number of loads",
+    "error_type": "other: fractional number of loads",
+    "direction": "under"
+   },
+   "5.35": {
+    "step": "drive times for loaded and empty legs",
+    "error_type": "other: averages the two speeds",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "empty return trips",
+    "error_type": "other: returns after the last load",
+    "solve": "const V=37,D=2300,B=7,C=14000,d=11,vL=40,vE=50,r=0.55,u=9;const per=Math.min(B,C/D),nf=V/per,n=Math.ceil(nf);return Number(((V/r+n*(60*d/vL+u)+n*60*d/vE)/60).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "at most 14,000 pounds of topsoil per load",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "9 minutes to dump each load",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "no return to the yard after the last load",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "last load may be partial (loader time counts only soil actually loaded)",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "bed holds up to 7 cubic yards",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under errors from inverted rate, fractional loads, averaged speed; two natural overs (extra return, full last load) not options; stated rules split both ways."
+  }
+ },
+ {
+  "id": "AM29I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "end-to-end light-rail trip time with a slower graded section and station stops",
+  "subskill": "multi-segment travel time with stops",
+  "prompt": "A light-rail line runs 23.6 kilometers from one end station to the other and has 15 stations in all, including the two end stations. While moving, the train averages 46 kilometers per hour, except on a 4.8-kilometer section that climbs a steep grade, where its average speed while moving is 20% less than that. On each trip, the train stops for 35 seconds at every station other than the two end stations. To the nearest tenth of a minute, how many minutes does a trip take, from the moment the train leaves one end station until it arrives at the other?",
+  "choices": [
+   "39.6",
+   "41.1",
+   "39.9",
+   "36.9"
+  ],
+  "correct_answer": "39.9",
+  "explanation": "On the grade the train averages 0.80(46) = 36.8 km/h, so that section takes 4.8/36.8 hour = 7.826 minutes. The other 23.6 - 4.8 = 18.8 km take 18.8/46 hour = 24.522 minutes. The train stops at the 15 - 2 = 13 stations between the end stations, for 13(35) = 455 seconds = 7.583 minutes. The trip takes 7.826 + 24.522 + 7.583 = 39.93, or 39.9 minutes. The option 39.6 finds the grade speed as 46/1.20 (20% less taken on the wrong base). The option 41.1 counts a 35-second stop at all 15 stations. The option 36.9 writes the 455 seconds of stops as 4.55 minutes.",
+  "solve": "const L=23.6,U=4.8,S=46,p=0.20,n=15,d=35;return (((L-U)/S+U/(S*(1-p)))*60+(n-2)*d/60).toFixed(1);",
+  "distractor_solve": {
+   "39.6": "const L=23.6,U=4.8,S=46,p=0.20,n=15,d=35;return (((L-U)/S+U/(S/(1+p)))*60+(n-2)*d/60).toFixed(1);",
+   "41.1": "const L=23.6,U=4.8,S=46,p=0.20,n=15,d=35;return (((L-U)/S+U/(S*(1-p)))*60+n*d/60).toFixed(1);",
+   "36.9": "const L=23.6,U=4.8,S=46,p=0.20,n=15,d=35;return (((L-U)/S+U/(S*(1-p)))*60+(n-2)*d/100).toFixed(1);"
+  },
+  "quantity_asked": "trip minutes: 18.8 km at 46 km/h plus 4.8 km at 36.8 km/h, plus 13 stops of 35 seconds.",
+  "distractor_kind": {
+   "39.6": "error path: grade speed 46/1.20 = 38.33 km/h (20% less on the wrong base). (a) no extreme. (b) not an intermediate. (c) inside: no one-step estimate resolves 0.3 minute. (d) real wrong-base percent error.",
+   "41.1": "error path: a 35-second stop counted at all 15 stations (525 seconds = 8.75 minutes of stops). (a) no extreme. (b) not the stop total (7.58) or the moving time (32.35). (c) inside the 30.8-to-47.2 minute bracket. (d) real counting error.",
+   "36.9": "error path: 455 seconds of stops written as 4.55 minutes. (a) no extreme. (b) not an intermediate value of the correct process (moving time 32.35). (c) inside. (d) real seconds-as-decimal-minutes error (the one min:sec slip in this run)."
+  },
+  "distractor_meta": {
+   "39.6": {
+    "direction": "under",
+    "error_kind": "percent less on the wrong base"
+   },
+   "41.1": {
+    "direction": "over",
+    "error_kind": "stops counted at end stations too"
+   },
+   "36.9": {
+    "direction": "under",
+    "error_kind": "seconds read as decimal minutes"
+   }
+  },
+  "bounds": [
+   "trip > moving time at 46 km/h over 23.6 km = 30.78 minutes",
+   "trip < 23.6 km at 36.8 km/h plus 15 stops = 47.2 minutes"
+  ],
+  "mechanism": [
+   "light-rail end-to-end trip time",
+   "station dwell time at intermediate stations",
+   "slower section percent less speed",
+   "kilometers per hour to minutes"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits; none is a multiple of 35 seconds or of a stem number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 39.6 and 39.9, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"20% less\" on the grade - using 46/1.2 pushes DOWN (39.6), ignoring it pushes DOWN (38.4, not an option), reading it as 20% more pushes DOWN (37.3, not an option); \"stations other than the two end stations\" - counting all 15 pushes UP (41.1), counting 14 pushes UP (40.5, not an option); \"35 seconds\" - as 0.35 minute pushes DOWN (36.9); the 4.8 km not subtracted from 23.6 pushes UP (46.2, not an option). One distractor per clause; none from ignoring a clause.",
+  "direction_declaration": {
+   "39.6": {
+    "step": "speed on the grade",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "41.1": {
+    "step": "number of stops",
+    "error_type": "other: counted the end stations",
+    "direction": "over"
+   },
+   "36.9": {
+    "step": "converting stop time to minutes",
+    "error_type": "other: seconds read as decimal minutes",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "distance at the usual speed",
+    "error_type": "omission",
+    "solve": "const L=23.6,U=4.8,S=46,p=0.20,n=15,d=35;return Number(((L/S+U/(S*(1-p)))*60+(n-2)*d/60).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "the grade section's speed is 20% less than 46 km/h",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "stops only at stations other than the two end stations",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "35-second stop at each of those stations",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; under errors (wrong base on 20%, seconds as decimal minutes) and an over error (end stations counted); rules neglected push both ways."
+  }
+ },
+ {
+  "id": "AM29I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "plan length of an access ramp at 1:50 with a 1:12 slope limit, a maximum run per section and landings",
+  "subskill": "drawing scale with a slope rate and section count",
+  "prompt": "An architect is drawing a straight access ramp on a site plan with a scale of 1:40. The ramp must rise 1.62 meters from a sidewalk to a porch. Its slope can be no steeper than 1:12 (1 meter of rise for every 12 meters of horizontal run), and no single sloped section can have a horizontal run of more than 9 meters. The ramp needs a level landing 2.1 meters long at the bottom, and a level landing 1.6 meters long between each pair of consecutive sloped sections; the porch serves as the landing at the top. The ramp is designed to have the least possible total horizontal length. To the nearest hundredth of a centimeter, how long is the ramp on the plan, measured horizontally from the start of the bottom landing to the porch?",
+  "choices": [
+   "64.35",
+   "62.02",
+   "65.85",
+   "61.85"
+  ],
+  "correct_answer": "61.85",
+  "explanation": "At a 1:12 slope, a rise of 1.62 m needs 12(1.62) = 19.44 m of horizontal run. Since no section can run more than 9 m, the ramp needs 3 sloped sections (2 would allow only 18 m), so it has 2 landings between sections. The total horizontal length is 19.44 + 2(1.6) + 2.1 = 24.74 m. At 1:40, that is 2,474 cm/40 = 61.85 cm. The option 62.02 draws the sloped length of the run, the square root of (19.44^2 + 1.62^2) = 19.507 m, instead of its horizontal length. The option 65.85 puts a 1.6-m landing after each of the 3 sections, 3 landings instead of 2. The option 64.35 makes every landing 2.1 m long.",
+  "distractor_kind": {
+   "62.02": "error path: the 1:12 run drawn as the sloped length, sqrt(19.44^2 + 1.62^2) = 19.507 m. (a) no extreme. (b) not an intermediate (run 19.44 m, total 24.74 m, 3 sections). (c) inside: 0.17 cm (0.3%) above the key, finer than any one-step estimate. (d) real wrong-base error (sloped length for horizontal run).",
+   "65.85": "error path: one 1.6-m landing per section (3) instead of between sections (2). (a) no extreme. (b) not an intermediate. (c) inside: the landing count is the solve; no one-step estimate fixes it. (d) real fencepost error.",
+   "64.35": "error path: the 2.1-m bottom-landing length used for the landings between sections too. (a) no extreme. (b) not an intermediate. (c) inside. (d) real misread of which landing is 2.1 m."
+  },
+  "distractor_meta": {
+   "62.02": {
+    "direction": "over",
+    "error_kind": "sloped length for horizontal run"
+   },
+   "65.85": {
+    "direction": "over",
+    "error_kind": "one landing per section"
+   },
+   "64.35": {
+    "direction": "over",
+    "error_kind": "bottom-landing length for all landings"
+   }
+  },
+  "bounds": [
+   "length > (19.44 m of run + 2.1 m)(2.5) = 53.85 cm with no landings between sections",
+   "no stem-forced upper cap below the options (landings and sections must be counted)"
+  ],
+  "mechanism": [
+   "access ramp 1:12 slope",
+   "maximum horizontal run per sloped section",
+   "landings between consecutive sections",
+   "site plan scale 1:40"
+  ],
+  "arith_class_check": "No. All four are hundredths of a centimeter with non-zero last digits; none is a multiple of 1.6, 2.1 or 12.",
+  "one_sided_check": "Key smallest. Natural errors split: using 2 sections (19.44/9 = 2.16 rounded down) or leaving out the landings between sections pushes DOWN (57.85, 53.85); the sloped length, an extra landing, and a 2.1-m landing for all push UP.",
+  "interior_parity_check": "Interior by value: 62.02 and 64.35, both two-decimal centimeters with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: the run alone plus the bottom landing, (19.44 + 2.1)(2.5) = 53.85 cm, is a lower bound; every option lies above it, on the key's side. One step finer needs the section count (3, from 19.44 > 18), which is the solve; the nearest distractor, 62.02, is 0.17 cm above the key.",
+  "trap_check": "Clauses: \"no single sloped section ... more than 9 meters\" - ignoring it (one section, no landings between) pushes DOWN (53.85, not an option), rounding 19.44/9 down pushes DOWN (57.85, not an option); \"between each pair of consecutive sloped sections\" - one landing per section pushes UP (65.85); \"2.1 meters ... at the bottom\" - 2.1 m for all landings pushes UP (64.35); \"the porch serves as the landing at the top\" - adding a top landing pushes UP (65.85, the same value); \"1:12 ... horizontal run\" - the sloped length pushes UP (62.02). At most one distractor from ignoring a clause.",
+  "direction_declaration": {
+   "62.02": {
+    "step": "horizontal run from the slope limit",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "65.85": {
+    "step": "number of landings between sections",
+    "error_type": "other: one landing per section",
+    "direction": "over"
+   },
+   "64.35": {
+    "step": "length of the landings",
+    "error_type": "other: bottom-landing length used for all",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "number of sloped sections",
+    "error_type": "other: 19.44/9 rounded down to 2 sections",
+    "solve": "const rise=1.62,k=12,maxrun=9,Lb=2.1,Lm=1.6,S=40;const run=rise*k;const sec=Math.ceil(run/maxrun);return Number((((run)+(Math.floor(run/maxrun)-1)*Lm+Lb)*100/S).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "no section with more than 9 m of horizontal run",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1.6-m landing between consecutive sections",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "2.1-m landing at the bottom",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "the porch serves as the top landing",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "slope no steeper than 1:12 (horizontal run)",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "solve": "const rise=1.62,k=12,maxrun=9,Lb=2.1,Lm=1.6,S=40;const run=rise*k;const sec=Math.ceil(run/maxrun);return (((run)+(sec-1)*(Lm)+(Lb))*100/S).toFixed(2);",
+  "distractor_solve": {
+   "62.02": "const rise=1.62,k=12,maxrun=9,Lb=2.1,Lm=1.6,S=40;const run=rise*k;const sec=Math.ceil(run/maxrun);return (((Math.sqrt(run*run+rise*rise))+(sec-1)*(Lm)+(Lb))*100/S).toFixed(2);",
+   "65.85": "const rise=1.62,k=12,maxrun=9,Lb=2.1,Lm=1.6,S=40;const run=rise*k;const sec=Math.ceil(run/maxrun);return (((run)+(sec)*(Lm)+(Lb))*100/S).toFixed(2);",
+   "64.35": "const rise=1.62,k=12,maxrun=9,Lb=2.1,Lm=1.6,S=40;const run=rise*k;const sec=Math.ceil(run/maxrun);return (((run)+(sec-1)*(Lb)+(Lb))*100/S).toFixed(2);"
+  },
+  "quantity_asked": "plan length in cm: (19.44 m of run + 2 landings of 1.6 m + a 2.1-m bottom landing) x 100/40.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; natural counter (19.44/9 rounded down to 2 sections, 57.85). The 2.1-m-for-all distractor may read as weak; landing-count and slope-length errors are standard."
+  }
+ },
+ {
+  "id": "AM29I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost per bus trip for a month with a partly employer-paid pass, express surcharges and trips counted from a calendar",
+  "subskill": "unit cost from a counted calendar",
+  "prompt": "Leo rides the city bus with a monthly pass. This March has 31 days, and March 1 is a Sunday. On each weekday (Monday through Friday) Leo rides the bus to work and back home, except on Monday, March 16, a holiday, when he does not ride at all. On every Wednesday he also rides from home to the gym and back. On every Saturday he rides the bus to a class but gets a ride home, so he rides only one way. He takes no other bus rides. The March pass costs $96.50, and his employer pays $31.25 of that. On 3 of the days he works, Leo takes the express bus to work and back, and each express ride carries a $1.35 surcharge on top of the pass. Counting each one-way ride as one trip, what is Leo's cost per trip for March, to the nearest cent?",
+  "choices": [
+   "1.33",
+   "1.21",
+   "1.36",
+   "1.26"
+  ],
+  "correct_answer": "1.36",
+  "explanation": "March 1 is a Sunday, so the weekdays are March 2-6, 9-13, 16-20, 23-27 and 30-31: 22 weekdays, of which 21 are workdays after the holiday, giving 42 work trips. The Wednesdays are March 4, 11, 18 and 25: 8 gym trips. The Saturdays are March 7, 14, 21 and 28: 4 one-way trips. Total 54 trips. Leo pays 96.50 - 31.25 = 65.25 for the pass plus 6(1.35) = 8.10 in express surcharges (3 days, both ways): 73.35. Cost per trip 73.35/54 = 1.358, or $1.36. The option 1.26 adds the holiday's 2 trips instead of removing them (58 trips). The option 1.33 counts 5 Saturdays (55 trips). The option 1.21 leaves out the express surcharges (65.25/54).",
+  "solve": "const days=31,first=0,pass=96.5,emp=31.25,sur=1.35,expDays=3,hol=16;let wk=0,wed=0,sat=0;for(let d=1;d<=days;d++){const w=(first+d-1)%7;if(w>=1&&w<=5)wk++;if(w==3)wed++;if(w==6)sat++;}const cost=pass-emp+sur*2*expDays;const T=(wk-1)*2+wed*2+sat;return (cost/T).toFixed(2);",
+  "distractor_solve": {
+   "1.26": "const days=31,first=0,pass=96.5,emp=31.25,sur=1.35,expDays=3,hol=16;let wk=0,wed=0,sat=0;for(let d=1;d<=days;d++){const w=(first+d-1)%7;if(w>=1&&w<=5)wk++;if(w==3)wed++;if(w==6)sat++;}const cost=pass-emp+sur*2*expDays;const T=(wk+1)*2+wed*2+sat;return (cost/T).toFixed(2);",
+   "1.33": "const days=31,first=0,pass=96.5,emp=31.25,sur=1.35,expDays=3,hol=16;let wk=0,wed=0,sat=0;for(let d=1;d<=days;d++){const w=(first+d-1)%7;if(w>=1&&w<=5)wk++;if(w==3)wed++;if(w==6)sat++;}const cost=pass-emp+sur*2*expDays;const T=(wk-1)*2+wed*2+(sat+1);return (cost/T).toFixed(2);",
+   "1.21": "const days=31,first=0,pass=96.5,emp=31.25,sur=1.35,expDays=3,hol=16;let wk=0,wed=0,sat=0;for(let d=1;d<=days;d++){const w=(first+d-1)%7;if(w>=1&&w<=5)wk++;if(w==3)wed++;if(w==6)sat++;}const cost=pass-emp+sur*2*expDays;const T=(wk-1)*2+wed*2+sat;return ((pass-emp)/T).toFixed(2);"
+  },
+  "quantity_asked": "Leo's March cost (his share of the pass plus surcharges, $73.35) divided by his 54 one-way trips.",
+  "distractor_kind": {
+   "1.26": "error path: the holiday's two trips added rather than removed, 23 x 2 + 8 + 4 = 58 trips, 73.35/58 = 1.265. (a) no extreme. (b) not an intermediate (54 trips, 73.35, 65.25, 8.10). (c) inside: above 73.35/62 (every day of 31 days at 2 trips) and below 73.35/42. (d) real sign slip.",
+   "1.33": "error path: 5 Saturdays assumed in a 31-day month, 55 trips, 73.35/55 = 1.334. (a) no extreme. (b) not an intermediate. (c) inside; 0.03 below the key. (d) real calendar miscount (Sunday, Monday and Tuesday occur 5 times, Saturday 4).",
+   "1.21": "error path: express surcharges left out, 65.25/54 = 1.208. (a) no extreme. (b) not an intermediate. (c) inside (0.97 < it < 1.75). (d) real omission of a cost."
+  },
+  "distractor_meta": {
+   "1.26": {
+    "direction": "under",
+    "error_kind": "holiday trips added instead of removed"
+   },
+   "1.33": {
+    "direction": "under",
+    "error_kind": "miscounted Saturdays"
+   },
+   "1.21": {
+    "direction": "under",
+    "error_kind": "surcharges omitted"
+   }
+  },
+  "bounds": [
+   "cost per trip < 73.35/42 = 1.75 (work trips alone)",
+   "cost per trip > 65.25/62 = 1.05 (at most 2 trips on each of 31 days, pass share only)"
+  ],
+  "mechanism": [
+   "counting weekdays from the day March 1 falls on",
+   "trips per day by weekday pattern",
+   "employer share of a monthly pass",
+   "per-ride surcharge",
+   "cost per trip"
+  ],
+  "arith_class_check": "No. All four are cents with non-zero last digits; none is a multiple of 1.35 or a stem quantity.",
+  "one_sided_check": "Key largest. Distractors from three error kinds (sign slip on the holiday, Saturday miscount, omitted surcharge). Natural errors over the key: leaving out the Wednesday gym trips (73.35/46 = 1.59), taking a month as 4 weeks of 5 weekdays (73.35/50 = 1.47), ignoring the employer's share (104.60/54 = 1.94); none is an option.",
+  "interior_parity_check": "Interior by value: 1.26 and 1.33, both cents with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest bounds: work trips alone give at most 73.35/42 = 1.75 per trip, which every option is below, so all three distractors lie on the key's side of it; at most 2 trips a day for 31 days gives at least 65.25/62 = 1.05, which every option exceeds. The nearest distractor, 1.33, is 3 cents below the key; separating them needs the exact count of Saturdays.",
+  "trap_check": "Clauses: \"except on Monday, March 16, a holiday\" - ignoring it pushes DOWN (56 trips, 1.31, not an option), reversing it pushes DOWN (1.26); \"every Wednesday ... to the gym and back\" - leaving it out pushes UP (1.59, not an option); \"only one way\" on Saturdays - counting two pushes DOWN (58 trips, 1.26, the same value as the holiday reversal, so not a separate option); \"his employer pays $31.25\" - ignoring it pushes UP (1.94, not an option); \"$1.35 surcharge\" - leaving it out pushes DOWN (1.21); \"March 1 is a Sunday\" - assuming 5 Saturdays pushes DOWN (1.33), assuming 4 weeks pushes UP (1.47, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "1.26": {
+    "step": "workday trips after the holiday",
+    "error_type": "sign slip",
+    "direction": "under"
+   },
+   "1.33": {
+    "step": "counting Saturdays in March",
+    "error_type": "other: calendar miscount",
+    "direction": "under"
+   },
+   "1.21": {
+    "step": "Leo's total cost",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "trip count",
+    "error_type": "omission",
+    "solve": "const days=31,first=0,pass=96.5,emp=31.25,sur=1.35,expDays=3,hol=16;let wk=0,wed=0,sat=0;for(let d=1;d<=days;d++){const w=(first+d-1)%7;if(w>=1&&w<=5)wk++;if(w==3)wed++;if(w==6)sat++;}const cost=pass-emp+sur*2*expDays;const T=(wk-1)*2+sat;return Number((cost/T).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "no rides on the March 16 holiday",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "gym and back every Wednesday",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "Saturdays one way only",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "employer pays $31.25 of the pass",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "$1.35 surcharge per express ride on 3 workdays",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "March has 31 days and begins on a Sunday",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; unders from sign slip, Saturday miscount, omitted surcharge; natural overs (gym trips left out, 4-week month, employer share) not options. Calendar items are new here; graders may call the Saturday miscount weak."
+  }
+ },
+ {
+  "id": "AM29I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "finishing time of a 10-kilometer race run in repeating run-walk intervals given as paces, with a partial final interval",
+  "subskill": "rates from paces over repeating intervals",
+  "prompt": "In a 10-kilometer race, Hana uses a run-walk plan: starting at the start line, she runs for 4 minutes, then walks for 1 minute, and repeats this pattern until she crosses the finish line. She runs at a steady pace of 5 minutes 48 seconds per kilometer and walks at a steady pace of 11 minutes 6 seconds per kilometer. To the nearest tenth of a minute, what is Hana's finishing time for the race?",
+  "choices": [
+   "64.1",
+   "63.7",
+   "68.6",
+   "60.9"
+  ],
+  "correct_answer": "63.7",
+  "explanation": "Running pace 5 min 48 s = 5.8 min/km, so 4 minutes of running covers 4/5.8 = 0.68966 km; walking pace 11 min 6 s = 11.1 min/km, so 1 minute of walking covers 1/11.1 = 0.09009 km. One 5-minute cycle covers 0.77975 km, and 12 full cycles cover 9.35695 km in 60 minutes. The remaining 0.64305 km is less than one 4-minute run (0.68966 km), so she finishes while running: 0.64305(5.8) = 3.730 minutes. Finishing time 63.730, or 63.7, minutes. The option 64.1 scales the cycle time in proportion, 10/0.77975 cycles x 5 minutes, as if the last part were covered at the average pace. The option 68.6 averages the two paces over time, (4(5.8) + 11.1)/5 = 6.86 min/km, instead of over distance. The option 60.9 reads 5 min 48 s and 11 min 6 s as 5.48 and 11.06 minutes.",
+  "solve": "const L=10,pr=5+48/60,pw=11+6/60,tr=4,tw=1;function sim(L,pr,pw,tr,tw){let t=0,x=0;for(let i=0;i<1000;i++){const dr=tr/pr;if(x+dr>=L-1e-12)return t+(L-x)*pr;x+=dr;t+=tr;const dw=tw/pw;if(x+dw>=L-1e-12)return t+(L-x)*pw;x+=dw;t+=tw;}}return sim(L,pr,pw,tr,tw).toFixed(1);",
+  "distractor_solve": {
+   "60.9": "const L=10,pr=5+48/60,pw=11+6/60,tr=4,tw=1;function sim(L,pr,pw,tr,tw){let t=0,x=0;for(let i=0;i<1000;i++){const dr=tr/pr;if(x+dr>=L-1e-12)return t+(L-x)*pr;x+=dr;t+=tr;const dw=tw/pw;if(x+dw>=L-1e-12)return t+(L-x)*pw;x+=dw;t+=tw;}}return sim(L,5.48,11.06,tr,tw).toFixed(1);",
+   "64.1": "const L=10,pr=5+48/60,pw=11+6/60,tr=4,tw=1;function sim(L,pr,pw,tr,tw){let t=0,x=0;for(let i=0;i<1000;i++){const dr=tr/pr;if(x+dr>=L-1e-12)return t+(L-x)*pr;x+=dr;t+=tr;const dw=tw/pw;if(x+dw>=L-1e-12)return t+(L-x)*pw;x+=dw;t+=tw;}}return (L/(tr/pr+tw/pw)*(tr+tw)).toFixed(1);",
+   "68.6": "const L=10,pr=5+48/60,pw=11+6/60,tr=4,tw=1;function sim(L,pr,pw,tr,tw){let t=0,x=0;for(let i=0;i<1000;i++){const dr=tr/pr;if(x+dr>=L-1e-12)return t+(L-x)*pr;x+=dr;t+=tr;const dw=tw/pw;if(x+dw>=L-1e-12)return t+(L-x)*pw;x+=dw;t+=tw;}}return (L*(tr*pr+tw*pw)/(tr+tw)).toFixed(1);"
+  },
+  "quantity_asked": "Hana's total time, in minutes, to cover 10 km: 12 full run-walk cycles plus a partial run.",
+  "distractor_kind": {
+   "64.1": "error path: 10/0.77975 = 12.82 cycles x 5 min = 64.12 (the partial last stretch timed at the cycle-average pace though she is running). (a) no extreme. (b) neighbouring setup (continuous average) - inside: above the key, below the time-weighted 68.6 and the all-walk/all-run bounds 58.0 and 111.0. (c) inside every one-step estimate. (d) real error: proportional reasoning over a non-uniform final interval.",
+   "68.6": "error path: average pace weighted by time, (4 x 5.8 + 1 x 11.1)/5 = 6.86 min/km, x 10 = 68.6. (a) no extreme. (b) not an intermediate. (c) inside (58.0, 111.0). (d) real wrong-base error: paces averaged over time instead of distance.",
+   "60.9": "error path: seconds read as hundredths, paces 5.48 and 11.06 min/km, same interval method = 60.85. (a) no extreme. (b) not an intermediate. (c) inside (58.0, 111.0). (d) real unit slip on the given paces."
+  },
+  "distractor_meta": {
+   "64.1": {
+    "direction": "over",
+    "error_kind": "proportional cycles over a partial interval"
+   },
+   "68.6": {
+    "direction": "over",
+    "error_kind": "paces averaged over time"
+   },
+   "60.9": {
+    "direction": "under",
+    "error_kind": "seconds read as decimal minutes"
+   }
+  },
+  "bounds": [
+   "time > 58.0: all 10 km at the running pace",
+   "time < 111.0: all 10 km at the walking pace"
+  ],
+  "mechanism": [
+   "run-walk interval plan",
+   "distance covered per run-walk cycle from paces",
+   "partial final interval while running",
+   "pace minutes and seconds per kilometer"
+  ],
+  "arith_class_check": "No. All four are tenths of a minute with non-zero tenths; none is a multiple of 5.8, 11.1 or 5.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 63.7 (key) and 64.1, both one-decimal minutes with non-zero tenths; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"starting at the start line, she runs\" - starting with the walk would move the partial interval (a different setup, not an option); \"5 minutes 48 seconds\" / \"11 minutes 6 seconds\" - reading seconds as decimals pushes DOWN (60.9); \"until she crosses the finish line\" - timing the partial last stretch at the cycle average pushes UP (64.1). Averaging paces over time pushes UP (68.6). One distractor per clause.",
+  "direction_declaration": {
+   "64.1": {
+    "step": "time for the final partial stretch",
+    "error_type": "other: proportional cycles",
+    "direction": "over"
+   },
+   "68.6": {
+    "step": "average pace over the cycle",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "60.9": {
+    "step": "converting the paces to minutes",
+    "error_type": "other: seconds read as decimal minutes",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "pattern starts with the 4-minute run",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "paces in minutes and seconds per kilometer",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key between a seconds-as-decimal slip below and two averaging errors above; nearest distractor 0.4 min away; no cheap bound reaches the options."
+  }
+ },
+ {
+  "id": "AM29I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "time to cross an airport concourse with two moving walkways, walking on one and standing on the other",
+  "subskill": "rates with a unit conversion and combined speeds",
+  "prompt": "From the security checkpoint to her gate, Maya travels 1,350 feet along a straight airport concourse. Along the way are two moving walkways, both moving toward her gate at 1.9 feet per second; the first walkway is 320 feet long and the second is 260 feet long. For the rest of the distance she walks on the floor at 3.1 miles per hour. On the first walkway she keeps walking at that same pace relative to the walkway. On the second walkway she stands still and lets the walkway carry her. She does not stop anywhere else. Given that 1 mile = 5,280 feet, to the nearest second, how many seconds does it take Maya to get from the checkpoint to her gate?",
+  "choices": [
+   "413",
+   "356",
+   "427",
+   "378"
+  ],
+  "correct_answer": "356",
+  "explanation": "Her walking speed is 3.1(5,280)/3,600 = 4.5467 feet per second. She walks 1,350 - 320 - 260 = 770 feet on the floor: 770/4.5467 = 169.35 s. On the first walkway her speed is 4.5467 + 1.9 = 6.4467 ft/s: 320/6.4467 = 49.64 s. On the second she moves at 1.9 ft/s: 260/1.9 = 136.84 s. The total is 355.83, about 356 seconds. The option 427 subtracts the walkway's speed on the first walkway (4.5467 - 1.9). The option 413 takes only the first walkway's length out of the floor distance (1,030 ft walked on the floor). The option 378 interchanges the walkways, standing on the 320-foot one and walking on the 260-foot one.",
+  "solve": "const D=1350,L1=320,L2=260,u=1.9,v=3.1*5280/3600;return String(Math.round((D-L1-L2)/v+L1/(v+u)+L2/u));",
+  "distractor_solve": {
+   "378": "const D=1350,L1=320,L2=260,u=1.9,v=3.1*5280/3600;return String(Math.round((D-L1-L2)/v+L1/u+L2/(v+u)));",
+   "413": "const D=1350,L1=320,L2=260,u=1.9,v=3.1*5280/3600;return String(Math.round((D-L1)/v+L1/(v+u)+L2/u));",
+   "427": "const D=1350,L1=320,L2=260,u=1.9,v=3.1*5280/3600;return String(Math.round((D-L1-L2)/v+L1/(v-u)+L2/u));"
+  },
+  "quantity_asked": "total seconds: 770 ft at 4.5467 ft/s, plus 320 ft at 6.4467 ft/s, plus 260 ft at 1.9 ft/s.",
+  "distractor_kind": {
+   "378": "error path: the walkway roles interchanged - stands on the 320-ft walkway (168.42 s), walks on the 260-ft one (40.33 s). (a) no extreme. (b) not an intermediate. (c) inside, 22 s (6%) above the key, finer than any one-step estimate. (d) real misassignment of the two listed lengths.",
+   "413": "error path: the floor distance taken as 1,350 - 320 = 1,030 ft, the second walkway's length not removed (226.53 s on the floor). (a) no extreme. (b) not an intermediate. (c) inside, below the 474.62 cap. (d) real omission.",
+   "427": "error path: speeds subtracted on the first walkway (4.5467 - 1.9 = 2.6467 ft/s, 120.91 s). (a) no extreme. (b) not an intermediate (floor 169.35 s, walkways 49.64 s and 136.84 s). (c) inside: below the stand-on-both-walkways cap 474.62 and above the walk-on-both floor 259.32. (d) real sign slip in combining speeds."
+  },
+  "distractor_meta": {
+   "378": {
+    "direction": "over",
+    "error_kind": "walk and stand walkways interchanged"
+   },
+   "413": {
+    "direction": "over",
+    "error_kind": "second walkway left in the floor distance"
+   },
+   "427": {
+    "direction": "over",
+    "error_kind": "walkway speed subtracted"
+   }
+  },
+  "bounds": [
+   "time > 259.32 s (walking on both walkways is faster than standing on one)",
+   "time < 474.62 s (standing on both walkways is slower than walking on one)"
+  ],
+  "mechanism": [
+   "moving walkway speed added to walking speed",
+   "miles per hour to feet per second",
+   "distance split into floor and walkway segments",
+   "standing still on a moving walkway"
+  ],
+  "arith_class_check": "No. Four three-digit integers of seconds with no common factor pattern; none is a multiple of 10, 19 or 31, and none is a stem number.",
+  "one_sided_check": "Key smallest. Natural errors split: subtracting speeds, leaving a walkway in the floor distance, standing on the longer walkway, or inverting the mph conversion (581) push UP; walking on the second walkway too (259), ignoring the walkways (297) or using her walking speed on the second walkway (276) push DOWN.",
+  "interior_parity_check": "Interior by value: 378 and 413, both three-digit integers with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: walking on both walkways, 259.32 s, is a lower bound and standing on both, 474.62 s, an upper bound; all three distractors lie strictly between, on the key's side of the lower bound. The cruder 'walk the whole concourse' 296.92 s is not a bound (standing is slower than walking). Nearest distractor 378 is 22 s above the key.",
+  "trap_check": "Clauses: 'keeps walking at that same pace' on the first walkway - ignoring it (standing) pushes UP (474.62, not an option), subtracting pushes UP (427); 'stands still' on the second - ignoring it (walking) pushes DOWN (259.32, not an option); walkways are part of the 1,350 ft - leaving one in the floor distance pushes UP (413); 1 mile = 5,280 ft - inverting the conversion pushes UP (580.86, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "378": {
+    "step": "which walkway she walks on",
+    "error_type": "other: walk and stand walkways interchanged",
+    "direction": "over"
+   },
+   "413": {
+    "step": "distance walked on the floor",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "427": {
+    "step": "speed on the first walkway",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "speed on the second walkway",
+    "error_type": "other: walks on the second walkway too (speeds added there)",
+    "solve": "const D=1350,L1=320,L2=260,u=1.9,v=3.1*5280/3600;return Number(((D-L1-L2)/v+(L1+L2)/(v+u)).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "keeps walking on the first walkway (speeds add)",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "stands still on the second walkway",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "walkway lengths are part of the 1,350 feet",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1 mile = 5,280 feet; 3,600 s per hour",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; counter-errors under (walk on second walkway 259, ignore walkways 297). Swap distractor may read as a misreading; no cheap bound inside 259-475."
+  }
+ },
+ {
+  "id": "AM29I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost of new and reconditioned fiber cable along a route measured on a 1:50,000 map that understates hilly ground distance",
+  "subskill": "map scale with a percent correction and a reuse credit",
+  "prompt": "A utility company will run a fiber-optic cable along a route that measures 21.4 centimeters on a map with a scale of 1:50,000. Because the route crosses hills, the map distance is 7% less than the distance along the ground. Along 1.8 kilometers of the route (measured along the ground), the company can reuse cable that is already in place, except that 15% of that existing cable is damaged and must be replaced with new cable; the rest of the existing cable will be reconditioned at a cost of $1.35 per meter. Everywhere else, and where the damaged cable is replaced, new cable is used. New cable costs $9.15 per meter, and 5% of the new cable the company buys is wasted in cutting, so the amount bought must leave enough new cable after the waste. To the nearest dollar, what is the total cost of the new cable and the reconditioning?",
+  "choices": [
+   "97035",
+   "98144",
+   "95908",
+   "98014"
+  ],
+  "correct_answer": "98144",
+  "explanation": "At 1:50,000 the map distance is 21.4(50,000) cm = 10.7 km. That is 7% less than the ground distance g, so 0.93g = 10.7 and g = 11.505 km. Of the 1.8 km of existing cable, 85% is usable: 1.53 km, reconditioned for 1,530(1.35) = $2,065.50. New cable must be laid on 11.505 - 1.53 = 9.975 km. Since 95% of the cable bought is usable, the company buys 9.975/0.95 = 10.500 km, costing 10,500.4(9.15) = $96,078.62. The total is $98,144. The option 98014 buys extra for waste only on the route's new cable, not on the 0.27 km of replacement cable. The option 97035 subtracts the 1.53 km of reused cable from the 10.7-km MAP length and then corrects for the hills, although the 1.8 km is already a ground length. The option 95908 reuses all 1.8 km and ignores the damaged 15%.",
+  "solve": "const cm=21.4,S=50000,p=0.07,R=1.8,d=0.15,w=0.05,price=9.15,rc=1.35;const map=cm*S/100000,ground=map/(1-p),good=R*(1-d);const cost=(n,g)=>n*1000*price+g*1000*rc;return String(Math.round(cost((ground-good)/(1-w),good)));",
+  "distractor_solve": {
+   "95908": "const cm=21.4,S=50000,p=0.07,R=1.8,d=0.15,w=0.05,price=9.15,rc=1.35;const map=cm*S/100000,ground=map/(1-p),good=R*(1-d);const cost=(n,g)=>n*1000*price+g*1000*rc;return String(Math.round(cost((ground-R)/(1-w),R)));",
+   "97035": "const cm=21.4,S=50000,p=0.07,R=1.8,d=0.15,w=0.05,price=9.15,rc=1.35;const map=cm*S/100000,ground=map/(1-p),good=R*(1-d);const cost=(n,g)=>n*1000*price+g*1000*rc;return String(Math.round(cost((map-good)/(1-p)/(1-w),good)));",
+   "98014": "const cm=21.4,S=50000,p=0.07,R=1.8,d=0.15,w=0.05,price=9.15,rc=1.35;const map=cm*S/100000,ground=map/(1-p),good=R*(1-d);const cost=(n,g)=>n*1000*price+g*1000*rc;return String(Math.round(cost((ground-R)/(1-w)+R*d,good)));"
+  },
+  "quantity_asked": "total dollars: new cable bought, (11.505 - 1.53) km / 0.95 at $9.15 per meter, plus 1.53 km reconditioned at $1.35 per meter.",
+  "distractor_kind": {
+   "95908": "error path: all 1.8 km of existing cable reused and reconditioned, the damaged 15% ignored. (a) no extreme. (b) not an intermediate. (c) inside: below the all-new cost 110,815 and above the no-hill-correction 90,387. (d) real omission.",
+   "97035": "error path: new cable = (10.7 - 1.53)/0.93 = 9.860 km, the hill correction applied to a length that already excludes the ground-measured reused cable (wrong base). (a) no extreme. (b) not an intermediate (map 10.7, ground 11.505, new 9.975, bought 10.500 km). (c) inside, 1.1% below the key. (d) real wrong-base error.",
+   "98014": "error path: waste covered on the route's new cable, (11.505 - 1.8)/0.95, but the 0.27 km of replacement cable added with no waste allowance. (a) no extreme. (b) not an intermediate. (c) inside, 0.13% below the key, finer than any one-step estimate. (d) real error: waste allowance applied to part of the new cable."
+  },
+  "distractor_meta": {
+   "95908": {
+    "direction": "under",
+    "error_kind": "damaged share of reused cable ignored"
+   },
+   "97035": {
+    "direction": "under",
+    "error_kind": "hill correction on the wrong length"
+   },
+   "98014": {
+    "direction": "under",
+    "error_kind": "waste allowance missing on replacement cable"
+   }
+  },
+  "bounds": [
+   "cost < 110,815 (no cable reused: all 11.505 km new, bought to cover waste)",
+   "cost > 0; with the reuse credit there is no cheap lower bound"
+  ],
+  "mechanism": [
+   "map scale 1:50,000 route length",
+   "map distance percent less than ground distance",
+   "reused cable with a damaged share",
+   "cable bought to cover cutting waste",
+   "cost per meter"
+  ],
+  "arith_class_check": "No. All four are five-digit dollar amounts with non-zero last digits and no common factor pattern; none is a multiple of 9.15 or 1.35 alone.",
+  "one_sided_check": "Key largest. Natural errors split: charging reconditioning on all 1.8 km pushes UP (98,509), ignoring the reused cable pushes UP (110,815), while ignoring the 7%, the waste or the reconditioning pushes DOWN; the three options below the key come from three different clauses (15% damaged, hill correction base, waste on replacement cable).",
+  "interior_parity_check": "Interior by value: 97035 and 98014, both five-digit integers with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: all cable new, 11.505 km/0.95 at $9.15 = 110,815, an upper bound; every option lies below it, on the key's side. A cheap lower bound would need the reuse credit, which is the whole solve. The nearest distractor, 98014, is $130 (0.13%) below the key.",
+  "trap_check": "Clauses: '7% less than the distance along the ground' - ignoring it pushes DOWN (90,387, not an option), applying it to the map length after removing the reused cable pushes DOWN (97035); 'reuse ... 1.8 km' - ignoring it pushes UP (110,815, not an option); '15% ... damaged' - ignoring it pushes DOWN (95908); '5% ... wasted' - ignoring it pushes DOWN (93,340, not an option), covering waste on part of the new cable pushes DOWN (98014); '$1.35 per meter' reconditioning - ignoring it pushes DOWN (96,079, not an option), charging it on all 1.8 km pushes UP (98,509, not an option). One distractor per clause; only 95908 ignores a clause.",
+  "direction_declaration": {
+   "95908": {
+    "step": "usable existing cable",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "97035": {
+    "step": "new cable length from the map distance",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "98014": {
+    "step": "new cable bought to cover waste",
+    "error_type": "other: waste allowance on the route cable only, not the replacement",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "length reconditioned",
+    "error_type": "other: reconditioning charged on all 1.8 km, damaged cable included",
+    "solve": "const cm=21.4,S=50000,p=0.07,R=1.8,d=0.15,w=0.05,price=9.15,rc=1.35;const map=cm*S/100000,ground=map/(1-p),good=R*(1-d);const cost=(n,g)=>n*1000*price+g*1000*rc;return Number(cost((ground-good)/(1-w),R).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "map distance 7% less than ground distance",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1.8 km of existing cable reused",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "15% of the existing cable damaged and replaced",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "5% of new cable bought is wasted",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "reconditioning $1.35 per meter",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; close natural counter (reconditioning on all 1.8 km, +$365) and reuse neglect UP; but four of five neglects push down. No PCT2 swap left."
+  }
+ },
+ {
+  "id": "AM29I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "average pollen concentration from an air sampler's count, run time with an outage, contamination and capture rate",
+  "subskill": "concentration per cubic meter from a sampled count",
+  "prompt": "A pollen sampler draws outdoor air past a sticky slide at a constant rate of 10 liters per minute. It ran from 9:00 a.m. on Monday until 8:30 a.m. on Tuesday, except during a 45-minute power outage, when it drew no air. A technician counted 1,844 pollen grains on the slide, but 64 of those grains had landed on the slide before the run began and must not be included. The sampler catches only 85% of the pollen grains in the air it draws. Given that 1 cubic meter = 1,000 liters, what was the average concentration of pollen in the air during the run, in grains per cubic meter, to the nearest hundredth?",
+  "choices": [
+   "154.78",
+   "148.52",
+   "153.42",
+   "154.24"
+  ],
+  "correct_answer": "153.42",
+  "explanation": "From 9:00 a.m. Monday to 8:30 a.m. Tuesday is 23 hours 30 minutes = 1,410 minutes; without the 45-minute outage the sampler ran 1,365 minutes and drew 10(1,365) = 13,650 liters = 13.65 cubic meters. The grains from the run are 1,844 - 64 = 1,780, and since these are 85% of the grains in that air, the air held 1,780/0.85 = 2,094.12 grains. The concentration is 2,094.12/13.65 = 153.42 grains per cubic meter. The option 148.52 does not remove the outage (14.1 cubic meters). The option 154.24 scales the whole count up for the 85% capture first (1,844/0.85 = 2,169.41) and then removes the 64 grains, although those grains were not sampled from the air. The option 154.78 writes 23 hours 30 minutes as 23.30 hours.",
+  "solve": "const q=10,hrs=23.5,out=45,N=1844,blank=64,e=0.85;const air=q*(hrs*60-out)/1000;return (((N-blank)/e)/air).toFixed(2);",
+  "distractor_solve": {
+   "148.52": "const q=10,hrs=23.5,out=45,N=1844,blank=64,e=0.85;const air=q*(hrs*60)/1000;return (((N-blank)/e)/air).toFixed(2);",
+   "154.24": "const q=10,hrs=23.5,out=45,N=1844,blank=64,e=0.85;const air=q*(hrs*60-out)/1000;return ((N/e-blank)/air).toFixed(2);",
+   "154.78": "const q=10,hrs=23.5,out=45,N=1844,blank=64,e=0.85;const air=q*(23.30*60-out)/1000;return (((N-blank)/e)/air).toFixed(2);"
+  },
+  "quantity_asked": "grains per cubic meter: (1,844 - 64)/0.85 grains over 10 L/min x 1,365 min = 13.65 cubic meters.",
+  "distractor_kind": {
+   "148.52": "error path: the 45-minute outage not removed, so the air is 10(1,410) = 14.1 cubic meters. (a) no extreme. (b) not an intermediate (air 13.65, grains 2,094.12, count 1,780). (c) inside: below the contamination-ignored cap 158.93 and above the capture-ignored floor 130.40. (d) real omission.",
+   "154.24": "error path: (1,844/0.85 - 64)/13.65, the capture correction applied to the 64 pre-run grains too (wrong base). (a) no extreme. (b) not an intermediate. (c) inside, 0.5% above the key and below the 158.93 cap. (d) real error: subtracting the contamination after scaling instead of before.",
+   "154.78": "error path: 23 hours 30 minutes written as 23.30 hours (1,398 minutes, less 45). (a) no extreme. (b) not an intermediate. (c) inside, 0.9% above the key and below the 158.93 cap. (d) real hours-and-minutes-as-decimal slip on an intermediate (the one such slip in this run)."
+  },
+  "distractor_meta": {
+   "148.52": {
+    "direction": "under",
+    "error_kind": "outage time not removed"
+   },
+   "154.24": {
+    "direction": "over",
+    "error_kind": "contamination removed after the capture scaling"
+   },
+   "154.78": {
+    "direction": "over",
+    "error_kind": "minutes read as decimal hours"
+   }
+  },
+  "bounds": [
+   "concentration < 2,169.41/13.65 = 158.93 (removing the 64 contaminating grains lowers it)",
+   "concentration > 1,780/13.65 = 130.40 (the 85% capture raises it)"
+  ],
+  "mechanism": [
+   "pollen sampler air volume liters per minute",
+   "elapsed time across midnight minus an outage",
+   "contaminating grains subtracted",
+   "capture rate percent of grains",
+   "grains per cubic meter"
+  ],
+  "arith_class_check": "No. All four are hundredths with non-zero last digits; none is a multiple of 10, 64 or 85.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 153.42 and 154.24, both three-digit values with two decimals and non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 'except during a 45-minute power outage' - ignoring it pushes DOWN (148.52); '64 of those grains ... must not be included' - ignoring it pushes UP (158.93, not an option), removing them after the capture scaling pushes UP (154.24); 'catches only 85%' - ignoring it pushes DOWN (130.40, not an option), multiplying by 0.85 pushes DOWN (110.84, not an option); '9:00 a.m. Monday until 8:30 a.m. Tuesday' - writing 23 h 30 min as 23.30 h pushes UP (154.78). At most one distractor per clause.",
+  "direction_declaration": {
+   "148.52": {
+    "step": "minutes of sampling",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "154.24": {
+    "step": "order of contamination removal and capture scaling",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "154.78": {
+    "step": "elapsed time",
+    "error_type": "other: 30 minutes read as 0.30 hour",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "45-minute outage with no air drawn",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "64 grains landed before the run and are excluded",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "sampler catches 85% of grains",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "10 liters per minute; 1 cubic meter = 1,000 liters",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one error under (outage kept), two over (contamination removed after scaling, 23.30 hours); no percent-base swap."
+  }
+ }
+]

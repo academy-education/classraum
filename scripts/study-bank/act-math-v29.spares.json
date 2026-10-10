@@ -1,0 +1,833 @@
+[
+ {
+  "id": "AM29I-X2",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "bacteria per milliliter of milk from colony counts after two dilutions, with a contamination control",
+  "subskill": "concentration back-calculated through dilutions",
+  "prompt": "To estimate the number of bacteria in a milk sample, a lab technician adds 1.0 milliliter (mL) of the milk to 99.0 mL of sterile water and mixes well. She then adds 0.5 mL of this mixture to 9.5 mL of sterile water and mixes well. She spreads 0.10 mL of the final mixture on each of two dishes, and each bacterium in the liquid spread on a dish grows into one colony. The two dishes grow 152 and 136 colonies. A control dish spread with 0.10 mL of the sterile water alone grows 6 colonies, so 6 of the colonies on each dish are assumed to come from the water, not the milk. Based on the mean of the two dishes, how many bacteria were in each milliliter of the milk, in millions, to the nearest hundredth of a million?",
+  "choices": [
+   "2.88",
+   "2.73",
+   "2.62",
+   "2.76"
+  ],
+  "correct_answer": "2.76",
+  "explanation": "The mean of the dishes is (152 + 136)/2 = 144 colonies, of which 144 - 6 = 138 come from the milk, so the final mixture holds 138/0.10 = 1,380 bacteria per mL. The second step mixed 0.5 mL into a total of 10.0 mL, a dilution by a factor of 20, so the first mixture held 20(1,380) = 27,600 per mL. The first step mixed 1.0 mL into a total of 100.0 mL, a factor of 100, so the milk held 100(27,600) = 2,760,000 bacteria per mL, or 2.76 million. The option 2.73 takes the first factor as 99 (the water alone, not the total). The option 2.62 takes the second factor as 19. The option 2.88 does not subtract the control's 6 colonies.",
+  "solve": "const a1=1.0,w1=99.0,a2=0.5,w2=9.5,pl=0.10,d1=152,d2=136,ctl=6;return ((((d1+d2)/2-ctl)/pl)*((a1+w1)/a1)*((a2+w2)/a2)/1e6).toFixed(2);",
+  "distractor_solve": {
+   "2.73": "const a1=1.0,w1=99.0,a2=0.5,w2=9.5,pl=0.10,d1=152,d2=136,ctl=6;return ((((d1+d2)/2-ctl)/pl)*(w1/a1)*((a2+w2)/a2)/1e6).toFixed(2);",
+   "2.62": "const a1=1.0,w1=99.0,a2=0.5,w2=9.5,pl=0.10,d1=152,d2=136,ctl=6;return ((((d1+d2)/2-ctl)/pl)*((a1+w1)/a1)*(w2/a2)/1e6).toFixed(2);",
+   "2.88": "const a1=1.0,w1=99.0,a2=0.5,w2=9.5,pl=0.10,d1=152,d2=136,ctl=6;return ((((d1+d2)/2)/pl)*((a1+w1)/a1)*((a2+w2)/a2)/1e6).toFixed(2);"
+  },
+  "quantity_asked": "bacteria per mL of milk, in millions: (144 - 6) colonies per 0.10 mL x 20 x 100 / 1,000,000.",
+  "distractor_kind": {
+   "2.73": "error path: first dilution factor 99/1 (water volume) instead of 100/1 (total volume). (a) no extreme. (b) not an intermediate (1,380 and 27,600 per mL). (c) inside, 1% below the key; no one-step estimate resolves it. (d) real wrong-base dilution error.",
+   "2.62": "error path: second dilution factor 9.5/0.5 = 19 instead of 10.0/0.5 = 20. (a) no extreme. (b) not an intermediate. (c) inside, 5% below the key. (d) real wrong-base dilution error.",
+   "2.88": "error path: the control's 6 colonies not subtracted (144 per dish). (a) no extreme. (b) not an intermediate. (c) inside: the control-ignored value is the cap, and the key is below it by the 6/144 share. (d) real omission."
+  },
+  "distractor_meta": {
+   "2.73": {
+    "direction": "under",
+    "error_kind": "dilution factor on the water volume"
+   },
+   "2.62": {
+    "direction": "under",
+    "error_kind": "dilution factor on the water volume"
+   },
+   "2.88": {
+    "direction": "over",
+    "error_kind": "control colonies not subtracted"
+   }
+  },
+  "bounds": [
+   "count < 2.88 million (the control's colonies come off)",
+   "count > 138 x 10 x 19 x 99/10^6 = 2.60 million (each factor at least its water-only value)"
+  ],
+  "mechanism": [
+   "colony count from a spread plate",
+   "serial dilution factors 1 into 100 and 0.5 into 10",
+   "contamination control subtracted",
+   "bacteria per milliliter in millions"
+  ],
+  "arith_class_check": "No. All four are hundredths of a million with non-zero last digits; none is a multiple of 20, 100 or 6.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 2.73 and 2.76, both two-decimal values with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"1.0 mL of the milk to 99.0 mL\" - factor on the water pushes DOWN (2.75); \"0.5 mL ... to 9.5 mL\" - factor on the water pushes DOWN (2.64); \"0.10 mL ... on each of two dishes\" - ignoring the 0.10 mL pushes DOWN (0.28, not an option), summing the dishes pushes UP (5.52, not an option); \"6 of the colonies ... from the water\" - ignoring it pushes UP (2.88). At most one distractor per clause.",
+  "direction_declaration": {
+   "2.73": {
+    "step": "first dilution factor",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "2.62": {
+    "step": "second dilution factor",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "2.88": {
+    "step": "colonies from the milk",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "6 colonies on each dish come from the water",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "0.10 mL spread on each dish",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "mean of the two dishes",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1.0 mL into 99.0 mL; 0.5 mL into 9.5 mL",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two wrong-base dilution factors under (from two different steps) and the control omission over; summing the dishes would push up, ignoring the 0.10 mL down."
+  }
+ },
+ {
+  "id": "AM29I-X3",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost to carpet a room from a fixed-width roll with pad, installation and tax on materials",
+  "subskill": "applied area: carpet from a roll",
+  "prompt": "Ana is carpeting a rectangular room that measures 14 feet by 19 feet. The carpet comes on a roll 12 feet wide, and the store cuts pieces only straight across the roll, so every piece is 12 feet wide. Ana pays $26.75 per square yard for all the carpet cut from the roll, including any part that is later trimmed away. So that the carpet's pile all runs the same way, each piece must be laid with its length parallel to the 19-foot walls, and each piece is cut exactly 19 feet long. The pad under the carpet is cut to fit the floor exactly and costs $4.25 per square yard of floor. Installation costs $5.50 per square yard of floor. A 7% sales tax is charged on the carpet and the pad but not on the installation. To the nearest cent, what is Ana's total cost? (1 square yard = 9 square feet)",
+  "choices": [
+   "1365.53",
+   "1747.17",
+   "1142.91",
+   "1738.37"
+  ],
+  "correct_answer": "1747.17",
+  "explanation": "The pieces run along the 19-foot walls and must cover the 14-foot width, so Ana needs 2 pieces, each 12 ft by 19 ft (the second is trimmed to 2 ft wide): 2 x 12 x 19 = 456 sq ft = 50.667 sq yd of carpet, costing 50.667 x 26.75 = 1,355.33. The floor is 14 x 19 = 266 sq ft = 29.556 sq yd, so the pad costs 125.61 and installation 162.56. Tax is 0.07(1,355.33 + 125.61) = 103.67. Total: 1,355.33 + 125.61 + 162.56 + 103.67 = 1,747.17 dollars. The option 1738.37 charges tax on the carpet only. The option 1365.53 lays the pieces parallel to the 14-foot walls (2 pieces 14 ft long, 336 sq ft of carpet). The option 1142.91 pays for carpet only on the 266 sq ft of floor, ignoring the trimmed carpet.",
+  "solve": "const fl=14*19/9,cp=26.75,pp=4.25,ip=5.5,t=0.07;const tot=(carpSqFt,padBase,instBase,taxPad,taxInst)=>{const c=carpSqFt/9*cp,p=padBase*pp,i=instBase*ip;return c+p+i+t*(c+(taxPad?p:0)+(taxInst?i:0));};return tot(2*12*19,fl,fl,1,0).toFixed(2);",
+  "distractor_solve": {
+   "1738.37": "const fl=14*19/9,cp=26.75,pp=4.25,ip=5.5,t=0.07;const tot=(carpSqFt,padBase,instBase,taxPad,taxInst)=>{const c=carpSqFt/9*cp,p=padBase*pp,i=instBase*ip;return c+p+i+t*(c+(taxPad?p:0)+(taxInst?i:0));};return tot(2*12*19,fl,fl,0,0).toFixed(2);",
+   "1365.53": "const fl=14*19/9,cp=26.75,pp=4.25,ip=5.5,t=0.07;const tot=(carpSqFt,padBase,instBase,taxPad,taxInst)=>{const c=carpSqFt/9*cp,p=padBase*pp,i=instBase*ip;return c+p+i+t*(c+(taxPad?p:0)+(taxInst?i:0));};return tot(2*12*14,fl,fl,1,0).toFixed(2);",
+   "1142.91": "const fl=14*19/9,cp=26.75,pp=4.25,ip=5.5,t=0.07;const tot=(carpSqFt,padBase,instBase,taxPad,taxInst)=>{const c=carpSqFt/9*cp,p=padBase*pp,i=instBase*ip;return c+p+i+t*(c+(taxPad?p:0)+(taxInst?i:0));};return tot(14*19,fl,fl,1,0).toFixed(2);"
+  },
+  "quantity_asked": "Total dollars: carpet for two full-width 19-ft pieces + pad and installation on the floor area + 7% tax on carpet and pad, to the nearest cent.",
+  "distractor_kind": {
+   "1738.37": "error path: 7% tax applied to the carpet only, not to the pad. (a) no parameter extreme. (b) neighbouring tax base; strictly inside the estimate interval. (c) cheapest bound: pre-tax total 1,643.50 below; 1738.37 is strictly between that and the key (8.80 below the key). (d) real error: drops one item from the taxed list.",
+   "1365.53": "error path: pieces laid parallel to the 14-foot walls (2 pieces of 14 ft, 336 sq ft). (a) no parameter extreme. (b) the other orientation is a neighbouring setup; strictly inside [1142.91, key]. (c) below the pre-tax-total bound but above the carpet-at-floor-area estimate. (d) real error: ignores the stated pile direction.",
+   "1142.91": "error path: carpet bought only for the 266 sq ft of floor. (a) this is the minimum-carpet case, not a stem-forced bound on the true total. (b) neighbouring setup: carpet sold by floor area. (c) lowest option; no cheap bound sits on it. (d) real error: ignores the full-width cutting rule."
+  },
+  "distractor_meta": {
+   "1738.37": {
+    "direction": "under",
+    "error_kind": "tax base missing the pad"
+   },
+   "1365.53": {
+    "direction": "under",
+    "error_kind": "pieces along the wrong walls"
+   },
+   "1142.91": {
+    "direction": "under",
+    "error_kind": "carpet billed by floor area"
+   }
+  },
+  "bounds": [
+   "total >= carpet alone for two 19-ft pieces, 1,355.33: kills 1142.91 only",
+   "total >= pre-tax total 1,643.50 (needs the full correct carpet, pad and installation): also below 1738.37",
+   "total <= tax on everything, 1,758.55: kills nothing"
+  ],
+  "mechanism": [
+   "carpet cut from a fixed-width roll",
+   "pieces must run one direction",
+   "waste from trimming the second strip",
+   "pad and installation by floor area, tax on materials"
+  ],
+  "arith_class_check": "No. Four two-decimal dollar totals with unrelated cents (.17, .37, .53, .91); none whole.",
+  "one_sided_check": "Key largest. Three different errors (tax base, piece orientation, carpet by floor area). Natural errors push UP too: taxing the installation as well gives 1758.55; pricing the pad and installation on the 50.67 sq yd of carpet gives 1959.28. The tax clause can be misread either way.",
+  "interior_parity_check": "Interior by value: 1365.53 and 1738.37; both two-decimal, non-round, four-digit dollars.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bound: carpet alone for the two 19-ft pieces, 1,355.33, kills only 1142.91; the full pre-tax total 1,643.50 (essentially the whole solution) also sits below 1365.53's rival 1738.37, which lies on the key's side of every lower bound, 8.80 below the key. No cheap bound separates the key from 1738.37.",
+  "trap_check": "Clauses: (1) pieces cut across the full 12-ft width and paid in full: ignoring it lowers the total (1142.91, the only option from it); (2) pieces parallel to the 19-ft walls: ignoring it lowers the total (1365.53, the only option from it); (3) tax on carpet and pad but not installation: dropping the pad lowers it (1738.37), adding installation raises it (1758.55, not an option); (4) pad and installation per square yard of FLOOR: using carpet area raises it (1959.28, not an option). No clause supplies two options.",
+  "direction_declaration": {
+   "1738.37": {
+    "step": "sales tax base",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "1365.53": {
+    "step": "layout of the pieces",
+    "error_type": "other: wrong orientation of pieces",
+    "direction": "under"
+   },
+   "1142.91": {
+    "step": "amount of carpet bought",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "sales tax base",
+    "error_type": "wrong base",
+    "solve": "const fl=14*19/9,cp=26.75,pp=4.25,ip=5.5,t=0.07;const tot=(carpSqFt,padBase,instBase,taxPad,taxInst)=>{const c=carpSqFt/9*cp,p=padBase*pp,i=instBase*ip;return c+p+i+t*(c+(taxPad?p:0)+(taxInst?i:0));};return +tot(2*12*19,fl,fl,1,1).toFixed(2);",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "pieces cut across the full 12-ft roll width, all paid for",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "pieces parallel to the 19-foot walls",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "pad and installation priced per square yard of floor",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "tax on carpet and pad but not installation",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1 square yard = 9 square feet",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Errors from three clauses below; tax-on-installation and pad-on-carpet-area both above. Nearest 8.80 below; pre-tax bound kills two but not 1738.37. Roll-width carpet not in dump."
+  }
+ },
+ {
+  "id": "AM29I-X4",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "frosting for a round cake scaled from a square cake by frosted surface area",
+  "subskill": "coverage proportional to surface area",
+  "prompt": "A baker frosts the top and the sides, but not the bottom, of each cake, and the amount of frosting used is proportional to the area frosted. A square cake 8 inches on each side and 3 inches tall uses 3 cups of frosting. To the nearest hundredth of a cup, how many cups of frosting will the baker use on a round cake that is 9 inches in diameter and 4 inches tall?",
+  "choices": [
+   "2.98",
+   "3.31",
+   "2.25",
+   "3.98"
+  ],
+  "correct_answer": "3.31",
+  "explanation": "The square cake's frosted area is 8(8) + 4(8)(3) = 64 + 96 = 160 square inches. The round cake's frosted area is its top, pi(4.5)^2 = about 63.62 square inches, plus its side, pi(9)(4) = about 113.10 square inches, for about 176.71 square inches. So the round cake needs 3(176.71/160) = 3.31 cups. The option 2.98 compares only the tops (63.62/64). The option 2.25 finds the round cake's side as pi(4.5)(4), using the radius where the diameter belongs. The option 3.98 scales by the cakes' volumes (254.47/192) instead of their frosted areas.",
+  "solve": "const P=Math.PI,ref=8*8+4*8*3,C=3,r=4.5,H=4;return (C*(P*r*r+P*2*r*H)/ref).toFixed(2);",
+  "distractor_solve": {
+   "2.98": "const P=Math.PI,ref=8*8+4*8*3,C=3,r=4.5,H=4;return (C*(P*r*r)/64).toFixed(2);",
+   "2.25": "const P=Math.PI,ref=8*8+4*8*3,C=3,r=4.5,H=4;return (C*(P*r*r+P*r*H)/ref).toFixed(2);",
+   "3.98": "const P=Math.PI,ref=8*8+4*8*3,C=3,r=4.5,H=4;return (C*(P*r*r*H)/(8*8*3)).toFixed(2);"
+  },
+  "quantity_asked": "3 x (pi(4.5)^2 + pi(9)(4)) / (8^2 + 4(8)(3)) cups, to the nearest hundredth",
+  "distractor_kind": {
+   "2.98": "error path: only the tops compared. (a) none. (b) adjacent setup (top-only ratio), inside. (c) cheapest bounds: the round cake fits inside a 9-inch square cake 4 inches tall, so v < 3(81 + 144)/160 = 4.22, and its frosted area exceeds the square cake's 160 only by a modest amount; option strictly inside (0, 4.22). (d) omission.",
+   "2.25": "error path: side area found with the radius in place of the diameter, pi(4.5)(4). (a) none. (b) inside. (c) inside. (d) real radius/diameter slip.",
+   "3.98": "error path: scaled by volume (254.47 vs 192 cubic inches) instead of frosted area. (a) none. (b) adjacent setup (batter, not frosting), inside (0, 4.22). (c) inside. (d) wrong base."
+  },
+  "distractor_meta": {
+   "2.98": {
+    "direction": "under",
+    "error_kind": "tops only"
+   },
+   "2.25": {
+    "direction": "under",
+    "error_kind": "radius for diameter in side"
+   },
+   "3.98": {
+    "direction": "over",
+    "error_kind": "volume instead of area"
+   }
+  },
+  "bounds": [
+   "v < 3(9^2 + 4(9)(4))/160 = 4.22 (the round cake fits inside a 9-inch square cake of the same height)"
+  ],
+  "mechanism": [
+   "frosting proportional to frosted surface area",
+   "top plus lateral area of a cylinder",
+   "top plus four sides of a square prism",
+   "scale a recipe by surface area"
+  ],
+  "arith_class_check": "No. All four are one-digit values with two non-zero decimals.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 2.98 and 3.31, both one-digit values with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 'the top and the sides' (tops only gives 2.98, under; including the round cake's bottom gives 4.51, over, not an option); 'proportional to the area frosted' (scaling by volume gives 3.98, over, the only option from this clause); '9 inches in diameter' (radius in the side area gives 2.25, under; radius 9 in the top gives 6.89, over, not an option).",
+  "direction_declaration": {
+   "2.98": {
+    "step": "which faces are compared",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "2.25": {
+    "step": "lateral area of the round cake",
+    "error_type": "other: radius used for diameter",
+    "direction": "under"
+   },
+   "3.98": {
+    "step": "what the frosting is proportional to",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "sides are frosted as well as the top",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "the bottom is not frosted",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "frosting is proportional to area (not volume)",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two errors under and one over from three different clauses."
+  }
+ },
+ {
+  "id": "AM29A-X2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rewriting a linear model for a new starting time",
+  "subskill": "meaning of slope and intercept",
+  "prompt": "The average monthly electricity bill P, in dollars, for homes in a town is modeled by P = 0.86t + 41.2, where t is the number of months after January 1, 2023. An analyst rewrites the model in the form P = a + by, where y is the number of YEARS after July 1, 2024. According to the rewritten model, what is the value of a?",
+  "choices": [
+   "51.52",
+   "57.71",
+   "56.68",
+   "42.49"
+  ],
+  "correct_answer": "56.68",
+  "explanation": "The constant a is the model's value when y = 0, that is, on July 1, 2024, which is 18 months (1.5 years) after January 1, 2023. So a = 0.86(18) + 41.2 = 15.48 + 41.2 = 56.68. (The slope becomes b = 0.86 × 12 = 10.32 dollars per year.) The option \"51.52\" counts only the one whole year from January 2023 to January 2024 (41.2 + 10.32). The option \"42.49\" uses the elapsed time in years (1.5) with the monthly slope 0.86. The option \"57.71\" converts to the yearly slope 10.32 but writes 1 year 6 months as 1.6 years.",
+  "solve": "return (0.86*18+41.2).toFixed(2);",
+  "distractor_solve": {
+   "42.49": "return (0.86*1.5+41.2).toFixed(2);",
+   "57.71": "return (0.86*12*1.6+41.2).toFixed(2);",
+   "51.52": "return (0.86*12*1+41.2).toFixed(2);"
+  },
+  "quantity_asked": "the constant a of the rewritten model, the value of P on July 1, 2024 (t = 18): 56.68 dollars.",
+  "distractor_kind": {
+   "42.49": "monthly slope times elapsed years (units mixed). (a) no. (b) not an intermediate. (c) inside (41.2, 61.84). (d) real: converts the time shift to years but not the slope.",
+   "57.71": "1 year 6 months written as 1.6 years with the yearly slope 10.32. (a) no. (b) not an intermediate of the key's own working other than the elapsed time, which is shown in another display (the file's only display slip). (c) inside (41.2, 61.84). (d) real: reads years-and-months as a decimal.",
+   "51.52": "whole years only: one year of growth at 10.32 per year. (a) no parameter extreme. (b) neighbouring setup: the value on January 1, 2024; strictly inside the bounds. (c) structural bounds: a > 41.2 (increasing model, later date); a < 41.2 + 0.86(24) = 61.84 (fewer than 24 months); 51.52 inside. (d) real: drops the half year."
+  },
+  "distractor_meta": {
+   "42.49": {
+    "direction": "under",
+    "error_kind": "monthly slope with years"
+   },
+   "57.71": {
+    "direction": "over",
+    "error_kind": "years and months read as a decimal"
+   },
+   "51.52": {
+    "direction": "under",
+    "error_kind": "half year dropped"
+   }
+  },
+  "bounds": [
+   "a > 41.2 (increasing model, later date)",
+   "a < 41.2 + 0.86(24) = 61.84 (fewer than 24 months elapsed)"
+  ],
+  "mechanism": [
+   "rewrite linear model new time origin",
+   "months after to years after",
+   "new intercept after shifting start date",
+   "slope unit conversion monthly yearly"
+  ],
+  "arith_class_check": "Key 56.68; all options two-decimal with nonzero last digit; the stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Sorted 42.49, 51.52, 56.68, 57.71; interior 51.52 and 56.68 both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options inside (41.2, 61.84); errors go both ways (half year dropped, units mix down; 1.6-year slip up). Watch: live sat a66015cc (slope times years between two dates)."
+  }
+ },
+ {
+  "id": "AM29A-X4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "splitting a rational expression into two simpler fractions",
+  "subskill": "rewriting rational expressions",
+  "prompt": "For all x ≠ 1.5 and x ≠ −4, (8x + 15)/((2x − 3)(x + 4)) = A/(2x − 3) + B/(x + 4), where A and B are constants. To the nearest hundredth, what is the value of A − B ?",
+  "choices": [
+   "4.03",
+   "2.48",
+   "3.36",
+   "6.45"
+  ],
+  "correct_answer": "3.36",
+  "explanation": "Multiplying both sides by (2x − 3)(x + 4) gives 8x + 15 = A(x + 4) + B(2x − 3) for all x. At x = 1.5, 27 = 5.5A, so A = 54/11 ≈ 4.909. At x = −4, −17 = −11B, so B = 17/11 ≈ 1.545. Then A − B = 37/11 ≈ 3.36. The option \"4.03\" finds A by substituting x = 3, the zero of x − 3 rather than of 2x − 3: 39 = 7A. The option \"6.45\" evaluates 2(−4) − 3 as +11, so B = −17/11. The option \"2.48\" drops the coefficient 2 in B(2x − 3) when substituting x = −4: −17 = −7B.",
+  "solve": "const A=27/5.5,B=-17/-11;return (A-B).toFixed(2);",
+  "distractor_solve": {
+   "4.03": "const A=39/7,B=-17/-11;return (A-B).toFixed(2);",
+   "6.45": "const A=27/5.5,B=-17/11;return (A-B).toFixed(2);",
+   "2.48": "const A=27/5.5,B=-17/-7;return (A-B).toFixed(2);"
+  },
+  "quantity_asked": "A − B = 54/11 − 17/11 = 37/11 ≈ 3.36 for the decomposition of (8x + 15)/((2x − 3)(x + 4)).",
+  "distractor_kind": {
+   "4.03": "zero of 2x − 3 taken as 3 instead of 1.5 when solving for A (39 = 7A). (a) no parameter. (b) neighbouring setup: decomposition over (x − 3)(x + 4) with this A; inside. (c) no stem bound on A − B. (d) real: zero of a non-monic factor misread.",
+   "6.45": "sign slip evaluating 2(−4) − 3 as +11, so B = −17/11 (equivalently reporting A + B). (a) no. (b) A + B is the neighbouring quantity; inside. (c) no bound. (d) real sign slip.",
+   "2.48": "coefficient 2 dropped in B(2x − 3) at x = −4 (−17 = −7B). (a) no. (b) none. (c) no bound. (d) real substitution slip."
+  },
+  "distractor_meta": {
+   "4.03": {
+    "direction": "over",
+    "error_kind": "wrong zero of a non-monic factor"
+   },
+   "6.45": {
+    "direction": "over",
+    "error_kind": "sign slip in substitution"
+   },
+   "2.48": {
+    "direction": "under",
+    "error_kind": "coefficient dropped"
+   }
+  },
+  "bounds": [
+   "none on A − B (A and B are determined, no inequality in the stem)"
+  ],
+  "mechanism": [
+   "partial fraction decomposition",
+   "A/(2x-3) + B/(x+4)",
+   "substitute the zeros of each factor",
+   "cover-up for constants"
+  ],
+  "arith_class_check": "Key 3.36 is 37/11 rounded; 4.03, 6.45 and 2.48 are rounded fractions with denominators 7, 11 and 77. The key is not the only elevenths value (6.45 is 71/11), so no shared-denominator tell.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 3.36 (key) and 4.03; both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. No stem bound on A − B. A quick check (x = 0: 15/(−12) = A/(−3) + B/4) is one more equation, not a bound.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key, three error kinds at two substitutions. Decomposition not live (0 hits), but held AM23A-06 combines two fractions into one (the reverse direction); a reader may call that the same mechanism."
+  }
+ },
+ {
+  "id": "AM29F-X2",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "average rate of change of a squared-linear draining model",
+  "subskill": "average rate of change of a model",
+  "prompt": "Water drains from a tank through a hole in its bottom. The depth of the water in the tank, in centimeters, t minutes after the hole is opened is modeled by h(t) = (11 − 0.19t)², for 0 ≤ t ≤ 55. To the nearest hundredth, what is the average rate of change of the depth, in centimeters per minute, from t = 4 to t = 14 ?",
+  "choices": [
+   "-4.98",
+   "-3.67",
+   "-3.53",
+   "-0.65"
+  ],
+  "correct_answer": "-3.53",
+  "explanation": "h(4) = (11 − 0.76)² = 10.24² = 104.8576 and h(14) = (11 − 2.66)² = 8.34² = 69.5556. The average rate of change is (69.5556 − 104.8576)/(14 − 4) = −35.302/10 ≈ −3.53 centimeters per minute. The option \"-0.65\" squares each term separately, using h(t) = 121 − 0.0361t², so the change is −0.0361(196 − 16) = −6.498. The option \"-4.98\" slips a decimal place in 0.19(4), using 0.076, so h(4) comes out (10.924)² ≈ 119.33. The option \"-3.67\" measures from when the hole is opened, t = 0, to t = 14: (69.5556 − 121)/14.",
+  "solve": "const h=t=>(11-0.19*t)**2;return ((h(14)-h(4))/10).toFixed(2);",
+  "distractor_solve": {
+   "-0.65": "const g=t=>121-0.0361*t*t;return ((g(14)-g(4))/10).toFixed(2);",
+   "-3.67": "const h=t=>(11-0.19*t)**2;return ((h(14)-h(0))/14).toFixed(2);",
+   "-4.98": "const h=t=>(11-0.19*t)**2;return ((h(14)-(11-0.076)**2)/10).toFixed(2);"
+  },
+  "quantity_asked": "the average rate of change of h from t = 4 to t = 14: about −3.53 cm per minute.",
+  "distractor_kind": {
+   "-0.65": "(a − b)² taken as a² − b². (a) no parameter extreme. (b) none. (c) cheapest bounds: −h(4)/10 ≈ −10.49 < rate < 0 (the depth falls but cannot go below 0); strictly inside. (d) real: squaring a difference term by term.",
+   "-3.67": "interval measured from t = 0 instead of t = 4. (a) no. (b) neighbouring setup: average rate over [0, 14]; inside. (c) inside. (d) real: starting the interval when draining began.",
+   "-4.98": "decimal slip computing 0.19 × 4 as 0.076. (a) no parameter extreme. (b) none. (c) strictly inside (−10.49, 0). (d) real: place-value slip in a product."
+  },
+  "distractor_meta": {
+   "-0.65": {
+    "direction": "over",
+    "error_kind": "square of difference as difference of squares"
+   },
+   "-3.67": {
+    "direction": "under",
+    "error_kind": "wrong interval start"
+   },
+   "-4.98": {
+    "direction": "under",
+    "error_kind": "decimal-place slip"
+   }
+  },
+  "bounds": [
+   "rate < 0 (the depth decreases on [4, 14])",
+   "rate > −h(4)/10 ≈ −10.49 (the depth cannot fall below 0)"
+  ],
+  "mechanism": [
+   "average rate of change of a squared-linear model",
+   "draining tank depth model",
+   "depth in centimeters per minute",
+   "average rate over a time interval"
+  ],
+  "arith_class_check": "Key −3.5302 rounded; all four options negative two-decimal rounded values; none exact or integer.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: −3.67 and −3.53, both negative two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. Cheapest bounds −10.49 < rate < 0; every option lies strictly inside.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides. No live (a − bt)² draining-depth model (torr/depth/drain greps); drain hits are linear rates or work problems."
+  }
+ },
+ {
+  "id": "AM29F-X4",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sum of two sinusoids with the same period: amplitude",
+  "subskill": "combine a sin t + b sin(t + p) into one sinusoid",
+  "prompt": "A small float on a pond is moved up and down by two sets of ripples at once. The first set alone would give the float a height of y₁ = 30 sin(2t) centimeters above its resting level, and the second set alone would give y₂ = 18 sin(2t + 1.2) centimeters, where t is the time in seconds and the arguments of the sines are in radians. The float's actual height is y = y₁ + y₂, which is a sinusoidal function of t with the same period. To the nearest hundredth of a centimeter, what is the amplitude of y ?",
+  "choices": [
+   "47.23",
+   "36.52",
+   "40.19",
+   "37.68"
+  ],
+  "correct_answer": "40.19",
+  "explanation": "Let u = 2t. By the angle-sum identity, 18 sin(u + 1.2) = 18 cos(1.2) sin u + 18 sin(1.2) cos u ≈ 6.522 sin u + 16.777 cos u. So y = (30 + 6.522) sin u + 16.777 cos u = 36.522 sin u + 16.777 cos u, and a function P sin u + Q cos u has amplitude √(P² + Q²) = √(36.522² + 16.777²) = √(1333.9 + 281.5) = √1615.4 ≈ 40.19 centimeters. The option \"36.52\" keeps only the sin u part, 30 + 18 cos(1.2), dropping the cos u term. The option \"47.23\" exchanges sine and cosine in the identity, using 30 + 18 sin(1.2) and 18 cos(1.2). The option \"37.68\" drops the 2 in the cross term when squaring, √(30² + 18² + 30·18·cos(1.2)).",
+  "solve": "const a=30,b=18,p=1.2;return Math.hypot(a+b*Math.cos(p),b*Math.sin(p)).toFixed(2);",
+  "distractor_solve": {
+   "36.52": "const a=30,b=18,p=1.2;return (a+b*Math.cos(p)).toFixed(2);",
+   "47.23": "const a=30,b=18,p=1.2;return Math.hypot(a+b*Math.sin(p),b*Math.cos(p)).toFixed(2);",
+   "37.68": "const a=30,b=18,p=1.2;return Math.sqrt(a*a+b*b+a*b*Math.cos(p)).toFixed(2);"
+  },
+  "quantity_asked": "The amplitude of 30 sin(2t) + 18 sin(2t + 1.2): √((30 + 18cos1.2)² + (18 sin1.2)²) ≈ 40.19 cm.",
+  "distractor_kind": {
+   "36.52": "keeps only the in-phase part 30 + 18cos(1.2), dropping the cos u term. (a) no parameter extreme. (b) neighbouring setup: the sin u coefficient is an intermediate of the solve; strictly inside. (c) cheapest bounds: the amplitude is between 30 − 18 = 12 and 30 + 18 = 48; one step finer, a phase difference below π/2 makes the ripples partly reinforce, so the amplitude exceeds √(30² + 18²) ≈ 34.99; 36.52 strictly inside (34.99, 48). (d) real: incomplete combination.",
+   "47.23": "sine and cosine exchanged in the angle-sum expansion. (a) no. (b) none. (c) strictly inside (34.99, 48). (d) real: identity misremembered.",
+   "37.68": "2 dropped from the cross term when squaring: √(30² + 18² + 30·18·cos1.2). (a) no. (b) none. (c) strictly inside (34.99, 48). (d) real: binomial-square slip."
+  },
+  "distractor_meta": {
+   "36.52": {
+    "direction": "under",
+    "error_kind": "cos u term dropped"
+   },
+   "47.23": {
+    "direction": "over",
+    "error_kind": "sine and cosine exchanged in the identity"
+   },
+   "37.68": {
+    "direction": "under",
+    "error_kind": "cross term not doubled"
+   }
+  },
+  "bounds": [
+   "amplitude between |30 − 18| = 12 and 30 + 18 = 48",
+   "phase 1.2 < π/2, so amplitude > √(30² + 18²) ≈ 34.99"
+  ],
+  "mechanism": [
+   "superposition of two sinusoids",
+   "angle-sum identity for sin(u + p)",
+   "amplitude of P sin u + Q cos u",
+   "combined wave amplitude"
+  ],
+  "arith_class_check": "Key √1615.4 = 40.192; all options two-decimal with nonzero final digits; the stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 37.68 and 40.19, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways; all options inside (34.99, 48); live trig-expression items are a max of a quadratic in sine (b308e1b5) and cofunction equations, not a superposition amplitude."
+  }
+ },
+ {
+  "id": "AM29G-X1",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "kite diagonal with a 120° angle",
+  "subskill": "kite: split along the axis, 30-60-90 then Pythagorean theorem",
+  "prompt": "Convex quadrilateral ABCD is a kite in which AB = AD = 7 centimeters, CB = CD = 15 centimeters, and the measure of ∠BAD is 120°. To the nearest hundredth of a centimeter, what is the length of diagonal AC ?",
+  "choices": [
+   "16.77",
+   "12.33",
+   "17.22",
+   "16.55"
+  ],
+  "correct_answer": "17.22",
+  "explanation": "Diagonal AC is the kite's axis of symmetry, so it is the perpendicular bisector of BD; let M be their intersection. ∠BAM = 60°, so in right triangle ABM, AM = 7 cos 60° = 3.5 and BM = 7 sin 60° = 3.5√3 ≈ 6.06. In right triangle CBM, CM = √(15² − 6.06²) = √188.25 ≈ 13.72. So AC = AM + CM ≈ 3.5 + 13.72 = 17.22. The option \"12.33\" uses all of BD = 7√3 ≈ 12.12 in place of its half BM (3.5 + √(225 − 147)). The option \"16.55\" assumes ∠ABC is a right angle (√(7² + 15²)). The option \"16.77\" uses AB = 7 in place of BM when finding CM (3.5 + √(15² − 7²)).",
+  "solve": "const bm=7*Math.sqrt(3)/2;return (3.5+Math.sqrt(225-bm*bm)).toFixed(2);",
+  "distractor_solve": {
+   "16.55": "return Math.sqrt(49+225).toFixed(2);",
+   "16.77": "return (3.5+Math.sqrt(225-49)).toFixed(2);",
+   "12.33": "const bm=7*Math.sqrt(3);return (3.5+Math.sqrt(225-bm*bm)).toFixed(2);"
+  },
+  "quantity_asked": "the length of diagonal AC, AM + CM = 3.5 + √188.25 ≈ 17.22 cm.",
+  "distractor_kind": {
+   "16.55": "right angle assumed at B. (a) no. (b) none. (c) inside. (d) real: unjustified right angle.",
+   "16.77": "AB used in place of half-diagonal BM. (a) no. (b) none. (c) inside. (d) real: wrong leg in the Pythagorean step.",
+   "12.33": "half-diagonal BM taken as 7√3 (the whole of BD) instead of 7√3/2. (a) no parameter extreme. (b) neighbouring setup: uses the full diagonal BD; inside (8, 22). (c) cheapest bounds 8 < AC < 22 (triangle inequality in ABC); inside. (d) real: forgot to halve the diagonal."
+  },
+  "distractor_meta": {
+   "16.55": {
+    "direction": "under",
+    "error_kind": "assumed right angle"
+   },
+   "16.77": {
+    "direction": "under",
+    "error_kind": "wrong leg"
+   },
+   "12.33": {
+    "direction": "under",
+    "error_kind": "diagonal not halved"
+   }
+  },
+  "bounds": [
+   "8 < AC < 22 (triangle inequality in triangle ABC)"
+  ],
+  "mechanism": [
+   "kite axis of symmetry",
+   "diagonals perpendicular",
+   "30-60-90 triangle from the 120 degree angle",
+   "Pythagorean theorem for the long part of the axis"
+  ],
+  "arith_class_check": "Key 3.5 + √188.25 ≈ 17.22; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "Key largest; distractors from three different errors (diagonal not halved, assumed right angle, wrong leg). Natural errors moving UP exist and are not options: swapping sine and cosine in triangle ABM (AM ≈ 6.06, BM = 3.5) gives 6.06 + √(225 − 12.25) ≈ 20.65; using the 120° angle at the wrong vertex in the law of cosines (AC² = 49 + 225 + 105) gives ≈ 19.47; taking ∠BAM as 45° gives ≈ 18.09.",
+  "interior_parity_check": "Interior options by value: 16.55 and 16.77, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Key largest. Cheapest lower bound AC > CB − AB = 8 (triangle inequality): all three distractors lie above it, on the key's side. Upper bound AC < 22 is above the key. Nearest distractor 16.77 is 0.45 below the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, natural upward errors (20.65, 19.47). Risk: live kite act 015d3736 (law of cosines at B, asks BD) and rhombus ssat 35294638 (half-diagonal by Pythagoras)."
+  }
+ },
+ {
+  "id": "AM29G-X3",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "height of a conical pile from its volume and side angle",
+  "subskill": "cone volume with radius from a tangent ratio; cube root",
+  "prompt": "A conveyor pours 49.6 cubic meters of wheat onto a level floor, where it forms a pile shaped like a right circular cone. The sloping side of the pile makes an angle of 25° with the floor. The volume of a cone with base radius r and height h is (1/3)πr²h. To the nearest hundredth of a meter, what is the height of the pile?",
+  "choices": [
+   "3.21",
+   "2.81",
+   "3.39",
+   "2.18"
+  ],
+  "correct_answer": "2.18",
+  "explanation": "In the right triangle formed by the height h, the base radius r and the sloping side, tan 25° = h/r, so r = h/tan 25°. Then 49.6 = (1/3)π(h/tan 25°)²h = πh³/(3 tan² 25°), so h³ = 3(49.6)tan² 25°/π ≈ 10.300 and h ≈ 2.18 m. The option \"3.39\" uses cos 25° = h/r in place of the tangent. The option \"2.81\" forgets to square tan 25° when r = h/tan 25° is squared, giving h³ = 3(49.6)tan 25°/π. The option \"3.21\" solves h² = 10.300 instead of h³ = 10.300 (square root in place of cube root).",
+  "solve": "const V=49.6,a=25*Math.PI/180;return Math.cbrt(3*V*Math.tan(a)**2/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "3.39": "const V=49.6,a=25*Math.PI/180;return Math.cbrt(3*V*Math.cos(a)**2/Math.PI).toFixed(2);",
+   "2.81": "const V=49.6,a=25*Math.PI/180;return Math.cbrt(3*V*Math.tan(a)/Math.PI).toFixed(2);",
+   "3.21": "const V=49.6,a=25*Math.PI/180;return Math.sqrt(3*V*Math.tan(a)**2/Math.PI).toFixed(2);"
+  },
+  "quantity_asked": "the height h of the cone with volume 49.6 m³ whose side makes 25° with the base: h = (3 · 49.6 · tan² 25°/π)^(1/3) ≈ 2.18 m.",
+  "distractor_kind": {
+   "3.39": "wrong trig ratio: cos 25° = h/r used for the height-radius relation. (a) no parameter extreme. (b) none. (c) cheapest bound: the side angle is under 45°, so h < r and V > (1/3)πh³, giving h < (3 · 49.6/π)^(1/3) ≈ 3.62; 3.39 strictly inside. (d) real: choosing the wrong one of sine, cosine, tangent.",
+   "2.81": "algebra slip: r² written as h²/tan 25° (the tangent not squared). (a) no. (b) none. (c) strictly inside (0, 3.62). (d) real: squaring only part of a quotient.",
+   "3.21": "root slip: square root taken where a cube root is needed. (a) no. (b) none. (c) strictly inside (0, 3.62). (d) real: solving h³ = k as h = √k."
+  },
+  "distractor_meta": {
+   "3.39": {
+    "direction": "over",
+    "error_kind": "cosine for tangent"
+   },
+   "2.81": {
+    "direction": "over",
+    "error_kind": "tangent not squared"
+   },
+   "3.21": {
+    "direction": "over",
+    "error_kind": "square root for cube root"
+   }
+  },
+  "bounds": [
+   "h < r because the side angle 25° is less than 45°, so h < (3 · 49.6/π)^(1/3) ≈ 3.62",
+   "h > 0"
+  ],
+  "mechanism": [
+   "conical pile with a given angle of repose",
+   "radius from height by tangent",
+   "cone volume solved for height",
+   "cube root"
+  ],
+  "arith_class_check": "Key (145.5 tan² 25°/π)^(1/3) is irrational, shown to two decimals like every option; nothing implies a whole-number height.",
+  "one_sided_check": "Key smallest. Distractors from three different error kinds (trig ratio, squaring, root). Natural errors also go DOWN: using sin 25° = h/r gives 2.04, and omitting the 1/3 in the cone formula gives 1.51; the stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 2.81 and 3.21, both two-decimal values with nonzero hundredths; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: h < r (side angle under 45°) gives h < 3.62; the key and all three distractors lie below it, on the key's side. No cheap bound separates 2.18 from 2.81.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three distinct slips over, natural under errors (sine 2.04, missing 1/3 1.51); all options under the h < r bound 3.62; no live conical-pile item."
+  }
+ },
+ {
+  "id": "AM29G-X4",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "area of a surveyed triangle from two sides and a non-included angle",
+  "subskill": "law of sines for the included angle, then (1/2)ab sin C",
+  "prompt": "A surveyor maps a triangular plot of land. One side of the plot is 15 meters long, a second side is 12 meters long, and the angle opposite the 15-meter side measures 75°. To the nearest hundredth of a square meter, what is the area of the plot?",
+  "choices": [
+   "69.55",
+   "86.93",
+   "73.18",
+   "58.54"
+  ],
+  "correct_answer": "73.18",
+  "explanation": "Let the 75° angle be A, opposite a = 15, and let B be the angle opposite b = 12. By the law of sines, sin B = 12 sin 75°/15 ≈ 0.7727, so B ≈ 50.60° (B must be acute because b < a, so the triangle is unique). The angle between the two given sides is C = 180° − 75° − 50.60° ≈ 54.40°, and the area is (1/2)(15)(12) sin 54.40° ≈ 73.18 square meters. The option \"86.93\" uses the given 75° as if it were between the 15 m and 12 m sides. The option \"69.55\" uses angle B ≈ 50.60° as the included angle. The option \"58.54\" finds the third side c ≈ 12.63 m and then pairs angle B with sides 12 and c, which do not include it: (1/2)(12)(12.63) sin 50.60°.",
+  "solve": "const r=Math.PI/180,s=x=>Math.sin(x*r);const B=Math.asin(12*s(75)/15)/r,C=180-75-B;return (0.5*15*12*s(C)).toFixed(2);",
+  "distractor_solve": {
+   "86.93": "const r=Math.PI/180,s=x=>Math.sin(x*r);const B=Math.asin(12*s(75)/15)/r,C=180-75-B;return (0.5*15*12*s(75)).toFixed(2);",
+   "69.55": "const r=Math.PI/180,s=x=>Math.sin(x*r);const B=Math.asin(12*s(75)/15)/r,C=180-75-B;return (0.5*15*12*s(B)).toFixed(2);",
+   "58.54": "const r=Math.PI/180,s=x=>Math.sin(x*r);const B=Math.asin(12*s(75)/15)/r,C=180-75-B;const c=15*s(C)/s(75);return (0.5*12*c*s(B)).toFixed(2);"
+  },
+  "quantity_asked": "the area of the triangle: (1/2)(15)(12) sin C with C = 105° − arcsin(0.8 sin 75°) ≈ 54.40°, about 73.18 square meters.",
+  "distractor_kind": {
+   "86.93": "non-included angle used as the included angle: (1/2)(15)(12) sin 75°. (a) no. (b) neighbouring setup (the SAS triangle with 75° between the given sides); inside. (c) cheapest bound: area ≤ (1/2)(15)(12) = 90; inside. (d) real: the most common SSA misreading.",
+   "69.55": "angle B (opposite 12) used as the included angle. (a) no. (b) none. (c) inside (0, 90). (d) real: picks the angle just computed instead of the third angle.",
+   "58.54": "angle B paired with sides 12 and c, which do not include it. (a) no. (b) none. (c) inside. (d) real: angle/side pairing error after finding c."
+  },
+  "distractor_meta": {
+   "86.93": {
+    "direction": "over",
+    "error_kind": "given non-included angle used as included"
+   },
+   "69.55": {
+    "direction": "under",
+    "error_kind": "angle B used as included angle"
+   },
+   "58.54": {
+    "direction": "under",
+    "error_kind": "angle paired with sides that do not include it"
+   }
+  },
+  "bounds": [
+   "area ≤ (1/2)(15)(12) = 90",
+   "b < a forces B acute: one triangle only"
+  ],
+  "mechanism": [
+   "two sides and a non-included angle",
+   "law of sines to find an angle",
+   "area one half ab sin C",
+   "triangular plot survey"
+  ],
+  "arith_class_check": "Key ≈ 73.18; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one distractor above, two below).",
+  "interior_parity_check": "Interior options by value: 69.55 and 73.18, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key, all options under 90; three distractors are all angle/side-pairing errors (one family); SSA family is near held AM24G-01 (ambiguous, difference of sides), though here the triangle is unique."
+  }
+ },
+ {
+  "id": "AM29S-X1",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "conditional probability",
+  "subskill": "which game was lost, given exactly two wins",
+  "prompt": "A soccer team will play one game against each of three teams, P, Q, and R. The probability that it beats P is 0.80, the probability that it beats Q is 0.50, and the probability that it beats R is 0.40. The results of the three games are independent, and no game ends in a tie. Given that the team wins exactly 2 of the 3 games, what is the probability, to the nearest thousandth, that the game it loses is the game against P?",
+  "choices": [
+   "0.154",
+   "0.096",
+   "0.227",
+   "0.091"
+  ],
+  "correct_answer": "0.091",
+  "explanation": "Exactly 2 wins happens in three ways: lose to P only, (0.20)(0.50)(0.40) = 0.04; lose to Q only, (0.80)(0.50)(0.40) = 0.16; lose to R only, (0.80)(0.50)(0.60) = 0.24. So P(exactly 2 wins) = 0.44, and P(the loss is to P | exactly 2 wins) = 0.04/0.44 = 0.091. The option 0.154 splits the loss in proportion to the three losing probabilities, 0.20/(0.20 + 0.50 + 0.60). The option 0.096 finds P(exactly 2 wins) with the binomial formula at the average winning probability 1.7/3. The option 0.227 leaves the factor 0.40 (beating R) out of the numerator, (0.20)(0.50)/0.44.",
+  "solve": "const pp=0.80,pq=0.50,pr=0.40;const lp=(1-pp)*pq*pr,lq=pp*(1-pq)*pr,lr=pp*pq*(1-pr),P2=lp+lq+lr;return (lp/P2).toFixed(3);",
+  "distractor_solve": {
+   "0.154": "const pp=0.80,pq=0.50,pr=0.40;const lp=(1-pp)*pq*pr,lq=pp*(1-pq)*pr,lr=pp*pq*(1-pr),P2=lp+lq+lr;return ((1-pp)/((1-pp)+(1-pq)+(1-pr))).toFixed(3);",
+   "0.096": "const pp=0.80,pq=0.50,pr=0.40;const lp=(1-pp)*pq*pr,lq=pp*(1-pq)*pr,lr=pp*pq*(1-pr),P2=lp+lq+lr;const m=(pp+pq+pr)/3;return (lp/(3*m*m*(1-m))).toFixed(3);",
+   "0.227": "const pp=0.80,pq=0.50,pr=0.40;const lp=(1-pp)*pq*pr,lq=pp*(1-pq)*pr,lr=pp*pq*(1-pr),P2=lp+lq+lr;return ((1-pp)*pq/P2).toFixed(3);"
+  },
+  "quantity_asked": "P(lose to P, beat Q, beat R | exactly 2 wins in 3 independent games with win probabilities 0.80, 0.50, 0.40), to the nearest thousandth.",
+  "distractor_kind": {
+   "0.154": "error path: the loss shared in proportion to the losing probabilities 0.20 : 0.50 : 0.60 (ignores that the other two games must be won). (a) no limiting case. (b) neighbouring setup strictly inside (0, 1/3). (c) cheapest bounds: 0 < P, and P < 1/3 because P is the least likely game to lose: 0.154 strictly inside. (d) real proportional-shares error.",
+   "0.096": "error path: P(exactly 2 wins) from the binomial formula with the average win probability 0.567 (3 m^2 (1 - m) = 0.417 instead of 0.44). (a) no limiting case. (b) strictly inside (0, 1/3). (c) strictly inside every cheap interval; 0.005 above the key. (d) real average-probability substitution.",
+   "0.227": "error path: the factor P(beat R) = 0.40 dropped from the numerator. (a) no limiting case. (b) strictly inside (0, 1/3). (c) strictly inside. (d) real dropped-factor error."
+  },
+  "distractor_meta": {
+   "0.154": {
+    "direction": "over",
+    "error_kind": "shares proportional to losing probabilities"
+   },
+   "0.096": {
+    "direction": "over",
+    "error_kind": "average probability in binomial"
+   },
+   "0.227": {
+    "direction": "over",
+    "error_kind": "dropped factor"
+   }
+  },
+  "bounds": [
+   "0 < P < 1/3 (P is the opponent the team is least likely to lose to): kills nothing"
+  ],
+  "mechanism": [
+   "given exactly two wins in three games, which game was lost",
+   "independent games with different win probabilities",
+   "ratio of one exactly-two-wins case to the total",
+   "soccer team against three opponents"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities; key 1/11 = 0.091 is not displayed as a fraction and is no simpler than 0.096, 0.154, 0.227.",
+  "one_sided_check": "Key smallest. Three error kinds (proportional shares, average probability, dropped factor). Natural errors that move DOWN exist and are not options: dividing by P(at least 2 wins) = 0.60 instead of P(exactly 2) gives 0.067; using the joint probability 0.04 without dividing gives 0.040. Whether a shortcut such as the average-probability binomial raises or lowers the answer depends on the spread of the three probabilities, not on any stated rule.",
+  "interior_parity_check": "Interior by value: 0.096 and 0.154; both three-decimal, neither round.",
+  "cheap_bound_check": "Key smallest. Cheapest bounds: P > 0 and P < 1/3 kill nothing. No one-step estimate separates 0.091 from 0.096: both need P(exactly 2 wins) to two significant figures (0.44 vs 0.417). The nearest distractor 0.096 is 0.005 above the key; 0.096, 0.154, 0.227 all lie on the key's side of the upper bound 1/3.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; P(exactly 2 of 3) is only a sub-step of live 6c09bbc5 (at least 2 of 3), as binomial is of kept 201f6838; downward errors 0.067, 0.040 natural."
+  }
+ },
+ {
+  "id": "AM29S-X2",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "mean of a union of overlapping groups",
+  "subskill": "combined mean with an overlap",
+  "prompt": "A community center offers a pottery class and a painting class this season. Every person enrolled at the center is in at least one of the two classes. The 21 people in the pottery class have a mean age of 48.7 years, and the 30 people in the painting class have a mean age of 46.0 years. Exactly 9 people are in both classes, and the mean age of these 9 people is 37.0 years. To the nearest hundredth of a year, what is the mean age of all the people enrolled at the center?",
+  "choices": [
+   "52.63",
+   "47.35",
+   "57.21",
+   "49.28"
+  ],
+  "correct_answer": "49.28",
+  "explanation": "There are 21 + 30 - 9 = 42 different people. Adding the two class totals, 21(48.7) + 30(46.0) = 1,022.7 + 1,380 = 2,402.7, counts the ages of the 9 people in both classes twice, so their total, 9(37.0) = 333, is subtracted once: 2,402.7 - 333 = 2,069.7. The mean age is 2,069.7/42 = 49.28 years. The option 57.21 subtracts the 9 people from the count but not their ages from the total (2,402.7/42). The option 52.63 removes the 9 people from both classes, giving the mean age of the 33 people in exactly one class ((2,402.7 - 666)/33). The option 47.35 is the average of the two class means, (48.7 + 46.0)/2.",
+  "solve": "const p=21,q=30,k=9,mp=48.7,mq=46.0,mk=37.0;const N=p+q-k,S=p*mp+q*mq;return ((S-k*mk)/N).toFixed(2);",
+  "distractor_solve": {
+   "57.21": "const p=21,q=30,k=9,mp=48.7,mq=46.0,mk=37.0;const N=p+q-k,S=p*mp+q*mq;return (S/N).toFixed(2);",
+   "52.63": "const p=21,q=30,k=9,mp=48.7,mq=46.0,mk=37.0;const N=p+q-k,S=p*mp+q*mq;return ((S-2*k*mk)/(N-k)).toFixed(2);",
+   "47.35": "const p=21,q=30,k=9,mp=48.7,mq=46.0,mk=37.0;const N=p+q-k,S=p*mp+q*mq;return ((mp+mq)/2).toFixed(2);"
+  },
+  "quantity_asked": "The mean age of the 42 distinct people in the union of the two classes, to the nearest hundredth of a year.",
+  "distractor_kind": {
+   "57.21": "error path: the overlap removed from the head count but not from the age total: 2,402.7/42. (a) not on a bound: no stem-forced upper bound exists (the union mean is not confined between the class means). (b) neighbouring setup, strictly inside. (c) the cheapest one-step bound is from below (the 9 counted twice are younger than the double-counted average 47.11, so the union mean exceeds 47.11): 57.21 is above it, not on it. (d) real error: inclusion-exclusion applied to the count only.",
+   "52.63": "error path: the 9 people removed from both classes, so the mean of the 33 people in exactly one class: (2,402.7 - 2(333))/33. (a) not on a bound. (b) neighbouring setup (exactly one class), strictly inside the one-step range (> 47.11). (c) not killed by a one-step estimate. (d) real error: subtracting the overlap twice.",
+   "47.35": "error path: the unweighted average of the two class means, (48.7 + 46.0)/2. (a) not on a bound. (b) neighbouring setup (ignoring sizes and overlap). (c) the one-step lower bound is the double-counted average 2,402.7/51 = 47.11; 47.35 lies strictly above it. A heuristic 'the overall mean lies between the class means' would keep 47.35 and reject the key, but it is not forced here. (d) real error: averaging group means without weights."
+  },
+  "distractor_meta": {
+   "57.21": {
+    "direction": "over",
+    "error_kind": "overlap removed from count only"
+   },
+   "52.63": {
+    "direction": "over",
+    "error_kind": "overlap subtracted twice"
+   },
+   "47.35": {
+    "direction": "under",
+    "error_kind": "unweighted mean of group means"
+   }
+  },
+  "bounds": [
+   "the 9 people counted twice are younger (37.0) than the double-counted average 2,402.7/51 = 47.11, so the union mean exceeds 47.11: kills nothing (47.35 is above it)",
+   "no stem-forced upper bound: the union mean is a weighted mean of the pottery class (48.7) and the painting-only group, whose mean is not given: kills nothing"
+  ],
+  "mechanism": [
+   "mean of a union of overlapping groups",
+   "inclusion-exclusion on totals",
+   "combined mean from group means and sizes",
+   "double-counted members"
+  ],
+  "arith_class_check": "No. Four two-decimal values; the key 49.28 is no simpler than 47.35, 52.63 or 57.21.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 49.28 and 52.63; both two-decimal, non-round, same shape.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key above both class means (defeats the between-the-means heuristic); 47.35 sits 0.24 above the only one-step bound 47.11; no live overlap-mean item."
+  }
+ }
+]

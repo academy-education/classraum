@@ -1,0 +1,724 @@
+[
+ {
+  "id": "AM29F-14",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "logarithm of the product of the terms of a geometric sequence",
+  "subskill": "log of a product of powers",
+  "prompt": "The first term of a geometric sequence is 3, and the common ratio is 2.5. Let P be the product of the first 11 terms of the sequence. To the nearest hundredth, what is the value of log P, where log is the base-10 logarithm?",
+  "choices": [
+   "23.41",
+   "9.23",
+   "27.14",
+   "22.36"
+  ],
+  "correct_answer": "27.14",
+  "explanation": "The kth term is 3(2.5)^(k − 1), so P = 3¹¹ · 2.5^(0 + 1 + 2 + ... + 10) = 3¹¹ · 2.5⁵⁵. Then log P = 11 log 3 + 55 log 2.5 ≈ 11(0.47712) + 55(0.39794) ≈ 5.2485 + 21.8867 ≈ 27.14. The option \"22.36\" uses the factor 3 only once: log 3 + 55 log 2.5 ≈ 22.36. The option \"9.23\" counts the factors of 2.5 instead of adding their exponents: 11 log 3 + 10 log 2.5 ≈ 9.23. The option \"23.41\" computes 3¹¹ as 3 × 11 = 33: log 33 + 55 log 2.5 ≈ 23.41.",
+  "solve": "const L=Math.log10;return (11*L(3)+55*L(2.5)).toFixed(2);",
+  "distractor_solve": {
+   "22.36": "const L=Math.log10;return (L(3)+55*L(2.5)).toFixed(2);",
+   "9.23": "const L=Math.log10;return (11*L(3)+10*L(2.5)).toFixed(2);",
+   "23.41": "const L=Math.log10;return (L(33)+55*L(2.5)).toFixed(2);"
+  },
+  "quantity_asked": "log(a₁a₂...a₁₁) for a₁ = 3, r = 2.5: 11 log 3 + 55 log 2.5 ≈ 27.14.",
+  "distractor_kind": {
+   "22.36": "first-term factor 3 used once instead of 11 times. (a) no parameter extreme. (b) none. (c) cheapest bounds: 11 log 3 = 5.25 < log P < 11 log a₁₁ = 49.02; strictly inside. (d) real: dropping the repeated factor a₁ⁿ.",
+   "9.23": "exponents of 2.5 counted (10 factors) instead of summed (0 + 1 + ... + 10 = 55). (a) no. (b) none. (c) inside (5.25, 49.02). (d) real: treating r as appearing once per term after the first.",
+   "23.41": "the power 3¹¹ evaluated as the product 3 × 11 = 33. (a) no. (b) none. (c) inside (5.25, 49.02). (d) real: reading an exponent as a multiplier."
+  },
+  "distractor_meta": {
+   "22.36": {
+    "direction": "under",
+    "error_kind": "repeated factor a1 used once"
+   },
+   "9.23": {
+    "direction": "under",
+    "error_kind": "exponents counted, not summed"
+   },
+   "23.41": {
+    "direction": "under",
+    "error_kind": "power read as multiplication"
+   }
+  },
+  "bounds": [
+   "log P > 11 log 3 = 5.25 (every term is at least 3)",
+   "log P < 11 log a₁₁ = 11 log(3 × 2.5¹⁰) = 49.02"
+  ],
+  "mechanism": [
+   "log of the product of the terms of a geometric sequence",
+   "exponent sum 0 + 1 + ... + 10 = 55",
+   "log P = 11 log 3 + 55 log 2.5"
+  ],
+  "arith_class_check": "Key 27.135...; all four options are two-decimal non-integers with nonzero final digits; nothing in the stem implies integrality.",
+  "one_sided_check": "Key largest; three different error kinds (a₁ used once, exponents counted, 3¹¹ read as 3 × 11). Natural errors that land ABOVE the key and are not options: summing the exponents 1 + 2 + ... + 11 = 66 (31.51), and using natural logs (62.48). The stem does not signal that every slip lowers the value.",
+  "interior_parity_check": "Interior options by value: 22.36 and 23.41, both two-digit two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: 5.25 < log P < 49.02 (every term between a₁ and a₁₁). All three distractors lie on the key's side of the lower bound; a one-step finer estimate, 11 times the log of a middle-sized term, is the solution itself; the nearest distractor (23.41) is 3.73 below the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; natural over errors (exponent sum to 66, natural log) exist but are not options. Residual: a solver may see all slips as omissions."
+  }
+ },
+ {
+  "id": "AM29F-15",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential decay whose half-life changes partway through",
+  "subskill": "two-phase half-life model",
+  "prompt": "A patient is given 280 milligrams of a medication. For the first 12 hours, the amount of the medication in the patient's body decreases exponentially with a half-life of 8 hours. At the 12-hour mark the patient begins a treatment, and from then on the amount of the medication decreases exponentially with a half-life of 5 hours. No more of the medication is given. To the nearest hundredth of a milligram, how many milligrams of the medication remain in the patient's body 20 hours after it was given?",
+  "choices": [
+   "29.43",
+   "33.18",
+   "26.53",
+   "32.66"
+  ],
+  "correct_answer": "32.66",
+  "explanation": "During the first 12 hours the amount is multiplied by (1/2)^(12/8): 280(1/2)^1.5 ≈ 98.99 mg remain at the 12-hour mark. The remaining 20 − 12 = 8 hours use the 5-hour half-life, so the amount is multiplied by (1/2)^(8/5): 98.99(1/2)^1.6 ≈ 32.66 mg. The option \"26.53\" applies the two half-lives to the wrong phases: 280(1/2)^(12/5)(1/2)^(8/8) ≈ 26.53. The option \"29.43\" averages the two hourly decay rates, 1/8 and 1/5 half-lives per hour, and applies the mean for all 20 hours: 280(1/2)^(20 × 0.1625) ≈ 29.43. The option \"33.18\" averages the half-lives, (8 + 5)/2 = 6.5 hours, and applies it for all 20 hours: 280(1/2)^(20/6.5) ≈ 33.18.",
+  "solve": "const p=(a,h,t)=>a*Math.pow(0.5,t/h);return p(p(280,8,12),5,8).toFixed(2);",
+  "distractor_solve": {
+   "26.53": "const p=(a,h,t)=>a*Math.pow(0.5,t/h);return p(p(280,5,12),8,8).toFixed(2);",
+   "29.43": "const p=(a,h,t)=>a*Math.pow(0.5,t/h);const r=(1/8+1/5)/2;return (280*Math.pow(0.5,20*r)).toFixed(2);",
+   "33.18": "const p=(a,h,t)=>a*Math.pow(0.5,t/h);return p(280,6.5,20).toFixed(2);"
+  },
+  "quantity_asked": "the amount left at t = 20 h: 280(1/2)^(12/8) for the first 12 h, then (1/2)^(8/5) for the last 8 h ≈ 32.66 mg.",
+  "distractor_kind": {
+   "26.53": "half-lives attached to the wrong phases (5 h for the first 12 h, 8 h for the last 8 h). (a) no parameter extreme. (b) neighbouring setup: the swapped schedule; inside the bounds (17.50, 49.50) and inside (24.75, 49.50). (c) cheapest bounds: the amount lies between the all-5-hour value 17.50 and the all-8-hour value 49.50; one step finer, 98.99 after 12 h and 1.6 half-lives (between 1 and 2) after it puts the answer in (24.75, 49.50); strictly inside both. (d) real: misreading which half-life applies first.",
+   "29.43": "the two hourly decay rates (1/8 and 1/5 half-life per hour) averaged and applied for all 20 hours. (a) no. (b) none. (c) inside (24.75, 49.50). (d) real: averaging the rates instead of weighting them by time.",
+   "33.18": "the two half-lives averaged, 6.5 h, and applied for all 20 hours. (a) no. (b) none. (c) inside (24.75, 49.50). (d) real: treating a mean half-life as the effective one."
+  },
+  "distractor_meta": {
+   "26.53": {
+    "direction": "under",
+    "error_kind": "phases swapped"
+   },
+   "29.43": {
+    "direction": "under",
+    "error_kind": "rates averaged, not time-weighted"
+   },
+   "33.18": {
+    "direction": "over",
+    "error_kind": "half-lives averaged"
+   }
+  },
+  "bounds": [
+   "amount < 280(1/2)^(20/8) = 49.50 (decay never slower than the 8-hour half-life)",
+   "amount > 280(1/2)^(20/5) = 17.50 (decay never faster than the 5-hour half-life)",
+   "98.99 at 12 h, then 1.6 half-lives: amount in (24.75, 49.50)"
+  ],
+  "mechanism": [
+   "half-life changes partway through",
+   "two-phase exponential decay",
+   "medication half-life 8 hours then 5 hours",
+   "amount remaining after 20 hours"
+  ],
+  "arith_class_check": "Key 32.663...; all four options are two-decimal non-integers with nonzero final digits; nothing in the stem implies integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 29.43 and 32.66, both two-digit two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (phase swap and rate average under, mean half-life over); all options inside the one-step bracket (24.75, 49.50)."
+  }
+ },
+ {
+  "id": "AM29F-16",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sum of the odd-numbered terms of a geometric sequence",
+  "subskill": "subsequence of a geometric sequence",
+  "prompt": "In a geometric sequence, the 1st term is 40 and the common ratio is 0.9. To the nearest hundredth, what is the sum of all the odd-numbered terms from the 1st term through the 13th term (that is, the 1st term + the 3rd term + the 5th term + ... + the 13th term)?",
+  "choices": [
+   "169.16",
+   "162.36",
+   "171.52",
+   "167.18"
+  ],
+  "correct_answer": "162.36",
+  "explanation": "The odd-numbered terms 40, 40(0.9)², 40(0.9)⁴, ..., 40(0.9)¹² form a geometric sequence with first term 40 and common ratio (0.9)² = 0.81. From the 1st through the 13th term there are (13 + 1)/2 = 7 of them, so the sum is 40(1 − 0.81⁷)/(1 − 0.81) = 40(1 − 0.228768)/0.19 ≈ 162.36. The option \"167.18\" uses the last-term form (a − l·R)/(1 − R) with the 13th term miscounted as 40(0.9)¹³ ≈ 10.168: (40 − 10.168 × 0.81)/0.19 ≈ 167.18. The option \"169.16\" assumes the odd-numbered terms exceed the even-numbered ones by exactly the first term, so the odd sum is (S₁₃ + 40)/2, where S₁₃ = 40(1 − 0.9¹³)/0.1 ≈ 298.33: (298.33 + 40)/2 ≈ 169.16. The option \"171.52\" counts 8 odd-numbered terms (the 1st through the 15th): 40(1 − 0.81⁸)/0.19 ≈ 171.52.",
+  "solve": "const S=(a,r,n)=>a*(1-Math.pow(r,n))/(1-r);return S(40,0.81,7).toFixed(2);",
+  "distractor_solve": {
+   "167.18": "const l=40*Math.pow(0.9,13);return ((40-l*0.81)/0.19).toFixed(2);",
+   "169.16": "const S=(a,r,n)=>a*(1-Math.pow(r,n))/(1-r);return ((S(40,0.9,13)+40)/2).toFixed(2);",
+   "171.52": "const S=(a,r,n)=>a*(1-Math.pow(r,n))/(1-r);return S(40,0.81,8).toFixed(2);"
+  },
+  "quantity_asked": "the sum of the 1st, 3rd, 5th, ..., 13th terms (7 terms) of the geometric sequence with first term 40 and ratio 0.9: 40(1 − 0.81^7)/0.19 ≈ 162.36.",
+  "distractor_kind": {
+   "167.18": "13th term miscounted as a·r^13 in the last-term form (a − l·R)/(1 − R). (a) no parameter extreme. (b) none. (c) cheapest bounds: each odd-numbered term exceeds the even-numbered term after it, so the odd sum > S13/2 = 149.16; the terms are convex, so the 7 odd-numbered terms sum to less than the trapezoid 7(40 + 11.30)/2 = 179.54; strictly inside (149.16, 179.54). (d) real: nth term written a·r^n.",
+   "169.16": "odd-numbered sum taken as (S13 + a1)/2, assuming the odd terms exceed the even terms by exactly the first term. (a) no. (b) none. (c) inside (149.16, 179.54). (d) real: a pairing shortcut that ignores the term-by-term differences.",
+   "171.52": "8 odd-numbered terms counted (1st through 15th). (a) no. (b) neighbouring setup: the sum through the 15th term; inside (149.16, 179.54). (c) inside. (d) real: miscounting the terms 1, 3, ..., 13."
+  },
+  "distractor_meta": {
+   "167.18": {
+    "direction": "over",
+    "error_kind": "last-term exponent off by one"
+   },
+   "169.16": {
+    "direction": "over",
+    "error_kind": "odd sum as (S13 + a1)/2"
+   },
+   "171.52": {
+    "direction": "over",
+    "error_kind": "term count off by one (8 terms)"
+   }
+  },
+  "bounds": [
+   "sum > S13/2 = 149.16 (each odd-numbered term exceeds the even-numbered term after it)",
+   "sum < 7(40 + 11.30)/2 = 179.54 (trapezoid over convex terms)",
+   "sum < S13 = 298.33"
+  ],
+  "mechanism": [
+   "sum of the odd-numbered terms of a geometric sequence",
+   "every other term of a geometric sequence has ratio r squared",
+   "geometric partial sum with ratio 0.81",
+   "count of odd positions from 1 to 13"
+  ],
+  "arith_class_check": "Key 162.357...; all four options are two-decimal non-integers with nonzero final digits; nothing in the stem implies integrality.",
+  "one_sided_check": "Key smallest; three different error kinds (last-term exponent, a (S13 + a1)/2 shortcut, term count). Natural errors that land BELOW the key and are not options: counting 6 terms (151.07), approximating the ratio 0.81 as 0.8 (158.06), and taking the odd sum as S13/(1 + 0.9) (157.01). A term-count slip goes either way (6 or 8 terms), so the stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 167.18 and 169.16, both three-digit two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: S13/2 = 149.16 < sum < 179.54 (odd terms outweigh even ones; trapezoid over convex terms), and sum < S13 = 298.33. All three distractors lie strictly between the key and the upper bound, on the key's side of every bound; the nearest distractor (167.18) is 4.82 above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural under errors (6 terms, R = 0.8, S13/1.9) exist; all options inside (149.16, 179.54). Minor: geometric partial sums are live (c9f5950e); the r² subsequence is new."
+  }
+ },
+ {
+  "id": "AM29F-17",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "amount of a decaying substance lost during a time window",
+  "subskill": "difference of two values of a half-life model",
+  "prompt": "A laboratory prepares 340 milligrams of a radioactive tracer. The tracer decays exponentially with a half-life of 7 hours. To the nearest hundredth of a milligram, how many milligrams of the tracer decay during the period from 2 hours to 8 hours after it is prepared?",
+  "choices": [
+   "147.07",
+   "119.53",
+   "145.71",
+   "124.94"
+  ],
+  "correct_answer": "124.94",
+  "explanation": "The amount left after t hours is A(t) = 340(1/2)^(t/7). At 2 hours, A(2) = 340(1/2)^(2/7) ≈ 278.91 mg; at 8 hours, A(8) = 340(1/2)^(8/7) ≈ 153.97 mg. The amount that decays during that period is A(2) − A(8) ≈ 124.94 mg. The option \"119.53\" treats the 6 hours as 6/7 of a half-life and removes 6/7 of half of A(2): 278.91 × 6/14 ≈ 119.53. The option \"147.07\" uses base e for the half-life model, 340(e^(−2/7) − e^(−8/7)) ≈ 147.07. The option \"145.71\" assumes a constant rate: half of 340 mg, 170 mg, decays in 7 hours, so 170/7 × 6 ≈ 145.71 mg decay in 6 hours.",
+  "solve": "const A=t=>340*Math.pow(0.5,t/7);return (A(2)-A(8)).toFixed(2);",
+  "distractor_solve": {
+   "119.53": "const A=t=>340*Math.pow(0.5,t/7);return (A(2)*6/14).toFixed(2);",
+   "147.07": "return (340*(Math.exp(-2/7)-Math.exp(-8/7))).toFixed(2);",
+   "145.71": "return (170/7*6).toFixed(2);"
+  },
+  "quantity_asked": "A(2) − A(8) for A(t) = 340(1/2)^(t/7): the milligrams that decay between hour 2 and hour 8, ≈ 124.94.",
+  "distractor_kind": {
+   "119.53": "the 6-hour window read as 6/7 of a half-life, removing 6/7 of half of A(2) (linear within the half-life). (a) no parameter extreme. (b) none. (c) cheapest bounds: the decay rate falls over time, so less decays from hour 2 to hour 8 than in the first 6 hours, 340 − A(6) = 152.30, and more than from hour 8 to hour 14, A(8)(1 − (1/2)^(6/7)) = 68.97; strictly inside. (d) real: interpolating a half-life linearly.",
+   "147.07": "half-life model written with base e: 340e^(−t/7). (a) no. (b) none. (c) inside (68.97, 152.30). (d) real: confusing (1/2)^(t/h) with e^(−t/h).",
+   "145.71": "constant decay rate: 170 mg per 7 hours applied for 6 hours. (a) no. (b) none. (c) inside (68.97, 152.30). (d) real: treating exponential decay as linear."
+  },
+  "distractor_meta": {
+   "119.53": {
+    "direction": "under",
+    "error_kind": "linear fraction of a half-life"
+   },
+   "147.07": {
+    "direction": "over",
+    "error_kind": "base e instead of 1/2"
+   },
+   "145.71": {
+    "direction": "over",
+    "error_kind": "constant decay rate"
+   }
+  },
+  "bounds": [
+   "decayed amount < 340 − A(6) = 152.30 (the first 6 hours lose the most)",
+   "decayed amount > A(8)(1 − (1/2)^(6/7)) = 68.97 (the next 6 hours lose less)",
+   "decayed amount < A(2) = 278.91"
+  ],
+  "mechanism": [
+   "amount that decays between two times",
+   "difference A(2) − A(8) of a half-life model",
+   "radioactive tracer half-life 7 hours",
+   "decay during a time window"
+  ],
+  "arith_class_check": "Key 124.94...; all four options are two-decimal non-integers with nonzero final digits; nothing in the stem implies integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 124.94 and 145.71, both two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (linear fraction under; base e and constant rate over); all options inside (68.97, 152.30). Evaluating a half-life model is live; the window difference is the step."
+  }
+ },
+ {
+  "id": "AM29F-18",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "x-intercept of a transformed tangent function",
+  "subskill": "zeros of a tangent function",
+  "prompt": "The function g is defined by g(x) = 2 tan(0.8x − 1.65) + 1.2, where the argument of the tangent is in radians. In the standard (x,y) coordinate plane, what is the least positive x-coordinate of a point where the graph of y = g(x) crosses the x-axis, to the nearest hundredth?",
+  "choices": [
+   "0.97",
+   "1.11",
+   "0.77",
+   "1.39"
+  ],
+  "correct_answer": "1.39",
+  "explanation": "g(x) = 0 means tan(0.8x − 1.65) = −1.2/2 = −0.6, so 0.8x − 1.65 = arctan(−0.6) + nπ ≈ −0.5404 + nπ for an integer n. With n = 0, 0.8x = 1.65 − 0.5404 = 1.1096, so x ≈ 1.387. With n = −1 the solution is negative, so the least positive x-intercept is about 1.39. The option \"1.11\" stops before dividing by 0.8. The option \"0.97\" leaves out the division by the coefficient 2, solving tan(0.8x − 1.65) = −1.2. The option \"0.77\" inverts the ratio, solving tan(0.8x − 1.65) = −2/1.2.",
+  "solve": "return ((1.65-Math.atan(0.6))/0.8).toFixed(2);",
+  "distractor_solve": {
+   "1.11": "return (1.65-Math.atan(0.6)).toFixed(2);",
+   "0.97": "return ((1.65-Math.atan(1.2))/0.8).toFixed(2);",
+   "0.77": "return ((1.65-Math.atan(2/1.2))/0.8).toFixed(2);"
+  },
+  "quantity_asked": "the least positive x with g(x) = 0: (1.65 − arctan 0.6)/0.8 ≈ 1.39.",
+  "distractor_kind": {
+   "1.11": "the argument value 1.1096 reported without dividing by 0.8. (a) no parameter extreme. (b) neighbouring setup: the branch centre 1.65/0.8 = 2.06 (where tan = 0) is not an option. (c) cheapest bound: the zero lies on the branch between the asymptote at x = (1.65 − π/2)/0.8 ≈ 0.10 and the branch centre 2.06 (the shift +1.2 makes tan negative there); 1.11 is strictly inside (0.10, 2.06). (d) real: forgetting the horizontal scale factor.",
+   "0.97": "tan set equal to −1.2 instead of −1.2/2. (a) no. (b) no. (c) strictly inside (0.10, 2.06). (d) real: not dividing by the vertical stretch 2.",
+   "0.77": "tan set equal to −2/1.2 (ratio inverted). (a) no. (b) no. (c) strictly inside (0.10, 2.06). (d) real: inverting the ratio when isolating tan."
+  },
+  "distractor_meta": {
+   "1.11": {
+    "direction": "under",
+    "error_kind": "horizontal scale not divided out"
+   },
+   "0.97": {
+    "direction": "under",
+    "error_kind": "vertical stretch not divided out"
+   },
+   "0.77": {
+    "direction": "under",
+    "error_kind": "inverted ratio isolating tan"
+   }
+  },
+  "bounds": [
+   "the zero lies between the vertical asymptote x = (1.65 − π/2)/0.8 ≈ 0.10 and the branch centre x = 1.65/0.8 ≈ 2.06",
+   "x > 0"
+  ],
+  "mechanism": [
+   "zero of a transformed tangent function",
+   "isolate tan and apply arctan",
+   "undo the horizontal scale and shift",
+   "least positive solution among branches"
+  ],
+  "arith_class_check": "Key 1.39 is an irrational value rounded to hundredths, as are all options; nothing in the stem singles out a form.",
+  "one_sided_check": "Key largest. Distractors come from three different slips (scale factor, stretch, inverted ratio). Natural errors also push the answer UP: a sign slip in arctan (tan = +0.6) gives 2.74; ignoring the +1.2 shift (zero where tan = 0) gives 2.06; taking the next branch gives 5.31. A student cannot read from the stem that slips only lower it.",
+  "interior_parity_check": "Interior options by value: 0.97 and 1.11, both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: the zero lies left of the branch centre 1.65/0.8 ≈ 2.06 and right of the asymptote ≈ 0.10; all three distractors lie inside this interval, on the key's side of the upper end. A one-step estimate arctan 0.6 ≈ 0.54 gives x ≈ 1.39 only by doing the whole computation.",
+  "self_audit": {
+   "risk": "low",
+   "note": "No live tangent-graph item (dump: no tan(bx) function rows). Batch has sinusoid models (F-20..F-25) but none solves a tangent equation."
+  }
+ },
+ {
+  "id": "AM29F-19",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "numbers whose logarithms form an arithmetic sequence",
+  "subskill": "logs in arithmetic sequence give a geometric sequence",
+  "prompt": "The positive numbers a, b, and c have a sum of 40. The numbers log a, log b, and log c, in that order, form an arithmetic sequence with common difference 0.15, where log is the base-10 logarithm. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "18.83",
+   "13.48",
+   "18.11",
+   "15.23"
+  ],
+  "correct_answer": "18.11",
+  "explanation": "log b − log a = 0.15 means b/a = 10^0.15, and likewise c/b = 10^0.15, so a, b, c form a geometric sequence with ratio r = 10^0.15 ≈ 1.41254. Then a(1 + r + r²) = 40 gives a = 40/(1 + 1.41254 + 1.99526) ≈ 9.0748, and c = ar² ≈ 9.0748 × 1.99526 ≈ 18.11. The option \"15.23\" reads a log difference of 0.15 as a ratio of 1.15: a = 40/(1 + 1.15 + 1.3225) ≈ 11.519 and c = 11.519 × 1.3225 ≈ 15.23. The option \"13.48\" ignores the logarithms and makes a, b, c themselves differ by 0.15: a + (a + 0.15) + (a + 0.30) = 40, so c ≈ 13.48. The option \"18.83\" takes the middle number b as the mean, 40/3 ≈ 13.333, and then c = 13.333 × 10^0.15 ≈ 18.83.",
+  "solve": "const g=(r)=>40/(1+r+r*r);const r=Math.pow(10,0.15);return (g(r)*r*r).toFixed(2);",
+  "distractor_solve": {
+   "15.23": "const g=(r)=>40/(1+r+r*r);const r=1.15;return (g(r)*r*r).toFixed(2);",
+   "13.48": "return ((40-0.45)/3+0.30).toFixed(2);",
+   "18.83": "return (40/3*Math.pow(10,0.15)).toFixed(2);"
+  },
+  "quantity_asked": "c, the largest of three positive numbers with sum 40 whose base-10 logs are in arithmetic sequence with difference 0.15: c = 40r²/(1 + r + r²) with r = 10^0.15, ≈ 18.11.",
+  "distractor_kind": {
+   "15.23": "log difference 0.15 read as a growth ratio of 1.15. (a) no parameter extreme. (b) neighbouring setup: a geometric sequence with ratio 1.15; inside (40/3, 40). (c) cheapest bound: c is the largest of three positive numbers with sum 40, so 13.33 < c < 40; strictly inside. (d) real: confusing log r = 0.15 with r = 1.15.",
+   "13.48": "logarithms ignored; a, b, c treated as an arithmetic sequence with difference 0.15. (a) no. (b) neighbouring setup: the arithmetic triple with the same sum; inside (13.33, 40). (c) inside. (d) real: applying the stated common difference to the numbers instead of their logs.",
+   "18.83": "middle number taken as the mean of the three, b = 40/3, then c = b·10^0.15. (a) no. (b) none. (c) inside (13.33, 40). (d) real: assuming the middle term of three is their mean, true only for an arithmetic triple."
+  },
+  "distractor_meta": {
+   "15.23": {
+    "direction": "under",
+    "error_kind": "log difference read as ratio 1.15"
+   },
+   "13.48": {
+    "direction": "under",
+    "error_kind": "logs ignored, arithmetic triple"
+   },
+   "18.83": {
+    "direction": "over",
+    "error_kind": "middle term taken as the mean"
+   }
+  },
+  "bounds": [
+   "c > 40/3 = 13.33 (c is the largest of three positive numbers with sum 40)",
+   "c < 40",
+   "c > b > a since the logs increase"
+  ],
+  "mechanism": [
+   "log a, log b, log c form an arithmetic sequence",
+   "logs in arithmetic sequence means numbers in geometric sequence",
+   "common ratio 10^0.15",
+   "three terms with a given sum"
+  ],
+  "arith_class_check": "Key 18.107...; all four options are two-decimal non-integers with nonzero final digits; nothing in the stem implies integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 15.23 and 18.11, both two-digit two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (ratio 1.15 and arithmetic triple under, b = 40/3 over); all options inside (13.33, 40); no live item on logs of a sequence."
+  }
+ },
+ {
+  "id": "AM29F-20",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sinusoidal model: amplitude and midline from two readings",
+  "subskill": "solve for amplitude and midline of a sinusoidal model",
+  "prompt": "On a certain day, the temperature T, in degrees Fahrenheit, at a weather station h hours after midnight is modeled by the function T(h) = a cos(π(h − 15)/12) + d, where a and d are positive constants and the argument of the cosine is in radians. According to the model, the temperature was 57.5°F at 8:00 a.m. and 72.4°F at 5:00 p.m. To the nearest hundredth of a degree, what was the lowest temperature on that day according to the model?",
+  "choices": [
+   "56.35",
+   "47.68",
+   "57.15",
+   "51.56"
+  ],
+  "correct_answer": "47.68",
+  "explanation": "At 8:00 a.m., h = 8 and cos(π(8 − 15)/12) = cos(−7π/12) ≈ −0.2588; at 5:00 p.m., h = 17 and cos(π(17 − 15)/12) = cos(π/6) ≈ 0.8660. So −0.2588a + d = 57.5 and 0.8660a + d = 72.4. Subtracting, 1.1248a = 14.9, so a ≈ 13.246, and d = 72.4 − 0.8660(13.246) ≈ 60.928. The cosine's least value is −1 (at h = 3, 3:00 a.m.), so the lowest temperature is d − a ≈ 60.928 − 13.246 ≈ 47.68°F. The option \"57.15\" uses sine in place of cosine for both readings. The option \"56.35\" takes the midline d to be the average of the two readings, 64.95, and then finds a from the 5:00 p.m. reading. The option \"51.56\" uses the correct a and d but evaluates the model at 6:00 a.m., taking that as the coldest time of day.",
+  "solve": "const R1=57.5,R2=72.4,h1=8,h2=17,f=h=>Math.cos(Math.PI*(h-15)/12);const a=(R2-R1)/(f(h2)-f(h1)),d=R2-f(h2)*a;return (d-a).toFixed(2);",
+  "distractor_solve": {
+   "57.15": "const R1=57.5,R2=72.4,h1=8,h2=17,f=h=>Math.cos(Math.PI*(h-15)/12);const g=h=>Math.sin(Math.PI*(h-15)/12);const a=(R2-R1)/(g(h2)-g(h1)),d=R2-g(h2)*a;return (d-a).toFixed(2);",
+   "56.35": "const R1=57.5,R2=72.4,h1=8,h2=17,f=h=>Math.cos(Math.PI*(h-15)/12);const d=(R1+R2)/2,a=(R2-d)/f(h2);return (d-a).toFixed(2);",
+   "51.56": "const R1=57.5,R2=72.4,h1=8,h2=17,f=h=>Math.cos(Math.PI*(h-15)/12);const a=(R2-R1)/(f(h2)-f(h1)),d=R2-f(h2)*a;return (d+a*f(6)).toFixed(2);"
+  },
+  "quantity_asked": "The minimum of T, d − a, where −0.2588a + d = 57.5 and 0.8660a + d = 72.4; ≈ 47.68°F.",
+  "distractor_kind": {
+   "57.15": "sine used in place of the model's cosine for both readings. (a) no parameter extreme. (b) neighbouring setup: the same two-reading solve for a sine model; strictly inside. (c) cheapest bound: the lowest temperature is below the lowest reading, 57.5; 57.15 strictly below it. No cheap lower bound. (d) real: function swap.",
+   "56.35": "midline taken as the average of the two readings (64.95), then a from the 5:00 p.m. reading. (a) no. (b) neighbouring: the midline estimate is an intermediate of a different method; strictly inside (below 57.5). (c) strictly inside. (d) real: readings treated as symmetric about the midline.",
+   "51.56": "correct a and d, but the model evaluated at 6:00 a.m. (coldest time assumed to be dawn) instead of at its minimum, 3:00 a.m. (a) no. (b) none. (c) strictly inside. (d) real: minimum time assumed instead of read from the model."
+  },
+  "distractor_meta": {
+   "57.15": {
+    "direction": "over",
+    "error_kind": "sine for cosine"
+   },
+   "56.35": {
+    "direction": "over",
+    "error_kind": "midline as average of readings"
+   },
+   "51.56": {
+    "direction": "over",
+    "error_kind": "minimum evaluated at the wrong hour"
+   }
+  },
+  "bounds": [
+   "the lowest temperature is below every reading, so below 57.5"
+  ],
+  "mechanism": [
+   "sinusoidal daily temperature model",
+   "two readings give a system in a and d",
+   "cosine values at given hours",
+   "minimum equals midline minus amplitude"
+  ],
+  "arith_class_check": "Key 60.928 − 13.246 = 47.682; all options two-decimal with nonzero final digits; the stem implies no class.",
+  "one_sided_check": "Key smallest. Three error kinds (function swap, midline shortcut, wrong hour). Natural errors that land BELOW the key and are not options: writing 5:00 p.m. as h = 5 (or taking cos(−7π/12) as +0.2588) gives 26.61; treating the 8:00 a.m. reading as the midline gives 40.29; d − 2a gives 34.44. The stem gives no signal that slips raise the minimum.",
+  "interior_parity_check": "Interior options by value: 51.56 and 56.35, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: the minimum is below the lower reading, 57.5 (all options below it; the nearest, 57.15, is 0.35 below). A one-step estimate one step finer: 8:00 a.m. is 105° from the peak, just past the midline, so d is a little above 57.5 and the minimum is about d − a with a unknown: no bound without solving the system. The nearest distractor to the key, 51.56, is 3.88 above it, inside any estimate short of solving for a.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key with three over errors and natural under counters (12-hour clock slip, 8 a.m. as midline). 51.56 (dawn as coldest) may be rated less natural."
+  }
+ },
+ {
+  "id": "AM29F-21",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "circular motion: position on a rotating wheel from a height",
+  "subskill": "unit-circle angle from a height, then rotate",
+  "prompt": "A Ferris wheel has a radius of 15 meters, and its center is 18.5 meters above the ground. The wheel has 16 cars equally spaced around its rim, and it turns at a constant rate, making one full revolution every 6.4 minutes. At a certain moment, car A is 24 meters above the ground and rising. Car C is 5 positions behind car A: car C follows car A around the wheel, with 4 cars between them. To the nearest hundredth of a minute, how many minutes after that moment will car C first reach the top of the wheel?",
+  "choices": [
+   "2.94",
+   "3.35",
+   "2.38",
+   "3.22"
+  ],
+  "correct_answer": "3.22",
+  "explanation": "Car A is 24 − 18.5 = 5.5 meters above the center, so the radius to car A makes an angle θ above the horizontal with sin θ = 5.5/15, θ ≈ 21.51°; because car A is rising, it is on the rising side of the wheel. Adjacent cars are 360°/16 = 22.5° apart, so car C is 5 × 22.5° = 112.5° behind car A, at 21.51° − 112.5° = −90.99°, just before the bottom of the wheel. To reach the top (90°), car C must turn 90° + 90.99° = 180.99°, which takes (180.99/360) × 6.4 ≈ 3.218 minutes, or 3.22. The option \"2.94\" measures car A's height from a point 15 meters up (the radius) instead of from the center at 18.5 meters (sin θ = 9/15). The option \"3.35\" spaces 16 cars 360°/15 = 24° apart, as if the cars were on a line rather than a closed loop. The option \"2.38\" uses cos θ = 5.5/15, taking the angle from the vertical as the angle from the horizontal.",
+  "solve": "const r=15,c=18.5,n=16,P=6.4,hA=24,k=5,d=Math.PI/180;const a=Math.asin((hA-c)/r)/d;const cC=a-k*360/n;const need=((90-cC)%360+360)%360;return (need/360*P).toFixed(2);",
+  "distractor_solve": {
+   "2.94": "const r=15,c=18.5,n=16,P=6.4,hA=24,k=5,d=Math.PI/180;const a=Math.asin((hA-r)/r)/d;const cC=a-k*360/n;const need=((90-cC)%360+360)%360;return (need/360*P).toFixed(2);",
+   "3.35": "const r=15,c=18.5,n=16,P=6.4,hA=24,k=5,d=Math.PI/180;const a=Math.asin((hA-c)/r)/d;const cC=a-k*360/(n-1);const need=((90-cC)%360+360)%360;return (need/360*P).toFixed(2);",
+   "2.38": "const r=15,c=18.5,n=16,P=6.4,hA=24,k=5,d=Math.PI/180;const a=Math.acos((hA-c)/r)/d;const cC=a-k*360/n;const need=((90-cC)%360+360)%360;return (need/360*P).toFixed(2);"
+  },
+  "quantity_asked": "The time, in minutes, until car C (112.5° behind car A) first reaches the top: (90° − (θ − 112.5°))/360° × 6.4 with sin θ = 5.5/15, ≈ 3.22.",
+  "distractor_kind": {
+   "2.94": "height measured from the radius (15 m) instead of the center (18.5 m): sin θ = 9/15. (a) no parameter extreme. (b) neighbouring setup: the same rotation from a different reference height; strictly inside (2.0, 3.6). (c) cheapest bound: car A is above the center, so it is less than a quarter turn from the top (under 1.6 min), and car C trails it by 5/16 of a revolution (2.0 min): time in (2.0, 3.6); 2.94 strictly inside. (d) real: center height confused with radius.",
+   "3.35": "cars spaced 360°/15 apart (fencepost on a closed loop). (a) no. (b) none. (c) strictly inside (2.0, 3.6). (d) real: counting gaps as cars − 1.",
+   "2.38": "angle taken from cos θ = 5.5/15 (angle from the vertical used as the angle from the horizontal). (a) no. (b) none. (c) strictly inside (2.0, 3.6). (d) real: sine/cosine reference swap."
+  },
+  "distractor_meta": {
+   "2.94": {
+    "direction": "under",
+    "error_kind": "height reference (radius for center)"
+   },
+   "3.35": {
+    "direction": "over",
+    "error_kind": "car spacing 360/15"
+   },
+   "2.38": {
+    "direction": "under",
+    "error_kind": "cosine for sine (angle reference)"
+   }
+  },
+  "bounds": [
+   "car A is above the center and rising, so it reaches the top in under 1/4 revolution: under 1.6 min",
+   "car C trails car A by 5/16 revolution = 2.0 min, so the time is in (2.0, 3.6)"
+  ],
+  "mechanism": [
+   "Ferris wheel cars equally spaced",
+   "height to angle with arcsine",
+   "angular offset between cars",
+   "time to reach the top of the wheel"
+  ],
+  "arith_class_check": "Key 3.218 (180.99/360 × 6.4); all four options two-decimal, none an integer or a simple fraction of 6.4; nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 2.94 and 3.22, both two-decimal values with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (spacing over, reference height and angle reference under); all options inside the (2.0, 3.6) window; live wheel item e2483fdf is time->height, this is height->angle->time with a car offset."
+  }
+ },
+ {
+  "id": "AM29F-22",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sinusoidal model: amplitude and period from two level-crossing times",
+  "subskill": "build a sinusoidal model from data",
+  "prompt": "The depth of the water, in meters, at the entrance to a harbor t hours after 5:00 a.m. is modeled by the function D(t) = 4.4 + A sin(bt), where A and b are positive constants and the argument of the sine is in radians. According to the model, the first time after 5:00 a.m. that the depth is 6.0 meters is 6:24 a.m., and the next time the depth is 6.0 meters is 10:36 a.m. To the nearest hundredth of a meter, what is the greatest depth of the water according to the model?",
+  "choices": [
+   "6.38",
+   "7.12",
+   "6.25",
+   "6.66"
+  ],
+  "correct_answer": "7.12",
+  "explanation": "6:24 a.m. is t = 1.4 and 10:36 a.m. is t = 5.6. Because D(0) = 4.4 is the midline value and D is rising at t = 0, the depth rises above 6.0 at t = 1.4, peaks, and falls back to 6.0 at t = 5.6; by symmetry the peak is halfway between, at t = 3.5. From the midline at t = 0 to the first peak is a quarter of a period, so the period is 14 hours and b = 2π/14 = π/7. Then 4.4 + A sin(1.4π/7) = 6.0 gives A = 1.6/sin(0.2π) ≈ 1.6/0.5878 ≈ 2.722, so the greatest depth is 4.4 + 2.722 ≈ 7.12 meters. The option \"6.25\" treats the 4.2 hours spent above 6.0 meters as half a period (period 8.4 hours). The option \"6.66\" treats 10:36 a.m. as half a period after 5:00 a.m. (period 11.2 hours). The option \"6.38\" uses the correct period but solves 4.4 + A cos(1.4π/7) = 6.0, using cosine for the given sine.",
+  "solve": "const t1=1.4,t2=5.6,m=4.4,L=6.0;const b=2*Math.PI/(2*(t1+t2));return (m+(L-m)/Math.sin(b*t1)).toFixed(2);",
+  "distractor_solve": {
+   "6.25": "const t1=1.4,t2=5.6,m=4.4,L=6.0;const b=2*Math.PI/(2*(t2-t1));return (m+(L-m)/Math.sin(b*t1)).toFixed(2);",
+   "6.66": "const t1=1.4,t2=5.6,m=4.4,L=6.0;const b=2*Math.PI/(2*t2);return (m+(L-m)/Math.sin(b*t1)).toFixed(2);",
+   "6.38": "const t1=1.4,t2=5.6,m=4.4,L=6.0;const b=2*Math.PI/(2*(t1+t2));return (m+(L-m)/Math.cos(b*t1)).toFixed(2);"
+  },
+  "quantity_asked": "The maximum of D, 4.4 + A, where the period is 2(1.4 + 5.6) = 14 h and A = 1.6/sin(1.4π/7); ≈ 7.12 m.",
+  "distractor_kind": {
+   "6.25": "period taken as twice the 4.2 h spent above 6.0 m (as if 6.0 m were the midline). (a) no parameter extreme. (b) neighbouring setup: the same amplitude solve with period 8.4; strictly inside. (c) cheapest bounds: the maximum exceeds 6.0 (the depth passes 6.0 rising); a sine rise is concave, so linear extrapolation of the 0-to-1.4 h rise to the peak at 3.5 h gives an upper bound 4.4 + 1.6 × 3.5/1.4 = 8.4; 6.25 strictly inside (6.0, 8.4). (d) real: level-crossing interval read as a half period.",
+   "6.66": "period taken as twice 5.6 h (the second crossing read as half a period). (a) no. (b) none. (c) strictly inside (6.0, 8.4). (d) real: crossing time misread as a half-period mark.",
+   "6.38": "correct period, but 4.4 + A cos(1.4π/7) = 6.0 solved (cosine for sine). (a) no. (b) none. (c) strictly inside (6.0, 8.4). (d) real: function swap in the amplitude step."
+  },
+  "distractor_meta": {
+   "6.25": {
+    "direction": "under",
+    "error_kind": "period from the above-level interval"
+   },
+   "6.66": {
+    "direction": "under",
+    "error_kind": "second crossing as half period"
+   },
+   "6.38": {
+    "direction": "under",
+    "error_kind": "cosine for sine in the amplitude step"
+   }
+  },
+  "bounds": [
+   "maximum > 6.0 (the depth rises through 6.0)",
+   "maximum < 8.4 (concave rise: linear extrapolation of the first 1.4 h to the peak at 3.5 h)"
+  ],
+  "mechanism": [
+   "sinusoidal model of tide depth",
+   "peak halfway between two equal-depth times",
+   "quarter period from midline to peak",
+   "amplitude from a known point"
+  ],
+  "arith_class_check": "Key 4.4 + 1.6/sin(36°) = 7.122; all options two-decimal with nonzero final digits; no integer or simple multiple pattern implied by the stem.",
+  "one_sided_check": "Key largest. Two error kinds (period misreads, and a sine/cosine swap in the amplitude step). Natural errors land ABOVE the key and are not options: adding the amplitude to 6.0 instead of the midline 4.4 gives 8.72; reading 6:24 and 10:36 as 6.24 and 10.36 (t = 1.24 and 5.36) gives 7.28; taking the 4.2 h above 6.0 m as a quarter period (period 16.8) gives 7.60. A longer misread period raises the answer and a shorter one lowers it, so the stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 6.38 and 6.66, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: max > 6.0 (rising through 6.0) and max < 8.4 (concavity of the sine rise; one step finer than the cap 6.0 + anything). All three distractors lie strictly inside (6.0, 8.4) on the key's side of neither bound; the nearest distractor 6.66 is 0.46 below the key, and no one-step estimate separates them without computing A.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, all three distractors under; counter-errors (amplitude added to 6.0, clock-time decimal slip, quarter-period misread) are natural and land over. Graders may weigh 6.66's period reading as less natural."
+  }
+ },
+ {
+  "id": "AM29F-23",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "two phase-shifted sinusoids: first time equal",
+  "subskill": "solve sin u = sin v on an interval",
+  "prompt": "Two identical buoys float on the same series of waves. The height of buoy A, in meters, above the calm-water level t seconds after a timer starts is h_A(t) = 0.6 sin(1.3t), where the argument of the sine is in radians. Buoy B rises and falls in exactly the same way as buoy A but 0.9 second later, so its height at time t is h_B(t) = h_A(t − 0.9). To the nearest hundredth of a second, what is the first time t > 0 at which the two buoys are at the same height?",
+  "choices": [
+   "1.55",
+   "2.16",
+   "0.45",
+   "1.66"
+  ],
+  "correct_answer": "1.66",
+  "explanation": "h_B(t) = 0.6 sin(1.3(t − 0.9)) = 0.6 sin(1.3t − 1.17). The heights are equal when sin(1.3t) = sin(1.3t − 1.17). The two angles differ by 1.17, not by a multiple of 2π, so they must be supplementary (up to 2π): 1.3t = π − (1.3t − 1.17) + 2πk, that is, 2.6t = π + 1.17 + 2πk. The least positive t is (π + 1.17)/2.6 ≈ 4.3116/2.6 ≈ 1.658, or 1.66 seconds. (Equivalently, the buoys are level halfway between buoy A's first peak at t = π/2.6 ≈ 1.208 and buoy B's first peak 0.9 second later: 1.208 + 0.45 ≈ 1.658.) The option \"1.55\" writes h_B as 0.6 sin(1.3t − 0.9), using the 0.9-second delay as the phase without multiplying by 1.3. The option \"2.16\" divides π + 1.17 by 2 instead of by 2.6, which gives the angle 1.3t at the crossing rather than t. The option \"0.45\" applies the rule for equal cosines, 1.3t = −(1.3t − 1.17), instead of the rule for equal sines, giving 1.17/2.6.",
+  "solve": "const b=1.3,L=0.9;return ((Math.PI+b*L)/(2*b)).toFixed(2);",
+  "distractor_solve": {
+   "1.55": "const b=1.3,L=0.9;return ((Math.PI+L)/(2*b)).toFixed(2);",
+   "2.16": "const b=1.3,L=0.9;return ((Math.PI+b*L)/2).toFixed(2);",
+   "0.45": "const b=1.3,L=0.9;return ((b*L)/(2*b)).toFixed(2);"
+  },
+  "quantity_asked": "The least t > 0 with sin(1.3t) = sin(1.3(t − 0.9)): t = (π + 1.17)/2.6 ≈ 1.66 s.",
+  "distractor_kind": {
+   "1.55": "time delay used directly as the phase: sin(1.3t − 0.9). (a) no parameter extreme. (b) neighbouring setup: the same supplementary solve with phase 0.9; strictly inside. (c) cheapest bound: 0 < t < one period 2π/1.3 ≈ 4.83 (the heights repeat every period); 1.55 strictly inside. (d) real: horizontal shift not multiplied by the coefficient.",
+   "2.16": "divides π + 1.17 by 2 instead of by 2.6 (the coefficient 1.3 not divided out), reporting the angle 1.3t as t. (a) no. (b) neighbouring: 2.16 rad is the value of 1.3t at the crossing, an intermediate; strictly inside (0, 4.83). (c) strictly inside. (d) real: solving for the argument instead of t.",
+   "0.45": "uses the general solution for equal COSINES (u = −v + 2πk) instead of equal sines (u = π − v + 2πk); with k = 0, 1.3t = −(1.3t − 1.17), t = 1.17/2.6. (a) no parameter extreme. (b) neighbouring: half the delay; strictly inside (0, 4.83). (c) strictly inside. (d) real: wrong general solution of sin u = sin v."
+  },
+  "distractor_meta": {
+   "1.55": {
+    "direction": "under",
+    "error_kind": "delay not multiplied by b"
+   },
+   "2.16": {
+    "direction": "over",
+    "error_kind": "argument reported instead of t"
+   },
+   "0.45": {
+    "direction": "under",
+    "error_kind": "cosine general-solution rule used for sine"
+   }
+  },
+  "bounds": [
+   "0 < t < 2π/1.3 ≈ 4.83 (one full period)"
+  ],
+  "mechanism": [
+   "two sinusoids with a time delay",
+   "sin u = sin v gives supplementary angles",
+   "phase shift equals coefficient times delay",
+   "first time two buoys are level"
+  ],
+  "arith_class_check": "Key (π + 1.17)/2.6 = 1.6583; all options two-decimal with nonzero final digits; the stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 1.55 and 1.66, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (delay not scaled and cosine rule under; argument reported as t over); no live trig item with a delayed pair; live sin = cos items are acute cofunction equations."
+  }
+ },
+ {
+  "id": "AM29F-X3",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "arithmetic sequence in context ending at a threshold term",
+  "subskill": "term threshold, then partial sum",
+  "prompt": "A runner's training plan starts with an 18.5-minute run on day 1, and each day's run is 2.4 minutes longer than the run on the day before. The plan ends after the first day on which the run lasts at least 60 minutes. What is the total running time, in minutes, over all the days of the plan?",
+  "choices": [
+   "745.8",
+   "700.2",
+   "761.9",
+   "717.9"
+  ],
+  "correct_answer": "761.9",
+  "explanation": "The run on day n lasts 18.5 + 2.4(n − 1) minutes. It is at least 60 when 2.4(n − 1) ≥ 41.5, that is, n − 1 ≥ 17.29..., so the first such day is day 19, with a 18.5 + 2.4(18) = 61.7-minute run. The plan has 19 days, and the total is 19(18.5 + 61.7)/2 = 19(40.1) = 761.9 minutes. The option \"700.2\" stops after day 18, the last day under 60 minutes: 18(18.5 + 59.3)/2 = 700.2. The option \"745.8\" counts the 19 days correctly but takes the last run as exactly 60 minutes: 19(18.5 + 60)/2 = 745.75. The option \"717.9\" uses n = (60 − 18.5)/2.4 + 1 ≈ 18.29 days without rounding up to a whole day, with the last run taken as 60: 18.29(18.5 + 60)/2 ≈ 717.9.",
+  "solve": "let n=1;while(18.5+2.4*(n-1)<60)n++;const l=18.5+2.4*(n-1);return (n*(18.5+l)/2).toFixed(1);",
+  "distractor_solve": {
+   "700.2": "return (18*(18.5+(18.5+2.4*17))/2).toFixed(1);",
+   "745.8": "return (19*(18.5+60)/2).toFixed(1);",
+   "717.9": "return ((41.5/2.4+1)*(18.5+60)/2).toFixed(1);"
+  },
+  "quantity_asked": "the total of 18.5, 20.9, ..., 61.7 (19 days, ending on the first day of at least 60 minutes): 19(18.5 + 61.7)/2 = 761.9.",
+  "distractor_kind": {
+   "700.2": "plan stopped after the last day BELOW 60 minutes (18 days). (a) no parameter extreme. (b) neighbouring setup: the 18-day total; inside (19 × 18.5 = 351.5, 19 × 61.7 = 1172.3). (c) cheapest bounds: more than 18 days are needed since 18.5 + 2.4(17) < 60, and every run is between 18.5 and about 62 minutes, so the total is in (351.5, 1172.3); strictly inside. (d) real: misreading at least 60.",
+   "745.8": "19 days counted correctly, but the last run taken as the threshold 60 instead of 61.7. (a) no. (b) neighbouring setup: the total if the plan ended at exactly 60 minutes; inside. (c) inside (351.5, 1172.3). (d) real: treating the threshold as a term of the sequence.",
+   "717.9": "day count left fractional: n = 41.5/2.4 + 1 = 18.29 with the last run 60. (a) no. (b) none. (c) inside. (d) real: using the nth-term formula without rounding n up to a whole day."
+  },
+  "distractor_meta": {
+   "700.2": {
+    "direction": "under",
+    "error_kind": "stops at last day below threshold"
+   },
+   "745.8": {
+    "direction": "under",
+    "error_kind": "threshold used as the last term"
+   },
+   "717.9": {
+    "direction": "under",
+    "error_kind": "fractional day count"
+   }
+  },
+  "bounds": [
+   "total > 19 × 18.5 = 351.5",
+   "total < 19 × 61.7 = 1172.3",
+   "the plan has more than 18 days (day 18 is 59.3 minutes)"
+  ],
+  "mechanism": [
+   "arithmetic sequence of daily run times",
+   "first day the term reaches at least 60",
+   "sum of the terms through the threshold day",
+   "training plan increasing 2.4 minutes per day"
+  ],
+  "arith_class_check": "Key 761.9; all four options are one-decimal values with nonzero tenths digits; nothing in the stem implies integrality.",
+  "one_sided_check": "Key largest; three different error kinds (stops one day early, threshold as last term, fractional day count). Natural errors that land ABOVE the key and are not options: counting 20 days (20(18.5 + 64.1)/2 = 826.0) by rounding 17.29 up and then adding the first day again, and using the arithmetic formula with the last run 61.7 and 18.5 + 2.4n for all 19 days (19(20.9 + 64.1)/2 = 807.5). The stem gives no reason to expect every slip to lower the total.",
+  "interior_parity_check": "Interior options by value: 717.9 and 745.8, both three-digit one-decimal values with nonzero tenths digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: 351.5 < total < 1172.3 (every run between 18.5 and 61.7 minutes). All three distractors lie on the key's side of the lower bound; the nearest distractor (745.8) is 16.1 below the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Spare; largest key. Residual: the 18-day stop differs from the key by the last term 61.7; arithmetic sums are common in the live bank, the threshold step is the twist."
+  }
+ },
+ {
+  "id": "AM29F-25",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sinusoidal model: where it increases on an interval",
+  "subskill": "increasing intervals of a sinusoid with a phase shift",
+  "prompt": "A wildlife biologist models the number of foxes in a region t months after the start of a study by the function F(t) = 820 + 140 sin(0.55t − 0.8), where the argument of the sine is in radians. During the first 18 months of the study (0 ≤ t ≤ 18), for a total of how many months, to the nearest hundredth, is the number of foxes increasing according to the model?",
+  "choices": [
+   "10.83",
+   "7.11",
+   "10.02",
+   "9.37"
+  ],
+  "correct_answer": "10.02",
+  "explanation": "A sine function increases while its argument u is between −π/2 and π/2 (plus multiples of 2π), that is, from a minimum up to the next maximum. Here u = 0.55t − 0.8 runs from −0.8 (at t = 0) to 0.55(18) − 0.8 = 9.1 (at t = 18). The increasing stretches of u inside [−0.8, 9.1] are from −0.8 to π/2 (length 2.3708) and from 3π/2 to 5π/2 (length π ≈ 3.1416); the next one starts at 7π/2 ≈ 11.0, beyond 9.1. The total is 5.5124 units of u, and since u changes 0.55 per month, that is 5.5124/0.55 ≈ 10.02 months. The option \"10.83\" counts the months when the sine is positive (the population above its average of 820) instead of when it is increasing. The option \"9.37\" reads the argument as 0.55(t − 0.8), shifting the graph by 0.8 month instead of 0.8/0.55 month. The option \"7.11\" reverses the sign of the phase, using 0.55t + 0.8.",
+  "solve": "const b=0.55,c=0.8,T=18;const meas=(a0,a1,off)=>{let L=0;for(let k=-10;k<20;k++){const s=off+2*k*Math.PI,e=s+Math.PI;L+=Math.max(0,Math.min(e,a1)-Math.max(s,a0));}return L;};return (meas(-c,b*T-c,-Math.PI/2)/b).toFixed(2);",
+  "distractor_solve": {
+   "10.83": "const b=0.55,c=0.8,T=18;const meas=(a0,a1,off)=>{let L=0;for(let k=-10;k<20;k++){const s=off+2*k*Math.PI,e=s+Math.PI;L+=Math.max(0,Math.min(e,a1)-Math.max(s,a0));}return L;};return (meas(-c,b*T-c,0)/b).toFixed(2);",
+   "9.37": "const b=0.55,c=0.8,T=18;const meas=(a0,a1,off)=>{let L=0;for(let k=-10;k<20;k++){const s=off+2*k*Math.PI,e=s+Math.PI;L+=Math.max(0,Math.min(e,a1)-Math.max(s,a0));}return L;};return (meas(-b*c,b*T-b*c,-Math.PI/2)/b).toFixed(2);",
+   "7.11": "const b=0.55,c=0.8,T=18;const meas=(a0,a1,off)=>{let L=0;for(let k=-10;k<20;k++){const s=off+2*k*Math.PI,e=s+Math.PI;L+=Math.max(0,Math.min(e,a1)-Math.max(s,a0));}return L;};return (meas(c,b*T+c,-Math.PI/2)/b).toFixed(2);"
+  },
+  "quantity_asked": "The total length of time in [0, 18] on which F is increasing: the measure of {t : cos(0.55t − 0.8) > 0} in [0, 18], ≈ 10.02 months.",
+  "distractor_kind": {
+   "10.83": "above-the-midline time (sin u > 0) taken for increasing time. (a) no parameter extreme. (b) neighbouring setup: the time above 820 on the same interval; strictly inside. (c) cheapest bound: one full period is 2π/0.55 ≈ 11.42 months, half of it increasing; the remaining 6.58 months can add 0 to 6.58, so the answer is in (5.71, 12.29); 10.83 strictly inside. (d) real: 'rising' confused with 'above average'.",
+   "9.37": "argument read as 0.55(t − 0.8) (phase shift of 0.8 instead of 0.8/0.55). (a) no. (b) none. (c) strictly inside (5.71, 12.29). (d) real: horizontal-shift factoring slip.",
+   "7.11": "phase sign reversed (0.55t + 0.8). (a) no. (b) none. (c) strictly inside (5.71, 12.29). (d) real: sign slip on the phase."
+  },
+  "distractor_meta": {
+   "10.83": {
+    "direction": "over",
+    "error_kind": "above midline for increasing"
+   },
+   "9.37": {
+    "direction": "under",
+    "error_kind": "phase shift not divided by b"
+   },
+   "7.11": {
+    "direction": "under",
+    "error_kind": "phase sign reversed"
+   }
+  },
+  "bounds": [
+   "half of one full period (2π/0.55 ≈ 11.42 months) is increasing: at least 5.71",
+   "the leftover 6.58 months adds at most 6.58: at most 12.29"
+  ],
+  "mechanism": [
+   "sinusoidal population model",
+   "increasing where the argument is between -π/2 and π/2",
+   "phase shift and window endpoints",
+   "total time increasing on an interval"
+  ],
+  "arith_class_check": "Key 5.5124/0.55 = 10.0225; options two-decimal, none a multiple of π or of the period (8.57 = 3π/1.1 and 5.71 deliberately excluded); stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 9.37 and 10.02, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one over error, two under; all inside the half-period bound (5.71, 12.29); no live 'increasing interval of a sinusoid' item (rising/increasing greps)."
+  }
+ }
+]

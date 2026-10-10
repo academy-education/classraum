@@ -1,0 +1,844 @@
+[
+ {
+  "id": "AM29S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "compound probability of a two-stage sampling plan without replacement",
+  "subskill": "two-stage sampling without replacement",
+  "prompt": "A grocery buyer inspects a crate of 17 mangoes, 5 of which are bruised, using the following plan. She first picks 2 mangoes from the crate at random. If neither of the 2 is bruised, she accepts the crate, and if both are bruised, she rejects it. If exactly 1 of the 2 is bruised, she picks 2 more mangoes at random from the 15 mangoes still in the crate; she rejects the crate if either of these 2 mangoes is bruised and accepts it otherwise. No picked mango is put back. To the nearest thousandth, what is the probability that the buyer rejects the crate?",
+  "choices": [
+   "0.301",
+   "0.284",
+   "0.309",
+   "0.295"
+  ],
+  "correct_answer": "0.284",
+  "explanation": "There are C(17,2) = 136 equally likely first pairs. Both bruised: C(5,2) = 10 pairs, probability 10/136. Exactly 1 bruised: 5 x 12 = 60 pairs, probability 60/136. In that case 15 mangoes remain, 11 unbruised and 4 bruised, and the crate is accepted only if both new picks are unbruised: (11/15)(10/14) = 110/210, so it is rejected with probability 100/210. P(reject) = 10/136 + (60/136)(100/210) = 0.0735 + 0.2101 = 0.2836, or 0.284. The option 0.295 treats every pick as made with replacement with bruise chance 5/17. The option 0.301 uses the full crate's proportions, 1 - (12/17)(11/16), for the second pair instead of the 15 mangoes left. The option 0.309 finds the second-stage chance by adding 4/15 + 4/15 for the two picks, which counts the both-bruised case twice.",
+  "solve": "const T=136;const r=10/T+(60/T)*(1-(11/15)*(10/14));return r.toFixed(3);",
+  "distractor_solve": {
+   "0.295": "const p=5/17,q=12/17;return (p*p+2*p*q*(1-q*q)).toFixed(3);",
+   "0.301": "const T=136;return (10/T+(60/T)*(1-(12/17)*(11/16))).toFixed(3);",
+   "0.309": "const T=136;return (10/T+(60/T)*(4/15+4/15)).toFixed(3);"
+  },
+  "quantity_asked": "P(the crate is rejected) under the two-stage plan, 17 mangoes with 5 bruised, all picks without replacement, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.295": "error path: binomial model, every pick with replacement at 5/17 (p^2 + 2pq(1-q^2)). (a) no parameter extreme: inside [0.074, 0.515]. (b) the with-replacement version of the same plan is the neighbouring setup; strictly inside. (c) cheapest bounds: P(both first picks bruised) = 0.074 below, P(at least one of first two bruised) = 0.515 above; strictly inside. (d) real error: ignores 'no picked mango is put back'.",
+   "0.301": "error path: second-stage pair computed from the original crate (12/17)(11/16) instead of the 15 left (11/15)(10/14). (a) inside [0.074, 0.515]. (b) not an intermediate on an extreme. (c) strictly inside both cheap bounds. (d) real error: forgets the first two mangoes are out of the crate.",
+   "0.309": "error path: second-stage 'either is bruised' found by adding 4/15 + 4/15 instead of 1 - P(both unbruised). (a) inside [0.074, 0.515]. (b) not an intermediate on an extreme. (c) strictly inside. (d) real error: addition rule without subtracting the overlap."
+  },
+  "distractor_meta": {
+   "0.295": {
+    "direction": "over",
+    "error_kind": "with-replacement (binomial) model"
+   },
+   "0.301": {
+    "direction": "over",
+    "error_kind": "second stage from original crate counts"
+   },
+   "0.309": {
+    "direction": "over",
+    "error_kind": "added probabilities of non-exclusive events"
+   }
+  },
+  "bounds": [
+   "P >= P(first two both bruised) = 10/136 = 0.074: kills nothing",
+   "P <= P(at least one of first two bruised) = 70/136 = 0.515: kills nothing",
+   "P <= 1 - C(12,4)/C(17,4) = 0.792 (some bruised mango among 4 picks): kills nothing"
+  ],
+  "mechanism": [
+   "two-stage acceptance sampling plan",
+   "second sample taken only if exactly one defective",
+   "probability without replacement from a crate",
+   "reject if either of two more is bad"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities from unrelated expressions (100/210 stage, binomial, 140/272 stage, additive 8/15 stage); no integer, no shared denominator visible.",
+  "one_sided_check": "Key smallest. Distractors come from three different errors (binomial model, stale crate counts, additive 'either'). Natural slips push DOWN too: treating the two extra picks as with replacement, 1 - (11/15)^2, gives 0.277; counting exactly-one pairs in one order only (30/136) gives 0.179; dropping the both-bruised branch gives 0.210. The stem does not show which way an error moves.",
+  "interior_parity_check": "Interior by value: 0.295 and 0.301; both three-decimal, neither round, neither a simple fraction.",
+  "cheap_bound_check": "Key smallest. Cheapest bounds: 0.074 (both first picks bruised) and 0.515 (any bruised in first pair); all four options lie between, so nothing is eliminated. The one-step binomial estimate with p = 5/17 gives 0.295 itself, 0.011 above the key; 0.295, 0.301 and 0.309 all lie on the key's side of the 0.515 upper bound.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Three distinct error kinds above; three natural slips below (0.277, 0.210, 0.179). Nearest option 0.011 away; spacing irregular (.011/.006/.008); plan not in dump."
+  }
+ },
+ {
+  "id": "AM29S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "compound probability without replacement",
+  "subskill": "two random positions in a grid: different row and column",
+  "prompt": "A classroom has 35 desks arranged in 5 rows of 7 desks each, so that the desks also form 7 columns of 5 desks each. Two students are assigned to two different desks at random, with every pair of different desks equally likely. To the nearest thousandth, what is the probability that the two desks are in different rows and also in different columns?",
+  "choices": [
+   "0.727",
+   "0.676",
+   "0.657",
+   "0.706"
+  ],
+  "correct_answer": "0.706",
+  "explanation": "Think of the first student's desk as fixed. The second student's desk is equally likely to be any of the other 34 desks. Desks that share a row or a column with the first desk: the other 6 desks in its row and the other 4 desks in its column, 10 in all. So 34 - 10 = 24 desks qualify, and the probability is 24/34 ≈ 0.706. The option 0.676 subtracts the 7 desks of the row and the 5 desks of the column from all 35 (23/34), removing the first desk twice. The option 0.657 uses all 35 desks for the second student as well, counting 35 - 7 - 5 = 23 of 35 desks (23/35). The option 0.727 multiplies P(different rows) = 28/34 by P(different columns) = 30/34 as if the two conditions were independent.",
+  "solve": "return (24/34).toFixed(3);",
+  "distractor_solve": {
+   "0.676": "return ((35-7-5)/34).toFixed(3);",
+   "0.657": "return ((35-7-5)/35).toFixed(3);",
+   "0.727": "return ((28/34)*(30/34)).toFixed(3);"
+  },
+  "quantity_asked": "P(two distinct random desks of a 5 x 7 array lie in different rows and different columns), to the nearest thousandth.",
+  "distractor_kind": {
+   "0.676": "error path: 35 - 7 - 5 = 23 favourable, the first desk removed twice. (a) no stem bound on it: inside (0, 28/34 = 0.824). (b) neighbouring count strictly inside. (c) cheapest one-step estimate, treating the two desks as independent picks, (4/5)(6/7) = 0.686: options lie on both sides of it, and 0.676 is strictly inside (0, 0.824). (d) real inclusion-exclusion slip.",
+   "0.657": "error path: the second desk drawn from all 35 (as if with replacement) and the row and column of 7 and 5 desks subtracted: 23/35. (a) no stem bound on it; inside (0, 0.824). (b) neighbouring setup (with replacement, subtraction slip) strictly inside. (c) inside every cheap estimate. (d) real wrong-pool error.",
+   "0.727": "error path: P(different rows) x P(different columns) = (28/34)(30/34), treating dependent conditions as independent. (a) no bound on it. (b) the product of the two single-condition probabilities, strictly below both (0.824, 0.882). (c) inside. (d) real independence error."
+  },
+  "distractor_meta": {
+   "0.676": {
+    "direction": "under",
+    "error_kind": "double subtraction (inclusion-exclusion)"
+   },
+   "0.657": {
+    "direction": "under",
+    "error_kind": "wrong pool (second desk from all 35)"
+   },
+   "0.727": {
+    "direction": "over",
+    "error_kind": "dependent events multiplied as independent"
+   }
+  },
+  "bounds": [
+   "P < P(different rows) = 28/34 = 0.824: kills nothing",
+   "P < P(different columns) = 30/34 = 0.882: kills nothing",
+   "0 < P < 1: kills nothing"
+  ],
+  "mechanism": [
+   "two distinct random cells of a rows-by-columns array",
+   "different row and different column",
+   "second pick excludes its row and column",
+   "desks in rows and columns"
+  ],
+  "arith_class_check": "No. 23/35, 23/34, 24/34 and 840/1156 shown as three-decimal values; no integer, no simple fraction stands out.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 0.676 and 0.706 (key); both three-decimal, neither round; the key is not nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors both sides; the symmetric 25/34 slip is left out so no run passes through the key."
+  }
+ },
+ {
+  "id": "AM29S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "compound probability of independent events",
+  "subskill": "system with a two-relay route and a backup route",
+  "prompt": "A company sends each data file to its backup center over two routes at the same time. Route 1 passes through two relay stations, R and S, one after the other, and a file gets through on route 1 only if both R and S are working. Route 2 is a direct link that does not use R or S. On a given day, R is working with probability 0.95, S is working with probability 0.70, and the direct link is working with probability 0.60, and these three are independent. To the nearest thousandth, what is the probability that a file sent that day reaches the backup center by at least one of the two routes?",
+  "choices": [
+   "0.836",
+   "0.674",
+   "0.866",
+   "0.695"
+  ],
+  "correct_answer": "0.866",
+  "explanation": "Route 1 works with probability (0.95)(0.70) = 0.665, so it fails with probability 0.335. Route 2 fails with probability 0.40. The file fails to arrive only if both routes fail: (0.335)(0.40) = 0.134. So the probability it arrives is 1 - 0.134 = 0.866. The option 0.836 treats the direct link as a backup for S only, (0.95)(1 - 0.30 x 0.40). The option 0.695 adds to P(route 1) only the case where R fails and the direct link works, 0.665 + (0.05)(0.60), leaving out the case where R works but S fails. The option 0.674 writes P(route 1 fails) as (0.05)(0.30) in P(route 1) + P(route 1 fails)P(route 2) = 0.665 + (0.015)(0.60).",
+  "solve": "const r=0.95,s=0.70,d=0.60;return (1-(1-r*s)*(1-d)).toFixed(3);",
+  "distractor_solve": {
+   "0.836": "const r=0.95,s=0.70,d=0.60;return (r*(1-(1-s)*(1-d))).toFixed(3);",
+   "0.695": "const r=0.95,s=0.70,d=0.60;return (r*s+(1-r)*d).toFixed(3);",
+   "0.674": "const r=0.95,s=0.70,d=0.60;return (r*s+(1-r)*(1-s)*d).toFixed(3);"
+  },
+  "quantity_asked": "P((R and S) or D) with P(R) = 0.95, P(S) = 0.70, P(D) = 0.60 independent, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.836": "error path: wrong structure, R and (S or D): 0.95 x 0.88. (a) no stem bound on it: inside [0.665, 1). (b) neighbouring system (the direct link backs up S only), strictly inside. (c) cheapest bound P >= max(0.665, 0.60) = 0.665: 0.836 strictly above it; no cheap upper bound below 1 reaches it. (d) real series/parallel mis-grouping.",
+   "0.695": "error path: P(route 1) + P(R fails)P(D), omitting the case R works and S fails. (a) no bound on it: above 0.665. (b) partial case analysis, strictly inside. (c) inside [0.665, 1). (d) real omitted-case error.",
+   "0.674": "error path: P(route 1 fails) computed as P(R fails)P(S fails) = 0.015 inside P(route 1) + P(route 1 fails)P(D). (a) above the bound 0.665, not on it. (b) strictly inside. (c) inside [0.665, 1). (d) real complement-of-an-AND error (the same slip inside 1 - P(both fail) gives 0.994, above the key)."
+  },
+  "distractor_meta": {
+   "0.836": {
+    "direction": "under",
+    "error_kind": "series/parallel mis-grouping"
+   },
+   "0.695": {
+    "direction": "under",
+    "error_kind": "omitted case"
+   },
+   "0.674": {
+    "direction": "under",
+    "error_kind": "complement of AND taken as AND of complements"
+   }
+  },
+  "bounds": [
+   "P >= P(route 1) = 0.665 and P >= P(route 2) = 0.60: kills nothing",
+   "P <= 1: kills nothing"
+  ],
+  "mechanism": [
+   "reliability of a series-parallel system",
+   "route works only if both relays work",
+   "at least one of two routes",
+   "1 - P(both routes fail)"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities; the key 0.866 is not a simpler number than 0.836, 0.695, 0.674.",
+  "one_sided_check": "Key largest. Errors of three different kinds. Natural errors that move UP exist and are not options: ignoring S (1 - 0.05 x 0.40 = 0.980), treating R and S as alternatives (0.994), and the same complement slip as 0.674 made inside 1 - P(both fail) (0.994). Whether a slip raises or lowers the answer depends on which method the student uses, not on the stem.",
+  "interior_parity_check": "Interior by value: 0.695 and 0.836; both three-decimal, neither round.",
+  "cheap_bound_check": "Key largest. Cheapest bounds: P >= max(0.665, 0.60) = 0.665, which all four options exceed (kills nothing); P <= 1. No one-step estimate below 1 caps the answer: P <= P(route 1) + P(route 2) = 1.265. The nearest distractor 0.836 is 0.030 below the key, inside the resolution of a rough estimate 'about 0.85-0.87'; 0.674, 0.695 and 0.836 all lie on the key's side of the lower bound.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three error kinds; natural upward slips (0.980, 0.994) exist; no cheap bound separates 0.836 from 0.866."
+  }
+ },
+ {
+  "id": "AM29S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "compound probability with dependent stages",
+  "subskill": "one-and-one free throws: comparing two independent trials",
+  "prompt": "In a basketball league, a player who is fouled in certain situations is awarded a one-and-one: she attempts a free throw, and only if she makes it does she attempt a second free throw. Each made free throw is worth 1 point, so a one-and-one earns 0, 1, or 2 points. Lena makes each free throw she attempts with probability 0.6, independently of all her other attempts. In one game she is awarded exactly two one-and-ones. To the nearest thousandth, what is the probability that she scores more points on her first one-and-one than on her second?",
+  "choices": [
+   "0.355",
+   "0.406",
+   "0.326",
+   "0.307"
+  ],
+  "correct_answer": "0.326",
+  "explanation": "For one one-and-one: 0 points if she misses the first, P = 0.4; 1 point if she makes the first and misses the second, P = (0.6)(0.4) = 0.24; 2 points if she makes both, P = 0.36. The first one-and-one earns more in three cases: 2 then 0, (0.36)(0.4) = 0.144; 2 then 1, (0.36)(0.24) = 0.0864; 1 then 0, (0.24)(0.4) = 0.096. The total is 0.3264, about 0.326. The option 0.307 treats each one-and-one as two free throws that are always both attempted, so P(0) = 0.16 and P(1) = 0.48. The option 0.355 uses symmetry, (1 - P(tie))/2, but leaves the 1-1 tie out of P(tie). The option 0.406 does the same but leaves out the 0-0 tie.",
+  "solve": "const p=0.6,q=0.4;const a=[q,p*q,p*p];return (a[2]*a[0]+a[2]*a[1]+a[1]*a[0]).toFixed(3);",
+  "distractor_solve": {
+   "0.307": "const p=0.6,q=0.4;const b=[q*q,2*p*q,p*p];return (b[2]*b[0]+b[2]*b[1]+b[1]*b[0]).toFixed(3);",
+   "0.355": "const p=0.6,q=0.4;const a=[q,p*q,p*p];return ((1-a[0]*a[0]-a[2]*a[2])/2).toFixed(3);",
+   "0.406": "const p=0.6,q=0.4;const a=[q,p*q,p*p];return ((1-a[1]*a[1]-a[2]*a[2])/2).toFixed(3);"
+  },
+  "quantity_asked": "P(points on first one-and-one > points on second), each one-and-one 0/1/2 with P = 0.4, 0.24, 0.36, independent, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.307": "error path: one-and-one modelled as two always-attempted shots (binomial 0.16/0.48/0.36). (a) no stem bound on it: above the two-term subset bound 0.240, below the symmetry cap (1 - 0.36^2)/2 = 0.435. (b) neighbouring setup (two free throws) strictly inside. (c) cheapest estimates: subset 0.144 + 0.096 = 0.240 below it; cap 0.435 above it. (d) real misreading of the one-and-one rule.",
+   "0.355": "error path: (1 - P(tie))/2 with the 1-1 tie omitted (P(tie) = 0.16 + 0.1296). (a) no bound on it: strictly below the symmetry cap 0.435. (b) strictly inside. (c) inside [0.240, 0.435]. (d) real omitted-case error in the symmetry method.",
+   "0.406": "error path: (1 - P(tie))/2 with the 0-0 tie omitted (P(tie) = 0.0576 + 0.1296). (a) below the cap 0.435, not on it. (b) strictly inside. (c) inside [0.240, 0.435]. (d) real omitted-case error."
+  },
+  "distractor_meta": {
+   "0.307": {
+    "direction": "under",
+    "error_kind": "wrong model (binomial instead of one-and-one)"
+   },
+   "0.355": {
+    "direction": "over",
+    "error_kind": "omitted 1-1 tie in symmetry method"
+   },
+   "0.406": {
+    "direction": "over",
+    "error_kind": "omitted 0-0 tie in symmetry method"
+   }
+  },
+  "bounds": [
+   "P >= P(2,0) + P(1,0) = 0.240 (subset of the event): kills nothing",
+   "P <= (1 - P(2,2))/2 = 0.435 by symmetry: kills nothing",
+   "P < 1/2 by symmetry: kills nothing"
+  ],
+  "mechanism": [
+   "one-and-one free throw distribution 0/1/2 points",
+   "second attempt only if the first is made",
+   "compare two independent trials: first exceeds second",
+   "symmetry (1 - P(tie))/2"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities from unrelated expressions; no integer, no simple fraction.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 0.326 (key) and 0.355; both three-decimal, neither round.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; the two symmetry-method omissions sit above, the binomial-model error below; all inside the subset bound 0.240 and symmetry cap 0.435."
+  }
+ },
+ {
+  "id": "AM29S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "counting with the multiplication and addition principles",
+  "subskill": "counting routes through a one-way network",
+  "prompt": "A mountain park has a trailhead T, two junctions P and Q, and a summit S. There are exactly 4 different trails from T up to P, 3 different trails from T up to Q, 3 different connector trails from P up to Q, 2 different trails from P up to S, and 6 different trails from Q up to S, and no other trails. A hiker walks from T to S, always going uphill, so a connector trail can be walked only from P to Q, never from Q to P. Two routes are different if they differ in at least one trail. How many different routes can the hiker take from T to S?",
+  "choices": [
+   "116",
+   "170",
+   "98",
+   "128"
+  ],
+  "correct_answer": "98",
+  "explanation": "There are three kinds of routes. T to P to S: 4 x 2 = 8. T to Q to S: 3 x 6 = 18. T to P to Q to S: 4 x 3 x 6 = 72. The total is 8 + 18 + 72 = 98. The option 116 also walks the connectors downhill, adding T to Q to P to S, 3 x 3 x 2 = 18. The option 170 adds the routes through P (8 + 72 = 80) and the routes through Q (18 + 72 = 90), counting the 72 connector routes twice. The option 128 multiplies the 4 + 3 = 7 trails into the junctions by the 2 + 6 = 8 trails out of them and then adds the 72 connector routes.",
+  "solve": "const a=4,b=3,c=3,d=2,e=6;return String(a*d+b*e+a*c*e);",
+  "distractor_solve": {
+   "116": "const a=4,b=3,c=3,d=2,e=6;return String(a*d+b*e+a*c*e+b*c*d);",
+   "128": "const a=4,b=3,c=3,d=2,e=6;return String((a+b)*(d+e)+a*c*e);",
+   "170": "const a=4,b=3,c=3,d=2,e=6;return String((a*d+a*c*e)+(b*e+a*c*e));"
+  },
+  "quantity_asked": "Number of uphill routes T to S: T-P-S, T-Q-S and T-P-Q-S, with 4, 3, 3, 2, 6 trails on the legs T-P, T-Q, P-Q, P-S, Q-S.",
+  "distractor_kind": {
+   "116": "error path: the one-way condition ignored, T-Q-P-S routes (18) added. (a) no cheap stem bound on it (the two-way count is not readable without computing it). (b) neighbouring setup (two-way connectors), strictly inside the range of the options; not an intermediate. (c) cheapest one-step estimate over the whole quantity: the connector family alone, 72, is a lower bound; 116 is above it; no cheap upper bound exists below 116. (d) real neglected-condition error.",
+   "128": "error path: (trails into the junctions) x (trails out of them) + connector routes, pairing T-P trails with Q-S trails directly. (a) no bound on it. (b) neighbouring setup strictly inside. (c) above 72. (d) real mis-pairing error of the multiplication principle.",
+   "170": "error path: routes through P plus routes through Q, the T-P-Q-S routes counted twice. (a) no bound on it. (b) sum of two intermediate subtotals (80 + 90), not an extreme of a feasible interval. (c) above the lower bound 72. (d) real double-count error."
+  },
+  "distractor_meta": {
+   "116": {
+    "direction": "over",
+    "error_kind": "stated one-way condition ignored"
+   },
+   "128": {
+    "direction": "over",
+    "error_kind": "mis-paired legs (multiply sums)"
+   },
+   "170": {
+    "direction": "over",
+    "error_kind": "double count of overlapping cases"
+   }
+  },
+  "bounds": [
+   "count >= 72 (the T-P-Q-S family alone): kills nothing",
+   "count >= 8 + 18 = 26 (the two direct families): kills nothing"
+  ],
+  "mechanism": [
+   "counting routes through a network of junctions",
+   "multiplication principle along a route, addition across route types",
+   "one-way connector between two junctions",
+   "trails up a mountain"
+  ],
+  "arith_class_check": "No. 98, 116, 128 and 170 are all even, none a square or a multiple of 10 beside non-round values; no divisibility property from the stem picks 98.",
+  "one_sided_check": "Key smallest. The three options come from three different errors (neglected condition, double count, mis-pairing). Natural errors that move DOWN exist and are not options: leaving out the connector routes (26), adding instead of multiplying along T-P-Q-S (8 + 18 + 13 = 39), forgetting the T-P-S family (90). The stem does not say which way a slip moves.",
+  "interior_parity_check": "Interior by value: 116 and 128; both three-digit even non-round integers.",
+  "cheap_bound_check": "Key smallest. The cheapest one-sided bound is a lower bound, count >= 72 (the connector family alone) or >= 26, which every option exceeds; there is no cheap upper bound. The nearest distractor 116 is 18 above the key; 116, 128 and 170 all lie on the key's side of the lower bound.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three error kinds above; natural undercounts (26, 39, 90) exist off the list; no cheap upper bound."
+  }
+ },
+ {
+  "id": "AM29S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "conditional probability",
+  "subskill": "given-that reversal after a transfer between bags",
+  "prompt": "Bag 1 contains 7 red marbles and 4 blue marbles. Bag 2 contains 3 red marbles and 6 blue marbles. Two marbles are taken at random from bag 1 at the same time and placed in bag 2. Then one marble is drawn at random from bag 2, and it is red. Given this, what is the probability, to the nearest thousandth, that exactly one of the two marbles moved from bag 1 was red?",
+  "choices": [
+   "0.433",
+   "0.516",
+   "0.364",
+   "0.477"
+  ],
+  "correct_answer": "0.477",
+  "explanation": "The pair moved from bag 1 has 2 red, 1 red, or 0 red marbles in C(7,2) = 21, 7 x 4 = 28, and C(4,2) = 6 of the 55 equally likely pairs. Bag 2 then holds 11 marbles with 5, 4, or 3 red, so P(red drawn) given each case is 5/11, 4/11, 3/11. Weighted: 21(5) = 105, 28(4) = 112, 6(3) = 18, total 235 (all over 55 x 11). So P(exactly one red moved | red drawn) = 112/235 = 0.477. The option 0.364 is the reverse conditional, P(red drawn | one red moved) = 4/11. The option 0.433 treats the two marbles as drawn with replacement (pair probabilities (7/11)^2, 2(7/11)(4/11), (4/11)^2). The option 0.516 leaves out the case in which both moved marbles are blue: 112/(105 + 112).",
+  "solve": "const C=(n,k)=>k===2?n*(n-1)/2:n;const pr=[C(7,2),7*4,C(4,2)],L=[5/11,4/11,3/11];const j=pr.map((p,i)=>p*L[i]);return (j[1]/(j[0]+j[1]+j[2])).toFixed(3);",
+  "distractor_solve": {
+   "0.364": "const C=(n,k)=>k===2?n*(n-1)/2:n;const pr=[C(7,2),7*4,C(4,2)],L=[5/11,4/11,3/11];return L[1].toFixed(3);",
+   "0.433": "const C=(n,k)=>k===2?n*(n-1)/2:n;const pr=[C(7,2),7*4,C(4,2)],L=[5/11,4/11,3/11];const p=7/11,q=[p*p,2*p*(1-p),(1-p)*(1-p)];const j=q.map((x,i)=>x*L[i]);return (j[1]/(j[0]+j[1]+j[2])).toFixed(3);",
+   "0.516": "const C=(n,k)=>k===2?n*(n-1)/2:n;const pr=[C(7,2),7*4,C(4,2)],L=[5/11,4/11,3/11];const j=pr.map((p,i)=>p*L[i]);return (j[1]/(j[0]+j[1])).toFixed(3);"
+  },
+  "quantity_asked": "P(exactly one red among the two marbles moved | the marble then drawn from bag 2 is red), to the nearest thousandth.",
+  "distractor_kind": {
+   "0.364": "error path: reverse conditional P(red drawn | one red moved) = 4/11. (a) not a limiting case of any parameter. (b) neighbouring question (the likelihood, an intermediate) strictly inside (0, 1) and not on any bound of the posterior. (c) cheapest estimates: posterior near the prior 28/55 = 0.509 (no conditioning) - no direction is free without comparing 4/11 with the average likelihood; 0.364 strictly inside (0, 1). (d) real inverted-conditional error.",
+   "0.433": "error path: pair treated as two independent draws with replacement, 2(7/11)(4/11) etc. (a) no limiting case. (b) neighbouring setup (with replacement) strictly inside. (c) inside every cheap interval. (d) real sampling-model error.",
+   "0.516": "error path: the 0-red case (6 pairs, likelihood 3/11) dropped from the denominator. (a) no limiting case. (b) partial case analysis, strictly inside. (c) inside (0,1); no cheap bound puts the key below 0.5. (d) real omitted-case error."
+  },
+  "distractor_meta": {
+   "0.364": {
+    "direction": "under",
+    "error_kind": "reverse conditional"
+   },
+   "0.433": {
+    "direction": "under",
+    "error_kind": "with-replacement model"
+   },
+   "0.516": {
+    "direction": "over",
+    "error_kind": "omitted case"
+   }
+  },
+  "bounds": [
+   "0 < P < 1: kills nothing",
+   "posterior vs prior 28/55 = 0.509: direction needs the average likelihood (3 + 14/11)/11 = 0.388 vs 4/11; not stem-readable without computing; kills nothing among options except it would bound 0.516 only through that computation"
+  ],
+  "mechanism": [
+   "marbles moved from one bag to another then a draw",
+   "given-that reversal over the composition of the transferred pair",
+   "hypergeometric pair counts as prior weights",
+   "probability that exactly one transferred marble was red"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities; key 112/235 is not simpler than the others; 0.364 is 4/11, a stem-visible fraction but a distractor.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 0.433 and 0.477; both three-decimal, neither round or a recognisable fraction.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three error kinds (reverse conditional, sampling model, omitted case), two under one over; no cheap bound separates 0.477 from 0.433 or 0.516."
+  }
+ },
+ {
+  "id": "AM29S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value",
+  "subskill": "expected number of tests under two-stage group testing",
+  "prompt": "A lab must test blood samples from 480 people for a virus. Each person is infected with probability 0.02, independently of the others. The samples are divided into 60 groups of 8. For each group, the lab first tests a mixture of all 8 samples. If that test is negative, no more tests are done on that group. If it is positive, the 8 samples are split into two halves of 4, and a mixture of each half is tested. Every half whose test is positive then has each of its 4 samples tested on its own. A mixture tests positive exactly when it contains a sample from at least one infected person. To the nearest tenth, what is the expected total number of tests the lab performs for the 480 people?",
+  "choices": [
+   "97.3",
+   "115.2",
+   "83.5",
+   "114.1"
+  ],
+  "correct_answer": "115.2",
+  "explanation": "For one group, the 8-sample test is always done (1 test). The two half tests are done when the group contains an infected person, with probability 1 - 0.98^8 = 0.14924. A half has its 4 samples tested when that half contains an infected person, with probability 1 - 0.98^4 = 0.07763 (a positive half always means a positive group, so no further factor is needed). Expected tests per group = 1 + 2(0.14924) + 2(4)(0.07763) = 1.91953. For 60 groups: 60(1.91953) = 115.2. The option 83.5 multiplies 0.07763 by 0.14924 again, treating 'the group was positive' as a separate event to be multiplied in. The option 114.1 uses the probability that a half has exactly one infected sample, 4(0.02)(0.98^3), instead of at least one. The option 97.3 leaves out the two half tests.",
+  "solve": "const p=0.02,q=1-p,G=60,P8=1-q**8,P4=1-q**4;return (G*(1+2*P8+8*P4)).toFixed(1);",
+  "distractor_solve": {
+   "83.5": "const p=0.02,q=1-p,G=60,P8=1-q**8,P4=1-q**4;return (G*(1+2*P8+8*P8*P4)).toFixed(1);",
+   "114.1": "const p=0.02,q=1-p,G=60,P8=1-q**8,P4=1-q**4;return (G*(1+2*P8+8*(4*p*q**3))).toFixed(1);",
+   "97.3": "const p=0.02,q=1-p,G=60,P8=1-q**8,P4=1-q**4;return (G*(1+8*P4)).toFixed(1);"
+  },
+  "quantity_asked": "The expected total number of tests (group, half and individual) for all 60 groups of 8, to the nearest tenth.",
+  "distractor_kind": {
+   "83.5": "error path: P(half positive) multiplied by P(group positive), as if the two were independent stages. (a) no limiting case (p -> 0 sends every option to 60). (b) neighbouring setup (conditional probability misused) strictly inside (60, 115.2). (c) cheapest estimates: at least 60 tests (one per group) and the linear estimate 60(1 + 48p) = 117.6 above; 83.5 strictly inside. (d) real double-conditioning error.",
+   "114.1": "error path: a half counted as positive only when it holds exactly one infected sample, 4pq^3. (a) no limiting case. (b) neighbouring event strictly inside. (c) strictly inside (60, 117.6). (d) real exactly-one-for-at-least-one error.",
+   "97.3": "error path: the two half tests left out (1 + 8(1 - q^4) per group). (a) no limiting case. (b) strictly inside. (c) strictly inside (60, 117.6). (d) real omitted-stage error."
+  },
+  "distractor_meta": {
+   "83.5": {
+    "direction": "under",
+    "error_kind": "stage probabilities multiplied"
+   },
+   "114.1": {
+    "direction": "under",
+    "error_kind": "exactly one for at least one"
+   },
+   "97.3": {
+    "direction": "under",
+    "error_kind": "omitted half tests"
+   }
+  },
+  "bounds": [
+   "total >= 60 (one test per group): kills nothing",
+   "total <= 60 x 11 = 660 (every test always done): kills nothing",
+   "linear estimate 60(1 + 2(8p) + 8(4p)) = 117.6 is an upper bound (P(at least one) <= sum): above every option, kills nothing"
+  ],
+  "mechanism": [
+   "pooled blood samples tested as one mixture",
+   "positive mixture split into halves then individual tests",
+   "expected number of tests in group testing",
+   "probability a group of 8 contains at least one infected"
+  ],
+  "arith_class_check": "No. Four one-decimal values, none round or half-integer; key 115.2 is not simpler than 83.5, 97.3, 114.1.",
+  "one_sided_check": "Key largest. Three error kinds: multiplying stage probabilities, exactly-one for at-least-one, an omitted stage. Natural errors that move UP exist and are not options: always testing both halves (forgetting they depend on the group test) gives 217.3; testing all 8 samples individually when the group is positive gives 149.5; the linear estimate 8p, 4p for the group and half probabilities gives 117.6.",
+  "interior_parity_check": "Interior by value: 97.3 and 114.1; both one-decimal, non-round.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bounds: 60 below (kills nothing); the linear/union estimate 117.6 and the all-tests cap 660 above, which lie on the far side of the key and kill nothing. The one-step-finer estimate needs 1 - 0.98^4 and 1 - 0.98^8 exactly, which is the computation. Nearest distractor 114.1 is 1.1 below the key; 83.5, 97.3, 114.1 all lie between the lower bound 60 and the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, three under errors of different kinds; over errors (both halves always tested 217.3, all-8 retest 149.5, linear 117.6) are natural; a grader may still read the under errors as 'smaller event'."
+  }
+ },
+ {
+  "id": "AM29S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value",
+  "subskill": "expected waiting time for an irregular schedule",
+  "prompt": "On weekday mornings, a shuttle leaves a station at exactly 7:04, 7:15, 7:27, 7:33, 7:51, and 8:14 a.m., and at no other times between 7:00 and 8:14 a.m. Mia arrives at the station at a random time between 7:00 a.m. and 8:00 a.m., with every moment in that hour equally likely, and she waits for the next shuttle to leave. To the nearest hundredth of a minute, what is the expected number of minutes Mia waits?",
+  "choices": [
+   "7.33",
+   "9.75",
+   "6.02",
+   "8.12"
+  ],
+  "correct_answer": "8.12",
+  "explanation": "Split the hour by departure times. If Mia arrives during an interval that ends at a departure, her wait runs evenly from the interval's length down to 0, so her average wait there is half the length: 7:00-7:04 (4 min, average 2), 7:04-7:15 (11, 5.5), 7:15-7:27 (12, 6), 7:27-7:33 (6, 3), 7:33-7:51 (18, 9). From 7:51 to 8:00 (9 min) the next shuttle is at 8:14, so her wait runs from 23 down to 14 minutes, average 18.5. Weighting each average by the interval's share of the 60 minutes: (4(2) + 11(5.5) + 12(6) + 6(3) + 18(9) + 9(18.5))/60 = 487/60 = 8.12. The option 7.33 averages the six interval averages without weighting by length. The option 6.02 treats 8:00 as if a shuttle left then, so the last interval averages 4.5. The option 9.75 uses the whole 23-minute gap from 7:51 to 8:14 (average 11.5) while still dividing by 60.",
+  "solve": "const dep=[4,15,27,33,51,74],T=60;let t=0;const s=[];for(const d of dep){if(t>=T)break;const e=Math.min(d,T);s.push({len:e-t,mean:(2*d-t-e)/2,full:d-t});t=d;}return (s.reduce((a,g)=>a+g.len*g.mean,0)/T).toFixed(2);",
+  "distractor_solve": {
+   "7.33": "const dep=[4,15,27,33,51,74],T=60;let t=0;const s=[];for(const d of dep){if(t>=T)break;const e=Math.min(d,T);s.push({len:e-t,mean:(2*d-t-e)/2,full:d-t});t=d;}return (s.reduce((a,g)=>a+g.mean,0)/s.length).toFixed(2);",
+   "6.02": "const dep=[4,15,27,33,51,74],T=60;let t=0;const s=[];for(const d of dep){if(t>=T)break;const e=Math.min(d,T);s.push({len:e-t,mean:(2*d-t-e)/2,full:d-t});t=d;}return (s.reduce((a,g)=>a+g.len*g.len/2,0)/T).toFixed(2);",
+   "9.75": "const dep=[4,15,27,33,51,74],T=60;let t=0;const s=[];for(const d of dep){if(t>=T)break;const e=Math.min(d,T);s.push({len:e-t,mean:(2*d-t-e)/2,full:d-t});t=d;}return (s.reduce((a,g)=>a+g.full*g.full/2,0)/T).toFixed(2);"
+  },
+  "quantity_asked": "The expected waiting time, in minutes, of a rider arriving uniformly at random between 7:00 and 8:00 a.m., to the nearest hundredth.",
+  "distractor_kind": {
+   "7.33": "error path: unweighted mean of the six interval averages. (a) no limiting case. (b) neighbouring setup (each interval equally likely) strictly inside (0, 23). (c) cheapest estimates: wait between 0 and 23 minutes; mean gap / 2 = 6.17 is a common estimate but not a bound; 7.33 strictly inside. (d) real equal-weights error.",
+   "6.02": "error path: the hour's end treated as a departure, so the last interval's average wait is 4.5 instead of 18.5. (a) no limiting case. (b) strictly inside. (c) strictly inside (0, 23). (d) real wrong-boundary error.",
+   "9.75": "error path: the full 7:51-8:14 gap (23 min) weighted as if arrivals ran to 8:14, still divided by 60. (a) no limiting case. (b) strictly inside. (c) strictly inside (0, 23). (d) real wrong-window error."
+  },
+  "distractor_meta": {
+   "7.33": {
+    "direction": "under",
+    "error_kind": "unweighted interval averages"
+   },
+   "6.02": {
+    "direction": "under",
+    "error_kind": "window end taken as a departure"
+   },
+   "9.75": {
+    "direction": "over",
+    "error_kind": "last gap used whole"
+   }
+  },
+  "bounds": [
+   "0 < wait <= 23 minutes: kills nothing",
+   "no stem-readable bound against mean gap / 2 (6.17) without the weighting argument: kills nothing"
+  ],
+  "mechanism": [
+   "rider arrives at a random time and waits for the next departure",
+   "expected waiting time for an irregular timetable",
+   "each interval weighted by its length, average wait half the interval",
+   "last interval extends past the arrival window"
+  ],
+  "arith_class_check": "No. Four two-decimal values; the key 8.12 (487/60) is not simpler than 6.02, 7.33, 9.75.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 7.33 and 8.12; both two-decimal, non-round, neither a recognisable fraction display.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three error kinds (equal weights, wrong boundary, wrong window), two under, one over; no cheap bound separates the options."
+  }
+ },
+ {
+  "id": "AM29S-09",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected profit when sales are limited by the amount stocked",
+  "subskill": "expected value of a piecewise payoff",
+  "prompt": "Each morning a bakery bakes exactly 45 loaves of rye bread at a cost of $1.15 per loaf baked. During the day it sells rye loaves for $3.75 each, but it cannot sell more loaves than it baked. At closing, any unsold rye loaves are sold to a discount grocer for $0.80 each. The number of customers who want a rye loaf on a given day (each customer wants exactly 1 loaf) has the following probability distribution.\n29 customers: probability 0.20\n37 customers: probability 0.25\n46 customers: probability 0.35\n53 customers: probability 0.20\nThe bakery's daily profit from rye bread is all the money it receives for rye loaves minus the cost of baking them. To the nearest cent, what is the bakery's expected daily profit, in dollars, from rye bread?",
+  "choices": [
+   "103.48",
+   "108.97",
+   "101.66",
+   "107.41"
+  ],
+  "correct_answer": "101.66",
+  "explanation": "Loaves sold = the smaller of demand and 45: 29, 37, 45, 45. Expected loaves sold = 0.20(29) + 0.25(37) + 0.35(45) + 0.20(45) = 39.8, so expected unsold = 45 - 39.8 = 5.2. Expected profit = 3.75(39.8) + 0.80(5.2) - 1.15(45) = 149.25 + 4.16 - 51.75 = 101.66 dollars. The option 103.48 counts only the loaves sold, at 3.75 - 1.15 = 2.60 profit each, and ignores the unsold loaves (their baking cost and their $0.80). The option 107.41 puts the expected demand, 41.75 customers, into the profit formula as if every day had 41.75 customers, instead of averaging the profit over the four cases. The option 108.97 lets the bakery sell 46 and 53 loaves on the busy days, ignoring that only 45 were baked.",
+  "solve": "const D=[29,37,46,53],P=[0.20,0.25,0.35,0.20],B=45,pr=3.75,c=1.15,sv=0.80;let s=0;D.forEach((d,i)=>s+=P[i]*Math.min(d,B));return (pr*s+sv*(B-s)-c*B).toFixed(2);",
+  "distractor_solve": {
+   "103.48": "const D=[29,37,46,53],P=[0.20,0.25,0.35,0.20],B=45,pr=3.75,c=1.15,sv=0.80;let s=0;D.forEach((d,i)=>s+=P[i]*Math.min(d,B));return ((pr-c)*s).toFixed(2);",
+   "107.41": "const D=[29,37,46,53],P=[0.20,0.25,0.35,0.20],B=45,pr=3.75,c=1.15,sv=0.80;let m=0;D.forEach((d,i)=>m+=P[i]*d);return (pr*m+sv*(B-m)-c*B).toFixed(2);",
+   "108.97": "const D=[29,37,46,53],P=[0.20,0.25,0.35,0.20],B=45,pr=3.75,c=1.15,sv=0.80;let m=0,l=0;D.forEach((d,i)=>{m+=P[i]*d;l+=P[i]*Math.max(B-d,0);});return (pr*m+sv*l-c*B).toFixed(2);"
+  },
+  "quantity_asked": "E[3.75 min(D,45) + 0.80 (45 - min(D,45)) - 1.15(45)] for the given demand distribution D, in dollars, to the nearest cent.",
+  "distractor_kind": {
+   "103.48": "error path: profit counted only on loaves sold, 2.60 x E[sold], dropping the unsold loaves' cost and salvage. (a) no parameter extreme: inside [69.80, 117.00]. (b) not an intermediate on an extreme. (c) cheapest bounds: worst case (29 customers) 69.80, every loaf sold 117.00; strictly inside. (d) real error: margin-per-sale shortcut.",
+   "107.41": "error path: profit at the expected demand 41.75 instead of the expected profit. (a) inside [69.80, 117.00]. (b) the profit at mean demand is the neighbouring setup; strictly inside. (c) strictly inside both cheap bounds. (d) real error: averaging the input instead of the payoff.",
+   "108.97": "error path: demand above 45 treated as sales (cap ignored), unsold counted only on slow days. (a) inside [69.80, 117.00]. (b) not on a bound. (c) strictly inside. (d) real error: ignores 'cannot sell more loaves than it baked'."
+  },
+  "distractor_meta": {
+   "103.48": {
+    "direction": "over",
+    "error_kind": "unsold loaves omitted (margin per sale)"
+   },
+   "107.41": {
+    "direction": "over",
+    "error_kind": "payoff at mean demand"
+   },
+   "108.97": {
+    "direction": "over",
+    "error_kind": "stock limit ignored"
+   }
+  },
+  "bounds": [
+   "profit <= 45(3.75 - 1.15) = 117.00 (every loaf sold): kills nothing",
+   "profit >= profit on the 29-customer day = 69.80: kills nothing"
+  ],
+  "mechanism": [
+   "bakery stocking decision with random demand",
+   "sales limited to the number baked",
+   "leftover salvage value",
+   "expected daily profit from a demand distribution"
+  ],
+  "arith_class_check": "No. Four two-decimal dollar amounts with unrelated cents (.66, .48, .41, .97); none is a whole or half dollar.",
+  "one_sided_check": "Key smallest. Three different errors (unsold loaves dropped, payoff at mean demand, stock cap ignored). Natural errors push DOWN as well: forgetting the $0.80 salvage gives 97.50, treating the salvage as a cost gives 93.34. The stated rules do not all move one way (the cap and the per-loaf-baked cost raise the profit when ignored; the salvage lowers it).",
+  "interior_parity_check": "Interior by value: 103.48 and 107.41; both two-decimal, non-round, same width.",
+  "cheap_bound_check": "Key smallest. Cheapest bounds: every loaf sold 117.00 above and the worst day 69.80 below; all four options lie inside. One-step estimate 'about 40 sold x 2.60 = 104' sits between 101.66 and 107.41 and does not separate the key from 103.48 (1.82 apart). 103.48, 107.41 and 108.97 all lie on the key's side of 117.00.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Mixed rule directions and two natural under-errors (97.50, 93.34). Residual: concavity puts every cap error above; S-10 also involves a capacity limit, though its mechanism is a binomial overflow count."
+  }
+ },
+ {
+  "id": "AM29S-10",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value",
+  "subskill": "expected cost of overbooking (binomial tail)",
+  "prompt": "A shuttle company accepts 12 reservations for a van ride that has 10 passenger seats. Each person with a reservation shows up for the ride with probability 0.85, independently of the other people. Every person who shows up but cannot get a seat receives a $20 travel voucher. To the nearest cent, what is the expected total value, in dollars, of the vouchers given out for this ride?",
+  "choices": [
+   "8.87",
+   "26.43",
+   "11.71",
+   "6.19"
+  ],
+  "correct_answer": "11.71",
+  "explanation": "Let K be the number of people who show up; K is binomial with n = 12 and p = 0.85. Vouchers are given only if K = 11 (1 voucher) or K = 12 (2 vouchers). P(K = 12) = 0.85^12 = 0.1422 and P(K = 11) = 12(0.85^11)(0.15) = 0.3012. The expected number of vouchers is 1(0.3012) + 2(0.1422) = 0.5856, so the expected value is 20(0.5856) = 11.71 dollars. The option 8.87 pays one $20 voucher whenever the van is overbooked, 20(0.3012 + 0.1422). The option 6.19 leaves out the factor 12 in P(K = 11) (counting only one order of who stays home). The option 26.43 is off by one seat: it counts a voucher when 10 people show up, 20(1 P(K = 10) + 2 P(K = 11) + 3 P(K = 12)).",
+  "solve": "const n=12,s=10,p=0.85,v=20;const C=(N,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(N-i)/(i+1);return r};const P=k=>C(n,k)*p**k*(1-p)**(n-k);let e=0;for(let k=s+1;k<=n;k++)e+=(k-s)*P(k);return (v*e).toFixed(2);",
+  "distractor_solve": {
+   "8.87": "const n=12,s=10,p=0.85,v=20;const C=(N,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(N-i)/(i+1);return r};const P=k=>C(n,k)*p**k*(1-p)**(n-k);let e=0;for(let k=s+1;k<=n;k++)e+=P(k);return (v*e).toFixed(2);",
+   "6.19": "const n=12,s=10,p=0.85,v=20;const C=(N,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(N-i)/(i+1);return r};const P=k=>C(n,k)*p**k*(1-p)**(n-k);let e=0;for(let k=s+1;k<=n;k++)e+=(k-s)*p**k*(1-p)**(n-k);return (v*e).toFixed(2);",
+   "26.43": "const n=12,s=10,p=0.85,v=20;const C=(N,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(N-i)/(i+1);return r};const P=k=>C(n,k)*p**k*(1-p)**(n-k);let e=0;for(let k=s;k<=n;k++)e+=(k-s+1)*P(k);return (v*e).toFixed(2);"
+  },
+  "quantity_asked": "20 x E[max(K - 10, 0)] for K ~ Binomial(12, 0.85), to the nearest cent.",
+  "distractor_kind": {
+   "8.87": "error path: one voucher per overbooked ride, 20 P(K >= 11): the second voucher at K = 12 is dropped. (a) no limiting case. (b) neighbouring quantity (probability of overbooking times $20) strictly inside [0, 40]. (c) cheapest estimates: 20(np - 10) = 4.00 (mean-based, a lower bound) and 40 (at most 2 vouchers): 8.87 strictly inside. (d) real multiplicity error.",
+   "6.19": "error path: binomial coefficient C(12,11) = 12 omitted in P(K = 11). (a) no limiting case. (b) strictly inside [4, 40]. (c) strictly inside every cheap interval. (d) real missing-arrangements error.",
+   "26.43": "error path: fencepost, a voucher counted from the 10th person on (K - 9 vouchers for K >= 10). (a) no limiting case. (b) neighbouring setup (9 seats) strictly inside [4, 40]. (c) strictly inside every cheap interval; the bound 40 P(K >= 11) = 17.74 needs P(K >= 11), i.e. the whole computation. (d) real off-by-one error."
+  },
+  "distractor_meta": {
+   "8.87": {
+    "direction": "under",
+    "error_kind": "multiplicity dropped"
+   },
+   "6.19": {
+    "direction": "under",
+    "error_kind": "binomial coefficient omitted"
+   },
+   "26.43": {
+    "direction": "over",
+    "error_kind": "off-by-one seat count"
+   }
+  },
+  "bounds": [
+   "0 <= value <= 2 x 20 = 40: kills nothing",
+   "value >= 20(12 x 0.85 - 10) = 4.00 (expected overflow at least the overflow of the mean): kills nothing"
+  ],
+  "mechanism": [
+   "overbooked van or flight: more reservations than seats",
+   "each passenger shows up independently",
+   "expected number of people bumped",
+   "binomial tail expected value"
+  ],
+  "arith_class_check": "No. Four two-decimal dollar amounts, none round; the key 11.71 is not simpler than 6.19, 8.87, 26.43.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 8.87 and 11.71; both two-decimal, non-round.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three error kinds (multiplicity, coefficient, fencepost), two under and one over; cheap bounds 4.00 and 40 kill nothing."
+  }
+ },
+ {
+  "id": "AM29S-11",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "histogram with unequal class widths",
+  "subskill": "class counts from frequency density",
+  "prompt": "A forester measured the trunk diameter of every tree in a study plot and displayed the results in a histogram whose classes have different widths. In this histogram, the height of each bar is the number of trees in that class per centimeter of class width. The classes and bar heights are listed below.\n10 cm to under 20 cm: 2.2\n20 cm to under 25 cm: 5.4\n25 cm to under 30 cm: 5.2\n30 cm to under 40 cm: 3.9\n40 cm to under 60 cm: 0.45\nEvery tree in the plot is in exactly one class. To the nearest hundredth of a percent, what percent of the trees in the plot have a trunk diameter of 30 cm or more?",
+  "choices": [
+   "25.36",
+   "39.02",
+   "14.99",
+   "36.71"
+  ],
+  "correct_answer": "39.02",
+  "explanation": "The number of trees in a class is its bar height times its class width: 2.2(10) = 22, 5.4(5) = 27, 5.2(5) = 26, 3.9(10) = 39, and 0.45(20) = 9, so there are 123 trees in all. The trees with a diameter of 30 cm or more are in the last two classes: 39 + 9 = 48 trees, and 48/123 = 39.02%. The option 25.36 treats the bar heights as the numbers of trees: 4.35/17.15. The option 14.99 divides each bar height by the class width instead of multiplying. The option 36.71 takes the 40 cm to under 60 cm class as 10 cm wide, like the 10-20 and 30-40 classes, giving 4.5 trees there: 43.5/118.5.",
+  "solve": "const W=[10,5,5,10,20],H=[2.2,5.4,5.2,3.9,0.45];const cnt=H.map((h,i)=>h*W[i]);const sum=a=>a.reduce((x,y)=>x+y,0);return (100*(cnt[3]+cnt[4])/sum(cnt)).toFixed(2);",
+  "distractor_solve": {
+   "25.36": "const W=[10,5,5,10,20],H=[2.2,5.4,5.2,3.9,0.45];const cnt=H.map((h,i)=>h*W[i]);const sum=a=>a.reduce((x,y)=>x+y,0);return (100*(H[3]+H[4])/sum(H)).toFixed(2);",
+   "14.99": "const W=[10,5,5,10,20],H=[2.2,5.4,5.2,3.9,0.45];const cnt=H.map((h,i)=>h*W[i]);const sum=a=>a.reduce((x,y)=>x+y,0);const d=H.map((h,i)=>h/W[i]);return (100*(d[3]+d[4])/sum(d)).toFixed(2);",
+   "36.71": "const W=[10,5,5,10,20],H=[2.2,5.4,5.2,3.9,0.45];const cnt=H.map((h,i)=>h*W[i]);const sum=a=>a.reduce((x,y)=>x+y,0);const c=[...cnt];c[4]=H[4]*10;return (100*(c[3]+c[4])/sum(c)).toFixed(2);"
+  },
+  "quantity_asked": "The percent of all trees (counts = bar height x class width) in the classes 30-40 and 40-60 cm, to the nearest hundredth of a percent.",
+  "distractor_kind": {
+   "25.36": "error path: bar heights read as tree counts: (3.9 + 0.45)/(2.2 + 5.4 + 5.2 + 3.9 + 0.45). (a) not on a bound: the percent is in (0, 100) and nothing printed caps it. (b) neighbouring setup (equal-width histogram), strictly inside. (c) no one-step estimate bounds the percent from below without the class counts; once the counts are found the key follows in one division. (d) real error: frequency density read as frequency.",
+   "14.99": "error path: each count taken as height divided by width (3.9/10 and 0.45/20 over the sum of all five quotients). (a) inside (0, 100). (b) neighbouring setup (inverted density), strictly inside. (c) no one-step bound kills it without first computing the class counts. (d) real error: inverted rate (a per-centimeter rate divided by the width instead of multiplied).",
+   "36.71": "error path: the 40-60 cm class taken as 10 cm wide, so 0.45(10) = 4.5 trees: (39 + 4.5)/118.5. (a) inside (0, 100). (b) neighbouring setup (one wrong width), strictly inside. (c) a rough estimate from the 30-40 class alone (39 of about 120, over 30%) leaves both 36.71 and the key. (d) real error: wrong class width."
+  },
+  "distractor_meta": {
+   "25.36": {
+    "direction": "under",
+    "error_kind": "density read as count"
+   },
+   "14.99": {
+    "direction": "under",
+    "error_kind": "inverted density"
+   },
+   "36.71": {
+    "direction": "under",
+    "error_kind": "wrong class width"
+   }
+  },
+  "bounds": [
+   "the percent is between 0 and 100; nothing in the stem forces a tighter range before the class counts are found: kills nothing"
+  ],
+  "mechanism": [
+   "frequency density histogram",
+   "class count equals height times width",
+   "unequal class widths",
+   "percent of data at or above a value"
+  ],
+  "arith_class_check": "No. Four two-decimal percents; the key 39.02 is no simpler than 14.99, 25.36 or 36.71.",
+  "one_sided_check": "Key largest. Three different error kinds (density as count, inverted density, wrong width). Natural errors that move UP exist and are not options: counting the 25-30 class because its upper end is 30 gives 74/123 = 60.16; giving the percent below 30 cm gives 60.98; taking the 10-20 class as 5 cm wide like its neighbours gives 48/112 = 42.86. Which way the density slips move the answer depends on which classes are wide, which a student does not read off the question.",
+  "interior_parity_check": "Interior by value: 25.36 and 36.71; both two-decimal, non-round, same shape.",
+  "cheap_bound_check": "Key largest. No stem-readable lower bound exists before the class counts are computed; the cheapest partial estimate (the 30-40 class alone, 39 of 123 = 31.7%) lies below 36.71, so 36.71 and the key are on the same side of it. 36.71 is 2.31 below the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, three under errors; a grader may read that every density slip underweights the wide target classes. Over errors (25-30 counted 60.16, 10-20 width 5 42.86) exist."
+  }
+ },
+ {
+  "id": "AM29S-12",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "standard deviation and a stem-and-leaf plot",
+  "subskill": "percent of data within 1 SD of the mean",
+  "prompt": "The scores of the 27 students who took a quiz are listed below as a stem-and-leaf plot, where the stem is the tens digit and the leaf is the ones digit (so 2 | 9 represents a score of 29).\n2 | 9\n3 | 5 6 8 9\n4 | 0 1 2 2 3 3 4 4 4 5 6 7 8 9\n5 | 1 2 3 3 8\n6 | 0\n7 | 0 7\nThe mean of the 27 scores is 47.0, and their standard deviation is 10.1. To the nearest whole percent, what percent of the 27 scores are within 1 standard deviation of the mean?",
+  "choices": [
+   "81",
+   "93",
+   "74",
+   "68"
+  ],
+  "correct_answer": "74",
+  "explanation": "Within 1 standard deviation of the mean means from 47.0 - 10.1 = 36.9 to 47.0 + 10.1 = 57.1. The scores 29, 35, and 36 are below 36.9, and 58, 60, 70, and 77 are above 57.1, so 27 - 7 = 20 scores are within 1 standard deviation, and 20/27 = 74%. The option 81 centers the interval on the median, 44, instead of the mean: 33.9 to 54.1 holds 22 scores. The option 68 applies the 68% rule for normal distributions instead of counting. The option 93 counts the scores within 2 standard deviations of the mean (26.8 to 67.2), 25 of 27.",
+  "solve": "const d=[29,35,36,38,39,40,41,42,42,43,43,44,44,44,45,46,47,48,49,51,52,53,53,58,60,70,77],mu=47.0,sd=10.1;const n=d.length;const cnt=(c,h)=>d.filter(x=>Math.abs(x-c)<=h).length;return String(Math.round(100*cnt(mu,sd)/n));",
+  "distractor_solve": {
+   "68": "const d=[29,35,36,38,39,40,41,42,42,43,43,44,44,44,45,46,47,48,49,51,52,53,53,58,60,70,77],mu=47.0,sd=10.1;const n=d.length;const cnt=(c,h)=>d.filter(x=>Math.abs(x-c)<=h).length;return String(68);",
+   "81": "const d=[29,35,36,38,39,40,41,42,42,43,43,44,44,44,45,46,47,48,49,51,52,53,53,58,60,70,77],mu=47.0,sd=10.1;const n=d.length;const cnt=(c,h)=>d.filter(x=>Math.abs(x-c)<=h).length;const e=[...d].sort((a,b)=>a-b);const M=e[(n-1)/2];return String(Math.round(100*cnt(M,sd)/n));",
+   "93": "const d=[29,35,36,38,39,40,41,42,42,43,43,44,44,44,45,46,47,48,49,51,52,53,53,58,60,70,77],mu=47.0,sd=10.1;const n=d.length;const cnt=(c,h)=>d.filter(x=>Math.abs(x-c)<=h).length;return String(Math.round(100*cnt(mu,2*sd)/n));"
+  },
+  "quantity_asked": "The percent of the 27 listed scores between 36.9 and 57.1 (mean 47.0 plus or minus 1 SD of 10.1), to the nearest whole percent.",
+  "distractor_kind": {
+   "68": "error path: the 68-95-99.7 rule for normal data applied instead of counting the listed scores. (a) not on a bound. (b) neighbouring setup (normal model), strictly inside. (c) not killed by an estimate; the data are skewed right, so the rule does not apply, but a student must count to see the difference. (d) real error: applying the empirical rule to a non-normal data set.",
+   "81": "error path: the 1-SD interval centered on the median 44 (33.9 to 54.1): 22 of 27 = 81%. (a) not on a bound: the percent is a count over 27 in (0, 100). (b) neighbouring setup (median for mean), strictly inside. (c) no estimate cheaper than the count bounds the answer. (d) real error: centering on the wrong measure of centre.",
+   "93": "error path: the scores within 2 standard deviations (26.8 to 67.2), 25 of 27 = 93%. (a) not on a bound (100 would be; 93 is below it). (b) neighbouring setup (2 SD), strictly inside. (c) not killed by an estimate. (d) real error: 1 SD read as 2 SD."
+  },
+  "distractor_meta": {
+   "68": {
+    "direction": "under",
+    "error_kind": "empirical rule for non-normal data"
+   },
+   "81": {
+    "direction": "over",
+    "error_kind": "interval centered on the median"
+   },
+   "93": {
+    "direction": "over",
+    "error_kind": "2 SD for 1 SD"
+   }
+  },
+  "bounds": [
+   "the percent is a whole number of scores out of 27, between 0 and 100: kills nothing"
+  ],
+  "mechanism": [
+   "percent of data within one standard deviation",
+   "stem-and-leaf plot",
+   "mean plus or minus standard deviation",
+   "counting values in an interval"
+  ],
+  "arith_class_check": "No. Four whole-number percents; 74 = 20/27 rounded is no rounder than 68, 81 or 93, and none is a multiple of 10.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 74 and 81; both two-digit whole numbers, neither round.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three error kinds (median centre over, empirical rule under, 2 SD over); stated SD 10.1 matches the data (10.13); no score within 0.9 of any fence used."
+  }
+ },
+ {
+  "id": "AM29S-13",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "median of transformed data",
+  "subskill": "median of speeds from listed times",
+  "prompt": "Seven cyclists each rode the same 30-kilometer course. Their times, listed in order of their race numbers, were:\n52 min 20 s, 41 min 15 s, 49 min 40 s, 50 min 55 s, 38 min 30 s, 51 min 35 s, 48 min 25 s\nEach cyclist's average speed, in kilometers per hour, is 30 divided by that cyclist's time in hours. To the nearest hundredth of a kilometer per hour, what is the median of the seven average speeds?",
+  "choices": [
+   "37.88",
+   "36.44",
+   "38.35",
+   "36.24"
+  ],
+  "correct_answer": "36.24",
+  "explanation": "A longer time gives a lower speed, so the cyclist with the median time also has the median speed. In order, the times are 38:30, 41:15, 48:25, 49:40, 50:55, 51:35, 52:20, so the median time is 49 min 40 s = 49 + 40/60 = 49.667 minutes = 0.8278 hour. The median speed is 30/0.8278 = 36.24 km/h. The option 36.44 reads 49 min 40 s as 49.40 minutes. The option 37.88 divides 30 km by the mean time, 47.52 minutes. The option 38.35 is the mean of the seven speeds, not their median.",
+  "solve": "const D=30,T=[[52,20],[41,15],[49,40],[50,55],[38,30],[51,35],[48,25]];const t=T.map(([m,s])=>m+s/60);const s=[...t].sort((a,b)=>a-b);return (D/(s[3]/60)).toFixed(2);",
+  "distractor_solve": {
+   "36.44": "const D=30,T=[[52,20],[41,15],[49,40],[50,55],[38,30],[51,35],[48,25]];const t=T.map(([m,s])=>m+s/60);const s=[...T].sort((a,b)=>(a[0]+a[1]/60)-(b[0]+b[1]/60));const m=s[3][0]+s[3][1]/100;return (D/(m/60)).toFixed(2);",
+   "37.88": "const D=30,T=[[52,20],[41,15],[49,40],[50,55],[38,30],[51,35],[48,25]];const t=T.map(([m,s])=>m+s/60);const mt=t.reduce((a,b)=>a+b)/7;return (D/(mt/60)).toFixed(2);",
+   "38.35": "const D=30,T=[[52,20],[41,15],[49,40],[50,55],[38,30],[51,35],[48,25]];const t=T.map(([m,s])=>m+s/60);const sp=t.map(x=>D/(x/60));return (sp.reduce((a,b)=>a+b)/7).toFixed(2);"
+  },
+  "quantity_asked": "The median of the seven speeds 30/(time in hours), to the nearest hundredth of a km/h.",
+  "distractor_kind": {
+   "36.44": "error path: the median time 49 min 40 s read as the decimal 49.40 minutes, 30/(49.40/60). (a) not on a bound: inside the speed range [34.39, 46.75]. (b) strictly inside. (c) cheapest estimate: 30 km in about 50 minutes is about 36 km/h, interval roughly 35-38: 36.44 strictly inside. (d) real error: minutes-and-seconds read as a decimal (the file's one display slip, of an intermediate, not of the key).",
+   "37.88": "error path: 30 km divided by the mean time, 47.52 minutes. (a) inside [34.39, 46.75], not on a bound. (b) neighbouring setup (speed at the mean time), strictly inside the speed range. (c) inside the one-step band \"about 36-38\" from 30 km in roughly 47-50 minutes. (d) real error: transforming the mean time instead of taking the median.",
+   "38.35": "error path: the mean of the seven speeds. (a) inside [34.39, 46.75]. (b) neighbouring setup (mean instead of median), strictly inside the speed range. (c) not killed by any one-step estimate: separating it from the key needs either the mean or the sorted list. (d) real error: mean confused with median."
+  },
+  "distractor_meta": {
+   "36.44": {
+    "direction": "over",
+    "error_kind": "min:sec read as decimal"
+   },
+   "37.88": {
+    "direction": "over",
+    "error_kind": "speed at the mean time"
+   },
+   "38.35": {
+    "direction": "over",
+    "error_kind": "mean of speeds for median"
+   }
+  },
+  "bounds": [
+   "every speed is between 30/(52 min 20 s) = 34.39 and 30/(38 min 30 s) = 46.75: kills nothing"
+  ],
+  "mechanism": [
+   "median of a transformed data set",
+   "speed from time for a fixed distance",
+   "decreasing transformation preserves the middle value",
+   "minutes and seconds to hours"
+  ],
+  "arith_class_check": "No. Four two-decimal speeds; the key 36.24 is not simpler than 36.44, 37.88, 38.35.",
+  "one_sided_check": "Key smallest. Error kinds differ (display slip, transforming the mean time, mean of speeds). Natural errors that move DOWN exist and are not options: taking the 4th time in the listed (unsorted) order, 50 min 55 s, gives 35.35; rounding the median time up to 50 minutes gives 36.00; using the next-slower time gives 35.35 as well. Whether 'mean' slips go up or down depends on the skew of the times, which the stem does not state.",
+  "interior_parity_check": "Interior by value: 36.44 and 37.88; both two-decimal, non-round, same shape.",
+  "cheap_bound_check": "Key smallest. Cheapest one-step estimate: 30 km in about 50 minutes, about 36 km/h, which cannot separate 36.24 from 36.44 (0.20 apart) and does not kill 37.88 or 38.35 without computing the mean. The upper bound 46.75 (fastest rider) kills nothing; the unsorted-order error 35.35 and rounding to 50 min (36.00) lie below the key, so a bound 'speed > 30/0.85 = 35.3' does not single out the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three over errors of different kinds; natural under errors (unsorted 4th 35.35, rounded 50 min 36.00); slip only of an intermediate."
+  }
+ },
+ {
+  "id": "AM29S-14",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "five-number summary and the mean",
+  "subskill": "least possible mean from a five-number summary",
+  "prompt": "A teacher listed the test scores of the 19 students in a class in increasing order. She reported only this summary of the scores:\nlowest score: 37\nfirst quartile: 42\nmedian: 48\nthird quartile: 59\nhighest score: 86\nHere the median is the 10th score in the list, the first quartile is the 5th score (the median of the 9 scores below the median), and the third quartile is the 15th score (the median of the 9 scores above the median). Two or more students may have the same score. Based only on this summary, what is the least possible value of the mean of the 19 scores, to the nearest tenth?",
+  "choices": [
+   "52.7",
+   "47.4",
+   "54.4",
+   "48.4"
+  ],
+  "correct_answer": "48.4",
+  "explanation": "Listed in increasing order, the 1st score is 37, the 5th is 42, the 10th is 48, the 15th is 59, and the 19th is 86. To make the mean as small as possible, each other score is made as small as its place in the list allows: the 2nd-4th scores can be 37, the 6th-9th can be no less than the 5th score, 42, the 11th-14th no less than 48, and the 16th-18th no less than 59. So the least possible total is 4(37) + 5(42) + 5(48) + 4(59) + 86 = 148 + 210 + 240 + 236 + 86 = 920, and the least possible mean is 920/19 = 48.4. The option 47.4 also sets the 6th-9th scores to 37, forgetting that they cannot be less than the first quartile. The option 52.7 places each unreported score midway between the two reported scores around it. The option 54.4 is the mean of the five reported numbers.",
+  "solve": "const n=19,lo=37,q1=42,md=48,q3=59,hi=86;return ((4*lo+5*q1+5*md+4*q3+hi)/n).toFixed(1);",
+  "distractor_solve": {
+   "47.4": "const n=19,lo=37,q1=42,md=48,q3=59,hi=86;return ((8*lo+q1+5*md+4*q3+hi)/n).toFixed(1);",
+   "52.7": "const n=19,lo=37,q1=42,md=48,q3=59,hi=86;return ((lo+q1+md+q3+hi+3*(lo+q1)/2+4*(q1+md)/2+4*(md+q3)/2+3*(q3+hi)/2)/n).toFixed(1);",
+   "54.4": "const n=19,lo=37,q1=42,md=48,q3=59,hi=86;return ((lo+q1+md+q3+hi)/5).toFixed(1);"
+  },
+  "quantity_asked": "The least possible mean of 19 scores consistent with the five-number summary 37, 42, 48, 59, 86 (Q1 = 5th, median = 10th, Q3 = 15th), to the nearest tenth.",
+  "distractor_kind": {
+   "47.4": "error path: the 6th-9th scores also set to the lowest score 37, ignoring that they lie above the first quartile in the list: (8(37) + 42 + 5(48) + 4(59) + 86)/19 = 900/19. (a) not on a bound. (b) neighbouring setup (order constraint dropped for one block), strictly inside the one-step bounds. (c) cheapest bounds: lower half at least 37 and upper half at least 48 gives (9(37) + 9(48) + 86)/19 = 44.84; one step finer, refining the upper half with Q3 gives 895/19 = 47.11 and refining the lower half with Q1 gives 876/19 = 46.11: 47.37 lies strictly above both. (d) real error: dropping an order constraint when minimizing.",
+   "52.7": "error path: every unreported score put midway between the reported scores on each side of it (3 at 39.5, 4 at 45, 4 at 53.5, 3 at 72.5): 1002/19. (a) not on a bound. (b) a feasible configuration, so an upper bound on the least mean only once a lower configuration is found. (c) one-step estimates (44.84, 46.11, 47.11) are all below it; no cheap upper bound below 52.7 exists without building the minimizing list. (d) real error: assuming values are evenly spread instead of minimizing.",
+   "54.4": "error path: the mean of the five reported numbers, (37 + 42 + 48 + 59 + 86)/5 = 272/5. (a) not on a bound. (b) neighbouring quantity, strictly inside. (c) above every one-step lower estimate; not separated by a cheap bound. (d) real error: treating the five summary values as the data."
+  },
+  "distractor_meta": {
+   "47.4": {
+    "direction": "under",
+    "error_kind": "order constraint dropped"
+   },
+   "52.7": {
+    "direction": "over",
+    "error_kind": "values assumed evenly spread"
+   },
+   "54.4": {
+    "direction": "over",
+    "error_kind": "mean of the summary values"
+   }
+  },
+  "bounds": [
+   "half the scores are at least 48 and the rest at least 37: mean >= (9(37) + 9(48) + 86)/19 = 44.84: kills nothing",
+   "one step finer, upper half refined with Q3: mean >= 895/19 = 47.11: kills nothing (47.37 is above it)",
+   "one step finer, lower half refined with Q1: mean >= 876/19 = 46.11: kills nothing"
+  ],
+  "mechanism": [
+   "least possible mean",
+   "five-number summary",
+   "quartile positions in an ordered list",
+   "minimizing a total under order constraints"
+  ],
+  "arith_class_check": "No. Four one-decimal values; the key 48.4 is no simpler than 47.4, 52.7 or 54.4 and is not an integer.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 48.4 and 52.7; both one-decimal, non-round, same shape.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; under error sits above both one-step-finer lower bounds (47.11, 46.11); over errors are a feasible spread and the summary mean; no live five-number optimisation."
+  }
+ }
+]

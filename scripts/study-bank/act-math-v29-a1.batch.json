@@ -1,0 +1,660 @@
+[
+ {
+  "id": "AM29A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear inequality from a parcel size limit",
+  "subskill": "linear inequality in context",
+  "prompt": "A parcel service accepts a box only if the box's length plus its girth is at most 108 inches, where the girth is 2 times the box's width plus 2 times its height. A company is designing a box whose length is 12 inches more than 3.5 times its width and whose height is 5 inches more than its width. To the nearest hundredth of an inch, what is the greatest height the box can have and still be accepted?",
+  "choices": [
+   "17.13",
+   "21.55",
+   "16.47",
+   "19.67"
+  ],
+  "correct_answer": "16.47",
+  "explanation": "Let w be the width. Then the length is 3.5w + 12 and the height is w + 5, so length plus girth is (3.5w + 12) + 2w + 2(w + 5) = 7.5w + 22. The condition 7.5w + 22 ≤ 108 gives w ≤ 86/7.5 ≈ 11.467, so the greatest height is 86/7.5 + 5 ≈ 16.47 inches. The option \"17.13\" adds the 5 only once in the girth (2w + 2w + 5), giving 7.5w + 17 ≤ 108. The option \"19.67\" takes the length as 3.5w − 12. The option \"21.55\" uses length + width + height (the sum of the three dimensions) instead of length plus girth: 5.5w + 17 ≤ 108.",
+  "solve": "const w=(108-12-2*5)/(3.5+4);return (w+5).toFixed(2);",
+  "distractor_solve": {
+   "17.13": "const w=(108-12-5)/(3.5+4);return (w+5).toFixed(2);",
+   "19.67": "const w=(108+12-2*5)/(3.5+4);return (w+5).toFixed(2);",
+   "21.55": "const w=(108-12-5)/(3.5+2);return (w+5).toFixed(2);"
+  },
+  "quantity_asked": "the greatest height of the box, 86/7.5 + 5 ≈ 16.47 inches, from the linear inequality length + girth ≤ 108.",
+  "distractor_kind": {
+   "17.13": "the +5 of the height entered the girth once instead of twice (2w + 2w + 5). (a) no parameter extreme. (b) neighbouring setup: not an intermediate. (c) cheapest bounds: length ≥ 12 gives girth = 4h − 10 ≤ 96, h ≤ 26.5; length − height = 2.5w + 7 ≥ 7 gives 5h − 3 ≤ 108, h ≤ 22.2; 17.13 strictly inside both. (d) real: distributing the 2 over w + 5 incompletely.",
+   "19.67": "sign slip on the 12 in the length (3.5w − 12). (a) no. (b) none. (c) strictly below 22.2. (d) real: 'more than' written as a subtraction.",
+   "21.55": "length + width + height used in place of length + girth (the airline 'linear inches' rule). (a) no. (b) neighbouring setup: the answer to the sum-of-dimensions rule; strictly below 22.2 and 26.5. (c) inside. (d) real: confuses the two common size rules."
+  },
+  "distractor_meta": {
+   "17.13": {
+    "direction": "over",
+    "error_kind": "constant not doubled in girth"
+   },
+   "19.67": {
+    "direction": "over",
+    "error_kind": "sign slip on length constant"
+   },
+   "21.55": {
+    "direction": "over",
+    "error_kind": "girth replaced by width + height"
+   }
+  },
+  "bounds": [
+   "h > 5 (width positive)",
+   "h ≤ 26.5 (length ≥ 12, so girth 4h − 10 ≤ 96)",
+   "h ≤ 22.2 (length exceeds height by 2.5w + 7 ≥ 7, so 5h − 3 ≤ 108)"
+  ],
+  "mechanism": [
+   "length plus girth at most",
+   "parcel size limit inequality",
+   "girth 2 width plus 2 height",
+   "greatest height from linear inequality"
+  ],
+  "arith_class_check": "Key 86/7.5 + 5 = 16.4666...; all four options are two-decimal values with nonzero final digits; the stem implies no integrality.",
+  "one_sided_check": "Key smallest. Distractors come from three different errors (incomplete distribution, sign slip, wrong size rule). Natural errors moving DOWN exist and are not options: answering the width (11.47) instead of the height; reading the height as w − 5 (9.13); and, for a student who writes everything in h (length 3.5h − 5.5, girth 4h − 10), adding the −10 only once gives 7.5h − 10.5 ≤ 108, h = 15.80. The stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 17.13 and 19.67, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: girth ≤ 108 − 12 gives h ≤ 26.5; one step finer, length − height ≥ 7 gives h ≤ 22.2. Both lie ABOVE all four options, so every distractor (17.13, 19.67, 21.55) sits on the key's side. No cheap lower bound beyond h > 5. The nearest distractor 17.13 is 0.66 above the key, inside the resolution of any estimate that drops a constant.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural down errors (answer the width, h-route constant once, h = w − 5) exist; cheap bounds 22.2/26.5 sit above all options; girth/parcel not in the live bank."
+  }
+ },
+ {
+  "id": "AM29A-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equation from a trim length",
+  "subskill": "linear equation from edge lengths",
+  "prompt": "A wall decoration is a rectangle with an isosceles triangle attached to its top, so that the base of the triangle is the top edge of the rectangle. Wood trim is placed along all 4 edges of the rectangle and along the 2 slanted edges of the triangle. The height of the rectangle is 13 centimeters more than its width, and each slanted edge of the triangle is 0.8 times as long as the width of the rectangle. A total of 564 centimeters of trim is used. To the nearest hundredth of a centimeter, what is the width of the rectangle?",
+  "choices": [
+   "98.39",
+   "81.52",
+   "105.36",
+   "96.07"
+  ],
+  "correct_answer": "96.07",
+  "explanation": "Let w be the width. The rectangle's 4 edges total 2w + 2(w + 13) = 4w + 26, and the 2 slanted edges total 2(0.8w) = 1.6w. So 5.6w + 26 = 564, and w = 538/5.6 ≈ 96.07 centimeters. The option \"81.52\" also trims the triangle's base, counting the shared edge twice: 6.6w + 26 = 564. The option \"98.39\" adds the 13 only once (2w + 2w + 13): 5.6w + 13 = 564. The option \"105.36\" takes the height as w − 13: 5.6w − 26 = 564.",
+  "solve": "const w=(564-2*13)/(4+2*0.8);return w.toFixed(2);",
+  "distractor_solve": {
+   "81.52": "const w=(564-2*13)/(4+2*0.8+1);return w.toFixed(2);",
+   "98.39": "const w=(564-13)/(4+2*0.8);return w.toFixed(2);",
+   "105.36": "const w=(564+2*13)/(4+2*0.8);return w.toFixed(2);"
+  },
+  "quantity_asked": "the width of the rectangle, 538/5.6 ≈ 96.07 cm, from the trim-length equation 5.6w + 26 = 564.",
+  "distractor_kind": {
+   "81.52": "shared edge trimmed twice (the triangle's base added as a third triangle edge): 6.6w + 26 = 564. (a) no parameter extreme. (b) neighbouring setup: the trim if every edge of both shapes were trimmed; strictly inside (no cheap lower bound besides w > 0). (c) cheapest bound: slanted edges > w/2 each gives 5w + 26 < 564, w < 107.6; 81.52 inside. (d) real: treats the triangle as having three trimmed edges.",
+   "98.39": "the 13 of the height added once instead of twice. (a) no. (b) none. (c) below 107.6. (d) real: incomplete distribution of 2 over (w + 13).",
+   "105.36": "sign slip: height read as 13 cm less than the width. (a) no. (b) none. (c) strictly below 107.6. (d) real: 'more than' reversed."
+  },
+  "distractor_meta": {
+   "81.52": {
+    "direction": "under",
+    "error_kind": "shared edge counted twice"
+   },
+   "98.39": {
+    "direction": "over",
+    "error_kind": "constant not doubled"
+   },
+   "105.36": {
+    "direction": "over",
+    "error_kind": "sign slip on height relation"
+   }
+  },
+  "bounds": [
+   "w > 0",
+   "w < 107.6 (each slanted edge exceeds w/2, so 5w + 26 < 564)"
+  ],
+  "mechanism": [
+   "trim along rectangle and triangle edges",
+   "rectangle topped by isosceles triangle",
+   "total edge length linear equation",
+   "height more than width, slanted edge times width"
+  ],
+  "arith_class_check": "Key 538/5.6 = 96.0714...; all options two-decimal with nonzero final digits; nothing in the stem implies a whole-number width.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 96.07 and 98.39, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key with errors both ways (shared edge twice under; constant slips over); all options inside the 107.6 triangle-inequality bound; trim/gable not in the live bank."
+  }
+ },
+ {
+  "id": "AM29A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "chained equality giving a linear system",
+  "subskill": "chained equality as a linear system",
+  "prompt": "The real numbers x and y satisfy (2x + y)/5 = (3x − 4y)/3 = 2.6. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "2.13",
+   "5.44",
+   "1.18",
+   "4.02"
+  ],
+  "correct_answer": "5.44",
+  "explanation": "The chained equality gives two equations: (2x + y)/5 = 2.6, so 2x + y = 13, and (3x − 4y)/3 = 2.6, so 3x − 4y = 7.8. From the first, y = 13 − 2x; then 3x − 4(13 − 2x) = 7.8 gives 11x = 59.8, so x = 59.8/11 ≈ 5.44 (and y ≈ 2.13). The option \"2.13\" is the value of y. The option \"4.02\" multiplies each numerator by the other expression's denominator (2x + y = 7.8 and 3x − 4y = 13). The option \"1.18\" sets each numerator equal to 2.6, dropping the denominators (2x + y = 2.6 and 3x − 4y = 2.6).",
+  "solve": "const x=(4*2.6*5+2.6*3)/(4*2+3);return x.toFixed(2);",
+  "distractor_solve": {
+   "2.13": "const x=(4*2.6*5+2.6*3)/(4*2+3);return (2.6*5-2*x).toFixed(2);",
+   "4.02": "const x=(4*2.6*3+2.6*5)/(4*2+3);return x.toFixed(2);",
+   "1.18": "const x=(4*2.6+2.6)/(4*2+3);return x.toFixed(2);"
+  },
+  "quantity_asked": "the value of x, 59.8/11 ≈ 5.44, from 2x + y = 13 and 3x − 4y = 7.8.",
+  "distractor_kind": {
+   "2.13": "reports y instead of x. (a) no parameter extreme. (b) neighbouring setup: the other unknown of the same system. (c) no cheap bound on x is forced by the stem (x and y are any reals); inside. (d) real: wrong variable reported.",
+   "4.02": "denominators attached to the wrong expressions (2x + y = 3(2.6), 3x − 4y = 5(2.6)). (a) no. (b) none. (c) inside. (d) real: cross-multiplication slip when splitting a chained equality.",
+   "1.18": "denominators dropped (each numerator set equal to 2.6). (a) no. (b) none. (c) inside. (d) real: reads the chain as numerator = 2.6."
+  },
+  "distractor_meta": {
+   "2.13": {
+    "direction": "under",
+    "error_kind": "answered the other unknown"
+   },
+   "4.02": {
+    "direction": "under",
+    "error_kind": "denominators swapped"
+   },
+   "1.18": {
+    "direction": "under",
+    "error_kind": "denominators dropped"
+   }
+  },
+  "bounds": [
+   "none: x and y are any real numbers"
+  ],
+  "mechanism": [
+   "chained equality of two fractions equal to a constant",
+   "split extended equality into two linear equations",
+   "linear system substitution",
+   "value of x"
+  ],
+  "arith_class_check": "Key 59.8/11 = 5.4363...; all four options are two-decimal values with nonzero final digits; the stem implies no integrality.",
+  "one_sided_check": "Key largest; the three distractors come from three different errors (wrong unknown, denominators swapped, denominators dropped). A natural error moving UP exists and is not an option: dropping the sign of −4y (3x + 4y = 7.8) gives y = 13 − 2x, 3x + 52 − 8x = 7.8, x = 8.84. Which way the swapped denominators move x is not readable from the stem (with other numbers it rises).",
+  "interior_parity_check": "Interior options by value: 2.13 and 4.02, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key largest. The stem forces no bound on x (no sign or range is given for x or y), so no cheap one-sided estimate separates the options; a student who guesses y ≥ 0 gets x ≤ 6.5 from 2x + y = 13, which lies ABOVE the key and leaves all three distractors on the key's side. Nearest distractor 4.02 is 1.42 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; upward sign-slip error (8.84) exists; no stem bound on x; chained-fraction systems are not in the live bank."
+  }
+ },
+ {
+  "id": "AM29A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "parallelogram angle measures in two variables",
+  "subskill": "angle relations as a linear system",
+  "prompt": "In parallelogram ABCD, the measure of ∠A is (2x + 3y)°, the measure of ∠B is (5x − 2y)°, and the measure of ∠C is (3x + 11)°. To the nearest hundredth of a degree, what is the measure of ∠D ?",
+  "choices": [
+   "113.04",
+   "80.56",
+   "96.86",
+   "52.25"
+  ],
+  "correct_answer": "96.86",
+  "explanation": "Opposite angles of a parallelogram are congruent, so ∠A = ∠C: 2x + 3y = 3x + 11, or −x + 3y = 11. Consecutive angles are supplementary, so ∠A + ∠B = 180: 7x + y = 180. Then y = 180 − 7x, and −x + 3(180 − 7x) = 11 gives 22x = 529, x ≈ 24.045, y ≈ 11.682. ∠D is opposite ∠B, so ∠D = 5x − 2y ≈ 96.86°. The option \"80.56\" makes the opposite angles A and C supplementary (as in a quadrilateral inscribed in a circle) instead of congruent. The option \"52.25\" makes the consecutive angles A and B congruent instead of supplementary. The option \"113.04\" drops the minus sign in ∠B, using 5x + 2y.",
+  "solve": "const x=(3*180-11)/(3*7+1),y=180-7*x;return (5*x-2*y).toFixed(2);",
+  "distractor_solve": {
+   "80.56": "const a1=5,b1=3,c1=169,a2=7,b2=1,c2=180; const D=a1*b2-a2*b1; const X=(c1*b2-c2*b1)/D, Y=(a1*c2-a2*c1)/D; return (5*X-2*Y).toFixed(2);",
+   "52.25": "const a1=-1,b1=3,c1=11,a2=-3,b2=5,c2=0; const D=a1*b2-a2*b1; const X=(c1*b2-c2*b1)/D, Y=(a1*c2-a2*c1)/D; return (5*X-2*Y).toFixed(2);",
+   "113.04": "const a1=-1,b1=3,c1=11,a2=7,b2=5,c2=180; const D=a1*b2-a2*b1; const X=(c1*b2-c2*b1)/D, Y=(a1*c2-a2*c1)/D; return (5*X+2*Y).toFixed(2);"
+  },
+  "quantity_asked": "the measure of ∠D (equal to ∠B), 5x − 2y ≈ 96.86°, after solving ∠A = ∠C and ∠A + ∠B = 180.",
+  "distractor_kind": {
+   "80.56": "opposite angles taken as supplementary (2x + 3y + 3x + 11 = 180) with A + B = 180. (a) no parameter extreme. (b) neighbouring setup: the inscribed-quadrilateral rule. (c) only 0 < ∠D < 180 is cheap; inside. (d) real: confuses parallelogram and cyclic-quadrilateral angle rules.",
+   "52.25": "consecutive angles taken as congruent (∠A = ∠B) with ∠A = ∠C. (a) no. (b) none. (c) inside (0, 180). (d) real: treats every angle relation as equality.",
+   "113.04": "sign slip: ∠B used as 5x + 2y in both the equation and the answer. (a) no. (b) none. (c) inside. (d) real: dropped minus sign."
+  },
+  "distractor_meta": {
+   "80.56": {
+    "direction": "under",
+    "error_kind": "opposite angles supplementary"
+   },
+   "52.25": {
+    "direction": "under",
+    "error_kind": "consecutive angles congruent"
+   },
+   "113.04": {
+    "direction": "over",
+    "error_kind": "sign slip in angle expression"
+   }
+  },
+  "bounds": [
+   "0 < ∠D < 180"
+  ],
+  "mechanism": [
+   "parallelogram opposite angles congruent consecutive supplementary",
+   "angle measures in terms of x and y",
+   "two-variable system from angle relations",
+   "measure of the fourth angle"
+  ],
+  "arith_class_check": "Key ≈ 96.864 (x = 529/22); all options two-decimal with nonzero final digits; no option is 180 minus another, and ∠A (83.14) is not an option.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 80.56 and 96.86, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors both ways; no option pair sums to 180; two-variable parallelogram angle systems are not in the live bank (only one-variable inscribed-quadrilateral items)."
+  }
+ },
+ {
+  "id": "AM29A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equation from a transfer between two accounts",
+  "subskill": "linear equations in context",
+  "prompt": "At the start of a month, a school's robotics club had $1,931.85 in its account and the school's chess club had $817.45 in its account. Early in the month, the student council moved x dollars from the robotics club's account to the chess club's account. Later that month, the robotics club paid an $84.60 bill from its account and the chess club paid a $126.80 bill from its account, and no other money entered or left either account. At the end of the month, the amount in the robotics club's account was 1.25 times the amount in the chess club's account. To the nearest cent, what is the value of x ?",
+  "choices": [
+   "474.91",
+   "437.31",
+   "719.29",
+   "491.97"
+  ],
+  "correct_answer": "437.31",
+  "explanation": "At the end of the month the robotics club has 1,931.85 − x − 84.60 = 1,847.25 − x dollars and the chess club has 817.45 + x − 126.80 = 690.65 + x dollars. So 1,847.25 − x = 1.25(690.65 + x) = 863.3125 + 1.25x, which gives 2.25x = 983.9375 and x ≈ 437.31. The option 474.91 leaves out the robotics club's $84.60 bill: 1,931.85 − x = 1.25(690.65 + x). The option 491.97 multiplies only the chess club's balance by 1.25 and not the x it received: 1,847.25 − x = 1.25(690.65) + x, so 2x = 983.9375. The option 719.29 reverses the relationship, making the chess club's amount 1.25 times the robotics club's: 690.65 + x = 1.25(1,847.25 − x).",
+  "solve": "const A=1931.85,B=817.45,a=84.6,b=126.8,r=1.25;return ((A-a-r*(B-b))/(1+r)).toFixed(2);",
+  "distractor_solve": {
+   "474.91": "const A=1931.85,B=817.45,a=84.6,b=126.8,r=1.25;return ((A-r*(B-b))/(1+r)).toFixed(2);",
+   "491.97": "const A=1931.85,B=817.45,a=84.6,b=126.8,r=1.25;return ((A-a-r*(B-b))/2).toFixed(2);",
+   "719.29": "const A=1931.85,B=817.45,a=84.6,b=126.8,r=1.25;return ((r*(A-a)-(B-b))/(1+r)).toFixed(2);"
+  },
+  "quantity_asked": "the amount x, in dollars to the nearest cent, moved from the robotics club to the chess club so that after both bills the robotics balance is 1.25 times the chess balance: 437.31.",
+  "distractor_kind": {
+   "474.91": "robotics club's $84.60 bill omitted. (a) no parameter extreme. (b) neighbouring setup (no robotics bill) answer 474.91; feasible x lies in (0, 1,847.25); strictly inside. (c) cheapest estimate: ignoring both bills gives 404.46, which lies BELOW the key (the chess bill, scaled by 1.25, outweighs the robotics bill), so it bounds nothing on the distractors' side; 474.91 strictly inside. (d) real: one of two stated deductions dropped.",
+   "491.97": "1.25 applied to the chess club's balance but not to the x it receives (2x instead of 2.25x). (a) no. (b) not an intermediate of the process. (c) strictly inside (0, 1,847.25); the no-bill estimate 404.46 is below the key. (d) real: partial distribution of the ratio factor.",
+   "719.29": "relationship reversed: chess club's amount set to 1.25 times the robotics club's. (a) no. (b) neighbouring setup with the ratio reversed; strictly inside (0, 1,847.25). (c) no one-step estimate reaches it. (d) real: 'A is 1.25 times B' written as B = 1.25A."
+  },
+  "distractor_meta": {
+   "474.91": {
+    "direction": "over",
+    "error_kind": "robotics bill omitted"
+   },
+   "491.97": {
+    "direction": "over",
+    "error_kind": "ratio factor not distributed to x"
+   },
+   "719.29": {
+    "direction": "over",
+    "error_kind": "ratio relationship reversed"
+   }
+  },
+  "bounds": [
+   "0 < x < 1,847.25 (both final balances positive)",
+   "no-bill estimate 404.46 lies below the key, on the side away from every distractor"
+  ],
+  "mechanism": [
+   "transfer between two accounts to reach a ratio",
+   "linear equation x on both sides",
+   "ratio after deductions",
+   "times as much as after a transfer"
+  ],
+  "arith_class_check": "Key 437.31 is a non-round cent amount; all four options are two-decimal amounts with no shared factor or denominator; the stem implies no integrality.",
+  "one_sided_check": "Key smallest. Three different error kinds (omitted deduction, partial distribution of 1.25, reversed ratio). Natural errors that move DOWN exist and are as natural: leaving out the chess club's $126.80 bill gives 366.86; charging each bill to the other club gives 395.11; writing 1.25(690.65 + x) as 1.25(817.45 + x) − 126.80 gives 423.22. The two bills push x in opposite directions, so the stem does not reveal a direction.",
+  "interior_parity_check": "Sorted 437.31, 474.91, 491.97, 719.29; interior 474.91 and 491.97, both two-decimal cent amounts with non-zero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided estimate: ignore both bills, x = (1,931.85 − 1.25·817.45)/2.25 = 404.46. It lies BELOW the key (the scaled chess bill 158.50 outweighs the robotics bill 84.60), so it kills no distractor; all three distractors and the key lie above it. Positivity bounds (0, 1,847.25) kill nothing. Nearest distractor 474.91 is 37.60 above the key and needs the same full solve to rule out.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; bills pull x opposite ways, so omissions go both ways (under: 366.86, 395.11, 423.22 natural, not options); no cheap estimate on the distractor side."
+  }
+ },
+ {
+  "id": "AM29A-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "system with one equation given as a proportion",
+  "subskill": "proportion and line as a linear system",
+  "prompt": "The ordered pair (x, y) satisfies both the proportion (x + 3)/(y − 1) = 3/4 and the equation 3x − y = 9.4. What is the value of x ?",
+  "choices": [
+   "6.44",
+   "1.02",
+   "8.64",
+   "5.62"
+  ],
+  "correct_answer": "8.64",
+  "explanation": "Cross-multiplying the proportion gives 4(x + 3) = 3(y − 1), so 4x + 12 = 3y − 3, or 4x − 3y = −15. From the second equation, y = 3x − 9.4. Substituting, 4x − 3(3x − 9.4) = −15, so −5x + 28.2 = −15 and x = 8.64 (and y = 16.52). The option \"5.62\" cross-multiplies the wrong way, 3(x + 3) = 4(y − 1). The option \"6.44\" multiplies only the variables when cross-multiplying, 4x + 3 = 3y − 1. The option \"1.02\" drops the minus sign in the second equation, using 3x + y = 9.4.",
+  "solve": "const x=(-15-3*9.4)/(4-3*3);return x.toFixed(2);",
+  "distractor_solve": {
+   "5.62": "const x=(-13-4*9.4)/(3-4*3);return x.toFixed(2);",
+   "6.44": "const x=(-4-3*9.4)/(4-3*3);return x.toFixed(2);",
+   "1.02": "const x=(-15+3*9.4)/(4+3*3);return x.toFixed(2);"
+  },
+  "quantity_asked": "the value of x, 8.64, from 4x − 3y = −15 and 3x − y = 9.4.",
+  "distractor_kind": {
+   "5.62": "cross-multiplication reversed: 3(x + 3) = 4(y − 1), so 3x − 4y = −13. (a) no parameter extreme. (b) neighbouring setup: the proportion 4/3 instead of 3/4. (c) the stem forces no bound on x; inside. (d) real: products of the wrong pairs.",
+   "6.44": "constants not multiplied when cross-multiplying: 4x + 3 = 3y − 1. (a) no. (b) none. (c) inside. (d) real: distributes the 4 and 3 over the variables only.",
+   "1.02": "sign slip in 3x − y = 9.4 (taken as 3x + y = 9.4). (a) no. (b) none. (c) inside. (d) real: dropped minus sign."
+  },
+  "distractor_meta": {
+   "5.62": {
+    "direction": "under",
+    "error_kind": "cross-multiplication reversed"
+   },
+   "6.44": {
+    "direction": "under",
+    "error_kind": "constants not distributed"
+   },
+   "1.02": {
+    "direction": "under",
+    "error_kind": "sign slip"
+   }
+  },
+  "bounds": [
+   "none forced: y ≠ 1, x and y otherwise any reals"
+  ],
+  "mechanism": [
+   "proportion with expressions in x and y",
+   "cross-multiply to a linear equation",
+   "system with a proportion and a linear equation",
+   "value of x"
+  ],
+  "arith_class_check": "Key 8.64 is exact (43.2/5) and so is 6.44 (32.2/5); 5.62 and 1.02 are rounded. All four show two decimals with nonzero final digits.",
+  "one_sided_check": "Key largest; three different errors (reversed cross-multiplication, constants not distributed, sign slip). A natural error moving UP exists and is not an option: reporting y (16.52) instead of x. Whether a cross-multiplication or sign slip raises or lowers x depends on the numbers, and the stem does not reveal it.",
+  "interior_parity_check": "Interior options by value: 5.62 and 6.44, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key largest. The stem gives no sign or range for x or y, so no cheap one-sided bound exists. The only quick constraint, that x + 3 and y − 1 have the same sign, separates nothing (it holds for every option's own system). Nearest distractor 6.44 is 2.20 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; upward 'report y' error (16.52) exists; no stem bound. Proportion-plus-linear systems are not in the live bank by grep."
+  }
+ },
+ {
+  "id": "AM29A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "literal equation for a surrounding temperature",
+  "subskill": "solving a formula for a variable",
+  "prompt": "A hot steel bolt is dropped into a large tank of water whose temperature W, in degrees Celsius, stays constant. If the bolt's temperature is B0 degrees Celsius when it is dropped in, its temperature B one minute later satisfies B − W = r(B0 − W), where r is a constant for this bolt. For one bolt, r = 0.55, B0 = 92, and B = 59.5. What is the temperature W of the water, to the nearest hundredth of a degree?",
+  "choices": [
+   "41.63",
+   "19.78",
+   "16.18",
+   "32.91"
+  ],
+  "correct_answer": "19.78",
+  "explanation": "Solve B − W = r(B0 − W) for W: B − W = rB0 − rW, so B − rB0 = W − rW = W(1 − r), and W = (B − rB0)/(1 − r). Here W = (59.5 − 0.55(92))/(1 − 0.55) = (59.5 − 50.6)/0.45 = 8.9/0.45 ≈ 19.78. The option \"16.18\" divides 8.9 by r = 0.55 instead of by 1 − r. The option \"32.91\" exchanges r and 1 − r, as if 0.55 of the difference were lost rather than kept: (59.5 − 0.45(92))/0.55. The option \"41.63\" uses the bolt's later temperature in place of W inside the difference: W = 59.5 − 0.55(92 − 59.5).",
+  "solve": "const r=0.55,B0=92,B=59.5;return ((B-r*B0)/(1-r)).toFixed(2);",
+  "distractor_solve": {
+   "16.18": "const r=0.55,B0=92,B=59.5;return ((B-r*B0)/r).toFixed(2);",
+   "32.91": "const r=0.55,B0=92,B=59.5;return ((B-(1-r)*B0)/r).toFixed(2);",
+   "41.63": "const r=0.55,B0=92,B=59.5;return (B-r*(B0-B)).toFixed(2);"
+  },
+  "quantity_asked": "the water temperature W = (B − rB0)/(1 − r) = 8.9/0.45 ≈ 19.78 degrees Celsius.",
+  "distractor_kind": {
+   "16.18": "wrong divisor after factoring: (B − rB0)/r. (a) no parameter extreme. (b) not an intermediate. (c) structural bounds: W < B = 59.5 (the bolt is still hotter than the water) and W > B − rB0 = 8.9 (dividing 8.9 by 1 − r < 1 enlarges it); 16.18 strictly inside. (d) real: dividing by the coefficient that was in the original equation.",
+   "32.91": "r and 1 − r exchanged (fraction kept read as fraction lost). (a) no. (b) neighbouring setup: the answer if 0.45 of the difference remained; strictly inside (8.9, 59.5). (c) inside. (d) real: misreads what r measures.",
+   "41.63": "B substituted for W inside the difference: W = B − r(B0 − B). (a) no. (b) not an intermediate. (c) inside (8.9, 59.5). (d) real: avoids the variable on both sides by plugging a known temperature in for W."
+  },
+  "distractor_meta": {
+   "16.18": {
+    "direction": "under",
+    "error_kind": "wrong divisor after factoring"
+   },
+   "32.91": {
+    "direction": "over",
+    "error_kind": "r and 1 − r exchanged"
+   },
+   "41.63": {
+    "direction": "over",
+    "error_kind": "known value substituted for unknown"
+   }
+  },
+  "bounds": [
+   "W < 59.5 (the bolt is still hotter than the water)",
+   "W > 59.5 − 0.55(92) = 8.9 (W(1 − r) = 8.9 with 1 − r < 1)"
+  ],
+  "mechanism": [
+   "literal equation variable on both sides",
+   "difference between object and surroundings multiplied by r",
+   "solve for water temperature",
+   "factor out unknown W"
+  ],
+  "arith_class_check": "Key 8.9/0.45 = 19.777...; all options two-decimal with nonzero last digit; the stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Sorted 16.18, 19.78, 32.91, 41.63; interior 19.78 and 32.91 both two-decimal roundings; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options inside the structural bounds (8.9, 59.5); the forgot-to-divide value 8.9 (ON the bound) and the (1 + r) slip (below it) excluded. Live 0ccafa35 is forward exponential halving, not this."
+  }
+ },
+ {
+  "id": "AM29A-08",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute-value equation with a constant fixed by one solution",
+  "subskill": "absolute-value equations",
+  "prompt": "In the equation |7x − k| = x + 3, k is a constant and k < 50. If x = 7 is one solution of the equation, what is the other solution?",
+  "choices": [
+   "21/4",
+   "36/7",
+   "43/8",
+   "9/2"
+  ],
+  "correct_answer": "9/2",
+  "explanation": "Substituting x = 7 gives |49 − k| = 10, so k = 39 or k = 59; since k < 50, k = 39. The equation |7x − 39| = x + 3 splits into 7x − 39 = x + 3, which gives x = 7, and 7x − 39 = −(x + 3), which gives 8x = 36, so x = 9/2. The option \"36/7\" drops the x when negating the right side (39 − 7x = 3). The option \"21/4\" distributes the negative sign to x only, writing 7x − 39 = −x + 3, so 8x = 42. The option \"43/8\" substitutes x = 7 only on the left when finding k (|49 − k| = 3, so k = 46) and then solves 46 − 7x = x + 3.",
+  "solve": "const k=39;const n=k-3,d=8;const g=(a,b)=>b?g(b,a%b):a;const q=g(n,d);return (n/q)+'/'+(d/q);",
+  "distractor_solve": {
+   "36/7": "const k=39;const n=k-3,d=7;const g=(a,b)=>b?g(b,a%b):a;const q=g(n,d);return (n/q)+'/'+(d/q);",
+   "21/4": "const k=39;const n=k+3,d=8;const g=(a,b)=>b?g(b,a%b):a;const q=g(n,d);return (n/q)+'/'+(d/q);",
+   "43/8": "const k=7*7-3;const n=k-3,d=8;const g=(a,b)=>b?g(b,a%b):a;const q=g(n,d);return (n/q)+'/'+(d/q);"
+  },
+  "quantity_asked": "the second solution of |7x − 39| = x + 3 (k fixed at 39 by x = 7 and k < 50), which is 9/2.",
+  "distractor_kind": {
+   "36/7": "x dropped when negating the right side: 39 − 7x = 3. (a) no parameter extreme. (b) not an intermediate. (c) structural bounds: x ≥ −3 (right side nonnegative); once k = 39 is known the two solutions straddle 39/7 ≈ 5.57, so the other one is below 5.57; 36/7 ≈ 5.14 strictly inside. (d) real: −(x + 3) written as −3.",
+   "21/4": "sign slip on the constant: −(x + 3) written as −x + 3. (a) no. (b) not an intermediate. (c) 21/4 = 5.25 strictly inside (−3, 5.57). (d) real: partial distribution of a negative.",
+   "43/8": "x = 7 substituted only into the left side when finding k: |49 − k| = 3, k = 46. (a) no. (b) neighbouring setup: the other solution for k = 46; 43/8 = 5.375 strictly inside (−3, 5.57). (d) real: evaluates x + 3 as 3."
+  },
+  "distractor_meta": {
+   "36/7": {
+    "direction": "over",
+    "error_kind": "x dropped when negating the right side"
+   },
+   "21/4": {
+    "direction": "over",
+    "error_kind": "sign slip on the constant (partial distribution)"
+   },
+   "43/8": {
+    "direction": "over",
+    "error_kind": "given solution substituted on one side only when finding k"
+   }
+  },
+  "bounds": [
+   "x ≥ −3 (x + 3 must be nonnegative)",
+   "x < 39/7 ≈ 5.57 once k = 39 is known (the two solutions straddle the vertex of |7x − 39|)"
+  ],
+  "mechanism": [
+   "absolute value equation one solution given",
+   "find constant k then other solution",
+   "condition k < 50 selects constant",
+   "absolute value equals linear expression"
+  ],
+  "arith_class_check": "Key 9/2; options are fractions with four different denominators (2, 7, 4, 8); none an integer; the stem implies no denominator.",
+  "one_sided_check": "Key smallest. The three distractors come from three different errors (dropped x, sign slip on the constant, one-sided substitution when finding k). Natural errors that move DOWN exist and are not options: assuming the two solutions are symmetric about the vertex 39/7 gives 2(39/7) − 7 = 29/7 ≈ 4.14; a sign slip when dividing (−8x = −36 read as x = −36/8) gives −9/2. The stem gives no direction.",
+  "interior_parity_check": "Sorted 9/2, 36/7, 21/4, 43/8; interior 36/7 and 21/4 are both reduced non-integer fractions; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: x ≥ −3 from the right side; after k = 39, x < 39/7 ≈ 5.57 (vertex). All three distractors (5.14, 5.25, 5.38) lie between the key 4.5 and 5.57, on the key's side of both bounds. The nearest, 36/7, is 0.64 above the key. The relation is not monotone, so testing one option does not reveal the side of the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key on a non-monotone equation; natural down errors (vertex symmetry 29/7, division sign) exist; all distractors inside both bounds; the k = 59 root (31/3) deliberately not used."
+  }
+ },
+ {
+  "id": "AM29A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear model written in standard form",
+  "subskill": "interpreting a linear model",
+  "prompt": "During a dry spell, the volume V, in millions of gallons, of water in a reservoir d days after June 1 is modeled by the equation 4V + 27d = 3,880. According to the model, how many days after June 1 will the volume of water in the reservoir be 600 million gallons? (Round to the nearest hundredth of a day.)",
+  "choices": [
+   "88.89",
+   "13.70",
+   "121.48",
+   "54.81"
+  ],
+  "correct_answer": "54.81",
+  "explanation": "Solving the model for V gives V = 970 − 6.75d: the volume on June 1 is 970 million gallons, and it falls 27/4 = 6.75 million gallons per day. Setting V = 600: 6.75d = 370, so d = 370/6.75 ≈ 54.81. (Directly: 27d = 3,880 − 4(600) = 1,480, d ≈ 54.81.) The option \"13.70\" takes the daily decrease to be 27 instead of 27/4 (370/27). The option \"88.89\" finds the time for the volume to fall BY 600 million gallons (600/6.75). The option \"121.48\" substitutes 600 without multiplying it by 4: 27d = 3,880 − 600.",
+  "solve": "return ((3880-4*600)/27).toFixed(2);",
+  "distractor_solve": {
+   "13.70": "return ((3880/4-600)/27).toFixed(2);",
+   "88.89": "return (600/(27/4)).toFixed(2);",
+   "121.48": "return ((3880-600)/27).toFixed(2);"
+  },
+  "quantity_asked": "the d at which V = 600 in 4V + 27d = 3,880, which is 1,480/27 ≈ 54.81 days.",
+  "distractor_kind": {
+   "13.70": "slope read as 27 per day (coefficient of V ignored when interpreting the rate). (a) no parameter extreme. (b) not an intermediate. (c) structural bounds: 0 < d < 3,880/27 ≈ 143.70 (the reservoir is empty at d = 143.70); 13.70 inside. (d) real: reads the coefficient of d as the rate.",
+   "88.89": "time to fall BY 600 rather than TO 600. (a) no. (b) neighbouring setup: the answer to the 'decrease by' question; inside (0, 143.70). (d) real: confuses the target value with the change.",
+   "121.48": "600 substituted for 4V. (a) no. (b) not an intermediate. (c) inside (0, 143.70). (d) real: drops the coefficient of V when substituting."
+  },
+  "distractor_meta": {
+   "13.70": {
+    "direction": "under",
+    "error_kind": "rate read from unscaled coefficient"
+   },
+   "88.89": {
+    "direction": "over",
+    "error_kind": "fall by instead of fall to"
+   },
+   "121.48": {
+    "direction": "over",
+    "error_kind": "coefficient of V dropped on substitution"
+   }
+  },
+  "bounds": [
+   "d > 0",
+   "d < 3,880/27 ≈ 143.70 (the model's volume reaches 0 there)"
+  ],
+  "mechanism": [
+   "linear model in standard form",
+   "reservoir volume days after",
+   "interpret coefficients of 4V + 27d",
+   "rate of decrease 27/4"
+  ],
+  "arith_class_check": "Key 1480/27 = 54.8148...; all options two-decimal; the stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Sorted 13.70, 54.81, 88.89, 121.48; interior 54.81 and 88.89 both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options inside (0, 143.70); three distinct coefficient errors. No standard-form linear model in the live bank (grep 0 hits)."
+  }
+ },
+ {
+  "id": "AM29A-10",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "equal outputs of a multi-variable linear formula",
+  "subskill": "linear equations from a formula",
+  "prompt": "The Mifflin–St Jeor equation estimates a person's resting energy use P, in kilocalories per day, as P = 10m + 6.25h − 5a + s, where m is the person's mass in kilograms, h is the person's height in centimeters, a is the person's age in years, and s = 5 for a man and s = −161 for a woman. A certain man and a certain woman have the same value of P. The man is 5.2 centimeters taller than the woman and 2 years older than the woman. According to the equation, how many kilograms greater is the woman's mass than the man's mass?",
+  "choices": [
+   "17.95",
+   "18.85",
+   "16.12",
+   "18.35"
+  ],
+  "correct_answer": "18.85",
+  "explanation": "Let the woman's mass be w and the man's mass be w − d, her height h and age a, so his height is h + 5.2 and his age is a + 2. Setting the two values of P equal: 10(w − d) + 6.25(h + 5.2) − 5(a + 2) + 5 = 10w + 6.25h − 5a − 161. The w, h and a terms cancel, leaving −10d + 32.5 − 10 + 5 = −161, so 10d = 188.5 and d = 18.85. The option 18.35 uses only the woman's constant, so the sex constants differ by 161 instead of 166. The option 17.95 attaches 6.25 to the age difference and 5 to the height difference. The option 16.12 leaves out the factor 6.25, using the 5.2-centimeter height difference itself.",
+  "solve": "const dH=5.2,dA=2;const R=v=>(Math.round(v*100+1e-6)/100).toFixed(2);return R((6.25*dH-5*dA+166)/10);",
+  "distractor_solve": {
+   "18.35": "const dH=5.2,dA=2;const R=v=>(Math.round(v*100+1e-6)/100).toFixed(2);return R((6.25*dH-5*dA+161)/10);",
+   "17.95": "const dH=5.2,dA=2;const R=v=>(Math.round(v*100+1e-6)/100).toFixed(2);return R((5*dH-6.25*dA+166)/10);",
+   "16.12": "const dH=5.2,dA=2;const R=v=>(Math.round(v*100+1e-6)/100).toFixed(2);return R((dH-5*dA+166)/10);"
+  },
+  "quantity_asked": "how many kilograms the woman's mass exceeds the man's when their P values are equal, the man being 5.2 cm taller and 2 years older: (6.25·5.2 − 5·2 + 166)/10 = 18.85.",
+  "distractor_kind": {
+   "18.35": "man's constant +5 dropped, so the constants differ by 161 instead of 166. (a) no parameter extreme. (b) neighbouring setup (only the woman has a constant); no stem-forced bound near it. (c) cheapest estimates: constants alone 16.6 (below 18.35), height term alone 19.85 (above it, an upper bound once the age term is seen to subtract); 18.35 strictly inside (16.6, 19.85). (d) real: one of two sex constants omitted.",
+   "17.95": "coefficients attached to the wrong differences (6.25 per year of age, 5 per cm of height). (a) no. (b) not an intermediate. (c) strictly inside (16.6, 19.85). (d) real: misreading which coefficient goes with which variable.",
+   "16.12": "height coefficient 6.25 dropped: the 5.2 cm difference used as 5.2 kcal. (a) no. (b) not an intermediate. (c) below the constants-only estimate 16.6, but that estimate is not a bound until the student has computed that the height term outweighs the age term, i.e. done the solve; strictly inside (0, 19.85). (d) real: dropping a coefficient on one difference."
+  },
+  "distractor_meta": {
+   "18.35": {
+    "direction": "under",
+    "error_kind": "man's sex constant omitted"
+   },
+   "17.95": {
+    "direction": "under",
+    "error_kind": "coefficients swapped between variables"
+   },
+   "16.12": {
+    "direction": "under",
+    "error_kind": "height coefficient dropped"
+   }
+  },
+  "bounds": [
+   "d > 0 (positivity)",
+   "d < 19.85 (height term and constants alone, since the age term subtracts): kills nothing"
+  ],
+  "mechanism": [
+   "equal outputs of a linear formula in several variables",
+   "difference of masses from differences of height and age",
+   "sex constant in a linear model",
+   "Mifflin-St Jeor resting energy"
+  ],
+  "arith_class_check": "Key 18.85; options 16.12, 17.95, 18.35, 18.85 are all two-decimal values; no integer, no common factor, no structure the stem implies.",
+  "one_sided_check": "Key largest. Three different error kinds (a constant omitted, coefficients swapped, a coefficient dropped). Natural errors that move UP are as natural and are not options: treating 'older' as raising the man's P (age sign reversed) gives 20.85; dropping the factor 5 on the age difference gives 19.65. The height and age terms pull opposite ways, so the stem does not reveal a direction.",
+  "interior_parity_check": "Sorted 16.12, 17.95, 18.35, 18.85; interior 17.95 and 18.35, both two-decimal values ending in 5 with no trailing zero; neither nicer.",
+  "cheap_bound_check": "Cheapest one-step estimates: constants alone 166/10 = 16.6 (key, 18.35 and 17.95 above it; 16.12 below, but placing the key above 16.6 already needs the height and age terms computed); height term plus constants (32.5 + 166)/10 = 19.85, an upper bound once the age term is seen to subtract: all four options below it, the distractors 18.35 and 17.95 on the key's side. Nearest distractor 18.35 is 0.50 below the key. The option nearest the constants-only estimate is 16.12, not the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; height and age terms pull opposite ways; natural over errors (age sign 20.85, age coefficient dropped 19.65) exist; no estimate separates the options; key not nearest any estimate."
+  }
+ },
+ {
+  "id": "AM29A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "two linear models linked through time",
+  "subskill": "interpreting linear models",
+  "prompt": "For a young oak tree at a nursery, the height H, in meters, t years after planting is modeled by H = 0.42t + 1.3, and the diameter D of its trunk, in centimeters, t years after planting is modeled by D = 1.75t + 2.9. According to the two models, what is the tree's height, to the nearest hundredth of a meter, when the diameter of its trunk is 26.4 centimeters?",
+  "choices": [
+   "7.32",
+   "6.42",
+   "4.74",
+   "6.94"
+  ],
+  "correct_answer": "6.94",
+  "explanation": "From D = 1.75t + 2.9 with D = 26.4: t = (26.4 − 2.9)/1.75 = 23.5/1.75 ≈ 13.43 years. Then H = 0.42(13.43) + 1.3 ≈ 6.94 meters. (Equivalently, H rises 0.42/1.75 = 0.24 meter for each centimeter of diameter, so H = 1.3 + 0.24(D − 2.9).) The option \"7.32\" subtracts the height model's starting value 1.3 instead of 2.9 when solving for t. The option \"6.42\" divides 26.4 by 1.75 before subtracting 2.9 (t = 26.4/1.75 − 2.9). The option \"4.74\" writes H = 1.3 + 0.24(D − 2.9) as 1.3 + 0.24D − 2.9, multiplying only the D by 0.24.",
+  "solve": "const t=(26.4-2.9)/1.75;return (0.42*t+1.3).toFixed(2);",
+  "distractor_solve": {
+   "7.32": "const t=(26.4-1.3)/1.75;return (0.42*t+1.3).toFixed(2);",
+   "6.42": "const t=26.4/1.75-2.9;return (0.42*t+1.3).toFixed(2);",
+   "4.74": "return (1.3+(0.42/1.75)*26.4-2.9).toFixed(2);"
+  },
+  "quantity_asked": "the modeled height H when D = 26.4, which is 0.42(23.5/1.75) + 1.3 = 6.94 meters.",
+  "distractor_kind": {
+   "7.32": "the two models' starting values confused when solving for t: t = (26.4 − 1.3)/1.75. (a) no parameter extreme. (b) not an intermediate of the item. (c) cheapest bounds: H > 1.3 (t > 0) and, one step finer, t < 26.4/1.75 because the diameter starts at 2.9, so H < 0.42(26.4/1.75) + 1.3 = 7.64; 7.32 strictly inside. (d) real: intercept confusion between two models.",
+   "6.42": "order of operations: t = 26.4/1.75 − 2.9. (a) no. (b) not an intermediate. (c) inside (1.3, 7.64). (d) real: solving D = 1.75t + 2.9 by dividing first.",
+   "4.74": "distribution slip in the per-centimeter form: 1.3 + 0.24D − 2.9. (a) no. (b) not an intermediate. (c) inside (1.3, 7.64). (d) real: 0.24 not distributed over (D − 2.9)."
+  },
+  "distractor_meta": {
+   "7.32": {
+    "direction": "over",
+    "error_kind": "intercepts of the two models confused"
+   },
+   "6.42": {
+    "direction": "under",
+    "error_kind": "order of operations in solving for t"
+   },
+   "4.74": {
+    "direction": "under",
+    "error_kind": "coefficient not distributed"
+   }
+  },
+  "bounds": [
+   "H > 1.3 (t > 0)",
+   "H < 7.64 (t < 26.4/1.75 because the diameter starts at 2.9 cm)"
+  ],
+  "mechanism": [
+   "two linear models same time variable",
+   "height when trunk diameter",
+   "eliminate time between linear models",
+   "meaning of intercept and slope"
+  ],
+  "arith_class_check": "Key 0.42(94/7) + 1.3 = 6.94 exactly; all options two-decimal with nonzero last digit; stem implies no class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Sorted 4.74, 6.42, 6.94, 7.32; interior 6.42 and 6.94 both two-decimal, nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all options inside the containment bounds (1.3, 7.64); the dropped-intercept error (7.64, ON the bound) and the dropped-1.3 error (gap 1.3) deliberately excluded."
+  }
+ }
+]

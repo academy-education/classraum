@@ -1,0 +1,778 @@
+[
+ {
+  "id": "AM29F-01",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "function defined as the greater of two functions: intersections with a horizontal line",
+  "subskill": "piecewise function defined by a maximum",
+  "prompt": "The functions f and g are defined by f(x) = 0.6x² − 2.4x + 1.5 and g(x) = 4.2 − 1.4x. The function h is defined so that, for every real number x, h(x) is the greater of the two numbers f(x) and g(x) (if they are equal, h(x) is that common value). In the standard (x,y) coordinate plane, the graph of y = h(x) intersects the line y = 1.2 at exactly two points. To the nearest hundredth, what is the sum of the x-coordinates of these two points?",
+  "choices": [
+   "6.26",
+   "8.07",
+   "6.01",
+   "7.73"
+  ],
+  "correct_answer": "6.01",
+  "explanation": "h(x) = g(x) where g(x) ≥ f(x), that is, where 0.6x² − x − 2.7 ≤ 0, about −1.45 ≤ x ≤ 3.11; elsewhere h(x) = f(x). On the middle piece, g(x) = 1.2 gives 4.2 − 1.4x = 1.2, so x = 3/1.4 ≈ 2.143, which lies in the piece. On the outer pieces, f(x) = 1.2 gives 0.6x² − 2.4x + 0.3 = 0, so x = 2 ± √3.5, about 0.129 and 3.871. The root 0.129 lies in the middle piece, where h = g, not f, so it is not an intersection (there h(0.129) = g(0.129) ≈ 4.02). The root 3.871 lies to the right of 3.11, so it counts. The two points are at x ≈ 2.143 and x ≈ 3.871, and the sum is 3/1.4 + 2 + √3.5 ≈ 6.01. The option \"6.26\" comes from a sign slip in the discriminant of 0.6x² − 2.4x + 0.3 = 0 (5.76 + 0.72 instead of 5.76 − 0.72). The option \"7.73\" solves 4.2 − 1.4x = 1.2 as x = (4.2 + 1.2)/1.4. The option \"8.07\" multiplies by 1.4 instead of dividing: x = 3(1.4).",
+  "solve": "const M=3/1.4, R=2+Math.sqrt(3.5); return (M+R).toFixed(2);",
+  "distractor_solve": {
+   "6.26": "const M=3/1.4, R=(2.4+Math.sqrt(5.76+0.72))/1.2; return (M+R).toFixed(2);",
+   "7.73": "const M=(4.2+1.2)/1.4, R=2+Math.sqrt(3.5); return (M+R).toFixed(2);",
+   "8.07": "const M=3*1.4, R=2+Math.sqrt(3.5); return (M+R).toFixed(2);"
+  },
+  "quantity_asked": "the sum of the x-coordinates of the two points where y = h(x) meets y = 1.2: 3/1.4 + 2 + √3.5 ≈ 6.01.",
+  "distractor_kind": {
+   "6.26": "discriminant sign slip in the f(x) = 1.2 quadratic (b² + 4ac with c = 0.3), so the right root is 4.12 not 3.87. (a) no parameter extreme. (b) neighbouring setup: the f-only sum 4.00 and the unchecked three-root sum 6.14 are not options; 6.26 is strictly inside the range of plausible sums. (c) cheapest bound: M lies in (2, 2.5) and R in (3.5, 4) by integer and half-integer checks, so the sum lies in (5.5, 6.5); 6.26 is strictly inside. (d) real: sign error on −4ac when c is positive.",
+   "7.73": "sign slip on the constant when solving the linear piece: x = (4.2 + 1.2)/1.4. (a) no. (b) no. (c) outside the (5.5, 6.5) bracket, but 6.26 survives it. (d) real: moving the constant to the wrong side.",
+   "8.07": "inverted division when solving the linear piece: x = 3 × 1.4. (a) no. (b) no. (c) outside the bracket, as for 7.73. (d) real: multiplying by the coefficient instead of dividing."
+  },
+  "distractor_meta": {
+   "6.26": {
+    "direction": "over",
+    "error_kind": "discriminant sign slip"
+   },
+   "7.73": {
+    "direction": "over",
+    "error_kind": "constant sign slip in linear solve"
+   },
+   "8.07": {
+    "direction": "over",
+    "error_kind": "inverted division in linear solve"
+   }
+  },
+  "bounds": [
+   "sum > 0 (both intersection x-coordinates are positive)",
+   "the g-piece root lies in (2, 2.5) and the right f-root in (3.5, 4), so the sum lies in (5.5, 6.5)"
+  ],
+  "mechanism": [
+   "function defined as the greater of two functions",
+   "solve h(x) = k piece by piece",
+   "reject a root outside its piece",
+   "sum of x-coordinates of intersection points"
+  ],
+  "arith_class_check": "Key 6.01 is irrational (3/1.4 + 2 + √3.5) rounded to hundredths, as are all options; nothing in the stem singles out a form.",
+  "one_sided_check": "Key smallest. Distractors come from three different error kinds (discriminant sign, constant sign, inverted division). Natural errors also push the sum DOWN: solving f only (ignoring the 'greater of' rule) gives 4.00; reading 'greater' as 'lesser' gives 0.13; dropping the left f-root without adding the g-root gives 3.87. A student cannot read from the stem that slips only raise the sum.",
+  "interior_parity_check": "Interior options by value: 6.26 and 7.73, both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: checking g at x = 2 and 2.5 and f at x = 3.5 and 4 puts the sum in (5.5, 6.5); it kills 7.73 and 8.07, but 6.26 lies on the key's side, inside it. The f-only Vieta sum (4.00) is a lower value, not a bound on the true sum.",
+  "self_audit": {
+   "risk": "low",
+   "note": "No live greater-of-two-functions item (dump: only IES billable weight). Nearest distractor 0.25 above survives the half-integer bracket; a tenths bracket is the full solve."
+  }
+ },
+ {
+  "id": "AM29F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "change in a composite cost-of-production function over a time interval",
+  "subskill": "composition in context: C(u(t))",
+  "prompt": "A work shift at a factory begins at 9:00 a.m. and lasts 8 hours. The total number of units the factory has produced t hours after the shift begins is u(t) = 120t − 4t², for 0 ≤ t ≤ 8. The total cost, in dollars, of producing x units is C(x) = 750 + 3.5x + 0.002x². The total cost of everything produced in the first t hours of the shift is therefore C(u(t)). To the nearest cent, by how many dollars does this total cost increase from 1:00 p.m. to 3:00 p.m.?",
+  "choices": [
+   "911.04",
+   "1361.20",
+   "877.44",
+   "833.47"
+  ],
+  "correct_answer": "877.44",
+  "explanation": "1:00 p.m. and 3:00 p.m. are t = 4 and t = 6 hours after 9:00 a.m. u(4) = 480 − 64 = 416 and u(6) = 720 − 144 = 576. C(576) − C(416) = 3.5(576 − 416) + 0.002(576² − 416²) = 560 + 0.002(160)(992) = 560 + 317.44 = 877.44 (the 750 cancels). The option \"833.47\" counts the hours inclusively (9:00 a.m. as hour 1, so 1:00 p.m. as t = 5 and 3:00 p.m. as t = 7): C(u(7)) − C(u(5)) = C(644) − C(500) = 833.47. The option \"911.04\" uses the clock readings 1 and 3 as the values of t: C(u(3)) − C(u(1)) = C(324) − C(116) = 911.04. The option \"1361.20\" computes C(u(6) − u(4)) = C(160) = 750 + 560 + 51.2, treating C(a) − C(b) as C(a − b).",
+  "solve": "const u=t=>120*t-4*t*t,C=x=>750+3.5*x+0.002*x*x;return (C(u(6))-C(u(4))).toFixed(2);",
+  "distractor_solve": {
+   "833.47": "const u=t=>120*t-4*t*t,C=x=>750+3.5*x+0.002*x*x;return (C(u(7))-C(u(5))).toFixed(2);",
+   "911.04": "const u=t=>120*t-4*t*t,C=x=>750+3.5*x+0.002*x*x;return (C(u(3))-C(u(1))).toFixed(2);",
+   "1361.20": "const u=t=>120*t-4*t*t,C=x=>750+3.5*x+0.002*x*x;return C(u(6)-u(4)).toFixed(2);"
+  },
+  "quantity_asked": "the increase C(u(6)) − C(u(4)) in total cost from t = 4 (1:00 p.m.) to t = 6 (3:00 p.m.): 877.44 dollars.",
+  "distractor_kind": {
+   "833.47": "hours counted inclusively, t = 5 to t = 7. (a) no parameter extreme. (b) neighbouring setup: the same change over the next two-hour window; strictly inside the bounds. (c) cheapest bound: the increase exceeds 3.5 times the units added; with the student's own (wrong) window that is 3.5(144) = 504; against the correct window, 3.5(160) = 560 < 833.47; strictly inside. (d) real: off-by-one in converting clock time to t.",
+   "911.04": "the clock readings used as t (t = 1 to t = 3). (a) no. (b) neighbouring setup: the change over the first window that is not the shift's; inside. (c) inside every bound (above 560). (d) real: forgetting that t is measured from 9:00 a.m.",
+   "1361.20": "C(u(6) − u(4)) = C(160): function notation distributed over a difference, so the fixed 750 is kept. (a) no. (b) none. (c) above 560; no cheap upper bound below it. (d) real: C(a) − C(b) taken as C(a − b)."
+  },
+  "distractor_meta": {
+   "833.47": {
+    "direction": "under",
+    "error_kind": "inclusive hour count"
+   },
+   "911.04": {
+    "direction": "over",
+    "error_kind": "clock reading used as t"
+   },
+   "1361.20": {
+    "direction": "over",
+    "error_kind": "C(a) - C(b) taken as C(a - b)"
+   }
+  },
+  "bounds": [
+   "increase > 3.5 × (units added) = 560 (the quadratic part of C only adds)",
+   "increase > 0"
+  ],
+  "mechanism": [
+   "composite cost C(u(t)) of production",
+   "units produced u(t) and cost of x units C(x)",
+   "increase in total cost between two times",
+   "clock time to hours after shift start"
+  ],
+  "arith_class_check": "Key 877.44 exact; all options are two-decimal values (1361.20 ends in 0, the largest option, not interior); nothing in the stem singles out a digit pattern.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 877.44 and 911.04, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior. Cheapest bound: increase > 3.5 × 160 = 560 once u(4) and u(6) are found; all options lie above it.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three different errors on both sides; production/cost composite with clock conversion has 0 live hits (shift, cost function, produced+hours greps)."
+  }
+ },
+ {
+  "id": "AM29F-03",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "function defined by a sequence of verbal steps",
+  "subskill": "evaluate a function defined by a description",
+  "prompt": "A function f is defined by the following four steps, applied to an input x.\nStep 1: Subtract 0.4 from x.\nStep 2: Add 1.5 to the result of Step 1.\nStep 3: Square the result of Step 2.\nStep 4: Divide the result of Step 3 by the result of Step 1.\nThe result of Step 4 is f(x). To the nearest hundredth, what is the value of f(4.6) ?",
+  "choices": [
+   "5.04",
+   "7.74",
+   "4.56",
+   "7.06"
+  ],
+  "correct_answer": "7.74",
+  "explanation": "Step 1: 4.6 − 0.4 = 4.2. Step 2: 4.2 + 1.5 = 5.7. Step 3: 5.7² = 32.49. Step 4: 32.49 ÷ 4.2 ≈ 7.7357, so f(4.6) ≈ 7.74 (f(x) = (x + 1.1)²/(x − 0.4)). The option \"7.06\" divides by the input 4.6 instead of by the result of Step 1 (32.49 ÷ 4.6). The option \"5.04\" squares the input instead of the result of Step 2 (4.6² ÷ 4.2 = 21.16 ÷ 4.2). The option \"4.56\" performs Steps 2 and 3 in the wrong order, squaring 4.2 and then adding 1.5 ((17.64 + 1.5) ÷ 4.2).",
+  "solve": "const x=4.6,s1=x-0.4,s2=s1+1.5,s3=s2*s2;return (s3/s1).toFixed(2);",
+  "distractor_solve": {
+   "7.06": "const x=4.6,s1=x-0.4,s2=s1+1.5,s3=s2*s2;return (s3/x).toFixed(2);",
+   "5.04": "const x=4.6,s1=x-0.4;return (x*x/s1).toFixed(2);",
+   "4.56": "const x=4.6,s1=x-0.4;return ((s1*s1+1.5)/s1).toFixed(2);"
+  },
+  "quantity_asked": "f(4.6) = (5.7)²/4.2 ≈ 7.74, where f is the output of the four stated steps.",
+  "distractor_kind": {
+   "7.06": "Step 4 divides by the original input instead of the result of Step 1. (a) no parameter extreme. (b) neighbouring setup: the same steps with the divisor x; strictly inside any bound. (c) cheapest bound: every route gives a positive number; no stem-forced containment applies to f(4.6). (d) real: referring back to the input rather than the named step.",
+   "5.04": "Step 3 squares the input instead of the result of Step 2. (a) no. (b) none. (c) inside. (d) real: wrong step referenced in Step 3.",
+   "4.56": "Steps 2 and 3 done in the opposite order (square, then add 1.5). (a) no. (b) none. (c) inside. (d) real: order-of-operations slip on a verbal rule."
+  },
+  "distractor_meta": {
+   "7.06": {
+    "direction": "under",
+    "error_kind": "divisor taken as the input"
+   },
+   "5.04": {
+    "direction": "under",
+    "error_kind": "squared the input"
+   },
+   "4.56": {
+    "direction": "under",
+    "error_kind": "steps 2 and 3 swapped"
+   }
+  },
+  "bounds": [
+   "f(4.6) > 0 (all steps on positive numbers)"
+  ],
+  "mechanism": [
+   "function defined by verbal steps",
+   "Step 1 Step 2 Step 3 Step 4",
+   "result of Step 1 divided",
+   "evaluate a function described in words"
+  ],
+  "arith_class_check": "Key 32.49/4.2 = 7.7357; all four options are two-decimal values with nonzero final digits; nothing in the stem implies a class.",
+  "one_sided_check": "Key largest. Three different error kinds (wrong divisor, wrong quantity squared, step order). A natural error that lands ABOVE the key and is not an option: adding 1.5 to the input in Step 2 instead of to the result of Step 1 gives (6.1)²/4.2 ≈ 8.86. The stem gives no signal that misreading a step lowers the value: a misread divisor or added term can move it either way.",
+  "interior_parity_check": "Interior options by value: 5.04 and 7.06, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: f(4.6) > 0, and the quotient of a square by a positive number has no cheap upper bound below the options. No containment or monotonicity bound applies. The nearest distractor 7.06 is 0.68 below the key, inside the resolution of any estimate short of doing the four steps.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; natural counter error (Step 2 added to the input, 8.86); no containment or sign bound; verbal-step functions have 0 live hits (Step 1/output greps)."
+  }
+ },
+ {
+  "id": "AM29F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "same model re-expressed with a different input unit and starting time",
+  "subskill": "composition with a change of input variable in context",
+  "prompt": "The temperature, in degrees Celsius, at a weather station m minutes after noon is given by S(m) = 15 + 0.06m − 0.0002m², for 0 ≤ m ≤ 480. A second function, R, gives the same temperatures but measures its input in hours after 10:40 a.m.: R(h) is the temperature h hours after 10:40 a.m. To the nearest hundredth of a degree, what is the value of R(3.2) ?",
+  "choices": [
+   "16.52",
+   "19.32",
+   "15.11",
+   "19.21"
+  ],
+  "correct_answer": "19.21",
+  "explanation": "10:40 a.m. is 80 minutes before noon, so h hours after 10:40 a.m. is 60h − 80 minutes after noon and R(h) = S(60h − 80). For h = 3.2, 60(3.2) − 80 = 112, and S(112) = 15 + 6.72 − 0.0002(12,544) = 15 + 6.72 − 2.5088 = 19.2112 ≈ 19.21. The option \"19.32\" reads 3.2 hours as 3 hours 20 minutes (200 minutes), giving S(120) = 19.32. The option \"16.52\" adds the 80 minutes instead of subtracting them: S(272) ≈ 16.52. The option \"15.11\" never converts to minutes: it uses 3.2 − 80/60 ≈ 1.87 as the input of S, giving S(1.87) ≈ 15.11.",
+  "solve": "const S=m=>15+0.06*m-0.0002*m*m;return S(60*3.2-80).toFixed(2);",
+  "distractor_solve": {
+   "19.32": "const S=m=>15+0.06*m-0.0002*m*m;return S(200-80).toFixed(2);",
+   "16.52": "const S=m=>15+0.06*m-0.0002*m*m;return S(60*3.2+80).toFixed(2);",
+   "15.11": "const S=m=>15+0.06*m-0.0002*m*m;return S(3.2-80/60).toFixed(2);"
+  },
+  "quantity_asked": "R(3.2) = S(60·3.2 − 80) = S(112) ≈ 19.21 degrees Celsius.",
+  "distractor_kind": {
+   "19.32": "3.2 hours read as 3 hours 20 minutes (a display slip of the stem's input, not of the key; the only such slip in this run). (a) no parameter extreme. (b) neighbouring setup: the temperature at 2:00 p.m.; strictly inside the range. (c) cheapest bound: S ≤ S(150) = 19.5 for every input (vertex at m = 150); 19.32 strictly below. (d) real: decimal hours treated as hours:minutes.",
+   "16.52": "the 80-minute offset added instead of subtracted (m = 272). (a) no. (b) none. (c) inside [15, 19.5] for 0 ≤ m ≤ 300. (d) real: sign of the time offset reversed.",
+   "15.11": "input left in hours: S evaluated at 3.2 − 4/3 ≈ 1.87. (a) no; 1.87 is not an endpoint. (b) none. (c) strictly above S(0) = 15 and below 19.5. (d) real: unit conversion omitted when composing."
+  },
+  "distractor_meta": {
+   "19.32": {
+    "direction": "over",
+    "error_kind": "decimal hours read as h:mm"
+   },
+   "16.52": {
+    "direction": "under",
+    "error_kind": "time offset sign reversed"
+   },
+   "15.11": {
+    "direction": "under",
+    "error_kind": "hours not converted to minutes"
+   }
+  },
+  "bounds": [
+   "R(h) ≤ 19.5 (maximum of S, at m = 150)",
+   "R(h) ≥ S(0) = 15 for inputs 0 ≤ m ≤ 300"
+  ],
+  "mechanism": [
+   "same model with input in hours after a different start time",
+   "R(h) = S(60h - 80)",
+   "change of input variable composition",
+   "temperature minutes after noon"
+  ],
+  "arith_class_check": "Key 19.2112; all four options are two-decimal values with nonzero final digits; nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 16.52 and 19.21, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior. Cheapest bounds: 15 ≤ S ≤ 19.5 on the relevant inputs (vertex 19.5 at m = 150); all four options strictly inside.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key. Residual: a change-of-variable composition (R = S of a linear input) resembles live f(4t - 1)-type items (3e9d2b2a) and may read as a unit-conversion task."
+  }
+ },
+ {
+  "id": "AM29F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "two different inputs that a quadratic function sends to each other",
+  "subskill": "composition: f(p) = q and f(q) = p",
+  "prompt": "The function f is defined by f(x) = x² − 0.2x − 5.3. Two different numbers, p and q, satisfy f(p) = q and f(q) = p. To the nearest hundredth, what is the greater of the numbers p and q ?",
+  "choices": [
+   "2.63",
+   "1.76",
+   "2.98",
+   "1.85"
+  ],
+  "correct_answer": "1.76",
+  "explanation": "Write the two conditions: p² − 0.2p − 5.3 = q and q² − 0.2q − 5.3 = p. Subtracting gives (p − q)(p + q) − 0.2(p − q) = q − p = −(p − q); since p ≠ q, divide by p − q: p + q − 0.2 = −1, so p + q = −0.8. Adding gives p² + q² − 0.2(p + q) − 10.6 = p + q; with p² + q² = (p + q)² − 2pq this is 0.64 − 2pq + 0.16 − 10.6 = −0.8, so pq = −4.5. So p and q are the roots of t² + 0.8t − 4.5 = 0, t = (−0.8 ± √18.64)/2, and the greater is (−0.8 + 4.3174)/2 ≈ 1.76 (the other is ≈ −2.56; check: f(1.7587) ≈ −2.5587 and f(−2.5587) ≈ 1.7587). The option \"2.98\" is the greater solution of f(x) = x (taking p = q, which the word different rules out; the same quadratic results from the sign slip p + q − 0.2 = +1). The option \"1.85\" drops the right side p + q when the two equations are added (p² + q² − 0.2(p + q) − 10.6 = 0, so pq = −4.9). The option \"2.63\" uses p² + q² = (p + q)² − pq, missing the 2 (pq = −9).",
+  "solve": "const b=-0.2,c=-5.3;const S=-(b+1),P=c+b+1;return ((S+Math.sqrt(S*S-4*P))/2).toFixed(2);",
+  "distractor_solve": {
+   "1.85": "const b=-0.2,c=-5.3;const S=-(b+1),P=(S*S+b*S+2*c)/2;return ((S+Math.sqrt(S*S-4*P))/2).toFixed(2);",
+   "2.63": "const b=-0.2,c=-5.3;const S=-(b+1),P=S*S+b*S+2*c-S;return ((S+Math.sqrt(S*S-4*P))/2).toFixed(2);",
+   "2.98": "const b=-0.2,c=-5.3;return ((1-b+Math.sqrt((1-b)*(1-b)-4*c))/2).toFixed(2);"
+  },
+  "quantity_asked": "the greater of the two different numbers p, q with f(p) = q and f(q) = p: the positive root of t² + 0.8t − 4.5 = 0, ≈ 1.76.",
+  "distractor_kind": {
+   "1.85": "adding the two equations, the right side p + q is dropped (set equal to 0), giving pq = −4.9 and root 1.85. (a) no parameter extreme. (b) neighbouring setup: not an intermediate of the correct route. (c) cheapest bound: q < 0 (pq < 0) forces f(p) < 0, so p < 2.40; and p > 0 forces f(q) > 0, so q < −2.20 and p = −0.8 − q > 1.40; 1.85 strictly inside (1.40, 2.40). (d) real: a dropped side of an equation when two equations are added.",
+   "2.63": "p² + q² written as (p + q)² − pq (the 2 omitted), giving pq = −9 and root 2.63. (a) no. (b) none. (c) 2.63 lies above the two-step bound p < 2.40 (which needs q < 0 first), strictly inside every one-step bound (p > 0). (d) real: the classic identity slip.",
+   "2.98": "the greater fixed point (solution of f(x) = x): treating p = q, or the sign slip p + q − 0.2 = +1 on the right side after dividing by p − q, which leads to the same quadratic x² − 1.2x − 5.3 = 0. (a) no. (b) neighbouring setup: the answer to the 'f(a) = a' problem; it lies above the key. (c) above the two-step bound 2.40; inside every one-step bound. (d) real: ignoring 'different' or a sign slip."
+  },
+  "distractor_meta": {
+   "1.85": {
+    "direction": "over",
+    "error_kind": "right side dropped when adding equations"
+   },
+   "2.63": {
+    "direction": "over",
+    "error_kind": "square-of-sum identity missing the 2"
+   },
+   "2.98": {
+    "direction": "over",
+    "error_kind": "fixed point / sign slip on p + q"
+   }
+  },
+  "bounds": [
+   "p > 0 (pq = −4.5 < 0 and p is the greater)",
+   "p < 2.40 (q < 0 forces f(p) < 0) - two steps; kills 2.63 and 2.98, leaves 1.76 and 1.85",
+   "p > 1.40 (p > 0 forces f(q) > 0, so q < −2.20, and p = −0.8 − q)"
+  ],
+  "mechanism": [
+   "f(p) = q and f(q) = p",
+   "two-cycle of a quadratic function",
+   "subtract the two equations to get p + q",
+   "symmetric system of two quadratic equations"
+  ],
+  "arith_class_check": "Key (−0.8 + √18.64)/2 = 1.7587; all four options are irrational two-decimal values with nonzero final digits; the stem implies no integrality.",
+  "one_sided_check": "Key smallest. Three different error kinds (fixed point / sign slip, a dropped right side, the missing 2 in the identity). Natural errors that land BELOW the key and are not options: reporting the other number of the pair, q = f(p) ≈ −2.56; counting the constant once when the equations are added (2c → c gives pq = −1.85, root 1.02). The stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 1.85 and 2.63, both two-decimal with nonzero final digits; neither is nicer.",
+  "cheap_bound_check": "One-step bound: p > 0 (all options above). The cheapest upper bound, p < 2.40, needs q < 0 from pq < 0 first (two steps); it kills 2.63 and 2.98 but leaves 1.85 on the key's side; the matching lower bound p > 1.40 leaves both 1.76 and 1.85. The nearest distractor 1.85 is 0.09 above the key, inside the resolution of every bound.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural down errors (report q, constant counted once) exist; 2-cycle of a quadratic not in the live bank (greps f(p), f(q), symmetric systems: 0)."
+  }
+ },
+ {
+  "id": "AM29F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "a line perpendicular to y = x meeting the graphs of f and its inverse",
+  "subskill": "inverse graph as reflection in y = x",
+  "prompt": "The function f is defined by f(x) = √(x − 3) + 1 for x ≥ 3, and f⁻¹ is the inverse of f. In the standard (x,y) coordinate plane, the line x + y = 11 intersects the graph of y = f(x) at point P and intersects the graph of y = f⁻¹(x) at point Q. To the nearest hundredth of a coordinate unit, what is the distance PQ ?",
+  "choices": [
+   "5.19",
+   "8.86",
+   "4.61",
+   "6.53"
+  ],
+  "correct_answer": "6.53",
+  "explanation": "Let s = √(x − 3) at P, so x = s² + 3 and y = s + 1. On the line, (s² + 3) + (s + 1) = 11, so s² + s − 7 = 0 and s = (−1 + √29)/2 ≈ 2.1926 (s ≥ 0). So P ≈ (7.8075, 3.1926). The graph of f⁻¹ is the reflection of the graph of f across y = x, and the line x + y = 11 is its own reflection, so Q is the reflection of P: Q ≈ (3.1926, 7.8075). (Directly: f⁻¹(x) = (x − 1)² + 3 for x ≥ 1, and (x − 1)² + 3 = 11 − x gives x = (1 + √29)/2.) PQ = √(4.6149² + 4.6149²) = 4.6149·√2 ≈ 6.53. The option \"4.61\" reports the difference of P's coordinates (4.61), leaving out the factor √2. The option \"5.19\" builds f⁻¹ with a sign slip on the 3, f⁻¹(x) = (x − 1)² − 3, so Q ≈ (4.140, 6.860) and PQ ≈ 5.19. The option \"8.86\" builds f⁻¹ with a sign slip on the 1, f⁻¹(x) = (x + 1)² + 3, so Q ≈ (1.541, 9.459) and PQ ≈ 8.86.",
+  "solve": "const s=(-1+Math.sqrt(29))/2;const x=s*s+3,y=s+1;return (Math.SQRT2*(x-y)).toFixed(2);",
+  "distractor_solve": {
+   "4.61": "const s=(-1+Math.sqrt(29))/2;const x=s*s+3,y=s+1;return (x-y).toFixed(2);",
+   "5.19": "const s=(-1+Math.sqrt(29))/2;const px=s*s+3,py=s+1;const qx=(1+Math.sqrt(1+4*13))/2,qy=11-qx;return Math.hypot(px-qx,py-qy).toFixed(2);",
+   "8.86": "const s=(-1+Math.sqrt(29))/2;const px=s*s+3,py=s+1;const qx=(-3+Math.sqrt(9+4*7))/2,qy=11-qx;return Math.hypot(px-qx,py-qy).toFixed(2);"
+  },
+  "quantity_asked": "the distance between P (on f) and Q (on f⁻¹), both on x + y = 11: √2 times the difference of P's coordinates, ≈ 6.53.",
+  "distractor_kind": {
+   "4.61": "distance taken as the difference of P's coordinates (x_P − y_P = 4.61), without the √2 of the 45° segment. (a) no parameter extreme. (b) neighbouring setup: an intermediate of the correct route (x_P − y_P); it is strictly inside (0, 9√2). (c) cheapest bound: P and Q lie on the segment of x + y = 11 in the first quadrant, and on each graph x ≥ 1 and y ≥ 1, so PQ < 9√2 ≈ 12.73 (segment from (1, 10) to (10, 1)); 4.61 strictly inside. (d) real: dropped √2 (horizontal-leg-as-distance).",
+   "5.19": "inverse built with a sign slip on the constant 3 (f⁻¹(x) = (x − 1)² − 3), then intersected with the line: Q ≈ (4.14, 6.86), PQ ≈ 5.19. (a) no. (b) none. (c) inside (0, 12.73). (d) real: sign slip when isolating x in the inverse.",
+   "8.86": "inverse built with a sign slip on the 1 (f⁻¹(x) = (x + 1)² + 3): Q ≈ (1.54, 9.46), PQ ≈ 8.86. (a) no. (b) none. (c) inside. (d) real: sign slip on the horizontal part of the inverse."
+  },
+  "distractor_meta": {
+   "4.61": {
+    "direction": "under",
+    "error_kind": "√2 dropped from 45° distance"
+   },
+   "5.19": {
+    "direction": "under",
+    "error_kind": "inverse sign slip on vertical constant"
+   },
+   "8.86": {
+    "direction": "over",
+    "error_kind": "inverse sign slip on horizontal constant"
+   }
+  },
+  "bounds": [
+   "P and Q both lie on x + y = 11 with x, y ≥ 1, so 0 < PQ < 9√2 ≈ 12.73 (endpoints (1,10) and (10,1)); all options inside",
+   "P lies on f with x ≥ 3 and y ≥ 1; no bound separates the options without solving s² + s − 7 = 0"
+  ],
+  "mechanism": [
+   "graph of f inverse is the reflection of f in y = x",
+   "line x + y = c perpendicular to y = x",
+   "P and Q are reflections of each other",
+   "inverse of a square-root function"
+  ],
+  "arith_class_check": "Key √2·(10 − √29) ≈ 6.5265 (x_P − y_P = 9 − 2s = 10 − √29), irrational; all four options two-decimal with nonzero final digits; no integrality implied.",
+  "one_sided_check": "key interior (two options below, one above).",
+  "interior_parity_check": "Interior options by value: 5.19 and 6.53, both two-decimal with nonzero final digits; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways. Live bank has f and f⁻¹ intersecting (held v27) and x-intercept of f⁻¹ (held v23), not a perpendicular line through both graphs (greps inverse+line/distance, x + y = c: 0)."
+  }
+ },
+ {
+  "id": "AM29F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "a parabola and its image after a reflection across a horizontal line and a translation",
+  "subskill": "reflection across y = c, then horizontal shift",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of f(x) = 0.25x² − 1.5x − 4 is reflected across the line y = 2.5, and the resulting graph is then translated 3.4 units to the left to give the graph of y = g(x). The graphs of y = f(x) and y = g(x) intersect at two points. To the nearest hundredth, what is the greater of the x-coordinates of these two points?",
+  "choices": [
+   "6.51",
+   "4.72",
+   "6.97",
+   "5.14"
+  ],
+  "correct_answer": "6.97",
+  "explanation": "Reflecting across y = 2.5 sends a point (x, y) to (x, 5 − y), so the reflected graph is y = 5 − f(x); translating 3.4 units left replaces x with x + 3.4: g(x) = 5 − f(x + 3.4). The graphs meet where f(x) + f(x + 3.4) = 5. Since f(x + 3.4) = 0.25(x² + 6.8x + 11.56) − 1.5(x + 3.4) − 4 = 0.25x² + 0.2x − 6.21, the equation is 0.5x² − 1.3x − 10.21 = 5, or x² − 2.6x − 30.42 = 0, so x = (2.6 ± √128.44)/2. The greater is (2.6 + 11.333)/2 ≈ 6.97 (the other is ≈ −4.37). The option \"6.51\" reflects as y = 2.5 − f(x) (the line's value used once instead of twice), giving x² − 2.6x − 25.42 = 0. The option \"5.14\" does not multiply 11.56 by 0.25 when expanding 0.25(x + 3.4)². The option \"4.72\" drops the sign inside −1.5(x + 3.4), writing −1.5x + 5.1.",
+  "solve": "const big=(A,B,C)=>(-B+Math.sqrt(B*B-4*A*C))/(2*A);return big(1,-2.6,-30.42).toFixed(2);",
+  "distractor_solve": {
+   "6.51": "const big=(A,B,C)=>(-B+Math.sqrt(B*B-4*A*C))/(2*A);return big(1,-2.6,-25.42).toFixed(2);",
+   "5.14": "const big=(A,B,C)=>(-B+Math.sqrt(B*B-4*A*C))/(2*A);const a=0.25,b=-1.5,c=-4,L=3.4;return big(2*a,b+2*a*L+b,c+(L*L+b*L+c)-5).toFixed(2);",
+   "4.72": "const big=(A,B,C)=>(-B+Math.sqrt(B*B-4*A*C))/(2*A);const a=0.25,b=-1.5,c=-4,L=3.4;return big(2*a,b+2*a*L+b,c+(a*L*L-b*L+c)-5).toFixed(2);"
+  },
+  "quantity_asked": "the greater x-coordinate of the intersection points of f and g(x) = 5 − f(x + 3.4): the greater root of x² − 2.6x − 30.42 = 0, ≈ 6.97.",
+  "distractor_kind": {
+   "6.51": "reflection across y = 2.5 written as y = 2.5 − f(x) (reflect across the x-axis, then shift up 2.5) instead of 5 − f(x). (a) no parameter extreme. (b) neighbouring setup: reflection across y = 1.25; inside. (c) cheapest bound: g's vertex is the image of f's vertex (3, −6.25), namely (−0.4, 11.25), so at an intersection 0.25(x − 3)² − 6.25 ≤ 11.25 and x ≤ 11.37; 6.51 strictly inside. (d) real: the c vs 2c reflection rule.",
+   "5.14": "distribution slip when expanding 0.25(x + 3.4)²: the constant 11.56 is not multiplied by 0.25. (a) no. (b) none. (c) inside x ≤ 11.37. (d) real: coefficient not distributed to every term.",
+   "4.72": "sign slip in −1.5(x + 3.4), written −1.5x + 5.1. (a) no. (b) none. (c) inside. (d) real: sign not distributed into the parentheses."
+  },
+  "distractor_meta": {
+   "6.51": {
+    "direction": "under",
+    "error_kind": "reflection across y = c as c − f"
+   },
+   "5.14": {
+    "direction": "under",
+    "error_kind": "coefficient not distributed to constant"
+   },
+   "4.72": {
+    "direction": "under",
+    "error_kind": "sign slip distributing a negative"
+   }
+  },
+  "bounds": [
+   "f(x) ≥ −6.25 (vertex (3, −6.25)) and g(x) ≤ 11.25 (vertex (−0.4, 11.25)); an intersection needs f(x) ≤ 11.25, so x ≤ 11.37: kills nothing",
+   "without the translation the intersections are where f(x) = 2.5 (x = 3 + √35 ≈ 8.92); since g's right branch moves left, the key is below 8.92 - every option is on that side"
+  ],
+  "mechanism": [
+   "reflection of a graph across a horizontal line y = c",
+   "reflected graph y = 2c − f(x)",
+   "translated left: f(x + h)",
+   "intersection of a parabola and its transformed image"
+  ],
+  "arith_class_check": "Key (2.6 + √128.44)/2 ≈ 6.9665, irrational; all options two-decimal with nonzero final digits; no integrality implied.",
+  "one_sided_check": "Key largest. Three different error kinds (reflection rule c vs 2c; constant not distributed; sign not distributed). Natural errors that land ABOVE the key and are not options: leaving out the translation (f(x) = 2.5, x ≈ 8.92); the binomial-square slip (x + 3.4)² = x² + 11.56 (x ≈ 9.28); translating right instead of left, f(x − 3.4) (x ≈ 10.37). The stem does not signal a direction.",
+  "interior_parity_check": "Interior options by value: 5.14 and 6.51, both two-decimal with nonzero final digits; neither is nicer.",
+  "cheap_bound_check": "Largest key. Cheapest one-sided bounds: from the vertices, x ≤ 11.37 (all options below); the no-translation intersection x = 3 + √35 ≈ 8.92 bounds the key from above (shifting g left moves its falling branch left) - every option, key and distractors, lies on the key's side of both, so neither bound separates. Nearest distractor 6.51 is 0.46 below the key, inside the resolution of any estimate.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key with three natural over-errors (no translation, square slip, wrong direction) not used as options. Live bank reflects points across y = c, never a graph intersected with its image (greps: 0)."
+  }
+ },
+ {
+  "id": "AM29F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "two reflections of a graph across parallel vertical lines",
+  "subskill": "composition of reflections across x = a and x = b",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of f(x) = √(50 − 2x) is reflected across the line x = −2, and the resulting graph is then reflected across the line x = 3 to give the graph of y = g(x). To the nearest hundredth, what is the value of g(4.5) ?",
+  "choices": [
+   "7.14",
+   "8.19",
+   "4.58",
+   "7.81"
+  ],
+  "correct_answer": "7.81",
+  "explanation": "Reflecting across x = −2 sends x to −4 − x, so the first image is y = f(−4 − x). Reflecting that across x = 3 replaces x with 6 − x: g(x) = f(−4 − (6 − x)) = f(x − 10). The two reflections together are a translation 10 units to the right (twice the distance between the lines, in the direction from the first line to the second). So g(4.5) = f(−5.5) = √(50 + 11) = √61 ≈ 7.81. The option \"8.19\" performs only the first reflection: f(−4 − 4.5) = √67. The option \"7.14\" translates by the distance between the lines, 5, instead of twice it: f(−0.5) = √51. The option \"4.58\" translates 10 units the wrong way (as from reflecting in the opposite order): f(14.5) = √21.",
+  "solve": "const f=x=>Math.sqrt(50-2*x);return f(4.5-10).toFixed(2);",
+  "distractor_solve": {
+   "8.19": "const f=x=>Math.sqrt(50-2*x);return f(-4-4.5).toFixed(2);",
+   "7.14": "const f=x=>Math.sqrt(50-2*x);return f(4.5-5).toFixed(2);",
+   "4.58": "const f=x=>Math.sqrt(50-2*x);return f(4.5+10).toFixed(2);"
+  },
+  "quantity_asked": "g(4.5) where g is f reflected across x = −2 and then across x = 3, i.e. g(x) = f(x − 10): f(−5.5) = √61 ≈ 7.81.",
+  "distractor_kind": {
+   "8.19": "only the first reflection is applied (g(x) = f(−4 − x)), the second dropped. (a) no parameter extreme. (b) neighbouring setup: the single reflection across x = −2; inside the range of f on the stem's inputs. (c) cheapest bound: every option is a value of f, which is positive and decreasing; no stem-only bound on the input exists without composing the reflections; 8.19 inside. (d) real: one of two stated transformations omitted.",
+   "7.14": "the composition of the two reflections taken as a translation by the distance between the lines (5) instead of twice that distance. (a) no. (b) none. (c) inside. (d) real: the 'twice the distance' rule missed.",
+   "4.58": "translation of 10 in the wrong direction, g(x) = f(x + 10) (the result of reflecting across x = 3 first). (a) no. (b) neighbouring setup: the reverse-order composition; inside. (c) inside. (d) real: order of reflections reversed / direction slip."
+  },
+  "distractor_meta": {
+   "8.19": {
+    "direction": "over",
+    "error_kind": "second reflection omitted"
+   },
+   "7.14": {
+    "direction": "under",
+    "error_kind": "translation equal to line distance"
+   },
+   "4.58": {
+    "direction": "under",
+    "error_kind": "reverse-order composition"
+   }
+  },
+  "bounds": [
+   "g(4.5) = f(u) for some input u; f is decreasing, so the value depends only on u: no option is killed without composing the reflections"
+  ],
+  "mechanism": [
+   "two reflections across parallel vertical lines",
+   "composition of reflections is a translation",
+   "g(x) = f(x − 2(b − a))",
+   "reflect a graph across x = a"
+  ],
+  "arith_class_check": "Key √61 ≈ 7.8102; every option is √(odd integer) from the same f, two decimals with nonzero final digits; the stem implies no integrality.",
+  "one_sided_check": "key interior (one option above, two below).",
+  "interior_parity_check": "Interior options by value: 7.14 and 7.81, both two-decimal with nonzero final digits (√51 and √61); neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors both ways. Live bank reflects POINTS across vertical lines (isee 9c2ad5c9, fbd1c9d6); no graph reflected twice / reflections composed into a translation (greps: 0)."
+  }
+ },
+ {
+  "id": "AM29F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "inverse of a transformed function, given only the inverse of the parent",
+  "subskill": "inverse of g(x) = a·f(x − h) + k",
+  "prompt": "The function f has an inverse function, and f⁻¹(x) = x + ∛x for every real number x. The function g is defined by g(x) = 2f(x − 1.5) − 3, and g also has an inverse function. To the nearest hundredth, what is the value of g⁻¹(8) ?",
+  "choices": [
+   "10.41",
+   "8.77",
+   "14.72",
+   "13.73"
+  ],
+  "correct_answer": "8.77",
+  "explanation": "If g⁻¹(8) = c, then g(c) = 8, so 2f(c − 1.5) − 3 = 8. Undo the outer steps in reverse order: add 3 (2f(c − 1.5) = 11), then divide by 2 (f(c − 1.5) = 5.5). Now apply f⁻¹: c − 1.5 = f⁻¹(5.5) = 5.5 + ∛5.5 ≈ 5.5 + 1.7652 = 7.2652, so c ≈ 8.7652 ≈ 8.77. (In general g⁻¹(y) = f⁻¹((y + 3)/2) + 1.5; f itself has no simple formula, so the transformation must be undone around f⁻¹.) The option \"10.41\" undoes the outer steps in the wrong order (8/2 + 3 = 7, then 7 + ∛7 + 1.5). The option \"13.73\" assumes g⁻¹ is the same transformation applied to f⁻¹, g⁻¹(x) = 2f⁻¹(x − 1.5) − 3 = 2(6.5 + ∛6.5) − 3. The option \"14.72\" forgets to divide by the stretch factor 2 (uses f⁻¹(11) + 1.5).",
+  "solve": "const fi=x=>x+Math.cbrt(x);return (fi((8+3)/2)+1.5).toFixed(2);",
+  "distractor_solve": {
+   "10.41": "const fi=x=>x+Math.cbrt(x);return (fi(8/2+3)+1.5).toFixed(2);",
+   "13.73": "const fi=x=>x+Math.cbrt(x);return (2*fi(8-1.5)-3).toFixed(2);",
+   "14.72": "const fi=x=>x+Math.cbrt(x);return (fi(8+3)+1.5).toFixed(2);"
+  },
+  "quantity_asked": "g⁻¹(8): the input c with 2f(c − 1.5) − 3 = 8, i.e. c = f⁻¹(5.5) + 1.5 ≈ 8.77.",
+  "distractor_kind": {
+   "10.41": "undoes the outer operations in the wrong order (divide 8 by 2 first, then add 3: 7 instead of 5.5), then f⁻¹(7) + 1.5. (a) no parameter extreme. (b) neighbouring setup: the inverse of 2(f(x − 1.5) − 3)-type grouping; not an intermediate of the correct route. (c) no one-step bound on g⁻¹(8) is readable without undoing g; 10.41 lies strictly inside any bound a solver could form. (d) real: order of inverse operations.",
+   "13.73": "treats the inverse of a transformed function as the same transformation of the inverse: g⁻¹(x) = 2f⁻¹(x − 1.5) − 3, so 2(6.5 + ∛6.5) − 3. (a) no. (b) not an intermediate. (c) inside every bound. (d) real: the classic 'transform the inverse the same way' misconception.",
+   "14.72": "forgets to undo the vertical stretch: f(c − 1.5) = 11 instead of 5.5, so f⁻¹(11) + 1.5 = 11 + ∛11 + 1.5. (a) no. (b) 11 is the correct intermediate before dividing (one step short). (c) inside. (d) real: dropped division by the stretch factor."
+  },
+  "distractor_meta": {
+   "10.41": {
+    "direction": "over",
+    "error_kind": "inverse operations in wrong order"
+   },
+   "13.73": {
+    "direction": "over",
+    "error_kind": "inverse transformed the same way"
+   },
+   "14.72": {
+    "direction": "over",
+    "error_kind": "stretch factor not undone"
+   }
+  },
+  "bounds": [
+   "g⁻¹(8) is the input c with g(c) = 8; f⁻¹ is increasing, so c − 1.5 = f⁻¹(5.5) lies between f⁻¹(5) ≈ 6.71 and f⁻¹(6) ≈ 7.82 only after (y + 3)/2 = 5.5 is found - no stem-only bound kills an option"
+  ],
+  "mechanism": [
+   "inverse of a transformed function g(x) = 2f(x − 1.5) − 3",
+   "g⁻¹(y) = f⁻¹((y + 3)/2) + 1.5",
+   "f⁻¹ given, f not given",
+   "undo the transformation around the inverse"
+  ],
+  "arith_class_check": "Key 5.5 + ∛5.5 + 1.5 = 8.7652 (irrational); all four options are two-decimal non-terminating values with nonzero final digits; the stem implies no integrality.",
+  "one_sided_check": "Key smallest. Three different error kinds (order of inverse operations; same-way transformation of f⁻¹; stretch not undone). Natural errors that land BELOW the key and are not options: the shift sign slip c = f⁻¹(5.5) − 1.5 ≈ 5.77 (undoing 'x − 1.5' by subtracting), and the vertical sign slip (8 − 3)/2 = 2.5, giving f⁻¹(2.5) + 1.5 ≈ 5.36. The stem does not signal a direction: g has both a shift that is undone by adding and a constant that is undone by adding.",
+  "interior_parity_check": "Interior options by value: 10.41 and 13.73, both two-decimal with nonzero final digits; neither is nicer.",
+  "cheap_bound_check": "Smallest key. The cheapest one-sided bound needs the method: since f⁻¹ is increasing and f⁻¹(x) > x for x > 1, c > (y + 3)/2 + 1.5 = 7 - all options lie above it. An upper bound c < 5.5 + 2 + 1.5 = 9 (∛5.5 < 2) keeps only the key, but it is the solution itself (it requires (8 + 3)/2 first). Without undoing g no bound is readable from the stem. Nearest distractor 10.41 is 1.64 above the key; the counter errors (5.36, 5.77) sit below it.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key with two natural sign-slip errors below it; inverse of a transformation with only f⁻¹ given is not in the live bank (greps: g⁻¹, cube root, inverse+transform: no match)."
+  }
+ },
+ {
+  "id": "AM29F-10",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "piecewise-defined phase-out credit in context",
+  "subskill": "piecewise function in context",
+  "prompt": "A city gives each household a yearly housing credit that depends on the household's countable income, which is its yearly income minus $3,500. For a countable income of x dollars, the credit C(x), in dollars, is\nC(x) = 3,600 for x ≤ 28,000,\nC(x) = 3,600 − 0.18(x − 28,000) for 28,000 < x < 48,000,\nC(x) = 0 for x ≥ 48,000.\nThe Okafor household's yearly income rose from $41,830 to $53,960. By how many dollars did the household's yearly income plus its housing credit increase?",
+  "choices": [
+   "9946.60",
+   "10270.60",
+   "10389.40",
+   "11019.40"
+  ],
+  "correct_answer": "10389.40",
+  "explanation": "Countable incomes: 41,830 − 3,500 = 38,330 before and 53,960 − 3,500 = 50,460 after. Before: C(38,330) = 3,600 − 0.18(10,330) = 3,600 − 1,859.40 = 1,740.60. After: 50,460 ≥ 48,000, so C = 0. Income plus credit went from 41,830 + 1,740.60 = 43,570.60 to 53,960 + 0 = 53,960, an increase of 10,389.40. The option \"11019.40\" skips the $3,500 subtraction and evaluates C at the incomes themselves: C(41,830) = 1,110.60. The option \"9946.60\" uses the middle rule for both incomes, so the credit falls by 0.18 × 12,130 = 2,183.40 (the new credit comes out −442.80 instead of 0). The option \"10270.60\" subtracts the reduction 0.18(10,330) = 1,859.40 instead of the credit that was lost, 1,740.60.",
+  "solve": "const C=x=>x<=28000?3600:(x<48000?3600-0.18*(x-28000):0);return ((53960+C(53960-3500))-(41830+C(41830-3500))).toFixed(2);",
+  "distractor_solve": {
+   "11019.40": "const C=x=>x<=28000?3600:(x<48000?3600-0.18*(x-28000):0);return ((53960+C(53960))-(41830+C(41830))).toFixed(2);",
+   "9946.60": "const M=x=>3600-0.18*(x-28000);return ((53960+M(53960-3500))-(41830+M(41830-3500))).toFixed(2);",
+   "10270.60": "return ((53960-41830)-0.18*(41830-3500-28000)).toFixed(2);"
+  },
+  "quantity_asked": "the increase in (yearly income + housing credit) from income 41,830 to income 53,960: 10,389.40 dollars.",
+  "distractor_kind": {
+   "11019.40": "countable-income allowance ignored. (a) no parameter extreme. (b) neighbouring setup: the same item with no allowance; strictly inside (8,530, 12,130). (c) cheapest bounds: increase < raise 12,130 (the credit can only fall) and > 12,130 − 3,600 = 8,530 (at most the full credit is lost); strictly inside. (d) real: the function's input is countable income, not income.",
+   "9946.60": "middle rule applied past x = 48,000, so the credit goes negative. (a) no. (b) neighbouring setup: a raise that stays inside the phase-out band; inside. (c) inside (8,530, 12,130). (d) real: evaluating a piece outside its domain.",
+   "10270.60": "the reduction 0.18(x − 28,000) treated as the credit lost. (a) no. (b) intermediate quantity of the process (the reduction); inside. (c) inside (8,530, 12,130). (d) real: confusing the amount taken off with the amount remaining."
+  },
+  "distractor_meta": {
+   "11019.40": {
+    "direction": "over",
+    "error_kind": "input variable misread (allowance skipped)"
+   },
+   "9946.60": {
+    "direction": "under",
+    "error_kind": "piece used outside its domain"
+   },
+   "10270.60": {
+    "direction": "under",
+    "error_kind": "reduction taken as remaining credit"
+   }
+  },
+  "bounds": [
+   "increase < 12,130 (the raise; the credit cannot rise when income rises)",
+   "increase > 12,130 − 3,600 = 8,530 (at most the whole credit is lost)"
+  ],
+  "mechanism": [
+   "piecewise credit that phases out with income",
+   "countable income = income minus allowance",
+   "income plus credit increase across the cutoff",
+   "credit reaches zero above a threshold"
+  ],
+  "arith_class_check": "All four options are dollar amounts with a zero cents digit (0.18 times whole dollars); none is an integer or a round hundred; the key's class is shared by all.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 10270.60 and 10389.40, both five-digit two-decimal amounts ending in 0 cents; neither is rounder.",
+  "cheap_bound_check": "key interior. Cheapest bounds: 8,530 < increase < 12,130; all four options lie strictly inside.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors both sides (allowance skipped over; out-of-domain piece and reduction-as-credit under). No live phase-out/credit/allowance piecewise item (income, credit, allowance greps)."
+  }
+ },
+ {
+  "id": "AM29F-11",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "domain of a function combining a square root of a quadratic and a logarithm",
+  "subskill": "domain of a function",
+  "prompt": "The function h is defined by h(x) = √(9 + 4x − x²) + log(7x − 5). The domain of h, the set of all real numbers x for which h(x) is defined, is an interval. To the nearest hundredth, what is the length of that interval?",
+  "choices": [
+   "3.52",
+   "4.21",
+   "4.75",
+   "4.89"
+  ],
+  "correct_answer": "4.89",
+  "explanation": "The square root needs 9 + 4x − x² ≥ 0. Since 9 + 4x − x² = 13 − (x − 2)², this means (x − 2)² ≤ 13, so 2 − √13 ≤ x ≤ 2 + √13 (about −1.61 ≤ x ≤ 5.61). The logarithm needs 7x − 5 > 0, so x > 5/7 (about 0.71). Both must hold, so the domain is 5/7 < x ≤ 2 + √13, whose length is 2 + √13 − 5/7 ≈ 4.89. The option \"4.75\" requires the logarithm itself to be nonnegative, 7x − 5 ≥ 1, so x ≥ 6/7. The option \"4.21\" solves 7x > 5 as x > 7/5. The option \"3.52\" completes the square as 5 − (x − 2)², so the square-root interval ends at 2 + √5.",
+  "solve": "return (2+Math.sqrt(13)-5/7).toFixed(2);",
+  "distractor_solve": {
+   "4.75": "return (2+Math.sqrt(13)-6/7).toFixed(2);",
+   "4.21": "return (2+Math.sqrt(13)-7/5).toFixed(2);",
+   "3.52": "return (2+Math.sqrt(5)-5/7).toFixed(2);"
+  },
+  "quantity_asked": "the length of the domain interval 5/7 < x ≤ 2 + √13: 4.89.",
+  "distractor_kind": {
+   "4.75": "log argument required to be at least 1 (log value nonnegative). (a) no parameter extreme. (b) neighbouring setup: the domain of √(log(7x − 5)) style condition; strictly inside (0, 7.21). (c) cheapest bound: length < 2√13 ≈ 7.21 (the square-root interval contains the domain); inside. (d) real: confusing 'log is defined' with 'log is nonnegative'.",
+   "4.21": "7x > 5 solved as x > 7/5. (a) no. (b) none. (c) inside (0, 7.21). (d) real: inverted fraction when dividing.",
+   "3.52": "completing the square with a sign slip: −[(x − 2)² − 4] + 9 written as 5 − (x − 2)². (a) no. (b) none. (c) inside (0, 7.21). (d) real: sign slip distributing the minus."
+  },
+  "distractor_meta": {
+   "4.75": {
+    "direction": "under",
+    "error_kind": "log condition read as argument ≥ 1"
+   },
+   "4.21": {
+    "direction": "under",
+    "error_kind": "inverted fraction solving linear inequality"
+   },
+   "3.52": {
+    "direction": "under",
+    "error_kind": "completing-square sign slip"
+   }
+  },
+  "bounds": [
+   "length ≤ 2√13 ≈ 7.21 (the domain lies inside the square-root interval)",
+   "length > 0"
+  ],
+  "mechanism": [
+   "domain of square root of a quadratic",
+   "domain of a logarithm",
+   "intersection of domain conditions",
+   "length of the domain interval"
+  ],
+  "arith_class_check": "Key 4.89 is irrational rounded to hundredths, as are all four options; nothing in the stem singles out a form.",
+  "one_sided_check": "Key largest. Distractors come from three different error kinds. Natural errors move the answer UP as well: dropping the log condition gives 2√13 ≈ 7.21; a sign slip solving 7x − 5 > 0 as x > −5/7 gives 2 + √13 + 5/7 ≈ 6.32. A student cannot read from the stem that slips only shrink the interval.",
+  "interior_parity_check": "Interior options by value: 4.21 and 4.75, both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: the domain lies inside the square-root interval, so length ≤ 2√13 ≈ 7.21; all three distractors lie on the key's side (below). One step finer (right end ≈ 5.61 minus a positive left end) gives < 5.61, still above every option. No lower bound separates the key: the nearest distractor 4.75 is 0.14 below it.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interval-length framing resembles live act 7ef552b8 (two linear inequalities, length); mechanism here is a quadratic radicand plus a log domain, no live sqrt+log domain item."
+  }
+ },
+ {
+  "id": "AM29F-12",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "comparing average rates of change of a quadratic model and a square-root model",
+  "subskill": "average rate of change: comparing two functions",
+  "prompt": "A botanist models the heights of two plants, in centimeters, t weeks after planting. Plant A's height is A(t) = 5 + 2.6t − 0.035t², and plant B's height is B(t) = 1.5 + 15.8√t, for 0 ≤ t ≤ 20. From t = 4 to t = 16, by how many centimeters per week does the average rate of change of plant B's height exceed the average rate of change of plant A's height, to the nearest hundredth?",
+  "choices": [
+   "0.55",
+   "0.73",
+   "0.83",
+   "2.66"
+  ],
+  "correct_answer": "0.73",
+  "explanation": "Plant A: A(16) = 5 + 41.6 − 8.96 = 37.64 and A(4) = 5 + 10.4 − 0.56 = 14.84, so its average rate of change is (37.64 − 14.84)/(16 − 4) = 22.8/12 = 1.9. Plant B: B(16) = 1.5 + 15.8(4) = 64.7 and B(4) = 1.5 + 15.8(2) = 33.1, so its average rate of change is 31.6/12 ≈ 2.633. The difference is about 2.633 − 1.9 ≈ 0.73. The option \"0.55\" divides both changes by 16, the final week, instead of the 12 weeks elapsed. The option \"0.83\" subtracts A(4) with a sign slip on its −0.56 term, getting a change of 31.2 − 9.52 = 21.68 for plant A. The option \"2.66\" takes 15.8(√16 − √4) as 15.8√(16 − 4).",
+  "solve": "const A=t=>5+2.6*t-0.035*t*t,B=t=>1.5+15.8*Math.sqrt(t);return ((B(16)-B(4))/12-(A(16)-A(4))/12).toFixed(2);",
+  "distractor_solve": {
+   "0.55": "const A=t=>5+2.6*t-0.035*t*t,B=t=>1.5+15.8*Math.sqrt(t);return ((B(16)-B(4))/16-(A(16)-A(4))/16).toFixed(2);",
+   "0.83": "const B=t=>1.5+15.8*Math.sqrt(t);return ((B(16)-B(4))/12-(2.6*12-0.035*(256+16))/12).toFixed(2);",
+   "2.66": "const A=t=>5+2.6*t-0.035*t*t;return (15.8*Math.sqrt(12)/12-(A(16)-A(4))/12).toFixed(2);"
+  },
+  "quantity_asked": "the average rate of change of B on [4, 16] minus that of A on [4, 16], in cm per week: about 0.73.",
+  "distractor_kind": {
+   "0.55": "elapsed time taken as the final week, 16. (a) no parameter extreme. (b) neighbouring setup: the same two changes spread over 16 weeks; strictly inside. (c) no cheap bound: the difference can have either sign until both rates are found. (d) real: dividing by the end time instead of the elapsed time.",
+   "0.83": "sign slip subtracting A(4)'s −0.56 term. (a) no. (b) none. (c) inside. (d) real: subtracting a negative term.",
+   "2.66": "√16 − √4 taken as √(16 − 4). (a) no. (b) none. (c) inside. (d) real: radical of a difference."
+  },
+  "distractor_meta": {
+   "0.55": {
+    "direction": "under",
+    "error_kind": "wrong interval length (end time)"
+   },
+   "0.83": {
+    "direction": "over",
+    "error_kind": "sign slip subtracting a negative term"
+   },
+   "2.66": {
+    "direction": "over",
+    "error_kind": "root of a difference as difference of roots"
+   }
+  },
+  "bounds": [
+   "no stem-forced bound on the sign or size of the difference before both rates are computed"
+  ],
+  "mechanism": [
+   "average rate of change of a quadratic model",
+   "average rate of change of a square-root model",
+   "difference of two average rates of change",
+   "plant height models"
+  ],
+  "arith_class_check": "Key 0.733... rounded; options 0.55 (exact), 0.83 and 2.66 rounded; all two-decimal, nothing in the stem singles out a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 0.73 and 0.83, both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. No one-step bound separates options: A's rate is between its linear coefficient minus 0.035·32 and 2.6, B's is near 15.8/(√16 + √4) ≈ 2.63, which is the solve itself.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors on both sides from three kinds. No live item compares average rates of change of two models (two-models, √t model, plant greps)."
+  }
+ },
+ {
+  "id": "AM29F-13",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "average rate of change of an unknown quadratic from two given average rates",
+  "subskill": "average rate of change of a quadratic",
+  "prompt": "The function f is a quadratic function. The average rate of change of f from x = 0.5 to x = 4.5 is 3.86, and the average rate of change of f from x = 2 to x = 9 is −1.64. To the nearest hundredth, what is the average rate of change of f from x = −3 to x = 6 ?",
+  "choices": [
+   "-5.31",
+   "-3.47",
+   "5.69",
+   "7.07"
+  ],
+  "correct_answer": "5.69",
+  "explanation": "Write f(x) = ax² + bx + c. From x = p to x = q, the average rate of change is [a(q² − p²) + b(q − p)]/(q − p) = a(p + q) + b. So 5a + b = 3.86 and 11a + b = −1.64. Subtracting, 6a = −5.5, so a ≈ −0.9167 and b = 3.86 − 5a ≈ 8.4433. From x = −3 to x = 6, p + q = 3, so the average rate of change is 3a + b = −2.75 + 8.4433 ≈ 5.69. The option \"7.07\" sets up the equations with p + q but then substitutes the midpoint 1.5 instead of p + q = 3. The option \"-3.47\" finds a correctly but solves 5a + b = 3.86 as b = 3.86 + 5a ≈ −0.7233, so 3a + b ≈ −3.47. The option \"-5.31\" uses a(q − p) + b, writing (q² − p²)/(q − p) as q − p: 4a + b = 3.86 and 7a + b = −1.64, then 9a + b.",
+  "solve": "const a=(-1.64-3.86)/6,b=3.86-5*a;return (3*a+b).toFixed(2);",
+  "distractor_solve": {
+   "7.07": "const a=(-1.64-3.86)/6,b=3.86-5*a;return (1.5*a+b).toFixed(2);",
+   "-3.47": "const a=(-1.64-3.86)/6,b=3.86+5*a;return (3*a+b).toFixed(2);",
+   "-5.31": "const a=(-1.64-3.86)/3,b=3.86-4*a;return (9*a+b).toFixed(2);"
+  },
+  "quantity_asked": "the average rate of change of f on [−3, 6], i.e. 3a + b: about 5.69.",
+  "distractor_kind": {
+   "7.07": "midpoint substituted for p + q at the last step. (a) no parameter extreme. (b) neighbouring setup: the formula a·m + b with m the midpoint; strictly inside. (c) no cheap bound: a and b are unknown until solved. (d) real: mixing the sum form and the midpoint form.",
+   "-3.47": "sign slip isolating b in 5a + b = 3.86. (a) no. (b) none. (c) no cheap bound. (d) real: moving a term across the equals sign without changing its sign.",
+   "-5.31": "(q² − p²)/(q − p) taken as q − p, so the average rate depends on interval length. (a) no. (b) neighbouring setup: interval-length model; inside. (c) no cheap bound. (d) real: factoring slip."
+  },
+  "distractor_meta": {
+   "7.07": {
+    "direction": "over",
+    "error_kind": "midpoint used for p + q"
+   },
+   "-3.47": {
+    "direction": "under",
+    "error_kind": "sign slip solving for b"
+   },
+   "-5.31": {
+    "direction": "under",
+    "error_kind": "difference of squares over difference taken as q − p"
+   }
+  },
+  "bounds": [
+   "no stem-forced bound: the answer is 3a + b with a and b found from the two given rates"
+  ],
+  "mechanism": [
+   "average rate of change of a quadratic equals a(p + q) + b",
+   "two given average rates of change determine a and b",
+   "average rate of change on a new interval",
+   "unknown quadratic function"
+  ],
+  "arith_class_check": "Key 5.6933 rounded; all four options are two-decimal rounded values (two negative, two positive); no integer or exact form singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: -3.47 and 5.69, both two-decimal values with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. No one-step bound: the rate on [−3, 6] is not between the two given rates in any forced way (its p + q = 3 lies outside 5 and 11, so linear extrapolation is needed).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors both sides. Live ARC items give f or solve for one endpoint/constant (act 852ef7f4, held AM23F-03); none recovers a quadratic from two average rates."
+  }
+ }
+]

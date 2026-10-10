@@ -1,0 +1,602 @@
+[
+ {
+  "id": "AM29A-12",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "right angle at the y-intercept between a parabola's x-intercepts",
+  "subskill": "product of roots and distance between zeros",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 1.15x² − 2.6x + c, where c is a nonzero constant, crosses the x-axis at points A and B and crosses the y-axis at point C. Angle ACB is a right angle. To the nearest hundredth, what is the distance AB ?",
+  "choices": [
+   "2.56",
+   "2.85",
+   "2.78",
+   "2.64"
+  ],
+  "correct_answer": "2.85",
+  "explanation": "Let the x-intercepts be (r, 0) and (s, 0), and C = (0, c). Angle ACB is a right angle when the vectors from C to A and from C to B are perpendicular: (r)(s) + (−c)(−c) = 0, so rs + c² = 0. The product of the roots is rs = c/1.15, so c/1.15 + c² = 0 and, since c ≠ 0, c = −1/1.15. Then 4ac = 4(1.15)(−1/1.15) = −4, and the distance between the roots is AB = √(b² − 4ac)/a = √(2.6² + 4)/1.15 = √10.76/1.15 ≈ 2.85. The option \"2.78\" drops the a from 4ac, using √(6.76 − 4c)/1.15. The option \"2.56\" reports the positive x-intercept, (2.6 + √10.76)/2.3, that is, the distance OB instead of AB. The option \"2.64\" computes 2.6² as 2(2.6) = 5.2.",
+  "solve": "const a=1.15,b=-2.6,c=-1/a;return (Math.sqrt(b*b-4*a*c)/a).toFixed(2);",
+  "distractor_solve": {
+   "2.78": "const a=1.15,b=-2.6,c=-1/a;return (Math.sqrt(b*b-4*c)/a).toFixed(2);",
+   "2.56": "const a=1.15,b=-2.6,c=-1/a;return ((-b+Math.sqrt(b*b-4*a*c))/(2*a)).toFixed(2);",
+   "2.64": "const a=1.15,b=-2.6,c=-1/a;return (Math.sqrt(2*2.6-4*a*c)/a).toFixed(2);"
+  },
+  "quantity_asked": "the distance AB between the x-intercepts, 2.85, once the right angle at C forces c = −1/1.15.",
+  "distractor_kind": {
+   "2.78": "4ac computed as 4c (coefficient a dropped). (a) no parameter extreme. (b) none. (c) A and B lie on opposite sides of the y-axis, so ac < 0 and AB > |b|/a = 2.26; 2.78 is above it. (d) real slip in the discriminant.",
+   "2.56": "the positive intercept (distance OB) reported as AB. (a) no. (b) neighbouring quantity: one intercept instead of the gap; 2.56 strictly above 2.26. (c) inside. (d) real: forgets the negative intercept A.",
+   "2.64": "2.6² computed as 5.2 (squared as doubled). (a) no. (b) none. (c) inside, 0.38 above the 2.26 bound. (d) real arithmetic slip."
+  },
+  "distractor_meta": {
+   "2.78": {
+    "direction": "under",
+    "error_kind": "a dropped from 4ac"
+   },
+   "2.56": {
+    "direction": "under",
+    "error_kind": "one intercept for the gap"
+   },
+   "2.64": {
+    "direction": "under",
+    "error_kind": "square computed as double"
+   }
+  },
+  "bounds": [
+   "A and B on opposite sides of the y-axis (right angle at C on the y-axis): ac < 0, so AB > |b|/a = 2.26",
+   "no stem-readable upper bound"
+  ],
+  "mechanism": [
+   "right angle at the y-intercept",
+   "product of roots c/a",
+   "perpendicular vectors from C to the x-intercepts",
+   "distance between zeros sqrt(b^2-4ac)/a"
+  ],
+  "arith_class_check": "All four options are rounded values of square roots; none terminates. All show two decimals with nonzero last digits.",
+  "one_sided_check": "Key largest; three different errors (a dropped from 4ac, one intercept for the gap, square as double). Natural errors moving UP exist and are not options: using rs = c instead of c/a gives c = −1 and AB ≈ 2.93; forgetting to divide by a in the distance gives √10.76 ≈ 3.28. The stem does not show which way an error in c or in the discriminant moves AB.",
+  "interior_parity_check": "Interior options by value: 2.64 and 2.78, both two-decimal rounded roots with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key largest. The cheapest bound is AB > |b|/a = 2.26 (A and B straddle the y-axis, so −4ac > 0); all three distractors lie on the key's side of it (2.56, 2.64, 2.78 > 2.26). No stem-readable upper bound. Nearest distractor 2.78 is 0.07 below the key; gaps upward 0.08 / 0.14 / 0.07 (no closing-in run, no arithmetic run).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; two natural upward errors (rs = c, no division by a) exist off the options; all distractors above the 2.26 straddle bound. No right-angle-at-y-intercept item by grep."
+  }
+ },
+ {
+  "id": "AM29A-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rectangle with two vertices on a parabola",
+  "subskill": "line-parabola system from a rectangle's proportions",
+  "prompt": "In the standard (x,y) coordinate plane, rectangle ABCD has vertices A and B on the x-axis and vertices C and D on the parabola y = 16 − 0.3x², with C and D above the x-axis. The height of the rectangle is 0.8 times its width (its side along the x-axis). To the nearest hundredth, what is the height of the rectangle?",
+  "choices": [
+   "4.87",
+   "10.60",
+   "2.97",
+   "8.17"
+  ],
+  "correct_answer": "8.17",
+  "explanation": "Because C and D are at the same height on a parabola symmetric about the y-axis, they are (x, y) and (−x, y) with x > 0, so the width is 2x and the height is y = 16 − 0.3x². The condition y = 0.8(2x) = 1.6x means the corner (x, y) is where the line y = 1.6x meets the parabola: 16 − 0.3x² = 1.6x, so 0.3x² + 1.6x − 16 = 0 and x = (−1.6 + √(2.56 + 19.2))/0.6 ≈ 5.108. The height is 1.6x ≈ 8.17. The option \"4.87\" uses the width w itself as the corner's x-coordinate: 16 − 0.3w² = 0.8w. The option \"10.60\" reverses the ratio, taking the width to be 0.8 times the height (y = 2x/0.8 = 2.5x). The option \"2.97\" drops the 4 from the discriminant, using √(2.56 + 0.3·16).",
+  "solve": "const x=(-1.6+Math.sqrt(1.6*1.6+4*0.3*16))/(2*0.3);return (1.6*x).toFixed(2);",
+  "distractor_solve": {
+   "4.87": "const w=(-0.8+Math.sqrt(0.8*0.8+4*0.3*16))/(2*0.3);return (0.8*w).toFixed(2);",
+   "10.60": "const x=(-2.5+Math.sqrt(2.5*2.5+4*0.3*16))/(2*0.3);return (2.5*x).toFixed(2);",
+   "2.97": "const x=(-1.6+Math.sqrt(1.6*1.6+0.3*16))/(2*0.3);return (1.6*x).toFixed(2);"
+  },
+  "quantity_asked": "the height of the rectangle, 8.17, from the corner (x, 1.6x) on y = 16 − 0.3x².",
+  "distractor_kind": {
+   "4.87": "width used as the corner's x-coordinate (symmetry ignored): 16 − 0.3w² = 0.8w. (a) no parameter extreme. (b) neighbouring setup: a rectangle with one side on the y-axis; 4.87 strictly inside (0, 11.68). (c) bounds: height < 16 and height = 0.8·width < 0.8·2√(16/0.3) ≈ 11.68; inside. (d) real: forgets that the top corners are at ±x.",
+   "10.60": "ratio reversed: width = 0.8·height, so y = 2.5x. (a) no. (b) neighbouring setup: the wide-for-tall rectangle; 10.60 is 1.08 below the 11.68 cap. (c) inside. (d) real: 'height is 0.8 times width' read backwards.",
+   "2.97": "discriminant computed as b² + ac (the 4 dropped). (a) no. (b) none. (c) inside. (d) real quadratic-formula slip."
+  },
+  "distractor_meta": {
+   "4.87": {
+    "direction": "under",
+    "error_kind": "symmetry ignored (width as x)"
+   },
+   "10.60": {
+    "direction": "over",
+    "error_kind": "ratio reversed"
+   },
+   "2.97": {
+    "direction": "under",
+    "error_kind": "discriminant slip"
+   }
+  },
+  "bounds": [
+   "0 < height < 16 (the parabola's maximum)",
+   "half-width < √(16/0.3) ≈ 7.30, so height = 0.8·width < 11.68"
+  ],
+  "mechanism": [
+   "rectangle inscribed under a parabola",
+   "top corners on the parabola",
+   "height is a multiple of the width",
+   "line y = mx meets parabola"
+  ],
+  "arith_class_check": "All four options are rounded values of irrational roots; none terminates. 10.60 shows a trailing zero but it is an extreme option, not interior.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 4.87 and 8.17 (key), both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "key interior. Bounds 0 < height < 11.68 (half-width below the x-intercept √(16/0.3)); all options strictly inside, the largest 1.08 below.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (symmetry, reversed ratio, discriminant slip); 10.60 trailing zero is an extreme option. No inscribed-rectangle-under-parabola item by grep."
+  }
+ },
+ {
+  "id": "AM29A-14",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "parabola whose vertex and x-intercepts form an equilateral triangle",
+  "subskill": "vertex depth and intercept spacing of a quadratic",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 1.6x² − 7x + c, where c is a constant, crosses the x-axis at points A and B. The vertex V of the graph and the points A and B are the vertices of an equilateral triangle. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "6.29",
+   "7.19",
+   "5.78",
+   "7.03"
+  ],
+  "correct_answer": "5.78",
+  "explanation": "Write the parabola as y = 1.6(x − h)² − k, where h = 7/3.2 and k > 0 is the depth of the vertex below the x-axis; k = 7²/(4·1.6) − c = 7.65625 − c. The x-intercepts are h ± √(k/1.6), so half of AB is √(k/1.6). In an equilateral triangle the height is √3 times half the base, so k = √3·√(k/1.6). Squaring, k² = 3k/1.6, so k = 3/1.6 = 1.875. Then c = 7.65625 − 1.875 ≈ 5.78. The option \"7.19\" uses half of AB as the side, so the height is (√3/2)·√(k/1.6), giving k = 0.75/1.6. The option \"7.03\" treats the triangle as a right isosceles triangle (height equal to half the base), giving k = 1/1.6. The option \"6.29\" solves k² = 3k/1.6 as k = √(3/1.6).",
+  "solve": "const a=1.6,b=-7,B=b*b/(4*a);return (B-3/a).toFixed(2);",
+  "distractor_solve": {
+   "7.19": "const a=1.6,b=-7,B=b*b/(4*a);return (B-0.75/a).toFixed(2);",
+   "7.03": "const a=1.6,b=-7,B=b*b/(4*a);return (B-1/a).toFixed(2);",
+   "6.29": "const a=1.6,b=-7,B=b*b/(4*a);return (B-Math.sqrt(3/a)).toFixed(2);"
+  },
+  "quantity_asked": "the constant c, 5.78, for which the vertex and the two x-intercepts form an equilateral triangle (vertex depth 3/1.6).",
+  "distractor_kind": {
+   "7.19": "half the base used as the side (height = (√3/2)·half-base), so k = 0.75/a. (a) no parameter extreme. (b) neighbouring setup: equilateral triangle with side AB/2; 7.19 strictly below the 7.66 cap. (c) cap c < 7.66 (the graph must cross the x-axis); inside. (d) real: confuses side and half-side in the 30-60-90 ratio.",
+   "7.03": "right isosceles triangle (height = half the base), so k = 1/a. (a) no. (b) neighbouring setup: a right angle at V instead of 60° angles; inside. (c) inside. (d) real: wrong special triangle.",
+   "6.29": "k² = 3k/a solved as k = √(3/a) (a square root taken instead of dividing by k). (a) no. (b) none. (c) inside. (d) real algebra slip."
+  },
+  "distractor_meta": {
+   "7.19": {
+    "direction": "over",
+    "error_kind": "side vs half-side in 30-60-90 ratio"
+   },
+   "7.03": {
+    "direction": "over",
+    "error_kind": "wrong special triangle"
+   },
+   "6.29": {
+    "direction": "over",
+    "error_kind": "square root taken when solving k^2 = 3k/a"
+   }
+  },
+  "bounds": [
+   "the graph crosses the x-axis: c < 7²/(4·1.6) = 7.656",
+   "no lower bound from the stem"
+  ],
+  "mechanism": [
+   "vertex and x-intercepts form equilateral triangle",
+   "vertex depth k and half-distance between zeros sqrt(k/a)",
+   "height = sqrt(3) times half the base",
+   "solve for the constant term c"
+  ],
+  "arith_class_check": "Key 5.78 is 5.78125 rounded; 7.03 (7.03125) and 7.19 (7.1875) are terminating values rounded too; 6.29 is an irrational rounded. All four show two decimals with nonzero last digits.",
+  "one_sided_check": "Key smallest; three different errors (side/half-side ratio, wrong special triangle, square-root slip). Natural errors moving DOWN exist and are not options: height = √3 times the full side AB gives k = 12/a and c ≈ 0.16; a sign slip in the vertex (vertex y = c + 7.656) gives c ≈ −9.53. Which way a wrong ratio moves c is not readable without computing k.",
+  "interior_parity_check": "Interior options by value: 6.29 and 7.03, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key smallest. The only stem-readable bound is c < 7.656 (the graph must cross the x-axis); the key and all three distractors lie below it, so it separates nothing. There is no lower bound. Nearest distractor 6.29 is 0.51 above the key; gaps upward 0.51 / 0.74 / 0.16 (no closing-in run).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; two natural downward errors (√3 times full side, vertex sign) exist off the options. No equilateral-vertex-intercept item in the bank by grep."
+  }
+ },
+ {
+  "id": "AM29A-15",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "vertex of a parabola at a given distance from the origin",
+  "subskill": "vertex coordinates and the distance formula",
+  "prompt": "In the standard (x,y) coordinate plane, the vertex of the parabola y = x² − 7x + c, where c is a constant, lies above the x-axis and is 4.7 units from the origin. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "16.13",
+   "13.45",
+   "15.39",
+   "16.56"
+  ],
+  "correct_answer": "15.39",
+  "explanation": "The vertex has x-coordinate 7/2 = 3.5, and its y-coordinate is c − 3.5² = c − 12.25. Its distance from the origin is 4.7, so 3.5² + (c − 12.25)² = 4.7², giving (c − 12.25)² = 22.09 − 12.25 = 9.84. Because the vertex is above the x-axis, c − 12.25 = √9.84 ≈ 3.137, so c ≈ 15.39. The option \"13.45\" adds the horizontal and vertical legs without squaring them: 3.5 + (c − 12.25) = 4.7. The option \"16.13\" computes 3.5² as 2(3.5) = 7, so (c − 12.25)² = 22.09 − 7. The option \"16.56\" forgets to square the x-coordinate: (c − 12.25)² = 22.09 − 3.5.",
+  "solve": "const h=3.5,base=h*h;return (base+Math.sqrt(4.7*4.7-h*h)).toFixed(2);",
+  "distractor_solve": {
+   "13.45": "const h=3.5,base=h*h;return (base+4.7-h).toFixed(2);",
+   "16.13": "const h=3.5,base=h*h;return (base+Math.sqrt(4.7*4.7-2*h)).toFixed(2);",
+   "16.56": "const h=3.5,base=h*h;return (base+Math.sqrt(4.7*4.7-h)).toFixed(2);"
+  },
+  "quantity_asked": "the constant c, 15.39, for which the vertex (3.5, c − 12.25) is above the x-axis and 4.7 from the origin.",
+  "distractor_kind": {
+   "13.45": "legs added instead of squares: 3.5 + (c − 12.25) = 4.7. (a) no parameter extreme. (b) neighbouring setup: the taxicab distance; 13.45 lies strictly inside (12.25, 16.95). (c) the stem forces 12.25 < c <= 16.95; inside. (d) real: Pythagorean relation used without squares.",
+   "16.13": "3.5² computed as 7 (squared as doubled). (a) no. (b) none. (c) inside (12.25, 16.95). (d) real arithmetic slip.",
+   "16.56": "x-coordinate not squared: (c − 12.25)² = 4.7² − 3.5. (a) no. (b) none. (c) inside, 0.39 below the 16.95 cap. (d) real: squares one leg only."
+  },
+  "distractor_meta": {
+   "13.45": {
+    "direction": "under",
+    "error_kind": "legs added without squaring"
+   },
+   "16.13": {
+    "direction": "over",
+    "error_kind": "square computed as double"
+   },
+   "16.56": {
+    "direction": "over",
+    "error_kind": "one leg not squared"
+   }
+  },
+  "bounds": [
+   "vertex above the x-axis: c > 12.25",
+   "vertical leg at most the distance: c − 12.25 <= 4.7, so c <= 16.95"
+  ],
+  "mechanism": [
+   "vertex x = -b/(2a)",
+   "vertex y-coordinate c - b^2/4",
+   "distance from vertex to origin",
+   "parabola vertex above x-axis"
+  ],
+  "arith_class_check": "Key 15.39 is a rounded square root; 16.13 and 16.56 are rounded square roots too; 13.45 is exact. All four show two decimals with nonzero final digits.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 15.39 (key) and 16.13, both two-decimal rounded roots with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. Bounds 12.25 < c <= 16.95 (vertex above axis; vertical leg <= 4.7); all four options strictly inside, the largest 0.39 below the cap.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under and two over errors from the distance step; the below-axis branch (9.11) is not an option. No live vertex-distance item by grep."
+  }
+ },
+ {
+  "id": "AM29A-16",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "distance between the intersection points of a line and a parabola",
+  "subskill": "line-parabola system and chord length",
+  "prompt": "In the standard (x,y) coordinate plane, the line y = 1.7x + 3.5 intersects the parabola y = 1.25x² − 3x + 2 at two points. To the nearest hundredth, what is the distance between those two points?",
+  "choices": [
+   "7.72",
+   "4.78",
+   "8.58",
+   "7.15"
+  ],
+  "correct_answer": "8.58",
+  "explanation": "At an intersection, 1.25x² − 3x + 2 = 1.7x + 3.5, so 1.25x² − 4.7x − 1.5 = 0. Its discriminant is 4.7² − 4(1.25)(−1.5) = 22.09 + 7.5 = 29.59, so the x-coordinates differ by √29.59/1.25 ≈ 4.352. Both points lie on a line of slope 1.7, so their y-coordinates differ by 1.7 times as much, and the distance is 4.352·√(1 + 1.7²) = 4.352·√3.89 ≈ 8.58. The option \"7.72\" drops the 4 from the discriminant (22.09 + 1.25·1.5). The option \"7.15\" uses √(1 + 1.7) instead of √(1 + 1.7²). The option \"4.78\" combines the x-terms with the wrong sign (−3x + 1.7x), solving 1.25x² − 1.3x − 1.5 = 0.",
+  "solve": "const A=1.25,B=-3-1.7,C=2-3.5,m=1.7;return (Math.sqrt(1+m*m)*Math.sqrt(B*B-4*A*C)/A).toFixed(2);",
+  "distractor_solve": {
+   "7.72": "const A=1.25,B=-3-1.7,C=2-3.5,m=1.7;return (Math.sqrt(1+m*m)*Math.sqrt(B*B-A*C)/A).toFixed(2);",
+   "7.15": "const A=1.25,B=-3-1.7,C=2-3.5,m=1.7;return (Math.sqrt(1+m)*Math.sqrt(B*B-4*A*C)/A).toFixed(2);",
+   "4.78": "const A=1.25,B=-3+1.7,C=2-3.5,m=1.7;return (Math.sqrt(1+m*m)*Math.sqrt(B*B-4*A*C)/A).toFixed(2);"
+  },
+  "quantity_asked": "the straight-line distance, 8.58, between the two intersection points of y = 1.7x + 3.5 and y = 1.25x² − 3x + 2.",
+  "distractor_kind": {
+   "7.72": "discriminant computed as b² − ac (the 4 dropped). (a) no parameter extreme. (b) none. (c) the distance exceeds the horizontal gap √29.59/1.25 ≈ 4.35 and is below (1 + 1.7)·4.35 ≈ 11.75; inside. (d) real quadratic-formula slip.",
+   "7.15": "slope factor √(1 + m) instead of √(1 + m²). (a) no. (b) neighbouring setup: a line of slope √1.7; inside (4.35, 11.75). (c) inside. (d) real: slope not squared in the distance formula.",
+   "4.78": "x-terms combined with the wrong sign: 1.25x² − 1.3x − 1.5 = 0. (a) no. (b) neighbouring setup: the line y = −1.7x + 3.5; 4.78 is 0.43 above the 4.35 horizontal gap. (c) inside. (d) real sign slip."
+  },
+  "distractor_meta": {
+   "7.72": {
+    "direction": "under",
+    "error_kind": "discriminant slip"
+   },
+   "7.15": {
+    "direction": "under",
+    "error_kind": "slope not squared"
+   },
+   "4.78": {
+    "direction": "under",
+    "error_kind": "sign slip combining terms"
+   }
+  },
+  "bounds": [
+   "the distance exceeds the horizontal gap between the points, √29.59/1.25 ≈ 4.35",
+   "the distance is less than the horizontal gap plus the vertical gap, 2.7 × 4.35 ≈ 11.75"
+  ],
+  "mechanism": [
+   "line and parabola intersect at two points",
+   "distance between intersection points",
+   "difference of roots sqrt(D)/a",
+   "chord length with slope factor sqrt(1+m^2)"
+  ],
+  "arith_class_check": "All four options are rounded products of square roots; none terminates. All show two decimals with nonzero last digits.",
+  "one_sided_check": "Key largest; three different errors (discriminant slip, slope not squared, sign slip combining terms). Natural errors moving UP exist and are not options: forgetting to divide by a = 1.25 gives 10.73, and using 1 + m instead of √(1 + m²) gives 11.75. The stem does not show which way a discriminant or sign error moves the distance.",
+  "interior_parity_check": "Interior options by value: 7.15 and 7.72, both two-decimal rounded roots with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key largest. Bounds: distance > horizontal gap 4.35 and < 11.75; all three distractors lie between them, on the key's side of the lower bound. Nearest distractor 7.72 is 0.86 below the key; gaps upward 2.37 / 0.57 / 0.86 (no closing-in run).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; upward errors (no division by a, 1 + m factor) exist off the options. No line-parabola chord-length item in the bank by grep (only circle chords and held circle-circle chords)."
+  }
+ },
+ {
+  "id": "AM29A-17",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "unknown term of a geometric mean",
+  "subskill": "nth roots and rational exponents",
+  "prompt": "The geometric mean of n positive numbers is the nth root of their product. The geometric mean of the four numbers 1.5, 6, x, and 2x, where x > 0, is 4.3. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "4.77",
+   "3.56",
+   "6.16",
+   "4.36"
+  ],
+  "correct_answer": "4.36",
+  "explanation": "The product of the four numbers is 1.5 · 6 · x · 2x = 18x². Its fourth root is 4.3, so 18x² = 4.3⁴ = 341.8801, x² ≈ 18.993, and x ≈ 4.36. The option \"3.56\" multiplies x · 2x as 3x², giving 27x² = 341.8801. The option \"4.77\" adds 1.5 + 6 instead of multiplying them, giving 7.5 · 2x² = 341.8801. The option \"6.16\" drops the coefficient 2 of 2x, giving 9x² = 341.8801.",
+  "solve": "const P=Math.pow(4.3,4);return Math.sqrt(P/(1.5*6*2)).toFixed(2);",
+  "distractor_solve": {
+   "3.56": "const P=Math.pow(4.3,4);return Math.sqrt(P/(1.5*6*3)).toFixed(2);",
+   "4.77": "const P=Math.pow(4.3,4);return Math.sqrt(P/((1.5+6)*2)).toFixed(2);",
+   "6.16": "const P=Math.pow(4.3,4);return Math.sqrt(P/(1.5*6)).toFixed(2);"
+  },
+  "quantity_asked": "the value of x, 4.36, for which the fourth root of 1.5 · 6 · x · 2x equals 4.3.",
+  "distractor_kind": {
+   "3.56": "x · 2x written as 3x² (coefficients added when multiplying like terms). (a) no parameter extreme. (b) neighbouring setup: none. (c) the only stem-forced bound is the AM-GM floor x >= (4(4.3) − 7.5)/3 = 3.23; 3.56 is strictly above it. (d) real like-terms slip.",
+   "4.77": "1.5 + 6 used for 1.5 · 6 (sum for product inside the root). (a) no. (b) none. (c) no stem upper bound on x; inside. (d) real: arithmetic-mean habit leaking into the product.",
+   "6.16": "coefficient 2 of 2x dropped, product 9x². (a) no. (b) none. (c) inside (no upper bound). (d) real copying/product slip."
+  },
+  "distractor_meta": {
+   "3.56": {
+    "direction": "under",
+    "error_kind": "like terms multiplied as added"
+   },
+   "4.77": {
+    "direction": "over",
+    "error_kind": "sum used for product"
+   },
+   "6.16": {
+    "direction": "over",
+    "error_kind": "coefficient dropped"
+   }
+  },
+  "bounds": [
+   "x > 0",
+   "geometric mean <= arithmetic mean: (7.5 + 3x)/4 >= 4.3, so x >= 3.23 (not a cheap bound for most students; every option clears it)"
+  ],
+  "mechanism": [
+   "geometric mean of four numbers",
+   "fourth root of a product",
+   "x^2 = G^4 / product",
+   "solve for an unknown term of a geometric mean"
+  ],
+  "arith_class_check": "Key 4.36 is a rounded square root; all three distractors are rounded square roots of the same kind. No integer, no multiple pattern.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 4.36 (key) and 4.77; both two-decimal rounded roots with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. x² = 4.3⁴/18 is the whole solve; a cruder estimate (4.3⁴ ≈ 342, /18 ≈ 19, x ≈ 4.4) does not separate 4.36 from 4.77 without the exact root; the AM-GM floor 3.23 lies below every option.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under and two over errors at three different steps; no live geometric-mean item (0 hits). AM-GM floor 3.23 sits below the lowest option 3.56."
+  }
+ },
+ {
+  "id": "AM29A-18",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "telescoping sum of rational expressions",
+  "subskill": "adding rational expressions",
+  "prompt": "For x > 0, the sum 1/(x(x + 1)) + 1/((x + 1)(x + 2)) + 1/((x + 2)(x + 3)) + 1/((x + 3)(x + 4)) + 1/((x + 4)(x + 5)) + 1/((x + 5)(x + 6)) + 1/((x + 6)(x + 7)) is equal to 0.07. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "7.66",
+   "9.51",
+   "7.09",
+   "7.41"
+  ],
+  "correct_answer": "7.09",
+  "explanation": "Each term splits as 1/((x + k)(x + k + 1)) = 1/(x + k) − 1/(x + k + 1), so the seven terms collapse to 1/x − 1/(x + 7) = 7/(x(x + 7)). Setting this equal to 0.07 gives x(x + 7) = 100, so x² + 7x − 100 = 0 and x = (−7 + √449)/2 ≈ 7.09. The option \"7.41\" counts eight terms (the eight factors x through x + 7), giving 8/(x(x + 8)) = 0.07. The option \"7.66\" completes the square with 49/2 instead of 49/4: (x + 3.5)² = 100 + 24.5. The option \"9.51\" does not collapse the sum and instead treats all seven terms as equal to the first, 7/(x(x + 1)) = 0.07.",
+  "solve": "const n=7,K=n/0.07;return ((-n+Math.sqrt(n*n+4*K))/2).toFixed(2);",
+  "distractor_solve": {
+   "7.41": "const n=8,K=n/0.07;return ((-n+Math.sqrt(n*n+4*K))/2).toFixed(2);",
+   "7.66": "const K=7/0.07;return (Math.sqrt(K+49/2)-3.5).toFixed(2);",
+   "9.51": "const K=7/0.07;return ((-1+Math.sqrt(1+4*K))/2).toFixed(2);"
+  },
+  "quantity_asked": "the positive x, 7.09, for which the seven-term sum 7/(x(x + 7)) equals 0.07.",
+  "distractor_kind": {
+   "7.41": "term count off by one (eight terms: 8/(x(x + 8)) = 0.07). (a) no parameter extreme. (b) neighbouring setup: the eight-term sum; 7.41 is strictly inside (6.5, 10). (c) cheapest one-step estimate: x² < x(x + 7) = 100 gives x < 10, and x(x + 7) < (x + 3.5)² gives x > 6.5; inside. (d) real fencepost miscount.",
+   "7.66": "completing the square with half of b² (49/2) instead of (b/2)² (49/4). (a) no. (b) none. (c) inside (6.5, 10). (d) real arithmetic slip in completing the square.",
+   "9.51": "every term replaced by the first, 7/(x(x + 1)) = 0.07, so x(x + 1) = 100 (the sum not collapsed). (a) no. (b) neighbouring setup: the seven-copies-of-the-first-term sum; 9.51 inside (6.5, 10). (c) inside, 0.49 below the x < 10 cap. (d) real: a student who does not see the telescoping approximates the sum by its first term repeated."
+  },
+  "distractor_meta": {
+   "7.41": {
+    "direction": "over",
+    "error_kind": "term count off by one"
+   },
+   "7.66": {
+    "direction": "over",
+    "error_kind": "completing-the-square constant"
+   },
+   "9.51": {
+    "direction": "over",
+    "error_kind": "sum approximated by repeated first term"
+   }
+  },
+  "bounds": [
+   "x > 0",
+   "x(x + 7) = 100 > x², so x < 10",
+   "x(x + 7) < (x + 3.5)², so x > 6.5"
+  ],
+  "mechanism": [
+   "telescoping sum",
+   "1/(k(k+1)) = 1/k - 1/(k+1)",
+   "partial-fraction collapse of a sum",
+   "x(x + 7) = 100"
+  ],
+  "arith_class_check": "Key 7.09 is a rounded irrational root; 7.41, 7.66 and 9.51 are rounded irrational roots too. No integer or multiple pattern; nothing in the stem implies a class.",
+  "one_sided_check": "Key smallest. Error kinds differ: a term miscount, a completing-the-square constant, and replacing the sum by a repeated term. The same miscount the other way (six terms: 6/(x(x + 6)) = 0.07 gives 6.73), adding b/2 instead of (b/2)² ((x + 3.5)² = 103.5 gives 6.67), and approximating every term by the LAST one (7/((x + 6)(x + 7)) = 0.07 gives 3.51) are natural errors BELOW the key, so the stem does not say which way errors go.",
+  "interior_parity_check": "Interior options by value: 7.41 and 7.66; both two-decimal rounded roots with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds: x² < 100 so x < 10, and (x + 3.5)² > 100 so x > 6.5: all four options inside. Plugging x = 8 gives 8 · 15 = 120 > 100, so x < 8: 7.41 and 7.66 lie on the key's side of that bound with the key; only 9.51 is beyond it. The nearest distractor is 0.32 above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three error kinds, nearest 0.32 above; natural counter errors (six-term miscount 6.73, b/2 constant 6.67, last-term copies 3.51) fall below. No telescoping item live (0 hits)."
+  }
+ },
+ {
+  "id": "AM29A-19",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "least solution of a radical inequality",
+  "subskill": "radical inequalities",
+  "prompt": "What is the least real number x that satisfies the inequality √(3x + 7) ≤ x + 1.2 , to the nearest hundredth?",
+  "choices": [
+   "2.08",
+   "3.42",
+   "0.88",
+   "2.68"
+  ],
+  "correct_answer": "2.68",
+  "explanation": "The left side is never negative, so x + 1.2 ≥ 0. With both sides nonnegative, squaring keeps the inequality: 3x + 7 ≤ x² + 2.4x + 1.44, so x² − 0.6x − 5.56 ≥ 0. The roots of x² − 0.6x − 5.56 = 0 are (0.6 ± √22.6)/2, about 2.677 and −2.077, so the squared inequality holds for x ≤ −2.077 or x ≥ 2.677. Only the second piece satisfies x ≥ −1.2, so the least solution is about 2.68. The option \"0.88\" moves 3x across with the wrong sign, getting x² + 5.4x − 5.56 ≥ 0. The option \"2.08\" uses −b with the wrong sign in the quadratic formula, (−0.6 + √22.6)/2. The option \"3.42\" expands (x + 1.2)² with a middle term of 1.2x instead of 2.4x, getting x² − 1.8x − 5.56 ≥ 0.",
+  "solve": "const B=2*1.2-3,C=1.2*1.2-7;return ((-B+Math.sqrt(B*B-4*C))/2).toFixed(2);",
+  "distractor_solve": {
+   "0.88": "const B=2*1.2+3,C=1.2*1.2-7;return ((-B+Math.sqrt(B*B-4*C))/2).toFixed(2);",
+   "2.08": "const B=2*1.2-3,C=1.2*1.2-7;return ((B+Math.sqrt(B*B-4*C))/2).toFixed(2);",
+   "3.42": "const B=1.2-3,C=1.2*1.2-7;return ((-B+Math.sqrt(B*B-4*C))/2).toFixed(2);"
+  },
+  "quantity_asked": "the least x, 2.68, with √(3x + 7) ≤ x + 1.2 (the left end of the solution set [2.677, ∞)).",
+  "distractor_kind": {
+   "0.88": "sign slip moving 3x across (x² + 5.4x − 5.56 ≥ 0). (a) no parameter. (b) neighbouring setup: none. (c) stem-forced bounds x ≥ −1.2 (right side nonnegative) and x ≥ −7/3: 0.88 is strictly inside. (d) real sign slip.",
+   "2.08": "−b taken with the wrong sign in the quadratic formula: (−0.6 + √22.6)/2. (a) no. (b) its magnitude is the other root's; inside x ≥ −1.2. (c) inside. (d) real formula slip.",
+   "3.42": "(x + 1.2)² expanded with middle term 1.2x instead of 2.4x. (a) no. (b) none. (c) inside. (d) real binomial-square slip."
+  },
+  "distractor_meta": {
+   "0.88": {
+    "direction": "under",
+    "error_kind": "sign slip moving a term"
+   },
+   "2.08": {
+    "direction": "under",
+    "error_kind": "quadratic formula sign"
+   },
+   "3.42": {
+    "direction": "over",
+    "error_kind": "binomial square middle term"
+   }
+  },
+  "bounds": [
+   "x + 1.2 >= 0, so x >= -1.2",
+   "3x + 7 >= 0, so x >= -7/3"
+  ],
+  "mechanism": [
+   "radical inequality",
+   "square both sides of an inequality",
+   "right side must be nonnegative",
+   "least solution of a quadratic inequality"
+  ],
+  "arith_class_check": "Key 2.68 is a rounded irrational root; 2.08 and 3.42 are rounded irrational roots, 0.88 too. Nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 2.08 and 2.68 (key); both two-decimal rounded roots with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. The stem forces only x >= -1.2 (and x >= -7/3); all four options are above it. Testing x = 3 (√16 = 4 ≤ 4.2) shows the least solution is at most 3, which keeps 0.88, 2.08 and 2.68 and drops only 3.42; testing x = 2 (√13 ≈ 3.61 > 3.2) shows it is above 2, which drops 0.88 only.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two under (sign slip, formula sign) and one over (binomial square) at different steps. No radical inequality is live (0 hits). Integer tests leave two survivors either side."
+  }
+ },
+ {
+  "id": "AM29A-X3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "vertex of a parabola from the slope of the line to its y-intercept",
+  "subskill": "vertex form from a slope condition",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 0.65x² + bx + 5.4, where b is a constant, has vertex V and crosses the y-axis at point C. The line through V and C has slope −1.75. To the nearest hundredth, what is the y-coordinate of V ?",
+  "choices": [
+   "3.65",
+   "0.69",
+   "4.22",
+   "2.34"
+  ],
+  "correct_answer": "0.69",
+  "explanation": "C is (0, 5.4). Write the parabola as y = 0.65(x − h)² + k, so V = (h, k) and 5.4 = 0.65h² + k, that is, k − 5.4 = −0.65h². The slope of line VC is (k − 5.4)/(h − 0) = −0.65h² / h = −0.65h. Setting −0.65h = −1.75 gives h = 1.75/0.65 ≈ 2.692 (and b = −2(0.65)h = −3.5). Then k = 5.4 − 0.65h² = 5.4 − 1.75²/0.65 ≈ 5.4 − 4.712 ≈ 0.69. The option \"4.22\" takes b equal to the slope, −1.75 (the slope of the graph at C), so h = 1.75/(2·0.65) and k = 5.4 − 0.65h². The option \"3.65\" forgets to square h: k = 5.4 − 0.65h. The option \"2.34\" squares the coefficient along with h: k = 5.4 − (0.65h)².",
+  "solve": "const a=0.65,m=-1.75,c=5.4,h=-m/a;return (c-a*h*h).toFixed(2);",
+  "distractor_solve": {
+   "4.22": "const a=0.65,m=-1.75,c=5.4,h=-m/(2*a);return (c-a*h*h).toFixed(2);",
+   "3.65": "const a=0.65,m=-1.75,c=5.4,h=-m/a;return (c-a*h).toFixed(2);",
+   "2.34": "const a=0.65,m=-1.75,c=5.4,h=-m/a;return (c-(a*h)*(a*h)).toFixed(2);"
+  },
+  "quantity_asked": "the y-coordinate k of the vertex, 0.69, from slope(VC) = −0.65h = −1.75.",
+  "distractor_kind": {
+   "4.22": "b set equal to the slope of VC (the tangent slope at C), so h = 1.75/1.3. (a) no parameter extreme. (b) neighbouring setup: the vertex when b = −1.75; 4.22 is strictly below the cap 5.4. (c) the stem forces k < 5.4 (V is below C because the parabola opens up and h ≠ 0); inside. (d) real: confuses the secant VC with the slope b at the y-intercept.",
+   "3.65": "h not squared in k = 5.4 − 0.65h². (a) no. (b) none. (c) inside. (d) real algebra slip.",
+   "2.34": "coefficient squared with h: k = 5.4 − (0.65h)². (a) no. (b) none. (c) inside. (d) real order-of-operations slip."
+  },
+  "distractor_meta": {
+   "4.22": {
+    "direction": "over",
+    "error_kind": "slope of VC taken as b"
+   },
+   "3.65": {
+    "direction": "over",
+    "error_kind": "square dropped"
+   },
+   "2.34": {
+    "direction": "over",
+    "error_kind": "coefficient squared"
+   }
+  },
+  "bounds": [
+   "k < 5.4: the parabola opens upward and the vertex is not on the y-axis (slope nonzero), so V is below C"
+  ],
+  "mechanism": [
+   "line through vertex and y-intercept",
+   "slope of secant from y-intercept to vertex",
+   "vertex form y = a(x - h)^2 + k",
+   "y-coordinate of vertex"
+  ],
+  "arith_class_check": "Key 0.69 is a rounded repeating decimal (0.6885...); 4.22 and 2.34 are rounded, 3.65 is exact. All four show two decimals with nonzero last digits.",
+  "one_sided_check": "Key smallest; three different errors (secant slope confused with b, square dropped, coefficient squared). Natural errors moving DOWN exist and are not options: forgetting the constant term (k = −0.65h² ≈ −4.71), and using the line through V and the origin instead of C (k ≈ −7.92). The stem does not reveal which way an error in h or in the squaring moves k.",
+  "interior_parity_check": "Interior options by value: 2.34 and 3.65, both two-decimal with nonzero final digits; neither nicer.",
+  "cheap_bound_check": "Key smallest. The cheapest bound is k < 5.4 (vertex below C); the key and all three distractors are below it. No lower bound is readable: k can be any number below 5.4. Nearest distractor 2.34 is 1.65 above the key; gaps upward 1.65 / 1.31 / 0.57 (they grow toward the key, no closing-in run).",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; downward errors (constant dropped, origin instead of C) exist off the options. Nearest distractor 1.65 away; no cheap estimate of k found that separates it."
+  }
+ },
+ {
+  "id": "AM29A-21",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "equation with a radical nested inside a radical",
+  "subskill": "radical equations",
+  "prompt": "The equation √(x + √(2x + 3)) = 2 has exactly one real solution. To the nearest hundredth, what is that solution?",
+  "choices": [
+   "1.16",
+   "2.74",
+   "1.54",
+   "0.17"
+  ],
+  "correct_answer": "1.54",
+  "explanation": "Squaring once gives x + √(2x + 3) = 4, so √(2x + 3) = 4 − x, which requires x ≤ 4. Squaring again gives 2x + 3 = 16 − 8x + x², so x² − 10x + 13 = 0 and x = 5 ± √12. Only 5 − √12 ≈ 1.54 satisfies x ≤ 4 (5 + √12 ≈ 8.46 makes 4 − x negative), and it checks in the original equation. The option \"0.17\" removes the outer radical without squaring the 2, solving x + √(2x + 3) = 2. The option \"1.16\" squares 4 − x with the sign of x² reversed, 16 − 8x − x². The option \"2.74\" writes (4 − x)² as 16 − x².",
+  "solve": "return (5-Math.sqrt(12)).toFixed(2);",
+  "distractor_solve": {
+   "0.17": "return (3-Math.sqrt(8)).toFixed(2);",
+   "1.16": "return (-5+Math.sqrt(38)).toFixed(2);",
+   "2.74": "return (-1+Math.sqrt(14)).toFixed(2);"
+  },
+  "quantity_asked": "the single real solution x = 5 − √12 ≈ 1.54 of √(x + √(2x + 3)) = 2.",
+  "distractor_kind": {
+   "0.17": "outer radical removed without squaring the right side: x + √(2x + 3) = 2, then (2 − x)² = 2x + 3, x² − 6x + 1 = 0, x = 3 − √8. (a) no parameter. (b) neighbouring setup: the equation with right side √2; inside the forced range −1.5 <= x <= 4. (c) inside. (d) real: squaring one side only.",
+   "1.16": "(4 − x)² expanded with −x²: 2x + 3 = 16 − 8x − x², x² + 10x − 13 = 0, x = −5 + √38. (a) no. (b) none. (c) inside [−1.5, 4]. (d) real sign slip on the squared term.",
+   "2.74": "(4 − x)² written as 16 − x² (square of a difference as a difference of squares): x² + 2x − 13 = 0, x = −1 + √14. (a) no. (b) none. (c) inside, 1.26 below the x <= 4 bound. (d) real binomial-square slip."
+  },
+  "distractor_meta": {
+   "0.17": {
+    "direction": "under",
+    "error_kind": "one side not squared"
+   },
+   "1.16": {
+    "direction": "under",
+    "error_kind": "sign of squared term"
+   },
+   "2.74": {
+    "direction": "over",
+    "error_kind": "square of difference as difference of squares"
+   }
+  },
+  "bounds": [
+   "2x + 3 >= 0, so x >= -1.5",
+   "√(2x + 3) = 4 − x >= 0, so x <= 4"
+  ],
+  "mechanism": [
+   "nested radical equation",
+   "square twice",
+   "inner radical isolated after first squaring",
+   "reject root with negative side"
+  ],
+  "arith_class_check": "Key 1.54 is 5 − √12 rounded; the distractors are 3 − √8, −5 + √38, −1 + √14 rounded: all the same class. Nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 1.16 and 1.54 (key); both two-decimal rounded irrationals with nonzero last digits; neither nicer.",
+  "cheap_bound_check": "key interior. Forced range −1.5 <= x <= 4; all four inside. Testing integers in x + √(2x + 3) = 4 (increasing in x): x = 1 gives 3.24 < 4 and x = 2 gives 4.65 > 4, so 1 < x < 2, which keeps 1.16 with the key and drops 0.17 and 2.74.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key, three error kinds, one distractor in the key's integer bracket. No finite nested-radical item live, but after one squaring the inner step is the familiar radical-equals-linear equation (live family)."
+  }
+ }
+]

@@ -1,0 +1,543 @@
+[
+ {
+  "id": "AM29G-01",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "area ratio of triangles sharing an angle",
+  "subskill": "common angle: area ratio = product of including-side ratios",
+  "prompt": "In triangle ABC, point D lies on side AB and point E lies on side AC. AD = 3 inches, DB = 4 inches, AE = 8 inches, and EC = 5 inches. Segment DE is drawn, and triangle ADE has an area of 14 square inches. To the nearest hundredth of a square inch, what is the area of triangle ABC ?",
+  "choices": [
+   "76.22",
+   "53.08",
+   "84.93",
+   "55.42"
+  ],
+  "correct_answer": "53.08",
+  "explanation": "Triangles ADE and ABC share angle A, and each has area (1/2)(product of the two sides that include angle A)(sin A). So area ABC / area ADE = (AB · AC)/(AD · AE) = (7 · 13)/(3 · 8) = 91/24, and area ABC = 14 · 91/24 ≈ 53.08. DE is not parallel to BC (3/7 ≠ 8/13), so the triangles are not similar. The option \"76.22\" treats them as similar and squares the ratio AB/AD = 7/3. The option \"84.93\" uses EC in place of AE (14 · (7/3)(13/5)). The option \"55.42\" adds the two side ratios instead of multiplying them (14 · (7/3 + 13/8)).",
+  "solve": "return (14*(7*13)/(3*8)).toFixed(2);",
+  "distractor_solve": {
+   "76.22": "return (14*(7/3)*(7/3)).toFixed(2);",
+   "84.93": "return (14*(7/3)*(13/5)).toFixed(2);",
+   "55.42": "return (14*(7/3+13/8)).toFixed(2);"
+  },
+  "quantity_asked": "the area of triangle ABC, 14 · (7 · 13)/(3 · 8) = 637/12 ≈ 53.08 square inches.",
+  "distractor_kind": {
+   "76.22": "similar-triangle area rule applied to non-parallel DE (ratio AB/AD squared). (a) no parameter extreme. (b) neighbouring setup: the parallel case; inside. (c) cheapest bound: ADE lies inside ADC = (3/7) of ABC, so area ABC > 14 · 7/3 = 32.67; no cheap upper bound; inside. (d) real: assumes similarity.",
+   "84.93": "EC used in place of AE in the AC ratio. (a) no. (b) none. (c) inside. (d) real: wrong segment of AC.",
+   "55.42": "side ratios added instead of multiplied. (a) no. (b) none. (c) inside. (d) real: combines two scale factors additively."
+  },
+  "distractor_meta": {
+   "76.22": {
+    "direction": "over",
+    "error_kind": "assumed similarity (ratio squared)"
+   },
+   "84.93": {
+    "direction": "over",
+    "error_kind": "wrong segment on AC"
+   },
+   "55.42": {
+    "direction": "over",
+    "error_kind": "ratios added not multiplied"
+   }
+  },
+  "bounds": [
+   "ADE lies inside triangle ADC, whose area is (3/7) of ABC, so area ABC > 32.67",
+   "ADE lies inside triangle ABE, whose area is (8/13) of ABC, so area ABC > 22.75"
+  ],
+  "mechanism": [
+   "triangles sharing an angle",
+   "area ratio equals product of including sides",
+   "non-parallel segment DE",
+   "half product of two sides times sine"
+  ],
+  "arith_class_check": "Key 637/12 ≈ 53.08; all four options two-decimal with nonzero last digit; nothing in the stem implies integrality or a class.",
+  "one_sided_check": "Key smallest; the three distractors come from three different errors (assumed similarity, wrong segment on AC, ratios added). Natural errors moving DOWN exist and are not options: using DB in place of AD gives 14 · (7/4)(13/8) = 39.81; assuming similarity with the AC ratio gives 14 · (13/8)² = 36.97. Which way a slip moves the area is not readable from the stem: the two similarity versions and the two wrong-segment versions each go one up, one down.",
+  "interior_parity_check": "Interior options by value: 55.42 and 76.22, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest bounds are LOWER bounds from containment: ADE inside ADC gives area ABC > 32.67, ADE inside ABE gives > 22.75; key and all three distractors lie above (on the key's side of) both. No stem-readable upper bound on area ABC. Nearest distractor 55.42 is 2.34 above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; two natural downward errors (DB for AD 39.81, AC-ratio similarity 36.97); every live D-on-AB, E-on-AC item is the parallel/similar case."
+  }
+ },
+ {
+  "id": "AM29G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "quadrilateral with perpendicular diagonals",
+  "subskill": "perpendicular diagonals: sums of squares of opposite sides",
+  "prompt": "In convex quadrilateral ABCD, diagonals AC and BD are perpendicular to each other and intersect at point P inside the quadrilateral. AB = 9 centimeters, BC = 11 centimeters, and CD = 13 centimeters. To the nearest hundredth of a centimeter, what is the length of side AD ?",
+  "choices": [
+   "14.46",
+   "5.74",
+   "11.36",
+   "15.81"
+  ],
+  "correct_answer": "11.36",
+  "explanation": "Let PA = p, PB = q, PC = r, and PD = s. The four triangles around P are right triangles, so AB² = p² + q², BC² = q² + r², CD² = r² + s², and AD² = s² + p². Then AB² + CD² = p² + q² + r² + s² = BC² + AD², so AD² = AB² + CD² − BC² = 81 + 169 − 121 = 129 and AD = √129 ≈ 11.36. The option \"5.74\" pairs adjacent sides instead of opposite sides (AD² = AB² + BC² − CD² = 33). The option \"14.46\" pairs the other adjacent sides (AD² = BC² + CD² − AB² = 209). The option \"15.81\" drops the BC² term (AD² = AB² + CD² = 250).",
+  "solve": "return Math.sqrt(9*9+13*13-11*11).toFixed(2);",
+  "distractor_solve": {
+   "5.74": "return Math.sqrt(9*9+11*11-13*13).toFixed(2);",
+   "14.46": "return Math.sqrt(11*11+13*13-9*9).toFixed(2);",
+   "15.81": "return Math.sqrt(9*9+13*13).toFixed(2);"
+  },
+  "quantity_asked": "the length of side AD, √(AB² + CD² − BC²) = √129 ≈ 11.36 cm.",
+  "distractor_kind": {
+   "5.74": "adjacent sides paired (AB² + BC² = CD² + AD²). (a) no parameter extreme. (b) neighbouring setup: the same identity with the wrong pairing; inside. (c) no stem-forced bound on AD besides the polygon inequality AD < 33; inside. (d) real: wrong pairing when adding the four right-triangle equations.",
+   "14.46": "the other adjacent pairing (BC² + CD² = AB² + AD²). (a) no. (b) wrong pairing; inside. (c) inside. (d) real: wrong pairing, other side.",
+   "15.81": "BC² term dropped (AD² = AB² + CD²). (a) no. (b) none. (c) inside AD < 33. (d) real: treats AD as the hypotenuse of a right triangle with legs AB and CD / loses the subtracted term."
+  },
+  "distractor_meta": {
+   "5.74": {
+    "direction": "under",
+    "error_kind": "wrong side pairing (sign of CD²)"
+   },
+   "14.46": {
+    "direction": "over",
+    "error_kind": "wrong side pairing (sign of AB²)"
+   },
+   "15.81": {
+    "direction": "over",
+    "error_kind": "dropped subtracted term"
+   }
+  },
+  "bounds": [
+   "0 < AD < AB + BC + CD = 33 (polygon inequality)"
+  ],
+  "mechanism": [
+   "perpendicular diagonals",
+   "sum of squares of opposite sides",
+   "four right triangles around the intersection",
+   "Pythagorean theorem four times"
+  ],
+  "arith_class_check": "Key √129 ≈ 11.36 is irrational; all four options are square roots of integers shown to two decimals; the stem implies no integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 11.36 and 14.46, both two-decimal with nonzero last digit, both square roots of non-squares; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides (two pairings split under/over); perpendicular-diagonal side identity absent from live bank (only an isosceles-trapezoid area item)."
+  }
+ },
+ {
+  "id": "AM29G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "two altitudes of a triangle",
+  "subskill": "altitude lengths from equal area, then Pythagorean theorem",
+  "prompt": "In acute triangle ABC, AC = 12 centimeters and BC = 14 centimeters. The altitude from vertex A meets side BC at point D, and AD = 8 centimeters. The altitude from vertex B meets side AC at point E. To the nearest tenth of a centimeter, what is the length of segment CE ?",
+  "choices": [
+   "8.9",
+   "10.4",
+   "7.5",
+   "9.3"
+  ],
+  "correct_answer": "10.4",
+  "explanation": "The area of the triangle is (1/2)(BC)(AD) = (1/2)(14)(8) = 56, and it is also (1/2)(AC)(BE), so BE = 112/12 = 28/3 ≈ 9.33. Triangle BEC has a right angle at E with hypotenuse BC = 14, so CE = √(14² − (28/3)²) = √(980/9) ≈ 10.4. The option \"9.3\" is the altitude BE itself, not CE. The option \"8.9\" is CD = √(12² − 8²), the segment cut off by the other altitude. The option \"7.5\" uses AC = 12 as the hypotenuse of the right triangle with leg BE (√(12² − 9.33²)).",
+  "solve": "const BE=14*8/12;return Math.sqrt(14*14-BE*BE).toFixed(1);",
+  "distractor_solve": {
+   "9.3": "return (14*8/12).toFixed(1);",
+   "8.9": "return Math.sqrt(12*12-8*8).toFixed(1);",
+   "7.5": "const BE=14*8/12;return Math.sqrt(12*12-BE*BE).toFixed(1);"
+  },
+  "quantity_asked": "the length of CE, √(BC² − BE²) with BE = BC·AD/AC = 28/3, ≈ 10.4 cm.",
+  "distractor_kind": {
+   "9.3": "reports BE, the intermediate altitude, instead of CE. (a) no parameter extreme. (b) neighbouring setup: an intermediate of the item's own process, strictly inside (0, AC = 12). (c) cheapest bound CE < AC = 12 (E on side AC) is above every option. (d) real: stops one step early.",
+   "8.9": "CD (foot of the other altitude) reported as CE. (a) no. (b) neighbouring: the analogous segment for altitude AD; inside. (c) inside. (d) real: wrong foot.",
+   "7.5": "AC used as the hypotenuse of triangle BEC. (a) no. (b) none. (c) inside. (d) real: wrong hypotenuse."
+  },
+  "distractor_meta": {
+   "9.3": {
+    "direction": "under",
+    "error_kind": "intermediate reported"
+   },
+   "8.9": {
+    "direction": "under",
+    "error_kind": "wrong foot / wrong altitude"
+   },
+   "7.5": {
+    "direction": "under",
+    "error_kind": "wrong hypotenuse"
+   }
+  },
+  "bounds": [
+   "0 < CE < AC = 12 (E lies on side AC)",
+   "CE < BC = 14 (leg shorter than hypotenuse)"
+  ],
+  "mechanism": [
+   "two altitudes of a triangle",
+   "area computed two ways",
+   "altitude to the other side",
+   "foot of altitude segment by Pythagorean theorem"
+  ],
+  "arith_class_check": "Key √(980/9) ≈ 10.43 shown to tenths; all four options one-decimal with nonzero tenths; nothing in the stem implies a class.",
+  "one_sided_check": "Key largest; distractors come from three different errors (intermediate reported, wrong foot, wrong hypotenuse). Natural errors moving UP exist and are not options: inverting the area ratio (BE = AC·AD/BC = 6.86) gives CE = 12.2; assuming the two altitudes are equal (BE = 8) gives CE = 11.5. Which way an error moves is not readable from the stem.",
+  "interior_parity_check": "Interior options by value: 8.9 and 9.3, both one-decimal with nonzero tenths; neither nicer.",
+  "cheap_bound_check": "Key largest. Cheapest bounds: CE < AC = 12 (E on side AC) and CE < BC = 14; both are upper bounds above the key, so all three distractors lie on the key's side (below) of them. No cheap lower bound on CE (CE = BC·cos C needs angle C). Nearest distractor 9.3 is 1.1 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; two natural upward errors (inverted area ratio 12.2, equal altitudes 11.5); no lower bound; no live two-altitude item found."
+  }
+ },
+ {
+  "id": "AM29G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "equilateral triangle inscribed in a square",
+  "subskill": "equilateral triangle in a square: symmetry, 15° angle",
+  "prompt": "Square ABCD has sides 12 centimeters long. Point E lies on side BC and point F lies on side CD so that triangle AEF is equilateral. To the nearest hundredth of a centimeter, what is the length of segment BE ?",
+  "choices": [
+   "6.93",
+   "3.22",
+   "4.97",
+   "3.11"
+  ],
+  "correct_answer": "3.22",
+  "explanation": "Right triangles ABE and ADF have equal hypotenuses (AE = AF) and equal legs (AB = AD), so they are congruent and ∠BAE = ∠DAF. Since ∠EAF = 60°, ∠BAE + ∠DAF = 90° − 60° = 30°, so ∠BAE = 15°. In right triangle ABE, BE = AB · tan 15° = 12(2 − √3) ≈ 3.22. (Algebraically: with BE = DF = t, AE² = 144 + t² and EF² = 2(12 − t)², and setting them equal gives t² − 48t + 144 = 0, so t = 24 − 12√3.) The option \"3.11\" uses sin 15° in place of tan 15°. The option \"6.93\" takes ∠BAE as 30° (12 tan 30°); dropping the middle term when expanding 2(12 − t)² gives the same value. The option \"4.97\" takes ∠BAE as half of 45° (12 tan 22.5°).",
+  "solve": "return (12*Math.tan(Math.PI/12)).toFixed(2);",
+  "distractor_solve": {
+   "3.11": "return (12*Math.sin(Math.PI/12)).toFixed(2);",
+   "6.93": "return (12*Math.tan(Math.PI/6)).toFixed(2);",
+   "4.97": "return (12*Math.tan(Math.PI/8)).toFixed(2);"
+  },
+  "quantity_asked": "the length of BE, 12 tan 15° = 24 − 12√3 ≈ 3.22 cm.",
+  "distractor_kind": {
+   "3.11": "sine used for the opposite/adjacent ratio. (a) no parameter extreme. (b) none. (c) cheapest bound 0 < BE < 12 (E on side BC); inside. (d) real: SOH-CAH-TOA slip.",
+   "6.93": "angle BAE taken as 30° (90 − 60 not split between the two congruent triangles), or (12 − t)² expanded without the middle term. (a) no. (b) none. (c) inside. (d) real.",
+   "4.97": "angle BAE taken as 22.5° (half of the 45° diagonal angle). (a) no. (b) none. (c) inside. (d) real: wrong angle from symmetry."
+  },
+  "distractor_meta": {
+   "3.11": {
+    "direction": "under",
+    "error_kind": "sine for tangent"
+   },
+   "6.93": {
+    "direction": "over",
+    "error_kind": "angle not halved / algebra slip"
+   },
+   "4.97": {
+    "direction": "over",
+    "error_kind": "wrong symmetry angle"
+   }
+  },
+  "bounds": [
+   "0 < BE < 12 (E lies on side BC)"
+  ],
+  "mechanism": [
+   "equilateral triangle inscribed in a square",
+   "vertex at a corner of the square",
+   "congruent right triangles by symmetry",
+   "15 degree angle",
+   "tangent of 15 degrees"
+  ],
+  "arith_class_check": "Key 24 − 12√3 ≈ 3.22; all four options two-decimal with nonzero last digit; nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 3.22 and 4.97, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (sine under, angle errors over); no live equilateral-in-square item (only an external equilateral on a square's side, angle asked)."
+  }
+ },
+ {
+  "id": "AM29G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "chain of right triangles",
+  "subskill": "repeated Pythagorean theorem on a chain of right triangles",
+  "prompt": "Right triangle T1 has legs of lengths 2 and 6. For each n = 2, 3, 4, ..., 8, right triangle Tn has as its two legs the hypotenuse of triangle T(n−1) and a segment of length 2. To the nearest hundredth, what is the length of the hypotenuse of triangle T8 ?",
+  "choices": [
+   "11.62",
+   "8.25",
+   "15.36",
+   "8.49"
+  ],
+  "correct_answer": "8.25",
+  "explanation": "Let hn be the hypotenuse of Tn. Then h1² = 2² + 6² = 40, and each later triangle adds 2² = 4 to the square of the hypotenuse: hn² = h(n−1)² + 4. From T1 to T8 there are 7 additions, so h8² = 40 + 7 · 4 = 68 and h8 = √68 ≈ 8.25. The option \"8.49\" makes 8 additions (√72). The option \"11.62\" adds the square roots, √40 + √(7 · 4). The option \"15.36\" lays the seven 2-unit segments end to end as one leg of length 14 (√(40 + 196)).",
+  "solve": "return Math.sqrt(40+7*4).toFixed(2);",
+  "distractor_solve": {
+   "8.49": "return Math.sqrt(40+8*4).toFixed(2);",
+   "11.62": "return (Math.sqrt(40)+Math.sqrt(7*4)).toFixed(2);",
+   "15.36": "return Math.sqrt(40+14*14).toFixed(2);"
+  },
+  "quantity_asked": "the hypotenuse of T8, √(2² + 6² + 7 · 2²) = √68 ≈ 8.25.",
+  "distractor_kind": {
+   "8.49": "one addition too many (8 instead of 7). (a) no parameter extreme. (b) neighbouring setup: the hypotenuse of T9; inside (h1 = 6.32, cap h1 + 14 = 20.32). (c) cheapest bound h8 < h1 + 7 · 2 = 20.32 (triangle inequality each step); inside. (d) real: fencepost count.",
+   "11.62": "square roots added: √40 + √28. (a) no. (b) none. (c) inside 20.32. (d) real: √(a + b) read as √a + √b.",
+   "15.36": "the seven 2-unit legs combined into one leg of 14. (a) no. (b) none. (c) inside 20.32. (d) real: treats the chain as one straight leg."
+  },
+  "distractor_meta": {
+   "8.49": {
+    "direction": "over",
+    "error_kind": "fencepost (one extra step)"
+   },
+   "11.62": {
+    "direction": "over",
+    "error_kind": "added square roots"
+   },
+   "15.36": {
+    "direction": "over",
+    "error_kind": "segments combined into one leg"
+   }
+  },
+  "bounds": [
+   "h8 > h1 = √40 ≈ 6.32",
+   "h8 < h1 + 7 · 2 ≈ 20.32 (triangle inequality at each step)"
+  ],
+  "mechanism": [
+   "chain of right triangles",
+   "hypotenuse becomes the next leg",
+   "repeated Pythagorean theorem",
+   "sum of squares grows by a constant"
+  ],
+  "arith_class_check": "Key √68 ≈ 8.25; all four options two-decimal with nonzero last digit, three of them square roots of non-squares; the stem implies no integrality.",
+  "one_sided_check": "Key smallest; distractors from three different errors (fencepost, added roots, combined legs). Natural errors moving DOWN exist and are not options: one addition too few gives √64 = 8; adding 2 instead of 2² each step gives √(40 + 14) ≈ 7.35. A fencepost slip can go either way, so the stem does not say which way errors push.",
+  "interior_parity_check": "Interior options by value: 8.49 and 11.62, both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest upper bound: h8 < h1 + 7 · 2 ≈ 20.32 (each new hypotenuse is less than the old one plus 2); key and all three distractors lie below it (on the key's side). Cheapest lower bound h8 > √40 ≈ 6.32 is below the key. Nearest distractor 8.49 is 0.24 above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural downward errors (√64 = 8, √54 = 7.35); no chain-of-right-triangles item in the live bank (spiral / previous hypotenuse greps empty)."
+  }
+ },
+ {
+  "id": "AM29G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "congruent side of an isosceles triangle from its perimeter and the altitude to the base",
+  "subskill": "Pythagorean theorem with a perimeter constraint",
+  "prompt": "An isosceles triangle has a perimeter of 49 centimeters, and the altitude drawn to its base is 15.3 centimeters long. To the nearest hundredth of a centimeter, what is the length of each of the two congruent sides?",
+  "choices": [
+   "18.93",
+   "16.33",
+   "15.89",
+   "17.03"
+  ],
+  "correct_answer": "17.03",
+  "explanation": "Let the base be b, so each congruent side is (49 − b)/2. The altitude bisects the base, so ((49 − b)/2)² = 15.3² + (b/2)². Multiplying by 4: (49 − b)² = 4(15.3²) + b², so 2401 − 98b = 936.36, b = 1464.64/98 ≈ 14.945, and each congruent side is (49 − 14.945)/2 ≈ 17.03. The option \"18.93\" uses the whole base instead of half of it in the Pythagorean step, ((49 − b)/2)² = 15.3² + b², which gives b ≈ 11.14. The option \"15.89\" writes each congruent side as 49/2 − b instead of (49 − b)/2 (b ≈ 8.61). The option \"16.33\" treats the triangle as equilateral, 49/3, ignoring the altitude.",
+  "solve": "const P=49,h=15.3;const b=(P*P-4*h*h)/(2*P);return ((P-b)/2).toFixed(2);",
+  "distractor_solve": {
+   "18.93": "const P=49,h=15.3;const b=(-2*P+Math.sqrt(4*P*P+12*(P*P-4*h*h)))/6;return ((P-b)/2).toFixed(2);",
+   "16.33": "const P=49,h=15.3;return (P/3).toFixed(2);",
+   "15.89": "const P=49,h=15.3;const b=(P-Math.sqrt(P*P-3*((P/2)**2-h*h)))/1.5;return (P/2-b).toFixed(2);"
+  },
+  "quantity_asked": "the length L of each congruent side of the isosceles triangle with perimeter 49 and altitude 15.3 to the base: L = (49 − b)/2 with b = (49² − 4 · 15.3²)/98, L ≈ 17.03 cm.",
+  "distractor_kind": {
+   "18.93": "Pythagorean setup slip: the full base b is used as a leg of the right triangle instead of b/2 (b ≈ 11.14). (a) no parameter extreme. (b) none. (c) cheapest bounds: L > 15.3 (the side is the hypotenuse over the altitude) and L < 24.5 (b > 0); 18.93 strictly inside. (d) real: forgetting that the altitude bisects the base.",
+   "16.33": "equilateral assumption: side = perimeter/3, ignoring the given altitude. (a) no: the equilateral triangle with this perimeter has altitude 14.15, so it is not in the family. (b) none. (c) strictly inside (15.3, 24.5). (d) real: assuming the most symmetric triangle.",
+   "15.89": "perimeter split slip: 2L + b = 49 solved as L = 49/2 − b instead of (49 − b)/2, then the Pythagorean step done correctly (b ≈ 8.61). (a) no parameter extreme. (b) none. (c) strictly inside (15.3, 24.5). (d) real: distributing the 1/2 to only one term."
+  },
+  "distractor_meta": {
+   "18.93": {
+    "direction": "over",
+    "error_kind": "full base used for half base in setup"
+   },
+   "16.33": {
+    "direction": "under",
+    "error_kind": "equilateral assumption"
+   },
+   "15.89": {
+    "direction": "under",
+    "error_kind": "perimeter split slip"
+   }
+  },
+  "bounds": [
+   "L > 15.3 (each congruent side is the hypotenuse of a right triangle with leg 15.3)",
+   "L < 24.5 (the base is positive, so 2L < 49)",
+   "L > 12.25 (the base is shorter than 2L, so 4L > 49)"
+  ],
+  "mechanism": [
+   "isosceles triangle from perimeter and altitude",
+   "altitude bisects the base",
+   "Pythagorean theorem with the perimeter constraint",
+   "solve a linear equation after squaring"
+  ],
+  "arith_class_check": "Key (49 − 1464.64/98)/2 = 17.0273... is shown to two decimals like every option; nothing in the stem implies an integer side.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 16.33 and 17.03, both two-decimal values with nonzero hundredths; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two under (perimeter split slip, equilateral 49/3), one over (half-base omitted); three distinct kinds; all inside (15.3, 24.5)."
+  }
+ },
+ {
+  "id": "AM29G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "tangent meeting an extended diameter",
+  "subskill": "inscribed angle to central angle, tangent perpendicular to radius",
+  "prompt": "Segment AB is a diameter of a circle with center O and a radius of 6.5 centimeters. Point C lies on the circle so that the measure of ∠CAB is 28°. The line tangent to the circle at C intersects line AB at point P, which lies on the extension of AB beyond B. To the nearest hundredth of a centimeter, what is the length of segment PC ?",
+  "choices": [
+   "5.12",
+   "9.64",
+   "4.38",
+   "6.91"
+  ],
+  "correct_answer": "9.64",
+  "explanation": "Inscribed angle CAB intercepts arc CB, so central angle COB = 2(28°) = 56°. A tangent is perpendicular to the radius at the point of tangency, so triangle OCP has a right angle at C, with ∠COP = 56° and OC = 6.5. Then PC = 6.5 tan 56° ≈ 9.64. The option \"5.12\" is PB = OP − OB = 6.5/cos 56° − 6.5, a different segment. The option \"4.38\" uses the complementary angle at O, 6.5 tan 34°. The option \"6.91\" treats triangle ABC as having its right angle at B and computes 13 tan 28° (equivalently, replaces tan 56° with 2 tan 28°); by Thales' theorem the right angle of triangle ABC is at C, and that length is not PC.",
+  "solve": "const d=Math.PI/180;return (6.5*Math.tan(56*d)).toFixed(2);",
+  "distractor_solve": {
+   "5.12": "const d=Math.PI/180;return (6.5/Math.cos(56*d)-6.5).toFixed(2);",
+   "4.38": "const d=Math.PI/180;return (6.5*Math.tan(34*d)).toFixed(2);",
+   "6.91": "const d=Math.PI/180;return (13*Math.tan(28*d)).toFixed(2);"
+  },
+  "quantity_asked": "the tangent segment PC from the tangent point C to the extended diameter: PC = 6.5 tan 56° ≈ 9.64 cm.",
+  "distractor_kind": {
+   "5.12": "reports PB = OP − r instead of PC. (a) no parameter extreme. (b) neighbouring segment of the same right triangle, strictly inside. (c) cheapest bound: ∠COP = 56° > 45° so PC > OC = 6.5; 5.12 is below it, but 6.91 and the key lie above, so the bound does not isolate the key. (d) real: wrong segment.",
+   "4.38": "complementary angle 34° used at O. (a) no. (b) inside. (c) below 6.5 (see 5.12). (d) real: angle placed at the wrong vertex.",
+   "6.91": "right angle of triangle ABC put at B: 13 tan 28° (same value as 2 tan 28° for tan 56°). (a) no. (b) neighbouring: a leg of the wrong right triangle on the diameter. (c) strictly above the cheap bound PC > 6.5, on the key's side. (d) real: Thales misapplied / tan of a double angle doubled."
+  },
+  "distractor_meta": {
+   "5.12": {
+    "direction": "under",
+    "error_kind": "wrong segment (PB)"
+   },
+   "4.38": {
+    "direction": "under",
+    "error_kind": "complementary angle at O"
+   },
+   "6.91": {
+    "direction": "under",
+    "error_kind": "right angle at the wrong vertex"
+   }
+  },
+  "bounds": [
+   "PC > OC = 6.5 because ∠COP = 56° > 45°",
+   "PC < OP = 6.5/cos 56° ≈ 11.62 (leg shorter than hypotenuse)"
+  ],
+  "mechanism": [
+   "tangent line meets extended diameter",
+   "inscribed angle doubled to central angle",
+   "tangent perpendicular to radius",
+   "tangent segment = r tan(central angle)"
+  ],
+  "arith_class_check": "Key 10.3779 shown to hundredths; all options two-decimal non-integers; no class implied by the stem.",
+  "one_sided_check": "Key largest; three different error kinds (wrong segment, wrong angle vertex, wrong right triangle). Natural errors moving UP exist and are not options: reporting OP (11.62), reporting chord AC = 13 cos 28° (11.48), or using the complement of the angle at A at O, 6.5 tan 62° (12.22). Which way an error moves is not readable from the stem.",
+  "interior_parity_check": "Interior options by value: 5.12 and 6.91, both two-decimal with nonzero hundredths; neither nicer.",
+  "cheap_bound_check": "Key largest. Cheapest bound: ∠COP = 56° > 45° gives PC > OC = 6.5; 6.91 lies on the key's side of it. Upper bound PC < OP ≈ 11.62 is above the key. Nearest distractor 6.91 is 2.73 below the key; a quick estimate tan 56° ≈ 1.5 gives 9.75, which separates only by computing the value itself.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key with all three distractors under; natural upward errors (OP 11.62, AC 11.48) exist; nearest distractor 2.73 below; no live tangent-meets-extended-diameter item."
+  }
+ },
+ {
+  "id": "AM29G-08",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "rectangle topped by a semicircle (window)",
+  "subskill": "composite figure: solve a frame length for the width, then area",
+  "prompt": "A window is shaped like a rectangle with a semicircle on top of it; the top side of the rectangle is the diameter of the semicircle. A metal frame runs along the entire outer edge of the window (the bottom side, the two vertical sides, and the curved top) and also straight across the window along the diameter of the semicircle. The frame uses 24 feet of metal in all, and each vertical side of the rectangle is 5 feet long. To the nearest hundredth of a square foot, what is the area of the window?",
+  "choices": [
+   "38.88",
+   "25.64",
+   "43.75",
+   "16.53"
+  ],
+  "correct_answer": "25.64",
+  "explanation": "Let w be the width of the rectangle, which is also the diameter of the semicircle. The frame consists of the bottom (w), the crossbar along the diameter (w), the two vertical sides (2 · 5 = 10), and the semicircular arc (πw/2). So 2w + 10 + πw/2 = 24, and w = 14/(2 + π/2) ≈ 3.9207 feet. The area is the rectangle plus the semicircle: 5w + (1/2)π(w/2)² ≈ 19.603 + 6.037 ≈ 25.64 square feet. The option \"38.88\" leaves the crossbar out of the frame (w + 10 + πw/2 = 24). The option \"16.53\" takes the curved top to be πw, a full circle's circumference, instead of half of it. The option \"43.75\" finds w correctly but uses w, the diameter, as the radius of the semicircle (πw²/2).",
+  "solve": "const w=14/(2+Math.PI/2);return (5*w+Math.PI*w*w/8).toFixed(2);",
+  "distractor_solve": {
+   "38.88": "const w=14/(1+Math.PI/2);return (5*w+Math.PI*w*w/8).toFixed(2);",
+   "16.53": "const w=14/(2+Math.PI);return (5*w+Math.PI*w*w/8).toFixed(2);",
+   "43.75": "const w=14/(2+Math.PI/2);return (5*w+Math.PI*w*w/2).toFixed(2);"
+  },
+  "quantity_asked": "the total area of the window (rectangle plus semicircle), with w from 2w + 10 + πw/2 = 24: ≈ 25.64 square feet.",
+  "distractor_kind": {
+   "38.88": "crossbar omitted from the frame, so w is too large. (a) no parameter extreme. (b) neighbouring setup (frame around the outline only), inside. (c) cheapest bound: the frame of 24 ft encloses less than a circle of circumference 24 would (24²/(4π) ≈ 45.8); inside. (d) real: misses one listed part of the frame.",
+   "16.53": "arc taken as πw (whole circumference) instead of πw/2, so w is too small. (a) no parameter extreme. (b) inside. (c) no cheap lower bound on the area exists without solving for w; inside (0, 45.8). (d) real: semicircle perimeter slip.",
+   "43.75": "w correct, semicircle area with radius w (πw²/2). (a) no. (b) inside. (c) strictly below 45.8. (d) real: diameter used as radius."
+  },
+  "distractor_meta": {
+   "38.88": {
+    "direction": "over",
+    "error_kind": "frame part omitted"
+   },
+   "16.53": {
+    "direction": "under",
+    "error_kind": "full circumference for semicircle arc"
+   },
+   "43.75": {
+    "direction": "over",
+    "error_kind": "diameter used as radius"
+   }
+  },
+  "bounds": [
+   "area > 0",
+   "area < 24²/(4π) ≈ 45.8 (no closed curve of length less than 24 encloses more than the circle)"
+  ],
+  "mechanism": [
+   "rectangle with a semicircle on top",
+   "frame length includes crossbar along the diameter",
+   "solve linear equation for width",
+   "area of rectangle plus semicircle"
+  ],
+  "arith_class_check": "Key 25.640 shown to hundredths as 25.64; all options two-decimal non-integers; no class implied.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 25.64 (key) and 38.88, both two-decimal with nonzero hundredths; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "No live window/frame composite; errors both ways (16.53 under; 38.88, 43.75 over); no option differs from another by a stem number."
+  }
+ },
+ {
+  "id": "AM29G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circle inscribed in a sector",
+  "subskill": "circle tangent to both radii and the arc of a sector",
+  "prompt": "A sector of a circle has a radius of 15 centimeters and a central angle of 70°. A smaller circle lies inside the sector and is tangent to both straight edges (radii) of the sector and to the arc of the sector. To the nearest hundredth of a centimeter, what is the radius of the smaller circle?",
+  "choices": [
+   "6.75",
+   "5.47",
+   "7.27",
+   "6.18"
+  ],
+  "correct_answer": "5.47",
+  "explanation": "By symmetry the center C of the smaller circle lies on the bisector of the 70° angle, so the angle between the bisector and each radius of the sector is 35°. Let r be the radius of the smaller circle and O the vertex of the sector. The circle is tangent to the arc, so OC + r = 15, giving OC = 15 − r. The perpendicular from C to a radius of the sector has length r and is a leg of a right triangle with hypotenuse OC, so sin 35° = r/(15 − r). Then r = 15 sin 35°/(1 + sin 35°) ≈ 8.6036/1.5736 ≈ 5.47. The option \"6.18\" uses tan 35° = r/(15 − r), treating OC as a leg rather than the hypotenuse. The option \"6.75\" uses cos 35°, placing the 35° angle at C instead of at O. The option \"7.27\" uses the full 70° angle, sin 70° = r/(15 − r), instead of half of it.",
+  "solve": "const s=Math.sin(35*Math.PI/180);return (15*s/(1+s)).toFixed(2);",
+  "distractor_solve": {
+   "6.18": "const t=Math.tan(35*Math.PI/180);return (15*t/(1+t)).toFixed(2);",
+   "6.75": "const c=Math.cos(35*Math.PI/180);return (15*c/(1+c)).toFixed(2);",
+   "7.27": "const s=Math.sin(70*Math.PI/180);return (15*s/(1+s)).toFixed(2);"
+  },
+  "quantity_asked": "the radius r of the circle tangent to both radii and the arc of a 15 cm, 70° sector: r = 15 sin35°/(1 + sin35°) ≈ 5.47 cm.",
+  "distractor_kind": {
+   "6.18": "tan for sin: OC treated as a leg. (a) no parameter extreme. (b) neighbouring setup (OC as the adjacent leg), inside (0, 7.5). (c) cheapest bound r < 15/2 = 7.5 (the diameter lies on the bisector inside the 15 cm radius): strictly inside. (d) real: wrong side taken as hypotenuse.",
+   "6.75": "cos for sin: the 35° angle placed at the circle's center instead of the sector's vertex. (a) no. (b) inside. (c) inside (0, 7.5). (d) real: angle at the wrong vertex of the right triangle.",
+   "7.27": "full central angle used instead of the half-angle. (a) no. (b) neighbouring: the 70° angle itself; strictly inside the cap 7.5 (0.23 below). (c) inside. (d) real: forgets that the bisector splits the angle."
+  },
+  "distractor_meta": {
+   "6.18": {
+    "direction": "over",
+    "error_kind": "hypotenuse taken as leg (tan for sin)"
+   },
+   "6.75": {
+    "direction": "over",
+    "error_kind": "angle at wrong vertex (cos for sin)"
+   },
+   "7.27": {
+    "direction": "over",
+    "error_kind": "angle not bisected"
+   }
+  },
+  "bounds": [
+   "0 < r < 7.5 (the circle's diameter lies on the bisector, inside the 15 cm radius)",
+   "r > 7.5 sin 35° ≈ 4.30 (OC = 15 − r > 7.5)",
+   "r < 15 sin 35° ≈ 8.60 (looser)"
+  ],
+  "mechanism": [
+   "circle inscribed in a sector",
+   "tangent to both radii and the arc",
+   "center on the angle bisector",
+   "sin of half the central angle = r/(R − r)"
+  ],
+  "arith_class_check": "Key 5.4676 shown to hundredths; all four options two-decimal non-integers; nothing in the stem implies a class.",
+  "one_sided_check": "Key smallest; three different error kinds (hypotenuse taken as a leg, angle at the wrong vertex, angle not bisected). Natural errors moving DOWN exist and are not options: placing the center 15 − 2r from the vertex (diameter subtracted, 4.01) and bisecting twice (sin 17.5°, 3.47). Whether a wrong ratio is larger or smaller than sin 35° is not readable from the stem without evaluating it.",
+  "interior_parity_check": "Interior options by value: 6.18 and 6.75, both two-decimal with nonzero hundredths; neither nicer.",
+  "cheap_bound_check": "Key smallest. Cheapest bounds: r < 7.5 (diameter along the bisector inside the radius) and r < 15 sin 35° ≈ 8.60, both above every option; lower bound r > 7.5 sin 35° ≈ 4.30 is below the key, so no distractor is on the far side and nothing isolates the key. Nearest distractor 6.18 is 0.71 above; gaps toward the key grow (0.52, 0.57, 0.71), no CONV.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; natural downward errors (diameter subtracted 4.01, double bisection 3.47); all options inside r < 7.5; no live sector-incircle item."
+  }
+ }
+]
