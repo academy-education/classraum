@@ -1,0 +1,376 @@
+[
+ {
+  "id": "SM30F-U05",
+  "domain": "Problem-Solving and Data Analysis",
+  "position": 4,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by E: single cheap bound kills all three distractors: the overlap mean 9.5 is far above the chess mean and near the robotics mean, so removing the overlap widens the gap past the naive 2.45; every distractor sits at or below 2.45 and the key is the only option above it (one-sided, key largest)"
+  ],
+  "flags": {
+   "r4key": "E",
+   "r8": "E",
+   "r10": "E"
+  },
+  "open": [
+   "r4key",
+   "r8",
+   "r10"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-B01",
+  "domain": "Algebra",
+  "position": 7,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by E: one cheap bound kills all three distractors: q (5x+4y=2) is visibly decreasing, so q(6) < 3, and p(6)=51 takes one step, so p(6)-q(6) > 48; 46, 43 and 38 are all below 48 and the key 58 is the only option left (one-sided, key largest)"
+  ],
+  "flags": {
+   "r4key": "E",
+   "r8": "DE",
+   "r10": "DE"
+  },
+  "open": [
+   "r4key",
+   "r8",
+   "r10"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-V05",
+  "domain": "Problem-Solving and Data Analysis",
+  "position": 15,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "easy",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 3,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r4 median struck 3",
+   "EXT-1 drop_recommend by DEF: Free elimination kills all three distractors: in the table, seniors are fewer than juniors among non-bus students (32 vs 43), so the answer is under half of 1,800 = 900. 900, 960 and 1035 are all >= 900, so only the key survives, with no proportion computed. Fix: make the distractors also fall below 900 (e.g. 32/120 based, 23/75 car-only). | reading two table cells (non-bus seniors 32 < non-bus juniors 43) puts the estimate under half of 1800 = 900, which strikes 900, 960 and 1035 and leaves only the key (one-sided, key smallest) | Key identifiable free: seniors have fewer non-bus students than juniors in the table (32 vs 43), so the answer must be under half of 1800 = 900; 900, 960, 1035 all sit on or above that bound and 768 is the only option below. One glance, no division. All three distractors on the predictable side of a single cheap bound (one_sided, single_bound_kills_all)."
+  ],
+  "flags": {
+   "r4key": "DEF",
+   "r8": "DEF",
+   "r10": "DEF"
+  },
+  "open": [
+   "r4key",
+   "r8",
+   "r10"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-H03",
+  "domain": "Geometry and Trigonometry",
+  "position": 23,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "easy",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DE: one_sided: key is the smallest option and every distractor is a lengthening slip (adding the east legs, ignoring B's east leg, taxicab sum). A student who knows a straight line is shortest and slips only lengthen can pick the minimum; 11.00 is also killed by the triangle inequality. | One-sided: key is the smallest option and every distractor is a strictly larger computation (dy = 8 is fixed; every dx slip inflates dx above 3, and a sum of legs always exceeds the hypotenuse). A student choosing the smallest value wins; no distractor sits below the key."
+  ],
+  "flags": {
+   "r8": "DE"
+  },
+  "open": [
+   "r8"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-G05",
+  "domain": "Geometry and Trigonometry",
+  "position": 31,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DEF: one_sided: key is the largest option and all three distractors are area over-counts (no overlap removed, 14x14 square, square minus overlap), so all lie below. The stem's own 'overlap' tells a test-wise student that every slip enlarges the area and shrinks the length: pick the largest. | Single cheap bound kills all three distractors and the key is the largest option: the stem says the rectangles overlap, so the L area is below 2*56 = 112 and the length is above 17.86. 10.2 and 11.1 fall below it and 17.9 is the no-overlap value itself. Every authored error is an area overcount, so all distractors are shorter (one-sided). | One-sided (the A88 cause): every distractor comes from overcounting the L-shaped area, so all three lie below the key, and the key is the largest option. A student who knows only that an area slip makes the base too big, and so the length too small, picks the largest value. Re-author with at least one undercount distractor (e.g. subtracting the overlap twice: 2000/80 = 25.0)."
+  ],
+  "flags": {
+   "r4key": "E",
+   "r8": "DEF",
+   "r10": "E"
+  },
+  "open": [
+   "r4key",
+   "r8",
+   "r10"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-D01",
+  "domain": "Algebra",
+  "position": 37,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DF: one_sided (A88's cause): key is the largest option and all three distractors are below it; the stem lists two Plan A fees, and an omitted fee (141) or any mis-split of the 64 lowers both N and the cost. A test-wise student reads that every slip lowers the answer and picks the largest. | Free elimination plus one-sidedness. At N the plans cost the same, so the answer equals 11+10N and ends in 1; that strikes 99 and 105 without solving. The remaining pair is 141 (omitted fee, below) against the key 171 (largest), and an omitted fee predictably lowers the answer. A test-wise student gets there without the inequality."
+  ],
+  "flags": {
+   "r7": "F",
+   "r8": "DEF"
+  },
+  "open": [
+   "r7",
+   "r8"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-A01",
+  "domain": "Algebra",
+  "position": 41,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by E: The key can be found without solving. The right side has 50 kg and needs a moment of 90. If the farther crate were at 1.284 or 1.416 m, both crates would sit within that distance and the moment would be at most 50 * 1.416 = 70.8 < 90, so both are struck. 7.8 is struck because 18 * 7.8 = 140 > 90 alone. One sentence of reasoning leaves only 2.184, and it is cheaper than setting up the equation."
+  ],
+  "flags": {
+   "r4key": "E"
+  },
+  "open": [
+   "r4key"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-U04",
+  "domain": "Problem-Solving and Data Analysis",
+  "position": 43,
+  "difficulty": "medium",
+  "difficulties": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: one_sided: key is the smallest option and all three distractors come from under-predicting the curve (x = 3, simple instead of compound growth, extrapolating from 2022's actual), which all raise the residual. A student who knows that compounding gives the largest prediction picks the smallest residual."
+  ],
+  "flags": {
+   "r8": "DE"
+  },
+  "open": [
+   "r8"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-C04",
+  "domain": "Algebra",
+  "position": 46,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: Option-pair tell (A91 rule): key 140 and option 134 differ by 6 = 3 + 3, two printed numbers. Distractors weak: 86 comes from t = 1, c = 83 (a $1 T-shirt whose sale price would be -$2, absurd on sight); 125 comes from adding 3x5 to the regular-price total, an unmotivated step."
+  ],
+  "flags": {
+   "r7pair": "DE"
+  },
+  "open": [
+   "r7pair"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-Q01",
+  "domain": "Advanced Math",
+  "position": 47,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided (A88 cause): key is the largest option and every distractor errs by over-growing B or under-growing A, both of which shrink the difference. Borderline: the direction is only mildly readable from the stem, flag for the panel rather than a hard drop."
+  ],
+  "flags": {
+   "r7": "DEF",
+   "r8": "D"
+  },
+  "open": [
+   "r7",
+   "r8"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-Q02",
+  "domain": "Advanced Math",
+  "position": 48,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r7 CONFIRMED by hand (E)"
+  ],
+  "flags": {
+   "r7": "E"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-V01",
+  "domain": "Problem-Solving and Data Analysis",
+  "position": 49,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by EF",
+   "EXT-1 drop_recommend by DF: One-sided (A88 'an omitted constraint raises it'): key is the smallest option and all three distractors sit above it because each subtracts too little or omits the removal of 40 tagged fish. A test-wise student can predict the direction from the stem. | one-sided extreme key: the key is the smallest option and all three distractors (subtracting 150 or 12 instead of 200, or using 240 for the total) fall predictably above it, because every error either skips the removal or subtracts less than 200. Plug-back confirms the key on the first ascending try (2300+200=2500, 200/2500=12/150)."
+  ],
+  "flags": {
+   "r8": "DF",
+   "r11live": "E"
+  },
+  "open": [
+   "r8",
+   "r11live"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-U03",
+  "domain": "Problem-Solving and Data Analysis",
+  "position": 59,
+  "difficulty": "easy",
+  "difficulties": [
+   "medium",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by EF: The stated decision point is bypassed by the table itself: Class B has 13 + x students and 13 + x pets, so its mean is 1 for every x and the combined-mean 1.4 condition is superfluous. A student writing B's mean gets (x+13)/(x+13) = 1 immediately, then 1.9 - 1 = 0.90. Filed as hard, it is an easy table read with a decoy condition; the explanation solves for x without noticing. Re-author with B's pet total not equal to its head count. | the combined mean 1.4 and the unknown x are irrelevant: Class B's pet total x+4+9 always equals its head count 8+x+2+3, so B's mean is 1 for every x and the answer 1.9-1=0.90 comes straight off the table. The intended decision (solving for x) is bypassed. The key is also the only clean-tenth option."
+  ],
+  "flags": {
+   "r4key": "EF",
+   "r7": "DF"
+  },
+  "open": [
+   "r4key",
+   "r7"
+  ],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM30F-J03",
+  "domain": "Geometry and Trigonometry",
+  "position": 60,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r4 median struck 2"
+  ],
+  "flags": {
+   "r11live": "F"
+  },
+  "open": [
+   "r11live"
+  ],
+  "off_blueprint_votes": 0
+ }
+]

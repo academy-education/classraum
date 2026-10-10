@@ -1,0 +1,985 @@
+[
+ {
+  "id": "SM30F-J05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Obtuse inscribed angle, arc containing the vertex",
+  "difficulty": "hard",
+  "prompt": "Points A, B, and P lie on a circle with center O and radius 12, and the measure of angle APB is 130 degrees. A region is bounded by radius OA, radius OB, and the arc AB that contains point P. To the nearest tenth, what is the perimeter of this region?",
+  "choices": [
+   "44.9",
+   "51.2",
+   "72.2",
+   "85.8"
+  ],
+  "correct_answer": "44.9",
+  "explanation": "An inscribed angle intercepts the arc that does NOT contain its vertex, and its measure is half that arc. So the arc AB not containing P measures 2(130) = 260 degrees, and the arc AB that contains P measures 360 - 260 = 100 degrees. That arc has length (100/360)(2 x pi x 12) = (20/3)pi, which is about 20.94. The region's perimeter is the two radii plus this arc: 12 + 12 + 20.94 = 44.94, or 44.9 to the nearest tenth.",
+  "solve": "const r=12,phi=130; const arc=(360-2*phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+  "distractor_solve": {
+   "51.2": "const r=12,phi=130; const arc=phi/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "72.2": "const r=12,phi=130; const arc=(360-phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "85.8": "const r=12,phi=130; const arc=(360-phi/2)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);"
+  },
+  "mechanism": [
+   "inscribed angle intercepts the arc away from its vertex",
+   "obtuse angle: intercepted arc is the major arc, so P sits on the minor arc",
+   "arc length plus two radii"
+  ],
+  "quantity_asked": "the perimeter of the sector bounded by OA, OB and the arc AB containing P",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The options are perimeters, not angles or arcs. To test one, a student must subtract the two radii, convert the remaining arc length to degrees using the circumference 24pi, take the other arc as 360 minus that, halve it and compare with 130 - four steps that include the decision about which arc the angle intercepts. There is no printed equation to substitute into."
+  },
+  "distractor_meta": {
+   "51.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the arc on P's side to have the same measure as the angle at P (130 degrees); the stem gives no cue whether that arc is larger or smaller than the true one."
+   },
+   "72.2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgetting to double: taking the arc not containing P as 130 degrees, so the arc containing P is 360 - 130 = 230 degrees; the asked arc is the complement of the intercepted one, which the stem does not flag."
+   },
+   "85.8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Halving instead of doubling (inscribed angle = twice the arc): the intercepted arc becomes 65 degrees and the arc containing P 295 degrees; the stem does not reveal that the shrunken intercepted arc enlarges the asked one."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const r=12,phi=130; return ((360-2*phi)/360*2*Math.PI*r).toFixed(1);",
+   "direction": "below",
+   "why": "Reporting only the arc length 20.9 and leaving out the two radii is a natural slip that lands below the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "72.2",
+   "natural_side": "below",
+   "why": "Forgetting to double is a dropped step, which ordinarily leaves an arc or angle too small; here the doubled quantity is the arc NOT containing P and the asked arc is its complement, so the undersized intercepted arc makes the asked arc, and the perimeter, too large. A student sees this only after deciding which arc the angle intercepts."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound appears: one fixed configuration and one perimeter. The one structural fact - an obtuse inscribed angle has its vertex on the minor arc - bounds the arc containing P by a semicircle; it strikes 72.2 and 85.8 but not 51.2, and errors also fall below (leaving out the radii gives 20.9), so the structure does not sign every error.",
+  "intermediate_check": "51.2: no - it is 24 plus a 130-degree arc; the key does not follow from it by one printed relation. 72.2: no - it is 24 plus a 230-degree arc; reaching the key requires replacing the arc measure, not applying a printed relation. 85.8: no - it uses a 295-degree arc. The true intermediates (the 260- and 100-degree arcs, the arc length 20.94, the circumference 24pi) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the perimeter exceeds the two radii, 24, which every option satisfies. The next bound - the vertex of an obtuse inscribed angle lies on the minor arc, so the perimeter is below 24 + 12pi = 61.7 - strikes 72.2 and 85.8 but leaves 51.2 on the key's side; no single bound strikes all three.",
+  "shape_check": "The stem hands over: a positive length greater than 24 (all four survive); rounding to the nearest tenth (all four are given to a tenth). All four survive together; only the minor-arc fact, which is part of the solution, separates them.",
+  "interior_parity_check": "Middle values 51.2 and 72.2: both two-digit numbers to one decimal place; the key is not a middle value.",
+  "arith_class_check": "All four options are decimals to the tenth, none an integer and none round; no parity, sign or multiple class isolates 44.9.",
+  "dup_search": {
+   "queries": [
+    "central angle&inscribed|inscribed angle",
+    "angle APB&circle|angle AQB&circle",
+    "perimeter&radii|perimeter&arc",
+    "contains P|containing P|minor arc&angle"
+   ],
+   "hits_read": 27,
+   "nearest": "The live inscribed-angle items (2ca0efba, 30060a3f, 825707e2 and others) all place P on the major arc and ask the acute inscribed angle from a central angle; 6d19e446 (ISEE) asks a sector perimeter from a given central angle; 513e2990 (ACT) bounds a region by two tangents and the minor arc. None has an obtuse inscribed angle whose vertex lies on the arc being measured."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The minor-arc fact strikes 72.2 and 85.8, but 51.2 survives below the semicircle bound, and errors also fall below the key (omitting the radii gives 20.9). Does the far_distractor read as far-side? Forgetting to double normally undershoots; that it overshoots here appears only once the asked arc is seen as the complement of the intercepted arc. Could a student check an option against the stem in one routine step? No: a perimeter must be unwound (subtract 24, convert to degrees, complement, halve) before it meets the printed 130, and the key, though first ascending, is not confirmed by a substitution. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "30-60-90 corner triangle in a right trapezoid",
+  "difficulty": "medium",
+  "prompt": "Quadrilateral ABCD is a trapezoid in which side AB is parallel to side DC, and DC is shorter than AB. Angles A and D are right angles, AB = 20 centimeters, AD = 8 centimeters, and angle ABC measures pi/3 radians. To the nearest hundredth of a centimeter, what is the perimeter of trapezoid ABCD?",
+  "choices": [
+   "50.14",
+   "50.31",
+   "51.31",
+   "52.62"
+  ],
+  "correct_answer": "52.62",
+  "explanation": "Draw the segment from C perpendicular to AB, meeting AB at E. Then AECD is a rectangle, so CE = AD = 8 and AE = DC. Angle B = pi/3 radians = 60 degrees, so triangle CEB is a 30-60-90 triangle with the long leg CE = 8 opposite the 60-degree angle. Its short leg is EB = 8/sqrt(3), about 4.619, and its hypotenuse is BC = 2(EB), about 9.238. So DC = AB - EB, about 20 - 4.619 = 15.381. The perimeter is 20 + 8 + 15.381 + 9.238, about 52.619, which rounds to 52.62 centimeters.",
+  "solve": "const eb = 8/Math.tan(Math.PI/3); const bc = 8/Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+  "distractor_solve": {
+   "50.14": "const eb = 8*Math.tan(Math.PI/3); const bc = 8/Math.cos(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "50.31": "const eb = 8/Math.tan(Math.PI/3); const bc = 8*Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "51.31": "const eb = 8; const bc = 8*Math.SQRT2; return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;"
+  },
+  "mechanism": [
+   "drop a perpendicular to form a rectangle and a corner triangle",
+   "convert pi/3 radians and use the 30-60-90 ratios",
+   "shorter base as AB minus the offset",
+   "sum the four sides"
+  ],
+  "quantity_asked": "perimeter of trapezoid ABCD, to the nearest hundredth of a centimeter",
+  "ask_type": "length",
+  "plugback": {
+   "substitutable": false,
+   "why": "The perimeter is a sum of four sides, two of them derived (DC and BC), and no printed equation contains it. An option cannot be split back into DC and BC without finding the 30-60-90 triangle first, which is the whole solution."
+  },
+  "distractor_meta": {
+   "50.14": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Inverts the 30-60-90 ratios (EB = 8 * sqrt(3), BC = 16); the slanted side grows while the top base shrinks, and the stem does not show which change wins."
+   },
+   "50.31": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplies by sin(pi/3) instead of dividing for the slanted side (BC = 8 sin 60 degrees); nothing in the stem signs the size of that change until BC is computed."
+   },
+   "51.31": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the corner triangle as 45-45-90 (EB = 8, BC = 8 sqrt(2)); the offset grows and the slanted side grows, which move the perimeter in opposite directions."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const eb = 8/Math.tan(Math.PI/3); const bc = 8/Math.sin(Math.PI/3); return Math.round((20 + 8 + 20 + bc)*100)/100;",
+   "direction": "above",
+   "why": "Forgets to subtract the offset EB, taking DC = AB = 20, which gives 57.24, above the key; not an option."
+  },
+  "far_distractor": {
+   "option": "50.14",
+   "natural_side": "above",
+   "why": "An over-sized piece ordinarily lengthens a perimeter, and the inverted ratio does over-size the slanted side (16 instead of about 9.24). But the same inversion over-sizes the offset EB, which is SUBTRACTED from AB to give the top base, and that loss is larger, so the error lands below the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem fixes one trapezoid and asks for its perimeter. The natural errors go both ways (forgetting to subtract the offset lands above at 57.24; multiplying by sin 60 degrees lands below), so the structure does not sign every error.",
+  "intermediate_check": "50.14: no - a perimeter from inverted ratios; no printed relation turns it into 52.62. 50.31: no - from a wrong BC; the printed numbers do not map it to the key. 51.31: no - from a 45-45-90 model; reaching the key needs EB and BC, neither printed.",
+  "cheap_bound_check": "Every cheap fact, with what it strikes (all lower bounds matter on a largest key): (1) the slanted side is longer than the height, BC > AD = 8. (2) angle B = pi/3 > pi/4, so the offset EB < CE = 8 and DC = 20 - EB > 12. (3) BC > EB, so DC + BC > DC + EB = AB = 20, and the perimeter > 20 + 8 + 20 = 48 - strikes none. (4) (1) and (2) together: perimeter > 20 + 8 + 12 + 8 = 48 - strikes none. (5) sin and cos between 0 and 1, angle above 45 degrees, side-opposite-larger-angle order in triangle CEB (BC > CE > EB) - all reduce to (1)-(3). Upper bounds (EB > 0, BC < 16 since the angle exceeds pi/6, so the perimeter < 64) strike none. No single fact, and no pair of them, strikes any distractor.",
+  "shape_check": "Positive: all four. Above 48: all four. Below 56 (offset under 8 with BC = 2 EB): all four. Two-decimal display: all four. All three distractors survive every property together.",
+  "interior_parity_check": "Middle values 50.31 and 51.31: both two-decimal numbers of equal complexity; the key is the largest and is not cleaner.",
+  "arith_class_check": "No integers; no option is a multiple of a printed number; the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "trapezoid&(60|π/3|30|45|sin|cos|tan)",
+    "trapezoid&perimeter",
+    "trapezoid&(perpendicular|right angle)",
+    "angle&x-axis"
+   ],
+   "hits_read": 12,
+   "nearest": "728d867c-602 / GEO-H1-10 (trapezoid WXYZ area from a figure) and 1239ea47-0b3 (isosceles trapezoid area from sides) - areas from given heights or a 3-4-5 split; none uses a radian base angle and a 30-60-90 corner triangle to find a perimeter."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors do not all go one way (forgetting to subtract the offset lands above), and no stem structure signs them; each distractor moves two sides in opposite directions. The far distractor 50.14 enlarges the slanted side yet lands below because it enlarges the subtracted offset more. Every cheap fact is listed in cheap_bound_check; none, alone or paired, strikes a distractor. Plug-back: an option cannot be checked in one routine step. Solved intermediate: none of the three is one printed relation from 52.62."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Externally tangent circles in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, circle A has equation x^2 + y^2 + 16x + 12y + 91 = 0. Circle B has its center at the point (16, 12). Circles A and B touch at exactly one point, and each circle lies outside the other. What is the radius of circle B?",
+  "choices": [
+   "7",
+   "24",
+   "27",
+   "33"
+  ],
+  "correct_answer": "27",
+  "explanation": "Complete the square for circle A: (x^2 + 16x + 64) + (y^2 + 12y + 36) = -91 + 64 + 36, so (x + 8)^2 + (y + 6)^2 = 9. Circle A has center (-8, -6) and radius 3. The distance between the centers (-8, -6) and (16, 12) is sqrt(24^2 + 18^2) = sqrt(900) = 30. Two circles that touch at one point with each outside the other have centers separated by the sum of their radii, so 3 + r = 30 and the radius of circle B is 27.",
+  "solve": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+  "distractor_solve": {
+   "7": "const h=8,k=6; const r=Math.sqrt(64+36-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+   "24": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-2*r);",
+   "33": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d+r);"
+  },
+  "mechanism": [
+   "complete the square for centre and radius",
+   "distance between two centres",
+   "external tangency: distance = sum of radii"
+  ],
+  "quantity_asked": "the radius of circle B",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "To test an option a student must already know circle A's center and radius (completing the square) and the center distance 30, after which r = 30 - 3 follows directly; no option can be confirmed without doing the whole solution. The key is the third value ascending."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the center of circle A as (8, 6) (signs kept from the equation) gives a center distance of 10 instead of 30; whether a slipped center lies nearer to or farther from B depends on the coordinates, which the stem does not signal."
+   },
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the diameter 6 instead of the radius 3 from the center distance 30; nothing in the stem marks which of radius or diameter is subtracted."
+   },
+   "33": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the internal-tangency relation (distance = difference of radii, r - 3 = 30) instead of the external one; both relations are natural and the stem gives no size cue for circle B."
+   }
+  },
+  "intermediate_check": "7: no - it comes from a slipped center (8, 6), not from any value the key follows from by one printed relation. 24: no - it is 30 - 6; reaching 27 from 24 needs the unprinted radius 3. 33: no - it is 30 + 3; reaching 27 from 33 needs subtracting twice the unprinted radius. The center distance 30 and the radius 3, the true intermediates, are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a radius is positive (all four survive); B is outside A so r_B > 0 only (all survive); integers are not implied. All four survive every property together.",
+  "interior_parity_check": "Middle values 24 and 27: both two-digit integers; 27 is not the cleaner value (24 is the more divisible one).",
+  "arith_class_check": "Parity: 7, 27, 33 odd and 24 even, so the key is not alone; all positive integers; multiples of 3: 24, 27, 33 (7 is not), so the key is not alone in that class either.",
+  "dup_search": {
+   "queries": [
+    "tangent&circle",
+    "two circles|circles A and B|circle B",
+    "tangent&outside|tangent to circle",
+    "externally tangent|tangent to each other|circles&tangent externally"
+   ],
+   "hits_read": 48,
+   "nearest": "40a152e6-48b (SSAT, two circles with radii 3 and 4, centers 13 apart, greatest PQ) - given radii and distance, asks a max segment; this item derives one radius by completing the square and a center distance in the xy-plane and asks the other radius from tangency. 47c950d2 / 8727b1d3 (circle tangent to the x-axis, find c) are tangent to an axis, not to a second circle. 712e73ff (near-dup j=0.455) checked by the near-dup tool, not flagged."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "No option equals a printed number, so none can be discarded that way. Could a student check an option in one routine step? No: every check needs circle A's center and radius and the center distance, i.e. the full solution. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check). PAIR/DPAIR read: 33 - 27 = 6 = twice the unprinted radius; 27 - 24 = 3 unprinted; 27 - 7 = 20 is not a printed number. B's coordinates (16, 12) equal the printed coefficients, which hints nothing about the radius. DPAIR read: 27 - 24 = 3 = 2 + 1 - the 3 is circle A radius, not built from the exponent 2 and an implied 1; a student holding 24 still needs the radius 3 from completing the square to reach 27."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Sine ratio and perimeter of a right triangle",
+  "difficulty": "medium",
+  "prompt": "Triangle PQR has a right angle at vertex R, so side PQ is the hypotenuse, side QR is opposite angle P, and side PR is adjacent to angle P. The value of sin P is 8/17, and the perimeter of triangle PQR is 120 centimeters. To the nearest centimeter, what is the length of side PR?",
+  "choices": [
+   "24",
+   "32",
+   "45",
+   "47"
+  ],
+  "correct_answer": "45",
+  "explanation": "Since sin P = QR/PQ = 8/17, let QR = 8k and PQ = 17k for some positive number k. By the Pythagorean theorem, PR = sqrt((17k)^2 - (8k)^2) = sqrt(225k^2) = 15k. The perimeter is 8k + 15k + 17k = 40k = 120, so k = 3. Therefore PR = 15(3) = 45 centimeters.",
+  "solve": "const k = 120/(8+15+17); return Math.round(15*k);",
+  "distractor_solve": {
+   "24": "const k = 120/(8+15+17); return Math.round(8*k);",
+   "32": "const leg = 17-8; const k = 120/(8+leg+17); return Math.round(leg*k);",
+   "47": "const h = Math.sqrt(8*8+17*17); const k = 120/(8+17+h); return Math.round(17*k);"
+  },
+  "mechanism": [
+   "sine ratio as scaled sides 8k and 17k",
+   "Pythagorean theorem for the third side 15k",
+   "perimeter fixes the scale k"
+  ],
+  "quantity_asked": "length of the leg PR adjacent to angle P, to the nearest centimeter",
+  "ask_type": "length",
+  "plugback": {
+   "substitutable": false,
+   "why": "A student holding an option for PR still has to find QR and PQ to test the perimeter, which needs the ratio 8:15:17 and the scale factor - the whole solution. There is no printed equation into which PR can be substituted in one step."
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads the sine as adjacent over hypotenuse (or reports QR); nothing in the stem says whether the opposite leg is shorter or longer than the adjacent one until 15 is found."
+   },
+   "32": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds the third side as 17 - 8 = 9 instead of using the Pythagorean theorem; whether 9 parts of 34 is more or less than 15 parts of 40 is not readable without computing."
+   },
+   "47": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats 8/17 as opposite over adjacent (legs 8 and 17, hypotenuse sqrt(353)); the larger leg weight and the smaller hypotenuse pull opposite ways, so the side of 45 is not visible."
+   }
+  },
+  "intermediate_check": "24: no - it is QR; the printed relation sin P = 8/17 turns it into the hypotenuse 51, not PR, and PR then needs a second step (Pythagorean theorem or the full perimeter). 32: no - it is the leg of a wrong 8-9-17 model; no printed relation maps it to 45. 47: no - it is the leg of a wrong 8-17-sqrt(353) model; no printed relation maps it to 45.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive length: all four survive. A leg is shorter than half the perimeter (under 60, triangle inequality): all four survive. A leg is shorter than the hypotenuse: the hypotenuse is unknown without solving, and every option is below 60, so all survive. Integer display (rounded): all four.",
+  "interior_parity_check": "Middle values 32 and 45: both two-digit integers of the same complexity; 45 is not the cleaner one (neither is round).",
+  "arith_class_check": "Parity: 24, 32 even; 45, 47 odd - the key shares its class with 47. Multiple of 5: 45 only, but the stem implies no multiple-of-5 property (the scale 3 and parts 15 are not printed). Not a square. No class singles the key out by a property the stem implies.",
+  "dup_search": {
+   "queries": [
+    "tan&cos",
+    "sin&cos&acute",
+    "perimeter&right triangle&tan|perimeter&right triangle&sin|perimeter&right triangle&cos",
+    "perimeter&hypotenuse",
+    "perimeter&sin |perimeter&cos |perimeter&tan ",
+    "perimeter&right triangle"
+   ],
+   "hits_read": 71,
+   "nearest": "9e1f0f2e-c73 (ISEE: right triangle from perimeter AND area, asks the altitude) - different givens (no trig ratio) and different chain; 1f15a28f-6f2 / a62a5344-901 (tan = 3/4, asks sin + cos) - ratio only, no perimeter or scale step."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might look for the 8-15-17 triple scaled: only 45 is a multiple of 15 among the options, but 24 is a multiple of 8, so the triple does not single out one option without knowing which leg is asked and finding k = 3. The bound 'each side < 60' strikes none. No distractor is a solved intermediate one printed relation away from 45 (24 needs two steps). Not checkable by substitution."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Surface area of a prism from its volume",
+  "difficulty": "medium",
+  "prompt": "A closed box is a rectangular prism with a square base. The height of the box is 3 times the length of one side of the base, and the volume of the box is 375 cubic inches. What is the total surface area of the box, in square inches?",
+  "choices": [
+   "300",
+   "340",
+   "350",
+   "450"
+  ],
+  "correct_answer": "350",
+  "explanation": "Let s be the side length of the square base, in inches. Then the height is 3s, and the volume is s * s * 3s = 3s^3. Setting 3s^3 = 375 gives s^3 = 125, so s = 5 and the height is 15. The box has two square faces (the base and the top), each with area 5 * 5 = 25, and four rectangular side faces, each with area 5 * 15 = 75. The total surface area is 2(25) + 4(75) = 50 + 300 = 350 square inches.",
+  "solve": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(2 * s * s + 4 * s * h);",
+  "distractor_solve": {
+   "300": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(4 * s * h);",
+   "340": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(2 * (4 * s) + 4 * s * h);",
+   "450": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(6 * s * h);"
+  },
+  "mechanism": [
+   "volume 3s^3 from the height relation",
+   "cube root for the base side",
+   "sum of two square and four rectangular faces"
+  ],
+  "quantity_asked": "total surface area of the box",
+  "ask_type": "derived-quantity",
+  "plugback": {
+   "substitutable": false,
+   "why": "The stem gives no condition that a surface-area value can be substituted into; to test an option a student must find s = 5 and h = 15 and add the six face areas, which is the whole solution."
+  },
+  "distractor_meta": {
+   "300": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting only the four side faces (the lateral area) leaves out the base and top; the stem says the box is closed but does not signal which face sets a student might drop."
+   },
+   "340": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the base perimeter 4s = 20 in place of the base area s^2 = 25 for each square face; whether a perimeter is bigger or smaller than an area depends on s, which the stem does not print."
+   },
+   "450": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating all six faces as 5-by-15 rectangles (using the side-face area for the base and top too); the stem does not say whether the base face is larger or smaller than a side face until s and h are found."
+   }
+  },
+  "intermediate_check": "300: no - it is the lateral area; the key adds two base faces of area 25, and 25 is not printed, so no single printed rate or relation turns 300 into 350. 340: no - it is a mis-built total, not a step on the way to 350. 450: no - six side faces; getting from 450 to 350 needs the unprinted face areas 75 and 25.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive, and every face area is a multiple of 25 once s = 5 is found (so the total is a multiple of 25): 300, 350, 450 survive; 340 does not. The total must exceed the lateral area, which a student cannot read without solving. 300, 350 and 450 survive every property together (3 >= 2).",
+  "interior_parity_check": "Middle values 340 and 350: both three-digit integers of the same form; the key 350 is not cleaner than 340 (and 300, the roundest option, is a distractor).",
+  "arith_class_check": "All four are even integers; three of four are multiples of 50 and of 25, so the key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "square base&surface area",
+    "volume&surface area&prism|box",
+    "faces&areas",
+    "surface area"
+   ],
+   "hits_read": 7,
+   "nearest": "7ea7ae73-be1 (ISEE: square base side 4 printed, volume 240 printed, find height then surface area) - there the side is given and the height follows linearly; here neither dimension is printed, the height is a multiple of the side and the side comes from a cube root, so the chain is different. 259d4383-d9d (volume equals surface area, find height) asks a different quantity from a different condition."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might pick a multiple of 50 or the option nearest the middle; 300 and 450 are also multiples of 50 and 340 sits next to the key, so neither guess isolates 350. Plug-back: a surface area cannot be checked against the stem in one step; the student must solve for s. Solved intermediate: none of 300, 340, 450 is one printed rate or relation away from 350 (the face areas 25 and 75 are not printed). PAIR / DPAIR: 350 is not another option combined with 3 or 375, nor an option times 2 or 4."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Two right triangles sharing a leg, with a radian angle",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, angle C is a right angle and angle A measures pi/3 radians. Point D lies on side AC, between A and C, so that segment BD has length 13 centimeters and segment CD has length 5 centimeters. To the nearest hundredth of a centimeter, what is the perimeter of triangle ABD?",
+  "choices": [
+   "28.78",
+   "30.52",
+   "32.12",
+   "52.78"
+  ],
+  "correct_answer": "28.78",
+  "explanation": "Triangle BCD has a right angle at C, so BC = sqrt(13^2 - 5^2) = 12. In triangle ABC, angle A = pi/3 radians = 60 degrees, so it is a 30-60-90 triangle with the 30-degree angle at B. The leg AC is opposite the 30-degree angle, so AC = BC/sqrt(3), about 6.928, and the hypotenuse is AB = 2(AC), about 13.856. Then AD = AC - CD, about 6.928 - 5 = 1.928. The perimeter of triangle ABD is AB + BD + AD, about 13.856 + 13 + 1.928 = 28.785, which rounds to 28.78 centimeters.",
+  "solve": "const bc = Math.sqrt(13*13 - 5*5); const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+  "distractor_solve": {
+   "30.52": "const bc = 13; const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "32.12": "const bc = Math.sqrt(13*13 + 5*5); const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "52.78": "const bc = Math.sqrt(13*13 - 5*5); const ac = bc*Math.sqrt(3); const ab = Math.sqrt(ac*ac + bc*bc); return Math.round((ab + 13 + (ac - 5))*100)/100;"
+  },
+  "mechanism": [
+   "shared leg BC from the Pythagorean theorem in triangle BCD",
+   "convert pi/3 radians and use the 30-60-90 ratios in triangle ABC",
+   "AD as AC minus CD",
+   "perimeter of the inner triangle"
+  ],
+  "quantity_asked": "perimeter of triangle ABD, to the nearest hundredth of a centimeter",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The perimeter is a sum of three lengths, one of them printed and two derived (AB and AD), and no printed equation contains it. Trying 28.78 first tells a student nothing unless AB and AD are found, which is the whole solution; the option cannot be split back into AB and AD without it."
+  },
+  "distractor_meta": {
+   "30.52": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaves out the CD^2 term and takes BC = BD = 13; the stem does not show that this enlarges AC, AB and AD together rather than shrinking something."
+   },
+   "32.12": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds instead of subtracting in the Pythagorean theorem, BC = sqrt(13^2 + 5^2); nothing in the stem signs how far that moves the perimeter."
+   },
+   "52.78": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Inverts the 30-60-90 ratio at A, taking AC = BC * sqrt(3); a student must know which leg is opposite the 60-degree angle to sign it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const bc = 12; const ac = bc/2; const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "direction": "below",
+   "why": "Halves BC to get AC (the 'half the hypotenuse' rule applied to a leg), giving AC = 6 and a perimeter of 26.00, below the key; not an option."
+  },
+  "far_distractor": {
+   "option": "30.52",
+   "natural_side": "below",
+   "why": "Leaving a term out ordinarily makes a result smaller. Here the term left out is CD^2, which is SUBTRACTED inside the square root for BC, so dropping it makes BC, and with it AC, AB and AD, larger, and the perimeter lands above the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound in the stem: it fixes a right triangle, one radian angle and two segment lengths and asks for one perimeter. The natural errors go both ways (halving BC for AC lands below; dropping CD^2 lands above), so the structure does not sign every error.",
+  "intermediate_check": "30.52: no - a perimeter from a wrong BC; no printed relation turns it into 28.78. 32.12: no - same, from BC = sqrt(194). 52.78: no - a perimeter from an inverted ratio; reaching the key from it needs AC, which is not printed.",
+  "cheap_bound_check": "Every cheap fact, with what it strikes: (1) BC is a leg of right triangle BCD, so BC < BD = 13; with the 5-12-13 triple, BC = 12 - strikes none by itself. (2) angle A = pi/3 > pi/4, so AC < BC < 13, hence AD = AC - 5 < 8 - bounds AD only. (3) AB is the hypotenuse of ABC, AB < AC + BC < 26 - none by itself. (4) Triangle ABD: AB < AD + BD, so the perimeter < 2(AD + BD) < 2(8 + 13) = 42 - strikes 52.78 only. (5) AB + AD > BD, so the perimeter > 26 - a lower bound, strikes none. (6) sin and cos between 0 and 1 and side-opposite-larger-angle orders (BD > BC, BD > CD, AB > BC > AC) - give no number past (2)-(4). No single fact, and no pair of them, strikes more than 52.78; 30.52 and 32.12 sit on the key's side of every bound.",
+  "shape_check": "Positive: all four. Above 26 (triangle inequality in ABD): all four. Below 42: 28.78, 30.52, 32.12. Two-decimal display: all four. At least two distractors (30.52, 32.12) survive every property together.",
+  "interior_parity_check": "Middle values 30.52 and 32.12: both two-decimal numbers of equal complexity; the key is the smallest and is not cleaner.",
+  "arith_class_check": "No integers; no option is a multiple of a printed number; the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "leg&(point D|D lies)&(hypotenuse|right angle)",
+    "point D&(leg|side) AC&(right angle|hypotenuse)",
+    "ladder",
+    "135 degree|135°|3π/4",
+    "obtuse&triangle&(sin|cos|tan|altitude|height)"
+   ],
+   "hits_read": 9,
+   "nearest": "The ladder items (659d8c09-5a3, e3ec2642-302) apply the Pythagorean theorem twice to one moving segment; none has a point on a leg cutting off a 5-12-13 triangle and then uses a radian angle on the outer triangle. The altitude-to-hypotenuse family is a different figure (the cevian goes to the hypotenuse)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors do not all go one way (halving BC for AC lands below), and no stem structure signs them. The far distractor 30.52 is a dropped term that lands above only because the term is subtracted under the root. Every cheap fact is listed in cheap_bound_check: none, alone or paired, strikes more than one distractor (52.78, by the triangle inequality in ABD). Plug-back: an option cannot be checked in one routine step, because the perimeter cannot be split back into AB and AD. Solved intermediate: none of the three is one printed relation from 28.78."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Triangle inequality on two triangles sharing a side",
+  "difficulty": "hard",
+  "prompt": "Quadrilateral ABCD has side lengths AB = 5, BC = 9, CD = 17, and DA = 10. The length of diagonal AC is a whole number. How many different lengths are possible for diagonal AC?",
+  "choices": [
+   "5",
+   "6",
+   "8",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "Diagonal AC divides the quadrilateral into triangle ABC and triangle ACD, and AC is a side of both, so its length x must satisfy the triangle inequality in each. In triangle ABC (sides 5, 9, x): 9 - 5 < x < 9 + 5, so 4 < x < 14. In triangle ACD (sides 17, 10, x): 17 - 10 < x < 17 + 10, so 7 < x < 27. Both must hold, so 7 < x < 14. The whole numbers strictly between 7 and 14 are 8, 9, 10, 11, 12 and 13, so 6 lengths are possible.",
+  "solve": "let n = 0; for (let x = 1; x < 100; x++) { if (x > 9 - 5 && x < 9 + 5 && x > 17 - 10 && x < 17 + 10) n++; } return n;",
+  "distractor_solve": {
+   "5": "const lo = Math.max(9 - 5, 17 - 10) + 1; const hi = Math.min(9 + 5, 17 + 10) - 1; return hi - lo;",
+   "8": "let n = 0; for (let x = 1; x < 100; x++) { if (x >= 9 - 5 && x <= 9 + 5 && x >= 17 - 10 && x <= 17 + 10) n++; } return n;",
+   "9": "let n = 0; for (let x = 1; x < 100; x++) { if (x > 9 - 5 && x < 9 + 5) n++; } return n;"
+  },
+  "mechanism": [
+   "diagonal splits the quadrilateral into two triangles",
+   "triangle inequality range in each triangle",
+   "intersect the ranges and count whole numbers"
+  ],
+  "quantity_asked": "number of possible whole-number lengths of diagonal AC",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "The options are counts, not lengths; no option can be substituted into a printed condition. To check one a student must find the whole range 7 < x < 14, which is the solution."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting the whole numbers from 8 to 13 by subtracting the endpoints (13 - 8 = 5) instead of adding 1; the stem gives no hint about how a student counts a run."
+   },
+   "8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the triangle inequality as non-strict (allowing a degenerate triangle) admits 7 and 14 as well; the stem does not say whether the bounds are strict."
+   },
+   "9": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applying the triangle inequality only to triangle ABC (the routine single-triangle count, 5 through 13) and missing that AC is also a side of triangle ACD; nothing in the stem names the second triangle."
+   }
+  },
+  "intermediate_check": "5: no - it is a miscount of the correct run 8..13, not a value the count follows from by a printed relation. 8: no - a different (non-strict) range; no printed number turns 8 into 6. 9: no - the count for triangle ABC alone; getting from 9 to 6 needs the second triangle's bound 7, which is computed (17 - 10), not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a count, so a positive whole number; at most 13 (the single-triangle count for AB and BC is 9, which a student does not get without working). 5, 6, 8 and 9 all survive every property (4 >= 2).",
+  "interior_parity_check": "Middle values 6 and 8: both one-digit even whole numbers of the same form; neither is cleaner.",
+  "arith_class_check": "Two even (6, 8) and two odd (5, 9); none is a multiple of a printed number except 5 and 9 themselves (distractors). The key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "triangle inequality|third side",
+    "quadrilateral&diagonal",
+    "how many&lengths&possible|possible lengths",
+    "triangle&whole number&length"
+   ],
+   "hits_read": 11,
+   "nearest": "8333cfce-af0 (ISEE) and eafbcbff-30b (ACT): the number of whole-number third sides of ONE triangle with two given sides - that routine count is this item's distractor 9; here the unknown is shared by two triangles, so two ranges must be intersected, with the lower bound from one triangle and the upper bound from the other. 97a30795-69e (ACT quadrilateral diagonal) is a law-of-sines length, a different chain."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might run the familiar single-triangle count and pick 9; that is exactly the trap, and the decision that both triangles bind (the lower bound 7 from ACD, the upper bound 14 from ABC) is what makes the item hard. Picking a middle value is no help: 6 and 8 are both middle values and 8 is the non-strict count. Plug-back (lower-interior key): an option is a count, which cannot be substituted into any printed condition; checking it needs the full range. Solved intermediate: none of 5, 8, 9 is one printed rate or relation away from 6. PAIR / DPAIR / DSUM: 6 is not another option combined with 5, 9, 10 or 17, not an option times a printed number +/- 1, and no option differs from 6 by the sum of two printed numbers. (read) DPAIR / DSUM lines: key + option sums 11 = 10 + 1, 14 = 5 + 9 and 15 = 5 + 10 are coincidences of small counts with small side lengths; a student holding an option cannot reach 6 by subtracting it from a sum of two printed sides (14 - 8 = 6 would need the student to already know to pair 8 with 5 + 9, and 5 + 9 = 14 is the triangle-ABC upper bound, not a step that yields a count), so none hands over the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Volumes of a pyramid and a prism compared",
+  "difficulty": "easy",
+  "prompt": "A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height of the prism is 9 centimeters. The volumes of the two blocks differ by how many cubic centimeters?",
+  "choices": [
+   "201",
+   "279",
+   "327",
+   "361"
+  ],
+  "correct_answer": "201",
+  "explanation": "The volume of a pyramid is (1/3)(area of base)(height). The pyramid's base has area 12 * 12 = 144 square centimeters, so its volume is (1/3)(144)(5) = 240 cubic centimeters. The volume of a prism is (area of base)(height); the prism's base has area 7 * 7 = 49 square centimeters, so its volume is 49 * 9 = 441 cubic centimeters. The volumes differ by 441 - 240 = 201 cubic centimeters.",
+  "solve": "const P = (1/3) * 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+  "distractor_solve": {
+   "279": "const P = 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+   "327": "const P = (1/3) * 12 * 12 * 5; const B = 7 * 9 * 9; return Math.round(Math.abs(B - P));",
+   "361": "const P = (1/3) * (4 * 12) * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));"
+  },
+  "mechanism": [
+   "pyramid volume with the one-third factor",
+   "prism volume from a square base",
+   "difference of the two volumes"
+  ],
+  "quantity_asked": "positive difference between the volumes of the pyramid and the prism",
+  "ask_type": "derived-quantity",
+  "plugback": {
+   "substitutable": false,
+   "why": "No printed equation or condition takes a difference of volumes as input; to test an option a student must compute both volumes (240 and 441), which is the whole solution."
+  },
+  "distractor_meta": {
+   "279": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the one-third makes the pyramid 720, which a student expects to SHRINK the gap to the prism; but 720 overshoots the prism's 441, so the gap reopens on the other side as 279 - which side it lands on needs both volumes computed."
+   },
+   "327": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the prism's base edge and height (7 * 9 * 9 = 567) enlarges the prism; whether that widens or narrows the gap depends on which block is larger, which is not printed."
+   },
+   "361": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the base perimeter 4 * 12 = 48 in place of the base area 144 gives a pyramid of 80; the effect on the gap again depends on which block is larger, which the stem does not say."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const P = (1/2) * 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+   "direction": "below",
+   "why": "Using 1/2 (as in a triangle's area) in place of 1/3 for the pyramid gives 360, and the gap 441 - 360 = 81 falls below the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "279",
+   "natural_side": "below",
+   "why": "Dropping the one-third is a left-out factor, and a student who spots it would reason 'the pyramid came out too big, so the gap to the prism is too small' and look below the key. Here the inflated pyramid (720) passes the prism (441) altogether, so the difference is 279, above 201. Seeing this needs both volumes; nothing printed tells the student which block is larger (12 and 5 against 7 and 9)."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone structure: the ask is a positive difference of two volumes, and an error in either volume can widen or narrow it depending on which block is larger, which is found only by computing both. One natural error (1/2 for 1/3, giving 81) lands below the key, another (dropping 1/3) lands above, so the structure does not sign the errors.",
+  "intermediate_check": "279: no - it comes from a 720 pyramid, not a step toward 201; no printed number converts 279 to 201. 327: no - built on a 567 prism; 327 - 201 = 126 is not printed. 361: no - 361 = 441 - 80; getting to 201 needs the unprinted volume 240.",
+  "cheap_bound_check": "Cheapest one-sided bound: the difference is positive and is less than the larger block's volume; the prism alone is 7 * 7 * 9 = 441, and a student who does not compute the pyramid cannot even tell which block is larger. All three distractors (279, 327, 361) sit with the key below 441, so the bound strikes none of them.",
+  "shape_check": "The stem hands over: a positive integer (all edge lengths are integers and 144 * 5 is divisible by 3), less than 441 once the prism is computed. 201, 279, 327 and 361 all survive every property together (4 >= 2). All four are odd.",
+  "interior_parity_check": "Middle values 279 and 327: both three-digit odd integers of the same form; neither is cleaner.",
+  "arith_class_check": "All four options are odd positive integers; none is a multiple of 5 or 10; 361 is a perfect square (a distractor). The key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "pyramid",
+    "pyramid&box|pyramid&prism|pyramid&cube",
+    "volumes&differ|difference between the volumes|greater than the volume",
+    "cone&cylinder&volume"
+   ],
+   "hits_read": 7,
+   "nearest": "e97a9db1-e36 / f7417f90-18f / GEO3-13 (pyramid volume from a slant height via the Pythagorean theorem) - a single pyramid volume with a right-triangle step; here two different solids are computed and compared, with no slant height. 8d13faba-4da (cone to cylinder volume ratio, symbolic) - a ratio of formulas, not a numeric difference."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the stem does not say which block is larger, so a student cannot tell which way an error moves the gap; dropping the one-third (the classic pyramid slip) is expected to shrink the gap but here lands above, and 1/2-for-1/3 (81) lands below and is not an option, so the errors do not all go one way. The far distractor 279 really reads as a 'pyramid too big, gap too small' error until both volumes are computed. One bound from the stem (the gap is less than the prism's 441) strikes none of the three. A test-wise student might pick the smallest option as 'a difference is small'; nothing in the stem supports that, since two volumes of 240 and 441 or of 720 and 441 differ by similar amounts. Plug-back: a difference of volumes cannot be checked against the stem in one routine step; the student must compute both volumes. Solved intermediate: none of 279, 327, 361 is one printed rate or relation away from 201. PAIR / DSUM: no option differs from 201 by a printed number (12, 5, 7, 9) or by the sum of two of them."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Isosceles triangle area from a base-angle cosine",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, sides AB and AC have equal length, side BC is 16 centimeters long, and the cosine of angle B is 0.35. To the nearest tenth of a square centimeter, what is the area of triangle ABC?",
+  "choices": [
+   "64.0",
+   "171.3",
+   "182.9",
+   "360.1"
+  ],
+  "correct_answer": "171.3",
+  "explanation": "Draw the altitude from A to side BC, meeting it at M. Because AB = AC, M is the midpoint of BC, so BM = 8. In right triangle ABM, cos B = BM/AB, so 0.35 = 8/AB and AB = 8/0.35, about 22.857. Then AM = sqrt(22.857^2 - 8^2), about 21.411. The area is (1/2)(16)(21.411), about 171.29, which rounds to 171.3 square centimeters.",
+  "solve": "const ab = 8/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;",
+  "distractor_solve": {
+   "64.0": "const ab = 8/0.35; const h = 0.35*ab; return (Math.round(0.5*16*h*10)/10).toFixed(1);",
+   "182.9": "const ab = 8/0.35; return Math.round(0.5*16*ab*10)/10;",
+   "360.1": "const ab = 16/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;"
+  },
+  "mechanism": [
+   "altitude bisects the base of an isosceles triangle",
+   "cosine gives the equal side",
+   "Pythagorean theorem for the height",
+   "area of the triangle"
+  ],
+  "quantity_asked": "area of triangle ABC, to the nearest tenth of a square centimeter",
+  "ask_type": "area",
+  "plugback": {
+   "substitutable": false,
+   "why": "No printed equation contains the area. To test 171.3 a student must turn it into a height, rebuild AB with the Pythagorean theorem and compare 8/AB with 0.35 - three steps that are the forward solution run backwards, not one routine substitution."
+  },
+  "distractor_meta": {
+   "64.0": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads 0.35 as height over AB (the sine) and takes the height as 0.35 * AB = 8; nothing in the stem shows whether the true height is more or less than 8 before it is computed."
+   },
+   "182.9": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the equal side AB (about 22.857) as the height; the stem gives no direct comparison of AB with the altitude."
+   },
+   "360.1": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applies the cosine to the whole base (AB = 16/0.35) without halving it; the stem does not show how this changes the area until the height is recomputed."
+   }
+  },
+  "intermediate_check": "64.0: no - it comes from a wrong height of 8; no printed relation maps it to 171.3. 182.9: no - it is (1/2)(16)(AB); recovering the area from it needs AB and then the Pythagorean theorem, two steps, and AB is not printed. 360.1: no - it comes from a wrong side of 16/0.35; no printed relation maps it to 171.3.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive area: all four. The height is shorter than AB, so the area is below (1/2)(16)(AB) - usable only after AB is found, and then it strikes 182.9 and 360.1 but not 64.0. One-decimal display: all four. At least two (64.0, 171.3) survive every property together.",
+  "interior_parity_check": "Middle values 171.3 and 182.9: both one-decimal, three-digit non-integers of equal complexity; the key is not the cleaner one.",
+  "arith_class_check": "Only 64.0 is a whole number, and it is a distractor; the key shares the non-integer class with 182.9 and 360.1. No class (parity, multiple of 16, square) holds the key alone in a way the stem implies.",
+  "dup_search": {
+   "queries": [
+    "isosceles&(cos|sin|tan)",
+    "isosceles&(base angle|altitude)&area",
+    "AB = AC|two equal sides|congruent sides",
+    "isosceles&area"
+   ],
+   "hits_read": 11,
+   "nearest": "e1bfaea9-8cd (isosceles RIGHT triangle area from the hypotenuse) - no trig ratio and no base bisection; 1239ea47-0b3 (isosceles trapezoid area from sides) - a trapezoid with no cosine."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "The key sits at ascending try 2, but an option cannot be checked in one routine step: it has to be turned back into a height, a side and a cosine. A test-wise student might discard the whole number 64.0, which still leaves three. No distractor is a solved intermediate one printed relation away: 182.9 needs AB, which is not printed, and then the Pythagorean theorem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Tangent line at a point of a circle in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the point (6, 10) lies on the circle with equation (x - 4)^2 + (y - 6)^2 = 20. Line t is tangent to the circle at the point (6, 10). What is the y-coordinate of the y-intercept of line t?",
+  "choices": [
+   "-2",
+   "8",
+   "13",
+   "22"
+  ],
+  "correct_answer": "13",
+  "explanation": "The center of the circle is (4, 6). The radius to the point of tangency (6, 10) has slope (10 - 6)/(6 - 4) = 2. A tangent line is perpendicular to the radius at the point of tangency, so line t has slope -1/2. Using the point (6, 10): y - 10 = -(1/2)(x - 6), so y = -(1/2)x + 3 + 10 = -(1/2)x + 13. The y-intercept of line t is (0, 13), so its y-coordinate is 13.",
+  "solve": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(py-m*px);",
+  "distractor_solve": {
+   "8": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(k-m*h);",
+   "22": "const h=4,k=6,px=6,py=10; const m=-(py-k)/(px-h); return String(py-m*px);",
+   "-2": "const h=4,k=6,px=6,py=10; const m=(py-k)/(px-h); return String(py-m*px);"
+  },
+  "mechanism": [
+   "slope of the radius to the point of tangency",
+   "tangent perpendicular to the radius: negative reciprocal slope",
+   "point-slope form through the point of tangency, read the intercept"
+  ],
+  "quantity_asked": "the y-coordinate of the y-intercept of the tangent line",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An intercept option b defines the line through (0, b) and (6, 10); testing it means computing that line's slope and checking it is perpendicular to the radius slope 2, which is the solution's own work, not a substitution into a printed equation. The key is the third value ascending."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the line with the correct slope -1/2 but through the center (4, 6) instead of the point of tangency; the stem does not signal which side of the true line the center's parallel lies on."
+   },
+   "22": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Negating the radius slope without taking the reciprocal (slope -2 instead of -1/2); the stem gives no cue that this steeper negative slope pushes the intercept up."
+   },
+   "-2": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the radius's slope 2 for the tangent line instead of its negative reciprocal; the stem does not show whether a steeper positive slope raises or lowers the intercept from a point to the right of the y-axis."
+   }
+  },
+  "intermediate_check": "-2: no - it is the intercept of a different line (slope 2); the key is not -2 combined with one printed number (13 - (-2) = 15 is neither printed nor a sum of two printed numbers). 8: no - it is the intercept of the parallel line through the center (4, 6); the key follows from it only by a computed shift of 5, not a printed relation. 22: no - it comes from slope -2; reaching 13 requires redoing the slope. The true intermediates (radius slope 2, tangent slope -1/2) are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no sign, integrality or monotonic property of the intercept; it can be any real number. All four options survive.",
+  "interior_parity_check": "Middle values 8 and 13: one- and two-digit integers (within one digit); the key is not the cleaner value.",
+  "arith_class_check": "Parity: -2, 8, 22 even and 13 odd - the key is the only odd option, but nothing in the stem implies a parity for the intercept (a slope of -1/2 through (6, 10) could give any parity with other points). Sign: -2 negative, the rest positive, so the key is not alone there.",
+  "dup_search": {
+   "queries": [
+    "tangent&point&xy-plane|tangent to the circle at",
+    "tangent line|line tangent",
+    "perpendicular&radius|radius&slope",
+    "tangent&circle"
+   ],
+   "hits_read": 45,
+   "nearest": "eb3a2c76-643 (tangent segment length from an external point to a circle given by its equation) and the y = x + c / y = 2x + c tangency items (find c from the distance to the center) are tangent-length or tangency-condition chains; b75398d9 asks a horizontal tangent y = k. None builds the tangent line at a given point from the perpendicular radius and asks its intercept. Closest by the near-dup tool: fc755a79 (sat-alg-h5, Algebra: line perpendicular to 4x + 10y = 15 through (10, -1), y-intercept). It shares the last step (perpendicular slope, intercept) but gets its reference slope from a printed line; here that slope has to come from the circle (center from the equation, radius to the point of tangency, tangent perpendicular to the radius), which is the circle content the item tests."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might drop 22 because 22 = 20 + 2 looks built from printed numbers, which leaves -2, 8, 13 with no direction readable from the stem. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check). DPAIR reads: 13 + (-2) = 11 = 10 + 1; 13 - 8 = 5 = 4 + 1; 13 + 8 = 21 = 20 + 1; 22 - 13 = 9 = 10 - 1. None is a step on any route: the real gaps are 13 - 8 = 5 (the shift between the line through the center and the line through the point) and 22 - 13 = 9 = 6 x (2 - 1/2), both computed from the slopes, not from a printed number plus or minus 1."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circle through a rectangle's vertices, general form",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, rectangle ABCD has vertices A(-1, -2), B(11, -2), C(11, 14), and D(-1, 14). All four vertices of the rectangle lie on a circle whose equation can be written as x^2 + y^2 + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+  "choices": [
+   "-339",
+   "-100",
+   "-71",
+   "-39"
+  ],
+  "correct_answer": "-39",
+  "explanation": "The diagonals of a rectangle are diameters of the circle through its vertices, so the center is the midpoint of AC: ((-1 + 11)/2, (-2 + 14)/2) = (5, 6). The diagonal AC has length sqrt(12^2 + 16^2) = 20, so the radius is 10. The circle is (x - 5)^2 + (y - 6)^2 = 100. Expanding: x^2 - 10x + 25 + y^2 - 12y + 36 = 100, so x^2 + y^2 - 10x - 12y - 39 = 0. Therefore c = 25 + 36 - 100 = -39.",
+  "solve": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);",
+  "distractor_solve": {
+   "-339": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1]); return String(h*h+k*k-r*r);",
+   "-100": "const A=[-1,-2],C=[11,14]; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(-r*r);",
+   "-71": "const A=[-1,-2],B=[11,-2],C=[11,14]; const h=(A[0]+B[0])/2,k=(A[1]+B[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);"
+  },
+  "mechanism": [
+   "center = midpoint of a diagonal",
+   "radius = half the diagonal",
+   "expand standard form to read the constant term"
+  ],
+  "quantity_asked": "the constant term c of the circle's general-form equation",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option for c cannot be tested alone: substituting a vertex into x^2 + y^2 + ax + by + c = 0 also needs a and b, which come from the center, so a check is the whole solution. The key is the largest option, reached last ascending."
+  },
+  "distractor_meta": {
+   "-339": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the full diagonal 20 as the radius double-counts the radius; the stem gives no sign that a larger radius lowers c, which a student sees only after writing c = h^2 + k^2 - r^2."
+   },
+   "-100": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking c = -r^2 drops the 25 + 36 that the expansion of (x - 5)^2 and (y - 6)^2 contributes; the stem does not say whether the center's squares add to or subtract from c."
+   },
+   "-71": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Placing the center at the midpoint of side AB, (5, -2), instead of the midpoint of a diagonal, keeps r = 10 but changes h^2 + k^2 to 29; whether that raises or lowers c depends on the coordinates, which the stem does not signal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const h=5,k=6,r=10; return String(r*r-h*h-k*k);",
+   "direction": "above",
+   "why": "Moving the constants to the wrong side when expanding gives c = r^2 - h^2 - k^2 = 39, above the key; it is a natural slip and is not an option."
+  },
+  "far_distractor": {
+   "option": "-339",
+   "natural_side": "above",
+   "why": "Using the diagonal as the radius is an over-count that ordinarily makes a circle quantity larger (a bigger radius, a bigger area); here the radius enters c only as -r^2, so the over-count is subtracted and c lands far below the key. Nothing in the stem shows c falling as the radius grows."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem fixes one circle and asks for one coefficient of its equation. Errors go both ways naturally (a sign slip on the constants lands above at 39; a wrong center can land either side depending on coordinates), so the structure does not sign every error.",
+  "intermediate_check": "-339: no - it is 61 - 400; the key follows from it only by replacing r^2 = 400 with 100, not by a printed relation. -100: no - it is -r^2; the key follows from it by adding h^2 + k^2 = 61, which is not printed. -71: no - it uses a wrong center; the key is not -71 combined with any printed number (the difference 32 is not printed). The true intermediates (center (5, 6), radius 10, diagonal 20) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the origin lies inside the circle (the rectangle surrounds it), so c < 0 - all four options satisfy it. A student who knows c = h^2 + k^2 - r^2 with r = 10 can also read c > -100, which strikes -339 and -100 but leaves -71 on the key's side; no single bound strikes all three.",
+  "shape_check": "The stem hands over no sign, integrality or monotonic property of c beyond the origin lying inside the rectangle (c negative): all four options are negative integers and survive together.",
+  "interior_parity_check": "Middle values -100 and -71: both negative integers of two and three digits (within one digit); the key is not a middle value.",
+  "arith_class_check": "Parity: -339, -71, -39 odd and -100 even, so the key is not alone; all negative integers; no multiple-of-k class isolates -39 (-339 and -39 are both multiples of 3).",
+  "dup_search": {
+   "queries": [
+    "rectangle&circle",
+    "vertices&circle&xy-plane|vertices&circle&equation",
+    "value of c&circle|constant c&circle",
+    "quadrilateral&circle"
+   ],
+   "hits_read": 21,
+   "nearest": "6709f126-5a5 (ACT, rectangle 16 by 30 inscribed in a circle, area of the circle) uses the diagonal as diameter but asks an area from side lengths with no coordinates; 47c950d2 / 8727b1d3 ask c for a circle tangent to the x-axis (given a and b, find c from r = |k|). This item builds the circle from rectangle coordinates (midpoint of a diagonal, half-diagonal) and asks the general-form constant."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? Only by knowing c = h^2 + k^2 - r^2, which is the solution; without it the over-count (-339) does not read as low. One bound (c > -r^2 = -100) strikes two distractors but -71 survives on the key's side. Does the far_distractor read as far-side? A diameter-for-radius slip normally inflates; landing below needs the formula. Could a student check an option in one routine step? No: a, b are unknown too. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Exterior angle and isosceles triangle angle chase",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, point D lies on side AC between A and C, and segment BD is drawn so that BD = DC. The measure of angle BAC is 48 degrees, and the measure of angle ABD is 30 degrees. What is the measure, in degrees, of angle ABC?",
+  "choices": [
+   "54",
+   "60",
+   "69",
+   "81"
+  ],
+  "correct_answer": "81",
+  "explanation": "Angle BDC is an exterior angle of triangle ABD, so it equals the sum of the two remote interior angles: angle BDC = 48 + 30 = 78 degrees. In triangle BDC, BD = DC, so the angles opposite those sides are equal: angle DCB = angle DBC. These two angles sum to 180 - 78 = 102 degrees, so each is 51 degrees. Angle ABC is made up of angle ABD and angle DBC, so angle ABC = 30 + 51 = 81 degrees. (Check: 48 + 81 + 51 = 180.)",
+  "solve": "const bdc = 48 + 30; const dbc = (180 - bdc) / 2; return 30 + dbc;",
+  "distractor_solve": {
+   "54": "const bdc = 48 + 30; const dbc = 180 - 2 * bdc; return 30 + dbc;",
+   "60": "return 2 * 30;",
+   "69": "const bdc = 48 + 30; const dbc = bdc / 2; return 30 + dbc;"
+  },
+  "mechanism": [
+   "exterior angle of triangle ABD",
+   "equal base angles of isosceles triangle BDC",
+   "add the two parts of angle ABC"
+  ],
+  "quantity_asked": "measure of angle ABC",
+  "ask_type": "angle-measure",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const c = 180 - 48 - v; const dbc = v - 30; return Math.abs(dbc - c) < 1e-9;",
+   "why": "A student can test an option v by setting angle C = 180 - 48 - v and angle DBC = v - 30 and checking whether they are equal (BD = DC). Trying options in ascending order (54, 60, 69, 81) reaches the key only at the fourth try."
+  },
+  "distractor_meta": {
+   "54": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Putting the equal angles at D and C (the ends of side DC) instead of opposite the equal sides gives angle DCB = 78 and angle DBC = 180 - 156 = 24; the stem does not show which way a misplaced pair of equal angles moves the result."
+   },
+   "60": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assuming segment BD bisects angle ABC, so that angle ABC = 2(30); the stem never says BD is a bisector, and whether the bisector value is above or below the true angle is not readable without solving."
+   },
+   "69": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Halving the apex angle 78 itself instead of halving 180 - 78 gives base angles of 39 (the same value comes from using the supplement, angle ADB = 102, as the apex); whether that is smaller or larger than the true base angle depends on whether the computed apex is under 90 degrees."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const bdc = 48; const dbc = (180 - bdc) / 2; return 30 + dbc;",
+   "direction": "above",
+   "why": "Leaving angle ABD out of the exterior-angle sum (taking angle BDC = 48) gives base angles of 66 and angle ABC = 96, above the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "69",
+   "natural_side": "above",
+   "why": "Skipping the 'subtract from 180' step before halving ignores a reducing step, an error that ordinarily overshoots. Here it lands below because the apex angle of triangle BDC, 48 + 30 = 78, is less than 90, so 78/2 = 39 is less than (180 - 78)/2 = 51; with an obtuse apex the same slip would overshoot. The apex is not printed, so a student cannot sign the slip without computing it."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone structure: the ask is one angle found by an exterior angle and an isosceles step. Errors in the isosceles step can go either way (halving the apex lands below here only because the apex is acute; dropping angle ABD from the exterior angle lands above at 96), so the structure does not sign every error.",
+  "intermediate_check": "54: no - built from a wrong base angle 24; 81 does not follow from 54 by any printed number (81 - 54 = 27). 60: no - twice the printed 30, not a step toward 81; 81 - 60 = 21 is not printed. 69: no - built from a wrong base angle 39; 81 - 69 = 12 is not printed. The true intermediates 78 and 51 are not options (and 51 + 30 = 81 is exactly why 51 was kept out).",
+  "cheap_bound_check": "Cheapest one-sided bound: angle ABC < 180 - 48 = 132 (angle C must be positive) and angle ABC > 30 (it contains angle ABD). All three distractors (54, 60, 69) sit on the key's side of both bounds, so neither strikes any of them.",
+  "shape_check": "The stem hands over: an angle of a triangle, so between 30 and 132 degrees; an integer, since all printed angles are integers and the halving gives (180 - 78)/2 = 51. 54, 60, 69 and 81 all survive every property together (4 >= 2).",
+  "interior_parity_check": "Middle values 60 and 69 (both distractors): two-digit integers of the same form. The key is the largest and is not cleaner than 60.",
+  "arith_class_check": "Two even (54, 60) and two odd (69, 81); 54, 60, 69 and 81 are all multiples of 3, so the key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "BD = DC|DB = DC|BD = CD|AD = BD|AD = DC|DA = DB",
+    "lies on side&angle&degrees",
+    "exterior angle",
+    "bisect&angle"
+   ],
+   "hits_read": 19,
+   "nearest": "6f580b9e-7fb (ISEE: AB = AD = DC on side BC, angle C given, find angle BAC) - a chain of two isosceles triangles from one printed angle. 026df48b-db6 (SSAT: AB = AC, BD = BC, find angle ABD) - two isosceles triangles. Here triangle ABD is not isosceles: its exterior angle at D feeds one isosceles triangle BDC, and two printed angles combine first."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: could a student tell which way the errors go? The natural slips in the isosceles step move the answer either way (halving the apex lands below only because the apex 78 is acute; dropping angle ABD from the exterior angle lands above at 96, not an option), so no reading of the stem signs every error. The far distractor 69 reads as an overshoot ('skipped the subtraction') until the apex is computed and found to be under 90. One bound from the stem (ABC < 132, ABC > 30) strikes none of the three. Plug-back: an option can be checked in one routine step (angle C = 132 - v against angle DBC = v - 30), but ascending order reaches the key only at the fourth try; a descending start is not natural because the stem does not ask for a greatest value. Solved intermediate: the true intermediates 78 and 51 are not options; none of 54, 60, 69 is one printed relation from 81."
+  },
+  "bounds": []
+ }
+]

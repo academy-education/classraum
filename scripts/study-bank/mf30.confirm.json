@@ -1,0 +1,14 @@
+{
+ "_note": "sat-math-v30-full flag decisions by the coordinator (PREREG-MF30-2026-10-10.md stage 2). true = confirmed (drops), false = read and rejected. Only items whose status depended on the decision are listed; flags on items already dropped by a mechanical rule or EXT-1 were read but decide nothing.",
+ "SM30F-V03": { "r8": false, "_why": "all three graders marked one_sided, none recommended a drop; the decliner trap (4563) and the 15,200-base error (5472) are signable from the stem, but the yes-count distractor 4992 is not (yes 32% vs the no-minus-yes 36% needs computing), so the whole family is not on a readable side" },
+ "SM30F-J05": { "r8": false, "_why": "D and E both say the bound that signs the errors (an obtuse inscribed angle puts P on the minor arc) is the item's own decision point, not a cheap read" },
+ "SM30F-R01": { "r8": false, "_why": "E alone; 4 (the extraneous root kept), 19 (sqrt(x - 3)) and 25 ((4 + 3)^2 split) have no stem-readable direction" },
+ "SM30F-T04": { "r11:SM30F-T01": false, "_why": "D alone, and D withdrew it in stage 2 (the items share no steps)" },
+ "SM30F-T02": { "r8": false, "_why": "E alone; the plain mpg average (20.5) usually understates the cost and lands above only because 72% of miles are highway, so the family is not signable without computing" },
+ "SM30F-G01": { "r7": false, "_why": "D alone: 'only 350 is 14 x a perfect square' needs the surface area written as 14 s^2, which is the setup itself" },
+ "SM30F-Q05": { "r7pair": false, "_why": "E alone, E calls it weak: 9.8 = 0.392 x 25 and 25 is not printed (5^2 of a printed 5)" },
+ "SM30F-P03": { "r7pair": false, "r8": false, "_why": "D alone on both; D withdrew the one_sided call in stage 2; 9 = 4 + 5 is the Vieta step itself and only exists after k is found" },
+ "SM30F-Q02": { "r7": true, "_why": "CONFIRMED: the stem asks 'which of the following is closest to f(1)', and 57.9 is the only option that is a rounded value (40, 51.2 and 172.8 are exact); a test-wise student picks the one inexact option. Arithmetic-class tell (rule 7)" },
+ "SM30F-P05": { "r7pair": false, "_why": "E alone: -17 and -27 differ by 10 = 5 + 5, one printed number twice, outside the gating definition (mf29 rejected the same shape), and the pair does not say which member is the key" },
+ "SM30F-T03": { "r8": false, "_why": "D and F both withdrew it in stage 2: only 4.3 (the wrong base) has a readable direction" }
+}

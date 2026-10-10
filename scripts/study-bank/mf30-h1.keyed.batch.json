@@ -1,0 +1,512 @@
+[
+ {
+  "id": "SM30F-A04",
+  "domain": "Algebra",
+  "subskill": "Linear equation with a parameter: value of a combination",
+  "difficulty": "hard",
+  "prompt": "4(x + 3k) - 6(k - x - 6) = 2(x + 66) - (x + 27)\n\nHere k stands for a fixed number. Solving this equation for x gives x = p. What is the numerical value of the expression 3p + 2k?",
+  "choices": [
+   "23",
+   "37",
+   "41",
+   "47"
+  ],
+  "correct_answer": "23",
+  "explanation": "Expand the left side: 4x + 12k - 6k + 6x + 36 = 10x + 6k + 36. Expand the right side: 2x + 132 - x - 27 = x + 105. So 10x + 6k + 36 = x + 105, which gives 9x + 6k = 69. Neither p nor k can be found by itself, but dividing both sides by 3 gives 3x + 2k = 23. Since x = p satisfies the equation, 3p + 2k = 23.",
+  "solve": "const k=1.9; const p=(69-6*k)/9; return Math.round((3*p+2*k)*1e9)/1e9;",
+  "distractor_solve": {
+   "37": "const k=1.9; const p=(132-27+6-6*k)/9; return Math.round((3*p+2*k)*1e9)/1e9;",
+   "41": "const k=1.9; const p=(132+27-36-6*k)/9; return Math.round((3*p+2*k)*1e9)/1e9;",
+   "47": "const k=1.9; const p=(132-27+36-6*k)/9; return Math.round((3*p+2*k)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM30F-D04",
+  "domain": "Algebra",
+  "subskill": "Inequality built from a linear function; value at boundary",
+  "difficulty": "hard",
+  "prompt": "For a certain linear function f, f(-2) = -7 and f(2) = -19. The inequality f(x - 5) >= 2f(x) - 23 holds if and only if x >= c, where c is a constant. What is the value of f(c)?",
+  "choices": [
+   "18",
+   "25",
+   "35",
+   "38"
+  ],
+  "correct_answer": "38",
+  "explanation": "The slope of f is (-19 - (-7))/(2 - (-2)) = -12/4 = -3, so f(x) = -7 - 3(x + 2) = -3x - 13. Then f(x - 5) = -3(x - 5) - 13 = -3x + 2, and 2f(x) - 23 = 2(-3x - 13) - 23 = -6x - 49. The inequality -3x + 2 >= -6x - 49 gives 3x >= -51, so x >= -17 and c = -17. Therefore f(c) = f(-17) = -3(-17) - 13 = 51 - 13 = 38. (Check: at x = c the two sides are equal; since f(c - 5) = f(c) + 15 for this slope, f(c) + 15 = 2f(c) - 23 also gives f(c) = 38.)",
+  "solve": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5*m))/(m-2*m); return f(c);",
+  "distractor_solve": {
+   "18": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5))/(m-2*m); return Math.round(f(c)*1e9)/1e9;",
+   "25": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(f(0)-23-(f(0)-5*m))/(m-2*m); return Math.round(f(c)*1e9)/1e9;",
+   "35": "const m=(-19+7)/(2+2+1); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5*m))/(m-2*m); return Math.round(f(c)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM30F-V03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Population estimate excluding nonresponse",
+  "difficulty": "medium",
+  "prompt": "A town has 15,600 adults. A researcher contacted a random sample of 400 of these adults and asked whether they would use a proposed evening bus service. Of the adults contacted, 75 declined to answer. Of those who answered, 104 said yes and the rest said no. Assume that the adults who answered are representative of all adults in the town. Based on the survey, approximately how many more adults in the town would answer no than would answer yes?",
+  "choices": [
+   "4563",
+   "4992",
+   "5472",
+   "5616"
+  ],
+  "correct_answer": "5616",
+  "explanation": "The number who answered is 400 - 75 = 325, so 325 - 104 = 221 said no. Among those who answered, the difference between no and yes is 221 - 104 = 117, which is 117/325 = 0.36 of those who answered. Applying this to the town's 15,600 adults gives 0.36 x 15,600 = 5616 more adults who would answer no than would answer yes.",
+  "solve": "const answered = 400 - 75; const no = answered - 104; return String(15600 * (no - 104) / answered);",
+  "distractor_solve": {
+   "4563": "const answered = 400 - 75; const no = answered - 104; return String(Math.round(15600 * (no - 104) / 400));",
+   "4992": "const answered = 400 - 75; return String(15600 * 104 / answered);",
+   "5472": "const answered = 400 - 75; const no = answered - 104; return String((15600 - 400) * (no - 104) / answered);"
+  }
+ },
+ {
+  "id": "SM30F-U05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Means of non-overlapping parts of two overlapping groups",
+  "difficulty": "medium",
+  "prompt": "A school's chess club has 18 members and its robotics club has 12 members. Exactly 4 students belong to both clubs. Last week, the chess club members volunteered a mean of 5.8 hours, the robotics club members volunteered a mean of 8.25 hours, and the 4 students who belong to both clubs volunteered a mean of 9.5 hours. (A student in both clubs has his or her hours included in the data of both clubs.) How much greater is the mean number of hours for the students who are in the robotics club only than the mean number of hours for the students who are in the chess club only, to the nearest hundredth?",
+  "choices": [
+   "1.39",
+   "2.09",
+   "2.45",
+   "2.88"
+  ],
+  "correct_answer": "2.88",
+  "explanation": "The chess club's total is 18(5.8) = 104.4 hours and the robotics club's total is 12(8.25) = 99 hours; the 4 shared students account for 4(9.5) = 38 hours of each total. Chess only: 18 - 4 = 14 students with 104.4 - 38 = 66.4 hours, a mean of about 4.743. Robotics only: 12 - 4 = 8 students with 99 - 38 = 61 hours, a mean of 7.625. The difference is 7.625 - 4.743, which is about 2.88 hours.",
+  "solve": "const c=(18*5.8-4*9.5)/(18-4),r=(12*8.25-4*9.5)/(12-4);return Math.round((r-c)*100)/100;",
+  "distractor_solve": {
+   "1.39": "const c=(18*5.8-4*9.5)/18,r=(12*8.25-4*9.5)/12;return Math.round((r-c)*100)/100;",
+   "2.09": "const c=(18*5.8+4*9.5)/(18+4),r=(12*8.25+4*9.5)/(12+4);return Math.round((r-c)*100)/100;",
+   "2.45": "return Math.round((8.25-5.8)*100)/100;"
+  }
+ },
+ {
+  "id": "SM30F-A03",
+  "domain": "Algebra",
+  "subskill": "No-solution parameter, then solve at a shifted value",
+  "difficulty": "medium",
+  "prompt": "k(x - 5) = 3x - 22\n\nFor exactly one value of the constant k, call it m, no value of x satisfies the equation above. If k is instead set equal to m + 4, what value of x satisfies the equation?",
+  "choices": [
+   "-14.25",
+   "-4.25",
+   "3.25",
+   "6.75"
+  ],
+  "correct_answer": "3.25",
+  "explanation": "Expanding gives kx - 5k = 3x - 22. There is no solution when the x terms cancel but the constants do not: k = 3, and then -15 = -22 is false. So m = 3 and m + 4 = 7. With k = 7: 7x - 35 = 3x - 22, so 4x = 13 and x = 3.25.",
+  "solve": "const m=3; const k=m+4; return (-22+5*k)/(k-3);",
+  "distractor_solve": {
+   "6.75": "const k=3-4; return (-22+5*k)/(k-3);",
+   "-4.25": "const k=7; return (-22+5)/(k-3);",
+   "-14.25": "const k=7; return (-22-5*k)/(k-3);"
+  }
+ },
+ {
+  "id": "SM30F-A05",
+  "domain": "Algebra",
+  "subskill": "Linear equation from a context: one balance a multiple of another",
+  "difficulty": "medium",
+  "prompt": "Priya has $1,800 in a savings account and withdraws $9 per week. Marcus has $50 in his account and deposits $7 per week. Today, before the first weekly change, both of them receive a one-time gift of $60, which they deposit. After how many weeks will Priya's balance be exactly 3 times Marcus's balance?",
+  "choices": [
+   "11",
+   "45",
+   "49",
+   "51"
+  ],
+  "correct_answer": "51",
+  "explanation": "After the gifts, Priya has 1,800 + 60 = 1,860 dollars and Marcus has 50 + 60 = 110 dollars. After t weeks, Priya has 1,860 - 9t and Marcus has 110 + 7t. Setting 1,860 - 9t = 3(110 + 7t) gives 1,860 - 9t = 330 + 21t, so 1,530 = 30t and t = 51. Check: 1,860 - 459 = 1,401 and 3(110 + 357) = 1,401.",
+  "solve": "return (1800+60-3*(50+60))/(9+3*7);",
+  "distractor_solve": {
+   "11": "return (1800-3*50)/(9-60+3*(7+60));",
+   "45": "return (1800+60-3*(50+60))/(7+3*9);",
+   "49": "return (1800-3*(50+60))/(9+3*7);"
+  }
+ },
+ {
+  "id": "SM30F-B01",
+  "domain": "Algebra",
+  "subskill": "Vertical gap between two lines at a given x",
+  "difficulty": "medium",
+  "prompt": "Linear functions p and q have graphs that cross at the point (-2, 3) in the xy-plane. The graph of p also contains the point (2, 27), and the graph of q is the line 5x + 4y = 2. What is the value of p(6) - q(6)?",
+  "choices": [
+   "43",
+   "58",
+   "38",
+   "46"
+  ],
+  "correct_answer": "58",
+  "explanation": "The graph of p contains (-2, 3) and (2, 27), so its slope is (27 - 3)/(2 - (-2)) = 24/4 = 6, and p(6) = 3 + 6(6 - (-2)) = 3 + 48 = 51. For q, 4y = 2 - 5x, so q(x) = (2 - 5x)/4 and q(6) = (2 - 30)/4 = -7. Therefore p(6) - q(6) = 51 - (-7) = 58.",
+  "solve": "const x0=-2,y0=3,x1=2,y1=27,a=5,b=4,c=2,t=6; const m=(y1-y0)/(x1-x0); const p=y0+m*(t-x0); const q=(c-a*t)/b; return p-q;",
+  "distractor_solve": {
+   "38": "const x0=-2,y0=3,x1=2,y1=27,a=5,b=4,c=2,t=6; const m1=(y1-y0)/(x1-x0); const m2=-a/b; return Math.round((m1+m2)*(t-x0)*1e9)/1e9;",
+   "43": "const x0=-2,y0=3,x1=2,y1=27,a=5,b=4,c=2,t=6; const m=(y1-y0)/(x1-x0); const p=y0+m*(t-x0); const q=(c+a*t)/b; return p-q;",
+   "46": "const x0=-2,y0=3,x1=2,y1=27,a=5,b=4,c=2,t=6; const m=(y1-y0)/(x1-x0); const p=y0+m*t; const q=(c-a*t)/b; return p-q;"
+  }
+ },
+ {
+  "id": "SM30F-P04",
+  "domain": "Advanced Math",
+  "subskill": "Value of a quadratic expression at a solution",
+  "difficulty": "medium",
+  "prompt": "Let t be a real number such that 2t^2 - 12t = 30. What does the expression (t - 11)(t + 5) - 3t(t - 6) equal?",
+  "choices": [
+   "-85",
+   "-40",
+   "-36",
+   "25"
+  ],
+  "correct_answer": "-85",
+  "explanation": "Expand the expression: (t - 11)(t + 5) = t^2 - 6t - 55 and -3t(t - 6) = -3t^2 + 18t. Their sum is -2t^2 + 12t - 55 = -(2t^2 - 12t) - 55. Because 2t^2 - 12t = 30, the value is -30 - 55 = -85. (The solutions t = 3 + sqrt(24) and t = 3 - sqrt(24) both give -85.)",
+  "solve": "const t=3+Math.sqrt(24); return Math.round(((t-11)*(t+5)-3*t*(t-6))*1e9)/1e9;",
+  "distractor_solve": {
+   "25": "const K=30/2; return -2*K + 55;",
+   "-40": "const t=3+Math.sqrt(24); return Math.round(((t-11)*(t+5))*1e9)/1e9;",
+   "-36": "const K=30/2; return -2*K + (-11+5);"
+  }
+ },
+ {
+  "id": "SM30F-J05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Obtuse inscribed angle, arc containing the vertex",
+  "difficulty": "hard",
+  "prompt": "Points A, B, and P lie on a circle with center O and radius 12, and the measure of angle APB is 130 degrees. A region is bounded by radius OA, radius OB, and the arc AB that contains point P. To the nearest tenth, what is the perimeter of this region?",
+  "choices": [
+   "44.9",
+   "51.2",
+   "72.2",
+   "85.8"
+  ],
+  "correct_answer": "44.9",
+  "explanation": "An inscribed angle intercepts the arc that does NOT contain its vertex, and its measure is half that arc. So the arc AB not containing P measures 2(130) = 260 degrees, and the arc AB that contains P measures 360 - 260 = 100 degrees. That arc has length (100/360)(2 x pi x 12) = (20/3)pi, which is about 20.94. The region's perimeter is the two radii plus this arc: 12 + 12 + 20.94 = 44.94, or 44.9 to the nearest tenth.",
+  "solve": "const r=12,phi=130; const arc=(360-2*phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+  "distractor_solve": {
+   "51.2": "const r=12,phi=130; const arc=phi/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "72.2": "const r=12,phi=130; const arc=(360-phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "85.8": "const r=12,phi=130; const arc=(360-phi/2)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-T01",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Successive percent changes: find a missing change",
+  "difficulty": "medium",
+  "prompt": "The table shows the percent change in the value of an investment fund during each of the first three quarters of a year. Each percent change is relative to the fund's value at the end of the previous quarter. The fund's value at the end of the fourth quarter was 7.2% less than its value at the start of the year. By what percent did the fund's value decrease during the fourth quarter, to the nearest tenth of a percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "First quarter",
+    "Second quarter",
+    "Third quarter"
+   ],
+   "colLabels": [
+    "Percent change in value"
+   ],
+   "cells": [
+    [
+     "+20"
+    ],
+    [
+     "-25"
+    ],
+    [
+     "+50"
+    ]
+   ],
+   "caption": "Quarterly percent change in fund value"
+  },
+  "choices": [
+   "17.5",
+   "20.6",
+   "31.3",
+   "45.5"
+  ],
+  "correct_answer": "31.3",
+  "explanation": "Let the starting value be 1. After the first three quarters the value is 1(1.20)(0.75)(1.50) = 1.35. At the end of the year the value is 1 - 0.072 = 0.928. If the fourth-quarter decrease is d percent, then 1.35(1 - d/100) = 0.928, so 1 - d/100 = 0.928/1.35, which is about 0.6874. So d is about 31.26, or 31.3 to the nearest tenth.",
+  "solve": "const v=1.20*0.75*1.50; const d=(1-0.928/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "17.5": "const v=0.75*1.50; const d=(1-0.928/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+   "20.6": "const v=1.20*0.75*1.50; const d=(1-1.072/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+   "45.5": "const v=1.20*0.75*1.50; const d=(v-0.928)/0.928*100; return (Math.round(d*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-R01",
+  "domain": "Advanced Math",
+  "subskill": "composition with a radical inner function",
+  "difficulty": "hard",
+  "prompt": "Let f(x) = x^2 + x and g(x) = √x - 3. If k is a number such that f(g(k)) = 20, what is k?",
+  "choices": [
+   "4",
+   "19",
+   "25",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Let u = g(k). Then f(u) = u^2 + u = 20, so u^2 + u - 20 = 0 and (u + 5)(u - 4) = 0, giving u = 4 or u = -5. Because √k is never negative, g(k) = √k - 3 is never less than -3, so g(k) = -5 is impossible and g(k) = 4. Then √k - 3 = 4, so √k = 7 and k = 49. Check: g(49) = 7 - 3 = 4 and f(4) = 16 + 4 = 20.",
+  "solve": "const r = [(-1+Math.sqrt(81))/2, (-1-Math.sqrt(81))/2]; const u = r.find(t => t >= -3); return (u+3)**2;",
+  "distractor_solve": {
+   "4": "const u = (-1-Math.sqrt(81))/2; return (u+3)**2;",
+   "19": "const u = (-1+Math.sqrt(81))/2; return u**2 + 3;",
+   "25": "const u = (-1+Math.sqrt(81))/2; return u**2 + 3**2;"
+  }
+ },
+ {
+  "id": "SM30F-B05",
+  "domain": "Algebra",
+  "subskill": "Common point of a one-parameter family of lines",
+  "difficulty": "hard",
+  "prompt": "For each value of the constant k, the graph of y = (k - 3)x - 3k + 20 in the xy-plane is a line, and all of these lines pass through one common point P. Line n passes through P and has slope -5. What is the y-coordinate of the y-intercept of line n?",
+  "choices": [
+   "35",
+   "-4",
+   "26",
+   "14"
+  ],
+  "correct_answer": "26",
+  "explanation": "Group the terms containing k: y = k(x - 3) - 3x + 20. When x = 3, the k-term is 0 for every k, so every line passes through the point with x = 3 and y = -3(3) + 20 = 11. So P = (3, 11). Line n has slope -5 and passes through (3, 11): y - 11 = -5(x - 3), so y = -5x + 26. The y-intercept of line n is at y = 26.",
+  "solve": "const p=-3,c=-3,r=20,s=-5; const x0=3; const y0=p*x0+r; return y0-s*x0;",
+  "distractor_solve": {
+   "14": "const p=-3,r=20,s=-5; const x0=-3; const y0=p*x0+r; return y0-s*x0;",
+   "35": "const r=20,s=-5; const x0=3; const y0=r; return y0-s*x0;",
+   "-4": "const p=-3,r=20,s=-5; const x0=3; const y0=p*x0+r; return y0+s*x0;"
+  }
+ },
+ {
+  "id": "SM30F-T04",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent increase in sales to offset a price cut",
+  "difficulty": "hard",
+  "prompt": "A store sells a lamp for $40. The lamp costs the store $25, and the store also pays a salesperson a commission on the sale of a lamp equal to 5% of the lamp's selling price, but never more than $1.92. The store's profit on a lamp is its selling price minus the store's cost and the commission. The store lowers the lamp's selling price by 10%. By what percent must the number of lamps sold increase so that the store's total profit from lamps stays the same, to the nearest tenth of a percent?",
+  "choices": [
+   "29.7",
+   "36.4",
+   "41.3",
+   "42.2"
+  ],
+  "correct_answer": "42.2",
+  "explanation": "At $40, 5% of the price is $2.00, which is more than $1.92, so the commission is $1.92 and the profit on a lamp is 40 - 25 - 1.92 = 13.08 dollars. The new price is 0.90(40) = 36 dollars; 5% of 36 is $1.80, which is under the limit, so the profit on a lamp is 36 - 25 - 1.80 = 9.20 dollars. For total profit to stay the same, the number sold must be multiplied by 13.08/9.20, which is about 1.4217, an increase of about 42.17%, or 42.2% to the nearest tenth.",
+  "solve": "const com=p=>Math.min(0.05*p,1.92); const o=40-25-com(40), n=36-25-com(36); return (Math.round((o/n-1)*1000)/10).toFixed(1);",
+  "distractor_solve": {
+   "29.7": "const com=p=>Math.min(0.05*p,1.92); const o=40-25-com(40), n=36-25-com(36); return (Math.round((o-n)/o*1000)/10).toFixed(1);",
+   "36.4": "const o=40-25, n=36-25; return (Math.round((o/n-1)*1000)/10).toFixed(1);",
+   "41.3": "const o=40-25-0.05*40, n=36-25-0.05*36; return (Math.round((o/n-1)*1000)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-H05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "30-60-90 corner triangle in a right trapezoid",
+  "difficulty": "medium",
+  "prompt": "Quadrilateral ABCD is a trapezoid in which side AB is parallel to side DC, and DC is shorter than AB. Angles A and D are right angles, AB = 20 centimeters, AD = 8 centimeters, and angle ABC measures pi/3 radians. To the nearest hundredth of a centimeter, what is the perimeter of trapezoid ABCD?",
+  "choices": [
+   "50.14",
+   "50.31",
+   "51.31",
+   "52.62"
+  ],
+  "correct_answer": "52.62",
+  "explanation": "Draw the segment from C perpendicular to AB, meeting AB at E. Then AECD is a rectangle, so CE = AD = 8 and AE = DC. Angle B = pi/3 radians = 60 degrees, so triangle CEB is a 30-60-90 triangle with the long leg CE = 8 opposite the 60-degree angle. Its short leg is EB = 8/sqrt(3), about 4.619, and its hypotenuse is BC = 2(EB), about 9.238. So DC = AB - EB, about 20 - 4.619 = 15.381. The perimeter is 20 + 8 + 15.381 + 9.238, about 52.619, which rounds to 52.62 centimeters.",
+  "solve": "const eb = 8/Math.tan(Math.PI/3); const bc = 8/Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+  "distractor_solve": {
+   "50.14": "const eb = 8*Math.tan(Math.PI/3); const bc = 8/Math.cos(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "50.31": "const eb = 8/Math.tan(Math.PI/3); const bc = 8*Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "51.31": "const eb = 8; const bc = 8*Math.SQRT2; return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;"
+  }
+ },
+ {
+  "id": "SM30F-V05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Subgroup estimate from a conditional sample share",
+  "difficulty": "medium",
+  "prompt": "A high school with only juniors and seniors surveyed a random sample of 120 of its students about how they usually get to school. The table summarizes the results. School records show that 1,800 students at the school do not usually take the bus. Based on the sample, what is the best estimate of the number of seniors among the students who do not usually take the bus?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Juniors",
+    "Seniors"
+   ],
+   "colLabels": [
+    "Bus",
+    "Car",
+    "Walk"
+   ],
+   "cells": [
+    [
+     "17",
+     "17",
+     "26"
+    ],
+    [
+     "28",
+     "23",
+     "9"
+    ]
+   ],
+   "caption": "Usual way of getting to school, sample of 120 students"
+  },
+  "choices": [
+   "768",
+   "900",
+   "960",
+   "1035"
+  ],
+  "correct_answer": "768",
+  "explanation": "In the sample, the students who do not usually take the bus are those who go by car or walk: 17 + 26 + 23 + 9 = 75 students. Of these, 23 + 9 = 32 are seniors, so the sample proportion of seniors among students who do not take the bus is 32/75. Applying this to the 1,800 students at the school who do not take the bus gives (32/75)(1,800) = 768 seniors.",
+  "solve": "const nonBus = 17 + 26 + 23 + 9; const seniorsNonBus = 23 + 9; return String(1800 * seniorsNonBus / nonBus);",
+  "distractor_solve": {
+   "900": "const seniors = 28 + 23 + 9; return String(1800 * seniors / 120);",
+   "960": "const seniors = 28 + 23 + 9; return String(1800 * (23 + 9) / seniors);",
+   "1035": "return String(1800 * 23 / (17 + 23));"
+  }
+ },
+ {
+  "id": "SM30F-Q04",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: amount lost within a time window",
+  "difficulty": "medium",
+  "prompt": "A sample of a radioactive substance has a mass of 4,000 milligrams when it is first measured. Its mass decreases by 20% every 6 hours. To the nearest milligram, how many milligrams of the substance decay between 6 hours and 18 hours after the first measurement?",
+  "choices": [
+   "640",
+   "768",
+   "977",
+   "1152"
+  ],
+  "correct_answer": "1152",
+  "explanation": "The mass t hours after the first measurement is 4,000(0.8)^(t/6). At 6 hours the mass is 4,000(0.8)^1 = 3,200 milligrams. At 18 hours it is 4,000(0.8)^3 = 4,000(0.512) = 2,048 milligrams. The amount that decays between those times is 3,200 - 2,048 = 1,152 milligrams.",
+  "solve": "const m = t => 4000*Math.pow(0.8, t/6); return String(Math.round(m(6) - m(18)));",
+  "distractor_solve": {
+   "640": "const m = t => 4000*Math.pow(0.8, t/6); return String(Math.round(m(6) - m(12)));",
+   "768": "const m = t => 4000*Math.pow(0.2, t/6); return String(Math.round(m(6) - m(18)));",
+   "977": "const m = t => 4000*Math.pow(0.8, t); return String(Math.round(m(6) - m(18)));"
+  }
+ },
+ {
+  "id": "SM30F-T02",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Rates: overall cost per mile from two fuel rates",
+  "difficulty": "medium",
+  "prompt": "On one trip, a delivery van was driven 140 miles in city traffic, where it averaged 14 miles per gallon of gasoline, and 360 miles on highways, where it averaged 24 miles per gallon. Gasoline cost $3.90 per gallon. To the nearest tenth of a cent, what was the van's gasoline cost per mile, in cents, for the whole trip?",
+  "choices": [
+   "19.5",
+   "20.5",
+   "24.6",
+   "27.1"
+  ],
+  "correct_answer": "19.5",
+  "explanation": "In the city the van used 140/14 = 10 gallons, and on highways it used 360/24 = 15 gallons, for 25 gallons in all. The gasoline cost 25(3.90) = 97.50 dollars, or 9,750 cents. The whole trip was 140 + 360 = 500 miles, so the cost per mile was 9,750/500 = 19.5 cents.",
+  "solve": "const g=140/14+360/24; const cents=g*390/(140+360); return (Math.round(cents*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "20.5": "const mpg=(14+24)/2; const cents=390/mpg; return (Math.round(cents*10)/10).toFixed(1);",
+   "24.6": "const g=140/24+360/14; const cents=g*390/(140+360); return (Math.round(cents*10)/10).toFixed(1);",
+   "27.1": "const g=140/14+360/24; const cents=g*390/360; return (Math.round(cents*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-J01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Externally tangent circles in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, circle A has equation x^2 + y^2 + 16x + 12y + 91 = 0. Circle B has its center at the point (16, 12). Circles A and B touch at exactly one point, and each circle lies outside the other. What is the radius of circle B?",
+  "choices": [
+   "7",
+   "24",
+   "27",
+   "33"
+  ],
+  "correct_answer": "27",
+  "explanation": "Complete the square for circle A: (x^2 + 16x + 64) + (y^2 + 12y + 36) = -91 + 64 + 36, so (x + 8)^2 + (y + 6)^2 = 9. Circle A has center (-8, -6) and radius 3. The distance between the centers (-8, -6) and (16, 12) is sqrt(24^2 + 18^2) = sqrt(900) = 30. Two circles that touch at one point with each outside the other have centers separated by the sum of their radii, so 3 + r = 30 and the radius of circle B is 27.",
+  "solve": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+  "distractor_solve": {
+   "7": "const h=8,k=6; const r=Math.sqrt(64+36-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+   "24": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-2*r);",
+   "33": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d+r);"
+  }
+ },
+ {
+  "id": "SM30F-C02",
+  "domain": "Algebra",
+  "subskill": "System with known solution: solve for swapped coefficients",
+  "difficulty": "medium",
+  "prompt": "The constants a and b are such that the equations ax + by = 40 and bx + ay = 8 are both true when x = 5 and y = 3. What is the value of 4a + b?",
+  "choices": [
+   "39",
+   "49",
+   "63",
+   "66"
+  ],
+  "correct_answer": "39",
+  "explanation": "Substituting x = 5 and y = 3 turns the two equations into equations in a and b: 5a + 3b = 40 and 5b + 3a = 8, that is, 3a + 5b = 8. Adding them gives 8a + 8b = 48, so a + b = 6. Subtracting the second from the first gives 2a - 2b = 32, so a - b = 16. Adding a + b = 6 and a - b = 16 gives 2a = 22, so a = 11, and then b = 6 - 11 = -5. Check: 5(11) + 3(-5) = 40 and (-5)(5) + 11(3) = 8. Therefore 4a + b = 44 - 5 = 39.",
+  "solve": "const x=5,y=3,P=40,Q=8; const det=x*x-y*y; const a=(P*x-Q*y)/det, b=(Q*x-P*y)/det; return 4*a+b;",
+  "distractor_solve": {
+   "49": "const x=5,y=3,P=40,Q=8; const det=x*x-y*y; const a=(P*x-Q*y)/det, b=(Q*x-P*y)/det; return 4*a-b;",
+   "63": "const x=5,y=3,P=40,Q=8; const s=(P+Q)/(x+y), d=(P-Q); const a=(s+d)/2, b=(s-d)/2; return 4*a+b;",
+   "66": "const x=5,y=3,P=40,Q=8; const s=(P+Q)/(x-y), d=(P-Q)/(x+y); const a=(s+d)/2, b=(s-d)/2; return 4*a+b;"
+  }
+ },
+ {
+  "id": "SM30F-C03",
+  "domain": "Algebra",
+  "subskill": "Effect of a miscopied constant on a system's solution",
+  "difficulty": "medium",
+  "prompt": "Ana was asked to solve the system of equations x + 5y = 17 and 5x - 2y = 31. She copied the second equation correctly, but she copied the first equation as x + 5y = 71, and she then solved her system correctly. Ana's value of x is how much greater than the x-value of the solution of the original system?",
+  "choices": [
+   "4",
+   "7",
+   "18",
+   "54"
+  ],
+  "correct_answer": "4",
+  "explanation": "Solve the original system: from x + 5y = 17, x = 17 - 5y; substituting into 5x - 2y = 31 gives 85 - 25y - 2y = 31, so 27y = 54, y = 2 and x = 7. Ana's system is x + 5y = 71 and 5x - 2y = 31: x = 71 - 5y gives 355 - 25y - 2y = 31, so 27y = 324, y = 12 and x = 11. Ana's x is 11 - 7 = 4 greater. (Equivalently, the differences d and e between Ana's values and the true values satisfy d + 5e = 54 and 5d - 2e = 0, so e = 2.5d and 13.5d = 54, d = 4.)",
+  "solve": "const S=(c1)=>{const y=(5*c1-31)/27; return [c1-5*y,y]}; return S(71)[0]-S(17)[0];",
+  "distractor_solve": {
+   "7": "const S=(c1)=>{const y=(5*c1-31)/27; return [c1-5*y,y]}; return S(17)[0];",
+   "18": "const D=71-17; const d=D/(1+5*(2/5)); return d;",
+   "54": "return 71-17;"
+  }
+ },
+ {
+  "id": "SM30F-H01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Sine ratio and perimeter of a right triangle",
+  "difficulty": "medium",
+  "prompt": "Triangle PQR has a right angle at vertex R, so side PQ is the hypotenuse, side QR is opposite angle P, and side PR is adjacent to angle P. The value of sin P is 8/17, and the perimeter of triangle PQR is 120 centimeters. To the nearest centimeter, what is the length of side PR?",
+  "choices": [
+   "24",
+   "32",
+   "45",
+   "47"
+  ],
+  "correct_answer": "45",
+  "explanation": "Since sin P = QR/PQ = 8/17, let QR = 8k and PQ = 17k for some positive number k. By the Pythagorean theorem, PR = sqrt((17k)^2 - (8k)^2) = sqrt(225k^2) = 15k. The perimeter is 8k + 15k + 17k = 40k = 120, so k = 3. Therefore PR = 15(3) = 45 centimeters.",
+  "solve": "const k = 120/(8+15+17); return Math.round(15*k);",
+  "distractor_solve": {
+   "24": "const k = 120/(8+15+17); return Math.round(8*k);",
+   "32": "const leg = 17-8; const k = 120/(8+leg+17); return Math.round(leg*k);",
+   "47": "const h = Math.sqrt(8*8+17*17); const k = 120/(8+17+h); return Math.round(17*k);"
+  }
+ },
+ {
+  "id": "SM30F-C01",
+  "domain": "Algebra",
+  "subskill": "System from context: coin values before and after a swap",
+  "difficulty": "medium",
+  "prompt": "A jar contains only nickels (worth 5 cents each) and quarters (worth 25 cents each), with a total value of $5.85. If every nickel in the jar were replaced by a dime (worth 10 cents) and every quarter were replaced by a nickel, the total value of the coins in the jar would decrease by $1.35. How many coins are in the jar?",
+  "choices": [
+   "25",
+   "45",
+   "53",
+   "77"
+  ],
+  "correct_answer": "53",
+  "explanation": "Let n be the number of nickels and q the number of quarters. Working in cents, the total value gives 5n + 25q = 585. After the replacement, each nickel is worth 10 cents and each quarter is worth 5 cents, so the new value is 10n + 5q, which is 135 cents less than 585: 10n + 5q = 450. Dividing the second equation by 5 gives 2n + q = 90, so q = 90 - 2n. Substituting into the first equation: 5n + 25(90 - 2n) = 585, so 5n + 2250 - 50n = 585, -45n = -1665, and n = 37. Then q = 90 - 74 = 16. Check: 5(37) + 25(16) = 185 + 400 = 585 and 10(37) + 5(16) = 450 = 585 - 135. The jar holds 37 + 16 = 53 coins.",
+  "solve": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,10,5,585-135); return n+q;",
+  "distractor_solve": {
+   "25": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,10,5,135); return n+q;",
+   "45": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,5,-15,-135); return n+q;",
+   "77": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,5,-20,135); return n+q;"
+  }
+ }
+]

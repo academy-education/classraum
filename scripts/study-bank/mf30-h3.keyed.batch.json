@@ -1,0 +1,477 @@
+[
+ {
+  "id": "SM30F-R03",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem on a combination of polynomials",
+  "difficulty": "medium",
+  "prompt": "Dividing a polynomial p(x) by x - 3 leaves a remainder of 7. A second polynomial is formed as q(x) = (x - 5)p(x) - 8x. Dividing q(x) by x - 3 leaves what remainder?",
+  "choices": [
+   "-38",
+   "-22",
+   "-17",
+   "-10"
+  ],
+  "correct_answer": "-38",
+  "explanation": "By the remainder theorem, the remainder when a polynomial is divided by x - 3 equals its value at x = 3. So p(3) = 7, and the remainder for q is q(3) = (3 - 5)p(3) - 8(3) = (-2)(7) - 24 = -14 - 24 = -38.",
+  "solve": "const p3 = 7; return (3-5)*p3 - 8*3;",
+  "distractor_solve": {
+   "-10": "const p3 = 7; return (5-3)*p3 - 8*3;",
+   "-17": "const p3 = 7; return p3 - 8*3;",
+   "-22": "const p3 = 7; return (3-5)*p3 - 8;"
+  }
+ },
+ {
+  "id": "SM30F-C04",
+  "domain": "Algebra",
+  "subskill": "System from context: one purchase at regular prices, one during a flat sale",
+  "difficulty": "hard",
+  "prompt": "A shop sells T-shirts and caps; all T-shirts have the same regular price, and all caps have the same regular price. At regular prices, 3 T-shirts and 2 caps cost $169. During a sale, the price of every item in the shop is reduced by $3, and during the sale 2 T-shirts and 1 cap cost $94. What is the total regular price, in dollars, of 3 T-shirts and 1 cap?",
+  "choices": [
+   "86",
+   "125",
+   "134",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Let t and c be the regular prices, in dollars, of a T-shirt and a cap. The regular purchase gives 3t + 2c = 169. During the sale each item costs $3 less, so 2(t - 3) + (c - 3) = 94, that is, 2t + c - 9 = 94, or 2t + c = 103. Then c = 103 - 2t, and 3t + 2(103 - 2t) = 169 gives 206 - t = 169, so t = 37 and c = 103 - 74 = 29. Check: 3(37) + 2(29) = 169 and 2(34) + 26 = 94. The regular price of 3 T-shirts and 1 cap is 3(37) + 29 = 140.",
+  "solve": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,2,1,94+3*3); return 3*t+c;",
+  "distractor_solve": {
+   "86": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,2,1,94-3*3); return 3*t+c;",
+   "125": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169+3*5,2,1,94+3*3); return 3*t+c;",
+   "134": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,1,2,94+3*3); return 3*t+c;"
+  }
+ },
+ {
+  "id": "SM30F-Q01",
+  "domain": "Advanced Math",
+  "subskill": "Difference of two exponential models with different periods",
+  "difficulty": "medium",
+  "prompt": "Two bacterial colonies start growing at the same moment. Colony A starts with 500 cells, and its number of cells doubles every 3 hours. Colony B starts with 2,000 cells, and its number of cells increases by 20% every 6 hours. To the nearest whole number, how many more cells does colony A have than colony B 12 hours after they start growing?",
+  "choices": [
+   "1120",
+   "3853",
+   "4544",
+   "5120"
+  ],
+  "correct_answer": "5120",
+  "explanation": "In 12 hours colony A doubles 12/3 = 4 times, so it has 500(2^4) = 500(16) = 8,000 cells. In 12 hours colony B grows by 20% 12/6 = 2 times, so it has 2,000(1.2^2) = 2,000(1.44) = 2,880 cells. Colony A has 8,000 - 2,880 = 5,120 more cells than colony B.",
+  "solve": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/6); return String(Math.round(A - B));",
+  "distractor_solve": {
+   "1120": "const A = 500*2*(12/3); const B = 2000*Math.pow(1.2, 12/6); return String(Math.round(A - B));",
+   "3853": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/3); return String(Math.round(A - B));",
+   "4544": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/6 + 1); return String(Math.round(A - B));"
+  }
+ },
+ {
+  "id": "SM30F-Q02",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function from a difference relation, evaluated backward",
+  "difficulty": "medium",
+  "prompt": "An exponential function f satisfies the equation f(x + 1) - f(x) = 0.2f(x) for all real numbers x. Given that f(4) = 100, which of the following is closest to f(1)?",
+  "choices": [
+   "40",
+   "51.2",
+   "57.9",
+   "172.8"
+  ],
+  "correct_answer": "57.9",
+  "explanation": "The relation f(x + 1) - f(x) = 0.2f(x) means f(x + 1) = 1.2f(x), so each increase of 1 in x multiplies the output by 1.2. Going from x = 1 to x = 4 multiplies the output by 1.2^3 = 1.728. So f(1) = f(4)/1.728 = 100/1.728, which is about 57.87, or 57.9 to the nearest tenth.",
+  "solve": "return (Math.round(100/Math.pow(1.2, 3)*10)/10).toString();",
+  "distractor_solve": {
+   "40": "return (100 - 3*0.2*100).toString();",
+   "51.2": "return (Math.round(100*Math.pow(0.8, 3)*10)/10).toString();",
+   "172.8": "return (Math.round(100*Math.pow(1.2, 3)*10)/10).toString();"
+  }
+ },
+ {
+  "id": "SM30F-V01",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Population estimate from a recapture sample",
+  "difficulty": "medium",
+  "prompt": "Biologists caught 240 fish from a pond, tagged them, and released them back into the pond. Before the biologists returned, 40 of the tagged fish were caught and kept by a research team, so only the remaining tagged fish were still in the pond; no other fish entered or left the pond. The biologists then caught a random sample of 150 fish from the pond and found that 12 of them were tagged. Based on this sample, what is the best estimate of the number of untagged fish in the pond?",
+  "choices": [
+   "2300",
+   "2350",
+   "2488",
+   "2800"
+  ],
+  "correct_answer": "2300",
+  "explanation": "The tagged fish still in the pond number 240 - 40 = 200. In the sample, 12 of 150 fish, or 8%, are tagged, so the 200 tagged fish are about 8% of the pond. The best estimate of the number of fish in the pond is 200 / (12/150) = 2500. Of these, 200 are tagged, so the estimated number of untagged fish is 2500 - 200 = 2300.",
+  "solve": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - tagged);",
+  "distractor_solve": {
+   "2350": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - 150);",
+   "2488": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - 12);",
+   "2800": "const total = 240 * 150 / 12; return String(total - (240 - 40));"
+  }
+ },
+ {
+  "id": "SM30F-H04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Isosceles triangle area from a base-angle cosine",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, sides AB and AC have equal length, side BC is 16 centimeters long, and the cosine of angle B is 0.35. To the nearest tenth of a square centimeter, what is the area of triangle ABC?",
+  "choices": [
+   "64.0",
+   "171.3",
+   "182.9",
+   "360.1"
+  ],
+  "correct_answer": "171.3",
+  "explanation": "Draw the altitude from A to side BC, meeting it at M. Because AB = AC, M is the midpoint of BC, so BM = 8. In right triangle ABM, cos B = BM/AB, so 0.35 = 8/AB and AB = 8/0.35, about 22.857. Then AM = sqrt(22.857^2 - 8^2), about 21.411. The area is (1/2)(16)(21.411), about 171.29, which rounds to 171.3 square centimeters.",
+  "solve": "const ab = 8/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;",
+  "distractor_solve": {
+   "64.0": "const ab = 8/0.35; const h = 0.35*ab; return (Math.round(0.5*16*h*10)/10).toFixed(1);",
+   "182.9": "const ab = 8/0.35; return Math.round(0.5*16*ab*10)/10;",
+   "360.1": "const ab = 16/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;"
+  }
+ },
+ {
+  "id": "SM30F-D03",
+  "domain": "Algebra",
+  "subskill": "System of two one-variable inequalities; midpoint",
+  "difficulty": "medium",
+  "prompt": "17 - 2x <= 4x - 31\n4(x + 4) + 20 < 2x + 90\n\nThe numbers x that satisfy both inequalities above are exactly the numbers in an interval a <= x < b. What is the midpoint of this interval?",
+  "choices": [
+   "17.5",
+   "20.5",
+   "22.5",
+   "25.5"
+  ],
+  "correct_answer": "17.5",
+  "explanation": "First inequality: 17 - 2x <= 4x - 31. Add 2x and 31 to both sides: 48 <= 6x, so x >= 8. Second inequality: 4(x + 4) + 20 < 2x + 90 gives 4x + 16 + 20 < 2x + 90, so 4x + 36 < 2x + 90, 2x < 54, and x < 27. The numbers satisfying both are 8 <= x < 27, so a = 8 and b = 27. The midpoint is (8 + 27)/2 = 35/2 = 17.5.",
+  "solve": "const a=(17+31)/(2+4); const b=(90-20-16)/(4-2); return (a+b)/2;",
+  "distractor_solve": {
+   "22.5": "const a=(17+31)/(2+4); const b=(90-16)/(4-2); return (a+b)/2;",
+   "20.5": "const a=(17+31)/(2+4); const b=(90-20-4)/(4-2); return (a+b)/2;",
+   "25.5": "const a=(17+31)/(4-2); const b=(90-20-16)/(4-2); return (a+b)/2;"
+  }
+ },
+ {
+  "id": "SM30F-P02",
+  "domain": "Advanced Math",
+  "subskill": "Horizontal line meeting a parabola: count of levels",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = -2(x - 3)^2 + 50 is a parabola. A horizontal line y = c, where c is an integer, crosses the parabola at two different points, and both points lie to the right of the y-axis. How many different values of c are possible?",
+  "choices": [
+   "5",
+   "8",
+   "17",
+   "49"
+  ],
+  "correct_answer": "17",
+  "explanation": "The parabola opens downward and its highest point is (3, 50). A horizontal line y = c crosses it at two different points exactly when c < 50; the two points are symmetric about the line x = 3, at x = 3 +/- sqrt((50 - c)/2). The right-hand point always has x > 0. The left-hand point has x > 0 when the line lies above the point where the parabola crosses the y-axis: at x = 0, y = -2(9) + 50 = 32, so c must satisfy 32 < c < 50. (At c = 32 the left-hand point is (0, 32), on the y-axis, not to its right.) The integers 33, 34, ..., 49 number 49 - 33 + 1 = 17.",
+  "solve": "let n=0; for(let c=-500;c<=500;c++){ const d=(50-c)/2; if(d<=0) continue; const r=Math.sqrt(d); const x1=3-r, x2=3+r; if(x1>1e-12 && x2>1e-12) n++; } return n;",
+  "distractor_solve": {
+   "5": "const f0=50-2*3; let n=0; for(let c=-500;c<=500;c++){ if(c>f0 && c<50) n++; } return n;",
+   "8": "let n=0; for(let c=-500;c<=500;c++){ const d=50-c; if(d<=0) continue; if(3-Math.sqrt(d)>1e-12) n++; } return n;",
+   "49": "let n=0; for(let c=-500;c<=500;c++){ if(c>0 && c<50) n++; } return n;"
+  }
+ },
+ {
+  "id": "SM30F-J04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Tangent line at a point of a circle in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the point (6, 10) lies on the circle with equation (x - 4)^2 + (y - 6)^2 = 20. Line t is tangent to the circle at the point (6, 10). What is the y-coordinate of the y-intercept of line t?",
+  "choices": [
+   "-2",
+   "8",
+   "13",
+   "22"
+  ],
+  "correct_answer": "13",
+  "explanation": "The center of the circle is (4, 6). The radius to the point of tangency (6, 10) has slope (10 - 6)/(6 - 4) = 2. A tangent line is perpendicular to the radius at the point of tangency, so line t has slope -1/2. Using the point (6, 10): y - 10 = -(1/2)(x - 6), so y = -(1/2)x + 3 + 10 = -(1/2)x + 13. The y-intercept of line t is (0, 13), so its y-coordinate is 13.",
+  "solve": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(py-m*px);",
+  "distractor_solve": {
+   "8": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(k-m*h);",
+   "22": "const h=4,k=6,px=6,py=10; const m=-(py-k)/(px-h); return String(py-m*px);",
+   "-2": "const h=4,k=6,px=6,py=10; const m=(py-k)/(px-h); return String(py-m*px);"
+  }
+ },
+ {
+  "id": "SM30F-P05",
+  "domain": "Advanced Math",
+  "subskill": "Rewriting a quadratic in standard form: coefficients",
+  "difficulty": "medium",
+  "prompt": "When (x + 5)^2 - 4(x + 5) - 26 is multiplied out and like terms are combined, the result is x^2 + bx + c. What is c - b?",
+  "choices": [
+   "-27",
+   "-17",
+   "-15",
+   "13"
+  ],
+  "correct_answer": "-27",
+  "explanation": "Expand each part: (x + 5)^2 = x^2 + 10x + 25 and -4(x + 5) = -4x - 20. Combining, x^2 + 10x + 25 - 4x - 20 - 26 = x^2 + 6x - 21, so b = 6 and c = -21. Therefore c - b = -21 - 6 = -27.",
+  "solve": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h-p*h-q; return c-b;",
+  "distractor_solve": {
+   "13": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h+p*h-q; return c-b;",
+   "-17": "const h=5,p=4,q=26; const b=-p; const c=h*h-p*h-q; return c-b;",
+   "-15": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h-p*h-q; return c+b;"
+  }
+ },
+ {
+  "id": "SM30F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation: parameter from an extraneous root",
+  "difficulty": "hard",
+  "prompt": "In the equation sqrt(3x + k) = x - 5, k is a constant. When the equation is solved by squaring both sides, x = -3 is one solution of the resulting quadratic equation, but it is an extraneous solution of the original equation. What is the solution of the original equation?",
+  "choices": [
+   "12",
+   "15",
+   "16",
+   "73"
+  ],
+  "correct_answer": "16",
+  "explanation": "Squaring both sides gives 3x + k = (x - 5)^2. The extraneous value x = -3 satisfies this squared equation (it fails the original only because x - 5 = -8 is negative), so 3(-3) + k = (-3 - 5)^2 = 64, which gives -9 + k = 64 and k = 73. The squared equation is then 3x + 73 = x^2 - 10x + 25, or x^2 - 13x - 48 = 0, which factors as (x - 16)(x + 3) = 0. The value x = -3 is extraneous, and x = 16 checks: sqrt(3(16) + 73) = sqrt(121) = 11 = 16 - 5. The solution is 16.",
+  "solve": "const k = Math.pow(-3 - 5, 2) - 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+  "distractor_solve": {
+   "12": "const k = Math.pow(-3 + 5, 2) - 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+   "15": "const k = Math.pow(-3 - 5, 2) + 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+   "73": "const k = Math.pow(-3 - 5, 2) - 3*(-3); return String(k);"
+  }
+ },
+ {
+  "id": "SM30F-J02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circle through a rectangle's vertices, general form",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, rectangle ABCD has vertices A(-1, -2), B(11, -2), C(11, 14), and D(-1, 14). All four vertices of the rectangle lie on a circle whose equation can be written as x^2 + y^2 + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+  "choices": [
+   "-339",
+   "-100",
+   "-71",
+   "-39"
+  ],
+  "correct_answer": "-39",
+  "explanation": "The diagonals of a rectangle are diameters of the circle through its vertices, so the center is the midpoint of AC: ((-1 + 11)/2, (-2 + 14)/2) = (5, 6). The diagonal AC has length sqrt(12^2 + 16^2) = 20, so the radius is 10. The circle is (x - 5)^2 + (y - 6)^2 = 100. Expanding: x^2 - 10x + 25 + y^2 - 12y + 36 = 100, so x^2 + y^2 - 10x - 12y - 39 = 0. Therefore c = 25 + 36 - 100 = -39.",
+  "solve": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);",
+  "distractor_solve": {
+   "-339": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1]); return String(h*h+k*k-r*r);",
+   "-100": "const A=[-1,-2],C=[11,14]; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(-r*r);",
+   "-71": "const A=[-1,-2],B=[11,-2],C=[11,14]; const h=(A[0]+B[0])/2,k=(A[1]+B[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);"
+  }
+ },
+ {
+  "id": "SM30F-B02",
+  "domain": "Algebra",
+  "subskill": "Perpendicular line sharing an intercept with f",
+  "difficulty": "medium",
+  "prompt": "The linear function f satisfies f(-8) = 44 and f(2) = 14. The graph of the linear function g is perpendicular to the graph of f in the xy-plane, and the two graphs cross the y-axis at the same point. What is the value of g(9)?",
+  "choices": [
+   "17",
+   "47",
+   "23",
+   "5"
+  ],
+  "correct_answer": "23",
+  "explanation": "The slope of f is (14 - 44)/(2 - (-8)) = -30/10 = -3, so f(x) = -3x + b. From f(2) = 14, -6 + b = 14 and b = 20, so the graph of f crosses the y-axis at (0, 20). The graph of g is perpendicular, so its slope is the negative reciprocal of -3, which is 1/3, and it also crosses the y-axis at (0, 20): g(x) = (1/3)x + 20. Then g(9) = 3 + 20 = 23.",
+  "solve": "const x1=-8,y1=44,x2=2,y2=14; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const k=-1/m; return Math.round((k*9+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "5": "const x1=-8,y1=44,x2=2,y2=14; const m=-(y2-y1)/(x2-x1); const b=y2-m*x2; const k=-1/m; return Math.round((k*9+b)*1e9)/1e9;",
+   "17": "const x1=-8,y1=44,x2=2,y2=14; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const k=1/m; return Math.round((k*9+b)*1e9)/1e9;",
+   "47": "const x1=-8,y1=44,x2=2,y2=14; const m=(y2-y1)/(x2-x1); const b=y1; const k=-1/m; return Math.round((k*9+b)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM30F-G04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Exterior angle and isosceles triangle angle chase",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, point D lies on side AC between A and C, and segment BD is drawn so that BD = DC. The measure of angle BAC is 48 degrees, and the measure of angle ABD is 30 degrees. What is the measure, in degrees, of angle ABC?",
+  "choices": [
+   "54",
+   "60",
+   "69",
+   "81"
+  ],
+  "correct_answer": "81",
+  "explanation": "Angle BDC is an exterior angle of triangle ABD, so it equals the sum of the two remote interior angles: angle BDC = 48 + 30 = 78 degrees. In triangle BDC, BD = DC, so the angles opposite those sides are equal: angle DCB = angle DBC. These two angles sum to 180 - 78 = 102 degrees, so each is 51 degrees. Angle ABC is made up of angle ABD and angle DBC, so angle ABC = 30 + 51 = 81 degrees. (Check: 48 + 81 + 51 = 180.)",
+  "solve": "const bdc = 48 + 30; const dbc = (180 - bdc) / 2; return 30 + dbc;",
+  "distractor_solve": {
+   "54": "const bdc = 48 + 30; const dbc = 180 - 2 * bdc; return 30 + dbc;",
+   "60": "return 2 * 30;",
+   "69": "const bdc = 48 + 30; const dbc = bdc / 2; return 30 + dbc;"
+  }
+ },
+ {
+  "id": "SM30F-U03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Difference of two group means with a missing frequency",
+  "difficulty": "hard",
+  "prompt": "The table shows how many pets each student in two classes owns. The number of students in Class B who own exactly 1 pet is not shown and is represented by x. When the two classes are combined, the mean number of pets per student is 1.4. How much greater is the mean number of pets per student in Class A than the mean number of pets per student in Class B?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Class A",
+    "Class B"
+   ],
+   "colLabels": [
+    "0 pets",
+    "1 pet",
+    "2 pets",
+    "3 pets"
+   ],
+   "cells": [
+    [
+     "1",
+     "5",
+     "9",
+     "5"
+    ],
+    [
+     "8",
+     "x",
+     "2",
+     "3"
+    ]
+   ],
+   "caption": "Number of students by number of pets owned"
+  },
+  "choices": [
+   "0.27",
+   "0.53",
+   "0.65",
+   "0.90"
+  ],
+  "correct_answer": "0.90",
+  "explanation": "Class A has 1 + 5 + 9 + 5 = 20 students owning 5 + 18 + 15 = 38 pets. Class B has 13 + x students owning x + 4 + 9 = 13 + x pets. Combined, (38 + 13 + x)/(20 + 13 + x) = 1.4, so 51 + x = 46.2 + 1.4x, 0.4x = 4.8 and x = 12. Class B then has 25 students owning 25 pets, a mean of 1, and Class A's mean is 38/20 = 1.9. The difference is 1.9 - 1 = 0.90.",
+  "solve": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/nA-sB/nB)*100)/100;",
+  "distractor_solve": {
+   "0.27": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/nB-sB/nA)*100)/100;",
+   "0.53": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/(nA-A[0])-sB/(nB-b0))*100)/100;",
+   "0.65": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const sB=x+2*b2+3*b3;return Math.round(((sA-sB)/nA)*100)/100;"
+  }
+ },
+ {
+  "id": "SM30F-J03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Equal tangent segments from a vertex to an incircle",
+  "difficulty": "medium",
+  "prompt": "Triangle ABC has a right angle at C, with BC = 14, AC = 48, and AB = 50. A circle lies inside the triangle and is tangent to all three sides: it touches side AB at point P, side BC at point Q, and side AC at point R. What is the length of segment AP?",
+  "choices": [
+   "18",
+   "25",
+   "36",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "The two tangent segments drawn to a circle from the same outside point are equal, so AP = AR, BP = BQ, and CQ = CR. Let AP = AR = x. Then BP = 50 - x, so BQ = 50 - x and CQ = 14 - (50 - x) = x - 36. Also CR = 48 - x. Setting CQ = CR gives x - 36 = 48 - x, so 2x = 84 and x = 42. The length of AP is 42.",
+  "solve": "const a=14,b=48,c=50; return String((b+c-a)/2);",
+  "distractor_solve": {
+   "18": "const a=14,b=48,c=50; return String((c-a)/2);",
+   "25": "const c=50; return String(c/2);",
+   "36": "const a=14,c=50; return String(c-a);"
+  }
+ },
+ {
+  "id": "SM30F-B03",
+  "domain": "Algebra",
+  "subskill": "Parallel lines: coefficient in standard form",
+  "difficulty": "medium",
+  "prompt": "Line q contains the points (3, -5) and (11, -11). The graph of 12x + (k - 3)y = 24, where k is a constant, is a line that never intersects line q. What is the value of k?",
+  "choices": [
+   "9",
+   "19",
+   "-13",
+   "12"
+  ],
+  "correct_answer": "19",
+  "explanation": "Two distinct lines that never intersect are parallel, so they have equal slopes. Line q has slope (-11 - (-5))/(11 - 3) = -6/8 = -3/4. Solving 12x + (k - 3)y = 24 for y gives y = (-12/(k - 3))x + 24/(k - 3), so the slope is -12/(k - 3). Setting -12/(k - 3) = -3/4 gives 3(k - 3) = 48, so k - 3 = 16 and k = 19. (Check: 12x + 16y = 24 has y-intercept 1.5, while line q has y-intercept -2.75, so the lines are distinct.)",
+  "solve": "const x1=3,y1=-5,x2=11,y2=-11,a=12,c=3; const m=(y2-y1)/(x2-x1); return c + (-a)/m;",
+  "distractor_solve": {
+   "9": "const x1=3,y1=-5,x2=11,y2=-11,a=12,c=3; const m=(y2-Math.abs(y1))/(x2-x1); return c + (-a)/m;",
+   "12": "const x1=3,y1=-5,x2=11,y2=-11,a=12,c=3; const m=(x2-x1)/(y2-y1); return c + (-a)/m;",
+   "-13": "const x1=3,y1=-5,x2=11,y2=-11,a=12,c=3; const m=-(y2-y1)/(x2-x1); return c + (-a)/m;"
+  }
+ },
+ {
+  "id": "SM30F-T03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent change in a ratio read from a table",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of students and the number of teachers at a high school in each of three years. By what percent did the number of students per teacher at the school decrease from 2023 to 2025, to the nearest tenth of a percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "colLabels": [
+    "Students",
+    "Teachers"
+   ],
+   "cells": [
+    [
+     "912",
+     "38"
+    ],
+    [
+     "1,008",
+     "40"
+    ],
+    [
+     "1,081",
+     "47"
+    ]
+   ],
+   "caption": "Enrollment and teaching staff by year"
+  },
+  "choices": [
+   "4.2",
+   "4.3",
+   "5.2",
+   "8.7"
+  ],
+  "correct_answer": "4.2",
+  "explanation": "In 2023 there were 912/38 = 24 students per teacher, and in 2025 there were 1,081/47 = 23 students per teacher. The decrease is 24 - 23 = 1 student per teacher, which as a percent of the 2023 value is 1/24, or about 4.17%. To the nearest tenth, that is 4.2%.",
+  "solve": "const r23=912/38, r25=1081/47; const p=(r23-r25)/r23*100; return (Math.round(p*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "4.3": "const r23=912/38, r25=1081/47; const p=(r23-r25)/r25*100; return (Math.round(p*10)/10).toFixed(1);",
+   "5.2": "const t=(47/38-1)*100, s=(1081/912-1)*100; const p=t-s; return (Math.round(p*10)/10).toFixed(1);",
+   "8.7": "const r24=1008/40, r25=1081/47; const p=(r24-r25)/r24*100; return (Math.round(p*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-T05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent of capacity, then a rate",
+  "difficulty": "medium",
+  "prompt": "A water tank is 30% full. After 1,080 liters of water are pumped in, the tank is 75% full. Water is then drained from the tank at a constant rate of 25 liters per minute until the tank is 15% full. To the nearest tenth of a minute, how many minutes does the draining take?",
+  "choices": [
+   "14.4",
+   "34.6",
+   "57.6",
+   "61.2"
+  ],
+  "correct_answer": "57.6",
+  "explanation": "Pumping in 1,080 liters raised the water from 30% to 75% of the tank's capacity, so 1,080 liters is 45% of the capacity, and the capacity is 1,080/0.45 = 2,400 liters. Draining from 75% full to 15% full removes 60% of the capacity, or 0.60(2,400) = 1,440 liters. At 25 liters per minute, that takes 1,440/25 = 57.6 minutes.",
+  "solve": "const C=1080/(0.75-0.30); const t=(0.75-0.15)*C/25; return (Math.round(t*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "14.4": "const C=1080/(0.75-0.30); const t=0.15*C/25; return (Math.round(t*10)/10).toFixed(1);",
+   "34.6": "const C=1080/0.75; const t=(0.75-0.15)*C/25; return (Math.round(t*10)/10).toFixed(1);",
+   "61.2": "const C=1080/(0.75-0.30); const w=0.75*C; const t=(w-0.15*w)/25; return (Math.round(t*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM30F-B04",
+  "domain": "Algebra",
+  "subskill": "Linear function from sums of consecutive values",
+  "difficulty": "hard",
+  "prompt": "A linear function f has these properties: adding its nine outputs f(1), f(2), ..., f(9) gives -270, while adding just its three outputs f(7), f(8), and f(9) gives -45. Its graph crosses the axes at (r, 0) and (0, s). What is the value of r + s?",
+  "choices": [
+   "-24",
+   "-44",
+   "-6",
+   "-40"
+  ],
+  "correct_answer": "-44",
+  "explanation": "Because f is linear, its values at equally spaced inputs increase by the same amount each step, so a sum of values at consecutive integers equals the number of terms times the value at the middle input. The nine values f(1) through f(9) have middle input 5, so 9f(5) = -270 and f(5) = -30. The three values f(7), f(8), f(9) have middle input 8, so 3f(8) = -45 and f(8) = -15. The slope is (-15 - (-30))/(8 - 5) = 5, so f(x) = 5x + b with 25 + b = -30, giving b = -55. Then s = -55, and 5r - 55 = 0 gives r = 11. So r + s = 11 + (-55) = -44.",
+  "solve": "const a1=-270/9,a2=-45/3; const m=(a2-a1)/(8-5); const b=a1-5*m; const r=-b/m; return r+b;",
+  "distractor_solve": {
+   "-24": "const a1=-270/9,a2=-45/3; const m=(a2-a1)/(8-5); const b=a1; const r=-b/m; return r+b;",
+   "-6": "const a1=-270/9,a2=-45/3; const m=-(a2-a1)/(8-5); const b=a1-5*m; const r=-b/m; return r+b;",
+   "-40": "const a1=-270/9,a2=-45/3; const m=(a2-a1)/(7-4); const b=a1-4*m; const r=-b/m; return r+b;"
+  }
+ }
+]

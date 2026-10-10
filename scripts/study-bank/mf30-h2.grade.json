@@ -1,0 +1,347 @@
+[
+ {
+  "id": "SM30F-H03",
+  "prompt": "Two hikers leave the same trailhead. Hiker A walks 2 kilometers due north and then 4 kilometers due east. Hiker B walks 6 kilometers due south and then 1 kilometer due east. Each hiker walks in straight lines on flat ground. To the nearest hundredth of a kilometer, what is the straight-line distance between the two hikers?",
+  "choices": [
+   "9.43",
+   "8.54",
+   "8.94",
+   "11.00"
+  ]
+ },
+ {
+  "id": "SM30F-U01",
+  "prompt": "A juice stand recorded the daily high temperature x, in degrees Celsius, and the number of liters of lemonade sold y on five days. The table shows the data. A line of best fit for the data is y = 1.5x + 21. For each day, the residual is the actual number of liters sold minus the number of liters predicted by the line of best fit. What is the difference between the greatest residual and the least residual for the five days?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Day 1",
+    "Day 2",
+    "Day 3",
+    "Day 4",
+    "Day 5"
+   ],
+   "colLabels": [
+    "High temperature, x (degrees Celsius)",
+    "Lemonade sold, y (liters)"
+   ],
+   "cells": [
+    [
+     "4",
+     "21.5"
+    ],
+    [
+     "8",
+     "28.5"
+    ],
+    [
+     "12",
+     "43"
+    ],
+    [
+     "16",
+     "42.5"
+    ],
+    [
+     "20",
+     "53"
+    ]
+   ],
+   "caption": "Daily high temperature and lemonade sold"
+  },
+  "choices": [
+   "31.5",
+   "9.5",
+   "3.5",
+   "7.5"
+  ]
+ },
+ {
+  "id": "SM30F-R04",
+  "prompt": "The function f is defined by f(x) = (x - 8)^2 - 3. The function g undoes f only on the right half of its graph: for each number y with y ≥ -3, g(y) is the number x with x ≥ 8 and f(x) = y. What is the value of g(f(6))?",
+  "choices": [
+   "10",
+   "6",
+   "22",
+   "9"
+  ]
+ },
+ {
+  "id": "SM30F-G01",
+  "prompt": "A closed box is a rectangular prism with a square base. The height of the box is 3 times the length of one side of the base, and the volume of the box is 375 cubic inches. What is the total surface area of the box, in square inches?",
+  "choices": [
+   "300",
+   "450",
+   "350",
+   "340"
+  ]
+ },
+ {
+  "id": "SM30F-U02",
+  "prompt": "A gardener counted the seedlings in two trays at the start of an experiment (week 0) and at the end of each of the next three weeks. The table shows the counts. The count in one tray grows linearly and the count in the other tray grows exponentially. If each tray's pattern continues, what will be the total number of seedlings in the two trays at the end of week 6?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Week 0",
+    "Week 1",
+    "Week 2",
+    "Week 3"
+   ],
+   "colLabels": [
+    "Tray A",
+    "Tray B"
+   ],
+   "cells": [
+    [
+     "100",
+     "6"
+    ],
+    [
+     "118",
+     "12"
+    ],
+    [
+     "136",
+     "24"
+    ],
+    [
+     "154",
+     "48"
+    ]
+   ],
+   "caption": "Seedling counts by week"
+  },
+  "choices": [
+   "328",
+   "382",
+   "994",
+   "592"
+  ]
+ },
+ {
+  "id": "SM30F-R05",
+  "prompt": "In the xy-plane, the graph of y = 16/x and the line y = 10 - x intersect at two points, A and B. Point O is the origin. What is the area of triangle OAB?",
+  "choices": [
+   "32",
+   "50",
+   "36",
+   "30"
+  ]
+ },
+ {
+  "id": "SM30F-H02",
+  "prompt": "In triangle ABC, angle C is a right angle and angle A measures pi/3 radians. Point D lies on side AC, between A and C, so that segment BD has length 13 centimeters and segment CD has length 5 centimeters. To the nearest hundredth of a centimeter, what is the perimeter of triangle ABD?",
+  "choices": [
+   "52.78",
+   "28.78",
+   "32.12",
+   "30.52"
+  ]
+ },
+ {
+  "id": "SM30F-V02",
+  "prompt": "The table shows the number of members of a school's science club, by grade and by the project team each member is on. Each member is on exactly one team. One member of the club will be selected at random. To the nearest hundredth, what is the probability that the selected member is a junior or is on the robotics team (or both)?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Juniors",
+    "Seniors"
+   ],
+   "colLabels": [
+    "Robotics",
+    "Ecology",
+    "Astronomy"
+   ],
+   "cells": [
+    [
+     "9",
+     "14",
+     "7"
+    ],
+    [
+     "12",
+     "6",
+     "11"
+    ]
+   ],
+   "caption": "Science club members by grade and project team"
+  },
+  "choices": [
+   "0.68",
+   "0.43",
+   "0.71",
+   "0.86"
+  ]
+ },
+ {
+  "id": "SM30F-G05",
+  "prompt": "A solid concrete beam is a prism whose two parallel faces are identical L-shaped regions. Each L shape is formed by two rectangles, each 14 centimeters by 4 centimeters, placed at right angles to each other so that they overlap in a 4-centimeter-by-4-centimeter square at one end of each rectangle. The volume of the beam is 2,000 cubic centimeters. To the nearest tenth of a centimeter, what is the length of the beam, that is, the distance between its two L-shaped faces?",
+  "choices": [
+   "10.2",
+   "17.9",
+   "11.1",
+   "20.8"
+  ]
+ },
+ {
+  "id": "SM30F-Q05",
+  "prompt": "The exponents a and b are real numbers such that 3^a = 7 and 2^b = 5. What is the value of the quotient (9^a)/(8^b) ?",
+  "choices": [
+   "9.8",
+   "0.504",
+   "1.225",
+   "0.392"
+  ]
+ },
+ {
+  "id": "SM30F-D05",
+  "prompt": "y >= (1/2)x - 2\ny <= -2x + 13\nx >= 0\n\nIn the xy-plane, the solutions to the system of inequalities above form a triangular region. The line y = -4x + c, where c is a constant, contains at least one point of this region exactly when p <= c <= q. What is the value of q - p?",
+  "choices": [
+   "27",
+   "15",
+   "60",
+   "36"
+  ]
+ },
+ {
+  "id": "SM30F-G03",
+  "prompt": "Quadrilateral ABCD has side lengths AB = 5, BC = 9, CD = 17, and DA = 10. The length of diagonal AC is a whole number. How many different lengths are possible for diagonal AC?",
+  "choices": [
+   "6",
+   "9",
+   "8",
+   "5"
+  ]
+ },
+ {
+  "id": "SM30F-A02",
+  "prompt": "Consider 6(x - k) = c/2 - x, in which k and c are fixed numbers. Setting c = 18 makes x = p the only solution; setting c = 158 makes x = q the only solution. What is q - p?",
+  "choices": [
+   "40",
+   "10",
+   "35",
+   "14"
+  ]
+ },
+ {
+  "id": "SM30F-P03",
+  "prompt": "In the xy-plane, the graph of y = (x - 1)(x - k), where k is a constant, meets the horizontal line y = 40 at two points. One of these points has x-coordinate -4. What is the x-coordinate of the other point?",
+  "choices": [
+   "4",
+   "-11",
+   "7",
+   "9"
+  ]
+ },
+ {
+  "id": "SM30F-D01",
+  "prompt": "A dance studio offers two payment plans for a season of classes. Plan A charges a $63 membership fee and a $12 shoe-rental fee, plus $6 per class. Plan B charges an $11 registration fee plus $10 per class. Plan A costs less than Plan B exactly when the number of classes n satisfies n > N, where N is a constant. What would Plan A cost, in dollars, for a member who takes exactly N classes?",
+  "choices": [
+   "171",
+   "105",
+   "99",
+   "141"
+  ]
+ },
+ {
+  "id": "SM30F-V04",
+  "prompt": "A box contains 24 fuses, 5 of which are defective. An inspector tests fuses from the box one at a time, each chosen at random from the fuses not yet tested. She stops as soon as she finds a defective fuse or after she has tested 4 fuses, whichever happens first. To the nearest thousandth, what is the probability that she tests exactly 4 fuses?",
+  "choices": [
+   "0.479",
+   "0.421",
+   "0.496",
+   "0.365"
+  ]
+ },
+ {
+  "id": "SM30F-G02",
+  "prompt": "A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height of the prism is 9 centimeters. The volumes of the two blocks differ by how many cubic centimeters?",
+  "choices": [
+   "279",
+   "201",
+   "361",
+   "327"
+  ]
+ },
+ {
+  "id": "SM30F-P01",
+  "prompt": "A company's monthly profit P, in dollars, from selling a product at a price of p dollars is modeled by P(p) = -3p^2 + bp - 400, where b is a constant. According to the model, the company earns the same monthly profit when the price is 6 dollars as when the price is 40 dollars. What is the maximum monthly profit, in dollars, according to the model?",
+  "choices": [
+   "5948",
+   "2774",
+   "1187",
+   "467"
+  ]
+ },
+ {
+  "id": "SM30F-A01",
+  "prompt": "A plank resting on a pivot balances when, for each side, the sum of (mass x distance from the pivot) is the same. On the left side, a 45-kilogram crate sits 2 meters from the pivot. On the right side, a 32-kilogram crate sits d meters from the pivot, and an 18-kilogram crate sits 0.6 meter farther from the pivot than the 32-kilogram crate. If the plank balances, how many meters from the pivot is the 18-kilogram crate?",
+  "choices": [
+   "1.416",
+   "2.184",
+   "1.284",
+   "7.8"
+  ]
+ },
+ {
+  "id": "SM30F-D02",
+  "prompt": "A gardener is filling a raised bed that already holds 6 cubic feet of soil. Each bag of soil adds 1.5 cubic feet, and the bed needs to hold at least 30 cubic feet in total. The garden store charges $4.25 per bag plus a one-time delivery fee of $15, and the gardener will spend no more than $170 in total. Only whole bags can be bought. How many different numbers of bags meet both of the gardener's requirements?",
+  "choices": [
+   "21",
+   "23",
+   "17",
+   "28"
+  ]
+ },
+ {
+  "id": "SM30F-U04",
+  "prompt": "The table shows the number of members, in hundreds, of a hiking club at the start of each year from 2019 to 2023. An exponential curve of best fit for the data is y = 52(1.14)^x, where y is the number of members, in hundreds, and x is the number of years since the start of 2019. The residual for a year is the actual number of members, in hundreds, minus the number predicted by the curve of best fit. To the nearest hundredth, what is the residual for 2023?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "colLabels": [
+    "Members (hundreds)"
+   ],
+   "cells": [
+    [
+     "50"
+    ],
+    [
+     "60"
+    ],
+    [
+     "67"
+    ],
+    [
+     "74"
+    ],
+    [
+     "95"
+    ]
+   ],
+   "caption": "Hiking club membership at the start of each year"
+  },
+  "choices": [
+   "10.64",
+   "13.88",
+   "7.17",
+   "17.96"
+  ]
+ },
+ {
+  "id": "SM30F-R02",
+  "prompt": "The pressure of a gas sample kept at a constant temperature varies inversely with the volume of the sample. When the volume of the sample is V liters, its pressure is 57 kilopascals. When the volume is decreased by 1 liter, the pressure becomes 76 kilopascals. What is the pressure, in kilopascals, of the sample when its volume is 5 liters?",
+  "choices": [
+   "71.25",
+   "60.8",
+   "45.6",
+   "38"
+  ]
+ }
+]

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T02:36:51.783Z",
+  "generatedAt": "2026-10-10T07:36:14.629Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -8050,6 +8050,40 @@
           "passed": true,
           "contentSha": "02bda0a39e13d37744ba20867a8cedc48e3cefb875cc3f357598d45e0330267b",
           "verdict": "Survival at the gate by key position: Algebra extreme 12/23 = 52.2%, interior 13/15 = 86.7% (mf28: 61.9 / 85.7); Advanced Math extreme 16/18 = 88.9%, interior 11/14 = 78.6% (mf28: 84.6 / 90.0). One-sided / single-bound drops on extreme keys 6 of 41 frozen extreme (mf28: 9 of 34); R7pair/DSUM drops 0 (mf28: 1); plug-back drops 6 (mf28: 1). Recorded, not dropped: A11 key 45 equals the minutes printed in 7:45; option-pair flags on C11 S09 S11 S02 S08 A11 read and rejected (coincidental, outside the gating definitions)."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v30-full-kept-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v30-full",
+      "contentSha": "56e2102b0b1fcba39f12f625f658f9c6c8ea5c066288ee437f58a4be1dadeadf",
+      "status": "inserted",
+      "note": "65 items over four domains (Algebra 20 from authors A-D, Advanced Math 15 from P-R, Geometry 15 from G H J, PSDA 15 from T U V), thirteen Claude authors writing one part file per item, 5 per run, at most two subagents at once; slots from seed 20261060 (PREREG-MF30-2026-10-10.md, fca23655). mf29 machinery with FAR (far side by error) and DSUM; A92's lessons added: PLUGA (Algebra plug-back decided by a cold probe with 12 mf29 plants), INTER (solved-intermediate distractors, brief + hand read), KEYPRINT, STRUCT. Stage 0: one return per author (18 items); C05 flagged by the probe after its return and dropped. Frozen ce3a2752 (64, sha ad65f3c5, seeded order 20261061). Gate: 14 dropped; 50 inserted: Algebra 15 (0 easy / 13 medium / 2 hard), Advanced Math 13 (1 / 11 / 1), Geometry 12 (1 / 9 / 2), PSDA 10 (0 / 9 / 1), panel median.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "56e2102b0b1fcba39f12f625f658f9c6c8ea5c066288ee437f58a4be1dadeadf",
+          "verdict": "50 items, all 4-choice numeric (5 PSDA items carry a table graphic). Frozen 64: sandbox 64/64, 192/192; key and distractor mutations refused; slots 64/64; mf30-checks 0 gating (PAIR/RUN/DIR/DPAIR/DSUM/PLUG/FAR/KEYPRINT/STRUCT/INTER); per-domain stage-0 bands in and extremity gate PASS; live dump re-pulled before freeze (3,833 rows, 0 new); math-mechanism-dup 5 FLAG (B02, rejected) and 52 near, read. Plug-back probe round 1 valid (plants 4/4 positives, 0/6 negatives), 0 of 20 Algebra flagged; round 2 valid (4/4, 1/6), C05 flagged and dropped. Kept: sandbox 50/50, 150/150; per-domain kept-set extremity gate Algebra 9/15 = 60.0%, Advanced Math 8/13 = 61.5%, Geometry 6/12 = 50.0%, PSDA 4/10 = 40.0% (bar 40.0%, all PASS)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "56e2102b0b1fcba39f12f625f658f9c6c8ea5c066288ee437f58a4be1dadeadf",
+          "verdict": "Options-only attack PER DOMAIN against live controls matched by authored band (make-mf30-oo.mjs; v2 and session cohorts excluded). Algebra (blind sha 0ffb9681): candidate 12/57 = 21.1% vs control 29/57 = 50.9%, -29.8 (bar +10); unanimous 1/19 = 5.3% vs 7/19 = 36.8% (bar +15). Advanced Math (df3aa9fa): 11/45 = 24.4% vs 16/45 = 35.6%, -11.1; 20.0% vs 26.7%. Geometry (a2c338e8): 12/45 = 26.7% vs 21/45 = 46.7%, -20.0; 13.3% vs 33.3%. PSDA (7cc15793): 5/45 = 11.1% vs 12/45 = 26.7%, -15.6; 6.7% vs 20.0%. Controls under the 90% ceiling. Three samples of one Claude solver (agreement 70.2 / 82.2 / 74.4 / 73.3%)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "56e2102b0b1fcba39f12f625f658f9c6c8ea5c066288ee437f58a4be1dadeadf",
+          "verdict": "Three fresh Claude graders (D, E, F) x three thirds (22/22/20; render shas 9ad0e5f7, e25812ac, 29139656); each third in a private folder outside the repo holding only the cold render; stage 1 snapshotted, hashed and made read-only before the keyed files were released (mf30-grade-stage.mjs); mf30-coldcheck.mjs 192 cold rows, 0 problems. 192/192 cold answers on key; 0 off-blueprint by majority. Drops (14): one-sided / single bound on extreme keys U05 B01 V05 H03 G05 D01 U04 Q01 V01 (EXT-1; V05 also r4, V01 also r6); free elimination A01 (EXT-1); option pair and weak distractors C04 (EXT-1); r4 median struck 2 J03; decoy condition U03 (EXT-1: Class B mean is 1 for every x); r7 arithmetic-class tell Q02 confirmed (the only rounded option under \"closest to\"). Every flag decision in mf30.confirm.json."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "56e2102b0b1fcba39f12f625f658f9c6c8ea5c066288ee437f58a4be1dadeadf",
+          "verdict": "Survival at the gate by key position: Algebra extreme 9/12 = 75.0%, interior 6/7 = 85.7% (mf29: 52.2 / 86.7); Advanced Math 8/9 = 88.9%, 5/6 = 83.3% (mf29: 88.9 / 78.6); Geometry 6/9 = 66.7%, 6/6 = 100.0%; PSDA 4/9 = 44.4%, 6/6 = 100.0%. One-sided / single-bound drops on extreme keys 9 of 39 frozen extreme (mf29: 6 of 41), Algebra 2 of 12. Plug-back drops (r6) 1, PSDA V01; Algebra 0 (mf29: 6, all Algebra). Solved-intermediate drops 0."
         }
       }
     }
