@@ -1,12 +1,8 @@
 # One sitting for the co-founder: ACT English (third new batch)
 
-**NOT DRAWN YET.** The panel allows one open run per reviewer, and
-`ssat-wv6-cofounder-2026-10-07` (12 items) is still open for this account.
-Once that run is finished, draw this one with the command in
-`act-english-v9.SITTING.PREREG.md`. Then fill in the run id below and send
-the note.
+**Drawn 2026-10-10** after `ssat-wv6-cofounder-2026-10-07` closed: 40 rows, keys 10/10/10/10, control 25.0%.
 
-Run `act-en9-cofounder-<date>`, **40 items**, about **25-45 minutes** in
+Run `act-en9-cofounder-2026-10-10`, **40 items**, about **25-45 minutes** in
 one go. Your last two sittings took 44 and 25 minutes.
 
 It works the same way as the last two ACT English sittings. Sign in as
@@ -59,7 +55,7 @@ Keys are spread evenly, so pure guessing scores about 25%.
 
 ## After he submits (for the owner)
 
-    node scripts/study-bank/score-sweep-run.mjs act-en9-cofounder-<date>
+    node scripts/study-bank/score-sweep-run.mjs act-en9-cofounder-2026-10-10
 
 Score each domain against the integer cutoffs in the prereg:
 
