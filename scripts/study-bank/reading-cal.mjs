@@ -289,12 +289,12 @@ export function barAMargin(cand, live, margin = 10) {
   if (!(live >= 10 && live <= 45)) return 'INVALID'
   return cand <= live + margin + 1e-9 ? 'PASS' : 'FAIL'
 }
-function cmdWv5(outdir, stage) {
+function cmdWv5(outdir, stage, nExpect = 12) {
   const key = rd(join(outdir, 'attack.key.json')), live = rd(join(O, 'ssat', 'score.json'))
   const get = n => live.find(x => x.name.startsWith(n)) ?? die(`reading-cal/ssat/score.json has no ${n}`)
   if (stage === 'ws') {
     const wk = Object.fromEntries(Object.entries(key).filter(([, k]) => k.pop === 'withsource').map(([q, k]) => [q, { fKey: k.fKey }]))
-    const n = Object.keys(wk).length; if (n !== 12) die(`with-source key has ${n} items; the bars are computed for 12`)
+    const n = Object.keys(wk).length; if (n !== nExpect) die(`with-source key has ${n} items; the bars are computed for ${nExpect} (pass the pre-registered item count as the 3rd argument; WV12 is 18)`)
     let s; try { s = scoreSsat(wk, ['ws-a.json', 'ws-b.json'].map(f => lab(rd(join(outdir, f))))) } catch (e) { die(e.message) }
     console.log(`STAGE 1 (C+F+Q): ${s.n} items x 2 graders; Q over ${s.Q.n} labels. Bars relative to Stage A live (reading-cal/ssat/score.json)\n`)
     let ok = true
@@ -362,7 +362,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`relative bars for a ${nc}-item SSAT candidate, from ssat/score.json (live control); power 0.8\n`)
     for (const [n, d, c] of rows) { const x = get(n), b = relBar(x.k, x.n, c, d); console.log(`  ${n.padEnd(14)} live ${x.k}/${x.n} = ${b.live.toFixed(1)}% -> candidate ${d === 'good' ? '>=' : '<='} ${b.bar}/${c} (${b.barRate.toFixed(1)}%), tolerance ${b.tol.toFixed(1)} pts, P(pass | candidate = live) ${b.passProbAtLive.toFixed(2)} -> ${b.decidable ? 'DECIDING' : 'NOT DECIDABLE (cannot fail inside the attainable range): reported only'}`) }
   }
-  else if (cmd === 'wv5') cmdWv5(arg, process.argv[4])
+  else if (cmd === 'wv5') cmdWv5(arg, process.argv[4], process.argv[5] ? Number(process.argv[5]) : 12)
   else if (cmd === '--selftest') selftest()
   else die('usage: draw | render | score ssat|isee | nat ssat|isee | --selftest')
 }

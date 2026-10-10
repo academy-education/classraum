@@ -163,6 +163,24 @@ export function frameVariety(rows) {
   for (const [k, ids] of Object.entries(seen)) if (new Set(ids.map(x => x.split('/')[0])).size > 1) probs.push(`stem variety: ${k.replace('|', ' frame "')}" is used by ${ids.join(' and ')}; each unit in a batch uses a different phrasing`)
   return probs
 }
+// ── batch WV12 (READING-BATCH-WV12-2026-10-11.prereg.md): WV11's base (frames, variety) plus a second attitude form.
+//    Each WV12 unit declares "attitude_form": "character" (WV11's character-action frames, unchanged) or "author"
+//    (the author's/narrator's attitude toward the subject, in an essay, memoir or nature piece; AUTHOR_FRAMES, from
+//    live SSAT stems). Vocabulary stems use WV11's frames. Variety across one verify call as for WV11. The other WV12
+//    rules (genre, two licensing sentences, no irony words, judges' support) live in ssat-wv12-rules.mjs. ──
+const isWV12 = id => /^WV12-/.test(String(id))
+const WHO12 = '(?:author|narrator|writer|essayist)'
+export const AUTHOR_FRAMES = {
+  'attitude-best': new RegExp(`^The ${WHO12}(?:'s|’s) attitude toward [^?]{3,}? is best described as$`),
+  'feeling-best': new RegExp(`^The ${WHO12}(?:'s|’s) feelings? about [^?]{3,}? (?:is|are) best described as$`),
+  regard: new RegExp(`^How does the ${WHO12} (?:regard|view) [^?]{3,}?\\?$`),
+  conveys: new RegExp(`^In describing [^?]{3,}?, the ${WHO12} (?:conveys|expresses) a (?:feeling|sense) of$`),
+}
+export function authorFrame(prompt) {
+  const s = String(prompt ?? '').replace(/[“”]/g, '"').trim()
+  const hit = Object.entries(AUTHOR_FRAMES).filter(([, re]) => re.test(s)).map(([k]) => k)
+  return hit.length === 1 ? { frame: hit[0], probs: [] } : { frame: null, probs: [`author-form attitude stem matches ${hit.length ? hit.join('+') : 'none'} of the WV12 author frames (${Object.keys(AUTHOR_FRAMES).join(', ')}); use exactly one listed phrasing`] }
+}
 export const senseId = (pid, qid) => `${pid}.${qid.slice(pid.length + 1)}`
 export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
@@ -244,8 +262,9 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = 
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
-      if (isV10(id) && !isWV11a(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV10(id) && !isWV11a(id) && !isWV12(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
       if (isWV11a(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const sf = stemFrame(q.kind, q.prompt); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame }) }
+      if (isWV12(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const au = q.kind === 'attitude' && p.attitude_form === 'author', sf = au ? authorFrame(q.prompt) : stemFrame(q.kind, q.prompt); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame && (au ? `author:${sf.frame}` : sf.frame) }) }
       if (isV11(id) && q.kind === 'attitude') (q.support ?? []).forEach((sp, k) => fullSentence(sp?.why).forEach(x => problems.push(`${tag} v${k}: ${x}`)))
       if (isV11(id) && q.kind === 'vocabulary-in-context') {
         const sid = senseId(id, q.qid)
