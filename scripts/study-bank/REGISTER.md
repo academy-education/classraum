@@ -190,6 +190,13 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-10** — **SSAT WV6 CO-FOUNDER READ IN: 12/12 "ONLY DEFENSIBLE", 0 FLAGGED, 0 REJECTED. ALL 12 RELEASED (`verified=true`) PER THE PREREG. DRAWABLE SSAT READING 138 -> 150.** Run `ssat-wv6-cofounder-2026-10-07`, `reviewer_kind='human'`.
+  - **Blind (options only):** 3/12 = 25.0% against the deal's 25.0% control (margin +0.0) and the 20% five-choice line; pace 1.99 min/item over 24 min, 0 abstentions. Information only (n=12, about +/-23 pts).
+  - **P01-5 (`32521213`, the attitude item the graders disagreed on):** only defensible, blind miss. Released like the others; the grader flag is not confirmed by the human.
+  - **Realism (recorded, not a gate):** 6 authentic, 6 artificial. Artificial: both attitude items, both vocabulary items, one main-idea, one inference. Authentic: the other main-idea, both detail items, both purpose items, the other inference. Feeds the next brief: attitude and vocabulary stems read as templated.
+  - **Method check (prereg): CONFIRMED** - 0 of 12 flagged/rejected (bar <= 2), none among the 8 main-idea/detail/inference/purpose items. WV7-WV10 all stopped before insertion, so nothing is staged behind WV6 to release.
+  - **Form capacity:** SSAT Reading still 3 forms (150 / ~40). WV6 is the only agent method a human has passed; WV7-WV10 stopped on the attitude item (the WV10 owner question - a person writing the attitude question - is still open). → **B10**
+
 - **2026-10-10** — **SSAT READING PD PILOT (REAL PUBLIC-DOMAIN PASSAGES, AGENT-WRITTEN QUESTIONS ONLY; owner-approved new method) FAILS STAGE 3: OPTIONS-ONLY 80/90 = 88.9% vs IN-RUN LIVE CONTROL 43/144 = 29.9% (+59.0, bar +10). STOPPED. NOTHING INSERTED. SCALE: NO-GO.** Prereg `061e9501` (before any passage), Stage S `def72555`, freeze `288e243a` (36 items, sha `15f78971`), renders `5ef05643`.
   - **Sources (verbatim, `ssat-pd.mjs srccheck` 6/6, break-tested):** Grahame 1895, Garland 1917, Frost 1916 ("The Exposed Nest"), Addams 1910, Muir 1894, USGS Volcano Watch 2026 (federal employee). 6 passages x 6 items, one of each kind.
   - **Passed:** Stage 0 after one fix round (36/36 kept); C 35/36 (bar 34); F easy 21/36 (bar 35; live 32/33); Q 138/288 = 47.9% (live 6.1%, WV6 39.6%); dead-by-both 8/36 (bar 19; live 15/33); pilot-pass 10/36 (live 1/33); naturalness median 5 vs live 2.
