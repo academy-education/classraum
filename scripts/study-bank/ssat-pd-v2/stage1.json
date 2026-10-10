@@ -1,0 +1,362 @@
+{
+ "verdict": "FAIL",
+ "rows": [
+  {
+   "name": "C exclusivity",
+   "k": 32,
+   "n": 36,
+   "live": "33/33",
+   "bar": ">= 34/36",
+   "decidable": true,
+   "pass": false
+  },
+  {
+   "name": "F easy",
+   "k": 20,
+   "n": 36,
+   "live": "32/33",
+   "bar": "<= 35/36",
+   "decidable": true,
+   "pass": true
+  },
+  {
+   "name": "Q distractor >= plausible",
+   "k": 187,
+   "n": 288,
+   "live": "16/264",
+   "bar": ">= 15/288",
+   "decidable": true,
+   "pass": true
+  },
+  {
+   "name": "dead-by-both",
+   "k": 1,
+   "n": 36,
+   "live": "15/33",
+   "bar": "<= 19/36",
+   "decidable": true,
+   "pass": true
+  },
+  {
+   "name": "pilot-pass",
+   "k": 13,
+   "n": 36,
+   "live": "1/33",
+   "bar": ">= 1/36",
+   "decidable": true,
+   "pass": true
+  }
+ ],
+ "Q": {
+  "good": 187,
+  "n": 288,
+  "rate": 64.93055555555556
+ },
+ "scale": {
+  "h1": false,
+  "h2": true,
+  "easy": 20,
+  "deadBoth": 1,
+  "n": 36,
+  "h1Bar": 18,
+  "h2Bar": 6
+ },
+ "notExclusive": [
+  "PD2-P1-3",
+  "PD2-P2-1",
+  "PD2-P3-1",
+  "PD2-P5-4"
+ ],
+ "perItem": [
+  {
+   "q": "W1-1",
+   "src": "PD2-P1-1",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W1-2",
+   "src": "PD2-P1-2",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W1-3",
+   "src": "PD2-P1-3",
+   "excl": false,
+   "mean": 3,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W1-4",
+   "src": "PD2-P1-4",
+   "excl": true,
+   "mean": 1.5,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W1-5",
+   "src": "PD2-P1-5",
+   "excl": true,
+   "mean": 3,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W1-6",
+   "src": "PD2-P1-6",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W2-1",
+   "src": "PD2-P2-1",
+   "excl": false,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W2-2",
+   "src": "PD2-P2-2",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W2-3",
+   "src": "PD2-P2-3",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W2-4",
+   "src": "PD2-P2-4",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W2-5",
+   "src": "PD2-P2-5",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": [
+    "B"
+   ]
+  },
+  {
+   "q": "W2-6",
+   "src": "PD2-P2-6",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-1",
+   "src": "PD2-P3-1",
+   "excl": false,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-2",
+   "src": "PD2-P3-2",
+   "excl": true,
+   "mean": 1.5,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-3",
+   "src": "PD2-P3-3",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-4",
+   "src": "PD2-P3-4",
+   "excl": true,
+   "mean": 1.5,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-5",
+   "src": "PD2-P3-5",
+   "excl": true,
+   "mean": 1.5,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W3-6",
+   "src": "PD2-P3-6",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-1",
+   "src": "PD2-P4-1",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-2",
+   "src": "PD2-P4-2",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-3",
+   "src": "PD2-P4-3",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-4",
+   "src": "PD2-P4-4",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-5",
+   "src": "PD2-P4-5",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W4-6",
+   "src": "PD2-P4-6",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-1",
+   "src": "PD2-P5-1",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-2",
+   "src": "PD2-P5-2",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-3",
+   "src": "PD2-P5-3",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-4",
+   "src": "PD2-P5-4",
+   "excl": false,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-5",
+   "src": "PD2-P5-5",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W5-6",
+   "src": "PD2-P5-6",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-1",
+   "src": "PD2-P6-1",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-2",
+   "src": "PD2-P6-2",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-3",
+   "src": "PD2-P6-3",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-4",
+   "src": "PD2-P6-4",
+   "excl": true,
+   "mean": 1,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-5",
+   "src": "PD2-P6-5",
+   "excl": true,
+   "mean": 1.5,
+   "easy": true,
+   "deadBoth": []
+  },
+  {
+   "q": "W6-6",
+   "src": "PD2-P6-6",
+   "excl": true,
+   "mean": 2,
+   "easy": false,
+   "deadBoth": []
+  }
+ ]
+}

@@ -8153,6 +8153,39 @@
           "margin": 59.0
         }
       }
+    },
+    {
+      "id": "ssat-reading-pd-pilot-v2-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-pd-pilot-v2",
+      "contentSha": "cb0bbf75aabc6f7d906a351e6e15812616800ab33f1e148bc9a8d0027c45dbb8",
+      "status": "killed",
+      "note": "Owner's 'one more AI try, fixed design' after ssat-reading-pd-pilot. v1's shape, tools, stages and bars; changed only: obscure sources with a recognition pre-check (6/6 cleared by one fresh solver), an option-parity brief, an attitude polarity rule, and one pre-freeze options-only screen with a single re-author round. Pre-registered SSAT-READING-PD-PILOT-V2-PREREGISTERED.md (6ecfa436) before any passage was chosen; Stage S 58f29fe3; frozen ca9ed5db; renders 1d15ddb0. Screen 83.3% vs 22.9% control sent 24/30 non-vocabulary items to re-authoring. FAILED Stage 1 C exclusivity 32/36 (bar 34); all four misses are re-authored items. Stopped there; report-only options-only after the stop 82.2% vs 29.2% (re-authored items 91.7%, screen survivors 44.4%). Nothing inserted; no repair (prereg). READING-BATCH-PD-PILOT-V2-2026-10-10.md; REGISTER section 5, 2026-10-10.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "cb0bbf75aabc6f7d906a351e6e15812616800ab33f1e148bc9a8d0027c45dbb8",
+          "verdict": "ssat-pd.mjs srccheck 6/6 verbatim (sha256) with the v2 recognition record (one fresh solver, first two sentences, 6/6 unknown); Stage 0 verify CLEAN after one fix round (19 mechanical, A1 0 absent, licensing 12/12); screen then re-author of 24 items, which passed Stage 0 in full after one fix round (16 mechanical, A1 0 absent, licensing 4/4); 36/36 frozen; key uniquely longest 3/36, shortest 6/36; attitude key-polarity class size 2 in 4/6, 3 in 2/6."
+        },
+        "withsource": {
+          "passed": false,
+          "contentSha": "cb0bbf75aabc6f7d906a351e6e15812616800ab33f1e148bc9a8d0027c45dbb8",
+          "verdict": "Two fresh Claude graders, misread/prompts.md section 8 verbatim, private read-only copies; relative bars at n=36: C 32/36 (>= 34) FAIL; F easy 20/36 (<= 35), Q 187/288 = 64.9% (>= 15/288), dead-by-both 1/36 (<= 19), pilot-pass 13/36 (>= 1). 72/72 picks on key; not exclusive (second defensible named): PD2-P1-3 (both graders), PD2-P2-1, PD2-P3-1, PD2-P5-4 (one grader), all re-authored after the screen. Scale test H1 easy 20/36 (bar 18) not met, H2 dead-by-both 1/36 (bar 6) met."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "cb0bbf75aabc6f7d906a351e6e15812616800ab33f1e148bc9a8d0027c45dbb8",
+          "verdict": "REPORT-ONLY, run after the Stage 1 stop, not a gate: options-only isolated, 30 candidates among the 48 live controls, three fresh samples, pilot 4 prompt verbatim: candidate 74/90 = 82.2% vs control 42/144 = 29.2% (+53.1). Re-authored items 66/72 = 91.7%, screen survivors 8/18 = 44.4%. Per passage 86.7 / 60.0 / 60.0 / 93.3 / 93.3 / 100.0%, all six recognition-cleared. Pre-freeze screen (separate samples): 75/90 = 83.3% vs 33/144 = 22.9%.",
+          "n": 30,
+          "mean": 82.2,
+          "control": 29.2,
+          "margin": 53.1
+        }
+      }
     }
   ],
   "auditedCohorts": [
