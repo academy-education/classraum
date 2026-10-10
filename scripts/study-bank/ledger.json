@@ -8120,6 +8120,39 @@
           "verdict": "Cross-item tells on the kept 93: CONV 0, WB 0, PCT2 (ratio) 0; PCT2 by mechanism 1 (I-06). Residuals in act-math-v29.verdicts.json, not acted on: one_sided named and not confirmed on 47 items (a natural opposite error named by a grader on each); shared values recorded (key 3.22 F-21 dropped / G-04 dropped; 7.14 I-18 / F-08; 6.18 G-09 / N-07; 9.58 G-12 / N-07); A-08 key isolated below a tight cluster; A-17 sqrt2 pair; S-12 68 not k/27."
         }
       }
+    },
+    {
+      "id": "ssat-reading-pd-pilot-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-pd-pilot",
+      "contentSha": "15f7897190ebbafb0a27390bb22584a15d56db89bf864bc2d7049a032c5333ba",
+      "status": "killed",
+      "note": "Owner-approved new method: REAL public-domain passages (Grahame 1895, Garland 1917, Frost 1916, Addams 1910, Muir 1894, USGS Volcano Watch 2026), Claude agents writing only the questions; 6 passages x 6 items, one of each kind. Pre-registered SSAT-READING-PD-PILOT-PREREGISTERED.md (061e9501) before any passage was chosen; frozen 288e243a. Passed Stage 0, with-source (C 35/36, Q 47.9%, dead-by-both 8/36) and naturalness (median 5 vs live 2); FAILED options-only isolated 88.9% vs 29.9% control (+59.0, bar +10). Scale test H1 (easy 21/36, bar 18) and H2 (dead 8/36, bar 6) not met. Recall confound measured: the unrecognised USGS passage alone 12/15 = 80.0%. Nothing inserted; no repair (prereg). READING-BATCH-PD-PILOT-2026-10-10.md; REGISTER section 5, 2026-10-10.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "15f7897190ebbafb0a27390bb22584a15d56db89bf864bc2d7049a032c5333ba",
+          "verdict": "ssat-pd.mjs srccheck 6/6 verbatim against fetched sources (sha256 recorded); verify CLEAN after one fix round (round 0: 32 mechanical, 1 A1 absent; licensing 12/12; round 1 re-run fresh on 14 changed items: 0 absent, 5/5 clean); 36/36 kept; key uniquely longest 7/36, shortest 6/36; key slots 7/7/7/7/8 in the with-source render."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "15f7897190ebbafb0a27390bb22584a15d56db89bf864bc2d7049a032c5333ba",
+          "verdict": "Two fresh Claude graders, misread/prompts.md section 8 verbatim; relative bars at n=36 (reading-cal relBar): C 35/36 (>= 34), F easy 21/36 (<= 35), Q 138/288 = 47.9% (>= 15/288), dead-by-both 8/36 (<= 19), pilot-pass 10/36 (>= 1). PD-P3-5 not exclusive. Naturalness (stage 2) median 5 (n=12) vs live 2 (n=14): PASS."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "15f7897190ebbafb0a27390bb22584a15d56db89bf864bc2d7049a032c5333ba",
+          "verdict": "Options-only isolated: 30 non-vocabulary candidates among the 48 live control items, three samples of one Claude solver, pilot 4 prompt verbatim. Candidate 80/90 = 88.9% vs control 43/144 = 29.9%, margin +59.0 > +10: FAIL. Unanimity 27/30 vs 30/48; 25/30 solved by all three samples. Recalled sources 42/45, others 38/45, unrecognised USGS passage 12/15.",
+          "n": 30,
+          "mean": 88.9,
+          "control": 29.9,
+          "margin": 59.0
+        }
+      }
     }
   ],
   "auditedCohorts": [
