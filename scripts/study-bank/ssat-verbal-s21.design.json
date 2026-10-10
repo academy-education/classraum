@@ -1,0 +1,663 @@
+{
+ "seed": 20261130,
+ "n": 25,
+ "clusters": {
+  "person": [
+   "worker/tool",
+   "worker/workplace",
+   "creator/creation"
+  ],
+  "thing": [
+   "part/whole",
+   "container/contents",
+   "object/material",
+   "category/instance"
+  ],
+  "process": [
+   "cause/effect",
+   "tool/function",
+   "preparation/act"
+  ],
+  "sense": [
+   "degree",
+   "synonyms",
+   "antonyms",
+   "lack",
+   "symbol/symbolized"
+  ]
+ },
+ "singleton_families": [
+  "antonyms",
+  "container/contents",
+  "creator/creation",
+  "lack",
+  "tool/function"
+ ],
+ "slots": [
+  {
+   "id": "SVA21-01",
+   "key_slot": "C",
+   "difficulty": "hard",
+   "key_family": "preparation/act",
+   "key_role": "pair",
+   "sibling": "cause/effect",
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "object/material",
+     "part/whole"
+    ]
+   ],
+   "singleton": "antonyms",
+   "distractor_families": [
+    "antonyms",
+    "cause/effect",
+    "object/material",
+    "part/whole"
+   ]
+  },
+  {
+   "id": "SVA21-02",
+   "key_slot": "C",
+   "difficulty": "hard",
+   "key_family": "worker/workplace",
+   "key_role": "pair",
+   "sibling": "worker/tool",
+   "pairs": [
+    [
+     "worker/tool",
+     "worker/workplace"
+    ],
+    [
+     "degree",
+     "synonyms"
+    ]
+   ],
+   "singleton": "container/contents",
+   "distractor_families": [
+    "container/contents",
+    "degree",
+    "synonyms",
+    "worker/tool"
+   ]
+  },
+  {
+   "id": "SVA21-03",
+   "key_slot": "E",
+   "difficulty": "medium",
+   "key_family": "worker/tool",
+   "key_role": "pair",
+   "sibling": "worker/workplace",
+   "pairs": [
+    [
+     "worker/tool",
+     "worker/workplace"
+    ],
+    [
+     "degree",
+     "synonyms"
+    ]
+   ],
+   "singleton": "container/contents",
+   "distractor_families": [
+    "container/contents",
+    "degree",
+    "synonyms",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-04",
+   "key_slot": "E",
+   "difficulty": "hard",
+   "key_family": "symbol/symbolized",
+   "key_role": "pair",
+   "sibling": "synonyms",
+   "pairs": [
+    [
+     "symbol/symbolized",
+     "synonyms"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "tool/function",
+   "distractor_families": [
+    "synonyms",
+    "tool/function",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-05",
+   "key_slot": "D",
+   "difficulty": "hard",
+   "key_family": "category/instance",
+   "key_role": "pair",
+   "sibling": "object/material",
+   "pairs": [
+    [
+     "category/instance",
+     "object/material"
+    ],
+    [
+     "degree",
+     "symbol/symbolized"
+    ]
+   ],
+   "singleton": "creator/creation",
+   "distractor_families": [
+    "creator/creation",
+    "degree",
+    "object/material",
+    "symbol/symbolized"
+   ]
+  },
+  {
+   "id": "SVA21-06",
+   "key_slot": "B",
+   "difficulty": "hard",
+   "key_family": "part/whole",
+   "key_role": "pair",
+   "sibling": "object/material",
+   "pairs": [
+    [
+     "object/material",
+     "part/whole"
+    ],
+    [
+     "cause/effect",
+     "preparation/act"
+    ]
+   ],
+   "singleton": "lack",
+   "distractor_families": [
+    "cause/effect",
+    "lack",
+    "object/material",
+    "preparation/act"
+   ]
+  },
+  {
+   "id": "SVA21-07",
+   "key_slot": "E",
+   "difficulty": "medium",
+   "key_family": "worker/tool",
+   "key_role": "pair",
+   "sibling": "worker/workplace",
+   "pairs": [
+    [
+     "worker/tool",
+     "worker/workplace"
+    ],
+    [
+     "cause/effect",
+     "preparation/act"
+    ]
+   ],
+   "singleton": "lack",
+   "distractor_families": [
+    "cause/effect",
+    "lack",
+    "preparation/act",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-08",
+   "key_slot": "A",
+   "difficulty": "hard",
+   "key_family": "cause/effect",
+   "key_role": "pair",
+   "sibling": "preparation/act",
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "degree",
+     "synonyms"
+    ]
+   ],
+   "singleton": "creator/creation",
+   "distractor_families": [
+    "creator/creation",
+    "degree",
+    "preparation/act",
+    "synonyms"
+   ]
+  },
+  {
+   "id": "SVA21-09",
+   "key_slot": "C",
+   "difficulty": "hard",
+   "key_family": "part/whole",
+   "key_role": "pair",
+   "sibling": "category/instance",
+   "pairs": [
+    [
+     "category/instance",
+     "part/whole"
+    ],
+    [
+     "cause/effect",
+     "preparation/act"
+    ]
+   ],
+   "singleton": "antonyms",
+   "distractor_families": [
+    "antonyms",
+    "category/instance",
+    "cause/effect",
+    "preparation/act"
+   ]
+  },
+  {
+   "id": "SVA21-10",
+   "key_slot": "B",
+   "difficulty": "hard",
+   "key_family": "creator/creation",
+   "key_role": "single",
+   "sibling": null,
+   "pairs": [
+    [
+     "degree",
+     "synonyms"
+    ],
+    [
+     "category/instance",
+     "object/material"
+    ]
+   ],
+   "singleton": "creator/creation",
+   "distractor_families": [
+    "category/instance",
+    "degree",
+    "object/material",
+    "synonyms"
+   ]
+  },
+  {
+   "id": "SVA21-11",
+   "key_slot": "E",
+   "difficulty": "medium",
+   "key_family": "object/material",
+   "key_role": "pair",
+   "sibling": "category/instance",
+   "pairs": [
+    [
+     "category/instance",
+     "object/material"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "antonyms",
+   "distractor_families": [
+    "antonyms",
+    "category/instance",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-12",
+   "key_slot": "D",
+   "difficulty": "hard",
+   "key_family": "symbol/symbolized",
+   "key_role": "pair",
+   "sibling": "synonyms",
+   "pairs": [
+    [
+     "symbol/symbolized",
+     "synonyms"
+    ],
+    [
+     "cause/effect",
+     "preparation/act"
+    ]
+   ],
+   "singleton": "container/contents",
+   "distractor_families": [
+    "cause/effect",
+    "container/contents",
+    "preparation/act",
+    "synonyms"
+   ]
+  },
+  {
+   "id": "SVA21-13",
+   "key_slot": "A",
+   "difficulty": "medium",
+   "key_family": "preparation/act",
+   "key_role": "pair",
+   "sibling": "cause/effect",
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "lack",
+   "distractor_families": [
+    "cause/effect",
+    "lack",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-14",
+   "key_slot": "C",
+   "difficulty": "hard",
+   "key_family": "synonyms",
+   "key_role": "pair",
+   "sibling": "symbol/symbolized",
+   "pairs": [
+    [
+     "symbol/symbolized",
+     "synonyms"
+    ],
+    [
+     "category/instance",
+     "part/whole"
+    ]
+   ],
+   "singleton": "tool/function",
+   "distractor_families": [
+    "category/instance",
+    "part/whole",
+    "symbol/symbolized",
+    "tool/function"
+   ]
+  },
+  {
+   "id": "SVA21-15",
+   "key_slot": "A",
+   "difficulty": "hard",
+   "key_family": "worker/workplace",
+   "key_role": "pair",
+   "sibling": "worker/tool",
+   "pairs": [
+    [
+     "worker/tool",
+     "worker/workplace"
+    ],
+    [
+     "category/instance",
+     "object/material"
+    ]
+   ],
+   "singleton": "lack",
+   "distractor_families": [
+    "category/instance",
+    "lack",
+    "object/material",
+    "worker/tool"
+   ]
+  },
+  {
+   "id": "SVA21-16",
+   "key_slot": "E",
+   "difficulty": "medium",
+   "key_family": "category/instance",
+   "key_role": "pair",
+   "sibling": "part/whole",
+   "pairs": [
+    [
+     "category/instance",
+     "part/whole"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "antonyms",
+   "distractor_families": [
+    "antonyms",
+    "part/whole",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-17",
+   "key_slot": "B",
+   "difficulty": "hard",
+   "key_family": "antonyms",
+   "key_role": "single",
+   "sibling": null,
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "object/material",
+     "part/whole"
+    ]
+   ],
+   "singleton": "antonyms",
+   "distractor_families": [
+    "cause/effect",
+    "object/material",
+    "part/whole",
+    "preparation/act"
+   ]
+  },
+  {
+   "id": "SVA21-18",
+   "key_slot": "A",
+   "difficulty": "medium",
+   "key_family": "degree",
+   "key_role": "pair",
+   "sibling": "symbol/symbolized",
+   "pairs": [
+    [
+     "degree",
+     "symbol/symbolized"
+    ],
+    [
+     "object/material",
+     "part/whole"
+    ]
+   ],
+   "singleton": "tool/function",
+   "distractor_families": [
+    "object/material",
+    "part/whole",
+    "symbol/symbolized",
+    "tool/function"
+   ]
+  },
+  {
+   "id": "SVA21-19",
+   "key_slot": "D",
+   "difficulty": "hard",
+   "key_family": "tool/function",
+   "key_role": "single",
+   "sibling": null,
+   "pairs": [
+    [
+     "category/instance",
+     "part/whole"
+    ],
+    [
+     "symbol/symbolized",
+     "synonyms"
+    ]
+   ],
+   "singleton": "tool/function",
+   "distractor_families": [
+    "category/instance",
+    "part/whole",
+    "symbol/symbolized",
+    "synonyms"
+   ]
+  },
+  {
+   "id": "SVA21-20",
+   "key_slot": "D",
+   "difficulty": "hard",
+   "key_family": "container/contents",
+   "key_role": "single",
+   "sibling": null,
+   "pairs": [
+    [
+     "degree",
+     "symbol/symbolized"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "container/contents",
+   "distractor_families": [
+    "degree",
+    "symbol/symbolized",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-21",
+   "key_slot": "D",
+   "difficulty": "hard",
+   "key_family": "synonyms",
+   "key_role": "pair",
+   "sibling": "symbol/symbolized",
+   "pairs": [
+    [
+     "symbol/symbolized",
+     "synonyms"
+    ],
+    [
+     "object/material",
+     "part/whole"
+    ]
+   ],
+   "singleton": "creator/creation",
+   "distractor_families": [
+    "creator/creation",
+    "object/material",
+    "part/whole",
+    "symbol/symbolized"
+   ]
+  },
+  {
+   "id": "SVA21-22",
+   "key_slot": "B",
+   "difficulty": "hard",
+   "key_family": "cause/effect",
+   "key_role": "pair",
+   "sibling": "preparation/act",
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "degree",
+     "symbol/symbolized"
+    ]
+   ],
+   "singleton": "container/contents",
+   "distractor_families": [
+    "container/contents",
+    "degree",
+    "preparation/act",
+    "symbol/symbolized"
+   ]
+  },
+  {
+   "id": "SVA21-23",
+   "key_slot": "B",
+   "difficulty": "medium",
+   "key_family": "object/material",
+   "key_role": "pair",
+   "sibling": "category/instance",
+   "pairs": [
+    [
+     "category/instance",
+     "object/material"
+    ],
+    [
+     "degree",
+     "synonyms"
+    ]
+   ],
+   "singleton": "creator/creation",
+   "distractor_families": [
+    "category/instance",
+    "creator/creation",
+    "degree",
+    "synonyms"
+   ]
+  },
+  {
+   "id": "SVA21-24",
+   "key_slot": "A",
+   "difficulty": "hard",
+   "key_family": "degree",
+   "key_role": "pair",
+   "sibling": "symbol/symbolized",
+   "pairs": [
+    [
+     "degree",
+     "symbol/symbolized"
+    ],
+    [
+     "worker/tool",
+     "worker/workplace"
+    ]
+   ],
+   "singleton": "tool/function",
+   "distractor_families": [
+    "symbol/symbolized",
+    "tool/function",
+    "worker/tool",
+    "worker/workplace"
+   ]
+  },
+  {
+   "id": "SVA21-25",
+   "key_slot": "C",
+   "difficulty": "medium",
+   "key_family": "lack",
+   "key_role": "single",
+   "sibling": null,
+   "pairs": [
+    [
+     "cause/effect",
+     "preparation/act"
+    ],
+    [
+     "category/instance",
+     "part/whole"
+    ]
+   ],
+   "singleton": "lack",
+   "distractor_families": [
+    "category/instance",
+    "cause/effect",
+    "part/whole",
+    "preparation/act"
+   ]
+  }
+ ]
+}
