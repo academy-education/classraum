@@ -11,8 +11,13 @@
  *   a1build  <outdir> <passages.json> <items.json>...   A1 judge file (key-blind) for lexically flagged items
  *   licbuild <outdir> <passages.json> <items.json>...   licensing file (attitude + vocabulary), seeded letters
  *   freeze   <outdir> <passages.json> <items.json>... [--drop <ids>]  bank-shaped batch.json (for ssat-wv build)
- *   score    <outdir> ws|iso|scale                  Stage 1 relative bars at the frozen n; Stage 3 margin;
- *                                                  the pre-registered scale test (H1, H2)
+ *   score    <outdir> ws|iso|scale|screen           Stage 1 relative bars at the frozen n; Stage 3 margin;
+ *                                                  the pre-registered scale test (H1, H2); v2 pre-freeze screen
+ *
+ * v2 (SSAT-READING-PD-PILOT-V2-PREREGISTERED.md, set_ids PD2-P1..P6): the five-direction attitude rule is
+ * replaced by the POLARITY rule (attitudePolarity + attitudeMix), srccheck requires a cleared recognition
+ * pre-check per passage, `score screen` lists the items the pre-freeze screen sends to re-authoring, and
+ * `score iso` reports the candidate rate per passage and over the recognition-cleared passages.
  *   --selftest
  *
  * Every reader refuses (exit 2) on a missing file or a short population, and prints denominators
@@ -66,6 +71,20 @@ function srccheck(pfile) {
   const need = ['set_id', 'slot', 'genre', 'title', 'author', 'year', 'url', 'local_path', 'source_sha256', 'pd_reason', 'trims', 'modernizations', 'text']
   for (const p of P) {
     const id = p.set_id ?? '?'
+    if (isV2(id)) {
+      // v2 Stage S: the recognition pre-check (one fresh solver, the passage's first two sentences only) must have
+      // cleared THIS text: every attempt recorded, the last one on this exact opening, answer "unknown"
+      const rc = p.recognition, open2 = firstSentences(p.text, 2)
+      if (!rc || !Array.isArray(rc.attempts) || !rc.attempts.length) problems.push(`${id}: v2 needs recognition.attempts (the pre-check record)`)
+      else {
+        const last = rc.attempts[rc.attempts.length - 1]
+        if (rc.cleared !== true) problems.push(`${id}: recognition not cleared`)
+        if (vnorm(last.shown) !== vnorm(open2)) problems.push(`${id}: the last recognition attempt was not shown this passage's first two sentences`)
+        if (!/^unknown$/i.test(String(last.author ?? '').trim()) || !/^unknown$/i.test(String(last.work ?? '').trim())) problems.push(`${id}: the recognition solver named "${last.author}" / "${last.work}" (v2: any name replaces the passage)`)
+        if (!last.solver || !last.file) problems.push(`${id}: recognition attempt needs solver and file`)
+      }
+      if (!String(p.fame ?? '').trim()) problems.push(`${id}: v2 needs a fame judgement`)
+    }
     for (const k of need) if (p[k] === undefined || p[k] === null || (typeof p[k] === 'string' && !p[k].trim())) problems.push(`${id}: missing ${k}`)
     if (!SLOTS.includes(p.slot)) problems.push(`${id}: slot ${p.slot} not one of ${SLOTS}`)
     if (!(Number(p.year) > 1600)) problems.push(`${id}: year ${p.year}`)
@@ -93,11 +112,62 @@ function srccheck(pfile) {
 }
 
 // ---------- Stage 0 ----------
+/** the first n sentences of a passage (for the v2 recognition pre-check); a sentence ends at . ! or ? followed by
+ *  space/newline and an opening capital or quote, or at a paragraph break (a poem's stanza break) */
+export function firstSentences(text, n) {
+  const t = String(text).replace(/\[\.\.\.\]/g, ' ').replace(/\r/g, '')
+  const out = []; let cur = ''
+  for (let i = 0; i < t.length && out.length < n; i++) {
+    cur += t[i]
+    const end = /[.!?]/.test(t[i]) && /^["'’”)]*(\s+["'‘“(]?[A-Z]|\s*$)/.test(t.slice(i + 1, i + 6))
+    const para = t[i] === '\n' && t[i + 1] === '\n'
+    if ((end || para) && cur.trim()) { let j = i + 1; while (/["'’”)]/.test(t[j] ?? '')) { cur += t[j]; j++; i++ } out.push(cur.trim().replace(/\s+/g, ' ')); cur = '' }
+  }
+  if (out.length < n && cur.trim()) out.push(cur.trim().replace(/\s+/g, ' '))
+  return out.join(' ')
+}
 const paras = text => String(text).split(/\n\s*\n/).filter(x => x.trim())
 const ORD = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth']
 const cw = s => [...new Set(content(s).map(stemW).filter(w => w.length > 3))]
 const stemEq = (a, b) => { const n = Math.min(5, a.length, b.length); return n >= 4 && a.slice(0, n) === b.slice(0, n) }
 const ATT_WORDS = Object.values({ ...(await import('./ssat-wv.mjs')).ATT_DIR }).flat()
+export const isV2 = id => /^PD2-/.test(String(id))
+// ---------- v2 attitude rule: POLARITY, not direction (SSAT-READING-PD-PILOT-V2-PREREGISTERED.md, rule 5') ----------
+// Every choice carries words of exactly one polarity class; neutral / mixed words (indifferent, detached, wistful,
+// nostalgic, ironic, wry, bemused, uncertain ...) are not in either list and refuse. At least one OTHER choice shares
+// the key's polarity (the key is never the only warm or only cool option) and at least two hold the opposite one.
+export const POLARITY = {
+  warm: 'admiring admiration approving approval appreciative appreciation proud pride respectful respect grateful gratitude sympathetic sympathy fond fondness affectionate affection enthusiastic enthusiasm reverent reverence tender tenderness amused amusement playful humorous whimsical delighted delight hopeful hope compassionate compassion warm warmth'.split(' '),
+  cool: 'critical disapproving disapproval scornful scorn contemptuous contempt indignant indignation irritated irritation resentful resentment exasperated exasperation disdainful disdain annoyed annoyance angry anger mocking uneasy unease worried worry apprehensive apprehension anxious anxiety wary wariness fearful fear alarmed alarm regretful regret sad sadness mournful melancholy rueful doubtful doubt skeptical skepticism sorrowful sorrow grief troubled bitter bitterness dismayed dismay suspicious suspicion disappointed disappointment'.split(' '),
+}
+const NEUTRAL_ATT = new Set([...Object.values((await import('./ssat-wv.mjs')).ATT_DIR).flat()].filter(w => !POLARITY.warm.includes(w) && !POLARITY.cool.includes(w)))
+const attWords = c => String(c).toLowerCase().replace(/[’']/g, "'").replace(/[^a-z' -]/g, ' ').split(/[\s-]+/).filter(Boolean)
+export function attitudePolarity(choices, answer) {
+  const probs = [], cls = choices.map((c, j) => {
+    const ws = attWords(c), hits = Object.entries(POLARITY).filter(([, lex]) => ws.some(w => lex.includes(w))).map(([k]) => k)
+    const neu = ws.filter(w => NEUTRAL_ATT.has(w))
+    if (neu.length) probs.push(`attitude choice ${j} ("${c}") uses neutral/mixed word(s) ${neu.join(', ')} (v2: every choice is warm or cool)`)
+    if (hits.length !== 1) probs.push(`attitude choice ${j} ("${c}") matches ${hits.length ? hits.join('+') : 'no'} polarity class (need exactly one; use a lexicon word)`)
+    return hits.length === 1 ? hits[0] : null
+  })
+  const k = cls[answer]
+  if (k) {
+    const same = cls.filter((x, j) => j !== answer && x === k).length, opp = cls.filter(x => x && x !== k).length
+    if (same < 1) probs.push(`attitude key "${choices[answer]}" is the only ${k} option (v2: at least one other ${k} option)`)
+    if (opp < 2) probs.push(`attitude: only ${opp} option(s) of the polarity opposite the key (v2: at least two)`)
+  }
+  return { classes: cls, keyClass: k, keyClassSize: k ? cls.filter(x => x === k).length : 0, probs }
+}
+/** v2 batch rule: the key's polarity class is the 2-option class in >= floor(n/3) attitude items and the 3-option class
+ *  in >= floor(n/3), so "pick from the majority (or minority) polarity" never decides the batch */
+export function attitudeMix(items) {
+  const att = items.filter(q => q.kind === 'attitude' && isV2(q.set_id))
+  const sizes = att.map(q => attitudePolarity(q.choices, q.answer).keyClassSize), need = Math.floor(att.length / 3)
+  const two = sizes.filter(x => x === 2).length, three = sizes.filter(x => x === 3).length, pr = []
+  if (att.length && (two < need || three < need)) pr.push(`batch: attitude key-polarity class size 2 in ${two}/${att.length}, 3 in ${three}/${att.length} (need >= ${need} of each)`)
+  const warm = att.filter(q => attitudePolarity(q.choices, q.answer).keyClass === 'warm').length
+  return { pr, two, three, n: att.length, warmKeys: warm }
+}
 
 /** mechanical rules 1-9 over one passage's items; returns problem strings */
 export function checkPassage(p, items) {
@@ -130,9 +200,9 @@ export function checkPassage(p, items) {
       if (lures.filter(x => x === 'unsupported').length > 1) pr.push(`${t}: ${lures.filter(x => x === 'unsupported').length} "unsupported" lures (at most 1)`)
     }
     if (q.kind === 'attitude') {
-      const { probs } = attitudeDirections(q.choices); probs.forEach(x => pr.push(`${t}: ${x}`))
-      const tw = content(text).map(stemW)
-      for (const c of q.choices) for (const w of content(c).map(stemW)) if (ATT_WORDS.some(a => stemEq(stemW(a), w)) && tw.some(x => stemEq(x, w))) pr.push(`${t}: attitude word "${w}" (choice "${c}") appears in the passage`)
+      const { probs } = isV2(id) ? attitudePolarity(q.choices, q.answer) : attitudeDirections(q.choices); probs.forEach(x => pr.push(`${t}: ${x}`))
+      const tw = content(text).map(stemW), lexW = isV2(id) ? [...ATT_WORDS, ...POLARITY.warm, ...POLARITY.cool] : ATT_WORDS
+      for (const c of q.choices) for (const w of content(c).map(stemW)) if (lexW.some(a => stemEq(stemW(a), w)) && tw.some(x => stemEq(x, w))) pr.push(`${t}: attitude word "${w}" (choice "${c}") appears in the passage`)
     }
     if (q.kind === 'vocabulary-in-context') {
       const m = String(q.prompt).match(/["“]([A-Za-z'’-]+)["”]\s+most nearly means/)
@@ -190,6 +260,7 @@ function verify(pfile, ifiles, { a1Dir, licDir, drop = [] }) {
     if (its.length < 6 && new Set(its.map(q => q.kind)).size !== its.length) problems.push(`${s}: a kind appears twice`)
   }
   const band = lengthBand(items); problems.push(...band.pr)
+  const mix = attitudeMix(items); problems.push(...mix.pr)
   // A1
   const toJudge = items.filter(q => lexicalFlags({ subskill: q.kind, prompt: q.prompt, passage: byId[q.set_id].text, choices: q.choices }).length)
   if (a1Dir) {
@@ -221,8 +292,8 @@ function verify(pfile, ifiles, { a1Dir, licDir, drop = [] }) {
     }
   } else problems.push(`licensing: ${licItems.length} attitude/vocabulary item(s) need --lic judgements`)
   for (const x of problems) console.log(`PROBLEM ${x}`)
-  const bad = new Set(problems.map(x => x.split(/[: ]/)[0]).filter(x => /^PD-P\d-\d$/.test(x)))
-  console.log(`verify: ${items.length} items in ${sets.length} passages; key uniquely longest ${band.longest}, shortest ${band.shortest} (band ${band.lo}-${band.hi}); A1-judged items ${toJudge.length}; licensing items ${licItems.length}; ${problems.length} problem(s) on ${bad.size} item(s)${bad.size ? ': ' + [...bad].join(' ') : ''}`)
+  const bad = new Set(problems.map(x => x.split(/[: ]/)[0]).filter(x => /^PD2?-P\d-\d$/.test(x)))
+  console.log(`verify: ${items.length} items in ${sets.length} passages; key uniquely longest ${band.longest}, shortest ${band.shortest} (band ${band.lo}-${band.hi}); A1-judged items ${toJudge.length};${mix.n ? ` attitude key-polarity 2:${mix.two} 3:${mix.three} warm keys ${mix.warmKeys}/${mix.n};` : ''} licensing items ${licItems.length}; ${problems.length} problem(s) on ${bad.size} item(s)${bad.size ? ': ' + [...bad].join(' ') : ''}`)
   if (problems.length) process.exit(2)
   console.log('verify: CLEAN')
 }
@@ -324,8 +395,31 @@ function cmdScore(outdir, stage) {
     console.log(`STAGE 3 (A, options-only isolated, 3 samples of one solver): candidate ${c[1]}/${c[0]} = ${cr.toFixed(1)}%  live control ${l[1]}/${l[0]} = ${lr.toFixed(1)}%  margin ${(cr - lr >= 0 ? '+' : '') + (cr - lr).toFixed(1)}  bar: control 10-45% and margin <= +10 -> ${v}`)
     console.log(`  unanimity (reported): candidate ${unan('candidate')}/${nc} = ${(100 * unan('candidate') / nc).toFixed(1)}%  control ${unan('live')}/${nl} = ${(100 * unan('live') / nl).toFixed(1)}%`)
     console.log(`  candidate items solved by all three samples: ${allHit.length}/${nc}${allHit.length ? ' (' + allHit.join(' ') + ')' : ''}`)
-    writeFileSync(join(outdir, 'stage3.json'), JSON.stringify({ verdict: v, candidate: c, live: l, margin: cr - lr, unanimity: { candidate: unan('candidate'), nc, live: unan('live'), nl }, allHit }, null, 1) + '\n')
-  } else die('score <outdir> ws|iso|scale')
+    const perSet = {}
+    for (const [q, k] of ids) if (k.pop === 'candidate') { const g = (perSet[k.group] ??= [0, 0]); g[0] += per[q].length; g[1] += per[q].filter(p => p === k.fKey).length }
+    const pf = join(outdir, 'passages.json'), PP = existsSync(pf) ? rd(pf) : null
+    if (!PP && Object.keys(perSet).some(isV2)) die('v2: passages.json (with the recognition record) is required beside the renders to report the cleared subset')
+    const cleared = new Set((PP ?? []).filter(p => p.recognition?.cleared === true).map(p => p.set_id))
+    for (const [g, [n, h]] of Object.entries(perSet).sort()) console.log(`  per passage ${g}: ${h}/${n} = ${(100 * h / n).toFixed(1)}%${PP ? (cleared.has(g) ? '  (recognition: cleared)' : '  (recognition: NOT cleared)') : ''}`)
+    const cl = Object.entries(perSet).filter(([g]) => cleared.has(g)).reduce((a, [, [n, h]]) => [a[0] + n, a[1] + h], [0, 0])
+    if (PP) console.log(`  recognition-cleared passages ${Object.keys(perSet).filter(g => cleared.has(g)).length}/${Object.keys(perSet).length}: candidate ${cl[1]}/${cl[0]}${cl[0] ? ` = ${(100 * cl[1] / cl[0]).toFixed(1)}%` : ''}`)
+    writeFileSync(join(outdir, 'stage3.json'), JSON.stringify({ verdict: v, candidate: c, live: l, margin: cr - lr, unanimity: { candidate: unan('candidate'), nc, live: unan('live'), nl }, allHit, perPassage: perSet, cleared: PP ? { sets: [...cleared], candidate: cl } : null }, null, 1) + '\n')
+  } else if (stage === 'screen') {
+    // v2 pre-freeze screen: same render shape as Stage 3, three FRESH samples (never reused in Stage 3); an item is
+    // sent to re-authoring when >= 2 of the 3 samples pick its key. Reported, never a gate.
+    const files = ['screen-a.json', 'screen-b.json', 'screen-c.json'].map(f => lab(rd(join(outdir, f))))
+    const ids = Object.entries(key).filter(([, k]) => k.pop === 'candidate' || k.pop === 'live')
+    const nc = ids.filter(([, k]) => k.pop === 'candidate').length, nl = ids.filter(([, k]) => k.pop === 'live').length
+    if (nl !== 48 || nc < 20) die(`screen key: candidate ${nc}, live ${nl}`)
+    const hits = {}, c = [0, 0], l = [0, 0]
+    files.forEach((f, i) => { for (const [q, k] of ids) { const v = f[q]; if (!v?.pick || !L.includes(v.pick)) die(`screen sample ${i + 1}: no pick for ${q}`); const h = v.pick === k.fKey ? 1 : 0; hits[q] = (hits[q] ?? 0) + h; const a = k.pop === 'candidate' ? c : l; a[0]++; a[1] += h } })
+    const reauthor = ids.filter(([q, k]) => k.pop === 'candidate' && hits[q] >= 2).map(([, k]) => k.src).sort()
+    const ctl2 = ids.filter(([q, k]) => k.pop === 'live' && hits[q] >= 2).length
+    console.log(`SCREEN (pre-freeze, 3 fresh samples; not a gate): candidate ${c[1]}/${c[0]} = ${(100 * c[1] / c[0]).toFixed(1)}%  live control ${l[1]}/${l[0]} = ${(100 * l[1] / l[0]).toFixed(1)}%`)
+    console.log(`  solved by >= 2 of 3: candidate ${reauthor.length}/${nc}  live control ${ctl2}/${nl} (${(100 * ctl2 / nl).toFixed(1)}%)`)
+    console.log(`  RE-AUTHOR (new stem + full new option set, same kind, once): ${reauthor.join(' ') || 'none'}`)
+    writeFileSync(join(outdir, 'screen.json'), JSON.stringify({ candidate: c, live: l, reauthor, control2of3: ctl2, nl, nc, hits: Object.fromEntries(ids.map(([q, k]) => [k.src, hits[q]])) }, null, 1) + '\n')
+  } else die('score <outdir> ws|iso|scale|screen')
 }
 
 // ---------- selftest ----------
@@ -373,6 +467,23 @@ function selftest() {
   expect(stage1(S(23, 24, 9, 13, 0, 24), live).ok, 'stage 1 at n = 24: F and pilot-pass not decidable; 23/24 C passes')
   expect(scaleTest(S(36, 18, 0, 6, 0)).h1 && scaleTest(S(36, 18, 0, 6, 0)).h2 && !scaleTest(S(36, 19, 0, 7, 0)).h1 && !scaleTest(S(36, 19, 0, 7, 0)).h2, 'scale: 18/36 easy and 6/36 dead meet; 19 and 7 do not')
   expect(barAMargin(33.0, 23.0) === 'PASS' && barAMargin(33.1, 23.0) === 'FAIL' && barAMargin(30, 46) === 'INVALID', 'A: margin +10 passes, +10.1 fails, control 46% INVALID')
+  // v2 polarity rule
+  const pol = (ch, a) => attitudePolarity(ch, a).probs
+  expect(pol(['fond', 'admiring', 'scornful', 'uneasy', 'resentful'], 0).length === 0, 'v2 rule 5: warm key with one more warm and three cool passes')
+  expect(pol(['fond', 'admiring', 'grateful', 'uneasy', 'scornful'], 3).length === 0, 'v2 rule 5: cool key with one more cool and three warm passes')
+  expect(pol(['fond', 'scornful', 'uneasy', 'resentful', 'anxious'], 0).some(x => /only warm/.test(x)), 'v2 rule 5: a warm key that is the ONLY warm option refuses (the v1 tell)')
+  expect(pol(['scornful', 'uneasy', 'resentful', 'anxious', 'fond'], 0).some(x => /opposite/.test(x)), 'v2 rule 5: only one option of the opposite polarity refuses')
+  expect(pol(['fond', 'admiring', 'scornful', 'uneasy', 'detached'], 0).some(x => /neutral/.test(x)), 'v2 rule 5: a neutral option (detached) refuses')
+  expect(pol(['fond', 'admiring', 'scornful', 'uneasy', 'wistful'], 0).some(x => /neutral/.test(x)), 'v2 rule 5: a mixed option (wistful) refuses')
+  expect(pol(['fond regret', 'admiring', 'scornful', 'uneasy', 'resentful'], 1).some(x => /warm\+cool/.test(x)), 'v2 rule 5: an option hitting both classes refuses')
+  const attQ = (sz, i) => ({ set_id: 'PD2-P1', kind: 'attitude', answer: 0, choices: sz === 2 ? ['fond', 'scornful', 'uneasy', 'resentful', 'admiring'].map((x, j) => j === 1 ? 'admiring' : j === 4 ? 'anxious' : x) : ['fond', 'admiring', 'grateful', 'uneasy', 'scornful'], qid: `PD2-P${i}-5` })
+  expect(attitudeMix([1, 2, 3, 4, 5, 6].map(i => attQ(i <= 3 ? 2 : 3, i))).pr.length === 0, 'v2 batch: key class size 2 in 3/6 and 3 in 3/6 passes')
+  expect(attitudeMix([1, 2, 3, 4, 5, 6].map(i => attQ(i <= 5 ? 3 : 2, i))).pr.length === 1, 'v2 batch: key class the majority in 5/6 refuses')
+  const P2v = { ...P, set_id: 'PD2-P1' }, v2items = good.map(q => ({ ...q, qid: q.qid.replace('PD-', 'PD2-'), set_id: 'PD2-P1' }))
+  expect(checkPassage(P2v, v2items).some(x => /neutral/.test(x)), 'v2: checkPassage applies the polarity rule to PD2- ids (the v1 five-direction set now refuses)')
+  expect(checkPassage(P2v, v2items.map(q => q.kind === 'attitude' ? { ...q, choices: ['admiring', 'grateful', 'scornful', 'uneasy', 'resentful'] } : q)).length === 0, 'v2: a polarity-balanced attitude item passes checkPassage')
+  expect(firstSentences('It was late. "Go home," she said. He did not.\n\nNext.', 2) === 'It was late. "Go home," she said.', `firstSentences: two sentences with a quote (${firstSentences('It was late. "Go home," she said. He did not.', 2)})`)
+  expect(firstSentences('The wind is low\nupon the hill;\n\nAnd all is still.', 2) === 'The wind is low upon the hill; And all is still.', `firstSentences: a stanza break ends a sentence (${firstSentences('The wind is low\nupon the hill;\n\nAnd all is still.', 2)})`)
   console.log(fail ? `SELFTEST FAILED (${fail})` : 'selftest passed'); process.exit(fail ? 1 : 0)
 }
 
