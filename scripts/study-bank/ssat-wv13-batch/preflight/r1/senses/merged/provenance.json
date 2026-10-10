@@ -1,0 +1,712 @@
+{
+ "WV13-P01.5": {
+  "word": "scale",
+  "choices": [
+   "weighing machine",
+   "series of notes",
+   "overall size",
+   "chalky crust",
+   "rating system"
+  ],
+  "pairs": {
+   "0-1": {
+    "glosses": [
+     "weighing machine",
+     "series of notes"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-2": {
+    "glosses": [
+     "weighing machine",
+     "overall size"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-3": {
+    "glosses": [
+     "weighing machine",
+     "chalky crust"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-4": {
+    "glosses": [
+     "weighing machine",
+     "rating system"
+    ],
+    "a": "overlap",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     "'the scale read 7' can be a weighing machine's display or a point on a rating scale",
+     null
+    ]
+   },
+   "1-2": {
+    "glosses": [
+     "series of notes",
+     "overall size"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-3": {
+    "glosses": [
+     "series of notes",
+     "chalky crust"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-4": {
+    "glosses": [
+     "series of notes",
+     "rating system"
+    ],
+    "a": "overlap",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     "both are graded ladders; 'she moved steadily up the scale' reads as rising notes or rising rank",
+     null
+    ]
+   },
+   "2-3": {
+    "glosses": [
+     "overall size",
+     "chalky crust"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-4": {
+    "glosses": [
+     "overall size",
+     "rating system"
+    ],
+    "a": "overlap",
+    "b": "overlap",
+    "round": 1,
+    "notes": [
+     "'the scale of the earthquake' can be its overall size or its rating on a magnitude scale",
+     "'the experts disagreed about the scale of the storm' reads as its magnitude or its rating on a graded scale (e.g. a hurricane category)"
+    ]
+   },
+   "3-4": {
+    "glosses": [
+     "chalky crust",
+     "rating system"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   }
+  }
+ },
+ "WV13-P02.4": {
+  "word": "bar",
+  "choices": [
+   "serving counter",
+   "musical measure",
+   "practice of law",
+   "obstruction",
+   "coloured stripe"
+  ],
+  "pairs": {
+   "0-1": {
+    "glosses": [
+     "serving counter",
+     "musical measure"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-2": {
+    "glosses": [
+     "serving counter",
+     "practice of law"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-3": {
+    "glosses": [
+     "serving counter",
+     "obstruction"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-4": {
+    "glosses": [
+     "serving counter",
+     "coloured stripe"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-2": {
+    "glosses": [
+     "musical measure",
+     "practice of law"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-3": {
+    "glosses": [
+     "musical measure",
+     "obstruction"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-4": {
+    "glosses": [
+     "musical measure",
+     "coloured stripe"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-3": {
+    "glosses": [
+     "practice of law",
+     "obstruction"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-4": {
+    "glosses": [
+     "practice of law",
+     "coloured stripe"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "3-4": {
+    "glosses": [
+     "obstruction",
+     "coloured stripe"
+    ],
+    "a": "overlap",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     "'a red-and-white bar across the lane' can be a barrier arm blocking it or a painted coloured stripe",
+     null
+    ]
+   }
+  }
+ },
+ "WV13-P03.4": {
+  "word": "stock",
+  "choices": [
+   "flowers",
+   "shares",
+   "broth",
+   "lineage",
+   "handle"
+  ],
+  "pairs": {
+   "0-1": {
+    "glosses": [
+     "flowers",
+     "shares"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-2": {
+    "glosses": [
+     "flowers",
+     "broth"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-3": {
+    "glosses": [
+     "flowers",
+     "lineage"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-4": {
+    "glosses": [
+     "flowers",
+     "handle"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-2": {
+    "glosses": [
+     "shares",
+     "broth"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-3": {
+    "glosses": [
+     "shares",
+     "lineage"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-4": {
+    "glosses": [
+     "shares",
+     "handle"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-3": {
+    "glosses": [
+     "broth",
+     "lineage"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-4": {
+    "glosses": [
+     "broth",
+     "handle"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "3-4": {
+    "glosses": [
+     "lineage",
+     "handle"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   }
+  }
+ },
+ "WV13-P04.4": {
+  "word": "ring",
+  "choices": [
+   "a band worn on a finger",
+   "an enclosed space for contests",
+   "a short telephone call",
+   "a burner on a kitchen stove",
+   "a group working in secret"
+  ],
+  "pairs": {
+   "0-1": {
+    "glosses": [
+     "a band worn on a finger",
+     "an enclosed space for contests"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-2": {
+    "glosses": [
+     "a band worn on a finger",
+     "a short telephone call"
+    ],
+    "a": "overlap",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     "'he gave her a ring' reads as either a finger band or a phone call",
+     null
+    ]
+   },
+   "0-3": {
+    "glosses": [
+     "a band worn on a finger",
+     "a burner on a kitchen stove"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-4": {
+    "glosses": [
+     "a band worn on a finger",
+     "a group working in secret"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-2": {
+    "glosses": [
+     "an enclosed space for contests",
+     "a short telephone call"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-3": {
+    "glosses": [
+     "an enclosed space for contests",
+     "a burner on a kitchen stove"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-4": {
+    "glosses": [
+     "an enclosed space for contests",
+     "a group working in secret"
+    ],
+    "a": "overlap",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     "'police raided the dogfighting ring' can be read as the arena where fights are held or the secret group running them",
+     null
+    ]
+   },
+   "2-3": {
+    "glosses": [
+     "a short telephone call",
+     "a burner on a kitchen stove"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-4": {
+    "glosses": [
+     "a short telephone call",
+     "a group working in secret"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "3-4": {
+    "glosses": [
+     "a burner on a kitchen stove",
+     "a group working in secret"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   }
+  }
+ },
+ "WV13-P05.4": {
+  "word": "capital",
+  "choices": [
+   "a city where a government sits",
+   "a town known best for one product",
+   "a letter in uppercase form",
+   "the carved top of a pillar",
+   "an advantage won from a situation"
+  ],
+  "pairs": {
+   "0-1": {
+    "glosses": [
+     "a city where a government sits",
+     "a town known best for one product"
+    ],
+    "a": "overlap",
+    "b": "overlap",
+    "round": 1,
+    "notes": [
+     "the product sense extends the seat-of-government sense; 'Bordeaux, the capital of the wine region' is defensible either way",
+     "'the town is the region's capital' (or 'arrived in the capital') can mean seat of government or the place famous for its product; both are 'chief place' senses"
+    ]
+   },
+   "0-2": {
+    "glosses": [
+     "a city where a government sits",
+     "a letter in uppercase form"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-3": {
+    "glosses": [
+     "a city where a government sits",
+     "the carved top of a pillar"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "0-4": {
+    "glosses": [
+     "a city where a government sits",
+     "an advantage won from a situation"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-2": {
+    "glosses": [
+     "a town known best for one product",
+     "a letter in uppercase form"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-3": {
+    "glosses": [
+     "a town known best for one product",
+     "the carved top of a pillar"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "1-4": {
+    "glosses": [
+     "a town known best for one product",
+     "an advantage won from a situation"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 1,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "2-3": {
+    "glosses": [
+     "a letter in uppercase form",
+     "the carved top of a pillar"
+    ],
+    "a": "distinct",
+    "b": "overlap",
+    "round": 0,
+    "notes": [
+     null,
+     "'the capital was elaborately decorated' fits an illuminated uppercase letter or a carved column head equally"
+    ]
+   },
+   "2-4": {
+    "glosses": [
+     "a letter in uppercase form",
+     "an advantage won from a situation"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   },
+   "3-4": {
+    "glosses": [
+     "the carved top of a pillar",
+     "an advantage won from a situation"
+    ],
+    "a": "distinct",
+    "b": "distinct",
+    "round": 0,
+    "notes": [
+     null,
+     null
+    ]
+   }
+  }
+ }
+}

@@ -8224,6 +8224,25 @@
           "verdict": "ssat-wv.mjs verify (WV12 branch: author/character frames, WV11 vocabulary frames) + ssat-wv12-rules.mjs check (form, genre, why+why2, irony words, judges' two support sentences) + A1 + licensing (WV12 prompt, two judges per version file) + sense overlap (agreement rule); one fix round. Round 0: mechanical 12/14/12/9, A1 0 absent, licensing 39/40 (P04 attitude v1 admiration over disapproval, both judges), senses refused P02/P03/P04. Round 1: P01, P02, P04 refused on sense overlap (both judges); P03 refused mechanically (vocabulary v4 re-keyed by the fixer). Licensing round 1 report-only 30/30. Grouped screen and Stages 1-4 not run."
         }
       }
+    },
+    {
+      "id": "ssat-reading-wv13-2026-10-11",
+      "createdAt": "2026-10-11",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-wv13",
+      "contentSha": "709b9d4cb6f9b443917363626a22883a7734d492d5576ee60463284a9b1025f9",
+      "status": "killed",
+      "note": "WV6 whole-passage five-version method (owner: keep SSAT Reading fully AI-authored). WV12's author/narrator attitude form (two licensing sentences) in P01-P04, character action in P05 only; the vocabulary sense check run by two PERSISTENT judge sessions that re-judge only changed glosses (both-judge refusal unchanged); disjoint assigned headword lists, no example headword in the brief, fixguard after every fix. Pre-registered READING-BATCH-WV13-2026-10-11.prereg.md (b3b3a5e8) before any author. contentSha = sha256 of the five post-fix units (nothing frozen). STOPPED at pre-flight: stage 0 passed 3 of 5 (P02, P03, P04; P01 scale and P05 capital refused by both persistent judges on the NEW glosses written in the fix round: real-content refusals), then the grouped screen refused all three (16/18, 9/18, 10/18 on one version each, limit 7), every one on v0, the warm/admiring world. Licensing 50/50 round 0 and 30/30 round 1, both judges (author-form attitude 20/20 + 10/10); A1 0 absent; fixguard clean on all five fixes. Consistency channel (report-only, pseudo-draw): KK-DX candidate +38.3, live +41.8, PD v2 +30.0; candidate KK-DS +8.3. Nothing frozen, drawn, graded or inserted. READING-BATCH-WV13-2026-10-11.md; REGISTER section 5, 2026-10-11.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "contentSha": "709b9d4cb6f9b443917363626a22883a7734d492d5576ee60463284a9b1025f9",
+          "verdict": "ssat-wv.mjs verify (WV12 branch for WV13 ids, five vocabulary phrasings) + ssat-wv12-rules.mjs check (R1-R5) + ssat-wv13-rules.mjs check (R6-R8) + A1 + licensing (WV12 prompt) + persistent-judge senses (ssat-wv13-senses.mjs); one fix round + fixguard; grouped screen. Round 0: senses refused P01 (chalky crust/fish's skin plate), P02 (obstruction/solid block), P05 (money/advantage), both judges; licensing 50/50; A1 0 absent. Round 1 (12 changed pairs asked, 38 carried): P02 clean; P01 refused (overall size/rating system) and P05 refused (seat of government/town known for one product), both judges on new glosses. Grouped screen P02 16/18 v0, P03 9/18 v0, P04 10/18 v0: all REFUSE. Stages 1-4 not run."
+        }
+      }
     }
   ],
   "auditedCohorts": [
