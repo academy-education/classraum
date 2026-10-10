@@ -1,0 +1,78 @@
+{
+  "WV12-P01.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "overlap",
+      "0-4": "distinct",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-3": "'As he stood at the window, something struck him' can be read as being hit by an object or as a thought occurring to him."
+    }
+  },
+  "WV12-P02.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "overlap",
+      "0-3": "overlap",
+      "0-4": "distinct",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "overlap",
+      "2-4": "distinct",
+      "3-4": "overlap"
+    },
+    "notes": {
+      "0-2": "'He made his pitch' or 'the pitch was perfect' fits a thrown ball or a sales talk.",
+      "0-3": "'Her pitch was perfect' fits a thrown ball or a musical tone.",
+      "2-3": "'She got the pitch just right' fits a sales talk or a tone of voice.",
+      "3-4": "'Its pitch was higher than expected' fits a note's tone or a roof's steepness ('high-pitched roof')."
+    }
+  },
+  "WV12-P03.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "overlap",
+      "0-3": "overlap",
+      "0-4": "overlap",
+      "1-2": "overlap",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "overlap",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-2": "'His pitch was perfect' fits a tone of voice or a throw.",
+      "0-3": "'The pitch was higher than expected' fits a voice's tone or a roof's slope.",
+      "0-4": "'His pitch was too aggressive' fits a tone of voice or a persuasive speech.",
+      "1-2": "'The pitch was unplayable' (cricket) fits the playing field or the bowled delivery.",
+      "2-4": "'He delivered the pitch' fits a throw (delivery) or a persuasive speech."
+    }
+  },
+  "WV12-P04.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "distinct",
+      "1-2": "overlap",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "overlap",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "1-2": "'From the boat they watched the low bank on the horizon' fits a fog/cloud bank or a river's edge.",
+      "2-4": "'She walked down to the bank' is the classic ambiguity between a riverside and a financial firm."
+    }
+  }
+}

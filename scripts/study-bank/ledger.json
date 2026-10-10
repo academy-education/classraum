@@ -8205,6 +8205,25 @@
           "verdict": "ssat-wv.mjs verify (WV11 rules incl. stemFrame/frameVariety) + A1 + licensing (WV11 no-irony prompt, two judges per version file) + sense overlap (agreement rule), one fix round, then the grouped screen. Round 0: mechanical 14/9/13, A1 0 absent, licensing 30/30 clean (attitude 15/15), senses refused 3/3 vocabulary sets. Round 1: P01 verify OK, P02 verify OK; P03 refused (pitch throw/field and slope/field, both judges; attitude v0 and v1 one judge each 'amused'). Grouped screen: P01 2/8/1/4/3 of 18 REFUSE, P02 6/3/2/3/4 PASS. Batch needs 2 passing units: 1. FAIL."
         }
       }
+    },
+    {
+      "id": "ssat-reading-wv12-2026-10-11",
+      "createdAt": "2026-10-11",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-wv12",
+      "contentSha": "acac331adef038d74085f41b9821e9fc344dfa6ef29e20d5423844dad373fa8e",
+      "status": "killed",
+      "note": "WV6 whole-passage five-version method (owner: keep SSAT Reading fully AI-authored) on WV11's base (character-action form, full-sentence no-irony action, vocabulary sense-overlap pre-check, varied stems), differing only in the attitude construction: in >= 2 of 3 units the attitude item asks about the AUTHOR's/narrator's attitude toward the subject (essay, memoir, nature piece), licensed by two separate sentences. Pre-registered READING-BATCH-WV12-2026-10-11.prereg.md (a63ffe50) before any author. contentSha = sha256 of the four post-fix units (nothing frozen). STOPPED at stage 0: 0 of 4 units passed after one fix round (3 needed). Every post-fix refusal is VOCABULARY: sense overlap by both judges on P01 struck and P02 pitch (gloss pairs unchanged from round 0, where one judge passed each) and P04 bank (new gloss); P03's fixer re-keyed the v4 vocabulary sentence (mechanical). Author-form attitude licensing 14/15 in round 0, 15/15 after the fix (report-only); character form 5/5 in round 0. Consistency channel (report-only, pseudo-draw, not a freeze): KK-DX candidate +40.0, live +43.5, PD v2 +35.0; candidate KK-DS +10.0. Nothing inserted. READING-BATCH-WV12-2026-10-11.md; REGISTER section 5, 2026-10-11.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "contentSha": "acac331adef038d74085f41b9821e9fc344dfa6ef29e20d5423844dad373fa8e",
+          "verdict": "ssat-wv.mjs verify (WV12 branch: author/character frames, WV11 vocabulary frames) + ssat-wv12-rules.mjs check (form, genre, why+why2, irony words, judges' two support sentences) + A1 + licensing (WV12 prompt, two judges per version file) + sense overlap (agreement rule); one fix round. Round 0: mechanical 12/14/12/9, A1 0 absent, licensing 39/40 (P04 attitude v1 admiration over disapproval, both judges), senses refused P02/P03/P04. Round 1: P01, P02, P04 refused on sense overlap (both judges); P03 refused mechanically (vocabulary v4 re-keyed by the fixer). Licensing round 1 report-only 30/30. Grouped screen and Stages 1-4 not run."
+        }
+      }
     }
   ],
   "auditedCohorts": [

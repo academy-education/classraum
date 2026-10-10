@@ -1,0 +1,69 @@
+{
+  "WV12-P01.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "distinct",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {}
+  },
+  "WV12-P02.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "distinct",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "overlap",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "2-3": "both apply to a speaker: 'the salesman softened his pitch' can be his sales talk or the tone of his voice"
+    }
+  },
+  "WV12-P03.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "overlap",
+      "1-2": "overlap",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-4": "'she changed her pitch when the buyer hesitated' can be her tone of voice or her persuasive speech",
+      "1-2": "both live in a game context: 'the pitch was rough' / 'studied the pitch' can be read as the playing field or the delivery of the ball (cricket uses pitch for both the strip and where the ball lands)"
+    }
+  },
+  "WV12-P04.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "distinct",
+      "1-2": "overlap",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "1-2": "both are a raised mass by water: 'across the river a dark bank rose' can be a cloud or fog bank or the far riverbank"
+    }
+  }
+}
