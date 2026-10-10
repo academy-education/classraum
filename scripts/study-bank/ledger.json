@@ -8086,6 +8086,40 @@
           "verdict": "Survival at the gate by key position: Algebra extreme 9/12 = 75.0%, interior 6/7 = 85.7% (mf29: 52.2 / 86.7); Advanced Math 8/9 = 88.9%, 5/6 = 83.3% (mf29: 88.9 / 78.6); Geometry 6/9 = 66.7%, 6/6 = 100.0%; PSDA 4/9 = 44.4%, 6/6 = 100.0%. One-sided / single-bound drops on extreme keys 9 of 39 frozen extreme (mf29: 6 of 41), Algebra 2 of 12. Plug-back drops (r6) 1, PSDA V01; Algebra 0 (mf29: 6, all Algebra). Solved-intermediate drops 0."
         }
       }
+    },
+    {
+      "id": "act-math-v29-kept-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v29",
+      "contentSha": "8fa9eab8e3febb09e694f4cf1c463e8c0a38d478e1692d19a281fb59d4b34383",
+      "status": "shipped",
+      "note": "93 of 115 frozen survive (IES 21, Algebra 16, Functions 20, Geometry 14, S&P 12, N&Q 10), commissioned for ACT Math forms 21+22 (form-22 deficits Functions 16, Geometry 14, Algebra 13, IES 13, S&P 10, N&Q 9). Bars pre-registered in ACT-MATH-V29-PREREGISTERED.md (commit 8e7af901) before authoring: v28 machinery kept (spares with a promotion rule, per-planning-rate gating, both-way IES design, error-direction read on every extreme key of every author file); new: planning rates re-derived with v28 included (IES extreme 15/33, interior 22/23; non-IES 74/97, 70/80), G8 v24-rate >= 40.0% replacing key-extremity-projection (reported; G2 binds at this size), cross-item tells mechanised (CONV return, WB return, PCT2 at most one per batch - tightened before the return to count the mechanism, diluted or not), N&Q from vectors / matrices / complex numbers / units. Frozen 6b7c7a3a (merged sha 6e67c18d). Kept key at an extreme 49/93 = 52.7%; IES alone 14/21 = 66.7%.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "8fa9eab8e3febb09e694f4cf1c463e8c0a38d478e1692d19a281fb59d4b34383",
+          "verdict": "136 slots (116 core + 20 spares) authored by Claude authors in 23 runs + 8 return runs, one file per item, at most two at a time; five runs relaunched from disk (host suspended ~3 h once). Stage 0 round 1 on all 136: every mechanical check clean (sandbox 116/116 + 20/20, CONV/WB/ratio-PCT2 0, RUN 0, ies-directions D1-D4 0, parity 0, (c) 0, projection --commission PASS split 47.8% / IES 48.7% / v24 45.1%); the reads returned 32 (24 core + 8 spares): PCT2 by mechanism on 10 IES items (I-06 keeps the one allowed), one-way extreme keys (I-01, I-05, I-X3, F-X1, S-01, S-09, G-14, N-11), live/held mechanism duplicates (F-01 ~ act 46a3076b / ssat 862dbf7e, G-06 ~ five tangent-secant items, N-01 / N-04 ~ matrix product entries, G-X3 ~ act f7417f90, N-X2 ~ act 3fd7747a, A-20 ~ sat 6f46479a which arrived during authoring), in-batch overlaps (I-14 ~ I-13, A-05 ~ A-02, F-18 ~ F-14/F-16, F-24 ~ A-20, G-X2 ~ G-08, N-10 ~ N-09, N-X1, N-14 ~ N-13), cheap bounds (A-10, A-X1), stale meta (A-08). After the return 4 core items failed and were dropped (A-20 ~ act 5ad5869a, F-24 one-way least-k, N-10 ~ act 3ea8ed06, N-14 ~ act 6102150c); the rule promoted A-X3, F-X3, N-X2; N-10 not replaced; spares I-X1, A-X1, F-X1, G-X2, N-X1 unavailable. Live bank +188 isee/ssat-s17 and +52 sat-math-v29-full rows during authoring, every one read. Merged 115: verify PASS, key-extremity 62/115 = 53.9%, projection G1-G8 PASS (split 47.4%, IES 48.7%, v24 44.7%). Kept 93 (sha 8fa9eab8e3febb09): PREFLIGHT PASS with magnitude gating z 0.51 / 0.99 / -1.27, key-extremity 49/93 = 52.7%; IES kept alone 21: key-extremity 14/21 = 66.7% PASS, magnitude z 1.71 / 0.54 / -1.89."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "8fa9eab8e3febb09e694f4cf1c463e8c0a38d478e1692d19a281fb59d4b34383",
+          "verdict": "Options-only (act-math-v29-attack-draw.mjs, seed 20261061, blind sha b438d7f9708a5251): 115 candidates + 115 live act/math controls 1:1 by domain (v16..v29 excluded), keys flat (25.2%), three Claude samples (pairwise agreement 91.4% vs 26.0% if independent - one solver sampled three times). Candidate 64/345 = 18.6% (-6.7) vs control 91/345 = 26.4% (+1.2): candidate minus control -7.8 (HOLD bar +10). Unanimous-correct 21/115 = 18.3% vs 23/115 = 20.0% (bar +15). Instrument valid. Descriptive: an extreme option was picked on 2/345 candidate picks (control 18/309); interior-key hits 64/159 = 40.3% vs 76/195 = 39.0%."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "8fa9eab8e3febb09e694f4cf1c463e8c0a38d478e1692d19a281fb59d4b34383",
+          "verdict": "Two independent Claude graders, each in four parts cut from render 54ed53f2c67364a7 (grade batch 11f23581d10618d7) plus an ies flag, every part sha quoted at start and end; 230/230 picks on key; required fields on all items. act-math-v27-ies-verify: directions reproduced 72/72; extreme-key IES items with a natural counter by >= 1 grader 16/16 (rule 12: 0). Dropped 22 (not replaced): rule 3/10 G-03, G-07, S-09, F-17, F-21, G-04, N-13, F-18, N-05, N-09, G-06; rule 8 A-01, A-16, F-X3; rule 11 I-07; rule 4 I-12, I-20, A-12; rule 6/7 A-09, S-02, A-03, F-10. Survival: extreme 49/62 = 79.0%, interior 44/53 = 83.0%; IES extreme 14/16, interior 7/8; non-IES extreme 35/46, interior 37/45. Banked: easy 13 / medium 50 / hard 30."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "8fa9eab8e3febb09e694f4cf1c463e8c0a38d478e1692d19a281fb59d4b34383",
+          "verdict": "Cross-item tells on the kept 93: CONV 0, WB 0, PCT2 (ratio) 0; PCT2 by mechanism 1 (I-06). Residuals in act-math-v29.verdicts.json, not acted on: one_sided named and not confirmed on 47 items (a natural opposite error named by a grader on each); shared values recorded (key 3.22 F-21 dropped / G-04 dropped; 7.14 I-18 / F-08; 6.18 G-09 / N-07; 9.58 G-12 / N-07); A-08 key isolated below a tight cluster; A-17 sqrt2 pair; S-12 68 not k/27."
+        }
+      }
     }
   ],
   "auditedCohorts": [

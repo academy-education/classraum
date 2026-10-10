@@ -1,0 +1,1267 @@
+[
+ {
+  "id": "AM29I-01",
+  "topic_tag": "time for a four-machine bottling line to finish a run of jugs, paced by the filler's rate, with periodic drum changes",
+  "prompt": "A bottling line fills 3.7-liter water jugs. Every jug passes through four machines in this order: a rinser (24 seconds per jug), a filler, a capper (11 seconds per jug), and a labeler (38 seconds per jug). The filler pumps water at a constant 4.3 liters per minute and fills each jug completely. Each machine works on one jug at a time, and a jug moves on to the next machine as soon as it is finished and the next machine is empty. The filler starts the run with a full supply drum; after every 60 jugs it fills, it stops for 85 seconds while the drum is replaced, and then continues. At the start, the line is empty and 215 jugs are waiting at the rinser. To the nearest tenth of a minute, how many minutes after the first jug enters the rinser does the 215th jug leave the labeler?",
+  "choices": [
+   "190.5",
+   "191.9",
+   "255.3",
+   "191.3"
+  ]
+ },
+ {
+  "id": "AM29I-02",
+  "topic_tag": "hours to finish a knitted blanket: squares still to knit plus sewing every shared edge",
+  "prompt": "Ines is making a blanket from 48 identical knitted squares, each 9 inches on a side, arranged in 6 rows of 8 squares. She has already knitted 11 of the squares, but 3 of those came out too small and must be knitted again. She knits at a steady rate of one square every 32 minutes. When all 48 squares are ready, she will sew together every pair of squares that share an edge, along the whole 9-inch shared edge, and she sews at a steady 5 inches per minute. To the nearest hundredth of an hour, how many hours of knitting and sewing does Ines have left?",
+  "choices": [
+   "22.77",
+   "20.59",
+   "23.79",
+   "22.09"
+  ]
+ },
+ {
+  "id": "AM29I-03",
+  "topic_tag": "hotel balance charged in euros using a cross rate built from two dollar quotes, after a euro deposit",
+  "prompt": "A currency website lists these exchange rates: 1 U.S. dollar = 0.9216 euro, and 1 U.S. dollar = 0.7848 British pound. Sofia, who lives in Spain, stayed 3 nights at a London hotel that charges 168 British pounds per night. When she booked the room, she paid a deposit of 140 euros, which the hotel credited toward her bill. At checkout, the hotel charged the rest of the bill, in pounds, to Sofia's card, and her bank converted that charge to euros. The hotel and the bank both converted between pounds and euros at the rate implied by the website's two rates, with no fees. To the nearest cent, how many euros did the bank charge Sofia at checkout?",
+  "choices": [
+   "556.83",
+   "398.79",
+   "427.45",
+   "451.85"
+  ]
+ },
+ {
+  "id": "AM29I-04",
+  "topic_tag": "cost per 1,000 miles of a new set of tires with per-tire, per-car and rebate items",
+  "prompt": "Dana buys a set of 4 tires at $138.75 per tire. Installation costs $22.00 per tire, except that the fourth tire is installed free. A wheel alignment costs $94.95 for the car. After the purchase, Dana receives a $70.00 mail-in rebate on the set. She drives 12,500 miles per year and will replace the tires after 4 years or 55,000 miles, whichever comes first. Counting the tires, installation, alignment, and rebate, what will Dana's tires cost per 1,000 miles driven on them, to the nearest cent?",
+  "choices": [
+   "12.92",
+   "13.36",
+   "15.72",
+   "18.62"
+  ]
+ },
+ {
+  "id": "AM29I-05",
+  "topic_tag": "hours to haul topsoil when a weight limit, not the truck bed, sets the load size, with loader rate, loaded and empty speeds and no final return",
+  "prompt": "A landscaper must haul 37 cubic yards of wet topsoil from a supply yard to a job site 11 miles away, using one truck. Wet topsoil weighs 2,300 pounds per cubic yard. The truck's bed holds up to 7 cubic yards, but the truck may carry at most 14,000 pounds of topsoil on any one load. At the yard, a loader puts topsoil into the truck at a rate of 0.55 cubic yard per minute, and at the job site each load takes 9 minutes to dump. The truck averages 40 miles per hour when loaded and 50 miles per hour when empty. The job starts when the loader begins filling the first load and ends when the last load has been dumped; the truck does not return to the yard after the last load. Every load except possibly the last carries as much topsoil as allowed. To the nearest hundredth of an hour, how long does the job take?",
+  "choices": [
+   "5.42",
+   "4.82",
+   "5.35",
+   "4.63"
+  ]
+ },
+ {
+  "id": "AM29I-06",
+  "topic_tag": "end-to-end light-rail trip time with a slower graded section and station stops",
+  "prompt": "A light-rail line runs 23.6 kilometers from one end station to the other and has 15 stations in all, including the two end stations. While moving, the train averages 46 kilometers per hour, except on a 4.8-kilometer section that climbs a steep grade, where its average speed while moving is 20% less than that. On each trip, the train stops for 35 seconds at every station other than the two end stations. To the nearest tenth of a minute, how many minutes does a trip take, from the moment the train leaves one end station until it arrives at the other?",
+  "choices": [
+   "39.6",
+   "41.1",
+   "39.9",
+   "36.9"
+  ]
+ },
+ {
+  "id": "AM29I-07",
+  "topic_tag": "plan length of an access ramp at 1:50 with a 1:12 slope limit, a maximum run per section and landings",
+  "prompt": "An architect is drawing a straight access ramp on a site plan with a scale of 1:40. The ramp must rise 1.62 meters from a sidewalk to a porch. Its slope can be no steeper than 1:12 (1 meter of rise for every 12 meters of horizontal run), and no single sloped section can have a horizontal run of more than 9 meters. The ramp needs a level landing 2.1 meters long at the bottom, and a level landing 1.6 meters long between each pair of consecutive sloped sections; the porch serves as the landing at the top. The ramp is designed to have the least possible total horizontal length. To the nearest hundredth of a centimeter, how long is the ramp on the plan, measured horizontally from the start of the bottom landing to the porch?",
+  "choices": [
+   "64.35",
+   "62.02",
+   "61.85",
+   "65.85"
+  ]
+ },
+ {
+  "id": "AM29I-08",
+  "topic_tag": "cost per bus trip for a month with a partly employer-paid pass, express surcharges and trips counted from a calendar",
+  "prompt": "Leo rides the city bus with a monthly pass. This March has 31 days, and March 1 is a Sunday. On each weekday (Monday through Friday) Leo rides the bus to work and back home, except on Monday, March 16, a holiday, when he does not ride at all. On every Wednesday he also rides from home to the gym and back. On every Saturday he rides the bus to a class but gets a ride home, so he rides only one way. He takes no other bus rides. The March pass costs $96.50, and his employer pays $31.25 of that. On 3 of the days he works, Leo takes the express bus to work and back, and each express ride carries a $1.35 surcharge on top of the pass. Counting each one-way ride as one trip, what is Leo's cost per trip for March, to the nearest cent?",
+  "choices": [
+   "1.21",
+   "1.26",
+   "1.33",
+   "1.36"
+  ]
+ },
+ {
+  "id": "AM29I-09",
+  "topic_tag": "finishing time of a 10-kilometer race run in repeating run-walk intervals given as paces, with a partial final interval",
+  "prompt": "In a 10-kilometer race, Hana uses a run-walk plan: starting at the start line, she runs for 4 minutes, then walks for 1 minute, and repeats this pattern until she crosses the finish line. She runs at a steady pace of 5 minutes 48 seconds per kilometer and walks at a steady pace of 11 minutes 6 seconds per kilometer. To the nearest tenth of a minute, what is Hana's finishing time for the race?",
+  "choices": [
+   "64.1",
+   "68.6",
+   "63.7",
+   "60.9"
+  ]
+ },
+ {
+  "id": "AM29I-10",
+  "topic_tag": "time to cross an airport concourse with two moving walkways, walking on one and standing on the other",
+  "prompt": "From the security checkpoint to her gate, Maya travels 1,350 feet along a straight airport concourse. Along the way are two moving walkways, both moving toward her gate at 1.9 feet per second; the first walkway is 320 feet long and the second is 260 feet long. For the rest of the distance she walks on the floor at 3.1 miles per hour. On the first walkway she keeps walking at that same pace relative to the walkway. On the second walkway she stands still and lets the walkway carry her. She does not stop anywhere else. Given that 1 mile = 5,280 feet, to the nearest second, how many seconds does it take Maya to get from the checkpoint to her gate?",
+  "choices": [
+   "378",
+   "356",
+   "413",
+   "427"
+  ]
+ },
+ {
+  "id": "AM29I-11",
+  "topic_tag": "cost of new and reconditioned fiber cable along a route measured on a 1:50,000 map that understates hilly ground distance",
+  "prompt": "A utility company will run a fiber-optic cable along a route that measures 21.4 centimeters on a map with a scale of 1:50,000. Because the route crosses hills, the map distance is 7% less than the distance along the ground. Along 1.8 kilometers of the route (measured along the ground), the company can reuse cable that is already in place, except that 15% of that existing cable is damaged and must be replaced with new cable; the rest of the existing cable will be reconditioned at a cost of $1.35 per meter. Everywhere else, and where the damaged cable is replaced, new cable is used. New cable costs $9.15 per meter, and 5% of the new cable the company buys is wasted in cutting, so the amount bought must leave enough new cable after the waste. To the nearest dollar, what is the total cost of the new cable and the reconditioning?",
+  "choices": [
+   "97035",
+   "98144",
+   "95908",
+   "98014"
+  ]
+ },
+ {
+  "id": "AM29I-12",
+  "topic_tag": "average pollen concentration from an air sampler's count, run time with an outage, contamination and capture rate",
+  "prompt": "A pollen sampler draws outdoor air past a sticky slide at a constant rate of 10 liters per minute. It ran from 9:00 a.m. on Monday until 8:30 a.m. on Tuesday, except during a 45-minute power outage, when it drew no air. A technician counted 1,844 pollen grains on the slide, but 64 of those grains had landed on the slide before the run began and must not be included. The sampler catches only 85% of the pollen grains in the air it draws. Given that 1 cubic meter = 1,000 liters, what was the average concentration of pollen in the air during the run, in grains per cubic meter, to the nearest hundredth?",
+  "choices": [
+   "154.24",
+   "153.42",
+   "148.52",
+   "154.78"
+  ]
+ },
+ {
+  "id": "AM29I-13",
+  "topic_tag": "average pay per hour worked at a bakery with a weekend premium for managers",
+  "prompt": "Last week a bakery had 5 full-time bakers who each worked 40 hours at $23.60 per hour, 9 part-time clerks who each worked 16 hours at $18.40 per hour, and 3 shift managers who each worked 44 hours at a regular rate of $29.20 per hour. Of each manager's 44 hours, 10 were weekend hours, which are paid at 25% more than the manager's regular rate. No other employee worked weekend hours. For all the hours these 17 employees worked last week, what was the average pay per hour worked, to the nearest cent?",
+  "choices": [
+   "23.58",
+   "23.73",
+   "21.84",
+   "24.04"
+  ]
+ },
+ {
+  "id": "AM29I-14",
+  "topic_tag": "heat loss through a wall's insulated section, windows and door, with layered R-values and air leakage",
+  "prompt": "Heat escapes through each part of a house wall at a rate, in BTU per hour, equal to the part's area in square feet times the inside-minus-outside temperature difference in °F, divided by the part's R-value. One wall has three parts: 156 square feet of insulated section, 28 square feet of windows, and a 20-square-foot door. The insulated section is built in layers whose R-values add: insulation with R-value 13, drywall with R-value 0.45, and siding with R-value 0.8. The windows have R-value 2.1, and the door has R-value 5.3. In addition, air leaking around the windows and the door carries away heat at a rate equal to 15% of the rate at which heat escapes through the windows and door themselves. When it is 70°F inside and 23°F outside, what is the total rate, to the nearest BTU per hour, at which heat escapes through this wall, including the air leakage?",
+  "choices": [
+   "1449",
+   "1439",
+   "1489",
+   "1516"
+  ]
+ },
+ {
+  "id": "AM29I-15",
+  "topic_tag": "percent of an orchestra's members who play strings after some leave and others join",
+  "prompt": "At the start of a season, a community orchestra had 120 members, and 70% of them played string instruments. During the season, 25% of the string players left the orchestra, and no other members left. Later in the season, 7 new members joined the orchestra, and all 7 play string instruments. To the nearest hundredth of a percent, what percent of the orchestra's members at the end of the season play string instruments?",
+  "choices": [
+   "70.71",
+   "62.89",
+   "58.33",
+   "66.04"
+  ]
+ },
+ {
+  "id": "AM29I-16",
+  "topic_tag": "share of passing students who needed a retake when each retake passes a percent of those remaining",
+  "prompt": "At a driving school, 58% of the students passed the road test on their first try. Of the students who did not pass on their first try, 40% passed on their second try. Of the students who had still not passed after two tries, 30% passed on their third try. No student took the test more than three times. Of the students who passed the road test within three tries, what percent needed more than one try, to the nearest hundredth of a percent?",
+  "choices": [
+   "29.58",
+   "27.35",
+   "24.36",
+   "22.46"
+  ]
+ },
+ {
+  "id": "AM29I-17",
+  "topic_tag": "percent error of a shopper's estimate made by rounding each price to the nearest dollar",
+  "prompt": "Before checking out, Dana estimates the total cost of 6 items by rounding each item's price to the nearest dollar and adding the rounded prices. The prices of the items are $4.07, $7.59, $12.68, $16.89, $21.62, and $27.91. To the nearest hundredth of a percent, what is the percent error of Dana's estimate of the total cost?",
+  "choices": [
+   "2.47",
+   "1.52",
+   "1.37",
+   "2.06"
+  ]
+ },
+ {
+  "id": "AM29I-18",
+  "topic_tag": "percent error of a double-and-add-30 rule for converting Celsius to Fahrenheit",
+  "prompt": "A quick rule for estimating a temperature in degrees Fahrenheit (°F) from a temperature in degrees Celsius (°C) is to double the Celsius temperature and add 30. The exact conversion is F = 1.8C + 32. Pablo uses the quick rule to estimate the Fahrenheit equivalent of 28°C. To the nearest hundredth of a percent, what is the percent error of Pablo's estimate?",
+  "choices": [
+   "7.14",
+   "4.37",
+   "11.11",
+   "4.19"
+  ]
+ },
+ {
+  "id": "AM29I-19",
+  "topic_tag": "evacuation time varying directly as occupancy and inversely as usable doorway width",
+  "prompt": "Fire-safety planners for a concert hall use a model in which the time needed for everyone to leave the hall varies directly as the number of people in the hall and inversely as the total usable width of the open doorways. The usable width of a doorway is its actual width minus 15 centimeters on each side, because people do not walk right next to the door frame. In a drill with 640 people and 4 open doorways, each 1.1 meters wide, everyone left in 150 seconds. For a concert, 860 people will be in the hall, 1 of those 4 doorways will be closed, and 2 temporary doorways, each 0.8 meter wide, will be opened. According to the model, how many seconds will it take everyone to leave during the concert, to the nearest tenth of a second?",
+  "choices": [
+   "161.3",
+   "189.7",
+   "153.6",
+   "184.6"
+  ]
+ },
+ {
+  "id": "AM29I-20",
+  "topic_tag": "propane for one night when tank life varies inversely as the inside-outside temperature difference",
+  "prompt": "A greenhouse heater burns propane from a 100-gallon tank. The number of hours a full tank lasts varies inversely as the difference between the thermostat setting and the outside temperature. With the thermostat set at 65°F and a steady outside temperature of 41°F, a full tank lasts 90 hours. On a night when the outside temperature will stay at 28°F, the thermostat is lowered to 60°F. To the nearest hundredth of a gallon, how many gallons of propane will the heater burn during the 14-hour night?",
+  "choices": [
+   "23.33",
+   "22.78",
+   "20.74",
+   "22.14"
+  ]
+ },
+ {
+  "id": "AM29I-21",
+  "topic_tag": "diver air supply when the breathing rate varies directly as total pressure",
+  "prompt": "A scuba diver uses air at a rate that varies directly as the total pressure on the diver. The total pressure is the air pressure at the surface, 101 kilopascals (kPa), plus the water pressure, and the water pressure varies directly as the depth: at a depth of 12 meters, the water pressure is 121 kPa. At a depth of 12 meters, this diver uses 48 liters of air per minute. The diver's tank holds 2,700 liters of air, and the diver must begin to surface with at least 500 liters left. On one dive, the diver spends 6 minutes at a depth of 12 meters and then descends to 27 meters. Ignoring the time spent descending, to the nearest hundredth of a minute, what is the greatest number of minutes the diver can spend at 27 meters?",
+  "choices": [
+   "32.48",
+   "29.89",
+   "23.69",
+   "21.26"
+  ]
+ },
+ {
+  "id": "AM29I-22",
+  "topic_tag": "trip fuel when the air-resistance share of fuel use varies as the square of speed",
+  "prompt": "At highway speeds, the gasoline a certain car uses per mile is the sum of two parts: one part that does not depend on speed, and one part that overcomes air resistance and varies directly as the square of the car's speed. At 55 miles per hour, the car uses 0.034 gallon of gasoline per mile, and 38% of that gasoline overcomes air resistance. On a trip, the car will carry a roof box, which increases the air-resistance part by 14% at any speed and does not change the other part. To the nearest hundredth of a gallon, how many gallons of gasoline will the car use on a 270-mile trip at a constant 70 miles per hour with the roof box?",
+  "choices": [
+   "10.75",
+   "12.13",
+   "11.12",
+   "11.34"
+  ]
+ },
+ {
+  "id": "AM29I-23",
+  "topic_tag": "scholarship fund split in proportion to computed yearly financial need",
+  "prompt": "A foundation divides $9,000 of scholarship money among three students in proportion to their financial needs for the year. A student's need is the student's yearly college cost minus all other money the student has for the year. The yearly costs are $24,000 for Ana, $18,700 for Ben, and $21,000 for Cleo. Each student's family contributes the same amount in each of the year's 2 semesters: $4,500 per semester for Ana, $3,250 per semester for Ben, and $7,600 per semester for Cleo. Ana has also been awarded a $1,800 grant for the year. To the nearest cent, how much of the $9,000 does Cleo receive?",
+  "choices": [
+   "2967.03",
+   "1673.08",
+   "2590.76",
+   "2055.12"
+  ]
+ },
+ {
+  "id": "AM29I-24",
+  "topic_tag": "sand for a cylindrical concrete pier mixed in a 1:2:4 ratio with volume loss on mixing",
+  "prompt": "A builder pours concrete into a cylindrical hole 30 centimeters in diameter and 1.3 meters deep. The bottom 10 centimeters of the hole is first filled with crushed stone, and concrete fills the rest of the hole. The concrete is made by mixing cement, sand, and gravel in the ratio 1:2:4 by volume, and mixing reduces the volume by one-third: the mixed concrete takes up only 2/3 of the total volume of the dry ingredients. To the nearest hundredth of a liter, how many liters of sand are needed? (1 cubic meter = 1,000 liters)",
+  "choices": [
+   "50.89",
+   "36.35",
+   "39.38",
+   "32.31"
+  ]
+ },
+ {
+  "id": "AM29A-01",
+  "topic_tag": "linear inequality from a parcel size limit",
+  "prompt": "A parcel service accepts a box only if the box's length plus its girth is at most 108 inches, where the girth is 2 times the box's width plus 2 times its height. A company is designing a box whose length is 12 inches more than 3.5 times its width and whose height is 5 inches more than its width. To the nearest hundredth of an inch, what is the greatest height the box can have and still be accepted?",
+  "choices": [
+   "16.47",
+   "17.13",
+   "19.67",
+   "21.55"
+  ]
+ },
+ {
+  "id": "AM29A-02",
+  "topic_tag": "linear equation from a trim length",
+  "prompt": "A wall decoration is a rectangle with an isosceles triangle attached to its top, so that the base of the triangle is the top edge of the rectangle. Wood trim is placed along all 4 edges of the rectangle and along the 2 slanted edges of the triangle. The height of the rectangle is 13 centimeters more than its width, and each slanted edge of the triangle is 0.8 times as long as the width of the rectangle. A total of 564 centimeters of trim is used. To the nearest hundredth of a centimeter, what is the width of the rectangle?",
+  "choices": [
+   "81.52",
+   "105.36",
+   "98.39",
+   "96.07"
+  ]
+ },
+ {
+  "id": "AM29A-03",
+  "topic_tag": "chained equality giving a linear system",
+  "prompt": "The real numbers x and y satisfy (2x + y)/5 = (3x − 4y)/3 = 2.6. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "1.18",
+   "4.02",
+   "2.13",
+   "5.44"
+  ]
+ },
+ {
+  "id": "AM29A-04",
+  "topic_tag": "parallelogram angle measures in two variables",
+  "prompt": "In parallelogram ABCD, the measure of ∠A is (2x + 3y)°, the measure of ∠B is (5x − 2y)°, and the measure of ∠C is (3x + 11)°. To the nearest hundredth of a degree, what is the measure of ∠D ?",
+  "choices": [
+   "52.25",
+   "80.56",
+   "113.04",
+   "96.86"
+  ]
+ },
+ {
+  "id": "AM29A-05",
+  "topic_tag": "linear equation from a transfer between two accounts",
+  "prompt": "At the start of a month, a school's robotics club had $1,931.85 in its account and the school's chess club had $817.45 in its account. Early in the month, the student council moved x dollars from the robotics club's account to the chess club's account. Later that month, the robotics club paid an $84.60 bill from its account and the chess club paid a $126.80 bill from its account, and no other money entered or left either account. At the end of the month, the amount in the robotics club's account was 1.25 times the amount in the chess club's account. To the nearest cent, what is the value of x ?",
+  "choices": [
+   "474.91",
+   "719.29",
+   "437.31",
+   "491.97"
+  ]
+ },
+ {
+  "id": "AM29A-06",
+  "topic_tag": "system with one equation given as a proportion",
+  "prompt": "The ordered pair (x, y) satisfies both the proportion (x + 3)/(y − 1) = 3/4 and the equation 3x − y = 9.4. What is the value of x ?",
+  "choices": [
+   "6.44",
+   "1.02",
+   "8.64",
+   "5.62"
+  ]
+ },
+ {
+  "id": "AM29A-07",
+  "topic_tag": "literal equation for a surrounding temperature",
+  "prompt": "A hot steel bolt is dropped into a large tank of water whose temperature W, in degrees Celsius, stays constant. If the bolt's temperature is B0 degrees Celsius when it is dropped in, its temperature B one minute later satisfies B − W = r(B0 − W), where r is a constant for this bolt. For one bolt, r = 0.55, B0 = 92, and B = 59.5. What is the temperature W of the water, to the nearest hundredth of a degree?",
+  "choices": [
+   "16.18",
+   "41.63",
+   "32.91",
+   "19.78"
+  ]
+ },
+ {
+  "id": "AM29A-08",
+  "topic_tag": "absolute-value equation with a constant fixed by one solution",
+  "prompt": "In the equation |7x − k| = x + 3, k is a constant and k < 50. If x = 7 is one solution of the equation, what is the other solution?",
+  "choices": [
+   "9/2",
+   "43/8",
+   "21/4",
+   "36/7"
+  ]
+ },
+ {
+  "id": "AM29A-09",
+  "topic_tag": "linear model written in standard form",
+  "prompt": "During a dry spell, the volume V, in millions of gallons, of water in a reservoir d days after June 1 is modeled by the equation 4V + 27d = 3,880. According to the model, how many days after June 1 will the volume of water in the reservoir be 600 million gallons? (Round to the nearest hundredth of a day.)",
+  "choices": [
+   "54.81",
+   "121.48",
+   "13.70",
+   "88.89"
+  ]
+ },
+ {
+  "id": "AM29A-10",
+  "topic_tag": "equal outputs of a multi-variable linear formula",
+  "prompt": "The Mifflin–St Jeor equation estimates a person's resting energy use P, in kilocalories per day, as P = 10m + 6.25h − 5a + s, where m is the person's mass in kilograms, h is the person's height in centimeters, a is the person's age in years, and s = 5 for a man and s = −161 for a woman. A certain man and a certain woman have the same value of P. The man is 5.2 centimeters taller than the woman and 2 years older than the woman. According to the equation, how many kilograms greater is the woman's mass than the man's mass?",
+  "choices": [
+   "18.85",
+   "17.95",
+   "18.35",
+   "16.12"
+  ]
+ },
+ {
+  "id": "AM29A-11",
+  "topic_tag": "two linear models linked through time",
+  "prompt": "For a young oak tree at a nursery, the height H, in meters, t years after planting is modeled by H = 0.42t + 1.3, and the diameter D of its trunk, in centimeters, t years after planting is modeled by D = 1.75t + 2.9. According to the two models, what is the tree's height, to the nearest hundredth of a meter, when the diameter of its trunk is 26.4 centimeters?",
+  "choices": [
+   "6.42",
+   "6.94",
+   "4.74",
+   "7.32"
+  ]
+ },
+ {
+  "id": "AM29A-12",
+  "topic_tag": "right angle at the y-intercept between a parabola's x-intercepts",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 1.15x² − 2.6x + c, where c is a nonzero constant, crosses the x-axis at points A and B and crosses the y-axis at point C. Angle ACB is a right angle. To the nearest hundredth, what is the distance AB ?",
+  "choices": [
+   "2.56",
+   "2.64",
+   "2.85",
+   "2.78"
+  ]
+ },
+ {
+  "id": "AM29A-13",
+  "topic_tag": "rectangle with two vertices on a parabola",
+  "prompt": "In the standard (x,y) coordinate plane, rectangle ABCD has vertices A and B on the x-axis and vertices C and D on the parabola y = 16 − 0.3x², with C and D above the x-axis. The height of the rectangle is 0.8 times its width (its side along the x-axis). To the nearest hundredth, what is the height of the rectangle?",
+  "choices": [
+   "2.97",
+   "4.87",
+   "8.17",
+   "10.60"
+  ]
+ },
+ {
+  "id": "AM29A-14",
+  "topic_tag": "parabola whose vertex and x-intercepts form an equilateral triangle",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 1.6x² − 7x + c, where c is a constant, crosses the x-axis at points A and B. The vertex V of the graph and the points A and B are the vertices of an equilateral triangle. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "7.19",
+   "5.78",
+   "6.29",
+   "7.03"
+  ]
+ },
+ {
+  "id": "AM29A-15",
+  "topic_tag": "vertex of a parabola at a given distance from the origin",
+  "prompt": "In the standard (x,y) coordinate plane, the vertex of the parabola y = x² − 7x + c, where c is a constant, lies above the x-axis and is 4.7 units from the origin. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "13.45",
+   "16.56",
+   "16.13",
+   "15.39"
+  ]
+ },
+ {
+  "id": "AM29A-16",
+  "topic_tag": "distance between the intersection points of a line and a parabola",
+  "prompt": "In the standard (x,y) coordinate plane, the line y = 1.7x + 3.5 intersects the parabola y = 1.25x² − 3x + 2 at two points. To the nearest hundredth, what is the distance between those two points?",
+  "choices": [
+   "7.15",
+   "4.78",
+   "8.58",
+   "7.72"
+  ]
+ },
+ {
+  "id": "AM29A-17",
+  "topic_tag": "unknown term of a geometric mean",
+  "prompt": "The geometric mean of n positive numbers is the nth root of their product. The geometric mean of the four numbers 1.5, 6, x, and 2x, where x > 0, is 4.3. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "3.56",
+   "4.77",
+   "6.16",
+   "4.36"
+  ]
+ },
+ {
+  "id": "AM29A-18",
+  "topic_tag": "telescoping sum of rational expressions",
+  "prompt": "For x > 0, the sum 1/(x(x + 1)) + 1/((x + 1)(x + 2)) + 1/((x + 2)(x + 3)) + 1/((x + 3)(x + 4)) + 1/((x + 4)(x + 5)) + 1/((x + 5)(x + 6)) + 1/((x + 6)(x + 7)) is equal to 0.07. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "7.09",
+   "7.66",
+   "9.51",
+   "7.41"
+  ]
+ },
+ {
+  "id": "AM29A-19",
+  "topic_tag": "least solution of a radical inequality",
+  "prompt": "What is the least real number x that satisfies the inequality √(3x + 7) ≤ x + 1.2 , to the nearest hundredth?",
+  "choices": [
+   "2.68",
+   "3.42",
+   "2.08",
+   "0.88"
+  ]
+ },
+ {
+  "id": "AM29A-X3",
+  "topic_tag": "vertex of a parabola from the slope of the line to its y-intercept",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 0.65x² + bx + 5.4, where b is a constant, has vertex V and crosses the y-axis at point C. The line through V and C has slope −1.75. To the nearest hundredth, what is the y-coordinate of V ?",
+  "choices": [
+   "2.34",
+   "4.22",
+   "3.65",
+   "0.69"
+  ]
+ },
+ {
+  "id": "AM29A-21",
+  "topic_tag": "equation with a radical nested inside a radical",
+  "prompt": "The equation √(x + √(2x + 3)) = 2 has exactly one real solution. To the nearest hundredth, what is that solution?",
+  "choices": [
+   "0.17",
+   "2.74",
+   "1.16",
+   "1.54"
+  ]
+ },
+ {
+  "id": "AM29F-01",
+  "topic_tag": "function defined as the greater of two functions: intersections with a horizontal line",
+  "prompt": "The functions f and g are defined by f(x) = 0.6x² − 2.4x + 1.5 and g(x) = 4.2 − 1.4x. The function h is defined so that, for every real number x, h(x) is the greater of the two numbers f(x) and g(x) (if they are equal, h(x) is that common value). In the standard (x,y) coordinate plane, the graph of y = h(x) intersects the line y = 1.2 at exactly two points. To the nearest hundredth, what is the sum of the x-coordinates of these two points?",
+  "choices": [
+   "6.26",
+   "8.07",
+   "7.73",
+   "6.01"
+  ]
+ },
+ {
+  "id": "AM29F-02",
+  "topic_tag": "change in a composite cost-of-production function over a time interval",
+  "prompt": "A work shift at a factory begins at 9:00 a.m. and lasts 8 hours. The total number of units the factory has produced t hours after the shift begins is u(t) = 120t − 4t², for 0 ≤ t ≤ 8. The total cost, in dollars, of producing x units is C(x) = 750 + 3.5x + 0.002x². The total cost of everything produced in the first t hours of the shift is therefore C(u(t)). To the nearest cent, by how many dollars does this total cost increase from 1:00 p.m. to 3:00 p.m.?",
+  "choices": [
+   "833.47",
+   "1361.20",
+   "911.04",
+   "877.44"
+  ]
+ },
+ {
+  "id": "AM29F-03",
+  "topic_tag": "function defined by a sequence of verbal steps",
+  "prompt": "A function f is defined by the following four steps, applied to an input x.\nStep 1: Subtract 0.4 from x.\nStep 2: Add 1.5 to the result of Step 1.\nStep 3: Square the result of Step 2.\nStep 4: Divide the result of Step 3 by the result of Step 1.\nThe result of Step 4 is f(x). To the nearest hundredth, what is the value of f(4.6) ?",
+  "choices": [
+   "5.04",
+   "7.74",
+   "4.56",
+   "7.06"
+  ]
+ },
+ {
+  "id": "AM29F-04",
+  "topic_tag": "same model re-expressed with a different input unit and starting time",
+  "prompt": "The temperature, in degrees Celsius, at a weather station m minutes after noon is given by S(m) = 15 + 0.06m − 0.0002m², for 0 ≤ m ≤ 480. A second function, R, gives the same temperatures but measures its input in hours after 10:40 a.m.: R(h) is the temperature h hours after 10:40 a.m. To the nearest hundredth of a degree, what is the value of R(3.2) ?",
+  "choices": [
+   "16.52",
+   "15.11",
+   "19.32",
+   "19.21"
+  ]
+ },
+ {
+  "id": "AM29F-05",
+  "topic_tag": "two different inputs that a quadratic function sends to each other",
+  "prompt": "The function f is defined by f(x) = x² − 0.2x − 5.3. Two different numbers, p and q, satisfy f(p) = q and f(q) = p. To the nearest hundredth, what is the greater of the numbers p and q ?",
+  "choices": [
+   "2.98",
+   "2.63",
+   "1.85",
+   "1.76"
+  ]
+ },
+ {
+  "id": "AM29F-06",
+  "topic_tag": "a line perpendicular to y = x meeting the graphs of f and its inverse",
+  "prompt": "The function f is defined by f(x) = √(x − 3) + 1 for x ≥ 3, and f⁻¹ is the inverse of f. In the standard (x,y) coordinate plane, the line x + y = 11 intersects the graph of y = f(x) at point P and intersects the graph of y = f⁻¹(x) at point Q. To the nearest hundredth of a coordinate unit, what is the distance PQ ?",
+  "choices": [
+   "8.86",
+   "6.53",
+   "5.19",
+   "4.61"
+  ]
+ },
+ {
+  "id": "AM29F-07",
+  "topic_tag": "a parabola and its image after a reflection across a horizontal line and a translation",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of f(x) = 0.25x² − 1.5x − 4 is reflected across the line y = 2.5, and the resulting graph is then translated 3.4 units to the left to give the graph of y = g(x). The graphs of y = f(x) and y = g(x) intersect at two points. To the nearest hundredth, what is the greater of the x-coordinates of these two points?",
+  "choices": [
+   "6.51",
+   "5.14",
+   "6.97",
+   "4.72"
+  ]
+ },
+ {
+  "id": "AM29F-08",
+  "topic_tag": "two reflections of a graph across parallel vertical lines",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of f(x) = √(50 − 2x) is reflected across the line x = −2, and the resulting graph is then reflected across the line x = 3 to give the graph of y = g(x). To the nearest hundredth, what is the value of g(4.5) ?",
+  "choices": [
+   "7.14",
+   "7.81",
+   "8.19",
+   "4.58"
+  ]
+ },
+ {
+  "id": "AM29F-09",
+  "topic_tag": "inverse of a transformed function, given only the inverse of the parent",
+  "prompt": "The function f has an inverse function, and f⁻¹(x) = x + ∛x for every real number x. The function g is defined by g(x) = 2f(x − 1.5) − 3, and g also has an inverse function. To the nearest hundredth, what is the value of g⁻¹(8) ?",
+  "choices": [
+   "14.72",
+   "8.77",
+   "10.41",
+   "13.73"
+  ]
+ },
+ {
+  "id": "AM29F-10",
+  "topic_tag": "piecewise-defined phase-out credit in context",
+  "prompt": "A city gives each household a yearly housing credit that depends on the household's countable income, which is its yearly income minus $3,500. For a countable income of x dollars, the credit C(x), in dollars, is\nC(x) = 3,600 for x ≤ 28,000,\nC(x) = 3,600 − 0.18(x − 28,000) for 28,000 < x < 48,000,\nC(x) = 0 for x ≥ 48,000.\nThe Okafor household's yearly income rose from $41,830 to $53,960. By how many dollars did the household's yearly income plus its housing credit increase?",
+  "choices": [
+   "10270.60",
+   "9946.60",
+   "11019.40",
+   "10389.40"
+  ]
+ },
+ {
+  "id": "AM29F-11",
+  "topic_tag": "domain of a function combining a square root of a quadratic and a logarithm",
+  "prompt": "The function h is defined by h(x) = √(9 + 4x − x²) + log(7x − 5). The domain of h, the set of all real numbers x for which h(x) is defined, is an interval. To the nearest hundredth, what is the length of that interval?",
+  "choices": [
+   "4.89",
+   "3.52",
+   "4.21",
+   "4.75"
+  ]
+ },
+ {
+  "id": "AM29F-12",
+  "topic_tag": "comparing average rates of change of a quadratic model and a square-root model",
+  "prompt": "A botanist models the heights of two plants, in centimeters, t weeks after planting. Plant A's height is A(t) = 5 + 2.6t − 0.035t², and plant B's height is B(t) = 1.5 + 15.8√t, for 0 ≤ t ≤ 20. From t = 4 to t = 16, by how many centimeters per week does the average rate of change of plant B's height exceed the average rate of change of plant A's height, to the nearest hundredth?",
+  "choices": [
+   "0.83",
+   "0.55",
+   "2.66",
+   "0.73"
+  ]
+ },
+ {
+  "id": "AM29F-13",
+  "topic_tag": "average rate of change of an unknown quadratic from two given average rates",
+  "prompt": "The function f is a quadratic function. The average rate of change of f from x = 0.5 to x = 4.5 is 3.86, and the average rate of change of f from x = 2 to x = 9 is −1.64. To the nearest hundredth, what is the average rate of change of f from x = −3 to x = 6 ?",
+  "choices": [
+   "5.69",
+   "-5.31",
+   "-3.47",
+   "7.07"
+  ]
+ },
+ {
+  "id": "AM29F-14",
+  "topic_tag": "logarithm of the product of the terms of a geometric sequence",
+  "prompt": "The first term of a geometric sequence is 3, and the common ratio is 2.5. Let P be the product of the first 11 terms of the sequence. To the nearest hundredth, what is the value of log P, where log is the base-10 logarithm?",
+  "choices": [
+   "9.23",
+   "23.41",
+   "22.36",
+   "27.14"
+  ]
+ },
+ {
+  "id": "AM29F-15",
+  "topic_tag": "exponential decay whose half-life changes partway through",
+  "prompt": "A patient is given 280 milligrams of a medication. For the first 12 hours, the amount of the medication in the patient's body decreases exponentially with a half-life of 8 hours. At the 12-hour mark the patient begins a treatment, and from then on the amount of the medication decreases exponentially with a half-life of 5 hours. No more of the medication is given. To the nearest hundredth of a milligram, how many milligrams of the medication remain in the patient's body 20 hours after it was given?",
+  "choices": [
+   "33.18",
+   "32.66",
+   "26.53",
+   "29.43"
+  ]
+ },
+ {
+  "id": "AM29F-16",
+  "topic_tag": "sum of the odd-numbered terms of a geometric sequence",
+  "prompt": "In a geometric sequence, the 1st term is 40 and the common ratio is 0.9. To the nearest hundredth, what is the sum of all the odd-numbered terms from the 1st term through the 13th term (that is, the 1st term + the 3rd term + the 5th term + ... + the 13th term)?",
+  "choices": [
+   "171.52",
+   "169.16",
+   "162.36",
+   "167.18"
+  ]
+ },
+ {
+  "id": "AM29F-17",
+  "topic_tag": "amount of a decaying substance lost during a time window",
+  "prompt": "A laboratory prepares 340 milligrams of a radioactive tracer. The tracer decays exponentially with a half-life of 7 hours. To the nearest hundredth of a milligram, how many milligrams of the tracer decay during the period from 2 hours to 8 hours after it is prepared?",
+  "choices": [
+   "124.94",
+   "147.07",
+   "145.71",
+   "119.53"
+  ]
+ },
+ {
+  "id": "AM29F-18",
+  "topic_tag": "x-intercept of a transformed tangent function",
+  "prompt": "The function g is defined by g(x) = 2 tan(0.8x − 1.65) + 1.2, where the argument of the tangent is in radians. In the standard (x,y) coordinate plane, what is the least positive x-coordinate of a point where the graph of y = g(x) crosses the x-axis, to the nearest hundredth?",
+  "choices": [
+   "1.39",
+   "1.11",
+   "0.77",
+   "0.97"
+  ]
+ },
+ {
+  "id": "AM29F-19",
+  "topic_tag": "numbers whose logarithms form an arithmetic sequence",
+  "prompt": "The positive numbers a, b, and c have a sum of 40. The numbers log a, log b, and log c, in that order, form an arithmetic sequence with common difference 0.15, where log is the base-10 logarithm. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "15.23",
+   "18.83",
+   "13.48",
+   "18.11"
+  ]
+ },
+ {
+  "id": "AM29F-20",
+  "topic_tag": "sinusoidal model: amplitude and midline from two readings",
+  "prompt": "On a certain day, the temperature T, in degrees Fahrenheit, at a weather station h hours after midnight is modeled by the function T(h) = a cos(π(h − 15)/12) + d, where a and d are positive constants and the argument of the cosine is in radians. According to the model, the temperature was 57.5°F at 8:00 a.m. and 72.4°F at 5:00 p.m. To the nearest hundredth of a degree, what was the lowest temperature on that day according to the model?",
+  "choices": [
+   "51.56",
+   "47.68",
+   "57.15",
+   "56.35"
+  ]
+ },
+ {
+  "id": "AM29F-21",
+  "topic_tag": "circular motion: position on a rotating wheel from a height",
+  "prompt": "A Ferris wheel has a radius of 15 meters, and its center is 18.5 meters above the ground. The wheel has 16 cars equally spaced around its rim, and it turns at a constant rate, making one full revolution every 6.4 minutes. At a certain moment, car A is 24 meters above the ground and rising. Car C is 5 positions behind car A: car C follows car A around the wheel, with 4 cars between them. To the nearest hundredth of a minute, how many minutes after that moment will car C first reach the top of the wheel?",
+  "choices": [
+   "3.35",
+   "3.22",
+   "2.94",
+   "2.38"
+  ]
+ },
+ {
+  "id": "AM29F-22",
+  "topic_tag": "sinusoidal model: amplitude and period from two level-crossing times",
+  "prompt": "The depth of the water, in meters, at the entrance to a harbor t hours after 5:00 a.m. is modeled by the function D(t) = 4.4 + A sin(bt), where A and b are positive constants and the argument of the sine is in radians. According to the model, the first time after 5:00 a.m. that the depth is 6.0 meters is 6:24 a.m., and the next time the depth is 6.0 meters is 10:36 a.m. To the nearest hundredth of a meter, what is the greatest depth of the water according to the model?",
+  "choices": [
+   "6.66",
+   "6.38",
+   "7.12",
+   "6.25"
+  ]
+ },
+ {
+  "id": "AM29F-23",
+  "topic_tag": "two phase-shifted sinusoids: first time equal",
+  "prompt": "Two identical buoys float on the same series of waves. The height of buoy A, in meters, above the calm-water level t seconds after a timer starts is h_A(t) = 0.6 sin(1.3t), where the argument of the sine is in radians. Buoy B rises and falls in exactly the same way as buoy A but 0.9 second later, so its height at time t is h_B(t) = h_A(t − 0.9). To the nearest hundredth of a second, what is the first time t > 0 at which the two buoys are at the same height?",
+  "choices": [
+   "1.55",
+   "0.45",
+   "1.66",
+   "2.16"
+  ]
+ },
+ {
+  "id": "AM29F-X3",
+  "topic_tag": "arithmetic sequence in context ending at a threshold term",
+  "prompt": "A runner's training plan starts with an 18.5-minute run on day 1, and each day's run is 2.4 minutes longer than the run on the day before. The plan ends after the first day on which the run lasts at least 60 minutes. What is the total running time, in minutes, over all the days of the plan?",
+  "choices": [
+   "761.9",
+   "717.9",
+   "745.8",
+   "700.2"
+  ]
+ },
+ {
+  "id": "AM29F-25",
+  "topic_tag": "sinusoidal model: where it increases on an interval",
+  "prompt": "A wildlife biologist models the number of foxes in a region t months after the start of a study by the function F(t) = 820 + 140 sin(0.55t − 0.8), where the argument of the sine is in radians. During the first 18 months of the study (0 ≤ t ≤ 18), for a total of how many months, to the nearest hundredth, is the number of foxes increasing according to the model?",
+  "choices": [
+   "7.11",
+   "10.02",
+   "10.83",
+   "9.37"
+  ]
+ },
+ {
+  "id": "AM29G-01",
+  "topic_tag": "area ratio of triangles sharing an angle",
+  "prompt": "In triangle ABC, point D lies on side AB and point E lies on side AC. AD = 3 inches, DB = 4 inches, AE = 8 inches, and EC = 5 inches. Segment DE is drawn, and triangle ADE has an area of 14 square inches. To the nearest hundredth of a square inch, what is the area of triangle ABC ?",
+  "choices": [
+   "53.08",
+   "55.42",
+   "84.93",
+   "76.22"
+  ]
+ },
+ {
+  "id": "AM29G-02",
+  "topic_tag": "quadrilateral with perpendicular diagonals",
+  "prompt": "In convex quadrilateral ABCD, diagonals AC and BD are perpendicular to each other and intersect at point P inside the quadrilateral. AB = 9 centimeters, BC = 11 centimeters, and CD = 13 centimeters. To the nearest hundredth of a centimeter, what is the length of side AD ?",
+  "choices": [
+   "11.36",
+   "15.81",
+   "5.74",
+   "14.46"
+  ]
+ },
+ {
+  "id": "AM29G-03",
+  "topic_tag": "two altitudes of a triangle",
+  "prompt": "In acute triangle ABC, AC = 12 centimeters and BC = 14 centimeters. The altitude from vertex A meets side BC at point D, and AD = 8 centimeters. The altitude from vertex B meets side AC at point E. To the nearest tenth of a centimeter, what is the length of segment CE ?",
+  "choices": [
+   "10.4",
+   "8.9",
+   "7.5",
+   "9.3"
+  ]
+ },
+ {
+  "id": "AM29G-04",
+  "topic_tag": "equilateral triangle inscribed in a square",
+  "prompt": "Square ABCD has sides 12 centimeters long. Point E lies on side BC and point F lies on side CD so that triangle AEF is equilateral. To the nearest hundredth of a centimeter, what is the length of segment BE ?",
+  "choices": [
+   "4.97",
+   "3.22",
+   "3.11",
+   "6.93"
+  ]
+ },
+ {
+  "id": "AM29G-05",
+  "topic_tag": "chain of right triangles",
+  "prompt": "Right triangle T1 has legs of lengths 2 and 6. For each n = 2, 3, 4, ..., 8, right triangle Tn has as its two legs the hypotenuse of triangle T(n−1) and a segment of length 2. To the nearest hundredth, what is the length of the hypotenuse of triangle T8 ?",
+  "choices": [
+   "11.62",
+   "15.36",
+   "8.25",
+   "8.49"
+  ]
+ },
+ {
+  "id": "AM29G-06",
+  "topic_tag": "congruent side of an isosceles triangle from its perimeter and the altitude to the base",
+  "prompt": "An isosceles triangle has a perimeter of 49 centimeters, and the altitude drawn to its base is 15.3 centimeters long. To the nearest hundredth of a centimeter, what is the length of each of the two congruent sides?",
+  "choices": [
+   "18.93",
+   "15.89",
+   "16.33",
+   "17.03"
+  ]
+ },
+ {
+  "id": "AM29G-07",
+  "topic_tag": "tangent meeting an extended diameter",
+  "prompt": "Segment AB is a diameter of a circle with center O and a radius of 6.5 centimeters. Point C lies on the circle so that the measure of ∠CAB is 28°. The line tangent to the circle at C intersects line AB at point P, which lies on the extension of AB beyond B. To the nearest hundredth of a centimeter, what is the length of segment PC ?",
+  "choices": [
+   "6.91",
+   "9.64",
+   "4.38",
+   "5.12"
+  ]
+ },
+ {
+  "id": "AM29G-08",
+  "topic_tag": "rectangle topped by a semicircle (window)",
+  "prompt": "A window is shaped like a rectangle with a semicircle on top of it; the top side of the rectangle is the diameter of the semicircle. A metal frame runs along the entire outer edge of the window (the bottom side, the two vertical sides, and the curved top) and also straight across the window along the diameter of the semicircle. The frame uses 24 feet of metal in all, and each vertical side of the rectangle is 5 feet long. To the nearest hundredth of a square foot, what is the area of the window?",
+  "choices": [
+   "25.64",
+   "43.75",
+   "16.53",
+   "38.88"
+  ]
+ },
+ {
+  "id": "AM29G-09",
+  "topic_tag": "circle inscribed in a sector",
+  "prompt": "A sector of a circle has a radius of 15 centimeters and a central angle of 70°. A smaller circle lies inside the sector and is tangent to both straight edges (radii) of the sector and to the arc of the sector. To the nearest hundredth of a centimeter, what is the radius of the smaller circle?",
+  "choices": [
+   "7.27",
+   "6.75",
+   "5.47",
+   "6.18"
+  ]
+ },
+ {
+  "id": "AM29G-10",
+  "topic_tag": "surface area of a pyramid whose apex is above a base vertex",
+  "prompt": "A solid pyramid has rectangular base ABCD with AB = 15 centimeters and BC = 11 centimeters. Its apex V is directly above vertex A, so that edge VA is perpendicular to the base, and VA = 10 centimeters. To the nearest hundredth of a square centimeter, what is the total surface area of the pyramid, including its base?",
+  "choices": [
+   "505.65",
+   "473.69",
+   "467.99",
+   "488.26"
+  ]
+ },
+ {
+  "id": "AM29G-11",
+  "topic_tag": "surface area of a box with one corner sliced off",
+  "prompt": "A solid wooden block is a rectangular prism measuring 20 centimeters by 15 centimeters by 10 centimeters. One corner of the block is sawed off by a single flat cut through the three points that lie on the three edges meeting at that corner, each 4.5 centimeters from the corner. To the nearest hundredth of a square centimeter, what is the total surface area of the block that remains?",
+  "choices": [
+   "1283.94",
+   "1287.16",
+   "1289.88",
+   "1282.03"
+  ]
+ },
+ {
+  "id": "AM29G-12",
+  "topic_tag": "translating a circle until it is tangent to another circle",
+  "prompt": "In the standard (x,y) coordinate plane, circle P has equation x² + y² + 14x + 4y + 37 = 0, and circle Q has equation (x − 10)² + (y + 7)² = 64. Circle P is translated to the right, parallel to the x-axis, until it first touches circle Q. To the nearest hundredth of a coordinate unit, how far is circle P translated?",
+  "choices": [
+   "6.68",
+   "9.06",
+   "6.09",
+   "9.58"
+  ]
+ },
+ {
+  "id": "AM29G-13",
+  "topic_tag": "circle defined as a set of points by a distance ratio",
+  "prompt": "In the standard (x,y) coordinate plane, point A is at (−3, 6) and point B is at (1, −2). The set of all points P for which the distance from P to A is twice the distance from P to B is a circle. To the nearest hundredth of a coordinate unit, what is the radius of this circle?",
+  "choices": [
+   "4.71",
+   "6.37",
+   "5.96",
+   "7.23"
+  ]
+ },
+ {
+  "id": "AM29G-14",
+  "topic_tag": "length of a helical stripe on a right circular cylinder",
+  "prompt": "A decorative stripe is painted on a column shaped like a right circular cylinder that is 7.5 meters tall and 0.45 meter in diameter. The stripe starts at a point on the bottom edge and winds up around the column at a constant slope. On its way up it passes directly above its starting point exactly 2 times, and it ends on the top edge at the point diametrically opposite the point directly above its start. Treating the stripe as a curve with no width, to the nearest hundredth of a meter, how long is the stripe?",
+  "choices": [
+   "7.83",
+   "8.02",
+   "8.29",
+   "7.71"
+  ]
+ },
+ {
+  "id": "AM29G-15",
+  "topic_tag": "angle subtended by a mural above eye level",
+  "prompt": "A visitor stands on level floor facing a mural painted on a vertical wall. The bottom edge of the mural is 1.5 meters above the visitor's eye level, and the top edge is 2.4 meters above the bottom edge. The midpoint of the top edge is directly above the midpoint of the bottom edge, and the straight-line distance from the visitor's eyes to the midpoint of the bottom edge is 4.0 meters. To the nearest hundredth of a degree, what is the measure of the angle at the visitor's eyes between the line of sight to the midpoint of the bottom edge and the line of sight to the midpoint of the top edge?",
+  "choices": [
+   "23.05",
+   "13.53",
+   "24.42",
+   "30.96"
+  ]
+ },
+ {
+  "id": "AM29G-16",
+  "topic_tag": "height from two elevation angles at perpendicular positions",
+  "prompt": "A vertical tower stands on level ground. Point A on the ground is due south of the base of the tower, and from A the angle of elevation of the top of the tower is 42°. A surveyor walks 50 meters due east from A to point B, where the angle of elevation of the top of the tower is 30°. To the nearest hundredth of a meter, what is the height of the tower?",
+  "choices": [
+   "37.62",
+   "41.78",
+   "45.02",
+   "72.37"
+  ]
+ },
+ {
+  "id": "AM29G-17",
+  "topic_tag": "angles of depression to two boats, then law of cosines for an angle",
+  "prompt": "The top of a lighthouse is 46.8 meters above sea level, and F is the point at sea level directly below the top. From the top of the lighthouse, the angle of depression to boat P is 10° and the angle of depression to boat Q is 16°. Boats P and Q are 261 meters apart. To the nearest hundredth of a degree, what is the measure of ∠PFQ ?",
+  "choices": [
+   "73.42",
+   "48.04",
+   "68.63",
+   "70.47"
+  ]
+ },
+ {
+  "id": "AM29G-18",
+  "topic_tag": "running fix from two bearings (law of sines)",
+  "prompt": "A ship sails due east at a constant speed of 14 kilometers per hour. At 9:00 a.m., a lighthouse is on a bearing of 047° from the ship (that is, 47° clockwise from due north). At 10:25 a.m., the lighthouse is on a bearing of 352° from the ship. To the nearest hundredth of a kilometer, how far is the ship from the lighthouse at 10:25 a.m.?",
+  "choices": [
+   "18.66",
+   "17.41",
+   "14.57",
+   "16.51"
+  ]
+ },
+ {
+  "id": "AM29S-01",
+  "topic_tag": "compound probability of a two-stage sampling plan without replacement",
+  "prompt": "A grocery buyer inspects a crate of 17 mangoes, 5 of which are bruised, using the following plan. She first picks 2 mangoes from the crate at random. If neither of the 2 is bruised, she accepts the crate, and if both are bruised, she rejects it. If exactly 1 of the 2 is bruised, she picks 2 more mangoes at random from the 15 mangoes still in the crate; she rejects the crate if either of these 2 mangoes is bruised and accepts it otherwise. No picked mango is put back. To the nearest thousandth, what is the probability that the buyer rejects the crate?",
+  "choices": [
+   "0.301",
+   "0.309",
+   "0.284",
+   "0.295"
+  ]
+ },
+ {
+  "id": "AM29S-02",
+  "topic_tag": "compound probability without replacement",
+  "prompt": "A classroom has 35 desks arranged in 5 rows of 7 desks each, so that the desks also form 7 columns of 5 desks each. Two students are assigned to two different desks at random, with every pair of different desks equally likely. To the nearest thousandth, what is the probability that the two desks are in different rows and also in different columns?",
+  "choices": [
+   "0.706",
+   "0.657",
+   "0.727",
+   "0.676"
+  ]
+ },
+ {
+  "id": "AM29S-03",
+  "topic_tag": "compound probability of independent events",
+  "prompt": "A company sends each data file to its backup center over two routes at the same time. Route 1 passes through two relay stations, R and S, one after the other, and a file gets through on route 1 only if both R and S are working. Route 2 is a direct link that does not use R or S. On a given day, R is working with probability 0.95, S is working with probability 0.70, and the direct link is working with probability 0.60, and these three are independent. To the nearest thousandth, what is the probability that a file sent that day reaches the backup center by at least one of the two routes?",
+  "choices": [
+   "0.866",
+   "0.836",
+   "0.674",
+   "0.695"
+  ]
+ },
+ {
+  "id": "AM29S-04",
+  "topic_tag": "compound probability with dependent stages",
+  "prompt": "In a basketball league, a player who is fouled in certain situations is awarded a one-and-one: she attempts a free throw, and only if she makes it does she attempt a second free throw. Each made free throw is worth 1 point, so a one-and-one earns 0, 1, or 2 points. Lena makes each free throw she attempts with probability 0.6, independently of all her other attempts. In one game she is awarded exactly two one-and-ones. To the nearest thousandth, what is the probability that she scores more points on her first one-and-one than on her second?",
+  "choices": [
+   "0.406",
+   "0.326",
+   "0.307",
+   "0.355"
+  ]
+ },
+ {
+  "id": "AM29S-05",
+  "topic_tag": "counting with the multiplication and addition principles",
+  "prompt": "A mountain park has a trailhead T, two junctions P and Q, and a summit S. There are exactly 4 different trails from T up to P, 3 different trails from T up to Q, 3 different connector trails from P up to Q, 2 different trails from P up to S, and 6 different trails from Q up to S, and no other trails. A hiker walks from T to S, always going uphill, so a connector trail can be walked only from P to Q, never from Q to P. Two routes are different if they differ in at least one trail. How many different routes can the hiker take from T to S?",
+  "choices": [
+   "170",
+   "128",
+   "116",
+   "98"
+  ]
+ },
+ {
+  "id": "AM29S-06",
+  "topic_tag": "conditional probability",
+  "prompt": "Bag 1 contains 7 red marbles and 4 blue marbles. Bag 2 contains 3 red marbles and 6 blue marbles. Two marbles are taken at random from bag 1 at the same time and placed in bag 2. Then one marble is drawn at random from bag 2, and it is red. Given this, what is the probability, to the nearest thousandth, that exactly one of the two marbles moved from bag 1 was red?",
+  "choices": [
+   "0.516",
+   "0.477",
+   "0.433",
+   "0.364"
+  ]
+ },
+ {
+  "id": "AM29S-07",
+  "topic_tag": "expected value",
+  "prompt": "A lab must test blood samples from 480 people for a virus. Each person is infected with probability 0.02, independently of the others. The samples are divided into 60 groups of 8. For each group, the lab first tests a mixture of all 8 samples. If that test is negative, no more tests are done on that group. If it is positive, the 8 samples are split into two halves of 4, and a mixture of each half is tested. Every half whose test is positive then has each of its 4 samples tested on its own. A mixture tests positive exactly when it contains a sample from at least one infected person. To the nearest tenth, what is the expected total number of tests the lab performs for the 480 people?",
+  "choices": [
+   "115.2",
+   "114.1",
+   "97.3",
+   "83.5"
+  ]
+ },
+ {
+  "id": "AM29S-08",
+  "topic_tag": "expected value",
+  "prompt": "On weekday mornings, a shuttle leaves a station at exactly 7:04, 7:15, 7:27, 7:33, 7:51, and 8:14 a.m., and at no other times between 7:00 and 8:14 a.m. Mia arrives at the station at a random time between 7:00 a.m. and 8:00 a.m., with every moment in that hour equally likely, and she waits for the next shuttle to leave. To the nearest hundredth of a minute, what is the expected number of minutes Mia waits?",
+  "choices": [
+   "8.12",
+   "9.75",
+   "7.33",
+   "6.02"
+  ]
+ },
+ {
+  "id": "AM29S-09",
+  "topic_tag": "expected profit when sales are limited by the amount stocked",
+  "prompt": "Each morning a bakery bakes exactly 45 loaves of rye bread at a cost of $1.15 per loaf baked. During the day it sells rye loaves for $3.75 each, but it cannot sell more loaves than it baked. At closing, any unsold rye loaves are sold to a discount grocer for $0.80 each. The number of customers who want a rye loaf on a given day (each customer wants exactly 1 loaf) has the following probability distribution.\n29 customers: probability 0.20\n37 customers: probability 0.25\n46 customers: probability 0.35\n53 customers: probability 0.20\nThe bakery's daily profit from rye bread is all the money it receives for rye loaves minus the cost of baking them. To the nearest cent, what is the bakery's expected daily profit, in dollars, from rye bread?",
+  "choices": [
+   "103.48",
+   "107.41",
+   "108.97",
+   "101.66"
+  ]
+ },
+ {
+  "id": "AM29S-10",
+  "topic_tag": "expected value",
+  "prompt": "A shuttle company accepts 12 reservations for a van ride that has 10 passenger seats. Each person with a reservation shows up for the ride with probability 0.85, independently of the other people. Every person who shows up but cannot get a seat receives a $20 travel voucher. To the nearest cent, what is the expected total value, in dollars, of the vouchers given out for this ride?",
+  "choices": [
+   "11.71",
+   "26.43",
+   "6.19",
+   "8.87"
+  ]
+ },
+ {
+  "id": "AM29S-11",
+  "topic_tag": "histogram with unequal class widths",
+  "prompt": "A forester measured the trunk diameter of every tree in a study plot and displayed the results in a histogram whose classes have different widths. In this histogram, the height of each bar is the number of trees in that class per centimeter of class width. The classes and bar heights are listed below.\n10 cm to under 20 cm: 2.2\n20 cm to under 25 cm: 5.4\n25 cm to under 30 cm: 5.2\n30 cm to under 40 cm: 3.9\n40 cm to under 60 cm: 0.45\nEvery tree in the plot is in exactly one class. To the nearest hundredth of a percent, what percent of the trees in the plot have a trunk diameter of 30 cm or more?",
+  "choices": [
+   "25.36",
+   "39.02",
+   "36.71",
+   "14.99"
+  ]
+ },
+ {
+  "id": "AM29S-12",
+  "topic_tag": "standard deviation and a stem-and-leaf plot",
+  "prompt": "The scores of the 27 students who took a quiz are listed below as a stem-and-leaf plot, where the stem is the tens digit and the leaf is the ones digit (so 2 | 9 represents a score of 29).\n2 | 9\n3 | 5 6 8 9\n4 | 0 1 2 2 3 3 4 4 4 5 6 7 8 9\n5 | 1 2 3 3 8\n6 | 0\n7 | 0 7\nThe mean of the 27 scores is 47.0, and their standard deviation is 10.1. To the nearest whole percent, what percent of the 27 scores are within 1 standard deviation of the mean?",
+  "choices": [
+   "68",
+   "81",
+   "74",
+   "93"
+  ]
+ },
+ {
+  "id": "AM29S-13",
+  "topic_tag": "median of transformed data",
+  "prompt": "Seven cyclists each rode the same 30-kilometer course. Their times, listed in order of their race numbers, were:\n52 min 20 s, 41 min 15 s, 49 min 40 s, 50 min 55 s, 38 min 30 s, 51 min 35 s, 48 min 25 s\nEach cyclist's average speed, in kilometers per hour, is 30 divided by that cyclist's time in hours. To the nearest hundredth of a kilometer per hour, what is the median of the seven average speeds?",
+  "choices": [
+   "36.44",
+   "38.35",
+   "37.88",
+   "36.24"
+  ]
+ },
+ {
+  "id": "AM29S-14",
+  "topic_tag": "five-number summary and the mean",
+  "prompt": "A teacher listed the test scores of the 19 students in a class in increasing order. She reported only this summary of the scores:\nlowest score: 37\nfirst quartile: 42\nmedian: 48\nthird quartile: 59\nhighest score: 86\nHere the median is the 10th score in the list, the first quartile is the 5th score (the median of the 9 scores below the median), and the third quartile is the 15th score (the median of the 9 scores above the median). Two or more students may have the same score. Based only on this summary, what is the least possible value of the mean of the 19 scores, to the nearest tenth?",
+  "choices": [
+   "47.4",
+   "52.7",
+   "48.4",
+   "54.4"
+  ]
+ },
+ {
+  "id": "AM29N-01",
+  "topic_tag": "vector sum with a fixed-magnitude component",
+  "prompt": "On a map, the positive x-axis points east and the positive y-axis points north. The wind velocity is ⟨−90, −70⟩ kilometers per hour. A plane flies with an airspeed of 300 kilometers per hour, which is the magnitude of its velocity relative to the air, and its velocity relative to the ground is the sum of its velocity relative to the air and the wind velocity. The pilot points the plane so that its velocity relative to the ground is directed due north. To the nearest tenth of a kilometer per hour, what is the plane's ground speed, the magnitude of its velocity relative to the ground?",
+  "choices": [
+   "201.7",
+   "211.7",
+   "216.2",
+   "207.5"
+  ]
+ },
+ {
+  "id": "AM29N-02",
+  "topic_tag": "vector equation for a scalar",
+  "prompt": "In the standard (x,y) coordinate plane, u = ⟨3, 5⟩ and v = ⟨4, −1⟩. For a certain positive number k, the vector u + kv has a magnitude of 11. To the nearest hundredth, what is the value of k ?",
+  "choices": [
+   "2.07",
+   "1.89",
+   "1.47",
+   "2.71"
+  ]
+ },
+ {
+  "id": "AM29N-03",
+  "topic_tag": "weighted sum of position vectors",
+  "prompt": "In the standard (x,y) coordinate plane, objects with masses of 4 kilograms, 2 kilograms, and 3 kilograms are placed at the points A(8, 1), B(9, 9), and C(−6, −2), respectively. The center of mass of the 3 objects is the point whose position vector is the weighted average of the 3 position vectors, each weighted by its object's mass. To the nearest hundredth of a coordinate unit, what is the distance from the center of mass to point A ?",
+  "choices": [
+   "4.51",
+   "4.92",
+   "5.09",
+   "4.64"
+  ]
+ },
+ {
+  "id": "AM29N-04",
+  "topic_tag": "vector as a linear combination",
+  "prompt": "In the standard (x,y) coordinate plane, u = ⟨3, 1⟩, v = ⟨2, −5⟩, and w = ⟨9, −4⟩. The real numbers a and b satisfy au + bv = w. To the nearest hundredth, what is the value of a + b ?",
+  "choices": [
+   "2.46",
+   "3.41",
+   "4.46",
+   "4.18"
+  ]
+ },
+ {
+  "id": "AM29N-05",
+  "topic_tag": "position vectors of two movers",
+  "prompt": "On a map grid measured in kilometers, drone A starts at the point (−7, −4) and flies with constant velocity ⟨−1, −4⟩, and drone B starts at the point (−2, 7) and flies with constant velocity ⟨5, −6⟩, where velocities are in kilometers per hour. Both drones start at the same moment, and t hours later each drone's position vector is its starting position vector plus t times its velocity vector. To the nearest hundredth of a kilometer, how far apart are the drones 2.25 hours after they start?",
+  "choices": [
+   "18.12",
+   "17.68",
+   "16.44",
+   "19.61"
+  ]
+ },
+ {
+  "id": "AM29N-06",
+  "topic_tag": "complex solutions of quadratics in the complex plane",
+  "prompt": "In the complex plane, the complex number a + bi, where a and b are real numbers, is represented by the point (a, b). For i = √(−1), each of the equations x² − 5x + 13 = 0 and 4x² + 2x + 3 = 0 has two nonreal complex solutions. Let P be the point that represents the solution of the first equation that has a positive imaginary part, and let Q be the point that represents the solution of the second equation that has a positive imaginary part. To the nearest hundredth of a unit, what is the distance between P and Q ?",
+  "choices": [
+   "4.88",
+   "3.57",
+   "4.39",
+   "3.27"
+  ]
+ },
+ {
+  "id": "AM29N-07",
+  "topic_tag": "complex impedance in series",
+  "prompt": "In an alternating-current circuit, the impedance of each component, in ohms, is a complex number a + bi, where a and b are real numbers and i = √(−1). When components are connected in series, the total impedance Z of the circuit is the sum of the components' impedances, and the magnitude of the current, in amperes, is V/|Z|, where V is the source voltage, in volts, and |a + bi| = √(a² + b²). Three components with impedances 5 + 9i, 4 − 11i, and 2 − 4i are connected in series to a 120-volt source. To the nearest hundredth of an ampere, what is the magnitude of the current?",
+  "choices": [
+   "6.18",
+   "10.73",
+   "9.58",
+   "7.43"
+  ]
+ },
+ {
+  "id": "AM29N-08",
+  "topic_tag": "iterating a complex quadratic map",
+  "prompt": "For i = √(−1), a sequence of complex numbers is defined by z₁ = c and zₙ₊₁ = (zₙ)² + c for every positive integer n, where c = −0.85 + 1.2i. The absolute value of a complex number a + bi, where a and b are real numbers, is |a + bi| = √(a² + b²). To the nearest hundredth, what is |z₃| ?",
+  "choices": [
+   "3.16",
+   "1.78",
+   "3.94",
+   "1.82"
+  ]
+ },
+ {
+  "id": "AM29N-09",
+  "topic_tag": "power of a complex number in trigonometric form",
+  "prompt": "A complex number z has absolute value 1.4, and in the complex plane the ray from the origin to z makes an angle of 32° with the positive real axis, so z = 1.4(cos 32° + i sin 32°), where i = √(−1). The real part of a complex number a + bi, where a and b are real numbers, is a. To the nearest hundredth, what is the real part of z⁴ ?",
+  "choices": [
+   "-3.45",
+   "-2.37",
+   "1.99",
+   "3.26"
+  ]
+ },
+ {
+  "id": "AM29N-11",
+  "topic_tag": "precious-metal value through troy units and pennyweights",
+  "prompt": "A jeweler buys an 18-karat gold chain whose mass is 12.8 pennyweights. That mass includes a steel clasp of 1.5 grams, which contains no gold, and the rest of the chain is 18-karat gold, which is 18/24 gold by mass. The jeweler pays the spot price of gold, $2,405 per troy ounce, minus a refining charge of $330 per troy ounce of pure gold in the chain. Using 1 troy ounce = 20 pennyweights = 31.1035 grams, how much does the jeweler pay for the chain, to the nearest dollar?",
+  "choices": [
+   "921",
+   "856",
+   "896",
+   "879"
+  ]
+ },
+ {
+  "id": "AM29N-12",
+  "topic_tag": "least possible capacity from rounded measurements",
+  "prompt": "A cylindrical tank has a wall that is exactly 0.8 centimeter thick. Its outside diameter is measured as 88 centimeters, rounded to the nearest centimeter, and its inside height is measured as 130 centimeters, rounded to the nearest 10 centimeters. The inside diameter equals the outside diameter minus twice the wall thickness. An engineer uses the least possible inside volume of the tank as its safe capacity. To the nearest liter, what is that least possible volume? (1 liter = 1,000 cubic centimeters)",
+  "choices": [
+   "724",
+   "698",
+   "738",
+   "716"
+  ]
+ },
+ {
+  "id": "AM29N-13",
+  "topic_tag": "precision of a computed area from rounded measurements",
+  "prompt": "A rectangular garden plot was measured in yards. The width was paced off and recorded as 40 yards, rounded to the nearest 10 yards, and the length was taped and recorded as 47 yards, rounded to the nearest yard. A city permit form asks for the area in square meters, where 1 yard = 0.9144 meter. To the nearest square meter, what is the greatest possible actual area of the plot?",
+  "choices": [
+   "1986",
+   "1787",
+   "1806",
+   "1955"
+  ]
+ },
+ {
+  "id": "AM29N-X2",
+  "topic_tag": "orbital speed with mixed length units and a minutes-seconds period",
+  "prompt": "A satellite travels in a circular orbit 254 miles above Earth's surface. Earth is modeled as a sphere with a radius of 6,371 kilometers, and the satellite completes one orbit every 92 minutes 41 seconds. Using 1 mile = 1.609344 kilometers, what is the satellite's speed, to the nearest kilometer per hour?",
+  "choices": [
+   "26947",
+   "27658",
+   "27577",
+   "26556"
+  ]
+ }
+]

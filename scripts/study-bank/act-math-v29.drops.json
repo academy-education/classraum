@@ -1,0 +1,90 @@
+{
+ "AM29G-03": {
+  "domain": "Geometry",
+  "reason": "rule 3: survivors 2 (B; A names the same bound): triangles ADC and BEC share angle C so CE/CD = BC/AC = 14/12 > 1, CE > CD = sqrt 80 = 8.94 - kills 8.9 (ON, it is CD) and 7.5 with one Pythagoras step, cheaper than the two-area route (confirmed)"
+ },
+ "AM29G-07": {
+  "domain": "Geometry",
+  "reason": "rule 3: survivors 2 by both: the central angle is 56 deg > 45 deg, so PC = r tan 56 > r = 6.5, killing 4.38 and 5.12 without the computation (confirmed)"
+ },
+ "AM29S-09": {
+  "domain": "Statistics and Probability",
+  "reason": "rule 3: survivors 2 by both: profit is concave in demand (the 45-loaf cap), so E[profit] <= profit at mean demand 41.75 = 107.41 - one evaluation instead of four; 107.41 ON the bound, 108.97 beyond (confirmed)"
+ },
+ "AM29F-17": {
+  "domain": "Functions",
+  "reason": "rule 3: survivors 2 by both: 6 h < one 7-h half-life, so less than half of N(2) (139.5) decays, killing 145.71 and 147.07 with one exponential instead of two (confirmed)"
+ },
+ "AM29F-21": {
+  "domain": "Functions",
+  "reason": "rule 3: survivors 2 (A): car A is 5.5 m above the centre, under half the 15 m radius, so its angle is < 30 deg and it needs > 60 deg (> 1.07 min) to the top; total > 2.00 + 1.07 = 3.07 kills 2.38 and 2.94 with a special-angle comparison instead of an arcsine (confirmed)"
+ },
+ "AM29G-04": {
+  "domain": "Geometry",
+  "reason": "rule 3: survivors 2 (B): AE > AB = 12 and EF = AE = sqrt2 CE, so CE > 8.49 and BE < 3.51, killing 4.97 and 6.93 by containment (confirmed)"
+ },
+ "AM29N-13": {
+  "domain": "Number and Quantity",
+  "reason": "rule 10 + rule 3: key smallest; both graders: width < 45, length < 48, so area < 45 x 48 x 0.836 = 1806 - one step coarser than the work, 1806 ON it and 1955, 1986 beyond (B survivors 1, confirmed); A also notes the maximum is a supremum not attained (stem issue)"
+ },
+ "AM29F-18": {
+  "domain": "Functions",
+  "reason": "rule 10 + rule 3: key largest; both graders: tan = -0.6 lies between the pi/6 and pi/4 values (kills 0.77, 0.97) and |arctan v| < v gives x > 1.3125 (kills 1.11 too) - survivors 1 by both (confirmed)"
+ },
+ "AM29N-05": {
+  "domain": "Number and Quantity",
+  "reason": "rule 10 + rule 3: key largest; both graders: the distance is at least the x-separation 5 + 6(2.25) = 18.5, which kills all three distractors with one multiplication (confirmed); both rate 17.68 and 16.44 weak"
+ },
+ "AM29N-09": {
+  "domain": "Number and Quantity",
+  "reason": "rule 3: survivors 2 by both: 4 x 32 = 128 deg is in quadrant II so the real part is negative, killing 1.99 and 3.26 without the power (confirmed)"
+ },
+ "AM29G-06": {
+  "domain": "Geometry",
+  "reason": "rule 3 + rule 6: survivors 2 by both: an equilateral triangle of perimeter 49 has altitude 14.14 < 15.3, so the legs exceed 49/3 - 16.33 ON the bound, 15.89 beyond (confirmed); unanimous blind solve and A names the comparison as a free elimination"
+ },
+ "AM29A-01": {
+  "domain": "Algebra",
+  "reason": "rule 8: key smallest; both graders one_sided (\"every natural error drops a term from the left side of a <= 108 constraint, which raises the maximum\"; \"forgetting something only makes h bigger\"), neither names a natural error below (confirmed)"
+ },
+ "AM29A-16": {
+  "domain": "Algebra",
+  "reason": "rule 8: key largest; both graders one_sided (partial-distance errors are smaller than the distance by containment; dropping the -4ac term or the slope factor shrinks it), neither names a natural error above (confirmed)"
+ },
+ "AM29F-X3": {
+  "domain": "Functions",
+  "reason": "rule 8: key largest; both graders one_sided: the \"at least 60 minutes\" clause makes both identifiable errors (stop before it 700.2, cap the last term at 60 745.8) undershoot; the overshoot (20 days, 826.0) \"less tempting\" (B) (confirmed); both name the clause as producing two same-direction options"
+ },
+ "AM29I-07": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 11: one stated sentence (a 1.6-m landing between consecutive sections, the porch serving as the top landing) produces 65.85 (a landing after every section) and 64.35 (the 2.1-m length for every landing), both above the smallest key (B announced_trap; A one_sided \"every distractor adds length\"; confirmed from the author derivations)"
+ },
+ "AM29I-12": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 4: 154.24 and 154.78 rated weak by BOTH graders (no reproducible error; a tight cluster with the key)"
+ },
+ "AM29I-20": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 4: 22.78 and 22.14 rated weak by BOTH graders; distractor_quality weak / weak"
+ },
+ "AM29A-12": {
+  "domain": "Algebra",
+  "reason": "rule 4: 2.56 and 2.64 rated weak by BOTH graders"
+ },
+ "AM29A-09": {
+  "domain": "Algebra",
+  "reason": "rule 6 + rule 7: unanimous blind solve; A: the key is the hub of two pair relations - 54.81 / 13.70 = 4 (the coefficient of V) and 54.81 + 88.89 = 143.70 = 3880/27, the d-intercept the stem forces (ban (e); confirmed)"
+ },
+ "AM29S-02": {
+  "domain": "Statistics and Probability",
+  "reason": "rule 6 + rule 7: unanimous blind solve; A: the options 23/35, 23/34, 24/34, 24/33 form a numerator/denominator grid in which the key is the only option sharing a numerator with one option and a denominator with another (ban (a); confirmed)"
+ },
+ "AM29A-03": {
+  "domain": "Algebra",
+  "reason": "rule 7: A: 2.13 is the y-value of the solution and only 5.44 pairs with another option to satisfy the printed 2x + y = 13 (and 3x - 4y = 7.8), so the option set points at the key in two multiplications (ban (e); confirmed); B survivors 1 by the x > 4.73 bound (not counted: it is the solve)"
+ },
+ "AM29F-10": {
+  "domain": "Functions",
+  "reason": "rule 6 + rule 7: unanimous blind solve; B: both 10270.60 + key = 2(12,130) - 3,600 and 11019.40 - key = 630 = 0.18 x 3,500 are stem-forced, so the key is the common member of two forced pairs (ban (e); confirmed)"
+ }
+}

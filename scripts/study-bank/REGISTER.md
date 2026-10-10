@@ -2608,6 +2608,107 @@ recorded only in a commit message is a finding nobody reads.
   - **Process.** Commit messages carried ids, counts and shas only. Solver, probe and grader briefs told agents to ignore git and commit text, and every brief banned process-killing commands. Agent completion was judged by files on disk with bounded polls; no agent went idle. No new env var.
   - **After insert.** SSAT verbal 640 → 663 live (syn 347 / ana 316); live SSAT rows 1,421. `verify-admission-forms.mjs`: every section fillable (SSAT verbal margin +603). `ssat-verbal-replay.ts`: **10 clean forms (was 9)**; form 11 46/60 (syn 30/30, ana 16/30), form 12 17/60; `--need 11` = synonyms +0, **analogies +14**. → `ssat-verbal-s21.prereg.md`, `ssat-verbal-s21-{tools,stages}.mjs`, `ssat-verbal-s21.{design,live-words}.json`, `ssat-verbal-s21-ana.batch.json`, `-oo.*`, `-g{1,2}.*`, `ssat-verbal-s21-ana.{qc,kept.batch}.json`; ledger `ssat-verbal-s21-ana-kept-2026-10-10` (shipped)
 
+- **2026-10-10** — **`act-math-v29` INSERTED 93 OF 115 FROZEN (136 slots authored). ACT MATH 20 -> 22 FORMS (986 items; form-capacity by domain and next-form). Every form-22 deficit was met: Functions 20/16, Geometry 14/14, Algebra 16/13, IES 21/13, S&P 12/10, N&Q 10/9. Form 23 needs Geometry +8, Algebra +5, N&Q +4, S&P +4, Functions +4, IES +1 (26 items; binding N&Q 111 / 5).** Bars pre-registered before authoring: `ACT-MATH-V29-PREREGISTERED.md` (committed alone, 8e7af901).
+
+  **What changed from v28, and why.**
+  - **Planning rates re-derived with v28 in them.** IES extreme survival moved from 6/17 (v24–v26) to 9/16 under v28's both-way brief, so the pooled v24+v25+v26+v28 rates were used: IES 15/33 extreme, 22/23 interior; non-IES 74/97, 70/80. At the old rate the commissioned IES 16/8 would have read 42.9%, outside its own band.
+  - **G2 binds at this size.** At ~90 kept, the equal-rate interior z leaves no room for `key-extremity-projection`'s v24-rate band with 2.5 points (the selftest finds 0 compositions that meet both). That script was reported, and its v24 rate gated the low side against the bar that decides at stage 4 (G8: >= 40.0%). It read 44.7% at freeze, just outside its own old band, which is the case the prereg moved.
+  - **Size.** 116 core in ten arms with two spares each, sized so each domain meets its form-22 deficit with probability >= 0.87 at its own pooled survival (all six together 0.715).
+  - **Cross-item tells mechanised** (`act-math-v29-cross-tells.mjs`, selftest reproduces v28's frozen 50: CONV 8, WB 2, PCT2 10):
+    - CONV. On live act/math, when options close in on one end, the key sits there 69/173 times and at the far end 16. This is a mechanical return.
+    - WB, the x / x/(1−p) pair with the key. A confirmed pair is a return.
+    - PCT2, the ÷(1−p) vs ×(1+p) distractor. At most one per batch.
+  - **N&Q** was commissioned from vectors, matrices, complex numbers and units, because number properties are exhausted.
+
+  **Authoring.** 23 runs plus 8 return runs, one file per item, two subagents at a time, all Claude. Five runs were relaunched from disk. Two were real stalls (G2a, RA), one followed a ~3-hour host suspension (Sb, Sc), and one was a premature relaunch of a run that was grepping (RN2).
+
+  **Stage 0, round 1 (136 delivered).** Every mechanical check was clean on every arm. This included the cross-tells on the ratio definition: CONV 0, WB 0, PCT2 0.
+  - **The return was 32 items (24 core, 8 spares), all found by my reads:**
+    - **PCT2, counted by mechanism.** A percent operation was swapped between ×(1−p) and ÷(1+p), or ÷(1−p) and ×(1+p), anywhere in the chain. It sat on 10 of the 28 IES items, and the ratio check saw none of them because the swap touched one term. The tightening was recorded before the return. I-06 keeps the one allowed. The rest were I-05, I-08, I-09, I-10, I-11, I-12, I-14 and X1.
+    - **One-way extreme keys:** I-01, I-05, I-X3, F-X1, S-01, S-09, G-14, N-11.
+    - **Live or held mechanisms no script flagged:**
+      - F-01 ~ act 46a3076b / ssat 862dbf7e (f(f(c)) through a domain rule)
+      - G-06 ~ the five tangent-secant items
+      - N-01, N-04 ~ the live matrix-product entries
+      - G-X3 ~ act f7417f90
+      - N-X2 ~ act 3fd7747a
+      - A-20 ~ sat 6f46479a, which arrived mid-authoring
+    - **In-batch overlaps:** I-14 ~ I-13; A-05 ~ A-02 (plus a repeated "constant counted once" distractor next to the key); F-18 ~ F-14 / F-16; F-24 ~ A-20; G-X2 ~ G-08; N-10 and N-X1 ~ N-09; N-14 ~ N-13.
+    - **Cheap bounds and other defects:** cheap bounds on A-10 and A-X1; stale distractor_meta on A-08 and F-24.
+  - **After the return, 4 core items failed and were dropped:**
+    - A-20: the arithmetic-sequence-zeros route ends in act 5ad5869a's factor-theorem k.
+    - F-24: "least k" for one asymptote, where every missed case raises the answer.
+    - N-10: complex quotient, act 3ea8ed06.
+    - N-14: box volume to cubic yards, act 6102150c.
+  - **Spares.** The rule promoted A-X3, F-X3 and N-X2. N-10 had no extreme spare left. Five spares were unavailable after the return:
+    - I-X1: two distractors from the coin-rate clause.
+    - A-X1: held AM22A-01, the gas law.
+    - F-X1: act 017ad754.
+    - G-X2: ssat 9cbefdba.
+    - N-X1: act afb53506.
+  - The live bank grew twice: +188 isee/ssat-math-s17 rows and +52 sat-math-v29-full rows. Every new row was read against every item.
+  - **Frozen** 6b7c7a3a: merged sha 6e67c18d, 115 items (IES 24 = 16/8, Algebra 21, Functions 25, Geometry 18, S&P 14, N&Q 13), plus 12 unpromoted spares. At freeze:
+    - Preflight passed: 115/115 keys and 345/345 distractors recomputed.
+    - `act-math-v29-projection` G1–G8 passed: split 47.4%, IES 48.7%, v24 44.7%.
+    - The unpromoted-spares record failed key-extremity at 4/12. It is never inserted, so this is recorded, not gated.
+
+  **Stage 1 PASS** (9835cfae).
+
+      CANDIDATE     64/345 = 18.6%   line 25.2%   margin -6.7
+      LIVE CONTROL  91/345 = 26.4%   line 25.2%   margin +1.2   (115 matched 1:1 by domain, v16-v29 excluded)
+      candidate minus control  -7.8   (HOLD bar +10)
+      unanimous-correct        candidate 21/115 = 18.3%  vs  control 23/115 = 20.0%   -1.7  (HOLD bar +15)
+      pairwise agreement 91.4% vs 26.0% if independent: one solver sampled three times
+
+  Blind sha b438d7f9708a5251, seed 20261061. The solvers wrote central-value heuristics and picked an extreme option on 2 of 345 candidate picks. Position-matched interior-key hits were level: 40.3% vs 39.0%.
+
+  **Stage 2.** Two graders, each in four parts cut from render 54ed53f2c67364a7, with every part sha quoted. **230/230 picks on key.** `act-math-v27-ies-verify`: directions reproduced 72/72, and 16/16 extreme IES items had a natural counter, so rule 12 dropped 0. **Kept 93, dropped 22:**
+  - **Rule 3 / 10 (a cheap bound, confirmed):**
+    - G-03: CE/CD > 1
+    - G-07: 56° > 45° gives PC > r
+    - S-09: Jensen, profit at mean demand ON the bound
+    - F-17: under one half-life
+    - F-21: under half a radius gives under 30°
+    - G-04: AE > AB
+    - N-13: the obvious 45 × 48 cap
+    - F-18: special-angle bracket, and |arctan v| < v
+    - N-05: distance ≥ x-gap
+    - N-09: quadrant II
+    - G-06: equilateral comparison
+  - **Rule 8:** A-01 and A-16 (both graders: every error drops a term), F-X3 (the "at least 60" clause).
+  - **Rule 11:** I-07. The landing sentence gives two distractors, both above.
+  - **Rule 4:** I-12, I-20, A-12. Two distractors weak by both graders.
+  - **Rule 6 / 7, the option set points at the key:**
+    - A-09: the key is the hub of a ×4 pair and of a pair summing to the d-intercept.
+    - S-02: a numerator/denominator grid.
+    - A-03: the y-value distractor with 2x + y = 13.
+    - F-10: two stem-forced pairs through the key.
+  - Not confirmed, and kept (in `act-math-v29.verdicts.json`): one_sided on 47 items, each with a natural opposite error named by a grader. I-22, I-11 and I-19 were rated natural by one grader only, as with v28's I-16.
+  - Banked difficulty: easy 13 / medium 50 / hard 30. Post-freeze drops are not replaced.
+
+  **Stage 4 PASS.**
+  - Kept 93 (sha 8fa9eab8e3febb09): preflight passed with magnitude gating, z 0.51 / 0.99 / −1.27. Key at an extreme 49/93 = 52.7%.
+  - **IES kept alone, 21:** key-extremity 14/21 = 66.7% PASS; magnitude reported, z 1.71 / 0.54 / −1.89.
+  - Cross-tells on the kept set: CONV 0, WB 0, PCT2 0 (mechanism: I-06).
+  - **Survival:** extreme 49/62 = 79.0%, interior 44/53 = 83.0%.
+    - IES: extreme 14/16, interior 7/8. The both-way brief plus the PCT2 return lifted IES extreme survival again (v28 9/16).
+    - Non-IES: extreme 35/46, interior 37/45.
+  - Inserted with `BANK_FAMILY=act BANK_COHORT=act-math-v29 BANK_BAND=mixed`, 93 of 93. `verify-act-draw`: act/math draws 45 of 45.
+
+  **For the next author (v30: form 23 needs 26 items, Geometry +8 the largest).**
+  1. **The cheap-bound class is now the main loss, not one-sidedness.** 11 of 22 drops were rule 3/10, mostly qualitative comparisons cheaper than the work: an angle against 45° or 30°, a share under one half-life, a leg against the hypotenuse, a quadrant sign, a distance against its x-gap. Brief each author to state the cheapest *qualitative* comparison (special angle, containment, half-life, quadrant) and keep every distractor on the key's side of it.
+  2. **Options that form a structure through the key** (hub of two pairs, a fraction grid, a y-value partner, stem-forced sums) cost 4 items. Every one was unanimous in stage 1.
+  3. **PCT2 must be counted by mechanism from the start.** The ratio check is blind to the diluted swap. One allowed per batch, written into the brief before any author runs.
+  4. **N&Q matrices and complex numbers are nearly exhausted too.** Product entries, inverse, AX = B, determinants, the quotient, z² = ... and impedance are all live. Units-and-precision items without rounding intervals were the productive direction.
+  5. **Watch-dogs.** A run that greps without writing files is not idle, and one premature relaunch cost a run. A host suspension idled two runs for 3 hours.
+
+  Evidence:
+  - Pre-registration and tools: `ACT-MATH-V29-PREREGISTERED.md`, `act-math-v29-projection.mjs`, `act-math-v29-assemble.mjs`, `act-math-v29-cross-tells.mjs`, `act-math-v29-stage0.sh`, `act-math-v29-attack-draw.mjs`.
+  - Batches: `act-math-v29{-d1,-d2,-a1,-a2,-f1,-f2,-g1,-g2,-s,-n,}.batch.json` (frozen), `act-math-v29.spares.json` (12 unpromoted), `act-math-v29.kept.batch.json`, `act-math-v29.drops.json`, `act-math-v29.verdicts.json`, `act-math-v29.qc.json`.
+  - Attack: `act-math-v29-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`.
+  - Grade: `act-math-v29-grade.{batch,grade,gradekey}.json`, `act-math-v29.grader-{a,b}.json`.
+  - Ledger `act-math-v29-kept-2026-10-10`. `form-capacity`: ACT Math 22 forms by domain (986; binding N&Q 111 / 5). `next-form`: form 23 = 26 items.
+
 
 ## 6. The rule that keeps this honest
 
