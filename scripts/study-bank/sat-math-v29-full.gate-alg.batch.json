@@ -1,0 +1,2012 @@
+[
+ {
+  "id": "SM29F-B04",
+  "domain": "Algebra",
+  "subskill": "Linear function evaluated at a doubled input",
+  "difficulty": "medium",
+  "prompt": "A linear function f takes the value 1 at x = -1 and the value -21 at x = 3. A second function g doubles each input before applying f, so that g(x) = f(2x) for every x. Find g(-5).",
+  "choices": [
+   "9.25",
+   "12",
+   "46",
+   "50.5"
+  ],
+  "correct_answer": "50.5",
+  "explanation": "The slope of f is (-21 - 1)/(3 - (-1)) = -22/4 = -5.5, so f(x) = 1 - 5.5(x + 1) = -5.5x - 4.5. Then g(-5) = f(2(-5)) = f(-10) = -5.5(-10) - 4.5 = 55 - 4.5 = 50.5.",
+  "solve": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(2 * -5) * 1000) / 1000;",
+  "distractor_solve": {
+   "12": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 + 2) * 1000) / 1000;",
+   "46": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(2 * f(-5) * 1000) / 1000;",
+   "9.25": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 / 2) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope and intercept from two values",
+   "compose with a doubled input",
+   "evaluate"
+  ],
+  "quantity_asked": "the value of g(-5), where g(x) = f(2x)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an output of g; checking it requires f's slope and intercept from the two printed values and then f(-10), which is the solution. No printed condition takes g(-5) as input."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding 2 to the input instead of multiplying by 2 (f(-3)); whether that input lies on the key's side depends on the computed slope."
+   },
+   "46": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading g(x) = f(2x) as 2f(x) doubles the output f(-5) = 23 instead of the input, which counts f's intercept twice; whether that extra intercept raises or lowers the result depends on its sign, which must be computed (both printed values have opposite signs)."
+   },
+   "9.25": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Halving the input instead of doubling it (f(-2.5)); its side depends on the slope's sign and on where -2.5 and -10 sit relative to the data."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const m = (-21 - 1) / (3 - 1); const f = x => 1 + m * (x - -1); return Math.round(f(2 * -5) * 1000) / 1000;",
+   "direction": "above",
+   "why": "Taking the run from -1 to 3 as 3 - 1 = 2 gives slope -11 and g(-5) = f(-10) = 1 + 99 = 100, above the key."
+  },
+  "far_distractor": {
+   "option": "46",
+   "natural_side": "above",
+   "why": "Doubling the output instead of the input puts in an EXTRA copy of f's intercept, an error that overshoots whenever the intercept is positive; here the intercept is -4.5, found only from the slope -5.5 and f(-1) = 1, so 2f(-5) = 2(23) = 46 falls 4.5 short of f(-10) = 50.5. Nothing printed shows the intercept's sign: one printed value is positive and the other negative."
+  },
+  "cheap_bound_check": "Cheapest bound: f decreases (f(3) < f(-1)), and -10 is left of -1, so g(-5) = f(-10) > f(-1) = 1. All three distractors (9.25, 12, 46) exceed 1, so it strikes none. A tighter bound needs the slope.",
+  "shape_check": "Properties handed over: f is decreasing, so g(-5) = f(-10) > 1; no integer or cap applies. All four options survive every property together.",
+  "interior_parity_check": "Middle values 12 and 46: both two-digit positive integers; the key 50.5 is extreme and is a one-place decimal like 9.25 is a two-place one, so it is not the cleaner value.",
+  "arith_class_check": "Two integers (12, 46) and two decimals (9.25, 50.5); all positive; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "g\\(x\\) = f\\(2x\\)|h\\(x\\) = f\\(2x\\)|f\\(2x\\)&linear",
+    "2f\\(x\\)&f\\(2x\\)",
+    "f\\([2-9]x\\)|g\\([2-9]x\\)|h\\([2-9]x\\)"
+   ],
+   "hits_read": 13,
+   "nearest": "SM26F-B11 (prior): g(x) = f(2x) - 2f(x) is GIVEN as a value to fix f. Here g is just the doubled-input composition, f comes from two printed values, and the f(2x)-versus-2f(x) confusion is a distractor rather than the given; 3a86b5ff (ACT) asks only the slope of f(3x)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the far distractor 46 (2f(-5)) adds an extra intercept and would overshoot if the intercept were positive; it is -4.5, which takes the slope to find. The halved and shifted inputs land wherever the slope puts them. The cheapest bound (f(-10) > 1, since f decreases) strikes none of the three. No option is an intermediate leading to the key through a printed number in one step: the slope -5.5, the intercept -4.5 and f(-5) = 23 are not options, and from 46 the key needs the unprinted intercept. Plug-back: an output of g cannot be checked against the stem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C04",
+  "domain": "Algebra",
+  "subskill": "Line traced by a system's solution as a constant varies",
+  "difficulty": "medium",
+  "prompt": "x - y = k - 17\nx - 2y = -2k + 2\n\nIn the system of equations above, k is a constant. For each value of k, the system has exactly one solution (x, y). As k takes on all real values, every one of these solutions lies on a single line in the xy-plane. What is the y-coordinate of the y-intercept of that line?",
+  "choices": [
+   "-32",
+   "-19",
+   "5",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "Every solution (x, y) satisfies both equations for its own value of k, so any combination of the two equations that cancels k gives an equation that every solution satisfies, whatever k is. Multiply the first equation by 2 and add the second: 2(x - y) + (x - 2y) = 2(k - 17) + (-2k + 2), which simplifies to 3x - 4y = -32. So all the solutions lie on the line 3x - 4y = -32. (Check with two values: k = 0 gives the solution (-36, -19), and k = 9 gives (0, 8); both satisfy 3x - 4y = -32.) At the y-intercept x = 0, so -4y = -32 and y = 8.",
+  "solve": "const B=2*(-1)+(-2), C=2*(-17)+2; return C/B;",
+  "distractor_solve": {
+   "5": "const B=(-1)+(-2), C=(-17)+2; return C/B;",
+   "-32": "const C=2*(-17)+2; return C;",
+   "-19": "const y=(1*2-1*(-17))/(1*(-2)-1*(-1)); return y;"
+  },
+  "mechanism": [
+   "combine the equations to cancel the parameter k",
+   "recognize the k-free equation as the line all solutions lie on",
+   "read the y-intercept of that line"
+  ],
+  "quantity_asked": "the y-coordinate of the y-intercept of the line containing every solution",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is the y-intercept of a line that is never printed; it is not a solution, a value of k, or a point that can be substituted into the system. A student must find the k-free relation first."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two equations without first doubling the first one, and then dropping the leftover -k, gives 2x - 3y = -15, whose y-intercept is 5. The direction of the change is not readable without the combination."
+   },
+   "-32": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "After reaching 3x - 4y = -32, reading the constant term as the y-intercept (stopping before dividing by the y-coefficient -4) gives -32. Whether that lands above or below depends on the sign of a coefficient that appears only after the combination."
+   },
+   "-19": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating the constant as 0 and reporting the y-coordinate of that single solution (x - y = -17 and x - 2y = 2 give (-36, -19)) answers for one point of the line rather than its y-intercept. The stem does not show where that point sits relative to the intercept."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const C=2*(-17)+2; return C/(-2);",
+   "direction": "above",
+   "why": "Dividing the constant -32 by -2, the y-coefficient of the second printed equation, instead of by -4, the y-coefficient of the combined line, gives 16, above the key; 16 is not an option."
+  },
+  "far_distractor": {
+   "option": "-32",
+   "natural_side": "above",
+   "why": "Stopping before the final division by the y-coefficient ordinarily leaves a number that is too large, since that coefficient here has size 4. In this item the combined line is 3x - 4y = -32, whose y-coefficient is negative, so the undivided constant -32 has the opposite sign of the key and lands below it; the sign of that coefficient appears only after the elimination."
+  },
+  "cheap_bound_check": "The stem states no sign or bound on x, y or the intercept, and the printed constants -17, -2k and +2 have mixed signs, so no one-sided bound is readable. All three distractors therefore stay on the key's side of every bound a student could state; two options are negative and two positive.",
+  "shape_check": "Stem properties: a line's y-intercept can be any real number; nothing forces sign or integrality. All four options are legal; integrality is shared by all four, and sign is split two and two.",
+  "interior_parity_check": "Middle values -19 and 5 differ in sign but are both small integers; the key 8 is not interior.",
+  "arith_class_check": "Options -32, -19, 5, 8: the key shares positivity with 5 and evenness with -32. Odd/even split two and two, sign split two and two; no class the stem implies isolates 8.",
+  "dup_search": {
+   "queries": [
+    "every value of k|all values of k|as k varies|any value of k",
+    "as k|for each value of k&line|every value of the constant",
+    "slope&solutions&k",
+    "infinitely many&system"
+   ],
+   "hits_read": 43,
+   "nearest": "AL-H-16 / 911c51a8 (system has exactly one solution for every k except one; find that k): asks where the parameter breaks uniqueness. Here uniqueness holds for every k and the ask is the line swept by the solutions, found by an elimination that cancels k, which no live or prior item uses."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the intercept's sign is not readable, the printed constants mix signs, and two options are positive and two negative; the reading-the-constant error lands below only because the combined y-coefficient is negative. The far distractor -32 reads as an early-stop error that is usually too large in size, and nothing in the stem shows that it flips sign here. Does any one bound strike all three? No bound exists in the stem. Decision point: the parameter must be eliminated (or the solution written in terms of k, y = 3k - 19 and x = 4k - 36, and x set to 0, giving k = 9 and y = 8); a student who tries one value of k finds a point (-19 at k = 0), not the line. (read) DPAIR: 8 - 5 = 3 = 2 + 1. The 5 comes from dropping the doubling of the first equation; no step adds 2 + 1 to it, and moving from 5 to 8 would require knowing the correct combined line already."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A08",
+  "domain": "Algebra",
+  "subskill": "Solution in terms of a parameter, tied to the parameter",
+  "difficulty": "medium",
+  "prompt": "For a certain constant k, the solution x of 3(x + k) - 14 = x + 9k turns out to be 5 less than 5 times k. What is the sum of x and k?",
+  "choices": [
+   "4",
+   "11",
+   "31",
+   "52"
+  ],
+  "correct_answer": "31",
+  "explanation": "Solve for x in terms of k: 3x + 3k - 14 = x + 9k, so 2x = 6k + 14 and x = 3k + 7.\nThe solution is also 5 less than 5 times k, so 3k + 7 = 5k - 5. Then 2k = 12, k = 6, and x = 3(6) + 7 = 25.\n(Check: 3(25 + 6) - 14 = 79 and 25 + 9(6) = 79; and 5(6) - 5 = 25.)\nSo x + k = 25 + 6 = 31.\n\nChoice 52 comes from dividing only the k-term by 2: x = 3k + 14, so 3k + 14 = 5k - 5, k = 9.5, x = 42.5, and x + k = 52.\nChoice 11 comes from reading 5 less than 5 times k as 5k + 5: 3k + 7 = 5k + 5 gives k = 1, x = 10, and x + k = 11.\nChoice 4 comes from a sign error when collecting the k-terms, 2x = -6k + 14: then -3k + 7 = 5k - 5 gives k = 1.5, x = 2.5, and x + k = 4.",
+  "solve": "const A=3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+  "distractor_solve": {
+   "4": "const A=-3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "11": "const A=3,B=7,m=5,n=-5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "52": "const A=3,B=14,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "solve the linear equation for x in terms of the constant",
+   "set that expression equal to the stated linear relation in k and solve for k",
+   "evaluate x + k"
+  ],
+  "quantity_asked": "the sum x + k",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=(v-7)/4; const x=3*k+7; return Math.abs(x-(5*k-5))<1e-9;",
+   "why": "An option is x + k, not x or k. To check one a student must first solve the equation for x in terms of k (x = 3k + 7), turn the option into k ((option - 7)/4) and then test the relation - three steps, the first of which is the solving itself. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign error on the k-terms changes the slope of x in k; where the two lines in k then meet, and so x + k, can be larger or smaller depending on the numbers."
+   },
+   "11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading '5 less than' as +5 shifts the relation line up by 10; whether the meeting point moves to a smaller or larger k depends on which line is steeper, which is not visible before solving."
+   },
+   "52": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving the constant undivided raises x for every k; where it meets 5k - 5 then depends on the slopes, which the stem does not show without the work."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no sign, integer or range property for x + k (k is any constant). All four options are legal values; all four survive together.",
+  "interior_parity_check": "The middle values 11 and 31 are both two-digit odd integers; the key 31 is not the cleaner one.",
+  "arith_class_check": "Odd: 11 and 31; even: 4 and 52. Primes: 11 and 31. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "solution&(less|more) than (twice|[0-9]+ times|three times|five times) (the value of )?k",
+    "solution is .{0,30}(times|more than|less than) .{0,10}\\b[a-z]\\b",
+    "value of x \\+ k|x \\+ k\\?",
+    "(is|has) (a|the) solution (of|to)?&constant&(what is the|value of)",
+    "solution is x = |x = -?[0-9]+ is (a|the) solution"
+   ],
+   "hits_read": 60,
+   "nearest": "SM28F-A08 (two equations sharing k; the solution of the first is 1 less than twice the solution of the second; asks a solution). Here there is one equation, its solution is tied to the constant itself, the solver must write x in terms of k and meet a second line in k, and the ask is x + k. The stated-value items (x = 3 is a solution, find c) give the solution outright; none gives a relation between the solution and the constant."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: neither x (25) nor k (6) is an option, so no option is one step from the key. Pattern 2: the stem gives no bound on x + k. A test-wise student might try each option as x + k, but without x = 3k + 7 there is nothing to test it against; plug-back reaches the key at try 3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B05",
+  "domain": "Algebra",
+  "subskill": "Reflection of a line across y = x",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (-2, 1) and (3, -5). When this line is reflected across the graph of y = x, the image is a second line, which contains the point (4, t). What is the value of t?",
+  "choices": [
+   "-6.2",
+   "-5.6",
+   "-4.5",
+   "3.4"
+  ],
+  "correct_answer": "-4.5",
+  "explanation": "Reflecting across the line y = x swaps the coordinates of every point, so (4, t) is on the image line exactly when (t, 4) is on the original line. The slope of the original line is (-5 - 1)/(3 - (-2)) = -6/5 = -1.2, so the original line is y = 1 - 1.2(x + 2). Setting y = 4 gives 4 = 1 - 1.2(t + 2), so t + 2 = -2.5 and t = -4.5.",
+  "solve": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + (4 - 1) / s) * 1000) / 1000;",
+  "distractor_solve": {
+   "-6.2": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (4 + 2)) * 1000) / 1000;",
+   "3.4": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (-4 + 2)) * 1000) / 1000;",
+   "-5.6": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + s * (4 - 1)) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope from two points",
+   "reflection across y = x swaps coordinates",
+   "solve the original line for the swapped input"
+  ],
+  "quantity_asked": "the y-coordinate t of the point on the reflected line with x-coordinate 4",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const l = x => 1 - 1.2 * (x + 2); return Math.abs(l(v) - 4) < 1e-9;",
+   "why": "After finding line l and recognising that (4, t) on m means (t, 4) on l, a student can test an option v by checking whether l(v) = 4. That takes the slope and the reflection rule first; in ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "-6.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the reflection and evaluating line l at x = 4; nothing in the stem compares l(4) with the input l sends to 4."
+   },
+   "3.4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reflecting across the y-axis instead of y = x (taking t = l(-4)); its side depends on the slope's sign and size, which must be computed."
+   },
+   "-5.6": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Swapping the point (-2, 1) to (1, -2) but keeping slope -1.2 for line m instead of its reciprocal; whether multiplying instead of dividing by 1.2 moves t up or down depends on the sign of 4 - 1, read only after the setup."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: t is any real number (no sign, integer or cap applies); line m has a nonzero finite slope. All four options survive.",
+  "interior_parity_check": "Middle values -5.6 and -4.5: both negative one-place decimals of two significant digits; the key is not the cleaner one.",
+  "arith_class_check": "Three negatives and one positive (3.4, a distractor); all one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "reflect&line y = x|y = x",
+    "inverse&f\\(x\\) = -?[0-9/]+x [-+]",
+    "f\\^-1|f\\^\\(-1\\)|inverse function&linear",
+    "rotat&line"
+   ],
+   "hits_read": 6,
+   "nearest": "SM27F-B12 (prior): line through two points reflected across the y-axis, then evaluated. Here the reflection is across y = x, so the coordinates swap and the student must solve the original line for an input rather than evaluate at a negated input; b65d483c (ISEE) reflects a single point, not a line."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student could try the options in l after finding l, which needs the slope and the swap rule, and reaches the key third in ascending order. The lone positive option 3.4 is a distractor, so a sign class does not single out the key. 3.4 is the y-axis reflection that SM27F-B12 used; a student who has seen that item and picks it is wrong here."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D07",
+  "domain": "Algebra",
+  "subskill": "Inequality for a required pace over the remaining distance",
+  "difficulty": "easy",
+  "prompt": "Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+  "choices": [
+   "3.6",
+   "4.8",
+   "4.9",
+   "5.3"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "The first 2 kilometers took 2(6.1) = 12.2 minutes, and the stop took 3 minutes, so 15.2 minutes are used before the rest of the race. The remaining distance is 8 - 2 = 6 kilometers, which takes 6p minutes. Her total time must be at most 44 minutes, so 12.2 + 3 + 6p ≤ 44. Then 6p ≤ 28.8, and p ≤ 4.8. The greatest possible value of p is 4.8.",
+  "solve": "const used = 2 * 6.1 + 3; return (44 - used) / (8 - 2);",
+  "distractor_solve": {
+   "3.6": "const used = 2 * 6.1 + 3; return (44 - used) / 8;",
+   "5.3": "const used = 2 * 6.1; return (44 - used) / (8 - 2);",
+   "4.9": "return 2 * (44 / 8) - 6.1;"
+  },
+  "mechanism": [
+   "time already used from pace times distance plus the stop",
+   "remaining distance",
+   "solve the time inequality for the pace"
+  ],
+  "quantity_asked": "the greatest pace p (minutes per kilometer) for the last 6 kilometers that keeps the total time, including a 3-minute stop, at most 44 minutes",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const t = 2 * 6.1 + 3 + 6 * v; return Math.abs(t - 44) < 1e-9;",
+   "why": "A student can test an option p by computing 12.2 + 3 + 6p and seeing whether it is exactly 44 minutes (the greatest allowed pace makes the total equal to the limit). In the descending order a 'greatest' ask suggests, 5.3 and 4.9 overshoot (45 and 44.6 minutes) and the key is the third try."
+  },
+  "distractor_meta": {
+   "3.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Divides the 28.8 minutes left by the whole 8 kilometers instead of the 6 that remain."
+   },
+   "5.3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgets the 3-minute stop, so 31.8 minutes appear to be left for the 6 kilometers."
+   },
+   "4.9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes the required overall pace 44/8 = 5.5 and averages paces instead of times: (6.1 + p)/2 = 5.5, ignoring the distances and the stop."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "p is a positive pace. The test-wise bound 'the remaining pace must beat the overall 44/8 = 5.5 because the start was slower' strikes no option (all four are below 5.5). A bound 'p is less than the pace ignoring the stop' needs the first-leg time first and strikes only 5.3. 3.6, 4.8 and 4.9 survive every property together.",
+  "interior_parity_check": "Middle values 4.8 and 4.9: both one-decimal numbers of the same complexity; the key is not the cleaner one.",
+  "arith_class_check": "All four are one-decimal numbers; the key is not alone in any class. No option is a sum, difference, average, double or product of two others.",
+  "dup_search": {
+   "queries": [
+    "pace|minutes per (kilometer|mile)|per lap",
+    "remaining&at least|at most|no more|less than|under&minutes|hours",
+    "stop|water station&minutes&at most|at least"
+   ],
+   "hits_read": 16,
+   "nearest": "4c5f8ba1 (ISEE: time for 800 m at a fixed race pace) is a direct proportion with no inequality and no split race; no live or prior item sets a time budget over a race already partly run and solves for the required pace."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student who argues the remaining pace must beat the overall 5.5 average strikes nothing: all four options are under 5.5. The only other bound (less than the pace ignoring the stop) needs the first-leg time and strikes just 5.3. Plug-back reaches the key at try 3 in descending order. Distractors fall on both sides (one below, two above). Return fix: the old set had two options above the overall average, struck free."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C07",
+  "domain": "Algebra",
+  "subskill": "System from matching coefficients of a linear identity",
+  "difficulty": "medium",
+  "prompt": "Two fixed numbers a and b make the expression a(4x + 8) + b(x - 4) equal to 33x + 108 no matter which number is substituted for x. How much greater is a than b?",
+  "choices": [
+   "-18",
+   "3",
+   "7",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "Expanding gives a(4x + 8) + b(x - 4) = (4a + b)x + (8a - 4b). For this to equal 33x + 108 for every x, the x-coefficients and the constant terms must match: 4a + b = 33 and 8a - 4b = 108. Multiply the first equation by 4 and add the second: 16a + 8a = 132 + 108, so 24a = 240 and a = 10. Then b = 33 - 4(10) = -7. (Check: 10(4x + 8) - 7(x - 4) = 40x + 80 - 7x + 28 = 33x + 108.) So a is greater than b by 10 - (-7) = 17.",
+  "solve": "const a=(4*33+108)/(4*4+8); const b=33-4*a; return a-b;",
+  "distractor_solve": {
+   "3": "const a=(4*33+108)/(4*4+8); const b=33-4*a; return a+b;",
+   "7": "const a=(4*33+108)/(4*1+8); const b=33-a; return a-b;",
+   "-18": "const a=(4*33-108)/(4*4-8); const b=33-4*a; return a-b;"
+  },
+  "mechanism": [
+   "expand and collect the x-terms and the constants",
+   "match coefficients to get two linear equations in a and b",
+   "solve the system and subtract"
+  ],
+  "quantity_asked": "a - b",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is only the difference a - b, which does not fix a or b, so it cannot be substituted into the expression; the two coefficient equations must be formed and solved first."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Solving correctly and then adding a and b (10 + (-7)) instead of subtracting. Whether a sum is larger or smaller than the difference depends on the sign of b, which appears only after solving."
+   },
+   "7": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the 4 from 4x when collecting x-terms (a + b = 33) while matching constants correctly (8a - 4b = 108) gives a = 20, b = 13 and a - b = 7. The direction of the change is not readable without solving."
+   },
+   "-18": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the constant term as 8a + 4b (losing the minus sign of -4) gives 4a + b = 33 and 8a + 4b = 108, so b = 21, a = 3 and a - b = -18. Nothing in the stem shows which way that moves the difference."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=(4*33-108)/(4*4-8); const b=4*a-33; return a-b;",
+   "direction": "above",
+   "why": "Writing the x-coefficient as 4a - b (a sign slip on b) gives 4a - b = 33 and 8a - 4b = 108, so a = 3, b = -21 and a - b = 24, above the key; 24 is not an option."
+  },
+  "far_distractor": {
+   "option": "3",
+   "natural_side": "above",
+   "why": "Adding two numbers where they should be subtracted ordinarily gives a result that is too large. Here b turns out to be negative (b = -7), so a + b = 3 is smaller than a - b = 17. The sign of b is not visible in the stem: it appears only once the coefficient equations are solved (4a = 40 exceeds 33)."
+  },
+  "cheap_bound_check": "The stem gives no sign or size condition on a, b or a - b, and the phrase 'how much greater is a than b' does not bound the answer from above. The only cheap reading is that the answer should be positive, which strikes -18 alone; 3 and 7 sit on the key's side of it.",
+  "shape_check": "Stem properties: a and b are any real constants; a - b has no stated cap, integer or sign condition (the wording suggests a positive answer, which -18 fails). 3, 7 and 17 survive every property together.",
+  "interior_parity_check": "Middle values 3 and 7: both one-digit odd integers; the key 17 is not interior.",
+  "arith_class_check": "Options -18, 3, 7, 17: the key shares oddness with 3 and 7 and primality with 3 and 7; no class the stem implies isolates 17.",
+  "dup_search": {
+   "queries": [
+    "all values of x&a\\(|for all x&a\\(|true for all&constants a and b",
+    "identity|no matter",
+    "infinitely many&system",
+    "value of a - b|greater is a"
+   ],
+   "hits_read": 14,
+   "nearest": "The live item a(x + 3) - 2(x - 1) = 4x + b, true for all x, ask ab: each constant is fixed by one coefficient on its own, with no system. Here both unknown constants multiply binomials, so matching the x-terms and the constants gives a 2-by-2 system that must be solved."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? The wording 'how much greater' suggests a positive answer, which strikes -18 only; 3 and 7 remain. Whether a dropped coefficient (7) or a sum instead of a difference (3) falls below the key depends on b's sign and size, which come only from solving. Does the far distractor read as a far-side error? Adding where one should subtract is the usual overshoot; it lands low only because b = -7, and nothing printed shows that b is negative. Neither a = 10 nor b = -7 is an option, so no option leads to the key through one printed relation. A shortcut exists (substitute x = 4 to get 24a = 240), which is legitimate solving, not a check on an option."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C06",
+  "domain": "Algebra",
+  "subskill": "Two systems sharing one line; compare the solutions",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 2x - 3y = 2. Line l intersects the line 3x - 5y = -5 at point A, and line l intersects the line x - y = -4 at point B. How much greater is the x-coordinate of point A than the x-coordinate of point B?",
+  "choices": [
+   "9",
+   "11",
+   "27",
+   "39"
+  ],
+  "correct_answer": "39",
+  "explanation": "Point A solves the system 2x - 3y = 2 and 3x - 5y = -5. Multiply the first equation by 3 and the second by 2: 6x - 9y = 6 and 6x - 10y = -10. Subtracting gives y = 16, and then 2x - 3(16) = 2, so x = 25. Point A is (25, 16). Point B solves 2x - 3y = 2 and x - y = -4. From the second equation x = y - 4, so 2(y - 4) - 3y = 2, which gives -y - 8 = 2, y = -10 and x = -14. Point B is (-14, -10). The x-coordinate of A is greater than that of B by 25 - (-14) = 39.",
+  "solve": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA-xB;",
+  "distractor_solve": {
+   "9": "const yA=(3*2-2*5)/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA-xB;",
+   "11": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA+xB;",
+   "27": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(-2-3); const xB=-4-yB; return xA-xB;"
+  },
+  "mechanism": [
+   "solve line l with the first line for A",
+   "solve line l with the second line for B",
+   "subtract the x-coordinates"
+  ],
+  "quantity_asked": "the x-coordinate of A minus the x-coordinate of B",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a difference of two x-coordinates; it does not name a point that can be substituted into any printed equation, so both systems must be solved."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the minus sign on the constant of 3x - 5y = -5 (solving with 3x - 5y = 5) gives A = (-5, -4) and a difference of -5 - (-14) = 9. Which way that slip moves A is not readable without solving."
+   },
+   "11": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two x-coordinates (25 + (-14)) instead of subtracting them. Whether a sum is larger or smaller than the difference depends on the sign of B's x-coordinate, which appears only after solving."
+   },
+   "27": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading x - y = -4 as x + y = -4 when solving for B gives B = (-2, -2) and a difference of 25 - (-2) = 27. The direction of the change is not visible without solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return (25-(-14))+(16-(-10));",
+   "direction": "above",
+   "why": "Adding the horizontal and the vertical differences between A and B (39 + 26) gives 65, above the key; 65 is not an option."
+  },
+  "far_distractor": {
+   "option": "11",
+   "natural_side": "above",
+   "why": "Adding two quantities where they should be subtracted ordinarily produces a result that is too large. Here B's x-coordinate is negative (-14), so the sum 25 + (-14) = 11 is smaller than the difference 39; the sign of B's coordinate comes only from solving the second system, not from the stem."
+  },
+  "cheap_bound_check": "The stem gives no sign or cap on either point's coordinates, so the only readable property is that the ask is a difference, which could have either sign. No bound strikes any option; all three distractors are on the key's side of every bound a student could state.",
+  "shape_check": "Stem properties: coordinates of intersection points can be any real numbers; the difference has no stated sign, integrality or cap. All four options are legal; integrality is shared by all four.",
+  "interior_parity_check": "Middle values 11 and 27: both two-digit odd integers, same form and complexity; the key 39 is not interior.",
+  "arith_class_check": "Options 9, 11, 27, 39: all odd; the key shares divisibility by 3 with 9 and 27; no class the stem implies isolates 39.",
+  "dup_search": {
+   "queries": [
+    "point A&point B&intersect",
+    "intersects&at point&and the line",
+    "x-coordinate of A&x-coordinate of B|x-coordinates of",
+    "intersect&origin"
+   ],
+   "hits_read": 3,
+   "nearest": "SM28F-B05 (a horizontal line meets two PARALLEL lines at P and Q; length PQ, constant for every horizontal line): a single parallel-line shift with no system to solve. Here a slanted line meets two different lines, so two separate 2-by-2 systems must be solved and their solutions compared."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: whether the sum (11), the sign-slipped A (9) or the sign-slipped B (27) gives a smaller number than the true x-difference depends on the solved coordinates, including the negative x-coordinate of B, which nothing in the stem reveals. The far distractor 11 reads as an add-instead-of-subtract error, which usually overshoots, and lands low only because B's x-coordinate is negative. Does any one bound strike all three? No bound exists in the stem. A y-difference distractor (26 = 2/3 of 39, the slope of l) was deliberately not used, because it would pair with the key through the slope of l."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D06",
+  "domain": "Algebra",
+  "subskill": "Inequality with a coefficient parameter: boundary at a new k",
+  "difficulty": "medium",
+  "prompt": "kx + c ≥ 2x + 4k\n\nIn the inequality above, k and c are constants. When k = 3, the solution set of the inequality is all x with x ≥ -2. If c stays the same and k is changed to 10, the solution set becomes all x with x ≥ d. What is d?",
+  "choices": [
+   "1.5",
+   "2.2",
+   "2.6",
+   "3.25"
+  ],
+  "correct_answer": "3.25",
+  "explanation": "Rewrite the inequality as (k - 2)x ≥ 4k - c. When k = 3 this is x ≥ 12 - c, and the solution set is x ≥ -2, so 12 - c = -2 and c = 14. When k = 10 the inequality becomes 8x ≥ 40 - 14 = 26, so x ≥ 26/8 = 3.25. Therefore d = 3.25.",
+  "solve": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / (10 - 2);",
+  "distractor_solve": {
+   "2.2": "const c = 4 * 3 - (-2) * 3; return (4 * 10 - c) / 10;",
+   "2.6": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / 10;",
+   "1.5": "const c = 4 * 3 - (-2) * (3 + 2); return (4 * 10 - c) / (10 + 2);"
+  },
+  "mechanism": [
+   "collect x terms so the coefficient is k - 2",
+   "use the solution set at k = 3 to find c",
+   "solve the inequality again at k = 10"
+  ],
+  "quantity_asked": "the boundary d of the solution set x ≥ d when k = 10, after c is found from the k = 3 solution set",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(8 * v - 26) < 1e-9;",
+   "why": "After finding c = 14 a student can test an option d by checking 8d = 40 - 14; in ascending order the key is the fourth try."
+  },
+  "distractor_meta": {
+   "2.2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Never moves the 2x, treating the coefficient of x as k: 3x ≥ 12 - c gives c = 18, then 10x ≥ 22 gives 2.2. The wrong coefficient changes both c and the final divisor, so its side is not visible without computing."
+   },
+   "2.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds c = 14 correctly but divides 26 by k = 10 instead of k - 2 = 8 at the second step."
+   },
+   "1.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes the coefficient as k + 2 instead of k - 2: 5x ≥ 12 - c with x ≥ -2 gives c = 22, then 12x ≥ 18 gives 1.5."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (4 * 10) / (10 - 2);",
+   "direction": "above",
+   "why": "Forgets to subtract c at k = 10 and solves 8x ≥ 40, getting 5, above the key."
+  },
+  "far_distractor": {
+   "option": "1.5",
+   "natural_side": "above",
+   "why": "Writing k + 2 for k - 2 puts an extra 2 into the coefficient, an added-amount error that ordinarily inflates a result. Here that coefficient is a divisor at k = 10, and at k = 3 it also changes the value of c found from x ≥ -2 (c = 22, not 14); because the given boundary -2 is negative, the larger divisor at k = 3 makes c LARGER, which shrinks the numerator at k = 10, so the result falls to 1.5, below the key. The side depends on the sign of the given boundary and on c, which must be computed."
+  },
+  "cheap_bound_check": "No one-sided bound on d is readable from the stem: d depends on c, which is fixed only by the k = 3 solution set, and nothing says whether the boundary rises or falls as k changes. No bound strikes even one option without solving.",
+  "shape_check": "d is a real boundary; the stem gives no sign, integrality or cap. All four options are positive and survive; 2.2, 2.6 and 3.25 survive every property together.",
+  "interior_parity_check": "Middle values 2.2 and 2.6: both one-decimal numbers of the same complexity; the key 3.25 is not interior.",
+  "arith_class_check": "All four are non-integers; the key's two-decimal form is not a class the stem implies; no parity or sign class isolates it. No option is a sum, difference, average, double or product of two others.",
+  "dup_search": {
+   "queries": [
+    "when (k|a|c) ?= ?-?[0-9]&solution|inequalit|≥|≤",
+    "solution set&constant&solution set.*solution set",
+    "inequalit|at least|at most (prior list read in full)"
+   ],
+   "hits_read": 129,
+   "nearest": "SM28F-D05 (live; for a certain k the FIRST inequality is true exactly when x ≤ 7, and for that same k the SECOND inequality gives x < c): one parameter carried from one inequality to another. Here there is one inequality with two constants: the coefficient parameter k is CHANGED, the hidden constant c is carried over from a known solution set at k = 3, and the new boundary at k = 10 is asked. SALG2-06 / AL-H-20 find a single constant from a solution set and stop."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: each slip changes both the c recovered from the k = 3 data and the divisor at k = 10, and the net side depends on the negative given boundary -2 and the computed c. The far_distractor 1.5 is an added amount whose side is set by that computation, not by recognising the slip. No cheap bound exists on d. Plug-back needs c first and reaches the key at try 4. Return fix: the old capacity item had a per-volunteer-average bound that struck two options; this item has no context relaxation to bound it."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D05",
+  "domain": "Algebra",
+  "subskill": "Extreme of a linear expression under linked inequalities",
+  "difficulty": "medium",
+  "prompt": "The numbers a and b satisfy both of the inequalities below.\n\n2 ≤ a ≤ 9\n3 ≤ a + b ≤ 10\n\nWhat is the greatest possible value of a + 3b?",
+  "choices": [
+   "12",
+   "26",
+   "33",
+   "48"
+  ],
+  "correct_answer": "26",
+  "explanation": "Write the expression in terms of the two quantities that are bounded: a + 3b = 3(a + b) - 2a. This is greatest when a + b is as large as possible and a is as small as possible. Both can happen at once: a = 2 and a + b = 10 give b = 8, which satisfies both inequalities. Then a + 3b = 3(10) - 2(2) = 26. No pair can do better, because 3(a + b) is at most 30 and 2a is at least 4.",
+  "solve": "const a1 = 2, s2 = 10; return 3 * s2 - 2 * a1;",
+  "distractor_solve": {
+   "12": "const a2 = 9, s2 = 10; const b = s2 - a2; return a2 + 3 * b;",
+   "33": "const a1 = 2, a2 = 9, s2 = 10; const bmax = s2 - a1; return a2 + 3 * bmax;",
+   "48": "const a2 = 9, s2 = 10; return 3 * s2 + 2 * a2;"
+  },
+  "mechanism": [
+   "rewrite the target in terms of the bounded quantities a and a + b",
+   "choose the extreme of each bounded quantity",
+   "check both extremes can occur together"
+  ],
+  "quantity_asked": "the greatest possible value of a + 3b",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a claimed maximum; checking it means showing some pair (a, b) reaches it and none exceeds it, which is the whole problem, not a substitution into a printed condition. In descending order the key is the third value anyway."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "partial_answer",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Maximizes a first (a = 9) and then takes the largest b that fits (b = 1), the natural greedy order; whether that is too big or too small is not readable from the stem."
+   },
+   "33": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats b as an independent variable with its own range (from 3 - 9 to 10 - 2, so b at most 8) and then takes a = 9 and b = 8 together, leaving out the link a + b ≤ 10; the stem does not show whether that overshoots or undershoots without computing the true maximum."
+   },
+   "48": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rewrites a + 3b as 3(a + b) + 2a instead of 3(a + b) - 2a and then takes a = 9 and a + b = 10."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no integrality or sign; a + 3b can be any real value in a range. All four options are positive integers and survive; the cap 3(a + b) ≤ 30 is not a cap on a + 3b, so it strikes nothing without the rewrite.",
+  "interior_parity_check": "Middle values 26 and 33: both two-digit integers of the same form; the key 26 is not the cleaner one.",
+  "arith_class_check": "Parity: 12, 26 and 48 are even, 33 is odd, so the key is not alone; no sign, integrality or roundness class isolates it.",
+  "dup_search": {
+   "queries": [
+    "≤ ?[a-z] ?\\+ ?[a-z] ?≤|<= ?[a-z] ?\\+ ?[a-z] ?<=|[a-z] \\+ [a-z] is (at least|at most|between)",
+    "greatest possible value of [a-z] ?[-+] ?[0-9]?[a-z]|least possible value of [a-z] ?[-+] ?[0-9]?[a-z]",
+    "[0-9] ?(≤|<=|<) ?[a-z] ?(≤|<=|<) ?[0-9].*[0-9] ?(≤|<=|<) ?[a-z] ?(≤|<=|<) ?[0-9]"
+   ],
+   "hits_read": 16,
+   "nearest": "109c9105 (live, sat-alg-unit-0919: greatest 3x - 2y from |x - 5| <= 3 and |y + 2| <= 1) and ALG-H5-21 (greatest a - b from two absolute-value ranges): in both the variables are INDEPENDENT, so taking each extreme separately is the correct method. Here the second inequality bounds a + b, the extremes are linked, and taking them separately is exactly the distractor 33; the solution needs the rewrite a + 3b = 3(a + b) - 2a."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might take the extremes of a and b separately (33) or maximize a first (12); both are offered and fall on opposite sides of the key. The key is interior, at try 3 in the descending order a greatest-ask suggests, and an option cannot be checked by substitution. No PAIR/DSUM lines on the harness; differences 7, 14 and 22 are not printed numbers or sums of two."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A05",
+  "domain": "Algebra",
+  "subskill": "Unknown whole from a fraction relation with mixed units",
+  "difficulty": "medium",
+  "prompt": "A carpenter has a board. She cuts off a piece that is 1.5 feet long. The remaining piece of the board is 9 inches longer than 7/10 of the original length of the board. How many inches longer is the remaining piece than the piece she cut off?",
+  "choices": [
+   "24",
+   "32",
+   "50",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "Work in inches. The piece cut off is 1.5 feet = 1.5(12) = 18 inches. Let x be the original length of the board, in inches. The remaining piece is x - 18 inches, so x - 18 = (7/10)x + 9.\nThen (3/10)x = 27, so x = 90. The remaining piece is 90 - 18 = 72 inches.\nThe remaining piece is 72 - 18 = 54 inches longer than the piece cut off.\nCheck: 7/10 of 90 is 63, and 63 + 9 = 72.\n\nChoice 50 comes from converting 1.5 feet to 15 inches: then (3/10)x = 24, x = 80, the remaining piece is 65 inches, and 65 - 15 = 50.\nChoice 32 comes from using 1.5 as a number of inches without converting: (3/10)x = 10.5, x = 35, and (35 - 1.5) - 1.5 = 32.\nChoice 24 comes from leaving out the 9 inches: (3/10)x = 18, x = 60, and (60 - 18) - 18 = 24.",
+  "solve": "const c=1.5*12,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+  "distractor_solve": {
+   "24": "const c=1.5*12,f=7/10; const x=c/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "32": "const c=1.5,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "50": "const c=15,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "convert the cut piece from feet to inches",
+   "set the remaining length equal to a fraction of the unknown whole plus a constant and solve",
+   "subtract the cut piece from the remaining piece"
+  ],
+  "quantity_asked": "how many inches longer the remaining piece is than the piece cut off",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x=v+36; const rem=x-18; return Math.abs(rem-(0.7*x+9))<1e-9;",
+   "why": "From an option a student can rebuild the remaining piece (option + 18) and the board (option + 36) and test the 7/10 relation - two steps. The key is the largest option, so in ascending order it is the fourth try."
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the 9 inches shrinks the board, and the answer subtracts a fixed 36 inches from it; the stem gives no way to see the result's side without solving."
+   },
+   "32": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Not converting 1.5 feet makes the cut piece tiny, which by itself would make 'remaining minus cut' larger; the board shrinks even more because the cut enters x - c = (7/10)x + 9, and only solving shows which effect wins."
+   },
+   "50": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading 1.5 feet as 15 inches shortens the cut piece by 3 inches; the asked difference subtracts the cut twice (+6) but the solved board loses 3 / (3/10) = 10 inches, so the net is -4. With a fraction under 1/2 the same slip lands above the key."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const c=18,d=9,f=7/10; const x=(c+d)/(1-f); return x-c;",
+   "direction": "above",
+   "why": "Answering with the length of the remaining piece (72 inches) instead of how much longer it is than the cut piece lands above the key."
+  },
+  "far_distractor": {
+   "option": "50",
+   "natural_side": "above",
+   "why": "Under-converting the cut piece (1.5 feet as 15 inches instead of 18) makes the cut shorter, and in 'remaining minus cut' a shorter cut ordinarily makes the difference larger. Here the cut also sets the board's length through x - c = (7/10)x + 9: 3 inches less cut means 3 / (3/10) = 10 inches less board, which outweighs the 6 inches gained, so the slip lands 4 below the key. The fraction 7/10 decides this and a student cannot see it without solving."
+  },
+  "cheap_bound_check": "The cheapest bound readable from the stem is that the answer is positive (the remaining piece is called longer); all four options pass it. No printed number caps the difference below 54: the board length is unknown, so 50 stays on the key's side of any bound a student can read without solving.",
+  "shape_check": "The stem hands over: a positive length in inches, no integer requirement. All four options are positive; all four survive together.",
+  "interior_parity_check": "The middle values 32 and 50 are both two-digit even integers; the key is not interior.",
+  "arith_class_check": "Even: all four. Multiples of 3: 24 and 54. Multiples of 9: 54 only, but the stem implies no multiple-of-9 class (the answer is x - 36 with x unknown). Multiples of 6: 24, 54. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "inches&feet&(cut|removed|trimmed|cuts)",
+    "board&(cut|cuts|saw)",
+    "feet&inches&longer than",
+    "of the original length|original length",
+    "cut into (two|three|3|2) pieces"
+   ],
+   "hits_read": 9,
+   "nearest": "SM16L-09 (a 92-inch board cut into two pieces, one 8 inches shorter than 3 times the other): the total is given and the pieces are related to each other. Here the total is unknown, the cut is given in feet, the remainder is tied to a fraction of the whole, and the ask is a difference that subtracts the cut twice. SM27F-A04 (wire into a square and a hexagon) has a given total as well."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the two unit slips shorten the cut, which a student would expect to raise 'remaining minus cut', but they lower it here because the board shrinks more; dropping the 9 inches is the only near-side-readable slip. Does the far_distractor really read as a far-side error? Yes - a too-short cut piece looks like it should make the remaining piece more longer than the cut. Does any one bound from the stem strike all three? No; positivity is the only cheap bound and all four pass. Plug-back is two steps and reaches the key last in ascending order."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A10",
+  "domain": "Algebra",
+  "subskill": "Total usage of two linked item sizes, then one item's usage",
+  "difficulty": "medium",
+  "prompt": "At a gift shop, each box is tied with a ribbon whose length, in centimeters, is 4 times the width of the box plus 30 centimeters for the bow. One morning a clerk tied 5 small boxes, all the same width, and 3 large boxes, all the same width. Each large box is 80 millimeters wider than each small box. The clerk used ribbon from a spool that held 1,600 centimeters, and 112 centimeters of ribbon were left on the spool. How many centimeters long is the ribbon for one large box?",
+  "choices": [
+   "166",
+   "191",
+   "206",
+   "386"
+  ],
+  "correct_answer": "206",
+  "explanation": "The difference in width is 80 millimeters = 8 centimeters. Let w be the width, in centimeters, of a small box. A small box uses 4w + 30 centimeters of ribbon and a large box uses 4(w + 8) + 30 = 4w + 62 centimeters.\nThe clerk used 1,600 - 112 = 1,488 centimeters, so 5(4w + 30) + 3(4w + 62) = 1,488.\nThen 20w + 150 + 12w + 186 = 1,488, so 32w = 1,152 and w = 36.\nThe ribbon for one large box is 4(36) + 62 = 206 centimeters. (Check: a small box uses 174, and 5(174) + 3(206) = 870 + 618 = 1,488.)\n\nChoice 386 comes from using 80 as a number of centimeters without converting: 5(4w + 30) + 3(4(w + 80) + 30) = 1,488 gives 32w = 288, w = 9, and 4(89) + 30 = 386.\nChoice 191 comes from adding the 8 centimeters to the ribbon length instead of to the box width: 5R + 3(R + 8) = 1,488 gives R = 183, and 183 + 8 = 191.\nChoice 166 comes from making each large box 8 centimeters narrower instead of wider: 5(4w + 30) + 3(4(w - 8) + 30) = 1,488 gives w = 42, and 4(34) + 30 = 166.",
+  "solve": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "166": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b+nl*4*g)/(4*n); return Math.round((4*(w-g)+b)*1e9)/1e9;",
+   "191": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const R=(S-r-nl*g)/n; return Math.round((R+g)*1e9)/1e9;",
+   "386": "const ns=5,nl=3,g=80,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "convert the width difference from millimeters to centimeters",
+   "express each size's ribbon in the small width and set the total (spool minus leftover) equal to the sum, then solve",
+   "evaluate the large box's expression"
+  ],
+  "quantity_asked": "the length of ribbon, in centimeters, for one large box",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const w=(v-30)/4-8; const small=4*w+30; return Math.abs(5*small+3*v-1488)<1e-9;",
+   "why": "From an option a student can work back to the large width ((option - 30)/4), the small width (minus 8), the small ribbon, and then test the 1,488-centimeter total - four steps. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "166": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Making the large boxes narrower lowers the large ribbon for a given width but raises the solved small width; only the numbers decide which wins."
+   },
+   "191": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the 8 to the ribbon instead of the width undercounts the large ribbon by 24 for a given width but lets the shared length absorb the difference; the net side is not visible without solving."
+   },
+   "386": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not converting 80 millimeters makes the large boxes far wider, which lengthens their ribbon but forces the small width down to keep the 1,488-centimeter total; the large ribbon still comes out longer here (each extra centimeter of width difference adds 2.5 to it), but that rate comes only from the setup."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive lengths; a large ribbon is longer than a small one, so it is more than the average 1,488/8 = 186; three large ribbons fit in 1,488, so it is under 496. The average bound strikes 166 only; 191, 206 and 386 survive it, and all four survive every other property together.",
+  "interior_parity_check": "The middle values 191 and 206 are both three-digit integers; the key 206 is not the cleaner one.",
+  "arith_class_check": "Even: 166, 206, 386; odd: 191. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "ribbon",
+    "spool|roll&(left|remain)",
+    "wider than&(each|every)",
+    "(small|large) (boxes|packages|gifts)&(each|every)",
+    "cut into (two|three|3|2) pieces",
+    "millimeters&centimeters&(cut|piece)"
+   ],
+   "hits_read": 9,
+   "nearest": "e8cee5ac (large and small care packages, an inequality system on volunteer-hours) and SM27F-A04 / 434235c0 (a wire of given length cut for a square and a hexagon whose sides differ by 5). The wire item splits a given total between two pieces; here nine items of two linked sizes each use a linear function of width, the total is spool minus leftover, and the ask is one item's usage. No ribbon-per-item item exists."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1 (an option one printed step from the key): the small-box ribbon (174) and the widths (36, 44) are not options; no option turns into 206 through a printed number (206 - 191 = 15, 386 - 206 = 180, 206 - 166 = 40 = half of 80, but a student holding 166 has no reason to add half the printed 80 - 166 is a large-box ribbon from a narrower-box equation). Pattern 2: the only cheap bounds are large ribbon above the 186 average (strikes 166 alone) and below 496 (strikes nothing). Plug-back takes four steps and reaches the key at try 3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C08",
+  "domain": "Algebra",
+  "subskill": "System from decomposing a displacement into two move types",
+  "difficulty": "medium",
+  "prompt": "A game piece starts at the origin of the xy-plane. Each jump moves the piece 2 units to the right and 2 units up, and each slide moves the piece 4 units to the right and 1 unit down. After a sequence of jumps and slides, the piece is at the point (122, 32). How many moves, jumps and slides together, did the piece make?",
+  "choices": [
+   "31",
+   "34",
+   "43",
+   "70"
+  ],
+  "correct_answer": "43",
+  "explanation": "Let j be the number of jumps and s the number of slides. The horizontal movement gives 2j + 4s = 122, and the vertical movement gives 2j - s = 32 (each slide moves the piece down). Subtracting the second equation from the first gives 5s = 90, so s = 18. Then 2j - 18 = 32, so j = 25. The piece made 25 + 18 = 43 moves.",
+  "solve": "const s=(122-32)/(4+1); const j=(32+s)/2; return j+s;",
+  "distractor_solve": {
+   "31": "const s=(122-32)/(4-1); const j=(32-s)/2; return j+s;",
+   "34": "const s=(32-122)/(4+1); const j=(122+s)/2; return j+s;",
+   "70": "const s=(122-32)/(1+4); const j=(122-s)/2; return j+s;"
+  },
+  "mechanism": [
+   "write one equation for the horizontal and one for the vertical displacement",
+   "solve the system for the numbers of jumps and slides",
+   "add the two counts"
+  ],
+  "quantity_asked": "the total number of moves",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is only the total j + s. A total does not say how many moves of each kind were made, so it cannot be checked against either displacement without solving the system."
+  },
+  "distractor_meta": {
+   "31": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating each slide as 1 unit up instead of down (2j + s = 32) gives s = 30, j = 1 and a total of 31. Whether that total is larger or smaller is not readable without solving."
+   },
+   "34": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Matching the horizontal moves to 32 and the vertical moves to 122 (the coordinates interchanged) gives s = -18, j = 52 and a total of 34. The direction of the change is not visible from the stem."
+   },
+   "70": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading a slide as 1 unit right and 4 units down (its two numbers interchanged) gives 2j + s = 122 and 2j - 4s = 32, so s = 18, j = 52 and a total of 70."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem properties: the answer is a count (positive integer). Every move goes 2 or 4 units right, so the total lies between 122/4 = 30.5 and 122/2 = 61; this strikes only 70. The vertical equation 2j - s = 32 forces j > 16 but gives no bound on the total that strikes any option. 31, 34 and 43 survive every property together.",
+  "interior_parity_check": "Middle values 34 and 43: both two-digit integers, same form and complexity; neither is cleaner.",
+  "arith_class_check": "Options 31, 34, 43, 70: two odd and two even; the key 43 shares oddness with 31; no multiple-of-k or square class isolates it.",
+  "dup_search": {
+   "queries": [
+    "jump|hop|token moves|each move",
+    "units to the right&units up",
+    "how many&total of&items|in all&how many of",
+    "value of [0-9]+x ?[+-] ?[0-9]*y"
+   ],
+   "hits_read": 68,
+   "nearest": "SM28F-C09 (paint batches: each batch of two shades uses fixed amounts of two paints; how many batches of one shade): two resource totals, all coefficients positive. Here the two equations are the x- and y-components of a displacement, one move type goes down, and the ask is the total count rather than one count."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key, at try 3 ascending, not substitutable. A test-wise student can bound the total by 30.5 <= j + s <= 61 from the horizontal distances, which strikes 70 only; 31 sits just inside the bound. Neither count j = 25 nor s = 18 is an option, so no option leads to the key through one printed equation. (read) 34 = 2 + 32 is a coincidence of the coordinate-swap error and is not linked to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A03",
+  "domain": "Algebra",
+  "subskill": "Better rate minus a flat fee vs plain rate, from the gap",
+  "difficulty": "medium",
+  "prompt": "At an airport booth, U.S. dollars are exchanged for euros at a rate of 0.94 euro per dollar, and then a flat fee of 8 euros is subtracted from the euros. At a bank, dollars are exchanged at a rate of 0.90 euro per dollar with no fee. Kai exchanged some dollars at the booth and received 12 more euros than he would have received for the same dollars at the bank. How many euros did Kai receive at the booth?",
+  "choices": [
+   "39",
+   "86",
+   "462",
+   "642"
+  ],
+  "correct_answer": "462",
+  "explanation": "Let d be the number of dollars Kai exchanged. At the booth he received 0.94d - 8 euros; at the bank he would have received 0.90d euros.\nSo (0.94d - 8) - 0.90d = 12, which gives 0.04d - 8 = 12, 0.04d = 20 and d = 500.\nAt the booth Kai received 0.94(500) - 8 = 462 euros. (Check: at the bank he would have received 0.90(500) = 450 euros, 12 fewer.)\n\nChoice 642 comes from subtracting the 8-euro fee twice: 0.04d - 16 = 12 gives d = 700, and 0.94(700) - 16 = 642.\nChoice 39 comes from writing the rate difference 0.94 - 0.90 as 0.4: 0.4d = 20 gives d = 50, and 0.94(50) - 8 = 39.\nChoice 86 comes from adding the fee instead of subtracting it: 0.04d + 8 = 12 gives d = 100, and 0.94(100) - 8 = 86.",
+  "solve": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+  "distractor_solve": {
+   "39": "const r1=0.94,f=8,g=12; const d=(g+f)/0.4; return Math.round((r1*d-f)*1e9)/1e9;",
+   "86": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g-f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+   "642": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+2*f)/(r1-r2); return Math.round((r1*d-2*f)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write each venue's euros as a linear expression in the dollars exchanged",
+   "set the difference equal to the stated gap and solve for the dollars",
+   "evaluate the booth's expression at that amount"
+  ],
+  "quantity_asked": "the number of euros Kai received at the booth",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=(v+8)/0.94; return Math.abs(v-0.90*d-12)<1e-9;",
+   "why": "From an option a student can recover the dollars ((option + 8)/0.94), price them at the bank and compare the gap with 12 - two steps with a division by 0.94. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "39": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing 0.94 - 0.90 as 0.4 instead of 0.04 is a decimal-place slip; it shrinks the dollars tenfold, and a student who knows the slip still has to see that the booth amount follows the dollars down rather than being held up by the fee."
+   },
+   "86": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the fee instead of subtracting it changes both the dollars solved for and the euros computed from them, in opposite directions; the stem does not show which effect wins."
+   },
+   "642": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the 8-euro fee off twice raises the dollars needed to make up the gap but also takes 8 more euros off the booth amount; the two effects pull opposite ways and only the numbers decide the side."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive number of euros; the booth amount is 12 more than a bank amount, so it is more than 12; no integer requirement. All four options are positive and above 12; all four survive together.",
+  "interior_parity_check": "The middle values 86 and 462 are both even integers (two and three digits); the key 462 is not the cleaner one.",
+  "arith_class_check": "Odd: 39; even: 86, 462, 642. Multiples of 3: 39, 462, 642. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "exchange|euros|yen| won\\b|pesos",
+    "(fee|commission)&per (dollar|euro)",
+    "plan&(more|less) than plan",
+    "(company|plan|option) a&(company|plan|option) b&(more|less) than"
+   ],
+   "hits_read": 26,
+   "nearest": "7276e66a (a kiosk with an unknown flat fee and unknown rate, found from two customers - a system). Here the rates and fee are given and the unknown is the amount, fixed by a stated gap between two venues, and the ask is the booth amount, not the amount exchanged. The two-plan items (phone, gym, studio) are inequalities for a break-even count; none uses a nonzero stated gap or asks for one plan's value at the solution."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1 (return): neither the dollars exchanged (500) nor the bank amount (450) nor the fee-free booth amount (470) is an option, so no option reaches the key through a printed rate or the fee. The distractors come from a decimal slip on the rate difference, the fee added instead of subtracted, and the fee taken twice. Plug-back is two steps with a division by 0.94 and reaches the key at try 3. Interior key, so no FAR or BOUND."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B06",
+  "domain": "Algebra",
+  "subskill": "Line rotated 90 degrees about its x-intercept",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (5, 5) and (7, 10). It is turned 90 degrees about its own x-intercept, and the image is a new line. Where does the new line cross the y-axis? Give the y-coordinate of that point.",
+  "choices": [
+   "-7.5",
+   "1.2",
+   "2.8",
+   "3"
+  ],
+  "correct_answer": "1.2",
+  "explanation": "The slope of the original line is (10 - 5)/(7 - 5) = 5/2. Setting y = 0 in y - 5 = (5/2)(x - 5) gives x - 5 = -2, so the original line crosses the x-axis at (3, 0). A 90-degree rotation about (3, 0) turns the original line into the line through (3, 0) perpendicular to it, so the new line has slope -2/5 and equation y = (-2/5)(x - 3). At x = 0, y = 6/5 = 1.2.",
+  "solve": "const m = (10 - 5) / (7 - 5); const a = 5 - 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;",
+  "distractor_solve": {
+   "3": "const m = (10 - 5) / (7 - 5); return Math.round((5 - 5 / m) * 1000) / 1000;",
+   "-7.5": "const m = (10 - 5) / (7 - 5); return Math.round((5 - m * 5) * 1000) / 1000;",
+   "2.8": "const m = (10 - 5) / (7 - 5); const a = 5 + 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope from two points",
+   "x-intercept as the pivot",
+   "perpendicular line through the pivot",
+   "y-intercept of the image"
+  ],
+  "quantity_asked": "the y-coordinate of the y-intercept of the rotated line k",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is the y-intercept of a line that exists only after the pivot and the perpendicular slope are found; no printed equation or condition takes it as input, so it cannot be checked against the stem in one step."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rotating about the origin instead sends l's x-intercept (3, 0) to (0, 3); whether that lands above or below the true intercept depends on the slope, which must be computed."
+   },
+   "-7.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rotating about the y-intercept of line l instead of the x-intercept leaves the y-intercept fixed at -7.5; the stem does not show where l crosses either axis."
+   },
+   "2.8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solving 0 - 5 = (5/2)(x - 5) as x - 5 = +2 puts the pivot at (7, 0); the side of the resulting intercept depends on the perpendicular slope's sign."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: a y-intercept can be any real number; line k is neither vertical nor horizontal since l has a nonzero slope. All four options survive.",
+  "interior_parity_check": "Middle values 1.2 and 2.8: both one-place decimals of two significant digits; the key is not the cleaner one (the integer 3 is a distractor, outside the middle pair).",
+  "arith_class_check": "Values -7.5, 1.2, 2.8, 3: one negative and one integer, both distractors; the key shares its form (one-place decimal) with 2.8 and -7.5, so it is alone in no parity, sign, integrality or roundness class.",
+  "dup_search": {
+   "queries": [
+    "rotat&line",
+    "perpendicular&x-intercept|x-axis",
+    "perpendicular",
+    "reflect&line y = x|y = x"
+   ],
+   "hits_read": 52,
+   "nearest": "3d7b763b / 5b128a55: a perpendicular through a PRINTED point, then an intercept. Here the pivot is not printed: it is l's own x-intercept, found from two points, and the student must recognise that a 90-degree rotation about a point on the line gives the perpendicular through that point."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: a test-wise student cannot substitute an option into the stem, since the y-intercept of k is defined only by the rotation; checking one means doing the problem. The integer 3 might look clean, but it is a distractor (the origin-pivot error). Wrong-pivot errors (-7.5 and 3) and the pivot sign slip (2.8) fall on both sides of the key. (read) DPAIR the sum of the key and 2.8 is 4 = 5 - 1: a sum of two options is not something a student forms, and 4 is not a step of any path (the pivots are 3 and 7)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B02",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through intercepts of two lines",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the equation y - 3 = -3(x + 5) defines a line that meets the x-axis at point A. The equation y + 9 = -3(x + 2) defines a second line, which meets the y-axis at point B. What is the slope of segment AB?",
+  "choices": [
+   "-3.75",
+   "-2.5",
+   "-2.4",
+   "-2.25"
+  ],
+  "correct_answer": "-3.75",
+  "explanation": "Point A is on the first graph with y = 0: 0 - 3 = -3(x + 5), so x + 5 = 1 and x = -4. A is (-4, 0). Point B is on the second graph with x = 0: y + 9 = -3(0 + 2) = -6, so y = -15. B is (0, -15). The slope of the line through A and B is (-15 - 0)/(0 - (-4)) = -15/4 = -3.75.",
+  "solve": "const a = -5 + (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+  "distractor_solve": {
+   "-2.5": "const a = -5 - (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+   "-2.25": "const a = -5 + (0 - 3) / (-3); const b = -9; return (b - 0) / (0 - a);",
+   "-2.4": "const ly = 3 + (-3) * (0 + 5); const mx = -2 + (0 + 9) / (-3); return (0 - ly) / (mx - 0);"
+  },
+  "mechanism": [
+   "x-intercept from point-slope form",
+   "y-intercept from point-slope form",
+   "slope through two axis points"
+  ],
+  "quantity_asked": "the slope of segment AB, A the x-intercept of the first line and B the y-intercept of the second",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a slope built from two intercepts; no printed equation or condition takes a slope value as input, so an option cannot be substituted into the stem and checked. A student must find both points first."
+  },
+  "distractor_meta": {
+   "-2.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking (0 - 3)/(-3) as -1 instead of 1 puts A at (-6, 0) instead of (-4, 0); the stem gives no sign or size of A, so whether the slip moves the slope up or down is not readable."
+   },
+   "-2.25": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading the -9 in y + 9 as the y-intercept drops the -3(0 + 2) = -6 term; whether dropping it raises or lowers the slope depends on the signs of that term and of A, neither printed."
+   },
+   "-2.4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the y-intercept of the first graph (0, -12) and the x-intercept of the second (-5, 0) swaps which axis point comes from which graph; its side depends on all four intercepts."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const a = -5 + 3; const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+   "direction": "below",
+   "why": "Setting y = 0 and writing x + 5 = 3 (ignoring the factor -3 and its sign) puts A at (-2, 0) and gives slope -15/2 = -7.5, below the key."
+  },
+  "far_distractor": {
+   "option": "-2.25",
+   "natural_side": "below",
+   "why": "Dropping a term is an early-stop error that ordinarily gives a smaller result, but the dropped -6 belongs to a negative y-intercept that is divided by a positive run of 4, so leaving it out shrinks the size of a negative slope and lands it above the key at -9/4; that both intercepts are negative is not visible until both are computed."
+  },
+  "cheap_bound_check": "The cheapest bound is the sign of the slope, which needs the signs of both intercepts (not printed). All four options are negative, so the sign strikes none; a slope has no cap or integer floor.",
+  "shape_check": "Properties handed over: none restrict a slope (no sign, integer or cap is given; the line through A and B is not vertical). All four options survive.",
+  "interior_parity_check": "Middle values -2.5 and -2.4: both one-place negative decimals of the same size; the key -3.75 is extreme and is a two-place decimal, not the cleaner value.",
+  "arith_class_check": "All four are negative non-integer terminating decimals; the key is not alone in any parity, sign, integrality or roundness class.",
+  "dup_search": {
+   "queries": [
+    "through the x-intercept|passes through the y-intercept|contains the x-intercept",
+    "x-intercept of line&y-intercept of line&slope",
+    "y [-+] [0-9]+ = -?[0-9]+\\(x&line",
+    "perpendicular"
+   ],
+   "hits_read": 47,
+   "nearest": "b4b2a42b (sat-alg-unit): slope through a printed point and the x-intercept of a standard-form line. Here neither point is printed: one comes from setting y = 0 in one point-slope equation and the other from setting x = 0 in a second, so the chain is two intercept extractions of different kinds before the slope."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, the stem gives no sign or size of A or B, so a student cannot tell which way the errors go; all four options are negative, so no sign bound strikes any, and there is no cap. The far distractor -2.25 comes from reading -9 as the intercept, an early stop; a student who recognised it would need the sign of the dropped -6 and of A to place it, which is the work. Plug-back: a slope cannot be checked against the stem in one step. (read) PAIR ratio key/-2.5 = 3/2 and key/-2.25 = 5/3, ratios of printed numbers: both only appear as -15/4 against -15/6 and -9/4 after both points are known, and in decimal display they show no structure. (read) the sum of key and -2.25 is -6 = 2 x 3 and 5 + 1: a sum of two options is not something a student forms, and -6 is the dropped term only after B is found."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C03",
+  "domain": "Algebra",
+  "subskill": "System whose solution equals its own constants",
+  "difficulty": "medium",
+  "prompt": "3x - 5y = a + 4\n-2x + 2y = b + 4\n\nIn the system of equations above, a and b are constants. The only ordered pair (x, y) that satisfies both equations is (a, b); that is, x = a and y = b. What is the value of ab?",
+  "choices": [
+   "6",
+   "16",
+   "32",
+   "35"
+  ],
+  "correct_answer": "6",
+  "explanation": "Because (a, b) satisfies both equations, substitute x = a and y = b. The first equation becomes 3a - 5b = a + 4, so 2a - 5b = 4. The second equation becomes -2a + 2b = b + 4, so -2a + b = 4. Adding these two equations gives -4b = 8, so b = -2. Then 2a - 5(-2) = 4, so 2a = -6 and a = -3. Check in the original system: 3(-3) - 5(-2) = 1 = -3 + 4, and -2(-3) + 2(-2) = 2 = -2 + 4. Therefore ab = (-3)(-2) = 6.",
+  "solve": "const b=(4+4)/(-5+1); const a=(4+5*b)/2; return a*b;",
+  "distractor_solve": {
+   "16": "const a=(4+20)/(4-10); const b=4+2*a; return a*b;",
+   "32": "const b=(4+4)/(-5+3); const a=(4+5*b)/2; return a*b;",
+   "35": "const a=(4+10)/(3-5); const b=a+2; return a*b;"
+  },
+  "mechanism": [
+   "substitute x = a and y = b into both equations",
+   "move the a and b terms to the left side",
+   "solve the new system in a and b",
+   "multiply a and b"
+  ],
+  "quantity_asked": "the value of ab",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of the product ab only. A product does not determine a and b, so there is no ordered pair to substitute into the system; a student must form and solve the system in a and b."
+  },
+  "distractor_meta": {
+   "16": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving a across the first equation with the wrong sign (4a - 5b = 4) while handling the second correctly (-2a + b = 4) gives a = -4, b = -4 and ab = 16. The direction of the change is not visible without solving."
+   },
+   "32": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Handling the first equation correctly (2a - 5b = 4) but moving b across the second with the wrong sign (-2a + 3b = 4) gives b = -4, a = -8 and ab = 32. Nothing in the stem shows whether this raises or lowers the product."
+   },
+   "35": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Substituting x = a, y = b but leaving the a and b on the right sides out (3a - 5b = 4 and -2a + 2b = 4) gives a = -7, b = -5 and ab = 35. Whether this product is larger or smaller than the key depends on the solved values, which the stem does not show."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const b=(4+4)/(-5+1); const a=(4+5*b)/2; return a;",
+   "direction": "below",
+   "why": "A student who solves correctly but reports a = -3 instead of the product ab lands below the key; -3 is not an option."
+  },
+  "far_distractor": {
+   "option": "35",
+   "natural_side": "below",
+   "why": "Dropping a term (here the a and b on the right sides) is the kind of slip that ordinarily leaves a result too small, so it would be expected below the key. In this system the dropped terms change both solved values to -7 and -5, whose product 35 is larger; the side it lands on comes only from solving, not from the stem."
+  },
+  "cheap_bound_check": "The stem gives no sign, cap or integer condition on a, b or ab. The only thing readable is that ab is a product of two constants, which can be any real number, so no one-sided bound exists; no distractor is struck by a stem bound and all three remain on the key's side of every bound a student could state.",
+  "shape_check": "Stem properties: a and b are constants (any real); ab has no sign condition. All four options are legal; integrality is shared by all four, and 6, 16 and 32 are even while 35 is odd, so parity does not isolate the key.",
+  "interior_parity_check": "Middle values 16 and 32: both two-digit even integers, same display form and complexity; the key 6 is not one of them.",
+  "arith_class_check": "Options 6, 16, 32, 35: the key shares evenness with 16 and 32, positivity with all, and is not alone in being a multiple of 2 or 3 (6 and the others) or a square (16 is the only square). No class the stem implies isolates 6.",
+  "dup_search": {
+   "queries": [
+    "solution is \\(a|solution \\(a, b\\)|is the solution&constants a and b",
+    "infinitely many&system",
+    "value of xy|value of ab",
+    "a and b are constants&system"
+   ],
+   "hits_read": 61,
+   "nearest": "SM27F-C06 (4(x + y) + 3(x - y) = 23 ..., ask xy) and SM26F-C02 (known solution (6, -4), find a + b): neither has constants equal to the solution itself; here substituting the solution puts the unknown constants on both sides, which forms a new system in a and b."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: each wrong path (dropping the right-side a and b, a sign slip in the first equation, a sign slip in the second) produces a different solved pair, and whether its product is above or below 6 is not readable; no stem bound exists. The far distractor 35 reads as a dropped-term error, which a student would expect to come out small, and it lands high only through the solved values. Could a student check an option against the stem in one routine step? No: a product does not give a point to substitute. The nearest item in this batch is C01, which also forms a system in a and b by substitution, but there the second equation comes from reversing a point's coordinates on a fixed line, while here the constants of the system are its own solution. (read) PAIR: 16 - 6 = 10 = 2 x the printed 5. No solving step adds or removes 2 x 5 from the product ab, and 16 arises as (-4)(-4) from a sign slip, so a student cannot move from 16 to the key by that difference."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B11",
+  "domain": "Algebra",
+  "subskill": "Linear function from outputs at unknown inputs",
+  "difficulty": "medium",
+  "prompt": "For some number k other than zero, the outputs of a linear function f at the three inputs k, 2k, and 3k + 5 are -6, -3, and 6, respectively. Compute f(-4).",
+  "choices": [
+   "-13.8",
+   "-10.6",
+   "-6.6",
+   "-4.2"
+  ],
+  "correct_answer": "-13.8",
+  "explanation": "Write f(x) = mx + b. Then mk + b = -6 and 2mk + b = -3. Subtracting gives mk = 3, and then b = -6 - 3 = -9. The third condition is m(3k + 5) + b = 6, that is, 3mk + 5m + b = 6. Substituting mk = 3 and b = -9 gives 9 + 5m - 9 = 6, so m = 1.2. Therefore f(x) = 1.2x - 9 and f(-4) = -4.8 - 9 = -13.8.",
+  "solve": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;",
+  "distractor_solve": {
+   "-10.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 15; return Math.round((m*(-4) + b) * 1000) / 1000;",
+   "-4.2": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((b - m*(-4)) * 1000) / 1000;",
+   "-6.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "eliminate the unknown input spacing (mk)",
+   "intercept from two outputs",
+   "slope from the third condition",
+   "evaluate"
+  ],
+  "quantity_asked": "the value of f(-4)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an output at -4; checking it needs the slope and intercept, which come only from eliminating the unknown k across all three conditions, so no option can be substituted into a printed condition and confirmed in one step."
+  },
+  "distractor_meta": {
+   "-10.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the input 3k + 5 as 3(k + 5) makes the third condition 9 + 15m - 9 = 6 and m = 0.4; whether a smaller slope raises or lowers f(-4) depends on the signs of m and of the input, found only after solving."
+   },
+   "-4.2": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluating as b - 4m instead of b + m(-4); its side depends on the sign of the computed slope, which the stem does not show (k may be negative)."
+   },
+   "-6.6": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving b out of the third condition (3mk + 5m = 6) gives m = -0.6; whether that moves f(-4) up or down depends on the sign of b, which is computed as 2f(k) - f(2k), not printed."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 2*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;",
+   "direction": "below",
+   "why": "Writing the third condition with 2mk in place of 3mk (copying the coefficient from f(2k)) gives 6 + 5m - 9 = 6, m = 1.8, and f(-4) = -16.2, below the key."
+  },
+  "far_distractor": {
+   "option": "-6.6",
+   "natural_side": "below",
+   "why": "Dropping a term is an early-stop error that ordinarily gives a smaller result, but the dropped term is the intercept b = -9, a NEGATIVE number found only from 2f(k) - f(2k); leaving it out of 3mk + 5m + b = 6 makes the slope smaller (m = -0.6 instead of 1.2), and at the negative input -4 a smaller slope gives a LARGER output, so -6.6 lands above the key. Both the sign of b and the sign of the slope have to be computed to place it."
+  },
+  "cheap_bound_check": "No cheap one-sided bound: k may be positive or negative, so f(k) = -6 < f(2k) = -3 does not fix the slope's sign, and nothing printed bounds f(-4). All three distractors stay on the key's side of every bound a student could read without solving.",
+  "shape_check": "Properties handed over: f(-4) is any real number; no sign, integer or cap applies. All four options survive.",
+  "interior_parity_check": "Middle values -10.6 and -6.6: both negative one-place decimals of two to three significant digits; the key -13.8 is the same form, not cleaner.",
+  "arith_class_check": "All four are negative one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "f\\(2k\\)|f\\(k\\)|f\\(3k",
+    "f\\(x [-+] [0-9]+\\)&linear",
+    "f\\([0-9]+x [-+]",
+    "f\\(([a-z])\\) = ([a-z])&linear"
+   ],
+   "hits_read": 21,
+   "nearest": "84246d75 / 07230a9c: a linear f with a printed input shift (f(x + 4) = f(x) + 14). Here the input spacing k is unknown and is never solved for directly: the student must eliminate mk between f(k) and f(2k), read the intercept, and only then use the third condition for the slope."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Decision point: the inputs k, 2k, 3k + 5 are unknown, and the routine move (find k) stalls until the student treats mk as one unknown; Desmos cannot plot this without that step. Covering the work, a student cannot tell which way the errors go: each distractor's side depends on the computed signs of b (-9) and m (1.2) together with the negative input. The far distractor -6.6 (b dropped) would undershoot in a positive-intercept problem and here lands above. No cheap bound: the slope's sign is not readable because k may be negative. Plug-back: an output at -4 cannot be checked without f."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B03",
+  "domain": "Algebra",
+  "subskill": "Slope forced by a swapped pair of values",
+  "difficulty": "hard",
+  "prompt": "For a linear function f, there are two different numbers p and q for which f(p) = q and f(q) = p. Also, f(-3) + 2f(9) = 36. What is the value of f(-2)?",
+  "choices": [
+   "5",
+   "9",
+   "19",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "The graph of y = f(x) contains the points (p, q) and (q, p). Since p and q are different, the slope is (p - q)/(q - p) = -1. So f(x) = -x + c for some constant c. Then f(-3) = 3 + c and f(9) = -9 + c, so (3 + c) + 2(-9 + c) = 36, which gives 3c - 15 = 36 and c = 17. Therefore f(x) = -x + 17, and f(-2) = 2 + 17 = 19.",
+  "solve": "const c = (36 - 3 + 2*9) / 3; return -(-2) + c;",
+  "distractor_solve": {
+   "5": "const c = (36 + 3 - 2*9) / 3; return (-2) + c;",
+   "9": "const c = (36 + 3 - 2*9) / 3; return -(-2) + c;",
+   "23": "const c = (36 - 3 + 9) / 2; return -(-2) + c;"
+  },
+  "mechanism": [
+   "two swapped points force slope -1",
+   "intercept from a weighted sum of outputs",
+   "evaluate the function"
+  ],
+  "quantity_asked": "the value of f(-2)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a value of f at -2; checking it would need f itself, and the stem gives f only through the unknown pair p, q and one weighted sum, so no option can be substituted into a printed condition and confirmed in one step."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the points (p, q) and (q, p) as giving slope +1 makes f(x) = x + 7; the stem gives no sign of f(-2) under either slope, so the side is not readable."
+   },
+   "9": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "With f(x) = -x + c, substituting f(-3) as c - 3 and f(9) as c + 9 flips both signs, gives c = 7, and f(-2) = 9; whether that intercept is larger or smaller depends on the printed inputs' signs and weights together."
+   },
+   "23": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the coefficient 2 on f(9) gives 2c - 6 = 36 and c = 21; since f(9) = c - 9 can be either sign, nothing says whether losing the factor raises or lowers c."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: f is linear and its outputs are any real numbers; no sign, integer or cap applies to f(-2). All four options survive. The swapped pair forces slope -1, which does not by itself place f(-2).",
+  "interior_parity_check": "Middle values 9 and 19: both positive integers, one and two digits (complexity within one); the key 19 is not the cleaner value.",
+  "arith_class_check": "All four options (5, 9, 19, 23) are odd positive integers; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "f\\(([a-z])\\) = ([a-z])&linear",
+    "f\\(p\\)|f\\(a\\) = b|f\\(r\\) = s",
+    "swap|interchang&linear|line",
+    "f\\(x [-+] [0-9]+\\)&linear",
+    "f\\([0-9]+x [-+]"
+   ],
+   "hits_read": 18,
+   "nearest": "e26c893e / SM26L-B8 (table with a constant c and a 'solution for every k' condition) and the f(x + 4) = f(x) + 14 family: those fix the slope from a printed shift. Here the slope is forced only by recognising that two unknown points (p, q) and (q, p) lie on the line, so it is -1 whatever p and q are; no live or prior item uses that."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might try to find p and q, which is impossible; the decision point is seeing that the pair forces slope -1, and Desmos cannot bypass it because p and q are never given. Options 5 and 9 both come from c = 7; a student who notices two options sharing an intercept still has to know which slope is right. (read) PAIR lines: the difference between 23 and the key is 4 = 2 x 2, which is c = 21 against c = 17 and not a printed step a student could apply. Plug-back is impossible without f. (read) DPAIR key - 9 = 10 = 9 + 1 and 23 - key = 4 = 3 + 1: neither is a step in any path (9 comes from c = 7 with the right slope, 23 from c = 21), and a student holding 9 or 23 has no reason to add printed-number-plus-one to it; the options are not joined by a stem operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C02",
+  "domain": "Algebra",
+  "subskill": "System from a swapped-quantity billing error",
+  "difficulty": "medium",
+  "prompt": "At a cafe, every coffee has the same price and every muffin has the same price. A customer ordered 4 coffees and 2 muffins, but the cashier mistakenly rang up 2 coffees and 4 muffins, and the customer was charged $1.50 less than the correct amount. Another customer bought 3 coffees and 2 muffins and paid $6.25. What is the price, in dollars, of one coffee?",
+  "choices": [
+   "0.95",
+   "1.35",
+   "1.55",
+   "1.85"
+  ],
+  "correct_answer": "1.55",
+  "explanation": "Let c be the price of a coffee and m the price of a muffin, in dollars. The correct amount was 4c + 2m and the amount charged was 2c + 4m, so (4c + 2m) - (2c + 4m) = 1.50, which gives 2c - 2m = 1.50 and c - m = 0.75. The second customer's purchase gives 3c + 2m = 6.25. Substituting m = c - 0.75 gives 3c + 2c - 1.50 = 6.25, so 5c = 7.75 and c = 1.55. (Then m = 0.80; check: 3(1.55) + 2(0.80) = 6.25.) One coffee costs $1.55.",
+  "solve": "const d=1.5/(4-2); const c=(6.25+2*d)/5; return Math.round(c*100)/100;",
+  "distractor_solve": {
+   "0.95": "const d=1.5/(4-2); const c=(6.25-2*d)/5; return Math.round(c*100)/100;",
+   "1.85": "const d=1.5; const c=(6.25+2*d)/5; return Math.round(c*100)/100;",
+   "1.35": "const d=1.5/(4+2); const c=(6.25+2*d)/5; return Math.round(c*100)/100;"
+  },
+  "mechanism": [
+   "subtract the charged amount from the correct amount",
+   "reduce to the price difference c - m",
+   "combine with the second purchase and solve"
+  ],
+  "quantity_asked": "the price of one coffee",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const m=v-1.5/(4-2); return Math.abs(3*v+2*m-6.25)<1e-9;",
+   "why": "To check an option a student must first turn the billing error into c - m = 0.75 (the main step of the solution), then compute m and test 3c + 2m = 6.25. Ascending, the key is reached on the third try."
+  },
+  "distractor_meta": {
+   "0.95": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the difference as charged minus correct (m - c = 0.75) makes coffee the cheaper item: 3c + 2(c + 0.75) = 6.25 gives c = 0.95. Which way the slip moves c is not readable from the stem."
+   },
+   "1.85": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the $1.50 itself as the price difference, without dividing by the 2 items of each kind that were swapped, gives c - m = 1.50 and 5c = 9.25, so c = 1.85. The effect on c is not visible without solving."
+   },
+   "1.35": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dividing the $1.50 by all 6 items in the order instead of by the 2 that changed gives c - m = 0.25 and 5c = 6.75, so c = 1.35. The direction is not readable without solving."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem properties: prices are positive; 3c + 2m = 6.25 with m > 0 caps c below 6.25/3, about 2.08, which strikes no option. Each option also leaves a positive muffin price under its own reading. All four options survive every property together.",
+  "interior_parity_check": "Middle values 1.35 and 1.55: both dollars-and-cents ending in 5, same form and complexity; neither is cleaner.",
+  "arith_class_check": "All four options are two-decimal amounts ending in 5; none is a whole number or a multiple of 0.25, so no class isolates 1.55.",
+  "dup_search": {
+   "queries": [
+    "charged&instead|rang up|mistakenly|by mistake|reversed the",
+    "coffee|muffin",
+    "plan a&plan b",
+    "digit&revers"
+   ],
+   "hits_read": 26,
+   "nearest": "SM14L-02 (4x + 9y = 43, 9x + 4y = 48, ask x + y): interchanged coefficients summed to get x + y; here the interchanged order is compared with the correct one as a DIFFERENCE of bills, which gives c - m, and a second, unrelated purchase pins c."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key. The muffin price (0.80) is not an option, so no pair of options satisfies a printed purchase and the billing difference together. The only cheap cap (c < 2.08 from the second purchase) strikes no option. A test-wise student might guess that coffee costs more (true, but not stated). Checking an option needs the billing difference turned into c - m first, which is the main step of the solution; ascending, the key is at try 3. The lower interior 1.35 is a wrong-divisor error, not a substitutable ask."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C10",
+  "domain": "Algebra",
+  "subskill": "Systems sharing unknown coefficients; combine right sides",
+  "difficulty": "medium",
+  "prompt": "System I:   ax + by = -7 and cx + dy = -11\nSystem II:  ax + by = 5 and cx + dy = 6\nSystem III: ax + by = 3 and cx + dy = 1\n\nIn the three systems of equations above, a, b, c, and d are the same constants in every system. The only solution of System I is (-3, -1), and the only solution of System II is (4, -3). If (x, y) is the solution of System III, what is the value of xy?",
+  "choices": [
+   "-55",
+   "-35",
+   "-4",
+   "10"
+  ],
+  "correct_answer": "-35",
+  "explanation": "The right sides of System III are the right sides of System I plus 2 times those of System II: 3 = -7 + 2(5) and 1 = -11 + 2(6). Because the left sides are the same in all three systems, the point (-3, -1) + 2(4, -3) = (5, -7) satisfies System III: a(5) + b(-7) = [a(-3) + b(-1)] + 2[a(4) + b(-3)] = -7 + 2(5) = 3, and likewise for the second equation. (Alternatively, System I and System II give -3a - b = -7 and 4a - 3b = 5, so a = 2 and b = 1, and -3c - d = -11 and 4c - 3d = 6, so c = 3 and d = 2; then 2x + y = 3 and 3x + 2y = 1 give x = 5, y = -7.) Since System III has only one solution, it is (5, -7), and xy = (5)(-7) = -35.",
+  "solve": "const x=-3+2*4, y=-1+2*(-3); return x*y;",
+  "distractor_solve": {
+   "10": "const x=2*(-3)+4, y=2*(-1)+(-3); return x*y;",
+   "-4": "const x=-3+4, y=-1+(-3); return x*y;",
+   "-55": "const x=-3-2*4, y=-1-2*(-3); return x*y;"
+  },
+  "mechanism": [
+   "write System III's right sides as a combination of Systems I and II",
+   "apply the same combination to the two known solutions (or recover a, b, c, d from Systems I and II)",
+   "multiply the coordinates"
+  ],
+  "quantity_asked": "the value of xy for the solution of System III",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a product of coordinates; it gives no point to substitute, and the left sides contain the unknown constants a, b, c, d, so nothing printed can test an option directly."
+  },
+  "distractor_meta": {
+   "10": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finding the multipliers 1 and 2 but attaching the 2 to System I's solution instead of System II's gives 2(-3, -1) + (4, -3) = (-2, -5) and xy = 10. The direction is not visible without computing."
+   },
+   "-4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adding the two known solutions, (-3, -1) + (4, -3) = (1, -4), as if System III's right sides were the plain sum of the others, gives xy = -4. Which way this moves the product is not readable from the stem."
+   },
+   "-55": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting 2 times System II's solution instead of adding it gives (-3, -1) - 2(4, -3) = (-11, 5) and xy = -55. The size of the change is not readable from the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem properties: the coordinates of System III's solution can be any real numbers, so xy has no sign, integer or cap condition; all four options are legal and survive together. Sign splits three negative (-55, -35, -4) and one positive (10); the key is in the larger class.",
+  "interior_parity_check": "Middle values -35 and -4: both negative integers; the key -35 is not the cleaner one.",
+  "arith_class_check": "Options -55, -35, -4, 10: the key shares negativity with -55 and -4 and divisibility by 5 with -55 and 10; parity splits two odd (-55, -35) and two even. No class the stem implies isolates -35.",
+  "dup_search": {
+   "queries": [
+    "a, b, c, and d|c, and d are constants|same left|same coefficients",
+    "System 1&System 2|System I",
+    "only solution&constants",
+    "value of xy|value of ab"
+   ],
+   "hits_read": 23,
+   "nearest": "SM27F-C07 (two systems with exactly the same solution; find ab for the constants of System 2) and SM26F-C10 (one constant replaced; how much the x-value changes): neither combines the right sides of two solved systems with unknown, shared coefficients. Here the coefficients are never printed, and the key comes from recognising System III's constants as -7 + 2(5) and -11 + 2(6)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key, at try 2 ascending, not substitutable (a product of coordinates, and the coefficients are unknown). Decision point: a student who does not see that System III's right sides are System I's plus twice System II's must recover a, b, c, d from two more systems before solving; routine substitution into System III is impossible because its coefficients are not printed. No option is an intermediate: the coefficients 2, 1, 3, 2 and the coordinates 5 and -7 are not options. No cheap bound exists. The three distractors are three different misapplications of the combination (plain sum, multiplier on the wrong system, wrong sign). (read) PAIR: -35/-55 = 7/11, a ratio of the printed -7 and -11. Coincidence: -35 = 5 x (-7) and -55 = (-11) x 5 share the factor 5 from different coordinates; no path scales one product by 7/11 to reach the other."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A01",
+  "domain": "Algebra",
+  "subskill": "Two-speed trip with a stop: split distance, then a leg time",
+  "difficulty": "medium",
+  "prompt": "A car travels 360 kilometers from town A to town B. It drives at a constant speed of 75 kilometers per hour on a highway from town A to a rest stop, stays at the rest stop for 30 minutes, and then drives at a constant speed of 50 kilometers per hour on a country road for the rest of the way to town B. The whole trip, including the time at the rest stop, takes 5 hours 40 minutes. How many minutes after leaving town A does the car arrive at the rest stop?",
+  "choices": [
+   "124",
+   "220",
+   "244",
+   "276"
+  ],
+  "correct_answer": "244",
+  "explanation": "Let d be the distance, in kilometers, from town A to the rest stop. The country-road part is 360 - d kilometers. The driving time is the whole trip minus the stop: 5 hours 40 minutes - 30 minutes = 5 hours 10 minutes = 31/6 hours.\nSo d/75 + (360 - d)/50 = 31/6. Multiplying both sides by 150 gives 2d + 3(360 - d) = 775, so 1,080 - d = 775 and d = 305.\nThe highway part takes 305/75 hours = 244 minutes.\nCheck: the country-road part is 55 kilometers, which takes 55/50 hour = 66 minutes, and 244 + 30 + 66 = 340 minutes = 5 hours 40 minutes.\n\nChoice 276 comes from reading 5 hours 40 minutes as 5.40 hours.\nChoice 220 comes from reading the 30-minute stop as 0.30 hour.\nChoice 124 comes from adding the 30-minute stop to the trip time instead of subtracting it, so that 6 hours 10 minutes is spent driving: 2d + 3(360 - d) = 925 gives d = 155, and 155/75 hours = 124 minutes.",
+  "solve": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T-s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+  "distractor_solve": {
+   "124": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T+s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "220": "const D=360,v1=75,v2=50,T=340; const t=T/60-0.30; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "276": "const D=360,v1=75,v2=50,s=30; const t=5.40-s/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;"
+  },
+  "mechanism": [
+   "subtract the stop from the total time to get driving time",
+   "write distance/speed for two legs with an unknown split and solve the linear equation",
+   "convert the first leg's distance into minutes"
+  ],
+  "quantity_asked": "the number of minutes from leaving town A to arriving at the rest stop",
+  "ask_type": "derived-time",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=75*v/60; const total=v+30+60*(360-d)/50; return Math.abs(total-340)<1e-9;",
+   "why": "From an option a student can find the highway distance (75 x minutes / 60), the country-road time and the total, and compare with 340 minutes - three steps. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "124": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the stop to the trip time instead of subtracting it gives an hour more of driving than there is; a student would expect more driving time to lengthen the first leg, but here it all goes to the slow road and the fast leg shrinks - a side that only the two speeds decide."
+   },
+   "220": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the 30-minute stop as 0.30 hour leaves 12 extra minutes of driving; how that is split between the 75 and 50 km/h legs, and so which way the first leg moves, comes only from solving."
+   },
+   "276": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 5 hours 40 minutes as 5.40 hours removes 16 minutes of driving; because the slow leg must shrink faster, the fast first leg grows - a side that comes from the two speeds, not from the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive number of minutes, less than the 340-minute trip, and the first leg cannot exceed 360/75 hours = 288 minutes. All four options are positive and under 288; all four survive together.",
+  "interior_parity_check": "The middle values 220 and 244 are both three-digit even integers; the key 244 is not the cleaner one (220 ends in 0).",
+  "arith_class_check": "Even: all four. Multiples of 4: all four. Multiples of 10: 220 only. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(train|bus|car|cyclist)&per hour&then&total (time|trip)",
+    "rest of the (way|trip|distance)|remaining distance|remainder of the (trip|way|distance)",
+    "station&per hour",
+    "rest stop|stops for|including the stop",
+    "per hour&(whole|entire|total) (trip|journey)",
+    "per hour&for the rest"
+   ],
+   "hits_read": 13,
+   "nearest": "SM27F-D13 (cycling then walking in a 4-hour trip, an inequality on the time split for a distance) and 67f8dd66 (bus with a 10-minute stop and an average speed, asks the distance): neither has an unknown split point between two speeds with a stop subtracted from a fixed total, and neither converts the solved distance into a leg time. ALG-H3-15 gives the first leg's time directly."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Pattern 1 (return): no option is the highway distance (305 km), the country-road distance (55 km) or its time (66 min), so no option leads to the key through a printed speed or the 340-minute total. A test-wise student might try 360/average speed; it is not an option. Plug-back takes three steps and reaches the key on the third ascending try. No cheap bound strikes any option (all are under 288). Interior key, so no FAR or BOUND."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A02",
+  "domain": "Algebra",
+  "subskill": "Unit price behind a threshold discount, then a new purchase",
+  "difficulty": "medium",
+  "prompt": "At a hardware store, every box of screws has the same price. Whenever the total price of a purchase is more than $100, the store subtracts $20 from that total. Lena bought 12 boxes of screws and paid $136. At the same prices, how much, in dollars, would a customer pay for 9 boxes of screws?",
+  "choices": [
+   "82",
+   "87",
+   "97",
+   "102"
+  ],
+  "correct_answer": "97",
+  "explanation": "Let p be the price of one box, in dollars. Lena paid $136. If the store had not subtracted $20, her total would be the $136 she paid, which is more than $100, so the $20 would have been subtracted after all. So the $20 was subtracted, and 12p - 20 = 136.\nThen 12p = 156 and p = 13.\nNine boxes cost 9(13) = 117 dollars before any discount. Because 117 is more than 100, the store subtracts $20, and the customer pays 117 - 20 = 97 dollars.\n\nChoice 82 comes from treating $136 as the total before the discount: p = 136/12, so 9 boxes total 102 dollars, and subtracting $20 gives 82.\nChoice 87 comes from subtracting the $20 from what Lena paid instead of adding it back: 12p = 116, so 9 boxes total 87 dollars, which is not more than $100.\nChoice 102 comes from scaling what Lena paid in proportion to the number of boxes: 136 x 9/12 = 102.",
+  "solve": "const T=100,c=20,n=12,P=136,m=9; const p=(P+c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+  "distractor_solve": {
+   "82": "const T=100,c=20,n=12,P=136,m=9; const p=P/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "87": "const T=100,c=20,n=12,P=136,m=9; const p=(P-c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "102": "const n=12,P=136,m=9; return Math.round(P*m/n*1e9)/1e9;"
+  },
+  "mechanism": [
+   "decide that the paid amount is already discounted (the undiscounted reading contradicts the rule)",
+   "solve n p - c = paid for the unit price",
+   "price a new purchase and re-apply the threshold rule"
+  ],
+  "quantity_asked": "the amount paid for 9 boxes of screws, in dollars",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const ps=[]; if (v+20>100) ps.push((v+20)/9); if (v<=100) ps.push(v/9); return ps.some(p=>{const t=12*p; const paid=t>100?t-20:t; return Math.abs(paid-136)<1e-9;});",
+   "why": "Working back from an option means first deciding whether the $20 was subtracted from the 9-box total (for any option between 80 and 100 both readings are possible), then finding the unit price and re-pricing 12 boxes under the rule - the same case analysis as solving. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "82": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Missing that $136 is already discounted lowers the unit price, but the 9-box total then still crosses $100 and loses $20, so it lands below; with a purchase that stayed under $100 the same slip would land on either side of the key depending on the numbers. The stem does not show which."
+   },
+   "87": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the $20 a second time lowers the unit price, but it also drops the 9-box total under $100 so no discount is taken; the two effects pull opposite ways and only the numbers decide the side."
+   },
+   "102": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Scaling the paid amount by 9/12 shrinks the $20 discount along with the total instead of keeping it whole, which lands above here; the stem does not say whether the proportional answer is above or below the rule-based one."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the amount is positive; 9 boxes cost less than 12 boxes, so the answer is below 136; an amount over 100 must have had 20 removed. All four options are positive and under 136; 102 is over 100 and could be a discounted total (122 - 20), the others under 100 could be either. All four survive together.",
+  "interior_parity_check": "The middle values 87 and 97 are both two-digit odd integers; the key 97 is not the cleaner one.",
+  "arith_class_check": "Even: 82 and 102; odd: 87 and 97. Multiples of 3: 87 and 102. The stem implies no class (the unit price is not said to be whole), and the key is alone in none the stem implies.",
+  "dup_search": {
+   "queries": [
+    "(over|above|more than|at least) .?[0-9]+ (dollars|before)&(off|discount|subtracted|deducted)",
+    "coupon",
+    "discount&each&total",
+    "more than .?[0-9]+&subtract",
+    "whenever&(total|purchase)",
+    "first [0-9]+ (hours|items|pounds)&each (additional|hour after)"
+   ],
+   "hits_read": 18,
+   "nearest": "1e65102a (SSAT: a 25% reduction then a $9 coupon, recover the original price) and 80dad503 (coupon then tax, recover the list price): both apply a fixed amount unconditionally and ask for the original price. Here the $20 applies only above a threshold, the paid amount must be recognised as discounted, and the rule is applied again to a different purchase. The tiered-rate items (parking, shipping, overtime) change the rate past a threshold, not a one-time subtraction."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might scale 136 by 9/12 (102) or assume the 9-box purchase gets no discount; both are options. Two decision points: whether $136 is discounted, and whether 117 is over $100. Plug-back reaches the key at try 3 and needs the same case analysis as solving. No PAIR/DSUM gating; the one (read) line is answered after the check. (read) DPAIR difference 97 - 87 = 10 = 9 + 1: not stem-readable - the 10 comes from 9 x (40/12) - 20, and nothing in the stem adds 1 to the 9 boxes; a student holding 87 has no route to 97 by adding 10."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C11",
+  "domain": "Algebra",
+  "subskill": "System from two lines with slope and intercept interchanged",
+  "difficulty": "medium",
+  "prompt": "Lines p and q in the xy-plane use the same two numbers, m and n, in opposite roles: line p has slope m and y-intercept n, and line q has slope n and y-intercept m. Line p passes through the point (1, -3), and line q passes through the point (5, -27). What is the y-coordinate of the point on line p whose x-coordinate is -3?",
+  "choices": [
+   "-15",
+   "-11",
+   "-9",
+   "21"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Line p is y = mx + n, so the point (1, -3) gives m + n = -3. Line q is y = nx + m, so the point (5, -27) gives 5n + m = -27. Subtracting the first equation from the second gives 4n = -24, so n = -6, and then m = -3 - (-6) = 3. Line p is y = 3x - 6, and at x = -3 its y-coordinate is 3(-3) - 6 = -15.",
+  "solve": "const n=(-27-(-3))/(5-1); const m=-3-n; return m*(-3)+n;",
+  "distractor_solve": {
+   "21": "const m=(-27-(-3))/(5-1); const n=-3-m; return m*(-3)+n;",
+   "-9": "const n=(-27-(-3))/(5-1); const m=-3-n; return m*(-3);",
+   "-11": "const n=(-27+(-3))/(5+1); const m=-3-n; return m*(-3)+n;"
+  },
+  "mechanism": [
+   "write each line's point condition with the shared constants in their roles",
+   "solve the system for m and n",
+   "evaluate line p at x = -3"
+  ],
+  "quantity_asked": "the y-coordinate of the point on line p with x = -3",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a y-value on line p at x = -3. To test it a student would have to combine it with m + n = -3 to recover m and n and then check line q, which is solving the system; there is no printed condition an option satisfies in one step."
+  },
+  "distractor_meta": {
+   "21": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the role swap and treating line q as y = mx + n as well gives m + n = -3 and 5m + n = -27, so m = -6, n = 3 and line p gives (-6)(-3) + 3 = 21. The direction of the change is not readable from the stem."
+   },
+   "-9": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finding the slope m = 3 but leaving out the y-intercept when evaluating (3 times -3) gives -9. Whether dropping the intercept raises or lowers the value depends on the sign of n, which comes only from solving."
+   },
+   "-11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writing line q's condition as 5n - m = -27 (a sign slip on m) gives n = -5, m = 2 and a y-value of 2(-3) - 5 = -11 on line p. Nothing in the stem shows which way the slip moves the answer."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const m=(-3-27)/(1-5); const n=-3-m; return m*(-3)+n;",
+   "direction": "below",
+   "why": "Reading 'opposite roles' as opposite signs (line q: y = -mx - n) gives m + n = -3 and -5m - n = -27, so m = 7.5, n = -10.5 and a y-value of -33 on line p, below the key; -33 is not an option."
+  },
+  "far_distractor": {
+   "option": "-9",
+   "natural_side": "below",
+   "why": "Leaving a term out of a sum is the kind of slip that ordinarily makes a result too small. Here the dropped term is the y-intercept n = -6, which is negative, so dropping it raises the value from -15 to -9. The sign of n is fixed only by solving the two point conditions; the stem prints no intercept."
+  },
+  "cheap_bound_check": "The stem states no sign or size for m, n or the asked y-value. The cheapest reading, that line q falls steeply between x = 0 and x = 5 (so n is probably negative), needs the value of m to turn into a bound; no bound computable without solving strikes any option, and all three distractors stay on the key's side of every bound a student could state.",
+  "shape_check": "Stem properties: m and n are any real numbers; the asked y-value has no sign, cap or integrality condition. All four options are legal and survive together; integrality is shared by all four.",
+  "interior_parity_check": "Middle values -11 and -9: both negative odd integers of two and one digits; the key -15 is not interior.",
+  "arith_class_check": "Options -15, -11, -9, 21: all odd; the key shares negativity with -11 and -9 and divisibility by 3 with -9 and 21. No class isolates -15.",
+  "dup_search": {
+   "queries": [
+    "bx \\+ a|g\\(x\\) = bx",
+    "slope&y-intercept&same",
+    "f\\(a\\)|p\\(5\\) = q",
+    "\\(b, a\\)|\\(q, p\\)|reverse&coordinates"
+   ],
+   "hits_read": 12,
+   "nearest": "SM27F-C10 (p(x) = ax + 5, q(x) = 3x + b, with p(5) = q(3) and p(-1) = q(-5)): the constants sit in fixed roles in different functions and the conditions equate the two functions. Here the SAME two constants exchange roles between the two lines (slope of one is intercept of the other), and each line's own point condition gives one equation. Within this batch, C01 reverses a point's coordinates; here the slope and intercept are exchanged, so the coefficient pattern of the system differs."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the role-swap error (21), the sign slip (-11) and the dropped intercept (-9) all depend on the solved m and n; no stem bound exists. Does the far distractor read as a far-side error? Dropping a term would be expected to leave a value too small; it lands high only because n is negative, and that sign is found by solving. Neither m = 3 nor n = -6 is an option, so no option is the other unknown and none leads to the key through one printed equation. Could a student check an option in one routine step? No: an option plus m + n = -3 still requires solving for m and n and checking line q. (read) PAIR/DPAIR lines: -9 - (-15) = 6 is the size of the dropped intercept (|n| = 6), not 2 x the printed 3; a student cannot add 6 without first solving for n. The ratio 5/3, the sums 6 and 26, and the differences 4 and 6 matched to 5 +/- 1 or 27 - 1 are coincidences that no solving path uses."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-C01",
+  "domain": "Algebra",
+  "subskill": "System from a point and its coordinate-reversed point",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line 9x + 7y = 134 contains the point (a, b), where a and b are constants. The line x - 9y = -166 contains the point whose coordinates are the same two numbers in reverse order, (b, a). What is the value of a + b?",
+  "choices": [
+   "14",
+   "18",
+   "19",
+   "26"
+  ],
+  "correct_answer": "14",
+  "explanation": "Substitute each point into its own line. Because (a, b) lies on 9x + 7y = 134, 9a + 7b = 134. Because (b, a) lies on x - 9y = -166, its x-coordinate is b and its y-coordinate is a, so b - 9a = -166, which gives b = 9a - 166. Substitute into the first equation: 9a + 7(9a - 166) = 134, so 72a - 1162 = 134, 72a = 1296, and a = 18. Then b = 9(18) - 166 = -4. Check: 9(18) + 7(-4) = 162 - 28 = 134, and (-4) - 9(18) = -166. Therefore a + b = 18 + (-4) = 14.",
+  "solve": "const a=(134+7*166)/(9+7*9); const b=9*a-166; return a+b;",
+  "distractor_solve": {
+   "18": "const a=(134+7*166)/(9+7*9); return a;",
+   "19": "const b=(134+9*166)/(9*9+7); const a=9*b-166; return a+b;",
+   "26": "const b=(134+166)/(7-1); const a=(-166-b)/9; return a+b;"
+  },
+  "mechanism": [
+   "substitute (a, b) into the first line",
+   "substitute the reversed point (b, a) into the second line",
+   "solve the resulting system in a and b",
+   "add a and b"
+  ],
+  "quantity_asked": "the value of a + b",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of the sum a + b only. Knowing a + b does not fix a or b, so there is no point to substitute into either line; a student must set up and solve the two equations in a and b."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting a alone drops the addend b. Whether that raises or lowers the sum depends on the sign of b, which the stem does not show; b = -4 only appears after solving."
+   },
+   "19": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the reversal and substituting (a, b) into x - 9y = -166 as well gives 9a + 7b = 134 and a - 9b = -166, so a = 0.5, b = 18.5 and a + b = 19. Nothing in the stem says whether this system's sum is larger or smaller."
+   },
+   "26": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writing the reversed equation as b + 9a = -166 (dropping the minus sign on the 9y term) gives 9a + 7b = 134 and 9a + b = -166, so b = 50, a = -24 and a + b = 26. The size of the change is not readable without solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const a=(134+7*166)/(9+7*9); return 9*a-166;",
+   "direction": "below",
+   "why": "A student who solves correctly but reports b instead of a + b gets -4, which is below the key and is not an option."
+  },
+  "far_distractor": {
+   "option": "18",
+   "natural_side": "below",
+   "why": "Dropping one addend of a sum ordinarily makes the result smaller, so a reported a alone would sit below a + b. Here the dropped addend b is negative (b = -4), so leaving it out makes the result larger; the sign of b comes only from solving the system, not from the stem."
+  },
+  "cheap_bound_check": "No sign is stated for a or b. The cheapest bound a student might try is the positivity assumption: if a and b were both nonnegative, 9a + 7b = 134 would force a + b <= 134/7, about 19.1. That strikes only 26; 18 and 19 sit on the key's side with 14. The assumption is in fact false here (b = -4).",
+  "shape_check": "The stem hands over no sign, integer, cap or symmetry for a + b (a and b are coordinates, any real). All four options are legal values; integrality is shared by all four.",
+  "interior_parity_check": "Middle values 18 and 19: both two-digit integers, same display form and complexity; the key 14 is not one of them.",
+  "arith_class_check": "Options 14, 18, 19, 26: three even and one odd (19), so parity does not isolate the key; none negative; no multiple-of-k class isolates 14 (14 shares evenness with 18 and 26 and is not a square).",
+  "dup_search": {
+   "queries": [
+    "(b, a)|(y, x)",
+    "\\(b, a\\)|\\(q, p\\)|\\(n, m\\)|reverse&coordinates|coordinates&swapped|interchang",
+    "lies on&line&point",
+    "infinitely many&system"
+   ],
+   "hits_read": 97,
+   "nearest": "SM27F-C08 (table line meets x - y = -13 at (a, b), ask ab): one point on two lines, no reversed point; here the second equation comes from the coordinate-reversed point, so the system in a and b has the coefficients of line 2 interchanged."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the reversal error (19), the sign slip (26) and the dropped addend (18) each move the sum by an amount whose direction depends on the solved values; the only cheap bound (positivity, about 19.1) strikes 26 alone. The far distractor 18 reads as a dropped-term error that would ordinarily be low, and lands high only because b is negative, which is not visible. Could a student check an option against the stem in one routine step? No: a + b does not determine a point to substitute. (read) PAIR: 14/18 = 7/9, a ratio of the printed 7 and 9. It is a coincidence of these values (14 = a + b, 18 = a); no solving path scales a by 7/9, so the ratio does not lead from the option 18 to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A11",
+  "domain": "Algebra",
+  "subskill": "Equal intervals from two numbered departures, back to the first",
+  "difficulty": "medium",
+  "prompt": "Every morning, shuttles leave a station at equal time intervals. The 6th shuttle of the morning leaves at 7:45 a.m., and the 14th shuttle leaves at 9:21 a.m. How many minutes after 6:00 a.m. does the 1st shuttle of the morning leave?",
+  "choices": [
+   "20",
+   "33",
+   "41",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let d be the interval, in minutes. From the 6th shuttle to the 14th there are 14 - 6 = 8 intervals, and the time between them is 7:45 a.m. to 9:21 a.m. = 96 minutes, so 8d = 96 and d = 12.\nFrom the 1st shuttle to the 6th there are 5 intervals, or 60 minutes, so the 1st shuttle leaves at 7:45 - 60 minutes = 6:45 a.m., which is 45 minutes after 6:00 a.m.\n(Check: 6:45 + 13(12) minutes = 6:45 + 156 minutes = 9:21.)\n\nChoice 41 comes from counting shuttles instead of intervals in both places: 9 intervals give d = 96/9, and stepping back 6 of them from 7:45 gives 7:45 - 64 minutes = 6:41.\nChoice 33 comes from finding d = 12 correctly but stepping back 6 intervals instead of 5: 7:45 - 72 minutes = 6:33.\nChoice 20 comes from subtracting the clock times as decimals, 9.21 - 7.45 = 1.76, and reading that as 1 hour 76 minutes = 136 minutes: d = 17, and 7:45 - 85 minutes = 6:20.",
+  "solve": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+  "distractor_solve": {
+   "20": "const t6=105,i=6,j=14; const D=136; const d=D/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+   "33": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-i*d)*1e9)/1e9;",
+   "41": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i+1); return Math.round((t6-i*d)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "turn two clock times into an elapsed number of minutes",
+   "count the intervals between two numbered departures and solve for the interval",
+   "step back the right number of intervals to the first departure"
+  ],
+  "quantity_asked": "the number of minutes after 6:00 a.m. that the 1st shuttle leaves",
+  "ask_type": "derived-time",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=(105-v)/5; return Math.abs(v+13*d-201)<1e-9;",
+   "why": "From an option a student can find the interval ((7:45 - option)/5) and check that 13 intervals reach 9:21 - two steps, with the interval counts themselves the thing being tested. The key is the largest option, so in ascending order it is the fourth try."
+  },
+  "distractor_meta": {
+   "20": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the times as decimals is wrong by 40 minutes for every hour 'borrowed'; whether it inflates or shrinks the elapsed time depends on whether the minutes need borrowing, which is not what a student reads from the stem."
+   },
+   "33": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stepping back one interval too many moves the time earlier; with the counts reversed (stepping forward from the 1st) the same slip would land later, so its side depends on the direction of the count asked."
+   },
+   "41": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting shuttles instead of intervals makes the interval too short (96/9) but also steps back too many of them (6); the two effects oppose, and which wins depends on the numbers 6 and 14."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return t6-(i-2)*d;",
+   "direction": "above",
+   "why": "Stepping back only 4 intervals from the 6th shuttle, 7:45 - 48 minutes = 6:57 (57 minutes after 6:00), lands above the key."
+  },
+  "far_distractor": {
+   "option": "41",
+   "natural_side": "above",
+   "why": "Counting shuttles instead of intervals divides the 96 minutes into 9 parts, a shorter interval, which a student would expect to put the first shuttle LATER - above the key. But the same counting habit steps back 6 intervals instead of 5, and 6 x 96/9 = 64 minutes is more than 5 x 12 = 60, so it lands 4 minutes earlier. With the 6th and 10th shuttles instead, the same slip gives 6 x D/5 against the correct 5 x D/4, which is less, so it would land later; the side comes from the arithmetic on 6 and 14, not from the stem."
+  },
+  "cheap_bound_check": "Cheapest bound: the 1st shuttle leaves before the 6th, so the answer is under 105 minutes - all four pass. Nothing printed bounds it below (6:00 is only a reference), so no single bound strikes any option.",
+  "shape_check": "The stem hands over: a nonnegative number of minutes, under 105; no integer requirement beyond that. All four options are whole numbers in range; all four survive together.",
+  "interior_parity_check": "The middle values 33 and 41 are both two-digit odd integers; the key is not interior.",
+  "arith_class_check": "Odd: 33, 41, 45; even: 20. Multiples of 5: 20, 45. Multiples of 3: 33, 45. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(bus|train|ferry|shuttle)e?s? (leaves?|depart)&(every|equal intervals|same number of minutes)",
+    "(first|1st)&(9th|tenth|10th|ninth|last) (bus|train|ferry|shuttle)",
+    "row&more (seats|chairs|bricks|cans)",
+    "each (row|layer|level) (after|above)"
+   ],
+   "hits_read": 4,
+   "nearest": "2b58daaa (three buses returning every 12, 18 and 30 minutes, a least common multiple) and 395f559d (theater rows growing by 3, a sum). Neither recovers an equal interval from two numbered events; here the interval comes from 8d = 96 and is then used to step back to the first departure."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: the interval (12) and the 96-minute span are not options; 45 - 33 = 12 is the interval, which is not printed, and a student holding 33 has no printed step to 45. Pattern 2: the only cheap bound (before 7:45) strikes nothing. Pattern 3: the shuttle-for-interval slip (41) shortens the interval and lengthens the step-back at once; its side depends on 6 and 14. Covering the work, a student cannot strike all three: they come from three different counting and clock slips and none is marked. (read) PAIR 45 - 33 = 12 = 2 x printed 6: 12 is the interval, and that it equals twice the 6 in \"6th shuttle\" is a coincidence of these numbers; nothing in the stem invites doubling the shuttle number, and a student who doubles it has no reason to add it to 33."
+  },
+  "bounds": []
+ }
+]

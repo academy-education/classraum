@@ -1,0 +1,422 @@
+[
+ {
+  "id": "SM29F-C10",
+  "domain": "Algebra",
+  "subskill": "Systems sharing unknown coefficients; combine right sides",
+  "difficulty": "hard",
+  "prompt": "System I:   ax + by = -7 and cx + dy = -11\nSystem II:  ax + by = 5 and cx + dy = 6\nSystem III: ax + by = 3 and cx + dy = 1\n\nIn the three systems of equations above, a, b, c, and d are the same constants in every system. The only solution of System I is (-3, -1), and the only solution of System II is (4, -3). If (x, y) is the solution of System III, what is the value of xy?",
+  "choices": [
+   "-55",
+   "-35",
+   "-4",
+   "10"
+  ],
+  "correct_answer": "-35",
+  "explanation": "The right sides of System III are the right sides of System I plus 2 times those of System II: 3 = -7 + 2(5) and 1 = -11 + 2(6). Because the left sides are the same in all three systems, the point (-3, -1) + 2(4, -3) = (5, -7) satisfies System III: a(5) + b(-7) = [a(-3) + b(-1)] + 2[a(4) + b(-3)] = -7 + 2(5) = 3, and likewise for the second equation. (Alternatively, System I and System II give -3a - b = -7 and 4a - 3b = 5, so a = 2 and b = 1, and -3c - d = -11 and 4c - 3d = 6, so c = 3 and d = 2; then 2x + y = 3 and 3x + 2y = 1 give x = 5, y = -7.) Since System III has only one solution, it is (5, -7), and xy = (5)(-7) = -35.",
+  "solve": "const x=-3+2*4, y=-1+2*(-3); return x*y;",
+  "distractor_solve": {
+   "10": "const x=2*(-3)+4, y=2*(-1)+(-3); return x*y;",
+   "-4": "const x=-3+4, y=-1+(-3); return x*y;",
+   "-55": "const x=-3-2*4, y=-1-2*(-3); return x*y;"
+  }
+ },
+ {
+  "id": "SM29F-P04",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic model: discriminant condition on a launch speed",
+  "difficulty": "medium",
+  "prompt": "A ball is launched straight up from a platform. Its height above the ground, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt + 8, where v is the launch speed, in feet per second. What is the least whole-number value of v for which the ball reaches a height of at least 100 feet?",
+  "choices": [
+   "39",
+   "55",
+   "77",
+   "80"
+  ],
+  "correct_answer": "77",
+  "explanation": "The ball reaches 100 feet exactly when the equation -16t^2 + vt + 8 = 100 has a real solution t. Rewrite it as -16t^2 + vt - 92 = 0. A quadratic equation has a real solution when its discriminant is at least 0: v^2 - 4(-16)(-92) >= 0, so v^2 >= 5,888.\n\nSince 76^2 = 5,776 is less than 5,888 and 77^2 = 5,929 is greater, the least whole-number value of v is 77.\n\n(Equivalently, the greatest height is reached at t = v/32 and equals 8 + v^2/64; setting 8 + v^2/64 >= 100 gives the same inequality.)\n\nChoice 80 ignores the 8-foot starting height and requires v^2/64 >= 100. Choice 55 divides v^2 by 32 instead of 64 when finding the greatest height. Choice 39 leaves the 4 out of the discriminant, requiring v^2 >= 16(92).",
+  "solve": "const a=16,c=8,H=100; return Math.ceil(Math.sqrt(4*a*(H-c)));",
+  "distractor_solve": {
+   "39": "const a=16,c=8,H=100; return Math.ceil(Math.sqrt(a*(H-c)));",
+   "55": "const a=16,c=8,H=100; return Math.ceil(Math.sqrt(2*a*(H-c)));",
+   "80": "const a=16,c=8,H=100; return Math.ceil(Math.sqrt(4*a*H));"
+  }
+ },
+ {
+  "id": "SM29F-A04",
+  "domain": "Algebra",
+  "subskill": "Sequential shares (fixed amount + fraction of rest), equal",
+  "difficulty": "hard",
+  "prompt": "A sum of prize money is shared as follows. First, Ana receives $50 plus one-fifth of the money that is left after the $50 is taken out. Next, Ben receives $72 plus one-fifth of the money that is then left after the $72 is taken out. Ana and Ben receive the same amount of money. How many dollars of the prize money are left after Ana and Ben have received their shares?",
+  "choices": [
+   "64",
+   "88",
+   "214",
+   "280"
+  ],
+  "correct_answer": "64",
+  "explanation": "Let T be the prize money, in dollars. Ana receives 50 + (T - 50)/5 = (T + 200)/5.\nThe money left after Ana is T - (T + 200)/5 = (4T - 200)/5. Ben receives 72 plus one-fifth of what is left after his $72 is taken out: 72 + ((4T - 200)/5 - 72)/5 = (4T + 1240)/25.\nThe shares are equal: (T + 200)/5 = (4T + 1240)/25, so 5T + 1000 = 4T + 1240 and T = 240.\nEach receives (240 + 200)/5 = 88 dollars (check Ben: 240 - 88 = 152 left, 152 - 72 = 80, and 72 + 80/5 = 88). The money left is 240 - 88 - 88 = 64 dollars.\n\nChoice 88 is the amount each of Ana and Ben receives, not the amount left.\nChoice 214 comes from forgetting to take Ana's $50 out when finding what is left after her (taking it as T - (T - 50)/5): the equal-shares equation then gives T = 490 and shares of 138, leaving 490 - 276 = 214.\nChoice 280 comes from giving Ben one-fifth of everything left after Ana and then adding the $72, instead of taking the $72 out first: the equation then gives T = 600 and shares of 160, leaving 600 - 320 = 280.",
+  "solve": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;",
+  "distractor_solve": {
+   "88": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round(A(T)*1e9)/1e9;",
+   "214": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-(T-a)/q;return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;",
+   "280": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+R/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-A01",
+  "domain": "Algebra",
+  "subskill": "Two-speed trip with a stop: split distance, then a leg time",
+  "difficulty": "medium",
+  "prompt": "A car travels 360 kilometers from town A to town B. It drives at a constant speed of 75 kilometers per hour on a highway from town A to a rest stop, stays at the rest stop for 30 minutes, and then drives at a constant speed of 50 kilometers per hour on a country road for the rest of the way to town B. The whole trip, including the time at the rest stop, takes 5 hours 40 minutes. How many minutes after leaving town A does the car arrive at the rest stop?",
+  "choices": [
+   "124",
+   "220",
+   "244",
+   "276"
+  ],
+  "correct_answer": "244",
+  "explanation": "Let d be the distance, in kilometers, from town A to the rest stop. The country-road part is 360 - d kilometers. The driving time is the whole trip minus the stop: 5 hours 40 minutes - 30 minutes = 5 hours 10 minutes = 31/6 hours.\nSo d/75 + (360 - d)/50 = 31/6. Multiplying both sides by 150 gives 2d + 3(360 - d) = 775, so 1,080 - d = 775 and d = 305.\nThe highway part takes 305/75 hours = 244 minutes.\nCheck: the country-road part is 55 kilometers, which takes 55/50 hour = 66 minutes, and 244 + 30 + 66 = 340 minutes = 5 hours 40 minutes.\n\nChoice 276 comes from reading 5 hours 40 minutes as 5.40 hours.\nChoice 220 comes from reading the 30-minute stop as 0.30 hour.\nChoice 124 comes from adding the 30-minute stop to the trip time instead of subtracting it, so that 6 hours 10 minutes is spent driving: 2d + 3(360 - d) = 925 gives d = 155, and 155/75 hours = 124 minutes.",
+  "solve": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T-s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+  "distractor_solve": {
+   "124": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T+s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "220": "const D=360,v1=75,v2=50,T=340; const t=T/60-0.30; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "276": "const D=360,v1=75,v2=50,s=30; const t=5.40-s/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-A02",
+  "domain": "Algebra",
+  "subskill": "Unit price behind a threshold discount, then a new purchase",
+  "difficulty": "hard",
+  "prompt": "At a hardware store, every box of screws has the same price. Whenever the total price of a purchase is more than $100, the store subtracts $20 from that total. Lena bought 12 boxes of screws and paid $136. At the same prices, how much, in dollars, would a customer pay for 9 boxes of screws?",
+  "choices": [
+   "82",
+   "87",
+   "97",
+   "102"
+  ],
+  "correct_answer": "97",
+  "explanation": "Let p be the price of one box, in dollars. Lena paid $136. If the store had not subtracted $20, her total would be the $136 she paid, which is more than $100, so the $20 would have been subtracted after all. So the $20 was subtracted, and 12p - 20 = 136.\nThen 12p = 156 and p = 13.\nNine boxes cost 9(13) = 117 dollars before any discount. Because 117 is more than 100, the store subtracts $20, and the customer pays 117 - 20 = 97 dollars.\n\nChoice 82 comes from treating $136 as the total before the discount: p = 136/12, so 9 boxes total 102 dollars, and subtracting $20 gives 82.\nChoice 87 comes from subtracting the $20 from what Lena paid instead of adding it back: 12p = 116, so 9 boxes total 87 dollars, which is not more than $100.\nChoice 102 comes from scaling what Lena paid in proportion to the number of boxes: 136 x 9/12 = 102.",
+  "solve": "const T=100,c=20,n=12,P=136,m=9; const p=(P+c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+  "distractor_solve": {
+   "82": "const T=100,c=20,n=12,P=136,m=9; const p=P/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "87": "const T=100,c=20,n=12,P=136,m=9; const p=(P-c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "102": "const n=12,P=136,m=9; return Math.round(P*m/n*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-S02",
+  "domain": "Advanced Math",
+  "subskill": "Translation then reflection of a rational graph",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 24/(x + 1) - 4. In the xy-plane, the graph of y = g(x) is produced by translating the graph of y = f(x) 4 units to the right and 3 units up and then reflecting the result across the x-axis. What is the value of g(1)?",
+  "choices": [
+   "-7",
+   "-3",
+   "13",
+   "19"
+  ],
+  "correct_answer": "13",
+  "explanation": "Translating 4 units right and 3 units up gives y = f(x - 4) + 3. Reflecting that graph across the x-axis negates every output, so g(x) = -(f(x - 4) + 3). Then g(1) = -(f(-3) + 3). Since f(-3) = 24/(-3 + 1) - 4 = 24/(-2) - 4 = -12 - 4 = -16, g(1) = -(-16 + 3) = -(-13) = 13.",
+  "solve": "const a=24, p=1, q=-4, h=4, v=3, s=1; const f=x=>a/(x+p)+q; return -(f(s-h)+v);",
+  "distractor_solve": {
+   "19": "const a=24, p=1, q=-4, h=4, v=3, s=1; const f=x=>a/(x+p)+q; return -f(s-h)+v;",
+   "-3": "const a=24, p=1, q=-4, h=4, v=3, s=1; const f=x=>a/(x+p)+q; return -(f(s+h)+v);",
+   "-7": "const a=24, p=1, q=-4, h=4, v=3, s=1; const f=x=>a/(x+p)+q; return f(-s-h)+v;"
+  }
+ },
+ {
+  "id": "SM29F-P07",
+  "domain": "Advanced Math",
+  "subskill": "Line meeting a parabola: chord from its midpoint",
+  "difficulty": "hard",
+  "prompt": "A line crosses the parabola y = 2x^2 - 5x + 4 at points P and Q, where Q lies to the right of P. The segment PQ has midpoint (3, 15). What is the y-coordinate of Q?",
+  "choices": [
+   "7",
+   "16",
+   "29",
+   "92"
+  ],
+  "correct_answer": "29",
+  "explanation": "Write the line as y = mx + k. At the intersection points, 2x^2 - 5x + 4 = mx + k, or 2x^2 - (5 + m)x + (4 - k) = 0. The x-coordinates of the two points are the solutions of this equation, so their sum is (5 + m)/2. The midpoint has x-coordinate 3, so the sum is 6: (5 + m)/2 = 6, and m = 7.\n\nThe midpoint (3, 15) lies on the line (it is on the segment, not on the parabola), so 15 = 7(3) + k and k = -6. The line is y = 7x - 6.\n\nNow 2x^2 - 5x + 4 = 7x - 6 gives 2x^2 - 12x + 10 = 0, or x^2 - 6x + 5 = 0, so x = 1 or x = 5. Q is the point farther right, (5, 7(5) - 6) = (5, 29). (Check: P is (1, 1), and the midpoint of (1, 1) and (5, 29) is (3, 15).)\n\nChoice 16 takes the sum of the solutions as 5 + m without dividing by the leading coefficient 2. Choice 7 treats the midpoint's y-coordinate as the parabola's height at x = 3, which makes the line tangent there. Choice 92 solves 15 = 7(3) + k as k = 15 + 21.",
+  "solve": "const a=2,b=-5,c=4,X=3,Y=15; const m=2*a*X+b, k=Y-m*X; const A=a,B=b-m,C=c-k; const x=(-B+Math.sqrt(B*B-4*A*C))/(2*A); return m*x+k;",
+  "distractor_solve": {
+   "7": "const a=2,b=-5,c=4,X=3,Y=15; const f=x=>a*x*x+b*x+c; const m=2*a*X+b, k=f(X)-m*X; const A=a,B=b-m,C=c-k; const x=(-B+Math.sqrt(Math.max(0,B*B-4*A*C)))/(2*A); return m*x+k;",
+   "16": "const a=2,b=-5,c=4,X=3,Y=15; const m=2*X+b, k=Y-m*X; const A=a,B=b-m,C=c-k; const x=(-B+Math.sqrt(B*B-4*A*C))/(2*A); return m*x+k;",
+   "92": "const a=2,b=-5,c=4,X=3,Y=15; const m=2*a*X+b, k=Y+m*X; const A=a,B=b-m,C=c-k; const x=(-B+Math.sqrt(B*B-4*A*C))/(2*A); return m*x+k;"
+  }
+ },
+ {
+  "id": "SM29F-S10",
+  "domain": "Advanced Math",
+  "subskill": "Absolute-value graph: steepness from a point, then x-intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = a|x - h| + k, where a, h and k are constants, has its vertex at (5, -36) and passes through the point (11, -12). The graph crosses the x-axis at two points. What is the distance between these two points?",
+  "choices": [
+   "10",
+   "12",
+   "18",
+   "33"
+  ],
+  "correct_answer": "18",
+  "explanation": "The vertex is (h, k) = (5, -36), so y = a|x - 5| - 36. Substituting the point (11, -12): -12 = a|11 - 5| - 36, so 6a = 24 and a = 4. The graph crosses the x-axis where 4|x - 5| - 36 = 0, that is, |x - 5| = 9, so x = 14 or x = -4. The distance between these points is 14 - (-4) = 18.",
+  "solve": "const h=5,k=-36,px=11,py=-12; const a=(py-k)/Math.abs(px-h); const w=-k/a; return 2*w;",
+  "distractor_solve": {
+   "10": "const h=5; return 2*h;",
+   "12": "const h=5,px=11; return 2*Math.abs(px-h);",
+   "33": "const k=-36,px=11,py=-12; const a=(py-k)/px; return 2*(-k)/a;"
+  }
+ },
+ {
+  "id": "SM29F-C05",
+  "domain": "Algebra",
+  "subskill": "System with a per-bundle discount offset",
+  "difficulty": "medium",
+  "prompt": "At a deli, every sandwich has the same price and every drink has the same price. A sandwich and a drink bought together as a meal deal cost $0.75 less than the sandwich and the drink bought separately. Ana bought 4 meal deals and 2 additional drinks that were not part of a meal deal, and paid $26.50 in all. Ben bought 1 sandwich and 4 drinks, none of them as meal deals, and paid $11.25. What is the price, in dollars, of one sandwich bought separately?",
+  "choices": [
+   "1.90",
+   "3.85",
+   "4.15",
+   "5.05"
+  ],
+  "correct_answer": "5.05",
+  "explanation": "Let s be the price of a sandwich and d the price of a drink, in dollars. Each meal deal costs s + d - 0.75, so Ana paid 4(s + d - 0.75) + 2d = 26.50, which simplifies to 4s + 6d - 3 = 26.50, or 4s + 6d = 29.50. Ben paid s + 4d = 11.25, so s = 11.25 - 4d. Substituting: 4(11.25 - 4d) + 6d = 29.50, so 45 - 10d = 29.50, 10d = 15.50 and d = 1.55. Then s = 11.25 - 4(1.55) = 11.25 - 6.20 = 5.05. A sandwich costs $5.05.",
+  "solve": "const R=26.5+4*0.75; const d=(4*11.25-R)/(4*4-6); return Math.round((11.25-4*d)*100)/100;",
+  "distractor_solve": {
+   "3.85": "const R=26.5; const d=(4*11.25-R)/(4*4-6); return Math.round((11.25-4*d)*100)/100;",
+   "4.15": "const R=26.5+0.75; const d=(4*11.25-R)/(4*4-6); return Math.round((11.25-4*d)*100)/100;",
+   "1.90": "const R=26.5+4*0.75; const d=(R-11.25)/(6-1); return Math.round(((11.25-d)/4)*100)/100;"
+  }
+ },
+ {
+  "id": "SM29F-C11",
+  "domain": "Algebra",
+  "subskill": "System from two lines with slope and intercept interchanged",
+  "difficulty": "medium",
+  "prompt": "Lines p and q in the xy-plane use the same two numbers, m and n, in opposite roles: line p has slope m and y-intercept n, and line q has slope n and y-intercept m. Line p passes through the point (1, -3), and line q passes through the point (5, -27). What is the y-coordinate of the point on line p whose x-coordinate is -3?",
+  "choices": [
+   "-15",
+   "-11",
+   "-9",
+   "21"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Line p is y = mx + n, so the point (1, -3) gives m + n = -3. Line q is y = nx + m, so the point (5, -27) gives 5n + m = -27. Subtracting the first equation from the second gives 4n = -24, so n = -6, and then m = -3 - (-6) = 3. Line p is y = 3x - 6, and at x = -3 its y-coordinate is 3(-3) - 6 = -15.",
+  "solve": "const n=(-27-(-3))/(5-1); const m=-3-n; return m*(-3)+n;",
+  "distractor_solve": {
+   "21": "const m=(-27-(-3))/(5-1); const n=-3-m; return m*(-3)+n;",
+   "-9": "const n=(-27-(-3))/(5-1); const m=-3-n; return m*(-3);",
+   "-11": "const n=(-27+(-3))/(5+1); const m=-3-n; return m*(-3)+n;"
+  }
+ },
+ {
+  "id": "SM29F-Q06",
+  "domain": "Advanced Math",
+  "subskill": "Equations quadratic in 2^x: intersections of exponential graphs",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graphs of y = 4^x and y = k(2^x) - 16, where k is a constant, intersect at two points whose x-coordinates differ by 2. What is the sum of the y-coordinates of the two intersection points?",
+  "choices": [
+   "10",
+   "36",
+   "68",
+   "257"
+  ],
+  "correct_answer": "68",
+  "explanation": "Let u = 2^x, so 4^x = u^2. At an intersection, u^2 = ku - 16, that is, u^2 - ku + 16 = 0. The two intersection points correspond to the two solutions u1 and u2 of this equation, and u1 · u2 = 16.\n\nIf the x-coordinates are x1 and x2 = x1 + 2, then u2 = 2^(x1 + 2) = 4 · 2^(x1) = 4u1.\n\nSo u1 · 4u1 = 16, giving u1^2 = 4 and u1 = 2 (u = 2^x must be positive). Then u2 = 8, and k = u1 + u2 = 10.\n\nThe points have x-coordinates 1 and 3, and their y-coordinates are 4^1 = 4 and 4^3 = 64 (each y is u^2).\n\nThe sum of the y-coordinates is 4 + 64 = 68.",
+  "solve": "const u1=Math.sqrt(16/4), u2=4*u1; return u1*u1+u2*u2;",
+  "distractor_solve": {
+   "10": "const u1=Math.sqrt(16/4), u2=4*u1; return u1+u2;",
+   "36": "const u1=-1+Math.sqrt(17), u2=u1+2; return Math.round((u1*u1+u2*u2)*1e9)/1e9;",
+   "257": "const u1=Math.sqrt(16/16), u2=16*u1; return u1*u1+u2*u2;"
+  }
+ },
+ {
+  "id": "SM29F-B08",
+  "domain": "Algebra",
+  "subskill": "Vertical gap between two lines at a given x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 8x + 5y = 11 and line m has equation -3x + 2y = 18. At x = 3, how many units above line l is line m?",
+  "choices": [
+   "6.5",
+   "7.1",
+   "10.9",
+   "16.1"
+  ],
+  "correct_answer": "16.1",
+  "explanation": "At x = 3, line l gives 24 + 5y = 11, so y = -13/5 = -2.6. Line m gives -9 + 2y = 18, so y = 27/2 = 13.5. Line m is 13.5 - (-2.6) = 16.1 units above line l at x = 3.",
+  "solve": "const yl = (11 - 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;",
+  "distractor_solve": {
+   "10.9": "const yl = (11 - 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym + yl) * 1000) / 1000;",
+   "6.5": "const yl = (11 + 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;",
+   "7.1": "const yl = (11 - 8*3) / 5, ym = (18 - 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-S04",
+  "domain": "Advanced Math",
+  "subskill": "Translating a rational graph: moving both asymptotes",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (-3x - 8)/(x - 4). In the xy-plane, the graph of y = g(x) is the result of translating the graph of y = f(x) 1 unit to the right and 4 units down. The graph of y = g(x) has a vertical asymptote x = h and a horizontal asymptote y = k. What is the value of hk?",
+  "choices": [
+   "-35",
+   "-21",
+   "-20",
+   "-10"
+  ],
+  "correct_answer": "-35",
+  "explanation": "First find the asymptotes of f. The denominator x - 4 is 0 at x = 4, and the numerator is not 0 there (-3(4) - 8 = -20), so f has the vertical asymptote x = 4. For large |x|, f(x) = (-3x - 8)/(x - 4) approaches the ratio of the leading coefficients, -3/1 = -3, so f has the horizontal asymptote y = -3. Translating 1 unit to the right moves every vertical line 1 unit right, so the vertical asymptote of g is x = 4 + 1 = 5. Translating 4 units down moves every horizontal line 4 units down, so the horizontal asymptote of g is y = -3 - 4 = -7. So h = 5, k = -7, and hk = (5)(-7) = -35.",
+  "solve": "const a=-3, c=4, right=1, down=4; const h=c+right, k=a-down; return h*k;",
+  "distractor_solve": {
+   "-21": "const a=-3, c=4, right=1, down=4; const h=c-right, k=a-down; return h*k;",
+   "-20": "const c=4, right=1, down=4; const h=c+right, k=0-down; return h*k;",
+   "-10": "const b=-8, c=4, right=1, down=4; const yInt=b/(-c); const h=c+right, k=yInt-down; return h*k;"
+  }
+ },
+ {
+  "id": "SM29F-C01",
+  "domain": "Algebra",
+  "subskill": "System from a point and its coordinate-reversed point",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line 9x + 7y = 134 contains the point (a, b), where a and b are constants. The line x - 9y = -166 contains the point whose coordinates are the same two numbers in reverse order, (b, a). What is the value of a + b?",
+  "choices": [
+   "14",
+   "18",
+   "19",
+   "26"
+  ],
+  "correct_answer": "14",
+  "explanation": "Substitute each point into its own line. Because (a, b) lies on 9x + 7y = 134, 9a + 7b = 134. Because (b, a) lies on x - 9y = -166, its x-coordinate is b and its y-coordinate is a, so b - 9a = -166, which gives b = 9a - 166. Substitute into the first equation: 9a + 7(9a - 166) = 134, so 72a - 1162 = 134, 72a = 1296, and a = 18. Then b = 9(18) - 166 = -4. Check: 9(18) + 7(-4) = 162 - 28 = 134, and (-4) - 9(18) = -166. Therefore a + b = 18 + (-4) = 14.",
+  "solve": "const a=(134+7*166)/(9+7*9); const b=9*a-166; return a+b;",
+  "distractor_solve": {
+   "18": "const a=(134+7*166)/(9+7*9); return a;",
+   "19": "const b=(134+9*166)/(9*9+7); const a=9*b-166; return a+b;",
+   "26": "const b=(134+166)/(7-1); const a=(-166-b)/9; return a+b;"
+  }
+ },
+ {
+  "id": "SM29F-D03",
+  "domain": "Algebra",
+  "subskill": "How the boundary of a two-variable inequality shifts",
+  "difficulty": "medium",
+  "prompt": "5(x - 3) + 2y ≤ 61 - 3x - y\n\nFor each fixed number y, the values of x that satisfy the inequality above are exactly the values with x ≤ M, where M depends on y. When y increases by 36, by how much does M decrease?",
+  "choices": [
+   "13.5",
+   "14.4",
+   "21.6",
+   "96"
+  ],
+  "correct_answer": "13.5",
+  "explanation": "Distributing gives 5x - 15 + 2y ≤ 61 - 3x - y. Adding 3x, y and 15 to both sides gives 8x + 3y ≤ 76, so x ≤ (76 - 3y)/8. Therefore M = (76 - 3y)/8 = 9.5 - (3/8)y, and M decreases by 3/8 for each increase of 1 in y. When y increases by 36, M decreases by (3/8)(36) = 13.5.",
+  "solve": "const a = 5 + 3, b = 2 + 1; return b * 36 / a;",
+  "distractor_solve": {
+   "96": "const a = 5 + 3, b = 2 + 1; return a * 36 / b;",
+   "14.4": "const a = 5, b = 2; return b * 36 / a;",
+   "21.6": "const a = 5, b = 2 + 1; return b * 36 / a;"
+  }
+ },
+ {
+  "id": "SM29F-S11",
+  "domain": "Advanced Math",
+  "subskill": "Piecewise function: a constant from f(f(1)), then a value",
+  "difficulty": "medium",
+  "prompt": "A function f is given piecewise: when x is negative, f(x) = x^2 + bx, where b is a constant, and when x is 0 or greater, f(x) = 2x - 4. Applying f twice, starting with the input 1, gives -12; that is, f(f(1)) = -12. Find f(-5).",
+  "choices": [
+   "-15",
+   "-14",
+   "25",
+   "50"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Since 1 >= 0, f(1) = 2(1) - 4 = -2. Since -2 < 0, f(f(1)) = f(-2) = (-2)^2 + b(-2) = 4 - 2b. Setting 4 - 2b = -12 gives b = 8. Since -5 < 0, f(-5) = (-5)^2 + 8(-5) = 25 - 40 = -15.",
+  "solve": "const m=2,n=-4,c=-12; const u=m*1+n; const b=(c-u*u)/u; const s=-5; return s*s+b*s;",
+  "distractor_solve": {
+   "25": "const s=-5; return s*s;",
+   "50": "const m=2,n=-4,c=-12,s=-5; const b=((c-n)/m-1)/1; return s*s+b*s;",
+   "-14": "const m=2,n=-4,s=-5; return m*s+n;"
+  }
+ },
+ {
+  "id": "SM29F-S09",
+  "domain": "Advanced Math",
+  "subskill": "Composition: recover a shift from the zeros of f(g(x))",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + 4x - 12, and let g(x) = x + k for some constant k. Exactly two real numbers make the composite f(g(x)) equal to zero: -4 and 4. Compute g(f(5)).",
+  "choices": [
+   "7",
+   "9",
+   "23",
+   "31"
+  ],
+  "correct_answer": "31",
+  "explanation": "Factor f: f(x) = (x + 6)(x - 2), so f(u) = 0 exactly when u = -6 or u = 2. Then f(g(x)) = 0 exactly when g(x) = -6 or g(x) = 2, that is, when x = -6 - k or x = 2 - k. The smaller of these is -6 - k and the larger is 2 - k, so -6 - k = -4 and 2 - k = 4; both give k = -2. So g(x) = x - 2. Now f(5) = 25 + 20 - 12 = 33, and g(f(5)) = 33 - 2 = 31.",
+  "solve": "const u1=-6,u2=2,s1=-4; const f=x=>(x-u1)*(x-u2); const k=u1-s1; return f(5)+k;",
+  "distractor_solve": {
+   "7": "const u1=-6,u2=2,s1=-4; const f=x=>(x-u1)*(x-u2); const k=u1-s1; return f(5+k)+k;",
+   "9": "const u1=-6,u2=2,s1=-4; const f=x=>(x-u1)*(x-u2); const k=u1-s1; return f(5+k);",
+   "23": "const u1=-6,s2=4; const f=x=>(x-u1)*(x-2); const k=u1-s2; return f(5)+k;"
+  }
+ },
+ {
+  "id": "SM29F-A09",
+  "domain": "Algebra",
+  "subskill": "Rate behind a fixed idle start, then a longer run",
+  "difficulty": "medium",
+  "prompt": "A machine makes rolls at a constant rate, except that every run begins with a warm-up period of 40 minutes during which it makes no rolls. One run lasted 1 hour 20 minutes in all, including the warm-up, and the machine made 320 rolls. How many rolls will the machine make in a run that lasts 3 hours 5 minutes in all, including the warm-up?",
+  "choices": [
+   "740",
+   "920",
+   "1060",
+   "1160"
+  ],
+  "correct_answer": "1160",
+  "explanation": "Let r be the number of rolls made per minute after the warm-up. The first run lasted 80 minutes, so the machine made rolls for 80 - 40 = 40 minutes: 40r = 320, and r = 8.\nThe new run lasts 3 hours 5 minutes = 185 minutes, so the machine makes rolls for 185 - 40 = 145 minutes and makes 8(145) = 1,160 rolls.\n\nChoice 1,060 comes from writing the times as decimal hours with the minutes after the point (1 hour 20 minutes as 1.20 hours, 40 minutes as 0.40 hour, 3 hours 5 minutes as 3.05 hours): r = 320/0.80 = 400 per hour, and 400(2.65) = 1,060.\nChoice 920 comes from writing only the warm-up that way (0.40 hour) while converting the run times correctly: r = 320/(4/3 - 0.40), about 342.9 per hour, and r(37/12 - 0.40) = 920.\nChoice 740 comes from ignoring the warm-up and scaling: 320 x 185/80 = 740.",
+  "solve": "const S=40,T=80,N=320,W=185; const r=N/(T-S); return Math.round(r*(W-S)*1e9)/1e9;",
+  "distractor_solve": {
+   "740": "const T=80,N=320,W=185; return Math.round(N*W/T*1e9)/1e9;",
+   "920": "const N=320; const r=N/(80/60-0.40); return Math.round(r*(185/60-0.40)*1e9)/1e9;",
+   "1060": "const N=320; const r=N/(1.20-0.40); return Math.round(r*(3.05-0.40)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-A11",
+  "domain": "Algebra",
+  "subskill": "Equal intervals from two numbered departures, back to the first",
+  "difficulty": "medium",
+  "prompt": "Every morning, shuttles leave a station at equal time intervals. The 6th shuttle of the morning leaves at 7:45 a.m., and the 14th shuttle leaves at 9:21 a.m. How many minutes after 6:00 a.m. does the 1st shuttle of the morning leave?",
+  "choices": [
+   "20",
+   "33",
+   "41",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let d be the interval, in minutes. From the 6th shuttle to the 14th there are 14 - 6 = 8 intervals, and the time between them is 7:45 a.m. to 9:21 a.m. = 96 minutes, so 8d = 96 and d = 12.\nFrom the 1st shuttle to the 6th there are 5 intervals, or 60 minutes, so the 1st shuttle leaves at 7:45 - 60 minutes = 6:45 a.m., which is 45 minutes after 6:00 a.m.\n(Check: 6:45 + 13(12) minutes = 6:45 + 156 minutes = 9:21.)\n\nChoice 41 comes from counting shuttles instead of intervals in both places: 9 intervals give d = 96/9, and stepping back 6 of them from 7:45 gives 7:45 - 64 minutes = 6:41.\nChoice 33 comes from finding d = 12 correctly but stepping back 6 intervals instead of 5: 7:45 - 72 minutes = 6:33.\nChoice 20 comes from subtracting the clock times as decimals, 9.21 - 7.45 = 1.76, and reading that as 1 hour 76 minutes = 136 minutes: d = 17, and 7:45 - 85 minutes = 6:20.",
+  "solve": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+  "distractor_solve": {
+   "20": "const t6=105,i=6,j=14; const D=136; const d=D/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+   "33": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-i*d)*1e9)/1e9;",
+   "41": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i+1); return Math.round((t6-i*d)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-P09",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic model in context: axis of symmetry, then a nearby value",
+  "difficulty": "medium",
+  "prompt": "The water from a fountain nozzle follows a path modeled by h(x) = -0.5x^2 + 14x + 3, where h(x) is the height of the water, in feet, above the ground at a horizontal distance of x feet from the nozzle. A lamp post stands on the ground 4 feet closer to the nozzle than the point on the ground directly below the top of the water's arc. How many feet above the ground is the water directly above the lamp post?",
+  "choices": [
+   "51",
+   "69",
+   "85",
+   "93"
+  ],
+  "correct_answer": "93",
+  "explanation": "The highest point of the path is on the axis of symmetry, x = -14/(2(-0.5)) = 14. The lamp post is 4 feet closer to the nozzle, at x = 14 - 4 = 10.\n\nThe height of the water there is h(10) = -0.5(100) + 14(10) + 3 = -50 + 140 + 3 = 93 feet.\n\n(Equivalently, the greatest height is h(14) = 101 feet, and 4 feet from the axis the path is 0.5(4)^2 = 8 feet lower.)\n\nChoice 51 places the axis at x = 14/0.5 = 28, without the 2 in -b/(2a), and evaluates h(24). Choice 85 subtracts 4^2 = 16 from the greatest height, leaving out the factor 0.5. Choice 69 divides 4^2 by 0.5 instead of multiplying, subtracting 32 from 101.",
+  "solve": "const a=-0.5,b=14,c=3,d=4; const h=x=>a*x*x+b*x+c; const ax=-b/(2*a); return h(ax-d);",
+  "distractor_solve": {
+   "51": "const a=-0.5,b=14,c=3,d=4; const h=x=>a*x*x+b*x+c; const ax=-b/a; return h(ax-d);",
+   "69": "const a=-0.5,b=14,c=3,d=4; const h=x=>a*x*x+b*x+c; const ax=-b/(2*a); return h(ax)-d*d/Math.abs(a);",
+   "85": "const a=-0.5,b=14,c=3,d=4; const h=x=>a*x*x+b*x+c; const ax=-b/(2*a); return h(ax)-d*d;"
+  }
+ }
+]

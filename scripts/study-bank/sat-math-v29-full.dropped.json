@@ -1,0 +1,371 @@
+[
+ {
+  "id": "SM29F-Q07",
+  "domain": "Advanced Math",
+  "position": 4,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r3 distractors weak (majority)",
+   "EXT-1 drop_recommend by E: distractors 1.81 and 1.96 are implausible decimal paths, so the stem's power structure leaves only the clean values 1.5 and 3 (my stage-1 arith_tell), and a calculator computes log25/log7 over log625/log343 = 1.5 directly with no insight"
+  ],
+  "flags": {
+   "r7": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-B09",
+  "domain": "Algebra",
+  "position": 9,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DF"
+  ],
+  "flags": {
+   "r11:SM29F-B04": "one grader names earlier SM29F-B04"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-R01",
+  "domain": "Advanced Math",
+  "position": 15,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r3 distractors weak (majority)"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-B10",
+  "domain": "Algebra",
+  "position": 16,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r11 template of earlier SM29F-B09 (2/3)"
+  ],
+  "flags": {
+   "r11:SM29F-B04": "one grader names earlier SM29F-B04"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-D01",
+  "domain": "Algebra",
+  "position": 24,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DEF: one-sided: key is the largest option and 'for every y in [1,8]' tells a test-wise student the answer is the most restrictive bound, i.e. the largest candidate; all three distractors sit below it (A88 cause) | one-sided: key 23.5 is the largest option and all three distractors lie below it; 'for every y' tells a test-wise student c is the strictest (largest) candidate, and both constant slips were authored downward, so picking the largest wins without solving | One-sided (stage 1): key 23.5 is the largest option and all three distractors fall below it - the wrong endpoint (13), the dropped factor of 4 (16) and the sign slip (3.5) each LOWER the constant. 'For every y' tells a test-wise student c is the strictest (largest) threshold, so picking the largest option reaches the key without the decision. A88 pattern.",
+   "r8 CONFIRMED by hand (DEF)"
+  ],
+  "flags": {
+   "r8": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-D04",
+  "domain": "Algebra",
+  "position": 26,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DEF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-B07",
+  "domain": "Algebra",
+  "position": 33,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by F: Off blueprint: filed Algebra, but the decision content is a triangle midpoint (SAT Geometry and Trigonometry / coordinate geometry); the slope step is a single routine computation. Also easy, not medium. Refile or drop."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 2
+ },
+ {
+  "id": "SM29F-B01",
+  "domain": "Algebra",
+  "position": 40,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided extreme key with a cheap bound: the key is the largest option, and l's x-intercept is 15 units right of x = -5 (one division, 6 / (2/5)) while m (positive slope, point above the axis) meets the x-axis left of x = -5, so the distance must exceed 15. That kills 2.6, 12.6 and 14.5 at once, for about half the item's work (A88 pattern).",
+   "r8 CONFIRMED by hand (D)",
+   "r10 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D",
+   "r10": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-A07",
+  "domain": "Algebra",
+  "position": 48,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DF",
+   "EXT-1 drop_recommend by F: Key is the smallest option and the first ascending plug-back confirms it routinely (B=4.9, A=19.7, 19.7+4.9-1.6=23): a student bypasses the setup in one substitution."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-A04",
+  "domain": "Algebra",
+  "position": 53,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DEF",
+   "EXT-1 drop_recommend by D: One-sided and back-solvable: the key is the smallest option, every distractor (the share 88 and two remainders from inflated totals) lies above it, and an ascending back-solve from L=64 (before Ben 5L/4+72=152, Ben 88, Ana 88, total 240, 240-88=152) confirms the key on the first try. A88/A90 pattern.",
+   "r8 CONFIRMED by hand (DF)"
+  ],
+  "flags": {
+   "r8": "DF",
+   "r11live": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-S10",
+  "domain": "Advanced Math",
+  "position": 58,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: Two-option cheap bound: the given point (11,-12) is still below the x-axis, so the right intercept is past x=11 and the distance exceeds 12, striking 10 and 12 without solving; 18 vs 33 remains. Same class as the stage-0 'two-option cheap bounds' returns. Distractor 10 (2 x 5) is not a plausible error."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-C05",
+  "domain": "Algebra",
+  "position": 59,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by F: Key 5.05 is the largest option and all three distractors lie below it. The two natural distractors both under-count the $0.75 discount, and a test-wise student can read from the stem that adding the discount back raises the separate prices, so any discount slip gives a lower answer (A88 one-sided pattern). The third distractor, 1.90, is not a plausible error. Re-author with at least one natural error that lands above 5.05.",
+   "r8 CONFIRMED by hand (F)"
+  ],
+  "flags": {
+   "r7": "D",
+   "r8": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-B08",
+  "domain": "Algebra",
+  "position": 62,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-D03",
+  "domain": "Algebra",
+  "position": 65,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided (A88 cause): every distractor comes from failing to collect the x or y terms or from inverting the ratio, and full collection gives the largest x-coefficient and therefore the smallest rate, so all three distractors lie above the key, which is the smallest option. A student who sees that 'omitting a term raises the rate' picks the minimum; 96 is also struck because the rate must be below 1.",
+   "r8 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-A09",
+  "domain": "Algebra",
+  "position": 68,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {
+   "r11:SM29F-A02": "one grader names earlier SM29F-A02"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM29F-P09",
+  "domain": "Advanced Math",
+  "position": 70,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided: the key is the largest option, the vertex (14,101) is the maximum, and every stated distractor is the max minus a too-large drop or a point farther from the axis, so all three fall below the key and a student who knows 'the answer is the max minus 0.5 x 4^2 and every slip lowers it' or simply picks the largest value under 101 is rewarded. A88 pattern.",
+   "r8 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ }
+]

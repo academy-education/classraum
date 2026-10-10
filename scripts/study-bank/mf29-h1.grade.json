@@ -1,0 +1,252 @@
+[
+ {
+  "id": "SM29F-B04",
+  "prompt": "A linear function f takes the value 1 at x = -1 and the value -21 at x = 3. A second function g doubles each input before applying f, so that g(x) = f(2x) for every x. Find g(-5).",
+  "choices": [
+   "9.25",
+   "50.5",
+   "12",
+   "46"
+  ]
+ },
+ {
+  "id": "SM29F-C04",
+  "prompt": "x - y = k - 17\nx - 2y = -2k + 2\n\nIn the system of equations above, k is a constant. For each value of k, the system has exactly one solution (x, y). As k takes on all real values, every one of these solutions lies on a single line in the xy-plane. What is the y-coordinate of the y-intercept of that line?",
+  "choices": [
+   "-32",
+   "8",
+   "-19",
+   "5"
+  ]
+ },
+ {
+  "id": "SM29F-S01",
+  "prompt": "The concentration of a medication in a patient's blood, in milligrams per liter, t hours after a dose is given is modeled by C(t) = 60t/(t^2 + 29). The concentration first reaches 2 milligrams per liter at time T. According to the model, what is the concentration, to the nearest tenth of a milligram per liter, 4 hours after time T?",
+  "choices": [
+   "4.9",
+   "5.3",
+   "5.6",
+   "1.8"
+  ]
+ },
+ {
+  "id": "SM29F-Q07",
+  "prompt": "For constants a and b, 7^a = 25 and 343^b = 625. What number is the quotient a/b equal to?",
+  "choices": [
+   "1.96",
+   "1.5",
+   "3",
+   "1.81"
+  ]
+ },
+ {
+  "id": "SM29F-A08",
+  "prompt": "For a certain constant k, the solution x of 3(x + k) - 14 = x + 9k turns out to be 5 less than 5 times k. What is the sum of x and k?",
+  "choices": [
+   "11",
+   "52",
+   "4",
+   "31"
+  ]
+ },
+ {
+  "id": "SM29F-R03",
+  "prompt": "The polynomials x^2 + ax - 6 and x^2 + 14x + 24, where a is an integer, have exactly one zero in common. What is the product of the two zeros, one from each polynomial, that are not shared?",
+  "choices": [
+   "-1",
+   "-36",
+   "-9",
+   "-4"
+  ]
+ },
+ {
+  "id": "SM29F-P06",
+  "prompt": "A company sells a gadget for p dollars each. At that price it sells 300 - 10p gadgets per week. Each gadget costs the company 12 dollars to make, and the company also has fixed costs of 560 dollars per week, so its weekly profit, in dollars, is (p - 12)(300 - 10p) - 560. There are two prices at which the company breaks even (its weekly profit is 0). What is the company's weekly revenue, in dollars, at the lower of these two prices?",
+  "choices": [
+   "1890",
+   "1040",
+   "2240",
+   "2160"
+  ]
+ },
+ {
+  "id": "SM29F-Q03",
+  "prompt": "When the equation √(2x + a) = x - b, where a and b are positive constants, is solved by squaring both sides, the resulting quadratic equation has the solutions x = 5 and x = 23. What is a - b ?",
+  "choices": [
+   "271",
+   "67",
+   "95",
+   "41"
+  ]
+ },
+ {
+  "id": "SM29F-B09",
+  "prompt": "A store models its weekly profit P, in hundreds of dollars, as a linear function of the number of hours n that it is open on Sundays. The model gives P = 8.5 when n = 6 and P = 16.5 when n = 10. According to the model, what profit, in hundreds of dollars, does the store make in a week when it is open 4 hours on Sunday?",
+  "choices": [
+   "8",
+   "5.3",
+   "7.5",
+   "4.5"
+  ]
+ },
+ {
+  "id": "SM29F-S08",
+  "prompt": "Selected values of a function g are listed below.\n\nx: 2, 5, 8, 11\ng(x): 23, 5, -1, -11\n\nFor all x, g(x) = 2f(x + 3) - 11, where f is another function. Based on the listed values, what is f(5)?",
+  "choices": [
+   "17",
+   "35",
+   "8",
+   "5"
+  ]
+ },
+ {
+  "id": "SM29F-B05",
+  "prompt": "A line in the xy-plane contains (-2, 1) and (3, -5). When this line is reflected across the graph of y = x, the image is a second line, which contains the point (4, t). What is the value of t?",
+  "choices": [
+   "-4.5",
+   "-5.6",
+   "-6.2",
+   "3.4"
+  ]
+ },
+ {
+  "id": "SM29F-P02",
+  "prompt": "A driving manual models the stopping distance d, in feet, of a car traveling at a speed of v miles per hour by d = v + v^2/20. According to the model, a car traveling at a certain speed has a stopping distance of 240 feet. If the car had been traveling 10 miles per hour slower, how many feet shorter would its stopping distance have been?",
+  "choices": [
+   "40",
+   "225",
+   "65",
+   "190"
+  ]
+ },
+ {
+  "id": "SM29F-D07",
+  "prompt": "Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+  "choices": [
+   "4.8",
+   "4.9",
+   "5.3",
+   "3.6"
+  ]
+ },
+ {
+  "id": "SM29F-C07",
+  "prompt": "Two fixed numbers a and b make the expression a(4x + 8) + b(x - 4) equal to 33x + 108 no matter which number is substituted for x. How much greater is a than b?",
+  "choices": [
+   "3",
+   "17",
+   "-18",
+   "7"
+  ]
+ },
+ {
+  "id": "SM29F-R01",
+  "prompt": "Some integer inputs x make the expression (4x + 31)/(x + 3), where x is not -3, come out to an integer value as well. Among all such integers x, which is the greatest?",
+  "choices": [
+   "-2",
+   "40",
+   "25",
+   "16"
+  ]
+ },
+ {
+  "id": "SM29F-B10",
+  "prompt": "The reading R on a miscalibrated bathroom scale is a linear function of a person's true weight w, both in kilograms. For a true weight of 15 kilograms the scale reads 20 kilograms, and for a true weight of 40 kilograms it reads 50 kilograms. Over one month, a person's reading on this scale went up by 3 kilograms. By how many kilograms did the person's true weight go up?",
+  "choices": [
+   "2.5",
+   "2.25",
+   "3.6",
+   "2.4"
+  ]
+ },
+ {
+  "id": "SM29F-C06",
+  "prompt": "In the xy-plane, line l has equation 2x - 3y = 2. Line l intersects the line 3x - 5y = -5 at point A, and line l intersects the line x - y = -4 at point B. How much greater is the x-coordinate of point A than the x-coordinate of point B?",
+  "choices": [
+   "39",
+   "11",
+   "9",
+   "27"
+  ]
+ },
+ {
+  "id": "SM29F-D06",
+  "prompt": "kx + c ≥ 2x + 4k\n\nIn the inequality above, k and c are constants. When k = 3, the solution set of the inequality is all x with x ≥ -2. If c stays the same and k is changed to 10, the solution set becomes all x with x ≥ d. What is d?",
+  "choices": [
+   "3.25",
+   "1.5",
+   "2.6",
+   "2.2"
+  ]
+ },
+ {
+  "id": "SM29F-S12",
+  "prompt": "Two functions are given by f(x) = 30/(x + 3) and g(x) = 20/(x - 2). There is exactly one number a for which f(a) = g(a); let b be that common value. Compute the product ab.",
+  "choices": [
+   "40",
+   "14",
+   "39",
+   "24"
+  ]
+ },
+ {
+  "id": "SM29F-S03",
+  "prompt": "For a constant a, let f(x) = (ax - 7)/(x - 3), and let g be the inverse function of f. The point (17, 4) lies on the graph of y = g(x) in the xy-plane. Compute g(8).",
+  "choices": [
+   "7.4",
+   "2.5",
+   "8.5",
+   "8.2"
+  ]
+ },
+ {
+  "id": "SM29F-D05",
+  "prompt": "The numbers a and b satisfy both of the inequalities below.\n\n2 ≤ a ≤ 9\n3 ≤ a + b ≤ 10\n\nWhat is the greatest possible value of a + 3b?",
+  "choices": [
+   "33",
+   "12",
+   "26",
+   "48"
+  ]
+ },
+ {
+  "id": "SM29F-Q02",
+  "prompt": "The function f is defined by f(x) = 4^x. For the real numbers a and b, f(a) = 3 and f(b) = 15. To the nearest hundredth, what is the value of f((a + b)/2) ?",
+  "choices": [
+   "6.71",
+   "4.24",
+   "5.61",
+   "9.00"
+  ]
+ },
+ {
+  "id": "SM29F-P05",
+  "prompt": "f(x) = -2x^2 + 6x - 11\n\nFor the quadratic function f above, there is a number k, with k > 4, such that over the interval 4 <= x <= k the output of f changes by an average of -22 per unit increase in x. What is the value of f(k)?",
+  "choices": [
+   "-132",
+   "-151",
+   "-41",
+   "-47"
+  ]
+ },
+ {
+  "id": "SM29F-D01",
+  "prompt": "6x - 4(2y + 5) ≥ 4x - 11y + 30\n\nA number x has the following property: for every value of y with 1 ≤ y ≤ 8, the point (x, y) satisfies the inequality above. The numbers x with this property are exactly the numbers with x ≥ c, where c is a constant. What is the value of c?",
+  "choices": [
+   "16",
+   "3.5",
+   "13",
+   "23.5"
+  ]
+ },
+ {
+  "id": "SM29F-A05",
+  "prompt": "A carpenter has a board. She cuts off a piece that is 1.5 feet long. The remaining piece of the board is 9 inches longer than 7/10 of the original length of the board. How many inches longer is the remaining piece than the piece she cut off?",
+  "choices": [
+   "50",
+   "24",
+   "54",
+   "32"
+  ]
+ }
+]

@@ -1,0 +1,1280 @@
+{
+ "SM29F-B04": {
+  "position": 1,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C04": {
+  "position": 2,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S01": {
+  "position": 3,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-Q07": {
+  "position": 4,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r3 distractors weak (majority)",
+   "EXT-1 drop_recommend by E: distractors 1.81 and 1.96 are implausible decimal paths, so the stem's power structure leaves only the clean values 1.5 and 3 (my stage-1 arith_tell), and a calculator computes log25/log7 over log625/log343 = 1.5 directly with no insight"
+  ],
+  "flags": {
+   "r7": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A08": {
+  "position": 5,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R03": {
+  "position": 6,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P06": {
+  "position": 7,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7": "D",
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-Q03": {
+  "position": 8,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B09": {
+  "position": 9,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DF"
+  ],
+  "flags": {
+   "r11:SM29F-B04": "one grader names earlier SM29F-B04"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S08": {
+  "position": 10,
+  "difficulty": "easy",
+  "difficulties": [
+   "medium",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B05": {
+  "position": 11,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P02": {
+  "position": 12,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D07": {
+  "position": 13,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C07": {
+  "position": 14,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R01": {
+  "position": 15,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r3 distractors weak (majority)"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B10": {
+  "position": 16,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r11 template of earlier SM29F-B09 (2/3)"
+  ],
+  "flags": {
+   "r11:SM29F-B04": "one grader names earlier SM29F-B04"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C06": {
+  "position": 17,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D06": {
+  "position": 18,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S12": {
+  "position": 19,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S03": {
+  "position": 20,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D05": {
+  "position": 21,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-Q02": {
+  "position": 22,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r11:SM29F-Q07": "one grader names earlier SM29F-Q07"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P05": {
+  "position": 23,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D01": {
+  "position": 24,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DEF: one-sided: key is the largest option and 'for every y in [1,8]' tells a test-wise student the answer is the most restrictive bound, i.e. the largest candidate; all three distractors sit below it (A88 cause) | one-sided: key 23.5 is the largest option and all three distractors lie below it; 'for every y' tells a test-wise student c is the strictest (largest) candidate, and both constant slips were authored downward, so picking the largest wins without solving | One-sided (stage 1): key 23.5 is the largest option and all three distractors fall below it - the wrong endpoint (13), the dropped factor of 4 (16) and the sign slip (3.5) each LOWER the constant. 'For every y' tells a test-wise student c is the strictest (largest) threshold, so picking the largest option reaches the key without the decision. A88 pattern.",
+   "r8 CONFIRMED by hand (DEF)"
+  ],
+  "flags": {
+   "r8": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A05": {
+  "position": 25,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D04": {
+  "position": 26,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DEF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R06": {
+  "position": 27,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A10": {
+  "position": 28,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S06": {
+  "position": 29,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C08": {
+  "position": 30,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A03": {
+  "position": 31,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-Q04": {
+  "position": 32,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r11live": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B07": {
+  "position": 33,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by F: Off blueprint: filed Algebra, but the decision content is a triangle midpoint (SAT Geometry and Trigonometry / coordinate geometry); the slope step is a single routine computation. Also easy, not medium. Refile or drop."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 2
+ },
+ "SM29F-P01": {
+  "position": 34,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P10": {
+  "position": 35,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R02": {
+  "position": 36,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "HELD-EASY",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R04": {
+  "position": 37,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B06": {
+  "position": 38,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-R05": {
+  "position": 39,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B01": {
+  "position": 40,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided extreme key with a cheap bound: the key is the largest option, and l's x-intercept is 15 units right of x = -5 (one division, 6 / (2/5)) while m (positive slope, point above the axis) meets the x-axis left of x = -5, so the distance must exceed 15. That kills 2.6, 12.6 and 14.5 at once, for about half the item's work (A88 pattern).",
+   "r8 CONFIRMED by hand (D)",
+   "r10 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D",
+   "r10": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C09": {
+  "position": 41,
+  "difficulty": "easy",
+  "difficulties": [
+   "medium",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "HELD-EASY",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B02": {
+  "position": 42,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P08": {
+  "position": 43,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r11live": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C03": {
+  "position": 44,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B11": {
+  "position": 45,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B03": {
+  "position": 46,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P03": {
+  "position": 47,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A07": {
+  "position": 48,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DF",
+   "EXT-1 drop_recommend by F: Key is the smallest option and the first ascending plug-back confirms it routinely (B=4.9, A=19.7, 19.7+4.9-1.6=23): a student bypasses the setup in one substitution."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C02": {
+  "position": 49,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S05": {
+  "position": 50,
+  "difficulty": "hard",
+  "difficulties": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C10": {
+  "position": 51,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P04": {
+  "position": 52,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A04": {
+  "position": 53,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DEF",
+   "EXT-1 drop_recommend by D: One-sided and back-solvable: the key is the smallest option, every distractor (the share 88 and two remainders from inflated totals) lies above it, and an ascending back-solve from L=64 (before Ben 5L/4+72=152, Ben 88, Ana 88, total 240, 240-88=152) confirms the key on the first try. A88/A90 pattern.",
+   "r8 CONFIRMED by hand (DF)"
+  ],
+  "flags": {
+   "r8": "DF",
+   "r11live": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A01": {
+  "position": 54,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A02": {
+  "position": 55,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S02": {
+  "position": 56,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P07": {
+  "position": 57,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S10": {
+  "position": 58,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: Two-option cheap bound: the given point (11,-12) is still below the x-axis, so the right intercept is past x=11 and the distance exceeds 12, striking 10 and 12 without solving; 18 vs 33 remains. Same class as the stage-0 'two-option cheap bounds' returns. Distractor 10 (2 x 5) is not a plausible error."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C05": {
+  "position": 59,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by F: Key 5.05 is the largest option and all three distractors lie below it. The two natural distractors both under-count the $0.75 discount, and a test-wise student can read from the stem that adding the discount back raises the separate prices, so any discount slip gives a lower answer (A88 one-sided pattern). The third distractor, 1.90, is not a plausible error. Re-author with at least one natural error that lands above 5.05.",
+   "r8 CONFIRMED by hand (F)"
+  ],
+  "flags": {
+   "r7": "D",
+   "r8": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C11": {
+  "position": 60,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-Q06": {
+  "position": 61,
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-B08": {
+  "position": 62,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S04": {
+  "position": 63,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-C01": {
+  "position": 64,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-D03": {
+  "position": 65,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided (A88 cause): every distractor comes from failing to collect the x or y terms or from inverting the ratio, and full collection gives the largest x-coefficient and therefore the smallest rate, so all three distractors lie above the key, which is the smallest option. A student who sees that 'omitting a term raises the rate' picks the minimum; 96 is also struck because the rate must be below 1.",
+   "r8 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S11": {
+  "position": 66,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "DE"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-S09": {
+  "position": 67,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A09": {
+  "position": 68,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {
+   "r11:SM29F-A02": "one grader names earlier SM29F-A02"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-A11": {
+  "position": 69,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "KEEP",
+  "why": [],
+  "flags": {
+   "r7pair": "E"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ "SM29F-P09": {
+  "position": 70,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided: the key is the largest option, the vertex (14,101) is the maximum, and every stated distractor is the max minus a too-large drop or a point farther from the axis, so all three fall below the key and a student who knows 'the answer is the max minus 0.5 x 4^2 and every slip lowers it' or simply picks the largest value under 101 is rewarded. A88 pattern.",
+   "r8 CONFIRMED by hand (D)"
+  ],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ }
+}

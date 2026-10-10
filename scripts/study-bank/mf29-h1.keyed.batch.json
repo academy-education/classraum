@@ -1,0 +1,527 @@
+[
+ {
+  "id": "SM29F-B04",
+  "domain": "Algebra",
+  "subskill": "Linear function evaluated at a doubled input",
+  "difficulty": "medium",
+  "prompt": "A linear function f takes the value 1 at x = -1 and the value -21 at x = 3. A second function g doubles each input before applying f, so that g(x) = f(2x) for every x. Find g(-5).",
+  "choices": [
+   "9.25",
+   "12",
+   "46",
+   "50.5"
+  ],
+  "correct_answer": "50.5",
+  "explanation": "The slope of f is (-21 - 1)/(3 - (-1)) = -22/4 = -5.5, so f(x) = 1 - 5.5(x + 1) = -5.5x - 4.5. Then g(-5) = f(2(-5)) = f(-10) = -5.5(-10) - 4.5 = 55 - 4.5 = 50.5.",
+  "solve": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(2 * -5) * 1000) / 1000;",
+  "distractor_solve": {
+   "12": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 + 2) * 1000) / 1000;",
+   "46": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(2 * f(-5) * 1000) / 1000;",
+   "9.25": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 / 2) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-C04",
+  "domain": "Algebra",
+  "subskill": "Line traced by a system's solution as a constant varies",
+  "difficulty": "hard",
+  "prompt": "x - y = k - 17\nx - 2y = -2k + 2\n\nIn the system of equations above, k is a constant. For each value of k, the system has exactly one solution (x, y). As k takes on all real values, every one of these solutions lies on a single line in the xy-plane. What is the y-coordinate of the y-intercept of that line?",
+  "choices": [
+   "-32",
+   "-19",
+   "5",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "Every solution (x, y) satisfies both equations for its own value of k, so any combination of the two equations that cancels k gives an equation that every solution satisfies, whatever k is. Multiply the first equation by 2 and add the second: 2(x - y) + (x - 2y) = 2(k - 17) + (-2k + 2), which simplifies to 3x - 4y = -32. So all the solutions lie on the line 3x - 4y = -32. (Check with two values: k = 0 gives the solution (-36, -19), and k = 9 gives (0, 8); both satisfy 3x - 4y = -32.) At the y-intercept x = 0, so -4y = -32 and y = 8.",
+  "solve": "const B=2*(-1)+(-2), C=2*(-17)+2; return C/B;",
+  "distractor_solve": {
+   "5": "const B=(-1)+(-2), C=(-17)+2; return C/B;",
+   "-32": "const C=2*(-17)+2; return C;",
+   "-19": "const y=(1*2-1*(-17))/(1*(-2)-1*(-1)); return y;"
+  }
+ },
+ {
+  "id": "SM29F-S01",
+  "domain": "Advanced Math",
+  "subskill": "Rational model in context that rises then falls",
+  "difficulty": "medium",
+  "prompt": "The concentration of a medication in a patient's blood, in milligrams per liter, t hours after a dose is given is modeled by C(t) = 60t/(t^2 + 29). The concentration first reaches 2 milligrams per liter at time T. According to the model, what is the concentration, to the nearest tenth of a milligram per liter, 4 hours after time T?",
+  "choices": [
+   "1.8",
+   "4.9",
+   "5.3",
+   "5.6"
+  ],
+  "correct_answer": "5.6",
+  "explanation": "Set C(t) = 2: 60t/(t^2 + 29) = 2, so 60t = 2t^2 + 58, which gives t^2 - 30t + 29 = 0 and (t - 1)(t - 29) = 0. The concentration is 2 mg/L at t = 1 and again at t = 29; it first reaches 2 at T = 1. Four hours later, t = 5, and C(5) = 60(5)/(25 + 29) = 300/54, which is about 5.56, or 5.6 to the nearest tenth.",
+  "solve": "const k=60,c=29,L=2,d=4; const disc=Math.sqrt((k/L)**2-4*c); const T=(k/L-disc)/2; const t=T+d; const v=k*t/(t*t+c); return Math.round(v*10)/10;",
+  "distractor_solve": {
+   "4.9": "const k=60,c=29,L=2,d=4; const disc=Math.sqrt((k/L)**2-4*c); const T=(k/L-disc)/2; const t=T+2*d; const v=k*t/(t*t+c); return Math.round(v*10)/10;",
+   "1.8": "const k=60,c=29,L=2,d=4; const disc=Math.sqrt((k/L)**2-4*c); const T2=(k/L+disc)/2; const t=T2+d; const v=k*t/(t*t+c); return Math.round(v*10)/10;",
+   "5.3": "const k=60,c=29,d=4; const t=d; const v=k*t/(t*t+c); return Math.round(v*10)/10;"
+  }
+ },
+ {
+  "id": "SM29F-Q07",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: chaining two exponential equations",
+  "difficulty": "medium",
+  "prompt": "For constants a and b, 7^a = 25 and 343^b = 625. What number is the quotient a/b equal to?",
+  "choices": [
+   "1.5",
+   "1.81",
+   "1.96",
+   "3"
+  ],
+  "correct_answer": "1.5",
+  "explanation": "Write both sides of the second equation with the bases of the first.\n\n343 = 7^3, so 343^b = 7^(3b).\n625 = 25^2, and 25 = 7^a, so 625 = (7^a)^2 = 7^(2a).\n\nSo 7^(3b) = 7^(2a), which gives 3b = 2a, and a/b = 3/2 = 1.5.\n\n(Check with a calculator: a = log 25 / log 7, about 1.654, and b = log 625 / log 343, about 1.103; their quotient is 1.5.)",
+  "solve": "const a=Math.log(25)/Math.log(7), b=Math.log(625)/Math.log(343); return Math.round(a/b*1e9)/1e9;",
+  "distractor_solve": {
+   "3": "const a=Math.log(25)/Math.log(7), b=Math.log(25)/Math.log(343); return Math.round(a/b*1e9)/1e9;",
+   "1.81": "const a=Math.log(25)/Math.log(7); return Math.round(3/a*100)/100;",
+   "1.96": "return Math.round((25/7)/(625/343)*100)/100;"
+  }
+ },
+ {
+  "id": "SM29F-A08",
+  "domain": "Algebra",
+  "subskill": "Solution in terms of a parameter, tied to the parameter",
+  "difficulty": "medium",
+  "prompt": "For a certain constant k, the solution x of 3(x + k) - 14 = x + 9k turns out to be 5 less than 5 times k. What is the sum of x and k?",
+  "choices": [
+   "4",
+   "11",
+   "31",
+   "52"
+  ],
+  "correct_answer": "31",
+  "explanation": "Solve for x in terms of k: 3x + 3k - 14 = x + 9k, so 2x = 6k + 14 and x = 3k + 7.\nThe solution is also 5 less than 5 times k, so 3k + 7 = 5k - 5. Then 2k = 12, k = 6, and x = 3(6) + 7 = 25.\n(Check: 3(25 + 6) - 14 = 79 and 25 + 9(6) = 79; and 5(6) - 5 = 25.)\nSo x + k = 25 + 6 = 31.\n\nChoice 52 comes from dividing only the k-term by 2: x = 3k + 14, so 3k + 14 = 5k - 5, k = 9.5, x = 42.5, and x + k = 52.\nChoice 11 comes from reading 5 less than 5 times k as 5k + 5: 3k + 7 = 5k + 5 gives k = 1, x = 10, and x + k = 11.\nChoice 4 comes from a sign error when collecting the k-terms, 2x = -6k + 14: then -3k + 7 = 5k - 5 gives k = 1.5, x = 2.5, and x + k = 4.",
+  "solve": "const A=3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+  "distractor_solve": {
+   "4": "const A=-3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "11": "const A=3,B=7,m=5,n=-5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "52": "const A=3,B=14,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-R03",
+  "domain": "Advanced Math",
+  "subskill": "shared zero of two quadratics; integer-parameter decision",
+  "difficulty": "medium",
+  "prompt": "The polynomials x^2 + ax - 6 and x^2 + 14x + 24, where a is an integer, have exactly one zero in common. What is the product of the two zeros, one from each polynomial, that are not shared?",
+  "choices": [
+   "-36",
+   "-9",
+   "-4",
+   "-1"
+  ],
+  "correct_answer": "-36",
+  "explanation": "Factor the second polynomial: x^2 + 14x + 24 = (x + 2)(x + 12), so its zeros are -2 and -12, and the shared zero is one of these. If it is -12, then 144 - 12a - 6 = 0 and a = 11.5, which is not an integer. If it is -2, then 4 - 2a - 6 = 0 and a = -1, an integer. So the first polynomial is x^2 - x - 6 = (x - 3)(x + 2), with zeros 3 and -2. The shared zero is -2, the unshared zeros are 3 and -12, and their product is (3)(-12) = -36.",
+  "solve": "const sec=[-2,-12]; for(const c of sec){ const a=-(c*c-6)/c; if(Number.isInteger(a)){ const other1=-6/c; const other2=sec.find(z=>z!==c); return other1*other2; } } return null;",
+  "distractor_solve": {
+   "-1": "const c=-12; const other1=-6/c; return other1*(-2);",
+   "-9": "const c=-2; const other1=-6/c; return other1+(-12);",
+   "-4": "const c=-2; const other1=c/(-6); return other1*(-12);"
+  }
+ },
+ {
+  "id": "SM29F-P06",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic profit model: break-even prices, then revenue",
+  "difficulty": "medium",
+  "prompt": "A company sells a gadget for p dollars each. At that price it sells 300 - 10p gadgets per week. Each gadget costs the company 12 dollars to make, and the company also has fixed costs of 560 dollars per week, so its weekly profit, in dollars, is (p - 12)(300 - 10p) - 560. There are two prices at which the company breaks even (its weekly profit is 0). What is the company's weekly revenue, in dollars, at the lower of these two prices?",
+  "choices": [
+   "1040",
+   "1890",
+   "2160",
+   "2240"
+  ],
+  "correct_answer": "2240",
+  "explanation": "Set the profit equal to 0: (p - 12)(300 - 10p) - 560 = 0. Expanding, 300p - 10p^2 - 3,600 + 120p - 560 = 0, so -10p^2 + 420p - 4,160 = 0, or p^2 - 42p + 416 = 0. This factors as (p - 16)(p - 26) = 0, so the break-even prices are 16 and 26 dollars.\n\nAt the lower price, p = 16, the company sells 300 - 10(16) = 140 gadgets, so its weekly revenue is 16(140) = 2,240 dollars. (Check: its costs are 12(140) + 560 = 2,240 dollars, so the profit is 0.)\n\nChoice 1040 is the revenue at the higher break-even price, 26(40). Choice 2160 leaves out the fixed costs, so the lower 'break-even' price becomes 12 and the revenue 12(180). Choice 1890 is the revenue at the price that maximizes profit, p = 21, rather than at a break-even price.",
+  "solve": "const N=300,k=10,c=12,F=560; const A=k,B=-(N+k*c),C=N*c+F; const s=Math.sqrt(B*B-4*A*C); const p=(-B-s)/(2*A); return p*(N-k*p);",
+  "distractor_solve": {
+   "1040": "const N=300,k=10,c=12,F=560; const A=k,B=-(N+k*c),C=N*c+F; const s=Math.sqrt(B*B-4*A*C); const p=(-B+s)/(2*A); return p*(N-k*p);",
+   "1890": "const N=300,k=10,c=12; const p=(N/k+c)/2; return p*(N-k*p);",
+   "2160": "const N=300,k=10,c=12; const p=Math.min(c,N/k); return p*(N-k*p);"
+  }
+ },
+ {
+  "id": "SM29F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Radical equations: constants from the squared equation",
+  "difficulty": "medium",
+  "prompt": "When the equation √(2x + a) = x - b, where a and b are positive constants, is solved by squaring both sides, the resulting quadratic equation has the solutions x = 5 and x = 23. What is a - b ?",
+  "choices": [
+   "41",
+   "67",
+   "95",
+   "271"
+  ],
+  "correct_answer": "41",
+  "explanation": "Squaring both sides gives 2x + a = (x - b)^2 = x^2 - 2bx + b^2, so x^2 - (2b + 2)x + (b^2 - a) = 0.\n\nA quadratic with leading coefficient 1 and solutions 5 and 23 is x^2 - 28x + 115 = 0. Matching coefficients:\n2b + 2 = 28, so b = 13,\nb^2 - a = 115, so 169 - a = 115 and a = 54.\n\nTherefore a - b = 54 - 13 = 41.\n\n(The original equation is √(2x + 54) = x - 13. Only x = 23 satisfies it: √100 = 10 = 23 - 13. The value x = 5 is extraneous, because √64 = 8 is not equal to 5 - 13 = -8.)",
+  "solve": "const s=5+23, p=5*23; const b=(s-2)/2; const a=b*b-p; return a-b;",
+  "distractor_solve": {
+   "67": "const s=5+23, p=5*23; const b=s/2; const a=b*b-p; return a-b;",
+   "95": "const s=5+23, p=5*23; const b=(s+2)/2; const a=b*b-p; return a-b;",
+   "271": "const s=5+23, p=5*23; const b=(s-2)/2; const a=b*b+p; return a-b;"
+  }
+ },
+ {
+  "id": "SM29F-B09",
+  "domain": "Algebra",
+  "subskill": "Linear model in context: extrapolate below the data",
+  "difficulty": "medium",
+  "prompt": "A store models its weekly profit P, in hundreds of dollars, as a linear function of the number of hours n that it is open on Sundays. The model gives P = 8.5 when n = 6 and P = 16.5 when n = 10. According to the model, what profit, in hundreds of dollars, does the store make in a week when it is open 4 hours on Sunday?",
+  "choices": [
+   "4.5",
+   "5.3",
+   "7.5",
+   "8"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The rate of change of P is (16.5 - 8.5)/(10 - 6) = 8/4 = 2 hundred dollars per hour. Going from 6 hours down to 4 hours is a change of -2 hours, so P changes by 2(-2) = -4. The profit at 4 hours is 8.5 - 4 = 4.5 hundred dollars.",
+  "solve": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((8.5 + m * (4 - 6)) * 1000) / 1000;",
+  "distractor_solve": {
+   "8": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((m * 4) * 1000) / 1000;",
+   "5.3": "const m = (16.5 - 8.5) / (10 - 6 + 1); return Math.round((8.5 + m * (4 - 6)) * 1000) / 1000;",
+   "7.5": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((8.5 - (6 - 4) / m) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-S08",
+  "domain": "Advanced Math",
+  "subskill": "Undoing a transformation read from a table",
+  "difficulty": "medium",
+  "prompt": "Selected values of a function g are listed below.\n\nx: 2, 5, 8, 11\ng(x): 23, 5, -1, -11\n\nFor all x, g(x) = 2f(x + 3) - 11, where f is another function. Based on the listed values, what is f(5)?",
+  "choices": [
+   "5",
+   "8",
+   "17",
+   "35"
+  ],
+  "correct_answer": "17",
+  "explanation": "To get f(5), the input of f must be 5, so x + 3 = 5 and x = 2. Then g(2) = 2f(5) - 11. From the list, g(2) = 23, so 2f(5) - 11 = 23, which gives 2f(5) = 34 and f(5) = 17.",
+  "solve": "const A=2,B=-11,G1=23; return (G1-B)/A;",
+  "distractor_solve": {
+   "5": "const A=2,B=-11,G2=-1; return (G2-B)/A;",
+   "8": "const A=2,B=-11,G3=5; return (G3-B)/A;",
+   "35": "const A=2,B=-11,G1=23; return A*G1+B;"
+  }
+ },
+ {
+  "id": "SM29F-B05",
+  "domain": "Algebra",
+  "subskill": "Reflection of a line across y = x",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (-2, 1) and (3, -5). When this line is reflected across the graph of y = x, the image is a second line, which contains the point (4, t). What is the value of t?",
+  "choices": [
+   "-6.2",
+   "-5.6",
+   "-4.5",
+   "3.4"
+  ],
+  "correct_answer": "-4.5",
+  "explanation": "Reflecting across the line y = x swaps the coordinates of every point, so (4, t) is on the image line exactly when (t, 4) is on the original line. The slope of the original line is (-5 - 1)/(3 - (-2)) = -6/5 = -1.2, so the original line is y = 1 - 1.2(x + 2). Setting y = 4 gives 4 = 1 - 1.2(t + 2), so t + 2 = -2.5 and t = -4.5.",
+  "solve": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + (4 - 1) / s) * 1000) / 1000;",
+  "distractor_solve": {
+   "-6.2": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (4 + 2)) * 1000) / 1000;",
+   "3.4": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (-4 + 2)) * 1000) / 1000;",
+   "-5.6": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + s * (4 - 1)) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-P02",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic model in context: solve for the input, then compare",
+  "difficulty": "medium",
+  "prompt": "A driving manual models the stopping distance d, in feet, of a car traveling at a speed of v miles per hour by d = v + v^2/20. According to the model, a car traveling at a certain speed has a stopping distance of 240 feet. If the car had been traveling 10 miles per hour slower, how many feet shorter would its stopping distance have been?",
+  "choices": [
+   "40",
+   "65",
+   "190",
+   "225"
+  ],
+  "correct_answer": "65",
+  "explanation": "Set v + v^2/20 = 240. Multiplying by 20 gives v^2 + 20v = 4,800, so v^2 + 20v - 4,800 = 0, which factors as (v + 80)(v - 60) = 0. A speed is positive, so v = 60.\n\nAt 10 miles per hour slower, v = 50, and d = 50 + 50^2/20 = 50 + 125 = 175 feet. The stopping distance would have been 240 - 175 = 65 feet shorter.\n\nChoice 40 assumes the stopping distance is proportional to the speed: 10 is one sixth of 60, and one sixth of 240 is 40. Choice 225 treats the distances as if they could be subtracted speed by speed, computing 240 minus the stopping distance at 10 miles per hour. Choice 190 leaves the v^2/20 term out of the distance at 50 miles per hour, computing 240 - 50.",
+  "solve": "const D=240,dv=10; const v=(-20+Math.sqrt(400+80*D))/2; const d=x=>x+x*x/20; return D-d(v-dv);",
+  "distractor_solve": {
+   "40": "const D=240,dv=10; const v=(-20+Math.sqrt(400+80*D))/2; return D*dv/v;",
+   "190": "const D=240,dv=10; const v=(-20+Math.sqrt(400+80*D))/2; return D-(v-dv);",
+   "225": "const D=240,dv=10; const d=x=>x+x*x/20; return D-d(dv);"
+  }
+ },
+ {
+  "id": "SM29F-D07",
+  "domain": "Algebra",
+  "subskill": "Inequality for a required pace over the remaining distance",
+  "difficulty": "medium",
+  "prompt": "Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+  "choices": [
+   "3.6",
+   "4.8",
+   "4.9",
+   "5.3"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "The first 2 kilometers took 2(6.1) = 12.2 minutes, and the stop took 3 minutes, so 15.2 minutes are used before the rest of the race. The remaining distance is 8 - 2 = 6 kilometers, which takes 6p minutes. Her total time must be at most 44 minutes, so 12.2 + 3 + 6p ≤ 44. Then 6p ≤ 28.8, and p ≤ 4.8. The greatest possible value of p is 4.8.",
+  "solve": "const used = 2 * 6.1 + 3; return (44 - used) / (8 - 2);",
+  "distractor_solve": {
+   "3.6": "const used = 2 * 6.1 + 3; return (44 - used) / 8;",
+   "5.3": "const used = 2 * 6.1; return (44 - used) / (8 - 2);",
+   "4.9": "return 2 * (44 / 8) - 6.1;"
+  }
+ },
+ {
+  "id": "SM29F-C07",
+  "domain": "Algebra",
+  "subskill": "System from matching coefficients of a linear identity",
+  "difficulty": "medium",
+  "prompt": "Two fixed numbers a and b make the expression a(4x + 8) + b(x - 4) equal to 33x + 108 no matter which number is substituted for x. How much greater is a than b?",
+  "choices": [
+   "-18",
+   "3",
+   "7",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "Expanding gives a(4x + 8) + b(x - 4) = (4a + b)x + (8a - 4b). For this to equal 33x + 108 for every x, the x-coefficients and the constant terms must match: 4a + b = 33 and 8a - 4b = 108. Multiply the first equation by 4 and add the second: 16a + 8a = 132 + 108, so 24a = 240 and a = 10. Then b = 33 - 4(10) = -7. (Check: 10(4x + 8) - 7(x - 4) = 40x + 80 - 7x + 28 = 33x + 108.) So a is greater than b by 10 - (-7) = 17.",
+  "solve": "const a=(4*33+108)/(4*4+8); const b=33-4*a; return a-b;",
+  "distractor_solve": {
+   "3": "const a=(4*33+108)/(4*4+8); const b=33-4*a; return a+b;",
+   "7": "const a=(4*33+108)/(4*1+8); const b=33-a; return a-b;",
+   "-18": "const a=(4*33-108)/(4*4-8); const b=33-4*a; return a-b;"
+  }
+ },
+ {
+  "id": "SM29F-R01",
+  "domain": "Advanced Math",
+  "subskill": "rational expression as a + b/(x - c); integer outputs",
+  "difficulty": "medium",
+  "prompt": "Some integer inputs x make the expression (4x + 31)/(x + 3), where x is not -3, come out to an integer value as well. Among all such integers x, which is the greatest?",
+  "choices": [
+   "-2",
+   "16",
+   "25",
+   "40"
+  ],
+  "correct_answer": "16",
+  "explanation": "Rewrite the numerator as a multiple of x + 3 plus a remainder: 4x + 31 = 4(x + 3) + 19, so the expression equals 4 + 19/(x + 3). For an integer x, the value is an integer exactly when x + 3 divides 19, so x + 3 is 1, -1, 19, or -19, giving x = -2, -4, 16, or -22. The greatest of these is 16 (check: (64 + 31)/19 = 95/19 = 5).",
+  "solve": "let best=null; for(let x=-200;x<=200;x++){ if(x===-3) continue; const v=(4*x+31)/(x+3); if(Number.isInteger(v)) best=x; } return best;",
+  "distractor_solve": {
+   "25": "const r=31-3; return r-3;",
+   "40": "const r=31+4*3; return r-3;",
+   "-2": "return 1-3;"
+  }
+ },
+ {
+  "id": "SM29F-B10",
+  "domain": "Algebra",
+  "subskill": "Rate of change in context: change in input from change in output",
+  "difficulty": "medium",
+  "prompt": "The reading R on a miscalibrated bathroom scale is a linear function of a person's true weight w, both in kilograms. For a true weight of 15 kilograms the scale reads 20 kilograms, and for a true weight of 40 kilograms it reads 50 kilograms. Over one month, a person's reading on this scale went up by 3 kilograms. By how many kilograms did the person's true weight go up?",
+  "choices": [
+   "2.25",
+   "2.4",
+   "2.5",
+   "3.6"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The rate of change of the reading with respect to true weight is (50 - 20)/(40 - 15) = 30/25 = 1.2 kilograms of reading per kilogram of true weight. A change of 3 kilograms in the reading therefore corresponds to a change of 3/1.2 = 2.5 kilograms in true weight.",
+  "solve": "const s = (50 - 20) / (40 - 15); return Math.round((3 / s) * 1000) / 1000;",
+  "distractor_solve": {
+   "3.6": "const s = (50 - 20) / (40 - 15); return Math.round((3 * s) * 1000) / 1000;",
+   "2.25": "return Math.round((3 * 15 / 20) * 1000) / 1000;",
+   "2.4": "return Math.round((3 * 40 / 50) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-C06",
+  "domain": "Algebra",
+  "subskill": "Two systems sharing one line; compare the solutions",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 2x - 3y = 2. Line l intersects the line 3x - 5y = -5 at point A, and line l intersects the line x - y = -4 at point B. How much greater is the x-coordinate of point A than the x-coordinate of point B?",
+  "choices": [
+   "9",
+   "11",
+   "27",
+   "39"
+  ],
+  "correct_answer": "39",
+  "explanation": "Point A solves the system 2x - 3y = 2 and 3x - 5y = -5. Multiply the first equation by 3 and the second by 2: 6x - 9y = 6 and 6x - 10y = -10. Subtracting gives y = 16, and then 2x - 3(16) = 2, so x = 25. Point A is (25, 16). Point B solves 2x - 3y = 2 and x - y = -4. From the second equation x = y - 4, so 2(y - 4) - 3y = 2, which gives -y - 8 = 2, y = -10 and x = -14. Point B is (-14, -10). The x-coordinate of A is greater than that of B by 25 - (-14) = 39.",
+  "solve": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA-xB;",
+  "distractor_solve": {
+   "9": "const yA=(3*2-2*5)/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA-xB;",
+   "11": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(2*1-3); const xB=yB-4; return xA+xB;",
+   "27": "const yA=(3*2-2*(-5))/(3*(-3)-2*(-5)); const xA=(2+3*yA)/2; const yB=(2+2*4)/(-2-3); const xB=-4-yB; return xA-xB;"
+  }
+ },
+ {
+  "id": "SM29F-D06",
+  "domain": "Algebra",
+  "subskill": "Inequality with a coefficient parameter: boundary at a new k",
+  "difficulty": "medium",
+  "prompt": "kx + c ≥ 2x + 4k\n\nIn the inequality above, k and c are constants. When k = 3, the solution set of the inequality is all x with x ≥ -2. If c stays the same and k is changed to 10, the solution set becomes all x with x ≥ d. What is d?",
+  "choices": [
+   "1.5",
+   "2.2",
+   "2.6",
+   "3.25"
+  ],
+  "correct_answer": "3.25",
+  "explanation": "Rewrite the inequality as (k - 2)x ≥ 4k - c. When k = 3 this is x ≥ 12 - c, and the solution set is x ≥ -2, so 12 - c = -2 and c = 14. When k = 10 the inequality becomes 8x ≥ 40 - 14 = 26, so x ≥ 26/8 = 3.25. Therefore d = 3.25.",
+  "solve": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / (10 - 2);",
+  "distractor_solve": {
+   "2.2": "const c = 4 * 3 - (-2) * 3; return (4 * 10 - c) / 10;",
+   "2.6": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / 10;",
+   "1.5": "const c = 4 * 3 - (-2) * (3 + 2); return (4 * 10 - c) / (10 + 2);"
+  }
+ },
+ {
+  "id": "SM29F-S12",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear system: two reciprocal-type graphs meeting",
+  "difficulty": "medium",
+  "prompt": "Two functions are given by f(x) = 30/(x + 3) and g(x) = 20/(x - 2). There is exactly one number a for which f(a) = g(a); let b be that common value. Compute the product ab.",
+  "choices": [
+   "14",
+   "24",
+   "39",
+   "40"
+  ],
+  "correct_answer": "24",
+  "explanation": "At the intersection the y-values are equal: 30/(x + 3) = 20/(x - 2). Cross-multiplying gives 30(x - 2) = 20(x + 3), so 30x - 60 = 20x + 60, 10x = 120 and x = 12. Then y = 30/(12 + 3) = 2 (check: 20/(12 - 2) = 2). So a = 12, b = 2 and ab = 24.",
+  "solve": "const A=30,B=20,p=-3,q=2; const x=(A*q-B*p)/(A-B); const y=A/(x-p); return x*y;",
+  "distractor_solve": {
+   "14": "const A=30,B=20,p=-3,q=2; const x=(A*q-B*p)/(A-B); const y=A/(x-p); return x+y;",
+   "39": "const A=30,B=20,p=-3,q=2; const x=(A*p-B*q)/(A-B); const y=A/(x-p); return x*y;",
+   "40": "const A=30,B=20,p=-3,q=2; const x=(A*q-B*p)/(A-B); const y=A/(x+p); return x*y;"
+  }
+ },
+ {
+  "id": "SM29F-S03",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of a rational function: a constant from a point on the inverse",
+  "difficulty": "medium",
+  "prompt": "For a constant a, let f(x) = (ax - 7)/(x - 3), and let g be the inverse function of f. The point (17, 4) lies on the graph of y = g(x) in the xy-plane. Compute g(8).",
+  "choices": [
+   "2.5",
+   "7.4",
+   "8.2",
+   "8.5"
+  ],
+  "correct_answer": "8.5",
+  "explanation": "The point (17, 4) on the graph of g means g(17) = 4, that is, f(4) = 17. So (4a - 7)/(4 - 3) = 17, which gives 4a - 7 = 17 and a = 6. To find g(8), solve f(x) = 8: (6x - 7)/(x - 3) = 8, so 6x - 7 = 8x - 24, which gives 2x = 17 and x = 8.5. So g(8) = 8.5.",
+  "solve": "const B=-7,C=3,P=17,Q=4,R=8; const a=(P*(Q-C)-B)/Q; return (B+R*C)/(R-a);",
+  "distractor_solve": {
+   "8.2": "const B=-7,C=3,P=17,Q=4,R=8; const a=(P*(Q-C)-B)/Q; return (a*R+B)/(R-C);",
+   "7.4": "const B=-7,C=3,P=17,Q=4,R=8; const a=(P*(Q-C)-B)/Q; const y=(B+R*C)/(R-a); return (B+y*C)/(y-a);",
+   "2.5": "const B=-7,C=3,P=17,Q=4,R=8; const a=(P*(Q-C)-B)/Q; return (R-B)/a;"
+  }
+ },
+ {
+  "id": "SM29F-D05",
+  "domain": "Algebra",
+  "subskill": "Extreme of a linear expression under linked inequalities",
+  "difficulty": "medium",
+  "prompt": "The numbers a and b satisfy both of the inequalities below.\n\n2 ≤ a ≤ 9\n3 ≤ a + b ≤ 10\n\nWhat is the greatest possible value of a + 3b?",
+  "choices": [
+   "12",
+   "26",
+   "33",
+   "48"
+  ],
+  "correct_answer": "26",
+  "explanation": "Write the expression in terms of the two quantities that are bounded: a + 3b = 3(a + b) - 2a. This is greatest when a + b is as large as possible and a is as small as possible. Both can happen at once: a = 2 and a + b = 10 give b = 8, which satisfies both inequalities. Then a + 3b = 3(10) - 2(2) = 26. No pair can do better, because 3(a + b) is at most 30 and 2a is at least 4.",
+  "solve": "const a1 = 2, s2 = 10; return 3 * s2 - 2 * a1;",
+  "distractor_solve": {
+   "12": "const a2 = 9, s2 = 10; const b = s2 - a2; return a2 + 3 * b;",
+   "33": "const a1 = 2, a2 = 9, s2 = 10; const bmax = s2 - a1; return a2 + 3 * bmax;",
+   "48": "const a2 = 9, s2 = 10; return 3 * s2 + 2 * a2;"
+  }
+ },
+ {
+  "id": "SM29F-Q02",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: output at the average of two inputs",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4^x. For the real numbers a and b, f(a) = 3 and f(b) = 15. To the nearest hundredth, what is the value of f((a + b)/2) ?",
+  "choices": [
+   "4.24",
+   "5.61",
+   "6.71",
+   "9.00"
+  ],
+  "correct_answer": "6.71",
+  "explanation": "f((a + b)/2) = 4^((a + b)/2) = (4^(a + b))^(1/2) = (4^a · 4^b)^(1/2).\n\nSince 4^a = f(a) = 3 and 4^b = f(b) = 15, this is (3 · 15)^(1/2) = √45, which is about 6.708.\n\nTo the nearest hundredth, f((a + b)/2) = 6.71.\n\n(Averaging the inputs of an exponential function gives the geometric mean of the outputs, not their average.)",
+  "solve": "const a=Math.log(3)/Math.log(4), b=Math.log(15)/Math.log(4); return Math.round(Math.pow(4,(a+b)/2)*100)/100;",
+  "distractor_solve": {
+   "4.24": "return Math.round(Math.sqrt(3+15)*100)/100;",
+   "5.61": "return Math.round((Math.sqrt(3)+Math.sqrt(15))*100)/100;",
+   "9.00": "return Math.round(((3+15)/2)*100)/100;"
+  }
+ },
+ {
+  "id": "SM29F-P05",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic function: endpoint from a given average rate of change",
+  "difficulty": "medium",
+  "prompt": "f(x) = -2x^2 + 6x - 11\n\nFor the quadratic function f above, there is a number k, with k > 4, such that over the interval 4 <= x <= k the output of f changes by an average of -22 per unit increase in x. What is the value of f(k)?",
+  "choices": [
+   "-151",
+   "-132",
+   "-47",
+   "-41"
+  ],
+  "correct_answer": "-151",
+  "explanation": "First find f(4) = -2(16) + 6(4) - 11 = -32 + 24 - 11 = -19. The average rate of change from x = 4 to x = k is (f(k) - f(4))/(k - 4), so (-2k^2 + 6k - 11 + 19)/(k - 4) = -22. Multiplying by k - 4 gives -2k^2 + 6k + 8 = -22k + 88, so -2k^2 + 28k - 80 = 0, or k^2 - 14k + 40 = 0. This factors as (k - 4)(k - 10) = 0, and since k is greater than 4, k = 10. Then f(10) = -2(100) + 6(10) - 11 = -200 + 60 - 11 = -151.\n\nCheck: (f(10) - f(4))/(10 - 4) = (-151 + 19)/6 = -132/6 = -22.\n\nChoice -132 is the total change f(k) - f(4) = -22(6), without adding f(4). Choice -41 treats -22 as the total change from x = 4 to x = k instead of the change per unit of x, giving f(4) - 22. Choice -47 is f(6), using the length of the interval, 6, as the input instead of k = 10.",
+  "solve": "const a=-2,b=6,c=-11,p=4,R=-22; const f=x=>a*x*x+b*x+c; const k=(R-b)/a-p; return f(k);",
+  "distractor_solve": {
+   "-132": "const a=-2,b=6,c=-11,p=4,R=-22; const k=(R-b)/a-p; return R*(k-p);",
+   "-41": "const a=-2,b=6,c=-11,p=4,R=-22; const f=x=>a*x*x+b*x+c; return f(p)+R;",
+   "-47": "const a=-2,b=6,c=-11,p=4,R=-22; const f=x=>a*x*x+b*x+c; const k=(R-b)/a-p; return f(k-p);"
+  }
+ },
+ {
+  "id": "SM29F-D01",
+  "domain": "Algebra",
+  "subskill": "Two-variable inequality holding for every y in a range",
+  "difficulty": "hard",
+  "prompt": "6x - 4(2y + 5) ≥ 4x - 11y + 30\n\nA number x has the following property: for every value of y with 1 ≤ y ≤ 8, the point (x, y) satisfies the inequality above. The numbers x with this property are exactly the numbers with x ≥ c, where c is a constant. What is the value of c?",
+  "choices": [
+   "3.5",
+   "13",
+   "16",
+   "23.5"
+  ],
+  "correct_answer": "23.5",
+  "explanation": "Simplify the inequality. Distributing gives 6x - 8y - 20 ≥ 4x - 11y + 30. Adding 11y and 20 to both sides and subtracting 4x from both sides gives 2x + 3y ≥ 50, so x ≥ (50 - 3y)/2. Although y first appears as -8y, after simplifying y has a positive coefficient, so the right side, (50 - 3y)/2, is largest when y is smallest. For x to work for every y from 1 to 8, x must be at least the largest of these values, which occurs at y = 1: (50 - 3)/2 = 47/2 = 23.5. Any x ≥ 23.5 satisfies 2x + 3y ≥ 50 for every y in the range, and any smaller x fails at y = 1. Therefore c = 23.5.",
+  "solve": "const y1 = 1; const C = 30 + 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;",
+  "distractor_solve": {
+   "13": "const y2 = 8; const C = 30 + 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y2) / a;",
+   "16": "const y1 = 1; const C = 30 + 5; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;",
+   "3.5": "const y1 = 1; const C = 30 - 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;"
+  }
+ },
+ {
+  "id": "SM29F-A05",
+  "domain": "Algebra",
+  "subskill": "Unknown whole from a fraction relation with mixed units",
+  "difficulty": "medium",
+  "prompt": "A carpenter has a board. She cuts off a piece that is 1.5 feet long. The remaining piece of the board is 9 inches longer than 7/10 of the original length of the board. How many inches longer is the remaining piece than the piece she cut off?",
+  "choices": [
+   "24",
+   "32",
+   "50",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "Work in inches. The piece cut off is 1.5 feet = 1.5(12) = 18 inches. Let x be the original length of the board, in inches. The remaining piece is x - 18 inches, so x - 18 = (7/10)x + 9.\nThen (3/10)x = 27, so x = 90. The remaining piece is 90 - 18 = 72 inches.\nThe remaining piece is 72 - 18 = 54 inches longer than the piece cut off.\nCheck: 7/10 of 90 is 63, and 63 + 9 = 72.\n\nChoice 50 comes from converting 1.5 feet to 15 inches: then (3/10)x = 24, x = 80, the remaining piece is 65 inches, and 65 - 15 = 50.\nChoice 32 comes from using 1.5 as a number of inches without converting: (3/10)x = 10.5, x = 35, and (35 - 1.5) - 1.5 = 32.\nChoice 24 comes from leaving out the 9 inches: (3/10)x = 18, x = 60, and (60 - 18) - 18 = 24.",
+  "solve": "const c=1.5*12,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+  "distractor_solve": {
+   "24": "const c=1.5*12,f=7/10; const x=c/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "32": "const c=1.5,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "50": "const c=15,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;"
+  }
+ }
+]

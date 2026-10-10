@@ -1,0 +1,527 @@
+[
+ {
+  "id": "SM29F-D04",
+  "domain": "Algebra",
+  "subskill": "System of inequalities with a parameter; interval length given",
+  "difficulty": "medium",
+  "prompt": "3(x - k) ≤ 30 - x\n-14 - 3x < x + k\n\nThe number k is chosen so that the numbers x making both inequalities above true fill an interval 6 units long. That interval runs from a, which is not included, to b, which is included. Find b.",
+  "choices": [
+   "3.75",
+   "4",
+   "5",
+   "10.5"
+  ],
+  "correct_answer": "3.75",
+  "explanation": "First inequality: 3x - 3k ≤ 30 - x gives 4x ≤ 30 + 3k, so x ≤ (30 + 3k)/4. Second inequality: -14 - 3x < x + k gives -4x < k + 14, and dividing by -4 reverses the inequality: x > -(k + 14)/4. So b = (30 + 3k)/4 and a = -(k + 14)/4. Then b - a = (30 + 3k + k + 14)/4 = (44 + 4k)/4 = 11 + k. Setting 11 + k = 6 gives k = -5, so b = (30 - 15)/4 = 15/4 = 3.75. (Check: a = -9/4 = -2.25, and 3.75 - (-2.25) = 6.)",
+  "solve": "const k = (6 * 4 - 30 - 14) / (3 + 1); return (30 + 3 * k) / 4;",
+  "distractor_solve": {
+   "4": "const k = (6 - 30 / 3 - 14 / 4) / (3 / 3 + 1 / 4); return (30 + 3 * k) / 3;",
+   "5": "const k = (6 * 4 - 30 - 14) / (1 + 1); return (30 + k) / 4;",
+   "10.5": "const k = (6 * 4 - 30 + 14) / (3 - 1); return (30 + 3 * k) / 4;"
+  }
+ },
+ {
+  "id": "SM29F-R06",
+  "domain": "Advanced Math",
+  "subskill": "double zero from coefficients; reject a triple zero (crosses)",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^3 + 6x^2 + bx + 8, where b is a constant, is tangent to the x-axis at one point and crosses the x-axis at a different point. What is the y-coordinate of the point on the graph whose x-coordinate is 3?",
+  "choices": [
+   "44",
+   "68",
+   "125",
+   "134"
+  ],
+  "correct_answer": "44",
+  "explanation": "Let p(x) = x^3 + 6x^2 + bx + 8. Where the graph is tangent to the x-axis at (r, 0), r is a repeated zero, so p(x) = (x - r)^2(x - s), where s is the zero at which the graph crosses. Matching the x^2 coefficient gives -(2r + s) = 6, so s = -6 - 2r. Matching the constant term gives -r^2 s = 8, so r^2(6 + 2r) = 8, which simplifies to r^3 + 3r^2 - 4 = 0, or (r - 1)(r + 2)^2 = 0. If r = -2, then s = -2 as well and p(x) = (x + 2)^3, whose graph has only one x-intercept, so there is no different crossing point; this case is rejected. Therefore r = 1 and s = -8, so p(x) = (x - 1)^2(x + 8) (and b = -15). The y-coordinate at x = 3 is p(3) = (2)^2(11) = 44.",
+  "solve": "for(let r=-10;r<=10;r++){ const s=-6-2*r; if(-r*r*s!==8) continue; if(s===r) continue; const p=(x)=>(x-r)**2*(x-s); return p(3); } return null;",
+  "distractor_solve": {
+   "68": "const r=1, s=-8; const b=r*r+r*s; return 27+6*9+b*3+8;",
+   "125": "const p=(x)=>(x+2)**3; return p(3);",
+   "134": "const b=15; return 27+6*9+b*3+8;"
+  }
+ },
+ {
+  "id": "SM29F-A10",
+  "domain": "Algebra",
+  "subskill": "Total usage of two linked item sizes, then one item's usage",
+  "difficulty": "medium",
+  "prompt": "At a gift shop, each box is tied with a ribbon whose length, in centimeters, is 4 times the width of the box plus 30 centimeters for the bow. One morning a clerk tied 5 small boxes, all the same width, and 3 large boxes, all the same width. Each large box is 80 millimeters wider than each small box. The clerk used ribbon from a spool that held 1,600 centimeters, and 112 centimeters of ribbon were left on the spool. How many centimeters long is the ribbon for one large box?",
+  "choices": [
+   "166",
+   "191",
+   "206",
+   "386"
+  ],
+  "correct_answer": "206",
+  "explanation": "The difference in width is 80 millimeters = 8 centimeters. Let w be the width, in centimeters, of a small box. A small box uses 4w + 30 centimeters of ribbon and a large box uses 4(w + 8) + 30 = 4w + 62 centimeters.\nThe clerk used 1,600 - 112 = 1,488 centimeters, so 5(4w + 30) + 3(4w + 62) = 1,488.\nThen 20w + 150 + 12w + 186 = 1,488, so 32w = 1,152 and w = 36.\nThe ribbon for one large box is 4(36) + 62 = 206 centimeters. (Check: a small box uses 174, and 5(174) + 3(206) = 870 + 618 = 1,488.)\n\nChoice 386 comes from using 80 as a number of centimeters without converting: 5(4w + 30) + 3(4(w + 80) + 30) = 1,488 gives 32w = 288, w = 9, and 4(89) + 30 = 386.\nChoice 191 comes from adding the 8 centimeters to the ribbon length instead of to the box width: 5R + 3(R + 8) = 1,488 gives R = 183, and 183 + 8 = 191.\nChoice 166 comes from making each large box 8 centimeters narrower instead of wider: 5(4w + 30) + 3(4(w - 8) + 30) = 1,488 gives w = 42, and 4(34) + 30 = 166.",
+  "solve": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "166": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b+nl*4*g)/(4*n); return Math.round((4*(w-g)+b)*1e9)/1e9;",
+   "191": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const R=(S-r-nl*g)/n; return Math.round((R+g)*1e9)/1e9;",
+   "386": "const ns=5,nl=3,g=80,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-S06",
+  "domain": "Advanced Math",
+  "subskill": "f(|x|): an even graph with exactly three solutions",
+  "difficulty": "hard",
+  "prompt": "Let f(x) = (x - 5)^2 - 14. For exactly one value of the constant k, the equation f(|x|) = k is true for exactly three real numbers x. What is the value of f(4) - k?",
+  "choices": [
+   "-24",
+   "-13",
+   "1",
+   "56"
+  ],
+  "correct_answer": "-24",
+  "explanation": "Write h(x) = f(|x|). Replacing x with -x does not change |x|, so h(-x) = h(x): whenever x = a satisfies h(x) = k, so does x = -a. Solutions other than 0 therefore come in pairs, and the equation can have an odd number of solutions only if x = 0 is one of them. So k = h(0) = f(0) = (0 - 5)^2 - 14 = 25 - 14 = 11. (Check: f(|x|) = 11 gives (|x| - 5)^2 = 25, so |x| = 0 or |x| = 10, which gives exactly three solutions, x = -10, 0 and 10.) Then f(4) = (4 - 5)^2 - 14 = 1 - 14 = -13, and f(4) - k = -13 - 11 = -24.",
+  "solve": "const h=5, v=-14, s=4; const f=x=>(x-h)**2+v; const k=f(0); return f(s)-k;",
+  "distractor_solve": {
+   "1": "const h=5, v=-14, s=4; const f=x=>(x-h)**2+v; const k=v; return f(s)-k;",
+   "56": "const h=5, v=-14, s=4; const f=x=>(x-h)**2+v; const k=f(0); return ((s+h)**2+v)-k;",
+   "-13": "const h=5, v=-14, s=4; const f=x=>(x-h)**2+v; return f(s);"
+  }
+ },
+ {
+  "id": "SM29F-C08",
+  "domain": "Algebra",
+  "subskill": "System from decomposing a displacement into two move types",
+  "difficulty": "medium",
+  "prompt": "A game piece starts at the origin of the xy-plane. Each jump moves the piece 2 units to the right and 2 units up, and each slide moves the piece 4 units to the right and 1 unit down. After a sequence of jumps and slides, the piece is at the point (122, 32). How many moves, jumps and slides together, did the piece make?",
+  "choices": [
+   "31",
+   "34",
+   "43",
+   "70"
+  ],
+  "correct_answer": "43",
+  "explanation": "Let j be the number of jumps and s the number of slides. The horizontal movement gives 2j + 4s = 122, and the vertical movement gives 2j - s = 32 (each slide moves the piece down). Subtracting the second equation from the first gives 5s = 90, so s = 18. Then 2j - 18 = 32, so j = 25. The piece made 25 + 18 = 43 moves.",
+  "solve": "const s=(122-32)/(4+1); const j=(32+s)/2; return j+s;",
+  "distractor_solve": {
+   "31": "const s=(122-32)/(4-1); const j=(32-s)/2; return j+s;",
+   "34": "const s=(32-122)/(4+1); const j=(122+s)/2; return j+s;",
+   "70": "const s=(122-32)/(1+4); const j=(122-s)/2; return j+s;"
+  }
+ },
+ {
+  "id": "SM29F-A03",
+  "domain": "Algebra",
+  "subskill": "Better rate minus a flat fee vs plain rate, from the gap",
+  "difficulty": "medium",
+  "prompt": "At an airport booth, U.S. dollars are exchanged for euros at a rate of 0.94 euro per dollar, and then a flat fee of 8 euros is subtracted from the euros. At a bank, dollars are exchanged at a rate of 0.90 euro per dollar with no fee. Kai exchanged some dollars at the booth and received 12 more euros than he would have received for the same dollars at the bank. How many euros did Kai receive at the booth?",
+  "choices": [
+   "39",
+   "86",
+   "462",
+   "642"
+  ],
+  "correct_answer": "462",
+  "explanation": "Let d be the number of dollars Kai exchanged. At the booth he received 0.94d - 8 euros; at the bank he would have received 0.90d euros.\nSo (0.94d - 8) - 0.90d = 12, which gives 0.04d - 8 = 12, 0.04d = 20 and d = 500.\nAt the booth Kai received 0.94(500) - 8 = 462 euros. (Check: at the bank he would have received 0.90(500) = 450 euros, 12 fewer.)\n\nChoice 642 comes from subtracting the 8-euro fee twice: 0.04d - 16 = 12 gives d = 700, and 0.94(700) - 16 = 642.\nChoice 39 comes from writing the rate difference 0.94 - 0.90 as 0.4: 0.4d = 20 gives d = 50, and 0.94(50) - 8 = 39.\nChoice 86 comes from adding the fee instead of subtracting it: 0.04d + 8 = 12 gives d = 100, and 0.94(100) - 8 = 86.",
+  "solve": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+  "distractor_solve": {
+   "39": "const r1=0.94,f=8,g=12; const d=(g+f)/0.4; return Math.round((r1*d-f)*1e9)/1e9;",
+   "86": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g-f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+   "642": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+2*f)/(r1-r2); return Math.round((r1*d-2*f)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-Q04",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth written with a negative exponent",
+  "difficulty": "medium",
+  "prompt": "The number of members of an online group t years after it was formed is modeled by f(t) = 400(0.64)^(-t/2). According to the model, by what percent does the number of members increase each year?",
+  "choices": [
+   "18",
+   "20",
+   "25",
+   "125"
+  ],
+  "correct_answer": "25",
+  "explanation": "Rewrite the base so the exponent is t:\n(0.64)^(-t/2) = ((0.64)^(-1/2))^t.\n\n(0.64)^(1/2) = 0.8, so (0.64)^(-1/2) = 1/0.8 = 1.25.\n\nSo f(t) = 400(1.25)^t: each year the number of members is multiplied by 1.25, which is an increase of 25 percent.\n\n(The negative exponent turns the factor 0.64, which is less than 1, into a factor greater than 1, so the model shows growth.)",
+  "solve": "return Math.round((Math.pow(0.64,-1/2)-1)*100*1e6)/1e6;",
+  "distractor_solve": {
+   "18": "return Math.round(((1-0.64)/2)*100*1e6)/1e6;",
+   "20": "return Math.round((1-Math.pow(0.64,1/2))*100*1e6)/1e6;",
+   "125": "return Math.round(Math.pow(0.64,-1/2)*100*1e6)/1e6;"
+  }
+ },
+ {
+  "id": "SM29F-B07",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through a computed midpoint",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, triangle ABC has vertices A(-1, 10), B(-4, 7), and C(6, -9). Point M is the midpoint of side BC. What is the slope of the line through A and M?",
+  "choices": [
+   "-5.5",
+   "-4",
+   "-3",
+   "-1.6"
+  ],
+  "correct_answer": "-5.5",
+  "explanation": "The midpoint of BC is M = ((-4 + 6)/2, (7 + (-9))/2) = (1, -1). The slope of the line through A(-1, 10) and M(1, -1) is (-1 - 10)/(1 - (-1)) = -11/2 = -5.5.",
+  "solve": "const mx = (-4 + 6) / 2, my = (7 + -9) / 2; return (my - 10) / (mx - -1);",
+  "distractor_solve": {
+   "-3": "const mx = (6 - -4) / 2, my = (-9 - 7) / 2; return (my - 10) / (mx - -1);",
+   "-1.6": "return (-9 - 7) / (6 - -4);",
+   "-4": "const mx = -4 + 6, my = 7 + -9; return (my - 10) / (mx - -1);"
+  }
+ },
+ {
+  "id": "SM29F-P01",
+  "domain": "Advanced Math",
+  "subskill": "Two quadratics with a common axis and a common point",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = -2x^2 - 12x - 5 and g(x) = 2x^2 + bx + c, where b and c are constants. In the xy-plane, the graphs of y = f(x) and y = g(x) have the same axis of symmetry, and the two graphs intersect at a point with x-coordinate 2. What is the y-coordinate of the vertex of the graph of y = g(x)?",
+  "choices": [
+   "-87",
+   "-69",
+   "-62",
+   "-39"
+  ],
+  "correct_answer": "-87",
+  "explanation": "The axis of symmetry of the graph of f is x = -(-12)/(2(-2)) = -3, so the graph of g also has axis x = -3, and g can be written as g(x) = 2(x + 3)^2 + k, where k is the y-coordinate of its vertex.\n\nThe graphs intersect where x = 2, so g(2) = f(2). Since f(2) = -2(4) - 12(2) - 5 = -37, it follows that 2(2 + 3)^2 + k = -37, so 50 + k = -37 and k = -87.\n\nChoice -62 writes g in vertex form without its leading coefficient 2, (x + 3)^2 + k. Choice -39 takes the axis of symmetry as x = 3 instead of x = -3. Choice -69 is the y-intercept c of the graph of g, since g(x) = 2(x + 3)^2 - 87 = 2x^2 + 12x - 69.",
+  "solve": "const a1=-2,b1=-12,c1=-5,a2=2,p=2; const f=x=>a1*x*x+b1*x+c1; const h=-b1/(2*a1); return f(p)-a2*(p-h)**2;",
+  "distractor_solve": {
+   "-62": "const a1=-2,b1=-12,c1=-5,p=2; const f=x=>a1*x*x+b1*x+c1; const h=-b1/(2*a1); return f(p)-(p-h)**2;",
+   "-39": "const a1=-2,b1=-12,c1=-5,a2=2,p=2; const f=x=>a1*x*x+b1*x+c1; const h=b1/(2*a1); return f(p)-a2*(p-h)**2;",
+   "-69": "const a1=-2,b1=-12,c1=-5,a2=2,p=2; const f=x=>a1*x*x+b1*x+c1; const h=-b1/(2*a1); const k=f(p)-a2*(p-h)**2; return a2*h*h+k;"
+  }
+ },
+ {
+  "id": "SM29F-P10",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic in a shifted variable: solve, shift back, combine",
+  "difficulty": "medium",
+  "prompt": "(x - 3)^2 + 14(x - 3) - 15 = 0\n\nExactly two values of x make this equation true. Multiplying these two values together gives what number?",
+  "choices": [
+   "-48",
+   "-15",
+   "-8",
+   "-6"
+  ],
+  "correct_answer": "-48",
+  "explanation": "Let u = x - 3. The equation becomes u^2 + 14u - 15 = 0, which factors as (u + 15)(u - 1) = 0, so u = -15 or u = 1. Since x = u + 3, the solutions are x = -12 and x = 4, and their product is (-12)(4) = -48.\n\nAlternatively, expand: x^2 - 6x + 9 + 14x - 42 - 15 = 0, so x^2 + 8x - 48 = 0, and the product of the solutions is -48.\n\nChoice -15 is the product of the values of u, without changing back to x. Choice -6 changes back by adding 3^2 = 9 to the product of the u-values, leaving out the cross terms 3u. Choice -8 is the sum of the two solutions, not their product.",
+  "solve": "const b=14,c=-15,s=3; const r=Math.sqrt(b*b-4*c); const u1=(-b-r)/2,u2=(-b+r)/2; return (u1+s)*(u2+s);",
+  "distractor_solve": {
+   "-15": "const b=14,c=-15; const r=Math.sqrt(b*b-4*c); const u1=(-b-r)/2,u2=(-b+r)/2; return u1*u2;",
+   "-6": "const b=14,c=-15,s=3; const r=Math.sqrt(b*b-4*c); const u1=(-b-r)/2,u2=(-b+r)/2; return u1*u2+s*s;",
+   "-8": "const b=14,c=-15,s=3; const r=Math.sqrt(b*b-4*c); const u1=(-b-r)/2,u2=(-b+r)/2; return (u1+s)+(u2+s);"
+  }
+ },
+ {
+  "id": "SM29F-R02",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem with high powers (parity of exponents)",
+  "difficulty": "medium",
+  "prompt": "Long division of 9x^50 + 7x^21 - 4x^4 + 33 by the binomial x + 1 would leave a constant remainder. What number is that remainder?",
+  "choices": [
+   "21",
+   "31",
+   "39",
+   "45"
+  ],
+  "correct_answer": "31",
+  "explanation": "By the remainder theorem, dividing a polynomial p(x) by x + 1 = x - (-1) leaves the remainder p(-1). An even power of -1 is 1 and an odd power of -1 is -1, so p(-1) = 9(1) + 7(-1) - 4(1) + 33 = 9 - 7 - 4 + 33 = 31.",
+  "solve": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(-1);",
+  "distractor_solve": {
+   "21": "return 9*(-1)+7*(-1)-4*(-1)+33;",
+   "39": "return 9*1+7*(-1)+4*1+33;",
+   "45": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(1);"
+  }
+ },
+ {
+  "id": "SM29F-R04",
+  "domain": "Advanced Math",
+  "subskill": "coefficients of a shifted polynomial via values at 1 and 0",
+  "difficulty": "medium",
+  "prompt": "Let p(x) = x^3 - 2x^2 - 2x + 2, and let q(x) = p(x - 2). Multiplying out q(x) gives a cubic x^3 + bx^2 + cx + d, where b, c, and d are constants. What is 1 + b + c?",
+  "choices": [
+   "-3",
+   "1",
+   "7",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "For any polynomial, substituting x = 1 gives the sum of all of its coefficients and substituting x = 0 gives its constant term. So 1 + b + c = q(1) - q(0) = p(-1) - p(-2). Here p(-1) = -1 - 2 + 2 + 2 = 1 and p(-2) = -8 - 8 + 4 + 2 = -10, so 1 + b + c = 1 - (-10) = 11. (Check by expanding: q(x) = x^3 - 8x^2 + 18x - 10, and 1 - 8 + 18 = 11.)",
+  "solve": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x-2); return q(1)-q(0);",
+  "distractor_solve": {
+   "1": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x-2); return q(1);",
+   "7": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x+2); return q(1)-q(0);",
+   "-3": "const p=(x)=>x**3-2*x**2-2*x+2; return p(1)-p(0);"
+  }
+ },
+ {
+  "id": "SM29F-B06",
+  "domain": "Algebra",
+  "subskill": "Line rotated 90 degrees about its x-intercept",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (5, 5) and (7, 10). It is turned 90 degrees about its own x-intercept, and the image is a new line. Where does the new line cross the y-axis? Give the y-coordinate of that point.",
+  "choices": [
+   "-7.5",
+   "1.2",
+   "2.8",
+   "3"
+  ],
+  "correct_answer": "1.2",
+  "explanation": "The slope of the original line is (10 - 5)/(7 - 5) = 5/2. Setting y = 0 in y - 5 = (5/2)(x - 5) gives x - 5 = -2, so the original line crosses the x-axis at (3, 0). A 90-degree rotation about (3, 0) turns the original line into the line through (3, 0) perpendicular to it, so the new line has slope -2/5 and equation y = (-2/5)(x - 3). At x = 0, y = 6/5 = 1.2.",
+  "solve": "const m = (10 - 5) / (7 - 5); const a = 5 - 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;",
+  "distractor_solve": {
+   "3": "const m = (10 - 5) / (7 - 5); return Math.round((5 - 5 / m) * 1000) / 1000;",
+   "-7.5": "const m = (10 - 5) / (7 - 5); return Math.round((5 - m * 5) * 1000) / 1000;",
+   "2.8": "const m = (10 - 5) / (7 - 5); const a = 5 + 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-R05",
+  "domain": "Advanced Math",
+  "subskill": "factor theorem with the parameter as the zero; remainder",
+  "difficulty": "medium",
+  "prompt": "For a constant k that is less than 3, the binomial x - k divides the cubic x^3 - kx^2 + (k - 4)x - 5 with no remainder. What remainder is left when that same cubic is divided by x - 4?",
+  "choices": [
+   "-33",
+   "-17",
+   "23",
+   "55"
+  ],
+  "correct_answer": "55",
+  "explanation": "Call the cubic p(x). Since x - k divides p(x), p(k) = 0: k^3 - k(k^2) + (k - 4)k - 5 = k^2 - 4k - 5 = 0, so (k - 5)(k + 1) = 0 and k = 5 or k = -1. Because k is less than 3, k = -1, and p(x) = x^3 + x^2 - 5x - 5. By the remainder theorem, the remainder when p(x) is divided by x - 4 is p(4) = 64 + 16 - 20 - 5 = 55.",
+  "solve": "const k=[5,-1].filter(v=>v<3)[0]; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(4);",
+  "distractor_solve": {
+   "23": "const k=-1; return 64+k*16+(k-4)*4-5;",
+   "-17": "const k=5; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(4);",
+   "-33": "const k=-1; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(-4);"
+  }
+ },
+ {
+  "id": "SM29F-B01",
+  "domain": "Algebra",
+  "subskill": "Perpendicular lines through a point: x-intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, lines l and m are perpendicular and intersect at the point (-5, 6). Line l has slope -2/5. What is the distance between the x-intercept of line l and the x-intercept of line m?",
+  "choices": [
+   "2.6",
+   "12.6",
+   "14.5",
+   "17.4"
+  ],
+  "correct_answer": "17.4",
+  "explanation": "Line m is perpendicular to line l, so its slope is the negative reciprocal of -2/5, which is 5/2. Line l: y - 6 = (-2/5)(x + 5). Setting y = 0 gives -6 = (-2/5)(x + 5), so x + 5 = 15 and x = 10. Line m: y - 6 = (5/2)(x + 5). Setting y = 0 gives -6 = (5/2)(x + 5), so x + 5 = -2.4 and x = -7.4. The distance between the x-intercepts is 10 - (-7.4) = 17.4.",
+  "solve": "const sl = -2/5, sm = -1/sl; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl - xm)*1000)/1000;",
+  "distractor_solve": {
+   "2.6": "const sl = -2/5, sm = -1/sl; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl + xm)*1000)/1000;",
+   "12.6": "const sl = -2/5, sm = -5/2; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl - xm)*1000)/1000;",
+   "14.5": "const sl = -2/5, sm = -1/sl; const yl = 6 + sl*(0 + 5), ym = 6 + sm*(0 + 5); return Math.round(Math.abs(yl - ym)*1000)/1000;"
+  }
+ },
+ {
+  "id": "SM29F-C09",
+  "domain": "Algebra",
+  "subskill": "System built from two averages",
+  "difficulty": "medium",
+  "prompt": "The average (arithmetic mean) of the numbers x and y is 6, and the average of the three numbers x, 2y, and 17 is 8. By how much does x exceed y?",
+  "choices": [
+   "-12",
+   "4",
+   "22",
+   "38"
+  ],
+  "correct_answer": "22",
+  "explanation": "The first average gives (x + y)/2 = 6, so x + y = 12. The second gives (x + 2y + 17)/3 = 8, so x + 2y + 17 = 24 and x + 2y = 7. Subtracting the first equation from the second gives y = -5, and then x = 12 - (-5) = 17. So x exceeds y by 17 - (-5) = 22.",
+  "solve": "const y=(3*8-17)-2*6; const x=2*6-y; return x-y;",
+  "distractor_solve": {
+   "4": "const y=(3*8-17)-6; const x=6-y; return x-y;",
+   "38": "const y=(2*8-17)-2*6; const x=2*6-y; return x-y;",
+   "-12": "const y=3*8-2*6; const x=2*6-y; return x-y;"
+  }
+ },
+ {
+  "id": "SM29F-B02",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through intercepts of two lines",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the equation y - 3 = -3(x + 5) defines a line that meets the x-axis at point A. The equation y + 9 = -3(x + 2) defines a second line, which meets the y-axis at point B. What is the slope of segment AB?",
+  "choices": [
+   "-3.75",
+   "-2.5",
+   "-2.4",
+   "-2.25"
+  ],
+  "correct_answer": "-3.75",
+  "explanation": "Point A is on the first graph with y = 0: 0 - 3 = -3(x + 5), so x + 5 = 1 and x = -4. A is (-4, 0). Point B is on the second graph with x = 0: y + 9 = -3(0 + 2) = -6, so y = -15. B is (0, -15). The slope of the line through A and B is (-15 - 0)/(0 - (-4)) = -15/4 = -3.75.",
+  "solve": "const a = -5 + (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+  "distractor_solve": {
+   "-2.5": "const a = -5 - (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+   "-2.25": "const a = -5 + (0 - 3) / (-3); const b = -9; return (b - 0) / (0 - a);",
+   "-2.4": "const ly = 3 + (-3) * (0 + 5); const mx = -2 + (0 + 9) / (-3); return (0 - ly) / (mx - 0);"
+  }
+ },
+ {
+  "id": "SM29F-P08",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic model in context: open box from a given base area",
+  "difficulty": "medium",
+  "prompt": "A rectangular sheet of cardboard is 24 inches long and 18 inches wide. A square with side length x inches is cut from each of its four corners, and the four flaps are folded up to make an open-top box. The bottom of the box has an area of 280 square inches. What is the total area, in square inches, of the bottom and the four sides of the box?",
+  "choices": [
+   "360",
+   "368",
+   "416",
+   "448"
+  ],
+  "correct_answer": "416",
+  "explanation": "The bottom of the box measures (24 - 2x) inches by (18 - 2x) inches, so (24 - 2x)(18 - 2x) = 280. Expanding, 432 - 84x + 4x^2 = 280, so 4x^2 - 84x + 152 = 0, or x^2 - 21x + 38 = 0. This factors as (x - 2)(x - 19) = 0. A 19-inch square cannot be cut from an 18-inch side, so x = 2.\n\nThe bottom and four sides are exactly the cardboard that is left after the four corner squares are removed: 24(18) - 4(2^2) = 432 - 16 = 416 square inches. (Check: 280 + 2(2)(20) + 2(2)(14) = 280 + 80 + 56 = 416.)\n\nChoice 368 subtracts only one x from each dimension, solving (24 - x)(18 - x) = 280 to get x = 4. Choice 448 uses the sheet's lengths, 24 and 18 inches, for the lengths of the sides of the box. Choice 360 adds only the two longer sides to the bottom.",
+  "solve": "const L=24,W=18,B=280; const A=4,Bq=-2*(L+W),C=L*W-B; const x=(-Bq-Math.sqrt(Bq*Bq-4*A*C))/(2*A); return L*W-4*x*x;",
+  "distractor_solve": {
+   "360": "const L=24,W=18,B=280; const A=4,Bq=-2*(L+W),C=L*W-B; const x=(-Bq-Math.sqrt(Bq*Bq-4*A*C))/(2*A); return B+2*x*(L-2*x);",
+   "368": "const L=24,W=18,B=280; const A=1,Bq=-(L+W),C=L*W-B; const x=(-Bq-Math.sqrt(Bq*Bq-4*A*C))/(2*A); return L*W-4*x*x;",
+   "448": "const L=24,W=18,B=280; const A=4,Bq=-2*(L+W),C=L*W-B; const x=(-Bq-Math.sqrt(Bq*Bq-4*A*C))/(2*A); return B+2*x*L+2*x*W;"
+  }
+ },
+ {
+  "id": "SM29F-C03",
+  "domain": "Algebra",
+  "subskill": "System whose solution equals its own constants",
+  "difficulty": "medium",
+  "prompt": "3x - 5y = a + 4\n-2x + 2y = b + 4\n\nIn the system of equations above, a and b are constants. The only ordered pair (x, y) that satisfies both equations is (a, b); that is, x = a and y = b. What is the value of ab?",
+  "choices": [
+   "6",
+   "16",
+   "32",
+   "35"
+  ],
+  "correct_answer": "6",
+  "explanation": "Because (a, b) satisfies both equations, substitute x = a and y = b. The first equation becomes 3a - 5b = a + 4, so 2a - 5b = 4. The second equation becomes -2a + 2b = b + 4, so -2a + b = 4. Adding these two equations gives -4b = 8, so b = -2. Then 2a - 5(-2) = 4, so 2a = -6 and a = -3. Check in the original system: 3(-3) - 5(-2) = 1 = -3 + 4, and -2(-3) + 2(-2) = 2 = -2 + 4. Therefore ab = (-3)(-2) = 6.",
+  "solve": "const b=(4+4)/(-5+1); const a=(4+5*b)/2; return a*b;",
+  "distractor_solve": {
+   "16": "const a=(4+20)/(4-10); const b=4+2*a; return a*b;",
+   "32": "const b=(4+4)/(-5+3); const a=(4+5*b)/2; return a*b;",
+   "35": "const a=(4+10)/(3-5); const b=a+2; return a*b;"
+  }
+ },
+ {
+  "id": "SM29F-B11",
+  "domain": "Algebra",
+  "subskill": "Linear function from outputs at unknown inputs",
+  "difficulty": "hard",
+  "prompt": "For some number k other than zero, the outputs of a linear function f at the three inputs k, 2k, and 3k + 5 are -6, -3, and 6, respectively. Compute f(-4).",
+  "choices": [
+   "-13.8",
+   "-10.6",
+   "-6.6",
+   "-4.2"
+  ],
+  "correct_answer": "-13.8",
+  "explanation": "Write f(x) = mx + b. Then mk + b = -6 and 2mk + b = -3. Subtracting gives mk = 3, and then b = -6 - 3 = -9. The third condition is m(3k + 5) + b = 6, that is, 3mk + 5m + b = 6. Substituting mk = 3 and b = -9 gives 9 + 5m - 9 = 6, so m = 1.2. Therefore f(x) = 1.2x - 9 and f(-4) = -4.8 - 9 = -13.8.",
+  "solve": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;",
+  "distractor_solve": {
+   "-10.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 15; return Math.round((m*(-4) + b) * 1000) / 1000;",
+   "-4.2": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((b - m*(-4)) * 1000) / 1000;",
+   "-6.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;"
+  }
+ },
+ {
+  "id": "SM29F-B03",
+  "domain": "Algebra",
+  "subskill": "Slope forced by a swapped pair of values",
+  "difficulty": "hard",
+  "prompt": "For a linear function f, there are two different numbers p and q for which f(p) = q and f(q) = p. Also, f(-3) + 2f(9) = 36. What is the value of f(-2)?",
+  "choices": [
+   "5",
+   "9",
+   "19",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "The graph of y = f(x) contains the points (p, q) and (q, p). Since p and q are different, the slope is (p - q)/(q - p) = -1. So f(x) = -x + c for some constant c. Then f(-3) = 3 + c and f(9) = -9 + c, so (3 + c) + 2(-9 + c) = 36, which gives 3c - 15 = 36 and c = 17. Therefore f(x) = -x + 17, and f(-2) = 2 + 17 = 19.",
+  "solve": "const c = (36 - 3 + 2*9) / 3; return -(-2) + c;",
+  "distractor_solve": {
+   "5": "const c = (36 + 3 - 2*9) / 3; return (-2) + c;",
+   "9": "const c = (36 + 3 - 2*9) / 3; return -(-2) + c;",
+   "23": "const c = (36 - 3 + 9) / 2; return -(-2) + c;"
+  }
+ },
+ {
+  "id": "SM29F-P03",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic: vertex on a line plus a point; choose the root by b's sign",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 3x^2 + bx + c, where b and c are constants and b > 0. In the xy-plane, the vertex of the graph of y = f(x) lies on the line y = -6x - 11, and the graph passes through the point (-2, 25). What is the value of f(1)?",
+  "choices": [
+   "-20",
+   "13",
+   "38",
+   "88"
+  ],
+  "correct_answer": "88",
+  "explanation": "Let the vertex be (h, k). Because it lies on the line y = -6x - 11, k = -6h - 11, and in vertex form f(x) = 3(x - h)^2 - 6h - 11.\n\nThe graph passes through (-2, 25), so 3(-2 - h)^2 - 6h - 11 = 25. Expanding, 3h^2 + 12h + 12 - 6h - 11 = 25, so 3h^2 + 6h - 24 = 0, or h^2 + 2h - 8 = 0. This factors as (h + 4)(h - 2) = 0, so h = -4 or h = 2.\n\nTo choose, expand the vertex form: the coefficient of x is b = -6h. Since b > 0, h must be negative, so h = -4 (and b = 24). Then k = -6(-4) - 11 = 13, and f(x) = 3(x + 4)^2 + 13. Therefore f(1) = 3(5)^2 + 13 = 75 + 13 = 88.\n\nChoice -20 uses the other solution, h = 2 (vertex (2, -23)), which gives b = -12 and violates b > 0. Choice 13 is the y-coordinate of the vertex, not f(1). Choice 38 leaves the leading coefficient 3 off the squared term, computing (1 + 4)^2 + 13.",
+  "solve": "const a=3,m=-6,q=-11,x0=-2,y0=25,t=1; const A=a,B=m-2*a*x0,C=a*x0*x0+q-y0; const s=Math.sqrt(B*B-4*A*C); const hs=[(-B-s)/(2*A),(-B+s)/(2*A)]; const h=hs.find(v=>-2*a*v>0); return a*(t-h)**2+m*h+q;",
+  "distractor_solve": {
+   "13": "const a=3,m=-6,q=-11,x0=-2,y0=25; const A=a,B=m-2*a*x0,C=a*x0*x0+q-y0; const s=Math.sqrt(B*B-4*A*C); const hs=[(-B-s)/(2*A),(-B+s)/(2*A)]; const h=hs.find(v=>-2*a*v>0); return m*h+q;",
+   "38": "const a=3,m=-6,q=-11,x0=-2,y0=25,t=1; const A=a,B=m-2*a*x0,C=a*x0*x0+q-y0; const s=Math.sqrt(B*B-4*A*C); const hs=[(-B-s)/(2*A),(-B+s)/(2*A)]; const h=hs.find(v=>-2*a*v>0); return (t-h)**2+m*h+q;",
+   "-20": "const a=3,m=-6,q=-11,x0=-2,y0=25,t=1; const A=a,B=m-2*a*x0,C=a*x0*x0+q-y0; const s=Math.sqrt(B*B-4*A*C); const hs=[(-B-s)/(2*A),(-B+s)/(2*A)]; const h=hs.find(v=>-2*a*v<0); return a*(t-h)**2+m*h+q;"
+  }
+ },
+ {
+  "id": "SM29F-A07",
+  "domain": "Algebra",
+  "subskill": "Two lengths with a shared section counted once",
+  "difficulty": "medium",
+  "prompt": "Two hiking trails, A and B, share one common section that is 1.6 kilometers long; apart from that section, the trails do not overlap. Trail A is 5 kilometers longer than three times the length of trail B. Together the two trails cover 23 kilometers of path, with the shared section counted only once. How many kilometers of trail B are not shared with trail A?",
+  "choices": [
+   "3.3",
+   "3.7",
+   "4.5",
+   "5.8"
+  ],
+  "correct_answer": "3.3",
+  "explanation": "Let b be the length of trail B, in kilometers. Trail A is 3b + 5. Adding the two lengths counts the shared section twice, so (3b + 5) + b - 1.6 = 23.\nThen 4b + 3.4 = 23, 4b = 19.6 and b = 4.9. Trail A is 3(4.9) + 5 = 19.7 kilometers. (Check: 19.7 + 4.9 - 1.6 = 23.)\nThe part of trail B not shared with trail A is 4.9 - 1.6 = 3.3 kilometers.\n\nChoice 4.5 comes from ignoring the shared section throughout: 4b + 5 = 23 gives b = 4.5, and with no shared section to remove, all of it is reported as unshared.\nChoice 3.7 comes from subtracting the shared section twice: 4b + 5 - 3.2 = 23 gives b = 5.3, and 5.3 - 1.6 = 3.7.\nChoice 5.8 comes from reading 5 kilometers longer as 5 kilometers shorter: 4b - 5 - 1.6 = 23 gives b = 7.4, and 7.4 - 1.6 = 5.8.",
+  "solve": "const k=3,c=5,s=1.6,T=23; const B=(T+s-c)/(k+1); return Math.round((B-s)*1e9)/1e9;",
+  "distractor_solve": {
+   "3.7": "const k=3,c=5,s=1.6,T=23; const B=(T+2*s-c)/(k+1); return Math.round((B-s)*1e9)/1e9;",
+   "4.5": "const k=3,c=5,T=23; const B=(T-c)/(k+1); return Math.round(B*1e9)/1e9;",
+   "5.8": "const k=3,c=5,s=1.6,T=23; const B=(T+s+c)/(k+1); return Math.round((B-s)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM29F-C02",
+  "domain": "Algebra",
+  "subskill": "System from a swapped-quantity billing error",
+  "difficulty": "medium",
+  "prompt": "At a cafe, every coffee has the same price and every muffin has the same price. A customer ordered 4 coffees and 2 muffins, but the cashier mistakenly rang up 2 coffees and 4 muffins, and the customer was charged $1.50 less than the correct amount. Another customer bought 3 coffees and 2 muffins and paid $6.25. What is the price, in dollars, of one coffee?",
+  "choices": [
+   "0.95",
+   "1.35",
+   "1.55",
+   "1.85"
+  ],
+  "correct_answer": "1.55",
+  "explanation": "Let c be the price of a coffee and m the price of a muffin, in dollars. The correct amount was 4c + 2m and the amount charged was 2c + 4m, so (4c + 2m) - (2c + 4m) = 1.50, which gives 2c - 2m = 1.50 and c - m = 0.75. The second customer's purchase gives 3c + 2m = 6.25. Substituting m = c - 0.75 gives 3c + 2c - 1.50 = 6.25, so 5c = 7.75 and c = 1.55. (Then m = 0.80; check: 3(1.55) + 2(0.80) = 6.25.) One coffee costs $1.55.",
+  "solve": "const d=1.5/(4-2); const c=(6.25+2*d)/5; return Math.round(c*100)/100;",
+  "distractor_solve": {
+   "0.95": "const d=1.5/(4-2); const c=(6.25-2*d)/5; return Math.round(c*100)/100;",
+   "1.85": "const d=1.5; const c=(6.25+2*d)/5; return Math.round(c*100)/100;",
+   "1.35": "const d=1.5/(4+2); const c=(6.25+2*d)/5; return Math.round(c*100)/100;"
+  }
+ },
+ {
+  "id": "SM29F-S05",
+  "domain": "Advanced Math",
+  "subskill": "Composition with a reflected input: locate k, then a maximum",
+  "difficulty": "hard",
+  "prompt": "Let f(x) = x^2 - 8x - 7, and let g(x) = k - x for a constant k. Among all real numbers x, the composite f(g(x)) takes its smallest value at x = 11. What is the largest value that the composite g(f(x)) takes?",
+  "choices": [
+   "-11",
+   "-8",
+   "38",
+   "42"
+  ],
+  "correct_answer": "38",
+  "explanation": "Complete the square: f(x) = (x - 4)^2 - 23, so f is smallest, with value -23, when its input is 4. Then f(g(x)) = (k - x - 4)^2 - 23 is smallest when k - x - 4 = 0, that is, at x = k - 4. Since that happens at x = 11, k - 4 = 11 and k = 15. Now g(f(x)) = 15 - f(x). Subtracting f(x) from 15 gives the largest result when f(x) is as small as possible, which is -23, so the largest value of g(f(x)) is 15 - (-23) = 38.",
+  "solve": "const b=-8, c=-7, x0=11; const h=-b/2, v=c-h*h; const k=x0+h; return k-v;",
+  "distractor_solve": {
+   "42": "const b=-8, c=-7, x0=11; const hWrong=-b; const vTrue=c-(b/2)*(b/2); const k=x0+hWrong; return k-vTrue;",
+   "-11": "const b=-8, c=-7, x0=11; const h=-b/2; const k=x0+h; const f=x=>x*x+b*x+c; return k-f(x0);",
+   "-8": "const b=-8, c=-7, x0=11; const h=-b/2, v=c-h*h; const k=x0+h; return k+v;"
+  }
+ }
+]

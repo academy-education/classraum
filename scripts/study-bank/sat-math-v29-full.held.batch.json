@@ -1,0 +1,154 @@
+[
+ {
+  "id": "SM29F-R02",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem with high powers (parity of exponents)",
+  "difficulty": "medium",
+  "prompt": "Long division of 9x^50 + 7x^21 - 4x^4 + 33 by the binomial x + 1 would leave a constant remainder. What number is that remainder?",
+  "choices": [
+   "21",
+   "31",
+   "39",
+   "45"
+  ],
+  "correct_answer": "31",
+  "explanation": "By the remainder theorem, dividing a polynomial p(x) by x + 1 = x - (-1) leaves the remainder p(-1). An even power of -1 is 1 and an odd power of -1 is -1, so p(-1) = 9(1) + 7(-1) - 4(1) + 33 = 9 - 7 - 4 + 33 = 31.",
+  "solve": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(-1);",
+  "distractor_solve": {
+   "21": "return 9*(-1)+7*(-1)-4*(-1)+33;",
+   "39": "return 9*1+7*(-1)+4*1+33;",
+   "45": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(1);"
+  },
+  "mechanism": [
+   "remainder theorem: divisor x + 1 means evaluate at -1",
+   "parity of exponents decides the sign of each power of -1"
+  ],
+  "quantity_asked": "the remainder when 9x^50 + 7x^21 - 4x^4 + 33 is divided by x + 1",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The remainder is not a solution of any printed condition; there is nothing to substitute an option into. A student must evaluate p(-1)."
+  },
+  "distractor_meta": {
+   "21": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats every power of -1 as -1, ignoring the parity of the exponents, so the two even-power terms flip sign too. The net direction depends on the relative sizes of 9 and 4 against 7 and is not visible without evaluating."
+   },
+   "39": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Gets the powers of -1 right but drops the minus sign in front of the 4x^4 term when substituting, writing +4 instead of -4. A dropped subtraction sign could move the result either way depending on the term's own sign at -1."
+   },
+   "45": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reads the divisor x + 1 as x - 1 and evaluates at 1, the sum of the coefficients. Whether that lands above or below the value at -1 depends on the sign of the odd-power coefficient, which must be worked through."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem says the remainder is a constant; all four options are constants. The coefficients are integers, so the remainder is an integer: all four options are integers. No sign or size property is handed over. All four survive together.",
+  "interior_parity_check": "Middle values 31 and 39: both two-digit odd integers with no trailing zero, equal display complexity. The key is not the cleaner one.",
+  "arith_class_check": "Options 21, 31, 39, 45 are all odd positive two-digit integers; no parity, sign, integrality or multiple-of-k class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "x\\^\\(?[1-9][0-9]",
+    "x\\^[2-9][0-9]|x\\^1[0-9]",
+    "remainder",
+    "divided by&x -"
+   ],
+   "hits_read": 260,
+   "nearest": "6b810624 / SM14A-04 and ADV5-02 evaluate a cubic at a negative input for a remainder with no exponent-parity decision; 90b7cb16 / 6192993b find a parameter from one remainder then compute a second. No live or prior item uses high exponents where the parity of the powers of -1 is the deciding step."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise route: none by substitution; a student who skips the sign of the divisor gets 45, one who ignores parity gets 21, one who drops the minus sign on the x^4 term gets 39. Interior key. Could a student check an option against the stem in one routine step? No: the ask is an evaluated remainder, not a solution of a printed condition. (read) lines: differences 31 - 21 = 10, 39 - 31 = 8 (twice the printed 4), 45 - 31 = 14 (twice the printed 7) each come from one term entering with the wrong sign, which is the error itself; none tells a student which option carries the correct signs without evaluating. Also 31 - 21 = 10 = 9 + 1 and 39 - 31 = 8 = 7 + 1 are coincidences of the coefficients; adding one to a printed coefficient is not a step any solution path takes."
+  },
+  "bounds": [],
+  "_held": "panel-median easy past the Advanced Math easy cap (live mix)",
+  "_panel_difficulty": "easy"
+ },
+ {
+  "id": "SM29F-C09",
+  "domain": "Algebra",
+  "subskill": "System built from two averages",
+  "difficulty": "medium",
+  "prompt": "The average (arithmetic mean) of the numbers x and y is 6, and the average of the three numbers x, 2y, and 17 is 8. By how much does x exceed y?",
+  "choices": [
+   "-12",
+   "4",
+   "22",
+   "38"
+  ],
+  "correct_answer": "22",
+  "explanation": "The first average gives (x + y)/2 = 6, so x + y = 12. The second gives (x + 2y + 17)/3 = 8, so x + 2y + 17 = 24 and x + 2y = 7. Subtracting the first equation from the second gives y = -5, and then x = 12 - (-5) = 17. So x exceeds y by 17 - (-5) = 22.",
+  "solve": "const y=(3*8-17)-2*6; const x=2*6-y; return x-y;",
+  "distractor_solve": {
+   "4": "const y=(3*8-17)-6; const x=6-y; return x-y;",
+   "38": "const y=(2*8-17)-2*6; const x=2*6-y; return x-y;",
+   "-12": "const y=3*8-2*6; const x=2*6-y; return x-y;"
+  },
+  "mechanism": [
+   "turn each average into a sum equation",
+   "solve the system for x and y",
+   "subtract y from x"
+  ],
+  "quantity_asked": "x - y",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is only the difference x - y. With x + y = 12 a student could recover x and y from an option, but only after turning both averages into equations, which is the solution itself; the ask is not a value that can be tested against a printed equation in one step."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking the first average as the sum itself (x + y = 6, not 12) gives y = 1, x = 5 and x - y = 4. Nothing in the stem shows which way that error moves the difference."
+   },
+   "38": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Multiplying the second average by 2 instead of 3 (x + 2y + 17 = 16) gives y = -13, x = 25 and x - y = 38. The direction is not visible without solving."
+   },
+   "-12": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving the 17 out of the second average (x + 2y = 24) gives y = 12, x = 0 and x - y = -12. Whether the result moves up or down depends on solving, not on the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem properties: x and y are any real numbers (no sign, integer or order condition is stated), so x - y may be negative; all four options are legal. No bound is readable from the stem. Integrality is shared by all four options.",
+  "interior_parity_check": "Middle values 4 and 22: both small even integers of one or two digits; the key 22 is not the cleaner one (neither is round).",
+  "arith_class_check": "Options -12, 4, 22, 38: all even; signs split one negative and three positive, and the key is not the negative one; no multiple-of-k class isolates 22.",
+  "dup_search": {
+   "queries": [
+    "average of x|mean of x|mean of the numbers x|average of the two",
+    "average&arithmetic mean&numbers",
+    "value of x - y|x exceed y",
+    "infinitely many&system"
+   ],
+   "hits_read": 31,
+   "nearest": "SSAT a216f3f1 (average of x and y is 14, of y and z is 22, find z - x): one subtraction of two averages with three unknowns and no system to solve. Here the second average weights y and adds a constant, so the two averages form a 2-by-2 system that must be solved."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key, at try 3 ascending. Neither x = 17 nor y = -5 is an option, so no option gives the key through one printed equation. No cheap bound is readable (no sign is stated), so no option is struck by one. A test-wise student might expect x - y > 0 because x is said to exceed y, which strikes -12 only. The constant 17 equals x by coincidence; it is not an option. (read) PAIR/DPAIR/DSUM lines: 22 - (-12) = 34 = 2 x 17 and 38 - 22 = 16 = 2 x 8 are the exact effects of the two errors (dropping the 17 moves y by 17 and x - y by 34; using 2 instead of 3 removes 8 from the second sum and moves x - y by 16). They are visible only to a student who already has the key, since the error-free system must be solved to know which option the shift starts from. The remaining lines (16 = 17 - 1, 18 = 17 + 1, sum 10 = 2 + 8) are coincidences that no solving path uses."
+  },
+  "bounds": [],
+  "_held": "panel-median easy past the Algebra easy cap (live mix)",
+  "_panel_difficulty": "easy"
+ }
+]
