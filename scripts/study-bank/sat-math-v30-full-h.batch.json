@@ -1,0 +1,418 @@
+[
+ {
+  "id": "SM30F-H01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Sine ratio and perimeter of a right triangle",
+  "difficulty": "medium",
+  "prompt": "Triangle PQR has a right angle at vertex R, so side PQ is the hypotenuse, side QR is opposite angle P, and side PR is adjacent to angle P. The value of sin P is 8/17, and the perimeter of triangle PQR is 120 centimeters. To the nearest centimeter, what is the length of side PR?",
+  "choices": [
+   "24",
+   "32",
+   "45",
+   "47"
+  ],
+  "correct_answer": "45",
+  "explanation": "Since sin P = QR/PQ = 8/17, let QR = 8k and PQ = 17k for some positive number k. By the Pythagorean theorem, PR = sqrt((17k)^2 - (8k)^2) = sqrt(225k^2) = 15k. The perimeter is 8k + 15k + 17k = 40k = 120, so k = 3. Therefore PR = 15(3) = 45 centimeters.",
+  "solve": "const k = 120/(8+15+17); return Math.round(15*k);",
+  "distractor_solve": {
+   "24": "const k = 120/(8+15+17); return Math.round(8*k);",
+   "32": "const leg = 17-8; const k = 120/(8+leg+17); return Math.round(leg*k);",
+   "47": "const h = Math.sqrt(8*8+17*17); const k = 120/(8+17+h); return Math.round(17*k);"
+  },
+  "mechanism": [
+   "sine ratio as scaled sides 8k and 17k",
+   "Pythagorean theorem for the third side 15k",
+   "perimeter fixes the scale k"
+  ],
+  "quantity_asked": "length of the leg PR adjacent to angle P, to the nearest centimeter",
+  "ask_type": "length",
+  "plugback": {
+   "substitutable": false,
+   "why": "A student holding an option for PR still has to find QR and PQ to test the perimeter, which needs the ratio 8:15:17 and the scale factor - the whole solution. There is no printed equation into which PR can be substituted in one step."
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads the sine as adjacent over hypotenuse (or reports QR); nothing in the stem says whether the opposite leg is shorter or longer than the adjacent one until 15 is found."
+   },
+   "32": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds the third side as 17 - 8 = 9 instead of using the Pythagorean theorem; whether 9 parts of 34 is more or less than 15 parts of 40 is not readable without computing."
+   },
+   "47": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats 8/17 as opposite over adjacent (legs 8 and 17, hypotenuse sqrt(353)); the larger leg weight and the smaller hypotenuse pull opposite ways, so the side of 45 is not visible."
+   }
+  },
+  "intermediate_check": "24: no - it is QR; the printed relation sin P = 8/17 turns it into the hypotenuse 51, not PR, and PR then needs a second step (Pythagorean theorem or the full perimeter). 32: no - it is the leg of a wrong 8-9-17 model; no printed relation maps it to 45. 47: no - it is the leg of a wrong 8-17-sqrt(353) model; no printed relation maps it to 45.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive length: all four survive. A leg is shorter than half the perimeter (under 60, triangle inequality): all four survive. A leg is shorter than the hypotenuse: the hypotenuse is unknown without solving, and every option is below 60, so all survive. Integer display (rounded): all four.",
+  "interior_parity_check": "Middle values 32 and 45: both two-digit integers of the same complexity; 45 is not the cleaner one (neither is round).",
+  "arith_class_check": "Parity: 24, 32 even; 45, 47 odd - the key shares its class with 47. Multiple of 5: 45 only, but the stem implies no multiple-of-5 property (the scale 3 and parts 15 are not printed). Not a square. No class singles the key out by a property the stem implies.",
+  "dup_search": {
+   "queries": [
+    "tan&cos",
+    "sin&cos&acute",
+    "perimeter&right triangle&tan|perimeter&right triangle&sin|perimeter&right triangle&cos",
+    "perimeter&hypotenuse",
+    "perimeter&sin |perimeter&cos |perimeter&tan ",
+    "perimeter&right triangle"
+   ],
+   "hits_read": 71,
+   "nearest": "9e1f0f2e-c73 (ISEE: right triangle from perimeter AND area, asks the altitude) - different givens (no trig ratio) and different chain; 1f15a28f-6f2 / a62a5344-901 (tan = 3/4, asks sin + cos) - ratio only, no perimeter or scale step."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might look for the 8-15-17 triple scaled: only 45 is a multiple of 15 among the options, but 24 is a multiple of 8, so the triple does not single out one option without knowing which leg is asked and finding k = 3. The bound 'each side < 60' strikes none. No distractor is a solved intermediate one printed relation away from 45 (24 needs two steps). Not checkable by substitution."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Two right triangles sharing a leg, with a radian angle",
+  "difficulty": "hard",
+  "prompt": "In triangle ABC, angle C is a right angle and angle A measures pi/3 radians. Point D lies on side AC, between A and C, so that segment BD has length 13 centimeters and segment CD has length 5 centimeters. To the nearest hundredth of a centimeter, what is the perimeter of triangle ABD?",
+  "choices": [
+   "28.78",
+   "30.52",
+   "32.12",
+   "52.78"
+  ],
+  "correct_answer": "28.78",
+  "explanation": "Triangle BCD has a right angle at C, so BC = sqrt(13^2 - 5^2) = 12. In triangle ABC, angle A = pi/3 radians = 60 degrees, so it is a 30-60-90 triangle with the 30-degree angle at B. The leg AC is opposite the 30-degree angle, so AC = BC/sqrt(3), about 6.928, and the hypotenuse is AB = 2(AC), about 13.856. Then AD = AC - CD, about 6.928 - 5 = 1.928. The perimeter of triangle ABD is AB + BD + AD, about 13.856 + 13 + 1.928 = 28.785, which rounds to 28.78 centimeters.",
+  "solve": "const bc = Math.sqrt(13*13 - 5*5); const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+  "distractor_solve": {
+   "30.52": "const bc = 13; const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "32.12": "const bc = Math.sqrt(13*13 + 5*5); const ac = bc/Math.sqrt(3); const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "52.78": "const bc = Math.sqrt(13*13 - 5*5); const ac = bc*Math.sqrt(3); const ab = Math.sqrt(ac*ac + bc*bc); return Math.round((ab + 13 + (ac - 5))*100)/100;"
+  },
+  "mechanism": [
+   "shared leg BC from the Pythagorean theorem in triangle BCD",
+   "convert pi/3 radians and use the 30-60-90 ratios in triangle ABC",
+   "AD as AC minus CD",
+   "perimeter of the inner triangle"
+  ],
+  "quantity_asked": "perimeter of triangle ABD, to the nearest hundredth of a centimeter",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The perimeter is a sum of three lengths, one of them printed and two derived (AB and AD), and no printed equation contains it. Trying 28.78 first tells a student nothing unless AB and AD are found, which is the whole solution; the option cannot be split back into AB and AD without it."
+  },
+  "distractor_meta": {
+   "30.52": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaves out the CD^2 term and takes BC = BD = 13; the stem does not show that this enlarges AC, AB and AD together rather than shrinking something."
+   },
+   "32.12": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds instead of subtracting in the Pythagorean theorem, BC = sqrt(13^2 + 5^2); nothing in the stem signs how far that moves the perimeter."
+   },
+   "52.78": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Inverts the 30-60-90 ratio at A, taking AC = BC * sqrt(3); a student must know which leg is opposite the 60-degree angle to sign it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const bc = 12; const ac = bc/2; const ab = 2*ac; return Math.round((ab + 13 + (ac - 5))*100)/100;",
+   "direction": "below",
+   "why": "Halves BC to get AC (the 'half the hypotenuse' rule applied to a leg), giving AC = 6 and a perimeter of 26.00, below the key; not an option."
+  },
+  "far_distractor": {
+   "option": "30.52",
+   "natural_side": "below",
+   "why": "Leaving a term out ordinarily makes a result smaller. Here the term left out is CD^2, which is SUBTRACTED inside the square root for BC, so dropping it makes BC, and with it AC, AB and AD, larger, and the perimeter lands above the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound in the stem: it fixes a right triangle, one radian angle and two segment lengths and asks for one perimeter. The natural errors go both ways (halving BC for AC lands below; dropping CD^2 lands above), so the structure does not sign every error.",
+  "intermediate_check": "30.52: no - a perimeter from a wrong BC; no printed relation turns it into 28.78. 32.12: no - same, from BC = sqrt(194). 52.78: no - a perimeter from an inverted ratio; reaching the key from it needs AC, which is not printed.",
+  "cheap_bound_check": "Every cheap fact, with what it strikes: (1) BC is a leg of right triangle BCD, so BC < BD = 13; with the 5-12-13 triple, BC = 12 - strikes none by itself. (2) angle A = pi/3 > pi/4, so AC < BC < 13, hence AD = AC - 5 < 8 - bounds AD only. (3) AB is the hypotenuse of ABC, AB < AC + BC < 26 - none by itself. (4) Triangle ABD: AB < AD + BD, so the perimeter < 2(AD + BD) < 2(8 + 13) = 42 - strikes 52.78 only. (5) AB + AD > BD, so the perimeter > 26 - a lower bound, strikes none. (6) sin and cos between 0 and 1 and side-opposite-larger-angle orders (BD > BC, BD > CD, AB > BC > AC) - give no number past (2)-(4). No single fact, and no pair of them, strikes more than 52.78; 30.52 and 32.12 sit on the key's side of every bound.",
+  "shape_check": "Positive: all four. Above 26 (triangle inequality in ABD): all four. Below 42: 28.78, 30.52, 32.12. Two-decimal display: all four. At least two distractors (30.52, 32.12) survive every property together.",
+  "interior_parity_check": "Middle values 30.52 and 32.12: both two-decimal numbers of equal complexity; the key is the smallest and is not cleaner.",
+  "arith_class_check": "No integers; no option is a multiple of a printed number; the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "leg&(point D|D lies)&(hypotenuse|right angle)",
+    "point D&(leg|side) AC&(right angle|hypotenuse)",
+    "ladder",
+    "135 degree|135°|3π/4",
+    "obtuse&triangle&(sin|cos|tan|altitude|height)"
+   ],
+   "hits_read": 9,
+   "nearest": "The ladder items (659d8c09-5a3, e3ec2642-302) apply the Pythagorean theorem twice to one moving segment; none has a point on a leg cutting off a 5-12-13 triangle and then uses a radian angle on the outer triangle. The altitude-to-hypotenuse family is a different figure (the cevian goes to the hypotenuse)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors do not all go one way (halving BC for AC lands below), and no stem structure signs them. The far distractor 30.52 is a dropped term that lands above only because the term is subtracted under the root. Every cheap fact is listed in cheap_bound_check: none, alone or paired, strikes more than one distractor (52.78, by the triangle inequality in ABD). Plug-back: an option cannot be checked in one routine step, because the perimeter cannot be split back into AB and AD. Solved intermediate: none of the three is one printed relation from 28.78."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Pythagorean distance from net displacements",
+  "difficulty": "medium",
+  "prompt": "Two hikers leave the same trailhead. Hiker A walks 2 kilometers due north and then 4 kilometers due east. Hiker B walks 6 kilometers due south and then 1 kilometer due east. Each hiker walks in straight lines on flat ground. To the nearest hundredth of a kilometer, what is the straight-line distance between the two hikers?",
+  "choices": [
+   "8.54",
+   "8.94",
+   "9.43",
+   "11.00"
+  ],
+  "correct_answer": "8.54",
+  "explanation": "Measure from the trailhead, with east and north positive. Hiker A ends 4 km east and 2 km north; hiker B ends 1 km east and 6 km south. The east-west separation is 4 - 1 = 3 km, and the north-south separation is 2 + 6 = 8 km. These are the legs of a right triangle whose hypotenuse is the distance between the hikers: sqrt(3^2 + 8^2) = sqrt(73), about 8.544, which rounds to 8.54 kilometers.",
+  "solve": "const dx = 4 - 1; const dy = 2 + 6; return Math.round(Math.sqrt(dx*dx + dy*dy)*100)/100;",
+  "distractor_solve": {
+   "8.94": "const dx = 4 - 0; const dy = 2 + 6; return Math.round(Math.sqrt(dx*dx + dy*dy)*100)/100;",
+   "9.43": "const dx = 4 + 1; const dy = 2 + 6; return Math.round(Math.sqrt(dx*dx + dy*dy)*100)/100;",
+   "11.00": "const dx = 4 - 1; const dy = 2 + 6; return (dx + dy).toFixed(2);"
+  },
+  "mechanism": [
+   "net east-west and north-south separations",
+   "Pythagorean theorem on the separations"
+  ],
+  "quantity_asked": "straight-line distance between the two hikers, to the nearest hundredth of a kilometer",
+  "ask_type": "length",
+  "plugback": {
+   "substitutable": false,
+   "why": "No printed equation contains the distance. A student holding 8.54 must still find both separations and apply the Pythagorean theorem to test it, which is the whole solution; there is no one-step substitution."
+  },
+  "distractor_meta": {
+   "8.94": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaves out hiker B's 1 km east; whether a dropped walk lengthens or shortens the gap depends on directions the student must sort out first."
+   },
+   "9.43": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds the two eastward walks as if they went opposite ways (5 km instead of 3 km); the stem does not show the size of the true separation until it is computed."
+   },
+   "11.00": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds the two separations, 3 + 8, instead of combining them with the Pythagorean theorem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const dx = 4 - 1; const dy = 6 - 2; return Math.round(Math.sqrt(dx*dx + dy*dy)*100)/100;",
+   "direction": "below",
+   "why": "Treats north and south as the same direction, taking the north-south separation as 6 - 2 = 4, which gives 5.00, below the key; not an option."
+  },
+  "far_distractor": {
+   "option": "8.94",
+   "natural_side": "below",
+   "why": "Leaving a walk out ordinarily shortens a distance. Here hiker B's 1 km east walk moves B TOWARD hiker A, who is farther east, so dropping it widens the east-west separation and the distance lands above the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: two fixed walks and one distance. The natural errors go both ways (merging north and south lands below at 5.00; reversing the east walks lands above), so the structure does not sign every error.",
+  "intermediate_check": "8.94: no - a distance from a wrong separation; no printed relation turns it into 8.54. 9.43: no - same, from a 5 km separation. 11.00: no - it is 3 + 8; recovering the key needs the two separations separately, which the sum does not give.",
+  "cheap_bound_check": "Every cheap fact, with what it strikes: (1) the distance is less than the sum of the separations, 3 + 8 = 11 (equal only if one separation is 0) - strikes 11.00 only. (2) the distance is at most A's distance from the trailhead plus B's, sqrt(20) + sqrt(37), about 4.47 + 6.08 = 10.55 - strikes 11.00 only. (3) the smaller separation is under the larger, so the angle is under 45 degrees and the distance is under 8 * sqrt(2), about 11.31 - strikes none. (4) at most the total walking, 2 + 4 + 6 + 1 = 13 - strikes none. (5) at least the larger separation, 8 (hypotenuse longer than each leg) - a lower bound, strikes none. No single fact, and no pair of them, strikes more than 11.00; 8.94 and 9.43 sit on the key's side of every bound.",
+  "shape_check": "Positive: all four. At least 8: all four. Below 10.55, 11 and 11.31: 8.54, 8.94, 9.43. Two-decimal display: all four. At least two distractors (8.94, 9.43) survive every property together.",
+  "interior_parity_check": "Middle values 8.94 and 9.43: both two-decimal non-integers of equal complexity; the key is the smallest and is not cleaner.",
+  "arith_class_check": "Only 11.00 is a whole number, and it is a distractor. The key is not alone in any class (parity, multiple of a printed number, square) the stem implies.",
+  "dup_search": {
+   "queries": [
+    "north&east|south&west",
+    "(walk|hike|drive|sail|travel)&(north|south)&distance",
+    "(north|south)&(east|west)",
+    "how much longer&(leg|hypotenuse)"
+   ],
+   "hits_read": 8,
+   "nearest": "137acafa-28b (ISEE robot spiral, distance to the origin after 14 moves) - one walker, a sequence of moves and a radical option set; this item has two walkers whose separations combine with opposite signs. The other hits are grid-route counting."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors do not all go one way (merging north and south lands below), and no stem structure signs them. The far distractor 8.94 is a dropped walk that lands above only because that walk brought B toward A. Every cheap fact is listed in cheap_bound_check, including the under-45-degree bound (distance < 8 sqrt(2)): none, alone or paired, strikes more than one distractor (11.00). Plug-back: an option cannot be checked in one routine step. Solved intermediate: none of the three is one printed relation from 8.54."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Isosceles triangle area from a base-angle cosine",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, sides AB and AC have equal length, side BC is 16 centimeters long, and the cosine of angle B is 0.35. To the nearest tenth of a square centimeter, what is the area of triangle ABC?",
+  "choices": [
+   "64.0",
+   "171.3",
+   "182.9",
+   "360.1"
+  ],
+  "correct_answer": "171.3",
+  "explanation": "Draw the altitude from A to side BC, meeting it at M. Because AB = AC, M is the midpoint of BC, so BM = 8. In right triangle ABM, cos B = BM/AB, so 0.35 = 8/AB and AB = 8/0.35, about 22.857. Then AM = sqrt(22.857^2 - 8^2), about 21.411. The area is (1/2)(16)(21.411), about 171.29, which rounds to 171.3 square centimeters.",
+  "solve": "const ab = 8/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;",
+  "distractor_solve": {
+   "64.0": "const ab = 8/0.35; const h = 0.35*ab; return (Math.round(0.5*16*h*10)/10).toFixed(1);",
+   "182.9": "const ab = 8/0.35; return Math.round(0.5*16*ab*10)/10;",
+   "360.1": "const ab = 16/0.35; const h = Math.sqrt(ab*ab - 64); return Math.round(0.5*16*h*10)/10;"
+  },
+  "mechanism": [
+   "altitude bisects the base of an isosceles triangle",
+   "cosine gives the equal side",
+   "Pythagorean theorem for the height",
+   "area of the triangle"
+  ],
+  "quantity_asked": "area of triangle ABC, to the nearest tenth of a square centimeter",
+  "ask_type": "area",
+  "plugback": {
+   "substitutable": false,
+   "why": "No printed equation contains the area. To test 171.3 a student must turn it into a height, rebuild AB with the Pythagorean theorem and compare 8/AB with 0.35 - three steps that are the forward solution run backwards, not one routine substitution."
+  },
+  "distractor_meta": {
+   "64.0": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads 0.35 as height over AB (the sine) and takes the height as 0.35 * AB = 8; nothing in the stem shows whether the true height is more or less than 8 before it is computed."
+   },
+   "182.9": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the equal side AB (about 22.857) as the height; the stem gives no direct comparison of AB with the altitude."
+   },
+   "360.1": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applies the cosine to the whole base (AB = 16/0.35) without halving it; the stem does not show how this changes the area until the height is recomputed."
+   }
+  },
+  "intermediate_check": "64.0: no - it comes from a wrong height of 8; no printed relation maps it to 171.3. 182.9: no - it is (1/2)(16)(AB); recovering the area from it needs AB and then the Pythagorean theorem, two steps, and AB is not printed. 360.1: no - it comes from a wrong side of 16/0.35; no printed relation maps it to 171.3.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive area: all four. The height is shorter than AB, so the area is below (1/2)(16)(AB) - usable only after AB is found, and then it strikes 182.9 and 360.1 but not 64.0. One-decimal display: all four. At least two (64.0, 171.3) survive every property together.",
+  "interior_parity_check": "Middle values 171.3 and 182.9: both one-decimal, three-digit non-integers of equal complexity; the key is not the cleaner one.",
+  "arith_class_check": "Only 64.0 is a whole number, and it is a distractor; the key shares the non-integer class with 182.9 and 360.1. No class (parity, multiple of 16, square) holds the key alone in a way the stem implies.",
+  "dup_search": {
+   "queries": [
+    "isosceles&(cos|sin|tan)",
+    "isosceles&(base angle|altitude)&area",
+    "AB = AC|two equal sides|congruent sides",
+    "isosceles&area"
+   ],
+   "hits_read": 11,
+   "nearest": "e1bfaea9-8cd (isosceles RIGHT triangle area from the hypotenuse) - no trig ratio and no base bisection; 1239ea47-0b3 (isosceles trapezoid area from sides) - a trapezoid with no cosine."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "The key sits at ascending try 2, but an option cannot be checked in one routine step: it has to be turned back into a height, a side and a cosine. A test-wise student might discard the whole number 64.0, which still leaves three. No distractor is a solved intermediate one printed relation away: 182.9 needs AB, which is not printed, and then the Pythagorean theorem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-H05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "30-60-90 corner triangle in a right trapezoid",
+  "difficulty": "medium",
+  "prompt": "Quadrilateral ABCD is a trapezoid in which side AB is parallel to side DC, and DC is shorter than AB. Angles A and D are right angles, AB = 20 centimeters, AD = 8 centimeters, and angle ABC measures pi/3 radians. To the nearest hundredth of a centimeter, what is the perimeter of trapezoid ABCD?",
+  "choices": [
+   "50.14",
+   "50.31",
+   "51.31",
+   "52.62"
+  ],
+  "correct_answer": "52.62",
+  "explanation": "Draw the segment from C perpendicular to AB, meeting AB at E. Then AECD is a rectangle, so CE = AD = 8 and AE = DC. Angle B = pi/3 radians = 60 degrees, so triangle CEB is a 30-60-90 triangle with the long leg CE = 8 opposite the 60-degree angle. Its short leg is EB = 8/sqrt(3), about 4.619, and its hypotenuse is BC = 2(EB), about 9.238. So DC = AB - EB, about 20 - 4.619 = 15.381. The perimeter is 20 + 8 + 15.381 + 9.238, about 52.619, which rounds to 52.62 centimeters.",
+  "solve": "const eb = 8/Math.tan(Math.PI/3); const bc = 8/Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+  "distractor_solve": {
+   "50.14": "const eb = 8*Math.tan(Math.PI/3); const bc = 8/Math.cos(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "50.31": "const eb = 8/Math.tan(Math.PI/3); const bc = 8*Math.sin(Math.PI/3); return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;",
+   "51.31": "const eb = 8; const bc = 8*Math.SQRT2; return Math.round((20 + 8 + (20 - eb) + bc)*100)/100;"
+  },
+  "mechanism": [
+   "drop a perpendicular to form a rectangle and a corner triangle",
+   "convert pi/3 radians and use the 30-60-90 ratios",
+   "shorter base as AB minus the offset",
+   "sum the four sides"
+  ],
+  "quantity_asked": "perimeter of trapezoid ABCD, to the nearest hundredth of a centimeter",
+  "ask_type": "length",
+  "plugback": {
+   "substitutable": false,
+   "why": "The perimeter is a sum of four sides, two of them derived (DC and BC), and no printed equation contains it. An option cannot be split back into DC and BC without finding the 30-60-90 triangle first, which is the whole solution."
+  },
+  "distractor_meta": {
+   "50.14": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Inverts the 30-60-90 ratios (EB = 8 * sqrt(3), BC = 16); the slanted side grows while the top base shrinks, and the stem does not show which change wins."
+   },
+   "50.31": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplies by sin(pi/3) instead of dividing for the slanted side (BC = 8 sin 60 degrees); nothing in the stem signs the size of that change until BC is computed."
+   },
+   "51.31": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the corner triangle as 45-45-90 (EB = 8, BC = 8 sqrt(2)); the offset grows and the slanted side grows, which move the perimeter in opposite directions."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const eb = 8/Math.tan(Math.PI/3); const bc = 8/Math.sin(Math.PI/3); return Math.round((20 + 8 + 20 + bc)*100)/100;",
+   "direction": "above",
+   "why": "Forgets to subtract the offset EB, taking DC = AB = 20, which gives 57.24, above the key; not an option."
+  },
+  "far_distractor": {
+   "option": "50.14",
+   "natural_side": "above",
+   "why": "An over-sized piece ordinarily lengthens a perimeter, and the inverted ratio does over-size the slanted side (16 instead of about 9.24). But the same inversion over-sizes the offset EB, which is SUBTRACTED from AB to give the top base, and that loss is larger, so the error lands below the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem fixes one trapezoid and asks for its perimeter. The natural errors go both ways (forgetting to subtract the offset lands above at 57.24; multiplying by sin 60 degrees lands below), so the structure does not sign every error.",
+  "intermediate_check": "50.14: no - a perimeter from inverted ratios; no printed relation turns it into 52.62. 50.31: no - from a wrong BC; the printed numbers do not map it to the key. 51.31: no - from a 45-45-90 model; reaching the key needs EB and BC, neither printed.",
+  "cheap_bound_check": "Every cheap fact, with what it strikes (all lower bounds matter on a largest key): (1) the slanted side is longer than the height, BC > AD = 8. (2) angle B = pi/3 > pi/4, so the offset EB < CE = 8 and DC = 20 - EB > 12. (3) BC > EB, so DC + BC > DC + EB = AB = 20, and the perimeter > 20 + 8 + 20 = 48 - strikes none. (4) (1) and (2) together: perimeter > 20 + 8 + 12 + 8 = 48 - strikes none. (5) sin and cos between 0 and 1, angle above 45 degrees, side-opposite-larger-angle order in triangle CEB (BC > CE > EB) - all reduce to (1)-(3). Upper bounds (EB > 0, BC < 16 since the angle exceeds pi/6, so the perimeter < 64) strike none. No single fact, and no pair of them, strikes any distractor.",
+  "shape_check": "Positive: all four. Above 48: all four. Below 56 (offset under 8 with BC = 2 EB): all four. Two-decimal display: all four. All three distractors survive every property together.",
+  "interior_parity_check": "Middle values 50.31 and 51.31: both two-decimal numbers of equal complexity; the key is the largest and is not cleaner.",
+  "arith_class_check": "No integers; no option is a multiple of a printed number; the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "trapezoid&(60|π/3|30|45|sin|cos|tan)",
+    "trapezoid&perimeter",
+    "trapezoid&(perpendicular|right angle)",
+    "angle&x-axis"
+   ],
+   "hits_read": 12,
+   "nearest": "728d867c-602 / GEO-H1-10 (trapezoid WXYZ area from a figure) and 1239ea47-0b3 (isosceles trapezoid area from sides) - areas from given heights or a 3-4-5 split; none uses a radian base angle and a 30-60-90 corner triangle to find a perimeter."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors do not all go one way (forgetting to subtract the offset lands above), and no stem structure signs them; each distractor moves two sides in opposite directions. The far distractor 50.14 enlarges the slanted side yet lands below because it enlarges the subtracted offset more. Every cheap fact is listed in cheap_bound_check; none, alone or paired, strikes a distractor. Plug-back: an option cannot be checked in one routine step. Solved intermediate: none of the three is one printed relation from 52.62."
+  },
+  "bounds": []
+ }
+]

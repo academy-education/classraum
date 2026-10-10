@@ -1,0 +1,420 @@
+[
+ {
+  "id": "SM30F-P01",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic model: equal outputs give the axis, then the maximum",
+  "difficulty": "medium",
+  "prompt": "A company's monthly profit P, in dollars, from selling a product at a price of p dollars is modeled by P(p) = -3p^2 + bp - 400, where b is a constant. According to the model, the company earns the same monthly profit when the price is 6 dollars as when the price is 40 dollars. What is the maximum monthly profit, in dollars, according to the model?",
+  "choices": [
+   "467",
+   "1187",
+   "2774",
+   "5948"
+  ],
+  "correct_answer": "1187",
+  "explanation": "Because P(6) = P(40), the axis of symmetry of the parabola is halfway between them, at p = (6 + 40)/2 = 23. For P(p) = -3p^2 + bp - 400 the axis is p = b/(2*3) = b/6, so b/6 = 23 and b = 138. The maximum occurs at p = 23: P(23) = -3(529) + 138(23) - 400 = -1587 + 3174 - 400 = 1187.",
+  "solve": "const a=-3,c=-400; const h=(6+40)/2; const b=-2*a*h; return a*h*h+b*h+c;",
+  "distractor_solve": {
+   "467": "const a=-3,c=-400; const h=(40-6)/2; const b=-2*a*h; return a*h*h+b*h+c;",
+   "2774": "const a=-3,c=-400; const h=(6+40)/2; const b=-2*a*h; return c - b*b/(2*a);",
+   "5948": "const a=-3,c=-400; const h=6+40; const b=-2*a*h; return a*h*h+b*h+c;"
+  },
+  "mechanism": [
+   "equal outputs give the axis of symmetry",
+   "axis gives the unknown coefficient",
+   "evaluate at the axis for the maximum"
+  ],
+  "quantity_asked": "maximum monthly profit (the value of P at its vertex)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The option is a value of P, not of p or b; to check it a student must first find b from the equal-profit condition and the vertex, which is the whole solution. There is no printed equation an option can be dropped into."
+  },
+  "distractor_meta": {
+   "467": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes the axis as half the gap between the prices, (40 - 6)/2 = 17, instead of their midpoint 23, giving b = 102 and P(17) = 467; the stem gives no way to compare this with the answer before solving."
+   },
+   "2774": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the vertex value c - b^2/(2a) instead of c - b^2/(4a); whether this lands above or below depends on the signs of a and c and on b, which is found only by solving."
+   },
+   "5948": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the sum of the two prices, 46, as the axis instead of their average, giving b = 276, and evaluates there; the stem does not show which way this moves the value."
+   }
+  },
+  "structure_check": "I slot. The stem asks for a maximum, but the errors here change b as well as the evaluation point or use a wrong vertex formula, so they land on both sides (467 below; 2774 and 5948 above); the key sits in the interior.",
+  "intermediate_check": "467: no - it is the value at a wrong axis with a wrong b; no printed rate or relation turns 467 into 1187. 2774: no - a wrong vertex-value formula; nothing printed converts it to 1187 in one step (2774 - 1187 = 1587 is not printed). 5948: no - the value at the wrong axis 46; recovering 1187 needs the whole computation.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "A maximum is at least P(0) = -400: all four survive. The model allows any real profit, so no sign or integer cap removes an option; all four are positive integers (two odd, two even), so every property survives for all four.",
+  "interior_parity_check": "Middle values 1187 and 2774: both four-digit integers with four significant digits; neither is round, so the key is not the cleaner one.",
+  "arith_class_check": "All four are positive integers; parity splits 2-2 (467, 1187 odd; 2774, 5948 even); none is round or a perfect square; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "vertex&product",
+    "maximum height&h(t)|maximum height&seconds",
+    "axis of symmetry",
+    "vertex&passes through|vertex&contains the point"
+   ],
+   "hits_read": 14,
+   "nearest": "aad618b9-a30 (two parabolas sharing an axis, asking the vertex y of the second) - a different chain; no hit derives the axis from two equal outputs of a profit model with a missing linear coefficient and then asks the maximum (near-dup best j=0.27)."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Lower-interior key (try 2 ascending): could a student check an option against the stem in one routine step? No - an option is a profit value, and checking it requires b, which requires the axis; that is the whole solution. A test-wise student knowing the answer is a maximum might reason that it exceeds P at the printed prices, but P(6) itself is unknown until b is found, so no option is struck. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No: 467, 2774 and 5948 each come from a wrong axis or a wrong vertex formula, and no printed number turns any of them into 1187."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-P02",
+  "domain": "Advanced Math",
+  "subskill": "Horizontal line meeting a parabola: count of levels",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = -2(x - 3)^2 + 50 is a parabola. A horizontal line y = c, where c is an integer, crosses the parabola at two different points, and both points lie to the right of the y-axis. How many different values of c are possible?",
+  "choices": [
+   "5",
+   "8",
+   "17",
+   "49"
+  ],
+  "correct_answer": "17",
+  "explanation": "The parabola opens downward and its highest point is (3, 50). A horizontal line y = c crosses it at two different points exactly when c < 50; the two points are symmetric about the line x = 3, at x = 3 +/- sqrt((50 - c)/2). The right-hand point always has x > 0. The left-hand point has x > 0 when the line lies above the point where the parabola crosses the y-axis: at x = 0, y = -2(9) + 50 = 32, so c must satisfy 32 < c < 50. (At c = 32 the left-hand point is (0, 32), on the y-axis, not to its right.) The integers 33, 34, ..., 49 number 49 - 33 + 1 = 17.",
+  "solve": "let n=0; for(let c=-500;c<=500;c++){ const d=(50-c)/2; if(d<=0) continue; const r=Math.sqrt(d); const x1=3-r, x2=3+r; if(x1>1e-12 && x2>1e-12) n++; } return n;",
+  "distractor_solve": {
+   "5": "const f0=50-2*3; let n=0; for(let c=-500;c<=500;c++){ if(c>f0 && c<50) n++; } return n;",
+   "8": "let n=0; for(let c=-500;c<=500;c++){ const d=50-c; if(d<=0) continue; if(3-Math.sqrt(d)>1e-12) n++; } return n;",
+   "49": "let n=0; for(let c=-500;c<=500;c++){ if(c>0 && c<50) n++; } return n;"
+  },
+  "mechanism": [
+   "two crossings below the top value",
+   "both crossings right of the y-axis needs c above the y-intercept",
+   "count integers strictly between"
+  ],
+  "quantity_asked": "number of integer values of c for which the line y = c crosses the parabola at two points with positive x-coordinates",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The option is a count of values of c, not a value that can be substituted into the equation. To check any count a student must find both bounds (c < 50 and c > 32, the y-intercept), which is the whole solution."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Computes the y-intercept as 50 - 2(3) = 44, forgetting to square, so counts 45 to 49; the stem does not reveal whether that slip raises or lowers the count until the bound is found."
+   },
+   "8": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes the solutions as 3 +/- sqrt(50 - c), dropping the factor 2, so requires 50 - c < 9 and counts 42 to 49; dropping a factor inside the square root can widen or narrow the range, and the stem does not say which."
+   },
+   "49": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Requires the line to lie above the x-axis (c > 0) instead of requiring the crossing points to lie right of the y-axis, and counts c = 1 to 49; the stem gives no way to compare that range with the true one without finding the y-intercept."
+   }
+  },
+  "structure_check": "I slot. The parabola has a highest point, but the asked quantity is a count of levels between two bounds; errors in the lower bound move the count down (5, 8) and misplacing the condition moves it up (49), so the structure does not sign every error.",
+  "intermediate_check": "5: no - it is the count from a wrong bound; no printed relation turns 5 into 17. 8: no - a count from a wrong square-root condition; nothing printed converts it to 17. 49: no - the count of positive c below 50; reaching 17 needs the y-intercept 32, which is not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The answer is a nonnegative integer: all four survive. Two solutions requires c < 50, so the count is at most the number of integers below 50 that also exceed some lower bound; all four are at most 49. No symmetry or sign property separates the options.",
+  "interior_parity_check": "Middle values 8 and 17: both plain positive integers, one and two digits (within one); the key 17 is the less clean of the two, so it is not the cleaner one.",
+  "arith_class_check": "Options 5, 8, 17, 49: three odd and one even (8, a distractor); none of 5, 8, 17 is a multiple of the others' common factor; 49 is a square and 17 is prime - the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "how many integer&x\\^2",
+    "two positive solutions|both solutions are positive|two distinct positive",
+    "f(x) = c&solutions",
+    "how many&values of c&solutions|how many&values of k&solutions"
+   ],
+   "hits_read": 8,
+   "nearest": "e27e6c79 (x^2 - 6x + k = 0 with k a positive integer: count of k giving two distinct solutions, a discriminant bound only) - different: here the lower bound comes from where the parabola crosses the y-axis, because both crossing points must have positive x; SM15A-13 (count of k with no real solutions) likewise uses the discriminant alone."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Upper-interior key (try 3 ascending), so plug-back order does not reach it early, and a count cannot be substituted anyway. A test-wise student might see 49 as 'every positive c below 50' and strike it if they suspect a trap, but 5, 8 and 17 still need the lower bound to separate. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No: 5, 8 and 49 are counts from wrong bounds, and no printed number turns any of them into 17 (17 - 8 = 9, 17 - 5 = 12 and 49 - 17 = 32 are not printed)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-P03",
+  "domain": "Advanced Math",
+  "subskill": "Factored product equal to a nonzero constant: other solution",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = (x - 1)(x - k), where k is a constant, meets the horizontal line y = 40 at two points. One of these points has x-coordinate -4. What is the x-coordinate of the other point?",
+  "choices": [
+   "-11",
+   "4",
+   "7",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "The point with x-coordinate -4 is on both graphs, so (-4 - 1)(-4 - k) = 40: (-5)(-4 - k) = 40, -4 - k = -8 and k = 4. The intersection points satisfy (x - 1)(x - 4) = 40. Because the right side is 40, not 0, the answers are NOT 1 and 4 (those are where the graph meets the x-axis). Expand and move 40 to the left: x^2 - 5x + 4 - 40 = 0, so x^2 - 5x - 36 = 0 and (x - 9)(x + 4) = 0. The x-coordinates are -4 and 9, so the other point has x-coordinate 9.",
+  "solve": "const a=1,m=40,s=-4; const k=s-m/(s-a); const B=-(a+k), C=a*k-m; const d=Math.sqrt(B*B-4*C); const r1=(-B+d)/2, r2=(-B-d)/2; return Math.abs(r1-s)>1e-9?r1:r2;",
+  "distractor_solve": {
+   "4": "const a=1,m=40,s=-4; const k=s-m/(s-a); return k;",
+   "7": "const a=1,m=40,s=-4; const k=s-m/(s-a); return (k-a)-s;",
+   "-11": "const a=1,m=40,s=-4; const k=s-m/(s-a); return (a*k+m)/s;"
+  },
+  "mechanism": [
+   "substitute the known solution to find k",
+   "move the constant so one side is zero",
+   "factor (or use the sum of solutions) for the other solution"
+  ],
+  "quantity_asked": "x-coordinate of the second point where y = (x - 1)(x - k) meets y = 40, given that one point has x-coordinate -4",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=4; return Math.abs((v-1)*(v-k)-40)<1e-9 && Math.abs(v+4)>1e-9;",
+   "why": "Once k = 4 is found, an option can be checked by computing (v - 1)(v - 4) and comparing with 40. In ascending order the options are -11, 4, 7, 9, so the key is reached only at the fourth try; each of the first three fails the check (180, 0, 18)."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes the x-intercept of the graph from the factor x - k as the meeting point, as if the line were y = 0; the stem gives no way to compare k with the true x-coordinate before k is found."
+   },
+   "7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes the sum of the solutions as k - 1 = 3 instead of k + 1 = 5 (a sign slip on the 1 in x - 1), then subtracts the known solution: 3 - (-4) = 7; nothing in the stem shows which way this moves the answer."
+   },
+   "-11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses the product of the solutions as (1)(4) + 40 = 44 instead of 4 - 40 = -36, then divides by the known solution -4. The stem does not reveal how this changes the answer, because the known solution's sign enters the division."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 40+1;",
+   "direction": "above",
+   "why": "Applies the zero-product idea to a nonzero right side, setting x - 1 = 40, and gets x = 41, past the key."
+  },
+  "far_distractor": {
+   "option": "-11",
+   "natural_side": "above",
+   "why": "Adding 40 where it should be subtracted makes the product of the solutions too large (44 instead of -36), an error that ordinarily pushes a result up. Here the product is divided by the known solution, which is negative (-4), so the over-large product turns into a value BELOW the key. A student can see this only after relating the product to the known solution."
+  },
+  "structure_check": "No universal condition, extreme value or strictest bound appears. The stem fixes one solution and asks for the other; errors go both ways - treating each factor as equal to 40 gives 41 (above), while taking k as a solution, a sign slip in the sum, or adding 40 into the product give values below - so the structure does not sign every error.",
+  "intermediate_check": "-11: no - it is a wrong product divided by -4; no printed relation turns -11 into 9. 4: this is the solved intermediate k, but the key does not follow from k through one printed relation: from k = 4 a student still has to expand, move 40 and factor (or use the sum k + 1 and the known solution), and the item exists to test exactly the decision that the answer is not k. 7: no - a wrong sum minus the known solution; nothing printed converts 7 into 9.",
+  "cheap_bound_check": "No bound is readable from the stem before k is found. After k = 4, a student may note that (x - 1)(x - 4) = 40 > 0 needs x < 1 or x > 4, and since -4 is the solution on the left, the other is greater than 4; this strikes -11 and 4, but 7 sits on the key's side of that bound.",
+  "shape_check": "The answer is a real solution of a quadratic with a positive right side: all four are integers; the x < 1 or x > 4 condition keeps -11, 7 and 9 (only 4 fails). At least two options survive every property together.",
+  "interior_parity_check": "Middle values 4 and 7: both one-digit positive integers of the same form; the key is not interior.",
+  "arith_class_check": "Parity: -11, 7, 9 odd and 4 even, so the key is not alone; signs: three positive, one negative; 4 and 9 are squares, so the key is not alone in squareness either.",
+  "dup_search": {
+   "queries": [
+    "is a solution&other solution",
+    "\\)\\(x - k\\) =|\\)\\(x \\+ k\\) =|\\(x - k\\)\\(",
+    "zeros&passes through|x-intercepts&passes through|zeros&f\\(0\\)",
+    "the zeros of f are|has zeros at"
+   ],
+   "hits_read": 7,
+   "nearest": "727b2bd3 and 17bec277 (one solution of a quadratic set equal to 0 is given; find the other) - there the equation already has 0 on one side and the other root follows from the product c/a; here a factored parabola meets the line y = 40, so the decisive step is recognising that the zeros 1 and k are not the meeting points and rewriting with 0 on one side. SADV2-19 (vertex-form parabola meets a slanted line, other intersection) has a different unknown (the leading coefficient) and no factored form."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the natural zero-product misuse (x - 1 = 40) lands above at 41, while taking k as a solution, a sign slip in the sum, and adding 40 into the product land below; the stem shows none of this before k is found. Does the far_distractor really read as a far-side error? Yes - -11 comes from making the product too large, which a student would expect to push the answer up; it lands low only because the known solution is negative. Does any one bound from the stem strike all three? No - before k nothing is readable, and after k the x > 4 reading keeps 7 with the key. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? 4 is k, but the key needs the expansion, the move of 40 and the factoring after k, not one printed relation. (read) lines: 9 - 4 = 5 = 1 + 4 is the sum of the solutions k + 1, i.e. the method itself, and is reachable only after k is found. (read) PAIR: 9 + (-11) = -2 and 9 - 7 = 2 are 2 x the printed 1; neither gives a student a route from an option to the key without k, and both 7 and -11 come from named slips in the sum and product."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-P04",
+  "domain": "Advanced Math",
+  "subskill": "Value of a quadratic expression at a solution",
+  "difficulty": "medium",
+  "prompt": "Let t be a real number such that 2t^2 - 12t = 30. What does the expression (t - 11)(t + 5) - 3t(t - 6) equal?",
+  "choices": [
+   "-85",
+   "-40",
+   "-36",
+   "25"
+  ],
+  "correct_answer": "-85",
+  "explanation": "Expand the expression: (t - 11)(t + 5) = t^2 - 6t - 55 and -3t(t - 6) = -3t^2 + 18t. Their sum is -2t^2 + 12t - 55 = -(2t^2 - 12t) - 55. Because 2t^2 - 12t = 30, the value is -30 - 55 = -85. (The solutions t = 3 + sqrt(24) and t = 3 - sqrt(24) both give -85.)",
+  "solve": "const t=3+Math.sqrt(24); return Math.round(((t-11)*(t+5)-3*t*(t-6))*1e9)/1e9;",
+  "distractor_solve": {
+   "25": "const K=30/2; return -2*K + 55;",
+   "-40": "const t=3+Math.sqrt(24); return Math.round(((t-11)*(t+5))*1e9)/1e9;",
+   "-36": "const K=30/2; return -2*K + (-11+5);"
+  },
+  "mechanism": [
+   "expand both products",
+   "combine into a multiple of 2t^2 - 12t",
+   "substitute the given value"
+  ],
+  "quantity_asked": "value of (t - 11)(t + 5) - 3t(t - 6) for a solution t of 2t^2 - 12t = 30",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The option is the value of a different expression, not a value of t. The solutions of the equation are irrational (3 +/- sqrt(24)), so a student cannot test an option by putting it into the printed equation; checking any option means expanding and combining the expression, which is the whole solution."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes (-11)(5) as +55, so the value becomes -30 + 55; the effect of a sign slip on one term is not visible from the stem."
+   },
+   "-40": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluates (t - 11)(t + 5) = (t^2 - 6t) - 55 = 15 - 55 and stops, leaving out the -3t(t - 6) part; the stem does not show the sign or size of the omitted part until it is expanded and evaluated."
+   },
+   "-36": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writes the constant term of (t - 11)(t + 5) as -11 + 5 = -6 instead of (-11)(5) = -55; the stem gives no way to compare -6 with the true constant without expanding."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const K=30; return (K-55)-3*K;",
+   "direction": "below",
+   "why": "Uses t^2 - 6t = 30, forgetting to divide 2t^2 - 12t = 30 by 2, and gets (30 - 55) - 90 = -115, past the key on the low side."
+  },
+  "far_distractor": {
+   "option": "-40",
+   "natural_side": "below",
+   "why": "Stopping one step early, after evaluating only the first product, ordinarily leaves a value short of the full one. Here the part left out, -3t(t - 6) = -3(t^2 - 6t) = -45, is negative, so stopping early lands ABOVE the key. The sign of that part is known only after it is rewritten in terms of t^2 - 6t and evaluated."
+  },
+  "structure_check": "No universal condition, extreme value or bound is involved: the expression has one fixed value for either solution. Errors go both ways - forgetting to halve the equation gives -115 (below), while stopping early, mis-forming the constant, or a sign slip give values above - so the structure does not tell a student which way every error goes.",
+  "intermediate_check": "-40: no - it is the value of (t - 11)(t + 5); getting from -40 to -85 needs -3(t^2 - 6t) = -45, and neither t^2 - 6t = 15 nor 45 is printed. -36: no - a wrong constant; no printed relation turns -36 into -85. 25: no - a sign slip; no printed relation turns 25 into -85. The solved intermediate t^2 - 6t = 15 is not an option.",
+  "cheap_bound_check": "The cheapest one-sided reading is that the expression is negative (the first product is negative for t between -5 and 11, and the solutions are about -1.9 and 7.9); -40 and -36 sit on the key's side of that bound, so it strikes only 25.",
+  "shape_check": "The value is the same for both solutions and is an integer (the equation fixes 2t^2 - 12t): all four are integers. A negativity reading keeps -85, -40 and -36. No other property separates them, so at least three options survive every property together.",
+  "interior_parity_check": "Middle values -40 and -36: both negative two-digit integers of the same form; the key is not interior.",
+  "arith_class_check": "Parity: -85 and 25 odd, -40 and -36 even, so the key is not alone; signs: three negative, one positive; the key is not alone in sign, integrality, roundness or squareness (25 and -36 are signed squares, -85 and -40 are not).",
+  "dup_search": {
+   "queries": [
+    "satisfies&x\\^2&value of",
+    "x\\^2&what is the value of \\(x|x\\^2&value of the expression",
+    "number t&t\\^2|t satisfies|satisfies the equation&value of",
+    "what is the value of&\\)\\(.*\\) - "
+   ],
+   "hits_read": 9,
+   "nearest": "9c7a8433-def (a difference of two products equal to a constant for every x, solving for k) - there the expression is constant by design and the ask is the constant; here the expression is not constant, and its value comes from rewriting it as a multiple of 2t^2 - 12t and using the given equation. 17bec277 (one solution of 2x^2 - 5x + c = 0 given, find the other) shares wording only: there the ask is the other root, here the value of an expression."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: forgetting to halve lands below (-115), while stopping early, a wrong constant and a sign slip land above; nothing in the stem shows which. Does the far_distractor really read as a far-side error? Yes - -40 is an early stop, which a student would expect to fall short, but the omitted part is negative. Does any one bound from the stem strike all three? No - negativity keeps -40 and -36. Smallest key (try 1 ascending): could a student check an option against the stem in one routine step? No - the option is the value of a different expression and the solutions are irrational, so checking requires the expansion. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No: the intermediate t^2 - 6t = 15 is not an option, and none of -40, -36, 25 reaches -85 through a printed number. (read) lines: -85 + 25 = -60 = -2 x 30. A student would have to guess that the key and 25 are reflections about -30 among four options; 25 comes from flipping the sign of 55, and nothing in the stem points to -30 as a midpoint (the value -30 appears only after the expression is rewritten), so the pair does not hand over the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-P05",
+  "domain": "Advanced Math",
+  "subskill": "Rewriting a quadratic in standard form: coefficients",
+  "difficulty": "medium",
+  "prompt": "When (x + 5)^2 - 4(x + 5) - 26 is multiplied out and like terms are combined, the result is x^2 + bx + c. What is c - b?",
+  "choices": [
+   "-27",
+   "-17",
+   "-15",
+   "13"
+  ],
+  "correct_answer": "-27",
+  "explanation": "Expand each part: (x + 5)^2 = x^2 + 10x + 25 and -4(x + 5) = -4x - 20. Combining, x^2 + 10x + 25 - 4x - 20 - 26 = x^2 + 6x - 21, so b = 6 and c = -21. Therefore c - b = -21 - 6 = -27.",
+  "solve": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h-p*h-q; return c-b;",
+  "distractor_solve": {
+   "13": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h+p*h-q; return c-b;",
+   "-17": "const h=5,p=4,q=26; const b=-p; const c=h*h-p*h-q; return c-b;",
+   "-15": "const h=5,p=4,q=26; const b=2*h-p; const c=h*h-p*h-q; return c+b;"
+  },
+  "mechanism": [
+   "expand the square and the product",
+   "collect like terms into standard form",
+   "combine the two coefficients"
+  ],
+  "quantity_asked": "c - b for the standard form x^2 + bx + c of the expression",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The option is a combination of two coefficients, not a value of x. There is no printed equation to put it into; checking any option means expanding the expression to find b and c, which is the whole solution."
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes -4 times 5 as +20, so c = 25 + 20 - 26 = 19 and c - b = 13; the effect of one sign slip on the constant is not visible from the stem."
+   },
+   "-17": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Expands (x + 5)^2 as x^2 + 25, leaving out the 10x, so b = -4 and c - b = -21 + 4; whether this moves c - b up or down depends on how b enters, which the stem does not show."
+   },
+   "-15": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Computes c + b instead of c - b; the stem does not reveal the sign of b, so the direction of this swap is not readable before expanding."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const h=5,q=26; const b=2*h; const c=h*h-4*h-q; return c-b;",
+   "direction": "below",
+   "why": "Leaves out the -4x from -4(x + 5) (distributing only to the 5), so b = 10 and c - b = -21 - 10 = -31, past the key on the low side."
+  },
+  "far_distractor": {
+   "option": "-17",
+   "natural_side": "below",
+   "why": "Dropping a term ordinarily leaves a result too small. Here the dropped term is the 10x in (x + 5)^2, which makes b too small, and b is SUBTRACTED in c - b, so the slip lands above the key. Dropping the -4x instead (the counter error) lands below, so a student cannot tell from the stem which way a dropped term moves the answer."
+  },
+  "structure_check": "No universal condition, extreme value or bound is involved: the ask is a combination of two coefficients of an identity. Errors go both ways - dropping the -4x gives -31 (below), dropping the 10x, a sign slip, or adding instead of subtracting give values above - so the structure does not sign every error.",
+  "intermediate_check": "-17: no - it uses a wrong b; to reach -27 a student needs the omitted 10x, i.e., the expansion itself, not a printed relation. -15: no - it is c + b; getting -27 needs b = 6, which is not printed. 13: no - a sign slip in the constant; no printed relation turns 13 into -27. Neither b = 6 nor c = -21 is an option.",
+  "cheap_bound_check": "There is no one-sided bound in the stem on c - b: the expression is an identity with no condition. A student might guess that c is negative from the -26, which keeps -27, -17 and -15 together on the key's side, so no bound strikes all three distractors.",
+  "shape_check": "c - b is an integer (all printed numbers are integers): all four survive. No sign, cap or symmetry is handed over; a 'c is negative so c - b is likely negative' reading keeps -27, -17 and -15, so at least three survive every property together.",
+  "interior_parity_check": "Middle values -17 and -15: both negative two-digit integers of the same form; the key is not interior.",
+  "arith_class_check": "All four options are odd integers; three are negative and one positive; none is round or a perfect square - the key is not alone in parity, sign, integrality, roundness or squareness.",
+  "dup_search": {
+   "queries": [
+    "\\)\\^2 - [0-9]+\\(x|\\)\\^2 \\+ [0-9]+\\(x",
+    "\\)\\^2 - k|\\)\\^2 \\+ k",
+    "can be written in the form&x\\^2",
+    "product of the solutions|product of all solutions"
+   ],
+   "hits_read": 11,
+   "nearest": "1fe58236-532 ((x - 3)^2 + 14(x - 3) - 15 = 0, product of the solutions) - same kind of shifted expression, but that item is an equation solved for x (by substitution or Vieta) and asks a product of roots; here there is no equation, and the ask is c - b, which needs both coefficients of the expanded form (the linear coefficient plays no part in a product of roots). 69ba9e4c (2x^2 + 8x + 3 written as 2(x + h)^2 + k, h + k) runs the conversion the other way, by completing the square. e355d3e7 (3x^2 - 12x + 5 written as a(x - h)^2 + k, h + k) shares wording only: it completes the square, the reverse direction, and asks h + k."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: dropping the -4x lands below (-31) while dropping the 10x lands above (-17), and sign slips can go either way; nothing in the stem shows which errors are on the options. Does the far_distractor really read as a far-side error? Yes - -17 comes from dropping a term, which a student would expect to fall short, but b is subtracted. Does any one bound from the stem strike all three? No - there is no condition, and a negativity guess keeps -17 and -15 with the key. Smallest key (try 1 ascending): could a student check an option against the stem in one routine step? No - an option is c - b, which cannot be substituted anywhere; checking it requires the full expansion. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No: b = 6 and c = -21 are not options, and none of -17, -15, 13 reaches -27 through a printed number. (read) PAIR: -17 and the key differ by 10 = 2 x 5, which is the omitted 10x itself; a student would have to know that the omitted term is 10x and that it enters with a minus sign to use this, which is the expansion the item asks for, and -15 and 13 are not related to the key by any printed number."
+  },
+  "bounds": []
+ }
+]

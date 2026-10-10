@@ -1,0 +1,418 @@
+[
+ {
+  "id": "SM30F-R01",
+  "domain": "Advanced Math",
+  "subskill": "composition with a radical inner function",
+  "difficulty": "hard",
+  "prompt": "Let f(x) = x^2 + x and g(x) = √x - 3. If k is a number such that f(g(k)) = 20, what is k?",
+  "choices": [
+   "4",
+   "19",
+   "25",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Let u = g(k). Then f(u) = u^2 + u = 20, so u^2 + u - 20 = 0 and (u + 5)(u - 4) = 0, giving u = 4 or u = -5. Because √k is never negative, g(k) = √k - 3 is never less than -3, so g(k) = -5 is impossible and g(k) = 4. Then √k - 3 = 4, so √k = 7 and k = 49. Check: g(49) = 7 - 3 = 4 and f(4) = 16 + 4 = 20.",
+  "solve": "const r = [(-1+Math.sqrt(81))/2, (-1-Math.sqrt(81))/2]; const u = r.find(t => t >= -3); return (u+3)**2;",
+  "distractor_solve": {
+   "4": "const u = (-1-Math.sqrt(81))/2; return (u+3)**2;",
+   "19": "const u = (-1+Math.sqrt(81))/2; return u**2 + 3;",
+   "25": "const u = (-1+Math.sqrt(81))/2; return u**2 + 3**2;"
+  },
+  "mechanism": [
+   "set u = g(k) and solve u^2 + u = 20",
+   "reject u = -5 because g(k) >= -3",
+   "undo the radical: sqrt(k) = 7"
+  ],
+  "quantity_asked": "the input k with f(g(k)) = 20",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const g = Math.sqrt(v) - 3; return Math.abs(g*g + g - 20) < 1e-9;",
+   "why": "A student can substitute an option for k, compute g(k) and then f of it. In ascending order 4, 19 and 25 fail (f(g(4)) = 0, f(g(25)) = 6, and 19 gives an irrational g) and 49 is reached only at the fourth try."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Keeps the solution g(k) = -5, ignoring that g(k) cannot be below -3, then squares sqrt(k) = -2. The stem does not show which root of u^2 + u = 20 gives the smaller k until both are pushed through sqrt(k) = u + 3."
+   },
+   "19": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Squares sqrt(k) - 3 = 4 term by term (k - 3 = 16), i.e. treats g as sqrt(x - 3); whether this lands above or below the key is not readable without carrying it out."
+   },
+   "25": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes (4 + 3)^2 as 4^2 + 3^2; the stem gives no hint of the side of this slip relative to the correct square."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (20+3)**2;",
+   "direction": "above",
+   "why": "Skips f and sets g(k) = 20 directly, so sqrt(k) = 23 and k = 529, far above the key; a natural misreading of f(g(k)) = 20 as g(k) = 20."
+  },
+  "far_distractor": {
+   "option": "4",
+   "natural_side": "above",
+   "why": "Ignoring a constraint (here the floor g(k) >= -3) ordinarily lets a value run past the correct one. Here the extra solution u = -5 is pushed through sqrt(k) = u + 3 = -2 and then squared, and the square of -2 is far smaller than the square of 7, so the ignored constraint lands below the key. A student cannot sign it without carrying -5 through both steps."
+  },
+  "structure_check": "No universal condition (no 'for every / all'), no extremum, no highest or lowest point. The only structural fact is that g(k) >= -3, which decides between the two roots of u^2 + u = 20; it does not sign the other errors (term-by-term squaring and (a + b)^2 = a^2 + b^2 are algebra slips whose side is not fixed by any structure in the stem).",
+  "intermediate_check": "4: no - 49 does not follow from 4 through any one printed relation (4 = (-2)^2 comes from the rejected root). 19: no - 19 = 4^2 + 3, a wrong squaring; reaching 49 from it needs undoing the slip, not a printed relation. 25: no - 25 = 4^2 + 3^2; 49 does not follow from 25 through one printed rate or relation.",
+  "cheap_bound_check": "Cheapest bound from the stem: k >= 0 (the square root needs a nonnegative input). All three distractors (4, 19, 25) sit on the key's side of it, so it strikes none. No upper bound on k is readable without solving.",
+  "shape_check": "k must be nonnegative: all four survive. No integer requirement (an input of a radical can be any nonnegative number): all survive. Perfect squares (a student might expect sqrt(k) to be an integer): 4, 25 and 49 survive, three together.",
+  "interior_parity_check": "Middle values 19 and 25: both two-digit integers, same display form and complexity.",
+  "arith_class_check": "Squares: 4, 25, 49 (key not alone). Odd: 19, 25, 49 (key not alone). Parity, sign, integrality all shared.",
+  "dup_search": {
+   "queries": [
+    "f\\(g\\(&(√|sqrt)",
+    "(√x|sqrt\\(x\\)) ?- ?[0-9]",
+    "f\\(g\\([a-z]\\)\\) ?= ?[0-9]",
+    "f\\(f\\("
+   ],
+   "hits_read": 16,
+   "nearest": "b905500f-5cf and 0355d48f-532: f quadratic, g LINEAR, f(g(a)) = c solved for a, both roots of the outer equation usable (one picked by a sign condition stated in the stem). Here the inner function is a shifted radical and the outer root is rejected by the RANGE of g, which the stem never states; the decision is the item."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: a student might suspect the key is a perfect square, but three options are perfect squares. Could the direction of the errors be read from the stem? No: the rejected root, the term-by-term squaring and the a^2 + b^2 slip all need to be carried out to see their side, and the natural counter error (skipping f, k = 529) lands far above. The far distractor 4 reads as 'kept the extra solution', which a student cannot place below 49 without squaring sqrt(k) = -2. No single bound strikes two distractors: the only cheap bound, k >= 0, strikes none. Plug-back: substitutable, but the key is the largest option and is reached at the fourth ascending try. No distractor is a solved intermediate one printed relation away. (Read lines, if any, answered here.)"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-R02",
+  "domain": "Advanced Math",
+  "subskill": "inverse variation: unknown starting volume",
+  "difficulty": "medium",
+  "prompt": "The pressure of a gas sample kept at a constant temperature varies inversely with the volume of the sample. When the volume of the sample is V liters, its pressure is 57 kilopascals. When the volume is decreased by 1 liter, the pressure becomes 76 kilopascals. What is the pressure, in kilopascals, of the sample when its volume is 5 liters?",
+  "choices": [
+   "38",
+   "45.6",
+   "60.8",
+   "71.25"
+  ],
+  "correct_answer": "45.6",
+  "explanation": "Because pressure varies inversely with volume, the product of pressure and volume is the same constant at every volume. So 57V = 76(V - 1). Then 57V = 76V - 76, so 19V = 76 and V = 4. The constant is 57(4) = 228, which also matches 76(3) = 228. At a volume of 5 liters, the pressure is 228/5 = 45.6 kilopascals.",
+  "solve": "const V = 76/(76-57); const k = 57*V; return Math.round(k/5*100)/100;",
+  "distractor_solve": {
+   "38": "const V = 76/(76-57); const perLiter = 76-57; return 57 - perLiter*(5 - V);",
+   "60.8": "const V = 76/(76-57); const k = 76*V; return Math.round(k/5*100)/100;",
+   "71.25": "const V = 76/(76-57); return Math.round(57*5/V*100)/100;"
+  },
+  "mechanism": [
+   "product P*V is constant",
+   "solve 57V = 76(V - 1) for V",
+   "constant 228, divide by the new volume"
+  ],
+  "quantity_asked": "pressure of the sample at a volume of 5 liters",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a pressure at 5 liters; to test it a student needs the constant P*V, which needs V, which is the whole solution. No printed equation can be checked by inserting a pressure of the sample at 5 liters."
+  },
+  "distractor_meta": {
+   "38": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the change as linear (19 kPa per liter) and extends the line 1 liter past V = 4; whether a straight-line extension lands above or below the inverse curve is not visible without computing both."
+   },
+   "60.8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Pairs the 76 kPa reading with V = 4 instead of V - 1 = 3, giving a constant of 304; which pairing is larger is not readable until V is found."
+   },
+   "71.25": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses direct variation (P/V constant, 57/4) at 5 liters; its side depends on comparing 5 with V, which needs the solution."
+   }
+  },
+  "structure_check": "I slot. No universal condition or extremum; the relation is a plain inverse variation with one unknown starting volume.",
+  "intermediate_check": "38: no - a linear extension; 45.6 does not follow from 38 through any one printed rate or relation. 60.8: no - 45.6 equals 60.8 times 57/76, a ratio of two printed readings, not one printed relation, and a student holding 60.8 cannot confirm 45.6 without solving for V. 71.25: no - a direct-variation value; 45.6 follows from it only through V = 4, which is not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Pressure positive: all four survive. Decimals are legal pressures: all survive. Monotone (more volume, less pressure) needs 5 compared with V, unknown until solved; once V = 4 is known the pressure at 5 L must be below 57: 38 and 45.6 survive (two), and nothing in the stem gives V without solving.",
+  "interior_parity_check": "Middle values 45.6 and 60.8: both one-decimal numbers of three significant digits, same display form and complexity; the key is not the cleaner one.",
+  "arith_class_check": "38 is the only integer and it is a distractor; 45.6 and 60.8 share the one-decimal form; 71.25 has two decimals. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "inversely&(volume|pressure)",
+    "inversely&(increased|decreased|reduced) by",
+    "square of the distance|inversely (proportional|with) the square",
+    "varies (directly|jointly)&inversely",
+    "f⁻¹|f\\^\\(-1\\)|f\\^-1|inverse"
+   ],
+   "hits_read": 9,
+   "nearest": "c28b320d-836 (ISEE easy): inverse-square with both distances printed, one step. d9bce526-476: joint variation with every value printed. This item's starting volume is unknown and must be solved from two readings before the constant exists. Also read: 'P = k/r; raising r from 7 to 10 lowers P by 18' (live) - there both volumes are printed and the change in P gives k; here the starting volume is the unknown and both pressures are printed."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might scale 76 or 57 by a ratio of printed numbers: none of the options follows without V. Covering the work, nothing in the stem orders the options: the linear extension (38) lies below, the mispaired constant (60.8) and the direct-variation value (71.25) above. (read) PAIR ratio 45.6 to 60.8 = 57/76: a student would need to suspect that 60.8 is the mispaired constant and which way to scale it, which already requires solving for V. (read) PLUG: key at ascending try 2, but an option is a pressure at 5 liters; checking it needs the constant, which needs V, the whole solution. No distractor is a solved intermediate one printed relation away."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-R03",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem on a combination of polynomials",
+  "difficulty": "medium",
+  "prompt": "Dividing a polynomial p(x) by x - 3 leaves a remainder of 7. A second polynomial is formed as q(x) = (x - 5)p(x) - 8x. Dividing q(x) by x - 3 leaves what remainder?",
+  "choices": [
+   "-38",
+   "-22",
+   "-17",
+   "-10"
+  ],
+  "correct_answer": "-38",
+  "explanation": "By the remainder theorem, the remainder when a polynomial is divided by x - 3 equals its value at x = 3. So p(3) = 7, and the remainder for q is q(3) = (3 - 5)p(3) - 8(3) = (-2)(7) - 24 = -14 - 24 = -38.",
+  "solve": "const p3 = 7; return (3-5)*p3 - 8*3;",
+  "distractor_solve": {
+   "-10": "const p3 = 7; return (5-3)*p3 - 8*3;",
+   "-17": "const p3 = 7; return p3 - 8*3;",
+   "-22": "const p3 = 7; return (3-5)*p3 - 8;"
+  },
+  "mechanism": [
+   "remainder on division by x - 3 equals the value at 3",
+   "p(3) = 7",
+   "evaluate q(3) = (3 - 5)p(3) - 8(3)"
+  ],
+  "quantity_asked": "remainder when q(x) is divided by x - 3",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no printed condition an option can be put into: the stem gives p only through one remainder, and an option is a remainder of q. To test an option a student must compute q(3) itself, which is the whole solution."
+  },
+  "distractor_meta": {
+   "-10": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluates x - 5 at x = 3 as 5 - 3 = 2. The stem does not show which sign of the factor the student will use; the side follows only after the product is formed."
+   },
+   "-17": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the remainder of p (7) as the remainder of (x - 5)p(x), forgetting the factor's value; whether 7 is above or below (3 - 5)(7) is not printed."
+   },
+   "-22": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Drops the x in 8x and subtracts 8 instead of 24; a dropped factor ordinarily shrinks a quantity, and the side here is visible only after the subtraction is set up."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (5-5)*7 - 8*5;",
+   "direction": "below",
+   "why": "Evaluates q at x = 5 (the root of the visible factor) instead of x = 3, giving 0 - 40 = -40, below the key; a natural confusion of which divisor applies."
+  },
+  "far_distractor": {
+   "option": "-22",
+   "natural_side": "below",
+   "why": "Dropping a factor (8x read as 8) ordinarily makes a computed value smaller. Here the dropped factor sits inside a SUBTRACTED term, so shrinking it raises the result from -38 to -22. The student who makes this slip does not see the -8x term as the thing being reduced, and the stem gives no number for 8x at x = 3."
+  },
+  "structure_check": "No universal condition, no extremum, no strictest bound: the stem gives one remainder and one defined polynomial. The negative factor (x - 5) at x = 3 is part of the computation, not a structure that tells a student the side of every error: the counter error (evaluating at x = 5) falls below the key.",
+  "intermediate_check": "-10: no - it is the sign-slipped total; -38 does not follow from -10 through one printed relation. -17: no - it uses 7 in place of (3 - 5)(7); recovering -38 from it needs the factor, not a printed rate. -22: no - -38 = -22 - 16, and 16 is not printed (it is 8 times 2); a student holding -22 cannot confirm -38 through any one printed relation. No distractor is the value of a correct partial step: the correct partial values (-14 and -24) are not options.",
+  "cheap_bound_check": "No one-sided bound is readable without forming (3 - 5)(7) and 8(3). The only property visible at a glance is that the answer is an integer, which all four options satisfy; all three distractors sit on the key's side of it.",
+  "shape_check": "Integer: all four survive. Sign not stated (remainders can be any integer): all four negative, all survive. Two survive every property together (four do).",
+  "interior_parity_check": "Middle values -22 and -17: both negative two-digit integers, same display form and complexity.",
+  "arith_class_check": "Even: -38, -22, -10 (key not alone); odd: -17. All negative. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "remainder&divided",
+    "remainder&\\(x ?[-+] ?[0-9]\\) ?(·|\\*)? ?p\\(x\\)|remainder&p\\(x\\) ?[-+] ?[0-9]*x",
+    "remainder&q\\(x\\) ?=",
+    "remainder is [0-9-]+&what is the remainder"
+   ],
+   "hits_read": 82,
+   "nearest": "90b7cb16-fea / 6192993b-549: a KNOWN polynomial with one unknown coefficient, find it from one remainder, give another remainder of the SAME polynomial. 8465377d-437 (SSAT): integer remainder of 3n + 2. Here p is never known; the remainder of a new polynomial built from p is found by evaluating the combination at the root."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student strike all three by direction? The natural slips all reduce something negative, but the stem does not display that: (x - 5) at 3 and 8x at 3 have to be evaluated first, and the counter error (evaluating at 5) falls below. The far distractor -22 reads as 'forgot the x', not as a far-side error, and no single bound strikes two distractors (none is readable). Plug-back: the key is the smallest option (ascending try 1) but there is no printed condition to substitute a remainder of q into, so no routine one-step check exists. No distractor is a solved intermediate one printed relation away; the correct intermediates -14 and -24 are not options. (read) PAIR: -38 and -22 differ by 16 = 2 x 8; the 2 is not printed (it is |3 - 5|), so a student holding -22 has no printed reason to subtract 16."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-R04",
+  "domain": "Advanced Math",
+  "subskill": "inverse of a restricted nonlinear function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x - 8)^2 - 3. The function g undoes f only on the right half of its graph: for each number y with y ≥ -3, g(y) is the number x with x ≥ 8 and f(x) = y. What is the value of g(f(6))?",
+  "choices": [
+   "6",
+   "9",
+   "10",
+   "22"
+  ],
+  "correct_answer": "10",
+  "explanation": "First, f(6) = (6 - 8)^2 - 3 = 4 - 3 = 1. Next, g(1) is the number x with x ≥ 8 and (x - 8)^2 - 3 = 1. Then (x - 8)^2 = 4, so x - 8 = 2 or x - 8 = -2, giving x = 10 or x = 6. Only x = 10 satisfies x ≥ 8, so g(f(6)) = 10. (The input 6 is not on the part of the graph that g undoes, so g(f(6)) is not 6.)",
+  "solve": "const f = x => (x-8)**2 - 3; const y = f(6); return 8 + Math.sqrt(y + 3);",
+  "distractor_solve": {
+   "6": "const f = x => (x-8)**2 - 3; const y = f(6); return 8 - Math.sqrt(y + 3);",
+   "9": "const f = x => (x-8)**2 - 3; const y = f(6); return 8 + Math.sqrt(y);",
+   "22": "const y = (6+8)**2 - 3; return 8 + Math.sqrt(y + 3);"
+  },
+  "mechanism": [
+   "evaluate f(6) = 1",
+   "solve (x - 8)^2 - 3 = 1",
+   "keep the solution with x >= 8"
+  ],
+  "quantity_asked": "the value of g(f(6))",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const f = x => (x-8)**2 - 3; return v >= 8 && Math.abs(f(v) - f(6)) < 1e-9;",
+   "why": "A student can test an option v by checking v >= 8 and f(v) = f(6) = 1. In ascending order 6 fails (it is below 8), 9 fails (f(9) = -2), and 10 is confirmed only at the third try; 22 is never reached."
+  },
+  "distractor_meta": {
+   "6": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assumes g(f(x)) = x for every x, ignoring that g returns only inputs of at least 8; the stem states the restriction but does not say which side of 6 the true answer lies until f(6) is inverted."
+   },
+   "9": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Drops the -3 when undoing f (uses g(y) = 8 + sqrt(y)); the side of this slip depends on comparing sqrt(1) with sqrt(4), which needs f(6) first."
+   },
+   "22": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluates f(6) as (6 + 8)^2 - 3 = 193 and then inverts correctly; the stem gives no sign of how large a sign-slipped f(6) will be."
+   }
+  },
+  "structure_check": "I slot. The restriction x >= 8 is a domain choice for g, not an extremum or universal condition in the stem.",
+  "intermediate_check": "6: no - 6 is the printed input; 10 follows from it only by computing f(6) and inverting, not through one printed relation (and no rate or price is printed). 9: no - a wrong inverse value; reaching 10 from 9 needs undoing the dropped -3, not a printed relation. 22: no - a value from a sign-slipped f(6); 10 does not follow from 22 through any printed relation. The true intermediate f(6) = 1 is not an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "g returns values of at least 8: 9, 10 and 22 survive, 6 does not (6 is the cancellation error, struck only by a student who already understands the restriction, which is the point of the item). Integer: all survive. Three options survive every property together.",
+  "interior_parity_check": "Middle values 9 and 10: both one-digit or two-digit integers of complexity 1; the key is not the cleaner one (tie).",
+  "arith_class_check": "Even: 6, 10, 22 (key not alone); odd: 9. All positive integers. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "f⁻¹|f\\^\\(-1\\)|f\\^-1|inverse",
+    "f\\(f\\(",
+    "f\\(g\\([a-z]\\)\\) ?= ?[0-9]",
+    "piecewise|if x <|for x <|x ≥|x >="
+   ],
+   "hits_read": 60,
+   "nearest": "788e7bd0-c92: f(x) = 2(x - 3)^2 + 5 for x >= 3, find f^-1(37) - one inversion of a restricted quadratic at a printed output. Here f is defined for all x, the input 6 lies OUTSIDE the half that g undoes, and the item is the composition g(f(6)), whose answer is the reflected input 10, not 6."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might pick 6 on the belief that g(f(x)) = x; that is the tested misconception. Could a student check an option in one routine step? Yes (v >= 8 and f(v) = 1), but the key is the upper-middle value, reached at the third ascending try. No distractor is a solved intermediate one printed relation away; the true intermediate f(6) = 1 is not an option. (read) PAIR 10 + 6 = 16 = 2 x 8: this is the reflection of the input 6 across x = 8, which IS the mathematics of the item (a student who uses it has understood that g returns the mirror input); the option 6 does not hand it over, since it is the printed input whether or not it is an option. (read) PAIR 10 - 6 = 4 = 2 x 2 and DPAIR 4 = 3 + 1: 4 is the distance 2(8 - 6); no printed number 4 or relation 'add 4' exists in the stem. (read) PAIR 22 - 10 = 12 = 2 x 6: 12 is not printed and a student holding 22 has no reason to subtract 12."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-R05",
+  "domain": "Advanced Math",
+  "subskill": "nonlinear system: hyperbola meets a line",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = 16/x and the line y = 10 - x intersect at two points, A and B. Point O is the origin. What is the area of triangle OAB?",
+  "choices": [
+   "30",
+   "32",
+   "36",
+   "50"
+  ],
+  "correct_answer": "30",
+  "explanation": "At an intersection point, 16/x = 10 - x, so 16 = 10x - x^2, which gives x^2 - 10x + 16 = 0 and (x - 2)(x - 8) = 0. So x = 2 or x = 8, and the points are A(2, 8) and B(8, 2). With O at the origin, the area of triangle OAB is (1/2)|x_A y_B - x_B y_A| = (1/2)|2(2) - 8(8)| = (1/2)|4 - 64| = 30. (Equivalently, the triangle cut from the first quadrant by the line has area (1/2)(10)(10) = 50, and removing the two outer triangles, each of area (1/2)(10)(2) = 10, leaves 30.)",
+  "solve": "const r=[(10-Math.sqrt(100-64))/2,(10+Math.sqrt(100-64))/2]; const A=[r[0],16/r[0]], B=[r[1],16/r[1]]; return Math.abs(A[0]*B[1]-B[0]*A[1])/2;",
+  "distractor_solve": {
+   "32": "const r=[(10-Math.sqrt(100-64))/2,(10+Math.sqrt(100-64))/2]; const A=[r[0],16/r[0]], B=[r[1],16/r[1]]; return (B[0]*A[1])/2;",
+   "36": "const r=[(10-Math.sqrt(100-64))/2,(10+Math.sqrt(100-64))/2]; const AB2=(r[1]-r[0])**2*2; return AB2/2;",
+   "50": "return 10*10/2;"
+  },
+  "mechanism": [
+   "set 16/x = 10 - x and solve x^2 - 10x + 16 = 0",
+   "points (2, 8) and (8, 2)",
+   "area of triangle with a vertex at the origin"
+  ],
+  "quantity_asked": "area of triangle OAB",
+  "ask_type": "derived-quantity",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an area; no printed equation or condition accepts an area, so the only way to test 30 is to find A and B and compute the area, which is the whole solution."
+  },
+  "distractor_meta": {
+   "32": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "In the area formula (1/2)|x_A y_B - x_B y_A| the student keeps only the product 8 x 8 and drops the 2 x 2 term; the stem gives no number for either product until A and B are found."
+   },
+   "36": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes the area as (1/2)(AB)(AB), treating AB as both base and height; AB is not printed, so the side of this value is not readable from the stem."
+   },
+   "50": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds the area of the triangle the line cuts from the first quadrant, (1/2)(10)(10), instead of triangle OAB, including the two outer triangles."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const r=[2,8]; return (r[1]-r[0])**2/2;",
+   "direction": "below",
+   "why": "Treats OAB as a right triangle with legs equal to the horizontal and vertical gaps between A and B, (1/2)(6)(6) = 18, below the key."
+  },
+  "far_distractor": {
+   "option": "32",
+   "natural_side": "below",
+   "why": "Dropping a term from a computation ordinarily makes the result smaller. Here the dropped product 2 x 2 is the SUBTRACTED term inside |x_A y_B - x_B y_A|, so leaving it out makes the area larger (64/2 instead of 60/2). Nothing in the stem shows the student that the term he loses is subtracted until the points are found."
+  },
+  "structure_check": "No universal condition, no extremum, no highest or lowest point, no strictest bound in the stem: two graphs, their two crossing points and a triangle. The symmetry of the points about y = x is a fact about the answer, not a structure that signs the errors; the counter error (right-triangle legs, 18) lands below the key.",
+  "intermediate_check": "32: no - 30 does not follow from 32 through any printed relation (the gap 2 is the product 2 x 2 dropped, not a printed number). 36: no - (AB^2)/2; 30 does not follow from it by one printed relation. 50: no - the first-quadrant triangle; 30 = 50 - 20, and 20 (two outer triangles of area 10) is not printed, so a student holding 50 cannot reach or confirm 30 through one printed relation. The correct intermediates (x = 2, x = 8, AB = 6 sqrt 2, the gap 6) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: triangle OAB lies inside the triangle the line y = 10 - x cuts from the first quadrant, so its area is less than (1/2)(10)(10) = 50. It strikes only 50; the distractors 32 and 36 sit on the key's side of it. No lower bound is readable without finding A and B.",
+  "shape_check": "Area positive: all four survive. Area below 50 (inside the first-quadrant triangle): 30, 32, 36 survive. Integer not required. At least two survive every property together (three do).",
+  "interior_parity_check": "Middle values 32 and 36: both two-digit integers of equal complexity.",
+  "arith_class_check": "Even: all four. Multiples of 2 all; multiples of 5: 30 and 50 (key not alone); squares: 36 only (a distractor). No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "intersect&area",
+    "triangle&origin&(graph|intersect)",
+    "/x&intersect",
+    "y ?= ?-?[0-9]+/x|y ?= ?k/x|xy ?= ?[0-9]"
+   ],
+   "hits_read": 12,
+   "nearest": "da512959-88e (ISEE): area of a triangle formed by two LINES and the x-axis. 04cf8a23-0f4 / 79d14e77-463: x + y and xy given, find x^2 + y^2 (no graphs, no area). Here a hyperbola and a line cross, and the area of the triangle the crossing points form with the origin is asked."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student strike all three by direction? Only 50 falls to a cheap bound (the region under the line); 32 and 36 survive it, and the counter error (18) shows that natural slips also land below. The far distractor 32 reads as 'used 8 x 8', not as a far-side error, because the student does not see that the dropped 2 x 2 term was subtracted. Plug-back: the key is the smallest option (ascending try 1), but an area cannot be substituted into any printed condition; testing it needs A and B. No distractor is a solved intermediate one printed relation away. (read) PAIR 50 - 30 = 20 = 2 x 10: 20 is the combined area of the two outer triangles, which needs the points A and B to find; a student holding 50 has no printed reason to subtract twice the 10, and doing so correctly is the solution."
+  },
+  "bounds": []
+ }
+]

@@ -1,0 +1,542 @@
+[
+ {
+  "id": "SM30F-U01",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Residuals from a line of best fit: spread of residuals",
+  "difficulty": "medium",
+  "prompt": "A juice stand recorded the daily high temperature x, in degrees Celsius, and the number of liters of lemonade sold y on five days. The table shows the data. A line of best fit for the data is y = 1.5x + 21. For each day, the residual is the actual number of liters sold minus the number of liters predicted by the line of best fit. What is the difference between the greatest residual and the least residual for the five days?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Day 1",
+    "Day 2",
+    "Day 3",
+    "Day 4",
+    "Day 5"
+   ],
+   "colLabels": [
+    "High temperature, x (degrees Celsius)",
+    "Lemonade sold, y (liters)"
+   ],
+   "cells": [
+    [
+     "4",
+     "21.5"
+    ],
+    [
+     "8",
+     "28.5"
+    ],
+    [
+     "12",
+     "43"
+    ],
+    [
+     "16",
+     "42.5"
+    ],
+    [
+     "20",
+     "53"
+    ]
+   ],
+   "caption": "Daily high temperature and lemonade sold"
+  },
+  "choices": [
+   "3.5",
+   "7.5",
+   "9.5",
+   "31.5"
+  ],
+  "correct_answer": "9.5",
+  "explanation": "The line predicts 1.5(4) + 21 = 27, 1.5(8) + 21 = 33, 1.5(12) + 21 = 39, 1.5(16) + 21 = 45 and 1.5(20) + 21 = 51 liters. The residuals (actual minus predicted) are 21.5 - 27 = -5.5, 28.5 - 33 = -4.5, 43 - 39 = 4, 42.5 - 45 = -2.5 and 53 - 51 = 2. The greatest residual is 4 and the least is -5.5, so the difference is 4 - (-5.5) = 9.5.",
+  "solve": "const X=[4,8,12,16,20],Y=[21.5,28.5,43,42.5,53];const r=X.map((x,i)=>Y[i]-(1.5*x+21));return Math.max(...r)-Math.min(...r);",
+  "distractor_solve": {
+   "3.5": "const X=[4,8,12,16,20],Y=[21.5,28.5,43,42.5,53];const r=X.map((x,i)=>Math.abs(Y[i]-(1.5*x+21)));return Math.max(...r)-Math.min(...r);",
+   "7.5": "const X=[4,8,12,16,20],Y=[21.5,28.5,43,42.5,53];const r=X.map((x,i)=>Y[i]-(1.5*x+21));return r[Y.indexOf(Math.max(...Y))]-r[Y.indexOf(Math.min(...Y))];",
+   "31.5": "const Y=[21.5,28.5,43,42.5,53];return Math.max(...Y)-Math.min(...Y);"
+  },
+  "mechanism": [
+   "evaluate line at each x",
+   "residual = actual - predicted",
+   "greatest minus least residual"
+  ],
+  "quantity_asked": "difference between the greatest and least residual of five data points",
+  "ask_type": "derived-statistic",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a spread of five residuals; there is no printed condition to substitute it into. Checking any option requires computing all five residuals, which is the whole solution."
+  },
+  "distractor_meta": {
+   "3.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking absolute values of the residuals (size of the miss) before subtracting the least from the greatest; the stem does not say which way that moves the spread without computing it."
+   },
+   "7.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading 'greatest residual' as the residual of the day with the greatest sales (Day 5) and 'least' as that of the day with the least sales (Day 1); whether that gap is bigger or smaller than the true one depends on the data."
+   },
+   "31.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Range of the actual liters sold instead of the range of the residuals; nothing in the stem signs it relative to the residual spread."
+   }
+  },
+  "structure_check": "Interior key; 'greatest' and 'least' name which residuals to subtract, but they do not sign any of the three errors relative to the key.",
+  "intermediate_check": "3.5: no - it is a spread of absolute residuals, not a value the key follows from by one printed relation. 7.5: no - a difference of two other residuals; the key does not follow from it through any printed number. 31.5: no - range of the actual y-values; reaching 9.5 from it needs the five predictions, not one printed rate.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The quantity is nonnegative (greatest minus least) - all four survive; it is a multiple of 0.5 because all data and predictions are multiples of 0.5 - all four survive.",
+  "interior_parity_check": "Middle values 7.5 and 9.5: both one-decimal halves, same complexity; the key is not cleaner.",
+  "arith_class_check": "All four options are positive halves (x.5); no class singles out 9.5.",
+  "dup_search": {
+   "queries": [
+    "residual",
+    "median&mean",
+    "mean&table|average&table"
+   ],
+   "hits_read": 6,
+   "nearest": "ec9f58c2-2cb (live, table + line y = 1.85x + 3.8, asks which x has the greatest |residual| - a location, not the spread of signed residuals; a8f1f1a6/3e0fd045 ask one residual)"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student cannot back-substitute a spread. Two natural misreads (absolute residuals; residuals of the max/min sales days) land below, range of actual values lands above, so no one-sided family. Is any distractor a solved intermediate one printed relation away from the key? No: none of 3.5, 7.5, 31.5 turns into 9.5 through a printed rate or relation. (read) DPAIR: 31.5 - 9.5 = 22 coincides with the printed intercept 21 plus 1; no natural path adds 22 or 21 + 1 to the key, and 31.5 comes from the actual-value range, not from the key. (read) PLUG: the stem says greatest, so the descending order reaches 9.5 at try 2, but an option cannot be checked by substitution - verifying 9.5 means computing all five residuals."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-U02",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Linear vs exponential growth from a table",
+  "difficulty": "medium",
+  "prompt": "A gardener counted the seedlings in two trays at the start of an experiment (week 0) and at the end of each of the next three weeks. The table shows the counts. The count in one tray grows linearly and the count in the other tray grows exponentially. If each tray's pattern continues, what will be the total number of seedlings in the two trays at the end of week 6?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Week 0",
+    "Week 1",
+    "Week 2",
+    "Week 3"
+   ],
+   "colLabels": [
+    "Tray A",
+    "Tray B"
+   ],
+   "cells": [
+    [
+     "100",
+     "6"
+    ],
+    [
+     "118",
+     "12"
+    ],
+    [
+     "136",
+     "24"
+    ],
+    [
+     "154",
+     "48"
+    ]
+   ],
+   "caption": "Seedling counts by week"
+  },
+  "choices": [
+   "328",
+   "382",
+   "592",
+   "994"
+  ],
+  "correct_answer": "592",
+  "explanation": "Tray A increases by 18 each week (118 - 100 = 136 - 118 = 154 - 136 = 18), so it grows linearly: at week 6 it has 100 + 18(6) = 208 seedlings. Tray B doubles each week (12/6 = 24/12 = 48/24 = 2), so it grows exponentially: at week 6 it has 6(2^6) = 384 seedlings. The total at the end of week 6 is 208 + 384 = 592.",
+  "solve": "const a=100+18*6;const b=6*Math.pow(2,6);return a+b;",
+  "distractor_solve": {
+   "328": "const a=154+18*3;const b=48+24*3;return a+b;",
+   "382": "const a=100+18*5;const b=6*Math.pow(2,5);return a+b;",
+   "994": "const a=100+18*7;const b=6*Math.pow(2,7);return a+b;"
+  },
+  "mechanism": [
+   "identify constant difference vs constant ratio",
+   "extend each pattern to week 6",
+   "add the two counts"
+  ],
+  "quantity_asked": "total of a linear and an exponential count at week 6",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a total of two separately extended patterns; no printed condition accepts or rejects it. A student must extend both trays to week 6 to check any option, which is the whole solution."
+  },
+  "distractor_meta": {
+   "328": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Extends Tray B by adding its most recent weekly increase (24) instead of doubling; the stem does not say which tray is exponential, so a student cannot sign this without computing."
+   },
+   "382": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stops one week early (reads week 6 as the sixth week counted from week 1, i.e. week 5)."
+   },
+   "994": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counts one week too many (treats the first table row as week 1, so the end of week 6 is seven periods after the start)."
+   }
+  },
+  "structure_check": "Interior key; the stem has no universal condition or extremum, and the errors fall on both sides.",
+  "intermediate_check": "328: no - it is a wrong (linear) extension of Tray B, not a value from which 592 follows by one printed relation. 382: no - the week-5 total; reaching 592 needs separate +18 and x2 steps on the two trays, not one printed rate applied to 382. 994: no - the week-7 total, likewise two separate rules away.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Count: integer - all four survive. Positive and greater than the week-3 total 202 - all four survive. Even (both trays even at every week) - all four survive.",
+  "interior_parity_check": "Middle values 382 and 592: both three-digit integers, neither rounder; the key is not cleaner.",
+  "arith_class_check": "All four options are even three-digit integers; no class singles out 592.",
+  "dup_search": {
+   "queries": [
+    "linear&exponential",
+    "exponential&table",
+    "exponential",
+    "linearly&table|increases by the same&table"
+   ],
+   "hits_read": 27,
+   "nearest": "02a1bf1d-27a (exponential model from two values, one quantity, value at t = 9) - no identification of which column is linear vs exponential and no combination of the two patterns"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student cannot substitute a total into anything. Errors land both sides (linear-extension and one-week-short below, one-week-long above). Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No: neighbouring-week totals need two different rules (one per tray) to reach 592."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-U03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Difference of two group means with a missing frequency",
+  "difficulty": "hard",
+  "prompt": "The table shows how many pets each student in two classes owns. The number of students in Class B who own exactly 1 pet is not shown and is represented by x. When the two classes are combined, the mean number of pets per student is 1.4. How much greater is the mean number of pets per student in Class A than the mean number of pets per student in Class B?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Class A",
+    "Class B"
+   ],
+   "colLabels": [
+    "0 pets",
+    "1 pet",
+    "2 pets",
+    "3 pets"
+   ],
+   "cells": [
+    [
+     "1",
+     "5",
+     "9",
+     "5"
+    ],
+    [
+     "8",
+     "x",
+     "2",
+     "3"
+    ]
+   ],
+   "caption": "Number of students by number of pets owned"
+  },
+  "choices": [
+   "0.27",
+   "0.53",
+   "0.65",
+   "0.90"
+  ],
+  "correct_answer": "0.90",
+  "explanation": "Class A has 1 + 5 + 9 + 5 = 20 students owning 5 + 18 + 15 = 38 pets. Class B has 13 + x students owning x + 4 + 9 = 13 + x pets. Combined, (38 + 13 + x)/(20 + 13 + x) = 1.4, so 51 + x = 46.2 + 1.4x, 0.4x = 4.8 and x = 12. Class B then has 25 students owning 25 pets, a mean of 1, and Class A's mean is 38/20 = 1.9. The difference is 1.9 - 1 = 0.90.",
+  "solve": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/nA-sB/nB)*100)/100;",
+  "distractor_solve": {
+   "0.27": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/nB-sB/nA)*100)/100;",
+   "0.53": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const nB=b0+x+b2+b3,sB=x+2*b2+3*b3;return Math.round((sA/(nA-A[0])-sB/(nB-b0))*100)/100;",
+   "0.65": "const A=[1,5,9,5],b0=8,b2=2,b3=3,M=1.4;const nA=A.reduce((p,q)=>p+q),sA=A[1]+2*A[2]+3*A[3];const x=(M*(nA+b0+b2+b3)-sA-2*b2-3*b3)/(1-M);const sB=x+2*b2+3*b3;return Math.round(((sA-sB)/nA)*100)/100;"
+  },
+  "mechanism": [
+   "solve the missing frequency from the combined mean",
+   "two weighted class means",
+   "difference of the means"
+  ],
+  "quantity_asked": "Class A mean minus Class B mean (pets per student)",
+  "ask_type": "difference-of-statistics",
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is reached last in ascending order, and an option cannot be checked against a printed condition: the combined mean constrains x, not the difference, so checking any option requires solving for x and computing both class means - the whole solution."
+  },
+  "distractor_meta": {
+   "0.27": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Divides each class's pet total by the OTHER class's size (38/25 - 25/20); the stem does not show which way this moves the difference without computing it."
+   },
+   "0.53": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaves the students with 0 pets out of both means (pet owners only: 38/19 - 25/17); this raises BOTH means, so its effect on the difference depends on the zero counts and is not visible without computing."
+   },
+   "0.65": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracts the two class totals (38 - 25) and divides by Class A's size, instead of subtracting the two means."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 2-1;",
+   "direction": "above",
+   "why": "Comparing the class medians instead of the means (Class A's median is 2, Class B's with x = 12 is 1) gives 1, above the key."
+  },
+  "far_distractor": {
+   "option": "0.53",
+   "natural_side": "above",
+   "why": "Dropping the zero-pet students removes low values, which ordinarily pushes a mean UP; here it pushes both means up and Class B, with 8 zeros against Class A's 1, rises more, so the difference lands below 0.90. A student who spotted the dropped zeros would expect the answer to rise."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the ask is a difference of two means. Errors in the subtracted Class B mean move the difference the opposite way from errors in the Class A mean; the median comparison lands above (1) and the dropped-zero error lands below, so no structural fact signs every error.",
+  "intermediate_check": "0.27: no - a quotient of mismatched totals and sizes; 0.90 does not follow from it through one printed number. 0.53: no - a difference of pet-owner means; reaching 0.90 needs the zero counts put back into both denominators. 0.65: no - 13/20; it is not a value from which 0.90 follows by one printed relation (0.90 = 38/20 - 25/25, needing the unprinted 25).",
+  "cheap_bound_check": "Cheapest bound: the combined mean 1.4 lies between the class means, so the difference exceeds (Class A mean) - 1.4 = 1.9 - 1.4 = 0.5; it strikes 0.27 only, and 0.53 and 0.65 sit on the key's side of it. Weighted toward the bigger class: with Class B at least as large as Class A, the combined mean is nearer Class B's mean, so the difference is at most 2(0.5) = 1.0 - it strikes nothing.",
+  "shape_check": "A difference of means of pets per student: positive (Class A's row is heavier toward 2 and 3 pets) - all four survive; less than 3 - all survive; not necessarily an integer - all survive.",
+  "interior_parity_check": "Middle values 0.53 and 0.65: both two-decimal numbers below 1; the key is an extreme value.",
+  "arith_class_check": "All four options are shown to two decimal places between 0 and 1; none is singled out by integrality, parity or roundness.",
+  "dup_search": {
+   "queries": [
+    "combined&missing|combined&x&table|two classes&mean",
+    "mean&table|average&table",
+    "how many&mean",
+    "both&mean|both&average"
+   ],
+   "hits_read": 20,
+   "nearest": "d43d95ea-103 (one missing frequency found from a mean, asks the missing count) and 77cf1f91 / 885694ea (group size from a combined mean); none asks the difference of two class means after recovering a missing cell of a two-way frequency table"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the ask is a difference, so errors in the subtracted mean move it the other way; the median comparison lands above (1), and the pet-owners-only error, which raises each mean, lands below. Does the far_distractor read as a far-side error? Yes - dropping zeros reads as raising the result. Does one bound strike all three? The between-the-means bound (difference > 0.5) strikes 0.27 only; the bigger-group bound strikes nothing. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-U04",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Residual from an exponential curve of best fit",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of members, in hundreds, of a hiking club at the start of each year from 2019 to 2023. An exponential curve of best fit for the data is y = 52(1.14)^x, where y is the number of members, in hundreds, and x is the number of years since the start of 2019. The residual for a year is the actual number of members, in hundreds, minus the number predicted by the curve of best fit. To the nearest hundredth, what is the residual for 2023?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "colLabels": [
+    "Members (hundreds)"
+   ],
+   "cells": [
+    [
+     "50"
+    ],
+    [
+     "60"
+    ],
+    [
+     "67"
+    ],
+    [
+     "74"
+    ],
+    [
+     "95"
+    ]
+   ],
+   "caption": "Hiking club membership at the start of each year"
+  },
+  "choices": [
+   "7.17",
+   "10.64",
+   "13.88",
+   "17.96"
+  ],
+  "correct_answer": "7.17",
+  "explanation": "The start of 2023 is 4 years after the start of 2019, so x = 4. The curve predicts y = 52(1.14)^4 = 52(1.68896016), which is about 87.83 hundred members. The actual value is 95, so the residual is 95 - 87.826..., which is about 7.17.",
+  "solve": "return Math.round((95-52*Math.pow(1.14,4))*100)/100;",
+  "distractor_solve": {
+   "10.64": "return Math.round((95-1.14*74)*100)/100;",
+   "13.88": "return Math.round((95-52*(1+0.14*4))*100)/100;",
+   "17.96": "return Math.round((95-52*Math.pow(1.14,3))*100)/100;"
+  },
+  "mechanism": [
+   "years since 2019 gives x",
+   "evaluate the exponential model",
+   "residual = actual - predicted"
+  ],
+  "quantity_asked": "residual for 2023 from an exponential curve of best fit",
+  "ask_type": "residual",
+  "plugback": {
+   "substitutable": false,
+   "why": "A student trying 7.17 first (ascending) has no condition to plug it into; the only check is to evaluate 52(1.14)^4 and subtract from 95, which is the whole solution."
+  },
+  "distractor_meta": {
+   "10.64": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Predicts 2023 by growing the ACTUAL 2022 value (74) by 14% instead of using the curve; whether that prediction is above or below the curve's depends on the 2022 residual, which the stem does not give."
+   },
+   "13.88": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats 14% as simple (linear) growth on the starting value, 52(1 + 0.14 x 4)."
+   },
+   "17.96": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counts one year too few (x = 3), stopping the growth a year early."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return 95-52*Math.pow(1.14,5);",
+   "direction": "below",
+   "why": "Counting the years 2019 through 2023 inclusively (x = 5) over-predicts and gives a residual of about -5.12, below the key."
+  },
+  "far_distractor": {
+   "option": "17.96",
+   "natural_side": "below",
+   "why": "Stopping one period early is a dropped step, which ordinarily leaves a computed value short; here the shortened value is the PREDICTION, which is subtracted, so the residual lands above the key. The mirror slip (one year too many) lands below."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the ask is one residual. Off-by-one years go both ways (x = 3 above, x = 5 below), and growing the previous actual value can land on either side depending on that year's residual, so the structure signs no error.",
+  "intermediate_check": "10.64: no - 95 minus a prediction built from the 2022 actual; 7.17 does not follow from it through one printed number. 13.88: no - a residual against a linear prediction; nothing printed converts it to 7.17. 17.96: no - the residual at x = 3; reaching 7.17 needs 52(1.14)^3 multiplied by 1.14 and re-subtracted, not one printed relation applied to 17.96.",
+  "cheap_bound_check": "Cheapest bound: the residual is less than the actual 95 and its sign is not given (the table values sit on both sides of a smooth curve). No one-sided bound from the stem strikes any option; all three distractors sit on the same side of every simple bound as the key.",
+  "shape_check": "A residual: any real number, reported to the nearest hundredth - all four survive; less than 95 - all survive.",
+  "interior_parity_check": "Middle values 10.64 and 13.88: both two-digit numbers shown to two decimal places; the key is an extreme value.",
+  "arith_class_check": "All four are shown to two decimal places; none is singled out by integrality, sign, parity or roundness.",
+  "dup_search": {
+   "queries": [
+    "exponential&predicted|exponential&actual|curve of best fit",
+    "residual",
+    "exponential",
+    "linear&exponential"
+   ],
+   "hits_read": 33,
+   "nearest": "a8f1f1a6-2ac and 3e0fd045-b68 (one residual from a LINE of best fit); 02a1bf1d (exponential model from two values, predicts a value) - none takes a residual against an exponential curve of best fit"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: an off-by-one year lands above (x = 3) or below (x = 5), and the previous-year shortcut can land either side, so the residual's position among the options is not signed by the stem. Does the far_distractor read as a far-side error? A dropped year reads as making the answer short; here it shortens a subtracted prediction. Does one bound strike all three? No bound strikes any. Could a student check an option against the stem in one routine step? No - there is no condition to substitute into. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No (see intermediate_check). (read) PLUG: the key is at ascending try 1, but a residual cannot be substituted into any printed condition; checking 7.17 is the computation itself."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-U05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Means of non-overlapping parts of two overlapping groups",
+  "difficulty": "medium",
+  "prompt": "A school's chess club has 18 members and its robotics club has 12 members. Exactly 4 students belong to both clubs. Last week, the chess club members volunteered a mean of 5.8 hours, the robotics club members volunteered a mean of 8.25 hours, and the 4 students who belong to both clubs volunteered a mean of 9.5 hours. (A student in both clubs has his or her hours included in the data of both clubs.) How much greater is the mean number of hours for the students who are in the robotics club only than the mean number of hours for the students who are in the chess club only, to the nearest hundredth?",
+  "choices": [
+   "1.39",
+   "2.09",
+   "2.45",
+   "2.88"
+  ],
+  "correct_answer": "2.88",
+  "explanation": "The chess club's total is 18(5.8) = 104.4 hours and the robotics club's total is 12(8.25) = 99 hours; the 4 shared students account for 4(9.5) = 38 hours of each total. Chess only: 18 - 4 = 14 students with 104.4 - 38 = 66.4 hours, a mean of about 4.743. Robotics only: 12 - 4 = 8 students with 99 - 38 = 61 hours, a mean of 7.625. The difference is 7.625 - 4.743, which is about 2.88 hours.",
+  "solve": "const c=(18*5.8-4*9.5)/(18-4),r=(12*8.25-4*9.5)/(12-4);return Math.round((r-c)*100)/100;",
+  "distractor_solve": {
+   "1.39": "const c=(18*5.8-4*9.5)/18,r=(12*8.25-4*9.5)/12;return Math.round((r-c)*100)/100;",
+   "2.09": "const c=(18*5.8+4*9.5)/(18+4),r=(12*8.25+4*9.5)/(12+4);return Math.round((r-c)*100)/100;",
+   "2.45": "return Math.round((8.25-5.8)*100)/100;"
+  },
+  "mechanism": [
+   "club totals from means",
+   "remove the shared students from each club's total and count",
+   "difference of the two exclusive-group means"
+  ],
+  "quantity_asked": "robotics-only mean minus chess-only mean (hours)",
+  "ask_type": "difference-of-statistics",
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is reached last in ascending order, and no printed condition can test an option: checking 2.88 requires both exclusive-group totals and counts, which is the whole solution."
+  },
+  "distractor_meta": {
+   "1.39": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Removes the shared students' 38 hours from each club's total but divides by the full club sizes 18 and 12."
+   },
+   "2.09": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adds the shared students to each club (hours and count) instead of removing them; this raises both means, and which rises more is not visible without computing."
+   },
+   "2.45": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignores the overlap and subtracts the two club means, so the shared 9.5-hour students stay counted in both clubs; removing them lowers both means and the stem does not show which falls more."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 99/8-104.4/14;",
+   "direction": "above",
+   "why": "Reducing each club's count by the 4 shared students but leaving their hours in the totals gives 12.375 - 7.457, about 4.92, above the key."
+  },
+  "far_distractor": {
+   "option": "2.45",
+   "natural_side": "above",
+   "why": "Leaving the shared students in both clubs is a double count of high-hour students, which ordinarily inflates an answer; here it inflates BOTH means and the chess mean more, so the difference lands below 2.88. A student who recognises the double count would expect the answer too large."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the ask is a difference of two means. Each correction moves both means (removing 9.5-hour students lowers both), so its effect on the difference depends on magnitudes; the half-correction in one direction (counts only) lands above (4.92) and the other (hours only) below (1.39), so no structural fact signs every error.",
+  "intermediate_check": "1.39: no - a difference of hours-removed means over the full club sizes; 2.88 does not follow from it through one printed number. 2.09: no - means with the shared students added; nothing printed converts it to 2.88. 2.45: no - the difference of the printed club means; reaching 2.88 needs both overlap removals, not one printed relation.",
+  "cheap_bound_check": "Cheapest reads: the difference is positive - strikes nothing; removing the 9.5-hour students lowers both club means, so the result could be above or below 2.45 depending on which falls more - strikes nothing; no bigger-group pull applies to a difference of two exclusive-group means. No read strikes any distractor.",
+  "shape_check": "A difference of means of hours: positive, not necessarily an integer, below 9 - all four survive; reported to the nearest hundredth - all four.",
+  "interior_parity_check": "Middle values 2.09 and 2.45: both shown to two decimal places; the key is an extreme value.",
+  "arith_class_check": "All four are two-decimal numbers between 1 and 3; none is singled out by integrality, parity or roundness.",
+  "dup_search": {
+   "queries": [
+    "both&mean|both&average",
+    "combined&missing|combined&x&table|two classes&mean",
+    "how many&mean",
+    "mean&table|average&table"
+   ],
+   "hits_read": 22,
+   "nearest": "29eac778-2ca / 77cf1f91 / 885694ea (combined means of DISJOINT groups); 4901c9aa (one number moved between groups) - none removes a shared subgroup from two overlapping groups and compares the exclusive parts"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: every correction moves both means, so the difference's direction under each error is a matter of magnitudes; the counts-only half-correction lands above (4.92) while the hours-only one lands below (1.39). Does the far_distractor read as a far-side error? Yes - a double count reads as making the answer too big. Does one bound strike all three? No read strikes any. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ }
+]

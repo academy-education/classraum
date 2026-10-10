@@ -1,0 +1,416 @@
+[
+ {
+  "id": "SM30F-C01",
+  "domain": "Algebra",
+  "subskill": "System from context: coin values before and after a swap",
+  "difficulty": "medium",
+  "prompt": "A jar contains only nickels (worth 5 cents each) and quarters (worth 25 cents each), with a total value of $5.85. If every nickel in the jar were replaced by a dime (worth 10 cents) and every quarter were replaced by a nickel, the total value of the coins in the jar would decrease by $1.35. How many coins are in the jar?",
+  "choices": [
+   "25",
+   "45",
+   "53",
+   "77"
+  ],
+  "correct_answer": "53",
+  "explanation": "Let n be the number of nickels and q the number of quarters. Working in cents, the total value gives 5n + 25q = 585. After the replacement, each nickel is worth 10 cents and each quarter is worth 5 cents, so the new value is 10n + 5q, which is 135 cents less than 585: 10n + 5q = 450. Dividing the second equation by 5 gives 2n + q = 90, so q = 90 - 2n. Substituting into the first equation: 5n + 25(90 - 2n) = 585, so 5n + 2250 - 50n = 585, -45n = -1665, and n = 37. Then q = 90 - 74 = 16. Check: 5(37) + 25(16) = 185 + 400 = 585 and 10(37) + 5(16) = 450 = 585 - 135. The jar holds 37 + 16 = 53 coins.",
+  "solve": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,10,5,585-135); return n+q;",
+  "distractor_solve": {
+   "25": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,10,5,135); return n+q;",
+   "45": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,5,-15,-135); return n+q;",
+   "77": "const D=(a,b,c,d,e,f)=>{const det=a*e-b*d; return [(c*e-b*f)/det,(a*f-c*d)/det]}; const [n,q]=D(5,25,585,5,-20,135); return n+q;"
+  },
+  "mechanism": [
+   "translate a hypothetical coin replacement into a second value equation",
+   "solve the two-variable system",
+   "add the two counts"
+  ],
+  "quantity_asked": "total number of coins in the jar (n + q)",
+  "ask_type": "value-of-expression (sum of the two unknowns)",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe would take an option as the total n + q and try to confirm it. A total alone does not determine n and q: the student must still pair it with one value equation, solve for n and q, and then check the other equation, which is the whole solution. No single printed condition can be tested against a total of coins."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses the decrease, $1.35, as if it were the new total value (10n + 5q = 135). Whether that raises or lowers the total count depends on how the two equations trade off, which the stem does not reveal."
+   },
+   "45": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Builds the change equation per coin but takes a quarter's loss as 25 - 10 = 15 cents (the dime's value instead of the nickel's), writing 5n - 15q = -135. The stem gives no hint whether this raises or lowers n + q."
+   },
+   "77": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writes the change equation 5n - 20q = -135 with the wrong sign (+135), treating the decrease as an increase. The effect of the sign flip on n + q is not visible from the stem."
+   }
+  },
+  "structure_check": "Interior key; no universal condition, extremum or bound in the stem. Two value equations of a jar of coins; errors fall on both sides of the key.",
+  "intermediate_check": "25: no - it is the coin total of a misread system (decrease used as the new value); no printed rate or relation turns 25 into 53. 45: no - it is the total of a system with a wrong per-quarter change; no printed relation turns it into 53. 77: no - it is the total of the sign-slipped system. No option is a count of one kind of coin (37 nickels or 16 quarters), which would give the total through the printed value equation, so none appears.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The asked quantity is a count of coins: a positive integer. $5.85 forces at least 24 coins (585/25 = 23.4) and at most 117 (all nickels). All four options (25, 45, 53, 77) are positive integers inside [24, 117], so every option survives every property the stem hands over.",
+  "interior_parity_check": "Middle values 45 and 53: both two-digit whole numbers. The key 53 is not the cleaner one (45 is a multiple of 5 and 9; 53 is prime).",
+  "arith_class_check": "Parity: 25, 45, 53, 77 are all odd. All positive integers in the legal range; no multiple-of-k class isolates 53 (it is the only prime, but a count implies no primality property).",
+  "dup_search": {
+   "queries": [
+    "replaced&nickel|dime|quarter|coin",
+    "coins&decrease|increase&value",
+    "nickels|dimes|quarters",
+    "were replaced|swapped|switched|mixed up"
+   ],
+   "hits_read": 22,
+   "nearest": "Live jar items (e.g. 'A jar contains 30 coins, all dimes and quarters, with a total value of $5.70') give the coin COUNT and the value and ask one count. Here no count is given: the second equation comes from a hypothetical re-valuation of every coin, and the ask is the total."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might try each option as the total with 5n + 25q = 585, but a total alone fixes nothing: checking requires solving for n and q and then the second equation, which is the full solution. Interior key, so no extreme-direction reading applies. The coin floor (24) and cap (117) strike nothing. No distractor is a solved intermediate one printed relation away from the key: the counts of each coin (37 and 16) are deliberately absent. Any (read) PAIR/DPAIR line is coincidental arithmetic between error totals and printed coin values, not a step a student can take from an option to the key. (read) DPAIR: 77 - 53 = 24 = 25 - 1. No student step subtracts 24 (or 'one less than a quarter's value') from an option; 24 is not a quantity in the problem, so the coincidence cannot be used to move from 77 to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-C02",
+  "domain": "Algebra",
+  "subskill": "System with known solution: solve for swapped coefficients",
+  "difficulty": "medium",
+  "prompt": "The constants a and b are such that the equations ax + by = 40 and bx + ay = 8 are both true when x = 5 and y = 3. What is the value of 4a + b?",
+  "choices": [
+   "39",
+   "49",
+   "63",
+   "66"
+  ],
+  "correct_answer": "39",
+  "explanation": "Substituting x = 5 and y = 3 turns the two equations into equations in a and b: 5a + 3b = 40 and 5b + 3a = 8, that is, 3a + 5b = 8. Adding them gives 8a + 8b = 48, so a + b = 6. Subtracting the second from the first gives 2a - 2b = 32, so a - b = 16. Adding a + b = 6 and a - b = 16 gives 2a = 22, so a = 11, and then b = 6 - 11 = -5. Check: 5(11) + 3(-5) = 40 and (-5)(5) + 11(3) = 8. Therefore 4a + b = 44 - 5 = 39.",
+  "solve": "const x=5,y=3,P=40,Q=8; const det=x*x-y*y; const a=(P*x-Q*y)/det, b=(Q*x-P*y)/det; return 4*a+b;",
+  "distractor_solve": {
+   "49": "const x=5,y=3,P=40,Q=8; const det=x*x-y*y; const a=(P*x-Q*y)/det, b=(Q*x-P*y)/det; return 4*a-b;",
+   "63": "const x=5,y=3,P=40,Q=8; const s=(P+Q)/(x+y), d=(P-Q); const a=(s+d)/2, b=(s-d)/2; return 4*a+b;",
+   "66": "const x=5,y=3,P=40,Q=8; const s=(P+Q)/(x-y), d=(P-Q)/(x+y); const a=(s+d)/2, b=(s-d)/2; return 4*a+b;"
+  },
+  "mechanism": [
+   "substitute the known solution so the coefficients become the unknowns",
+   "solve the system in a and b by adding and subtracting",
+   "evaluate 4a + b"
+  ],
+  "quantity_asked": "the value of 4a + b",
+  "ask_type": "value-of-expression (combination of the two unknown coefficients)",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe would take 39 (first ascending) as 4a + b and look for one routine check. One value of 4a + b does not fix a and b: to test it against 5a + 3b = 40 or 3a + 5b = 8 the student must pair it with one of them, solve for a and b, and check the other - the whole solution. Many (a, b) pairs share any value of 4a + b."
+  },
+  "distractor_meta": {
+   "49": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds a = 11 and b = -5 but evaluates 4a - b (or drops b's negative sign). The stem does not reveal that b is negative, so the side of this slip is not readable without solving."
+   },
+   "63": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the equations gives 2a - 2b = 32; forgetting to divide by 2 uses a - b = 32 with a + b = 6, so a = 19, b = -13 and 4a + b = 63. Which way this moves 4a + b depends on how the weights 4 and 1 meet the inflated difference, which needs the solution to see."
+   },
+   "66": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Divides the sum of the equations by x - y = 2 and the difference by x + y = 8 (the divisors interchanged), getting a + b = 24 and a - b = 4, so a = 14, b = 10 and 4a + b = 66. The stem gives no hint of the direction."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const x=5,y=3,P=40,Q=8; const det=x*x-y*y; const a=(P*x-Q*y)/det, b=(Q*x-P*y)/det; return 4*b+a;",
+   "direction": "below",
+   "why": "Interchanging a and b (reading the coefficient of x in the first equation as b) evaluates 4b + a = -20 + 11 = -9, far below the key. It is a natural slip and is not an option."
+  },
+  "far_distractor": {
+   "option": "63",
+   "natural_side": "below",
+   "why": "A dropped step ordinarily leaves a value short. Here the dropped step is a division inside the difference a - b, so omitting it inflates a - b; with a + b fixed this raises a and lowers b, and because a carries weight 4 and b weight 1 the result lands ABOVE the key. Seeing that requires knowing how a and b split, i.e. the solution."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it' structure. The stem fixes a system in a and b through one known point and asks for a weighted combination; the three errors (a sign slip on b, a dropped division, interchanged divisors) move 4a + b by amounts and in directions that depend on a and b, which the stem does not give.",
+  "intermediate_check": "49: no - it is 4a - b; reaching 4a + b needs b (49 - 2b), not one printed relation. 63: no - it is the value from a misread difference; no printed relation turns it into 39. 66: no - it comes from interchanged divisors; no printed relation turns it into 39. No option is a, b, a + b or a - b (11, -5, 6, 16), so no option is an intermediate one printed step from the key.",
+  "cheap_bound_check": "Cheapest bound: adding gives a + b = 6 and 40 > 8 gives a > b, so a > 3 and 4a + b = 3a + 6 > 15: a LOWER bound that every option satisfies (strikes nothing). Assuming both constants positive would give 4a + b < 24 and strike the key itself (b is in fact negative), so no positivity reading separates the distractors from the key; 49 sits on the key's side of every honest bound.",
+  "shape_check": "The stem hands over no sign, integrality or cap on 4a + b; the constants are unrestricted. All four options are positive integers and all are legal values; all four survive every property together.",
+  "interior_parity_check": "Middle values 49 and 63: both two-digit odd integers of the same form; the key 39 is an extreme, not one of the middle values.",
+  "arith_class_check": "Parity: 39, 49, 63 odd, 66 even - the key is not alone. Sign: all positive. No multiple-of-k or square class isolates 39 (49 is the square; 39 and 63 and 66 are multiples of 3).",
+  "dup_search": {
+   "queries": [
+    "ax \\+ by&bx \\+ ay|bx \\+ ay",
+    "a and b are constants&solution",
+    "solution&is \\(|is the solution&constants",
+    "solution&\\(5, 3\\)|\\(4, 1\\)|\\(3, 2\\)&constants",
+    "satisfied by|lie on the graph of&ax \\+ by|ax - by"
+   ],
+   "hits_read": 26,
+   "nearest": "Live/prior 'a and b are constants' items ask for a + b or a/b when a system has INFINITELY MANY solutions (proportional coefficients), and ff6a717d asks x + y for a fixed numeric system. Here the solution is known and the swapped coefficients a, b are the unknowns, recovered by solving a new system; no hit uses a known solution to recover coefficients."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell from the stem which way the errors go: a sign slip on b, a dropped division by 2, and interchanged divisors each move 4a + b in a direction that depends on a and b. The far distractor 63 reads as a dropped step, which ordinarily falls short, and only the split of a and b shows it lands above. The only cheap bound (a > b with a + b = 6) is a lower bound every option satisfies; a positivity assumption would strike the key itself. Plug-back: one value of 4a + b cannot be checked against either equation without solving the system in a and b. No distractor is a solved intermediate one printed relation away from the key (a, b, a + b, a - b are not options). (read) PAIR: 49 - 39 = 10 = 2 x 5; the 10 is really 2|b| (the sign slip changes +b to -b), and a student cannot use it without knowing b = -5, which is the solution."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-C03",
+  "domain": "Algebra",
+  "subskill": "Effect of a miscopied constant on a system's solution",
+  "difficulty": "medium",
+  "prompt": "Ana was asked to solve the system of equations x + 5y = 17 and 5x - 2y = 31. She copied the second equation correctly, but she copied the first equation as x + 5y = 71, and she then solved her system correctly. Ana's value of x is how much greater than the x-value of the solution of the original system?",
+  "choices": [
+   "4",
+   "7",
+   "18",
+   "54"
+  ],
+  "correct_answer": "4",
+  "explanation": "Solve the original system: from x + 5y = 17, x = 17 - 5y; substituting into 5x - 2y = 31 gives 85 - 25y - 2y = 31, so 27y = 54, y = 2 and x = 7. Ana's system is x + 5y = 71 and 5x - 2y = 31: x = 71 - 5y gives 355 - 25y - 2y = 31, so 27y = 324, y = 12 and x = 11. Ana's x is 11 - 7 = 4 greater. (Equivalently, the differences d and e between Ana's values and the true values satisfy d + 5e = 54 and 5d - 2e = 0, so e = 2.5d and 13.5d = 54, d = 4.)",
+  "solve": "const S=(c1)=>{const y=(5*c1-31)/27; return [c1-5*y,y]}; return S(71)[0]-S(17)[0];",
+  "distractor_solve": {
+   "7": "const S=(c1)=>{const y=(5*c1-31)/27; return [c1-5*y,y]}; return S(17)[0];",
+   "18": "const D=71-17; const d=D/(1+5*(2/5)); return d;",
+   "54": "return 71-17;"
+  },
+  "mechanism": [
+   "solve the system with each first-equation constant (or form the difference system)",
+   "the unchanged second equation ties the change in y to the change in x",
+   "subtract the two x-values"
+  ],
+  "quantity_asked": "Ana's x-value minus the x-value of the true solution",
+  "ask_type": "difference of two derived values",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe would take 4 (first ascending) as the change in x and look for one routine check. Nothing printed is stated about the change in x: to test 4 the student must recognise that the unchanged second equation forces the change in y to be 2.5 times the change in x, and then check the first equation's change, which is exactly the forward solution; otherwise both systems must be solved. No printed equation accepts the option directly."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solves the original system and reports its x-value, 7, instead of the difference between Ana's x and that value. Whether the true x is larger or smaller than the change is not visible without solving."
+   },
+   "18": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Inverts the ratio from the unchanged equation 5d - 2e = 0, taking e = (2/5)d instead of (5/2)d, so d + 2d = 54 and d = 18. The stem gives no hint which way the inversion moves d."
+   },
+   "54": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Assumes the whole change in the constant, 71 - 17 = 54, goes into x and ignores that y changes too (Ana's y is not the true y)."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const D=71-17; return D/(1-5*(5/2));",
+   "direction": "below",
+   "why": "Reading 5d - 2e = 0 as e = -2.5d (a sign slip) gives d(1 - 12.5) = 54, d = -4.70, below the key. It is a natural slip and is not an option."
+  },
+  "far_distractor": {
+   "option": "54",
+   "natural_side": "below",
+   "why": "Leaving out a term ordinarily gives too small a value. Here the term left out (the change in y, 5e) is part of a SUM that the fixed change 54 must cover, so dropping it lets all of 54 fall on x and the value lands ABOVE the key. A student sees that only after setting up the difference system, which is the solution."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it' structure. The stem fixes two systems that differ in one constant and asks for a difference of their x-values; the errors (reporting the y-change, inverting the tie between the changes, ignoring the y-change) move the value in directions set by the coefficients, which a student must work through to see.",
+  "intermediate_check": "7: it is the x-value of the original solution, but the key does not follow from it through one printed relation: the key is Ana's x minus 7, and Ana's x requires solving her whole system. 18: no - it comes from an inverted tie between the changes; no printed rate turns 18 into 4. 54: it is 71 - 17, the change in the constant; the key follows from it only after deriving the coefficient 13.5 = 1 + 5(2.5) from both equations, not through one printed relation. The change in y (10), which the unchanged equation 5x - 2y = 31 would tie to the key by the printed ratio 2 : 5, is deliberately NOT an option.",
+  "cheap_bound_check": "Cheapest bound: the unchanged equation 5x - 2y = 31 forces the changes in x and y to have the same sign, so the change in x is less than the whole change 54 in x + 5y: d < 54. That strikes only 54; 7 and 18 sit on the key's side of it.",
+  "shape_check": "The stem hands over that the change is a positive amount ('how much greater'): all four options are positive. No integrality is implied. All four survive; 4, 7 and 18 survive the bound d < 54 together.",
+  "interior_parity_check": "Middle values 7 and 18: both whole numbers of one or two digits; the key 4 is an extreme, not one of them.",
+  "arith_class_check": "Parity: 4, 18, 54 even and 7 odd - the key is not alone. Sign: all positive. No multiple-of-k class isolates 4.",
+  "dup_search": {
+   "queries": [
+    "misread|miscopied|copied .* incorrectly|by mistake|made an error",
+    "if each .* were|had been .* instead",
+    "solution&constants",
+    "System 1:  2x \\+ 3y = 16"
+   ],
+   "hits_read": 8,
+   "nearest": "The only copying-error item is an Advanced Math quadratic (Ana and Ben copy b or c of x^2 + bx + c = 0 incorrectly; Vieta's relations). Here the system is linear, one constant is miscopied, and the ask is how far one coordinate of the solution moves, through the unchanged second equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: reporting the true x, inverting the tie between the changes, and ignoring the y-change each land in a place set by the coefficients. The far distractor 54 reads as 71 - 17; that it sits ABOVE the key (rather than being the answer) only becomes clear once the change in y is seen to absorb part of the 54. The one cheap bound (d < 54) strikes only 54. Plug-back: there is no printed condition on the change in x to substitute into; checking 4 means deriving e = 2.5d from the unchanged equation and testing the first, which is the forward solution. No distractor is a solved intermediate one printed relation from the key: the change in y (10), tied to the key by the printed 2 : 5, was removed for that reason. (read) lines: 4 + 18 = 22 = 5 + 17 is a SUM of the key and an option, not a step from 18 to the key (that would need 18 - 4 = 14, not a printed sum); any n +/- 1 coincidence (e.g. 7 - 4 = 3) is not an operation a student can apply to an option to reach the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-C04",
+  "domain": "Algebra",
+  "subskill": "System from context: one purchase at regular prices, one during a flat sale",
+  "difficulty": "hard",
+  "prompt": "A shop sells T-shirts and caps; all T-shirts have the same regular price, and all caps have the same regular price. At regular prices, 3 T-shirts and 2 caps cost $169. During a sale, the price of every item in the shop is reduced by $3, and during the sale 2 T-shirts and 1 cap cost $94. What is the total regular price, in dollars, of 3 T-shirts and 1 cap?",
+  "choices": [
+   "86",
+   "125",
+   "134",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Let t and c be the regular prices, in dollars, of a T-shirt and a cap. The regular purchase gives 3t + 2c = 169. During the sale each item costs $3 less, so 2(t - 3) + (c - 3) = 94, that is, 2t + c - 9 = 94, or 2t + c = 103. Then c = 103 - 2t, and 3t + 2(103 - 2t) = 169 gives 206 - t = 169, so t = 37 and c = 103 - 74 = 29. Check: 3(37) + 2(29) = 169 and 2(34) + 26 = 94. The regular price of 3 T-shirts and 1 cap is 3(37) + 29 = 140.",
+  "solve": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,2,1,94+3*3); return 3*t+c;",
+  "distractor_solve": {
+   "86": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,2,1,94-3*3); return 3*t+c;",
+   "125": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169+3*5,2,1,94+3*3); return 3*t+c;",
+   "134": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,1,2,94+3*3); return 3*t+c;"
+  },
+  "mechanism": [
+   "write the sale purchase in regular prices: each of its 3 items is $3 cheaper",
+   "solve the two-variable system",
+   "evaluate the requested bundle at regular prices"
+  ],
+  "quantity_asked": "regular price of 3 T-shirts and 1 cap (3t + c)",
+  "ask_type": "value-of-expression (combination of the two unknown prices)",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is the price of a bundle, which does not fix t and c; to test it a student must pair it with one purchase, solve for both prices and check the other purchase - the whole solution. In ascending order the key is the last option (try 4)."
+  },
+  "distractor_meta": {
+   "86": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the $3 reduction in the wrong direction (2t + c = 94 - 9 = 85), giving t = 1 and c = 83 and a bundle of 86. Its side relative to the key depends on how the shifted equation works through the system, not on anything the stem states."
+   },
+   "125": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Applies the $3 reduction to the regular-price purchase as well (adds back 3 x 5 = 15 to get 3t + 2c = 184), so t = 22, c = 59 and the bundle is 125. Adding money back to a purchase looks as if it should raise the prices; here it lowers this bundle."
+   },
+   "134": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Swaps the counts in the sale purchase (1 T-shirt and 2 caps: t + 2c = 103), giving t = 33, c = 35 and a bundle of 134. The stem gives no hint which way the swap moves 3t + c."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [t,c]=S(3,2,169,2,1,94+3*3); return 3*t+c+3*4;",
+   "direction": "above",
+   "why": "Finding t = 37 and c = 29 but then 'restoring' the $3 to each of the 4 items of the new bundle, as if 37 and 29 were sale prices, gives 140 + 12 = 152, above the key. It is a natural confusion between sale and regular prices and is not an option."
+  },
+  "far_distractor": {
+   "option": "125",
+   "natural_side": "above",
+   "why": "Applying the reduction to a purchase that was at regular prices adds $15 to it, an over-adjustment that ordinarily inflates the prices a student infers. Here the inflated 3t + 2c meets the fixed 2t + c = 103, so the solved cap price rises while the T-shirt price falls, and because the bundle weights the T-shirt 3 to 1 its total lands BELOW the key. That is visible only after solving."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it' structure. The stem gives two purchases and asks for a third bundle; each error (reduction in the wrong direction, reduction also applied to the regular purchase, swapped counts) changes both solved prices in opposite directions, so its effect on 3t + c depends on the solution.",
+  "intermediate_check": "86: no - it is the bundle price from a sign-slipped system; no printed price or relation turns it into 140. 125: no - it comes from over-applying the reduction; no printed relation turns it into 140. 134: no - it comes from swapped counts; no printed relation turns it into 140. No option is a single price (37, 29, 34, 26) or the sale price of the bundle (128), each of which is one printed relation from the key; none appears.",
+  "cheap_bound_check": "Cheapest bounds: from 3t + 2c = 169, the bundle 3t + c lies between 169/2 = 84.5 and 169; from the sale purchase rewritten as 2t + c = 103, it lies between 103 and 154.5. Together: 103 < 3t + c < 154.5. That strikes 86, but 125 and 134 sit on the key's side of it.",
+  "shape_check": "Prices are positive dollar amounts; the stem implies no integrality or divisibility for 3t + c (whole-dollar purchases do not force a multiple of anything). All four options are positive whole numbers; 125, 134 and 140 survive every property together, including the bounds above.",
+  "interior_parity_check": "Middle values 125 and 134: both three-digit whole numbers; the key 140 is an extreme, not one of them.",
+  "arith_class_check": "Parity: 86, 134, 140 even and 125 odd. Multiples of 5: 125 and 140. No class isolates 140.",
+  "dup_search": {
+   "queries": [
+    "sale&every item|each item&less|off|reduced",
+    "regular price&sale",
+    "dollars? less than (the|its) regular",
+    "machine A&machine B"
+   ],
+   "hits_read": 7,
+   "nearest": "SM19L-B7 (two machines' runs on two days, ask a third combination) shares the 'two combinations, ask a third' shape, but its two equations are of the same kind. Here one purchase is at regular prices and the other during a flat per-item reduction, so the second equation must first be rewritten (+$3 for each of 3 items) - the step every distractor gets wrong. The sale hits are percent discounts on one item (PSDA)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? Each error shifts one purchase and moves the two solved prices in opposite directions, so the side of the bundle total is not readable from the stem. The far distractor 125 is an over-adjustment that lands below because of the 3-to-1 weighting. The tightest cheap bound (103 to 154.5) strikes only 86. Integrality and divisibility: nothing in the stem forces 3t + c to be a multiple of anything, so all options survive. Plug-back: the key is the last ascending option, and a bundle total cannot be substituted without solving. No distractor is a solved intermediate one printed relation from the key. Hard: the decision is rewriting the sale purchase in regular prices, with the reduction counted once per item. (read) PAIR: 140 - 134 = 6 = 2 x 3 is a coincidence of the swapped-count error; no step a student could take from 134 adds 6 (twice the reduction) to reach the key without first solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-C05",
+  "domain": "Algebra",
+  "subskill": "System from a relative-time age statement",
+  "difficulty": "hard",
+  "prompt": "Lena is older than her cousin Mo. Lena's age now is twice the age Mo was at the time when Lena was as old as Mo is now. Seven years from now, the sum of their ages will be 77. How old will Lena be when Mo is as old as Lena is now?",
+  "choices": [
+   "9",
+   "45",
+   "63",
+   "65"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let L and M be the current ages of Lena and Mo, and let d = L - M be the difference in their ages. Lena was M years old d years ago, and Mo was then M - d = M - (L - M) = 2M - L years old. So L = 2(2M - L), which gives 3L = 4M. Seven years from now their ages sum to (L + 7) + (M + 7) = 77, so L + M = 63. Substituting M = 3L/4 gives 7L/4 = 63, so L = 36 and M = 27, and d = 9. (Check: 9 years ago Lena was 27 and Mo was 18, and 36 = 2(18); in 7 years they will be 43 and 34, which sum to 77.) Mo will be 36 in 9 years, when Lena will be 36 + 9 = 45.",
+  "solve": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [L,M]=S(3,-4,0,1,1,77-14); return L+(L-M);",
+  "distractor_solve": {
+   "9": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [L,M]=S(3,-4,0,1,1,77-14); return L-M;",
+   "63": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [L,M]=S(1,-2,0,1,1,77-14); return L+(L-M);",
+   "65": "const S=(a,b,c,d,e,f)=>{const D=a*e-b*d; return [(c*e-b*f)/D,(a*f-c*d)/D]}; const [L,M]=S(3,-4,0,1,1,77+14); return L+(L-M);"
+  },
+  "mechanism": [
+   "translate the relative-time statement through the age difference into 3L = 4M",
+   "write the future-sum equation",
+   "solve the system and add the age difference to Lena's age"
+  ],
+  "quantity_asked": "Lena's age at the time Mo reaches Lena's current age (L + (L - M))",
+  "ask_type": "derived quantity from a context system",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe would take 9 and then 45 in ascending order. An option is Lena's age at a future time; it fixes neither current age, so it cannot be put into either printed statement. Testing 45 means writing L + (L - M) = 45 beside the two statements and solving, which is more work than the forward solution."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds the number of years until Mo reaches Lena's current age (d = 9) and stops, reporting it instead of Lena's age at that time."
+   },
+   "63": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reads the first statement as 'Lena is twice as old as Mo is now' (L = 2M), skipping the relative time; with L + M = 63 this gives L = 42, M = 21 and 42 + 21 = 63. The stem does not show which way this misreading moves the answer."
+   },
+   "65": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reads 'seven years from now' as seven years ago, so L + M = 77 + 14 = 91, giving L = 52, M = 39 and 52 + 13 = 65. Its direction is not readable without solving."
+   }
+  },
+  "structure_check": "Interior key; the stem has no universal condition, extremum or bound, and the errors fall on both sides of the key.",
+  "intermediate_check": "9: it is the age difference, but the key does not follow from it through one printed relation: the key is L + 9, and L requires solving the system. 63: no - it is the answer of a misread system; no printed relation turns it into 45. 65: no - it comes from a sign slip in the future-sum equation. Lena's and Mo's current ages (36, 27) and Mo's past age (18), each of which leads to the key through the printed statements, are deliberately not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The asked quantity is an age, a positive number; it must exceed Lena's current age, which is not printed. All four options are positive integers; 45, 63 and 65 survive together (9 is a legal age but too small to be Lena's future age, which a student can see only after finding that L + M = 63 means L is more than 31.5).",
+  "interior_parity_check": "Middle values 45 and 63: both two-digit odd whole numbers; neither is markedly cleaner than the other.",
+  "arith_class_check": "Parity: 9, 45, 63, 65 all odd. Multiples of 9: 9, 45, 63 (three of four), so no class isolates 45.",
+  "dup_search": {
+   "queries": [
+    "older than|younger than|years old|years ago",
+    "f\\(x\\) = g\\(x\\)|f and g are equal|same output",
+    "together&alone&hours",
+    "toward each other|towards each other"
+   ],
+   "hits_read": 30,
+   "nearest": "Live age items ('Five years ago, Ana was three times as old as Ben was then; in four years Ana will be twice as old as Ben' asks Ana's age; 'Dana is 3 years older ... in 6 years twice as old as her brother was 4 years ago') give fixed time shifts. Here the time shift is the unknown age difference itself ('when Lena was as old as Mo is now'), which must be translated through d = L - M, and the ask is an age at a second unknown-shift time."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. A test-wise student might try the options as Lena's future age, but none can be substituted into the statements: each fixes neither current age. No distractor is a solved intermediate one printed relation from the key; the current ages and Mo's past age are not options. Option 9 is the age difference, a partial answer whose route to the key still needs Lena's age. Hard: the decision is translating 'the age Mo was when Lena was as old as Mo is now' through the age difference; routine procedure and graphing do not supply that equation."
+  },
+  "bounds": []
+ }
+]

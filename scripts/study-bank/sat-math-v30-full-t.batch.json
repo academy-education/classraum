@@ -1,0 +1,465 @@
+[
+ {
+  "id": "SM30F-T01",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Successive percent changes: find a missing change",
+  "difficulty": "medium",
+  "prompt": "The table shows the percent change in the value of an investment fund during each of the first three quarters of a year. Each percent change is relative to the fund's value at the end of the previous quarter. The fund's value at the end of the fourth quarter was 7.2% less than its value at the start of the year. By what percent did the fund's value decrease during the fourth quarter, to the nearest tenth of a percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "First quarter",
+    "Second quarter",
+    "Third quarter"
+   ],
+   "colLabels": [
+    "Percent change in value"
+   ],
+   "cells": [
+    [
+     "+20"
+    ],
+    [
+     "-25"
+    ],
+    [
+     "+50"
+    ]
+   ],
+   "caption": "Quarterly percent change in fund value"
+  },
+  "choices": [
+   "17.5",
+   "20.6",
+   "31.3",
+   "45.5"
+  ],
+  "correct_answer": "31.3",
+  "explanation": "Let the starting value be 1. After the first three quarters the value is 1(1.20)(0.75)(1.50) = 1.35. At the end of the year the value is 1 - 0.072 = 0.928. If the fourth-quarter decrease is d percent, then 1.35(1 - d/100) = 0.928, so 1 - d/100 = 0.928/1.35, which is about 0.6874. So d is about 31.26, or 31.3 to the nearest tenth.",
+  "solve": "const v=1.20*0.75*1.50; const d=(1-0.928/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "17.5": "const v=0.75*1.50; const d=(1-0.928/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+   "20.6": "const v=1.20*0.75*1.50; const d=(1-1.072/v)*100; return (Math.round(d*10)/10).toFixed(1);",
+   "45.5": "const v=1.20*0.75*1.50; const d=(v-0.928)/0.928*100; return (Math.round(d*10)/10).toFixed(1);"
+  },
+  "mechanism": [
+   "multiply three growth factors",
+   "set factor product times unknown factor equal to the net factor",
+   "convert the unknown factor to a percent decrease"
+  ],
+  "quantity_asked": "the percent decrease in the fourth quarter",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(1.20*0.75*1.50*(1-Number(v)/100)-0.928) < 0.001;",
+   "why": "A student can check an option d by computing 1.35(1 - d/100) and comparing with 0.928, but that needs the three-quarter product first, which is the main step of the solution. Ascending order reaches the key 31.3 only at try 3."
+  },
+  "distractor_meta": {
+   "17.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the first-quarter increase lowers the three-quarter value from 1.35 to 1.125, so a smaller drop reaches 0.928; nothing in the stem shows a student whether a dropped quarter raises or lowers the answer without computing, since a dropped decrease would push it the other way."
+   },
+   "20.6": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the year's 7.2% decrease as an increase (target 1.072) means less of a drop is needed; a sign slip on a quarter's change in the table would instead push the answer up, so the side is not readable from the stem."
+   },
+   "45.5": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing the loss 1.35 - 0.928 by the end value 0.928 instead of by 1.35 uses the wrong base; whether a base swap raises or lowers a percent depends on which value is larger, which the student must compute."
+   }
+  },
+  "intermediate_check": "17.5: no - it is a percent decrease from a different starting product (1.125); no printed rate or relation turns it into 31.3. 20.6: no - it comes from the wrong target 1.072; the key does not follow from it through one printed number. 45.5: no - it is the same loss over the wrong base; recovering 31.3 from it needs the unprinted values 1.35 and 0.928, not one printed relation.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The decrease is a percent strictly between 0 and 100 and is reported to the nearest tenth: all four options are one-decimal values in (0, 100). A decrease is needed because 1.35 > 0.928: all four are decreases. All four survive every property together.",
+  "interior_parity_check": "The middle values 20.6 and 31.3 are both two-digit numbers with one decimal place; neither is rounder than the other.",
+  "arith_class_check": "No class isolates the key: two options end in .5 and two do not (17.5, 45.5 vs 20.6, 31.3); none is an integer; parities of the tenths digit are mixed (odd 5, 5, 3; even 6).",
+  "dup_search": {
+   "queries": [
+    "(increased|decreased) by [0-9]+ ?(%|percent)&(then|following|next)&(increased|decreased) by",
+    "(fourth|third|final|last) (quarter|year|month|week)&percent&(overall|whole|entire|net)",
+    "percent&(overall|net) (change|decrease|increase)&what percent",
+    "quarter&percent&(increase|decrease)&(overall|net)",
+    "table&percent change"
+   ],
+   "hits_read": 15,
+   "nearest": "51af14f3-31d (three weekly changes, asks the forward net change); here the net change is given and the missing fourth change is solved for, through a division of factors, from a table. d8855524 / dc075b51 reverse two changes to an original value, not to a missing rate."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might add the table percents (+20 - 25 + 50 = 45) and add 7.2, giving 52.2, which is not an option. Plug-back needs 1.35 first and reaches the key only at try 3 ascending. No distractor is a solved intermediate one printed relation from the key: none of 17.5, 20.6, 45.5 gives 31.3 through a printed number. The key 31.3 is not printed anywhere in the stem or table. Errors fall both ways (two below, one above), so the key's interior position is not readable."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-T02",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Rates: overall cost per mile from two fuel rates",
+  "difficulty": "medium",
+  "prompt": "On one trip, a delivery van was driven 140 miles in city traffic, where it averaged 14 miles per gallon of gasoline, and 360 miles on highways, where it averaged 24 miles per gallon. Gasoline cost $3.90 per gallon. To the nearest tenth of a cent, what was the van's gasoline cost per mile, in cents, for the whole trip?",
+  "choices": [
+   "19.5",
+   "20.5",
+   "24.6",
+   "27.1"
+  ],
+  "correct_answer": "19.5",
+  "explanation": "In the city the van used 140/14 = 10 gallons, and on highways it used 360/24 = 15 gallons, for 25 gallons in all. The gasoline cost 25(3.90) = 97.50 dollars, or 9,750 cents. The whole trip was 140 + 360 = 500 miles, so the cost per mile was 9,750/500 = 19.5 cents.",
+  "solve": "const g=140/14+360/24; const cents=g*390/(140+360); return (Math.round(cents*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "20.5": "const mpg=(14+24)/2; const cents=390/mpg; return (Math.round(cents*10)/10).toFixed(1);",
+   "24.6": "const g=140/24+360/14; const cents=g*390/(140+360); return (Math.round(cents*10)/10).toFixed(1);",
+   "27.1": "const g=140/14+360/24; const cents=g*390/360; return (Math.round(cents*10)/10).toFixed(1);"
+  },
+  "mechanism": [
+   "gallons for each leg from its own rate",
+   "total fuel cost",
+   "divide by total miles for a per-mile rate"
+  ],
+  "quantity_asked": "the gasoline cost per mile, in cents, for the whole trip",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no printed condition an option can be substituted into: the stem gives two legs and a price and asks a forward-computed overall rate. Checking 19.5 means computing both legs' gallons and the total cost, which is the whole solution."
+  },
+  "distractor_meta": {
+   "20.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Averaging the two mileages (19 mpg) instead of dividing total miles by total gallons. Whether that mean is above or below the true overall 20 mpg depends on how the miles split between the legs, which the student must compute."
+   },
+   "24.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Pairing each leg's miles with the other leg's mileage. The stem does not show whether the swap raises or lowers the fuel total; it depends on which leg is longer and which rate is better, both needing comparison."
+   },
+   "27.1": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing the full cost by only the highway miles leaves the city miles out of the divisor."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const mpg=(140*14+360*24)/(140+360); return Math.round(390/mpg*10)/10;",
+   "direction": "below",
+   "why": "Weighting the two mileages by miles driven (21.2 mpg) instead of by fuel used overstates the efficiency and gives 18.4 cents, below the key."
+  },
+  "far_distractor": {
+   "option": "20.5",
+   "natural_side": "below",
+   "why": "Taking the plain mean of two mileages ordinarily OVERstates efficiency (for equal distances it always does, since the leg at the worse rate burns more fuel), which would make the cost per mile too LOW. Here 72% of the miles are on the highway, so the true overall rate (500/25 = 20 mpg) is above the plain mean of 19 and the error lands above the key. A student cannot sign it without computing the true overall mileage."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it' structure: the stem asks for a single overall rate. The natural slips push both ways - the plain mean of mileages (above here), the mile-weighted mean (18.4, below), swapping rates, and dropping a leg from the divisor or from the fuel - and which way each goes depends on the leg lengths.",
+  "intermediate_check": "20.5: no - it is a per-mile cost at a wrong mileage; no printed relation converts it to 19.5. 24.6: no - same structure with swapped rates; the key does not follow from it through one printed number. 27.1: no - it is the total cost over 360 miles; reaching 19.5 needs the unprinted total 500 miles (two printed numbers summed and a ratio), not one printed rate, and no gallon count or dollar total is offered as an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: the cost per mile is at least the all-highway rate 390/24 = 16.3 cents and at most the all-city rate 390/14 = 27.9 cents. All four options, including every distractor, sit inside (16.3, 27.9), so the bound strikes none of them; 20.5 sits just above the key on the key's side of every simple bound.",
+  "shape_check": "Positive, between the all-highway and all-city per-mile costs (16.3 and 27.9), reported to a tenth: all four options survive together.",
+  "interior_parity_check": "Middle values 20.5 and 24.6: both two-digit numbers with one decimal; the key is an extreme, not interior.",
+  "arith_class_check": "No class isolates the key: 19.5 and 20.5 both end in .5, 24.6 and 27.1 do not; none is an integer; the key is not the only multiple of anything the stem implies.",
+  "dup_search": {
+   "queries": [
+    "city&highway",
+    "per gallon&miles&(cost|dollars)",
+    "(miles|kilometers) per (gallon|liter)&percent"
+   ],
+   "hits_read": 9,
+   "nearest": "0360df3b-fbe (city/highway fuel rates, solves for an unknown city distance from an average) and f4e15336-0f1 (one fuel rate, cost of a trip); this item combines two legs at different rates into an overall per-mile cost, with no unknown distance."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The omission (27.1) is signable, but the plain-mean error (20.5) needs the true overall mileage to sign, and the swap (24.6) depends on which leg is longer; the mile-weighted mean, a natural error, lands below the key (18.4, not offered). Does the far_distractor read as far? The plain mean of mileages is usually too generous; here it is not, and seeing that needs the computation. One bound from the stem (16.3 to 27.9) strikes none of the four. Could a student check an option in one routine step? No printed condition to substitute into. Is any distractor a solved intermediate one printed relation from the key? No: no gallon total or dollar total is an option."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-T03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent change in a ratio read from a table",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of students and the number of teachers at a high school in each of three years. By what percent did the number of students per teacher at the school decrease from 2023 to 2025, to the nearest tenth of a percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "colLabels": [
+    "Students",
+    "Teachers"
+   ],
+   "cells": [
+    [
+     "912",
+     "38"
+    ],
+    [
+     "1,008",
+     "40"
+    ],
+    [
+     "1,081",
+     "47"
+    ]
+   ],
+   "caption": "Enrollment and teaching staff by year"
+  },
+  "choices": [
+   "4.2",
+   "4.3",
+   "5.2",
+   "8.7"
+  ],
+  "correct_answer": "4.2",
+  "explanation": "In 2023 there were 912/38 = 24 students per teacher, and in 2025 there were 1,081/47 = 23 students per teacher. The decrease is 24 - 23 = 1 student per teacher, which as a percent of the 2023 value is 1/24, or about 4.17%. To the nearest tenth, that is 4.2%.",
+  "solve": "const r23=912/38, r25=1081/47; const p=(r23-r25)/r23*100; return (Math.round(p*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "4.3": "const r23=912/38, r25=1081/47; const p=(r23-r25)/r25*100; return (Math.round(p*10)/10).toFixed(1);",
+   "5.2": "const t=(47/38-1)*100, s=(1081/912-1)*100; const p=t-s; return (Math.round(p*10)/10).toFixed(1);",
+   "8.7": "const r24=1008/40, r25=1081/47; const p=(r24-r25)/r24*100; return (Math.round(p*10)/10).toFixed(1);"
+  },
+  "mechanism": [
+   "form students-per-teacher for the two years",
+   "percent change relative to the earlier ratio"
+  ],
+  "quantity_asked": "the percent decrease in students per teacher from 2023 to 2025",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no printed condition to substitute an option into; the stem asks for a percent change computed forward from the table. Confirming 4.2 requires forming both ratios and the percent change, which is the whole solution."
+  },
+  "distractor_meta": {
+   "4.3": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing the drop of 1 by the 2025 ratio (23) instead of the 2023 ratio (24); the student must first compute both ratios to know which base is the smaller."
+   },
+   "5.2": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the percent growth of students (18.5%) from the percent growth of teachers (23.7%) instead of comparing the ratios; whether that difference over- or understates the true change depends on the sizes of the two growth rates."
+   },
+   "8.7": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Starting from the 2024 row instead of the 2023 row. The 2024 ratio (25.2) is higher than the 2023 ratio, which a student sees only after computing it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "const r23=912/38, r24=1008/40, r25=1081/47; return Math.round((r23-r25)/r24*1000)/10;",
+   "direction": "below",
+   "why": "Taking the 2023-to-2025 drop of 1 student per teacher as a share of the middle row's ratio (25.2) instead of the 2023 ratio gives 4.0, below the key; a base taken from the wrong row moves the answer down here, while the 2025 base moves it up."
+  },
+  "far_distractor": {
+   "option": "8.7",
+   "natural_side": "below",
+   "why": "Using the wrong starting year cuts the period short (2024 to 2025 instead of 2023 to 2025). A change over a shorter part of a period is ordinarily SMALLER than the change over the whole period, so this error would usually land below the key. Here the ratio rose from 24 to 25.2 in 2024 before falling to 23, so the one-year drop is larger than the two-year drop, and the error lands above. A student cannot see that without computing the 2024 ratio."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem asks for one percent change between two named rows. Errors do not all move one way: wrong-row errors move with whatever the middle row's ratio is (it could be above or below the end ratios), and a wrong-base error moves up for a decrease but down for an increase, which the student only knows after computing the ratios. No monotone 'every slip lowers it' reading is available from the stem.",
+  "intermediate_check": "4.3: no - it is the same drop over the other ratio; the key does not follow from it through one printed number. 5.2: no - it is a difference of two growth percents; no printed rate turns it into 4.2. 8.7: no - it is a percent change from the 2024 ratio; reaching 4.2 from it needs the computed ratios, not one printed relation. No ratio (24, 25.2, 23) is offered as an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: the decrease is positive and well under 100%; a quick look shows teachers grew faster than students, so the ratio fell, and nothing caps the size of the fall from the stem without computing. All three distractors sit on the key's side of every such bound (positive, small).",
+  "shape_check": "A percent decrease, positive and less than 100, reported to the nearest tenth: all four options survive together.",
+  "interior_parity_check": "Middle values 4.3 and 5.2: both one-digit numbers with one decimal; the key is an extreme.",
+  "arith_class_check": "No class isolates the key: all four are one-decimal values; 4.2 and 5.2 share a tenths digit, 4.2 and 4.3 share a units digit; the key is not the only even or odd tenths digit (4.2 and 5.2 even, 4.3 and 8.7 odd).",
+  "dup_search": {
+   "queries": [
+    "students per teacher|student-to-teacher|per teacher",
+    "table&percent change",
+    "(fourth|third|final|last) (quarter|year|month|week)&percent&(overall|whole|entire|net)"
+   ],
+   "hits_read": 2,
+   "nearest": "51af14f3-31d (net percent change from three printed percent changes); here the percents are not given - two ratios are formed from raw counts in a table and their percent change is found, with a distractor row between the two named years."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the wrong-row error depends on the 2024 ratio, which must be computed, and whether a percent-difference shortcut over- or understates depends on the growth rates. Does the far_distractor read as far? A shorter period ordinarily gives a smaller change; here it gives a larger one only because the ratio rose in 2024, which is not visible without dividing. Does one bound strike all three? No - every distractor is a small positive percent, as is the key. Could a student check an option in one routine step? No printed condition to substitute into. Is any distractor a solved intermediate one printed relation from the key? No; no ratio is offered and none of 4.3, 5.2, 8.7 gives 4.2 through a printed number."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-T04",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent increase in sales to offset a price cut",
+  "difficulty": "hard",
+  "prompt": "A store sells a lamp for $40. The lamp costs the store $25, and the store also pays a salesperson a commission on the sale of a lamp equal to 5% of the lamp's selling price, but never more than $1.92. The store's profit on a lamp is its selling price minus the store's cost and the commission. The store lowers the lamp's selling price by 10%. By what percent must the number of lamps sold increase so that the store's total profit from lamps stays the same, to the nearest tenth of a percent?",
+  "choices": [
+   "29.7",
+   "36.4",
+   "41.3",
+   "42.2"
+  ],
+  "correct_answer": "42.2",
+  "explanation": "At $40, 5% of the price is $2.00, which is more than $1.92, so the commission is $1.92 and the profit on a lamp is 40 - 25 - 1.92 = 13.08 dollars. The new price is 0.90(40) = 36 dollars; 5% of 36 is $1.80, which is under the limit, so the profit on a lamp is 36 - 25 - 1.80 = 9.20 dollars. For total profit to stay the same, the number sold must be multiplied by 13.08/9.20, which is about 1.4217, an increase of about 42.17%, or 42.2% to the nearest tenth.",
+  "solve": "const com=p=>Math.min(0.05*p,1.92); const o=40-25-com(40), n=36-25-com(36); return (Math.round((o/n-1)*1000)/10).toFixed(1);",
+  "distractor_solve": {
+   "29.7": "const com=p=>Math.min(0.05*p,1.92); const o=40-25-com(40), n=36-25-com(36); return (Math.round((o-n)/o*1000)/10).toFixed(1);",
+   "36.4": "const o=40-25, n=36-25; return (Math.round((o/n-1)*1000)/10).toFixed(1);",
+   "41.3": "const o=40-25-0.05*40, n=36-25-0.05*36; return (Math.round((o/n-1)*1000)/10).toFixed(1);"
+  },
+  "mechanism": [
+   "per-unit profit at each price with a capped commission",
+   "ratio of per-unit profits",
+   "convert the multiplier to a percent increase"
+  ],
+  "quantity_asked": "the percent increase in the number of lamps sold that keeps total profit unchanged",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(9.20*(1+Number(v)/100)-13.08) < 0.01;",
+   "why": "A student who has both per-lamp profits (13.08 and 9.20) can check an option p by testing 9.20(1 + p/100) = 13.08; finding those profits, with the cap decided at each price, is the whole problem. Ascending order reaches the key 42.2 only at try 4."
+  },
+  "distractor_meta": {
+   "29.7": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the percent DROP in profit per lamp, (13.08 - 9.20)/13.08, which divides by the old profit instead of the new one; the stem does not show the size of either profit."
+   },
+   "36.4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the commission entirely (profits 15 and 11)."
+   },
+   "41.3": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the $1.92 limit and charging the full 5% at both prices; whether that raises or lowers the needed increase depends on which price the limit binds at, which the student must compute."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const o=40-25-1.92, n=36-25-1.92; return Math.round((o/n-1)*1000)/10;",
+   "direction": "above",
+   "why": "Keeping the commission at $1.92 after the price cut (not recomputing 5% of $36) makes the new profit 9.08 and gives 44.1, above the key."
+  },
+  "far_distractor": {
+   "option": "41.3",
+   "natural_side": "above",
+   "why": "Ignoring a limit on a deduction ordinarily over-counts the deduction, which shrinks profit and would make the needed sales increase LARGER. Here the limit binds only at the old $40 price (5% = $2.00 > $1.92), not at $36, so ignoring it lowers only the old profit, the one in the numerator, and the error lands below the key. A student cannot sign it without checking the cap at both prices."
+  },
+  "structure_check": "The stem has a cap ('never more than $1.92'), but it does not sign the errors: the cap binds at one price and not the other, so ignoring it moves the answer down, while keeping the commission at the cap after the cut moves it up (44.1); dropping the commission moves it down and a revenue-only reading (11.1) down further. No universal condition, extremum or 'every slip lowers it' reading: natural errors fall on both sides of 42.2.",
+  "intermediate_check": "29.7: no - a percent drop in profit, not a quantity from which 42.2 follows by one printed relation (it needs the computed profits). 36.4: no - a profit ratio without commission; adding the commission back needs two computed amounts, not one printed rate. 41.3: no - a profit ratio with an uncapped commission; the key follows only after recomputing the old profit with the cap. No dollar amount (13.08, 9.20, 1.80) is offered as an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: any per-lamp deduction makes the needed increase larger than the no-commission figure, so the answer exceeds 15/11 - 1, about 36.4%; a weaker bound is the revenue-only 11.1%. The 36.4 bound strikes 29.7 and 36.4 but leaves 41.3 on the key's side, so no single bound strikes all three.",
+  "shape_check": "A positive percent increase, larger than the 10% price cut, reported to a tenth: all four options survive together.",
+  "interior_parity_check": "Middle values 36.4 and 41.3: both two-digit numbers with one decimal place; the key is an extreme, not interior.",
+  "arith_class_check": "No class isolates the key: all are one-decimal, non-integer values; tenths digits 7, 4, 3, 2 (two even, two odd); none is round.",
+  "dup_search": {
+   "queries": [
+    "mark(ed)? ?up",
+    "coupon",
+    "sales tax&original price",
+    "percent (more|less|greater) than&percent (more|less|greater) than",
+    "commission&percent"
+   ],
+   "hits_read": 26,
+   "nearest": "9c1f5aef-052 (budget up 5%, price up 25%, greatest number of chairs) is a percent offset of a price change on a quantity, but by revenue with no per-unit cost; here the offset is on profit with a cost and a capped commission recomputed at each price."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: natural errors fall on both sides (keeping the capped commission after the cut gives 44.1, above; ignoring the cap gives 41.3, below), and which side the cap error falls on depends on where it binds. Does the far_distractor read as far? Ignoring a cap on a deduction usually overstates it and pushes the needed increase up; here it lands below only because the cap binds at $40 and not at $36, visible only after computing 5% of each price. Does one bound strike all three? The best cheap bound (> 36.4) strikes two and leaves 41.3. Is any distractor a solved intermediate one printed relation from the key? No: none is a dollar amount and none gives 42.2 through a printed number."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-T05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Percent of capacity, then a rate",
+  "difficulty": "medium",
+  "prompt": "A water tank is 30% full. After 1,080 liters of water are pumped in, the tank is 75% full. Water is then drained from the tank at a constant rate of 25 liters per minute until the tank is 15% full. To the nearest tenth of a minute, how many minutes does the draining take?",
+  "choices": [
+   "14.4",
+   "34.6",
+   "57.6",
+   "61.2"
+  ],
+  "correct_answer": "57.6",
+  "explanation": "Pumping in 1,080 liters raised the water from 30% to 75% of the tank's capacity, so 1,080 liters is 45% of the capacity, and the capacity is 1,080/0.45 = 2,400 liters. Draining from 75% full to 15% full removes 60% of the capacity, or 0.60(2,400) = 1,440 liters. At 25 liters per minute, that takes 1,440/25 = 57.6 minutes.",
+  "solve": "const C=1080/(0.75-0.30); const t=(0.75-0.15)*C/25; return (Math.round(t*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "14.4": "const C=1080/(0.75-0.30); const t=0.15*C/25; return (Math.round(t*10)/10).toFixed(1);",
+   "34.6": "const C=1080/0.75; const t=(0.75-0.15)*C/25; return (Math.round(t*10)/10).toFixed(1);",
+   "61.2": "const C=1080/(0.75-0.30); const w=0.75*C; const t=(w-0.15*w)/25; return (Math.round(t*10)/10).toFixed(1);"
+  },
+  "mechanism": [
+   "capacity from a change in percent full",
+   "liters drained from the percent-full drop",
+   "time at a constant rate"
+  ],
+  "quantity_asked": "the number of minutes the draining takes",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const C=1080/0.45; return Math.abs(Number(v)*25-(0.75-0.15)*C) < 1;",
+   "why": "From an option t a student can compute 25t liters drained, call it 60% of the capacity, and check that 45% of that capacity is 1,080 liters - three steps, the same work as solving. Ascending order reaches the key 57.6 at try 3."
+  },
+  "distractor_meta": {
+   "14.4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading 'until the tank is 15% full' as draining 15% of the capacity; the stem does not show whether that amount is more or less than the true drop without the capacity in hand."
+   },
+   "34.6": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating the 1,080 liters as 75% of the capacity (the final level) instead of the 45-point rise; whether this base is too big or too small is not visible until the rise is computed."
+   },
+   "61.2": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking 15% of the water then in the tank (1,800 liters) instead of 15% of the capacity as the level to stop at, so 1,530 liters are drained."
+   }
+  },
+  "intermediate_check": "14.4: no - it is the time to drain 15% of the capacity; turning it into 57.6 needs the ratio 60/15, which is not a printed number or relation. 34.6: no - it is a time from a wrong capacity (1,440 liters); the key does not follow from it through one printed rate. 61.2: no - it is a time for a different drained amount; no printed number converts it to 57.6. Neither the capacity (2,400) nor the drained volume (1,440) is offered, so no option is a volume from which the minutes follow at the printed 25 liters per minute.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "A positive time, reported to a tenth of a minute; the drained amount is less than the 75% of the tank present, so the time is under 0.75C/25 for any capacity a student might assume: all four options survive together.",
+  "interior_parity_check": "Middle values 34.6 and 57.6: both two-digit numbers with one decimal place; neither is rounder.",
+  "arith_class_check": "No class isolates the key: all four are one-decimal values; tenths digits 4, 6, 6, 2 are all even, so no parity tell; none is an integer.",
+  "dup_search": {
+   "queries": [
+    "percent full|% full",
+    "capacity&(percent|%)",
+    "(fraction|percent) of (its|the) (capacity|full)",
+    "seconds per|every [0-9.]+ seconds&per (minute|hour)"
+   ],
+   "hits_read": 1,
+   "nearest": "No hit for a percent-full rise used to find a capacity. The nearest drain-time items (6c4b680b-16d, 205930ac-f85) get the volume from geometry and a unit conversion, not from a change in percent of capacity. The near-dup checker's best match, cf9d7c38 (sat-alg-hard-v1), drains a tank of known capacity under a printed linear model W = 620 - 6.5t; here the capacity is unknown and must be recovered from a change in percent full."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might divide 1,080 by 25 (43.2 minutes, not an option) or try options backward; checking an option takes three steps and reaches the key only at try 3 ascending. No distractor is a solved intermediate one printed rate from the key: no volume is offered, and none of 14.4, 34.6, 61.2 gives 57.6 through a printed number. The errors fall on both sides (two below, one above), so the interior position is not readable."
+  },
+  "bounds": []
+ }
+]

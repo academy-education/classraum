@@ -1,0 +1,462 @@
+[
+ {
+  "id": "SM30F-V01",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Population estimate from a recapture sample",
+  "difficulty": "medium",
+  "prompt": "Biologists caught 240 fish from a pond, tagged them, and released them back into the pond. Before the biologists returned, 40 of the tagged fish were caught and kept by a research team, so only the remaining tagged fish were still in the pond; no other fish entered or left the pond. The biologists then caught a random sample of 150 fish from the pond and found that 12 of them were tagged. Based on this sample, what is the best estimate of the number of untagged fish in the pond?",
+  "choices": [
+   "2300",
+   "2350",
+   "2488",
+   "2800"
+  ],
+  "correct_answer": "2300",
+  "explanation": "The tagged fish still in the pond number 240 - 40 = 200. In the sample, 12 of 150 fish, or 8%, are tagged, so the 200 tagged fish are about 8% of the pond. The best estimate of the number of fish in the pond is 200 / (12/150) = 2500. Of these, 200 are tagged, so the estimated number of untagged fish is 2500 - 200 = 2300.",
+  "solve": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - tagged);",
+  "distractor_solve": {
+   "2350": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - 150);",
+   "2488": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - 12);",
+   "2800": "const total = 240 * 150 / 12; return String(total - (240 - 40));"
+  },
+  "mechanism": [
+   "tagged fish remaining after removal",
+   "sample proportion scales to population",
+   "subtract tagged to get untagged"
+  ],
+  "quantity_asked": "estimated number of untagged fish in the pond",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "A student holding an option U would have to know that the tagged fish now in the pond number 200 (not 240), form U + 200 as the pond total, and test 200/(U + 200) against 12/150. Building that check is the whole solution (the removal and the proportion), so trying 2300 first saves no work; it is not a printed equation to substitute into."
+  },
+  "distractor_meta": {
+   "2350": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the sample size 150 instead of the 200 tagged fish; which of 150 and 200 is larger is not something the stem signals as a direction of error."
+   },
+   "2488": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting only the 12 tagged fish seen in the sample instead of all tagged fish in the pond; nothing in the stem marks this as an over- or under-estimate before computing."
+   },
+   "2800": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the 40 removed fish in the proportion step (using 240 tagged). Dropping a removal would ordinarily seem to lower an answer; here the tagged count multiplies 150/12, so it raises it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const tagged = 240 - 40; const total = tagged * 150 / 12; return String(total - 240);",
+   "direction": "below",
+   "why": "Using the correct pond total 2500 but subtracting the original 240 tagged fish gives 2260, below the key."
+  },
+  "far_distractor": {
+   "option": "2800",
+   "natural_side": "below",
+   "why": "Leaving out a removal is a dropped step, which ordinarily lowers the answer (fewer things subtracted). Here the removed fish change the number of tagged fish in the pond, which is multiplied by 150/12 to estimate the population, so leaving the removal out raises the estimate by 40 x 150/12 = 500 instead of lowering it."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem is a single proportional estimate followed by a subtraction. A removal that lowers the tagged count both lowers the estimated total and lowers the amount subtracted, so the stem does not say which way a mishandled removal or a wrong subtraction moves the answer.",
+  "intermediate_check": "2350: no - it is the total minus the sample size; the key is not reached from 2350 by any printed number (2350 - 50, and 50 is not printed). 2488: no - total minus 12; the key is 2488 - 188, not one printed relation. 2800: no - the key is 2800 - 500, and 500 is not printed; 2800 is not the pond total (2500, not an option) nor the tagged count.",
+  "cheap_bound_check": "Cheapest bound: the untagged count is less than the pond total and exceeds the untagged fish seen in the sample (138); an alternative cheap reading 'untagged must be below 150/12 x 240 = 3000' is satisfied by all four. No single bound separates the key from the three distractors; all four sit on the same side of every readable bound.",
+  "shape_check": "Integer count: all four. Nonnegative: all four. Below 3000 (estimate with all 240 tagged): all four. All four survive together.",
+  "interior_parity_check": "Middle values 2350 and 2488: both four-digit integers; the key is not interior.",
+  "arith_class_check": "All are integers; 2300, 2350 and 2800 are multiples of 50, so the key is not alone in roundness; parity all even.",
+  "dup_search": {
+   "queries": [
+    "tagged|recapture",
+    "estimate&total number&sample&of the",
+    "at least one"
+   ],
+   "hits_read": 61,
+   "nearest": "82ece773 / f20247e0 / fba8e668 / b4664f68: plain capture-recapture asking the TOTAL with all tagged fish still present. This item removes tagged fish before the sample and asks the UNTAGGED count, a different chain (adjust the tagged count, scale, subtract)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, the errors do not read as one-sided from the stem: the removal could plausibly raise or lower the answer, and the subtraction errors (150, 12) are not signed without computing. The far distractor 2800 is a dropped step that lands above because the dropped quantity multiplies. No single stem bound strikes all three. Checking an option needs the remaining tagged count and the proportion, i.e. the full solution. No distractor is a solved intermediate one printed relation away from the key (the pond total 2500 is deliberately not an option)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-V02",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Probability of a union from a two-way table",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of members of a school's science club, by grade and by the project team each member is on. Each member is on exactly one team. One member of the club will be selected at random. To the nearest hundredth, what is the probability that the selected member is a junior or is on the robotics team (or both)?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Juniors",
+    "Seniors"
+   ],
+   "colLabels": [
+    "Robotics",
+    "Ecology",
+    "Astronomy"
+   ],
+   "cells": [
+    [
+     "9",
+     "14",
+     "7"
+    ],
+    [
+     "12",
+     "6",
+     "11"
+    ]
+   ],
+   "caption": "Science club members by grade and project team"
+  },
+  "choices": [
+   "0.43",
+   "0.68",
+   "0.71",
+   "0.86"
+  ],
+  "correct_answer": "0.71",
+  "explanation": "The club has 9 + 14 + 7 + 12 + 6 + 11 = 59 members. There are 9 + 14 + 7 = 30 juniors and 9 + 12 = 21 members on the robotics team, but the 9 juniors on the robotics team are in both groups and must be counted only once. So 30 + 21 - 9 = 42 members are juniors or on the robotics team, and the probability is 42/59, which is approximately 0.71.",
+  "solve": "const total = 9+14+7+12+6+11; const n = (9+14+7) + (9+12) - 9; return (n/total).toFixed(2);",
+  "distractor_solve": {
+   "0.43": "return (9/(9+12)).toFixed(2);",
+   "0.68": "const total = 9+14+7+12+6+11; const pJ = (9+14+7)/total, pR = (9+12)/total; return (pJ + pR - pJ*pR).toFixed(2);",
+   "0.86": "const total = 9+14+7+12+6+11; return (((9+14+7)+(9+12))/total).toFixed(2);"
+  },
+  "mechanism": [
+   "row and column totals from the table",
+   "inclusion-exclusion for the overlap",
+   "count over the grand total"
+  ],
+  "quantity_asked": "probability that a randomly selected member is a junior or on the robotics team",
+  "ask_type": "probability",
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is the upper interior value (ascending try 3). A probability cannot be substituted into a printed condition; testing 42/59 means counting the union, which is the solution."
+  },
+  "distractor_meta": {
+   "0.43": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Computes P(junior | robotics) = 9/21, a conditional instead of a union over the whole club; the stem does not compare these two quantities."
+   },
+   "0.68": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses the independent-events formula P(J) + P(R) - P(J)P(R) instead of removing the actual overlap counted in the table; whether the product is larger or smaller than the true overlap share (9/59) depends on the table, which the stem does not compare."
+   },
+   "0.86": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds the junior total and the robotics total without removing the 9 members counted twice; the stem does not signal the double count."
+   }
+  },
+  "intermediate_check": "0.43: no - a conditional on a different base (9/21), not a step toward 42/59. 0.68: no - it subtracts a product that never appears in the correct chain; the key is not 0.68 combined with a printed number. 0.86: no - the double count 51/59; reaching the key from it needs the overlap divided by the unprinted total 59, i.e. redoing the count, not one printed relation.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Probability between 0 and 1: all four. Rounded to hundredths with no trailing zero: all four. At least the junior share 30/59 (about 0.51) for a union: 0.68, 0.71 and 0.86 survive together; this needs the row total and is not printed.",
+  "interior_parity_check": "Middle values 0.68 and 0.71: both two-decimal values of the same complexity; neither is cleaner.",
+  "arith_class_check": "All are two-decimal values; no two sum to 1 (0.43 + 0.68 = 1.11); no option is a sum or difference of two others (0.86 - 0.71 = 0.15, 0.71 - 0.68 = 0.03, 0.68 - 0.43 = 0.25); the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "probability&either|probability& or both|probability&is a junior or|probability&or is",
+    "table&without replacement|table&two of|table&both",
+    "probability&given that|probability&who",
+    "table above&probability|table shows&probability|table&selected at random"
+   ],
+   "hits_read": 39,
+   "nearest": "b6922561 / 8878fe08: a conditional probability from a junior/senior table (P(Spanish | senior), P(bikes | senior)). This item asks a union over the whole club with three team columns, so the overlap must be removed by inclusion-exclusion; no bank item found asks an 'or' probability from a table."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might reason that an 'or' probability is at least the junior share (about 0.51) and strike 0.43, leaving 0.68, 0.71 and 0.86, which need the actual overlap to separate. Checking an option needs the union count, which is the solution. No distractor is a solved intermediate one printed relation away from the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-V03",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Population estimate excluding nonresponse",
+  "difficulty": "medium",
+  "prompt": "A town has 15,600 adults. A researcher contacted a random sample of 400 of these adults and asked whether they would use a proposed evening bus service. Of the adults contacted, 75 declined to answer. Of those who answered, 104 said yes and the rest said no. Assume that the adults who answered are representative of all adults in the town. Based on the survey, approximately how many more adults in the town would answer no than would answer yes?",
+  "choices": [
+   "4563",
+   "4992",
+   "5472",
+   "5616"
+  ],
+  "correct_answer": "5616",
+  "explanation": "The number who answered is 400 - 75 = 325, so 325 - 104 = 221 said no. Among those who answered, the difference between no and yes is 221 - 104 = 117, which is 117/325 = 0.36 of those who answered. Applying this to the town's 15,600 adults gives 0.36 x 15,600 = 5616 more adults who would answer no than would answer yes.",
+  "solve": "const answered = 400 - 75; const no = answered - 104; return String(15600 * (no - 104) / answered);",
+  "distractor_solve": {
+   "4563": "const answered = 400 - 75; const no = answered - 104; return String(Math.round(15600 * (no - 104) / 400));",
+   "4992": "const answered = 400 - 75; return String(15600 * 104 / answered);",
+   "5472": "const answered = 400 - 75; const no = answered - 104; return String((15600 - 400) * (no - 104) / answered);"
+  },
+  "mechanism": [
+   "exclude nonrespondents from the base",
+   "difference of two sample counts as a proportion",
+   "scale to the population"
+  ],
+  "quantity_asked": "estimated number of town adults answering no minus number answering yes",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is the largest option, reached last in ascending order. No option can be checked against a printed condition: confirming 5616 means forming 117/325 and scaling it, which is the solution."
+  },
+  "distractor_meta": {
+   "4563": {
+    "error_kind": "wrong_base",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Keeps the 75 adults who declined in the base (divides by 400). Counting extra people ordinarily raises a count; here they enter the divisor, and the stem does not tell a student which way that goes without seeing where the 75 sit in the computation."
+   },
+   "4992": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Estimates the number who would answer yes instead of the difference between no and yes; the stem does not say whether the yes count is larger or smaller than the difference."
+   },
+   "5472": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Applies the proportion only to the 15,200 adults not in the sample; a student does not read the side of this error from the stem without deciding whether the sample belongs to the population."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const no = 400 - 104; return String(15600 * (no - 104) / 400);",
+   "direction": "above",
+   "why": "Counting the 75 adults who declined as 'no' answers gives (296 - 104)/400 of 15,600 = 7488, above the key."
+  },
+  "far_distractor": {
+   "option": "4563",
+   "natural_side": "above",
+   "why": "Including the 75 adults who declined is an over-count (extra people kept in), which ordinarily lands above. Here the extra people are in the denominator of the proportion, so including them makes the estimate smaller and the option lands below the key."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it': the stem asks for a difference of two estimated counts. Errors in the base go both ways (keeping decliners in the base lowers it; counting decliners as 'no' raises it to 7488), so the structure does not sign the errors.",
+  "intermediate_check": "4563: no - the key follows from it only by the factor 400/325, a ratio of two printed numbers rather than one printed rate, and only for a student who has already diagnosed the error. 4992: no - the key is 15,600 - 2 x 4992, two operations, and 5616/4992 = 9/8 is not printed. 5472: no - the key is 5472 + 144, and 144 is not printed; 5472 is not a step on the way to 5616.",
+  "cheap_bound_check": "Cheapest bound: in the sample more answered no than yes (221 > 104), so the difference is positive and below the town total; all four options satisfy it. A second cheap reading, 'the difference is less than the number who would answer no', is also satisfied by all four. Every distractor sits on the key's side of each readable bound.",
+  "shape_check": "Positive count: all four. Integer (approximately): all four. Less than 15,600: all four. All four survive together.",
+  "interior_parity_check": "Middle values 4992 and 5472: both four-digit even integers of the same complexity; the key is not interior.",
+  "arith_class_check": "Integers all; 4563 is odd and the other three even, so the key is not a parity singleton; none is a round hundred; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "declined|did not respond|did not answer|nonrespon",
+    "how many more&sample|how many more&estimate",
+    "estimate&total number&sample&of the",
+    "margin of error"
+   ],
+   "hits_read": 32,
+   "nearest": "ec65f7cf (stratified two-grade estimate) and the margin-of-error count items (711bdbae, PSDA-H4-20): those scale a printed sample percentage to a population; none removes nonrespondents from the base or asks a difference of two estimated counts."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: keeping the decliners in lowers the answer while counting them as 'no' raises it, and the yes-count and wrong-population errors are not signed by the stem. The far distractor 4563 is an over-count that lands below because the extra people enter a divisor. No single stem bound strikes all three. (read) ratio line: 5616 = 4563 x 400/325; a student would need to know 4563 came from keeping the decliners in to use that, which is the solution itself. No distractor is a solved intermediate one printed relation away from the key; the yes estimate 4992 is two operations from it."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-V04",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Stopping rule with draws without replacement",
+  "difficulty": "hard",
+  "prompt": "A box contains 24 fuses, 5 of which are defective. An inspector tests fuses from the box one at a time, each chosen at random from the fuses not yet tested. She stops as soon as she finds a defective fuse or after she has tested 4 fuses, whichever happens first. To the nearest thousandth, what is the probability that she tests exactly 4 fuses?",
+  "choices": [
+   "0.365",
+   "0.421",
+   "0.479",
+   "0.496"
+  ],
+  "correct_answer": "0.479",
+  "explanation": "She tests a fourth fuse exactly when none of the first 3 fuses is defective; whether the fourth fuse is defective does not matter, because she stops after it either way. There are 24 - 5 = 19 good fuses. The probability that the first 3 fuses tested are all good is (19/24)(18/23)(17/22) = 5814/12144, which is approximately 0.479.",
+  "solve": "const p = (19/24)*(18/23)*(17/22); return p.toFixed(3);",
+  "distractor_solve": {
+   "0.365": "const p = (19/24)*(18/23)*(17/22)*(16/21); return p.toFixed(3);",
+   "0.421": "const p = (19*18*17)/(24*24*24); return p.toFixed(3);",
+   "0.496": "const p = Math.pow(19/24, 3); return p.toFixed(3);"
+  },
+  "mechanism": [
+   "translate the stopping rule into an event",
+   "first three draws all good",
+   "product of dependent probabilities"
+  ],
+  "quantity_asked": "probability that exactly 4 fuses are tested",
+  "ask_type": "probability",
+  "plugback": {
+   "substitutable": false,
+   "why": "A probability cannot be substituted into a printed condition. A student must decide which event 'tests exactly 4' is and compute it; trying options in order confirms nothing."
+  },
+  "distractor_meta": {
+   "0.365": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Requires the fourth fuse to be good as well (an extra condition), giving (19/24)(18/23)(17/22)(16/21). The stem does not say whether the event includes the fourth fuse's outcome; that is the decision the item tests."
+   },
+   "0.421": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Lowers the count of good fuses on each draw but keeps 24 as the denominator every time; the stem does not indicate which way this mixed error moves the value."
+   },
+   "0.496": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats the draws as independent with replacement, (19/24)^3; a student who misses 'not yet tested' has no stem cue to the side of the error."
+   }
+  },
+  "intermediate_check": "0.365: no - it is the key times 16/21, and neither 16 nor 21 is printed; it is a step past the key, not one from which the key follows by a printed relation. 0.421: no - a different computation (fixed denominators), not reached from or leading to the key by one printed relation. 0.496: no - the with-replacement product; the key is not 0.496 combined with a printed number.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Probability between 0 and 1: all four. Below the chance that the first fuse is good (19/24, about 0.792): all four. Below 1/2 is not implied by the stem. Rounded to thousandths with no trailing zero: all four. All four survive together.",
+  "interior_parity_check": "Middle values 0.421 and 0.479: both three-decimal values of the same complexity; neither is cleaner.",
+  "arith_class_check": "All are decimals to the thousandth between 0.36 and 0.50; no two sum to 1; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "one at a time&until|until&defective|until&first",
+    "at least one",
+    "table&without replacement|table&two of|table&both",
+    "two&surveys&margin|both&intervals|overlap"
+   ],
+   "hits_read": 52,
+   "nearest": "41461d08 / 1041775b: at least one red in a fixed number of draws without replacement. This item has a stopping rule with a cap, and the decision is that 'tests exactly 4' means the first 3 are good and the fourth's outcome is irrelevant; the bank items have no stopping rule."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might pick the with-replacement value or the value that includes the fourth fuse; neither is signalled by the stem. A routine procedure (or Desmos) does not bypass the decision of which event 'tests exactly 4' describes. No distractor is a solved intermediate one printed relation away from the key: 0.365 is a step past it by a non-printed factor, and the other two are different computations. No two options sum to 1."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-V05",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Subgroup estimate from a conditional sample share",
+  "difficulty": "medium",
+  "prompt": "A high school with only juniors and seniors surveyed a random sample of 120 of its students about how they usually get to school. The table summarizes the results. School records show that 1,800 students at the school do not usually take the bus. Based on the sample, what is the best estimate of the number of seniors among the students who do not usually take the bus?",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Juniors",
+    "Seniors"
+   ],
+   "colLabels": [
+    "Bus",
+    "Car",
+    "Walk"
+   ],
+   "cells": [
+    [
+     "17",
+     "17",
+     "26"
+    ],
+    [
+     "28",
+     "23",
+     "9"
+    ]
+   ],
+   "caption": "Usual way of getting to school, sample of 120 students"
+  },
+  "choices": [
+   "768",
+   "900",
+   "960",
+   "1035"
+  ],
+  "correct_answer": "768",
+  "explanation": "In the sample, the students who do not usually take the bus are those who go by car or walk: 17 + 26 + 23 + 9 = 75 students. Of these, 23 + 9 = 32 are seniors, so the sample proportion of seniors among students who do not take the bus is 32/75. Applying this to the 1,800 students at the school who do not take the bus gives (32/75)(1,800) = 768 seniors.",
+  "solve": "const nonBus = 17 + 26 + 23 + 9; const seniorsNonBus = 23 + 9; return String(1800 * seniorsNonBus / nonBus);",
+  "distractor_solve": {
+   "900": "const seniors = 28 + 23 + 9; return String(1800 * seniors / 120);",
+   "960": "const seniors = 28 + 23 + 9; return String(1800 * (23 + 9) / seniors);",
+   "1035": "return String(1800 * 23 / (17 + 23));"
+  },
+  "mechanism": [
+   "condition on a union of two columns",
+   "sample proportion within the condition",
+   "scale to the known subgroup count"
+  ],
+  "quantity_asked": "estimated number of seniors among the school's students who do not usually take the bus",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "To test 768 a student must compare 768/1800 with the sample share of seniors among non-bus students, 32/75, which requires adding the car and walk columns and forming that share: the whole solution. No printed equation takes an option directly."
+  },
+  "distractor_meta": {
+   "900": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applies the overall senior share of the sample (60/120) instead of the share among non-bus students; whether seniors are over- or under-represented among non-bus students is only visible after computing both shares."
+   },
+   "960": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the reversed conditional, the share of seniors who do not take the bus (32/60), instead of the share of non-bus students who are seniors; which of the two is larger depends on the row and column totals, which the stem does not compare."
+   },
+   "1035": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses only the Car column as 'not the bus' and leaves out the walkers (23/40). Dropping a group ordinarily lowers a count; here the dropped walkers are mostly juniors, so dropping them raises the senior share, which the stem does not reveal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "return String(1800 * (23 + 9) / 120);",
+   "direction": "below",
+   "why": "Using the joint share of the whole sample, 32/120, instead of 32/75 gives 480, below the key."
+  },
+  "far_distractor": {
+   "option": "1035",
+   "natural_side": "below",
+   "why": "Leaving the Walk column out is a dropped term, which ordinarily makes a count smaller. Here the term is dropped from both the numerator (9 senior walkers) and the denominator (35 walkers), and because walkers are mostly juniors, dropping them raises the senior share from 32/75 to 23/40, so the option lands above the key. Seeing that requires reading the Walk column's split, not the stem."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone 'every slip lowers it'. The stem asks a single conditional share scaled to a count. Errors go both ways: the joint share gives 480 (below), while the overall senior share, the reversed conditional and the car-only share give values above, and none of their sides is readable before computing.",
+  "intermediate_check": "900: no - it is the overall senior share applied to 1,800; the key does not follow from 900 by one printed number (768/900 = 64/75). 1035: no - the car-only share applied to 1,800; reaching the key from it needs the walk column and a new share, not one printed relation. 960: no - the key is 960 x 60/75, and neither 60 nor 75 is printed (they are a row sum and a column sum); 960 is not a step on the way to 768.",
+  "cheap_bound_check": "Cheapest bounds: the count is at most 1,800 (all four pass); a conditional share exceeds the joint share 32/120, so the count exceeds 480 (all four pass); 'without replacement' and 'a probability is at most 1' do not apply. The overall senior share (one half) is not a bound on the conditional share, and the stem does not say whether seniors are more or less common among non-bus students. No single read strikes two distractors; every distractor sits on the key's side of each readable bound.",
+  "shape_check": "Integer count: all four. Between 480 (joint share) and 1,800: all four. All four survive together.",
+  "interior_parity_check": "Middle values 900 and 960: both three-digit integers ending in 0; the key is not interior.",
+  "arith_class_check": "All are integers; 768 and 1035 are not multiples of 10 while 900 and 960 are, so the key is not alone in roundness; 1035 is odd and the other three even, so parity does not single out the key.",
+  "dup_search": {
+   "queries": [
+    "table&estimate&students|sample&table&how many of the|based on the table&estimate",
+    "random sample&bus|random sample&walk|sample&travel to school",
+    "probability&does not|probability&do not|probability&did not",
+    "estimate&total number&sample&of the"
+   ],
+   "hits_read": 18,
+   "nearest": "0cc71903 (travel-to-school table, probability) and ec65f7cf (stratified estimate from two grade samples): this item conditions on a union of two columns of a sample table and scales that share to a known subgroup count; neither asks for a population estimate inside a condition."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the overall senior share, the reversed conditional and the car-only share each land above here only because of the particular cell values, and the joint-share error lands below (480). No cheap read strikes two distractors: none of them is a joint probability, a with-replacement value or a value above a cap. The far distractor 1035 drops a group yet lands above because the dropped walkers are mostly juniors. Checking an option needs the conditional share, i.e. the solution. No distractor is a solved intermediate one printed relation away from the key."
+  },
+  "bounds": []
+ }
+]

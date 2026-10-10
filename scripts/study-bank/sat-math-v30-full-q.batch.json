@@ -1,0 +1,445 @@
+[
+ {
+  "id": "SM30F-Q01",
+  "domain": "Advanced Math",
+  "subskill": "Difference of two exponential models with different periods",
+  "difficulty": "medium",
+  "prompt": "Two bacterial colonies start growing at the same moment. Colony A starts with 500 cells, and its number of cells doubles every 3 hours. Colony B starts with 2,000 cells, and its number of cells increases by 20% every 6 hours. To the nearest whole number, how many more cells does colony A have than colony B 12 hours after they start growing?",
+  "choices": [
+   "1120",
+   "3853",
+   "4544",
+   "5120"
+  ],
+  "correct_answer": "5120",
+  "explanation": "In 12 hours colony A doubles 12/3 = 4 times, so it has 500(2^4) = 500(16) = 8,000 cells. In 12 hours colony B grows by 20% 12/6 = 2 times, so it has 2,000(1.2^2) = 2,000(1.44) = 2,880 cells. Colony A has 8,000 - 2,880 = 5,120 more cells than colony B.",
+  "solve": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/6); return String(Math.round(A - B));",
+  "distractor_solve": {
+   "1120": "const A = 500*2*(12/3); const B = 2000*Math.pow(1.2, 12/6); return String(Math.round(A - B));",
+   "3853": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/3); return String(Math.round(A - B));",
+   "4544": "const A = 500*Math.pow(2, 12/3); const B = 2000*Math.pow(1.2, 12/6 + 1); return String(Math.round(A - B));"
+  },
+  "mechanism": [
+   "count doubling periods for A",
+   "count 6-hour periods for B",
+   "evaluate each exponential model",
+   "subtract"
+  ],
+  "quantity_asked": "how many more cells colony A has than colony B after 12 hours",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return Number(v) === 5120;",
+   "why": "There is no printed condition an option can be substituted into: an option is a difference of two populations, and checking it means computing both populations, which is the whole solution. The key is the largest option, reached last in ascending order in any case."
+  },
+  "distractor_meta": {
+   "1120": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Computes A as 500 x 2 x 4 (multiplying by the number of doublings) instead of 500 x 2^4; the stem gives no hint of its direction beyond the computation."
+   },
+   "3853": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Applies colony A's 3-hour period to colony B, so B grows by 20% four times instead of twice. Extra growth periods usually make an answer bigger; nothing in the stem shows a student that this one lowers the answer without working through the subtraction."
+   },
+   "4544": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Fence-post count for B: counts the times 0, 6 and 12 hours as three growth periods. The same fence-post slip on colony A (five doublings) would raise the answer to 13,120, so the kind of slip does not tell a student its direction."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const A = 500*Math.pow(2, 12/3 + 1); const B = 2000*Math.pow(1.2, 12/6); return String(Math.round(A - B));",
+   "direction": "above",
+   "why": "The fence-post count applied to colony A (five doublings, counting 0, 3, 6, 9 and 12 hours) gives 16,000 - 2,880 = 13,120, above the key. Treating B's growth as simple (20% of 2,000 added twice, 2,800) gives 5,200, also above."
+  },
+  "far_distractor": {
+   "option": "3853",
+   "natural_side": "above",
+   "why": "Using too short a period means applying too many growth steps, an over-count that ordinarily gives a LARGER answer. Here the extra growth steps are applied to colony B, the amount being SUBTRACTED, so B comes out too large (about 4,147) and the difference lands below the key."
+  },
+  "structure_check": "No universal condition, no extremum, no strictest bound: the ask is a difference of two exponential values at a fixed time. The same slip moves the answer up or down depending on which colony it hits: a fence-post or period slip on A raises the difference (13,120), the same slip on B lowers it (4,544, 3,853), and treating B's growth as simple raises it (5,200). So the structure does not tell a student that every slip lowers the answer.",
+  "intermediate_check": "3853: no - it is A minus a wrong B; no printed rate takes it to 5,120 (the gap is 1,267.2 cells of B, not a printed amount). 4544: no - A minus B after three periods; it differs from the key by 576 = 2,880 x 0.2, but 576 is not printed, and turning 4,544 into 5,120 needs B's unprinted value first. 1120: no - from a wrong A (4,000); the key needs the unprinted 8,000. The true intermediates 8,000 and 2,880 are not options.",
+  "cheap_bound_check": "Cheapest bound: B never falls below its starting 2,000 cells, and A after 12 hours is at most 8,000 (a student who has found A), so the difference is at most 6,000. A student who has not computed A has no upper bound at all. The 6,000 bound strikes nothing: all three distractors and the key are below it. The bound 'positive' also strikes nothing.",
+  "shape_check": "Positive (A outgrows B): all four. Whole number: all four. Below 8,000 - 2,000 = 6,000: all four. All four survive together.",
+  "interior_parity_check": "Middle values 3853 and 4544: both four-digit whole numbers with four significant digits; the key is not interior.",
+  "arith_class_check": "Key 5120 is not alone in a class: 1120 and 4544 are also even, and 1120 is also a multiple of 10 and 160; 3853 is the only odd option but is a distractor; no sign tell.",
+  "dup_search": {
+   "queries": [
+    "how many more|more than&double|doubles|triples|percent&colony|culture|population|account",
+    "colony A|culture A|account A|population A|town A&colony B|culture B|account B|population B|town B",
+    "every|each&minutes|hours&decrease|half|doubl|triple",
+    "exponential&f\\(1\\)|f\\(2\\)|f\\(0\\)&f\\(3\\)|f\\(4\\)|f\\(5\\)"
+   ],
+   "hits_read": 52,
+   "nearest": "878fea56 (live ACT): two tripling colonies with different periods, the time at which they are EQUAL is asked (solve for t); here the time is fixed, one colony doubles and the other grows by a percent over a different period, and the gap between them is asked. 0c2813b2 (ISEE): simple vs compound interest, a gap given and the deposit asked. No item reads two outputs of one exponential and extends it (the chain of the returned version)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the same slip lands on opposite sides depending on the colony it hits (period or fence-post slip on A goes above, to 13,120; on B it goes below, to 4,544 or 3,853), and treating B's growth as simple goes above, to 5,200. The far distractor 3,853 reads as 'too many growth steps', which a student expects to inflate the answer; it lands below only because the extra growth is on the subtracted colony. No single bound strikes all three: the only cheap bound (at most 6,000, and only once A is known) strikes nothing. Could a student check an option in one routine step? No - an option can be checked only by computing both colonies. Is any distractor a solved intermediate one printed rate away? No: 8,000 and 2,880 are not options, and no option becomes 5,120 through a printed number. (read) lines: 5120 - 4544 = 576 and 5120 - 3853 = 1267 involve no printed number. (read) PAIR: 5120 - 1120 = 4000 = 2 x 2000. 4,000 is the wrong value of A (500 x 2 x 4), and 8,000 - 4,000 happens to equal twice B's printed start. No solution path adds 2 x 2,000 to anything, and a student holding 1,120 would have to guess that coincidence to reach the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-Q02",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function from a difference relation, evaluated backward",
+  "difficulty": "medium",
+  "prompt": "An exponential function f satisfies the equation f(x + 1) - f(x) = 0.2f(x) for all real numbers x. Given that f(4) = 100, which of the following is closest to f(1)?",
+  "choices": [
+   "40",
+   "51.2",
+   "57.9",
+   "172.8"
+  ],
+  "correct_answer": "57.9",
+  "explanation": "The relation f(x + 1) - f(x) = 0.2f(x) means f(x + 1) = 1.2f(x), so each increase of 1 in x multiplies the output by 1.2. Going from x = 1 to x = 4 multiplies the output by 1.2^3 = 1.728. So f(1) = f(4)/1.728 = 100/1.728, which is about 57.87, or 57.9 to the nearest tenth.",
+  "solve": "return (Math.round(100/Math.pow(1.2, 3)*10)/10).toString();",
+  "distractor_solve": {
+   "40": "return (100 - 3*0.2*100).toString();",
+   "51.2": "return (Math.round(100*Math.pow(0.8, 3)*10)/10).toString();",
+   "172.8": "return (Math.round(100*Math.pow(1.2, 3)*10)/10).toString();"
+  },
+  "mechanism": [
+   "difference relation to growth factor 1.2",
+   "count steps from x = 1 to x = 4",
+   "divide by the factor cubed",
+   "round"
+  ],
+  "quantity_asked": "f(1), to the nearest tenth",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(Number(v)*Math.pow(1.2, 3) - 100) < 0.1;",
+   "why": "A student who has turned the relation into the factor 1.2 can multiply an option by 1.2^3 = 1.728 and compare with 100. In ascending order the key 57.9 is the third option tried (48.2 and 51.2 fail first), and the check needs the same factor the solution needs."
+  },
+  "distractor_meta": {
+   "40": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the change as linear: takes 20% of f(4) = 100, that is 20, and subtracts it three times. The stem does not show whether a linear reversal lands above or below the exponential one."
+   },
+   "51.2": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reverses the growth by taking 20% off three times (multiplying by 0.8^3) instead of dividing by 1.2^3; the two look interchangeable and the stem does not show which is larger."
+   },
+   "172.8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moves the wrong way along the function, multiplying f(4) by 1.2^3 as if f(1) came after f(4)."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (Math.round(100/Math.pow(1.2, 4)*10)/10).toString();",
+   "direction": "below",
+   "why": "Counts 4 steps from x = 1 to x = 4 and divides by 1.2^4, giving f(0) = 48.2; kept off the list because f(0) is one printed relation from the key."
+  },
+  "far_distractor": {
+   "option": "40",
+   "natural_side": "below",
+   "why": "Not required on an I slot; recorded for completeness."
+  },
+  "structure_check": "I slot: the 'for every value of x' clause only defines the function; the key is interior, with one distractor above it (172.8) and two below.",
+  "intermediate_check": "40: no - it is 100 - 3 x 20, not a value of the function; no printed relation takes it to 57.9. 51.2: no - it is 100 x 0.8^3, not a value of the function; 51.2 x 1.2 or 51.2/0.8 do not give the key. 172.8: no - it is f(7), three steps the other way; reaching the key from it takes dividing by 1.2^6. The values one printed relation from the key, f(0) = 48.2 (f(1) = f(0) + 0.2f(0)) and f(2) = 69.4, and the one-step value f(3) = 83.3, were all kept off the list.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive: all four. The function increases (f(x + 1) - f(x) = 0.2f(x) > 0 for positive values), so f(1) < f(4) = 100: 40, 51.2 and 57.9 survive, 172.8 does not. At least three survive all properties together.",
+  "interior_parity_check": "The two middle values 51.2 and 57.9 are both one-decimal numbers of three significant digits; the key is not the cleaner one (51.2 = 100 x 0.512 is the more regular value).",
+  "arith_class_check": "The key 57.9 is not alone in any class: 51.2 and 172.8 are also one-decimal values, 40 is the only integer but it is a distractor; no sign or parity tell.",
+  "dup_search": {
+   "queries": [
+    "f\\(x \\+ 1\\)|f\\(n \\+ 1\\)|f\\(t \\+ 1\\)|f\\(x\\+1\\)",
+    "every|each&minutes|hours&decrease|half|doubl|triple",
+    "exponential&f\\(1\\)|f\\(2\\)|f\\(0\\)&f\\(3\\)|f\\(4\\)|f\\(5\\)"
+   ],
+   "hits_read": 40,
+   "nearest": "SADV7D-04 (prior): f(x + 1) = 2f(x) - 3 iterated forward from f(0), an affine recurrence; here a difference relation proportional to f(x) identifies an exponential factor, and the value is found BACKWARD three steps. SADV7B-07: f given, find c in f(x + 1) = c f(x). 98ebd15b: doubling time given, cells earlier, a different given (a period) and no relation to convert. 07230a9c (live, Algebra): linear f(x + 4) = f(x) + 14, f(1) given, f(9) asked - same template wording, linear chain (slope 3.5); here a multiplicative factor must be read from a difference proportional to f(x), and the evaluation runs backward."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would notice the function increases and strike 172.8 (it is above f(4) = 100); that leaves three. Between 40, 51.2 and 57.9 the student must either compute 100/1.728 or multiply each by 1.728 (plug-back reaches the key at try 3 in ascending order). Is any distractor a solved intermediate one printed relation away? No: f(0), f(2) and f(3), each one relation from the key, are not options. (read) lines: 172.8/57.9 is not exact; 57.9 - 51.2 = 6.7 and 57.9 - 40 = 17.9 involve no printed number. The near-dup tool's prompt match 07230a9c is the LINEAR relation f(x + 4) = f(x) + 14, a different function family and chain."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation: parameter from an extraneous root",
+  "difficulty": "hard",
+  "prompt": "In the equation sqrt(3x + k) = x - 5, k is a constant. When the equation is solved by squaring both sides, x = -3 is one solution of the resulting quadratic equation, but it is an extraneous solution of the original equation. What is the solution of the original equation?",
+  "choices": [
+   "12",
+   "15",
+   "16",
+   "73"
+  ],
+  "correct_answer": "16",
+  "explanation": "Squaring both sides gives 3x + k = (x - 5)^2. The extraneous value x = -3 satisfies this squared equation (it fails the original only because x - 5 = -8 is negative), so 3(-3) + k = (-3 - 5)^2 = 64, which gives -9 + k = 64 and k = 73. The squared equation is then 3x + 73 = x^2 - 10x + 25, or x^2 - 13x - 48 = 0, which factors as (x - 16)(x + 3) = 0. The value x = -3 is extraneous, and x = 16 checks: sqrt(3(16) + 73) = sqrt(121) = 11 = 16 - 5. The solution is 16.",
+  "solve": "const k = Math.pow(-3 - 5, 2) - 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+  "distractor_solve": {
+   "12": "const k = Math.pow(-3 + 5, 2) - 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+   "15": "const k = Math.pow(-3 - 5, 2) + 3*(-3); const d = 13*13 + 4*(k - 25); const r = (13 + Math.sqrt(d))/2; return String(r);",
+   "73": "const k = Math.pow(-3 - 5, 2) - 3*(-3); return String(k);"
+  },
+  "mechanism": [
+   "extraneous root satisfies the squared equation",
+   "solve for k",
+   "solve the quadratic",
+   "reject the extraneous root"
+  ],
+  "quantity_asked": "the solution of the original radical equation",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k = 73; const x = Number(v); return Math.abs(Math.sqrt(3*x + k) - (x - 5)) < 1e-9;",
+   "why": "An option can be checked only after k is found from the extraneous root, which is the hard step; then substituting is routine. In ascending order the key 16 is the third option tried (12 and 15 fail), so plug-back does not shortcut the item."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Evaluates x - 5 at x = -3 as 2 instead of -8 (k = 13), then solves x^2 - 13x + 12 = 0 and keeps 12; the stem does not show which way this slip moves the root."
+   },
+   "15": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "From -9 + k = 64 moves the -9 with the wrong sign (k = 55), then solves x^2 - 13x - 30 = 0 correctly and keeps the valid root 15; a sign slip on k can move the root either way."
+   },
+   "73": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds k = 73 correctly and reports it as the answer instead of solving for x."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "return String(-3);",
+   "direction": "below",
+   "why": "Reports the printed extraneous root."
+  },
+  "far_distractor": {
+   "option": "73",
+   "natural_side": "above",
+   "why": "Not required on an I slot; recorded for completeness."
+  },
+  "structure_check": "I slot. The stem has no universal condition or extremum; the key is interior with one distractor above (73) and two below (12, 15).",
+  "intermediate_check": "15: no - it is the root after a wrong k, not a step on the way to 16. 12: no - same, from a different wrong k. 73: it IS the solved parameter k, but the key does not follow from it through ONE printed relation: from k = 73 a student must still form and solve the quadratic x^2 - 13x - 48 = 0 and reject -3, so 73 gives no one-step route to 16 and no check of it beyond the full solution.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The original equation needs x - 5 >= 0, so x >= 5: all four survive. Integer: all four. The value is not the printed -3: all four. All four survive together.",
+  "interior_parity_check": "The middle values 15 and 16 are both two-digit integers; the key is not cleaner than 15.",
+  "arith_class_check": "The key 16 is not alone in a class: 12 is also even and a multiple of 4; 15 and 73 are odd, 12 and 16 even. 16 is the only perfect square, but the stem implies no square property of the solution (the square is 3x + k = 121, not x).",
+  "dup_search": {
+   "queries": [
+    "sqrt|radical&extraneous|solution",
+    "extraneous|squaring both sides|squares both sides",
+    "sqrt\\([0-9]*x \\+ k\\)|sqrt\\(x \\+ c\\)|sqrt\\([0-9]*x \\+ c\\)|sqrt\\(x - k\\)",
+    "sqrt&sqrt&-|minus|between"
+   ],
+   "hits_read": 52,
+   "nearest": "8e516447 / SM29F-Q03: both roots of the squared quadratic are GIVEN and the parameters a - b are asked; here one extraneous root and the right side are given, the parameter is an intermediate, and the asked quantity is the original equation's solution, which needs the quadratic solved and the extraneous root rejected. f4608175: no parameter. Every other radical hit asks the solution of a fully specified equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student cannot plug options in until k is known, and k needs the one real decision: that an extraneous root satisfies the SQUARED equation, so (-3 - 5)^2 = 3(-3) + k even though sqrt(3(-3) + k) = -8 is impossible. Students who try the original equation at x = -3 get stuck. With k known, plug-back reaches the key at try 3. The bound x >= 5 strikes nothing. Is any distractor a solved intermediate one printed relation away? 73 is k, but turning it into 16 needs a quadratic solved and a root rejected, not one relation. (read) lines: 16 - 12 = 4, 16 - 15 = 1, 73 - 16 = 57 involve no printed number. (read) DPAIR: 16 - 12 = 4 = 5 - 1 is a coincidence of the sign-slip root (k = 13 gives x^2 - 13x + 12 = 0, root 12); no path adds 4 or 5 - 1 to 12, and the difference is not a product or quotient with a printed number."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-Q04",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: amount lost within a time window",
+  "difficulty": "medium",
+  "prompt": "A sample of a radioactive substance has a mass of 4,000 milligrams when it is first measured. Its mass decreases by 20% every 6 hours. To the nearest milligram, how many milligrams of the substance decay between 6 hours and 18 hours after the first measurement?",
+  "choices": [
+   "640",
+   "768",
+   "977",
+   "1152"
+  ],
+  "correct_answer": "1152",
+  "explanation": "The mass t hours after the first measurement is 4,000(0.8)^(t/6). At 6 hours the mass is 4,000(0.8)^1 = 3,200 milligrams. At 18 hours it is 4,000(0.8)^3 = 4,000(0.512) = 2,048 milligrams. The amount that decays between those times is 3,200 - 2,048 = 1,152 milligrams.",
+  "solve": "const m = t => 4000*Math.pow(0.8, t/6); return String(Math.round(m(6) - m(18)));",
+  "distractor_solve": {
+   "640": "const m = t => 4000*Math.pow(0.8, t/6); return String(Math.round(m(6) - m(12)));",
+   "768": "const m = t => 4000*Math.pow(0.2, t/6); return String(Math.round(m(6) - m(18)));",
+   "977": "const m = t => 4000*Math.pow(0.8, t); return String(Math.round(m(6) - m(18)));"
+  },
+  "mechanism": [
+   "decay factor 0.8 per 6-hour period",
+   "mass at the start of the window",
+   "mass at the end of the window",
+   "difference of the two masses"
+  ],
+  "quantity_asked": "milligrams decayed between 6 hours and 18 hours",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return Number(v) === 1152;",
+   "why": "An option cannot be checked against the stem without computing both masses; there is no printed condition an option can be substituted into. The key is the largest option, reached last in ascending order in any case."
+  },
+  "distractor_meta": {
+   "640": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counts the 12-hour window as one 6-hour period (stops at 12 hours) and leaves out the second period's decay; the stem does not show the student that this lowers rather than raises the answer without computing."
+   },
+   "768": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses 0.2 (the percent lost) as the factor kept each period; whether that raises or lowers the decayed amount in a window depends on the window, not on anything readable from the stem."
+   },
+   "977": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Applies the 20% decrease every hour instead of every 6 hours (exponent t instead of t/6). Faster decay sounds as if it must mean more decay, so a student would expect this above the key."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return String(Math.round(0.2*4000*(18 - 6)/6));",
+   "direction": "above",
+   "why": "Treats the decrease as linear (20% of the original 4,000 = 800 milligrams every 6 hours), giving 1,600 milligrams over the 12-hour window."
+  },
+  "far_distractor": {
+   "option": "977",
+   "natural_side": "above",
+   "why": "Applying the decrease more often (every hour instead of every 6 hours) ordinarily produces MORE decay. Here the asked amount is the decay inside a window that starts at hour 6, and under hourly decay most of the mass is already gone by then (only about 1,049 milligrams remain at hour 6), so less is left to decay inside the window and the result lands below the key."
+  },
+  "structure_check": "No universal condition, extremum or bound: the ask is a difference of two exponential values over a window. A shift of the window in either direction, a different factor, or a different period length moves the difference either way depending on where the mass is, so no structure tells a student that every slip lowers the answer; the linear-decay slip (1,600), the 'start from 4,000' slip (1,440) and the remaining-mass slip (2,048) all land above.",
+  "intermediate_check": "640: no - it is the decay between hours 6 and 12; turning it into 1,152 needs the second period's decay (512), which is not printed and must be computed. 768: no - built on a wrong factor (0.2 kept per period); no printed number takes it to 1,152. 977: no - built on an hourly exponent; no printed relation takes it to the key. Neither the mass at 6 hours (3,200) nor at 18 hours (2,048) is an option.",
+  "cheap_bound_check": "Cheapest bound: the decayed amount is less than the 3,200 milligrams present at hour 6 (or the 4,000 at the start). It strikes nothing; all three distractors sit on the key's side. A linear bound (1,600) also strikes nothing.",
+  "shape_check": "Positive: all four. Below the mass at hour 6 (3,200): all four. Whole milligrams (nearest milligram): all four. All four survive together.",
+  "interior_parity_check": "Middle values 768 and 977: both three-digit whole numbers; the key is not interior.",
+  "arith_class_check": "Key 1152 is not alone in a class: 640 and 768 are also even and multiples of 128; 977 is the only odd option, but it is a distractor and no parity is implied. 1152 is not a perfect square.",
+  "dup_search": {
+   "queries": [
+    "half|halves|decay|decreases&between&hour|year|minute",
+    "every|each&minutes|hours&decrease|half|doubl|triple",
+    "deposit|withdraw&interest|percent"
+   ],
+   "hits_read": 38,
+   "nearest": "ef67ca3d (live ISEE): interest credited during the third year gives the deposit, a backward one-period computation on compound interest; here a forward difference of two decay values over a two-period window with a period conversion. SADV-03 (prior): percent remaining after 24 hours, a single value, not a window."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? Linear decay (1,600), starting the window from 4,000 (1,440) and reporting a remaining mass (2,048) all land above; stopping a period early, the wrong factor and hourly decay land below. The far distractor (hourly decay) reads as 'more decay' and so as an above-key error, and it lands below only because the window starts after most of the hourly-decayed mass is gone. No one bound from the stem strikes all three. Plug-back is impossible: no printed condition to substitute into. No distractor is a solved intermediate: the two masses 3,200 and 2,048 are not options. (read) lines: 1152/768 = 1.5, 1152/640 = 1.8 and 1152 - 640 = 512 use no printed number."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-Q05",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: rewrite powers of two bases",
+  "difficulty": "medium",
+  "prompt": "The exponents a and b are real numbers such that 3^a = 7 and 2^b = 5. What is the value of the quotient (9^a)/(8^b) ?",
+  "choices": [
+   "0.392",
+   "0.504",
+   "1.225",
+   "9.8"
+  ],
+  "correct_answer": "0.392",
+  "explanation": "Since 9 = 3^2, 9^a = (3^a)^2 = 7^2 = 49. Since 8 = 2^3, 8^b = (2^b)^3 = 5^3 = 125. So (9^a)/(8^b) = 49/125 = 0.392.",
+  "solve": "const n = Math.pow(7, 2), d = Math.pow(5, 3); return String(n/d);",
+  "distractor_solve": {
+   "0.504": "const n = 9*7, d = Math.pow(5, 3); return String(n/d);",
+   "9.8": "const n = Math.pow(7, 2), d = 5; return String(n/d);",
+   "1.225": "const n = Math.pow(7, 2), d = 8*5; return String(n/d);"
+  },
+  "mechanism": [
+   "write 9 as 3^2 and 8 as 2^3",
+   "power of a power",
+   "substitute the given values",
+   "divide"
+  ],
+  "quantity_asked": "value of (9^a)/(8^b)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return Math.abs(Number(v) - 0.392) < 1e-9;",
+   "why": "The ask is the value of an expression different from the given conditions, so there is nothing to substitute an option into: a and b are not asked, and no printed equation involves 9^a or 8^b. A probe trying 0.392 first can confirm it only by doing the whole computation."
+  },
+  "distractor_meta": {
+   "0.504": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writes 9^a as 9 x 3^a = 63 instead of (3^a)^2 = 49, in the NUMERATOR; the stem does not show whether multiplying by 9 rather than squaring raises or lowers the quotient."
+   },
+   "9.8": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Squares 7 but forgets to cube 5, dividing by 5 instead of 125. A dropped power usually makes a result smaller; here it sits in the divisor."
+   },
+   "1.225": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Squares 7 correctly but writes 8^b as 8 x 2^b = 40 instead of (2^b)^3 = 125; whether multiplying by 8 instead of cubing raises or lowers the quotient depends on where the slip sits, which the stem does not show."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return String(7/125);",
+   "direction": "below",
+   "why": "Cubes 5 but forgets to square 7, giving 7/125 = 0.056, below the key."
+  },
+  "far_distractor": {
+   "option": "9.8",
+   "natural_side": "below",
+   "why": "Dropping a power (forgetting to cube) ordinarily shrinks a result, so it would be expected below the key; here the forgotten cube is on 8^b, the DIVISOR, so dropping it makes the quotient larger and the option lands above."
+  },
+  "structure_check": "No universal condition, extremum, bound or monotone structure: the ask is the value of a quotient. A slip in the numerator and a slip in the denominator move it in opposite directions (forgetting to square 7 lowers it to 0.056; forgetting to cube 5 raises it to 9.8; using 8 x 5 for 8^b raises it to 1.225, while using 9 x 7 for 9^a raises it only because 63 > 49), so nothing tells a student that every error raises the answer.",
+  "intermediate_check": "0.504: no - it is 63/125, from a wrong numerator; 0.392 follows from it only through 7/9, a ratio of two printed numbers that no solution path uses, not one printed rate or relation. 1.225: no - it is 49/40; reaching 0.392 needs 40/125, which is not printed. 9.8: no - it is 49/5; reaching 0.392 needs dividing by 25, which is not printed. The true intermediates 49 and 125 are not options.",
+  "cheap_bound_check": "Cheapest bound: the quotient is positive (all survive). A student who estimates a and b (a a little under 2, b a little over 2) can see 9^a is under 81 and 8^b over 64 but cannot place the quotient on either side of 1 without computing; even the bound 'less than 1' (49 < 125) strikes 1.225 and 9.8 and leaves 0.504 on the key's side.",
+  "shape_check": "Positive: all four survive. Terminating decimals (the given values are integers, so the quotient is a fraction with denominator built from 5s and 2s): all four are terminating decimals. At least two (0.392 and 0.504) survive every property together.",
+  "interior_parity_check": "Middle values 0.504 and 1.225: both three-decimal values with 3-4 significant digits; the key is not interior.",
+  "arith_class_check": "Key 0.392 is not alone in a class: 0.504 is also below 1, and 0.504 and 1.225 are also three-decimal values; all four are terminating decimals; no sign, parity or integrality tell.",
+  "dup_search": {
+   "queries": [
+    "\\^a|\\^\\(a|\\^m|\\^\\(m|\\^\\(2a|\\^\\(3a&\\^b|\\^\\(b|\\^n|\\^\\(n|\\^\\(2b",
+    "3\\^a|3\\^\\(a|3\\^x&2\\^b|2\\^\\(b|2\\^y",
+    "9\\^a|9\\^\\(a|8\\^b|8\\^\\(b|27\\^b|4\\^b",
+    "2\\^x|2\\^\\(x&5\\^x|5\\^\\(x|3\\^x|3\\^\\(x"
+   ],
+   "hits_read": 17,
+   "nearest": "7d3066a6 (live): 2^a = 5 and 2^b = 3 give 2^(a + 2b), one base and a product; here two DIFFERENT bases each re-expressed as a power, and a quotient whose numerator and denominator move in opposite directions under a slip. 31891202 (3^a, 3^b, b - a) and SM29F-Q07 (7^a, 343^b, a/b) ask exponents, not a value. The near-dup tool's prompt-jaccard hit 05d545ec (x + y = 7, x^2 + y^2 = 29, xy) shares only generic words; different content and mechanism."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? No: a numerator slip and a denominator slip move the quotient in opposite directions (forgetting to square 7 gives 0.056, below the key; forgetting to cube 5 gives 9.8, above). The far distractor 9.8 reads as a dropped power, which a student expects to shrink the answer; it lands above because the dropped cube is in the divisor. No single bound strikes all three: 'less than 1' leaves 0.504. Could a student check an option against the stem in one routine step? No - nothing printed can take an option (a and b are not asked and no printed equation contains 9^a or 8^b), so 0.392, the first option in ascending order, is confirmed only by computing 49/125. No distractor is a solved intermediate (49 and 125 are not options). (read) lines: 0.392/0.504 = 7/9 is a ratio of two printed numbers, not a single printed number, and no path multiplies by it; 9.8/0.392 = 25 and 1.225/0.392 = 3.125 are not printed."
+  },
+  "bounds": []
+ }
+]

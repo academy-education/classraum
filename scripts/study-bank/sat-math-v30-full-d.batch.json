@@ -1,0 +1,412 @@
+[
+ {
+  "id": "SM30F-D01",
+  "domain": "Algebra",
+  "subskill": "Linear inequality from a two-plan cost context",
+  "difficulty": "medium",
+  "prompt": "A dance studio offers two payment plans for a season of classes. Plan A charges a $63 membership fee and a $12 shoe-rental fee, plus $6 per class. Plan B charges an $11 registration fee plus $10 per class. Plan A costs less than Plan B exactly when the number of classes n satisfies n > N, where N is a constant. What would Plan A cost, in dollars, for a member who takes exactly N classes?",
+  "choices": [
+   "99",
+   "105",
+   "141",
+   "171"
+  ],
+  "correct_answer": "171",
+  "explanation": "Under Plan A, n classes cost 63 + 12 + 6n = 75 + 6n dollars. Under Plan B, they cost 11 + 10n dollars. Plan A costs less when 75 + 6n < 11 + 10n, which gives 64 < 4n, or n > 16. So N = 16. For 16 classes, Plan A costs 75 + 6(16) = 75 + 96 = 171 dollars. (Plan B also costs 11 + 10(16) = 171 dollars for 16 classes, which is why 16 is where Plan A starts to cost less.)",
+  "solve": "const F=63+12, a=6, R=11, b=10; const N=(F-R)/(b-a); return F+a*N;",
+  "distractor_solve": {
+   "99": "const F=63+12, a=6, R=11, b=10; const N=(F-R)/(b+a); return F+a*N;",
+   "105": "const F=63+12, a=6, R=11, b=10; const N=F/(b+R-a); return F+a*N;",
+   "141": "const M=63, a=6, R=11, b=10; const N=(M-R)/(b-a); return M+a*N;"
+  },
+  "mechanism": [
+   "write both plan costs as linear expressions",
+   "solve the strict inequality for the threshold N",
+   "evaluate Plan A's cost at N"
+  ],
+  "quantity_asked": "Plan A's total cost at the threshold number of classes N",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const n=(v-75)/6; return Math.abs(11+10*n-v)<1e-9;",
+   "why": "The probe will take an option as Plan A's cost, recover n = (cost - 75)/6 using both of Plan A's fees, and check whether Plan B (11 + 10n) costs the same. All four options give a whole n under Plan A's model (4, 5, 11, 16), so the check needs Plan B's full expression too. In ascending order the key is the fourth try; 99, 105 and 141 fail first."
+  },
+  "distractor_meta": {
+   "99": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moving 6n to the other side with the wrong sign gives 64 < 16n, n > 4; the slip changes a divisor, and nothing in the stem shows which way such a slip moves the cost."
+   },
+   "105": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating the $11 registration fee as a per-class charge (21 per class) puts an extra cost on Plan B; an extra charge usually raises a total, but here it sits on the comparison side and lowers the threshold to 5, so the cost falls."
+   },
+   "141": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the $12 shoe-rental fee lowers the threshold (13 instead of 16) and the cost; dropping a fee from the plan with the cheaper per-class rate lowers both, but the stem gives no sign of where that lands relative to the other slips."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const F=63+12, a=6, R=11, b=10; const N=(F+R)/(b-a); return F+a*N;",
+   "direction": "above",
+   "why": "Moving the $11 registration fee with the wrong sign gives 86 < 4n, n > 21.5, and a Plan A cost of 204, past the key."
+  },
+  "far_distractor": {
+   "option": "105",
+   "natural_side": "above",
+   "why": "Counting the registration fee once per class is an over-count, which ordinarily makes a total too large; here the extra charge is on Plan B, the plan being compared against, so Plan B becomes expensive sooner, the threshold drops to 5 classes, and the resulting Plan A cost (105) lands below the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound is asked: N is defined by an 'exactly when n > N' equivalence and the ask is a cost evaluated at N, a value both plans share. A slip on Plan A's fixed fees and a slip on Plan B's fee move the threshold in opposite directions (the registration-fee sign slip gives 204, above the key; dropping the rental gives 141, below), so the stem does not sign the errors.",
+  "intermediate_check": "141: no - Plan A's cost without the rental fee at a different threshold (13); 171 - 141 = 30 is not a printed rate or fee. 105: no - Plan A's cost at a wrong threshold of 5; 171 - 105 = 66 is not printed and no printed rate converts 105 into 171. 99: no - Plan A's cost at 4 classes; 171 - 99 = 72 is not a printed number. The one solved intermediate, N = 16, is not an option.",
+  "cheap_bound_check": "Cheapest bound: Plan A costs more than its fixed fees, 75 dollars, for any positive number of classes. All four options exceed 75, so all three distractors sit on the key's side of it.",
+  "shape_check": "The stem hands over: a cost in dollars (positive), above Plan A's fixed $75, and (since a member takes exactly N classes) of the form 75 + 6n with n a whole number. 99 (n = 4), 105 (n = 5), 141 (n = 11) and 171 (n = 16) all survive every property together.",
+  "interior_parity_check": "Middle values 105 and 141: both three-digit odd integers, same form; the key 171 is not one of them.",
+  "arith_class_check": "All four are odd, all are 75 more than a multiple of 6, all exceed 75; none is a square or round number. The key is in no class alone.",
+  "dup_search": {
+   "queries": [
+    "inequalit",
+    "plan&costs less|cheaper|less than plan",
+    "registration|equipment fee&per class|per lesson",
+    "cheaper|costs less|less expensive"
+   ],
+   "hits_read": 130,
+   "nearest": "SALGB-02 / ALG-H5-02 / act 98e89432 / ssat bcd4961e: two plans, asks the least (or greatest) whole number of classes/minutes for which one plan is cheaper. This item has two fixed fees on one plan, asks a cost evaluated at the threshold (not the threshold count), and has no integer rounding."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: slips on Plan A's fees and on Plan B's fee move the threshold in opposite directions (the registration sign slip gives 204, above). The far distractor 105 is an over-count that lands low because it sits on the plan being compared against. One bound (cost > 75) strikes nothing, and every option fits Plan A's 75 + 6n form with a whole n. A test-wise student may back-solve n from Plan A and check Plan B; the key is the fourth option in ascending order and the check needs both full cost expressions. No distractor is a solved intermediate one printed relation away; N = 16 is not an option. Read lines: none beyond those answered."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-D02",
+  "domain": "Algebra",
+  "subskill": "Two context inequalities on one quantity; count",
+  "difficulty": "medium",
+  "prompt": "A gardener is filling a raised bed that already holds 6 cubic feet of soil. Each bag of soil adds 1.5 cubic feet, and the bed needs to hold at least 30 cubic feet in total. The garden store charges $4.25 per bag plus a one-time delivery fee of $15, and the gardener will spend no more than $170 in total. Only whole bags can be bought. How many different numbers of bags meet both of the gardener's requirements?",
+  "choices": [
+   "17",
+   "21",
+   "23",
+   "28"
+  ],
+  "correct_answer": "21",
+  "explanation": "Let b be the number of bags. The soil requirement is 6 + 1.5b >= 30, so 1.5b >= 24 and b >= 16. The budget requirement is 4.25b + 15 <= 170, so 4.25b <= 155 and b <= 36.5 (to the nearest tenth). Since b is a whole number, b can be any whole number from 16 through 36. That is 36 - 16 + 1 = 21 different numbers of bags.",
+  "solve": "const lo=Math.ceil((30-6)/1.5-1e-9); const hi=Math.floor((170-15)/4.25+1e-9); return hi-lo+1;",
+  "distractor_solve": {
+   "17": "const lo=Math.ceil(30/1.5-1e-9); const hi=Math.floor((170-15)/4.25+1e-9); return hi-lo+1;",
+   "23": "const lo=Math.ceil(30/1.5-6-1e-9); const hi=Math.floor((170-15)/4.25+1e-9); return hi-lo+1;",
+   "28": "const lo=Math.ceil((30-6)/1.5-1e-9); const hi=Math.floor((170+15)/4.25+1e-9); return hi-lo+1;"
+  },
+  "mechanism": [
+   "lower bound from the volume requirement with soil already present",
+   "upper bound from the budget with a fixed fee",
+   "count whole numbers in the intersection"
+  ],
+  "quantity_asked": "the number of whole-number bag counts satisfying both requirements",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe will try 17 first, then 21: a count cannot be substituted into either requirement; deciding whether the count is 17 or 21 means finding both bounds (16 and 36) and counting, which is the whole solution."
+  },
+  "distractor_meta": {
+   "17": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the 6 cubic feet already in the bed makes the bags supply all 30 cubic feet, raising the lower bound to 20 and lowering the count; the stem does not say which way a mishandled starting amount moves a count."
+   },
+   "23": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the 6 cubic feet as 6 bags (1.5(b + 6) >= 30) gives b >= 14 and a count of 23; the same starting amount, mishandled differently, moves the count the other way from the omission."
+   },
+   "28": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving the $15 fee with the wrong sign (4.25b <= 185) gives b <= 43 and a count of 28."
+   }
+  },
+  "intermediate_check": "17: no - a count under a wrong lower bound (20); no printed rate or relation turns 17 into 21. 23: no - a count under a different lower bound (14); 23 is not 21 plus, minus or times any printed number. 28: no - a count under a sign-slipped upper bound; 28 - 21 = 7 is not printed. The solved intermediates (16 and 36) are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a count of whole-number bag totals (positive integer); a count no larger than the number of bags the budget could ever buy (at most 36). All four options are positive integers under 36; all survive every property together.",
+  "interior_parity_check": "Middle values 21 and 23: both two-digit odd integers; 23 is prime and 21 = 3 x 7, neither is rounder; the key 21 is not the cleaner one.",
+  "arith_class_check": "17 odd, 21 odd, 23 odd, 28 even - the key shares its parity with two options. No multiple-of-k or roundness class singles out 21.",
+  "dup_search": {
+   "queries": [
+    "inequalit",
+    "how many different|how many possible|number of possible&budget|spend|weigh|load|capacity",
+    "no more than|at most|cannot exceed"
+   ],
+   "hits_read": 180,
+   "nearest": "40fba632 (food bank kits): two-variable budget with minimum counts, asks combinations feeding the most people. This item is one variable with a volume lower bound offset by soil already present and a fee-bearing budget upper bound, counted. 'y >= 3x - 20, 2x + 3y < 60, (6, y) how many integer y' is an abstract two-variable system at fixed x, not a context."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Lower-interior key: could a student check an option against the stem in one routine step? No - a count is not substitutable; confirming 21 requires both bounds. Is any distractor a solved intermediate one printed rate, purchase or relation away from the key? No - the intermediates 16 and 36 are not options. The two mishandlings of the starting soil move the count in opposite directions (17 below, 23 above). Read line: 28 - 21 = 7 = 6 + 1 is a coincidence of arithmetic, not a route: no step adds 7 to a count, and the 6 is a volume, not a count an off-by-one error could touch; a student holding 28 has no reason to subtract 7."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-D03",
+  "domain": "Algebra",
+  "subskill": "System of two one-variable inequalities; midpoint",
+  "difficulty": "medium",
+  "prompt": "17 - 2x <= 4x - 31\n4(x + 4) + 20 < 2x + 90\n\nThe numbers x that satisfy both inequalities above are exactly the numbers in an interval a <= x < b. What is the midpoint of this interval?",
+  "choices": [
+   "17.5",
+   "20.5",
+   "22.5",
+   "25.5"
+  ],
+  "correct_answer": "17.5",
+  "explanation": "First inequality: 17 - 2x <= 4x - 31. Add 2x and 31 to both sides: 48 <= 6x, so x >= 8. Second inequality: 4(x + 4) + 20 < 2x + 90 gives 4x + 16 + 20 < 2x + 90, so 4x + 36 < 2x + 90, 2x < 54, and x < 27. The numbers satisfying both are 8 <= x < 27, so a = 8 and b = 27. The midpoint is (8 + 27)/2 = 35/2 = 17.5.",
+  "solve": "const a=(17+31)/(2+4); const b=(90-20-16)/(4-2); return (a+b)/2;",
+  "distractor_solve": {
+   "22.5": "const a=(17+31)/(2+4); const b=(90-16)/(4-2); return (a+b)/2;",
+   "20.5": "const a=(17+31)/(2+4); const b=(90-20-4)/(4-2); return (a+b)/2;",
+   "25.5": "const a=(17+31)/(4-2); const b=(90-20-16)/(4-2); return (a+b)/2;"
+  },
+  "mechanism": [
+   "solve each linear inequality for its bound",
+   "intersect the two half-lines into an interval",
+   "midpoint of the interval"
+  ],
+  "quantity_asked": "the midpoint (a + b)/2 of the solution interval of the system",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe will try 17.5 first and substitute it into both inequalities: it satisfies both, but so do 20.5, 22.5 and 25.5 (every option lies inside 8 <= x < 27), so substitution confirms nothing. Deciding which option is the midpoint needs both endpoints, 8 and 27, i.e. the whole solution."
+  },
+  "distractor_meta": {
+   "22.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the + 20 on the left of the second inequality raises its bound to 37; a dropped term usually makes an answer smaller, and nothing in the stem shows it enlarges the interval here."
+   },
+   "20.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Distributing 4 over x only (4x + 4 instead of 4x + 16) gives b = 33; the stem does not tell a student which way a distribution slip moves the midpoint."
+   },
+   "25.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving -2x across as -2x (so 48 <= 2x) gives a = 24; a slip on the first inequality moves the lower end, and a sign slip on its constant would move it down instead (counter_error), so the side is not readable."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=(31-17)/(2+4); const b=(90-20-16)/(4-2); return (a+b)/2;",
+   "direction": "below",
+   "why": "Moving 17 across with the wrong sign (14 <= 6x) gives a = 7/3 and a midpoint of about 14.67, below the key."
+  },
+  "far_distractor": {
+   "option": "22.5",
+   "natural_side": "below",
+   "why": "Dropping a term is an early-stop error that ordinarily lands below; here the dropped + 20 sits on the smaller side of a '<', so leaving it out loosens the upper bound from 27 to 37 and the midpoint rises to 22.5, above the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the ask is the midpoint of a two-sided interval, which moves up or down with either endpoint. A slip on the lower bound can move it either way (the variable sign slip gives 25.5 above, the constant sign slip about 14.67 below), and the stem does not tell a student whether a given slip widens or narrows the interval.",
+  "intermediate_check": "22.5: no - the midpoint of a wrong interval [8, 37); no printed number turns 22.5 into 17.5 (difference 5 is not printed). 20.5: no - the midpoint of [8, 33); difference 3 is not printed. 25.5: no - the midpoint of [24, 27); 25.5 - 17.5 = 8 is the solved lower endpoint, not a printed number or rate. The solved intermediates a = 8 and b = 27 are not options.",
+  "cheap_bound_check": "Cheapest bound: the second inequality alone gives x < 27, so the midpoint is under 27 (and the first gives x >= 8, so it exceeds 8). All four options lie in (8, 27), so all three distractors sit on the key's side of both bounds.",
+  "shape_check": "The stem hands over: the midpoint lies inside the solution interval, so it satisfies both inequalities, and it is half of a + b. 17.5, 20.5, 22.5 and 25.5 all satisfy both inequalities and all are halves of odd integers; all four survive every property together.",
+  "interior_parity_check": "Middle values 20.5 and 22.5: same display form (one decimal place, .5), same complexity; the key 17.5 is not one of them.",
+  "arith_class_check": "All four options end in .5; none is an integer, a multiple of 6 or a square. The key is in no class alone.",
+  "dup_search": {
+   "queries": [
+    "inequalit",
+    "midpoint&inequalit|satisf|solution",
+    "both inequalities&interval"
+   ],
+   "hits_read": 120,
+   "nearest": "SM29F-D04 (prior, interval of length 6 from a parameter k, asks the right endpoint b) and 517bc754 (absolute-value interval with midpoint 5, asks the length). This item has no parameter and no absolute value: two fixed inequalities, intersected, and the midpoint asked."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three? No: slips on the lower bound go both ways (25.5 above, the constant sign slip near 14.67 below), and the far distractor 22.5 is a dropped term that loosens a '<' bound, which a student cannot sign without solving. No single bound strikes anything: all options sit inside (8, 27). Could a student check an option against the stem in one routine step? Substituting an option into both inequalities succeeds for all four options, so it decides nothing. Is any distractor a solved intermediate one printed relation away? No; a = 8 and b = 27 are not options. Read lines: 17.5 + 22.5 = 40 = 2 x 20 - a sum of two midpoints has no meaning here and no step doubles the printed 20; 25.5 - 17.5 = 8 = 2 x 4 - the 8 is the solved lower endpoint, reached only by solving, and no step doubles a printed 4; differences 3 = 4 - 1 and 5 = 4 + 1 - a student holding 20.5 or 22.5 has no reason to subtract 3 or 5, and the 4 is a coefficient, not a count that an off-by-one error could touch."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-D04",
+  "domain": "Algebra",
+  "subskill": "Inequality built from a linear function; value at boundary",
+  "difficulty": "hard",
+  "prompt": "For a certain linear function f, f(-2) = -7 and f(2) = -19. The inequality f(x - 5) >= 2f(x) - 23 holds if and only if x >= c, where c is a constant. What is the value of f(c)?",
+  "choices": [
+   "18",
+   "25",
+   "35",
+   "38"
+  ],
+  "correct_answer": "38",
+  "explanation": "The slope of f is (-19 - (-7))/(2 - (-2)) = -12/4 = -3, so f(x) = -7 - 3(x + 2) = -3x - 13. Then f(x - 5) = -3(x - 5) - 13 = -3x + 2, and 2f(x) - 23 = 2(-3x - 13) - 23 = -6x - 49. The inequality -3x + 2 >= -6x - 49 gives 3x >= -51, so x >= -17 and c = -17. Therefore f(c) = f(-17) = -3(-17) - 13 = 51 - 13 = 38. (Check: at x = c the two sides are equal; since f(c - 5) = f(c) + 15 for this slope, f(c) + 15 = 2f(c) - 23 also gives f(c) = 38.)",
+  "solve": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5*m))/(m-2*m); return f(c);",
+  "distractor_solve": {
+   "18": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5))/(m-2*m); return Math.round(f(c)*1e9)/1e9;",
+   "25": "const m=(-19+7)/(2+2); const f=x=>-7+m*(x+2); const c=(f(0)-23-(f(0)-5*m))/(m-2*m); return Math.round(f(c)*1e9)/1e9;",
+   "35": "const m=(-19+7)/(2+2+1); const f=x=>-7+m*(x+2); const c=(2*f(0)-23-(f(0)-5*m))/(m-2*m); return Math.round(f(c)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "linear function from two values",
+   "rewrite f(x - 5) and 2f(x) - 23 and solve the inequality for its boundary c",
+   "evaluate f at c"
+  ],
+  "quantity_asked": "f(c), the value of f at the boundary of the solution set",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const m=-3; const fc=v; return Math.abs((fc-5*m)-(2*fc-23))<1e-9;",
+   "why": "The probe can take an option as f(c), note that f(c - 5) = f(c) + 15 once the slope -3 is known, and check whether f(c) + 15 = 2f(c) - 23. That needs the slope from the two given values and the shift relation; in ascending order the key is the fourth try, after 18, 25 and 35 fail."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating f(x - 5) as f(x) - 5 (shifting the output instead of the input) gives 3x >= -31 and f(c) = 18; the stem does not show whether an input/output swap raises or lowers the answer."
+   },
+   "25": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading 2f(x) as f(2x) gives -3x + 2 >= -6x - 36, c = -38/3 and f(c) = 25."
+   },
+   "35": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting the run from -2 to 2 as 5 (both endpoints) gives slope -12/5 = -2.4; the over-count goes into the divisor, so the slope's size and then f(c) shrink."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const m=-3; return (-m*5-2*(-23))/(2-1);",
+   "direction": "above",
+   "why": "Reading 2f(x) - 23 as 2(f(x) - 23) doubles the constant and gives f(c) + 15 = 2f(c) - 46, f(c) = 61, past the key."
+  },
+  "far_distractor": {
+   "option": "35",
+   "natural_side": "above",
+   "why": "Counting one extra unit in the run is an over-count, which ordinarily makes a value too large; here the extra unit is in the denominator of the slope, so it shrinks the slope to -2.4, the shift adds only 12 instead of 15, and f(c) falls to 35, below the key."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem gives an 'if and only if x >= c' equivalence and asks f evaluated at c, a derived value. The errors do not share a side by structure: doubling the constant (counter_error) gives 61 above, the slip on the input shift gives 18 below, and a slope sign slip (+3) would change which way the inequality points, so the stem does not sign the errors.",
+  "intermediate_check": "18: no - f(c) under an output shift (c = -31/3); 38 - 18 = 20 is not a printed number and no printed relation maps 18 to 38. 25: no - f(c) under f(2x) (c = -38/3); difference 13 is not printed. 35: no - f(c) under a slope of -2.4; 38 - 35 = 3 is the size of the solved slope, not a printed number, and no one printed relation turns 35 into 38. The solved intermediates (slope -3, c = -17) are not options.",
+  "cheap_bound_check": "Cheapest bound: f is decreasing (f(2) < f(-2)), and the boundary must lie where f(x - 5) and 2f(x) - 23 are equal; neither gives a sign or size for f(c) without solving. The only free fact is that f(c) is a single number; all four options are positive integers, so all three distractors sit on the key's side of any sign bound.",
+  "shape_check": "The stem hands over: f linear and decreasing, f(c) a single value. Nothing restricts f(c) to an integer or a sign before solving; all four options are positive integers and survive every property together.",
+  "interior_parity_check": "Middle values 25 and 35: both two-digit odd integers ending in 5, same form; the key 38 is not one of them.",
+  "arith_class_check": "18 even, 25 odd, 35 odd, 38 even - no parity tell. 25 and 35 are multiples of 5; 18 and 38 are not, so the key is not alone. No square tell (25 is a square, the key is not)",
+  "dup_search": {
+   "queries": [
+    "inequalit",
+    "f\\(x [-+]|2f\\(x\\)|f\\(2x&>=|<=|inequalit",
+    "constants a and b|a and b are constants&inequalit|solution set",
+    "whole-dollar|whole number of dollars"
+   ],
+   "hits_read": 130,
+   "nearest": "9b4c06b0 (range of f, greatest value of g = -2f + 5) - transforms a range, no inequality to solve. Live 'solution set given, find the constant' items (04ac9e89, 28cb66bd, 46bd4e26) back-solve a constant from a printed solution set; here nothing about the solution set is printed: f is built from two values, the inequality mixes an input shift with an output scaling, and the ask is f at the solved boundary."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three? No: doubling the constant gives 61 (above) while the shift slip gives 18 (below); the stem signs neither. The far distractor 35 is an over-count of the run that lands low because it sits in the slope's denominator. No single stem bound strikes anything. A test-wise student may use f(c - 5) = f(c) + 15 to test options; that needs the slope and the shift relation, and the key is the fourth option in ascending order. Is any distractor a solved intermediate one printed relation away? No; the slope -3 and c = -17 are not options. Read lines: 38 - 18 = 20 = 19 + 1 and 38 - 35 = 3 = 2 + 1 - neither difference is a step a student would take: no error adds one to a printed function value or to the input 2, and the 3 is the size of the solved slope, reached only by solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-D05",
+  "domain": "Algebra",
+  "subskill": "Line meeting the region of a system of inequalities",
+  "difficulty": "hard",
+  "prompt": "y >= (1/2)x - 2\ny <= -2x + 13\nx >= 0\n\nIn the xy-plane, the solutions to the system of inequalities above form a triangular region. The line y = -4x + c, where c is a constant, contains at least one point of this region exactly when p <= c <= q. What is the value of q - p?",
+  "choices": [
+   "15",
+   "27",
+   "36",
+   "60"
+  ],
+  "correct_answer": "27",
+  "explanation": "The region is a triangle. Two corners are on the y-axis: (0, -2) and (0, 13). The third corner is where the two slanted boundary lines meet: (1/2)x - 2 = -2x + 13 gives (5/2)x = 15, so x = 6 and y = (1/2)(6) - 2 = 1, giving (6, 1). For a line y = -4x + c, c = y + 4x. As the parallel lines y = -4x + c slide across the triangle, the value of c first and last touches the region at corners, so p and q are the least and greatest values of y + 4x at the three corners: (0, -2) gives -2, (0, 13) gives 13, and (6, 1) gives 1 + 24 = 25. So p = -2 and q = 25, and q - p = 25 - (-2) = 27.",
+  "solve": "const X=(2+13)/(0.5+2), Y=0.5*X-2; const v=[-2,13,Y+4*X]; return Math.max(...v)-Math.min(...v);",
+  "distractor_solve": {
+   "15": "const v=[-2,13]; return Math.max(...v)-Math.min(...v);",
+   "36": "const X=(2+13)/(0.5+2), Y=0.5*X-2; const v=[-2,13,Y-4*X]; return Math.max(...v)-Math.min(...v);",
+   "60": "const X=(2+13)/(0.5-2), Y=0.5*X-2; const v=[-2,13,Y+4*X]; return Math.max(...v)-Math.min(...v);"
+  },
+  "mechanism": [
+   "find the corners of the triangular region",
+   "express c as y + 4x",
+   "evaluate at the corners and take the range"
+  ],
+  "quantity_asked": "q - p, the length of the interval of c for which the line meets the region",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": false,
+   "why": "The probe will try 15 first, then 27: an option is the length of an interval of c, which cannot be substituted into the system or the line; checking 27 means finding both p and q, which needs all three corners, i.e. the whole solution."
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using only the two y-intercepts of the boundary lines (c from -2 to 13), or treating the line as slope -1 so the corner value 7 lies between them, misses the corner (6, 1); the stem does not say whether the third corner widens the range."
+   },
+   "36": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writing c = y - 4x gives the corner value -23 and the range -23 to 13; the stem gives no sign for which end the corner extends."
+   },
+   "60": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solving (1/2)x - 2 = -2x + 13 by subtracting the slopes ((1/2 - 2)x = 15) gives x = -10, y = -7 and a corner value of -47; a wrong corner can move the range either way."
+   }
+  },
+  "intermediate_check": "15: no - the range of the two intercepts; 27 does not follow from 15 through any one printed number (27 - 15 = 12 is not printed). 36: no - the range with a sign-slipped corner value; 36 - 27 = 9 is not printed. 60: no - the range with a wrong corner; no printed number maps 60 to 27. The solved intermediates (the corner (6, 1), p = -2, q = 25) are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: q - p is a positive length; the region contains the y-axis segment from -2 to 13, so q - p is at least 15. All four options are positive integers of at least 15; all survive every property together.",
+  "interior_parity_check": "Middle values 27 and 36: both two-digit integers, same form; 36 is a square and 27 a cube, neither cleaner; the key is not the rounder one.",
+  "arith_class_check": "15 odd, 27 odd, 36 even, 60 even - no parity tell; 15, 27, 36 and 60 are all multiples of 3, so the key is not alone. No round-number tell.",
+  "dup_search": {
+   "queries": [
+    "inequalit",
+    "region&line|intersects|meets|crosses",
+    "least|minimum&cost&van|bus|tray|box|ticket"
+   ],
+   "hits_read": 135,
+   "nearest": "3267fcc5 (triangular region of a system, asks its area) and 'quadrilateral region, greatest x-coordinate' - both read a single corner or the area. This item sweeps a family of parallel lines across the region and asks the length of the c-interval, which needs y + 4x at every corner; the intercept-only shortcut fails because the extreme is at the slanted corner."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: could a student check an option against the stem in one routine step? No - q - p is not substitutable into the system or the line; confirming 27 needs p and q from all three corners. Is any distractor a solved intermediate one printed rate, purchase or relation away? No: the corner, p and q are not options. The test-wise shortcut (read c off the two y-intercepts) gives 15, a distractor. The 'at least one point' wording and 'p <= c <= q' are on an interior slot. Read line: 27 - 15 = 12 = 13 - 1 - the 12 is q - 13 (25 - 13), how far the corner value overshoots the upper intercept; it is reached only by finding the corner, and no step subtracts 1 from the printed 13, so a student holding 15 cannot get to 27 from it."
+  },
+  "bounds": []
+ }
+]

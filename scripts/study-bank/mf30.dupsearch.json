@@ -1,0 +1,74 @@
+{
+ "coordinator_queries": {
+  "B": [
+   "x-intercept&perpendicular&y-axis",
+   "never intersect|no solution&\\(k - 3\\)y",
+   "moving|shift|translat&x-intercept&units (-> SM22L-A3, B04 returned)",
+   "common point|every value of k|for each value of k&pass through"
+  ],
+  "A": [
+   "pivot|balance|seesaw&kilogram",
+   "only solution&q - p|difference",
+   "3p \\+ 2k|value of the expression&fixed number|constant",
+   "per copy|copies&fee",
+   "no solution|no value of x&\\+ 4|m \\+"
+  ],
+  "D": [
+   "membership|registration&per class",
+   "bags?&delivery&how many different",
+   "midpoint&interval|inequalit (+ live 46bd4e26 read -> D04 returned)"
+  ],
+  "C": [
+   "nickel&quarter&replaced|dime",
+   "when x = .* and y = .*&ax \\+ by|bx \\+ ay",
+   "copied|miscopied|mistake&system",
+   "short&drop out|more than the cost"
+  ],
+  "P": [
+   "same .*profit|same monthly&maximum",
+   "horizontal line&parabola&how many",
+   "\\(x \\+ 5\\)\\^2|written as x\\^2 \\+ bx \\+ c&c - b|c \\+ b"
+  ],
+  "Q": [
+   "decay|decreases by&between .* hours",
+   "3\\^a|2\\^b&8\\^b|9\\^a",
+   "extraneous&squar",
+   "sqrt|√&extraneous (+ near 55d6c01d read -> Q01 returned)"
+  ],
+  "R": [
+   "varies inversely&decreased|increased by",
+   "remainder&x - 3&p\\(x\\)",
+   "intersect&origin&area of triangle",
+   "f\\(g\\(|composition&sqrt|√"
+  ],
+  "G": [
+   "surface area&volume&square base",
+   "pyramid&prism",
+   "angle&exterior|BD = DC|isosceles&degrees"
+  ],
+  "H": [
+   "sin .* = 8/17|8/17&perimeter",
+   "cos.*B|cosine&isosceles|AB = AC|equal length&area"
+  ],
+  "J": [
+   "tangent&touch|outside&center",
+   "rectangle&circle&x\\^2 \\+ y\\^2",
+   "inscribed|incircle&tangent&right angle|triangle",
+   "square&opposite vertices (-> 231c5d33, J04 returned)"
+  ],
+  "T": [
+   "quarter&percent&decrease|decreased",
+   "miles per gallon&city|highway",
+   "students per teacher|per teacher",
+   "commission&profit|price",
+   "% full|percent full&liters|gallons"
+  ],
+  "V": [
+   "tagged&released|recapture",
+   "declined|did not answer|no response&sample",
+   "defective&stops|until",
+   "without replacement&both (-> 35cef8dd / 41165314, V02 returned)"
+  ]
+ },
+ "note": "authors ran 2-4 mf30-kw.mjs queries per item (dup_search in each part); every near/FLAG line of check-math-near-dup and math-mechanism-dup was read against the live prompt"
+}

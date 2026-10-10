@@ -1,0 +1,418 @@
+[
+ {
+  "id": "SM30F-J01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Externally tangent circles in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, circle A has equation x^2 + y^2 + 16x + 12y + 91 = 0. Circle B has its center at the point (16, 12). Circles A and B touch at exactly one point, and each circle lies outside the other. What is the radius of circle B?",
+  "choices": [
+   "7",
+   "24",
+   "27",
+   "33"
+  ],
+  "correct_answer": "27",
+  "explanation": "Complete the square for circle A: (x^2 + 16x + 64) + (y^2 + 12y + 36) = -91 + 64 + 36, so (x + 8)^2 + (y + 6)^2 = 9. Circle A has center (-8, -6) and radius 3. The distance between the centers (-8, -6) and (16, 12) is sqrt(24^2 + 18^2) = sqrt(900) = 30. Two circles that touch at one point with each outside the other have centers separated by the sum of their radii, so 3 + r = 30 and the radius of circle B is 27.",
+  "solve": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+  "distractor_solve": {
+   "7": "const h=8,k=6; const r=Math.sqrt(64+36-91); const d=Math.hypot(16-h,12-k); return String(d-r);",
+   "24": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d-2*r);",
+   "33": "const h=-8,k=-6; const r=Math.sqrt(h*h+k*k-91); const d=Math.hypot(16-h,12-k); return String(d+r);"
+  },
+  "mechanism": [
+   "complete the square for centre and radius",
+   "distance between two centres",
+   "external tangency: distance = sum of radii"
+  ],
+  "quantity_asked": "the radius of circle B",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "To test an option a student must already know circle A's center and radius (completing the square) and the center distance 30, after which r = 30 - 3 follows directly; no option can be confirmed without doing the whole solution. The key is the third value ascending."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the center of circle A as (8, 6) (signs kept from the equation) gives a center distance of 10 instead of 30; whether a slipped center lies nearer to or farther from B depends on the coordinates, which the stem does not signal."
+   },
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the diameter 6 instead of the radius 3 from the center distance 30; nothing in the stem marks which of radius or diameter is subtracted."
+   },
+   "33": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the internal-tangency relation (distance = difference of radii, r - 3 = 30) instead of the external one; both relations are natural and the stem gives no size cue for circle B."
+   }
+  },
+  "intermediate_check": "7: no - it comes from a slipped center (8, 6), not from any value the key follows from by one printed relation. 24: no - it is 30 - 6; reaching 27 from 24 needs the unprinted radius 3. 33: no - it is 30 + 3; reaching 27 from 33 needs subtracting twice the unprinted radius. The center distance 30 and the radius 3, the true intermediates, are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a radius is positive (all four survive); B is outside A so r_B > 0 only (all survive); integers are not implied. All four survive every property together.",
+  "interior_parity_check": "Middle values 24 and 27: both two-digit integers; 27 is not the cleaner value (24 is the more divisible one).",
+  "arith_class_check": "Parity: 7, 27, 33 odd and 24 even, so the key is not alone; all positive integers; multiples of 3: 24, 27, 33 (7 is not), so the key is not alone in that class either.",
+  "dup_search": {
+   "queries": [
+    "tangent&circle",
+    "two circles|circles A and B|circle B",
+    "tangent&outside|tangent to circle",
+    "externally tangent|tangent to each other|circles&tangent externally"
+   ],
+   "hits_read": 48,
+   "nearest": "40a152e6-48b (SSAT, two circles with radii 3 and 4, centers 13 apart, greatest PQ) - given radii and distance, asks a max segment; this item derives one radius by completing the square and a center distance in the xy-plane and asks the other radius from tangency. 47c950d2 / 8727b1d3 (circle tangent to the x-axis, find c) are tangent to an axis, not to a second circle. 712e73ff (near-dup j=0.455) checked by the near-dup tool, not flagged."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "No option equals a printed number, so none can be discarded that way. Could a student check an option in one routine step? No: every check needs circle A's center and radius and the center distance, i.e. the full solution. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check). PAIR/DPAIR read: 33 - 27 = 6 = twice the unprinted radius; 27 - 24 = 3 unprinted; 27 - 7 = 20 is not a printed number. B's coordinates (16, 12) equal the printed coefficients, which hints nothing about the radius. DPAIR read: 27 - 24 = 3 = 2 + 1 - the 3 is circle A radius, not built from the exponent 2 and an implied 1; a student holding 24 still needs the radius 3 from completing the square to reach 27."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circle through a rectangle's vertices, general form",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, rectangle ABCD has vertices A(-1, -2), B(11, -2), C(11, 14), and D(-1, 14). All four vertices of the rectangle lie on a circle whose equation can be written as x^2 + y^2 + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+  "choices": [
+   "-339",
+   "-100",
+   "-71",
+   "-39"
+  ],
+  "correct_answer": "-39",
+  "explanation": "The diagonals of a rectangle are diameters of the circle through its vertices, so the center is the midpoint of AC: ((-1 + 11)/2, (-2 + 14)/2) = (5, 6). The diagonal AC has length sqrt(12^2 + 16^2) = 20, so the radius is 10. The circle is (x - 5)^2 + (y - 6)^2 = 100. Expanding: x^2 - 10x + 25 + y^2 - 12y + 36 = 100, so x^2 + y^2 - 10x - 12y - 39 = 0. Therefore c = 25 + 36 - 100 = -39.",
+  "solve": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);",
+  "distractor_solve": {
+   "-339": "const A=[-1,-2],C=[11,14]; const h=(A[0]+C[0])/2,k=(A[1]+C[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1]); return String(h*h+k*k-r*r);",
+   "-100": "const A=[-1,-2],C=[11,14]; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(-r*r);",
+   "-71": "const A=[-1,-2],B=[11,-2],C=[11,14]; const h=(A[0]+B[0])/2,k=(A[1]+B[1])/2; const r=Math.hypot(C[0]-A[0],C[1]-A[1])/2; return String(h*h+k*k-r*r);"
+  },
+  "mechanism": [
+   "center = midpoint of a diagonal",
+   "radius = half the diagonal",
+   "expand standard form to read the constant term"
+  ],
+  "quantity_asked": "the constant term c of the circle's general-form equation",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option for c cannot be tested alone: substituting a vertex into x^2 + y^2 + ax + by + c = 0 also needs a and b, which come from the center, so a check is the whole solution. The key is the largest option, reached last ascending."
+  },
+  "distractor_meta": {
+   "-339": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the full diagonal 20 as the radius double-counts the radius; the stem gives no sign that a larger radius lowers c, which a student sees only after writing c = h^2 + k^2 - r^2."
+   },
+   "-100": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking c = -r^2 drops the 25 + 36 that the expansion of (x - 5)^2 and (y - 6)^2 contributes; the stem does not say whether the center's squares add to or subtract from c."
+   },
+   "-71": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Placing the center at the midpoint of side AB, (5, -2), instead of the midpoint of a diagonal, keeps r = 10 but changes h^2 + k^2 to 29; whether that raises or lowers c depends on the coordinates, which the stem does not signal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const h=5,k=6,r=10; return String(r*r-h*h-k*k);",
+   "direction": "above",
+   "why": "Moving the constants to the wrong side when expanding gives c = r^2 - h^2 - k^2 = 39, above the key; it is a natural slip and is not an option."
+  },
+  "far_distractor": {
+   "option": "-339",
+   "natural_side": "above",
+   "why": "Using the diagonal as the radius is an over-count that ordinarily makes a circle quantity larger (a bigger radius, a bigger area); here the radius enters c only as -r^2, so the over-count is subtracted and c lands far below the key. Nothing in the stem shows c falling as the radius grows."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: the stem fixes one circle and asks for one coefficient of its equation. Errors go both ways naturally (a sign slip on the constants lands above at 39; a wrong center can land either side depending on coordinates), so the structure does not sign every error.",
+  "intermediate_check": "-339: no - it is 61 - 400; the key follows from it only by replacing r^2 = 400 with 100, not by a printed relation. -100: no - it is -r^2; the key follows from it by adding h^2 + k^2 = 61, which is not printed. -71: no - it uses a wrong center; the key is not -71 combined with any printed number (the difference 32 is not printed). The true intermediates (center (5, 6), radius 10, diagonal 20) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the origin lies inside the circle (the rectangle surrounds it), so c < 0 - all four options satisfy it. A student who knows c = h^2 + k^2 - r^2 with r = 10 can also read c > -100, which strikes -339 and -100 but leaves -71 on the key's side; no single bound strikes all three.",
+  "shape_check": "The stem hands over no sign, integrality or monotonic property of c beyond the origin lying inside the rectangle (c negative): all four options are negative integers and survive together.",
+  "interior_parity_check": "Middle values -100 and -71: both negative integers of two and three digits (within one digit); the key is not a middle value.",
+  "arith_class_check": "Parity: -339, -71, -39 odd and -100 even, so the key is not alone; all negative integers; no multiple-of-k class isolates -39 (-339 and -39 are both multiples of 3).",
+  "dup_search": {
+   "queries": [
+    "rectangle&circle",
+    "vertices&circle&xy-plane|vertices&circle&equation",
+    "value of c&circle|constant c&circle",
+    "quadrilateral&circle"
+   ],
+   "hits_read": 21,
+   "nearest": "6709f126-5a5 (ACT, rectangle 16 by 30 inscribed in a circle, area of the circle) uses the diagonal as diameter but asks an area from side lengths with no coordinates; 47c950d2 / 8727b1d3 ask c for a circle tangent to the x-axis (given a and b, find c from r = |k|). This item builds the circle from rectangle coordinates (midpoint of a diagonal, half-diagonal) and asks the general-form constant."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? Only by knowing c = h^2 + k^2 - r^2, which is the solution; without it the over-count (-339) does not read as low. One bound (c > -r^2 = -100) strikes two distractors but -71 survives on the key's side. Does the far_distractor read as far-side? A diameter-for-radius slip normally inflates; landing below needs the formula. Could a student check an option in one routine step? No: a, b are unknown too. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Equal tangent segments from a vertex to an incircle",
+  "difficulty": "medium",
+  "prompt": "Triangle ABC has a right angle at C, with BC = 14, AC = 48, and AB = 50. A circle lies inside the triangle and is tangent to all three sides: it touches side AB at point P, side BC at point Q, and side AC at point R. What is the length of segment AP?",
+  "choices": [
+   "18",
+   "25",
+   "36",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "The two tangent segments drawn to a circle from the same outside point are equal, so AP = AR, BP = BQ, and CQ = CR. Let AP = AR = x. Then BP = 50 - x, so BQ = 50 - x and CQ = 14 - (50 - x) = x - 36. Also CR = 48 - x. Setting CQ = CR gives x - 36 = 48 - x, so 2x = 84 and x = 42. The length of AP is 42.",
+  "solve": "const a=14,b=48,c=50; return String((b+c-a)/2);",
+  "distractor_solve": {
+   "18": "const a=14,b=48,c=50; return String((c-a)/2);",
+   "25": "const c=50; return String(c/2);",
+   "36": "const a=14,c=50; return String(c-a);"
+  },
+  "mechanism": [
+   "equal tangent segments from each vertex",
+   "one unknown, three side equations",
+   "solve for the tangent length from A"
+  ],
+  "quantity_asked": "the length of tangent segment AP",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const a=14,b=48,c=50; return v>0 && v<b && Math.abs((a-(c-v))-(b-v))<1e-9;",
+   "why": "A student can test an option t by setting AR = t, BQ = 50 - t, and checking that CQ = 14 - (50 - t) equals CR = 48 - t; this takes the same equal-tangent setup as the solution. In ascending order the key is the fourth try."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the tangent-length formula (AB + AC - BC)/2 but dropping AC gives (50 - 14)/2; the stem does not indicate which sides enter or with what sign."
+   },
+   "25": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assuming the circle touches AB at its midpoint, as if the triangle were isosceles; the stem gives three unequal sides and no cue to where P falls along AB."
+   },
+   "36": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking B's tangent segment BP to be the whole side BC = 14, so AP = 50 - 14; BC also contains the piece CQ, so this over-counts BP, and the over-count is subtracted from AB."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const a=14,b=48,c=50; return String(b+c-a);",
+   "direction": "above",
+   "why": "Forgetting to halve in AP = (AC + AB - BC)/2 gives 84, above the key; it is a natural slip and is not an option."
+  },
+  "far_distractor": {
+   "option": "36",
+   "natural_side": "above",
+   "why": "Treating all of BC as B's tangent segment over-counts BP, and an over-count ordinarily inflates the result; here BP is subtracted from AB to get AP, so the over-count lands below the key. Seeing that requires writing AP = AB - BP, which is the start of the solution."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound: one fixed triangle, one tangent length asked. Errors go both ways naturally (forgetting to halve lands above at 84; taking the semiperimeter 56 lands above), so the structure does not sign every error.",
+  "intermediate_check": "18: no - it is (50 - 14)/2; the key is not 18 combined with one printed number (18 + 24 uses the unprinted AC/2). 25: no - it is half of AB; the key is not 25 plus or times a printed number. 36: no - it is 50 - 14; reaching 42 from 36 needs the unprinted inradius 6. The true intermediates (BP = 8, CQ = CR = 6) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: AP < AC = 48 and AP < AB = 50, which every option satisfies. A sharper bound - A's tangent is longer than B's because AC > BC, so AP > AB/2 = 25 - strikes 18 and 25 but leaves 36 on the key's side; no single bound strikes all three.",
+  "shape_check": "The stem hands over: AP is a positive length less than AB and AC (all four survive); integer side lengths do not force an integer AP (all are integers anyway). All four survive together.",
+  "interior_parity_check": "Middle values 25 and 36: both two-digit integers; the key is not a middle value.",
+  "arith_class_check": "Parity: 18, 36, 42 even and 25 odd, so the key is not alone; multiples of 6: 18, 36, 42, so the key is not alone there; no option is a multiple of 10.",
+  "dup_search": {
+   "queries": [
+    "inscribed in&triangle&circle|incircle|tangent to all three",
+    "touches&side|touches each side|tangent to each side",
+    "inscribed circle|circle&inside the triangle|inradius",
+    "right triangle&circle&tangent"
+   ],
+   "hits_read": 18,
+   "nearest": "03a8d4f4-3d5 (SSAT, isosceles 13-13-10 triangle, radius of the inscribed circle) and GEOH2-15 (area inside a 9-12 right triangle outside its incircle) ask the inradius or an area; dd393e83 asks the incenter-circumcenter distance. None asks a tangent length from a vertex through the equal-tangent system."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The midpoint guess (25) and the halved difference (18) fall to the bound AP > 25, but 36 survives on the key's side; seeing that 36 is low needs AP = AB - BP, i.e. the solution. Does the far_distractor read as far-side? Over-counting BP normally pushes a length up; that it lands low only shows once AP is written as a difference. Could a student check an option in one routine step? Not one step: it needs the full tangent bookkeeping, and the key is the last ascending try. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Tangent line at a point of a circle in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the point (6, 10) lies on the circle with equation (x - 4)^2 + (y - 6)^2 = 20. Line t is tangent to the circle at the point (6, 10). What is the y-coordinate of the y-intercept of line t?",
+  "choices": [
+   "-2",
+   "8",
+   "13",
+   "22"
+  ],
+  "correct_answer": "13",
+  "explanation": "The center of the circle is (4, 6). The radius to the point of tangency (6, 10) has slope (10 - 6)/(6 - 4) = 2. A tangent line is perpendicular to the radius at the point of tangency, so line t has slope -1/2. Using the point (6, 10): y - 10 = -(1/2)(x - 6), so y = -(1/2)x + 3 + 10 = -(1/2)x + 13. The y-intercept of line t is (0, 13), so its y-coordinate is 13.",
+  "solve": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(py-m*px);",
+  "distractor_solve": {
+   "8": "const h=4,k=6,px=6,py=10; const m=-(px-h)/(py-k); return String(k-m*h);",
+   "22": "const h=4,k=6,px=6,py=10; const m=-(py-k)/(px-h); return String(py-m*px);",
+   "-2": "const h=4,k=6,px=6,py=10; const m=(py-k)/(px-h); return String(py-m*px);"
+  },
+  "mechanism": [
+   "slope of the radius to the point of tangency",
+   "tangent perpendicular to the radius: negative reciprocal slope",
+   "point-slope form through the point of tangency, read the intercept"
+  ],
+  "quantity_asked": "the y-coordinate of the y-intercept of the tangent line",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An intercept option b defines the line through (0, b) and (6, 10); testing it means computing that line's slope and checking it is perpendicular to the radius slope 2, which is the solution's own work, not a substitution into a printed equation. The key is the third value ascending."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the line with the correct slope -1/2 but through the center (4, 6) instead of the point of tangency; the stem does not signal which side of the true line the center's parallel lies on."
+   },
+   "22": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Negating the radius slope without taking the reciprocal (slope -2 instead of -1/2); the stem gives no cue that this steeper negative slope pushes the intercept up."
+   },
+   "-2": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the radius's slope 2 for the tangent line instead of its negative reciprocal; the stem does not show whether a steeper positive slope raises or lowers the intercept from a point to the right of the y-axis."
+   }
+  },
+  "intermediate_check": "-2: no - it is the intercept of a different line (slope 2); the key is not -2 combined with one printed number (13 - (-2) = 15 is neither printed nor a sum of two printed numbers). 8: no - it is the intercept of the parallel line through the center (4, 6); the key follows from it only by a computed shift of 5, not a printed relation. 22: no - it comes from slope -2; reaching 13 requires redoing the slope. The true intermediates (radius slope 2, tangent slope -1/2) are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no sign, integrality or monotonic property of the intercept; it can be any real number. All four options survive.",
+  "interior_parity_check": "Middle values 8 and 13: one- and two-digit integers (within one digit); the key is not the cleaner value.",
+  "arith_class_check": "Parity: -2, 8, 22 even and 13 odd - the key is the only odd option, but nothing in the stem implies a parity for the intercept (a slope of -1/2 through (6, 10) could give any parity with other points). Sign: -2 negative, the rest positive, so the key is not alone there.",
+  "dup_search": {
+   "queries": [
+    "tangent&point&xy-plane|tangent to the circle at",
+    "tangent line|line tangent",
+    "perpendicular&radius|radius&slope",
+    "tangent&circle"
+   ],
+   "hits_read": 45,
+   "nearest": "eb3a2c76-643 (tangent segment length from an external point to a circle given by its equation) and the y = x + c / y = 2x + c tangency items (find c from the distance to the center) are tangent-length or tangency-condition chains; b75398d9 asks a horizontal tangent y = k. None builds the tangent line at a given point from the perpendicular radius and asks its intercept. Closest by the near-dup tool: fc755a79 (sat-alg-h5, Algebra: line perpendicular to 4x + 10y = 15 through (10, -1), y-intercept). It shares the last step (perpendicular slope, intercept) but gets its reference slope from a printed line; here that slope has to come from the circle (center from the equation, radius to the point of tangency, tangent perpendicular to the radius), which is the circle content the item tests."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might drop 22 because 22 = 20 + 2 looks built from printed numbers, which leaves -2, 8, 13 with no direction readable from the stem. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check). DPAIR reads: 13 + (-2) = 11 = 10 + 1; 13 - 8 = 5 = 4 + 1; 13 + 8 = 21 = 20 + 1; 22 - 13 = 9 = 10 - 1. None is a step on any route: the real gaps are 13 - 8 = 5 (the shift between the line through the center and the line through the point) and 22 - 13 = 9 = 6 x (2 - 1/2), both computed from the slopes, not from a printed number plus or minus 1."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-J05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Obtuse inscribed angle, arc containing the vertex",
+  "difficulty": "hard",
+  "prompt": "Points A, B, and P lie on a circle with center O and radius 12, and the measure of angle APB is 130 degrees. A region is bounded by radius OA, radius OB, and the arc AB that contains point P. To the nearest tenth, what is the perimeter of this region?",
+  "choices": [
+   "44.9",
+   "51.2",
+   "72.2",
+   "85.8"
+  ],
+  "correct_answer": "44.9",
+  "explanation": "An inscribed angle intercepts the arc that does NOT contain its vertex, and its measure is half that arc. So the arc AB not containing P measures 2(130) = 260 degrees, and the arc AB that contains P measures 360 - 260 = 100 degrees. That arc has length (100/360)(2 x pi x 12) = (20/3)pi, which is about 20.94. The region's perimeter is the two radii plus this arc: 12 + 12 + 20.94 = 44.94, or 44.9 to the nearest tenth.",
+  "solve": "const r=12,phi=130; const arc=(360-2*phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+  "distractor_solve": {
+   "51.2": "const r=12,phi=130; const arc=phi/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "72.2": "const r=12,phi=130; const arc=(360-phi)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);",
+   "85.8": "const r=12,phi=130; const arc=(360-phi/2)/360*2*Math.PI*r; return (2*r+arc).toFixed(1);"
+  },
+  "mechanism": [
+   "inscribed angle intercepts the arc away from its vertex",
+   "obtuse angle: intercepted arc is the major arc, so P sits on the minor arc",
+   "arc length plus two radii"
+  ],
+  "quantity_asked": "the perimeter of the sector bounded by OA, OB and the arc AB containing P",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The options are perimeters, not angles or arcs. To test one, a student must subtract the two radii, convert the remaining arc length to degrees using the circumference 24pi, take the other arc as 360 minus that, halve it and compare with 130 - four steps that include the decision about which arc the angle intercepts. There is no printed equation to substitute into."
+  },
+  "distractor_meta": {
+   "51.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the arc on P's side to have the same measure as the angle at P (130 degrees); the stem gives no cue whether that arc is larger or smaller than the true one."
+   },
+   "72.2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgetting to double: taking the arc not containing P as 130 degrees, so the arc containing P is 360 - 130 = 230 degrees; the asked arc is the complement of the intercepted one, which the stem does not flag."
+   },
+   "85.8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Halving instead of doubling (inscribed angle = twice the arc): the intercepted arc becomes 65 degrees and the arc containing P 295 degrees; the stem does not reveal that the shrunken intercepted arc enlarges the asked one."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const r=12,phi=130; return ((360-2*phi)/360*2*Math.PI*r).toFixed(1);",
+   "direction": "below",
+   "why": "Reporting only the arc length 20.9 and leaving out the two radii is a natural slip that lands below the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "72.2",
+   "natural_side": "below",
+   "why": "Forgetting to double is a dropped step, which ordinarily leaves an arc or angle too small; here the doubled quantity is the arc NOT containing P and the asked arc is its complement, so the undersized intercepted arc makes the asked arc, and the perimeter, too large. A student sees this only after deciding which arc the angle intercepts."
+  },
+  "structure_check": "No universal condition, extremum or strictest bound appears: one fixed configuration and one perimeter. The one structural fact - an obtuse inscribed angle has its vertex on the minor arc - bounds the arc containing P by a semicircle; it strikes 72.2 and 85.8 but not 51.2, and errors also fall below (leaving out the radii gives 20.9), so the structure does not sign every error.",
+  "intermediate_check": "51.2: no - it is 24 plus a 130-degree arc; the key does not follow from it by one printed relation. 72.2: no - it is 24 plus a 230-degree arc; reaching the key requires replacing the arc measure, not applying a printed relation. 85.8: no - it uses a 295-degree arc. The true intermediates (the 260- and 100-degree arcs, the arc length 20.94, the circumference 24pi) are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the perimeter exceeds the two radii, 24, which every option satisfies. The next bound - the vertex of an obtuse inscribed angle lies on the minor arc, so the perimeter is below 24 + 12pi = 61.7 - strikes 72.2 and 85.8 but leaves 51.2 on the key's side; no single bound strikes all three.",
+  "shape_check": "The stem hands over: a positive length greater than 24 (all four survive); rounding to the nearest tenth (all four are given to a tenth). All four survive together; only the minor-arc fact, which is part of the solution, separates them.",
+  "interior_parity_check": "Middle values 51.2 and 72.2: both two-digit numbers to one decimal place; the key is not a middle value.",
+  "arith_class_check": "All four options are decimals to the tenth, none an integer and none round; no parity, sign or multiple class isolates 44.9.",
+  "dup_search": {
+   "queries": [
+    "central angle&inscribed|inscribed angle",
+    "angle APB&circle|angle AQB&circle",
+    "perimeter&radii|perimeter&arc",
+    "contains P|containing P|minor arc&angle"
+   ],
+   "hits_read": 27,
+   "nearest": "The live inscribed-angle items (2ca0efba, 30060a3f, 825707e2 and others) all place P on the major arc and ask the acute inscribed angle from a central angle; 6d19e446 (ISEE) asks a sector perimeter from a given central angle; 513e2990 (ACT) bounds a region by two tangents and the minor arc. None has an obtuse inscribed angle whose vertex lies on the arc being measured."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The minor-arc fact strikes 72.2 and 85.8, but 51.2 survives below the semicircle bound, and errors also fall below the key (omitting the radii gives 20.9). Does the far_distractor read as far-side? Forgetting to double normally undershoots; that it overshoots here appears only once the asked arc is seen as the complement of the intercepted arc. Could a student check an option against the stem in one routine step? No: a perimeter must be unwound (subtract 24, convert to degrees, complement, halve) before it meets the printed 130, and the key, though first ascending, is not confirmed by a substitution. Is any distractor a solved intermediate one printed relation from the key? No (see intermediate_check)."
+  },
+  "bounds": []
+ }
+]

@@ -1,0 +1,244 @@
+{
+ "B": {
+  "preflight": "GATING PASS (sha a39f5497); mf30-checks 0 gating; 1 item to the probe (B04)",
+  "returns": {
+   "SM30F-B01": "single cheap bound on a largest key: the x-intercept is at x = 4 > 0, so the line is steeper than the proportional line through (12, 24); at x = 18 it is above 24 x 18/12 = 36, which strikes 33, 34 and 36 together without solving (A91/A92 r10 shape). Also one routine step (slope 3, k = 42) is near easy.",
+   "SM30F-B04": "method duplicate of prior SM22L-A3 (sat-math-v22-alg-a): a translation fact fixes the slope, then a printed point gives the line and an intercept is asked. Same chain on the same givens; a new ask (r + s) over it is a duplicate (rule 1)."
+  },
+  "clear": {
+   "SM30F-B02": "interior; kw 'x-intercept&perpendicular&y-axis' 0 hits; 47 = 44 + 3 is a wrong-intercept path, not a one-relation intermediate of 23",
+   "SM30F-B03": "largest key; bound k > 3 strikes -13 only, 9 and 12 survive; FAR 9 (over-counted drop in a divisor) reads honestly; DPAIR 19 - 9 = 10 = 11 - 1 read: coincidental, 10 is no step of the work",
+   "SM30F-B05": "interior; 'for each value of k' allowed on an interior key; nearest 15b1fc6d (three lines through a common point, solve k) is a different chain"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return (B01, B04 rewritten)",
+   "SM30F-B01": "new item, largest key 58: BOUND p(6) - q(6) > 24 strikes none of 38 / 43 / 46; FAR 38 (adding the slopes; q slope negative only after rewriting standard form) reads honestly: clear",
+   "SM30F-B04": "new item, smallest key -44: to probe round 2. Nearest live e1ee4803 (one printed value and the average of two values = the value at the middle input, ask f(0)) shares the middle-value idea; here no value is printed, both values come from sums of 9 and 3 terms and the ask is r + s: judged a different chain, recorded for the graders r11 / live_duplicate",
+   "math-mechanism-dup FLAGs on B02": "1659e4de, 8458dd8a, 8ec7e3d3, f8abd387: generic two-point linear-function tags; B02 adds the perpendicular slope and the shared intercept, a different chain: rejected"
+  }
+ },
+ "A": {
+  "preflight": "GATING PASS; mf30-checks 0 gating; 2 items to the probe (A02, A04)",
+  "returns": {
+   "SM30F-A05": "one-sided on a largest key: all three distractors are higher-price paths (no discount 420, discount only past 300 438, blended price 465), and on a COUNT a higher price per copy plainly gives fewer copies, so a student who sees that the right regime is the cheapest per copy picks the largest option without solving (A92 C05 shape: both natural errors under-count the discount). FAR 420 does not read as far-side: ignoring a discount on a count is a near-side (fewer) error from the stem."
+  },
+  "clear": {
+   "SM30F-A01": "interior; nearest live 93023ba0 (plank, a two-equation system) is a different chain; INTER read: d = 1.584 is not an option",
+   "SM30F-A02": "smallest key, probe decides; BOUND read q - p > 0 strikes nothing; PAIR/DPAIR/DSUM sum lines (10 + 14 = 24 = 6 + 18) read: coincidental, 24 is no step of the work",
+   "SM30F-A03": "interior; nearest live no-solution items (0ee29aa5, 4aae9236) stop at k; here the solve at m + 4 is a second step",
+   "SM30F-A04": "smallest key, probe decides; no stem bound; DSUM sum read 23 + 47 = 70 = 4 + 66 coincidental"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-A05": "new item, largest key 51: distractors 11 / 45 / 49 from a weekly-gift over-count, swapped rates and an omitted gift; natural errors also land above (55, 57, not options); BOUNDS t > 0 and t <= 170 strike nothing; nearest live 912d9f5b (equal balances, count of k) differs: clear"
+  }
+ },
+ "D": {
+  "preflight": "GATING FAIL: check-math-near-dup within-batch FLAG D03 ~ D04 (j = 0.611); mf30-checks 0 gating; 3 items to the probe (D02, D03, D05)",
+  "returns": {
+   "SM30F-D04": "method duplicate of live 46bd4e26 (sat-math-v28-full): two linear inequalities with constants whose solution set is exactly a printed closed interval, back-solve the constants; a - b is a new ask over the same chain (rule 1). Its rewrite also clears the within-batch near-dup flag with D03 (j = 0.611, gating)."
+  },
+  "clear": {
+   "SM30F-D01": "largest key at ascending try 4 (plug-back allowed); BOUND > 75 strikes nothing; N = 16 not an option; FAR 105 (per-class fee on Plan B) reads honestly: the extra lands on the compared plan",
+   "SM30F-D02": "interior; probe decides (count)",
+   "SM30F-D03": "smallest key, probe decides; every option lies inside 8 <= x < 27 so substitution decides nothing; nearest live 517bc754 (absolute value, midpoint given) differs; within-batch flag resolved by D04 return",
+   "SM30F-D05": "interior; near 3267fcc5 / 561f97bb (same triangular region style, area / greatest x) - different ask chain (c over the corners)"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return; within-batch near-dup flag gone",
+   "SM30F-D04": "new item, largest key 38 at ascending try 4: f from two values, an input-shift / output-scale inequality, f at the boundary; no interval printed, no constants back-solved; BOUND none readable; FAR 35 (run over-counted, divisor) honest; nearest f8abd387 (zero of f) differs: clear"
+  }
+ },
+ "C": {
+  "preflight": "GATING PASS; mf30-checks 0 gating; 2 items to the probe (C02, C03)",
+  "returns": {
+   "SM30F-C04": "cheap divisibility eliminations on a largest key: C - 30 must be a multiple of 45 (strikes 375) and C + 10 a multiple of 55 (strikes 615), each at sight, and 210 then fails n - 2 = 4 vs n = 4 in one line; two options die without the system (A92 S10 / r4 shape).",
+   "SM30F-C05": "within-batch template of SM30F-B05 (earlier in the seeded order, position 12 vs 17): the one point common to every line of a one-parameter family, found by grouping the k terms; a - b over the point is the same chain (rule 1)."
+  },
+  "clear": {
+   "SM30F-C01": "interior; coin hits (isee a4a5213a, c20eeb8d) are different chains",
+   "SM30F-C02": "smallest key, probe decides; BOUND 4a + b > 15 strikes nothing; 49 = 4a - b is a sign slip, not a one-relation intermediate",
+   "SM30F-C03": "smallest key, probe decides; 7 (the original x) is read: the key is Ana x minus 7 and Ana x needs her whole system, so 7 is not one printed relation from 4; nearest live eb0e27cf (two miscopies, recover the original solution) is a different chain; BOUND d < 54 strikes 54 only"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-C04": "new item, largest key 140: BOUND 103 < 3t + c < 154.5 strikes 86 only; no divisibility property; FAR 125 (the reduction also applied to the regular purchase) reads honestly: clear",
+   "SM30F-C05": "new item, interior key 45 at ascending try 2: to probe round 2; 9 (the age gap) strikable only after L + M = 63 (one strike at most)",
+   "read, not gating": "merge-halves lists option values 45 (C01/C05) and 63 (C02/C05) shared within the author file (brief rule 11); not a stage-0 gate and not a tell within an item; recorded"
+  }
+ },
+ "P": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-P03": "within-batch template of SM30F-R05 (earlier in the seeded order, position 29 vs 37): a line meets a curve at A and B, then the area of triangle OAB with the origin by the coordinate formula; a parabola in place of a hyperbola is the same chain (rule 1)."
+  },
+  "clear": {
+   "SM30F-P01": "interior key; \"maximum\" allowed on an interior slot; kw 0 hits",
+   "SM30F-P02": "interior count; kw 0 hits",
+   "SM30F-P04": "smallest key; value of a different expression, irrational roots: not substitutable; PAIR -85 + 25 = 60 read: coincidental",
+   "SM30F-P05": "smallest key; expansion then c - b; nearest live 1fe58236 (shifted quadratic, product of roots) is a different ask chain; may bank easy"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-P03": "new item, largest key 9 at ascending try 4: k from the given point, then the other solution of (x - 1)(x - k) = 40; the bound x > 4 strikes -11 and 4 only after k is found (part of the work); nearest live 727b2bd3 / 17bec277 (one root of an equation set to 0, find the other) - here k must be found first and the factor zeros are not the answer: judged a different chain, recorded"
+  }
+ },
+ "Q": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-Q01": "method duplicate of live 55d6c01d (sat-math-v20-adv): two values of an exponential 3 periods apart (1 and 4), cube root of their ratio for the per-period factor, then the factor applied over a new span; a 2-hour percent is a new ask over the same chain (rule 1)."
+  },
+  "clear": {
+   "SM30F-Q02": "interior; 0.8^3 and linear-reversal paths are distinct",
+   "SM30F-Q03": "interior; nearest live 8e516447 (both squared-equation roots given, find a - b) is a different chain; 73 = k may read weak to graders",
+   "SM30F-Q04": "largest key; BOUND: two periods decay more than the first 640 and less than 2 x 640 strikes 640 only; FAR 977 (hourly decay leaves less inside a window starting at 6 h) reads honestly",
+   "SM30F-Q05": "smallest key; not substitutable; PAIR ratio 0.504/0.392 = 9/7 read: the pair does not say which member is the key"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-Q01": "new item, largest key 5120: two exponential models with different periods at a fixed time, subtracted; BOUND difference <= 6000 strikes nothing; FAR 3853 (A period applied to B, the subtracted colony) honest; the fence-post slip lands on both sides (4544 below on B, 13120 above on A, not an option): clear"
+  }
+ },
+ "probe_r1": {
+  "valid": true,
+  "positives": "4/4 (B09 D04 A07 A04)",
+  "try4": "0/2 (B08 A09, reported)",
+  "negatives": "0/6",
+  "batch": "0 FLAGGED of 20 Algebra items; DISAGREE C04 (probe confirmed 375: (375 - 30)/45 is not an integer, so the probe erred; C04 is returned anyway for its divisibility eliminations)",
+  "process": "the probe wrote and ran a temporary formatting script in its folder and deleted it (it says it solved nothing); out.json is the only file left"
+ },
+ "R": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {},
+  "clear": {
+   "SM30F-R01": "largest key at ascending try 4; 19 is struck by legality only (irrational g), one strike",
+   "SM30F-R02": "interior; kw inverse-variation 0 hits",
+   "SM30F-R03": "smallest key; not substitutable; nearest live remainder items solve for k (08c0b345, 829369f1), a different ask; may bank easy",
+   "SM30F-R04": "interior; nearest live 788e7bd0 (restricted-quadratic inverse value) - here the input lies outside the restricted half, a different chain",
+   "SM30F-R05": "smallest key; BOUND area < 50 strikes 50 only; FAR 32 (dropped subtracted product) reads honestly; earlier than P03 in the seeded order, so P03 is the one returned"
+  }
+ },
+ "G": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-G05": "option pair joined by one relation on a largest key: 240 (the cup taken as a cylinder) and the key 720 = 3 x 240 are joined by the cone one-third every student knows; a student who sees both and recalls V_cone = V_cylinder / 3 picks 720 without the volumes. The rule-14 shape (the key follows from a distractor through one relation) with a formula factor in place of a printed one; and 40 / 180 / 240 all sit under 240."
+  },
+  "clear": {
+   "SM30F-G01": "interior; nearest live 7ea7ae73 (isee: side printed, height from volume, surface area) - here the side comes from 3s^3 = 375, judged a different chain",
+   "SM30F-G02": "smallest key; not substitutable; FAR 279 (pyramid without 1/3 overshoots the prism, so the gap reopens) honest; kw pyramid&prism 0 hits",
+   "SM30F-G03": "interior count; extends the single-triangle third-side count (8333cfce) to two triangles sharing the diagonal, which is distractor 9; DPAIR/DSUM reads coincidental",
+   "SM30F-G04": "largest key at ascending try 4; BOUND 30 < ABC < 132 strikes nothing; 60 (bisector assumption) may read weak"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-G05": "new item, largest key 20.8 (L-section prism length): distractors from three area errors; BOUND length > 2000/196 strikes 10.2 only; the opposite slip (overlap subtracted twice, 25.0) lands above and is not an option; ratios to the key 49/24, 15/8, 7/6, no formula factor: clear"
+  }
+ },
+ "H": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-H02": "cheap two-option bound on a smallest key: angle C = 180 - 30 - 135 = 15 degrees is the smallest angle, so AB (opposite it) is the shortest side and AB < BC = 10, which strikes 12.25 and 14.14 at sight; the law of sines then gives the key in one line.",
+   "SM30F-H03": "cheap two-option bound on a smallest key: both legs of a right triangle with hypotenuse 12 lie between 6 and 12 here (the 45-45-90 leg exceeds half the hypotenuse, the long leg is under 12), so the difference is under 6 - strikes 6.58 and 18.88 without computing either leg.",
+   "SM30F-H05": "cheap two-option bound on a largest key: an angle of pi/3 > pi/4 means slope > 1, so at x = 7 the line is above 1 + 7 = 8, which strikes 5.04 and 7.06 (A92 S10 shape)."
+  },
+  "clear": {
+   "SM30F-H01": "interior; kw 8/17&perimeter 0 hits",
+   "SM30F-H04": "interior; near 4c7cc1af / 01de543f / e1bfaea9 are different chains (median, altitude segments, isosceles right)"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-H02": "new item, smallest key 28.78: triangle inequality in ABD (perimeter < 42) strikes 52.78 only; FAR 30.52 (CD^2 dropped under a subtraction) honest: clear",
+   "SM30F-H03": "new item, smallest key 8.54: distance < 3 + 8 strikes 11.00 only; FAR 8.94 (a walk toward A dropped) honest: clear",
+   "SM30F-H05": "new item, largest key 52.62: every cheap lower bound is 48, strikes nothing; H02 and H05 both hold a 30-60-90 triangle in a composite figure but differ in figure and ask (not a template): clear"
+  }
+ },
+ "J": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-J04": "method duplicate of live 231c5d33 (ssat-math-s16): two opposite vertices of a square, midpoint plus the perpendicular half-diagonal gives another vertex; the x-coordinate of B is the same chain (rule 1)."
+  },
+  "clear": {
+   "SM30F-J01": "interior; tangent hits (1bb61256, 1032e3e7) are different chains",
+   "SM30F-J02": "largest key; BOUND c > -100 needs r = 10 and c = h^2 + k^2 - r^2, which is the solution, so not cheap; FAR -339 (diagonal as radius, subtracted) honest",
+   "SM30F-J03": "largest key at ascending try 4; the bound AP > 25 needs AP - BP = AC - BC, which is the method, so not a free strike; 36 survives",
+   "SM30F-J05": "smallest key; the bound < 24 + 12 pi needs the vertex-on-the-minor-arc insight, which is the item; nearest 644cea7d / 86033569 (inscribed angle from arcs) are different asks"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-J04": "new item, interior key 13: tangent line at a point of a circle, its y-intercept; nearest fc755a79 (perpendicular line through a point from a printed line) shares only the last step; 13 is the only odd option but the stem implies no parity (not an arithmetic-class tell by the rule definition): clear"
+  }
+ },
+ "T": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {},
+  "clear": {
+   "SM30F-T01": "interior; nearest prior PSDA5-16 differs",
+   "SM30F-T02": "smallest key; BOUND (16.3, 27.9) strikes nothing; weighting toward the highway rate needs both rates computed",
+   "SM30F-T03": "smallest key; 4.2 vs 4.3 differ by the base; clean ratios 24 and 23",
+   "SM30F-T04": "largest key; BOUND > 15/11 - 1 = 36.4 needs the no-commission solve; 41.3 survives; FAR 41.3 (cap binds only at the old price) honest",
+   "SM30F-T05": "interior; kw 0 hits"
+  }
+ },
+ "U": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-U03": "one-sided on a largest key by structure: the ask is the mean of the heaviest-reading subgroup (2 or more books), and every natural error widens the group or adds copies of lighter readers (all 40 students 2.03, the 1-or-more group 2.38, running counts as exact 2.68), so every error lowers the mean and the largest option is the key (A92 rule-15 class: the item structure signs every error).",
+   "SM30F-U04": "cheap two-option bound on a smallest key: the larger chess club pulls the combined mean below the midpoint 7.35 of 6.2 and 8.5, striking 7.35 and 8.22 at sight (the overlap at 9 hours only lowers it further).",
+   "SM30F-U05": "one-sided on a largest key by structure: both corrections raise the mean, so any partial correction (the wrong sign on the 63, the 0 left in the count, the 92 added instead of replacing) raises it less, and the full correction is the largest option (A92 rule-15 class)."
+  },
+  "clear": {
+   "SM30F-U01": "interior (descending order on a greatest stem); DPAIR 31.5 - 9.5 = 22 = 21 + 1 coincidental",
+   "SM30F-U02": "interior; linear vs exponential from a table"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-U03": "new item, largest key 0.90: errors on the subtracted Class B mean push the other way; BOUND difference > 0.5 strikes 0.27 only; FAR 0.53 honest: clear",
+   "SM30F-U04": "new item, smallest key 7.17 (residual from an exponential curve); the year-off-by-one error lands on both sides; no bound: clear",
+   "SM30F-U05": "new item, largest key 2.88: the two half-corrections land on opposite sides of the key; no cheap read strikes anything: clear"
+  }
+ },
+ "probe_r2": {
+  "valid": true,
+  "positives": "4/4",
+  "try4": "0/2",
+  "negatives": "1/6",
+  "batch": {
+   "SM30F-B04": "clear",
+   "SM30F-C05": "FLAGGED: the probe confirmed the key 45 at ascending try 2 by a routine back-solve (answer = 2L - M with L + M = 63, then the twice condition); still failing after its return, so DROPPED before freeze"
+  },
+  "process": "no script written this round (told not to)"
+ },
+ "drops_before_freeze": [
+  "SM30F-C05 (plug-back probe round 2 FLAGGED after its return)"
+ ],
+ "V": {
+  "preflight": "GATING PASS; mf30-checks 0 gating",
+  "returns": {
+   "SM30F-V02": "method duplicate of live 35cef8dd / 41165314 (two drawn without replacement, probability both are of one kind): reading the counts from a table row does not change the chain (rule 1).",
+   "SM30F-V05": "cheap two-option bound on a smallest key: the 12 new volunteers are all 30 or over, so the under-30 share of the evening shift falls below 22/40 = 0.55, striking 0.55 and 0.61 at sight."
+  },
+  "clear": {
+   "SM30F-V01": "smallest key; extends the live capture-recapture items (82ece773, f20247e0) with a removal before the sample and an untagged ask - two extra steps, judged a different chain, recorded; the pond total 2500 is not an option",
+   "SM30F-V03": "largest key; 4563 = 5616 x 325/400 read: 325 is not printed and the pair does not say which member is the key; BOUND (difference positive, below the total) strikes nothing",
+   "SM30F-V04": "interior; nearest 34dc9238 (same-colour pair) is a different event"
+  },
+  "after_return": {
+   "preflight": "GATING PASS after the return",
+   "SM30F-V02": "new item, interior key 0.71: union from a 2 x 3 table: clear",
+   "SM30F-V05": "new item, smallest key 768: read - seniors are under half of the non-bus group (32 of 75), which puts the key under 900 and below all three distractors, but reading it needs the same four-cell sums as the solution (only the final multiplication is saved), so judged not cheaper than the work; recorded as the item most at risk of a grader r10"
+  }
+ },
+ "_summary": {
+  "authored": 65,
+  "returned": 28,
+  "returned_ids": "A05 B01 B04 C04 C05 D04 P03 Q01 G05 H02 H03 H05 J04 U03 U04 U05 V02 V05 (18 items; one return per author, 12 of 13 authors - R and T had none)",
+  "dropped_before_freeze": [
+   "SM30F-C05: plug-back probe round 2 FLAGGED after its return"
+  ],
+  "frozen": 64,
+  "probe": "round 1 VALID (4/4, 0/6), 0 of 20 Algebra flagged; round 2 VALID (4/4, 1/6), C05 flagged",
+  "batch_level": "per domain bands IN and key-extremity-gate PASS: Algebra 19 S6/I7/L6 (63.2%), Advanced Math 15 S5/I6/L4, Geometry 15 S4/I6/L5, PSDA 15 S5/I6/L4 (60.0% each)",
+  "redump": "pre-freeze re-dump 3,833 live maths rows, 0 new since the authoring dump; math-mechanism-dup over the 64: 5 FLAG (all B02 vs generic two-point linear-function items, rejected) and 52 near, read; within-batch near H02 ~ H05 (both a 30-60-90 inside a composite figure, different figure and ask) left to the graders",
+  "process": "a coordinator git checkout -- . was run once inside scripts/study-bank by mistake at 15:48 KST (after a dry-run freeze file); git status showed no tracked modifications before or after, and the last commit by anyone was 12:20 KST"
+ }
+}

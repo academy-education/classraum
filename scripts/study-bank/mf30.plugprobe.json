@@ -1,0 +1,238 @@
+{
+ "r1": {
+  "valid": true,
+  "positives": 4,
+  "try4": 0,
+  "negatives": 0,
+  "items": {
+   "SM30F-A01": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "2.184",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "substitute into printed balance condition"
+   },
+   "SM30F-A02": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is q-p; no printed condition to substitute a difference into"
+   },
+   "SM30F-A03": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "x check needs m first (derived from no-solution condition), which is the normal solve"
+   },
+   "SM30F-A04": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is 3p+2k; no plug-in possible without simplifying the equation"
+   },
+   "SM30F-A05": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "558",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "forward cost from option vs printed total"
+   },
+   "SM30F-B01": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "42",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "collinearity check with printed points"
+   },
+   "SM30F-B02": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is g(9); needs f's slope/intercept forward"
+   },
+   "SM30F-B03": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "19",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "slope from option vs slope from printed points"
+   },
+   "SM30F-B04": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is r+s; one value does not fix the line"
+   },
+   "SM30F-B05": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is an intercept of a line through P; checking needs P from the family (the normal solve)"
+   },
+   "SM30F-C01": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "53",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "one linear back-solve for n then check second condition"
+   },
+   "SM30F-C02": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is 4a+b; one value does not fix a and b"
+   },
+   "SM30F-C03": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a difference of x-values; needs both systems solved (or derived difference system)"
+   },
+   "SM30F-C04": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": true,
+    "confirmed": "375",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "linear back-solve for group size then check second scenario"
+   },
+   "SM30F-C05": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a-b of the common point; cannot substitute without finding the point"
+   },
+   "SM30F-D01": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "171",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "linear back-solve to n, compare plans at breakeven"
+   },
+   "SM30F-D02": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a count of integer solutions; nothing to plug in"
+   },
+   "SM30F-D03": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a midpoint; does not identify endpoints"
+   },
+   "SM30F-D04": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a-b; one value does not fix a and b"
+   },
+   "SM30F-D05": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is q-p range of c; needs vertices"
+   }
+  }
+ },
+ "r2": {
+  "valid": true,
+  "positives": 4,
+  "try4": 0,
+  "negatives": 1,
+  "items": {
+   "SM30F-B04": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "Sum of intercepts gives no plug-back handle"
+   },
+   "SM30F-C05": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "45",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "Back-solve from option needs answer = 2L - M and L + M = 63, then one check of the twice condition; borderline but short"
+   }
+  }
+ }
+}

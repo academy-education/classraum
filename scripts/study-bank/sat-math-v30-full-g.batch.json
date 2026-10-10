@@ -1,0 +1,414 @@
+[
+ {
+  "id": "SM30F-G01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Surface area of a prism from its volume",
+  "difficulty": "medium",
+  "prompt": "A closed box is a rectangular prism with a square base. The height of the box is 3 times the length of one side of the base, and the volume of the box is 375 cubic inches. What is the total surface area of the box, in square inches?",
+  "choices": [
+   "300",
+   "340",
+   "350",
+   "450"
+  ],
+  "correct_answer": "350",
+  "explanation": "Let s be the side length of the square base, in inches. Then the height is 3s, and the volume is s * s * 3s = 3s^3. Setting 3s^3 = 375 gives s^3 = 125, so s = 5 and the height is 15. The box has two square faces (the base and the top), each with area 5 * 5 = 25, and four rectangular side faces, each with area 5 * 15 = 75. The total surface area is 2(25) + 4(75) = 50 + 300 = 350 square inches.",
+  "solve": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(2 * s * s + 4 * s * h);",
+  "distractor_solve": {
+   "300": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(4 * s * h);",
+   "340": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(2 * (4 * s) + 4 * s * h);",
+   "450": "const s = Math.cbrt(375 / 3); const h = 3 * s; return Math.round(6 * s * h);"
+  },
+  "mechanism": [
+   "volume 3s^3 from the height relation",
+   "cube root for the base side",
+   "sum of two square and four rectangular faces"
+  ],
+  "quantity_asked": "total surface area of the box",
+  "ask_type": "derived-quantity",
+  "plugback": {
+   "substitutable": false,
+   "why": "The stem gives no condition that a surface-area value can be substituted into; to test an option a student must find s = 5 and h = 15 and add the six face areas, which is the whole solution."
+  },
+  "distractor_meta": {
+   "300": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting only the four side faces (the lateral area) leaves out the base and top; the stem says the box is closed but does not signal which face sets a student might drop."
+   },
+   "340": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the base perimeter 4s = 20 in place of the base area s^2 = 25 for each square face; whether a perimeter is bigger or smaller than an area depends on s, which the stem does not print."
+   },
+   "450": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating all six faces as 5-by-15 rectangles (using the side-face area for the base and top too); the stem does not say whether the base face is larger or smaller than a side face until s and h are found."
+   }
+  },
+  "intermediate_check": "300: no - it is the lateral area; the key adds two base faces of area 25, and 25 is not printed, so no single printed rate or relation turns 300 into 350. 340: no - it is a mis-built total, not a step on the way to 350. 450: no - six side faces; getting from 450 to 350 needs the unprinted face areas 75 and 25.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive, and every face area is a multiple of 25 once s = 5 is found (so the total is a multiple of 25): 300, 350, 450 survive; 340 does not. The total must exceed the lateral area, which a student cannot read without solving. 300, 350 and 450 survive every property together (3 >= 2).",
+  "interior_parity_check": "Middle values 340 and 350: both three-digit integers of the same form; the key 350 is not cleaner than 340 (and 300, the roundest option, is a distractor).",
+  "arith_class_check": "All four are even integers; three of four are multiples of 50 and of 25, so the key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "square base&surface area",
+    "volume&surface area&prism|box",
+    "faces&areas",
+    "surface area"
+   ],
+   "hits_read": 7,
+   "nearest": "7ea7ae73-be1 (ISEE: square base side 4 printed, volume 240 printed, find height then surface area) - there the side is given and the height follows linearly; here neither dimension is printed, the height is a multiple of the side and the side comes from a cube root, so the chain is different. 259d4383-d9d (volume equals surface area, find height) asks a different quantity from a different condition."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might pick a multiple of 50 or the option nearest the middle; 300 and 450 are also multiples of 50 and 340 sits next to the key, so neither guess isolates 350. Plug-back: a surface area cannot be checked against the stem in one step; the student must solve for s. Solved intermediate: none of 300, 340, 450 is one printed rate or relation away from 350 (the face areas 25 and 75 are not printed). PAIR / DPAIR: 350 is not another option combined with 3 or 375, nor an option times 2 or 4."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Volumes of a pyramid and a prism compared",
+  "difficulty": "medium",
+  "prompt": "A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height of the prism is 9 centimeters. The volumes of the two blocks differ by how many cubic centimeters?",
+  "choices": [
+   "201",
+   "279",
+   "327",
+   "361"
+  ],
+  "correct_answer": "201",
+  "explanation": "The volume of a pyramid is (1/3)(area of base)(height). The pyramid's base has area 12 * 12 = 144 square centimeters, so its volume is (1/3)(144)(5) = 240 cubic centimeters. The volume of a prism is (area of base)(height); the prism's base has area 7 * 7 = 49 square centimeters, so its volume is 49 * 9 = 441 cubic centimeters. The volumes differ by 441 - 240 = 201 cubic centimeters.",
+  "solve": "const P = (1/3) * 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+  "distractor_solve": {
+   "279": "const P = 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+   "327": "const P = (1/3) * 12 * 12 * 5; const B = 7 * 9 * 9; return Math.round(Math.abs(B - P));",
+   "361": "const P = (1/3) * (4 * 12) * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));"
+  },
+  "mechanism": [
+   "pyramid volume with the one-third factor",
+   "prism volume from a square base",
+   "difference of the two volumes"
+  ],
+  "quantity_asked": "positive difference between the volumes of the pyramid and the prism",
+  "ask_type": "derived-quantity",
+  "plugback": {
+   "substitutable": false,
+   "why": "No printed equation or condition takes a difference of volumes as input; to test an option a student must compute both volumes (240 and 441), which is the whole solution."
+  },
+  "distractor_meta": {
+   "279": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the one-third makes the pyramid 720, which a student expects to SHRINK the gap to the prism; but 720 overshoots the prism's 441, so the gap reopens on the other side as 279 - which side it lands on needs both volumes computed."
+   },
+   "327": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the prism's base edge and height (7 * 9 * 9 = 567) enlarges the prism; whether that widens or narrows the gap depends on which block is larger, which is not printed."
+   },
+   "361": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the base perimeter 4 * 12 = 48 in place of the base area 144 gives a pyramid of 80; the effect on the gap again depends on which block is larger, which the stem does not say."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const P = (1/2) * 12 * 12 * 5; const B = 7 * 7 * 9; return Math.round(Math.abs(B - P));",
+   "direction": "below",
+   "why": "Using 1/2 (as in a triangle's area) in place of 1/3 for the pyramid gives 360, and the gap 441 - 360 = 81 falls below the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "279",
+   "natural_side": "below",
+   "why": "Dropping the one-third is a left-out factor, and a student who spots it would reason 'the pyramid came out too big, so the gap to the prism is too small' and look below the key. Here the inflated pyramid (720) passes the prism (441) altogether, so the difference is 279, above 201. Seeing this needs both volumes; nothing printed tells the student which block is larger (12 and 5 against 7 and 9)."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone structure: the ask is a positive difference of two volumes, and an error in either volume can widen or narrow it depending on which block is larger, which is found only by computing both. One natural error (1/2 for 1/3, giving 81) lands below the key, another (dropping 1/3) lands above, so the structure does not sign the errors.",
+  "intermediate_check": "279: no - it comes from a 720 pyramid, not a step toward 201; no printed number converts 279 to 201. 327: no - built on a 567 prism; 327 - 201 = 126 is not printed. 361: no - 361 = 441 - 80; getting to 201 needs the unprinted volume 240.",
+  "cheap_bound_check": "Cheapest one-sided bound: the difference is positive and is less than the larger block's volume; the prism alone is 7 * 7 * 9 = 441, and a student who does not compute the pyramid cannot even tell which block is larger. All three distractors (279, 327, 361) sit with the key below 441, so the bound strikes none of them.",
+  "shape_check": "The stem hands over: a positive integer (all edge lengths are integers and 144 * 5 is divisible by 3), less than 441 once the prism is computed. 201, 279, 327 and 361 all survive every property together (4 >= 2). All four are odd.",
+  "interior_parity_check": "Middle values 279 and 327: both three-digit odd integers of the same form; neither is cleaner.",
+  "arith_class_check": "All four options are odd positive integers; none is a multiple of 5 or 10; 361 is a perfect square (a distractor). The key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "pyramid",
+    "pyramid&box|pyramid&prism|pyramid&cube",
+    "volumes&differ|difference between the volumes|greater than the volume",
+    "cone&cylinder&volume"
+   ],
+   "hits_read": 7,
+   "nearest": "e97a9db1-e36 / f7417f90-18f / GEO3-13 (pyramid volume from a slant height via the Pythagorean theorem) - a single pyramid volume with a right-triangle step; here two different solids are computed and compared, with no slant height. 8d13faba-4da (cone to cylinder volume ratio, symbolic) - a ratio of formulas, not a numeric difference."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the stem does not say which block is larger, so a student cannot tell which way an error moves the gap; dropping the one-third (the classic pyramid slip) is expected to shrink the gap but here lands above, and 1/2-for-1/3 (81) lands below and is not an option, so the errors do not all go one way. The far distractor 279 really reads as a 'pyramid too big, gap too small' error until both volumes are computed. One bound from the stem (the gap is less than the prism's 441) strikes none of the three. A test-wise student might pick the smallest option as 'a difference is small'; nothing in the stem supports that, since two volumes of 240 and 441 or of 720 and 441 differ by similar amounts. Plug-back: a difference of volumes cannot be checked against the stem in one routine step; the student must compute both volumes. Solved intermediate: none of 279, 327, 361 is one printed rate or relation away from 201. PAIR / DSUM: no option differs from 201 by a printed number (12, 5, 7, 9) or by the sum of two of them."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Triangle inequality on two triangles sharing a side",
+  "difficulty": "hard",
+  "prompt": "Quadrilateral ABCD has side lengths AB = 5, BC = 9, CD = 17, and DA = 10. The length of diagonal AC is a whole number. How many different lengths are possible for diagonal AC?",
+  "choices": [
+   "5",
+   "6",
+   "8",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "Diagonal AC divides the quadrilateral into triangle ABC and triangle ACD, and AC is a side of both, so its length x must satisfy the triangle inequality in each. In triangle ABC (sides 5, 9, x): 9 - 5 < x < 9 + 5, so 4 < x < 14. In triangle ACD (sides 17, 10, x): 17 - 10 < x < 17 + 10, so 7 < x < 27. Both must hold, so 7 < x < 14. The whole numbers strictly between 7 and 14 are 8, 9, 10, 11, 12 and 13, so 6 lengths are possible.",
+  "solve": "let n = 0; for (let x = 1; x < 100; x++) { if (x > 9 - 5 && x < 9 + 5 && x > 17 - 10 && x < 17 + 10) n++; } return n;",
+  "distractor_solve": {
+   "5": "const lo = Math.max(9 - 5, 17 - 10) + 1; const hi = Math.min(9 + 5, 17 + 10) - 1; return hi - lo;",
+   "8": "let n = 0; for (let x = 1; x < 100; x++) { if (x >= 9 - 5 && x <= 9 + 5 && x >= 17 - 10 && x <= 17 + 10) n++; } return n;",
+   "9": "let n = 0; for (let x = 1; x < 100; x++) { if (x > 9 - 5 && x < 9 + 5) n++; } return n;"
+  },
+  "mechanism": [
+   "diagonal splits the quadrilateral into two triangles",
+   "triangle inequality range in each triangle",
+   "intersect the ranges and count whole numbers"
+  ],
+  "quantity_asked": "number of possible whole-number lengths of diagonal AC",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "why": "The options are counts, not lengths; no option can be substituted into a printed condition. To check one a student must find the whole range 7 < x < 14, which is the solution."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting the whole numbers from 8 to 13 by subtracting the endpoints (13 - 8 = 5) instead of adding 1; the stem gives no hint about how a student counts a run."
+   },
+   "8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the triangle inequality as non-strict (allowing a degenerate triangle) admits 7 and 14 as well; the stem does not say whether the bounds are strict."
+   },
+   "9": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applying the triangle inequality only to triangle ABC (the routine single-triangle count, 5 through 13) and missing that AC is also a side of triangle ACD; nothing in the stem names the second triangle."
+   }
+  },
+  "intermediate_check": "5: no - it is a miscount of the correct run 8..13, not a value the count follows from by a printed relation. 8: no - a different (non-strict) range; no printed number turns 8 into 6. 9: no - the count for triangle ABC alone; getting from 9 to 6 needs the second triangle's bound 7, which is computed (17 - 10), not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a count, so a positive whole number; at most 13 (the single-triangle count for AB and BC is 9, which a student does not get without working). 5, 6, 8 and 9 all survive every property (4 >= 2).",
+  "interior_parity_check": "Middle values 6 and 8: both one-digit even whole numbers of the same form; neither is cleaner.",
+  "arith_class_check": "Two even (6, 8) and two odd (5, 9); none is a multiple of a printed number except 5 and 9 themselves (distractors). The key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "triangle inequality|third side",
+    "quadrilateral&diagonal",
+    "how many&lengths&possible|possible lengths",
+    "triangle&whole number&length"
+   ],
+   "hits_read": 11,
+   "nearest": "8333cfce-af0 (ISEE) and eafbcbff-30b (ACT): the number of whole-number third sides of ONE triangle with two given sides - that routine count is this item's distractor 9; here the unknown is shared by two triangles, so two ranges must be intersected, with the lower bound from one triangle and the upper bound from the other. 97a30795-69e (ACT quadrilateral diagonal) is a law-of-sines length, a different chain."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might run the familiar single-triangle count and pick 9; that is exactly the trap, and the decision that both triangles bind (the lower bound 7 from ACD, the upper bound 14 from ABC) is what makes the item hard. Picking a middle value is no help: 6 and 8 are both middle values and 8 is the non-strict count. Plug-back (lower-interior key): an option is a count, which cannot be substituted into any printed condition; checking it needs the full range. Solved intermediate: none of 5, 8, 9 is one printed rate or relation away from 6. PAIR / DPAIR / DSUM: 6 is not another option combined with 5, 9, 10 or 17, not an option times a printed number +/- 1, and no option differs from 6 by the sum of two printed numbers. (read) DPAIR / DSUM lines: key + option sums 11 = 10 + 1, 14 = 5 + 9 and 15 = 5 + 10 are coincidences of small counts with small side lengths; a student holding an option cannot reach 6 by subtracting it from a sum of two printed sides (14 - 8 = 6 would need the student to already know to pair 8 with 5 + 9, and 5 + 9 = 14 is the triangle-ABC upper bound, not a step that yields a count), so none hands over the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Exterior angle and isosceles triangle angle chase",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, point D lies on side AC between A and C, and segment BD is drawn so that BD = DC. The measure of angle BAC is 48 degrees, and the measure of angle ABD is 30 degrees. What is the measure, in degrees, of angle ABC?",
+  "choices": [
+   "54",
+   "60",
+   "69",
+   "81"
+  ],
+  "correct_answer": "81",
+  "explanation": "Angle BDC is an exterior angle of triangle ABD, so it equals the sum of the two remote interior angles: angle BDC = 48 + 30 = 78 degrees. In triangle BDC, BD = DC, so the angles opposite those sides are equal: angle DCB = angle DBC. These two angles sum to 180 - 78 = 102 degrees, so each is 51 degrees. Angle ABC is made up of angle ABD and angle DBC, so angle ABC = 30 + 51 = 81 degrees. (Check: 48 + 81 + 51 = 180.)",
+  "solve": "const bdc = 48 + 30; const dbc = (180 - bdc) / 2; return 30 + dbc;",
+  "distractor_solve": {
+   "54": "const bdc = 48 + 30; const dbc = 180 - 2 * bdc; return 30 + dbc;",
+   "60": "return 2 * 30;",
+   "69": "const bdc = 48 + 30; const dbc = bdc / 2; return 30 + dbc;"
+  },
+  "mechanism": [
+   "exterior angle of triangle ABD",
+   "equal base angles of isosceles triangle BDC",
+   "add the two parts of angle ABC"
+  ],
+  "quantity_asked": "measure of angle ABC",
+  "ask_type": "angle-measure",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const c = 180 - 48 - v; const dbc = v - 30; return Math.abs(dbc - c) < 1e-9;",
+   "why": "A student can test an option v by setting angle C = 180 - 48 - v and angle DBC = v - 30 and checking whether they are equal (BD = DC). Trying options in ascending order (54, 60, 69, 81) reaches the key only at the fourth try."
+  },
+  "distractor_meta": {
+   "54": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Putting the equal angles at D and C (the ends of side DC) instead of opposite the equal sides gives angle DCB = 78 and angle DBC = 180 - 156 = 24; the stem does not show which way a misplaced pair of equal angles moves the result."
+   },
+   "60": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assuming segment BD bisects angle ABC, so that angle ABC = 2(30); the stem never says BD is a bisector, and whether the bisector value is above or below the true angle is not readable without solving."
+   },
+   "69": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Halving the apex angle 78 itself instead of halving 180 - 78 gives base angles of 39 (the same value comes from using the supplement, angle ADB = 102, as the apex); whether that is smaller or larger than the true base angle depends on whether the computed apex is under 90 degrees."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const bdc = 48; const dbc = (180 - bdc) / 2; return 30 + dbc;",
+   "direction": "above",
+   "why": "Leaving angle ABD out of the exterior-angle sum (taking angle BDC = 48) gives base angles of 66 and angle ABC = 96, above the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "69",
+   "natural_side": "above",
+   "why": "Skipping the 'subtract from 180' step before halving ignores a reducing step, an error that ordinarily overshoots. Here it lands below because the apex angle of triangle BDC, 48 + 30 = 78, is less than 90, so 78/2 = 39 is less than (180 - 78)/2 = 51; with an obtuse apex the same slip would overshoot. The apex is not printed, so a student cannot sign the slip without computing it."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone structure: the ask is one angle found by an exterior angle and an isosceles step. Errors in the isosceles step can go either way (halving the apex lands below here only because the apex is acute; dropping angle ABD from the exterior angle lands above at 96), so the structure does not sign every error.",
+  "intermediate_check": "54: no - built from a wrong base angle 24; 81 does not follow from 54 by any printed number (81 - 54 = 27). 60: no - twice the printed 30, not a step toward 81; 81 - 60 = 21 is not printed. 69: no - built from a wrong base angle 39; 81 - 69 = 12 is not printed. The true intermediates 78 and 51 are not options (and 51 + 30 = 81 is exactly why 51 was kept out).",
+  "cheap_bound_check": "Cheapest one-sided bound: angle ABC < 180 - 48 = 132 (angle C must be positive) and angle ABC > 30 (it contains angle ABD). All three distractors (54, 60, 69) sit on the key's side of both bounds, so neither strikes any of them.",
+  "shape_check": "The stem hands over: an angle of a triangle, so between 30 and 132 degrees; an integer, since all printed angles are integers and the halving gives (180 - 78)/2 = 51. 54, 60, 69 and 81 all survive every property together (4 >= 2).",
+  "interior_parity_check": "Middle values 60 and 69 (both distractors): two-digit integers of the same form. The key is the largest and is not cleaner than 60.",
+  "arith_class_check": "Two even (54, 60) and two odd (69, 81); 54, 60, 69 and 81 are all multiples of 3, so the key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "BD = DC|DB = DC|BD = CD|AD = BD|AD = DC|DA = DB",
+    "lies on side&angle&degrees",
+    "exterior angle",
+    "bisect&angle"
+   ],
+   "hits_read": 19,
+   "nearest": "6f580b9e-7fb (ISEE: AB = AD = DC on side BC, angle C given, find angle BAC) - a chain of two isosceles triangles from one printed angle. 026df48b-db6 (SSAT: AB = AC, BD = BC, find angle ABD) - two isosceles triangles. Here triangle ABD is not isosceles: its exterior angle at D feeds one isosceles triangle BDC, and two printed angles combine first."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: could a student tell which way the errors go? The natural slips in the isosceles step move the answer either way (halving the apex lands below only because the apex 78 is acute; dropping angle ABD from the exterior angle lands above at 96, not an option), so no reading of the stem signs every error. The far distractor 69 reads as an overshoot ('skipped the subtraction') until the apex is computed and found to be under 90. One bound from the stem (ABC < 132, ABC > 30) strikes none of the three. Plug-back: an option can be checked in one routine step (angle C = 132 - v against angle DBC = v - 30), but ascending order reaches the key only at the fourth try; a descending start is not natural because the stem does not ask for a greatest value. Solved intermediate: the true intermediates 78 and 51 are not options; none of 54, 60, 69 is one printed relation from 81."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM30F-G05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Prism length from volume and composite cross section",
+  "difficulty": "medium",
+  "prompt": "A solid concrete beam is a prism whose two parallel faces are identical L-shaped regions. Each L shape is formed by two rectangles, each 14 centimeters by 4 centimeters, placed at right angles to each other so that they overlap in a 4-centimeter-by-4-centimeter square at one end of each rectangle. The volume of the beam is 2,000 cubic centimeters. To the nearest tenth of a centimeter, what is the length of the beam, that is, the distance between its two L-shaped faces?",
+  "choices": [
+   "10.2",
+   "11.1",
+   "17.9",
+   "20.8"
+  ],
+  "correct_answer": "20.8",
+  "explanation": "The area of the L-shaped face is the total area of the two rectangles minus the overlapping square, which would otherwise be counted twice: 14(4) + 14(4) - 4(4) = 56 + 56 - 16 = 96 square centimeters. The volume of a prism is (area of base)(length), so 96 * length = 2,000, and length = 2,000/96, which is about 20.83. To the nearest tenth, the length is 20.8 centimeters.",
+  "solve": "const A = 14 * 4 + 14 * 4 - 4 * 4; return Math.round(2000 / A * 10) / 10;",
+  "distractor_solve": {
+   "10.2": "const A = 14 * 14; return Math.round(2000 / A * 10) / 10;",
+   "11.1": "const A = 14 * 14 - 4 * 4; return Math.round(2000 / A * 10) / 10;",
+   "17.9": "const A = 14 * 4 + 14 * 4; return Math.round(2000 / A * 10) / 10;"
+  },
+  "mechanism": [
+   "area of overlapping rectangles minus the overlap",
+   "prism volume = base area x length",
+   "divide volume by base area"
+  ],
+  "quantity_asked": "length of the prism (distance between the L-shaped faces)",
+  "ask_type": "derived-length",
+  "plugback": {
+   "substitutable": false,
+   "why": "Checking an option means multiplying it by the area of the L shape and comparing with 2,000, and the area 96 is the step the item tests; a student who has it has the answer by one division. In any case the key is the largest option, reached last in ascending order."
+  },
+  "distractor_meta": {
+   "10.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the 14-by-14 square that encloses the L as the base, ignoring the missing corner; the stem gives no direction for how a wrong base area moves the length until it is seen that the area is the divisor."
+   },
+   "11.1": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the 4-by-4 overlap square from the enclosing 14-by-14 square instead of from the two rectangles (the missing corner is 10 by 10, not 4 by 4); the stem does not signal the side."
+   },
+   "17.9": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two rectangles without removing the overlap counts the 4-by-4 square twice (area 112); because the area divides the volume, the length comes out short."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const A = 14 * 4 + 14 * 4 - 2 * 4 * 4; return Math.round(2000 / A * 10) / 10;",
+   "direction": "above",
+   "why": "Removing the overlap square from both rectangles (subtracting it twice) gives an area of 80 and a length of 25.0, above the key; it is not an option."
+  },
+  "far_distractor": {
+   "option": "17.9",
+   "natural_side": "above",
+   "why": "Counting the overlap twice is an over-count, an error that ordinarily makes an answer too large. Here the over-counted quantity is the base area, which divides the volume, so the length lands below the key. The opposite slip on the same overlap (removing it twice) lands above, at 25.0, so 'I mishandled the overlap' carries no direction a student can read off the stem."
+  },
+  "structure_check": "No universal condition, extremum, strictest bound or monotone structure: the ask is a volume divided by a composite area. Mishandling the overlap moves the length either way (counted twice: 17.9 below; removed twice: 25.0 above), so the structure does not sign every error.",
+  "intermediate_check": "10.2: no - 2,000/196; no printed number or standard factor (1/2, 2, 1/3, pi, 4/3) turns it into 20.8 (ratio 196/96 = 49/24). 11.1: no - 2,000/180; ratio to the key 180/96 = 15/8, not a printed number or standard factor. 17.9: no - 2,000/112; ratio 112/96 = 7/6, not printed or standard. The true intermediate, the area 96, is not an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: the L fits inside a 14-by-14 square, so its area is less than 196 and the length exceeds 2,000/196 (about 10.2); this strikes only 10.2, and 11.1 and 17.9 sit on the key's side of it. A second bound, area more than one 14-by-4 rectangle (56), gives length below 35.7 and strikes nothing.",
+  "shape_check": "The stem hands over: a positive length rounded to the nearest tenth; above 10.2 by the enclosing-square bound (strict) and below 35.7. 11.1, 17.9 and 20.8 survive every property together (3 >= 2).",
+  "interior_parity_check": "Middle values 11.1 and 17.9 (both distractors): two-digit numbers with one decimal place, same form. The key 20.8 has the same form and is not cleaner.",
+  "arith_class_check": "All four are non-integers given to one decimal place; none is a whole number, so the key is not alone in any parity, sign, integrality, roundness or multiple-of-k class.",
+  "dup_search": {
+   "queries": [
+    "L-shaped|L shape",
+    "overlap&rectangle|rectangles&overlap",
+    "cross section&prism|prism&cross-section",
+    "surface area"
+   ],
+   "hits_read": 12,
+   "nearest": "40224df6-c72 (SSAT easy: area of an L-shaped floor, rectangle minus a corner square) and 8d545633-bf8 / ba66cfe2-694 / e0338860-885 (perimeters of L shapes) - single area or perimeter computations; here the L is built from two OVERLAPPING rectangles (so the overlap must be removed once) and the area is then the divisor that gives a prism's length from its volume."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: could a student tell which way the errors go? Overlap errors go both ways (counted twice gives 17.9 below; removed twice gives 25.0 above, not an option), and the enclosing-square and wrong-corner slips change the area by amounts a student cannot sign without the 96. The far distractor 17.9 is the classic double count, which reads as 'too much' until one notices the area is a divisor. One bound from the stem (length > 2,000/196) strikes only 10.2; no single bound strikes all three. A test-wise student might pick the largest as 'smallest area', but which area is smallest needs the overlap worked out. Plug-back: an option is checked only by multiplying by the area 96, which is the work. Solved intermediate: no distractor is one printed number or one standard formula factor (1/2, 2, 1/3, pi, 4/3) away from 20.8; the ratios are 49/24, 15/8 and 7/6."
+  },
+  "bounds": []
+ }
+]
