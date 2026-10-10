@@ -1,0 +1,776 @@
+[
+  {
+    "qid": "PD-P2-1",
+    "set_id": "PD-P2",
+    "kind": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage as a whole is chiefly concerned with",
+    "choices": [
+      "a mother's struggle to recognize the husband the war had sent home to her",
+      "the lasting distance the war placed between a father and his young sons",
+      "a young boy's gradual recognition of a returned soldier as his own father",
+      "a small child's fearful picture of the world beyond his family's valley",
+      "a weary soldier's grief on finding his house silent and empty after the war"
+    ],
+    "answer": 2,
+    "why": "He is my father—that I feel ringing through the dim halls of my consciousness.",
+    "explanation": "The passage follows the narrator from seeing the soldier as \"only a strange man\" to feeling, by the end of the evening, that he is his father.",
+    "kills": {
+      "0": {
+        "lure": "half-right",
+        "quote": "though he took my mother in his arms",
+        "reason": "The mother hesitates only for a moment and then embraces him; the rest of the passage is about how the children, especially the narrator, respond.",
+        "tempts": "She really does hesitate because he is so changed, and the scene of her question is one of the most vivid in the passage."
+      },
+      "1": {
+        "lure": "too-far",
+        "quote": "Each moment his voice sinks deeper into my remembrance.",
+        "reason": "The distance does not last: by the final paragraph the narrator knows the soldier as his father.",
+        "tempts": "The narrator says the war \"had in very truth come between this patriot and his sons,\" which sounds like the passage's thesis."
+      },
+      "3": {
+        "lure": "detail-as-whole",
+        "quote": "Beyond this point all is darkness and terror.",
+        "reason": "This picture fills only the opening paragraph; everything after it concerns the soldier's homecoming.",
+        "tempts": "The opening is vivid and comes first, so a reader who weights the beginning takes it as the subject."
+      },
+      "4": {
+        "lure": "detail-as-whole",
+        "quote": "sadly contemplating his silent home",
+        "reason": "The soldier's sad gaze at the empty cottage is one moment in the third paragraph; the passage then turns to how his children receive him.",
+        "tempts": "The image of the soldier at the fence is striking and the narrator dwells on it, saying he still cannot explain it."
+      }
+    }
+  },
+  {
+    "qid": "PD-P2-2",
+    "set_id": "PD-P2",
+    "kind": "purpose",
+    "difficulty": "medium",
+    "prompt": "The first paragraph serves mainly to",
+    "choices": [
+      "foreshadow the dangers the father met on his long walk home",
+      "explain why the mother was afraid to live alone in the cottage",
+      "describe the real perils of frontier life in Wisconsin",
+      "introduce Granma Green as a central figure in the narrator's life",
+      "convey how narrow the world of the narrator's early childhood was"
+    ],
+    "answer": 4,
+    "why": "All of this universe known to me in the year 1864 was bounded by the wooded hills of a little Wisconsin coulee",
+    "explanation": "The paragraph shrinks the child's \"universe\" to one small valley, with a neighbor's house at the fork standing \"on the very edge of the world.\"",
+    "kills": {
+      "0": {
+        "lure": "unsupported",
+        "quote": "wearily plodding his way up the low hill",
+        "reason": "The father's walk is described only as weary; no danger on his way home is ever mentioned, and the paragraph's terrors belong to the child's map of the valley.",
+        "tempts": "The \"darkness and terror\" come just before the soldier appears, so a reader expecting an omen links them to his journey."
+      },
+      "1": {
+        "lure": "misplaced-detail",
+        "quote": "my mother was living alone—my father was in the war",
+        "reason": "The mother's living alone is stated, but the fear in the paragraph is the narrator's own, part of how the world looked to him; nothing says she was afraid.",
+        "tempts": "The mother alone and the \"menacing creatures\" sit in the same paragraph, so a reader joins them."
+      },
+      "2": {
+        "lure": "figurative-literal",
+        "quote": "stands on the very edge of the world",
+        "reason": "A neighbor's house standing on \"the very edge of the world\" marks this as a small child's imagined map, not a factual account of frontier dangers.",
+        "tempts": "Bears and \"menacing creatures\" are named outright, and a reader who takes them at face value reads the paragraph as a report of real hazards."
+      },
+      "3": {
+        "lure": "keyword-match",
+        "quote": "Granma Green's house at the fork of the trail",
+        "reason": "Granma Green's house serves only as a landmark at the boundary of the child's world; she herself never appears in the passage.",
+        "tempts": "She is the only person named in the paragraph, so a reader assumes she matters to what follows."
+      }
+    }
+  },
+  {
+    "qid": "PD-P2-3",
+    "set_id": "PD-P2",
+    "kind": "detail",
+    "difficulty": "medium",
+    "prompt": "According to the passage, the narrator allowed the soldier to embrace him chiefly because",
+    "choices": [
+      "Hattie had already gone to the man ahead of him",
+      "his mother encouraged him to go to the man",
+      "the man's voice was beginning to seem familiar",
+      "he pitied the man for looking so thin and worn",
+      "he recalled the many stories he had heard of his father"
+    ],
+    "answer": 1,
+    "why": "I submitted to his caresses rather for the reason that my mother urged me forward than because of any affection I felt for him",
+    "explanation": "The narrator says he accepted the caresses because his mother pushed him forward, not out of any feeling of his own.",
+    "kills": {
+      "0": {
+        "lure": "misplaced-detail",
+        "quote": "my sister, who was two years older than I, went to his bosom of her own motion",
+        "reason": "The sister's going to him is set beside the narrator's behavior as a contrast; the narrator names his mother's urging, not his sister's example, as his reason.",
+        "tempts": "The sister's embrace is in the same sentence group, immediately before the narrator's, so it reads as the cause."
+      },
+      "2": {
+        "lure": "misplaced-detail",
+        "quote": "Each moment his voice sinks deeper into my remembrance.",
+        "reason": "The voice grows familiar only later that evening, in the last paragraph, not at the moment of the first embrace.",
+        "tempts": "The voice really does become familiar, and a reader who remembers the ending moves it earlier."
+      },
+      "3": {
+        "lure": "unsupported",
+        "quote": "so thin, so hollow-eyed, so changed was he",
+        "reason": "The soldier's worn look is given as the reason the mother hesitated; the narrator never says he felt pity.",
+        "tempts": "The description of the gaunt soldier invites pity, and a reader supplies that feeling to the boy."
+      },
+      "4": {
+        "lure": "keyword-match",
+        "quote": "I could not relate him to the father I had heard so much about",
+        "reason": "The stories did not help: the narrator could not connect this man to the father he had heard about, so they were not why he let himself be held.",
+        "tempts": "The passage does say he had heard much about his father, right next to the embrace."
+      }
+    }
+  },
+  {
+    "qid": "PD-P2-4",
+    "set_id": "PD-P2",
+    "kind": "inference",
+    "difficulty": "hard",
+    "prompt": "The passage suggests that the narrator's sister recognized the soldier mainly because she",
+    "choices": [
+      "had heard more stories about him than her brothers had",
+      "had seen him take her mother in his arms a moment before",
+      "was less frightened by his worn face than the baby was",
+      "was old enough to remember him from before the war",
+      "had been sent up the road ahead of the others to fetch him"
+    ],
+    "answer": 3,
+    "why": "my sister, who was two years older than I",
+    "explanation": "The narrator \"had forgotten him\" and the baby \"had never known him\"; the sister, two years older, is the one child old enough to have kept a memory of him.",
+    "kills": {
+      "0": {
+        "lure": "keyword-match",
+        "quote": "the father I had heard so much about",
+        "reason": "The hearing about the father is the narrator's, and it did not help him; nothing says the sister heard more.",
+        "tempts": "Stories about the absent father are mentioned in the same paragraph as her recognition."
+      },
+      "1": {
+        "lure": "true-not-answering",
+        "quote": "though he took my mother in his arms, I could not relate him",
+        "reason": "The narrator saw the same embrace and still did not know the man, so watching it cannot explain her recognition.",
+        "tempts": "The embrace really did come first, so a reader takes the sequence as the cause."
+      },
+      "2": {
+        "lure": "stops-short",
+        "quote": "The gaunt and grizzled stranger terrified him.",
+        "reason": "That she was not frightened describes how she differed from Frank, not why she knew him; the passage ties knowing him to age and memory.",
+        "tempts": "Frank's terror is set right beside her confidence, so a reader stops at the contrast the text shows."
+      },
+      "4": {
+        "lure": "misplaced-detail",
+        "quote": "telling Hattie to bring me",
+        "reason": "Hattie was told to bring the narrator, not to go after the soldier; the mother went up the road with the children.",
+        "tempts": "Hattie is given a task on the road in the second paragraph, and a reader misremembers what it was."
+      }
+    }
+  },
+  {
+    "qid": "PD-P2-5",
+    "set_id": "PD-P2",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "In the phrase \"went to his bosom of her own motion,\" the word \"motion\" most nearly means",
+    "choices": [
+      "movement",
+      "gesture",
+      "free will",
+      "quickness",
+      "obedience"
+    ],
+    "answer": 2,
+    "why": "She knew him, whilst I submitted to his caresses rather for the reason that my mother urged me forward",
+    "explanation": "The sister's going is contrasted with the narrator's, who went only because he was urged; \"of her own motion\" means by her own choice.",
+    "kills": {
+      "0": {
+        "lure": "",
+        "quote": "rather for the reason that my mother urged me forward",
+        "reason": "The contrast is between reasons for going (her own choice against being urged), not ways of moving; \"of her own movement\" would add nothing to \"went.\"",
+        "tempts": "It is the word's commonest everyday sense, and she does physically go to him."
+      },
+      "1": {
+        "lure": "",
+        "quote": "She knew him, whilst I submitted",
+        "reason": "She actually goes to him; what the sentence stresses is that no one made her, which a gesture, a signal, does not express.",
+        "tempts": "Embracing is a gesture, so the word seems to fit the scene."
+      },
+      "3": {
+        "lure": "",
+        "quote": "She knew him, whilst I submitted",
+        "reason": "The contrast drawn is knowing versus submitting, not fast versus slow; nothing says how quickly she went.",
+        "tempts": "A child running to a returning father suggests speed."
+      },
+      "4": {
+        "lure": "",
+        "quote": "rather for the reason that my mother urged me forward",
+        "reason": "The obedient child is the narrator, who went because his mother urged him; the sister is the one set against him.",
+        "tempts": "Obedience fits the family scene and the mother's urging, which are right beside the phrase."
+      }
+    }
+  },
+  {
+    "qid": "PD-P2-6",
+    "set_id": "PD-P2",
+    "kind": "attitude",
+    "difficulty": "medium",
+    "prompt": "As the narrator, now grown, looks back on the soldier's words \"My little man!\", his attitude is best characterized as",
+    "choices": [
+      "sorrowful",
+      "grateful",
+      "resentful",
+      "detached",
+      "amused"
+    ],
+    "answer": 0,
+    "why": "Across the space of half-a-century I can still hear the sad reproach in his voice.",
+    "explanation": "The grown narrator still hears his father's hurt and reflects that the war had separated father and sons: he looks back with sorrow.",
+    "kills": {
+      "1": {
+        "lure": "",
+        "quote": "The war had in very truth come between this patriot and his sons.",
+        "reason": "Calling his father a patriot honors him, but the sentence dwells on what the war took from the family, not on thanks.",
+        "tempts": "The word \"patriot\" suggests thankfulness for the father's service."
+      },
+      "2": {
+        "lure": "",
+        "quote": "I had forgotten him—the baby had never known him.",
+        "reason": "The narrator blames no one; he counts his own forgetting among the losses and hears his father's hurt.",
+        "tempts": "\"The war had ... come between\" father and sons sounds like a grievance."
+      },
+      "3": {
+        "lure": "",
+        "quote": "How significant that phrase seems to me now!",
+        "reason": "The exclamation shows the phrase still moves him; he is not distant from it.",
+        "tempts": "Half a century separates the narrator from the scene, which suggests distance."
+      },
+      "4": {
+        "lure": "",
+        "quote": "I can still hear the sad reproach in his voice",
+        "reason": "What he hears in the phrase is reproach, not anything comic.",
+        "tempts": "\"My little man\" is an endearing, almost comic way to address a small boy."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-1",
+    "set_id": "PD-P4",
+    "kind": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage as a whole is chiefly concerned with",
+    "choices": [
+      "the hardships immigrant women faced in adjusting to American city life",
+      "the quarrels between immigrant parents and their children over American ways",
+      "how a mountain community in Italy came to excel at a craft",
+      "how a museum of old crafts helped an immigrant girl see her parent anew",
+      "how visiting teachers came to value the skills of immigrant women"
+    ],
+    "answer": 3,
+    "why": "An overmastering desire to reveal the humbler immigrant parents to their own children lay at the base of what has come to be called the Hull-House Labor Museum.",
+    "explanation": "The passage states the museum's aim and then shows it working on one girl, Angelina, who comes to see her mother differently.",
+    "kills": {
+      "0": {
+        "lure": "detail-as-whole",
+        "quote": "she now walked timidly but with poignant sensibility upon a new and strange shore",
+        "reason": "The mother's uprooting fills one paragraph of the author's private reflection; the passage's thread is the museum's effect on the daughter.",
+        "tempts": "The third paragraph on the mother's loss is the longest and most moving sentence in the passage."
+      },
+      "1": {
+        "lure": "too-far",
+        "quote": "Angelina always left her mother at the front door",
+        "reason": "Angelina's embarrassment is shown by quiet avoidance; no quarrel between parent and child is described.",
+        "tempts": "The passage contrasts \"new ways\" and \"old ways\" and shows a daughter ashamed of her mother, which a reader generalizes into open conflict."
+      },
+      "2": {
+        "lure": "detail-as-whole",
+        "quote": "they had developed a skill in spinning beyond that of the neighboring towns",
+        "reason": "The village's spinning skill is one detail the author tells Angelina, not what the passage is about.",
+        "tempts": "The precipice story is concrete and memorable."
+      },
+      "4": {
+        "lure": "misplaced-detail",
+        "quote": "a group of visitors from the School of Education who much admired the spinning",
+        "reason": "The visitors appear once, as what prompts Angelina's question; the passage is about the daughter's view, not theirs.",
+        "tempts": "Their praise is a turning point in the story, so a reader makes them the subject."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-2",
+    "set_id": "PD-P4",
+    "kind": "detail",
+    "difficulty": "medium",
+    "prompt": "According to the passage, the women of the mother's home village became unusually expert because they",
+    "choices": [
+      "could let their spindles fall a great distance as they spun",
+      "spun through the long, free days of their village life",
+      "learned the craft from the women of neighboring towns",
+      "had to make all of the homespun clothing their families wore",
+      "spun as part of their prayers at the village shrine"
+    ],
+    "answer": 0,
+    "why": "because of the opportunity she and the other women of the village had to drop their spindles over the edge of a precipice",
+    "explanation": "Dropping a spindle over a precipice lets it fall a long way, and the author credits the village's superior skill to that opportunity.",
+    "kills": {
+      "1": {
+        "lure": "keyword-match",
+        "quote": "something of her free life",
+        "reason": "The author mentions the mother's \"free life\" in the same sentence, but credits the skill to the precipice, not to freedom or time.",
+        "tempts": "\"Free life\" sits right beside the explanation, and a reader lifts it."
+      },
+      "2": {
+        "lure": "reversed",
+        "quote": "a skill in spinning beyond that of the neighboring towns",
+        "reason": "The neighboring towns are the ones the village surpassed, not its teachers.",
+        "tempts": "The neighboring towns are named in the very clause about the skill."
+      },
+      "3": {
+        "lure": "prior-knowledge",
+        "quote": "the beautiful homespun garments",
+        "reason": "Homespun garments appear later, but the passage gives the precipice, not the need for clothing, as the reason for the skill.",
+        "tempts": "A reader knows village women spun to clothe their families, and the passage does mention homespun."
+      },
+      "4": {
+        "lure": "misplaced-detail",
+        "quote": "to the shrine before which she had always prayed",
+        "reason": "The shrine belongs to the author's later reflection on the mother's religion, not to the account of her spinning.",
+        "tempts": "The shrine is a real detail of the mother's village life, and the passage links her old life closely to her craft."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-3",
+    "set_id": "PD-P4",
+    "kind": "vocabulary-in-context",
+    "difficulty": "hard",
+    "prompt": "In the phrase \"under the rule of traditional and narrowly localized observances,\" the word \"observances\" most nearly means",
+    "choices": [
+      "watching",
+      "remarks",
+      "borders",
+      "sights",
+      "customs"
+    ],
+    "answer": 4,
+    "why": "the solid habits of her religious and domestic life",
+    "explanation": "The same sentence later calls what ruled her life \"the solid habits of her religious and domestic life\": observances are customary practices.",
+    "kills": {
+      "0": {
+        "lure": "",
+        "quote": "until her very religion clung to local sanctities",
+        "reason": "What can \"rule\" a life and reach into religion are practices kept, not acts of looking.",
+        "tempts": "\"Observe\" most often means \"watch,\" so \"observances\" looks like acts of watching."
+      },
+      "1": {
+        "lure": "",
+        "quote": "the solid habits of her religious and domestic life",
+        "reason": "The sentence restates these as \"habits,\" things done, not things said.",
+        "tempts": "An \"observation\" can be a remark, and the look-alike pulls."
+      },
+      "2": {
+        "lure": "",
+        "quote": "spent in a secluded spot",
+        "reason": "The seclusion is already given by \"secluded spot\"; what is \"traditional\" and later called \"solid habits\" is a set of practices, not boundaries.",
+        "tempts": "\"Narrowly localized\" and \"secluded\" create a mood of a walled-in place, which borders fit."
+      },
+      "3": {
+        "lure": "",
+        "quote": "the solid habits of her religious and domestic life",
+        "reason": "Things seen cannot be \"traditional\" rules of a life; the sentence names them as habits.",
+        "tempts": "\"Observe\" means \"see,\" and a village shrine and church are sights."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-4",
+    "set_id": "PD-P4",
+    "kind": "purpose",
+    "difficulty": "hard",
+    "prompt": "The third paragraph serves mainly to",
+    "choices": [
+      "explain how one Italian community came to outdo its neighbors at a craft",
+      "give a private reflection on how much had been taken from the mother",
+      "trace how the daughter's view of her mother changed after their talk",
+      "argue that immigrants should keep the religion of their homeland",
+      "account for why the homespun garments had been hidden away"
+    ],
+    "answer": 1,
+    "why": "That which I could not convey to the child, but upon which my own mind persistently dwelt",
+    "explanation": "The paragraph gives what the author kept thinking but could not tell Angelina: how completely the mother had been torn from her old life.",
+    "kills": {
+      "0": {
+        "lure": "true-not-answering",
+        "quote": "they had developed a skill in spinning beyond that of the neighboring towns",
+        "reason": "That explanation is given in the second paragraph; the third concerns the mother's religious and domestic life.",
+        "tempts": "The village is the subject of both paragraphs, and a reader blurs them."
+      },
+      "2": {
+        "lure": "misplaced-detail",
+        "quote": "the thought of her mother with any other background than that of the tenement was new to Angelina",
+        "reason": "Angelina's change is described in the fourth paragraph; the third is about what the author could not convey to her.",
+        "tempts": "The change in Angelina is the story's outcome and follows directly."
+      },
+      "3": {
+        "lure": "too-far",
+        "quote": "her very religion clung to local sanctities",
+        "reason": "The paragraph describes the mother's attachment and her loss; it recommends nothing.",
+        "tempts": "It dwells sympathetically on her religion, which a reader turns into a recommendation."
+      },
+      "4": {
+        "lure": "unsupported",
+        "quote": "which had been previously hidden away as uncouth",
+        "reason": "The garments were hidden because they were thought uncouth, and the third paragraph never mentions them.",
+        "tempts": "A timid woman on a strange shore seems likely to hide her old clothes."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-5",
+    "set_id": "PD-P4",
+    "kind": "attitude",
+    "difficulty": "medium",
+    "prompt": "In the third paragraph, the author's attitude toward Angelina's mother is best described as",
+    "choices": [
+      "disdainful",
+      "detached",
+      "sympathetic",
+      "skeptical",
+      "humorous"
+    ],
+    "answer": 2,
+    "why": "torn from it all and literally put out to sea",
+    "explanation": "The author dwells on how the mother was torn from everything she knew and now walks \"timidly but with poignant sensibility\": she feels for her.",
+    "kills": {
+      "0": {
+        "lure": "",
+        "quote": "an Italian woman who wore a kerchief over her head, uncouth boots, and short petticoats",
+        "reason": "That disdain is Angelina's, seen through the cooking class's eyes, in an earlier paragraph; the author writes of the mother's \"poignant sensibility.\"",
+        "tempts": "Words like \"uncouth\" and \"narrowly localized\" appear in the passage."
+      },
+      "1": {
+        "lure": "",
+        "quote": "upon which my own mind persistently dwelt",
+        "reason": "The author says her mind \"persistently dwelt\" on the mother's life, which is not detachment.",
+        "tempts": "The paragraph is one long, analytic sentence."
+      },
+      "3": {
+        "lure": "",
+        "quote": "her very religion clung to local sanctities",
+        "reason": "The narrowness is presented as the mother's circumstance, setting up the loss of being \"torn from it all,\" not as something the author doubts.",
+        "tempts": "\"Narrowly\" and \"clung\" can sound dismissive of the mother's beliefs."
+      },
+      "4": {
+        "lure": "",
+        "quote": "literally put out to sea",
+        "reason": "\"Literally\" insists on the real uprooting; the phrase is not a joke.",
+        "tempts": "\"Put out to sea\" sounds like wordplay."
+      }
+    }
+  },
+  {
+    "qid": "PD-P4-6",
+    "set_id": "PD-P4",
+    "kind": "inference",
+    "difficulty": "hard",
+    "prompt": "The passage suggests that, until the evening described in the second paragraph, Angelina had seen her mother chiefly against the background of",
+    "choices": [
+      "the spinning skill that the visitors praised",
+      "the free, beautiful life she had known in Italy",
+      "the old church where she had always prayed",
+      "the cramped rooms where the family now lived",
+      "the strict demands she made of her daughter"
+    ],
+    "answer": 3,
+    "why": "the thought of her mother with any other background than that of the tenement was new to Angelina",
+    "explanation": "Any background other than the tenement was new to Angelina, so before that evening she had seen her mother only in their crowded city home.",
+    "kills": {
+      "0": {
+        "lure": "misplaced-detail",
+        "quote": "One evening, however, Angelina saw her mother surrounded by a group of visitors",
+        "reason": "The praise came on that one evening, so it cannot be how she had seen her mother until then.",
+        "tempts": "The praise is the first thing in the story that makes Angelina think about her mother differently."
+      },
+      "1": {
+        "lure": "reversed",
+        "quote": "I took occasion to describe the Italian village in which her mother had lived",
+        "reason": "The author supplied the picture of the village; it was what was new to Angelina, not her earlier view.",
+        "tempts": "The village is the mother's real background, and the passage describes it warmly."
+      },
+      "2": {
+        "lure": "character-not-author",
+        "quote": "That which I could not convey to the child",
+        "reason": "The church belongs to the author's own thoughts, which she says she could not convey to Angelina.",
+        "tempts": "The church is part of the mother's past that the passage gives in detail."
+      },
+      "4": {
+        "lure": "unsupported",
+        "quote": "she must depend on her daughter to learn the new ways",
+        "reason": "No demands of hers are mentioned; if anything, the mother depends on the daughter.",
+        "tempts": "Immigrant parents are often pictured as strict, and Angelina avoids her mother as if escaping control."
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-1",
+    "set_id": "PD-P6",
+    "kind": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "tracing how the current eruption of Kīlauea began and has developed",
+      "explaining why so many plants around Kīlauea's summit lost their leaves",
+      "comparing the seasons in Hawaii with those of the Northeastern states",
+      "showing how native trees survived the gases released by Kīlauea",
+      "warning park visitors about the health dangers of volcanic gas"
+    ],
+    "answer": 1,
+    "why": "The large eruptive plumes produced by the ongoing summit eruption of Kīlauea, which contain high concentrations of volcanic gases and tephra, and wind direction hold the key to this answer.",
+    "explanation": "The passage asks \"what's going on here?\" about the bare vegetation and answers with the plume's gas and tephra and the shift in winds.",
+    "kills": {
+      "0": {
+        "lure": "detail-as-whole",
+        "quote": "The ongoing summit eruption of Kīlauea volcano began on December 23, 2024",
+        "reason": "The eruption's history is background for the explanation of where the plume went; it is not the subject.",
+        "tempts": "The third paragraph gives dates and episode counts, which look like the main facts."
+      },
+      "2": {
+        "lure": "detail-as-whole",
+        "quote": "the seasons are far more subtle",
+        "reason": "The seasonal comparison is an opening hook; the passage then turns to the plume and winds.",
+        "tempts": "It is the first substantial idea and is developed for a whole paragraph."
+      },
+      "3": {
+        "lure": "too-far",
+        "quote": "However, even ʻōhiʻa need to breathe eventually",
+        "reason": "Only one tree is discussed, and even it is damaged by prolonged exposure; the passage is about damage, not survival.",
+        "tempts": "The ʻōhiʻa's \"secret weapon\" is the most memorable part of the passage."
+      },
+      "4": {
+        "lure": "prior-knowledge",
+        "quote": "away from the public viewing areas",
+        "reason": "The passage is about plants; it gives visitors no health advice.",
+        "tempts": "Volcano reports often carry health warnings, and the passage calls the plume \"hazardous.\""
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-2",
+    "set_id": "PD-P6",
+    "kind": "detail",
+    "difficulty": "medium",
+    "prompt": "According to the passage, the public areas have usually been spared the fumes because",
+    "choices": [
+      "winds from the south have carried them out over the open ocean",
+      "winter storms have pushed them north into the Kaʻū Desert",
+      "rain and dew have washed them out of the air around the vents",
+      "the viewing areas sit higher than the fumes usually rise",
+      "the usual winds blow from the northeast toward the southwest"
+    ],
+    "answer": 4,
+    "why": "the island’s dominant Northeast trade winds have carried the hazardous eruption plumes to the Southwest into the Kaʻū Desert",
+    "explanation": "The usual trade winds come from the northeast and carry the plume southwest, away from the viewing areas.",
+    "kills": {
+      "0": {
+        "lure": "reversed",
+        "quote": "winds, which emanate from the South",
+        "reason": "Winds from the south push the plume north, toward the park; they are what brought it there, not what kept it away.",
+        "tempts": "South winds are a real detail in the same paragraph, and a reader flips their effect."
+      },
+      "1": {
+        "lure": "half-right",
+        "quote": "pushed Kīlauea’s eruptive plume towards the North",
+        "reason": "The winter storms did push the plume north, but that brought it onto the park; the Kaʻū Desert is where the trade winds carry it, to the southwest.",
+        "tempts": "It combines two real details from the paragraph, the storms and the desert."
+      },
+      "2": {
+        "lure": "keyword-match",
+        "quote": "whether it be in the form of rain, fog, or morning dew",
+        "reason": "Rain and dew turn the gas into acid that falls on plants; the passage never says they clear the air.",
+        "tempts": "Rain, fog and dew are named in the passage as things that act on the gas."
+      },
+      "3": {
+        "lure": "unsupported",
+        "quote": "impacting areas of Hawaiʼi Volcanoes National Park",
+        "reason": "When the winds shift the plume does reach the park, so height is not what protects the viewing areas.",
+        "tempts": "A reader might picture lookouts above a low-lying plume."
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-3",
+    "set_id": "PD-P6",
+    "kind": "purpose",
+    "difficulty": "hard",
+    "prompt": "The author includes the pH readings in the fourth paragraph chiefly to",
+    "choices": [
+      "report how acidic the rain was during the Kona storms of 2026",
+      "show that the lava lake years harmed plants more than this eruption",
+      "show how acidic the rain downwind of the summit was measured to be",
+      "explain how gas drawn in through tiny pores injures a leaf",
+      "warn readers that rainwater around the volcano is unsafe to drink"
+    ],
+    "answer": 2,
+    "why": "showed acid rain with a pH of 4 or less, with normal rainwater having a pH of around 7",
+    "explanation": "Setting a pH of 4 or less beside normal rain's 7 shows how strongly acidic the rain downwind of the summit can be.",
+    "kills": {
+      "0": {
+        "lure": "misplaced-detail",
+        "quote": "during the lava lake days from 2008-2018",
+        "reason": "The samples come from 2008-2018, not from the 2026 storms.",
+        "tempts": "The paragraph is about the 2026 Kona winds, so a reader assumes the readings are too."
+      },
+      "1": {
+        "lure": "too-far",
+        "quote": "Water samples collected downwind of Kīlauea’s summit",
+        "reason": "The readings are never compared with the current eruption's rain; no comparison of harm is made.",
+        "tempts": "The readings come from an earlier eruption period, inviting a comparison."
+      },
+      "3": {
+        "lure": "true-not-answering",
+        "quote": "When SO2 is brought into the plant through its stomata",
+        "reason": "That is a separate point, introduced with \"To make things worse\"; the pH readings concern acid rain on the outside of leaves.",
+        "tempts": "The stomata explanation is in the same paragraph and is also about damage."
+      },
+      "4": {
+        "lure": "prior-knowledge",
+        "quote": "This acid rain will ‘burn’ the foliage, turning it brown.",
+        "reason": "The passage uses the readings only to explain damage to plants.",
+        "tempts": "A reader who knows acid rain is harmful assumes a safety warning."
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-4",
+    "set_id": "PD-P6",
+    "kind": "attitude",
+    "difficulty": "medium",
+    "prompt": "The author's attitude regarding the ʻōhiʻa's ability to close its stomata is best described as",
+    "choices": [
+      "skeptical",
+      "detached",
+      "mocking",
+      "admiring",
+      "critical"
+    ],
+    "answer": 3,
+    "why": "They have the amazing capability to close their stomata",
+    "explanation": "The author calls the ability \"amazing\" and a \"secret weapon\": clear admiration.",
+    "kills": {
+      "0": {
+        "lure": "",
+        "quote": "This helps reduce the internal impact SO2 has on the trees.",
+        "reason": "The author affirms that the ability works; the later limit is about how long exposure lasts, not doubt about the ability.",
+        "tempts": "\"However, even ʻōhiʻa need to breathe eventually\" can read as doubt."
+      },
+      "1": {
+        "lure": "",
+        "quote": "They have the amazing capability to close their stomata",
+        "reason": "\"Amazing\" expresses feeling; the author is not neutral.",
+        "tempts": "The passage is a scientific report."
+      },
+      "2": {
+        "lure": "",
+        "quote": "a secret weapon to help combat this",
+        "reason": "The playful phrases praise the tree; nothing ridicules it.",
+        "tempts": "\"Secret weapon\" and \"hold their breath\" in quotation marks sound tongue-in-cheek."
+      },
+      "4": {
+        "lure": "",
+        "quote": "highly adapted to survive in the volcanic environments",
+        "reason": "The author credits the trees with being well adapted; no fault is found.",
+        "tempts": "The trees are still damaged in the end, which a reader takes as a shortcoming the author points out."
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-5",
+    "set_id": "PD-P6",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the fifth paragraph, the word \"hearty\" most nearly means",
+    "choices": [
+      "sturdy",
+      "cheerful",
+      "filling",
+      "failing",
+      "beloved"
+    ],
+    "answer": 0,
+    "why": "Native ʻōhiʻa lehua trees are highly adapted to survive",
+    "explanation": "The trees are described as built to survive; \"even\" and \"still\" in the sentence mark that they are damaged despite being tough.",
+    "kills": {
+      "1": {
+        "lure": "",
+        "quote": "highly adapted to survive in the volcanic environments",
+        "reason": "The paragraph is about the trees' toughness, not any mood.",
+        "tempts": "It is the commonest everyday sense (\"a hearty laugh\")."
+      },
+      "2": {
+        "lure": "",
+        "quote": "even ʻōhiʻa need to breathe eventually",
+        "reason": "The trees are not food; the context is endurance.",
+        "tempts": "\"A hearty meal\" is a common use of the word."
+      },
+      "3": {
+        "lure": "",
+        "quote": "Native ʻōhiʻa lehua trees are highly adapted to survive",
+        "reason": "The trees are presented as tough; \"even\" and \"still\" mark damage happening despite that toughness.",
+        "tempts": "The sentence is about damage, and the passage's mood is of plants dying."
+      },
+      "4": {
+        "lure": "",
+        "quote": "can still cause damage to these hearty native trees",
+        "reason": "\"Still\" sets the word against the damage, so it names a quality that should resist harm; affection does not resist anything.",
+        "tempts": "\"Native\" and the author's warmth toward the tree suggest fondness."
+      }
+    }
+  },
+  {
+    "qid": "PD-P6-6",
+    "set_id": "PD-P6",
+    "kind": "inference",
+    "difficulty": "medium",
+    "prompt": "The sixth paragraph suggests that falling tephra harms vegetation mainly because of",
+    "choices": [
+      "the great weight of its heavy rock fragments",
+      "the force it gains as it drops out of the plume",
+      "the acid gas it carries down onto the leaves",
+      "the water it soaks up before it lands on leaves",
+      "the heat it still holds when it reaches the trees"
+    ],
+    "answer": 1,
+    "why": "when it falls out of the eruptive plume it has enough energy to strip the foliage right off the trees",
+    "explanation": "Though tephra is light, it falls with enough energy to strip leaves off, so the harm comes from the force of the fall.",
+    "kills": {
+      "0": {
+        "lure": "prior-knowledge",
+        "quote": "As light as tephra seems to us because it floats on water",
+        "reason": "The passage grants that tephra is light; the damage comes from the energy of its fall.",
+        "tempts": "A reader imagines volcanic rock as heavy."
+      },
+      "2": {
+        "lure": "misplaced-detail",
+        "quote": "Vegetation needed to endure both tephra fall and exposure to sulfur dioxide",
+        "reason": "The gas is a separate blow; the passage calls the two together a \"one-two punch.\"",
+        "tempts": "Gas and tephra are both in the plume, and the passage discusses acid damage at length."
+      },
+      "3": {
+        "lure": "keyword-match",
+        "quote": "because it floats on water",
+        "reason": "Water is mentioned only to show how light tephra is.",
+        "tempts": "\"Water\" appears in the same sentence about tephra."
+      },
+      "4": {
+        "lure": "unsupported",
+        "quote": "it has enough energy to strip the foliage right off the trees",
+        "reason": "Stripping leaves off is a mechanical effect of impact, and no heat is mentioned.",
+        "tempts": "A reader imagines volcanic debris as hot."
+      }
+    }
+  }
+]

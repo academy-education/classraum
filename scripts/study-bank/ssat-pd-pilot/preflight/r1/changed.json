@@ -1,0 +1,604 @@
+[
+ {
+  "qid": "PD-P1-2",
+  "set_id": "PD-P1",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The words printed in capital letters in the first paragraph are included chiefly to",
+  "choices": [
+   "show the thrill that the mere mention of a secret drawer awakens",
+   "name the riches he expects the hidden compartment to contain",
+   "hint that he has filled his head with too many adventure books",
+   "show how weary he has already grown of dreams of easy wealth",
+   "list the hiding places he has searched in the house so far"
+  ],
+  "answer": 0,
+  "why": "that particular chord had been touched that never fails to thrill responsive to such words as",
+  "explanation": "The capitalised words are named as the kind of words that always thrill him, as \"secret drawer\" has just done; they show the adventurous daydreams the phrase awakens.",
+  "kills": {
+   "1": {
+    "lure": "half-right",
+    "quote": "such words as CAVE, TRAP-DOOR, SLIDING-PANEL",
+    "reason": "Cave, trap-door and sliding-panel are not riches at all; the list is of words that thrill him, not of things he expects to find.",
+    "tempts": "Bullion, ingots and dollars are riches, and the next lines say he wanted money badly."
+   },
+   "2": {
+    "lure": "prior-knowledge",
+    "quote": "My whole being was still vibrating to those magic syllables",
+    "reason": "The passage never mentions books or reading; the words work on him as \"magic syllables\" in themselves.",
+    "tempts": "The words sound like pirate stories, so a reader supplies the books."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "I began to grow weary and disheartened.",
+    "reason": "Weariness comes in the next paragraph, after the long search; in the first he is still thrilled.",
+    "tempts": "The passage does turn to weariness and disappointment, so the feeling is real, just placed too early."
+   },
+   "4": {
+    "lure": "reversed",
+    "quote": "Following on these bracing incentives, came a dull blank period of unrewarded search.",
+    "reason": "The search comes after these thoughts, and it is of the bureau, not the house.",
+    "tempts": "Trap-door, sliding-panel and cave are hiding places, and a search does follow."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-4",
+  "set_id": "PD-P1",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The narrator's attitude toward the one who made the hoard is best described as",
+  "choices": [
+   "scornful toward him",
+   "affectionate toward him",
+   "worried on his account",
+   "uninterested in him",
+   "mocking toward him"
+  ],
+  "answer": 1,
+  "why": "a kindred spirit to my own had been at the making of it",
+  "explanation": "He recognises a kindred spirit, calls the boy his \"little comrade\", and feels warmth return; the feeling is fond.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "my little comrade of seasons long since dead",
+    "reason": "He calls the boy his comrade and a kindred spirit; nothing he says belittles him.",
+    "tempts": "He calls the boy's coins \"clumsier of make\" than his own, which can read as a sneer."
+   },
+   "2": {
+    "lure": "",
+    "quote": "some warmth crept back to my heart",
+    "reason": "Thinking of the boy brings warmth, not worry.",
+    "tempts": "The unexplained \"and then—what?\" and \"long since dead\" hint at something ominous."
+   },
+   "3": {
+    "lure": "",
+    "quote": "across the void stretch of years I seemed to touch hands a moment",
+    "reason": "He dwells on the boy and imagines touching hands with him.",
+    "tempts": "\"Well, one would never know now the reason\" sounds like a shrug."
+   },
+   "4": {
+    "lure": "",
+    "quote": "in just my own bold style of brush-work",
+    "reason": "He likens the boy's work to his own, as a fellow, not as a target of ridicule.",
+    "tempts": "\"this happy starred young person\" has a teasing ring."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-5",
+  "set_id": "PD-P1",
+  "kind": "inference",
+  "difficulty": "medium",
+  "prompt": "The narrator's choice to return the hoard to the bureau suggests that he",
+  "choices": [
+   "wants its original owner to be able to come back for it",
+   "wants nothing more to do with what had let him down",
+   "wants to keep it hidden from the children in the nursery",
+   "wants to study it later in a better light than this",
+   "wants it to wait there for some later boy to discover"
+  ],
+  "answer": 4,
+  "why": "Some other boy, perhaps, would some day release that spring again. I trusted he would be equally appreciative.",
+  "explanation": "Right after restoring it he imagines another boy opening the spring and hopes that boy will value it too.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "Some other boy, perhaps, would some day release that spring again.",
+    "reason": "He pictures a different boy finding it; the first owner belongs to \"seasons long since dead\".",
+    "tempts": "The treasures are called \"unreclaimed\", which suggests someone might reclaim them."
+   },
+   "1": {
+    "lure": "stops-short",
+    "quote": "heard the spring click with a certain satisfaction",
+    "reason": "He puts it back with satisfaction, after warmth has returned; he is not rejecting it.",
+    "tempts": "He calls it a \"drawer of disillusions\" and was crushed when it held no money."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "I trusted he would be equally appreciative.",
+    "reason": "He hopes another boy will find it one day; nothing suggests hiding it from anyone.",
+    "tempts": "The drawer is secret, and the nursery's noise comes right after he closes it."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "I drew it out and carried it to the window, to examine it in the failing light.",
+    "reason": "He has already examined it at the window and listed every object.",
+    "tempts": "The \"failing light\" is mentioned, so it seems he could not see it properly."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-3",
+  "set_id": "PD-P3",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The lines beginning \"The way the nest-full every time we stirred\" serve mainly to",
+  "choices": [
+   "show that the young birds were bold enough to face down intruders",
+   "contrast the eager birds with the speaker's own indifference",
+   "explain why the companion would not leave the chicks alone",
+   "imply that the birds were almost strong enough to fly away",
+   "lead into the speaker's worry over whether the mother would return"
+  ],
+  "answer": 4,
+  "why": "Made me ask would the mother-bird return",
+  "explanation": "The sentence runs on: the way the birds stood up \"Made me ask\" whether the mother would return or be frightened by their meddling.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "Whose coming home has been too long deferred,",
+    "reason": "\"Stood up to\" is the chicks reaching up as they would to a returning parent, not defiance.",
+    "tempts": "\"Stood up to us\" usually means confronting someone."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "All this to prove we cared.",
+    "reason": "The speaker is not indifferent at this point; the turning away comes only at the end.",
+    "tempts": "The ending, \"We turned to other things\", can be read back into this moment."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "You wanted to restore them to their right",
+    "reason": "The companion's wish is stated before these lines; what they lead to is the speaker's question.",
+    "tempts": "The companion's determination is the poem's driving force, so the lines seem to justify it."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "And so at last to learn to use their wings.",
+    "reason": "Flying is a future the speaker never saw; these lines show helpless chicks.",
+    "tempts": "Standing up looks like strength, and the poem ends on their wings."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-4",
+  "set_id": "PD-P3",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The speaker's attitude toward the person addressed as \"you\" is best described as",
+  "choices": [
+   "irritated by the companion",
+   "anxious for the companion",
+   "affectionate toward the companion",
+   "detached from the companion",
+   "mocking toward the companion"
+  ],
+  "answer": 2,
+  "why": "You had begun, and gave them back their shade.",
+  "explanation": "The speaker goes over to help with the game, then joins in finishing the companion's screen, and speaks of \"we\" throughout; the tone is fond.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "I went to show you how to make it stay,",
+    "reason": "The speaker joins in willingly, even offering to help pretend.",
+    "tempts": "\"You were forever finding some new play\" can sound like a complaint."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Made me ask would the mother-bird return",
+    "reason": "The poem's worry is about the birds and their mother, not about the companion.",
+    "tempts": "The poem contains clearly worried lines."
+   },
+   "3": {
+    "lure": "",
+    "quote": "I haven't any memory—have you?—",
+    "reason": "The speaker draws the companion in as a partner in the memory, using \"we\" throughout.",
+    "tempts": "\"We turned to other things\" sounds coolly detached."
+   },
+   "4": {
+    "lure": "",
+    "quote": "And, if you asked me, even help pretend",
+    "reason": "The speaker offers to join the companion's play, not to ridicule it.",
+    "tempts": "\"Trying, I thought, to set it up on end\" and \"forever finding some new play\" can sound teasing."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-4",
+  "set_id": "PD-P5",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The author's remark that he will \"make haste to mention these facts\" implies that he",
+  "choices": [
+   "is pressed for time and must hurry through his evidence",
+   "ranks the squirrel's wide range above its handling of the seeds",
+   "expects some readers to doubt so high a claim for so small an animal",
+   "has himself followed the squirrel through every forest he lists",
+   "wants simply to record the places where the squirrel is found"
+  ],
+  "answer": 2,
+  "why": "to show upon how substantial a foundation the importance I ascribe to him rests",
+  "explanation": "He hurries to lay out evidence so that his claim for an animal \"only a few inches long\" will be seen to rest on a firm foundation, which implies he expects doubt.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "The Douglas is closely allied to the Red Squirrel or Chickaree of the eastern woods.",
+    "reason": "The same sentence gives his reason, to support his claim, and he then moves on unhurried to the squirrel's ancestry.",
+    "tempts": "\"make haste\" literally means hurry."
+   },
+   "1": {
+    "lure": "too-far",
+    "quote": "But the Sierra is only one of the many provinces over which he holds sway",
+    "reason": "The range is added (\"But the Sierra is only one\") as further support beside the seed-handling; nothing ranks one fact above the other.",
+    "tempts": "The remark follows directly on the list of regions, so \"these facts\" can seem to be the ones that count most."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "Go where you will throughout the noble woods of the Sierra Nevada",
+    "reason": "He invites the reader to go anywhere; he does not claim to have tracked the squirrel to British Columbia.",
+    "tempts": "He sounds like an eyewitness, and the list of regions comes right before the remark."
+   },
+   "4": {
+    "lure": "stops-short",
+    "quote": "I make haste to mention these facts, to show upon how substantial a foundation",
+    "reason": "He says the facts serve to support the squirrel's importance, not just to record a range.",
+    "tempts": "The sentence just before is a list of regions."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-6",
+  "set_id": "PD-P5",
+  "kind": "attitude",
+  "difficulty": "easy",
+  "prompt": "The author's attitude toward the Douglas Squirrel is best described as",
+  "choices": [
+   "irritation",
+   "wariness",
+   "detachment",
+   "admiration",
+   "amusement"
+  ],
+  "answer": 3,
+  "why": "the Douglas is now the larger and more beautiful animal",
+  "explanation": "He calls the squirrel the most interesting, beautiful and influential of its kind, with fiery vigor; the tone is plainly admiring.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "by far the most interesting and influential of the California sciuridae",
+    "reason": "The noise and stings are part of the vigor he celebrates.",
+    "tempts": "\"Every wind is fretted by his voice\" and \"the sting of his sharp feet\" sound like complaints."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Nature has made him master forester",
+    "reason": "He presents the squirrel's power as a good for the forest, not a threat.",
+    "tempts": "Sharp feet that sting and a creature that holds \"dominion\" can sound alarming."
+   },
+   "2": {
+    "lure": "",
+    "quote": "so intense is his fiery vigor and restlessness",
+    "reason": "His language is full of praise and energy, not neutral description.",
+    "tempts": "Percentages and the Latin \"sciuridae\" give a scientific air."
+   },
+   "4": {
+    "lure": "",
+    "quote": "I make haste to mention these facts, to show upon how substantial a foundation",
+    "reason": "He treats his high claim seriously and backs it with facts; he is not joking.",
+    "tempts": "A squirrel more important than bears, called \"master forester\", can read as a comic paradox."
+   }
+  }
+ },
+ {
+  "qid": "PD-P2-6",
+  "set_id": "PD-P2",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "As the narrator, now grown, looks back on the soldier's words \"My little man!\", his attitude is best characterized as",
+  "choices": [
+   "sorrowful",
+   "grateful",
+   "resentful",
+   "detached",
+   "amused"
+  ],
+  "answer": 0,
+  "why": "Across the space of half-a-century I can still hear the sad reproach in his voice.",
+  "explanation": "The grown narrator still hears his father's hurt and reflects that the war had separated father and sons: he looks back with sorrow.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "The war had in very truth come between this patriot and his sons.",
+    "reason": "Calling his father a patriot honors him, but the sentence dwells on what the war took from the family, not on thanks.",
+    "tempts": "The word \"patriot\" suggests thankfulness for the father's service."
+   },
+   "2": {
+    "lure": "",
+    "quote": "I had forgotten him—the baby had never known him.",
+    "reason": "The narrator blames no one; he counts his own forgetting among the losses and hears his father's hurt.",
+    "tempts": "\"The war had ... come between\" father and sons sounds like a grievance."
+   },
+   "3": {
+    "lure": "",
+    "quote": "How significant that phrase seems to me now!",
+    "reason": "The exclamation shows the phrase still moves him; he is not distant from it.",
+    "tempts": "Half a century separates the narrator from the scene, which suggests distance."
+   },
+   "4": {
+    "lure": "",
+    "quote": "I can still hear the sad reproach in his voice",
+    "reason": "What he hears in the phrase is reproach, not anything comic.",
+    "tempts": "\"My little man\" is an endearing, almost comic way to address a small boy."
+   }
+  }
+ },
+ {
+  "qid": "PD-P4-2",
+  "set_id": "PD-P4",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the passage, the women of the mother's home village became unusually expert because they",
+  "choices": [
+   "could let their spindles fall a great distance as they spun",
+   "spun through the long, free days of their village life",
+   "learned the craft from the women of neighboring towns",
+   "had to make all of the homespun clothing their families wore",
+   "spun as part of their prayers at the village shrine"
+  ],
+  "answer": 0,
+  "why": "because of the opportunity she and the other women of the village had to drop their spindles over the edge of a precipice",
+  "explanation": "Dropping a spindle over a precipice lets it fall a long way, and the author credits the village's superior skill to that opportunity.",
+  "kills": {
+   "1": {
+    "lure": "keyword-match",
+    "quote": "something of her free life",
+    "reason": "The author mentions the mother's \"free life\" in the same sentence, but credits the skill to the precipice, not to freedom or time.",
+    "tempts": "\"Free life\" sits right beside the explanation, and a reader lifts it."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "a skill in spinning beyond that of the neighboring towns",
+    "reason": "The neighboring towns are the ones the village surpassed, not its teachers.",
+    "tempts": "The neighboring towns are named in the very clause about the skill."
+   },
+   "3": {
+    "lure": "prior-knowledge",
+    "quote": "the beautiful homespun garments",
+    "reason": "Homespun garments appear later, but the passage gives the precipice, not the need for clothing, as the reason for the skill.",
+    "tempts": "A reader knows village women spun to clothe their families, and the passage does mention homespun."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "to the shrine before which she had always prayed",
+    "reason": "The shrine belongs to the author's later reflection on the mother's religion, not to the account of her spinning.",
+    "tempts": "The shrine is a real detail of the mother's village life, and the passage links her old life closely to her craft."
+   }
+  }
+ },
+ {
+  "qid": "PD-P4-6",
+  "set_id": "PD-P4",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The passage suggests that, until the evening described in the second paragraph, Angelina had seen her mother chiefly against the background of",
+  "choices": [
+   "the spinning skill that the visitors praised",
+   "the free, beautiful life she had known in Italy",
+   "the old church where she had always prayed",
+   "the cramped rooms where the family now lived",
+   "the strict demands she made of her daughter"
+  ],
+  "answer": 3,
+  "why": "the thought of her mother with any other background than that of the tenement was new to Angelina",
+  "explanation": "Any background other than the tenement was new to Angelina, so before that evening she had seen her mother only in their crowded city home.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "One evening, however, Angelina saw her mother surrounded by a group of visitors",
+    "reason": "The praise came on that one evening, so it cannot be how she had seen her mother until then.",
+    "tempts": "The praise is the first thing in the story that makes Angelina think about her mother differently."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "I took occasion to describe the Italian village in which her mother had lived",
+    "reason": "The author supplied the picture of the village; it was what was new to Angelina, not her earlier view.",
+    "tempts": "The village is the mother's real background, and the passage describes it warmly."
+   },
+   "2": {
+    "lure": "character-not-author",
+    "quote": "That which I could not convey to the child",
+    "reason": "The church belongs to the author's own thoughts, which she says she could not convey to Angelina.",
+    "tempts": "The church is part of the mother's past that the passage gives in detail."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "she must depend on her daughter to learn the new ways",
+    "reason": "No demands of hers are mentioned; if anything, the mother depends on the daughter.",
+    "tempts": "Immigrant parents are often pictured as strict, and Angelina avoids her mother as if escaping control."
+   }
+  }
+ },
+ {
+  "qid": "PD-P6-1",
+  "set_id": "PD-P6",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage is primarily concerned with",
+  "choices": [
+   "tracing how the current eruption of Kīlauea began and has developed",
+   "explaining why so many plants around Kīlauea's summit lost their leaves",
+   "comparing the seasons in Hawaii with those of the Northeastern states",
+   "showing how native trees survived the gases released by Kīlauea",
+   "warning park visitors about the health dangers of volcanic gas"
+  ],
+  "answer": 1,
+  "why": "The large eruptive plumes produced by the ongoing summit eruption of Kīlauea, which contain high concentrations of volcanic gases and tephra, and wind direction hold the key to this answer.",
+  "explanation": "The passage asks \"what's going on here?\" about the bare vegetation and answers with the plume's gas and tephra and the shift in winds.",
+  "kills": {
+   "0": {
+    "lure": "detail-as-whole",
+    "quote": "The ongoing summit eruption of Kīlauea volcano began on December 23, 2024",
+    "reason": "The eruption's history is background for the explanation of where the plume went; it is not the subject.",
+    "tempts": "The third paragraph gives dates and episode counts, which look like the main facts."
+   },
+   "2": {
+    "lure": "detail-as-whole",
+    "quote": "the seasons are far more subtle",
+    "reason": "The seasonal comparison is an opening hook; the passage then turns to the plume and winds.",
+    "tempts": "It is the first substantial idea and is developed for a whole paragraph."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "However, even ʻōhiʻa need to breathe eventually",
+    "reason": "Only one tree is discussed, and even it is damaged by prolonged exposure; the passage is about damage, not survival.",
+    "tempts": "The ʻōhiʻa's \"secret weapon\" is the most memorable part of the passage."
+   },
+   "4": {
+    "lure": "prior-knowledge",
+    "quote": "away from the public viewing areas",
+    "reason": "The passage is about plants; it gives visitors no health advice.",
+    "tempts": "Volcano reports often carry health warnings, and the passage calls the plume \"hazardous.\""
+   }
+  }
+ },
+ {
+  "qid": "PD-P6-2",
+  "set_id": "PD-P6",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the passage, the public areas have usually been spared the fumes because",
+  "choices": [
+   "winds from the south have carried them out over the open ocean",
+   "winter storms have pushed them north into the Kaʻū Desert",
+   "rain and dew have washed them out of the air around the vents",
+   "the viewing areas sit higher than the fumes usually rise",
+   "the usual winds blow from the northeast toward the southwest"
+  ],
+  "answer": 4,
+  "why": "the island’s dominant Northeast trade winds have carried the hazardous eruption plumes to the Southwest into the Kaʻū Desert",
+  "explanation": "The usual trade winds come from the northeast and carry the plume southwest, away from the viewing areas.",
+  "kills": {
+   "0": {
+    "lure": "reversed",
+    "quote": "winds, which emanate from the South",
+    "reason": "Winds from the south push the plume north, toward the park; they are what brought it there, not what kept it away.",
+    "tempts": "South winds are a real detail in the same paragraph, and a reader flips their effect."
+   },
+   "1": {
+    "lure": "half-right",
+    "quote": "pushed Kīlauea’s eruptive plume towards the North",
+    "reason": "The winter storms did push the plume north, but that brought it onto the park; the Kaʻū Desert is where the trade winds carry it, to the southwest.",
+    "tempts": "It combines two real details from the paragraph, the storms and the desert."
+   },
+   "2": {
+    "lure": "keyword-match",
+    "quote": "whether it be in the form of rain, fog, or morning dew",
+    "reason": "Rain and dew turn the gas into acid that falls on plants; the passage never says they clear the air.",
+    "tempts": "Rain, fog and dew are named in the passage as things that act on the gas."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "impacting areas of Hawaiʼi Volcanoes National Park",
+    "reason": "When the winds shift the plume does reach the park, so height is not what protects the viewing areas.",
+    "tempts": "A reader might picture lookouts above a low-lying plume."
+   }
+  }
+ },
+ {
+  "qid": "PD-P6-3",
+  "set_id": "PD-P6",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The author includes the pH readings in the fourth paragraph chiefly to",
+  "choices": [
+   "report how acidic the rain was during the Kona storms of 2026",
+   "show that the lava lake years harmed plants more than this eruption",
+   "show how acidic the rain downwind of the summit was measured to be",
+   "explain how gas drawn in through tiny pores injures a leaf",
+   "warn readers that rainwater around the volcano is unsafe to drink"
+  ],
+  "answer": 2,
+  "why": "showed acid rain with a pH of 4 or less, with normal rainwater having a pH of around 7",
+  "explanation": "Setting a pH of 4 or less beside normal rain's 7 shows how strongly acidic the rain downwind of the summit can be.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "during the lava lake days from 2008-2018",
+    "reason": "The samples come from 2008-2018, not from the 2026 storms.",
+    "tempts": "The paragraph is about the 2026 Kona winds, so a reader assumes the readings are too."
+   },
+   "1": {
+    "lure": "too-far",
+    "quote": "Water samples collected downwind of Kīlauea’s summit",
+    "reason": "The readings are never compared with the current eruption's rain; no comparison of harm is made.",
+    "tempts": "The readings come from an earlier eruption period, inviting a comparison."
+   },
+   "3": {
+    "lure": "true-not-answering",
+    "quote": "When SO2 is brought into the plant through its stomata",
+    "reason": "That is a separate point, introduced with \"To make things worse\"; the pH readings concern acid rain on the outside of leaves.",
+    "tempts": "The stomata explanation is in the same paragraph and is also about damage."
+   },
+   "4": {
+    "lure": "prior-knowledge",
+    "quote": "This acid rain will ‘burn’ the foliage, turning it brown.",
+    "reason": "The passage uses the readings only to explain damage to plants.",
+    "tempts": "A reader who knows acid rain is harmful assumes a safety warning."
+   }
+  }
+ },
+ {
+  "qid": "PD-P6-4",
+  "set_id": "PD-P6",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The author's attitude regarding the ʻōhiʻa's ability to close its stomata is best described as",
+  "choices": [
+   "skeptical",
+   "detached",
+   "mocking",
+   "admiring",
+   "critical"
+  ],
+  "answer": 3,
+  "why": "They have the amazing capability to close their stomata",
+  "explanation": "The author calls the ability \"amazing\" and a \"secret weapon\": clear admiration.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "This helps reduce the internal impact SO2 has on the trees.",
+    "reason": "The author affirms that the ability works; the later limit is about how long exposure lasts, not doubt about the ability.",
+    "tempts": "\"However, even ʻōhiʻa need to breathe eventually\" can read as doubt."
+   },
+   "1": {
+    "lure": "",
+    "quote": "They have the amazing capability to close their stomata",
+    "reason": "\"Amazing\" expresses feeling; the author is not neutral.",
+    "tempts": "The passage is a scientific report."
+   },
+   "2": {
+    "lure": "",
+    "quote": "a secret weapon to help combat this",
+    "reason": "The playful phrases praise the tree; nothing ridicules it.",
+    "tempts": "\"Secret weapon\" and \"hold their breath\" in quotation marks sound tongue-in-cheek."
+   },
+   "4": {
+    "lure": "",
+    "quote": "highly adapted to survive in the volcanic environments",
+    "reason": "The author credits the trees with being well adapted; no fault is found.",
+    "tempts": "The trees are still damaged in the end, which a reader takes as a shortcoming the author points out."
+   }
+  }
+ }
+]

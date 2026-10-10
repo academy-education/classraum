@@ -1,0 +1,776 @@
+[
+ {
+  "qid": "PD-P1-1",
+  "set_id": "PD-P1",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage as a whole is chiefly concerned with",
+  "choices": [
+   "how a boy's hunt for riches teaches him that patient effort is always repaid",
+   "how a boy's hunt for riches leaves him too dejected to enjoy his evening play",
+   "how a boy's hunt for riches ends in a sense of kinship with an unknown child",
+   "how a boy's hunt for riches makes him wonder what became of an earlier owner",
+   "how a boy's hunt for riches uncovers the keepsakes of a long-dead naval officer"
+  ],
+  "answer": 2,
+  "why": "across the void stretch of years I seemed to touch hands a moment with my little comrade of seasons long since dead",
+  "explanation": "The search for money fails, but the hoard shows him another boy like himself, and the passage closes on that felt companionship and its lingering effect.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "No ingots or dollars were here, to crown me the little Monte Cristo of a week.",
+    "reason": "What he hunted for is never found, and the passage draws no lesson about effort being rewarded.",
+    "tempts": "The drawer springs open just after he has almost given up, which looks like persistence paying off."
+   },
+   "1": {
+    "lure": "half-right",
+    "quote": "some warmth crept back to my heart",
+    "reason": "He is dejected for a moment, but warmth returns and he restores the drawer with satisfaction; the distance he feels at the end is not dejection.",
+    "tempts": "The fourth paragraph's \"depressing reaction\" and the closing \"long way off\" both sound like gloom."
+   },
+   "3": {
+    "lure": "detail-as-whole",
+    "quote": "Well, one would never know now the reason why these priceless possessions still lay here unreclaimed",
+    "reason": "He raises that question in a single sentence and at once sets it aside as unanswerable.",
+    "tempts": "The pause on \"and then—what?\" is one of the most striking moments in the passage."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "It was a real boy's hoard, then, that I had happened upon.",
+    "reason": "The buttons only look naval; the narrator concludes the owner was a boy.",
+    "tempts": "\"naval, apparently\" and \"seasons long since dead\" together suggest an old sailor."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-2",
+  "set_id": "PD-P1",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The words printed in capital letters in the first paragraph are included chiefly to",
+  "choices": [
+   "show the kind of thrill that the phrase he has heard awakens",
+   "name the riches he expects the hidden compartment to contain",
+   "hint that he has filled his head with too many adventure books",
+   "show how weary he has already grown of dreams of easy wealth",
+   "list the hiding places he has searched in the house so far"
+  ],
+  "answer": 0,
+  "why": "that particular chord had been touched that never fails to thrill responsive to such words as",
+  "explanation": "The capitalised words are named as the kind of words that always thrill him, as \"secret drawer\" has just done; they show the adventurous daydreams the phrase awakens.",
+  "kills": {
+   "1": {
+    "lure": "half-right",
+    "quote": "such words as CAVE, TRAP-DOOR, SLIDING-PANEL",
+    "reason": "Cave, trap-door and sliding-panel are not riches at all; the list is of words that thrill him, not of things he expects to find.",
+    "tempts": "Bullion, ingots and dollars are riches, and the next lines say he wanted money badly."
+   },
+   "2": {
+    "lure": "prior-knowledge",
+    "quote": "My whole being was still vibrating to those magic syllables",
+    "reason": "The passage never mentions books or reading; the words work on him as \"magic syllables\" in themselves.",
+    "tempts": "The words sound like pirate stories, so a reader supplies the books."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "I began to grow weary and disheartened.",
+    "reason": "Weariness comes in the next paragraph, after the long search; in the first he is still thrilled.",
+    "tempts": "The passage does turn to weariness and disappointment, so the feeling is real, just placed too early."
+   },
+   "4": {
+    "lure": "reversed",
+    "quote": "Following on these bracing incentives, came a dull blank period of unrewarded search.",
+    "reason": "The search comes after these thoughts, and it is of the bureau, not the house.",
+    "tempts": "Trap-door, sliding-panel and cave are hiding places, and a search does follow."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-3",
+  "set_id": "PD-P1",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "The passage indicates that the narrator himself",
+  "choices": [
+   "kept a list of birds' eggs",
+   "owned a pair of naval buttons",
+   "had found the hiding place once before",
+   "kept a collection of coins",
+   "had once known the boy who filled it"
+  ],
+  "answer": 3,
+  "why": "thicker and clumsier of make than those I hoarded myself",
+  "explanation": "Comparing the foreign coins with \"those I hoarded myself\" shows he had a coin hoard of his own.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "a list of birds' eggs, with names of the places where they had been found",
+    "reason": "The list is one of the objects in the other boy's hoard.",
+    "tempts": "It sits in the same sentence as the coins and is just the kind of thing the narrator would keep."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "Two tarnished gilt buttons,—naval, apparently,—a portrait of a monarch unknown to me",
+    "reason": "The buttons are in the drawer; they belong to the hoard, not to the narrator.",
+    "tempts": "They open the catalogue that the narrator compares item by item with his own things."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "unyielding the old bureau stood, stoutly guarding its secret, if secret it really had",
+    "reason": "He was not even sure the bureau had a secret drawer, so he had not found it before.",
+    "tempts": "He seems to know where to look and recognises the drawer's contents as kindred."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "my little comrade of seasons long since dead",
+    "reason": "The boy belongs to years long past; the narrator only feels a moment's fellowship with him.",
+    "tempts": "He calls the boy his \"comrade\" and speaks of touching hands with him."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-4",
+  "set_id": "PD-P1",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The narrator's attitude toward the one who made the hoard is best described as",
+  "choices": [
+   "contemptuous toward him",
+   "affectionate toward him",
+   "apprehensive on his account",
+   "uninterested in him",
+   "mocking toward him"
+  ],
+  "answer": 1,
+  "why": "a kindred spirit to my own had been at the making of it",
+  "explanation": "He recognises a kindred spirit, calls the boy his \"little comrade\", and feels warmth return; the feeling is fond.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "my little comrade of seasons long since dead",
+    "reason": "He calls the boy his comrade and a kindred spirit; nothing he says belittles him.",
+    "tempts": "He calls the boy's coins \"clumsier of make\" than his own, which can read as a sneer."
+   },
+   "2": {
+    "lure": "",
+    "quote": "some warmth crept back to my heart",
+    "reason": "Thinking of the boy brings warmth, not worry.",
+    "tempts": "The unexplained \"and then—what?\" and \"long since dead\" hint at something ominous."
+   },
+   "3": {
+    "lure": "",
+    "quote": "across the void stretch of years I seemed to touch hands a moment",
+    "reason": "He dwells on the boy and imagines touching hands with him.",
+    "tempts": "\"Well, one would never know now the reason\" sounds like a shrug."
+   },
+   "4": {
+    "lure": "",
+    "quote": "in just my own bold style of brush-work",
+    "reason": "He likens the boy's work to his own, as a fellow, not as a target of ridicule.",
+    "tempts": "\"this happy starred young person\" has a teasing ring."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-5",
+  "set_id": "PD-P1",
+  "kind": "inference",
+  "difficulty": "medium",
+  "prompt": "The narrator's choice to put the hoard back where he found it suggests that he",
+  "choices": [
+   "wants its first owner to be able to come back for it",
+   "wants nothing more to do with what had let him down",
+   "wants to keep it hidden from the children in the nursery",
+   "wants to study it later in a better light than this",
+   "wants it to wait there for some later boy to discover"
+  ],
+  "answer": 4,
+  "why": "Some other boy, perhaps, would some day release that spring again. I trusted he would be equally appreciative.",
+  "explanation": "Right after restoring it he imagines another boy opening the spring and hopes that boy will value it too.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "Some other boy, perhaps, would some day release that spring again.",
+    "reason": "He pictures a different boy finding it; the first owner belongs to \"seasons long since dead\".",
+    "tempts": "The treasures are called \"unreclaimed\", which suggests someone might reclaim them."
+   },
+   "1": {
+    "lure": "stops-short",
+    "quote": "heard the spring click with a certain satisfaction",
+    "reason": "He puts it back with satisfaction, after warmth has returned; he is not rejecting it.",
+    "tempts": "He calls it a \"drawer of disillusions\" and was crushed when it held no money."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "I trusted he would be equally appreciative.",
+    "reason": "He hopes another boy will find it one day; nothing suggests hiding it from anyone.",
+    "tempts": "The drawer is secret, and the nursery's noise comes right after he closes it."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "I drew it out and carried it to the window, to examine it in the failing light.",
+    "reason": "He has already examined it at the window and listed every object.",
+    "tempts": "The \"failing light\" is mentioned, so it seems he could not see it properly."
+   }
+  }
+ },
+ {
+  "qid": "PD-P1-6",
+  "set_id": "PD-P1",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "In the phrase \"telling that the hunt was up,\" the word \"up\" most nearly means",
+  "choices": [
+   "under way",
+   "at an end",
+   "upstairs",
+   "successful",
+   "found out"
+  ],
+  "answer": 0,
+  "why": "In another minute I would be in the thick of it",
+  "explanation": "The shouts announce that the game has begun, and he expects to be in the middle of it within a minute.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "In another minute I would be in the thick of it, in all the warmth and light and laughter.",
+    "reason": "The game is going on and he is about to join it, so it has not finished.",
+    "tempts": "The everyday sense of \"up\" as in \"time is up\"."
+   },
+   "2": {
+    "lure": "",
+    "quote": "from the nursery at the end of the passage",
+    "reason": "The noise comes from along the passage; \"up\" describes the state of the hunt, not a floor.",
+    "tempts": "\"Up\" most often marks direction, and a nursery can be upstairs."
+   },
+   "3": {
+    "lure": "",
+    "quote": "Bears, apparently, or bandits, were on the evening bill of fare",
+    "reason": "The noises only tell what kind of game is starting; nothing has been caught or won.",
+    "tempts": "Shouts and yells around a hunt sound triumphant."
+   },
+   "4": {
+    "lure": "",
+    "quote": "judging by the character of the noises",
+    "reason": "Nothing secret is uncovered; the noises tell what game is being played.",
+    "tempts": "The idiom \"the game is up\" means a secret is out, and the passage is about a secret."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-1",
+  "set_id": "PD-P3",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The poem as a whole is chiefly about",
+  "choices": [
+   "a shared act of care that drove the mother bird away for good",
+   "a playful game that slowly grew into a serious undertaking",
+   "the harm that mowing machines do to creatures in the fields",
+   "a shared act of care whose outcome the two never learned",
+   "the lesson that doing good always carries a hidden cost"
+  ],
+  "answer": 3,
+  "why": "To see if the birds lived the first night through",
+  "explanation": "The two shield the exposed birds together, and the poem ends on the admission that neither went back to see whether the birds survived.",
+  "kills": {
+   "0": {
+    "lure": "unsupported",
+    "quote": "That was a thing we could not wait to learn.",
+    "reason": "Whether the mother returned is never found out.",
+    "tempts": "The speaker worries \"might our meddling make her more afraid\"."
+   },
+   "1": {
+    "lure": "half-right",
+    "quote": "But 'twas no make-believe with you to-day,",
+    "reason": "It was never a game; only the speaker mistook it for one at first.",
+    "tempts": "The poem opens with \"some new play\" and the speaker's offer to \"help pretend\"."
+   },
+   "2": {
+    "lure": "detail-as-whole",
+    "quote": "Miraculously without tasting flesh",
+    "reason": "The cutter-bar hurt no bird; it is only the event that sets the scene.",
+    "tempts": "The machine's passage is a vivid, violent image near the centre of the poem."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "We saw the risk we took in doing good",
+    "reason": "The poem speaks of a risk, and never says any harm followed.",
+    "tempts": "That line sounds like the poem's moral."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-2",
+  "set_id": "PD-P3",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the poem, the nest had been left without cover because",
+  "choices": [
+   "the companion had pulled away the grass that sheltered it",
+   "a mowing blade had just cut away the grass around it",
+   "the mother bird had stayed away from it far too long",
+   "the June sun had wilted the grass that sheltered it",
+   "the breeze had blown off the cut hay that sheltered it"
+  ],
+  "answer": 1,
+  "why": "The cutter-bar had just gone champing over",
+  "explanation": "The cutter-bar (the mower's blade) went over the nest and left it \"defenseless to the heat and light\".",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "Though I found your hand full of wilted fern,",
+    "reason": "The grass in the companion's hand was gathered for the screen; it was the cutter-bar that left the nest bare.",
+    "tempts": "The companion is found with a handful of grass right beside the nest."
+   },
+   "2": {
+    "lure": "figurative-literal",
+    "quote": "Stood up to us as to a mother-bird",
+    "reason": "The long-delayed homecoming belongs to a comparison describing how the chicks behaved, not to the cause of the exposure.",
+    "tempts": "\"Whose coming home has been too long deferred\" reads like a fact about the real mother."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "And left defenseless to the heat and light.",
+    "reason": "Heat is the danger after the nest is exposed, not what exposed it.",
+    "tempts": "\"wilted fern\", \"June-grass\" and \"heat\" all appear close by."
+   },
+   "4": {
+    "lure": "keyword-match",
+    "quote": "If that was your idea, against the breeze,",
+    "reason": "The breeze belongs to the speaker's guess about the game, not to the nest.",
+    "tempts": "The breeze is mentioned in the same scene as the new-cut hay."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-3",
+  "set_id": "PD-P3",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The lines beginning \"The way the nest-full every time we stirred\" serve mainly to",
+  "choices": [
+   "show that the young birds were bold enough to face down intruders",
+   "contrast the eager birds with the speaker's own indifference",
+   "explain why the companion would not leave the chicks alone",
+   "suggest that the birds were nearly strong enough to fly away",
+   "lead into the speaker's worry about how the mother would react"
+  ],
+  "answer": 4,
+  "why": "Made me ask would the mother-bird return",
+  "explanation": "The sentence runs on: the way the birds stood up \"Made me ask\" whether the mother would return or be frightened by their meddling.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "Whose coming home has been too long deferred,",
+    "reason": "\"Stood up to\" is the chicks reaching up as they would to a returning parent, not defiance.",
+    "tempts": "\"Stood up to us\" usually means confronting someone."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "All this to prove we cared.",
+    "reason": "The speaker is not indifferent at this point; the turning away comes only at the end.",
+    "tempts": "The ending, \"We turned to other things\", can be read back into this moment."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "You wanted to restore them to their right",
+    "reason": "The companion's wish is stated before these lines; what they lead to is the speaker's question.",
+    "tempts": "The companion's determination is the poem's driving force, so the lines seem to justify it."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "And so at last to learn to use their wings.",
+    "reason": "Flying is a future the speaker never saw; these lines show helpless chicks.",
+    "tempts": "Standing up looks like strength, and the poem ends on their wings."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-4",
+  "set_id": "PD-P3",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The speaker's attitude toward the person addressed as \"you\" is best described as",
+  "choices": [
+   "irritation",
+   "anxiety",
+   "affection",
+   "detachment",
+   "mockery"
+  ],
+  "answer": 2,
+  "why": "You had begun, and gave them back their shade.",
+  "explanation": "The speaker goes over to help with the game, then joins in finishing the companion's screen, and speaks of \"we\" throughout; the tone is fond.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "I went to show you how to make it stay,",
+    "reason": "The speaker joins in willingly, even offering to help pretend.",
+    "tempts": "\"You were forever finding some new play\" can sound like a complaint."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Made me ask would the mother-bird return",
+    "reason": "The poem's worry is about the birds and their mother, not about the companion.",
+    "tempts": "The poem contains clearly worried lines."
+   },
+   "3": {
+    "lure": "",
+    "quote": "I haven't any memory—have you?—",
+    "reason": "The speaker draws the companion in as a partner in the memory, using \"we\" throughout.",
+    "tempts": "\"We turned to other things\" sounds coolly detached."
+   },
+   "4": {
+    "lure": "",
+    "quote": "And, if you asked me, even help pretend",
+    "reason": "The speaker offers to join the companion's play, not to ridicule it.",
+    "tempts": "\"Trying, I thought, to set it up on end\" and \"forever finding some new play\" can sound teasing."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-5",
+  "set_id": "PD-P3",
+  "kind": "vocabulary-in-context",
+  "difficulty": "hard",
+  "prompt": "In the phrase \"dared not spare to do the best we could,\" the word \"spare\" most nearly means",
+  "choices": [
+   "neglect",
+   "afford",
+   "attempt",
+   "pretend",
+   "presume"
+  ],
+  "answer": 0,
+  "why": "Though harm should come of it; so built the screen",
+  "explanation": "They saw the risk but did not dare to hold back from doing their best, \"so\" they built the screen; \"spare\" means fail or neglect.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "so built the screen",
+    "reason": "They did act, so the line cannot mean they could not afford to act.",
+    "tempts": "The everyday sense: to have something to spare is to be able to afford it, and the poem is talking about risk."
+   },
+   "2": {
+    "lure": "",
+    "quote": "Though harm should come of it; so built the screen",
+    "reason": "\"Dared not attempt\" would mean they held back, but \"so\" leads straight into building the screen.",
+    "tempts": "\"dared not\" next to talk of harm suggests holding back."
+   },
+   "3": {
+    "lure": "",
+    "quote": "But 'twas no make-believe with you to-day,",
+    "reason": "Pretending is what the speaker wrongly assumed earlier; this line is about real action.",
+    "tempts": "The poem is full of play and make-believe."
+   },
+   "4": {
+    "lure": "",
+    "quote": "We saw the risk we took in doing good",
+    "reason": "\"But\" sets acting against the risk they saw; \"dared not presume\" would mean they held back, yet they built the screen.",
+    "tempts": "It suits the speaker's humble worry about meddling."
+   }
+  }
+ },
+ {
+  "qid": "PD-P3-6",
+  "set_id": "PD-P3",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The speaker's question about why there is \"No more to tell\" suggests that the speaker",
+  "choices": [
+   "is hinting that the young birds died during that first night",
+   "regrets that their meddling frightened the mother bird away",
+   "is struck that their care ended once the screen was built",
+   "blames the companion for losing interest in the birds",
+   "doubts that they were right to build the screen at all"
+  ],
+  "answer": 2,
+  "why": "All this to prove we cared.",
+  "explanation": "Having stressed how much they cared, the speaker wonders why the story stops: they turned away and never went back to see what happened.",
+  "kills": {
+   "0": {
+    "lure": "unsupported",
+    "quote": "To see if the birds lived the first night through",
+    "reason": "They never returned, so the speaker does not know whether the birds lived.",
+    "tempts": "The ending is dark, and silence about the outcome sounds like bad news."
+   },
+   "1": {
+    "lure": "too-far",
+    "quote": "That was a thing we could not wait to learn.",
+    "reason": "Whether the mother was frightened is a question the poem never answers.",
+    "tempts": "The speaker worried earlier that meddling might make her more afraid."
+   },
+   "3": {
+    "lure": "half-right",
+    "quote": "We turned to other things.",
+    "reason": "The speaker notes a loss of interest, but says \"we\": both turned away.",
+    "tempts": "\"have you?\" seems to put the question to the companion."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "But dared not spare to do the best we could",
+    "reason": "The doubt came before they acted, and they settled it by building; the closing lines are about what came after.",
+    "tempts": "\"We saw the risk we took in doing good\" voices exactly this doubt."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-1",
+  "set_id": "PD-P5",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage is chiefly concerned with",
+  "choices": [
+   "the part that many animals play in shaping western forests",
+   "the case for a small squirrel's large role in its forests",
+   "the way a small squirrel plants new trees by burying seeds",
+   "the likely descent of a western squirrel from an eastern one",
+   "the struggle for mastery among the creatures of the Sierra"
+  ],
+  "answer": 1,
+  "why": "I make haste to mention these facts, to show upon how substantial a foundation the importance I ascribe to him rests.",
+  "explanation": "The author claims the Douglas is the most influential creature of its forests and assembles facts (seeds, cones, range) to support that claim.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "the most interesting and influential of the California sciuridae",
+    "reason": "The passage is about one species; the only other animal named is used for comparison.",
+    "tempts": "It talks throughout about influence on the forests, which sounds like a general topic."
+   },
+   "2": {
+    "lure": "detail-as-whole",
+    "quote": "some of them are tucked separately into loosely covered holes, where some of the seeds germinate and become trees",
+    "reason": "Planting is one fact among several, and only \"some\" of the cones are buried.",
+    "tempts": "It is the most memorable fact about the squirrel's effect on the forest."
+   },
+   "3": {
+    "lure": "detail-as-whole",
+    "quote": "The Douglas is closely allied to the Red Squirrel or Chickaree of the eastern woods.",
+    "reason": "This is the topic of the last paragraph only, and the author sets the question aside with \"whatever their relationship\".",
+    "tempts": "The passage ends on it, so it feels like where the passage is heading."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "makes himself more important than even the huge bears",
+    "reason": "The comparison with the bears is about importance, not a struggle between animals.",
+    "tempts": "\"master-existence\", \"holds sway\" and \"dominion\" sound like a contest."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-2",
+  "set_id": "PD-P5",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The author mentions \"the huge bears\" in the second paragraph mainly in order to",
+  "choices": [
+   "show that size does not decide which creature counts for most",
+   "suggest that the squirrel stays in the trees out of fear of bears",
+   "support the claim that the squirrel outnumbers all other animals",
+   "show how many large animals share the squirrel's forests",
+   "show the bears stirring up the life of the woods he lives in"
+  ],
+  "answer": 0,
+  "why": "Though only a few inches long, so intense is his fiery vigor and restlessness, he stirs every grove with wild life, and makes himself more important than even the huge bears",
+  "explanation": "Setting a squirrel \"only a few inches long\" above huge bears shows that importance does not follow size.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "the huge bears that shuffle through the tangled underbrush beneath him",
+    "reason": "The sentence only places the bears below him; it says nothing of fear.",
+    "tempts": "\"beneath him\" shows the squirrel up in the trees, above the bears."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "surpassing every other species in force of character, numbers, and extent of range",
+    "reason": "The numbers claim is made in the first paragraph and only about squirrels; the bears sentence is about importance.",
+    "tempts": "The passage does claim superior numbers, and the bears are a comparison."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "makes himself more important than even the huge bears",
+    "reason": "The bears are the only large animal named, and they are there as a point of comparison.",
+    "tempts": "Bears in the underbrush make the forest sound crowded with big animals."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "he stirs every grove with wild life",
+    "reason": "It is the squirrel, not the bears, that stirs the groves.",
+    "tempts": "The bears appear in the same sentence as the stirring of the groves."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-3",
+  "set_id": "PD-P5",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "The passage indicates that, of the cones the Douglas cuts off, most are",
+  "choices": [
+   "buried singly so that their seeds can sprout",
+   "eaten at once while their seeds are fresh",
+   "dropped whole to ripen on the forest floor",
+   "saved to be eaten in the months ahead",
+   "carried north to forests beyond the Sierra"
+  ],
+  "answer": 3,
+  "why": "stored away for food to last during the winter and spring",
+  "explanation": "The \"greater portion\" is stored as food for winter and spring, that is, kept to be eaten later.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "some of them are tucked separately into loosely covered holes",
+    "reason": "Only \"some\" are buried singly; most are stored for food.",
+    "tempts": "It is the fact right next to the answer and the one that matters to the forest."
+   },
+   "1": {
+    "lure": "prior-knowledge",
+    "quote": "the greater portion is of course stored away for food",
+    "reason": "They are stored, not eaten straight away.",
+    "tempts": "A reader may assume a squirrel cuts cones simply to eat them."
+   },
+   "2": {
+    "lure": "keyword-match",
+    "quote": "all the cones ripened on the Sierra are cut off",
+    "reason": "The cones are already ripe when he cuts them.",
+    "tempts": "\"ripened\" appears in the same sentence."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "and far northward throughout the majestic forests of Oregon, Washington, and British Columbia",
+    "reason": "\"Far northward\" describes the squirrel's range, not where the cones go.",
+    "tempts": "The northern forests are named just after the cones."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-4",
+  "set_id": "PD-P5",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The author's remark that he will \"make haste to mention these facts\" suggests that he",
+  "choices": [
+   "is pressed for time and must hurry through his evidence",
+   "believes earlier writers have praised the squirrel too highly",
+   "expects some readers to doubt so high a claim for so small an animal",
+   "has himself followed the squirrel through every forest he lists",
+   "wants mainly to record the places where the squirrel is found"
+  ],
+  "answer": 2,
+  "why": "to show upon how substantial a foundation the importance I ascribe to him rests",
+  "explanation": "He hurries to lay out evidence so that his claim for an animal \"only a few inches long\" will be seen to rest on a firm foundation, which implies he expects doubt.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "The Douglas is closely allied to the Red Squirrel or Chickaree of the eastern woods.",
+    "reason": "The same sentence gives his reason, to support his claim, and he then moves on unhurried to the squirrel's ancestry.",
+    "tempts": "\"make haste\" literally means hurry."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "the importance I ascribe to him",
+    "reason": "The high claim is his own, and he is shoring it up, not cutting it down.",
+    "tempts": "Talk of a \"foundation\" for a claim sounds like answering someone else's view."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "Go where you will throughout the noble woods of the Sierra Nevada",
+    "reason": "He invites the reader to go anywhere; he does not claim to have tracked the squirrel to British Columbia.",
+    "tempts": "He sounds like an eyewitness, and the list of regions comes right before the remark."
+   },
+   "4": {
+    "lure": "stops-short",
+    "quote": "I make haste to mention these facts, to show upon how substantial a foundation",
+    "reason": "He says the facts serve to support the squirrel's importance, not just to record a range.",
+    "tempts": "The sentence just before is a list of regions."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-5",
+  "set_id": "PD-P5",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the third paragraph, the word \"allied\" most nearly means",
+  "choices": [
+   "partnered",
+   "friendly",
+   "inferior",
+   "attached",
+   "related"
+  ],
+  "answer": 4,
+  "why": "Ours may be a lineal descendant of this species",
+  "explanation": "The paragraph goes on to suggest the Douglas descends from the Chickaree, so \"allied\" means related by kinship.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "Ours may be a lineal descendant of this species",
+    "reason": "The link described is descent, not cooperation between the two.",
+    "tempts": "The everyday sense of \"allies\" as partners."
+   },
+   "1": {
+    "lure": "",
+    "quote": "the Red Squirrel or Chickaree of the eastern woods",
+    "reason": "The two live in different woods; nothing is said of dealings between them.",
+    "tempts": "Allies are usually friends."
+   },
+   "2": {
+    "lure": "",
+    "quote": "the Douglas is now the larger and more beautiful animal",
+    "reason": "The Douglas is the larger and more beautiful of the two, not the lesser.",
+    "tempts": "The passage is full of rank: \"master-existence\", \"holds sway\", \"dominion\"."
+   },
+   "3": {
+    "lure": "",
+    "quote": "distributed westward to the Pacific by way of the Great Lakes",
+    "reason": "The two are spread across the continent, not physically joined.",
+    "tempts": "\"closely\" suggests physical closeness."
+   }
+  }
+ },
+ {
+  "qid": "PD-P5-6",
+  "set_id": "PD-P5",
+  "kind": "attitude",
+  "difficulty": "easy",
+  "prompt": "The author's attitude toward the Douglas Squirrel is best described as",
+  "choices": [
+   "irritation",
+   "apprehension",
+   "detachment",
+   "admiration",
+   "bemusement"
+  ],
+  "answer": 3,
+  "why": "the Douglas is now the larger and more beautiful animal",
+  "explanation": "He calls the squirrel the most interesting, beautiful and influential of its kind, with fiery vigor; the tone is plainly admiring.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "by far the most interesting and influential of the California sciuridae",
+    "reason": "The noise and stings are part of the vigor he celebrates.",
+    "tempts": "\"Every wind is fretted by his voice\" and \"the sting of his sharp feet\" sound like complaints."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Nature has made him master forester",
+    "reason": "He presents the squirrel's power as a good for the forest, not a threat.",
+    "tempts": "Sharp feet that sting and a creature that holds \"dominion\" can sound alarming."
+   },
+   "2": {
+    "lure": "",
+    "quote": "so intense is his fiery vigor and restlessness",
+    "reason": "His language is full of praise and energy, not neutral description.",
+    "tempts": "Percentages and the Latin \"sciuridae\" give a scientific air."
+   },
+   "4": {
+    "lure": "",
+    "quote": "I make haste to mention these facts",
+    "reason": "He is not puzzled: he sets out facts to support his claim.",
+    "tempts": "A squirrel more important than bears can sound like a comic paradox."
+   }
+  }
+ }
+]
