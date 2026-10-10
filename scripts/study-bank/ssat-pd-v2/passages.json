@@ -1,0 +1,238 @@
+[
+ {
+  "set_id": "PD2-P1",
+  "slot": "P1",
+  "genre": "literary fiction (story)",
+  "title": "A Well-Meaning Little Busybody",
+  "author": "Mrs. L. G. Morse",
+  "year": 1880,
+  "url": "https://www.gutenberg.org/cache/epub/29002/pg29002.txt",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/pg29002.txt",
+  "source_sha256": "3d3c389ad17d74eb6a636a1f16fa3a7f2c88b1c52275902720543202ca0f1b92",
+  "pd_reason": "Harper's Young People (New York: Harper & Brothers), June 15, 1880; every US publication before 1930 is in the US public domain. Gutenberg eBook #29002.",
+  "trims": [
+   "one whole paragraph, from \"Afraid! They're afraid of everything.\" to \"tell me not to move 'till she'd cleared up the floor.\" (length; the only cut in the story)"
+  ],
+  "modernizations": [
+   {
+    "from": "--",
+    "to": "—"
+   }
+  ],
+  "fame": "Source class: little-known pre-1930 US magazine piece. Mrs. L. G. Morse was a minor contributor to children's magazines; this one-page story is not anthologised.",
+  "text": "They say I am full of mischief, but they don't speak the truth. Maria is the only one that knows, and she says I'm a busybody. Mamma hugs me tight, and says I will be a great help when I am big, but papa tosses me high up to the ceiling, and says I won't wait to grow up, and that I make the very best use of my time now. He knows as much as Maria, for that's just what I do—I use my time. I did so much work yesterday that I nearly got tired. First, mamma said she was going to Cousin Alice's wedding. I knew she was, for I saw her best bonnet out of its box on her bed. So, while she was talking to Katy in the kitchen, I climbed all the way up stairs, and dragged it down to her myself.\n\nI don't know what they'd have done without me yesterday, for after mamma had gone, Maria was careless. She left the basin of water on Nelly's little table. She forgot all about it, so I went, like a good girl, to put it away for her, 'cause I was afraid that mamma might come back and knock it over on to the carpet. It wasn't my fault that it slid out of my hands and broke itself. I was careful, and Maria said nobody else but just me would ever have thought of putting it away for her.\n\nMy sister Bessie don't try half so hard to help people. She sat in her little arm-chair all the time, tying up Susan Hopkins's joints. She thinks Susan is the best of all our dolls, but I don't. Her joints are all loose, and her legs rattle. Bessie isn't so much use as I am. She kept out of the way, tending to Susan, while Maria had to change every one of my clothes, 'cause the naughty water sloshed; and Bessie didn't even pick up the broken pieces of basin for poor Maria! Maria told her not to touch 'em, for fear of getting her feet wet and cutting her fingers. [...]\n\nBessie is bigger than I am, but she isn't a busybody at all. She only plays while there's work going on; and only see how much work I've done this morning! I've fixed up mamma's work-basket for her, and I've stuffed all the rags and little pieces of our new dresses that were piled up on the machine into papa's collar drawer. Then I cleared up a whole lot of muss after Maria. She went to answer the door-bell, and while she was gone, I took papa's clothes-whisk and swept up a big pile of dust she left on the hearth, and dumped it where nobody can see it, in a dark corner of the closet, under mamma's dresses.\n\nIt was real lucky I went to the closet, too, for I found the waist of mamma's best walking suit. I heard her say one day that she was going to change the trimming on the sleeves, so I took it out, and got a needle and thread, and I'm going to do it my own self for her. Bessie's darning a stocking that Maria gave her, and I'll sit right in front of her, so I can see how she pulls the needle through. The ends of the lace get right in the way of the needle, though, and I don't know but what I'll have to cut some of it off, so as to sew it better. I am going to hurry fast, and see if I can get it done before mamma comes home from market.",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R3",
+     "shown": "They say I am full of mischief, but they don't speak the truth. Maria is the only one that knows, and she says I'm a busybody.",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this first-person story opening about a supposed busybody and Maria.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ },
+ {
+  "set_id": "PD2-P2",
+  "slot": "P2",
+  "genre": "literary fiction (first-person story)",
+  "title": "Mother's Idea (opening scenes)",
+  "author": "A. M. Platt (unsigned in the issue; named in the St. Nicholas vol. XIII contents)",
+  "year": 1886,
+  "url": "https://www.gutenberg.org/cache/epub/39846/pg39846.txt",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/pg39846.txt",
+  "source_sha256": "60f33b305d41a537bf8bc2ad14ac27364adc1600877d56ef8f139dc45d1fcc15",
+  "pd_reason": "St. Nicholas (New York: The Century Co.), vol. XIII no. 8, June 1886; every US publication before 1930 is in the US public domain. Gutenberg eBook #39846.",
+  "trims": [],
+  "ends": "the excerpt is the story's opening, stopping at the end of a paragraph (\"...he does what is best.\") before the plan Mother proposes",
+  "modernizations": [
+   {
+    "from": "--",
+    "to": "—"
+   }
+  ],
+  "fame": "Source class: little-known pre-1930 US magazine piece by an unknown contributor. Different author, era (1886 vs 1880), magazine and tone (earnest, domestic) from P1 (deadpan comedy).",
+  "text": "Mr. Atherton has been the master of the Centreville Academy ever since I can remember. A few months ago, however, he was offered a better position in the city, and he decided to leave Centreville. We were very sorry, for we all liked him; and now that he has left, it really seems as if a part of the building itself had been taken away.\n\nWe were to have a public examination during the last two days of his stay, and Florence Grantley had thought of a beautiful project. She always has good ideas, though I must say they are generally rather expensive. But then her father is rich, and I suppose she never has to think twice before spending a dollar, as some of us are obliged to do. Her plan was to buy an album, put all our pictures in it, and present it to Mr. Atherton before the company, after he had closed the school. The girls wished me to make the presentation address. Of course I was enthusiastic about it, and went home thinking over what I should say and should wear, and all that. There are fifteen girls in our class, and Florence said she knew of a lovely album, one we wouldn't be ashamed to give him. It would cost only eleven dollars and twenty-five cents; and that, you see, would be only seventy-five cents apiece. I went in to dinner full of the new project, and began to talk about it at the table.\n\nBut Father vetoed it at once. He said he didn't believe in the idea at all. It would be too expensive for some of us, and he did not wish to hear another word about it.\n\nWhen Father takes that tone, of course there's no more to be said. I am too old to cry before everybody, but I didn't wish any more dinner, and as soon as possible I went up to my room and had a good cry.\n\nMother came upstairs as quickly as she could. I knew she would. Mother is a born comforter. Oh, what do girls do who have no mother? She told me I must remember how hard Father had to work for every dollar, and that although what he said sometimes sounded harsh, it was only because his business troubles made him worry, and it added to them to have us wish for things he felt he couldn't afford. Dear Mother! I wonder if she ever wishes for things she doesn't get.\n\nThen I told Mother all about it; that it was not merely that one plan, but that I could never join in any project that came up. All the other girls had birthday parties and I went, but never gave one in return. \"Of course I don't expect that,\" said I, feeling a little conscience-stricken, as I saw the look on Mother's face. \"Birthdays are so common in this family, of course we can't notice them; but I thought this time we had found something Father could sympathize with. He so often speaks of Mr. Atherton, and the respect he has for him—but of course that's all over now. If I can't, I can't; it does seem hard though never to do as the others do.\"\n\n\"I know it, child,\" Mother said, softly touching my hair. \"Many things are hard. You are old enough now to know a little of the life of your elders,\" she went on; \"and you must remember that it is absolute necessity, and not lack of sympathy, that forces Papa to say no, as he sometimes does.\"\n\n\"Well, if he would only soften it a little,\" I couldn't help saying. \"A blunt no is a great deal harder to bear.\"\n\n\"I know, dear,\" Mother said, with a sigh; \"but Father thinks he does what is best.\"",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R4",
+     "shown": "Mr. Atherton has been the master of the Centreville Academy ever since I can remember. A few months ago, however, he was offered a better position in the city, and he decided to leave Centreville.",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this story about Mr. Atherton and the Centreville Academy.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ },
+ {
+  "set_id": "PD2-P3",
+  "slot": "P3",
+  "genre": "poetry",
+  "title": "Kensington Clover",
+  "author": "Marcia D. Bradbury",
+  "year": 1880,
+  "url": "https://www.gutenberg.org/cache/epub/28975/pg28975.txt",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/pg28975.txt",
+  "source_sha256": "7786ee117af5aa041f997954ee3c2ab4b731435e88b9e3f136f4c759df11477b",
+  "pd_reason": "Harper's Young People (New York: Harper & Brothers), June 1, 1880; every US publication before 1930 is in the US public domain. Gutenberg eBook #28975.",
+  "trims": [],
+  "modernizations": [
+   {
+    "from": "--",
+    "to": "—"
+   }
+  ],
+  "fame": "Source class: little-known pre-1930 US magazine poem by an unknown poet; whole poem.",
+  "text": "Such a hubbub in the meadow!\nSuch a rustling in the grass!\n\"I feel injured,\" sighed the daisy,\n\"Things have come to such a pass.\nTo be worked in colored worsted,\nEv'ry shade and line complete,\nIsn't very compliment'ry\nTo a stylish marguerite.\"\n\n\"One might call it,\" said the poppy,\nIn a tone of sleepy fun,\n\"Flowers raised by crewel culture—\nOnly, please, excuse the pun.\"\n\"Oh, don't joke on such a subject,\"\nSaid an innocent, rather low,\nWhile from sev'ral other quarters\nCame a disapproving \"No.\"\n\n\"Really,\" laughed a sweet red clover,\n\"I flushed up quite nervously\nWhen I saw a head on canvas\nSo exceedingly like me.\nIf the honey-bee had been there,\nHe'd have buzzed about that leaf.\nAh! I only wish he had been;\n'Twould have served him right—the thief!\"\n\nSuddenly through all this chatter\nCame a voice, like music's flow,\nFrom a little yellow violet\nGrowing in the marsh below.\nAll the flowers nodded silence\nAs she said—a little pause—\n\"What a foolish fuss, my field-mates,\nYou have made with no real cause!\n\n\"Are they fragrant? Can you smell them?\nThough they are so bright and fair,\nDo the breezes, when they touch them,\nCarry incense on the air?\nWhen they fade, will hidden blossoms\nTake the places of those dead?\nShooting stems and growing leaflets\nCrown the drooping plant instead?\"\nAnd the others, well contented,\nWhen the violet's song was o'er,\nTossed their pretty heads and said they\nWouldn't worry any more.",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R5",
+     "shown": "Such a hubbub in the meadow! Such a rustling in the grass!",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this meadow opening; it reads like children's nature writing but I cannot place it.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ },
+ {
+  "set_id": "PD2-P4",
+  "slot": "P4",
+  "genre": "history / humanities (essay: the history of an idea)",
+  "title": "Bookworms in Fact and Fancy",
+  "author": "Willard Austen",
+  "year": 1899,
+  "url": "https://www.gutenberg.org/cache/epub/45115/pg45115.txt",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/pg45115.txt",
+  "source_sha256": "0c38da5de4fee36148e5d2dcfd02546d118c03b7ea2c8703f0977a063bb33880",
+  "pd_reason": "Appletons' Popular Science Monthly (New York: D. Appleton), vol. 55, June 1899 (original article); every US publication before 1930 is in the US public domain. Gutenberg eBook #45115.",
+  "trims": [
+   "six paragraphs on classical and Renaissance references (Evenus with a quoted verse, Aristotle, Horace, Ovid, Pliny, Martial, Lucian, Pierre Petit), from \"Insects injurious to books and bindings are not a new subject\" to \"titled In Blattam.\"",
+   "one paragraph on Robert Hooke's Micrographia, from \"The earliest observations on the subject possessing any scientific value\" to \"the library as well as other parts of the house.\""
+  ],
+  "ends": "the excerpt stops at the end of a paragraph (\"...its misuse will no doubt continue.\") before the survey of insect groups",
+  "modernizations": [
+   {
+    "from": "--",
+    "to": "—"
+   }
+  ],
+  "fame": "Source class: little-known pre-1930 US magazine piece. Willard Austen (a Cornell librarian) has no literary reputation; an original Popular Science Monthly article.",
+  "text": "So much mystery has gathered around the term bookworm, so much imagery has been employed in depicting the appearance and devastations of this mythical creature, that many have been prepared to accept almost anything, no matter how fabulous, that might be said about this unknown enemy of literature. Reaction against these weird and fantastical accounts is indicated by the question, not infrequently asked, \"Are there such things as bookworms?\" Few are aware that in this creature we encounter another case of masquerading, that these \"destroyers of the Muses\" are common enough pests playing other rôles than those in which they are familiarly known. Some of them are met with daily in the house and elsewhere, and arouse no unusual interest, while the world goes on wondering what a bookworm is like. [...]\n\nA curious and interesting characterization of some species of book insects has come to us in the writings of Christian Mentzel, the German naturalist and philologist, who lived in the seventeenth century. When one reads that he heard the bookworm crow like a cock, and said, \"I knew not whether some local fowl was clamoring or whether there was but a beating in my ears,\" one can not help wondering if there was not something defective in his ear drums; but further on he says, \"I perceived, in the paper whereon I was writing, a little insect that ceased not to carol like very chanticleer, until taking a magnifying glass I assiduously observed him.\" From this one concludes that if the fault were not with his hearing, by which some well-known sounds made by book insects seemed to him like the crowing of a cock, an altogether different cock from the kind we know must have lived in his day. [...]\n\nMany interesting instances of the discovery of bookworms are found in the literature on the subject, showing the keen interest felt in the search for specimens of the \"destroyer,\" many of them revealing the fact that some unique and curious creature which stands alone in its taste for literary food was sought. Mr. Blades reported in 1858 that he found specimens in some black-letter fragments at the Bodleian Library, that were recognized by the librarian, Dr. Bandinel, who crushed them with his thumb, saying, as he wiped his thumb nail on his coat sleeve, \"O yes, they have black heads sometimes.\" The librarian of Hereford Cathedral, the Rev. F. S. Havergal, contributes his observations, covering a period of eighteen years, during which time he reports that he found two distinct species. From his description, however, it appears that he failed to recognize that the two were the larva and imago of the same species. Many cases of the finding of bookworms reported in England and America are not accompanied with sufficient data to determine just what they were. These contribute to the general impression that many have sought but few have found what were thought to be \"genuine bookworms,\" while on every hand are those creatures which under the right conditions become book destroyers.\n\nResearch among the literature concerning library pests reveals the fact that no less than eleven different groups have members that are directly or indirectly accused of injuring books and bindings. The number of species in each group ranges from one to eleven, making a total of over thirty different species. In addition to these there are others against which the evidence is at best only circumstantial. It is not necessary to say that none of these bear any resemblance in any period of their existence to worms, and that the term bookworms is a misnomer. The word has become so firmly fixed in literature, both in its figurative and literal sense, that its misuse will no doubt continue.",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R1",
+     "shown": "So much mystery has gathered around the term bookworm, so much imagery has been employed in depicting the appearance and devastations of this mythical creature, that many have been prepared to accept almost anything, no matter how fabulous, that might be said about this unknown enemy of literature. Reaction against these weird and fantastical accounts is indicated by the question, not infrequently asked, \"Are there such things as bookworms?\"",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this essay on bookworms; topic and period alone do not identify it.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ },
+ {
+  "set_id": "PD2-P5",
+  "slot": "P5",
+  "genre": "natural science (field observation)",
+  "title": "A School for the Study of Life under the Sea (Naples Aquarium)",
+  "author": "Eleanor Hodgen Patterson",
+  "year": 1899,
+  "url": "https://www.gutenberg.org/cache/epub/44297/pg44297.txt",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/pg44297.txt",
+  "source_sha256": "c8e00f2e00e37a9d946284769aadbe5ca82132c33a5ef56a82270389990aa4e5",
+  "pd_reason": "Appletons' Popular Science Monthly (New York: D. Appleton), vol. 54, March 1899 (original article); every US publication before 1930 is in the US public domain. Gutenberg eBook #44297.",
+  "trims": [],
+  "ends": "begins after the article's opening paragraphs on the station's purpose and stops after the first tank, before the sea horses",
+  "modernizations": [
+   {
+    "from": "--",
+    "to": "—"
+   }
+  ],
+  "fame": "Source class: little-known pre-1930 US magazine piece by an unknown author; an original Popular Science Monthly article.",
+  "text": "There is no superfluous room taken up in the Naples aquarium for the fish that may be studied in aquariums elsewhere. Only the rarest, the strangest, the most curious creatures are here to be seen.\n\nBut one room of the beautiful building devoted to the zoölogical station, which stands on that street of Naples running along the sea, is shown to the public. One walks into it from the level of the street, and the transition from the light outside to strange semi-darkness is as if one were to suddenly find himself walking upon the bottom of the sea.\n\nThe light comes only from above, shining through water of many hundreds of cubic feet, on to what seems at first a garden of moving flowers behind tanks of clear glass, which seem, so complete is the illusion, not like glass at all, but water. The visitor walks along dark alleys lined on both sides with these brilliant tanks, and the beautiful sea animals are so close that it seems easy to touch them. It is like being in a narrow, dark theater with the stage all around and about, strangely illuminated, not by footlights, but by a radiance from above.\n\nThere are about thirty tanks in all, and at the very first of these glass-walled vats we stopped entranced. Behind it were piles of rocks shining in the water, and from every crevice grew what seemed brilliant flowers, but of colors so soft and waxlike that they were almost more lovely than our flowers of earth.\n\n\"Surely these deep red ones that cover the rocks to the left are a species of aster, and these are cacti, and these, yes, these reddish-brown one are chrysanthemums and nothing else.\"\n\nBut even as we spoke we saw the petals of first one, then another, flower wave back and forth, and in and out, with curious curling movements, as none of our flowers do, even in the most various winds, and then from above a long pole was suddenly thrust down into the water, at the end of which was stuck a piece of raw red meat about as large as a walnut.\n\nIt was the keeper come to feed his strange charges. Again and again were the bits of meat thrust down into the hearts of the sea flowers, and then we discovered with a kind of shock that these asters and cacti and chrysanthemums were not flowers at all, but flesh-eating animals, and that each waving petal was a mouth, by which the creature sucked in the blood of the meat.\n\nWhen all the juice had been extracted from the meat, the many mouths attached to each seeming flower, that had been tightly curled upon the raw flesh, now unfolded again into their petal-like positions in a circle, one over the other, and the meat, now but a tiny ball of dry pulp, slowly sank to the bottom of the tank. What the calyx was like, or whether it had any body at all, we could not see, so entirely hidden was it behind these many waving, armlike mouths.",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R2",
+     "shown": "There is no superfluous room taken up in the Naples aquarium for the fish that may be studied in aquariums elsewhere. Only the rarest, the strangest, the most curious creatures are here to be seen.",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this piece on the Naples aquarium.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ },
+ {
+  "set_id": "PD2-P6",
+  "slot": "P6",
+  "genre": "science (current, US federal)",
+  "title": "We Don't Know What Will Happen to Bryce Canyon's Hoodoos",
+  "author": "Claire Crise, seasonal ranger, Bryce Canyon National Park (NPS)",
+  "year": 2022,
+  "url": "https://www.nps.gov/articles/000/we-dont-know-what-will-happen-to-bryce-canyons-hoodoos.htm",
+  "local_path": "/Users/andylee/Downloads/saas/classraum/scratchpad/ssat-reading-pd-v2-work/sources/fed-bryce-hoodoos.txt",
+  "source_sha256": "ffa7c22b3f1188f797a8700cde102148748f2085a26e860d89dd9b055f0bf53a",
+  "pd_reason": "Written by an NPS employee (the page: \"Claire Crise is a seasonal ranger at Bryce Canyon National Park. She has worked with the NPS since 2018.\") for the NPS magazine Park Science, vol. 36 no. 1, 2022-06-22; a work of the US federal government is not subject to copyright (17 U.S.C. 105). No third-party quotation in the excerpt. local_path is the HTML-to-text of the page; the raw HTML is saved beside it (sha256 e727c8b136289d6e369fc36875e250aea02daa6a93f47b93b16added6f866fd8).",
+  "trims": [
+   "between paragraphs 1 and 2: a photo caption, an image credit and a section heading (page furniture)",
+   "between paragraphs 3 and 4: a photo caption, an image credit and a section heading",
+   "between paragraphs 5 and 6: a pull-quote repeating a body sentence"
+  ],
+  "ends": "stops at the end of a paragraph (\"...what's to come?\") before the next section",
+  "modernizations": [],
+  "fame": "Source class: recent US-government prose (NPS Park Science, 2022). A short park-magazine essay; not syndicated.",
+  "text": "When we talk about climate change “reshaping” our world, we often mean it’s reshaping our attitudes, actions, and politics. But at Bryce Canyon National Park in Utah, the effects of climate change may be literally reshaping the physical park. Warmer temperatures resulting from climate change could pose a grave threat to the park’s iconic natural rock structures, the hoodoos, whose creation apparently rely on cycles of freezing and thawing water. But definitive science behind how hoodoos are created, much less how warming temperatures will affect them, is maddeningly absent. And without the science, we cannot hope to address or adapt to climate change’s impacts on them. [...]\n\nRoughly fifty million years ago, the park was a swampy, freshwater lake more than 200 miles long but shallow in depth. Over the course of 25 million years, sediments washed into the low-lying lake from surrounding mountain streams and gradually built up in layers. These layers formed the fragile Claron limestone, the material that makes up the park’s beloved hoodoos, which rise up from the landscape in columns, towers, and bridges. Bryce Canyon National Park has the greatest concentration of hoodoos found anywhere on Earth.\n\nHoodoo formation is also affected by elevation. Bryce Canyon ranges from 6,600 to 9,100 feet. Its high elevation means the landscape goes through dramatic temperature fluctuations. Annually, the park has about 170 days where temperatures are both above and below freezing in the same day. This freeze-thaw cycle is believed to be the leading cause of hoodoo creation at Bryce Canyon. The freeze-thaw, physical weathering by ice, which breaks the rocks apart, may be what gives the hoodoos their iconic, angular shapes, with fantastical names like “Thor's Hammer,” “Queen Victoria,” and “The Alligator.” [...]\n\nWhen I heard about climate change and water reshaping the park, I wanted to know how fewer freeze-thaw days would affect hoodoo formation. But when I consulted the park’s physical scientist, Tyra Olstad, I discovered there’s no clear answer to this question. As it turns out, every book, research paper, and article that’s been written about the hoodoos cite a single, unpublished dissertation as the source of the hypothesis that freeze-thaw cycles shape the hoodoos.\n\nThat study is Robert C. Lindquist’s Slope processes and forms at Bryce Canyon National Park, a 1980 dissertation from the University of Utah. Lindquist’s ideas about hoodoo formation are also found in his earlier conference paper, Genesis of the Erosional Forms of Bryce Canyon National Park. For instance, the Bryce Canyon website cites three different works on its hoodoo creation page: Shadows of Time, the Geology of Bryce Canyon National Park; Geology of U.S. Parklands; and Geology of Utah's Parks and Monuments. But in the bibliographies for these works, all mentions of the freeze-thaw cycle are credited to R. C. Lindquist. [...]\n\nI started working at Bryce Canyon in 2021. I have cited this freeze-thaw hoodoo erosion hypothesis in park programs, in answering visitor’s questions, and in creating resources for future rangers, because everything refers to it. But it was only a hypothesis in one person’s thesis. It’s status as the single cited source shows how little we know about how hoodoos are created. And if we don’t know how they’re created, how can we protect them or prepare ourselves for what’s to come?",
+  "recognition": {
+   "cleared": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "id": "R6",
+     "shown": "When we talk about climate change “reshaping” our world, we often mean it’s reshaping our attitudes, actions, and politics. But at Bryce Canyon National Park in Utah, the effects of climate change may be literally reshaping the physical park.",
+     "solver": "fresh Claude subagent ab8bc8f036071b532 (recognition solver 1; saw only recog-1.json, six openings)",
+     "file": "ssat-pd-v2/recog/recog-1.json -> recog-1.out.json",
+     "author": "unknown",
+     "work": "unknown",
+     "note": "I do not recognise this specific article on climate change at Bryce Canyon; a government or park source is plausible from the topic, but that would be a guess, not recognition.",
+     "named": false,
+     "right": null
+    }
+   ]
+  }
+ }
+]

@@ -119,7 +119,8 @@ export function firstSentences(text, n) {
   const out = []; let cur = ''
   for (let i = 0; i < t.length && out.length < n; i++) {
     cur += t[i]
-    const end = /[.!?]/.test(t[i]) && /^["'’”)]*(\s+["'‘“(]?[A-Z]|\s*$)/.test(t.slice(i + 1, i + 6))
+    const abbr = t[i] === '.' && /(^|[\s"'‘“(])(Mr|Mrs|Ms|Dr|St|Rev|Capt|Col|Gen|Prof|Mt|Jr|Sr|[A-Z])$/.test(cur.slice(0, -1))
+    const end = /[.!?]/.test(t[i]) && !abbr && /^["'’”)]*(\s+["'‘“(]?[A-Z]|\s*$)/.test(t.slice(i + 1, i + 6))
     const para = t[i] === '\n' && t[i + 1] === '\n'
     if ((end || para) && cur.trim()) { let j = i + 1; while (/["'’”)]/.test(t[j] ?? '')) { cur += t[j]; j++; i++ } out.push(cur.trim().replace(/\s+/g, ' ')); cur = '' }
   }
@@ -483,6 +484,7 @@ function selftest() {
   expect(checkPassage(P2v, v2items).some(x => /neutral/.test(x)), 'v2: checkPassage applies the polarity rule to PD2- ids (the v1 five-direction set now refuses)')
   expect(checkPassage(P2v, v2items.map(q => q.kind === 'attitude' ? { ...q, choices: ['admiring', 'grateful', 'scornful', 'uneasy', 'resentful'] } : q)).length === 0, 'v2: a polarity-balanced attitude item passes checkPassage')
   expect(firstSentences('It was late. "Go home," she said. He did not.\n\nNext.', 2) === 'It was late. "Go home," she said.', `firstSentences: two sentences with a quote (${firstSentences('It was late. "Go home," she said. He did not.', 2)})`)
+  expect(firstSentences('Mr. Atherton has been the master. A few months ago, Dr. B. said so. Then he left.', 2) === 'Mr. Atherton has been the master. A few months ago, Dr. B. said so.', `firstSentences: abbreviations and initials do not end a sentence (${firstSentences('Mr. Atherton has been the master. A few months ago, Dr. B. said so. Then he left.', 2)})`)
   expect(firstSentences('The wind is low\nupon the hill;\n\nAnd all is still.', 2) === 'The wind is low upon the hill; And all is still.', `firstSentences: a stanza break ends a sentence (${firstSentences('The wind is low\nupon the hill;\n\nAnd all is still.', 2)})`)
   console.log(fail ? `SELFTEST FAILED (${fail})` : 'selftest passed'); process.exit(fail ? 1 : 0)
 }
