@@ -7890,6 +7890,49 @@
       }
     },
     {
+      "id": "ssat-verbal-s21-ana-kept-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-s21-ana",
+      "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+      "status": "shipped",
+      "note": "23 of 25 SSAT Upper Level analogies (owner: one small batch with the above-band rule fixed, then stop). Pre-registered ssat-verbal-s21.prereg.md (34f1dc76): s20 design, tools, stages and gates with ONE rule change (an item drops as above band only if BOTH graders name the same word; break-tested on s20 files: single-flag-only drops kept 43/43, two-grader drops 3/3, s20 qc reproduced exactly). Balance at 25: 10 pair families x 10 (keyed 2) + 5 singleton families x 5 (keyed 1), every family keyed 20.0% per role; 0/8/17 commissioned; no held s18/s19/s20 pair. Pre-freeze probe flagged 7/25, revised once. Frozen 9eb9ed47 (sha e3797c69). All gates passed; 2 per-item drops.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+          "verdict": "Frozen 25 (sha e3797c69): check-all PASS (25/25 slots, key slots 5 each, key strictly longest 0/25 / shortest 0/25, every family keyed 20.0% of its appearances, 125 distinct option strings, tempting 25/25, 0 live words of 4,043, 0 of 1,380 held s18/s19/s20 pairs); stem-duplicates 0 vs 1,398 live SSAT rows; recycled-distractor NO MEASUREMENT; verbalKind analogy 25/25. Kept 23: recycled NO MEASUREMENT, key strictly longest 0/23, shortest 0/23."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+          "verdict": "Options-only on the frozen 25, interleaved with 40 live analogies from 256 eligible (s6 excluded), three samples of one Claude solver (pairwise agreement 64.1%). Candidate 18/75 = 24.0% vs letter 20.0% (+4.0); live 59/120 = 49.2% vs 20.0% (+29.2); E -25.2 PASS (bar +10), live under the 85% ceiling. Unanimous-correct 8.0% vs 32.5%. Precision family gate PASS (measured families: closest cause/effect 4/10 = 40.0%, p 0.22 vs 0.0033; 9 of 15 families under the 6-pick minimum at this size).",
+          "n": 25,
+          "mean": 24,
+          "control": 20,
+          "margin": 4
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+          "verdict": "Items where >=2 samples certainly rejected the same option: 0/25 vs 0/40 (no rejection marked certain: passes, discriminates nothing). Key rejected 11/75 candidate vs 12/120 live."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+          "verdict": "Two Claude graders on independently shuffled renders (seeds 20261133/34): 25/25 and 25/25 on key. Above band: each grader flagged 1/25, the same item and word (dropped under the both-graders rule; the s20 single-grader rule would have dropped the same item and no other). Both graders no tempting distractor 1/25 (the same item). Per-item drops 2: SVA21-01 (grader 1 second defensible), SVA21-21 (both above band, no tempting distractor, free identification). Kept 23. DIFFICULTY GATE PASS: banked (easier label) 3 easy / 18 medium / 2 hard, easy 3/23 = 13.0% <= 48% (graders alone 3/23 and 2/23)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "2c7992e9ebe30a49beb17100fcbb1503324f014a22008a29979d07bd7d8320b5",
+          "verdict": "Gate 4 on the kept 23: 115 distinct option strings (check-recycled-distractor NO MEASUREMENT), key strictly longest 0/23 and shortest 0/23 (bar 30%). Reported, not gated: stored key slots A5/B5/C4/D4/E5; family key rate on the kept set antonyms 1/4, creator/creation 1/4, preparation/act 1/9, synonyms 1/9, every other family 1/5 or 2/8-2/10."
+        }
+      }
+    },
+    {
       "id": "isee-math-s17-2026-10-10",
       "createdAt": "2026-10-10",
       "targetTest": "isee",
