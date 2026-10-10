@@ -125,6 +125,44 @@ export function fullSentence(why) {
   if (!/[.!?]["'’”)]?$/.test(t)) probs.push('the attitude action must be quoted to the end of a sentence')
   return probs
 }
+// ── batch WV11 amendment (READING-BATCH-WV11-2026-10-11.prereg.md): attitude and vocabulary stems VARY within a
+//    fixed list of SSAT-style phrasings. Each stem must match one listed frame, and within one verify call no two
+//    WV11 units may use the same attitude frame, nor the same vocabulary frame (the co-founder's WV6 read called
+//    both stems "authored to a template"). The attitude frames are all character-action: a named character, an
+//    action, a paragraph; never the author, the narrator or a tone. Replaces characterActionStem for WV11 ids. ──
+//    Scoped to WV11 ids ONLY (WV12 runs under its own prereg in parallel and is untouched by this rule).
+const isWV11a = id => /^WV11-/.test(String(id))
+const NAME = "[A-Z][a-z]+(?:[ -][A-Z][a-z]+){0,2}"
+const PARA = '(?:paragraph (?:\\d|one|two|three|four|five|six)|the (?:first|second|third|fourth|fifth|sixth|final|last) paragraph)'
+const PRON = '(?:he|she|they)'
+export const ATT_FRAMES = {
+  suggests: new RegExp(`^${NAME}(?:'s|’s) [^?]{3,}? in ${PARA} suggests that ${PRON} (?:is|are|feels?)$`),
+  shows: new RegExp(`^In ${PARA}, ${NAME}(?:'s|’s) [^?]{3,}? shows that ${PRON} (?:is|are|feels?)$`),
+  when: new RegExp(`^When ${NAME} [^?]{3,}? in ${PARA}, ${PRON} (?:is|are) most likely$`),
+  which: new RegExp(`^Which word best describes how ${NAME} feels? when ${PRON} [^?]{3,}? in ${PARA}\\?$`),
+}
+export const VOC_FRAMES = {
+  'as-used': new RegExp(`^As (?:it is )?used in ${PARA}, (?:the word )?"[^"]+" most nearly means$`),
+  closest: new RegExp(`^In ${PARA}, the word "[^"]+" is closest in meaning to$`),
+  'likely-means': new RegExp(`^The word "[^"]+" in ${PARA} most likely means$`),
+  context: new RegExp(`^In the context of ${PARA}, "[^"]+" most nearly means$`),
+}
+export function stemFrame(kind, prompt) {
+  const s = String(prompt ?? '').replace(/[“”]/g, '"').trim(), F = kind === 'attitude' ? ATT_FRAMES : kind === 'vocabulary-in-context' ? VOC_FRAMES : null
+  if (!F) return { frame: null, probs: [] }
+  const probs = []
+  if (kind === 'attitude' && /\b(author|narrator|speaker|writer)\b|\btone\b|\battitude\b/i.test(s)) probs.push('attitude stem asks about the author/narrator or a tone; WV11 attitude stems are character-action only')
+  const hit = Object.entries(F).filter(([, re]) => re.test(s)).map(([k]) => k)
+  if (hit.length !== 1) probs.push(`${kind} stem matches ${hit.length ? hit.join('+') : 'none'} of the WV11 frames (${Object.keys(F).join(', ')}); use exactly one listed phrasing`)
+  return { frame: hit.length === 1 && !probs.length ? hit[0] : null, probs }
+}
+// batch-level: given [{id, kind, frame}] for WV11 units, refuse any frame used by two units for the same kind
+export function frameVariety(rows) {
+  const probs = [], seen = {}
+  for (const r of rows) if (r.frame) (seen[`${r.kind}|${r.frame}`] ??= []).push(r.id)
+  for (const [k, ids] of Object.entries(seen)) if (new Set(ids.map(x => x.split('/')[0])).size > 1) probs.push(`stem variety: ${k.replace('|', ' frame "')}" is used by ${ids.join(' and ')}; each unit in a batch uses a different phrasing`)
+  return probs
+}
 export const senseId = (pid, qid) => `${pid}.${qid.slice(pid.length + 1)}`
 export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
@@ -166,6 +204,7 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = 
     a1 = { key, j: [ja.labels ?? ja, jb.labels ?? jb] }
   }
   const passages = files.map(f => ({ f, p: JSON.parse(readFileSync(f, 'utf8')) }))
+  const frames = []
   for (const { f, p } of passages) {
     const id = p.passage_id ?? f
     if (!Array.isArray(p.versions) || !Array.isArray(p.questions)) { problems.push(`${id}: versions/questions missing`); continue }
@@ -205,7 +244,8 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = 
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
-      if (isV10(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV10(id) && !isWV11a(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
+      if (isWV11a(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const sf = stemFrame(q.kind, q.prompt); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame }) }
       if (isV11(id) && q.kind === 'attitude') (q.support ?? []).forEach((sp, k) => fullSentence(sp?.why).forEach(x => problems.push(`${tag} v${k}: ${x}`)))
       if (isV11(id) && q.kind === 'vocabulary-in-context') {
         const sid = senseId(id, q.qid)
@@ -328,6 +368,8 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = 
     }
     notes.push(`${id}: words ${vl.join('/')}; negations per version ${negs.join('/')}; kills naming the rival ${named}/${nk}; lexical word-match solver ${lexHits.toFixed(1)}/${lexN} (20% = ${(lexN / 5).toFixed(1)})${isV4(id) ? `; ${isV5(id) ? `A1 lexical flags ${a1Flagged}, A1 absent ${a1AbsentN}` : `v4 absent-option hits ${v4absent}`}, named-attitude hits ${v4attn}` : ''}`)
   }
+  frameVariety(frames).forEach(x => problems.push(x))
+  if (frames.length && !quiet) notes.push(`WV11 stem frames: ${frames.map(r => `${r.id.split('/')[0]} ${r.kind === 'attitude' ? 'att' : 'voc'}=${r.frame ?? '?'}`).join(', ')}`)
   if (!quiet) notes.forEach(n => console.log('  ' + n))
   if (problems.length) { problems.forEach(x => console.log('  PROBLEM ' + x)); die(`${problems.length} mechanical problem(s)`) }
   console.log(`  verify OK: ${passages.length} passage(s), ${passages.reduce((a, x) => a + x.p.questions.length, 0)} questions, ${passages.length * 5} versions, ${passages.reduce((a, x) => a + x.p.questions.length * 5 * 4, 0)} kill quotes verbatim`)
@@ -697,6 +739,38 @@ function nullDist(outdir, args) {
   console.log(`  exact null over 5^${groups.length} draws: observed ${obs}/${n}; mean ${mean.toFixed(1)} (${(100 * mean / n).toFixed(1)}%); P(>= observed) = ${pge.toFixed(3)}; P(> 40%, i.e. >= ${bar}) = ${pbar.toFixed(3)}`)
 }
 
+// WV11 amendment break test for stemFrame/frameVariety (READING-BATCH-WV11-2026-10-11.prereg.md). Exit 1 on any miss.
+function selftestFrames() {
+  let fail = 0; const ok = (c, m) => { console.log(`${c ? 'ok  ' : 'FAIL'} ${m}`); if (!c) fail++ }
+  const att = s => stemFrame('attitude', s), voc = s => stemFrame('vocabulary-in-context', s)
+  // every tone stem of WV6/WV8/WV9 is refused
+  for (const s of ["The narrator's attitude toward the outcome is best described as", "The author's attitude toward the board's decision is best described as",
+    "The author's attitude toward the committee's decision is best described as", "The author's attitude toward the team's approach is best described as",
+    'Which best describes the author\'s attitude toward the events in the passage?', "In the final paragraph, the author's attitude is best described as",
+    "The narrator's attitude in the final paragraph is most accurately described as", "In paragraph 3, the narrator's attitude is"]) ok(att(s).frame === null && att(s).probs.length, `refuses tone stem: ${s}`)
+  // the three WV10 character-action stems match "suggests"
+  const wv10 = ["Abel's reply to the manager in paragraph 4 suggests that he is", "Hal Brigg's answer to Nora's request in paragraph 4 suggests that he is", "Vell's reply to Arkin in paragraph 4 suggests that she is"]
+  for (const s of wv10) ok(att(s).frame === 'suggests', `WV10 stem -> suggests: ${s}`)
+  // one constructed stem per frame passes
+  const cons = { suggests: "Mara's reply to the inspector in paragraph 4 suggests that she is", shows: "In paragraph 3, Tomas's answer to his aunt shows that he is",
+    when: 'When Ines sets down the lantern in paragraph 4, she is most likely', which: 'Which word best describes how Odile feels when she rewinds the reel in paragraph 5?' }
+  for (const [k, s] of Object.entries(cons)) ok(att(s).frame === k, `constructed ${k}: ${s}`)
+  // near-misses refuse: no paragraph, a tone word, an unlisted verb
+  for (const s of ["Mara's reply to the inspector suggests that she is", "In paragraph 3, Tomas's tone shows that he is", "Mara's reply in paragraph 4 implies that she is", 'How does Mara feel in paragraph 4?']) ok(att(s).frame === null && att(s).probs.length > 0, `refuses near-miss: ${s}`)
+  // vocabulary: every earlier WV stem is "as-used"; one constructed per frame; an unlisted phrasing refuses
+  for (const s of ['As it is used in the fourth paragraph, the word "struck" most nearly means', 'As it is used in the third paragraph, the word "raised" most nearly means']) ok(voc(s).frame === 'as-used', `earlier stem -> as-used: ${s}`)
+  const vc = { 'as-used': 'As used in paragraph 2, "pitch" most nearly means', closest: 'In paragraph 3, the word "pitch" is closest in meaning to', 'likely-means': 'The word "pitch" in paragraph 3 most likely means', context: 'In the context of paragraph 2, "pitch" most nearly means' }
+  for (const [k, s] of Object.entries(vc)) ok(voc(s).frame === k, `constructed ${k}: ${s}`)
+  for (const s of ['What does "pitch" mean in paragraph 2?', 'The word "pitch" most nearly means']) ok(voc(s).frame === null && voc(s).probs.length > 0, `refuses unlisted: ${s}`)
+  // variety: WV10's three units (all "suggests", all "as-used") are refused; three distinct frames pass
+  const wv10rows = ['P01', 'P02', 'P03'].flatMap((u, i) => [{ id: `WV11-${u}/q5`, kind: 'attitude', frame: att(wv10[i]).frame }, { id: `WV11-${u}/q4`, kind: 'vocabulary-in-context', frame: 'as-used' }])
+  ok(frameVariety(wv10rows).length === 2, `WV10-shaped batch refused on both kinds (${frameVariety(wv10rows).length} problems)`)
+  const good = [['which', 'closest'], ['shows', 'likely-means'], ['when', 'context']].flatMap(([a, v], i) => [{ id: `WV11-P0${i + 1}/q5`, kind: 'attitude', frame: a }, { id: `WV11-P0${i + 1}/q4`, kind: 'vocabulary-in-context', frame: v }])
+  ok(frameVariety(good).length === 0, 'three distinct frames per kind pass')
+  ok(frameVariety([good[0], { ...good[2], frame: 'which' }]).length === 1, 'two units sharing one attitude frame refused')
+  console.log(fail ? `SELFTEST-FRAMES: ${fail} FAILED` : 'SELFTEST-FRAMES: all ok'); process.exit(fail ? 1 : 0)
+}
+
 const [cmd, ...rest] = process.argv.slice(2)
 if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
@@ -711,5 +785,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0], rest.includes('--iso-all'))
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))
+  else if (cmd === 'selftest-frames') selftestFrames()
   else die('usage: verify | draw | build | score | null')
 }

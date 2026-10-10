@@ -71,8 +71,8 @@ And these rules for every wrong choice:
   must not be settled by the paragraph's topic alone: the five purposes should all be things that
   paragraph COULD be doing.
 - **Vocabulary-in-context** (SAT words-in-context style, STRICTER than before):
-  - Stem: 'As it is used in the [Nth] paragraph, the word "X" most nearly means'. X appears in the same
-    form, in that paragraph, in all five versions. In version k exactly one sense fits X's sentence:
+  - Stem: use **your unit's assigned vocabulary phrasing** from the table in "Stem phrasings" below (a
+    checker enforces it). X appears in the same form, in that paragraph, in all five versions. In version k exactly one sense fits X's sentence:
     sense k.
   - **The five senses must be UNRELATED meanings of X, overlapping in NO context.** A checker gives two
     readers every pair of your five glosses and asks whether any ordinary sentence could support both.
@@ -85,9 +85,9 @@ And these rules for every wrong choice:
   - No transparent words and no rare dictionary senses.
 - **Attitude: CHARACTER-ACTION form.** The attitude question is about what a CHARACTER feels, as shown
   by one specific action or reply. It is never about the author's or narrator's tone.
-  - **Stem shape** (a checker enforces it): `"<Name>'s <specific action or reply> in paragraph <N>
-    suggests that <he/she/they> <feels/is>"`, for example "Mara's reply to the inspector in paragraph 4
-    suggests that she is".
+  - **Stem shape:** use **your unit's assigned attitude phrasing** from the table in "Stem phrasings"
+    below (a checker enforces it). Every phrasing names the character, the action or reply, and the
+    paragraph, and is never about the author, the narrator or a tone.
     - The stem is identical in all five versions, so that action or reply exists in every version, in
       the same paragraph number.
     - **What she actually does or says differs between versions,** and in version k it licenses
@@ -132,6 +132,23 @@ And these rules for every wrong choice:
   - **The same licensing checker applies.** For every version, two readers must find exactly one
     defensible feeling, and must quote a sentence excluding each of the other four.
   - **Declare `"narrator_role"`** as "observer" or "participant".
+
+## Stem phrasings (vary them: a checker enforces your unit's row)
+
+A person who read our last approved batch said the attitude and vocabulary questions read as "authored to
+a template". Real SSAT forms phrase these two questions in several ways, so each unit in this batch uses a
+DIFFERENT phrasing. Use exactly your unit's row, filled in naturally. Write a stem that a real test would
+print, not a fill-in of the pattern: the action named in it should be specific ("sets the last capstone",
+"answers the clerk's letter"), and the paragraph must be the same in all five versions.
+
+| unit | attitude stem (character-action) | vocabulary stem |
+|---|---|---|
+| P01 | `Which word best describes how <Name> feels when <he/she/they> <specific action> in paragraph <N>?` | `In paragraph <N>, the word "X" is closest in meaning to` |
+| P02 | `In paragraph <N>, <Name>'s <specific action or reply> shows that <he/she/they> <is/feels>` | `The word "X" in paragraph <N> most likely means` |
+| P03 | `When <Name> <specific action> in paragraph <N>, <he/she/they> is most likely` | `In the context of paragraph <N>, "X" most nearly means` |
+
+Write `<N>` as a digit ("paragraph 4"). The five attitude choices must read grammatically after your
+stem (for P01, the stem is a question and each choice is one word that answers it).
 
 ## The five worlds must be equally likely from the options alone
 
