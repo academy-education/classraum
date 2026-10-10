@@ -1,0 +1,33 @@
+{
+ "candidate": {
+  "KK": null,
+  "nKK": 0,
+  "SW": null,
+  "nSW": 0,
+  "XW": null,
+  "nXW": 0,
+  "DD": null,
+  "channel": null,
+  "KKminusSW": null,
+  "allDiag": 0.21333333333333335,
+  "nDiag": 150,
+  "allCross": 0.16333333333333333,
+  "nCross": 150,
+  "allChannel": 0.05000000000000002,
+  "kkFitBoth": 0,
+  "kkClash": 0
+ },
+ "live": {
+  "KK": 0.592391304347826,
+  "nKK": 92,
+  "DD": 0.03985507246376811,
+  "nDD": 276,
+  "channel": 0.552536231884058,
+  "kkFitBoth": 53,
+  "kkClash": 1
+ },
+ "agreement": {
+  "n": 668,
+  "same": 618
+ }
+}

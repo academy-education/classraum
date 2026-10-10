@@ -8186,6 +8186,25 @@
           "margin": 53.1
         }
       }
+    },
+    {
+      "id": "ssat-reading-wv11-2026-10-11",
+      "createdAt": "2026-10-11",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-wv11",
+      "contentSha": "e3f5c0f075b6bc8000fbf40de4f042650e47f6e59162297cfb7a8edf42aad055",
+      "status": "killed",
+      "note": "WV6 whole-passage five-version method (owner: keep SSAT Reading fully AI-authored) with WV10's character-action attitude item, a full-sentence no-irony attitude action, a vocabulary sense-overlap pre-check, and (amendment) varied attitude/vocabulary stem phrasings plus a REPORT-ONLY consistency channel. Pre-registered READING-BATCH-WV11-2026-10-08.prereg.md (75c2bc3a) + READING-BATCH-WV11-2026-10-11.prereg.md (10488468) before any author; stage-0 artefacts f2aa6ac3. contentSha = sha256 of the three post-fix units (nothing frozen). STOPPED at stage 0: P01 and P02 passed after one fix round but P01 was refused by the grouped screen (8/18 on one version, limit 7); P03 still refused (vocabulary sense overlap by both judges; one licensing judge names a second attitude answer on two versions with text unchanged from a 4/4-clean round 0). 1 of 3 units passed; attitude stop rule fired. Consistency channel (report-only): live keys +0.592 vs distractors +0.040 (+0.553); WV candidates all-diagonal +0.050. Nothing inserted. READING-BATCH-WV11-2026-10-11.md; REGISTER section 5, 2026-10-11.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "contentSha": "e3f5c0f075b6bc8000fbf40de4f042650e47f6e59162297cfb7a8edf42aad055",
+          "verdict": "ssat-wv.mjs verify (WV11 rules incl. stemFrame/frameVariety) + A1 + licensing (WV11 no-irony prompt, two judges per version file) + sense overlap (agreement rule), one fix round, then the grouped screen. Round 0: mechanical 14/9/13, A1 0 absent, licensing 30/30 clean (attitude 15/15), senses refused 3/3 vocabulary sets. Round 1: P01 verify OK, P02 verify OK; P03 refused (pitch throw/field and slope/field, both judges; attitude v0 and v1 one judge each 'amused'). Grouped screen: P01 2/8/1/4/3 of 18 REFUSE, P02 6/3/2/3/4 PASS. Batch needs 2 passing units: 1. FAIL."
+        }
+      }
     }
   ],
   "auditedCohorts": [

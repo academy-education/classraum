@@ -1,0 +1,8 @@
+CONSISTENCY CHANNEL (REPORT-ONLY; no bar). fit=+1, unrelated=0, clash=-1; each pair = mean of 2 judges.
+  judge agreement: 618/668 pairs rated identically
+  NO DRAW (--draw none): only the all-diagonal candidate view is defined; KK/SW/XW/DD below are NaN by construction
+  candidate (drawn): KK NaN (n=0; both-judges-fit 0, any-clash 0)  SW NaN (n=0)  XW NaN (n=0)  DD=(4SW+12XW)/16 NaN
+  candidate CHANNEL KK-DD NaN   KK-SW NaN   all-diagonal view diag +0.213 (n=150) - cross +0.163 (n=150) = +0.050
+  live control:      KK +0.592 (n=92; both-judges-fit 53, any-clash 1)  DD +0.040 (n=276)
+  live CHANNEL KK-DD +0.553
+  candidate minus live channel: NaN
