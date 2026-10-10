@@ -1,0 +1,475 @@
+[
+ {
+  "qid": "PD2-P1-1",
+  "set_id": "PD2-P1",
+  "kind": "main-idea",
+  "difficulty": "hard",
+  "prompt": "Which of the following best describes the passage as a whole?",
+  "choices": [
+   "a girl's proud account of her household work that reveals, as she herself tells it, how much the family relies on her",
+   "a girl's proud account of her household work that reveals, without her knowing it, the harm she does",
+   "a girl's proud account of her household work that reveals a jealousy of her sister she hides from herself",
+   "a girl's sorry account of her household mischief that reveals how the family's scolding has changed her",
+   "a girl's proud account of her household work that reveals her wish to be treated as one of the grown-ups"
+  ],
+  "answer": 1,
+  "why": "dumped it where nobody can see it, in a dark corner of the closet, under mamma's dresses",
+  "explanation": "Every deed she calls help does damage (a broken basin, rags in papa's collar drawer, dust hidden under mamma's dresses, lace about to be cut), but she reports each one as useful work and never sees the harm.",
+  "kills": {
+   "0": {
+    "lure": "character-not-author",
+    "quote": "I don't know what they'd have done without me yesterday",
+    "reason": "That the family relies on her is the narrator's own boast; what the passage shows is the extra work she makes, such as Maria changing all her clothes.",
+    "tempts": "The narrator says it outright, and papa's and Maria's remarks sound like praise if taken at face value."
+   },
+   "2": {
+    "lure": "detail-as-whole",
+    "quote": "Bessie isn't so much use as I am.",
+    "reason": "The comparisons with Bessie fill only the third and fourth paragraphs, and they show her sure she is the more useful one, not envious; the passage as a whole follows her deeds of 'help'.",
+    "tempts": "The narrator keeps running down her sister, which a clever reader may take for hidden jealousy."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "It wasn't my fault that it slid out of my hands and broke itself.",
+    "reason": "She is never sorry and is never shown being scolded; she blames the basin and Maria and goes on calling her deeds help.",
+    "tempts": "The opening mentions the charge of mischief, and the deeds are plainly mischief, so a reader expects a confession."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "says I will be a great help when I am big",
+    "reason": "Growing up comes up only in the parents' remarks; the narrator never wishes to be older and boasts of the use she is now.",
+    "tempts": "The mother speaks of 'when I am big', and the girl copies adult tasks such as sewing and sweeping."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-1",
+  "set_id": "PD2-P3",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The poem as a whole is best summed up by which statement?",
+  "choices": [
+   "Flowers upset by their copies are calmed by being shown what no copy can share.",
+   "Flowers upset by their copies are calmed by learning that to be copied is a tribute.",
+   "Flowers upset by their copies are divided until a joke restores their good humor.",
+   "Flowers upset by their copies are reminded that all beauty, natural or copied, fades.",
+   "Flowers upset by their copies are comforted that the copies would fool the bees."
+  ],
+  "answer": 0,
+  "why": "Are they fragrant? Can you smell them?",
+  "explanation": "The violet ends the fuss by asking whether the copies have scent or can grow new blossoms: things only living flowers have. Content, the others stop worrying.",
+  "kills": {
+   "1": {
+    "lure": "prior-knowledge",
+    "quote": "Are they fragrant? Can you smell them?",
+    "reason": "The violet never calls copying a compliment; she calms them by pointing to the scent and renewal the copies lack.",
+    "tempts": "Imitation as flattery is a familiar idea, and the daisy speaks of being complimented."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "from sev'ral other quarters",
+    "reason": "The poppy's pun is met with disapproval, so it divides the flowers; the violet's questions, not a joke, end the fuss.",
+    "tempts": "The poppy jokes and the clover laughs, so the poem has plenty of humor before the calm."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "Take the places of those dead?",
+    "reason": "The violet grants the copies fade, but her point is that living plants grow new blossoms and copies cannot.",
+    "tempts": "Fading is named in the violet's speech, right where she settles the matter."
+   },
+   "4": {
+    "lure": "detail-as-whole",
+    "quote": "If the honey-bee had been there",
+    "reason": "Fooling the bee is only the clover's passing wish in the third stanza; it is not what quiets the meadow.",
+    "tempts": "The bee is a vivid, comic moment and does involve the copies."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-3",
+  "set_id": "PD2-P3",
+  "kind": "inference",
+  "difficulty": "medium",
+  "prompt": "The replies to the poppy's pun in the second stanza indicate the speakers",
+  "choices": [
+   "felt that the poppy, half asleep, had not grasped what had happened",
+   "felt that the pun was clever but were too timid to laugh aloud",
+   "felt that being copied was too grave a matter to be joked about",
+   "felt that the poppy ought to beg pardon for the pun before going on",
+   "felt, as the voice from the marsh does, that the copies were nothing to fuss over"
+  ],
+  "answer": 2,
+  "why": "don't joke on such a subject",
+  "explanation": "The innocent asks the poppy not to joke 'on such a subject', and others disapprove: they treat the copying as too serious for a pun.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "In a tone of sleepy fun",
+    "reason": "'Sleepy' describes the poppy's tone, not a failure to understand; the objection is to joking at all.",
+    "tempts": "The poppy's sleepiness is named in the same stanza."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "Said an innocent, rather low",
+    "reason": "The innocent speaks low, but what she says rejects the joke, and the others add a disapproving 'No'.",
+    "tempts": "Speaking 'rather low' suggests shyness."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "Only, please, excuse the pun.",
+    "reason": "It is the poppy herself who asks pardon for the pun; the replies ask her not to joke on the subject.",
+    "tempts": "Pardon for the pun is asked in the very lines the replies answer."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "What a foolish fuss, my field-mates",
+    "reason": "That the copies are no cause for fuss is the violet's view in the fourth stanza, which corrects these very flowers.",
+    "tempts": "The flowers do end up agreeing with the violet, at the close of the poem."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-5",
+  "set_id": "PD2-P3",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The poem's opening words, \"Such a hubbub in the meadow!\", mainly serve to",
+  "choices": [
+   "imply a breeze is stirring the grass before any of the blooms talk",
+   "hint that the imitations have been carried into the meadow to be seen",
+   "set up the merry mood the pun that soon follows will carry further",
+   "announce the arrival of the violet, whose song sets the meadow talking",
+   "establish the uproar that the violet will later dismiss as needless"
+  ],
+  "answer": 4,
+  "why": "Suddenly through all this chatter",
+  "explanation": "The 'hubbub' and 'rustling' are the flowers' agitated chatter, which the violet's voice cuts through and calls 'a foolish fuss'.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "Suddenly through all this chatter",
+    "reason": "The rustling is the flowers' chatter, as the fourth stanza names it, not wind.",
+    "tempts": "Rustling grass usually means a breeze, and breezes appear later in the poem."
+   },
+   "1": {
+    "lure": "unsupported",
+    "quote": "When I saw a head on canvas",
+    "reason": "The poem never says where the copies are; the clover only says she saw one.",
+    "tempts": "The flowers react as if the copies were in front of them."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "\"I feel injured,\" sighed the daisy",
+    "reason": "The hubbub is the stir of offended flowers, as the daisy's first words show; the poppy's pun is disapproved, not carried along by the mood.",
+    "tempts": "The poppy's joke follows soon after, and 'hubbub' can sound merry."
+   },
+   "3": {
+    "lure": "reversed",
+    "quote": "Came a voice, like music's flow",
+    "reason": "The violet's voice comes through the chatter and ends it; it does not start the talking.",
+    "tempts": "The violet is the poem's central speaker, and her song is closely tied to the meadow's talk."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-1",
+  "set_id": "PD2-P2",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "Which choice best describes the main focus of the passage?",
+  "choices": [
+   "a class's affection for its departing master and the farewell gift the girls plan for him",
+   "a girl's envy of a wealthy classmate and her longing to match that classmate's generosity",
+   "a girl's hurt at being kept out of a class gift and her mother's defense of that refusal",
+   "a mother's grief over the family's lack of money and her daughter's efforts to console her",
+   "a girl's anger at the refusal and her slow discovery that it hides her parents' pride in her"
+  ],
+  "answer": 2,
+  "why": "it is absolute necessity, and not lack of sympathy, that forces Papa to say no",
+  "explanation": "The father's refusal shuts the narrator out of the class album, and most of the passage is her distress and her mother's explanation that necessity, not coldness, makes him say no.",
+  "kills": {
+   "0": {
+    "lure": "detail-as-whole",
+    "quote": "But Father vetoed it at once.",
+    "reason": "The gift plan fills only the opening; it is dropped in the third paragraph, and the rest of the passage is about the refusal and the talk with Mother.",
+    "tempts": "The first two paragraphs are all about Mr. Atherton and the album, so a reader who weighs the opening heavily takes them as the subject."
+   },
+   "1": {
+    "lure": "half-right",
+    "quote": "Of course I was enthusiastic about it",
+    "reason": "Florence's wealth is noted in passing, but the narrator welcomes her plan; her trouble is with her father's refusal at home, not with Florence.",
+    "tempts": "The narrator does remark that Florence's father is rich and that some girls must count every dollar, which reads like envy."
+   },
+   "3": {
+    "lure": "reversed",
+    "quote": "Mother is a born comforter.",
+    "reason": "It is the mother who comes upstairs to comfort the crying daughter, not the other way round.",
+    "tempts": "The narrator wonders whether Mother goes without things and feels conscience-stricken at her look, so the roles are easy to swap."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "\"Well, if he would only soften it a little,\" I couldn't help saying.",
+    "reason": "At the end she still wishes he would soften his refusals; she reaches no discovery about his feelings for her.",
+    "tempts": "Mother insists the refusal comes from necessity, not lack of sympathy, which a reader may stretch into hidden affection."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-2",
+  "set_id": "PD2-P2",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the second paragraph, the album Florence proposed",
+  "choices": [
+   "would be paid for by one wealthy girl as a present from the whole class",
+   "would be handed to the master on the first of the two examination days",
+   "would cost each of the girls eleven dollars and twenty-five cents",
+   "would hold a picture of each pupil in the Centreville Academy",
+   "would have its price split evenly among the fifteen girls"
+  ],
+  "answer": 4,
+  "why": "that, you see, would be only seventy-five cents apiece",
+  "explanation": "The album cost eleven dollars and twenty-five cents, and with fifteen girls that came to seventy-five cents each: the price was to be shared equally.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "would be only seventy-five cents apiece",
+    "reason": "Each girl was to pay a share; Florence's rich father is mentioned only to explain why her ideas run expensive.",
+    "tempts": "The sentence just before the plan says Florence's father is rich and she never thinks twice about a dollar."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "present it to Mr. Atherton before the company, after he had closed the school",
+    "reason": "It was to be presented after he had closed the school, not at the start of the examination.",
+    "tempts": "The examination 'during the last two days of his stay' is named right before the plan, so the two moments blur."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "would be only seventy-five cents apiece",
+    "reason": "Eleven dollars and twenty-five cents is the price of the whole album; each girl's share was seventy-five cents.",
+    "tempts": "It repeats the exact sum given in the passage and only misassigns it from the total to each girl."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "There are fifteen girls in our class",
+    "reason": "'All our pictures' means the pictures of the fifteen girls in the narrator's class, not of the whole academy.",
+    "tempts": "He has been master 'ever since I can remember', and 'all our pictures' sounds like the whole school."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-6",
+  "set_id": "PD2-P2",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "In the second paragraph, the narrator's aside beginning \"But then her father is rich\" mainly serves to",
+  "choices": [
+   "suggest that Florence means to buy the gift with her own money",
+   "explain why the girls chose Florence to make the presentation speech",
+   "hint that she resents Florence and hopes her plan will fail",
+   "introduce the gap in means that makes the plan a hardship for some",
+   "establish that her own family is the poorest one in Centreville"
+  ],
+  "answer": 3,
+  "why": "It would be too expensive for some of us",
+  "explanation": "By noting that Florence never thinks twice about a dollar 'as some of us are obliged to do', the narrator sets up the difference in means that leads Father to call the plan too expensive for some.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "would be only seventy-five cents apiece",
+    "reason": "The cost was to be split among all fifteen girls; Florence's money explains her ideas, not who pays.",
+    "tempts": "If her father is rich, a reader assumes she will cover the expensive album herself."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "The girls wished me to make the presentation address.",
+    "reason": "The girls chose the narrator to speak, not Florence.",
+    "tempts": "Florence thought of the plan and found the album, so she seems the natural one to present it."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "Of course I was enthusiastic about it",
+    "reason": "The narrator embraces the plan eagerly; her remark about money does not turn her against it.",
+    "tempts": "The remark that Florence never thinks twice about a dollar has an edge that sounds like resentment."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "as some of us are obliged to do",
+    "reason": "She counts herself among 'some of us'; nothing ranks her family as the poorest anywhere.",
+    "tempts": "She plainly feels short of money compared with Florence, and a reader stretches that into the poorest family."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-3",
+  "set_id": "PD2-P4",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The final sentence of the first paragraph implies most people",
+  "choices": [
+   "often come across the insects that harm books without knowing what those insects do",
+   "accept every tale of the bookworm without asking for any proof",
+   "recognize the bookworm in old books without knowing it also lives in houses",
+   "fear the household pests they meet daily without suspecting they also harm books",
+   "hunt for the bookworm in their own homes without finding a single specimen"
+  ],
+  "answer": 0,
+  "why": "Some of them are met with daily in the house and elsewhere, and arouse no unusual interest",
+  "explanation": "The insects that damage books are common household pests that people see every day, yet people still wonder what a bookworm looks like: they have met it without knowing it.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "Reaction against these weird and fantastical accounts is indicated by the question",
+    "reason": "Only 'many' are said to accept the tales, and others react against them by asking whether bookworms exist at all.",
+    "tempts": "The paragraph opens by saying many are ready to accept almost anything about the bookworm."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "playing other rôles than those in which they are familiarly known",
+    "reason": "People know these insects in their household roles and do not know them as book destroyers, the reverse of this.",
+    "tempts": "It keeps the passage's pairing of books and houses and only swaps which role is the familiar one."
+   },
+   "3": {
+    "lure": "half-right",
+    "quote": "arouse no unusual interest",
+    "reason": "People do not suspect the pests harm books, but they do not fear them either; the insects draw no special attention.",
+    "tempts": "Pests met daily in the house sound like something people dread, and the rest of the choice matches the passage."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "many have sought but few have found",
+    "reason": "The fruitless searching belongs to the collectors of the third paragraph, not to ordinary people at home.",
+    "tempts": "The house is mentioned in this very sentence, and the passage does describe people searching and rarely finding."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-6",
+  "set_id": "PD2-P4",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "In the first paragraph, the author quotes the question \"Are there such things as bookworms?\" mainly to",
+  "choices": [
+   "show that the extravagant tales provoked doubt in some readers",
+   "show how widely the fabulous tales of the creature are still believed",
+   "introduce his own view that insects play no real part in damaging books",
+   "point ahead to the collectors who sought specimens and seldom found them",
+   "mock readers who know too little about insects to ask such things wisely"
+  ],
+  "answer": 0,
+  "why": "Reaction against these weird and fantastical accounts is indicated by the question",
+  "explanation": "The author cites the question as evidence that the wild accounts of the bookworm have led some people to doubt the creature exists.",
+  "kills": {
+   "1": {
+    "lure": "reversed",
+    "quote": "Reaction against these weird and fantastical accounts is indicated by the question",
+    "reason": "The question is offered as a reaction against the tales, a sign of disbelief rather than belief.",
+    "tempts": "It sits in a paragraph about how many will accept anything about the bookworm, so a reader attaches it to that."
+   },
+   "2": {
+    "lure": "too-far",
+    "quote": "those creatures which under the right conditions become book destroyers",
+    "reason": "The author holds that many common insects do destroy books; only the name bookworm is wrong.",
+    "tempts": "He later calls the term a misnomer and the creature mythical, which a reader stretches into denying the damage."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "many have sought but few have found",
+    "reason": "The question comes from people reacting to the tales; the searching collectors belong to the third paragraph.",
+    "tempts": "Asking whether bookworms exist sounds like the natural question of people who looked and found nothing."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "Few are aware that in this creature we encounter another case of masquerading",
+    "reason": "The author explains the confusion as a case of masquerading insects; he does not ridicule those who ask.",
+    "tempts": "'Few are aware' can sound condescending, as though the author looks down on the questioners."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-3",
+  "set_id": "PD2-P6",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The fifth paragraph suggests the park's own website",
+  "choices": [
+   "rests on Lindquist's hypothesis by way of the three works it cites",
+   "offers three separate lines of support for the freeze-thaw idea",
+   "reflects the caution Olstad voiced to the author on how hoodoos form",
+   "corrects the error that the author later found in the works it cites",
+   "cites works that set out the freeze-thaw idea before Lindquist did"
+  ],
+  "answer": 0,
+  "why": "But in the bibliographies for these works, all mentions of the freeze-thaw cycle are credited to R. C. Lindquist.",
+  "explanation": "The website cites three works, and those works all credit their freeze-thaw claims to Lindquist, so the website depends on his hypothesis without naming it directly.",
+  "kills": {
+   "1": {
+    "lure": "stops-short",
+    "quote": "all mentions of the freeze-thaw cycle are credited to R. C. Lindquist",
+    "reason": "The three works all trace their freeze-thaw claims to Lindquist, so they are one line of support, not three.",
+    "tempts": "Taken at face value, three different works cited on one page look like three independent sources."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "I discovered there’s no clear answer to this question",
+    "reason": "The doubt came from the author's talk with Olstad; the website is given as an example of the usual reliance on the theory.",
+    "tempts": "Olstad is the park's scientist, so a reader assumes the park's website shares her caution."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "For instance, the Bryce Canyon website cites three different works",
+    "reason": "'For instance' introduces the website as one more case of the same reliance, not as a correction of it.",
+    "tempts": "An official park source sounds authoritative, so a reader expects it to be the careful one."
+   },
+   "4": {
+    "lure": "reversed",
+    "quote": "But in the bibliographies for these works, all mentions of the freeze-thaw cycle are credited to R. C. Lindquist.",
+    "reason": "The works credit Lindquist for the idea, so he came first and they followed.",
+    "tempts": "Published books seem older and more established than a dissertation, so the order is easy to flip."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-5",
+  "set_id": "PD2-P6",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the first paragraph, the author's attitude is best described as",
+  "choices": [
+   "enthusiastic about plans to help the hoodoos adapt to a hotter climate",
+   "scornful of people who treat climate change as a matter of politics",
+   "approving of the new attitudes that climate change has inspired in people",
+   "apprehensive about what rising temperatures may do to the hoodoos",
+   "mournful for hoodoos that climate change has already worn away"
+  ],
+  "answer": 3,
+  "why": "could pose a grave threat to the park’s iconic natural rock structures",
+  "explanation": "She calls warming a possible grave threat to the hoodoos and worries that without science nothing can be done: she is apprehensive about their future.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "And without the science, we cannot hope to address or adapt to climate change’s impacts on them.",
+    "reason": "She mentions no plans; she says that without the science adapting is not yet possible.",
+    "tempts": "The paragraph speaks of addressing and adapting to climate change's impacts on the hoodoos."
+   },
+   "1": {
+    "lure": "",
+    "quote": "we often mean it’s reshaping our attitudes, actions, and politics",
+    "reason": "She says 'we', counting herself in, and notes the usual meaning only to contrast it; there is no scorn.",
+    "tempts": "The opening sentence links climate change talk to politics and then turns away from it."
+   },
+   "2": {
+    "lure": "",
+    "quote": "But at Bryce Canyon National Park in Utah, the effects of climate change may be literally reshaping the physical park.",
+    "reason": "The changed attitudes are mentioned only to be set against the literal change she cares about; she does not praise them.",
+    "tempts": "The first sentence does say climate change is reshaping our attitudes and actions."
+   },
+   "4": {
+    "lure": "",
+    "quote": "Warmer temperatures resulting from climate change could pose a grave threat",
+    "reason": "The threat is possible and in the future ('could pose'); she names no hoodoo already lost.",
+    "tempts": "The paragraph speaks of a grave threat and the park being reshaped, which sounds like loss."
+   }
+  }
+ }
+]

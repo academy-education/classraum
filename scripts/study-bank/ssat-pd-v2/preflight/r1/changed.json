@@ -1,0 +1,346 @@
+[
+ {
+  "qid": "PD2-P1-3",
+  "set_id": "PD2-P1",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The narrator's complaint in the third paragraph that Bessie \"didn't even pick up the broken pieces\" suggests that the narrator",
+  "choices": [
+   "wants Maria to think her sister lazier than she really is",
+   "envies the care her sister gives a doll she prefers to the rest",
+   "thinks her sister too little to be trusted around broken crockery",
+   "blames her sister for obeying an order Maria had given her",
+   "resents that Maria praised her sister's help and not her own"
+  ],
+  "answer": 3,
+  "why": "Maria told her not to touch 'em, for fear of getting her feet wet and cutting her fingers.",
+  "explanation": "The narrator herself reports that Maria told Bessie not to touch the pieces, yet still counts it against Bessie.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "Maria told her not to touch 'em",
+    "reason": "She reports the very order that excuses Bessie, which a child deliberately running her sister down would leave out; she misjudges, she does not scheme.",
+    "tempts": "The complaint is unfair, so a reader may assume the unfairness is on purpose."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "She thinks Susan is the best of all our dolls, but I don't.",
+    "reason": "The narrator does not like the doll better; she finds Susan loose-jointed and second-rate.",
+    "tempts": "Bessie spends the scene tending the doll, so jealousy over it seems a natural motive."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "Bessie is bigger than I am",
+    "reason": "Bessie is the older, bigger sister, so the narrator cannot think her too little.",
+    "tempts": "Maria's worry about cut fingers makes Bessie sound like the small child who must be protected."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "Maria said nobody else but just me would ever have thought of putting it away",
+    "reason": "The praise the narrator reports from Maria was aimed at the narrator herself, not at Bessie.",
+    "tempts": "Maria's remark about who would have thought of it is in the paragraph just before, so it is easy to attach to the wrong sister."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-4",
+  "set_id": "PD2-P1",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The narrator's comparisons of herself with Bessie in the third and fourth paragraphs mainly serve to",
+  "choices": [
+   "imply that the narrator's helping springs from envy of her older sister",
+   "present Bessie as the model of usefulness the narrator is copying",
+   "lead readers to reverse the narrator's verdict on which sister is useful",
+   "show that the adults trust Bessie with tasks the narrator is refused",
+   "explain why the work of the household falls to the younger child"
+  ],
+  "answer": 2,
+  "why": "She only plays while there's work going on; and only see how much work I've done this morning!",
+  "explanation": "Bessie's quiet play causes no trouble while the narrator's \"work\" causes all of it, so the comparison invites readers to judge the sisters the opposite way from the narrator.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "Bessie isn't so much use as I am.",
+    "reason": "The narrator feels superior to Bessie, not envious of her; nothing shows her helping is driven by wanting what Bessie has.",
+    "tempts": "Sibling comparison often signals jealousy, and the narrator is plainly preoccupied with her sister."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "I'll sit right in front of her, so I can see how she pulls the needle through",
+    "reason": "She watches Bessie only to copy one stitch at the very end; in the comparisons she calls Bessie less useful, not a model.",
+    "tempts": "At the close she does sit before Bessie to copy her sewing, so a reader may extend that to the whole comparison."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "Maria told her not to touch 'em",
+    "reason": "The one task withheld in these paragraphs is withheld from Bessie, and nothing is refused to the narrator.",
+    "tempts": "Bessie is given a stocking to darn by Maria, which can look like trust the narrator lacks."
+   },
+   "4": {
+    "lure": "true-not-answering",
+    "quote": "She only plays while there's work going on",
+    "reason": "The narrator says Bessie plays while work goes on, but the passage never shows the household's work being left to the younger child; it shows her making work.",
+    "tempts": "It takes the narrator's own account at face value: she says she does the work and Bessie does not."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-5",
+  "set_id": "PD2-P3",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The description of the violet in the fourth stanza, before she speaks, mainly serves to",
+  "choices": [
+   "imply that living apart has made her envious of them",
+   "show the others hushing her before she can speak",
+   "establish her as a calm voice that the others will heed",
+   "hint that her speech, like the earlier pun, is meant in jest",
+   "mark her as an outsider whom the others will ignore"
+  ],
+  "answer": 2,
+  "why": "All the flowers nodded silence",
+  "explanation": "Her voice is \"like music's flow\" and the others nod silence for her, which sets her up as the one they will listen to.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "What a foolish fuss, my field-mates",
+    "reason": "Living in the marsh is only where she grows; she calls them \"field-mates\" and shows no envy.",
+    "tempts": "She grows apart, \"in the marsh below\", and outsiders are often written as envious."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "As she said—a little pause—",
+    "reason": "The others fall silent so that she can speak; they do not cut her off.",
+    "tempts": "\"Nodded silence\" can be misread as the flowers silencing her."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "In a tone of sleepy fun",
+    "reason": "The playful tone belongs to the poppy; the violet's voice is musical and her questions are earnest.",
+    "tempts": "Her speech is called a \"song\", and the poem is light throughout."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "When the violet's song was o'er",
+    "reason": "Far from being ignored, she is heard to the end, and her song leaves the others contented.",
+    "tempts": "She is \"little\" and grows apart \"in the marsh below\", which can mark her as an outsider."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-3",
+  "set_id": "PD2-P5",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The quoted words in the fifth paragraph mainly serve to",
+  "choices": [
+   "show the writer's wide knowledge of flowers that grow on land",
+   "name the species of sea flower that grow in the very first tank",
+   "give the keeper's account of what the first tank contains",
+   "prepare the surprise by showing how sure the speakers were",
+   "suggest that the animals were bred to resemble asters"
+  ],
+  "answer": 3,
+  "why": "are chrysanthemums and nothing else",
+  "explanation": "The speakers name asters, cacti and chrysanthemums with complete confidence just before the feeding shows these are animals, so their certainty sharpens the surprise.",
+  "kills": {
+   "0": {
+    "lure": "too-far",
+    "quote": "were not flowers at all, but flesh-eating animals",
+    "reason": "The confident names all prove wrong, so the words show the speakers deceived, not expert.",
+    "tempts": "The speakers name three flowers with assurance, which can sound like expertise."
+   },
+   "1": {
+    "lure": "figurative-literal",
+    "quote": "we discovered with a kind of shock",
+    "reason": "The names are guesses the speakers soon learn are mistaken; there are no asters or cacti in the tank.",
+    "tempts": "The flower names are stated as fact inside the quotation."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "It was the keeper come to feed his strange charges.",
+    "reason": "The keeper arrives only afterward and says nothing; the quoted words belong to the writer's party.",
+    "tempts": "The keeper is the one person who would know what the tank holds."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "what seemed brilliant flowers",
+    "reason": "The likeness to flowers is only how the creatures seem to the viewers; nothing is said about breeding.",
+    "tempts": "The resemblance is so close that a reader may look for a cause."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-5",
+  "set_id": "PD2-P2",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the eighth paragraph, the narrator's attitude toward her father is best described as",
+  "choices": [
+   "critical of the blunt way her father refuses her",
+   "scornful of her father's anxiety over the cost of the gift",
+   "appreciative of her father's frankness in turning her down",
+   "tender toward her father in his money difficulties",
+   "amused by the stern tone her father takes at the table"
+  ],
+  "answer": 0,
+  "why": "A blunt no is a great deal harder to bear.",
+  "explanation": "She wishes he would 'soften it a little' and says a blunt no is harder to bear: she faults the manner of his refusal.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "If I can't, I can't",
+    "reason": "She accepts the limit on money; what she objects to is the manner of the refusal, not his concern over cost.",
+    "tempts": "She is clearly unhappy with her father, and the refusal was about money."
+   },
+   "2": {
+    "lure": "",
+    "quote": "if he would only soften it a little",
+    "reason": "She wants the refusal softened, so she does not value its frankness.",
+    "tempts": "Her father's no is direct and honest, and the mother has just praised his good intentions."
+   },
+   "3": {
+    "lure": "",
+    "quote": "I couldn't help saying",
+    "reason": "In this paragraph she speaks of her own hurt; compassion for his troubles is the mother's theme, not hers here.",
+    "tempts": "The mother has just explained his business worries, so a reader assumes the daughter now feels for him."
+   },
+   "4": {
+    "lure": "",
+    "quote": "went up to my room and had a good cry",
+    "reason": "His tone made her cry, not smile; nothing in her words is lighthearted.",
+    "tempts": "The family scene is gently told and could read as a fond domestic comedy."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-1",
+  "set_id": "PD2-P4",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage is primarily concerned with",
+  "choices": [
+   "showing that the feared bookworm is really many species of ordinary insect pests",
+   "showing that early naturalists invented the bookworm out of faulty observations",
+   "arguing that book insects do far less damage to books than legend has claimed",
+   "tracing how the name bookworm came to take on a figurative as well as literal sense",
+   "recounting how librarians learned to identify and destroy the pests in their books"
+  ],
+  "answer": 0,
+  "why": "the term bookworms is a misnomer",
+  "explanation": "The author argues that the mysterious 'bookworm' is really over thirty species of common pests, none of them worms, so the name misleads.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "Many interesting instances of the discovery of bookworms are found in the literature",
+    "reason": "Mentzel is one curious account among many reports; the author does not say naturalists invented the creature, and real book insects exist.",
+    "tempts": "The long Mentzel anecdote makes early naturalists look foolish, and the author does mock the myth."
+   },
+   "2": {
+    "lure": "prior-knowledge",
+    "quote": "under the right conditions become book destroyers",
+    "reason": "The author still calls these creatures book destroyers; his point is what they are, not that their harm is small.",
+    "tempts": "A reader expects a myth-busting essay to say the danger was exaggerated."
+   },
+   "3": {
+    "lure": "detail-as-whole",
+    "quote": "both in its figurative and literal sense",
+    "reason": "The figurative sense is mentioned only in the closing sentence, as a reason the misused word will last.",
+    "tempts": "The essay ends on the word and its figurative use, so a last-sentence reader takes that as its subject."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "he failed to recognize that the two were the larva and imago of the same species",
+    "reason": "Librarians appear as examples, and one misidentifies his specimens; the essay is not about how librarians learned anything.",
+    "tempts": "Two librarians and a thumb-crushing scene fill the third paragraph."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-2",
+  "set_id": "PD2-P4",
+  "kind": "detail",
+  "difficulty": "hard",
+  "prompt": "According to the passage, the Rev. F. S. Havergal of Hereford Cathedral",
+  "choices": [
+   "mistook the young and adult forms of a single insect for two species",
+   "knew the insects on sight and crushed them under his thumbnail",
+   "searched black-letter fragments for specimens for eighteen years",
+   "found a rare insect that feeds on literary matter and nothing else",
+   "heard one of the insects making a noise resembling a rooster's crowing"
+  ],
+  "answer": 0,
+  "why": "he failed to recognize that the two were the larva and imago of the same species",
+  "explanation": "He reported two species, but the author says they were the larva and the adult (imago) of a single species.",
+  "kills": {
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "who crushed them with his thumb",
+    "reason": "Crushing specimens with a thumb is what Dr. Bandinel of the Bodleian did, in the sentence just before.",
+    "tempts": "Both men are librarians described one after the other, and the vivid thumb scene sticks."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "he found specimens in some black-letter fragments at the Bodleian Library",
+    "reason": "The eighteen years are Havergal's, but the black-letter fragments were where Mr. Blades found specimens.",
+    "tempts": "It combines two real details from adjacent sentences."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "stands alone in its taste for literary food",
+    "reason": "This phrase describes the unique creature that searchers hoped to find, not what Havergal reported.",
+    "tempts": "It reuses the paragraph's striking phrase about literary food."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "he heard the bookworm crow like a cock",
+    "reason": "The crowing insect belongs to Christian Mentzel in the previous paragraph.",
+    "tempts": "It is the most memorable observation in the passage, and a quick reader attaches it to any observer."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-6",
+  "set_id": "PD2-P6",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "In the sixth paragraph, the author's account of where she herself cited the theory serves mainly to",
+  "choices": [
+   "show that even her own teaching has helped to spread an untested idea",
+   "establish her expertise as a ranger who teaches visitors about the park",
+   "contrast her own careful methods with the carelessness of earlier writers",
+   "suggest that rangers should be retrained before they teach the public",
+   "show that visitors ask more about hoodoos than about any other feature"
+  ],
+  "answer": 0,
+  "why": "But it was only a hypothesis",
+  "explanation": "She lists her programs, answers and resources, then admits the idea was only a hypothesis: her own work had passed it on as if settled.",
+  "kills": {
+   "1": {
+    "lure": "true-not-answering",
+    "quote": "I started working at Bryce Canyon in 2021.",
+    "reason": "She is a ranger who teaches visitors, but the list leads straight into an admission of error, not a claim of expertise.",
+    "tempts": "The paragraph opens with her job and her experience at the park."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "because everything refers to it",
+    "reason": "She places herself among those who repeated the idea; she does not set herself apart from them.",
+    "tempts": "She is the one who uncovered the single source, which can look like a contrast with others."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "how can we protect them or prepare ourselves",
+    "reason": "Her concern is what is not known about the hoodoos; she proposes no retraining.",
+    "tempts": "Admitting that rangers taught an unproven idea suggests a fix for rangers."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "in answering visitor",
+    "reason": "Visitors' questions are one place she cited the idea; nothing compares them with other topics.",
+    "tempts": "Answering visitors' questions about hoodoos is named, which suggests they are common."
+   }
+  }
+ }
+]

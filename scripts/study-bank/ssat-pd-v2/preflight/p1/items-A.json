@@ -1,0 +1,776 @@
+[
+ {
+  "qid": "PD2-P1-1",
+  "set_id": "PD2-P1",
+  "kind": "main-idea",
+  "difficulty": "hard",
+  "prompt": "Which of the following best describes the passage as a whole?",
+  "choices": [
+   "a girl's proud account of her household work that reveals, as she herself tells it, how much the family relies on her",
+   "a girl's proud account of her household work that reveals, without her knowing it, the harm she does",
+   "a girl's proud account of her household work that reveals a jealousy of her sister she hides from herself",
+   "a girl's sorry account of her household mischief that reveals how the family's scolding has changed her",
+   "a girl's proud account of her household work that reveals her wish to be treated as one of the grown-ups"
+  ],
+  "answer": 1,
+  "why": "dumped it where nobody can see it, in a dark corner of the closet, under mamma's dresses",
+  "explanation": "Every deed she calls help does damage (a broken basin, rags in papa's collar drawer, dust hidden under mamma's dresses, lace about to be cut), but she reports each one as useful work and never sees the harm.",
+  "kills": {
+   "0": {
+    "lure": "character-not-author",
+    "quote": "I don't know what they'd have done without me yesterday",
+    "reason": "That the family relies on her is the narrator's own boast; what the passage shows is the extra work she makes, such as Maria changing all her clothes.",
+    "tempts": "The narrator says it outright, and papa's and Maria's remarks sound like praise if taken at face value."
+   },
+   "2": {
+    "lure": "detail-as-whole",
+    "quote": "Bessie isn't so much use as I am.",
+    "reason": "The comparisons with Bessie fill only the third and fourth paragraphs, and they show her sure she is the more useful one, not envious; the passage as a whole follows her deeds of 'help'.",
+    "tempts": "The narrator keeps running down her sister, which a clever reader may take for hidden jealousy."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "It wasn't my fault that it slid out of my hands and broke itself.",
+    "reason": "She is never sorry and is never shown being scolded; she blames the basin and Maria and goes on calling her deeds help.",
+    "tempts": "The opening mentions the charge of mischief, and the deeds are plainly mischief, so a reader expects a confession."
+   },
+   "4": {
+    "lure": "too-far",
+    "quote": "says I will be a great help when I am big",
+    "reason": "Growing up comes up only in the parents' remarks; the narrator never wishes to be older and boasts of the use she is now.",
+    "tempts": "The mother speaks of 'when I am big', and the girl copies adult tasks such as sewing and sweeping."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-2",
+  "set_id": "PD2-P1",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the narrator, her father says that she",
+  "choices": [
+   "will become a great help to the family once she is older",
+   "is already spending her time as well as anyone could",
+   "meddles in other people's work more than anyone else",
+   "is full of mischief, though she will not admit it",
+   "is far more useful around the house than her sister"
+  ],
+  "answer": 1,
+  "why": "says I won't wait to grow up, and that I make the very best use of my time now",
+  "explanation": "The father's words are that she will not wait to grow up and already makes the very best use of her time.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "Mamma hugs me tight, and says I will be a great help when I am big",
+    "reason": "This is the mother's remark, made in the same sentence just before the father's.",
+    "tempts": "The father's \"won't wait to grow up\" seems to echo it, and the two remarks share one sentence."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "Maria is the only one that knows, and she says I'm a busybody",
+    "reason": "Calling her a busybody is Maria's word, not the father's.",
+    "tempts": "The narrator says the father \"knows as much as Maria\", which links him to Maria's judgment."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "They say I am full of mischief, but they don't speak the truth.",
+    "reason": "The charge of mischief comes from an unnamed \"they\" in the opening, not from the father.",
+    "tempts": "It lifts the passage's opening words, which sit right before the father's remark."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "Bessie isn't so much use as I am.",
+    "reason": "Comparing her usefulness with Bessie's is the narrator's own boast, not something the father says.",
+    "tempts": "The narrator repeats this claim so often that it can feel like a family verdict."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-3",
+  "set_id": "PD2-P1",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The fourth paragraph suggests the \"big pile of dust\" on the hearth was",
+  "choices": [
+   "a mess Maria had carelessly overlooked while tidying the rest of the room",
+   "dirt the little girl herself had spilled while stuffing rags into papa's drawer",
+   "a heap Maria had swept together and meant to clear up after answering the door",
+   "ashes left from the fire that no one in the busy house had yet had time to clear",
+   "dust the children had let gather on the hearth while they sat at their play"
+  ],
+  "answer": 2,
+  "why": "She went to answer the door-bell, and while she was gone",
+  "explanation": "Dust lies in a pile only when someone has swept it together, and Maria left it there only because the door-bell called her away mid-task; the narrator 'cleared up' work Maria was still doing.",
+  "kills": {
+   "0": {
+    "lure": "character-not-author",
+    "quote": "Then I cleared up a whole lot of muss after Maria.",
+    "reason": "The narrator calls it Maria's muss, but a swept pile left when the door-bell rang is a task interrupted, not one overlooked.",
+    "tempts": "It repeats the narrator's own view that Maria is careless, which she states in the second paragraph."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "I've stuffed all the rags and little pieces of our new dresses that were piled up on the machine into papa's collar drawer",
+    "reason": "The rags went from the machine into a drawer; nothing links that job to the hearth, and the dust is something 'she left', meaning Maria.",
+    "tempts": "The rag-stuffing is in the same paragraph, just before the sweeping, and the narrator does cause most of the mess."
+   },
+   "3": {
+    "lure": "prior-knowledge",
+    "quote": "swept up a big pile of dust she left on the hearth",
+    "reason": "The passage calls it dust that Maria left, not ashes from a fire.",
+    "tempts": "A hearth is where a fire is laid, so a reader supplies ashes."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "She only plays while there's work going on",
+    "reason": "Bessie's playing is the narrator's complaint about her in general; the dust is said to be what Maria left.",
+    "tempts": "The same paragraph begins by blaming Bessie for playing while work goes on."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-4",
+  "set_id": "PD2-P1",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The final paragraph functions mainly to",
+  "choices": [
+   "end by revealing that the narrator has at last been given a sewing task of her own",
+   "end by showing the narrator, like Bessie, choosing a task that keeps her out of the way",
+   "end by hinting to the reader that the narrator now doubts some of her earlier work",
+   "end by setting up one more act of help that the reader can tell will spoil the suit",
+   "end by showing the narrator copying Bessie's care so that nothing more is spoiled"
+  ],
+  "answer": 3,
+  "why": "I don't know but what I'll have to cut some of it off",
+  "explanation": "She plans to cut the lace off her mother's best walking suit so she can sew faster, so the passage closes on a new 'help' whose damage the reader foresees and she does not.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "Bessie's darning a stocking that Maria gave her",
+    "reason": "It is Bessie who was given a sewing task by Maria; the narrator took the waist out of the closet on her own.",
+    "tempts": "Both girls are sewing in this paragraph, and only one of them was handed the work."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "She kept out of the way, tending to Susan",
+    "reason": "Keeping out of the way is what Bessie did in the third paragraph; the narrator is hurrying to finish a job for mamma.",
+    "tempts": "Sitting and sewing is quiet, and the earlier paragraph praises staying out of the way."
+   },
+   "2": {
+    "lure": "too-far",
+    "quote": "It was real lucky I went to the closet, too",
+    "reason": "She still calls her trip to the closet lucky and shows no doubt about any of her work.",
+    "tempts": "An ending often turns, and her worry about the lace can look like dawning doubt."
+   },
+   "4": {
+    "lure": "half-right",
+    "quote": "The ends of the lace get right in the way of the needle",
+    "reason": "She does mean to watch Bessie's needle, but she plans to hurry and cut the lace, so she is not being careful.",
+    "tempts": "She says she will sit right in front of Bessie to see how she pulls the needle through."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-5",
+  "set_id": "PD2-P1",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the fifth paragraph, the word \"waist\" most nearly means",
+  "choices": [
+   "middle",
+   "belt",
+   "blouse",
+   "skirt",
+   "collar"
+  ],
+  "answer": 2,
+  "why": "change the trimming on the sleeves",
+  "explanation": "The \"waist\" she found in the closet is the part of the walking suit that has sleeves, the upper garment.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "so I took it out, and got a needle and thread",
+    "reason": "She takes the waist out of the closet and sews on it, so it is a piece of clothing, not a part of anyone's body.",
+    "tempts": "It is the word's everyday meaning."
+   },
+   "1": {
+    "lure": "",
+    "quote": "change the trimming on the sleeves",
+    "reason": "A belt has no sleeves to trim; the piece she found does.",
+    "tempts": "A belt is worn at the waist, so the two words are easily linked."
+   },
+   "3": {
+    "lure": "",
+    "quote": "change the trimming on the sleeves",
+    "reason": "A skirt has no sleeves; the piece she means to retrim has them.",
+    "tempts": "A skirt is part of a woman's suit and starts at the waist."
+   },
+   "4": {
+    "lure": "",
+    "quote": "change the trimming on the sleeves",
+    "reason": "The trimming to be changed is on the sleeves, which a collar does not have.",
+    "tempts": "The lace and trimming fit a collar, which suits the sewing scene."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P1-6",
+  "set_id": "PD2-P1",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the third and fourth paragraphs, the narrator's attitude toward Bessie is best described as",
+  "choices": [
+   "admiring of Bessie's patience and skill with a needle",
+   "disdainful of Bessie for playing while others work",
+   "resentful of Bessie as the sister the family favors",
+   "fond of Bessie's loving care for her rattling doll",
+   "worried that Bessie may cut her fingers on the pieces"
+  ],
+  "answer": 1,
+  "why": "Bessie isn't so much use as I am.",
+  "explanation": "In these paragraphs she looks down on Bessie as useless: she 'only plays while there's work going on' and does not even pick up the broken pieces.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "Bessie's darning a stocking that Maria gave her",
+    "reason": "The needle and her wish to watch it come in the fifth paragraph; in the third and fourth Bessie only tends a doll and plays.",
+    "tempts": "The narrator later plans to sit in front of Bessie to learn how she pulls the needle through."
+   },
+   "2": {
+    "lure": "",
+    "quote": "Mamma hugs me tight",
+    "reason": "Nothing shows the family favoring Bessie; the mother hugs the narrator and papa praises her use of time.",
+    "tempts": "Older sisters are often favored, and the narrator compares the two constantly."
+   },
+   "3": {
+    "lure": "",
+    "quote": "She thinks Susan is the best of all our dolls, but I don't.",
+    "reason": "She disagrees about the doll and calls its joints loose; she is not fond of Bessie's care for it.",
+    "tempts": "The paragraph dwells on Bessie tending the doll, a gentle scene."
+   },
+   "4": {
+    "lure": "",
+    "quote": "Maria told her not to touch 'em, for fear of getting her feet wet and cutting her fingers.",
+    "reason": "The fear for Bessie's fingers is Maria's; the narrator complains that Bessie did not pick the pieces up.",
+    "tempts": "The cut fingers are mentioned in the same paragraph."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-1",
+  "set_id": "PD2-P3",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The poem as a whole is best summed up by which statement?",
+  "choices": [
+   "Flowers upset by their copies are calmed by being shown what no copy can share.",
+   "Flowers upset by their copies are calmed by learning that to be copied is a tribute.",
+   "Flowers upset by their copies are divided until a joke restores their good humor.",
+   "Flowers upset by their copies are reminded that all beauty, natural or copied, fades.",
+   "Flowers upset by their copies are comforted that the copies would fool the bees."
+  ],
+  "answer": 0,
+  "why": "Are they fragrant? Can you smell them?",
+  "explanation": "The violet ends the fuss by asking whether the copies have scent or can grow new blossoms: things only living flowers have. Content, the others stop worrying.",
+  "kills": {
+   "1": {
+    "lure": "prior-knowledge",
+    "quote": "Are they fragrant? Can you smell them?",
+    "reason": "The violet never calls copying a compliment; she calms them by pointing to the scent and renewal the copies lack.",
+    "tempts": "Imitation as flattery is a familiar idea, and the daisy speaks of being complimented."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "from sev'ral other quarters",
+    "reason": "The poppy's pun is met with disapproval, so it divides the flowers; the violet's questions, not a joke, end the fuss.",
+    "tempts": "The poppy jokes and the clover laughs, so the poem has plenty of humor before the calm."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "Take the places of those dead?",
+    "reason": "The violet grants the copies fade, but her point is that living plants grow new blossoms and copies cannot.",
+    "tempts": "Fading is named in the violet's speech, right where she settles the matter."
+   },
+   "4": {
+    "lure": "detail-as-whole",
+    "quote": "If the honey-bee had been there",
+    "reason": "Fooling the bee is only the clover's passing wish in the third stanza; it is not what quiets the meadow.",
+    "tempts": "The bee is a vivid, comic moment and does involve the copies."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-2",
+  "set_id": "PD2-P3",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the first stanza, the word \"worked\" most nearly means",
+  "choices": [
+   "employed",
+   "planted",
+   "stitched",
+   "labored",
+   "operated"
+  ],
+  "answer": 2,
+  "why": "When I saw a head on canvas",
+  "explanation": "Worsted is yarn and the likeness is on canvas, so to be \"worked\" in colored worsted is to be stitched in it.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "Flowers raised by crewel culture",
+    "reason": "The flowers are not given jobs; the poppy's pun names crewel, a kind of embroidery yarn, as what they are \"raised\" in.",
+    "tempts": "To work someone often means to employ or use them, the word's commonest sense."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Ev'ry shade and line complete",
+    "reason": "Shade and line describe a picture made in yarn, not a plant set in soil.",
+    "tempts": "It suits the meadow and the poppy's joke about flowers being \"raised\"."
+   },
+   "3": {
+    "lure": "",
+    "quote": "When I saw a head on canvas",
+    "reason": "The daisy is not toiling; she has been made into a likeness on canvas.",
+    "tempts": "\"Worked\" usually means did work, and the daisy feels badly used."
+   },
+   "4": {
+    "lure": "",
+    "quote": "When I saw a head on canvas",
+    "reason": "Nothing is run like a machine; the result is a picture on canvas.",
+    "tempts": "To work a device means to operate it, a familiar sense."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-3",
+  "set_id": "PD2-P3",
+  "kind": "inference",
+  "difficulty": "medium",
+  "prompt": "The replies to the poppy's pun in the second stanza indicate the speakers",
+  "choices": [
+   "felt that the poppy, half asleep, had not grasped what had happened",
+   "felt that the pun was clever but were too timid to laugh aloud",
+   "felt that being copied was too grave a matter to be joked about",
+   "felt that the poppy ought to beg pardon for the pun before going on",
+   "felt, as the voice from the marsh does, that the copies were nothing to fuss over"
+  ],
+  "answer": 2,
+  "why": "don't joke on such a subject",
+  "explanation": "The innocent asks the poppy not to joke 'on such a subject', and others disapprove: they treat the copying as too serious for a pun.",
+  "kills": {
+   "0": {
+    "lure": "misplaced-detail",
+    "quote": "In a tone of sleepy fun",
+    "reason": "'Sleepy' describes the poppy's tone, not a failure to understand; the objection is to joking at all.",
+    "tempts": "The poppy's sleepiness is named in the same stanza."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "Said an innocent, rather low",
+    "reason": "The innocent speaks low, but what she says rejects the joke, and the others add a disapproving 'No'.",
+    "tempts": "Speaking 'rather low' suggests shyness."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "Only, please, excuse the pun.",
+    "reason": "It is the poppy herself who asks pardon for the pun; the replies ask her not to joke on the subject.",
+    "tempts": "Pardon for the pun is asked in the very lines the replies answer."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "What a foolish fuss, my field-mates",
+    "reason": "That the copies are no cause for fuss is the violet's view in the fourth stanza, which corrects these very flowers.",
+    "tempts": "The flowers do end up agreeing with the violet, at the close of the poem."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-4",
+  "set_id": "PD2-P3",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the third stanza, the clover's attitude toward the honey-bee is best described as",
+  "choices": [
+   "fear that the bee will desert her for the copy",
+   "fondness for the bee as her own faithful visitor",
+   "amusement at the bee's clumsy, buzzing flight",
+   "sympathy for the bee, who would be fooled by it",
+   "resentment of the bee as a robber of her nectar"
+  ],
+  "answer": 4,
+  "why": "'Twould have served him right—the thief!",
+  "explanation": "She calls the bee a thief and wishes he had been fooled by the copy, because it would have served him right.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "Ah! I only wish he had been",
+    "reason": "She wishes the bee had been there, which a flower afraid of losing him would not.",
+    "tempts": "She \"flushed up quite nervously\", which can suggest fear."
+   },
+   "1": {
+    "lure": "",
+    "quote": "'Twould have served him right—the thief!",
+    "reason": "She calls him a thief who deserves to be tricked, which is not fondness.",
+    "tempts": "The bee is the clover's familiar visitor, so a reader expects affection."
+   },
+   "2": {
+    "lure": "",
+    "quote": "He'd have buzzed about that leaf.",
+    "reason": "The buzzing she imagines is around the copy, with nothing clumsy about it; her laugh is at seeing her own likeness.",
+    "tempts": "She \"laughed\", and buzzing bees are comic."
+   },
+   "3": {
+    "lure": "",
+    "quote": "'Twould have served him right—the thief!",
+    "reason": "She thinks being fooled is what he deserves, so she does not pity him for it.",
+    "tempts": "She imagines him fooled by the copy, which could stir pity in a reader."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-5",
+  "set_id": "PD2-P3",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "The poem's opening words, \"Such a hubbub in the meadow!\", mainly serve to",
+  "choices": [
+   "imply a breeze is stirring the grass before any of the blooms talk",
+   "hint that the imitations have been carried into the meadow to be seen",
+   "set up the merry mood the pun that soon follows will carry further",
+   "announce the arrival of the violet, whose song sets the meadow talking",
+   "establish the uproar that the violet will later dismiss as needless"
+  ],
+  "answer": 4,
+  "why": "Suddenly through all this chatter",
+  "explanation": "The 'hubbub' and 'rustling' are the flowers' agitated chatter, which the violet's voice cuts through and calls 'a foolish fuss'.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "Suddenly through all this chatter",
+    "reason": "The rustling is the flowers' chatter, as the fourth stanza names it, not wind.",
+    "tempts": "Rustling grass usually means a breeze, and breezes appear later in the poem."
+   },
+   "1": {
+    "lure": "unsupported",
+    "quote": "When I saw a head on canvas",
+    "reason": "The poem never says where the copies are; the clover only says she saw one.",
+    "tempts": "The flowers react as if the copies were in front of them."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "\"I feel injured,\" sighed the daisy",
+    "reason": "The hubbub is the stir of offended flowers, as the daisy's first words show; the poppy's pun is disapproved, not carried along by the mood.",
+    "tempts": "The poppy's joke follows soon after, and 'hubbub' can sound merry."
+   },
+   "3": {
+    "lure": "reversed",
+    "quote": "Came a voice, like music's flow",
+    "reason": "The violet's voice comes through the chatter and ends it; it does not start the talking.",
+    "tempts": "The violet is the poem's central speaker, and her song is closely tied to the meadow's talk."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P3-6",
+  "set_id": "PD2-P3",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the violet, one way the copied flowers fall short of real ones is that they",
+  "choices": [
+   "fade far sooner than living flowers in the sun",
+   "would never draw the insects that visit real blooms",
+   "cannot nod or sway when the breezes touch them",
+   "are made of yarn instead of living leaves",
+   "cannot put out new blossoms when the old ones die"
+  ],
+  "answer": 4,
+  "why": "Take the places of those dead?",
+  "explanation": "The violet asks whether, when the copies fade, hidden blossoms will take the places of the dead ones: real plants renew themselves and copies cannot.",
+  "kills": {
+   "0": {
+    "lure": "half-right",
+    "quote": "When they fade, will hidden blossoms",
+    "reason": "The violet grants that the copies fade; her point is what follows the fading, not how soon it comes.",
+    "tempts": "Fading is in her speech, so a reader who skims picks the option that mentions it."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "He'd have buzzed about that leaf.",
+    "reason": "It is the clover who talks about the bee, and she thinks he would be drawn; the violet never mentions him.",
+    "tempts": "Bees and flowers go together, and the bee is in the poem."
+   },
+   "2": {
+    "lure": "keyword-match",
+    "quote": "Do the breezes, when they touch them,",
+    "reason": "The violet asks whether breezes carry the copies' scent, not whether they make them move.",
+    "tempts": "Breezes touching them is the violet's own image, and the flowers \"nodded\" just before."
+   },
+   "3": {
+    "lure": "true-not-answering",
+    "quote": "To be worked in colored worsted",
+    "reason": "Being made of yarn is the daisy's complaint in the first stanza; the violet's questions concern scent and regrowth.",
+    "tempts": "It is true of the copies and seems the obvious difference."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-1",
+  "set_id": "PD2-P5",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage mainly recounts",
+  "choices": [
+   "a visit in which what look like ordinary fish prove to be rare creatures",
+   "a visit in which what look like sea flowers prove to be food for hidden animals",
+   "a visit in which what look like glass tanks prove to be walls of open water",
+   "a visit in which what look like sea flowers prove to be flesh-eating animals",
+   "a visit in which what look like asters prove to be a kind of sea cactus"
+  ],
+  "answer": 3,
+  "why": "these asters and cacti and chrysanthemums were not flowers at all, but flesh-eating animals",
+  "explanation": "The writer and companion take the creatures in the first tank for asters, cacti and chrysanthemums until the feeding shows each petal is a mouth.",
+  "kills": {
+   "0": {
+    "lure": "detail-as-whole",
+    "quote": "Only the rarest, the strangest, the most curious creatures are here to be seen.",
+    "reason": "Rarity is the first paragraph's general remark about the aquarium; no one mistakes anything for ordinary fish.",
+    "tempts": "It opens the passage and states what is special about the aquarium."
+   },
+   "1": {
+    "lure": "reversed",
+    "quote": "each waving petal was a mouth",
+    "reason": "The petals are themselves the animals' mouths; the meat is the food.",
+    "tempts": "Meat is thrust 'into the hearts of the sea flowers', which can read as flowers feeding something else."
+   },
+   "2": {
+    "lure": "figurative-literal",
+    "quote": "which seem, so complete is the illusion, not like glass at all, but water",
+    "reason": "The tanks only seem like water; the writer calls it an illusion, and the walls are glass.",
+    "tempts": "The illusion of open water is vividly described in the third paragraph."
+   },
+   "4": {
+    "lure": "half-right",
+    "quote": "Surely these deep red ones that cover the rocks to the left are a species of aster",
+    "reason": "The misnaming as asters is real, but the creatures prove to be animals, not another plant.",
+    "tempts": "Asters and cacti are named side by side in the visitors' guesses."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-2",
+  "set_id": "PD2-P5",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the third paragraph, the writer's attitude toward the way the room is lit is best described as",
+  "choices": [
+   "uneasy at how dark and narrow the alleys feel",
+   "admiring of the illusion the light from above creates",
+   "critical of a dimness that keeps the animals from view",
+   "delighted that the light lets visitors touch the animals",
+   "wary of tanks that seem too close to be safely walled"
+  ],
+  "answer": 1,
+  "why": "so complete is the illusion",
+  "explanation": "She praises the effect of light shining down through the water: the illusion is 'so complete' that the glass seems like water and the room like a lit stage.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "these brilliant tanks",
+    "reason": "The alleys are dark, but she dwells on the brilliant tanks and beautiful animals, not on any unease.",
+    "tempts": "She does call the alleys dark and the theater narrow."
+   },
+   "2": {
+    "lure": "",
+    "quote": "the beautiful sea animals are so close that it seems easy to touch them",
+    "reason": "The light shows the animals so close they seem touchable; nothing is kept from view in this paragraph.",
+    "tempts": "She calls the room semi-dark, and later says the body behind the mouths was hidden."
+   },
+   "3": {
+    "lure": "",
+    "quote": "so close that it seems easy to touch them",
+    "reason": "It only seems easy to touch them; the animals are behind glass.",
+    "tempts": "She does sound pleased, and she speaks of touching."
+   },
+   "4": {
+    "lure": "",
+    "quote": "behind tanks of clear glass",
+    "reason": "The tanks are glass, and their nearness is part of the effect she enjoys, not a danger.",
+    "tempts": "The glass seems like water, which could make the barrier feel unsafe."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-3",
+  "set_id": "PD2-P5",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "The comparison to a theater in the third paragraph mainly serves to",
+  "choices": [
+   "imply the animals in the tanks perform for the visitors' amusement",
+   "show that the aquarium was designed chiefly as an entertainment for visitors",
+   "convey how the lit tanks surround the visitor walking in the dark aisles",
+   "contrast the dark street outside with the brightly lit stage within",
+   "show how far the visitors stand from the creatures, as from a stage"
+  ],
+  "answer": 2,
+  "why": "with the stage all around and about",
+  "explanation": "The 'stage' is 'all around and about', lit from above, while the visitor walks the dark alleys between the tanks.",
+  "kills": {
+   "0": {
+    "lure": "figurative-literal",
+    "quote": "It is like being in a narrow, dark theater",
+    "reason": "The comparison is to the room's shape and light; nothing says the creatures perform.",
+    "tempts": "A theater has performers, and the creatures move."
+   },
+   "1": {
+    "lure": "unsupported",
+    "quote": "is shown to the public",
+    "reason": "Only one room of the zoölogical station is open to the public; nothing says the building was made for entertainment.",
+    "tempts": "A theater is entertainment, and the room is the public part of the building."
+   },
+   "3": {
+    "lure": "reversed",
+    "quote": "the transition from the light outside to strange semi-darkness",
+    "reason": "It is the street outside that is light and the room that is dim.",
+    "tempts": "The tanks are 'brilliant', so a reader may think the contrast is with a dark outside."
+   },
+   "4": {
+    "lure": "prior-knowledge",
+    "quote": "the beautiful sea animals are so close that it seems easy to touch them",
+    "reason": "An ordinary stage is distant, but here it is all around and the animals seem close enough to touch.",
+    "tempts": "In most theaters the audience sits well back from the stage."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-4",
+  "set_id": "PD2-P5",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The writer's use of the word \"calyx\" in the final paragraph suggests she",
+  "choices": [
+   "has learned the proper name for the body hidden behind the many mouths",
+   "has begun to doubt her discovery that the creatures are animals at all",
+   "is sure a calyx lies behind the mouths, though it is hidden from her",
+   "still thinks of the creatures in terms of flowers, though she knows better",
+   "is poking fun at her earlier mistake of calling them asters and cacti"
+  ],
+  "answer": 3,
+  "why": "What the calyx was like, or whether it had any body at all",
+  "explanation": "A calyx is part of a flower; she reaches for that word in the very sentence that calls the petals 'armlike mouths', so the flower picture still shapes how she sees them.",
+  "kills": {
+   "0": {
+    "lure": "unsupported",
+    "quote": "It was the keeper come to feed his strange charges.",
+    "reason": "The keeper only feeds the creatures; no one tells her a name, and she cannot see whether there is a body.",
+    "tempts": "'Calyx' sounds like a technical term someone might have taught her."
+   },
+   "1": {
+    "lure": "too-far",
+    "quote": "we discovered with a kind of shock",
+    "reason": "She has just discovered they are animals and in the same sentence calls their parts mouths; nothing shows her doubting it.",
+    "tempts": "Using a flower word could look like second thoughts."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "or whether it had any body at all, we could not see",
+    "reason": "She names a calyx, but says she cannot tell whether there is any body at all, so she is not sure of it.",
+    "tempts": "She speaks of the calyx as though it were there."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "Surely these deep red ones that cover the rocks to the left are a species of aster",
+    "reason": "The playful flower-naming belongs to the earlier moment before the feeding; here she earnestly reports what she could not see.",
+    "tempts": "The fifth paragraph's guesses are flower names too, so the calyx can look like a callback."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-5",
+  "set_id": "PD2-P5",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the seventh paragraph, the word \"charges\" most nearly means",
+  "choices": [
+   "costs",
+   "rushes",
+   "wards",
+   "claims",
+   "loads"
+  ],
+  "answer": 2,
+  "why": "the keeper come to feed his strange charges",
+  "explanation": "The keeper feeds his \"charges\": the creatures in his care.",
+  "kills": {
+   "0": {
+    "lure": "",
+    "quote": "Again and again were the bits of meat thrust down into the hearts of the sea flowers",
+    "reason": "What the keeper feeds are the sea creatures, and a cost cannot be fed.",
+    "tempts": "A charge is most often a price, the word's commonest sense."
+   },
+   "1": {
+    "lure": "",
+    "quote": "Again and again were the bits of meat thrust down into the hearts of the sea flowers",
+    "reason": "The keeper is feeding creatures, not attacks; \"his\" charges are things he looks after.",
+    "tempts": "Flesh-eating animals suggest attacks and lunges, which suits the scene's mood."
+   },
+   "3": {
+    "lure": "",
+    "quote": "Again and again were the bits of meat thrust down into the hearts of the sea flowers",
+    "reason": "The keeper is feeding animals; accusations cannot be fed.",
+    "tempts": "A charge is also an accusation, a familiar sense."
+   },
+   "4": {
+    "lure": "",
+    "quote": "Again and again were the bits of meat thrust down into the hearts of the sea flowers",
+    "reason": "The meat goes into living animals; \"loads\" would make the keeper feed burdens.",
+    "tempts": "Something carried on a pole suggests a load."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P5-6",
+  "set_id": "PD2-P5",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the passage, after the juice had been drawn from it, the meat",
+  "choices": [
+   "was pulled back up out of the water on the pole",
+   "passed into a hidden body behind the many mouths",
+   "stayed wrapped in the mouths that had curled around it",
+   "sank slowly to the tank floor as a small, dry lump",
+   "was carried off by the next creature in the tank"
+  ],
+  "answer": 3,
+  "why": "the meat, now but a tiny ball of dry pulp, slowly sank to the bottom of the tank",
+  "explanation": "Once the juice was drawn out, the meat had become a tiny dry ball and slowly sank.",
+  "kills": {
+   "0": {
+    "lure": "prior-knowledge",
+    "quote": "a long pole was suddenly thrust down into the water",
+    "reason": "The pole carries the meat down; the passage says the spent meat sank, not that it was drawn back up.",
+    "tempts": "A keeper would usually pull his pole back out after feeding."
+   },
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "whether it had any body at all, we could not see",
+    "reason": "The writer could see no body behind the mouths, and the meat is said to sink to the bottom.",
+    "tempts": "The final sentence speaks of something hidden behind the mouths, right beside the meat."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "now unfolded again into their petal-like positions",
+    "reason": "After feeding the mouths unfold again, letting go of the meat rather than keeping it wrapped.",
+    "tempts": "The mouths are described as \"tightly curled upon the raw flesh\" in the same sentence."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "Again and again were the bits of meat thrust down",
+    "reason": "Nothing says the meat passed from one creature to another.",
+    "tempts": "There are many creatures and many mouths, so sharing seems possible."
+   }
+  }
+ }
+]

@@ -1,0 +1,776 @@
+[
+ {
+  "qid": "PD2-P2-1",
+  "set_id": "PD2-P2",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage as a whole is chiefly concerned with",
+  "choices": [
+   "a girl's disappointment over a refused class gift and her mother's account of the refusal",
+   "a girl's anger at a rich classmate's costly plan and her mother's defense of that classmate",
+   "a class's plan to honor its departing master and the girls' quarrel over sharing the cost",
+   "a parent's refusal of a class gift and his later regret at having spoken so bluntly",
+   "a well-liked schoolmaster's departure and the farewell examination his students prepare"
+  ],
+  "answer": 0,
+  "why": "it is absolute necessity, and not lack of sympathy, that forces Papa to say no",
+  "explanation": "Most of the passage follows the narrator's hurt after Father vetoes the album, and her mother's explanation that money worries, not unkindness, made him refuse.",
+  "kills": {
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "it is absolute necessity, and not lack of sympathy, that forces Papa to say no",
+    "reason": "The mother defends the father, not Florence; the narrator's remark about Florence's expensive ideas is a passing aside.",
+    "tempts": "The narrator does needle Florence for ideas that are 'rather expensive' and a rich father, so a reader may see envy as the core."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "The girls wished me to make the presentation address.",
+    "reason": "The girls agree on the plan and choose the narrator to speak; no quarrel among them is described.",
+    "tempts": "The cost per girl is spelled out, which invites the idea that the class argued about paying it."
+   },
+   "3": {
+    "lure": "half-right",
+    "quote": "Father thinks he does what is best.",
+    "reason": "The refusal is real, but the father never reappears and nothing shows regret; the mother says he thinks he did right.",
+    "tempts": "The narrator's wish that he would 'soften it a little' makes a softened, regretful father feel like the natural ending."
+   },
+   "4": {
+    "lure": "detail-as-whole",
+    "quote": "We were to have a public examination during the last two days of his stay",
+    "reason": "The master's leaving is only the occasion in the first two paragraphs; the rest concerns the family's refusal.",
+    "tempts": "The passage opens on Mr. Atherton's departure and the examination, so a first-paragraph reader takes that as the subject."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-2",
+  "set_id": "PD2-P2",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the mother, the father's words sometimes sound harsh because",
+  "choices": [
+   "his business worries grow heavier when his family wants things he cannot afford",
+   "he must work for every dollar and so objects to spending money on gifts of any kind",
+   "he thinks his daughter is old enough now to learn something of her elders' lives",
+   "the family's many birthdays have left him short of money for anything else",
+   "he resents being asked to match what a rich man's daughter is able to spend"
+  ],
+  "answer": 0,
+  "why": "his business troubles made him worry, and it added to them to have us wish for things he felt he couldn't afford",
+  "explanation": "The mother says the harshness comes only from business worry, which is increased when the family wants things he feels he cannot pay for.",
+  "kills": {
+   "1": {
+    "lure": "half-right",
+    "quote": "how hard Father had to work for every dollar",
+    "reason": "Working hard for every dollar is the mother's point, but she never says he objects to all gifts; the cause of the harsh tone is his worry.",
+    "tempts": "The phrase about working for every dollar sits in the same sentence and seems to supply the reason directly."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "You are old enough now to know a little of the life of your elders",
+    "reason": "This is the mother's own view of the narrator, said two paragraphs later, not her explanation of the father's tone.",
+    "tempts": "It is a real line from the mother about age and understanding, so it looks like part of her explanation."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "Birthdays are so common in this family",
+    "reason": "The birthday remark is the narrator's, made in a later paragraph about parties, not the mother's account of his tone.",
+    "tempts": "Birthdays and money are both in the conversation, so a reader merges the narrator's complaint into the mother's reason."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "But then her father is rich",
+    "reason": "Florence's rich father is the narrator's comment; the mother never mentions Florence or any resentment.",
+    "tempts": "The contrast between Florence's wealth and the narrator's family is real, so resentment seems a likely motive."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-3",
+  "set_id": "PD2-P2",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "In the sixth paragraph, the narrator feels \"a little conscience-stricken\" most likely because she",
+  "choices": [
+   "sees that her complaint about never giving parties has pained her mother",
+   "suspects that her mother privately thinks the father's refusal was too blunt",
+   "realizes that she was unfair in calling Florence's ideas too expensive",
+   "fears that her mother will pass her complaints on to her stern father",
+   "worries that her mother expects her to give a party in return one day"
+  ],
+  "answer": 0,
+  "why": "feeling a little conscience-stricken, as I saw the look on Mother's face",
+  "explanation": "The pang comes as she sees her mother's face while complaining about parties she can never give, so she sees that the complaint has hurt her mother.",
+  "kills": {
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "if he would only soften it a little",
+    "reason": "The complaint about bluntness is the narrator's own and comes later; the mother defends the father throughout.",
+    "tempts": "The mother sighs at the end, so a reader assumes she quietly agrees and that the narrator senses it."
+   },
+   "2": {
+    "lure": "misplaced-detail",
+    "quote": "though I must say they are generally rather expensive",
+    "reason": "The remark about Florence is in the second paragraph, far from the moment, and the narrator never takes it back.",
+    "tempts": "The narrator does make a slightly catty remark about Florence, which a reader may think she later regrets."
+   },
+   "3": {
+    "lure": "unsupported",
+    "quote": "Father thinks he does what is best.",
+    "reason": "Nothing suggests the mother will report anything; her concern is to explain the father to the narrator.",
+    "tempts": "The narrator has just criticized the family's ways, so fear of her father hearing seems natural."
+   },
+   "4": {
+    "lure": "reversed",
+    "quote": "Of course I don't expect that",
+    "reason": "The narrator says she herself does not expect a party; nothing makes it the mother's expectation.",
+    "tempts": "The word 'expect' sits right beside the pang, and a quick reader attaches it to the mother."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-4",
+  "set_id": "PD2-P2",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the second paragraph, the word \"address\" most nearly means",
+  "choices": [
+   "formal speech",
+   "mailing location",
+   "graceful bearing",
+   "written plea",
+   "practiced skill"
+  ],
+  "answer": 0,
+  "why": "went home thinking over what I should say",
+  "explanation": "She is to 'make the presentation address' and goes home planning what to say, so the address is a speech.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "went home thinking over what I should say and should wear",
+    "reason": "A location cannot be 'made' at a presentation, and she plans what to say, not where to go.",
+    "tempts": "It is the everyday meaning of 'address'."
+   },
+   "2": {
+    "lure": "",
+    "quote": "The girls wished me to make the presentation address.",
+    "reason": "One does not 'make' a bearing at a presentation; the girls are choosing who will speak.",
+    "tempts": "It fits the pride of being chosen and her thoughts about what to wear."
+   },
+   "3": {
+    "lure": "",
+    "quote": "present it to Mr. Atherton before the company",
+    "reason": "The gift is presented openly before the company; nothing is pleaded for or written.",
+    "tempts": "A presentation involves addressing someone, and a plea is a form of address."
+   },
+   "4": {
+    "lure": "",
+    "quote": "thinking over what I should say",
+    "reason": "She is planning words to speak, not showing a skill in handling things.",
+    "tempts": "Being chosen by the girls suggests she is skilled, which fits the mood."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-5",
+  "set_id": "PD2-P2",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "In the eighth paragraph, the narrator's attitude toward her father is best described as",
+  "choices": [
+   "critical of the blunt way her father refuses her",
+   "scornful of her father's worry over the cost of the gift",
+   "appreciative of her father's frankness in turning her down",
+   "tender toward her father in his business troubles",
+   "amused by the stern tone her father takes at the table"
+  ],
+  "answer": 0,
+  "why": "A blunt no is a great deal harder to bear.",
+  "explanation": "She wishes he would 'soften it a little' and says a blunt no is harder to bear: she faults the manner of his refusal.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "If I can't, I can't",
+    "reason": "She accepts the limit on money; what she objects to is the manner of the refusal, not his concern over cost.",
+    "tempts": "She is clearly unhappy with her father, and the refusal was about money."
+   },
+   "2": {
+    "lure": "",
+    "quote": "if he would only soften it a little",
+    "reason": "She wants the refusal softened, so she does not value its frankness.",
+    "tempts": "Her father's no is direct and honest, and the mother has just praised his good intentions."
+   },
+   "3": {
+    "lure": "",
+    "quote": "I couldn't help saying",
+    "reason": "In this paragraph she speaks of her own hurt; compassion for his troubles is the mother's theme, not hers here.",
+    "tempts": "The mother has just explained his business worries, so a reader assumes the daughter now feels for him."
+   },
+   "4": {
+    "lure": "",
+    "quote": "went up to my room and had a good cry",
+    "reason": "His tone made her cry, not smile; nothing in her words is lighthearted.",
+    "tempts": "The family scene is gently told and could read as a fond domestic comedy."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P2-6",
+  "set_id": "PD2-P2",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "In the first paragraph, the remark that \"a part of the building itself had been taken away\" serves mainly to",
+  "choices": [
+   "convey how completely the master had come to seem a fixture of the school",
+   "suggest that the school will decline now that its master has left",
+   "show that the master's leaving came suddenly and without any warning",
+   "contrast the girls' fondness for the master with their parents' coolness",
+   "stress how much the academy's building has changed since he departed"
+  ],
+  "answer": 0,
+  "why": "Mr. Atherton has been the master of the Centreville Academy ever since I can remember",
+  "explanation": "He has been master as long as she can remember, so his absence feels like losing part of the building: he had become part of the place.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "We were very sorry, for we all liked him",
+    "reason": "The remark describes the students' sense of loss; it predicts nothing about the school's future.",
+    "tempts": "Losing part of a building sounds like damage, which suggests decline."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "A few months ago, however, he was offered a better position",
+    "reason": "His move was known months ahead; the remark concerns how his absence feels, not its suddenness.",
+    "tempts": "Something being 'taken away' suggests an abrupt loss."
+   },
+   "3": {
+    "lure": "half-right",
+    "quote": "He so often speaks of Mr. Atherton",
+    "reason": "The girls' fondness is real, but the father often speaks of Mr. Atherton with regard; no parental coolness is set against it.",
+    "tempts": "The parents refuse the gift, so a reader assumes they care less for the master."
+   },
+   "4": {
+    "lure": "figurative-literal",
+    "quote": "it really seems as if",
+    "reason": "'Seems as if' marks a comparison; nothing about the building has actually changed.",
+    "tempts": "The sentence literally speaks of part of the building being taken away."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-1",
+  "set_id": "PD2-P4",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage is primarily concerned with",
+  "choices": [
+   "showing that the feared bookworm is really many kinds of ordinary insect pests",
+   "showing that early naturalists invented the bookworm out of faulty observations",
+   "arguing that book insects do far less damage to books than legend has claimed",
+   "tracing how the name bookworm came to take on a figurative as well as literal sense",
+   "describing how librarians learned to identify and destroy the pests in their books"
+  ],
+  "answer": 0,
+  "why": "the term bookworms is a misnomer",
+  "explanation": "The author argues that the mysterious 'bookworm' is really over thirty species of common pests, none of them worms, so the name misleads.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "Many interesting instances of the discovery of bookworms are found in the literature",
+    "reason": "Mentzel is one curious account among many reports; the author does not say naturalists invented the creature, and real book insects exist.",
+    "tempts": "The long Mentzel anecdote makes early naturalists look foolish, and the author does mock the myth."
+   },
+   "2": {
+    "lure": "prior-knowledge",
+    "quote": "under the right conditions become book destroyers",
+    "reason": "The author still calls these creatures book destroyers; his point is what they are, not that their harm is small.",
+    "tempts": "A reader expects a myth-busting essay to say the danger was exaggerated."
+   },
+   "3": {
+    "lure": "detail-as-whole",
+    "quote": "both in its figurative and literal sense",
+    "reason": "The figurative sense is mentioned only in the closing sentence, as a reason the misused word will last.",
+    "tempts": "The essay ends on the word and its figurative use, so a last-sentence reader takes that as its subject."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "he failed to recognize that the two were the larva and imago of the same species",
+    "reason": "Librarians appear as examples, and one misidentifies his specimens; the essay is not about how librarians learned anything.",
+    "tempts": "Two librarians and a thumb-crushing scene fill the third paragraph."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-2",
+  "set_id": "PD2-P4",
+  "kind": "detail",
+  "difficulty": "hard",
+  "prompt": "According to the passage, the librarian of Hereford Cathedral",
+  "choices": [
+   "mistook the young and adult forms of a single insect for two kinds",
+   "knew the insects on sight and crushed them under his thumbnail",
+   "searched black-letter fragments for specimens for eighteen years",
+   "found a rare insect that feeds on literary matter and nothing else",
+   "heard one of the insects making a noise like a rooster's crowing"
+  ],
+  "answer": 0,
+  "why": "he failed to recognize that the two were the larva and imago of the same species",
+  "explanation": "He reported two species, but the author says they were the larva and the adult (imago) of a single species.",
+  "kills": {
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "who crushed them with his thumb",
+    "reason": "Crushing specimens with a thumb is what Dr. Bandinel of the Bodleian did, in the sentence just before.",
+    "tempts": "Both men are librarians described one after the other, and the vivid thumb scene sticks."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "he found specimens in some black-letter fragments at the Bodleian Library",
+    "reason": "The eighteen years are Havergal's, but the black-letter fragments were where Mr. Blades found specimens.",
+    "tempts": "It combines two real details from adjacent sentences."
+   },
+   "3": {
+    "lure": "keyword-match",
+    "quote": "stands alone in its taste for literary food",
+    "reason": "This phrase describes the unique creature that searchers hoped to find, not what Havergal reported.",
+    "tempts": "It reuses the paragraph's striking phrase about literary food."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "he heard the bookworm crow like a cock",
+    "reason": "The crowing insect belongs to Christian Mentzel in the previous paragraph.",
+    "tempts": "It is the most memorable observation in the passage, and a quick reader attaches it to any observer."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-3",
+  "set_id": "PD2-P4",
+  "kind": "inference",
+  "difficulty": "hard",
+  "prompt": "The author's comment that \"an altogether different cock from the kind we know must have lived in his day\" most likely suggests that the author",
+  "choices": [
+   "regards Mentzel's likening of the sound to a crow as fanciful",
+   "thinks the roosters of Mentzel's century made a different sound",
+   "suspects that Mentzel made up the insect to entertain his readers",
+   "agrees with Mentzel that the noise came from a fowl, not an insect",
+   "credits Mentzel for the care with which he studied the insect"
+  ],
+  "answer": 0,
+  "why": "some well-known sounds made by book insects seemed to him like the crowing of a cock",
+  "explanation": "The author grants the insects make known sounds but jokes that if Mentzel's hearing was fine, the cocks of his day must have been odd: he finds the cock comparison far-fetched.",
+  "kills": {
+   "1": {
+    "lure": "figurative-literal",
+    "quote": "if the fault were not with his hearing",
+    "reason": "The line is a joke offered as the only alternative to faulty hearing; the author does not seriously propose different roosters.",
+    "tempts": "The sentence literally says a different cock 'must have lived in his day'."
+   },
+   "2": {
+    "lure": "too-far",
+    "quote": "some well-known sounds made by book insects",
+    "reason": "The author accepts that a real insect made a real sound; he doubts only the comparison.",
+    "tempts": "Mocking the account can look like accusing Mentzel of invention."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "I knew not whether some local fowl was clamoring",
+    "reason": "The fowl was Mentzel's first guess, which he dropped on finding the insect; the author also places the sound with book insects.",
+    "tempts": "Mentzel himself mentions a fowl, so a reader thinks the author sides with that guess."
+   },
+   "4": {
+    "lure": "keyword-match",
+    "quote": "until taking a magnifying glass I assiduously observed him",
+    "reason": "These are Mentzel's own words about his care; the author's comment concerns the sound, and it teases rather than credits.",
+    "tempts": "'Assiduously observed' and the magnifying glass sit just before the comment."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-4",
+  "set_id": "PD2-P4",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the second paragraph, the word \"curious\" most nearly means",
+  "choices": [
+   "peculiar",
+   "inquisitive",
+   "accurate",
+   "attentive",
+   "troubled"
+  ],
+  "answer": 0,
+  "why": "one can not help wondering if there was not something defective in his ear drums",
+  "explanation": "The account of an insect crowing like a cock is presented as odd, so 'curious' means peculiar.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "A curious and interesting characterization",
+    "reason": "A characterization cannot itself be inquisitive; the word describes the account, not a person.",
+    "tempts": "It is the everyday meaning of 'curious'."
+   },
+   "2": {
+    "lure": "",
+    "quote": "something defective in his ear drums",
+    "reason": "The author doubts the account, so he does not call it accurate.",
+    "tempts": "Mentzel was a naturalist who used a magnifying glass, which fits a careful, correct account."
+   },
+   "3": {
+    "lure": "",
+    "quote": "A curious and interesting characterization",
+    "reason": "An account is not attentive; the word modifies the characterization, not Mentzel.",
+    "tempts": "Mentzel 'assiduously observed' the insect, which suggests attentiveness."
+   },
+   "4": {
+    "lure": "",
+    "quote": "an altogether different cock from the kind we know",
+    "reason": "Nothing shows worry; the author treats the account as odd and laughable.",
+    "tempts": "The essay is about pests that damage books, which could prompt concern."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-5",
+  "set_id": "PD2-P4",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The author's attitude toward the popular accounts of the bookworm described in the first paragraph is best described as",
+  "choices": [
+   "skeptical of the claims that those accounts put forward",
+   "alarmed by the destruction that those accounts describe",
+   "indignant at the writers who first spread those accounts",
+   "appreciative of the vivid imagery the accounts employ",
+   "respectful of the learning behind those old accounts"
+  ],
+  "answer": 0,
+  "why": "many have been prepared to accept almost anything, no matter how fabulous",
+  "explanation": "He calls the bookworm a 'mythical creature' and the accounts 'weird and fantastical', and implies readers are too ready to believe them.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "arouse no unusual interest",
+    "reason": "The author stresses that the real pests are common and unremarkable, not that the accounts give cause for alarm.",
+    "tempts": "The accounts describe 'devastations' and an 'enemy of literature'."
+   },
+   "2": {
+    "lure": "",
+    "quote": "many have been prepared to accept almost anything",
+    "reason": "He faults the readiness of readers to believe, and names no writer to blame; his tone is cool, not angry.",
+    "tempts": "The author clearly disapproves of the accounts, which can be mistaken for anger at their authors."
+   },
+   "3": {
+    "lure": "",
+    "quote": "these weird and fantastical accounts",
+    "reason": "He mentions the imagery only to show how much myth has gathered, calling the accounts weird and fantastical.",
+    "tempts": "The first sentence dwells on how much imagery has been used."
+   },
+   "4": {
+    "lure": "",
+    "quote": "this mythical creature",
+    "reason": "Calling the creature mythical shows he does not treat the accounts as learned.",
+    "tempts": "The accounts are old and the essay is learned in tone, so respect for old learning seems fitting."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P4-6",
+  "set_id": "PD2-P4",
+  "kind": "purpose",
+  "difficulty": "hard",
+  "prompt": "In the third paragraph, the anecdote involving Dr. Bandinel serves mainly to",
+  "choices": [
+   "show that a creature sought as a rarity was familiar to an expert",
+   "illustrate how carelessly early librarians treated valuable specimens",
+   "suggest that the true destroyer is rare and found only in old books",
+   "show that the insects in the fragments had been wrongly identified",
+   "suggest that black-headed insects do the greatest harm to old books"
+  ],
+  "answer": 0,
+  "why": "O yes, they have black heads sometimes",
+  "explanation": "Searchers sought a unique 'destroyer', yet the librarian recognized the specimens at once and dismissed them offhandedly: they were a familiar insect.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "were recognized by the librarian, Dr. Bandinel",
+    "reason": "The point of the scene is that he recognized the insects at once; nothing calls them valuable or him careless.",
+    "tempts": "Crushing a specimen with a thumb and wiping it on a sleeve looks careless."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "while on every hand are those creatures which under the right conditions become book destroyers",
+    "reason": "The anecdote undercuts the idea of a rare bookworm by showing the insects were ordinary.",
+    "tempts": "The specimens were found in black-letter fragments, which suggests old and rare books."
+   },
+   "3": {
+    "lure": "misplaced-detail",
+    "quote": "he failed to recognize that the two were the larva and imago of the same species",
+    "reason": "Misidentification is the point of the next anecdote, about Havergal; Bandinel identified his specimens.",
+    "tempts": "The two librarian stories sit side by side, and one is about getting the identification wrong."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "they have black heads sometimes",
+    "reason": "Bandinel mentions black heads only as a familiar feature; nothing ranks the insects' destructiveness.",
+    "tempts": "The black heads are the one physical detail given, so they seem significant."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-1",
+  "set_id": "PD2-P6",
+  "kind": "main-idea",
+  "difficulty": "medium",
+  "prompt": "The passage is primarily concerned with",
+  "choices": [
+   "showing that the standard account of hoodoo formation traces back to one unproven source",
+   "showing that climate change has begun wearing away the hoodoos of Bryce Canyon",
+   "explaining how freezing and thawing water carved the hoodoos over millions of years",
+   "tracing Bryce Canyon's geological history from an ancient lake to its towers of rock",
+   "arguing that park rangers should stop repeating an unproven account to visitors"
+  ],
+  "answer": 0,
+  "why": "cite a single, unpublished dissertation as the source of the hypothesis",
+  "explanation": "The author finds that every source on hoodoo formation traces back to one unpublished dissertation's hypothesis, and stresses how little is known.",
+  "kills": {
+   "1": {
+    "lure": "too-far",
+    "quote": "the effects of climate change may be literally reshaping the physical park",
+    "reason": "The author says climate change may and could affect the hoodoos; she reports no damage yet.",
+    "tempts": "The opening is about climate change reshaping the park, so a reader expects an account of harm."
+   },
+   "2": {
+    "lure": "prior-knowledge",
+    "quote": "But it was only a hypothesis",
+    "reason": "Freeze-thaw is presented as an untested hypothesis, and the passage's point is that the cause is not known.",
+    "tempts": "Freeze-thaw is the familiar explanation and the passage describes it in detail."
+   },
+   "3": {
+    "lure": "detail-as-whole",
+    "quote": "Roughly fifty million years ago, the park was a swampy, freshwater lake",
+    "reason": "The geological history fills only the second paragraph.",
+    "tempts": "It is the most concrete, textbook-like section of the passage."
+   },
+   "4": {
+    "lure": "half-right",
+    "quote": "I have cited this freeze-thaw hoodoo erosion hypothesis in park programs",
+    "reason": "The account is unproven, but the author does not argue that rangers should stop; she asks how the hoodoos can be protected without the science.",
+    "tempts": "The author admits repeating the hypothesis to visitors, which sounds like a call to stop."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-2",
+  "set_id": "PD2-P6",
+  "kind": "detail",
+  "difficulty": "medium",
+  "prompt": "According to the passage, the landscape's great elevation is important because it",
+  "choices": [
+   "brings many days when the temperature swings across the freezing point",
+   "let sediments from nearby mountain streams settle into layers over time",
+   "keeps the rock frozen solid through the greater part of the year",
+   "gives the park more hoodoos packed together than anywhere else",
+   "shields the fragile limestone from the effects of a warming climate"
+  ],
+  "answer": 0,
+  "why": "the park has about 170 days where temperatures are both above and below freezing in the same day",
+  "explanation": "High elevation brings dramatic temperature swings, so on about 170 days a year the temperature goes both above and below freezing.",
+  "kills": {
+   "1": {
+    "lure": "misplaced-detail",
+    "quote": "sediments washed into the low-lying lake from surrounding mountain streams",
+    "reason": "The sediments settled in a low-lying lake millions of years ago; elevation is not given as the reason.",
+    "tempts": "Mountains and layers of rock suggest height, and the sediment sentence is vivid."
+   },
+   "2": {
+    "lure": "half-right",
+    "quote": "goes through dramatic temperature fluctuations",
+    "reason": "Elevation brings cold, but the point is fluctuation: days that go above as well as below freezing.",
+    "tempts": "High places are cold, so constant freezing seems the natural effect."
+   },
+   "3": {
+    "lure": "true-not-answering",
+    "quote": "the greatest concentration of hoodoos found anywhere on Earth",
+    "reason": "The record concentration is stated in the previous paragraph and not tied to elevation.",
+    "tempts": "It is a true and striking fact about the park, placed just before the elevation paragraph."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "Warmer temperatures resulting from climate change could pose a grave threat",
+    "reason": "The passage treats warming as a threat to the hoodoos; nothing says elevation shields them.",
+    "tempts": "Higher places are cooler, so a reader may assume they are protected from warming."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-3",
+  "set_id": "PD2-P6",
+  "kind": "inference",
+  "difficulty": "medium",
+  "prompt": "It can be inferred that, until she spoke with Tyra Olstad, the author",
+  "choices": [
+   "took the freeze-thaw account to rest on thoroughly tested research",
+   "suspected that the freeze-thaw account rested on very little evidence",
+   "had already studied Lindquist's dissertation on the park's slopes",
+   "expected fewer freeze-thaw days to make hoodoos form more quickly",
+   "thought the ancient lake's waters had carved the hoodoos' shapes"
+  ],
+  "answer": 0,
+  "why": "because everything refers to it",
+  "explanation": "She had cited the hypothesis in her programs because every source referred to it, and only later learned it came from one thesis, so she had taken it as well supported.",
+  "kills": {
+   "1": {
+    "lure": "reversed",
+    "quote": "I wanted to know how fewer freeze-thaw days would affect hoodoo formation",
+    "reason": "Her question assumed freeze-thaw shaped the hoodoos; the thinness of the evidence was what she discovered afterward.",
+    "tempts": "Her later doubt is the passage's theme, and a reader projects it back to the start."
+   },
+   "2": {
+    "lure": "unsupported",
+    "quote": "a 1980 dissertation from the University of Utah",
+    "reason": "The dissertation is named only as the source she traced; nothing says she had read it.",
+    "tempts": "The dissertation is described in detail, title and year, as if she knew it."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "how fewer freeze-thaw days would affect hoodoo formation",
+    "reason": "She asked how fewer such days would affect formation; she did not predict faster formation.",
+    "tempts": "Her question is about change in formation, and a reader supplies a direction."
+   },
+   "4": {
+    "lure": "misplaced-detail",
+    "quote": "These layers formed the fragile Claron limestone",
+    "reason": "The lake laid down the limestone layers; shaping is attributed to freeze-thaw weathering.",
+    "tempts": "Water is said to be 'reshaping the park', and the ancient lake is water."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-4",
+  "set_id": "PD2-P6",
+  "kind": "vocabulary-in-context",
+  "difficulty": "medium",
+  "prompt": "As it is used in the second paragraph, the word \"concentration\" most nearly means",
+  "choices": [
+   "dense cluster",
+   "mental focus",
+   "chemical strength",
+   "careful study",
+   "close attention"
+  ],
+  "answer": 0,
+  "why": "Bryce Canyon National Park has the greatest concentration of hoodoos found anywhere on Earth.",
+  "explanation": "The park has more hoodoos packed together than any other place, so 'concentration' means a dense cluster.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "the greatest concentration of hoodoos found anywhere on Earth",
+    "reason": "Hoodoos are 'found' in a place; a mental focus is not something found in a landscape.",
+    "tempts": "It is the everyday meaning of 'concentration'."
+   },
+   "2": {
+    "lure": "",
+    "quote": "the greatest concentration of hoodoos found anywhere on Earth",
+    "reason": "The sentence counts rock formations in a place, not the strength of a solution.",
+    "tempts": "The paragraph is about sediments and limestone, which fits a scientific sense."
+   },
+   "3": {
+    "lure": "",
+    "quote": "has the greatest concentration of hoodoos found anywhere",
+    "reason": "The park 'has' the concentration of hoodoos; it is a feature of the land, not research done on it.",
+    "tempts": "The passage is about scientific study of the hoodoos."
+   },
+   "4": {
+    "lure": "",
+    "quote": "has the greatest concentration of hoodoos found anywhere",
+    "reason": "Attention is paid by people; the sentence describes rock formations found in a place.",
+    "tempts": "The hoodoos are famous and much visited, which fits close attention."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-5",
+  "set_id": "PD2-P6",
+  "kind": "attitude",
+  "difficulty": "medium",
+  "prompt": "The author's attitude toward the present state of scientific knowledge on the subject is best described as",
+  "choices": [
+   "exasperated at how thin the research on hoodoo formation is",
+   "scornful of Lindquist for failing to publish his own findings",
+   "admiring of the care with which the hypothesis has been tested",
+   "grateful that the park's website cites so many separate sources",
+   "appreciative of how firmly the cause of the hoodoos is settled"
+  ],
+  "answer": 0,
+  "why": "is maddeningly absent",
+  "explanation": "She calls the science 'maddeningly absent' and stresses 'how little we know', which is exasperation at the thin research.",
+  "kills": {
+   "1": {
+    "lure": "",
+    "quote": "I have cited this freeze-thaw hoodoo erosion hypothesis in park programs",
+    "reason": "She mentions that the dissertation is unpublished but blames no one, and she includes herself among those who repeated it.",
+    "tempts": "The word 'unpublished' is stressed, and the author is clearly frustrated."
+   },
+   "2": {
+    "lure": "",
+    "quote": "it was only a hypothesis",
+    "reason": "The idea was never tested; it remained a hypothesis in one thesis.",
+    "tempts": "Freeze-thaw is described in confident detail in the third paragraph."
+   },
+   "3": {
+    "lure": "",
+    "quote": "all mentions of the freeze-thaw cycle are credited to R. C. Lindquist",
+    "reason": "The three works the website cites all go back to Lindquist, so the number of sources is illusory.",
+    "tempts": "The website does cite three different works."
+   },
+   "4": {
+    "lure": "",
+    "quote": "how little we know about how hoodoos are created",
+    "reason": "She says the cause is not known, so she does not see it as settled.",
+    "tempts": "The freeze-thaw cycle is called the 'leading cause' earlier."
+   }
+  }
+ },
+ {
+  "qid": "PD2-P6-6",
+  "set_id": "PD2-P6",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "prompt": "In the sixth paragraph, the author's account of where she herself cited the freeze-thaw explanation serves mainly to",
+  "choices": [
+   "show that even her own teaching has helped to spread an untested idea",
+   "establish her authority as a ranger who teaches visitors about the park",
+   "contrast her own careful methods with the carelessness of earlier writers",
+   "suggest that rangers should be retrained before they teach the public",
+   "show that visitors ask more about hoodoos than about any other feature"
+  ],
+  "answer": 0,
+  "why": "But it was only a hypothesis",
+  "explanation": "She lists her programs, answers and resources, then admits the idea was only a hypothesis: her own work had passed it on as if settled.",
+  "kills": {
+   "1": {
+    "lure": "true-not-answering",
+    "quote": "I started working at Bryce Canyon in 2021.",
+    "reason": "She is a ranger who teaches visitors, but the list leads straight into an admission of error, not a claim of authority.",
+    "tempts": "The paragraph opens with her job and her experience at the park."
+   },
+   "2": {
+    "lure": "reversed",
+    "quote": "because everything refers to it",
+    "reason": "She places herself among those who repeated the idea; she does not set herself apart from them.",
+    "tempts": "She is the one who uncovered the single source, which can look like a contrast with others."
+   },
+   "3": {
+    "lure": "too-far",
+    "quote": "how can we protect them or prepare ourselves",
+    "reason": "Her concern is what is not known about the hoodoos; she proposes no retraining.",
+    "tempts": "Admitting that rangers taught an unproven idea suggests a fix for rangers."
+   },
+   "4": {
+    "lure": "unsupported",
+    "quote": "in answering visitor",
+    "reason": "Visitors' questions are one place she cited the idea; nothing compares them with other topics.",
+    "tempts": "Answering visitors' questions about hoodoos is named, which suggests they are common."
+   }
+  }
+ }
+]

@@ -1,0 +1,318 @@
+[
+ {
+  "set_id": "PD2-P2",
+  "title": "Mother's Idea (opening scenes)",
+  "author": "A. M. Platt (unsigned in the issue; named in the St. Nicholas vol. XIII contents)",
+  "year": 1886,
+  "note": "The passage text is fixed. \"[...]\" marks an editor's cut; do not ask about it. Paragraphs (stanzas) are separated by blank lines; count them in that order.",
+  "text": "Mr. Atherton has been the master of the Centreville Academy ever since I can remember. A few months ago, however, he was offered a better position in the city, and he decided to leave Centreville. We were very sorry, for we all liked him; and now that he has left, it really seems as if a part of the building itself had been taken away.\n\nWe were to have a public examination during the last two days of his stay, and Florence Grantley had thought of a beautiful project. She always has good ideas, though I must say they are generally rather expensive. But then her father is rich, and I suppose she never has to think twice before spending a dollar, as some of us are obliged to do. Her plan was to buy an album, put all our pictures in it, and present it to Mr. Atherton before the company, after he had closed the school. The girls wished me to make the presentation address. Of course I was enthusiastic about it, and went home thinking over what I should say and should wear, and all that. There are fifteen girls in our class, and Florence said she knew of a lovely album, one we wouldn't be ashamed to give him. It would cost only eleven dollars and twenty-five cents; and that, you see, would be only seventy-five cents apiece. I went in to dinner full of the new project, and began to talk about it at the table.\n\nBut Father vetoed it at once. He said he didn't believe in the idea at all. It would be too expensive for some of us, and he did not wish to hear another word about it.\n\nWhen Father takes that tone, of course there's no more to be said. I am too old to cry before everybody, but I didn't wish any more dinner, and as soon as possible I went up to my room and had a good cry.\n\nMother came upstairs as quickly as she could. I knew she would. Mother is a born comforter. Oh, what do girls do who have no mother? She told me I must remember how hard Father had to work for every dollar, and that although what he said sometimes sounded harsh, it was only because his business troubles made him worry, and it added to them to have us wish for things he felt he couldn't afford. Dear Mother! I wonder if she ever wishes for things she doesn't get.\n\nThen I told Mother all about it; that it was not merely that one plan, but that I could never join in any project that came up. All the other girls had birthday parties and I went, but never gave one in return. \"Of course I don't expect that,\" said I, feeling a little conscience-stricken, as I saw the look on Mother's face. \"Birthdays are so common in this family, of course we can't notice them; but I thought this time we had found something Father could sympathize with. He so often speaks of Mr. Atherton, and the respect he has for him—but of course that's all over now. If I can't, I can't; it does seem hard though never to do as the others do.\"\n\n\"I know it, child,\" Mother said, softly touching my hair. \"Many things are hard. You are old enough now to know a little of the life of your elders,\" she went on; \"and you must remember that it is absolute necessity, and not lack of sympathy, that forces Papa to say no, as he sometimes does.\"\n\n\"Well, if he would only soften it a little,\" I couldn't help saying. \"A blunt no is a great deal harder to bear.\"\n\n\"I know, dear,\" Mother said, with a sigh; \"but Father thinks he does what is best.\"",
+  "questions_that_stay": [
+   {
+    "qid": "PD2-P2-4",
+    "set_id": "PD2-P2",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the second paragraph, the word \"address\" most nearly means",
+    "choices": [
+     "formal speech",
+     "mailing location",
+     "graceful bearing",
+     "written plea",
+     "practiced skill"
+    ],
+    "answer": 0,
+    "why": "went home thinking over what I should say",
+    "explanation": "She is to 'make the presentation address' and goes home planning what to say, so the address is a speech.",
+    "kills": {
+     "1": {
+      "lure": "",
+      "quote": "went home thinking over what I should say and should wear",
+      "reason": "A location cannot be 'made' at a presentation, and she plans what to say, not where to go.",
+      "tempts": "It is the everyday meaning of 'address'."
+     },
+     "2": {
+      "lure": "",
+      "quote": "The girls wished me to make the presentation address.",
+      "reason": "One does not 'make' a bearing at a presentation; the girls are choosing who will speak.",
+      "tempts": "It fits the pride of being chosen and her thoughts about what to wear."
+     },
+     "3": {
+      "lure": "",
+      "quote": "present it to Mr. Atherton before the company",
+      "reason": "The gift is presented openly before the company; nothing is pleaded for or written.",
+      "tempts": "A presentation involves addressing someone, and a plea is a form of address."
+     },
+     "4": {
+      "lure": "",
+      "quote": "thinking over what I should say",
+      "reason": "She is planning words to speak, not showing a skill in handling things.",
+      "tempts": "Being chosen by the girls suggests she is skilled, which fits the mood."
+     }
+    }
+   },
+   {
+    "qid": "PD2-P2-5",
+    "set_id": "PD2-P2",
+    "kind": "attitude",
+    "difficulty": "medium",
+    "prompt": "In the eighth paragraph, the narrator's attitude toward her father is best described as",
+    "choices": [
+     "critical of the blunt way her father refuses her",
+     "scornful of her father's anxiety over the cost of the gift",
+     "appreciative of her father's frankness in turning her down",
+     "tender toward her father in his money difficulties",
+     "amused by the stern tone her father takes at the table"
+    ],
+    "answer": 0,
+    "why": "A blunt no is a great deal harder to bear.",
+    "explanation": "She wishes he would 'soften it a little' and says a blunt no is harder to bear: she faults the manner of his refusal.",
+    "kills": {
+     "1": {
+      "lure": "",
+      "quote": "If I can't, I can't",
+      "reason": "She accepts the limit on money; what she objects to is the manner of the refusal, not his concern over cost.",
+      "tempts": "She is clearly unhappy with her father, and the refusal was about money."
+     },
+     "2": {
+      "lure": "",
+      "quote": "if he would only soften it a little",
+      "reason": "She wants the refusal softened, so she does not value its frankness.",
+      "tempts": "Her father's no is direct and honest, and the mother has just praised his good intentions."
+     },
+     "3": {
+      "lure": "",
+      "quote": "I couldn't help saying",
+      "reason": "In this paragraph she speaks of her own hurt; compassion for his troubles is the mother's theme, not hers here.",
+      "tempts": "The mother has just explained his business worries, so a reader assumes the daughter now feels for him."
+     },
+     "4": {
+      "lure": "",
+      "quote": "went up to my room and had a good cry",
+      "reason": "His tone made her cry, not smile; nothing in her words is lighthearted.",
+      "tempts": "The family scene is gently told and could read as a fond domestic comedy."
+     }
+    }
+   }
+  ],
+  "questions_to_replace": [
+   {
+    "qid": "PD2-P2-1",
+    "kind": "main-idea",
+    "old_stem_do_not_reuse": "The passage as a whole is chiefly concerned with"
+   },
+   {
+    "qid": "PD2-P2-2",
+    "kind": "detail",
+    "old_stem_do_not_reuse": "According to the mother, the father's words sometimes sound harsh because"
+   },
+   {
+    "qid": "PD2-P2-3",
+    "kind": "inference",
+    "old_stem_do_not_reuse": "In the sixth paragraph, the narrator feels \"a little conscience-stricken\" most likely because she"
+   },
+   {
+    "qid": "PD2-P2-6",
+    "kind": "purpose",
+    "old_stem_do_not_reuse": "In the first paragraph, the remark that \"a part of the building itself had been taken away\" serves mainly to"
+   }
+  ]
+ },
+ {
+  "set_id": "PD2-P4",
+  "title": "Bookworms in Fact and Fancy",
+  "author": "Willard Austen",
+  "year": 1899,
+  "note": "The passage text is fixed. \"[...]\" marks an editor's cut; do not ask about it. Paragraphs (stanzas) are separated by blank lines; count them in that order.",
+  "text": "So much mystery has gathered around the term bookworm, so much imagery has been employed in depicting the appearance and devastations of this mythical creature, that many have been prepared to accept almost anything, no matter how fabulous, that might be said about this unknown enemy of literature. Reaction against these weird and fantastical accounts is indicated by the question, not infrequently asked, \"Are there such things as bookworms?\" Few are aware that in this creature we encounter another case of masquerading, that these \"destroyers of the Muses\" are common enough pests playing other rôles than those in which they are familiarly known. Some of them are met with daily in the house and elsewhere, and arouse no unusual interest, while the world goes on wondering what a bookworm is like. [...]\n\nA curious and interesting characterization of some species of book insects has come to us in the writings of Christian Mentzel, the German naturalist and philologist, who lived in the seventeenth century. When one reads that he heard the bookworm crow like a cock, and said, \"I knew not whether some local fowl was clamoring or whether there was but a beating in my ears,\" one can not help wondering if there was not something defective in his ear drums; but further on he says, \"I perceived, in the paper whereon I was writing, a little insect that ceased not to carol like very chanticleer, until taking a magnifying glass I assiduously observed him.\" From this one concludes that if the fault were not with his hearing, by which some well-known sounds made by book insects seemed to him like the crowing of a cock, an altogether different cock from the kind we know must have lived in his day. [...]\n\nMany interesting instances of the discovery of bookworms are found in the literature on the subject, showing the keen interest felt in the search for specimens of the \"destroyer,\" many of them revealing the fact that some unique and curious creature which stands alone in its taste for literary food was sought. Mr. Blades reported in 1858 that he found specimens in some black-letter fragments at the Bodleian Library, that were recognized by the librarian, Dr. Bandinel, who crushed them with his thumb, saying, as he wiped his thumb nail on his coat sleeve, \"O yes, they have black heads sometimes.\" The librarian of Hereford Cathedral, the Rev. F. S. Havergal, contributes his observations, covering a period of eighteen years, during which time he reports that he found two distinct species. From his description, however, it appears that he failed to recognize that the two were the larva and imago of the same species. Many cases of the finding of bookworms reported in England and America are not accompanied with sufficient data to determine just what they were. These contribute to the general impression that many have sought but few have found what were thought to be \"genuine bookworms,\" while on every hand are those creatures which under the right conditions become book destroyers.\n\nResearch among the literature concerning library pests reveals the fact that no less than eleven different groups have members that are directly or indirectly accused of injuring books and bindings. The number of species in each group ranges from one to eleven, making a total of over thirty different species. In addition to these there are others against which the evidence is at best only circumstantial. It is not necessary to say that none of these bear any resemblance in any period of their existence to worms, and that the term bookworms is a misnomer. The word has become so firmly fixed in literature, both in its figurative and literal sense, that its misuse will no doubt continue.",
+  "questions_that_stay": [
+   {
+    "qid": "PD2-P4-2",
+    "set_id": "PD2-P4",
+    "kind": "detail",
+    "difficulty": "hard",
+    "prompt": "According to the passage, the Rev. F. S. Havergal of Hereford Cathedral",
+    "choices": [
+     "mistook the young and adult forms of a single insect for two species",
+     "knew the insects on sight and crushed them under his thumbnail",
+     "searched black-letter fragments for specimens for eighteen years",
+     "found a rare insect that feeds on literary matter and nothing else",
+     "heard one of the insects making a noise resembling a rooster's crowing"
+    ],
+    "answer": 0,
+    "why": "he failed to recognize that the two were the larva and imago of the same species",
+    "explanation": "He reported two species, but the author says they were the larva and the adult (imago) of a single species.",
+    "kills": {
+     "1": {
+      "lure": "misplaced-detail",
+      "quote": "who crushed them with his thumb",
+      "reason": "Crushing specimens with a thumb is what Dr. Bandinel of the Bodleian did, in the sentence just before.",
+      "tempts": "Both men are librarians described one after the other, and the vivid thumb scene sticks."
+     },
+     "2": {
+      "lure": "half-right",
+      "quote": "he found specimens in some black-letter fragments at the Bodleian Library",
+      "reason": "The eighteen years are Havergal's, but the black-letter fragments were where Mr. Blades found specimens.",
+      "tempts": "It combines two real details from adjacent sentences."
+     },
+     "3": {
+      "lure": "keyword-match",
+      "quote": "stands alone in its taste for literary food",
+      "reason": "This phrase describes the unique creature that searchers hoped to find, not what Havergal reported.",
+      "tempts": "It reuses the paragraph's striking phrase about literary food."
+     },
+     "4": {
+      "lure": "misplaced-detail",
+      "quote": "he heard the bookworm crow like a cock",
+      "reason": "The crowing insect belongs to Christian Mentzel in the previous paragraph.",
+      "tempts": "It is the most memorable observation in the passage, and a quick reader attaches it to any observer."
+     }
+    }
+   },
+   {
+    "qid": "PD2-P4-4",
+    "set_id": "PD2-P4",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the second paragraph, the word \"curious\" most nearly means",
+    "choices": [
+     "peculiar",
+     "inquisitive",
+     "accurate",
+     "attentive",
+     "troubled"
+    ],
+    "answer": 0,
+    "why": "one can not help wondering if there was not something defective in his ear drums",
+    "explanation": "The account of an insect crowing like a cock is presented as odd, so 'curious' means peculiar.",
+    "kills": {
+     "1": {
+      "lure": "",
+      "quote": "A curious and interesting characterization",
+      "reason": "A characterization cannot itself be inquisitive; the word describes the account, not a person.",
+      "tempts": "It is the everyday meaning of 'curious'."
+     },
+     "2": {
+      "lure": "",
+      "quote": "something defective in his ear drums",
+      "reason": "The author doubts the account, so he does not call it accurate.",
+      "tempts": "Mentzel was a naturalist who used a magnifying glass, which fits a careful, correct account."
+     },
+     "3": {
+      "lure": "",
+      "quote": "A curious and interesting characterization",
+      "reason": "An account is not attentive; the word modifies the characterization, not Mentzel.",
+      "tempts": "Mentzel 'assiduously observed' the insect, which suggests attentiveness."
+     },
+     "4": {
+      "lure": "",
+      "quote": "an altogether different cock from the kind we know",
+      "reason": "Nothing shows worry; the author treats the account as odd and laughable.",
+      "tempts": "The essay is about pests that damage books, which could prompt concern."
+     }
+    }
+   }
+  ],
+  "questions_to_replace": [
+   {
+    "qid": "PD2-P4-1",
+    "kind": "main-idea",
+    "old_stem_do_not_reuse": "The passage is primarily concerned with"
+   },
+   {
+    "qid": "PD2-P4-3",
+    "kind": "inference",
+    "old_stem_do_not_reuse": "The author's comment that \"an altogether different cock from the kind we know must have lived in his day\" most likely suggests that the author"
+   },
+   {
+    "qid": "PD2-P4-5",
+    "kind": "attitude",
+    "old_stem_do_not_reuse": "The author's attitude toward the popular accounts of the bookworm described in the first paragraph is best described as"
+   },
+   {
+    "qid": "PD2-P4-6",
+    "kind": "purpose",
+    "old_stem_do_not_reuse": "In the third paragraph, the anecdote involving Dr. Bandinel serves mainly to"
+   }
+  ]
+ },
+ {
+  "set_id": "PD2-P6",
+  "title": "We Don't Know What Will Happen to Bryce Canyon's Hoodoos",
+  "author": "Claire Crise, seasonal ranger, Bryce Canyon National Park (NPS)",
+  "year": 2022,
+  "note": "The passage text is fixed. \"[...]\" marks an editor's cut; do not ask about it. Paragraphs (stanzas) are separated by blank lines; count them in that order.",
+  "text": "When we talk about climate change “reshaping” our world, we often mean it’s reshaping our attitudes, actions, and politics. But at Bryce Canyon National Park in Utah, the effects of climate change may be literally reshaping the physical park. Warmer temperatures resulting from climate change could pose a grave threat to the park’s iconic natural rock structures, the hoodoos, whose creation apparently rely on cycles of freezing and thawing water. But definitive science behind how hoodoos are created, much less how warming temperatures will affect them, is maddeningly absent. And without the science, we cannot hope to address or adapt to climate change’s impacts on them. [...]\n\nRoughly fifty million years ago, the park was a swampy, freshwater lake more than 200 miles long but shallow in depth. Over the course of 25 million years, sediments washed into the low-lying lake from surrounding mountain streams and gradually built up in layers. These layers formed the fragile Claron limestone, the material that makes up the park’s beloved hoodoos, which rise up from the landscape in columns, towers, and bridges. Bryce Canyon National Park has the greatest concentration of hoodoos found anywhere on Earth.\n\nHoodoo formation is also affected by elevation. Bryce Canyon ranges from 6,600 to 9,100 feet. Its high elevation means the landscape goes through dramatic temperature fluctuations. Annually, the park has about 170 days where temperatures are both above and below freezing in the same day. This freeze-thaw cycle is believed to be the leading cause of hoodoo creation at Bryce Canyon. The freeze-thaw, physical weathering by ice, which breaks the rocks apart, may be what gives the hoodoos their iconic, angular shapes, with fantastical names like “Thor's Hammer,” “Queen Victoria,” and “The Alligator.” [...]\n\nWhen I heard about climate change and water reshaping the park, I wanted to know how fewer freeze-thaw days would affect hoodoo formation. But when I consulted the park’s physical scientist, Tyra Olstad, I discovered there’s no clear answer to this question. As it turns out, every book, research paper, and article that’s been written about the hoodoos cite a single, unpublished dissertation as the source of the hypothesis that freeze-thaw cycles shape the hoodoos.\n\nThat study is Robert C. Lindquist’s Slope processes and forms at Bryce Canyon National Park, a 1980 dissertation from the University of Utah. Lindquist’s ideas about hoodoo formation are also found in his earlier conference paper, Genesis of the Erosional Forms of Bryce Canyon National Park. For instance, the Bryce Canyon website cites three different works on its hoodoo creation page: Shadows of Time, the Geology of Bryce Canyon National Park; Geology of U.S. Parklands; and Geology of Utah's Parks and Monuments. But in the bibliographies for these works, all mentions of the freeze-thaw cycle are credited to R. C. Lindquist. [...]\n\nI started working at Bryce Canyon in 2021. I have cited this freeze-thaw hoodoo erosion hypothesis in park programs, in answering visitor’s questions, and in creating resources for future rangers, because everything refers to it. But it was only a hypothesis in one person’s thesis. It’s status as the single cited source shows how little we know about how hoodoos are created. And if we don’t know how they’re created, how can we protect them or prepare ourselves for what’s to come?",
+  "questions_that_stay": [
+   {
+    "qid": "PD2-P6-4",
+    "set_id": "PD2-P6",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the second paragraph, the word \"concentration\" most nearly means",
+    "choices": [
+     "dense cluster",
+     "mental focus",
+     "chemical strength",
+     "careful study",
+     "close attention"
+    ],
+    "answer": 0,
+    "why": "Bryce Canyon National Park has the greatest concentration of hoodoos found anywhere on Earth.",
+    "explanation": "The park has more hoodoos packed together than any other place, so 'concentration' means a dense cluster.",
+    "kills": {
+     "1": {
+      "lure": "",
+      "quote": "the greatest concentration of hoodoos found anywhere on Earth",
+      "reason": "Hoodoos are 'found' in a place; a mental focus is not something found in a landscape.",
+      "tempts": "It is the everyday meaning of 'concentration'."
+     },
+     "2": {
+      "lure": "",
+      "quote": "the greatest concentration of hoodoos found anywhere on Earth",
+      "reason": "The sentence counts rock formations in a place, not the strength of a solution.",
+      "tempts": "The paragraph is about sediments and limestone, which fits a scientific sense."
+     },
+     "3": {
+      "lure": "",
+      "quote": "has the greatest concentration of hoodoos found anywhere",
+      "reason": "The park 'has' the concentration of hoodoos; it is a feature of the land, not research done on it.",
+      "tempts": "The passage is about scientific study of the hoodoos."
+     },
+     "4": {
+      "lure": "",
+      "quote": "has the greatest concentration of hoodoos found anywhere",
+      "reason": "Attention is paid by people; the sentence describes rock formations found in a place.",
+      "tempts": "The hoodoos are famous and much visited, which fits close attention."
+     }
+    }
+   }
+  ],
+  "questions_to_replace": [
+   {
+    "qid": "PD2-P6-1",
+    "kind": "main-idea",
+    "old_stem_do_not_reuse": "The passage is primarily concerned with"
+   },
+   {
+    "qid": "PD2-P6-2",
+    "kind": "detail",
+    "old_stem_do_not_reuse": "According to the passage, the landscape's great elevation is important because it"
+   },
+   {
+    "qid": "PD2-P6-3",
+    "kind": "inference",
+    "old_stem_do_not_reuse": "It can be inferred that, until she spoke with Tyra Olstad, the author"
+   },
+   {
+    "qid": "PD2-P6-5",
+    "kind": "attitude",
+    "old_stem_do_not_reuse": "The author's attitude toward the present state of scientific knowledge on the subject is best described as"
+   },
+   {
+    "qid": "PD2-P6-6",
+    "kind": "purpose",
+    "old_stem_do_not_reuse": "In the sixth paragraph, the author's account of where she herself cited the theory serves mainly to"
+   }
+  ]
+ }
+]
