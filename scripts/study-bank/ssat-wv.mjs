@@ -147,8 +147,11 @@ export const VOC_FRAMES = {
   'likely-means': new RegExp(`^The word "[^"]+" in ${PARA} most likely means$`),
   context: new RegExp(`^In the context of ${PARA}, "[^"]+" most nearly means$`),
 }
-export function stemFrame(kind, prompt) {
-  const s = String(prompt ?? '').replace(/[“”]/g, '"').trim(), F = kind === 'attitude' ? ATT_FRAMES : kind === 'vocabulary-in-context' ? VOC_FRAMES : null
+// WV13 (READING-BATCH-WV13-2026-10-11.prereg.md): a fifth vocabulary phrasing, taken from a live SSAT stem ('In the third
+// paragraph, "moved" most nearly means'), so five units can each use a different one. WV13 ids only; WV11/WV12 unchanged.
+export const VOC_FRAMES13 = { ...VOC_FRAMES, 'in-para': new RegExp(`^In ${PARA}, (?:the word )?"[^"]+" most nearly means$`) }
+export function stemFrame(kind, prompt, vocFrames = VOC_FRAMES) {
+  const s = String(prompt ?? '').replace(/[“”]/g, '"').trim(), F = kind === 'attitude' ? ATT_FRAMES : kind === 'vocabulary-in-context' ? vocFrames : null
   if (!F) return { frame: null, probs: [] }
   const probs = []
   if (kind === 'attitude' && /\b(author|narrator|speaker|writer)\b|\btone\b|\battitude\b/i.test(s)) probs.push('attitude stem asks about the author/narrator or a tone; WV11 attitude stems are character-action only')
@@ -168,7 +171,7 @@ export function frameVariety(rows) {
 //    (the author's/narrator's attitude toward the subject, in an essay, memoir or nature piece; AUTHOR_FRAMES, from
 //    live SSAT stems). Vocabulary stems use WV11's frames. Variety across one verify call as for WV11. The other WV12
 //    rules (genre, two licensing sentences, no irony words, judges' support) live in ssat-wv12-rules.mjs. ──
-const isWV12 = id => /^WV12-/.test(String(id))
+const isWV12 = id => /^WV1[23]-/.test(String(id))   // WV13 (READING-BATCH-WV13-2026-10-11.prereg.md) reuses the WV12 branch unchanged
 const WHO12 = '(?:author|narrator|writer|essayist)'
 export const AUTHOR_FRAMES = {
   'attitude-best': new RegExp(`^The ${WHO12}(?:'s|’s) attitude toward [^?]{3,}? is best described as$`),
@@ -264,7 +267,7 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = 
       if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
       if (isV10(id) && !isWV11a(id) && !isWV12(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
       if (isWV11a(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const sf = stemFrame(q.kind, q.prompt); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame }) }
-      if (isWV12(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const au = q.kind === 'attitude' && p.attitude_form === 'author', sf = au ? authorFrame(q.prompt) : stemFrame(q.kind, q.prompt); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame && (au ? `author:${sf.frame}` : sf.frame) }) }
+      if (isWV12(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) { const au = q.kind === 'attitude' && p.attitude_form === 'author', sf = au ? authorFrame(q.prompt) : stemFrame(q.kind, q.prompt, /^WV13-/.test(id) ? VOC_FRAMES13 : VOC_FRAMES); sf.probs.forEach(x => problems.push(`${tag}: ${x}`)); frames.push({ id: tag, kind: q.kind, frame: sf.frame && (au ? `author:${sf.frame}` : sf.frame) }) }
       if (isV11(id) && q.kind === 'attitude') (q.support ?? []).forEach((sp, k) => fullSentence(sp?.why).forEach(x => problems.push(`${tag} v${k}: ${x}`)))
       if (isV11(id) && q.kind === 'vocabulary-in-context') {
         const sid = senseId(id, q.qid)

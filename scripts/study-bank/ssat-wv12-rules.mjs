@@ -32,7 +32,7 @@ export { AUTHOR_FRAMES, authorFrame }
 
 const die = m => { console.error(`REFUSING: ${m}`); process.exit(2) }
 const sha = b => createHash('sha256').update(b).digest('hex')
-export const isV12 = id => /^WV12-/.test(String(id))
+export const isV12 = id => /^WV1[23]-/.test(String(id))   // WV13 reuses R1-R5 unchanged (READING-BATCH-WV13-2026-10-11.prereg.md)
 export const IRONY = /\b(ironic|irony|ironical|mocking|mockery|wry|wryly|sarcastic|sarcasm|sardonic)\b/i
 const GENRE = /\b(essay|memoir|nature)\b/i
 

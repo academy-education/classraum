@@ -1,0 +1,20 @@
+{
+  "WV12-P02.4": {
+    "pairs": {"0-2": "distinct", "1-2": "distinct", "2-3": "distinct", "2-4": "distinct"},
+    "notes": {}
+  },
+  "WV12-P03.4": {
+    "pairs": {"0-1": "distinct", "0-2": "distinct", "0-3": "distinct", "0-4": "overlap", "1-2": "distinct", "2-3": "overlap", "2-4": "distinct"},
+    "notes": {
+      "0-4": "'she adjusted her pitch for the older audience' = how high her voice sat or her persuasive spiel",
+      "2-3": "pitch is a roofing material: 'the old roof's pitch needed attention' = its tar coating or its slope"
+    }
+  },
+  "WV12-P04.4": {
+    "pairs": {"0-1": "distinct", "1-2": "distinct", "1-3": "overlap", "1-4": "overlap"},
+    "notes": {
+      "1-3": "'a bank of sandbags/batteries stood ready' = a row of them or a reserve stock",
+      "1-4": "'the bank held the town's reserves' = a store or the financial institution; banks are literally stores of money"
+    }
+  }
+}

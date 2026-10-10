@@ -1,0 +1,38 @@
+{
+  "WV12-P02.4": {
+    "pairs": {
+      "0-2": "distinct",
+      "1-2": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct"
+    },
+    "notes": {}
+  },
+  "WV12-P03.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "overlap",
+      "1-2": "distinct",
+      "2-3": "overlap",
+      "2-4": "distinct"
+    },
+    "notes": {
+      "0-4": "'she softened her pitch when the investors frowned' = the highness of her voice or her persuasive speech",
+      "2-3": "'the roofer checked the pitch of the old roof' = the tar coating the roof or its slope (pitch is a traditional roofing material)"
+    }
+  },
+  "WV12-P04.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "1-2": "distinct",
+      "1-3": "overlap",
+      "1-4": "overlap"
+    },
+    "notes": {
+      "1-3": "'a bank of spare batteries' / 'a memory bank' = a stored reserve or a row of units",
+      "1-4": "'the village grain bank lent seed to farmers' / 'the bank's reserves' = a store of supplies or a lending institution; a bank is literally a store of money"
+    }
+  }
+}
