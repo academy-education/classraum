@@ -1,6 +1,6 @@
-/** The five views of the bank-QC page. 'all' renders everything (tests, printing). */
-export type QcTab = 'overview' | 'review' | 'hardening' | 'runs' | 'reference' | 'all'
-export const QC_TABS: Exclude<QcTab, 'all'>[] = ['overview', 'review', 'hardening', 'runs', 'reference']
+/** The six views of the bank-QC page. 'all' renders everything (tests, printing). */
+export type QcTab = 'overview' | 'review' | 'drafts' | 'hardening' | 'runs' | 'reference' | 'all'
+export const QC_TABS: Exclude<QcTab, 'all'>[] = ['overview', 'review', 'drafts', 'hardening', 'runs', 'reference']
 export function tabFromSearch(search: string): Exclude<QcTab, 'all'> {
   const v = new URLSearchParams(search).get('tab')
   return (QC_TABS as string[]).includes(v ?? '') ? (v as Exclude<QcTab, 'all'>) : 'overview'
