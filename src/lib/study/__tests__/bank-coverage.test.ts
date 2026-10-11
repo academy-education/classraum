@@ -1,5 +1,5 @@
 import {
-  assessCoverage, itemsShortBy, FRESH_FRACTION,
+  assessCoverage, itemsShortBy, FRESH_FRACTION, isFreeResponseOnlyPool, submittedPromptCount,
 } from '@/lib/study/bank-coverage'
 
 describe('assessCoverage', () => {
@@ -62,5 +62,29 @@ describe('itemsShortBy', () => {
 
   it('is zero when the draw is allowed', () => {
     expect(itemsShortBy({ poolSize: 566, seen: 0, needed: 48 })).toBe(0)
+  })
+})
+
+describe('free-response-only pools count submissions, not serves', () => {
+  it('is free-response only when the pool is non-empty and has no keyed item', () => {
+    expect(isFreeResponseOnlyPool(5, 0)).toBe(true)
+    expect(isFreeResponseOnlyPool(5, 1)).toBe(false)
+    // An empty pool is "no bank", and an unknown keyed count is not zero.
+    expect(isFreeResponseOnlyPool(0, 0)).toBe(false)
+    expect(isFreeResponseOnlyPool(5, null)).toBe(false)
+    expect(isFreeResponseOnlyPool(5, undefined)).toBe(false)
+    expect(isFreeResponseOnlyPool(null, 0)).toBe(false)
+  })
+
+  it('counts distinct pool prompts with a non-blank answer', () => {
+    const pool = ['a', 'b', 'c']
+    expect(submittedPromptCount(pool, [
+      { item_id: 'a', student_answer: 'essay' },
+      { item_id: 'a', student_answer: 'second essay on the same prompt' },
+      { item_id: 'b', student_answer: '  \n' },
+      { item_id: 'c', student_answer: null },
+      { item_id: null, student_answer: 'orphan' },
+      { item_id: 'z', student_answer: 'not in this pool' },
+    ])).toBe(1)
   })
 })

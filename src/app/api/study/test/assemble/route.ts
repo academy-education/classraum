@@ -9,7 +9,9 @@ import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
-import { assessCoverage, itemsShortBy } from '@/lib/study/bank-coverage'
+import { assessCoverage, itemsShortBy, isFreeResponseOnlyPool, submittedPromptCount } from '@/lib/study/bank-coverage'
+import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
@@ -239,7 +241,7 @@ async function handlePOST(req: NextRequest) {
    * Order matters. Placed after the insert this would have to delete the
    * session and refund; placed here it simply never starts. */
   {
-    const [{ count: poolSize }, { count: seenCount }] = await Promise.all([
+    const [{ count: poolSize }, { count: exposureCount }, { count: keyedCount }] = await Promise.all([
       dbAdmin
         .from('study_item_bank')
         .select('id', { count: 'exact', head: true })
@@ -255,7 +257,19 @@ async function handlePOST(req: NextRequest) {
         .eq('student_id', user.id)
         .eq('item.family', family)
         .eq('item.section', bankSection),
+      // Keyed items in the pool. Zero means every drawable item is an
+      // unkeyed prompt (SSAT Writing Sample, ISEE Essay), and "seen" is
+      // then counted from submitted responses below, not from serves.
+      dbAdmin
+        .from('study_item_bank')
+        .select('id', { count: 'exact', head: true })
+        .eq('family', family).eq('section', bankSection)
+        .eq('verified', true).eq('archived', false)
+        .not('item_type', 'in', `(${[...OPEN_RESPONSE_TYPES].join(',')})`),
     ])
+    const seenCount = isFreeResponseOnlyPool(poolSize, keyedCount)
+      ? await submittedPromptsInSection(user.id, family, bankSection, exposureCount ?? 0)
+      : exposureCount
     // TOEFL's `count` is 0 (the blueprint, not the caller, sizes the
     // draw), and 0 is assessCoverage's "no requirement" — so until
     // 2026-10-06 this gate could never refuse a TOEFL section and a student
@@ -559,4 +573,49 @@ async function toeflModule2Feasibility(
 }
 
 // Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+/**
+ * "Seen" for a free-response-only section: distinct prompts in its pool the
+ * student SUBMITTED a non-blank response to (see isFreeResponseOnlyPool in
+ * lib/study/bank-coverage). An opened-and-abandoned essay session leaves an
+ * exposure row but no study_attempts row, so it no longer counts.
+ *
+ * Any read failure falls back to the serve-time exposure count — the gate's
+ * behaviour before this existed — rather than to 0, which would wave every
+ * student through on a database error.
+ */
+async function submittedPromptsInSection(
+  studentId: string, family: string, bankSection: string, exposureFallback: number,
+): Promise<number> {
+  const pool = await fetchAllRows<{ id: string }>((from, to) => dbAdmin
+    .from('study_item_bank')
+    .select('id')
+    .eq('family', family).eq('section', bankSection)
+    .eq('verified', true).eq('archived', false)
+    .order('id', { ascending: true })
+    .range(from, to))
+  if (pool.error || !pool.data || pool.truncated) {
+    console.error('[assemble] free-response pool read failed', pool.error)
+    return exposureFallback
+  }
+  const poolIds = pool.data.map(r => r.id)
+  const attempts: { item_id: string | null; student_answer: string | null }[] = []
+  // Chunked so a large pool cannot overflow the request URL.
+  for (let i = 0; i < poolIds.length; i += 200) {
+    const chunk = poolIds.slice(i, i + 200)
+    const res = await fetchAllRows<{ item_id: string | null; student_answer: string | null }>((from, to) => dbAdmin
+      .from('study_attempts')
+      .select('id, item_id, student_answer, session:study_sessions!inner(student_id)')
+      .eq('session.student_id', studentId)
+      .in('item_id', chunk)
+      .order('id', { ascending: true })
+      .range(from, to))
+    if (res.error || !res.data || res.truncated) {
+      console.error('[assemble] free-response attempts read failed', res.error)
+      return exposureFallback
+    }
+    attempts.push(...res.data)
+  }
+  return submittedPromptCount(poolIds, attempts)
+}
+
 export const POST = withApiFailureLogging('study/test/assemble', handlePOST)
