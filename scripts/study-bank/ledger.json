@@ -8243,6 +8243,42 @@
           "verdict": "ssat-wv.mjs verify (WV12 branch for WV13 ids, five vocabulary phrasings) + ssat-wv12-rules.mjs check (R1-R5) + ssat-wv13-rules.mjs check (R6-R8) + A1 + licensing (WV12 prompt) + persistent-judge senses (ssat-wv13-senses.mjs); one fix round + fixguard; grouped screen. Round 0: senses refused P01 (chalky crust/fish's skin plate), P02 (obstruction/solid block), P05 (money/advantage), both judges; licensing 50/50; A1 0 absent. Round 1 (12 changed pairs asked, 38 carried): P02 clean; P01 refused (overall size/rating system) and P05 refused (seat of government/town known for one product), both judges on new glosses. Grouped screen P02 16/18 v0, P03 9/18 v0, P04 10/18 v0: all REFUSE. Stages 1-4 not run."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-1-2026-10-11",
+      "createdAt": "2026-10-11",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-1",
+      "contentSha": "e85175bcee5b7463da356d7bdaa4eb01eb172bef5d9db1e645029eb05fdaa5d7",
+      "status": "staged-for-human-edit",
+      "note": "Owner's route for B10: AI drafts each SSAT Upper reading passage and its 6 questions (single world, no five-version method), the co-founder fixes giveaway choices in the Drafts tab, our checks run on his edited version before a sitting and release. 12 passages x 6 = 72 items inserted verified=false with verify_meta.draft {status awaiting_edit, qc {oo_hits, oo_notes, grader_flags, risk}, original_item}. Nothing here is a gate. contentSha = sha256 of ssat-reading-draft-1.batch.json (the inserted rows). SSAT-READING-DRAFT-1-2026-10-11.md; REGISTER section 5, 2026-10-11.",
+      "stages": {
+        "nosource": {
+          "n": 60,
+          "candidatePct": 83.9,
+          "control": 20.0,
+          "controlN": 30,
+          "margin": 63.9,
+          "vocabularyPct": 36.1,
+          "vocabularyN": 12,
+          "passed": null,
+          "verdict": "DIAGNOSTIC, not a gate: options only (no passage, no stem), three samples of one solver, isolated render with 30 live non-vocabulary controls. Candidate non-vocabulary 151/180 = 83.9% vs control 18/90 = 20.0%; vocabulary 13/36. Sets the oo_hits each row carries for the editor."
+        },
+        "withsource": {
+          "n": 72,
+          "onKeyBoth": 72,
+          "secondDefensibleItems": 9,
+          "deadDistractorItems": 40,
+          "tooEasyItems": 10,
+          "aboveBandVocabItems": 1,
+          "mechanicalFixes": 5,
+          "passed": null,
+          "verdict": "Two graders, key withheld: both picked the key on 72/72; flags recorded per row in grader_flags. Five mechanical passage fixes before insert (no choice or stem touched). Risk high 57 / med 15 / low 0."
+        }
+      }
     }
   ],
   "auditedCohorts": [
