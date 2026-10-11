@@ -95,6 +95,14 @@ function Guidance() {
         answers just as reasonable-sounding, but contradicted by the passage. Don&apos;t make the right answer longer or
         fancier than the others.
       </p>
+      <ul className="mt-1.5 list-disc pl-5 space-y-0.5">
+        <li>The right answers across the 6 questions tell one story; each wrong answer tells a different one. Make some wrong answers fit the other questions too.</li>
+        <li>Main idea: the right answer is the only one that covers everything. Make wrong answers broad too, just wrong in focus.</li>
+        <li>Purpose: the right answer uses a stock phrase (&ldquo;to prepare for&hellip;&rdquo;, &ldquo;to contrast&hellip;&rdquo;). Give wrong answers the same kind of phrasing.</li>
+        <li>Inference: the right answer is the big theme cause. Make a wrong answer equally deep but unsupported.</li>
+        <li>Attitude: AI guesses the warm word (admiring, wistful). Include a second warm or reflective option.</li>
+        <li>Detail: if common sense alone picks the answer, make a wrong answer just as sensible.</li>
+      </ul>
       <p className="mt-1.5 text-[12px] text-sky-800">
         Saving does not put anything in front of students. These questions stay hidden until our checks run on your version.
       </p>
