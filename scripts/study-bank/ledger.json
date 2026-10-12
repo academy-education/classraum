@@ -8279,6 +8279,45 @@
           "verdict": "Two graders, key withheld: both picked the key on 72/72; flags recorded per row in grader_flags. Five mechanical passage fixes before insert (no choice or stem touched). Risk high 57 / med 15 / low 0."
         }
       }
+    },
+    {
+      "id": "map-reading-draft-1-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-reading-draft-1",
+      "contentSha": "93eb9d7dc95d226da87368427a29c692bd0249b3e873d9a2dbcee607266bee46",
+      "status": "staged-for-human-edit",
+      "note": "Owner's route for B11 (\"MAP test needs to keep going\"), mirroring ssat-reading-draft-1: AI drafts each MAP Growth reading passage (grades 5-8) and its 4 four-choice questions, the co-founder fixes giveaway choices in the Drafts tab (now a family allowlist: SSAT reading 5 choices, MAP reading 4), our checks run on his edited version before a sitting. 12 passages x 4 = 48 items inserted verified=false, family=map, section=reading (the MAP pilot files' family/map_subject; MAP is not shipped), with verify_meta.draft {status awaiting_edit, qc {oo_hits, oo_notes, grader_flags, risk}, original_item}. Nothing here is a gate. contentSha = sha256 of map-reading-draft-1.batch.json (the inserted rows). MAP-READING-DRAFT-1-2026-10-12.md; REGISTER section 5, 2026-10-12.",
+      "stages": {
+        "nosource": {
+          "n": 36,
+          "candidatePct": 84.3,
+          "control": 41.7,
+          "controlN": 24,
+          "margin": 42.6,
+          "vocabularyPct": 52.8,
+          "vocabularyN": 12,
+          "passed": null,
+          "verdict": "DIAGNOSTIC, not a gate: options only (no passage, no stem), three samples of one solver, isolated render with 24 live 4-choice ISEE reading controls (MAP pilot 2's 8 control R main-idea items, still 33.3% here vs 25.0% then, plus 16 seeded detail/inference/purpose/attitude). Candidate non-vocabulary 91/108 = 84.3% vs control 30/72 = 41.7%; vocabulary 19/36. Sets the oo_hits each row carries for the editor."
+        },
+        "withsource": {
+          "n": 48,
+          "onKeyBoth": 48,
+          "secondDefensibleItems": 3,
+          "deadDistractorItems": 16,
+          "deadByBothItems": 11,
+          "tooEasyItems": 3,
+          "easierJudgements": 42,
+          "harderJudgements": 1,
+          "aboveBandVocabItems": 0,
+          "mechanicalFixes": 4,
+          "passed": null,
+          "verdict": "Two graders, key withheld, grade and target band shown: both picked the key on 48/48; flags recorded per row in grader_flags. Easier-than-band on 42/96 judgements (harder 1). Four mechanical passage fixes before insert (P08 logic connective, P12 name order and count, P07 duplicate name; no choice or stem touched). Risk high 41 / med 4 / low 3."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -441,7 +441,7 @@ export const WORK: WorkItem[] = [
     why: "MAP pilot batch 2 (2026-10-02) fixed the Mechanics centroid tell, but comprehension still leaks options-only at 83.3% (5/6 unanimous) against a comprehension-shaped live control at 25.0%, with the fixing rule followed. Per the stop-after-a-failed-rewrite rule no third comprehension batch is recommended; MAP has no human sitting and nothing is inserted.",
     owner: "you",
     state: "open",
-    note: "2026-10-07: MAP pilot 8 (misreading-derived distractors) failed panel yield, M6 4/9 and M8 5/9 (bar 6); keys held 18/18, too few refutable non-defensible wrong answers. A person writes or selects (MAP-MISREAD-PILOT-2026-10-07.md).",
+    note: "2026-10-07: MAP pilot 8 (misreading-derived distractors) failed panel yield, M6 4/9 and M8 5/9 (bar 6); keys held 18/18, too few refutable non-defensible wrong answers. A person writes or selects (MAP-MISREAD-PILOT-2026-10-07.md). 2026-10-12: the owner moved MAP comprehension to the SSAT route, AI drafts plus the co-founder's edit. map-reading-draft-1 (48 four-choice items, 12 passages, grades 5-8) is staged verified=false in the Drafts tab; options-only on the drafts 84.3% vs a 41.7% control, graders on key 48/48. Next: he edits, our checks run on his version, then a sitting (MAP-READING-DRAFT-1-2026-10-12.md).",
     doc: "scripts/study-bank/MAP-PILOT-2-2026-10-02.md",
   },
   {
