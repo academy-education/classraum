@@ -1,0 +1,226 @@
+[
+ {
+  "id": "MLV4-C01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "In music class we practiced a song called “Tell Them It Is Time,” which has a tricky high note.",
+   "In music class we practiced a song called “Tell Them it Is Time,” which has a tricky high note.",
+   "In music class we practiced a song called “Tell Them It is Time,” which has a tricky high note.",
+   "In music class we practiced a song called “Tell Them it is Time,” which has a tricky high note."
+  ],
+  "correct_answer": "In music class we practiced a song called “Tell Them It Is Time,” which has a tricky high note.",
+  "error_sites": [
+   "the short pronoun 'It' inside the title",
+   "the short verb 'Is' inside the title"
+  ],
+  "student_error": {
+   "In music class we practiced a song called “Tell Them it Is Time,” which has a tricky high note.": "lowercases 'it' because it is a two-letter word, like 'to' or 'of'",
+   "In music class we practiced a song called “Tell Them It is Time,” which has a tricky high note.": "lowercases 'is' because it is a two-letter word, like 'to' or 'of'",
+   "In music class we practiced a song called “Tell Them it is Time,” which has a tricky high note.": "lowercases every short word inside the title"
+  },
+  "explanation": "In a title, pronouns and verbs are capitalized however short they are: 'It', 'Is'. Only articles, short prepositions and coordinating conjunctions stay lowercase.",
+  "cap_rule": "titles of works: a short pronoun ('It') and a short verb ('Is') inside the title are capitalized, unlike short prepositions and articles"
+ },
+ {
+  "id": "MLV4-C02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "My book on the Revolutionary war says the war came to an end with the Treaty of Paris.",
+   "My book on the Revolutionary War says the war came to an end with the treaty of Paris.",
+   "My book on the Revolutionary war says the war came to an end with the treaty of Paris.",
+   "My book on the Revolutionary War says the war came to an end with the Treaty of Paris."
+  ],
+  "correct_answer": "My book on the Revolutionary War says the war came to an end with the Treaty of Paris.",
+  "error_sites": [
+   "'War' as part of the name 'Revolutionary War'",
+   "'Treaty' as part of the name 'Treaty of Paris'"
+  ],
+  "student_error": {
+   "My book on the Revolutionary war says the war came to an end with the Treaty of Paris.": "capitalizes only the first word of the war's name",
+   "My book on the Revolutionary War says the war came to an end with the treaty of Paris.": "capitalizes only 'Paris' in the treaty's name, treating 'treaty' as a general word",
+   "My book on the Revolutionary war says the war came to an end with the treaty of Paris.": "capitalizes only the word that looks like a name, so the general-looking words 'war' and 'treaty' stay lowercase in both names"
+  },
+  "explanation": "'Revolutionary War' and 'Treaty of Paris' are names of historical events, so their main words are capitalized. Later, 'the war' on its own is a general word and stays lowercase.",
+  "cap_rule": "historical events: every main word of a named war and a named treaty is capitalized, while 'the war' used on its own is not"
+ },
+ {
+  "id": "MLV4-C03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+   "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+   "Knights in medieval Europe, as our book on the Middle ages explains, ate their main meal in the middle of the day.",
+   "Knights in Medieval Europe, as our book on the Middle ages explains, ate their main meal in the middle of the day."
+  ],
+  "correct_answer": "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+  "error_sites": [
+   "the adjective 'medieval'",
+   "'Ages' as part of the name 'Middle Ages'"
+  ],
+  "student_error": {
+   "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.": "capitalizes 'medieval' because it names the time of the Middle Ages",
+   "Knights in medieval Europe, as our book on the Middle ages explains, ate their main meal in the middle of the day.": "capitalizes only 'Middle', treating 'ages' as a general word",
+   "Knights in Medieval Europe, as our book on the Middle ages explains, ate their main meal in the middle of the day.": "is unsure which words belong to the period's name: capitalizes the adjective 'medieval' but not 'Ages'"
+  },
+  "explanation": "'The Middle Ages' names a historical period, so both words are capitalized. The adjective 'medieval' is lowercase, and 'the middle of the day' is an ordinary phrase.",
+  "cap_rule": "historical periods: both words of 'the Middle Ages' are capitalized, but the adjective 'medieval' and the ordinary phrase 'the middle of the day' are not"
+ },
+ {
+  "id": "MLV4-C04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Mr. Ross showed us the Declaration Of Independence and the Bill of Rights, and then we read both of them.",
+   "Mr. Ross showed us the Declaration of Independence and the Bill Of Rights, and then we read both of them.",
+   "Mr. Ross showed us the Declaration of Independence and the Bill of Rights, and then we read both of them.",
+   "Mr. Ross showed us the Declaration Of Independence and the Bill Of Rights, and then we read both of them."
+  ],
+  "correct_answer": "Mr. Ross showed us the Declaration of Independence and the Bill of Rights, and then we read both of them.",
+  "error_sites": [
+   "lowercase 'of' inside 'Declaration of Independence'",
+   "lowercase 'of' inside 'Bill of Rights'"
+  ],
+  "student_error": {
+   "Mr. Ross showed us the Declaration Of Independence and the Bill of Rights, and then we read both of them.": "capitalizes every word of the document's name, including the short preposition 'of'",
+   "Mr. Ross showed us the Declaration of Independence and the Bill Of Rights, and then we read both of them.": "capitalizes every word of the second document's name, including 'of'",
+   "Mr. Ross showed us the Declaration Of Independence and the Bill Of Rights, and then we read both of them.": "capitalizes every word in a document's name, including the short word 'of'"
+  },
+  "explanation": "The names of documents capitalize every main word: 'Declaration of Independence', 'Bill of Rights'. The short preposition 'of' inside each name stays lowercase.",
+  "cap_rule": "documents: the main words of a document's name are capitalized while the short preposition 'of' inside it is not"
+ },
+ {
+  "id": "MLV4-C05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our class wrote to a Senator, and she asked us to come to Washington to watch the Senate vote on a bill.",
+   "Our class wrote to a senator, and she asked us to come to Washington to watch the Senate vote on a Bill.",
+   "Our class wrote to a senator, and she asked us to come to Washington to watch the Senate vote on a bill.",
+   "Our class wrote to a Senator, and she asked us to come to Washington to watch the Senate vote on a Bill."
+  ],
+  "correct_answer": "Our class wrote to a senator, and she asked us to come to Washington to watch the Senate vote on a bill.",
+  "error_sites": [
+   "'senator' used as a general word, not before a name",
+   "'bill' used as a general word, not the name of a document"
+  ],
+  "student_error": {
+   "Our class wrote to a Senator, and she asked us to come to Washington to watch the Senate vote on a bill.": "capitalizes 'senator' because it is an important government title",
+   "Our class wrote to a senator, and she asked us to come to Washington to watch the Senate vote on a Bill.": "capitalizes 'bill' because it is a government word, like 'Bill of Rights'",
+   "Our class wrote to a Senator, and she asked us to come to Washington to watch the Senate vote on a Bill.": "capitalizes every word that has to do with the government, not only the name 'Senate'"
+  },
+  "explanation": "'The Senate' in Washington is the name of a government body and is capitalized. 'A senator' (no name after it) and 'a bill' are general words, so they are lowercase.",
+  "cap_rule": "organizations and government bodies: 'the Senate' is capitalized, but the general words 'a senator' and 'a bill' are not"
+ },
+ {
+  "id": "MLV4-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Each year our friends leave the Midwest and drive South to Florida, where they rent a small house on the eastern coast.",
+   "Each year our friends leave the Midwest and drive south to Florida, where they rent a small house on the eastern coast.",
+   "Each year our friends leave the Midwest and drive south to Florida, where they rent a small house on the Eastern coast.",
+   "Each year our friends leave the Midwest and drive South to Florida, where they rent a small house on the Eastern coast."
+  ],
+  "correct_answer": "Each year our friends leave the Midwest and drive south to Florida, where they rent a small house on the eastern coast.",
+  "error_sites": [
+   "'south' used as a direction of travel",
+   "'eastern' used as a describing word, not a region name"
+  ],
+  "student_error": {
+   "Each year our friends leave the Midwest and drive South to Florida, where they rent a small house on the eastern coast.": "capitalizes 'south' because Florida is in the South",
+   "Each year our friends leave the Midwest and drive south to Florida, where they rent a small house on the Eastern coast.": "capitalizes 'eastern' as if 'eastern coast' were a region's name",
+   "Each year our friends leave the Midwest and drive South to Florida, where they rent a small house on the Eastern coast.": "capitalizes every compass word because 'Midwest' is capitalized"
+  },
+  "explanation": "'The Midwest' names a region, so it is capitalized. 'Drive south' gives a direction, and 'eastern' describes which side of the state, so both are lowercase.",
+  "cap_rule": "regions vs directions: 'the Midwest' is a region and capitalized, but 'drive south' and 'the eastern coast' are directions"
+ },
+ {
+  "id": "MLV4-C07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "On Tuesdays I have spanish before lunch and Algebra I right after it, so my math homework is due by noon.",
+   "On Tuesdays I have Spanish before lunch and algebra I right after it, so my math homework is due by noon.",
+   "On Tuesdays I have spanish before lunch and algebra I right after it, so my math homework is due by noon.",
+   "On Tuesdays I have Spanish before lunch and Algebra I right after it, so my math homework is due by noon."
+  ],
+  "correct_answer": "On Tuesdays I have Spanish before lunch and Algebra I right after it, so my math homework is due by noon.",
+  "error_sites": [
+   "'Spanish', the name of a language",
+   "'Algebra I', the name of a numbered course"
+  ],
+  "student_error": {
+   "On Tuesdays I have spanish before lunch and Algebra I right after it, so my math homework is due by noon.": "lowercases 'spanish' because it is a school subject like math",
+   "On Tuesdays I have Spanish before lunch and algebra I right after it, so my math homework is due by noon.": "lowercases 'algebra' because it is a math subject, even with the course number",
+   "On Tuesdays I have spanish before lunch and algebra I right after it, so my math homework is due by noon.": "lowercases every school subject, including a language and a numbered course"
+  },
+  "explanation": "Languages are always capitalized ('Spanish'), and a numbered course title is a name ('Algebra I'). A general subject like 'math' stays lowercase.",
+  "cap_rule": "languages and course names vs school subjects: 'Spanish' and 'Algebra I' are capitalized, 'math' is not"
+ },
+ {
+  "id": "MLV4-C08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Coach Kim shouted, “Keep your eyes on the ball,” and then she added, “Good defense wins more games than offense.”",
+   "Coach Kim shouted, “keep your eyes on the ball,” and then she added, “Good defense wins more games than offense.”",
+   "Coach Kim shouted, “Keep your eyes on the ball,” and then she added, “good defense wins more games than offense.”",
+   "Coach Kim shouted, “keep your eyes on the ball,” and then she added, “good defense wins more games than offense.”"
+  ],
+  "correct_answer": "Coach Kim shouted, “Keep your eyes on the ball,” and then she added, “Good defense wins more games than offense.”",
+  "error_sites": [
+   "'Keep', the first word of a quoted full sentence after a comma",
+   "'Good', the first word of a second quoted full sentence"
+  ],
+  "student_error": {
+   "Coach Kim shouted, “keep your eyes on the ball,” and then she added, “Good defense wins more games than offense.”": "lowercases 'keep' because the quotation comes in the middle of the sentence",
+   "Coach Kim shouted, “Keep your eyes on the ball,” and then she added, “good defense wins more games than offense.”": "lowercases 'good' because the quotation follows 'and then she added,' in the middle of the sentence",
+   "Coach Kim shouted, “keep your eyes on the ball,” and then she added, “good defense wins more games than offense.”": "thinks a quotation that follows a comma inside a sentence never starts with a capital"
+  },
+  "explanation": "Each quotation is the speaker's own full sentence, so each begins with a capital: 'Keep your eyes on the ball' and 'Good defense wins more games than offense', even though both come after a comma in the middle of the sentence.",
+  "cap_rule": "quotations: a quoted full sentence begins with a capital even when it follows a comma in the middle of the sentence"
+ }
+]

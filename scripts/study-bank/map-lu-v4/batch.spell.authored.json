@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "MLV4-S01",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe sinking of the great ship was a terrible ____ that saddened the whole world.",
+    "choices": [
+      "tradgedy",
+      "tragedy",
+      "tragidy",
+      "tradgidy"
+    ],
+    "correct_answer": "tragedy",
+    "spelling_pattern": "a soft g that is spelled with g alone (no -dge) and the unstressed vowel e in the middle syllable",
+    "error_sites": [
+      "soft g after a: g, not dg",
+      "unstressed middle vowel: e"
+    ],
+    "edit_types": [
+      "AC",
+      "XV"
+    ],
+    "student_error": {
+      "tradgedy": "adds a d before the g, spelling the soft g sound as -dg- as in 'edge' or 'badge'",
+      "tragidy": "writes the unstressed (schwa) middle vowel as i instead of e",
+      "tradgidy": "makes both mistakes: -dg- for the soft g and i for the unstressed e"
+    },
+    "explanation": "\"tragedy\" is the correct spelling (a soft g that is spelled with g alone (no -dge) and the unstressed vowel e in the middle syllable). \"tradgedy\" adds a d before the g, spelling the soft g sound as -dg- as in 'edge' or 'badge'; \"tragidy\" writes the unstressed (schwa) middle vowel as i instead of e; \"tradgidy\" makes both mistakes: -dg- for the soft g and i for the unstressed e."
+  },
+  {
+    "id": "MLV4-S02",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The ancient castle on the hill was built more than eight hundred years ago.",
+      "Grandma baked a warm biscuit for each of us after school.",
+      "In the play, Omar wore a black cape because he was the villian.",
+      "Leo used a battery and wires to build a circuit."
+    ],
+    "correct_answer": "In the play, Omar wore a black cape because he was the villian.",
+    "spelling_pattern": "the -ain ending of villain (not -ian)",
+    "targets": {
+      "In the play, Omar wore a black cape because he was the villian.": "villian",
+      "The ancient castle on the hill was built more than eight hundred years ago.": "ancient",
+      "Grandma baked a warm biscuit for each of us after school.": "biscuit",
+      "Leo used a battery and wires to build a circuit.": "circuit"
+    },
+    "misspelled_word": "villian",
+    "intended_word": "villain",
+    "key_length_rank": 2,
+    "student_error": {
+      "The ancient castle on the hill was built more than eight hundred years ago.": "spelled correctly; a student may pick it because 'ancient' has an unusual ci that sounds like sh, so it can look wrong",
+      "Grandma baked a warm biscuit for each of us after school.": "spelled correctly; a student may pick it because 'biscuit' has a silent u that can look like a mistake",
+      "Leo used a battery and wires to build a circuit.": "spelled correctly; a student may pick it because 'circuit' has a silent u that can look like a mistake"
+    },
+    "explanation": "\"villian\" should be spelled \"villain\" (the -ain ending of villain (not -ian)). The other target words, \"ancient\", \"biscuit\", \"circuit\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S03",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe ____ market was crowded with shoppers, sellers, and noisy delivery carts.",
+    "choices": [
+      "busling",
+      "busleing",
+      "bustleing",
+      "bustling"
+    ],
+    "correct_answer": "bustling",
+    "spelling_pattern": "dropping the final e of bustle before -ing, and keeping the silent t",
+    "error_sites": [
+      "drop final e of bustle before -ing",
+      "silent t in bust-"
+    ],
+    "edit_types": [
+      "AV",
+      "DC"
+    ],
+    "student_error": {
+      "bustleing": "keeps the final e of 'bustle' when adding -ing",
+      "busling": "leaves out the silent t, spelling the word the way it sounds",
+      "busleing": "keeps the e before -ing and also leaves out the silent t"
+    },
+    "explanation": "\"bustling\" is the correct spelling (dropping the final e of bustle before -ing, and keeping the silent t). \"bustleing\" keeps the final e of 'bustle' when adding -ing; \"busling\" leaves out the silent t, spelling the word the way it sounds; \"busleing\" keeps the e before -ing and also leaves out the silent t."
+  },
+  {
+    "id": "MLV4-S04",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nScientists still argue about the ____ of life on other planets.",
+    "choices": [
+      "existence",
+      "existanse",
+      "existense",
+      "existance"
+    ],
+    "correct_answer": "existence",
+    "spelling_pattern": "the -ence suffix: the vowel e and the final soft c",
+    "error_sites": [
+      "suffix vowel: -ence, not -ance",
+      "final soft c, not s"
+    ],
+    "edit_types": [
+      "XC",
+      "XV"
+    ],
+    "student_error": {
+      "existense": "spells the final /s/ sound with s, as in 'sense'",
+      "existance": "uses the -ance ending instead of -ence, since both sound the same",
+      "existanse": "uses -ance and also spells the final sound with s"
+    },
+    "explanation": "\"existence\" is the correct spelling (the -ence suffix: the vowel e and the final soft c). \"existense\" spells the final /s/ sound with s, as in 'sense'; \"existance\" uses the -ance ending instead of -ence, since both sound the same; \"existanse\" uses -ance and also spells the final sound with s."
+  },
+  {
+    "id": "MLV4-S05",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Nora was excited to learn a foriegn language when she moved to a new city.",
+      "Ben brought back a small souvenir from his trip to the mountains.",
+      "Please use the safety scissors to cut out the paper stars.",
+      "The crowd stayed solemn and quiet during the ceremony."
+    ],
+    "correct_answer": "Nora was excited to learn a foriegn language when she moved to a new city.",
+    "spelling_pattern": "ei in foreign, an exception to 'i before e'",
+    "targets": {
+      "Nora was excited to learn a foriegn language when she moved to a new city.": "foriegn",
+      "Ben brought back a small souvenir from his trip to the mountains.": "souvenir",
+      "Please use the safety scissors to cut out the paper stars.": "scissors",
+      "The crowd stayed solemn and quiet during the ceremony.": "solemn"
+    },
+    "misspelled_word": "foriegn",
+    "intended_word": "foreign",
+    "key_length_rank": 1,
+    "student_error": {
+      "Ben brought back a small souvenir from his trip to the mountains.": "spelled correctly; a student may pick it because 'souvenir' ends in -ir, which can look like a mistake for -eer",
+      "Please use the safety scissors to cut out the paper stars.": "spelled correctly; a student may pick it because 'scissors' has a silent c and a double s that can look wrong",
+      "The crowd stayed solemn and quiet during the ceremony.": "spelled correctly; a student may pick it because 'solemn' has a silent n at the end that can look like a mistake"
+    },
+    "explanation": "\"foriegn\" should be spelled \"foreign\" (ei in foreign, an exception to 'i before e'). The other target words, \"souvenir\", \"scissors\", \"solemn\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S06",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nUse a ____ marker for the poster, because its ink will not wash off in the rain.",
+    "choices": [
+      "permenent",
+      "permanant",
+      "permanent",
+      "permenant"
+    ],
+    "correct_answer": "permanent",
+    "spelling_pattern": "two unstressed vowels: a in perm-a-n and e in the -ent suffix",
+    "error_sites": [
+      "unstressed vowel a after perm-",
+      "suffix -ent, not -ant"
+    ],
+    "edit_types": [
+      "XV",
+      "XV"
+    ],
+    "student_error": {
+      "permenent": "writes the unstressed a after perm- as e",
+      "permanant": "uses the -ant ending instead of -ent, since both sound the same",
+      "permenant": "writes e for the a and a for the e, swapping the two unstressed vowels"
+    },
+    "explanation": "\"permanent\" is the correct spelling (two unstressed vowels: a in perm-a-n and e in the -ent suffix). \"permenent\" writes the unstressed a after perm- as e; \"permanant\" uses the -ant ending instead of -ent, since both sound the same; \"permenant\" writes e for the a and a for the e, swapping the two unstressed vowels."
+  },
+  {
+    "id": "MLV4-S07",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe museum guide told us a ____ fact about how the pyramids were built.",
+    "choices": [
+      "fasinating",
+      "fasinateing",
+      "fascinating",
+      "fascinateing"
+    ],
+    "correct_answer": "fascinating",
+    "spelling_pattern": "dropping the final e of fascinate before -ing, and the silent c in sc",
+    "error_sites": [
+      "drop final e of fascinate before -ing",
+      "silent c in fasc-"
+    ],
+    "edit_types": [
+      "AV",
+      "DC"
+    ],
+    "student_error": {
+      "fascinateing": "keeps the final e of 'fascinate' when adding -ing",
+      "fasinating": "leaves out the silent c, spelling the /s/ sound with s alone",
+      "fasinateing": "keeps the e before -ing and also drops the silent c"
+    },
+    "explanation": "\"fascinating\" is the correct spelling (dropping the final e of fascinate before -ing, and the silent c in sc). \"fascinateing\" keeps the final e of 'fascinate' when adding -ing; \"fasinating\" leaves out the silent c, spelling the /s/ sound with s alone; \"fasinateing\" keeps the e before -ing and also drops the silent c."
+  },
+  {
+    "id": "MLV4-S08",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Dad kept the receipt in case the new jacket did not fit.",
+      "Sam used the vacuum to clean up the cereal.",
+      "Ana plans to pursue her dream of becoming a doctor.",
+      "The puppy was full of mischeif and chewed every shoe it could find in the house."
+    ],
+    "correct_answer": "The puppy was full of mischeif and chewed every shoe it could find in the house.",
+    "spelling_pattern": "ie in mischief ('i before e')",
+    "targets": {
+      "The puppy was full of mischeif and chewed every shoe it could find in the house.": "mischeif",
+      "Dad kept the receipt in case the new jacket did not fit.": "receipt",
+      "Sam used the vacuum to clean up the cereal.": "vacuum",
+      "Ana plans to pursue her dream of becoming a doctor.": "pursue"
+    },
+    "misspelled_word": "mischeif",
+    "intended_word": "mischief",
+    "key_length_rank": 1,
+    "student_error": {
+      "Dad kept the receipt in case the new jacket did not fit.": "spelled correctly; a student may pick it because 'receipt' has a silent p and ei, which can look wrong",
+      "Sam used the vacuum to clean up the cereal.": "spelled correctly; a student may pick it because 'vacuum' has an unusual double u that can look like a mistake",
+      "Ana plans to pursue her dream of becoming a doctor.": "spelled correctly; a student may pick it because 'pursue' begins with pur-, which can look like a mistake for per-"
+    },
+    "explanation": "\"mischeif\" should be spelled \"mischief\" (ie in mischief ('i before e')). The other target words, \"receipt\", \"vacuum\", \"pursue\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S09",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe new park is still in ____, so it will not open until next year.",
+    "choices": [
+      "development",
+      "devloppment",
+      "developpment",
+      "devlopment"
+    ],
+    "correct_answer": "development",
+    "spelling_pattern": "a single p in develop and the unstressed e in the second syllable",
+    "error_sites": [
+      "single p before -ment",
+      "unstressed vowel e in dev-e-l"
+    ],
+    "edit_types": [
+      "AD",
+      "DV"
+    ],
+    "student_error": {
+      "developpment": "doubles the p, as if adding a suffix after a short vowel",
+      "devlopment": "drops the unstressed e after dev-, spelling it as it is often said",
+      "devloppment": "doubles the p and also drops the unstressed e"
+    },
+    "explanation": "\"development\" is the correct spelling (a single p in develop and the unstressed e in the second syllable). \"developpment\" doubles the p, as if adding a suffix after a short vowel; \"devlopment\" drops the unstressed e after dev-, spelling it as it is often said; \"devloppment\" doubles the p and also drops the unstressed e."
+  },
+  {
+    "id": "MLV4-S10",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nFrom the top of the mountain, we had a ____ view of the valley below.",
+    "choices": [
+      "magnifisent",
+      "magnaficent",
+      "magnafisent",
+      "magnificent"
+    ],
+    "correct_answer": "magnificent",
+    "spelling_pattern": "the unstressed i after magn- and the soft c in -cent",
+    "error_sites": [
+      "unstressed vowel i in magn-i-f",
+      "soft c in -cent"
+    ],
+    "edit_types": [
+      "XC",
+      "XV"
+    ],
+    "student_error": {
+      "magnifisent": "spells the /s/ sound in -cent with s",
+      "magnaficent": "writes the unstressed i after magn- as a",
+      "magnafisent": "writes a for the unstressed i and s for the soft c"
+    },
+    "explanation": "\"magnificent\" is the correct spelling (the unstressed i after magn- and the soft c in -cent). \"magnifisent\" spells the /s/ sound in -cent with s; \"magnaficent\" writes the unstressed i after magn- as a; \"magnafisent\" writes a for the unstressed i and s for the soft c."
+  },
+  {
+    "id": "MLV4-S11",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Jack saw a huge dinosaur skeleton at the museum during our class field trip.",
+      "Mia wrote that she sincerly hoped her grandmother would feel better soon.",
+      "The delivery vehicle stopped in front of our house at noon.",
+      "Omar felt jealous when his friend won the spelling contest again."
+    ],
+    "correct_answer": "Mia wrote that she sincerly hoped her grandmother would feel better soon.",
+    "spelling_pattern": "keeping the final e of sincere before -ly",
+    "targets": {
+      "Mia wrote that she sincerly hoped her grandmother would feel better soon.": "sincerly",
+      "Jack saw a huge dinosaur skeleton at the museum during our class field trip.": "skeleton",
+      "The delivery vehicle stopped in front of our house at noon.": "vehicle",
+      "Omar felt jealous when his friend won the spelling contest again.": "jealous"
+    },
+    "misspelled_word": "sincerly",
+    "intended_word": "sincerely",
+    "key_length_rank": 2,
+    "student_error": {
+      "Jack saw a huge dinosaur skeleton at the museum during our class field trip.": "spelled correctly; a student may pick it because 'skeleton' has an unstressed second e that can look like it should be i",
+      "The delivery vehicle stopped in front of our house at noon.": "spelled correctly; a student may pick it because 'vehicle' has a silent h that can look like a mistake",
+      "Omar felt jealous when his friend won the spelling contest again.": "spelled correctly; a student may pick it because 'jealous' has ea for a short e sound, which can look wrong"
+    },
+    "explanation": "\"sincerly\" should be spelled \"sincerely\" (keeping the final e of sincere before -ly). The other target words, \"skeleton\", \"vehicle\", \"jealous\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S12",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 5,
+    "ccss": "L.5.2e",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nIn the old days, a ____ on horseback carried important letters between towns.",
+    "choices": [
+      "messenjer",
+      "messenger",
+      "mesenjer",
+      "mesenger"
+    ],
+    "correct_answer": "messenger",
+    "spelling_pattern": "the double s in mess- and the soft g in -enger",
+    "error_sites": [
+      "double s in mess-",
+      "soft g (not j) in -enger"
+    ],
+    "edit_types": [
+      "DD",
+      "XC"
+    ],
+    "student_error": {
+      "mesenger": "uses one s instead of the double s",
+      "messenjer": "spells the /j/ sound with j instead of a soft g",
+      "mesenjer": "uses one s and also spells the soft g with j"
+    },
+    "explanation": "\"messenger\" is the correct spelling (the double s in mess- and the soft g in -enger). \"mesenger\" uses one s instead of the double s; \"messenjer\" spells the /j/ sound with j instead of a soft g; \"mesenjer\" uses one s and also spells the soft g with j."
+  },
+  {
+    "id": "MLV4-S13",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nBreaking the window was not an accident; it was a ____ act.",
+    "choices": [
+      "dellibrate",
+      "deliberate",
+      "delliberate",
+      "delibrate"
+    ],
+    "correct_answer": "deliberate",
+    "spelling_pattern": "a single l after de- and the unstressed e in -ber-",
+    "error_sites": [
+      "single l after de-",
+      "unstressed vowel e in lib-e-r"
+    ],
+    "edit_types": [
+      "AD",
+      "DV"
+    ],
+    "student_error": {
+      "delliberate": "doubles the l after de-",
+      "delibrate": "drops the unstressed e in the middle, writing the word as it is quickly said",
+      "dellibrate": "doubles the l and also drops the unstressed e"
+    },
+    "explanation": "\"deliberate\" is the correct spelling (a single l after de- and the unstressed e in -ber-). \"delliberate\" doubles the l after de-; \"delibrate\" drops the unstressed e in the middle, writing the word as it is quickly said; \"dellibrate\" doubles the l and also drops the unstressed e."
+  },
+  {
+    "id": "MLV4-S14",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The store will guarantee a full refund if the toy breaks in the first month.",
+      "Our class schedule changes on Fridays because of the school assembly.",
+      "We ate dinner at a new resturant downtown.",
+      "Washing your hands often is an important part of good hygiene."
+    ],
+    "correct_answer": "We ate dinner at a new resturant downtown.",
+    "spelling_pattern": "the au in restaurant, a vowel that is not heard clearly",
+    "targets": {
+      "We ate dinner at a new resturant downtown.": "resturant",
+      "The store will guarantee a full refund if the toy breaks in the first month.": "guarantee",
+      "Our class schedule changes on Fridays because of the school assembly.": "schedule",
+      "Washing your hands often is an important part of good hygiene.": "hygiene"
+    },
+    "misspelled_word": "resturant",
+    "intended_word": "restaurant",
+    "key_length_rank": 4,
+    "student_error": {
+      "The store will guarantee a full refund if the toy breaks in the first month.": "spelled correctly; a student may pick it because 'guarantee' has a silent u after g that can look like a mistake",
+      "Our class schedule changes on Fridays because of the school assembly.": "spelled correctly; a student may pick it because 'schedule' has a ch that sounds like k, which can look wrong",
+      "Washing your hands often is an important part of good hygiene.": "spelled correctly; a student may pick it because 'hygiene' has a y and ie, which can look wrong"
+    },
+    "explanation": "\"resturant\" should be spelled \"restaurant\" (the au in restaurant, a vowel that is not heard clearly). The other target words, \"guarantee\", \"schedule\", \"hygiene\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S15",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nAfter winning the lottery, the farmer became a ____ overnight.",
+    "choices": [
+      "milionaire",
+      "millonaire",
+      "milonaire",
+      "millionaire"
+    ],
+    "correct_answer": "millionaire",
+    "spelling_pattern": "keeping the double l and the i of million before -aire",
+    "error_sites": [
+      "double l in mill-",
+      "i in milli-on"
+    ],
+    "edit_types": [
+      "DD",
+      "DV"
+    ],
+    "student_error": {
+      "milionaire": "uses one l instead of the double l",
+      "millonaire": "drops the i between ll and o, writing 'millon-'",
+      "milonaire": "uses one l and also drops the i"
+    },
+    "explanation": "\"millionaire\" is the correct spelling (keeping the double l and the i of million before -aire). \"milionaire\" uses one l instead of the double l; \"millonaire\" drops the i between ll and o, writing 'millon-'; \"milonaire\" uses one l and also drops the i."
+  },
+  {
+    "id": "MLV4-S16",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nIn a ____, citizens choose their leaders by voting in free elections.",
+    "choices": [
+      "democracy",
+      "demacracy",
+      "demacrasy",
+      "democrasy"
+    ],
+    "correct_answer": "democracy",
+    "spelling_pattern": "the unstressed o in demo- and the final soft c in -cracy",
+    "error_sites": [
+      "unstressed vowel o in dem-o",
+      "soft c in -cy"
+    ],
+    "edit_types": [
+      "XC",
+      "XV"
+    ],
+    "student_error": {
+      "democrasy": "spells the final /s/ sound with s instead of c",
+      "demacracy": "writes the unstressed o after dem- as a",
+      "demacrasy": "writes a for the o and s for the final c"
+    },
+    "explanation": "\"democracy\" is the correct spelling (the unstressed o in demo- and the final soft c in -cracy). \"democrasy\" spells the final /s/ sound with s instead of c; \"demacracy\" writes the unstressed o after dem- as a; \"demacrasy\" writes a for the o and s for the final c."
+  },
+  {
+    "id": "MLV4-S17",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Ben was concious of the time all morning.",
+      "Winning the science fair was a huge achievement for everyone on our team.",
+      "The buzzing fly was a nuisance during our picnic.",
+      "The coach gave a fiery speech before the championship game started."
+    ],
+    "correct_answer": "Ben was concious of the time all morning.",
+    "spelling_pattern": "the silent sc in conscious",
+    "targets": {
+      "Ben was concious of the time all morning.": "concious",
+      "Winning the science fair was a huge achievement for everyone on our team.": "achievement",
+      "The buzzing fly was a nuisance during our picnic.": "nuisance",
+      "The coach gave a fiery speech before the championship game started.": "fiery"
+    },
+    "misspelled_word": "concious",
+    "intended_word": "conscious",
+    "key_length_rank": 4,
+    "student_error": {
+      "Winning the science fair was a huge achievement for everyone on our team.": "spelled correctly; a student may pick it because 'achievement' keeps the e of achieve, which can look like an extra letter",
+      "The buzzing fly was a nuisance during our picnic.": "spelled correctly; a student may pick it because 'nuisance' has ui for a long u sound, which can look wrong",
+      "The coach gave a fiery speech before the championship game started.": "spelled correctly; a student may pick it because 'fiery' drops the e of fire and adds -ery, so it can look misspelled"
+    },
+    "explanation": "\"concious\" should be spelled \"conscious\" (the silent sc in conscious). The other target words, \"achievement\", \"nuisance\", \"fiery\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S18",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe knights swore ____ to their king and promised to defend his castle.",
+    "choices": [
+      "alledgance",
+      "alledgiance",
+      "allegiance",
+      "allegance"
+    ],
+    "correct_answer": "allegiance",
+    "spelling_pattern": "a soft g spelled with g alone and the i in -giance",
+    "error_sites": [
+      "soft g: g, not dg",
+      "i before -ance"
+    ],
+    "edit_types": [
+      "AC",
+      "DV"
+    ],
+    "student_error": {
+      "alledgiance": "adds a d before the g, spelling the soft g as -dg- as in 'ledge'",
+      "allegance": "drops the i before -ance, spelling the word as it sounds",
+      "alledgance": "adds -dg- and also drops the i"
+    },
+    "explanation": "\"allegiance\" is the correct spelling (a soft g spelled with g alone and the i in -giance). \"alledgiance\" adds a d before the g, spelling the soft g as -dg- as in 'ledge'; \"allegance\" drops the i before -ance, spelling the word as it sounds; \"alledgance\" adds -dg- and also drops the i."
+  },
+  {
+    "id": "MLV4-S19",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe flood was ____ for the town, destroying dozens of homes and farms.",
+    "choices": [
+      "dissastrous",
+      "disasterous",
+      "disastrous",
+      "dissasterous"
+    ],
+    "correct_answer": "disastrous",
+    "spelling_pattern": "a single s after di- and dropping the e of disaster before -ous",
+    "error_sites": [
+      "single s after di- (not the prefix dis- + s)",
+      "no e between t and r"
+    ],
+    "edit_types": [
+      "AD",
+      "AV"
+    ],
+    "student_error": {
+      "dissastrous": "doubles the s, treating the start as the prefix dis- added to a word beginning with s",
+      "disasterous": "keeps the e of 'disaster', writing 'disaster' + -ous",
+      "dissasterous": "doubles the s and also keeps the e of 'disaster'"
+    },
+    "explanation": "\"disastrous\" is the correct spelling (a single s after di- and dropping the e of disaster before -ous). \"dissastrous\" doubles the s, treating the start as the prefix dis- added to a word beginning with s; \"disasterous\" keeps the e of 'disaster', writing 'disaster' + -ous; \"dissasterous\" doubles the s and also keeps the e of 'disaster'."
+  },
+  {
+    "id": "MLV4-S20",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "If you keep working hard every single day, you will succeed in the end.",
+      "Nora did a thorough job of cleaning her messy room before dinner.",
+      "The road is closed, so we will use a temporary path.",
+      "The guard dog looked viscious, but it was really very gentle."
+    ],
+    "correct_answer": "The guard dog looked viscious, but it was really very gentle.",
+    "spelling_pattern": "the soft c in vicious (no sc)",
+    "targets": {
+      "The guard dog looked viscious, but it was really very gentle.": "viscious",
+      "If you keep working hard every single day, you will succeed in the end.": "succeed",
+      "Nora did a thorough job of cleaning her messy room before dinner.": "thorough",
+      "The road is closed, so we will use a temporary path.": "temporary"
+    },
+    "misspelled_word": "viscious",
+    "intended_word": "vicious",
+    "key_length_rank": 3,
+    "student_error": {
+      "If you keep working hard every single day, you will succeed in the end.": "spelled correctly; a student may pick it because 'succeed' has a double c and a double e that can look wrong",
+      "Nora did a thorough job of cleaning her messy room before dinner.": "spelled correctly; a student may pick it because 'thorough' has a silent -gh that can look like a mistake",
+      "The road is closed, so we will use a temporary path.": "spelled correctly; a student may pick it because 'temporary' has an unstressed o and a that can look wrong"
+    },
+    "explanation": "\"viscious\" should be spelled \"vicious\" (the soft c in vicious (no sc)). The other target words, \"succeed\", \"thorough\", \"temporary\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S21",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe bridge was ____ falling apart, with pieces of stone dropping into the river.",
+    "choices": [
+      "literally",
+      "litrally",
+      "litraly",
+      "literaly"
+    ],
+    "correct_answer": "literally",
+    "spelling_pattern": "the double l from literal + -ly and the unstressed e in lit-e-r",
+    "error_sites": [
+      "double l from literal + ly",
+      "unstressed vowel e after lit-"
+    ],
+    "edit_types": [
+      "DD",
+      "DV"
+    ],
+    "student_error": {
+      "literaly": "uses one l, forgetting that literal + -ly keeps both l's",
+      "litrally": "drops the unstressed e after lit-, writing the word as it is often said",
+      "litraly": "uses one l and also drops the unstressed e"
+    },
+    "explanation": "\"literally\" is the correct spelling (the double l from literal + -ly and the unstressed e in lit-e-r). \"literaly\" uses one l, forgetting that literal + -ly keeps both l's; \"litrally\" drops the unstressed e after lit-, writing the word as it is often said; \"litraly\" uses one l and also drops the unstressed e."
+  },
+  {
+    "id": "MLV4-S22",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe bride wore an ____ white gown with lace sleeves.",
+    "choices": [
+      "eligent",
+      "eligant",
+      "elegent",
+      "elegant"
+    ],
+    "correct_answer": "elegant",
+    "spelling_pattern": "the unstressed e in el-e-g and the a in the -ant suffix",
+    "error_sites": [
+      "unstressed vowel e after el-",
+      "suffix -ant, not -ent"
+    ],
+    "edit_types": [
+      "XV",
+      "XV"
+    ],
+    "student_error": {
+      "eligant": "writes the unstressed middle e as i",
+      "elegent": "uses the -ent ending instead of -ant, since both sound the same",
+      "eligent": "writes i for the middle e and also uses -ent"
+    },
+    "explanation": "\"elegant\" is the correct spelling (the unstressed e in el-e-g and the a in the -ant suffix). \"eligant\" writes the unstressed middle e as i; \"elegent\" uses the -ent ending instead of -ant, since both sound the same; \"eligent\" writes i for the middle e and also uses -ent."
+  },
+  {
+    "id": "MLV4-S23",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The sergeant gave clear orders to the soldiers at the camp.",
+      "There was a noticable change in the weather.",
+      "Mia picked up a pamphlet about the history of the town.",
+      "Leo's uncle took us out on his yacht across the bay last summer."
+    ],
+    "correct_answer": "There was a noticable change in the weather.",
+    "spelling_pattern": "keeping the e of notice before -able to keep the c soft",
+    "targets": {
+      "There was a noticable change in the weather.": "noticable",
+      "The sergeant gave clear orders to the soldiers at the camp.": "sergeant",
+      "Mia picked up a pamphlet about the history of the town.": "pamphlet",
+      "Leo's uncle took us out on his yacht across the bay last summer.": "yacht"
+    },
+    "misspelled_word": "noticable",
+    "intended_word": "noticeable",
+    "key_length_rank": 4,
+    "student_error": {
+      "The sergeant gave clear orders to the soldiers at the camp.": "spelled correctly; a student may pick it because 'sergeant' is spelled with er and ea although it sounds like 'sar-jent', so it looks wrong",
+      "Mia picked up a pamphlet about the history of the town.": "spelled correctly; a student may pick it because 'pamphlet' spells the f sound with ph, which can look wrong",
+      "Leo's uncle took us out on his yacht across the bay last summer.": "spelled correctly; a student may pick it because 'yacht' has a silent ch that can look like a mistake"
+    },
+    "explanation": "\"noticable\" should be spelled \"noticeable\" (keeping the e of notice before -able to keep the c soft). The other target words, \"sergeant\", \"pamphlet\", \"yacht\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S24",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 6,
+    "ccss": "L.6.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe ____ kitten knocked every pencil off the desk and then hid under the bed.",
+    "choices": [
+      "mischievious",
+      "mischievous",
+      "mischevous",
+      "mischevious"
+    ],
+    "correct_answer": "mischievous",
+    "spelling_pattern": "the ie in -chie- and the -vous ending with no extra i",
+    "error_sites": [
+      "ie in mischie-",
+      "ending -vous, not -vious"
+    ],
+    "edit_types": [
+      "AV",
+      "DV"
+    ],
+    "student_error": {
+      "mischievious": "adds an i before -ous, matching the common mispronunciation 'mis-CHEE-vee-us'",
+      "mischevous": "drops the i of ie, writing 'mischev-'",
+      "mischevious": "drops the i of ie and adds an i before -ous (the mispronounced form)"
+    },
+    "explanation": "\"mischievous\" is the correct spelling (the ie in -chie- and the -vous ending with no extra i). \"mischievious\" adds an i before -ous, matching the common mispronunciation 'mis-CHEE-vee-us'; \"mischevous\" drops the i of ie, writing 'mischev-'; \"mischevious\" drops the i of ie and adds an i before -ous (the mispronounced form)."
+  },
+  {
+    "id": "MLV4-S25",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nEvery member voted yes, so the decision was ____.",
+    "choices": [
+      "unanimious",
+      "unanimous",
+      "unnanimious",
+      "unnanimous"
+    ],
+    "correct_answer": "unanimous",
+    "spelling_pattern": "a single n after u- and the -mous ending with no extra i",
+    "error_sites": [
+      "single n after u- (not the prefix un- + n)",
+      "ending -mous, not -mious"
+    ],
+    "edit_types": [
+      "AD",
+      "AV"
+    ],
+    "student_error": {
+      "unnanimous": "doubles the n, treating the start as the prefix un- added to a word beginning with n",
+      "unanimious": "adds an i before -ous, as in 'various' or 'curious'",
+      "unnanimious": "doubles the n and also adds an i before -ous"
+    },
+    "explanation": "\"unanimous\" is the correct spelling (a single n after u- and the -mous ending with no extra i). \"unnanimous\" doubles the n, treating the start as the prefix un- added to a word beginning with n; \"unanimious\" adds an i before -ous, as in 'various' or 'curious'; \"unnanimious\" doubles the n and also adds an i before -ous."
+  },
+  {
+    "id": "MLV4-S26",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The old map was the family's most valued possession.",
+      "My mother went out for lunch with a colleague from her office downtown last Friday.",
+      "Sam tends to exagerrate when he tells stories about his fishing trips.",
+      "Playing the piano well takes years of hard work and discipline every week."
+    ],
+    "correct_answer": "Sam tends to exagerrate when he tells stories about his fishing trips.",
+    "spelling_pattern": "the double g and single r in exaggerate",
+    "targets": {
+      "Sam tends to exagerrate when he tells stories about his fishing trips.": "exagerrate",
+      "The old map was the family's most valued possession.": "possession",
+      "My mother went out for lunch with a colleague from her office downtown last Friday.": "colleague",
+      "Playing the piano well takes years of hard work and discipline every week.": "discipline"
+    },
+    "misspelled_word": "exagerrate",
+    "intended_word": "exaggerate",
+    "key_length_rank": 3,
+    "student_error": {
+      "The old map was the family's most valued possession.": "spelled correctly; a student may pick it because 'possession' has two sets of double s, which can look like too many",
+      "My mother went out for lunch with a colleague from her office downtown last Friday.": "spelled correctly; a student may pick it because 'colleague' has the unusual ending -eague, which can look wrong",
+      "Playing the piano well takes years of hard work and discipline every week.": "spelled correctly; a student may pick it because 'discipline' has a silent c after s, which can look like a mistake"
+    },
+    "explanation": "\"exagerrate\" should be spelled \"exaggerate\" (the double g and single r in exaggerate). The other target words, \"possession\", \"colleague\", \"discipline\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S27",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nMany famous soldiers are buried in the national ____ outside the city.",
+    "choices": [
+      "cematary",
+      "cematery",
+      "cemetary",
+      "cemetery"
+    ],
+    "correct_answer": "cemetery",
+    "spelling_pattern": "three e's: the unstressed e in cem-e-t and the e in -ery",
+    "error_sites": [
+      "unstressed vowel e after cem-",
+      "ending -ery, not -ary"
+    ],
+    "edit_types": [
+      "XV",
+      "XV"
+    ],
+    "student_error": {
+      "cematery": "writes the unstressed e after cem- as a",
+      "cemetary": "uses the -ary ending of words like 'library' instead of -ery",
+      "cematary": "writes a in both unstressed spots"
+    },
+    "explanation": "\"cemetery\" is the correct spelling (three e's: the unstressed e in cem-e-t and the e in -ery). \"cematery\" writes the unstressed e after cem- as a; \"cemetary\" uses the -ary ending of words like 'library' instead of -ery; \"cematary\" writes a in both unstressed spots."
+  },
+  {
+    "id": "MLV4-S28",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nWhen the light turns green, the driver will ____ and move ahead with the traffic.",
+    "choices": [
+      "accelerate",
+      "accellerate",
+      "acelerate",
+      "acellerate"
+    ],
+    "correct_answer": "accelerate",
+    "spelling_pattern": "the double c at the start and the single l in -cel-",
+    "error_sites": [
+      "double c in acc-",
+      "single l in -cel-"
+    ],
+    "edit_types": [
+      "AD",
+      "DD"
+    ],
+    "student_error": {
+      "accellerate": "doubles the l, as in 'excellent' or 'cellar'",
+      "acelerate": "uses one c instead of the double c",
+      "acellerate": "uses one c and doubles the l, moving the double letter to the wrong place"
+    },
+    "explanation": "\"accelerate\" is the correct spelling (the double c at the start and the single l in -cel-). \"accellerate\" doubles the l, as in 'excellent' or 'cellar'; \"acelerate\" uses one c instead of the double c; \"acellerate\" uses one c and doubles the l, moving the double letter to the wrong place."
+  },
+  {
+    "id": "MLV4-S29",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The accident occured at the corner of Main Street and Oak Avenue late last night.",
+      "Ana listened to her conscience and told the truth.",
+      "The members of parliament voted on the new law today.",
+      "The young playwright watched the first show of her new play."
+    ],
+    "correct_answer": "The accident occured at the corner of Main Street and Oak Avenue late last night.",
+    "spelling_pattern": "doubling the final r of occur before -ed",
+    "targets": {
+      "The accident occured at the corner of Main Street and Oak Avenue late last night.": "occured",
+      "Ana listened to her conscience and told the truth.": "conscience",
+      "The members of parliament voted on the new law today.": "parliament",
+      "The young playwright watched the first show of her new play.": "playwright"
+    },
+    "misspelled_word": "occured",
+    "intended_word": "occurred",
+    "key_length_rank": 1,
+    "student_error": {
+      "Ana listened to her conscience and told the truth.": "spelled correctly; a student may pick it because 'conscience' has a silent sc and ie, which can look wrong",
+      "The members of parliament voted on the new law today.": "spelled correctly; a student may pick it because 'parliament' has a silent i, which can look like an extra letter",
+      "The young playwright watched the first show of her new play.": "spelled correctly; a student may pick it because 'playwright' uses -wright (not -write), which can look like a mistake"
+    },
+    "explanation": "\"occured\" should be spelled \"occurred\" (doubling the final r of occur before -ed). The other target words, \"conscience\", \"parliament\", \"playwright\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S30",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nOur school added a coding class to the ____ for all seventh graders.",
+    "choices": [
+      "curriculm",
+      "curiculm",
+      "curriculum",
+      "curiculum"
+    ],
+    "correct_answer": "curriculum",
+    "spelling_pattern": "the double r and the unstressed u before the final m",
+    "error_sites": [
+      "double r in curr-",
+      "unstressed vowel u in -lum"
+    ],
+    "edit_types": [
+      "DD",
+      "DV"
+    ],
+    "student_error": {
+      "curiculum": "uses one r instead of the double r",
+      "curriculm": "drops the unstressed u before the final m",
+      "curiculm": "uses one r and also drops the u before m"
+    },
+    "explanation": "\"curriculum\" is the correct spelling (the double r and the unstressed u before the final m). \"curiculum\" uses one r instead of the double r; \"curriculm\" drops the unstressed u before the final m; \"curiculm\" uses one r and also drops the u before m."
+  },
+  {
+    "id": "MLV4-S31",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe dictionary shows the correct ____ of each word, so you know how to say it.",
+    "choices": [
+      "pronounsiation",
+      "pronounciation",
+      "pronunciation",
+      "pronunsiation"
+    ],
+    "correct_answer": "pronunciation",
+    "spelling_pattern": "the -nun- spelling (not -noun- from pronounce) and the soft c in -ciation",
+    "error_sites": [
+      "-nun-, not -noun-",
+      "soft c in -ciation"
+    ],
+    "edit_types": [
+      "AV",
+      "XC"
+    ],
+    "student_error": {
+      "pronounciation": "adds an o, copying the spelling of 'pronounce'",
+      "pronunsiation": "spells the /s/ sound before -iation with s",
+      "pronounsiation": "copies 'pronounce' and also spells the /s/ sound with s"
+    },
+    "explanation": "\"pronunciation\" is the correct spelling (the -nun- spelling (not -noun- from pronounce) and the soft c in -ciation). \"pronounciation\" adds an o, copying the spelling of 'pronounce'; \"pronunsiation\" spells the /s/ sound before -iation with s; \"pronounsiation\" copies 'pronounce' and also spells the /s/ sound with s."
+  },
+  {
+    "id": "MLV4-S32",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The teacher will withhold the grades until every project is turned in.",
+      "The mayor publicly thanked the firefighters for their brave work.",
+      "It was courageous of Lily to speak up for the new student.",
+      "Jack finished the race in twelth place today."
+    ],
+    "correct_answer": "Jack finished the race in twelth place today.",
+    "spelling_pattern": "the f of twelve in twelfth, which is often not pronounced",
+    "targets": {
+      "Jack finished the race in twelth place today.": "twelth",
+      "The teacher will withhold the grades until every project is turned in.": "withhold",
+      "The mayor publicly thanked the firefighters for their brave work.": "publicly",
+      "It was courageous of Lily to speak up for the new student.": "courageous"
+    },
+    "misspelled_word": "twelth",
+    "intended_word": "twelfth",
+    "key_length_rank": 4,
+    "student_error": {
+      "The teacher will withhold the grades until every project is turned in.": "spelled correctly; a student may pick it because 'withhold' has a double h, which can look like a mistake",
+      "The mayor publicly thanked the firefighters for their brave work.": "spelled correctly; a student may pick it because 'publicly' ends in -cly, not -cally, so it can look wrong",
+      "It was courageous of Lily to speak up for the new student.": "spelled correctly; a student may pick it because 'courageous' keeps the e of courage before -ous, which can look like an extra letter"
+    },
+    "explanation": "\"twelth\" should be spelled \"twelfth\" (the f of twelve in twelfth, which is often not pronounced). The other target words, \"withhold\", \"publicly\", \"courageous\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S33",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nA butterfly's wings show perfect ____, because the left side matches the right side.",
+    "choices": [
+      "symmetry",
+      "symmetery",
+      "symetry",
+      "symetery"
+    ],
+    "correct_answer": "symmetry",
+    "spelling_pattern": "the double m and the -try ending with no extra vowel",
+    "error_sites": [
+      "double m in symm-",
+      "ending -try, no e before r"
+    ],
+    "edit_types": [
+      "AV",
+      "DD"
+    ],
+    "student_error": {
+      "symmetery": "adds an e before the r, as in 'cemetery' or 'meter'",
+      "symetry": "uses one m instead of the double m",
+      "symetery": "uses one m and also adds an e before the r"
+    },
+    "explanation": "\"symmetry\" is the correct spelling (the double m and the -try ending with no extra vowel). \"symmetery\" adds an e before the r, as in 'cemetery' or 'meter'; \"symetry\" uses one m instead of the double m; \"symetery\" uses one m and also adds an e before the r."
+  },
+  {
+    "id": "MLV4-S34",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nIn her ____ class, Ana discussed big questions about truth and the meaning of life.",
+    "choices": [
+      "philosphy",
+      "phillosphy",
+      "phillosophy",
+      "philosophy"
+    ],
+    "correct_answer": "philosophy",
+    "spelling_pattern": "a single l in phil- and the unstressed o in -soph-",
+    "error_sites": [
+      "single l in phil-",
+      "unstressed vowel o after phil-os-"
+    ],
+    "edit_types": [
+      "AD",
+      "DV"
+    ],
+    "student_error": {
+      "phillosophy": "doubles the l, as in the name 'Phillip'",
+      "philosphy": "drops the unstressed o before -phy, writing the word as it is quickly said",
+      "phillosphy": "doubles the l and also drops the o"
+    },
+    "explanation": "\"philosophy\" is the correct spelling (a single l in phil- and the unstressed o in -soph-). \"phillosophy\" doubles the l, as in the name 'Phillip'; \"philosphy\" drops the unstressed o before -phy, writing the word as it is quickly said; \"phillosphy\" doubles the l and also drops the o."
+  },
+  {
+    "id": "MLV4-S35",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "It was apparent that the team had trained hard.",
+      "Omar built a minature model of the bridge for his history project at school.",
+      "The people fought to end the tyranny of the cruel king.",
+      "The hike was long, but it was manageable for most of the group."
+    ],
+    "correct_answer": "Omar built a minature model of the bridge for his history project at school.",
+    "spelling_pattern": "the i before -ature in miniature, which is often not pronounced",
+    "targets": {
+      "Omar built a minature model of the bridge for his history project at school.": "minature",
+      "It was apparent that the team had trained hard.": "apparent",
+      "The people fought to end the tyranny of the cruel king.": "tyranny",
+      "The hike was long, but it was manageable for most of the group.": "manageable"
+    },
+    "misspelled_word": "minature",
+    "intended_word": "miniature",
+    "key_length_rank": 1,
+    "student_error": {
+      "It was apparent that the team had trained hard.": "spelled correctly; a student may pick it because 'apparent' has a double p and -ent, either of which can look wrong",
+      "The people fought to end the tyranny of the cruel king.": "spelled correctly; a student may pick it because 'tyranny' has a y and a double n, which can look wrong",
+      "The hike was long, but it was manageable for most of the group.": "spelled correctly; a student may pick it because 'manageable' keeps the e of manage before -able, which can look like an extra letter"
+    },
+    "explanation": "\"minature\" should be spelled \"miniature\" (the i before -ature in miniature, which is often not pronounced). The other target words, \"apparent\", \"tyranny\", \"manageable\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S36",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 7,
+    "ccss": "L.7.2b",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nIn ____ class, we studied how to measure angles and find the area of triangles.",
+    "choices": [
+      "geommetery",
+      "geometry",
+      "geommetry",
+      "geometery"
+    ],
+    "correct_answer": "geometry",
+    "spelling_pattern": "a single m in geo-m- and the -try ending with no extra vowel",
+    "error_sites": [
+      "single m in geom-",
+      "ending -try, no e before r"
+    ],
+    "edit_types": [
+      "AD",
+      "AV"
+    ],
+    "student_error": {
+      "geommetry": "doubles the m, as in 'symmetry'",
+      "geometery": "adds an e before the r, as in 'meter'",
+      "geommetery": "doubles the m and also adds an e before the r"
+    },
+    "explanation": "\"geometry\" is the correct spelling (a single m in geo-m- and the -try ending with no extra vowel). \"geommetry\" doubles the m, as in 'symmetry'; \"geometery\" adds an e before the r, as in 'meter'; \"geommetery\" doubles the m and also adds an e before the r."
+  },
+  {
+    "id": "MLV4-S37",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nLearning a new language takes a lot of ____, so review the same words every day.",
+    "choices": [
+      "repitition",
+      "repetition",
+      "repetetion",
+      "repitetion"
+    ],
+    "correct_answer": "repetition",
+    "spelling_pattern": "two unstressed vowels: e in rep-e-t and i in -tition",
+    "error_sites": [
+      "unstressed vowel e after rep-",
+      "vowel i before -tion"
+    ],
+    "edit_types": [
+      "XV",
+      "XV"
+    ],
+    "student_error": {
+      "repitition": "writes the unstressed e after rep- as i, as in 'petition'",
+      "repetetion": "writes the i before -tion as e, as in 'repeat'",
+      "repitetion": "swaps both unstressed vowels"
+    },
+    "explanation": "\"repetition\" is the correct spelling (two unstressed vowels: e in rep-e-t and i in -tition). \"repitition\" writes the unstressed e after rep- as i, as in 'petition'; \"repetetion\" writes the i before -tion as e, as in 'repeat'; \"repitetion\" swaps both unstressed vowels."
+  },
+  {
+    "id": "MLV4-S38",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Nora serves as the liaison between the students and the principal at our school.",
+      "Her perseverance helped her finish the marathon even after she fell twice.",
+      "Please fill out the questionaire and return it to the front desk.",
+      "The fluorescent lights in the gym hummed loudly."
+    ],
+    "correct_answer": "Please fill out the questionaire and return it to the front desk.",
+    "spelling_pattern": "the double n in questionnaire",
+    "targets": {
+      "Please fill out the questionaire and return it to the front desk.": "questionaire",
+      "Nora serves as the liaison between the students and the principal at our school.": "liaison",
+      "Her perseverance helped her finish the marathon even after she fell twice.": "perseverance",
+      "The fluorescent lights in the gym hummed loudly.": "fluorescent"
+    },
+    "misspelled_word": "questionaire",
+    "intended_word": "questionnaire",
+    "key_length_rank": 3,
+    "student_error": {
+      "Nora serves as the liaison between the students and the principal at our school.": "spelled correctly; a student may pick it because 'liaison' has two i's, which can look like one too many",
+      "Her perseverance helped her finish the marathon even after she fell twice.": "spelled correctly; a student may pick it because 'perseverance' has no r after the second e and ends in -ance, so it can look wrong",
+      "The fluorescent lights in the gym hummed loudly.": "spelled correctly; a student may pick it because 'fluorescent' has uo and sc, which can look wrong"
+    },
+    "explanation": "\"questionaire\" should be spelled \"questionnaire\" (the double n in questionnaire). The other target words, \"liaison\", \"perseverance\", \"fluorescent\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S39",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nWe took our sick dog to the ____ for a checkup and some medicine.",
+    "choices": [
+      "veterenarian",
+      "vetrenarian",
+      "vetrinarian",
+      "veterinarian"
+    ],
+    "correct_answer": "veterinarian",
+    "spelling_pattern": "the unstressed e in vet-e-r and the i in -rinarian",
+    "error_sites": [
+      "unstressed vowel e after vet-",
+      "vowel i in -rin-"
+    ],
+    "edit_types": [
+      "DV",
+      "XV"
+    ],
+    "student_error": {
+      "vetrinarian": "drops the unstressed e after vet-, as the word is usually said",
+      "veterenarian": "writes the unstressed i after -ter- as e",
+      "vetrenarian": "drops the e and writes e for the i"
+    },
+    "explanation": "\"veterinarian\" is the correct spelling (the unstressed e in vet-e-r and the i in -rinarian). \"vetrinarian\" drops the unstressed e after vet-, as the word is usually said; \"veterenarian\" writes the unstressed i after -ter- as e; \"vetrenarian\" drops the e and writes e for the i."
+  },
+  {
+    "id": "MLV4-S40",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nWorkers must wear masks when they clean up ____ chemicals that could harm their lungs.",
+    "choices": [
+      "hazardous",
+      "hazzardious",
+      "hazzardous",
+      "hazardious"
+    ],
+    "correct_answer": "hazardous",
+    "spelling_pattern": "a single z in haz- and the -dous ending with no extra i",
+    "error_sites": [
+      "single z in haz-",
+      "ending -dous, not -dious"
+    ],
+    "edit_types": [
+      "AD",
+      "AV"
+    ],
+    "student_error": {
+      "hazzardous": "doubles the z after the short a, as in 'dazzle' or 'jazz'",
+      "hazardious": "adds an i before -ous, as in 'tedious'",
+      "hazzardious": "doubles the z and also adds an i before -ous"
+    },
+    "explanation": "\"hazardous\" is the correct spelling (a single z in haz- and the -dous ending with no extra i). \"hazzardous\" doubles the z after the short a, as in 'dazzle' or 'jazz'; \"hazardious\" adds an i before -ous, as in 'tedious'; \"hazzardious\" doubles the z and also adds an i before -ous."
+  },
+  {
+    "id": "MLV4-S41",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The silouette of a tall man appeared in the doorway behind the curtain.",
+      "Maya is a conscientious student who looks over every answer twice.",
+      "Dad ran into an old acquaintance at the grocery store yesterday afternoon.",
+      "The town celebrated the new millennium with fireworks."
+    ],
+    "correct_answer": "The silouette of a tall man appeared in the doorway behind the curtain.",
+    "spelling_pattern": "the silent h in silhouette",
+    "targets": {
+      "The silouette of a tall man appeared in the doorway behind the curtain.": "silouette",
+      "Maya is a conscientious student who looks over every answer twice.": "conscientious",
+      "Dad ran into an old acquaintance at the grocery store yesterday afternoon.": "acquaintance",
+      "The town celebrated the new millennium with fireworks.": "millennium"
+    },
+    "misspelled_word": "silouette",
+    "intended_word": "silhouette",
+    "key_length_rank": 2,
+    "student_error": {
+      "Maya is a conscientious student who looks over every answer twice.": "spelled correctly; a student may pick it because 'conscientious' has sc and ti, which can look wrong",
+      "Dad ran into an old acquaintance at the grocery store yesterday afternoon.": "spelled correctly; a student may pick it because 'acquaintance' has a c before q and ends in -ance, which can look wrong",
+      "The town celebrated the new millennium with fireworks.": "spelled correctly; a student may pick it because 'millennium' has a double l and a double n, which can look like too many"
+    },
+    "explanation": "\"silouette\" should be spelled \"silhouette\" (the silent h in silhouette). The other target words, \"conscientious\", \"acquaintance\", \"millennium\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S42",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe suspect ____ stole the painting, but the police have not proven it yet.",
+    "choices": [
+      "alledgedly",
+      "allegely",
+      "allegedly",
+      "alledgely"
+    ],
+    "correct_answer": "allegedly",
+    "spelling_pattern": "a soft g spelled with g alone and the d of alleged before -ly",
+    "error_sites": [
+      "soft g: g, not dg",
+      "d of alleged + -ly"
+    ],
+    "edit_types": [
+      "AC",
+      "DC"
+    ],
+    "student_error": {
+      "alledgedly": "adds a d before the g, spelling the soft g as -dg- as in 'ledge'",
+      "allegely": "drops the d of 'alleged' before -ly",
+      "alledgely": "adds -dg- and also drops the d before -ly"
+    },
+    "explanation": "\"allegedly\" is the correct spelling (a soft g spelled with g alone and the d of alleged before -ly). \"alledgedly\" adds a d before the g, spelling the soft g as -dg- as in 'ledge'; \"allegely\" drops the d of 'alleged' before -ly; \"alledgely\" adds -dg- and also drops the d before -ly."
+  },
+  {
+    "id": "MLV4-S43",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nAfter the trial, the jury found the man not guilty, and he was ____ of all charges.",
+    "choices": [
+      "acquited",
+      "aquited",
+      "acquitted",
+      "aquitted"
+    ],
+    "correct_answer": "acquitted",
+    "spelling_pattern": "the c before q and the doubled t before -ed",
+    "error_sites": [
+      "c in acq-",
+      "double t before -ed"
+    ],
+    "edit_types": [
+      "DC",
+      "DD"
+    ],
+    "student_error": {
+      "aquitted": "leaves out the c before q, as in 'aquarium'",
+      "acquited": "forgets to double the final t of 'acquit' before -ed",
+      "aquited": "leaves out the c and does not double the t"
+    },
+    "explanation": "\"acquitted\" is the correct spelling (the c before q and the doubled t before -ed). \"aquitted\" leaves out the c before q, as in 'aquarium'; \"acquited\" forgets to double the final t of 'acquit' before -ed; \"aquited\" leaves out the c and does not double the t."
+  },
+  {
+    "id": "MLV4-S44",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "Getting a permit took weeks because of the slow bureaucracy.",
+      "The lieutenant led the soldiers across the river.",
+      "The lizard used camouflage to hide among the bright green leaves of the tree.",
+      "Ben hopes to become an entreprenuer and start his own bakery someday."
+    ],
+    "correct_answer": "Ben hopes to become an entreprenuer and start his own bakery someday.",
+    "spelling_pattern": "the -eur ending of entrepreneur",
+    "targets": {
+      "Ben hopes to become an entreprenuer and start his own bakery someday.": "entreprenuer",
+      "Getting a permit took weeks because of the slow bureaucracy.": "bureaucracy",
+      "The lieutenant led the soldiers across the river.": "lieutenant",
+      "The lizard used camouflage to hide among the bright green leaves of the tree.": "camouflage"
+    },
+    "misspelled_word": "entreprenuer",
+    "intended_word": "entrepreneur",
+    "key_length_rank": 2,
+    "student_error": {
+      "Getting a permit took weeks because of the slow bureaucracy.": "spelled correctly; a student may pick it because 'bureaucracy' has eau, which can look wrong",
+      "The lieutenant led the soldiers across the river.": "spelled correctly; a student may pick it because 'lieutenant' has ieu, which can look wrong",
+      "The lizard used camouflage to hide among the bright green leaves of the tree.": "spelled correctly; a student may pick it because 'camouflage' has ou and -age, which can look wrong"
+    },
+    "explanation": "\"entreprenuer\" should be spelled \"entrepreneur\" (the -eur ending of entrepreneur). The other target words, \"bureaucracy\", \"lieutenant\", \"camouflage\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S45",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nOur house is ____ to the park, so we can walk there in one minute.",
+    "choices": [
+      "adjacent",
+      "adjascient",
+      "adjascent",
+      "adjacient"
+    ],
+    "correct_answer": "adjacent",
+    "spelling_pattern": "the soft c spelled with c alone (no sc) and the -cent ending with no extra i",
+    "error_sites": [
+      "c alone, not sc",
+      "ending -cent, not -cient"
+    ],
+    "edit_types": [
+      "AC",
+      "AV"
+    ],
+    "student_error": {
+      "adjascent": "adds an s before the c, as in 'adolescent' or 'fluorescent'",
+      "adjacient": "adds an i before -ent, as in 'ancient' or 'efficient'",
+      "adjascient": "adds an s before the c and an i before -ent"
+    },
+    "explanation": "\"adjacent\" is the correct spelling (the soft c spelled with c alone (no sc) and the -cent ending with no extra i). \"adjascent\" adds an s before the c, as in 'adolescent' or 'fluorescent'; \"adjacient\" adds an i before -ent, as in 'ancient' or 'efficient'; \"adjascient\" adds an s before the c and an i before -ent."
+  },
+  {
+    "id": "MLV4-S46",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nThe doctor gave Leo medicine to prevent a ____ of the infection.",
+    "choices": [
+      "recurence",
+      "recurrance",
+      "recurance",
+      "recurrence"
+    ],
+    "correct_answer": "recurrence",
+    "spelling_pattern": "the doubled r from recur + -ence and the -ence suffix",
+    "error_sites": [
+      "double r from recur + -ence",
+      "suffix -ence, not -ance"
+    ],
+    "edit_types": [
+      "DD",
+      "XV"
+    ],
+    "student_error": {
+      "recurence": "forgets to double the final r of 'recur' before the suffix",
+      "recurrance": "uses the -ance ending instead of -ence, since both sound the same",
+      "recurance": "uses one r and also uses -ance"
+    },
+    "explanation": "\"recurrence\" is the correct spelling (the doubled r from recur + -ence and the -ence suffix). \"recurence\" forgets to double the final r of 'recur' before the suffix; \"recurrance\" uses the -ance ending instead of -ence, since both sound the same; \"recurance\" uses one r and also uses -ance."
+  },
+  {
+    "id": "MLV4-S47",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "sentence",
+    "prompt": "Which sentence has a spelling error?",
+    "choices": [
+      "The nurse at the clinic will inoculate each child against the flu next week.",
+      "The villagers believed it was sacreligious to cut down the sacred tree.",
+      "Riding the roller coaster for the first time was an exhilarating experience for Mia.",
+      "Grandpa stayed in the hospital for a week with pneumonia."
+    ],
+    "correct_answer": "The villagers believed it was sacreligious to cut down the sacred tree.",
+    "spelling_pattern": "the i-e order in sacrilegious (from sacrilege, not religious)",
+    "targets": {
+      "The villagers believed it was sacreligious to cut down the sacred tree.": "sacreligious",
+      "The nurse at the clinic will inoculate each child against the flu next week.": "inoculate",
+      "Riding the roller coaster for the first time was an exhilarating experience for Mia.": "exhilarating",
+      "Grandpa stayed in the hospital for a week with pneumonia.": "pneumonia"
+    },
+    "misspelled_word": "sacreligious",
+    "intended_word": "sacrilegious",
+    "key_length_rank": 3,
+    "student_error": {
+      "The nurse at the clinic will inoculate each child against the flu next week.": "spelled correctly; a student may pick it because 'inoculate' has a single n and a single c, which can look like too few",
+      "Riding the roller coaster for the first time was an exhilarating experience for Mia.": "spelled correctly; a student may pick it because 'exhilarating' has a silent h and -ilar-, which can look wrong",
+      "Grandpa stayed in the hospital for a week with pneumonia.": "spelled correctly; a student may pick it because 'pneumonia' has a silent p, which can look like a mistake"
+    },
+    "explanation": "\"sacreligious\" should be spelled \"sacrilegious\" (the i-e order in sacrilegious (from sacrilege, not religious)). The other target words, \"inoculate\", \"exhilarating\", \"pneumonia\", are spelled correctly."
+  },
+  {
+    "id": "MLV4-S48",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Spelling",
+    "grade_target": 8,
+    "ccss": "L.8.2c",
+    "spelling_format": "word",
+    "prompt": "Which word correctly completes the sentence?\n\nIt is ____ to tell others to recycle when you throw all your own bottles in the trash.",
+    "choices": [
+      "hipocrisy",
+      "hypocrisy",
+      "hipocricy",
+      "hypocricy"
+    ],
+    "correct_answer": "hypocrisy",
+    "spelling_pattern": "the y after h- and the s in -risy",
+    "error_sites": [
+      "y (not i) after h-",
+      "s (not c) in -sy"
+    ],
+    "edit_types": [
+      "XC",
+      "XV"
+    ],
+    "student_error": {
+      "hypocricy": "spells the final /s/ sound with c, as in 'democracy' or 'privacy'",
+      "hipocrisy": "writes the y after h- as i, spelling the sound the usual way",
+      "hipocricy": "writes i for the y and c for the s"
+    },
+    "explanation": "\"hypocrisy\" is the correct spelling (the y after h- and the s in -risy). \"hypocricy\" spells the final /s/ sound with c, as in 'democracy' or 'privacy'; \"hipocrisy\" writes the y after h- as i, spelling the sound the usual way; \"hipocricy\" writes i for the y and c for the s."
+  }
+]

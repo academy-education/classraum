@@ -1,0 +1,1923 @@
+[
+ {
+  "item": {
+   "id": "MLV4-S01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe sinking of the great ship was a terrible ____ that saddened the whole world.",
+   "choices": [
+    "tradgedy",
+    "tragedy",
+    "tragidy",
+    "tradgidy"
+   ],
+   "correct_answer": "tragedy",
+   "spelling_pattern": "a soft g that is spelled with g alone (no -dge) and the unstressed vowel e in the middle syllable",
+   "error_sites": [
+    "soft g after a: g, not dg",
+    "unstressed middle vowel: e"
+   ],
+   "edit_types": [
+    "AC",
+    "XV"
+   ],
+   "student_error": {
+    "tradgedy": "adds a d before the g, spelling the soft g sound as -dg- as in 'edge' or 'badge'",
+    "tragidy": "writes the unstressed (schwa) middle vowel as i instead of e",
+    "tradgidy": "makes both mistakes: -dg- for the soft g and i for the unstressed e"
+   },
+   "explanation": "\"tragedy\" is the correct spelling (a soft g that is spelled with g alone (no -dge) and the unstressed vowel e in the middle syllable). \"tradgedy\" adds a d before the g, spelling the soft g sound as -dg- as in 'edge' or 'badge'; \"tragidy\" writes the unstressed (schwa) middle vowel as i instead of e; \"tradgidy\" makes both mistakes: -dg- for the soft g and i for the unstressed e."
+  },
+  "rated_no": [
+   {
+    "option": "tradgidy",
+    "reasons": [
+     "two stacked errors make it look visibly wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S03",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe ____ market was crowded with shoppers, sellers, and noisy delivery carts.",
+   "choices": [
+    "busling",
+    "busleing",
+    "bustleing",
+    "bustling"
+   ],
+   "correct_answer": "bustling",
+   "spelling_pattern": "dropping the final e of bustle before -ing, and keeping the silent t",
+   "error_sites": [
+    "drop final e of bustle before -ing",
+    "silent t in bust-"
+   ],
+   "edit_types": [
+    "AV",
+    "DC"
+   ],
+   "student_error": {
+    "bustleing": "keeps the final e of 'bustle' when adding -ing",
+    "busling": "leaves out the silent t, spelling the word the way it sounds",
+    "busleing": "keeps the e before -ing and also leaves out the silent t"
+   },
+   "explanation": "\"bustling\" is the correct spelling (dropping the final e of bustle before -ing, and keeping the silent t). \"bustleing\" keeps the final e of 'bustle' when adding -ing; \"busling\" leaves out the silent t, spelling the word the way it sounds; \"busleing\" keeps the e before -ing and also leaves out the silent t."
+  },
+  "rated_no": [
+   {
+    "option": "busleing",
+    "reasons": [
+     "drops the t and keeps the e, so it looks odd",
+     "drops t and keeps e; form students rarely produce"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nScientists still argue about the ____ of life on other planets.",
+   "choices": [
+    "existence",
+    "existanse",
+    "existense",
+    "existance"
+   ],
+   "correct_answer": "existence",
+   "spelling_pattern": "the -ence suffix: the vowel e and the final soft c",
+   "error_sites": [
+    "suffix vowel: -ence, not -ance",
+    "final soft c, not s"
+   ],
+   "edit_types": [
+    "XC",
+    "XV"
+   ],
+   "student_error": {
+    "existense": "spells the final /s/ sound with s, as in 'sense'",
+    "existance": "uses the -ance ending instead of -ence, since both sound the same",
+    "existanse": "uses -ance and also spells the final sound with s"
+   },
+   "explanation": "\"existence\" is the correct spelling (the -ence suffix: the vowel e and the final soft c). \"existense\" spells the final /s/ sound with s, as in 'sense'; \"existance\" uses the -ance ending instead of -ence, since both sound the same; \"existanse\" uses -ance and also spells the final sound with s."
+  },
+  "rated_no": [
+   {
+    "option": "existanse",
+    "reasons": [
+     "two errors including s for c, so it looks wrong",
+     "two errors including -anse; rarely written"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S07",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe museum guide told us a ____ fact about how the pyramids were built.",
+   "choices": [
+    "fasinating",
+    "fasinateing",
+    "fascinating",
+    "fascinateing"
+   ],
+   "correct_answer": "fascinating",
+   "spelling_pattern": "dropping the final e of fascinate before -ing, and the silent c in sc",
+   "error_sites": [
+    "drop final e of fascinate before -ing",
+    "silent c in fasc-"
+   ],
+   "edit_types": [
+    "AV",
+    "DC"
+   ],
+   "student_error": {
+    "fascinateing": "keeps the final e of 'fascinate' when adding -ing",
+    "fasinating": "leaves out the silent c, spelling the /s/ sound with s alone",
+    "fasinateing": "keeps the e before -ing and also drops the silent c"
+   },
+   "explanation": "\"fascinating\" is the correct spelling (dropping the final e of fascinate before -ing, and the silent c in sc). \"fascinateing\" keeps the final e of 'fascinate' when adding -ing; \"fasinating\" leaves out the silent c, spelling the /s/ sound with s alone; \"fasinateing\" keeps the e before -ing and also drops the silent c."
+  },
+  "rated_no": [
+   {
+    "option": "fasinateing",
+    "reasons": [
+     "two errors make it look clearly off",
+     "two errors stacked; unlikely choice"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S09",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe new park is still in ____, so it will not open until next year.",
+   "choices": [
+    "development",
+    "devloppment",
+    "developpment",
+    "devlopment"
+   ],
+   "correct_answer": "development",
+   "spelling_pattern": "a single p in develop and the unstressed e in the second syllable",
+   "error_sites": [
+    "single p before -ment",
+    "unstressed vowel e in dev-e-l"
+   ],
+   "edit_types": [
+    "AD",
+    "DV"
+   ],
+   "student_error": {
+    "developpment": "doubles the p, as if adding a suffix after a short vowel",
+    "devlopment": "drops the unstressed e after dev-, spelling it as it is often said",
+    "devloppment": "doubles the p and also drops the unstressed e"
+   },
+   "explanation": "\"development\" is the correct spelling (a single p in develop and the unstressed e in the second syllable). \"developpment\" doubles the p, as if adding a suffix after a short vowel; \"devlopment\" drops the unstressed e after dev-, spelling it as it is often said; \"devloppment\" doubles the p and also drops the unstressed e."
+  },
+  "rated_no": [
+   {
+    "option": "devloppment",
+    "reasons": [
+     "missing e plus a double p looks strange",
+     "double p plus dropped e; nobody writes this"
+    ]
+   },
+   {
+    "option": "developpment",
+    "reasons": [
+     "double p is not a typical error here"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S12",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nIn the old days, a ____ on horseback carried important letters between towns.",
+   "choices": [
+    "messenjer",
+    "messenger",
+    "mesenjer",
+    "mesenger"
+   ],
+   "correct_answer": "messenger",
+   "spelling_pattern": "the double s in mess- and the soft g in -enger",
+   "error_sites": [
+    "double s in mess-",
+    "soft g (not j) in -enger"
+   ],
+   "edit_types": [
+    "DD",
+    "XC"
+   ],
+   "student_error": {
+    "mesenger": "uses one s instead of the double s",
+    "messenjer": "spells the /j/ sound with j instead of a soft g",
+    "mesenjer": "uses one s and also spells the soft g with j"
+   },
+   "explanation": "\"messenger\" is the correct spelling (the double s in mess- and the soft g in -enger). \"mesenger\" uses one s instead of the double s; \"messenjer\" spells the /j/ sound with j instead of a soft g; \"mesenjer\" uses one s and also spells the soft g with j."
+  },
+  "rated_no": [
+   {
+    "option": "mesenjer",
+    "reasons": [
+     "single s plus j looks far off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S13",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nBreaking the window was not an accident; it was a ____ act.",
+   "choices": [
+    "dellibrate",
+    "deliberate",
+    "delliberate",
+    "delibrate"
+   ],
+   "correct_answer": "deliberate",
+   "spelling_pattern": "a single l after de- and the unstressed e in -ber-",
+   "error_sites": [
+    "single l after de-",
+    "unstressed vowel e in lib-e-r"
+   ],
+   "edit_types": [
+    "AD",
+    "DV"
+   ],
+   "student_error": {
+    "delliberate": "doubles the l after de-",
+    "delibrate": "drops the unstressed e in the middle, writing the word as it is quickly said",
+    "dellibrate": "doubles the l and also drops the unstressed e"
+   },
+   "explanation": "\"deliberate\" is the correct spelling (a single l after de- and the unstressed e in -ber-). \"delliberate\" doubles the l after de-; \"delibrate\" drops the unstressed e in the middle, writing the word as it is quickly said; \"dellibrate\" doubles the l and also drops the unstressed e."
+  },
+  "rated_no": [
+   {
+    "option": "dellibrate",
+    "reasons": [
+     "a double l is not a typical error here",
+     "double l plus dropped e; implausible"
+    ]
+   },
+   {
+    "option": "delliberate",
+    "reasons": [
+     "the double l looks wrong",
+     "double l is not a typical error"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S16",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nIn a ____, citizens choose their leaders by voting in free elections.",
+   "choices": [
+    "democracy",
+    "demacracy",
+    "demacrasy",
+    "democrasy"
+   ],
+   "correct_answer": "democracy",
+   "spelling_pattern": "the unstressed o in demo- and the final soft c in -cracy",
+   "error_sites": [
+    "unstressed vowel o in dem-o",
+    "soft c in -cy"
+   ],
+   "edit_types": [
+    "XC",
+    "XV"
+   ],
+   "student_error": {
+    "democrasy": "spells the final /s/ sound with s instead of c",
+    "demacracy": "writes the unstressed o after dem- as a",
+    "demacrasy": "writes a for the o and s for the final c"
+   },
+   "explanation": "\"democracy\" is the correct spelling (the unstressed o in demo- and the final soft c in -cracy). \"democrasy\" spells the final /s/ sound with s instead of c; \"demacracy\" writes the unstressed o after dem- as a; \"demacrasy\" writes a for the o and s for the final c."
+  },
+  "rated_no": [
+   {
+    "option": "demacrasy",
+    "reasons": [
+     "two errors make it look clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S18",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe knights swore ____ to their king and promised to defend his castle.",
+   "choices": [
+    "alledgance",
+    "alledgiance",
+    "allegiance",
+    "allegance"
+   ],
+   "correct_answer": "allegiance",
+   "spelling_pattern": "a soft g spelled with g alone and the i in -giance",
+   "error_sites": [
+    "soft g: g, not dg",
+    "i before -ance"
+   ],
+   "edit_types": [
+    "AC",
+    "DV"
+   ],
+   "student_error": {
+    "alledgiance": "adds a d before the g, spelling the soft g as -dg- as in 'ledge'",
+    "allegance": "drops the i before -ance, spelling the word as it sounds",
+    "alledgance": "adds -dg- and also drops the i"
+   },
+   "explanation": "\"allegiance\" is the correct spelling (a soft g spelled with g alone and the i in -giance). \"alledgiance\" adds a d before the g, spelling the soft g as -dg- as in 'ledge'; \"allegance\" drops the i before -ance, spelling the word as it sounds; \"alledgance\" adds -dg- and also drops the i."
+  },
+  "rated_no": [
+   {
+    "option": "alledgance",
+    "reasons": [
+     "dg plus a missing i looks off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S19",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe flood was ____ for the town, destroying dozens of homes and farms.",
+   "choices": [
+    "dissastrous",
+    "disasterous",
+    "disastrous",
+    "dissasterous"
+   ],
+   "correct_answer": "disastrous",
+   "spelling_pattern": "a single s after di- and dropping the e of disaster before -ous",
+   "error_sites": [
+    "single s after di- (not the prefix dis- + s)",
+    "no e between t and r"
+   ],
+   "edit_types": [
+    "AD",
+    "AV"
+   ],
+   "student_error": {
+    "dissastrous": "doubles the s, treating the start as the prefix dis- added to a word beginning with s",
+    "disasterous": "keeps the e of 'disaster', writing 'disaster' + -ous",
+    "dissasterous": "doubles the s and also keeps the e of 'disaster'"
+   },
+   "explanation": "\"disastrous\" is the correct spelling (a single s after di- and dropping the e of disaster before -ous). \"dissastrous\" doubles the s, treating the start as the prefix dis- added to a word beginning with s; \"disasterous\" keeps the e of 'disaster', writing 'disaster' + -ous; \"dissasterous\" doubles the s and also keeps the e of 'disaster'."
+  },
+  "rated_no": [
+   {
+    "option": "dissastrous",
+    "reasons": [
+     "a double s is not a typical error here",
+     "double s alone is not a typical error"
+    ]
+   },
+   {
+    "option": "dissasterous",
+    "reasons": [
+     "two errors make it look clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S21",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe bridge was ____ falling apart, with pieces of stone dropping into the river.",
+   "choices": [
+    "literally",
+    "litrally",
+    "litraly",
+    "literaly"
+   ],
+   "correct_answer": "literally",
+   "spelling_pattern": "the double l from literal + -ly and the unstressed e in lit-e-r",
+   "error_sites": [
+    "double l from literal + ly",
+    "unstressed vowel e after lit-"
+   ],
+   "edit_types": [
+    "DD",
+    "DV"
+   ],
+   "student_error": {
+    "literaly": "uses one l, forgetting that literal + -ly keeps both l's",
+    "litrally": "drops the unstressed e after lit-, writing the word as it is often said",
+    "litraly": "uses one l and also drops the unstressed e"
+   },
+   "explanation": "\"literally\" is the correct spelling (the double l from literal + -ly and the unstressed e in lit-e-r). \"literaly\" uses one l, forgetting that literal + -ly keeps both l's; \"litrally\" drops the unstressed e after lit-, writing the word as it is often said; \"litraly\" uses one l and also drops the unstressed e."
+  },
+  "rated_no": [
+   {
+    "option": "litraly",
+    "reasons": [
+     "two dropped letters look clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S22",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe bride wore an ____ white gown with lace sleeves.",
+   "choices": [
+    "eligent",
+    "eligant",
+    "elegent",
+    "elegant"
+   ],
+   "correct_answer": "elegant",
+   "spelling_pattern": "the unstressed e in el-e-g and the a in the -ant suffix",
+   "error_sites": [
+    "unstressed vowel e after el-",
+    "suffix -ant, not -ent"
+   ],
+   "edit_types": [
+    "XV",
+    "XV"
+   ],
+   "student_error": {
+    "eligant": "writes the unstressed middle e as i",
+    "elegent": "uses the -ent ending instead of -ant, since both sound the same",
+    "eligent": "writes i for the middle e and also uses -ent"
+   },
+   "explanation": "\"elegant\" is the correct spelling (the unstressed e in el-e-g and the a in the -ant suffix). \"eligant\" writes the unstressed middle e as i; \"elegent\" uses the -ent ending instead of -ant, since both sound the same; \"eligent\" writes i for the middle e and also uses -ent."
+  },
+  "rated_no": [
+   {
+    "option": "eligant",
+    "reasons": [
+     "two errors make it look off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S25",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nEvery member voted yes, so the decision was ____.",
+   "choices": [
+    "unanimious",
+    "unanimous",
+    "unnanimious",
+    "unnanimous"
+   ],
+   "correct_answer": "unanimous",
+   "spelling_pattern": "a single n after u- and the -mous ending with no extra i",
+   "error_sites": [
+    "single n after u- (not the prefix un- + n)",
+    "ending -mous, not -mious"
+   ],
+   "edit_types": [
+    "AD",
+    "AV"
+   ],
+   "student_error": {
+    "unnanimous": "doubles the n, treating the start as the prefix un- added to a word beginning with n",
+    "unanimious": "adds an i before -ous, as in 'various' or 'curious'",
+    "unnanimious": "doubles the n and also adds an i before -ous"
+   },
+   "explanation": "\"unanimous\" is the correct spelling (a single n after u- and the -mous ending with no extra i). \"unnanimous\" doubles the n, treating the start as the prefix un- added to a word beginning with n; \"unanimious\" adds an i before -ous, as in 'various' or 'curious'; \"unnanimious\" doubles the n and also adds an i before -ous."
+  },
+  "rated_no": [
+   {
+    "option": "unnanimious",
+    "reasons": [
+     "two errors make it look clearly off",
+     "double n plus extra i; stacked errors"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S30",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nOur school added a coding class to the ____ for all seventh graders.",
+   "choices": [
+    "curriculm",
+    "curiculm",
+    "curriculum",
+    "curiculum"
+   ],
+   "correct_answer": "curriculum",
+   "spelling_pattern": "the double r and the unstressed u before the final m",
+   "error_sites": [
+    "double r in curr-",
+    "unstressed vowel u in -lum"
+   ],
+   "edit_types": [
+    "DD",
+    "DV"
+   ],
+   "student_error": {
+    "curiculum": "uses one r instead of the double r",
+    "curriculm": "drops the unstressed u before the final m",
+    "curiculm": "uses one r and also drops the u before m"
+   },
+   "explanation": "\"curriculum\" is the correct spelling (the double r and the unstressed u before the final m). \"curiculum\" uses one r instead of the double r; \"curriculm\" drops the unstressed u before the final m; \"curiculm\" uses one r and also drops the u before m."
+  },
+  "rated_no": [
+   {
+    "option": "curiculm",
+    "reasons": [
+     "two errors make it look clearly off",
+     "two errors; unlikely"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S31",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe dictionary shows the correct ____ of each word, so you know how to say it.",
+   "choices": [
+    "pronounsiation",
+    "pronounciation",
+    "pronunciation",
+    "pronunsiation"
+   ],
+   "correct_answer": "pronunciation",
+   "spelling_pattern": "the -nun- spelling (not -noun- from pronounce) and the soft c in -ciation",
+   "error_sites": [
+    "-nun-, not -noun-",
+    "soft c in -ciation"
+   ],
+   "edit_types": [
+    "AV",
+    "XC"
+   ],
+   "student_error": {
+    "pronounciation": "adds an o, copying the spelling of 'pronounce'",
+    "pronunsiation": "spells the /s/ sound before -iation with s",
+    "pronounsiation": "copies 'pronounce' and also spells the /s/ sound with s"
+   },
+   "explanation": "\"pronunciation\" is the correct spelling (the -nun- spelling (not -noun- from pronounce) and the soft c in -ciation). \"pronounciation\" adds an o, copying the spelling of 'pronounce'; \"pronunsiation\" spells the /s/ sound before -iation with s; \"pronounsiation\" copies 'pronounce' and also spells the /s/ sound with s."
+  },
+  "rated_no": [
+   {
+    "option": "pronounsiation",
+    "reasons": [
+     "ou plus s for c looks clearly off"
+    ]
+   },
+   {
+    "option": "pronunsiation",
+    "reasons": [
+     "s for c here looks off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S33",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nA butterfly's wings show perfect ____, because the left side matches the right side.",
+   "choices": [
+    "symmetry",
+    "symmetery",
+    "symetry",
+    "symetery"
+   ],
+   "correct_answer": "symmetry",
+   "spelling_pattern": "the double m and the -try ending with no extra vowel",
+   "error_sites": [
+    "double m in symm-",
+    "ending -try, no e before r"
+   ],
+   "edit_types": [
+    "AV",
+    "DD"
+   ],
+   "student_error": {
+    "symmetery": "adds an e before the r, as in 'cemetery' or 'meter'",
+    "symetry": "uses one m instead of the double m",
+    "symetery": "uses one m and also adds an e before the r"
+   },
+   "explanation": "\"symmetry\" is the correct spelling (the double m and the -try ending with no extra vowel). \"symmetery\" adds an e before the r, as in 'cemetery' or 'meter'; \"symetry\" uses one m instead of the double m; \"symetery\" uses one m and also adds an e before the r."
+  },
+  "rated_no": [
+   {
+    "option": "symetery",
+    "reasons": [
+     "two errors make it look clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S34",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nIn her ____ class, Ana discussed big questions about truth and the meaning of life.",
+   "choices": [
+    "philosphy",
+    "phillosphy",
+    "phillosophy",
+    "philosophy"
+   ],
+   "correct_answer": "philosophy",
+   "spelling_pattern": "a single l in phil- and the unstressed o in -soph-",
+   "error_sites": [
+    "single l in phil-",
+    "unstressed vowel o after phil-os-"
+   ],
+   "edit_types": [
+    "AD",
+    "DV"
+   ],
+   "student_error": {
+    "phillosophy": "doubles the l, as in the name 'Phillip'",
+    "philosphy": "drops the unstressed o before -phy, writing the word as it is quickly said",
+    "phillosphy": "doubles the l and also drops the o"
+   },
+   "explanation": "\"philosophy\" is the correct spelling (a single l in phil- and the unstressed o in -soph-). \"phillosophy\" doubles the l, as in the name 'Phillip'; \"philosphy\" drops the unstressed o before -phy, writing the word as it is quickly said; \"phillosphy\" doubles the l and also drops the o."
+  },
+  "rated_no": [
+   {
+    "option": "phillosphy",
+    "reasons": [
+     "a double l plus a dropped o looks off",
+     "double l plus dropped o; unlikely"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S36",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nIn ____ class, we studied how to measure angles and find the area of triangles.",
+   "choices": [
+    "geommetery",
+    "geometry",
+    "geommetry",
+    "geometery"
+   ],
+   "correct_answer": "geometry",
+   "spelling_pattern": "a single m in geo-m- and the -try ending with no extra vowel",
+   "error_sites": [
+    "single m in geom-",
+    "ending -try, no e before r"
+   ],
+   "edit_types": [
+    "AD",
+    "AV"
+   ],
+   "student_error": {
+    "geommetry": "doubles the m, as in 'symmetry'",
+    "geometery": "adds an e before the r, as in 'meter'",
+    "geommetery": "doubles the m and also adds an e before the r"
+   },
+   "explanation": "\"geometry\" is the correct spelling (a single m in geo-m- and the -try ending with no extra vowel). \"geommetry\" doubles the m, as in 'symmetry'; \"geometery\" adds an e before the r, as in 'meter'; \"geommetery\" doubles the m and also adds an e before the r."
+  },
+  "rated_no": [
+   {
+    "option": "geommetery",
+    "reasons": [
+     "a double m plus an extra e looks clearly off",
+     "double m plus extra e; no one writes this"
+    ]
+   },
+   {
+    "option": "geommetry",
+    "reasons": [
+     "nobody doubles the m here",
+     "double m is not a typical error"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S37",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nLearning a new language takes a lot of ____, so review the same words every day.",
+   "choices": [
+    "repitition",
+    "repetition",
+    "repetetion",
+    "repitetion"
+   ],
+   "correct_answer": "repetition",
+   "spelling_pattern": "two unstressed vowels: e in rep-e-t and i in -tition",
+   "error_sites": [
+    "unstressed vowel e after rep-",
+    "vowel i before -tion"
+   ],
+   "edit_types": [
+    "XV",
+    "XV"
+   ],
+   "student_error": {
+    "repitition": "writes the unstressed e after rep- as i, as in 'petition'",
+    "repetetion": "writes the i before -tion as e, as in 'repeat'",
+    "repitetion": "swaps both unstressed vowels"
+   },
+   "explanation": "\"repetition\" is the correct spelling (two unstressed vowels: e in rep-e-t and i in -tition). \"repitition\" writes the unstressed e after rep- as i, as in 'petition'; \"repetetion\" writes the i before -tion as e, as in 'repeat'; \"repitetion\" swaps both unstressed vowels."
+  },
+  "rated_no": [
+   {
+    "option": "repitetion",
+    "reasons": [
+     "two vowel swaps look off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S39",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nWe took our sick dog to the ____ for a checkup and some medicine.",
+   "choices": [
+    "veterenarian",
+    "vetrenarian",
+    "vetrinarian",
+    "veterinarian"
+   ],
+   "correct_answer": "veterinarian",
+   "spelling_pattern": "the unstressed e in vet-e-r and the i in -rinarian",
+   "error_sites": [
+    "unstressed vowel e after vet-",
+    "vowel i in -rin-"
+   ],
+   "edit_types": [
+    "DV",
+    "XV"
+   ],
+   "student_error": {
+    "vetrinarian": "drops the unstressed e after vet-, as the word is usually said",
+    "veterenarian": "writes the unstressed i after -ter- as e",
+    "vetrenarian": "drops the e and writes e for the i"
+   },
+   "explanation": "\"veterinarian\" is the correct spelling (the unstressed e in vet-e-r and the i in -rinarian). \"vetrinarian\" drops the unstressed e after vet-, as the word is usually said; \"veterenarian\" writes the unstressed i after -ter- as e; \"vetrenarian\" drops the e and writes e for the i."
+  },
+  "rated_no": [
+   {
+    "option": "vetrenarian",
+    "reasons": [
+     "a dropped and moved vowel looks off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S40",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nWorkers must wear masks when they clean up ____ chemicals that could harm their lungs.",
+   "choices": [
+    "hazardous",
+    "hazzardious",
+    "hazzardous",
+    "hazardious"
+   ],
+   "correct_answer": "hazardous",
+   "spelling_pattern": "a single z in haz- and the -dous ending with no extra i",
+   "error_sites": [
+    "single z in haz-",
+    "ending -dous, not -dious"
+   ],
+   "edit_types": [
+    "AD",
+    "AV"
+   ],
+   "student_error": {
+    "hazzardous": "doubles the z after the short a, as in 'dazzle' or 'jazz'",
+    "hazardious": "adds an i before -ous, as in 'tedious'",
+    "hazzardious": "doubles the z and also adds an i before -ous"
+   },
+   "explanation": "\"hazardous\" is the correct spelling (a single z in haz- and the -dous ending with no extra i). \"hazzardous\" doubles the z after the short a, as in 'dazzle' or 'jazz'; \"hazardious\" adds an i before -ous, as in 'tedious'; \"hazzardious\" doubles the z and also adds an i before -ous."
+  },
+  "rated_no": [
+   {
+    "option": "hazzardious",
+    "reasons": [
+     "two errors make it look clearly off",
+     "double z plus extra i; stacked errors"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S42",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe suspect ____ stole the painting, but the police have not proven it yet.",
+   "choices": [
+    "alledgedly",
+    "allegely",
+    "allegedly",
+    "alledgely"
+   ],
+   "correct_answer": "allegedly",
+   "spelling_pattern": "a soft g spelled with g alone and the d of alleged before -ly",
+   "error_sites": [
+    "soft g: g, not dg",
+    "d of alleged + -ly"
+   ],
+   "edit_types": [
+    "AC",
+    "DC"
+   ],
+   "student_error": {
+    "alledgedly": "adds a d before the g, spelling the soft g as -dg- as in 'ledge'",
+    "allegely": "drops the d of 'alleged' before -ly",
+    "alledgely": "adds -dg- and also drops the d before -ly"
+   },
+   "explanation": "\"allegedly\" is the correct spelling (a soft g spelled with g alone and the d of alleged before -ly). \"alledgedly\" adds a d before the g, spelling the soft g as -dg- as in 'ledge'; \"allegely\" drops the d of 'alleged' before -ly; \"alledgely\" adds -dg- and also drops the d before -ly."
+  },
+  "rated_no": [
+   {
+    "option": "allegely",
+    "reasons": [
+     "dropping the \"ed\" makes a different-looking word",
+     "drops a syllable; not a written form"
+    ]
+   },
+   {
+    "option": "alledgely",
+    "reasons": [
+     "two errors make it look clearly off",
+     "stacked errors; implausible"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S45",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nOur house is ____ to the park, so we can walk there in one minute.",
+   "choices": [
+    "adjacent",
+    "adjascient",
+    "adjascent",
+    "adjacient"
+   ],
+   "correct_answer": "adjacent",
+   "spelling_pattern": "the soft c spelled with c alone (no sc) and the -cent ending with no extra i",
+   "error_sites": [
+    "c alone, not sc",
+    "ending -cent, not -cient"
+   ],
+   "edit_types": [
+    "AC",
+    "AV"
+   ],
+   "student_error": {
+    "adjascent": "adds an s before the c, as in 'adolescent' or 'fluorescent'",
+    "adjacient": "adds an i before -ent, as in 'ancient' or 'efficient'",
+    "adjascient": "adds an s before the c and an i before -ent"
+   },
+   "explanation": "\"adjacent\" is the correct spelling (the soft c spelled with c alone (no sc) and the -cent ending with no extra i). \"adjascent\" adds an s before the c, as in 'adolescent' or 'fluorescent'; \"adjacient\" adds an i before -ent, as in 'ancient' or 'efficient'; \"adjascient\" adds an s before the c and an i before -ent."
+  },
+  "rated_no": [
+   {
+    "option": "adjascient",
+    "reasons": [
+     "two errors make it look clearly off",
+     "sc plus -ient; unlikely"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S48",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nIt is ____ to tell others to recycle when you throw all your own bottles in the trash.",
+   "choices": [
+    "hipocrisy",
+    "hypocrisy",
+    "hipocricy",
+    "hypocricy"
+   ],
+   "correct_answer": "hypocrisy",
+   "spelling_pattern": "the y after h- and the s in -risy",
+   "error_sites": [
+    "y (not i) after h-",
+    "s (not c) in -sy"
+   ],
+   "edit_types": [
+    "XC",
+    "XV"
+   ],
+   "student_error": {
+    "hypocricy": "spells the final /s/ sound with c, as in 'democracy' or 'privacy'",
+    "hipocrisy": "writes the y after h- as i, spelling the sound the usual way",
+    "hipocricy": "writes i for the y and c for the s"
+   },
+   "explanation": "\"hypocrisy\" is the correct spelling (the y after h- and the s in -risy). \"hypocricy\" spells the final /s/ sound with c, as in 'democracy' or 'privacy'; \"hipocrisy\" writes the y after h- as i, spelling the sound the usual way; \"hipocricy\" writes i for the y and c for the s."
+  },
+  "rated_no": [
+   {
+    "option": "hipocricy",
+    "reasons": [
+     "two errors make it look clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurried to class.",
+    "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurried to class.",
+    "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco is hurrying to class.",
+    "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco is hurrying to class."
+   ],
+   "correct_answer": "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurried to class.",
+   "error_sites": [
+    "past perfect 'had already sounded' for the action finished before the bus arrived",
+    "past tense 'hurried' to match the rest of the past-tense sentence"
+   ],
+   "student_error": {
+    "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurried to class.": "uses simple past for the earlier action, not seeing that 'By the time ... pulled in' calls for 'had sounded'",
+    "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco is hurrying to class.": "shifts into the present ('is hurrying') in the last clause, far from the past-tense verbs at the start",
+    "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco is hurrying to class.": "does not track time across the sentence: misses the past perfect and also drifts into present tense at the end"
+   },
+   "explanation": "The bell sounded before the bus arrived, so the earlier action needs the past perfect 'had already sounded'; the whole sentence is in the past, so the last verb must be 'hurried', not 'is hurrying'.",
+   "varied_dimension": "past perfect for the earlier of two past actions; tense shift in the final clause"
+  },
+  "rated_no": [
+   {
+    "option": "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco is hurrying to class.",
+    "reasons": [
+     "two errors make it sound off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G02",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "By the time the parents will arrive at three o'clock, the team will have finished cleaning up the soccer field.",
+    "By the time the parents arrive at three o'clock, the team had finished cleaning up the soccer field.",
+    "By the time the parents arrive at three o'clock, the team will have finished cleaning up the soccer field.",
+    "By the time the parents will arrive at three o'clock, the team had finished cleaning up the soccer field."
+   ],
+   "correct_answer": "By the time the parents arrive at three o'clock, the team will have finished cleaning up the soccer field.",
+   "error_sites": [
+    "present tense 'arrive' in a 'by the time' clause about the future",
+    "future perfect 'will have finished' in the main clause"
+   ],
+   "student_error": {
+    "By the time the parents will arrive at three o'clock, the team will have finished cleaning up the soccer field.": "puts 'will' in the time clause because the arrival is in the future",
+    "By the time the parents arrive at three o'clock, the team had finished cleaning up the soccer field.": "uses past perfect because 'by the time' is usually paired with 'had', missing that this event is in the future",
+    "By the time the parents will arrive at three o'clock, the team had finished cleaning up the soccer field.": "treats 'by the time' as a fixed pattern without checking time: future in the clause, past perfect in the main verb"
+   },
+   "explanation": "A clause beginning 'By the time' that refers to the future uses the present tense ('arrive'), and an action that will be complete before then takes the future perfect ('will have finished'). 'will arrive' is wrong in the time clause, and 'had finished' places the cleanup in the past.",
+   "varied_dimension": "present tense in a 'by the time' clause about the future; future perfect in the main clause"
+  },
+  "rated_no": [
+   {
+    "option": "By the time the parents will arrive at three o'clock, the team had finished cleaning up the soccer field.",
+    "reasons": [
+     "two errors make it sound off",
+     "two clashes; reads clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1d",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Last summer my cousins visited for a week, and every morning, before anyone else is awake, they walked to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else was awake, they walk to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else is awake, they walk to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else was awake, they walked to the bakery."
+   ],
+   "correct_answer": "Last summer my cousins visited for a week, and every morning, before anyone else was awake, they walked to the bakery.",
+   "error_sites": [
+    "past tense 'was' in the clause after 'before'",
+    "past tense 'walked' for the main verb, far from 'Last summer'"
+   ],
+   "student_error": {
+    "Last summer my cousins visited for a week, and every morning, before anyone else is awake, they walked to the bakery.": "writes 'is awake' because the 'before' clause sounds like a general habit, shifting out of the past",
+    "Last summer my cousins visited for a week, and every morning, before anyone else was awake, they walk to the bakery.": "writes 'walk' because 'every morning' sounds like a present-tense routine, forgetting 'Last summer'",
+    "Last summer my cousins visited for a week, and every morning, before anyone else is awake, they walk to the bakery.": "reads 'every morning' as present-tense routine and loses 'Last summer', so the whole second half shifts to present"
+   },
+   "explanation": "The sentence is set 'Last summer', so every verb stays in the past: 'was awake' and 'walked'. 'is' and 'walk' are inappropriate shifts into the present, even though 'every morning' describes a habit.",
+   "varied_dimension": "past tense in a clause set inside an interrupting time phrase; past tense of the main verb far from 'Last summer'"
+  },
+  "rated_no": [
+   {
+    "option": "Last summer my cousins visited for a week, and every morning, before anyone else is awake, they walk to the bakery.",
+    "reasons": [
+     "several shifts sound off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G05",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1a",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Despite the field was still muddy, the game went on because the referee decided the grass was safe enough.",
+    "Although the field was still muddy, the game went on because of the referee decided the grass was safe enough.",
+    "Despite the field was still muddy, the game went on because of the referee decided the grass was safe enough.",
+    "Although the field was still muddy, the game went on because the referee decided the grass was safe enough."
+   ],
+   "correct_answer": "Although the field was still muddy, the game went on because the referee decided the grass was safe enough.",
+   "error_sites": [
+    "the conjunction 'Although' before a full clause",
+    "the conjunction 'because' (not the preposition 'because of') before a full clause"
+   ],
+   "student_error": {
+    "Despite the field was still muddy, the game went on because the referee decided the grass was safe enough.": "uses the preposition 'Despite' as if it were a conjunction, because it means about the same as 'Although'",
+    "Although the field was still muddy, the game went on because of the referee decided the grass was safe enough.": "uses 'because of', which must be followed by a noun, before a whole clause",
+    "Despite the field was still muddy, the game went on because of the referee decided the grass was safe enough.": "does not tell conjunctions from prepositions, so uses a preposition before a clause in both places"
+   },
+   "explanation": "A full clause with its own subject and verb ('the field was still muddy', 'the referee decided ...') must follow a conjunction: 'Although', 'because'. 'Despite' and 'because of' are prepositions and need a noun ('Despite the mud', 'because of the referee's decision').",
+   "varied_dimension": "conjunction vs preposition at the start ('Although' vs 'Despite'); conjunction vs two-word preposition before a clause ('because' vs 'because of')"
+  },
+  "rated_no": [
+   {
+    "option": "Although the field was still muddy, the game went on because of the referee decided the grass was safe enough.",
+    "reasons": [
+     "\"because of the referee decided\" sounds wrong to students"
+    ]
+   },
+   {
+    "option": "Despite the field was still muddy, the game went on because of the referee decided the grass was safe enough.",
+    "reasons": [
+     "it sounds clearly wrong",
+     "two clunky errors; sounds wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G06",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1c",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Since joining the chess club in September, Ben won four matches, and last week he defeated the club's best player.",
+    "Since joining the chess club in September, Ben has won four matches, and last week he defeated the club's best player.",
+    "Since joining the chess club in September, Ben has won four matches, and last week he has defeated the club's best player.",
+    "Since joining the chess club in September, Ben won four matches, and last week he has defeated the club's best player."
+   ],
+   "correct_answer": "Since joining the chess club in September, Ben has won four matches, and last week he defeated the club's best player.",
+   "error_sites": [
+    "present perfect 'has won' with 'Since ... September'",
+    "simple past 'defeated' with the finished time 'last week'"
+   ],
+   "student_error": {
+    "Since joining the chess club in September, Ben won four matches, and last week he defeated the club's best player.": "uses simple past with 'Since ... September', which describes time up to now",
+    "Since joining the chess club in September, Ben has won four matches, and last week he has defeated the club's best player.": "uses present perfect with 'last week', a finished time",
+    "Since joining the chess club in September, Ben won four matches, and last week he has defeated the club's best player.": "swaps the two tenses: does not connect 'since' with present perfect or 'last week' with simple past"
+   },
+   "explanation": "'Since September' describes a span reaching up to now, which takes the present perfect 'has won'; 'last week' is a finished time, which takes the simple past 'defeated'. Each wrong option uses the other tense in one or both places.",
+   "varied_dimension": "present perfect with 'since'; simple past with a finished time ('last week')"
+  },
+  "rated_no": [
+   {
+    "option": "Since joining the chess club in September, Ben won four matches, and last week he has defeated the club's best player.",
+    "reasons": [
+     "two errors sound off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G07",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 5,
+   "ccss": "L.5.3a",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Although the art room was crowded after lunch, the students kept painting, and Ms. Lee walked between the tables to help.",
+    "Although the art room was crowded after lunch, but the students kept painting, and Ms. Lee walked between the tables to help.",
+    "Although the art room was crowded after lunch, the students kept painting, Ms. Lee walked between the tables to help.",
+    "Although the art room was crowded after lunch, but the students kept painting, Ms. Lee walked between the tables to help."
+   ],
+   "correct_answer": "Although the art room was crowded after lunch, the students kept painting, and Ms. Lee walked between the tables to help.",
+   "error_sites": [
+    "no 'but' after a clause that begins with 'Although'",
+    "the conjunction 'and' joining the last two independent clauses"
+   ],
+   "student_error": {
+    "Although the art room was crowded after lunch, but the students kept painting, and Ms. Lee walked between the tables to help.": "adds 'but' because the idea is a contrast, not seeing that 'Although' already supplies it",
+    "Although the art room was crowded after lunch, the students kept painting, Ms. Lee walked between the tables to help.": "joins two complete sentences with only a comma",
+    "Although the art room was crowded after lunch, but the students kept painting, Ms. Lee walked between the tables to help.": "joins clauses by feel: doubles up the contrast word and leaves the last two clauses with only a comma"
+   },
+   "explanation": "'Although' already links the first clause to 'the students kept painting', so adding 'but' is a second connector. 'Ms. Lee walked ...' is a complete sentence, so it needs 'and' after the comma; a comma alone makes a comma splice.",
+   "varied_dimension": "extra 'but' after an 'Although' clause; missing conjunction between the last two clauses (comma splice)"
+  },
+  "rated_no": [
+   {
+    "option": "Although the art room was crowded after lunch, but the students kept painting, Ms. Lee walked between the tables to help.",
+    "reasons": [
+     "two errors look off",
+     "stacked errors read badly"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G08",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 5,
+   "ccss": "L.5.1e",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Ms. Ford let us write either a poem or draw a comic, and she wanted both a title and a date.",
+    "Ms. Ford let us either write a poem or draw a comic, and she wanted both a title but also a date.",
+    "Ms. Ford let us either write a poem or draw a comic, and she wanted both a title and a date.",
+    "Ms. Ford let us write either a poem or draw a comic, and she wanted both a title but also a date."
+   ],
+   "correct_answer": "Ms. Ford let us either write a poem or draw a comic, and she wanted both a title and a date.",
+   "error_sites": [
+    "'either' placed before the verb 'write' to match 'or draw'",
+    "'and' as the partner of 'both'"
+   ],
+   "student_error": {
+    "Ms. Ford let us write either a poem or draw a comic, and she wanted both a title and a date.": "puts 'either' before 'a poem' so it is set against the verb phrase 'draw a comic'",
+    "Ms. Ford let us either write a poem or draw a comic, and she wanted both a title but also a date.": "mixes up 'both ... and' with 'not only ... but also'",
+    "Ms. Ford let us write either a poem or draw a comic, and she wanted both a title but also a date.": "does not know how correlative pairs work: misplaces 'either' and borrows 'but also' for 'both'"
+   },
+   "explanation": "'Either' and 'or' must come before matching parts: 'either write a poem or draw a comic' (two verbs). 'Both' pairs only with 'and'; 'but also' belongs with 'not only'.",
+   "varied_dimension": "placement of 'either' so both halves match; the partner word for 'both'"
+  },
+  "rated_no": [
+   {
+    "option": "Ms. Ford let us either write a poem or draw a comic, and she wanted both a title but also a date.",
+    "reasons": [
+     "\"both...but also\" sounds wrong"
+    ]
+   },
+   {
+    "option": "Ms. Ford let us write either a poem or draw a comic, and she wanted both a title but also a date.",
+    "reasons": [
+     "the \"but also\" sounds wrong",
+     "two errors; less likely"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G09",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1a",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Mr. Hale split the leftover clay between Dev and I, so Dev and I could finish our sculptures before the art show.",
+    "Mr. Hale split the leftover clay between Dev and me, so Dev and me could finish our sculptures before the art show.",
+    "Mr. Hale split the leftover clay between Dev and me, so Dev and I could finish our sculptures before the art show.",
+    "Mr. Hale split the leftover clay between Dev and I, so Dev and me could finish our sculptures before the art show."
+   ],
+   "correct_answer": "Mr. Hale split the leftover clay between Dev and me, so Dev and I could finish our sculptures before the art show.",
+   "error_sites": [
+    "objective 'me' as an object of the preposition 'between'",
+    "subjective 'I' in the compound subject 'Dev and I'"
+   ],
+   "student_error": {
+    "Mr. Hale split the leftover clay between Dev and I, so Dev and I could finish our sculptures before the art show.": "uses 'I' after 'between' because 'Dev and I' sounds more correct",
+    "Mr. Hale split the leftover clay between Dev and me, so Dev and me could finish our sculptures before the art show.": "uses 'me' in the compound subject, which sounds natural in speech",
+    "Mr. Hale split the leftover clay between Dev and I, so Dev and me could finish our sculptures before the art show.": "chooses by sound instead of job in the sentence, so the two cases end up swapped"
+   },
+   "explanation": "'Between' is a preposition, so its objects take the objective case: 'between Dev and me'. 'Dev and I' is the subject of 'could finish', so it takes the subjective 'I'. Test by dropping 'Dev': 'between me', 'I could finish'.",
+   "varied_dimension": "objective case after the preposition 'between'; subjective case in a compound subject"
+  },
+  "rated_no": [
+   {
+    "option": "Mr. Hale split the leftover clay between Dev and I, so Dev and me could finish our sculptures before the art show.",
+    "reasons": [
+     "two errors make it inconsistent and odd"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G10",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1a",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The librarian gave us volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.",
+    "The librarian gave we volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.",
+    "The librarian gave us volunteers a tour of the new wing, and afterward us volunteers helped shelve the donated books.",
+    "The librarian gave we volunteers a tour of the new wing, and afterward us volunteers helped shelve the donated books."
+   ],
+   "correct_answer": "The librarian gave us volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.",
+   "error_sites": [
+    "objective 'us' with the appositive 'volunteers' as an object of 'gave'",
+    "subjective 'we' with the appositive 'volunteers' as the subject of 'helped'"
+   ],
+   "student_error": {
+    "The librarian gave we volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.": "uses 'we volunteers' as an object because 'we' sounds more formal",
+    "The librarian gave us volunteers a tour of the new wing, and afterward us volunteers helped shelve the donated books.": "uses 'us volunteers' as the subject, as many people say in speech",
+    "The librarian gave we volunteers a tour of the new wing, and afterward us volunteers helped shelve the donated books.": "treats 'we/us volunteers' as a fixed phrase and does not check whether it is a subject or an object"
+   },
+   "explanation": "Drop 'volunteers' to test the case: 'gave us a tour' (object, so 'us') and 'we helped shelve' (subject, so 'we').",
+   "varied_dimension": "objective case of a pronoun with an appositive object ('us volunteers'); subjective case with an appositive subject ('we volunteers')"
+  },
+  "rated_no": [
+   {
+    "option": "The librarian gave we volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.",
+    "reasons": [
+     "\"gave we volunteers\" sounds wrong to students",
+     "gave we volunteers sounds wrong"
+    ]
+   },
+   {
+    "option": "The librarian gave we volunteers a tour of the new wing, and afterward us volunteers helped shelve the donated books.",
+    "reasons": [
+     "\"gave we\" sounds wrong",
+     "gave we sounds wrong to students"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G11",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The twins built the birdhouse theirselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them.",
+    "The twins built the birdhouse themselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.",
+    "The twins built the birdhouse theirselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.",
+    "The twins built the birdhouse themselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them."
+   ],
+   "correct_answer": "The twins built the birdhouse themselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them.",
+   "error_sites": [
+    "standard plural intensive 'themselves'",
+    "standard singular intensive 'himself'"
+   ],
+   "student_error": {
+    "The twins built the birdhouse theirselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them.": "builds the plural intensive on 'their', like 'myself' and 'yourself'",
+    "The twins built the birdhouse themselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.": "builds the singular intensive on 'his', like 'myself' and 'yourself'",
+    "The twins built the birdhouse theirselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.": "forms intensive pronouns from possessives ('my-self', so 'their-selves', 'his-self') in both places"
+   },
+   "explanation": "The standard intensive pronouns are 'themselves' and 'himself'. 'Theirselves' and 'hisself' are nonstandard forms made by analogy with 'myself' and 'yourself'.",
+   "varied_dimension": "standard plural intensive pronoun; standard singular intensive pronoun"
+  },
+  "rated_no": [
+   {
+    "option": "The twins built the birdhouse theirselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.",
+    "reasons": [
+     "two nonstandard forms stand out"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G12",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 6,
+   "ccss": "L.6.1c",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "We planted tomato seedlings in April, and by July the plants were so tall that it needed stakes to hold them up.",
+    "We planted tomato seedlings in April, and by July the plants were so tall that they needed stakes to hold them up.",
+    "We planted tomato seedlings in April, and by July the plants were so tall that they needed stakes to hold it up.",
+    "We planted tomato seedlings in April, and by July the plants were so tall that it needed stakes to hold it up."
+   ],
+   "correct_answer": "We planted tomato seedlings in April, and by July the plants were so tall that they needed stakes to hold them up.",
+   "error_sites": [
+    "plural 'they' for the plural antecedent 'the plants'",
+    "plural 'them' for the same antecedent, later in the clause"
+   ],
+   "student_error": {
+    "We planted tomato seedlings in April, and by July the plants were so tall that it needed stakes to hold them up.": "shifts to singular 'it', thinking of the garden as one thing",
+    "We planted tomato seedlings in April, and by July the plants were so tall that they needed stakes to hold it up.": "shifts to singular 'it' at the end, losing track of 'the plants'",
+    "We planted tomato seedlings in April, and by July the plants were so tall that it needed stakes to hold it up.": "thinks of the plants as one crop and uses singular 'it' throughout"
+   },
+   "explanation": "The antecedent is the plural 'the plants', so both pronouns must be plural: 'they needed stakes to hold them up'. 'It' is an inappropriate shift in number.",
+   "varied_dimension": "pronoun number for a plural antecedent as subject; pronoun number for the same antecedent as object later in the clause"
+  },
+  "rated_no": [
+   {
+    "option": "We planted tomato seedlings in April, and by July the plants were so tall that it needed stakes to hold it up.",
+    "reasons": [
+     "two mismatches stand out",
+     "two pronoun errors read badly"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G13",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1e",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Mia should of returned those library books last week, but she forgot until the librarian sent her a reminder.",
+    "Mia should have returned those library books last week, but she forgot until the librarian sent her a reminder.",
+    "Mia should have returned them library books last week, but she forgot until the librarian sent her a reminder.",
+    "Mia should of returned them library books last week, but she forgot until the librarian sent her a reminder."
+   ],
+   "correct_answer": "Mia should have returned those library books last week, but she forgot until the librarian sent her a reminder.",
+   "error_sites": [
+    "'should have' (not 'should of')",
+    "the demonstrative 'those' before a noun (not 'them')"
+   ],
+   "student_error": {
+    "Mia should of returned those library books last week, but she forgot until the librarian sent her a reminder.": "writes 'should of' because 'should've' sounds like 'should of'",
+    "Mia should have returned them library books last week, but she forgot until the librarian sent her a reminder.": "uses 'them' before a noun as in casual speech ('them books')",
+    "Mia should of returned them library books last week, but she forgot until the librarian sent her a reminder.": "writes the way casual speech sounds in both places"
+   },
+   "explanation": "Standard English uses 'should have' ('should've'), never 'should of', and uses 'those' (not 'them') before a noun: 'those library books'.",
+   "varied_dimension": "'should have' vs nonstandard 'should of'; demonstrative 'those' vs nonstandard 'them' before a noun"
+  },
+  "rated_no": [
+   {
+    "option": "Mia should of returned them library books last week, but she forgot until the librarian sent her a reminder.",
+    "reasons": [
+     "two errors stand out"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G15",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 6,
+   "ccss": "L.6.1c",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The boxes of trophies in the storage room was so heavy that the custodian moved them one at a time.",
+    "The boxes of trophies in the storage room were so heavy that the custodian moved it one at a time.",
+    "The boxes of trophies in the storage room were so heavy that the custodian moved them one at a time.",
+    "The boxes of trophies in the storage room was so heavy that the custodian moved it one at a time."
+   ],
+   "correct_answer": "The boxes of trophies in the storage room were so heavy that the custodian moved them one at a time.",
+   "error_sites": [
+    "plural 'were' for the subject 'The boxes'",
+    "plural 'them' referring back to 'The boxes'"
+   ],
+   "student_error": {
+    "The boxes of trophies in the storage room was so heavy that the custodian moved them one at a time.": "makes the verb agree with 'room', the singular noun just before it",
+    "The boxes of trophies in the storage room were so heavy that the custodian moved it one at a time.": "uses singular 'it', as if referring to the storage room or a single load",
+    "The boxes of trophies in the storage room was so heavy that the custodian moved it one at a time.": "takes the nearest singular noun 'room' as the subject and keeps it singular in both places"
+   },
+   "explanation": "The subject is 'The boxes' (plural); 'of trophies in the storage room' only describes them. So the verb is 'were' and the pronoun is 'them', which also fits 'one at a time'.",
+   "varied_dimension": "verb agreement with a plural head noun across prepositional phrases; pronoun number referring back to that noun"
+  },
+  "rated_no": [
+   {
+    "option": "The boxes of trophies in the storage room was so heavy that the custodian moved it one at a time.",
+    "reasons": [
+     "two errors stand out"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G16",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and I thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and I thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and myself thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and myself thanked her for visiting."
+   ],
+   "correct_answer": "The mayor herself presented the science award to Eli and me, and afterward Eli and I thanked her for visiting.",
+   "error_sites": [
+    "object pronoun 'me' after the preposition 'to' (not 'myself')",
+    "subject pronoun 'I' in the compound subject (not 'myself')"
+   ],
+   "student_error": {
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and I thanked her for visiting.": "uses 'myself' as the object because it sounds more polite than 'me'",
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and myself thanked her for visiting.": "uses 'myself' as part of the subject to avoid choosing between 'I' and 'me'",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and myself thanked her for visiting.": "treats 'myself' as a polite all-purpose pronoun in both places"
+   },
+   "explanation": "'Herself' is correct as an intensive for 'The mayor'. But '-self' pronouns cannot stand in for ordinary ones: 'to Eli and me' (object of 'to') and 'Eli and I thanked her' (subject). Nothing in the sentence makes 'myself' refer back to an 'I' already in its clause.",
+   "varied_dimension": "object pronoun vs reflexive after a preposition in a compound; subject pronoun vs reflexive in a compound subject"
+  },
+  "rated_no": [
+   {
+    "option": "The mayor herself presented the science award to Eli and myself, and afterward Eli and myself thanked her for visiting.",
+    "reasons": [
+     "two errors stand out"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "In music class we practiced a song called “The Night Is Ours to Keep,” which has a tricky high note.",
+    "In music class we practiced a song called “The Night is Ours to Keep,” which has a tricky high note.",
+    "In music class we practiced a song called “The Night Is ours to Keep,” which has a tricky high note.",
+    "In music class we practiced a song called “The Night is ours to Keep,” which has a tricky high note."
+   ],
+   "correct_answer": "In music class we practiced a song called “The Night Is Ours to Keep,” which has a tricky high note.",
+   "error_sites": [
+    "the short verb 'Is' inside the title",
+    "the pronoun 'Ours' inside the title"
+   ],
+   "student_error": {
+    "In music class we practiced a song called “The Night is Ours to Keep,” which has a tricky high note.": "lowercases 'is' because it is a short word, like 'to'",
+    "In music class we practiced a song called “The Night Is ours to Keep,” which has a tricky high note.": "lowercases 'ours' because pronouns seem like minor words",
+    "In music class we practiced a song called “The Night is ours to Keep,” which has a tricky high note.": "lowercases every short or minor-looking word in the title"
+   },
+   "explanation": "In a title, verbs and pronouns are capitalized however short they are: 'Is', 'Ours'. Only articles, short prepositions and conjunctions, and the 'to' of an infinitive stay lowercase.",
+   "cap_rule": "titles of works: a short verb and a pronoun inside the title are capitalized, while small words like 'to' stay lowercase"
+  },
+  "rated_no": [
+   {
+    "option": "In music class we practiced a song called “The Night Is ours to Keep,” which has a tricky high note.",
+    "reasons": [
+     "lowercasing \"ours\" but not \"Is\" looks inconsistent"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C02",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "My grandfather's book about the Revolutionary war says that the war lasted about eight years.",
+    "My grandfather's book about the Revolutionary War says that the War lasted about eight years.",
+    "My grandfather's book about the Revolutionary war says that the War lasted about eight years.",
+    "My grandfather's book about the Revolutionary War says that the war lasted about eight years."
+   ],
+   "correct_answer": "My grandfather's book about the Revolutionary War says that the war lasted about eight years.",
+   "error_sites": [
+    "'War' as part of the name 'Revolutionary War'",
+    "'war' used alone later as a general word"
+   ],
+   "student_error": {
+    "My grandfather's book about the Revolutionary war says that the war lasted about eight years.": "capitalizes only the first word of the event name",
+    "My grandfather's book about the Revolutionary War says that the War lasted about eight years.": "capitalizes 'war' again because it refers back to the Revolutionary War",
+    "My grandfather's book about the Revolutionary war says that the War lasted about eight years.": "mixes up which 'war' is part of the name and which is the general word"
+   },
+   "explanation": "'Revolutionary War' is the name of a historical event, so both words are capitalized. Later, 'the war' is a general word, even though it refers to the same war, so it is lowercase.",
+   "cap_rule": "historical events: the name of a war is capitalized, the word 'war' used on its own is not"
+  },
+  "rated_no": [
+   {
+    "option": "My grandfather's book about the Revolutionary war says that the War lasted about eight years.",
+    "reasons": [
+     "the reversed pattern looks odd"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C03",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+    "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+    "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day.",
+    "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day."
+   ],
+   "correct_answer": "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.",
+   "error_sites": [
+    "the adjective 'medieval'",
+    "'middle' in the ordinary phrase 'the middle of the day'"
+   ],
+   "student_error": {
+    "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.": "capitalizes 'medieval' because it names the time of the Middle Ages",
+    "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day.": "capitalizes 'middle' because of 'Middle Ages' earlier in the sentence",
+    "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day.": "capitalizes every word connected with the Middle Ages"
+   },
+   "explanation": "'The Middle Ages' names a historical period and is capitalized. The adjective 'medieval' is lowercase, and 'the middle of the day' is an ordinary phrase, not a period.",
+   "cap_rule": "historical periods: 'the Middle Ages' is capitalized, but 'medieval' and the ordinary phrase 'the middle of the day' are not"
+  },
+  "rated_no": [
+   {
+    "option": "Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day.",
+    "reasons": [
+     "nobody capitalizes \"middle of the day\"",
+     "Middle of the day capitalized is not plausible"
+    ]
+   },
+   {
+    "option": "Knights in Medieval Europe, as our book on the Middle Ages explains, ate their main meal in the Middle of the day.",
+    "reasons": [
+     "the stray \"Middle\" looks wrong",
+     "includes an implausible Middle"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Mr. Ross showed us copies of the Declaration of independence and the Bill of Rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill of rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill of Rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration of independence and the Bill of rights before our test on the two documents."
+   ],
+   "correct_answer": "Mr. Ross showed us copies of the Declaration of Independence and the Bill of Rights before our test on the two documents.",
+   "error_sites": [
+    "'Independence' as part of the document name",
+    "'Rights' as part of the document name"
+   ],
+   "student_error": {
+    "Mr. Ross showed us copies of the Declaration of independence and the Bill of Rights before our test on the two documents.": "capitalizes only the first word of 'Declaration of Independence'",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill of rights before our test on the two documents.": "capitalizes only the first word of 'Bill of Rights'",
+    "Mr. Ross showed us copies of the Declaration of independence and the Bill of rights before our test on the two documents.": "capitalizes only the first word of a document's name"
+   },
+   "explanation": "The names of documents capitalize every main word: 'Declaration of Independence', 'Bill of Rights'. Only the short preposition 'of' stays lowercase. The general word 'documents' is lowercase.",
+   "cap_rule": "documents: every main word of a document's name is capitalized ('Declaration of Independence', 'Bill of Rights'), while 'documents' alone is not"
+  },
+  "rated_no": [
+   {
+    "option": "Mr. Ross showed us copies of the Declaration of independence and the Bill of rights before our test on the two documents.",
+    "reasons": [
+     "two lowercase errors stand out"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C05",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+    "Our class wrote to a senator in Washington, and she invited us to watch the senate debate a bill about national parks.",
+    "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+    "Our class wrote to a Senator in Washington, and she invited us to watch the senate debate a bill about national parks."
+   ],
+   "correct_answer": "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+   "error_sites": [
+    "'senator' used as a general word, not before a name",
+    "'Senate' as the name of the government body"
+   ],
+   "student_error": {
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a bill about national parks.": "capitalizes 'senator' because it is an important title",
+    "Our class wrote to a senator in Washington, and she invited us to watch the senate debate a bill about national parks.": "lowercases 'Senate' because it looks like an ordinary word",
+    "Our class wrote to a Senator in Washington, and she invited us to watch the senate debate a bill about national parks.": "mixes up the title and the name of the body"
+   },
+   "explanation": "'The Senate' in Washington is the name of a government body and is capitalized. 'A senator' is a general word here, with no name after it, so it is lowercase.",
+   "cap_rule": "organizations and government bodies: 'the Senate' is capitalized, but 'a senator' used without a name is not"
+  },
+  "rated_no": [
+   {
+    "option": "Our class wrote to a Senator in Washington, and she invited us to watch the senate debate a bill about national parks.",
+    "reasons": [
+     "the reversed pattern looks odd"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C08",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Coach Kim shouted, “Keep your eyes on the ball,” and then told us that good defense “wins more games than offense.”",
+    "Coach Kim shouted, “keep your eyes on the ball,” and then told us that good defense “wins more games than offense.”",
+    "Coach Kim shouted, “Keep your eyes on the ball,” and then told us that good defense “Wins more games than offense.”",
+    "Coach Kim shouted, “keep your eyes on the ball,” and then told us that good defense “Wins more games than offense.”"
+   ],
+   "correct_answer": "Coach Kim shouted, “Keep your eyes on the ball,” and then told us that good defense “wins more games than offense.”",
+   "error_sites": [
+    "'Keep', the first word of a quoted full sentence",
+    "'wins', the first word of a quoted fragment that continues the sentence"
+   ],
+   "student_error": {
+    "Coach Kim shouted, “keep your eyes on the ball,” and then told us that good defense “wins more games than offense.”": "lowercases 'keep' because the quotation comes in the middle of the sentence",
+    "Coach Kim shouted, “Keep your eyes on the ball,” and then told us that good defense “Wins more games than offense.”": "capitalizes 'wins' because every quotation seems to start with a capital",
+    "Coach Kim shouted, “keep your eyes on the ball,” and then told us that good defense “Wins more games than offense.”": "uses the wrong test for quotations, so the two cases end up swapped"
+   },
+   "explanation": "Coach Kim's words 'Keep your eyes on the ball' are a full sentence, so they begin with a capital. 'wins more games than offense' is only part of a sentence, joined to 'good defense' by 'that', so it stays lowercase.",
+   "cap_rule": "quotations: a quoted full sentence begins with a capital, a quoted fragment worked into the sentence does not"
+  },
+  "rated_no": [
+   {
+    "option": "Coach Kim shouted, “keep your eyes on the ball,” and then told us that good defense “Wins more games than offense.”",
+    "reasons": [
+     "the reversed pattern looks odd"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C10",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "We hiked along the Hudson river all morning, ate lunch beside an old stone bridge, and then waded into the river.",
+    "We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the River.",
+    "We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the river.",
+    "We hiked along the Hudson river all morning, ate lunch beside an old stone bridge, and then waded into the River."
+   ],
+   "correct_answer": "We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the river.",
+   "error_sites": [
+    "'River' as part of the name 'Hudson River'",
+    "'river' used alone at the end of the sentence"
+   ],
+   "student_error": {
+    "We hiked along the Hudson river all morning, ate lunch beside an old stone bridge, and then waded into the river.": "capitalizes only 'Hudson', treating 'river' as a general word",
+    "We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the River.": "capitalizes 'river' at the end because it is the same Hudson River",
+    "We hiked along the Hudson river all morning, ate lunch beside an old stone bridge, and then waded into the River.": "mixes up which 'river' is part of the name and which is the general word"
+   },
+   "explanation": "'Hudson River' is the full name, so 'River' is capitalized. At the end of the sentence, 'the river' is a general word on its own, so it is lowercase.",
+   "cap_rule": "multi-word proper names: 'River' is capitalized in 'the Hudson River', but 'the river' used alone later is not"
+  },
+  "rated_no": [
+   {
+    "option": "We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the River.",
+    "reasons": [
+     "capitalizing a plain \"river\" looks odd"
+    ]
+   },
+   {
+    "option": "We hiked along the Hudson river all morning, ate lunch beside an old stone bridge, and then waded into the River.",
+    "reasons": [
+     "the reversed pattern looks odd"
+    ]
+   }
+  ]
+ }
+]

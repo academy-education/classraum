@@ -1,0 +1,184 @@
+{
+ "spell": {
+  "n": 28,
+  "ids": [
+   "MLV4-S01",
+   "MLV4-S02",
+   "MLV4-S04",
+   "MLV4-S05",
+   "MLV4-S06",
+   "MLV4-S08",
+   "MLV4-S09",
+   "MLV4-S13",
+   "MLV4-S14",
+   "MLV4-S15",
+   "MLV4-S16",
+   "MLV4-S17",
+   "MLV4-S18",
+   "MLV4-S19",
+   "MLV4-S25",
+   "MLV4-S26",
+   "MLV4-S27",
+   "MLV4-S28",
+   "MLV4-S29",
+   "MLV4-S31",
+   "MLV4-S33",
+   "MLV4-S37",
+   "MLV4-S38",
+   "MLV4-S39",
+   "MLV4-S40",
+   "MLV4-S41",
+   "MLV4-S42",
+   "MLV4-S43"
+  ],
+  "fam": {
+   "T2": {
+    "best": "odd_one(vowels)",
+    "score": 0.29464285714285715,
+    "fwP": 0.2571857035741065,
+    "fires": false
+   },
+   "T2L": {
+    "best": "unique_max(dbl_cons)",
+    "score": 0.32142857142857145,
+    "fwP": 0.6995751062234441,
+    "fires": false
+   }
+  },
+  "perFormat": {
+   "word": {
+    "T2": {
+     "best": "at_min(len)",
+     "score": 0.27631578947368424,
+     "fwP": 0.9902524368907774,
+     "fires": false
+    },
+    "T2L": {
+     "best": "between(cc)",
+     "score": 0.27631578947368424,
+     "fwP": 0.9982504373906523,
+     "fires": false
+    }
+   },
+   "sentence": {
+    "T2": {
+     "best": "odd_one(vowels)",
+     "score": 0.3888888888888889,
+     "fwP": 0.16495876030992251,
+     "fires": false
+    },
+    "T2L": {
+     "best": "unique_max(dbl_cons)",
+     "score": 0.5,
+     "fwP": 0.1659585103724069,
+     "fires": false
+    }
+   }
+  },
+  "longest": 5,
+  "shortest": 5,
+  "preflight": {
+   "which": "first",
+   "errsFirst": [],
+   "errsSecond": null
+  },
+  "stage0": "pass"
+ },
+ "gram": {
+  "n": 12,
+  "ids": [
+   "MLV4-G01",
+   "MLV4-G02",
+   "MLV4-G03",
+   "MLV4-G04",
+   "MLV4-G05",
+   "MLV4-G06",
+   "MLV4-G09",
+   "MLV4-G10",
+   "MLV4-G11",
+   "MLV4-G12",
+   "MLV4-G13",
+   "MLV4-G14"
+  ],
+  "fam": {
+   "T2": {
+    "best": "at_max(len)",
+    "score": 0.5,
+    "fwP": 0.09072731817045739,
+    "fires": true
+   },
+   "T2L": {
+    "best": "at_max(consonants)",
+    "score": 0.5,
+    "fwP": 0.12071982004498875,
+    "fires": false
+   }
+  },
+  "perFormat": {},
+  "longest": 4,
+  "shortest": 0,
+  "preflight": null,
+  "stage0": "FAIL",
+  "why": "T2 at_max(len) predicts the key: 50.0% vs control 25.0%, family-wise p 0.0907"
+ },
+ "cap": {
+  "n": 8,
+  "ids": [
+   "MLV4-C01",
+   "MLV4-C02",
+   "MLV4-C03",
+   "MLV4-C04",
+   "MLV4-C05",
+   "MLV4-C06",
+   "MLV4-C07",
+   "MLV4-C08"
+  ],
+  "fam": {
+   "T2": {
+    "best": "odd_one(caps)",
+    "score": 0.4375,
+    "fwP": 0.10847288177955511,
+    "fires": false
+   },
+   "T2L": {
+    "best": "unique_min(alpha)",
+    "score": 0.5,
+    "fwP": 0.17795551112221944,
+    "fires": false
+   }
+  },
+  "perFormat": {},
+  "longest": 0,
+  "shortest": 0,
+  "preflight": null,
+  "stage0": "pass"
+ },
+ "_pooledE3": {
+  "n": 36,
+  "longest": 5,
+  "shortest": 5,
+  "fails": {}
+ },
+ "_pooledT2": {
+  "best": "odd_one(caps)",
+  "score": 0.3194444444444444,
+  "fwP": 0.3359160209947513,
+  "fires": false,
+  "n": 36
+ },
+ "_pooledT2L": {
+  "best": "unique_max(dbl_cons)",
+  "score": 0.3055555555555556,
+  "fwP": 0.7220694826293427,
+  "fires": false,
+  "n": 36
+ },
+ "_screen": {
+  "drops": {
+   "MLV4-S30": "screen: \"eventually\" graded 6 and 6, both below target 7",
+   "MLV4-S32": "screen: \"twelfth\" graded 6 and 4, both below target 7",
+   "MLV4-S34": "screen: \"military\" graded 6 and 6, both below target 7"
+  },
+  "words": 45
+ }
+}

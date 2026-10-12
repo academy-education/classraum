@@ -1,0 +1,338 @@
+[
+ {
+  "id": "MLV4-G01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurried to class.",
+   "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurried to class.",
+   "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurries to class.",
+   "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurries to class."
+  ],
+  "correct_answer": "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurried to class.",
+  "error_sites": [
+   "past perfect 'had already sounded' for the action finished before the bus arrived",
+   "past tense 'hurried' to match the rest of the past-tense sentence"
+  ],
+  "student_error": {
+   "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurried to class.": "uses simple past for the earlier action, not seeing that 'By the time ... pulled in' calls for 'had sounded'",
+   "By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurries to class.": "slips into the present ('hurries') in the last clause, far from the past-tense verbs at the start, as in telling a story aloud",
+   "By the time the bus pulled into the parking lot, the first bell already sounded, so Marco hurries to class.": "tells the events in the order they happened without marking time: simple past for the earlier action, then a slip into the present at the end"
+  },
+  "explanation": "The bell sounded before the bus arrived, so the earlier action needs the past perfect 'had already sounded'; the whole sentence is in the past, so the last verb must be 'hurried', not 'hurries'.",
+  "varied_dimension": "past perfect for the earlier of two past actions; tense shift to the present in the final clause"
+ },
+ {
+  "id": "MLV4-G02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "By the time the parents will arrive at three o'clock tomorrow, the team will have finished cleaning up the soccer field.",
+   "By the time the parents arrive at three o'clock tomorrow, the team has finished cleaning up the soccer field.",
+   "By the time the parents arrive at three o'clock tomorrow, the team will have finished cleaning up the soccer field.",
+   "By the time the parents will arrive at three o'clock tomorrow, the team has finished cleaning up the soccer field."
+  ],
+  "correct_answer": "By the time the parents arrive at three o'clock tomorrow, the team will have finished cleaning up the soccer field.",
+  "error_sites": [
+   "present tense 'arrive' in a 'by the time' clause about the future",
+   "future perfect 'will have finished' in the main clause"
+  ],
+  "student_error": {
+   "By the time the parents will arrive at three o'clock tomorrow, the team will have finished cleaning up the soccer field.": "puts 'will' in the time clause because the arrival is in the future",
+   "By the time the parents arrive at three o'clock tomorrow, the team has finished cleaning up the soccer field.": "uses the present perfect 'has finished' for a completed action, missing that the finishing point is tomorrow",
+   "By the time the parents will arrive at three o'clock tomorrow, the team has finished cleaning up the soccer field.": "uses 'will' where the future seems to belong and the present perfect for 'finished', without matching either verb to 'by the time ... tomorrow'"
+  },
+  "explanation": "A clause beginning 'By the time' that refers to the future uses the present tense ('arrive'), and an action that will be complete before then takes the future perfect ('will have finished'). 'will arrive' is wrong in the time clause, and 'has finished' cannot describe something completed by a time that is still tomorrow.",
+  "varied_dimension": "present tense in a 'by the time' clause about the future; future perfect (not present perfect) in the main clause"
+ },
+ {
+  "id": "MLV4-G03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 5,
+  "ccss": "L.5.1e",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Coach Ruiz reminded us not only to stretch but also warned that neither the gym nor the pool would open Monday.",
+   "Coach Ruiz not only reminded us to stretch but also warned that neither the gym nor the pool would open Monday.",
+   "Coach Ruiz not only reminded us to stretch but also warned that neither the gym or the pool would open Monday.",
+   "Coach Ruiz reminded us not only to stretch but also warned that neither the gym or the pool would open Monday."
+  ],
+  "correct_answer": "Coach Ruiz not only reminded us to stretch but also warned that neither the gym nor the pool would open Monday.",
+  "error_sites": [
+   "'not only' placed before the verb 'reminded' to match 'but also warned'",
+   "'nor' as the partner of 'neither'"
+  ],
+  "student_error": {
+   "Coach Ruiz reminded us not only to stretch but also warned that neither the gym nor the pool would open Monday.": "puts 'not only' after 'reminded us', so it is followed by 'to stretch' while 'but also' is followed by the verb 'warned'",
+   "Coach Ruiz not only reminded us to stretch but also warned that neither the gym or the pool would open Monday.": "pairs 'neither' with 'or', the way 'either ... or' works",
+   "Coach Ruiz reminded us not only to stretch but also warned that neither the gym or the pool would open Monday.": "does not know that correlative pairs must match: misplaces 'not only' and pairs 'neither' with 'or'"
+  },
+  "explanation": "'Not only' and 'but also' must sit before the same kind of word: 'not only reminded ... but also warned' (two verbs). 'Neither' always pairs with 'nor'. The other options either set 'not only to stretch' against 'but also warned' or use 'neither ... or'.",
+  "varied_dimension": "placement of 'not only' so both halves match; 'nor' as the partner of 'neither'"
+ },
+ {
+  "id": "MLV4-G04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Last summer my cousins stayed with us, and each morning, before anyone else wakes up, they walked to the park.",
+   "Last summer my cousins stayed with us, and each morning, before anyone else woke up, they walk to the park.",
+   "Last summer my cousins stayed with us, and each morning, before anyone else wakes up, they walk to the park.",
+   "Last summer my cousins stayed with us, and each morning, before anyone else woke up, they walked to the park."
+  ],
+  "correct_answer": "Last summer my cousins stayed with us, and each morning, before anyone else woke up, they walked to the park.",
+  "error_sites": [
+   "past tense 'woke up' in the clause after 'before'",
+   "past tense 'walked' for the main verb, far from 'Last summer'"
+  ],
+  "student_error": {
+   "Last summer my cousins stayed with us, and each morning, before anyone else wakes up, they walked to the park.": "writes 'wakes up' because the 'before' clause sounds like a daily routine, shifting out of the past",
+   "Last summer my cousins stayed with us, and each morning, before anyone else woke up, they walk to the park.": "writes 'walk' because 'each morning' sounds like a present-tense routine, forgetting 'Last summer'",
+   "Last summer my cousins stayed with us, and each morning, before anyone else wakes up, they walk to the park.": "hears 'each morning, before anyone else wakes up, they walk' as a natural daily routine and loses 'Last summer' at the start"
+  },
+  "explanation": "The sentence is set 'Last summer', so every verb stays in the past: 'woke up' and 'walked'. 'wakes up' and 'walk' are inappropriate shifts into the present, even though 'each morning' describes a habit.",
+  "varied_dimension": "past tense in a clause set inside an interrupting time phrase; past tense of the main verb far from 'Last summer'"
+ },
+ {
+  "id": "MLV4-G05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Despite the field was still muddy, the game went on because of the referee's decision that the grass was safe enough.",
+   "Although the field was still muddy, the game went on because the referee's decision that the grass was safe enough.",
+   "Despite the field was still muddy, the game went on because the referee's decision that the grass was safe enough.",
+   "Although the field was still muddy, the game went on because of the referee's decision that the grass was safe enough."
+  ],
+  "correct_answer": "Although the field was still muddy, the game went on because of the referee's decision that the grass was safe enough.",
+  "error_sites": [
+   "the conjunction 'Although' before a full clause",
+   "the preposition 'because of' (not the conjunction 'because') before a noun phrase"
+  ],
+  "student_error": {
+   "Despite the field was still muddy, the game went on because of the referee's decision that the grass was safe enough.": "uses the preposition 'Despite' as if it were a conjunction, because it means about the same as 'Although'",
+   "Although the field was still muddy, the game went on because the referee's decision that the grass was safe enough.": "uses the conjunction 'because' before a noun phrase ('the referee's decision'), as if a clause followed",
+   "Despite the field was still muddy, the game went on because the referee's decision that the grass was safe enough.": "does not tell conjunctions from prepositions, so uses each where the other belongs: 'Despite' before a clause and 'because' before a noun phrase"
+  },
+  "explanation": "A full clause with its own subject and verb ('the field was still muddy') must follow a conjunction such as 'Although'; 'Despite' is a preposition and needs a noun ('Despite the mud'). A noun phrase ('the referee's decision') must follow a preposition such as 'because of'; the conjunction 'because' needs a full clause.",
+  "varied_dimension": "conjunction vs preposition before a clause ('Although' vs 'Despite'); preposition vs conjunction before a noun phrase ('because of' vs 'because')"
+ },
+ {
+  "id": "MLV4-G06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Since joining the chess club in September, Ben won four matches, and last week he defeated the club's best player.",
+   "Since joining the chess club in September, Ben has won four matches, and last week he defeated the club's best player.",
+   "Since joining the chess club in September, Ben has won four matches, and last week he had defeated the club's best player.",
+   "Since joining the chess club in September, Ben won four matches, and last week he had defeated the club's best player."
+  ],
+  "correct_answer": "Since joining the chess club in September, Ben has won four matches, and last week he defeated the club's best player.",
+  "error_sites": [
+   "present perfect 'has won' with 'Since ... September'",
+   "simple past 'defeated' with the finished time 'last week'"
+  ],
+  "student_error": {
+   "Since joining the chess club in September, Ben won four matches, and last week he defeated the club's best player.": "uses simple past with 'Since ... September', which describes time up to now",
+   "Since joining the chess club in September, Ben has won four matches, and last week he had defeated the club's best player.": "uses the past perfect 'had defeated' for a single finished event, as if it came before another past event",
+   "Since joining the chess club in September, Ben won four matches, and last week he had defeated the club's best player.": "tells everything with past forms: simple past for the span since September and past perfect for last week's win"
+  },
+  "explanation": "'Since September' describes a span reaching up to now, which takes the present perfect 'has won'; 'last week' is a finished time with no later past event, which takes the simple past 'defeated', not the past perfect 'had defeated'.",
+  "varied_dimension": "present perfect with 'since'; simple past (not past perfect) with a finished time ('last week')"
+ },
+ {
+  "id": "MLV4-G09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Mr. Hale split the leftover clay between Dev and I and saved the last jar of glaze for Nora and me.",
+   "Mr. Hale split the leftover clay between Dev and me and saved the last jar of glaze for Nora and I.",
+   "Mr. Hale split the leftover clay between Dev and me and saved the last jar of glaze for Nora and me.",
+   "Mr. Hale split the leftover clay between Dev and I and saved the last jar of glaze for Nora and I."
+  ],
+  "correct_answer": "Mr. Hale split the leftover clay between Dev and me and saved the last jar of glaze for Nora and me.",
+  "error_sites": [
+   "objective 'me' as an object of the preposition 'between'",
+   "objective 'me' as an object of the preposition 'for', later in the sentence"
+  ],
+  "student_error": {
+   "Mr. Hale split the leftover clay between Dev and I and saved the last jar of glaze for Nora and me.": "uses 'I' after 'between' because 'Dev and I' sounds more correct",
+   "Mr. Hale split the leftover clay between Dev and me and saved the last jar of glaze for Nora and I.": "uses 'I' after 'for' because 'Nora and I' sounds more polite",
+   "Mr. Hale split the leftover clay between Dev and I and saved the last jar of glaze for Nora and I.": "treats 'and I' as always correct after a name, so uses it after both prepositions"
+  },
+  "explanation": "'Between' and 'for' are prepositions, so their objects take the objective case: 'between Dev and me', 'for Nora and me'. Test by dropping the name: 'between me' (not 'between I'), 'for me' (not 'for I').",
+  "varied_dimension": "objective case after the preposition 'between'; objective case in a second compound after 'for', far from the first"
+ },
+ {
+  "id": "MLV4-G10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "We volunteers met the librarian at noon, and after the tour she gave Ana and me a list of books to shelve.",
+   "Us volunteers met the librarian at noon, and after the tour she gave Ana and me a list of books to shelve.",
+   "We volunteers met the librarian at noon, and after the tour she gave Ana and I a list of books to shelve.",
+   "Us volunteers met the librarian at noon, and after the tour she gave Ana and I a list of books to shelve."
+  ],
+  "correct_answer": "We volunteers met the librarian at noon, and after the tour she gave Ana and me a list of books to shelve.",
+  "error_sites": [
+   "subjective 'We' with the appositive 'volunteers' as the subject of 'met'",
+   "objective 'me' in the compound indirect object 'Ana and me'"
+  ],
+  "student_error": {
+   "Us volunteers met the librarian at noon, and after the tour she gave Ana and me a list of books to shelve.": "uses 'Us volunteers' as the subject, as many people say in speech",
+   "We volunteers met the librarian at noon, and after the tour she gave Ana and I a list of books to shelve.": "uses 'I' after 'Ana and' because 'Ana and I' sounds more correct",
+   "Us volunteers met the librarian at noon, and after the tour she gave Ana and I a list of books to shelve.": "chooses each pronoun by sound: 'us volunteers' as in speech and 'Ana and I' because it sounds polite"
+  },
+  "explanation": "Drop the extra words to test the case: 'We met the librarian' (subject, so 'We volunteers') and 'she gave me a list' (object, so 'Ana and me').",
+  "varied_dimension": "subjective case of a pronoun with an appositive subject ('We volunteers'); objective case in a compound indirect object ('Ana and me')"
+ },
+ {
+  "id": "MLV4-G11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "The twins built the birdhouse themself, but their uncle cut the roof pieces himself because the saw was too dangerous for them.",
+   "The twins built the birdhouse themselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.",
+   "The twins built the birdhouse themself, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.",
+   "The twins built the birdhouse themselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them."
+  ],
+  "correct_answer": "The twins built the birdhouse themselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them.",
+  "error_sites": [
+   "standard plural intensive 'themselves'",
+   "standard singular intensive 'himself'"
+  ],
+  "student_error": {
+   "The twins built the birdhouse themself, but their uncle cut the roof pieces himself because the saw was too dangerous for them.": "uses the singular form 'themself' for the plural 'twins'",
+   "The twins built the birdhouse themselves, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.": "builds the singular intensive on 'his', like 'myself' and 'yourself'",
+   "The twins built the birdhouse themself, but their uncle cut the roof pieces hisself because the saw was too dangerous for them.": "forms each intensive the way it sounds in speech ('themself', 'hisself') without checking number or the standard form"
+  },
+  "explanation": "The standard intensive pronouns are 'themselves' (plural, for 'The twins') and 'himself'. 'Themself' is singular and cannot refer to two twins, and 'hisself' is a nonstandard form made by analogy with 'myself'.",
+  "varied_dimension": "standard plural intensive pronoun for a plural antecedent; standard singular intensive pronoun"
+ },
+ {
+  "id": "MLV4-G12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 6,
+  "ccss": "L.6.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "We planted tomato seeds in May and watered it each day, and by July the plants were so tall that they needed stakes.",
+   "We planted tomato seeds in May and watered them each day, and by July the plants were so tall that they needed stakes.",
+   "We planted tomato seeds in May and watered them each day, and by July the plants were so tall that it needed stakes.",
+   "We planted tomato seeds in May and watered it each day, and by July the plants were so tall that it needed stakes."
+  ],
+  "correct_answer": "We planted tomato seeds in May and watered them each day, and by July the plants were so tall that they needed stakes.",
+  "error_sites": [
+   "plural 'them' for the plural antecedent 'tomato seeds'",
+   "plural 'they' for the plural antecedent 'the plants', later in the sentence"
+  ],
+  "student_error": {
+   "We planted tomato seeds in May and watered it each day, and by July the plants were so tall that they needed stakes.": "shifts to singular 'it', thinking of the garden as one thing",
+   "We planted tomato seeds in May and watered them each day, and by July the plants were so tall that it needed stakes.": "shifts to singular 'it' at the end, losing track of the plural 'the plants'",
+   "We planted tomato seeds in May and watered it each day, and by July the plants were so tall that it needed stakes.": "thinks of the seeds as one garden and uses singular 'it' all through the sentence"
+  },
+  "explanation": "Both antecedents are plural ('tomato seeds', 'the plants'), so both pronouns must be plural: 'watered them' and 'they needed stakes'. 'It' is an inappropriate shift in number.",
+  "varied_dimension": "pronoun number for a plural antecedent as object; pronoun number for a plural antecedent as subject later in the sentence"
+ },
+ {
+  "id": "MLV4-G13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1e",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Mia should of returned those library books last week, but she was really busy with soccer practice.",
+   "Mia should have returned those library books last week, but she was really busy with soccer practice.",
+   "Mia should have returned those library books last week, but she was real busy with soccer practice.",
+   "Mia should of returned those library books last week, but she was real busy with soccer practice."
+  ],
+  "correct_answer": "Mia should have returned those library books last week, but she was really busy with soccer practice.",
+  "error_sites": [
+   "'should have' (not 'should of')",
+   "the adverb 'really' (not 'real') before the adjective 'busy'"
+  ],
+  "student_error": {
+   "Mia should of returned those library books last week, but she was really busy with soccer practice.": "writes 'should of' because 'should've' sounds like 'should of'",
+   "Mia should have returned those library books last week, but she was real busy with soccer practice.": "uses 'real' as an adverb, as in casual speech ('real busy')",
+   "Mia should of returned those library books last week, but she was real busy with soccer practice.": "writes the way casual speech sounds in both places"
+  },
+  "explanation": "Standard English uses 'should have' ('should've'), never 'should of'. 'Busy' is an adjective, so the word that tells how busy must be the adverb 'really', not the adjective 'real'.",
+  "varied_dimension": "'should have' vs nonstandard 'should of'; adverb 'really' vs nonstandard adjective 'real' as an intensifier"
+ },
+ {
+  "id": "MLV4-G14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 6,
+  "ccss": "L.6.3a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Behind the old gym stands two tall maple trees, and between them sits a wooden bench that the art club painted.",
+   "Behind the old gym stand two tall maple trees, and between them sit a wooden bench that the art club painted.",
+   "Behind the old gym stands two tall maple trees, and between them sit a wooden bench that the art club painted.",
+   "Behind the old gym stand two tall maple trees, and between them sits a wooden bench that the art club painted."
+  ],
+  "correct_answer": "Behind the old gym stand two tall maple trees, and between them sits a wooden bench that the art club painted.",
+  "error_sites": [
+   "plural 'stand' for the subject 'two tall maple trees', which comes after the verb",
+   "singular 'sits' for the subject 'a wooden bench', which comes after the verb"
+  ],
+  "student_error": {
+   "Behind the old gym stands two tall maple trees, and between them sits a wooden bench that the art club painted.": "makes the verb agree with 'gym', the noun just before it",
+   "Behind the old gym stand two tall maple trees, and between them sit a wooden bench that the art club painted.": "makes the verb agree with 'them', the word just before it",
+   "Behind the old gym stands two tall maple trees, and between them sit a wooden bench that the art club painted.": "in both inverted clauses agrees the verb with the word just before it instead of the subject after it"
+  },
+  "explanation": "Both clauses are inverted: the subjects come after the verbs. 'Two tall maple trees stand' (plural) and 'a wooden bench sits' (singular). 'Gym' and 'them' are objects of prepositions, not subjects.",
+  "varied_dimension": "verb agreement with a plural subject placed after the verb; verb agreement with a singular subject placed after the verb"
+ }
+]

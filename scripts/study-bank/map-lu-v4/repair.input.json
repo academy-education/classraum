@@ -1,0 +1,518 @@
+[
+ {
+  "item": {
+   "id": "MLV4-S01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe nurse measured my ____ and said I had grown two inches since last year.",
+   "choices": [
+    "hieght",
+    "height",
+    "hieghth",
+    "heighth"
+   ],
+   "correct_answer": "height",
+   "spelling_pattern": "the -ght ending with no extra h, and ei (not ie) after the h",
+   "error_sites": [
+    "ending -ght, no h after the t",
+    "ei, not ie, after h-"
+   ],
+   "edit_types": [
+    "AC",
+    "XV"
+   ],
+   "student_error": {
+    "heighth": "adds an h at the end, as in 'width', 'depth' and 'length'",
+    "hieght": "writes ie for ei, following 'i before e'",
+    "hieghth": "adds the h of 'width' and 'length' and also writes ie, as in 'i before e'"
+   },
+   "explanation": "\"height\" is the correct spelling (the -ght ending with no extra h, and ei (not ie) after the h). \"heighth\" adds an h at the end, as in 'width', 'depth' and 'length'; \"hieght\" writes ie for ei, following 'i before e'; \"hieghth\" adds the h of 'width' and 'length' and also writes ie, as in 'i before e'."
+  },
+  "errors": [
+   "E1 stem FK 2.8 outside [4, 9) (15 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S09",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe ____ gave a speech asking the people of our town to vote for her.",
+   "choices": [
+    "politician",
+    "politican",
+    "pollitican",
+    "pollitician"
+   ],
+   "correct_answer": "politician",
+   "spelling_pattern": "a single l in pol- and the i before -an in -cian",
+   "error_sites": [
+    "single l in pol-",
+    "i in -cian"
+   ],
+   "edit_types": [
+    "AD",
+    "DV"
+   ],
+   "student_error": {
+    "pollitician": "doubles the l, as in 'poll' and 'polling'",
+    "politican": "leaves out the i in -cian, writing '-can' as the ending sounds",
+    "pollitican": "doubles the l as in 'poll' and also writes the ending as '-can'"
+   },
+   "explanation": "\"politician\" is the correct spelling (a single l in pol- and the i before -an in -cian). \"pollitician\" doubles the l, as in 'poll' and 'polling'; \"politican\" leaves out the i in -cian, writing '-can' as the ending sounds; \"pollitican\" doubles the l as in 'poll' and also writes the ending as '-can'."
+  },
+  "errors": [
+   "E1 stem FK 3.6 outside [4, 9) (15 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S15",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nAfter winning the lottery, the farmer became a ____ overnight.",
+   "choices": [
+    "milionaire",
+    "millonaire",
+    "milonaire",
+    "millionaire"
+   ],
+   "correct_answer": "millionaire",
+   "spelling_pattern": "keeping the double l and the i of million before -aire",
+   "error_sites": [
+    "double l in mill-",
+    "i in milli-on"
+   ],
+   "edit_types": [
+    "DD",
+    "DV"
+   ],
+   "student_error": {
+    "milionaire": "uses one l instead of the double l",
+    "millonaire": "drops the i between ll and o, writing 'millon-'",
+    "milonaire": "uses one l and also drops the i"
+   },
+   "explanation": "\"millionaire\" is the correct spelling (keeping the double l and the i of million before -aire). \"milionaire\" uses one l instead of the double l; \"millonaire\" drops the i between ll and o, writing 'millon-'; \"milonaire\" uses one l and also drops the i."
+  },
+  "errors": [
+   "G not a 2x2 grid of single edits ({\"ks1\":1,\"ks2\":1,\"kb\":2,\"s1b\":1,\"s2b\":1,\"s12\":1})"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S19",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe new park is still in ____, so it will not open until next year.",
+   "choices": [
+    "developement",
+    "devellopement",
+    "development",
+    "devellopment"
+   ],
+   "correct_answer": "development",
+   "spelling_pattern": "a single l in devel- and no e between develop and -ment",
+   "error_sites": [
+    "single l in devel-",
+    "no e before -ment"
+   ],
+   "edit_types": [
+    "AD",
+    "AV"
+   ],
+   "student_error": {
+    "devellopment": "doubles the l, as in 'yellow' or 'fellow'",
+    "developement": "adds an e before -ment, as in 'movement' or 'statement'",
+    "devellopement": "doubles the l and also adds an e before -ment"
+   },
+   "explanation": "\"development\" is the correct spelling (a single l in devel- and no e between develop and -ment). \"devellopment\" doubles the l, as in 'yellow' or 'fellow'; \"developement\" adds an e before -ment, as in 'movement' or 'statement'; \"devellopement\" doubles the l and also adds an e before -ment."
+  },
+  "errors": [
+   "E1 stem FK 3.6 outside [4, 9) (15 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S22",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe old ____ behind the church has gravestones that are more than two hundred years old.",
+   "choices": [
+    "cematary",
+    "cematery",
+    "cemetary",
+    "cemetery"
+   ],
+   "correct_answer": "cemetery",
+   "spelling_pattern": "the unstressed vowels e in cem-e-t and e in -tery",
+   "error_sites": [
+    "unstressed vowel e after cem-",
+    "ending -tery, not -tary"
+   ],
+   "edit_types": [
+    "XV",
+    "XV"
+   ],
+   "student_error": {
+    "cematery": "writes the unstressed e after cem- as a",
+    "cemetary": "uses -tary, as in 'military' or 'dietary'",
+    "cematary": "writes a for both unstressed e's"
+   },
+   "explanation": "\"cemetery\" is the correct spelling (the unstressed vowels e in cem-e-t and e in -tery). \"cematery\" writes the unstressed e after cem- as a; \"cemetary\" uses -tary, as in 'military' or 'dietary'; \"cematary\" writes a for both unstressed e's."
+  },
+  "errors": [
+   "E4-dup tested word clashes with MLV4-S27 (\"cemetery\" / \"cemetery\"). Every tested spelling word in the batch: height, villain, compromise, foreign, permanent, mischief, politician, magnificent, sincerely, pollution, professional, restaurant, millionaire, sacrifice, conscious, suspicious, development, vicious, originally, cemetery, noticeable, mischievous, comparison, exaggerate, cemetery, accelerate, occurred, eventually, pronunciation, twelfth, accidentally, military, miniature, similarity, sacrilegious, questionnaire, veterinarian, hazardous, silhouette, mortgage, acquitted, entrepreneur, magnificent, recurrence, sacrilegious, controversy"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S37",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nMany villagers felt it was ____ to scribble on the walls of the old temple.",
+   "choices": [
+    "sacrelegious",
+    "sacrilegious",
+    "sacreligious",
+    "sacriligious"
+   ],
+   "correct_answer": "sacrilegious",
+   "spelling_pattern": "i in sacri- and e in -leg-, the reverse of the word religious",
+   "error_sites": [
+    "vowel i in sacri-",
+    "vowel e in -leg-"
+   ],
+   "edit_types": [
+    "XV",
+    "XV"
+   ],
+   "student_error": {
+    "sacrelegious": "writes e for the i after sacr-",
+    "sacriligious": "writes i for the e in -leg-, as in 'religious'",
+    "sacreligious": "spells the middle like 'religious' (sac + religious): e for the i and i for the e"
+   },
+   "explanation": "\"sacrilegious\" is the correct spelling (i in sacri- and e in -leg-, the reverse of the word religious). \"sacrelegious\" writes e for the i after sacr-; \"sacriligious\" writes i for the e in -leg-, as in 'religious'; \"sacreligious\" spells the middle like 'religious' (sac + religious): e for the i and i for the e."
+  },
+  "errors": [
+   "E4-dup tested word clashes with MLV4-S47 (\"sacrilegious\" / \"sacrilegious\"). Every tested spelling word in the batch: height, villain, compromise, foreign, permanent, mischief, politician, magnificent, sincerely, pollution, professional, restaurant, millionaire, sacrifice, conscious, suspicious, development, vicious, originally, cemetery, noticeable, mischievous, comparison, exaggerate, cemetery, accelerate, occurred, eventually, pronunciation, twelfth, accidentally, military, miniature, similarity, sacrilegious, questionnaire, veterinarian, hazardous, silhouette, mortgage, acquitted, entrepreneur, magnificent, recurrence, sacrilegious, controversy"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-S45",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe view of the snowy mountains at sunrise was ____, the most beautiful sight of our trip.",
+   "choices": [
+    "magnificent",
+    "magnificient",
+    "magnifiscient",
+    "magnifiscent"
+   ],
+   "correct_answer": "magnificent",
+   "spelling_pattern": "c alone (not sc) and the -cent ending with no extra i",
+   "error_sites": [
+    "c, not sc",
+    "ending -cent, not -cient"
+   ],
+   "edit_types": [
+    "AC",
+    "AV"
+   ],
+   "student_error": {
+    "magnifiscent": "adds an s before the c, as in 'fluorescent'",
+    "magnificient": "adds an i before -ent, as in 'efficient' or 'sufficient'",
+    "magnifiscient": "adds an s before the c and an i before -ent"
+   },
+   "explanation": "\"magnificent\" is the correct spelling (c alone (not sc) and the -cent ending with no extra i). \"magnifiscent\" adds an s before the c, as in 'fluorescent'; \"magnificient\" adds an i before -ent, as in 'efficient' or 'sufficient'; \"magnifiscient\" adds an s before the c and an i before -ent."
+  },
+  "errors": [
+   "E4-dup tested word clashes with MLV4-S10 (\"magnificent\" / \"magnificent\"). Every tested spelling word in the batch: height, villain, compromise, foreign, permanent, mischief, politician, magnificent, sincerely, pollution, professional, restaurant, millionaire, sacrifice, conscious, suspicious, development, vicious, originally, cemetery, noticeable, mischievous, comparison, exaggerate, cemetery, accelerate, occurred, eventually, pronunciation, twelfth, accidentally, military, miniature, similarity, sacrilegious, questionnaire, veterinarian, hazardous, silhouette, mortgage, acquitted, entrepreneur, magnificent, recurrence, sacrilegious, controversy"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1d",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "Last summer my cousins visited for a week, and every morning, before anyone else wakes up, they walked to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else woke up, they walk to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else wakes up, they walk to the bakery.",
+    "Last summer my cousins visited for a week, and every morning, before anyone else woke up, they walked to the bakery."
+   ],
+   "correct_answer": "Last summer my cousins visited for a week, and every morning, before anyone else woke up, they walked to the bakery.",
+   "error_sites": [
+    "past tense 'woke up' in the clause after 'before'",
+    "past tense 'walked' for the main verb, far from 'Last summer'"
+   ],
+   "student_error": {
+    "Last summer my cousins visited for a week, and every morning, before anyone else wakes up, they walked to the bakery.": "writes 'wakes up' because the 'before' clause sounds like a daily routine, shifting out of the past",
+    "Last summer my cousins visited for a week, and every morning, before anyone else woke up, they walk to the bakery.": "writes 'walk' because 'every morning' sounds like a present-tense routine, forgetting 'Last summer'",
+    "Last summer my cousins visited for a week, and every morning, before anyone else wakes up, they walk to the bakery.": "hears 'every morning, before anyone else wakes up, they walk' as a natural daily routine and loses 'Last summer' at the start"
+   },
+   "explanation": "The sentence is set 'Last summer', so every verb stays in the past: 'woke up' and 'walked'. 'wakes up' and 'walk' are inappropriate shifts into the present, even though 'every morning' describes a habit.",
+   "varied_dimension": "past tense in a clause set inside an interrupting time phrase; past tense of the main verb far from 'Last summer'"
+  },
+  "errors": [
+   "E1 optA FK 10.0 outside [4, 9) (21 words)",
+   "E1 optB FK 10.0 outside [4, 9) (21 words)",
+   "E1 optC FK 10.0 outside [4, 9) (21 words)",
+   "E1 optD FK 10.0 outside [4, 9) (21 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G12",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 6,
+   "ccss": "L.6.1c",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "We planted tomato seedlings in April and watered it every day, and by July the plants were so tall that they needed stakes.",
+    "We planted tomato seedlings in April and watered them every day, and by July the plants were so tall that they needed stakes.",
+    "We planted tomato seedlings in April and watered them every day, and by July the plants were so tall that it needed stakes.",
+    "We planted tomato seedlings in April and watered it every day, and by July the plants were so tall that it needed stakes."
+   ],
+   "correct_answer": "We planted tomato seedlings in April and watered them every day, and by July the plants were so tall that they needed stakes.",
+   "error_sites": [
+    "plural 'them' for the plural antecedent 'tomato seedlings'",
+    "plural 'they' for the plural antecedent 'the plants', later in the sentence"
+   ],
+   "student_error": {
+    "We planted tomato seedlings in April and watered it every day, and by July the plants were so tall that they needed stakes.": "shifts to singular 'it', thinking of the garden as one thing",
+    "We planted tomato seedlings in April and watered them every day, and by July the plants were so tall that it needed stakes.": "shifts to singular 'it' at the end, losing track of the plural 'the plants'",
+    "We planted tomato seedlings in April and watered it every day, and by July the plants were so tall that it needed stakes.": "thinks of the seedlings as one garden and uses singular 'it' all through the sentence"
+   },
+   "explanation": "Both antecedents are plural ('tomato seedlings', 'the plants'), so both pronouns must be plural: 'watered them' and 'they needed stakes'. 'It' is an inappropriate shift in number.",
+   "varied_dimension": "pronoun number for a plural antecedent as object; pronoun number for a plural antecedent as subject later in the sentence"
+  },
+  "errors": [
+   "E1 optA FK 9.3 outside [4, 9) (23 words)",
+   "E1 optB FK 9.3 outside [4, 9) (23 words)",
+   "E1 optC FK 9.3 outside [4, 9) (23 words)",
+   "E1 optD FK 9.3 outside [4, 9) (23 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-G16",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and I thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and I thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and me thanked her for visiting.",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and me thanked her for visiting."
+   ],
+   "correct_answer": "The mayor herself presented the science award to Eli and me, and afterward Eli and I thanked her for visiting.",
+   "error_sites": [
+    "object pronoun 'me' after the preposition 'to' (not 'myself')",
+    "subject pronoun 'I' in the compound subject (not 'me')"
+   ],
+   "student_error": {
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and I thanked her for visiting.": "uses 'myself' as the object because it sounds more polite than 'me'",
+    "The mayor herself presented the science award to Eli and me, and afterward Eli and me thanked her for visiting.": "uses 'me' in the compound subject, which sounds natural in speech",
+    "The mayor herself presented the science award to Eli and myself, and afterward Eli and me thanked her for visiting.": "avoids 'I' and 'me' where they feel awkward: 'myself' after 'to' and 'me' in the subject"
+   },
+   "explanation": "'Herself' is correct as an intensive for 'The mayor'. But 'myself' cannot stand in for an ordinary pronoun: 'to Eli and me' (object of 'to'). 'Eli and I' is the subject of 'thanked', so it takes 'I', not 'me'. Test by dropping 'Eli': 'to me', 'I thanked her'.",
+   "varied_dimension": "object pronoun vs reflexive after a preposition in a compound; subjective 'I' vs objective 'me' in a compound subject"
+  },
+  "errors": [
+   "E1 optB FK 9.3 outside [4, 9) (20 words)",
+   "E1 optD FK 9.3 outside [4, 9) (20 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C02",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "My grandfather's book about the Revolutionary war says that the war ended with the Treaty of Paris.",
+    "My grandfather's book about the Revolutionary War says that the war ended with the treaty of Paris.",
+    "My grandfather's book about the Revolutionary war says that the war ended with the treaty of Paris.",
+    "My grandfather's book about the Revolutionary War says that the war ended with the Treaty of Paris."
+   ],
+   "correct_answer": "My grandfather's book about the Revolutionary War says that the war ended with the Treaty of Paris.",
+   "error_sites": [
+    "'War' as part of the name 'Revolutionary War'",
+    "'Treaty' as part of the name 'Treaty of Paris'"
+   ],
+   "student_error": {
+    "My grandfather's book about the Revolutionary war says that the war ended with the Treaty of Paris.": "capitalizes only the first word of the war's name",
+    "My grandfather's book about the Revolutionary War says that the war ended with the treaty of Paris.": "capitalizes only 'Paris' in the treaty's name, treating 'treaty' as a general word",
+    "My grandfather's book about the Revolutionary war says that the war ended with the treaty of Paris.": "capitalizes only the word that looks like a name, so the general-looking words 'war' and 'treaty' stay lowercase in both names"
+   },
+   "explanation": "'Revolutionary War' and 'Treaty of Paris' are names of historical events, so their main words are capitalized. Later, 'the war' on its own is a general word and stays lowercase.",
+   "cap_rule": "historical events: every main word of a named war and a named treaty is capitalized, while 'the war' used on its own is not"
+  },
+  "errors": [
+   "E1 optA FK 9.8 outside [4, 9) (17 words)",
+   "E1 optB FK 9.8 outside [4, 9) (17 words)",
+   "E1 optC FK 9.8 outside [4, 9) (17 words)",
+   "E1 optD FK 9.8 outside [4, 9) (17 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Mr. Ross showed us copies of the Declaration Of Independence and the Bill of Rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill Of Rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill of Rights before our test on the two documents.",
+    "Mr. Ross showed us copies of the Declaration Of Independence and the Bill Of Rights before our test on the two documents."
+   ],
+   "correct_answer": "Mr. Ross showed us copies of the Declaration of Independence and the Bill of Rights before our test on the two documents.",
+   "error_sites": [
+    "lowercase 'of' inside 'Declaration of Independence'",
+    "lowercase 'of' inside 'Bill of Rights'"
+   ],
+   "student_error": {
+    "Mr. Ross showed us copies of the Declaration Of Independence and the Bill of Rights before our test on the two documents.": "capitalizes every word of the document's name, including the short preposition 'of'",
+    "Mr. Ross showed us copies of the Declaration of Independence and the Bill Of Rights before our test on the two documents.": "capitalizes every word of the second document's name, including 'of'",
+    "Mr. Ross showed us copies of the Declaration Of Independence and the Bill Of Rights before our test on the two documents.": "capitalizes every word in a document's name, including the short word 'of'"
+   },
+   "explanation": "The names of documents capitalize every main word: 'Declaration of Independence', 'Bill of Rights'. The short preposition 'of' stays lowercase, and the general word 'documents' is lowercase.",
+   "cap_rule": "documents: the main words of a document's name are capitalized while the short preposition 'of' inside it is not, and 'documents' alone is not"
+  },
+  "errors": [
+   "E1 optA FK 10.0 outside [4, 9) (21 words)",
+   "E1 optB FK 10.0 outside [4, 9) (21 words)",
+   "E1 optC FK 10.0 outside [4, 9) (21 words)",
+   "E1 optD FK 10.0 outside [4, 9) (21 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C05",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+    "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a Bill about national parks.",
+    "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a Bill about national parks."
+   ],
+   "correct_answer": "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a bill about national parks.",
+   "error_sites": [
+    "'senator' used as a general word, not before a name",
+    "'bill' used as a general word, not the name of a document"
+   ],
+   "student_error": {
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a bill about national parks.": "capitalizes 'senator' because it is an important government title",
+    "Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a Bill about national parks.": "capitalizes 'bill' because it is a government word, like 'Bill of Rights'",
+    "Our class wrote to a Senator in Washington, and she invited us to watch the Senate debate a Bill about national parks.": "capitalizes every word that has to do with the government, not only the name 'Senate'"
+   },
+   "explanation": "'The Senate' in Washington is the name of a government body and is capitalized. 'A senator' (no name after it) and 'a bill' are general words, so they are lowercase.",
+   "cap_rule": "organizations and government bodies: 'the Senate' is capitalized, but the general words 'a senator' and 'a bill' are not"
+  },
+  "errors": [
+   "E1 optA FK 10.2 outside [4, 9) (22 words)",
+   "E1 optB FK 10.2 outside [4, 9) (22 words)",
+   "E1 optC FK 10.2 outside [4, 9) (22 words)",
+   "E1 optD FK 10.2 outside [4, 9) (22 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV4-C06",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 6,
+   "ccss": "L.6.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Every winter my grandparents leave the Midwest and drive South to Florida, where they rent a cottage on the eastern coast.",
+    "Every winter my grandparents leave the Midwest and drive south to Florida, where they rent a cottage on the eastern coast.",
+    "Every winter my grandparents leave the Midwest and drive south to Florida, where they rent a cottage on the Eastern coast.",
+    "Every winter my grandparents leave the Midwest and drive South to Florida, where they rent a cottage on the Eastern coast."
+   ],
+   "correct_answer": "Every winter my grandparents leave the Midwest and drive south to Florida, where they rent a cottage on the eastern coast.",
+   "error_sites": [
+    "'south' used as a direction of travel",
+    "'eastern' used as a describing word, not a region name"
+   ],
+   "student_error": {
+    "Every winter my grandparents leave the Midwest and drive South to Florida, where they rent a cottage on the eastern coast.": "capitalizes 'south' because Florida is in the South",
+    "Every winter my grandparents leave the Midwest and drive south to Florida, where they rent a cottage on the Eastern coast.": "capitalizes 'eastern' as if 'eastern coast' were a region's name",
+    "Every winter my grandparents leave the Midwest and drive South to Florida, where they rent a cottage on the Eastern coast.": "capitalizes every compass word because 'Midwest' is capitalized"
+   },
+   "explanation": "'The Midwest' names a region, so it is capitalized. 'Drive south' gives a direction, and 'eastern' describes which side of the state, so both are lowercase.",
+   "cap_rule": "regions vs directions: 'the Midwest' is a region and capitalized, but 'drive south' and 'the eastern coast' are directions"
+  },
+  "errors": [
+   "E1 optA FK 10.0 outside [4, 9) (21 words)",
+   "E1 optB FK 10.0 outside [4, 9) (21 words)",
+   "E1 optC FK 10.0 outside [4, 9) (21 words)",
+   "E1 optD FK 10.0 outside [4, 9) (21 words)"
+  ]
+ }
+]
