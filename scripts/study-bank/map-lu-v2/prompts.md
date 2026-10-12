@@ -122,3 +122,19 @@ without edits.
 >   correct, or that spells a word in a form any mainstream dictionary accepts
 >   (US, British or other regional), or null
 > - `reason`: one line
+
+## 1b. Re-length (amendment 1; one agent, before the teacher gate)
+
+> Read `<MAP-LU-V2-BRIEF-SPELLING.md>`, then `<W/relength.input.json>`: 12
+> "Which sentence has a spelling error?" items, each with an assigned
+> `key_length_rank`. Rank the four sentences of an item by character length,
+> longest = 1 and shortest = 4. Rewrite each item's sentences so that the key
+> (the sentence containing `misspelled_word`) sits at exactly its assigned
+> rank, and all four sentence lengths differ from each other by at least 3
+> characters. Keep every target word and the misspelling exactly as they are,
+> keep which sentence is the key, keep each sentence 8-18 words, plain, and
+> correctly spelled apart from the one misspelling. You may change any other
+> words. Update `targets` and `student_error` keys to the new sentence texts,
+> and keep `key_length_rank`. Run the brief's dictionary oracle on any word
+> you add that is not a common word. Write the 12 full items as a JSON array
+> to `<W/relength.out.json>`.

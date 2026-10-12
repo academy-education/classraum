@@ -283,3 +283,57 @@ REGISTER §5 gets the numbers.
   There is no frequency source here, only the author's and graders' judgement.
 - Whether T2 would catch a structural tell outside its 64 heuristics, or a
   weak one in a strand of 8-10.
+
+---
+
+## Amendment 1, 2026-10-12: after authoring, BEFORE any teacher, solver or grader
+
+Committed before the teacher gate. Nothing below was prompted by a rater's,
+solver's or grader's output: none had run. The only data seen was the two
+authored files and the exact checks over them (report only, step 2).
+
+**Finding (exact, whole population).** In the 12 authored Spelling
+"sentence" items, the misspelled sentence (the key) is the uniquely longest
+in 7 of 12. T2 run on that format alone: `unique_max(len)` 62.5% vs control
+25.0%, family-wise p 0.010. The pre-registered strand-level T2 on the 32
+fires (`at_max(words)` 38.3%, p 0.029), but on the first 6 per grade, the
+set the freeze rule would take, it is **clear** (`at_max(len)` 41.7%,
+p 0.169). That is because the word items, whose option structure differs,
+dilute it. So the registered test could not see a tell that a student who
+picks the longest sentence would exploit.
+
+**Changes, all in the refusing direction or checker repairs. Each is
+break-tested in `--selftest` (113 checks).**
+
+1. **T2 per Spelling format.** At Stage 0 and at scoring, T2 also runs on
+   each Spelling format's frozen items separately (word, sentence), under the
+   same rule. If either fires, the Spelling strand fails S1-a / Stage 0.
+   Selftest: a length tell confined to 8 sentence items among 16 word items
+   fires.
+2. **Seeded length rank for the 12 sentence items, before the teacher gate.**
+   Each item's key is assigned a length rank (1 = longest ... 4 = shortest).
+   Each rank is used 3 times, shuffled by a seed from
+   sha256("map-lu-v2-relength"); the assignment is in
+   `map-lu-v2/relength.json`. This follows RUNBOOK's rule to ASSIGN ranks,
+   never describe a preference: a stated preference became the next tell in
+   2026-07-30's repair wave. One re-length agent (prompt 1b) rewrites the
+   four sentences of each item so the key sits at its assigned rank, with all
+   four lengths at least 3 characters apart. Target words, the misspelling and
+   the key's identity do not change. A new exact check, **L-rank**, enforces
+   the assigned rank and the 3-character gaps, through every later step
+   (revision, repair). The as-authored file is kept as
+   `batch.authored.original.json`; `batch.authored.json` is the file with the
+   re-length applied.
+3. **Checker repair, G (2x2 grid).** When all four options have the key's
+   token count, G now diffs tokens by position. The LCS alignment
+   mis-attributed two ADJACENT substituted tokens ("loud," "playful" vs
+   "loud" "playful,") and refused a sound grid (MLV2-P10). The mode is chosen
+   per item, never per pair: every v1 frozen item still passes, and a stray
+   third site still fails.
+4. **Checker repair, E4 (sentence format).** NSSpellChecker is
+   case-sensitive. The scan of non-target words lowercased them, so it
+   refused "Saturday" (MLV2-S08). It now scans tokens in their original case.
+   A lowercased proper noun is still refused.
+
+**Not changed:** every bar, the freeze quotas, the teacher gate, the
+one-repair-per-item rule, the renders and the scoring.

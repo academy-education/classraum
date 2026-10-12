@@ -152,8 +152,13 @@ export function misspellingOk(w) {
 const MARKS = /[.,;:!?'"‘’“”()\-–—…]/g
 const tok = s => String(s).trim().split(/\s+/)
 const words = s => String(s).toLowerCase().replace(/[^a-z'\s-]/g, ' ').replace(/'s\b/g, '').split(/[\s-]+/).map(x => x.replace(/^'+|'+$/g, '')).filter(Boolean)
-export function touched(keyS, optS) {
+export function touched(keyS, optS, positional = false) {
   const a = tok(keyS), b = tok(optS), n = a.length, m = b.length
+  // positional=true (all four options have the key's token count): every site is a
+  // substitution, so diff by position. LCS mis-attributes two ADJACENT substituted
+  // tokens ("loud," "playful" vs "loud" "playful,"), which refused a sound grid
+  // (amendment 1, before any rater ran). Chosen per ITEM, never per pair.
+  if (positional && n === m) return new Set(a.map((x, i) => (x === b[i] ? null : `tok${i}`)).filter(Boolean))
   const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0))
   for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1])
   const out = new Set(); let i = 0, j = 0
@@ -168,7 +173,8 @@ export function touched(keyS, optS) {
 export function grid(it) {
   const ch = it.choices.map(String), k = ch.indexOf(String(it.correct_answer))
   if (k < 0 || new Set(ch).size !== 4) return { ok: false, why: 'key missing or duplicate options' }
-  const others = ch.map((c, i) => (i === k ? null : [i, touched(ch[k], c)])).filter(Boolean)
+  const pos = ch.every(c => tok(c).length === tok(ch[k]).length)
+  const others = ch.map((c, i) => (i === k ? null : [i, touched(ch[k], c, pos)])).filter(Boolean)
   others.sort((x, y) => y[1].size - x[1].size)
   const [[, both], [, s1], [, s2]] = others
   if (!s1.size || !s2.size) return { ok: false, why: 'a single-error option equals the key' }
@@ -265,11 +271,20 @@ export function spellChecks(it) {
       const ws = words(c), tw = String(t[c]).toLowerCase()
       if (!ws.includes(tw)) errs.push(`E4 option does not contain its target "${tw}"`)
       if (c !== key && ws.includes(mw)) errs.push('E4 the misspelling appears outside the key')
-      const bad = ws.filter((w, i) => !(c === key && w === mw)).filter((w, i, a) => a.indexOf(w) === i)
+      // NSSpellChecker is case-sensitive (it rejects "saturday"): scan the tokens in their
+      // original case (amendment 1, before any rater ran); target matching stays lowercase.
+      const cased = String(c).replace(/[^A-Za-z'\s-]/g, ' ').replace(/'s\b/g, '').split(/[\s-]+/).map(x => x.replace(/^'+|'+$/g, '')).filter(Boolean)
+      const bad = cased.filter(w => !(c === key && w.toLowerCase() === mw)).filter((w, i, a) => a.indexOf(w) === i)
       const ns = nsspell(bad)
       const fails = bad.filter((w, i) => !ns[i])
       if (fails.length) errs.push(`E4 option ${SL[ch.indexOf(c)]} has other words failing NSSpellChecker: ${fails.join(', ')}`)
       for (const w of ws) if (w !== mw) { const v = variantsOf(w).find(x => web2().has(x)); if (v && !web2().has(w) && /our|re$|is(e|ed|ing)$|ll(ed|ing)/.test(w)) errs.push(`E4 "${w}" looks like a regional variant of "${v}"`) }
+    }
+    if (it.key_length_rank != null) {
+      const L = ch.map(c => c.length), sorted = [...L].sort((a, b) => b - a)
+      const gaps = sorted.slice(1).map((x, i) => sorted[i] - x)
+      if (sorted.indexOf(key.length) + 1 !== it.key_length_rank) errs.push(`L-rank the key is length rank ${sorted.indexOf(key.length) + 1}, assigned ${it.key_length_rank}`)
+      if (gaps.some(g => g < 3)) errs.push(`L-rank sentence lengths ${sorted.join('/')} are not 3+ characters apart`)
     }
   } else errs.push(`E4 spelling_format must be "word" or "sentence" (${it.spelling_format})`)
   return errs
@@ -354,7 +369,16 @@ export function batchChecks(items, s) {
   }
   const T = t2(items)
   if (T.fires) errs.push(`T2 ${T.best} predicts the key: ${(100 * T.bestScore).toFixed(1)}% vs control ${(100 * T.control).toFixed(1)}%, family-wise p ${T.fwP.toFixed(4)}`)
-  return { errs, longest, shortest, n, t2: T }
+  // Amendment 1: Spelling's two formats have different option structure, and a
+  // tell confined to one format is diluted by the other in the strand-level test.
+  const perFormat = {}
+  if (s === 'spell') for (const f of ['word', 'sentence']) {
+    const sub = items.filter(i => i.spelling_format === f)
+    if (!sub.length) continue
+    const Tf = (perFormat[f] = t2(sub))
+    if (Tf.fires) errs.push(`T2[${f}] ${Tf.best} predicts the key: ${(100 * Tf.bestScore).toFixed(1)}% vs control ${(100 * Tf.control).toFixed(1)}%, family-wise p ${Tf.fwP.toFixed(4)}`)
+  }
+  return { errs, longest, shortest, n, t2: T, perFormat }
 }
 
 // ---------- bars ----------
@@ -425,6 +449,10 @@ async function selftest() {
   expect(dlGrid(spOk).ok, 'G-DL: necessary grid passes')
   expect(!dlGrid({ ...spOk, choices: ['necessary', 'neccessary', 'necesary', 'nesessary'] }).ok, 'G-DL: a both-option off the two sites FAILS')
   expect(!dlGrid({ ...spOk, choices: ['necessary', 'neccessary', 'neccesary', 'neccesery'] }).ok, 'G-DL: a single that is not a single edit FAILS')
+  const adj = { choices: ["Our dog's loud, playful golden pup barks.", "Our dog's loud playful, golden pup barks.", "Our dog's loud playful golden pup barks.", "Our dog's loud, playful, golden pup barks."], correct_answer: "Our dog's loud, playful golden pup barks." }
+  expect(grid(adj).ok, `G: a grid with ADJACENT sites passes (amendment 1) ${grid(adj).why ?? ''}`)
+  expect(!grid({ ...adj, choices: ["Our dog's loud, playful golden pup barks.", "Our dog's loud playful, golden pup barks.", "Our dog's loud playful golden pup barks.", "Our dog's loud, playful, golden pup, barks."] }).ok, 'G: adjacent-site grid with a stray third site FAILS')
+  for (const it of JSON.parse(readFileSync(SB + 'map-lu-mech-v1.batch.json', 'utf8'))) if (!grid(it).ok) expect(false, `G still passes every v1 frozen item (${it.id}: ${grid(it).why})`)
   // dictionary and variants
   expect(misspellingOk('seperate').length === 0, 'misspelling "seperate" is acceptable (non-word)')
   expect(misspellingOk('colour').length > 0, `misspelling "colour" (a UK form) is REFUSED: ${misspellingOk('colour')[0]}`)
@@ -447,6 +475,22 @@ async function selftest() {
   const ss3 = { ...ss, choices: ['The libary was quiet.', 'We will seperate the papers.', 'Her argument was strong.', 'The cemetery is old.'] }
   ss3.targets = { 'The libary was quiet.': 'library', ...Object.fromEntries(Object.entries(ss.targets).slice(1)) }
   expect(structural(ss3).errs.some(e => /E4/.test(e)), 'spelling sentence with a second misspelling REFUSED')
+  const ssCase = { ...ss, choices: ['The library opens on Saturday.', 'We will seperate the papers.', 'Her argument was strong.', 'The cemetery is old.'] }
+  ssCase.targets = { 'The library opens on Saturday.': 'library', ...Object.fromEntries(Object.entries(ss.targets).slice(1)) }
+  expect(structural(ssCase).errs.length === 0, `spelling sentence: a capitalized proper noun passes (amendment 1) ${structural(ssCase).errs.join('; ')}`)
+  const ssLow = { ...ssCase, choices: ['The library opens on saturday.', ...ssCase.choices.slice(1)] }
+  ssLow.targets = { 'The library opens on saturday.': 'library', ...Object.fromEntries(Object.entries(ssCase.targets).slice(1)) }
+  expect(structural(ssLow).errs.some(e => /saturday/.test(e)), 'spelling sentence: a lowercased proper noun is still refused')
+  const ranked = { ...ss, choices: ['The library was very quiet today.', 'We will seperate the papers.', 'Her argument was strong.', 'The old cemetery is near.'] }
+  ranked.targets = { [ranked.choices[0]]: 'library', [ranked.choices[1]]: 'seperate', [ranked.choices[2]]: 'argument', [ranked.choices[3]]: 'cemetery' }
+  const lens = ranked.choices.map(c => c.length), kr = [...lens].sort((a, b) => b - a).indexOf(ranked.choices[1].length) + 1
+  expect(structural({ ...ranked, key_length_rank: kr }).errs.filter(e => /L-rank/.test(e)).length === (([...lens].sort((a, b) => b - a).slice(1).some((x, i, a) => [...lens].sort((p, q) => q - p)[i] - x < 3)) ? 1 : 0), 'L-rank: the assigned rank is read correctly')
+  expect(structural({ ...ranked, key_length_rank: kr === 1 ? 2 : 1 }).errs.some(e => /L-rank the key/.test(e)), 'L-rank: a wrong rank FAILS')
+  const tellSet = Array.from({ length: 8 }, (_, i) => ({ ...ss, id: 's' + i, choices: ['A short one here.', 'This is the much longer misspeled sentence ' + 'x'.repeat(i), 'Another short one.', 'A third short one.'], correct_answer: 'This is the much longer misspeled sentence ' + 'x'.repeat(i) }))
+  const wordSet = Array.from({ length: 16 }, (_, i) => ({ ...sw, id: 'w' + i, correct_answer: ['necessary', 'neccessary', 'necesary', 'neccesary'][i % 4] }))
+  const mixed = [...tellSet, ...wordSet]
+  const bm = batchChecks(mixed.map(i => ({ ...i, intended_word: 'x' + i.id })), 'spell')
+  expect(bm.perFormat.sentence?.fires, `T2[sentence]: a format-confined length tell FIRES (${fmtT2(bm.perFormat.sentence)})`)
   // E1 bound by grade
   const long = 'The members of the environmental committee considered several complicated proposals regarding municipal transportation infrastructure improvements.'
   expect(e1({ grade_target: 8, prompt: '', choices: [long, long, long, long] }).errs.length > 0, 'E1: dense adult prose fails at grade 8')
@@ -528,6 +572,7 @@ else if (mode === 'checks' || mode === 't2') {
     const b = batchChecks(its, s)
     console.log(`E3 key uniquely longest ${b.longest}/${b.n}, uniquely shortest ${b.shortest}/${b.n}`)
     console.log(`T2 ${fmtT2(b.t2)}`)
+    for (const [f, r] of Object.entries(b.perFormat)) console.log(`T2[${f}] ${fmtT2(r)}`)
     for (const e of b.errs) { console.log(`BATCH FAIL ${e}`); batchBad++ }
   }
   const unknown = items.filter(i => !strandOf(i)); if (unknown.length) { console.log(`unknown strand on ${unknown.map(i => i.id).join(', ')}`); bad += unknown.length }
@@ -603,6 +648,7 @@ else if (mode === 'repair-input' || mode === 'freeze') {
     if (short.length) { report[s] = { stage0: 'FAIL', why: `fewer survivors than the quota at grade ${short.join(',')}`, n: pick.length }; continue }
     const b = batchChecks(pick, s)
     console.log(`${s}: T2 ${fmtT2(b.t2)}`)
+    for (const [f, r] of Object.entries(b.perFormat)) console.log(`${s}: T2[${f}] ${fmtT2(r)}`)
     if (b.errs.length) { report[s] = { stage0: 'FAIL', why: b.errs.join('; '), n: pick.length, t2: { best: b.t2.best, score: b.t2.bestScore, fwP: b.t2.fwP } }; continue }
     report[s] = { stage0: 'pass', n: pick.length, ids: pick.map(i => i.id), t2: { best: b.t2.best, score: b.t2.bestScore, fwP: b.t2.fwP }, longest: b.longest, shortest: b.shortest }
     frozen.push(...pick)
@@ -712,6 +758,7 @@ else if (mode === 'score') {
     console.log(`  cold picks on key ${S.coldOnKey}/${2 * n}; items with an option dead by both ${S.deadBoth}/${n}; by grade ${JSON.stringify(S.byGrade)}`)
     console.log(`  S1-a exact: ${exactOk ? 'PASS' : 'FAIL'} (${itemFails} item failures; ${b.errs.join('; ') || 'no batch failures'}); E3 ${b.longest}/${n} longest, ${b.shortest}/${n} shortest`)
     console.log(`  T2 ${fmtT2(b.t2)}`)
+    for (const [f, r] of Object.entries(b.perFormat)) console.log(`  T2[${f}] ${fmtT2(r)}`)
     console.log(`  S1-b pilot-pass ${S.pass}/${n} (bar >= ${passBar(n)}; range 0-${n}) -> ${B.b ? 'PASS' : 'FAIL'}`)
     console.log(`  S1-c easier ${S.easier}/${2 * n} (bar <= ${easierMax(n)}), harder ${S.harder}/${2 * n} (bar < ${harderLt(n)}) -> ${B.c ? 'PASS' : 'FAIL'}`)
     console.log(`  S1-d mean grade offset a ${B.ma.toFixed(2)}, b ${B.mb.toFixed(2)} (bar within +-0.5) -> ${B.d ? 'PASS' : 'FAIL'}`)
