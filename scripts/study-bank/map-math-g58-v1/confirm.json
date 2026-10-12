@@ -1,0 +1,18 @@
+{
+ "MMG-O10": {"R8 one-sided extreme key": "keep", "_why": "grader E's one_sided=true is self-corrected in stage 2 as a stage-1 slip; both graders strike only 4.8"},
+ "MMG-N06": {"R6 plug-back routine <= 2": "drop", "_why": "grader D: key 5 confirmed at ascending try 2 (2 plate packs + 3 cup packs = 24 each) in one routine check"},
+ "MMG-N15": {"R8 one-sided extreme key": "keep", "_why": "grader D names no strike and no bound; grader E false; no stem-readable side for the errors found by hand"},
+ "MMG-G05": {"R7 option pair": "drop", "_why": "both graders: 70 and the key 35 joined by x2 with 'two triangles' printed in the stem"},
+ "MMG-G11": {"R8 one-sided extreme key": "drop", "R10 single bound kills all": "drop", "_why": "grader D: DBE more than twice EBC with DBE + EBC = 90 forces EBC < 30 and ABE > 150, striking all three; confirmed by hand"},
+ "MMG-N10": {"R8 one-sided extreme key": "keep", "_why": "only 28.75 struck by both; a natural error (ignoring the gains) lands above the key"},
+ "MMG-G04": {"R8 one-sided extreme key": "keep", "_why": "only 220 struck by both; grader E false"},
+ "MMG-D01": {"R8 one-sided extreme key": "drop", "_why": "also EXT-1 (grader E drop_recommend)"},
+ "MMG-N14": {"R7 option pair": "drop", "_why": "also EXT-1 (grader E drop_recommend)"},
+ "MMG-D10": {"R8 one-sided extreme key": "drop", "_why": "also EXT-1 (grader E drop_recommend)"},
+ "MMG-N05": {"R8 one-sided extreme key": "drop", "_why": "also EXT-1 (grader E drop_recommend)"},
+ "MMG-G12": {"R10 single bound kills all": "keep", "_why": "grader E corrected sb in stage 2; item is dropped by R4 (two strikes by both) regardless"},
+ "MMG-D08": {"R8 one-sided extreme key": "keep", "_why": "dropped by R4 (two strikes by both) regardless"},
+ "MMG-O08": {"R6 plug-back routine <= 2": "keep", "R8 one-sided extreme key": "keep", "_why": "dropped by R4 (two strikes by both) regardless"},
+ "MMG-G03": {"R8 one-sided extreme key": "keep", "_why": "dropped by R4 (two strikes by both) regardless"},
+ "MMG-G07": {"R8 one-sided extreme key": "keep", "_why": "dropped by R4 (two strikes by both) regardless"}
+}

@@ -566,7 +566,14 @@ function cmdBuild() {
 
 async function cmdInsert(commit) {
   const { gateBatch } = await import('./gate.mjs')
-  const g = gateBatch({ task: 'multiple_choice', family: 'map', section: 'math', itemFiles: [INSERTED] })
+  // stem-duplicates refuses a family with zero VERIFIED live rows (it cannot tell an empty read from a failed one).
+  // map has none (MAP is not shipped), so count them here, and only when the count is exactly 0 pass the empty live
+  // set explicitly; the within-batch duplicate check still runs. Added 2026-10-12 after the prereg; no bar changed.
+  const c0 = await db()
+  const { count: liveMap, error: ce } = await c0.from('study_item_bank').select('id', { count: 'exact', head: true }).eq('family', 'map').eq('verified', true).eq('archived', false)
+  if (ce || typeof liveMap !== 'number') die(`cannot count live map rows: ${ce?.message}`)
+  console.log(`live verified map rows: ${liveMap}${liveMap === 0 ? ' -> stem-duplicate check runs within the batch only' : ''}`)
+  const g = gateBatch({ task: 'multiple_choice', family: 'map', section: 'math', itemFiles: [INSERTED], ...(liveMap === 0 ? { liveStems: [] } : {}) })
   console.log(`gate (${g.family}, ledger ${g.batch ?? 'none'}): ${g.canInsert ? 'PASS' : 'REFUSED'} - ${g.reason}`)
   if (!g.canInsert) process.exit(2)
   const items = rd(INSERTED)

@@ -8495,6 +8495,194 @@
           "verdict": "Stage 0 FAIL: E3 key uniquely longest 3/10 (bar <= 25%)."
         }
       }
+    },
+    {
+      "id": "map-math-g58-v1-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-g58-v1",
+      "contentSha": "6cc91392d539e8d355cd1075763eeffc2c4087d5170d55b2059b5ab11a1b88c2",
+      "status": "staged",
+      "note": "First MAP maths batch, grades 5-8. 60 authored (2 Claude authors, 15 per area), 59 frozen (O15 stage-0 duplicate of a live chain), 38 kept by the drop rules, 11 INSERTED STAGED (verified=false): Statistics and Probability only. Operations and Algebraic Thinking, Real and Complex Number Systems and Geometry each kept 9 and are HELD whole (kept-set key-extremity gate needs n >= 10: no measurement). Difficulty bars D1-D3 pass (too_easy 2/118, too_hard 4/118, offsets -0.14/-0.12, tier spread 2.00/1.73). Options-only per area all pass vs matched live ISEE control. contentSha = sha256 of map-math-g58-v1.inserted.batch.json. MAP-MATH-G58-V1.prereg.md (6d2fb90e), freeze 6556eef9, renders b65034da; REGISTER section 5, 2026-10-12. A person releases; never verified=true from a script.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Stage 0: 60/60 parts pass sandbox key + 177 distractor recomputes, slot, PAIR RUN DIR DPAIR PLUG DSUM FAR KEYPRINT STRUCT INTER, MAP fields; 5 returned once, 1 dropped (live duplicate); frozen 59, every area >= 12."
+        },
+        "withsource": {
+          "passed": true,
+          "n": 59,
+          "coldOnKey": 118,
+          "kept": 38,
+          "inserted": 11,
+          "tooEasy": 2,
+          "tooHard": 4,
+          "offsetD": -0.14,
+          "offsetE": -0.12,
+          "spreadD": 2,
+          "spreadE": 1.73,
+          "verdict": "Two Claude graders, cold then keyed, private folders, coldcheck 118 rows 0 changed. 118/118 cold on key, 0 key disputes. 21 dropped (EXT-1 13, R4 two free strikes by both 7 more, hand-confirmed R6/R7/R8/R10 3). D1 too_easy 1.7% (bar 15), too_hard 3.4% (bar 25); D2 offsets within +-0.5; D3 tier spread >= 0.5. Areas held: oa, num, geo (kept 9 each < 10)."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 59,
+          "candidatePct": 22.6,
+          "control": 22,
+          "controlN": 59,
+          "margin": 0.6,
+          "verdict": "Options-only, 3 samples of one Claude solver, 59 candidates vs 59 matched live ISEE maths (area by keyword, tier low->easy else medium). All 22.6% vs 22.0% (+0.6); oa 16.7 vs 23.8, num 20.0 vs 15.6, data 33.3 vs 28.9, geo 20.0 vs 20.0 (bar +10, all pass); unanimity within +15 everywhere; control far under the 90% ceiling. Measures whether the option set alone decides an item; not a leak clearance."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key slots flat by construction in both renders; inserted set key at an extreme 5/11 = 45.5% (bar 40.0%); no cross-item pattern named by both graders."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v3-spelling-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v3-spelling",
+      "contentSha": "957be0caf5e27bd1c85f0a2de84df8c067df85a6d92302c85bfb2210fe7363cd",
+      "status": "killed",
+      "note": "40 grades 5-8 Spelling items authored (24 word 2x2 grids, 16 which-sentence); grade-5 words rebuilt; seeded key length ranks (sentence) and, by amendment 1, seeded key length profiles (word). Word-grade screen (two cold screeners, calibrated on v2) dropped 2 (both grade 7). STOPPED at Stage 0: T2 per format fired on the 16 word items it would have frozen (unique_min(vowels) 39.1% vs 25.0%, family-wise p 0.086; bar +10 and p < 0.10). The length tell amendment 1 removed was replaced by a vowel-count one: three 'shortest'-profile keys had the fewest vowels because the added letters were vowels. Not rendered or graded. Spelling cleared: 0 (cumulative 0 of the owner's ~20). contentSha = sha256 of map-lu-v3/stage0-pick-spell.json. MAP-LU-V3.prereg.md (40b10d2d, amendment 1 8c111ec4), freeze f127c587, renders 53dca1a0, MAP-LU-V3-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: T2[word] unique_min(vowels) 39.1% vs control 25.0%, fw p 0.0862 (n=16). Strand T2 clear (p 0.45), T2[sentence] clear (p 0.59); every item passes E1 E4 E6 E7 G-DL L-rank L-profile."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v3-punctuation-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v3-punctuation",
+      "contentSha": "90519ade1b7be2140af10ff74f65ae952c9807a30b61b0a564f76a3c7652be8d",
+      "status": "staged",
+      "note": "12 grades 5-8 Punctuation 2x2 grids frozen (3 per grade). PASSED every pre-registered bar; the 11 pilot-pass items INSERTED STAGED (verified=false), cohort map-lu-v3-punctuation; held MLV3-P11 (g7, both graders too_easy). contentSha = sha256 of map-lu-v3/inserted-punct.batch.json. MAP-LU-V3.prereg.md (40b10d2d, amendment 1 8c111ec4), freeze f127c587, renders 53dca1a0, MAP-LU-V3-RESULT.md; REGISTER section 5, 2026-10-12. A person releases; never verified=true from a script.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: 12/12 pass E1 E6 E7 E9 G; pooled E3 4/32 longest, 6/32 shortest (bar 25%); T2 clear (unique_min(words) 31.3%, fw p 0.88); pooled T2 clear (fw p 0.15)."
+        },
+        "withsource": {
+          "passed": true,
+          "n": 12,
+          "pilotPass": 11,
+          "easier": 4,
+          "harder": 2,
+          "meanOffsetA": 0,
+          "meanOffsetB": -0.25,
+          "coldOnKey": 24,
+          "deadBoth": 0,
+          "verdict": "Two Claude graders cold then keyed, private folders, cold files byte-checked unchanged: 24/24 cold on key, 24/24 keyed correct, no accepted alternative. S1-b 11/12 (bar 10), S1-c easier 4/24 (bar <= 4) harder 2/24 (bar < 6), S1-d 0.00/-0.25."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 12,
+          "candidatePct": 100,
+          "control": 50,
+          "controlN": 24,
+          "margin": 50,
+          "verdict": "Key recoverability, not a leak bar (the options are the item): 100.0% vs matched live SAT SEC/ACT CSE control 50.0% (bar >= 40.0; fresh draw, 0 overlap with v2). Weak screen by design."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Exact no-rule-knowledge probes: E7 no unique medoid 0/12; T2 (64 structural heuristics, Westfall-Young min-p) clear on the strand and on the 11 inserted (fw p 0.87). Grader a named a symmetry elimination on paired-punctuation items (one-sided mark kills two options, leaves key vs all-wrong): recorded, not a bar."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Pooled E3 4/32 and 6/32; T2 clear; key slots 3/3/3/3 in the stored render (dealt flat per format). Graders: no count, length or position tell; grader b noted both cumulative-adjective items reward fewer commas."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v3-grammar-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v3-grammar",
+      "contentSha": "0cbffcda4799942bdbd6c9a9b499dda84bb01107f95b901d93d7d3f1b292adab",
+      "status": "killed",
+      "note": "12 grades 5-8 Grammar and Usage 2x2 grids frozen. FAILED S1-b (9/12, bar 10) and S1-c (easier 7/24, bar 4). Keys 24/24 cold, 24/24 keyed. Holds: G07 (too_easy, two options dead by both), G02 (grader b second-defensible \"know\" after neither/nor), G03 (too_easy). contentSha = sha256 of map-lu-v3/frozen-gram.json. MAP-LU-V3.prereg.md (40b10d2d, amendment 1 8c111ec4), freeze f127c587, renders 53dca1a0, MAP-LU-V3-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a pass: 12/12 item checks; pooled E3 pass; T2 clear (at_min(vowels) 47.9%, fw p 0.105, just above the 0.10 bar)."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 12,
+          "pilotPass": 9,
+          "easier": 7,
+          "harder": 2,
+          "meanOffsetA": -0.25,
+          "meanOffsetB": -0.17,
+          "coldOnKey": 24,
+          "deadBoth": 1,
+          "verdict": "S1-b 9/12 (bar 10) FAIL; S1-c easier 7/24 (bar <= 4) FAIL; S1-d pass. Both graders named a shortest-option tell on the two redundancy items."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 12,
+          "candidatePct": 100,
+          "control": 50,
+          "controlN": 24,
+          "margin": 50,
+          "verdict": "Key recoverability, not a leak bar (the options are the item): 100.0% vs matched live SAT SEC/ACT CSE control 50.0% (bar >= 40.0; fresh draw, 0 overlap with v2). Weak screen by design."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v3-capitalization-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v3-capitalization",
+      "contentSha": "38052e8d54818c0404044335fc1dad9fc737cada6cb7f9099e4f5e59ee342866",
+      "status": "killed",
+      "note": "8 grades 5-6 Capitalization 2x2 grids, grade 5 deliberately one notch easier than v2. FAILED S1-b (4/8, bar 7), S1-c (easier 9/16, bar 2) and S1-d (-0.63/-0.88). Grade 5 went 0/4 (8 of the 9 easier calls); grade 6 4/4. The notch overshot: v2 grade 5 ran hard, v3 grade 5 runs easy. contentSha = sha256 of map-lu-v3/frozen-cap.json. MAP-LU-V3.prereg.md (40b10d2d, amendment 1 8c111ec4), freeze f127c587, renders 53dca1a0, MAP-LU-V3-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a pass: 8/8 item checks; pooled E3 pass; T2 clear (fw p 0.72)."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 8,
+          "pilotPass": 4,
+          "easier": 9,
+          "harder": 0,
+          "meanOffsetA": -0.63,
+          "meanOffsetB": -0.88,
+          "coldOnKey": 16,
+          "deadBoth": 0,
+          "verdict": "S1-b 4/8 FAIL, S1-c easier 9/16 FAIL, S1-d FAIL. Keys 16/16 cold, 16/16 keyed."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 8,
+          "candidatePct": 100,
+          "control": 50,
+          "controlN": 24,
+          "margin": 50,
+          "verdict": "Key recoverability, not a leak bar (the options are the item): 100.0% vs matched live SAT SEC/ACT CSE control 50.0% (bar >= 40.0; fresh draw, 0 overlap with v2). Weak screen by design."
+        }
+      }
     }
   ],
   "auditedCohorts": [

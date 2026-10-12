@@ -1,0 +1,667 @@
+[
+ {
+  "id": "MMG-D12",
+  "type": "multiple_choice",
+  "prompt": "A scatter plot shows the average price of a movie ticket in a town, in dollars, for several years. A line of fit for the data is y = 0.5x + 12.4, where x is the number of years since 2016 and y is the average ticket price in dollars. According to the line of fit, what is the predicted average ticket price, in dollars, in the year 2025?",
+  "choices": [
+   "30.4",
+   "16.9",
+   "10.7",
+   "24.9"
+  ],
+  "correct_answer": "16.9",
+  "explanation": "The year 2025 is 2025 - 2016 = 9 years after 2016, so x = 9. Then y = 0.5(9) + 12.4 = 4.5 + 12.4 = 16.9. The predicted average ticket price is 16.9 dollars.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Statistics and Probability",
+  "subskill": "Predict from a line of fit with x measured from a base year",
+  "solve": "const x = 2025 - 2016; return 0.5 * x + 12.4;",
+  "distractor_rationales": [
+   {
+    "choice": "30.4",
+    "reason": "Finds x = 9 but divides by 0.5 instead of multiplying, treating 0.5x as 'x halved' the wrong way: 9 / 0.5 + 12.4 = 18 + 12.4 = 30.4."
+   },
+   {
+    "choice": "10.7",
+    "reason": "Reads 0.5x + 12.4 as 0.5(x + 12.4), adding the intercept to x before multiplying: 0.5 x 21.4 = 10.7."
+   },
+   {
+    "choice": "24.9",
+    "reason": "Uses the last two digits of the year as x (x = 25) instead of the number of years since 2016: 0.5 x 25 + 12.4 = 24.9."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "low",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "8.SP.A.3",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MMG-D11",
+  "type": "multiple_choice",
+  "prompt": "The table shows the number of sit-ups each student in two exercise groups did in one minute. The two groups have the same mean absolute deviation. The difference between the mean of Group B and the mean of Group A is how many times that mean absolute deviation?",
+  "choices": [
+   "2.5",
+   "0.5",
+   "0.4",
+   "6"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "Mean of Group A: (10 + 14 + 15 + 16 + 20) / 5 = 75 / 5 = 15. Mean of Group B: (17 + 19 + 21 + 22 + 26) / 5 = 105 / 5 = 21. The difference of the means is 21 - 15 = 6. Mean absolute deviation of Group A: the distances from 15 are 5, 1, 0, 1 and 5, which add to 12, so the MAD is 12 / 5 = 2.4. (Group B's distances from 21 are 4, 2, 0, 1 and 5, also 12 in all, so its MAD is 2.4 too.) The difference is 6 / 2.4 = 2.5 times the mean absolute deviation.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Group A",
+    "Group B"
+   ],
+   "colLabels": [
+    "Student 1",
+    "Student 2",
+    "Student 3",
+    "Student 4",
+    "Student 5"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "15",
+     "16",
+     "20"
+    ],
+    [
+     "17",
+     "19",
+     "21",
+     "22",
+     "26"
+    ]
+   ],
+   "caption": "Sit-ups in one minute"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Difference of means as a multiple of the MAD",
+  "solve": "const A = [10,14,15,16,20], B = [17,19,21,22,26]; const mean = d => d.reduce((s, x) => s + x, 0) / d.length; const mad = d => { const m = mean(d); return d.reduce((s, x) => s + Math.abs(x - m), 0) / d.length; }; return (mean(B) - mean(A)) / mad(A);",
+  "distractor_rationales": [
+   {
+    "choice": "0.5",
+    "reason": "Adds the distances from the mean (12) but forgets to divide by the number of values, so uses the total distance as the MAD: 6 / 12 = 0.5."
+   },
+   {
+    "choice": "0.4",
+    "reason": "Gets the difference 6 and the MAD 2.4 right but divides the wrong way, 2.4 / 6 = 0.4, answering how many times the difference the MAD is."
+   },
+   {
+    "choice": "6",
+    "reason": "Finds the difference of the means, 21 - 15 = 6, and stops without comparing it to the mean absolute deviation."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "7.SP.B.3",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MMG-D06",
+  "type": "multiple_choice",
+  "prompt": "The low temperatures, in degrees Celsius, in a town for 6 days in a row were -12, -6, -8, 0, 12, and -7. What was the mean low temperature, in degrees Celsius, for the 6 days?",
+  "choices": [
+   "-7.5",
+   "-3.5",
+   "-4.2",
+   "-6.5"
+  ],
+  "correct_answer": "-3.5",
+  "explanation": "Add the six temperatures. The negative ones: -12 + -6 + -8 + -7 = -33. The positive one is 12. The 0 adds nothing. Total: -33 + 12 = -21. There are 6 days (the day at 0 counts as a day), so the mean is -21 / 6 = -3.5 degrees Celsius.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Mean of a data set with negative values and a zero",
+  "solve": "const t = [-12, -6, -8, 0, 12, -7]; return t.reduce((a, b) => a + b, 0) / t.length;",
+  "distractor_rationales": [
+   {
+    "choice": "-7.5",
+    "reason": "Adds the positive 12 to the negatives as if it had the same sign (33 + 12 = 45, kept negative), so -45 / 6 = -7.5."
+   },
+   {
+    "choice": "-4.2",
+    "reason": "Leaves the 0 day out of the count, thinking a 0 does not count as a value: -21 / 5 = -4.2."
+   },
+   {
+    "choice": "-6.5",
+    "reason": "Orders the temperatures and gives the middle value, (-7 + -6) / 2 = -6.5: the median, not the mean."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.SP.B.5",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MMG-D09",
+  "type": "multiple_choice",
+  "prompt": "There are 500 students at a school. Three students each took a different random sample of 20 students at the school and asked whether they bring lunch from home. The table shows how many students in each sample said yes. Use the mean of the three sample results to estimate how many of the 500 students at the school bring lunch from home.",
+  "choices": [
+   "475",
+   "65",
+   "275",
+   "325"
+  ],
+  "correct_answer": "325",
+  "explanation": "The mean of the three sample results is (19 + 9 + 11) / 3 = 39 / 3 = 13 students out of 20. That is 13/20 = 65% of the students in a sample. Estimate for the school: 65% of 500 = 0.65 x 500 = 325 students.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Sample 1",
+    "Sample 2",
+    "Sample 3"
+   ],
+   "colLabels": [
+    "Number who said yes (out of 20)"
+   ],
+   "cells": [
+    [
+     "19"
+    ],
+    [
+     "9"
+    ],
+    [
+     "11"
+    ]
+   ],
+   "caption": "Students who bring lunch from home"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a population count from the mean of several samples",
+  "solve": "const s = [19, 9, 11]; const m = s.reduce((a, b) => a + b, 0) / s.length; return m / 20 * 500;",
+  "distractor_rationales": [
+   {
+    "choice": "475",
+    "reason": "Uses only the first sample, 19 out of 20, and ignores the other two: 19/20 of 500 = 475."
+   },
+   {
+    "choice": "65",
+    "reason": "Finds the mean count 13 correctly but reads it as 13 percent instead of 13 out of 20, and takes 13% of 500 = 65."
+   },
+   {
+    "choice": "275",
+    "reason": "Uses the median of the three samples (11) instead of the mean the stem asks for: 11/20 of 500 = 275."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "7.SP.A.2",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MMG-D07",
+  "type": "multiple_choice",
+  "prompt": "A teacher asked 13 students how many books they read over the summer. The table shows how many students gave each answer. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half, and when the number of values is odd, the median itself is not included in either half. What is the interquartile range of the 13 answers?",
+  "choices": [
+   "2",
+   "4",
+   "1",
+   "4.5"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "List the 13 answers in order: 2, 2, 2, 3, 4, 5, 6, 6, 7, 7, 7, 7, 7. The median is the 7th value, 6. The lower half is the 6 values before it: 2, 2, 2, 3, 4, 5, so the first quartile is (2 + 3) / 2 = 2.5. The upper half is the 6 values after it: 6, 7, 7, 7, 7, 7, so the third quartile is (7 + 7) / 2 = 7. The interquartile range is 7 - 2.5 = 4.5 books.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "colLabels": [
+    "Number of students"
+   ],
+   "cells": [
+    [
+     "3"
+    ],
+    [
+     "1"
+    ],
+    [
+     "1"
+    ],
+    [
+     "1"
+    ],
+    [
+     "2"
+    ],
+    [
+     "5"
+    ]
+   ],
+   "caption": "Books read over the summer"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Interquartile range from a frequency table",
+  "solve": "const v = [2,2,2,3,4,5,6,6,7,7,7,7,7]; const med = a => a.length % 2 ? a[(a.length - 1) / 2] : (a[a.length / 2 - 1] + a[a.length / 2]) / 2; return med(v.slice(7)) - med(v.slice(0, 6));",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": "Works on the 'Number of students' column as if it were the data: ordered counts 1, 1, 1, 2, 3, 5 give quartiles 1 and 3, so 3 - 1 = 2."
+   },
+   {
+    "choice": "4",
+    "reason": "Keeps the median 6 in both halves (7 values each), so Q1 = 3 and Q3 = 7, and the IQR comes out 4."
+   },
+   {
+    "choice": "1",
+    "reason": "Finds Q3 = 7 and subtracts the median 6 instead of Q1, giving only the upper part of the box: 7 - 6 = 1."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "6.SP.B.5",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MMG-D05",
+  "type": "multiple_choice",
+  "prompt": "The histogram data below show the ages, in whole years, of all the people at a park one afternoon. What percent of the people at the park were younger than 12 years old?",
+  "choices": [
+   "50",
+   "20",
+   "25",
+   "34"
+  ],
+  "correct_answer": "20",
+  "explanation": "People younger than 12 are in the 0 to 11 bar: 50 people. Altogether there are 50 + 85 + 70 + 45 = 250 people. Out of all 250 people, that is 50/250 = 1/5 = 0.20, which is 20%.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "0 to 11",
+    "12 to 23",
+    "24 to 35",
+    "36 to 47"
+   ],
+   "colLabels": [
+    "Number of people"
+   ],
+   "cells": [
+    [
+     "50"
+    ],
+    [
+     "85"
+    ],
+    [
+     "70"
+    ],
+    [
+     "45"
+    ]
+   ],
+   "caption": "Ages of people at the park (years)"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Statistics and Probability",
+  "subskill": "Percent of a data set from a histogram",
+  "solve": "const total = 50 + 85 + 70 + 45; return 50 / total * 100;",
+  "distractor_rationales": [
+   {
+    "choice": "50",
+    "reason": "Reads the count of 50 people as the answer, reporting the number in the bar instead of the percent."
+   },
+   {
+    "choice": "25",
+    "reason": "Compares the children with everyone else, 50 out of 200 (part to part), instead of 50 out of all 250 people."
+   },
+   {
+    "choice": "34",
+    "reason": "Uses the bar whose label contains 12 (the 12 to 23 bar, 85 people), so 85/250 = 34%."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "6.SP.B.5",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MMG-D15",
+  "type": "multiple_choice",
+  "prompt": "A survey asked 96 students two questions: Do you have a curfew? Do you do chores at home? Of the 96 students, 3/8 have a curfew. Of the students who have a curfew, 3/4 do chores at home. In all, 35 of the 96 students do chores at home. How many of the students who do NOT have a curfew also do NOT do chores at home?",
+  "choices": [
+   "33",
+   "25",
+   "8",
+   "52"
+  ],
+  "correct_answer": "52",
+  "explanation": "Make a two-way table. Curfew: 3/8 of 96 = 36 students, so 96 - 36 = 60 have no curfew. Curfew and chores: 3/4 of 36 = 27. Chores in all is 35, so no curfew and chores: 35 - 27 = 8. No curfew and no chores: 60 - 8 = 52 students.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Complete a two-way table from fractions and a total",
+  "solve": "const N = 96, C = N * 3 / 8, CC = C * 3 / 4, T = 35; return (N - C) - (T - CC);",
+  "distractor_rationales": [
+   {
+    "choice": "33",
+    "reason": "Subtracts the curfew group's chores count, 27, from the no-curfew row total, 60 - 27 = 33, mixing up which row's chores count belongs there."
+   },
+   {
+    "choice": "25",
+    "reason": "Subtracts the whole chores column, 35, from the no-curfew row total, 60 - 35 = 25, as if every student who does chores had no curfew."
+   },
+   {
+    "choice": "8",
+    "reason": "Finds the no-curfew students who DO chores (35 - 27 = 8) and stops, giving the wrong cell of the no-curfew row."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "high",
+   "rit_band_target": "RIT 230-239",
+   "ccss": "8.SP.A.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MMG-D13",
+  "type": "multiple_choice",
+  "prompt": "A typing teacher made a scatter plot of x, the number of minutes each student practiced typing per day, and y, the student's typing speed in words per minute. A line of fit for the data is y = 0.8x + 6. According to the line of fit, how many minutes per day of practice go with a typing speed of 48 words per minute?",
+  "choices": [
+   "52.5",
+   "60",
+   "44.4",
+   "33.6"
+  ],
+  "correct_answer": "52.5",
+  "explanation": "A typing speed of 48 words per minute is a y-value, so set y = 48 and solve for x: 0.8x + 6 = 48, so 0.8x = 42, and x = 42 / 0.8 = 52.5. The line of fit predicts 52.5 minutes of practice per day.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Statistics and Probability",
+  "subskill": "Use a line of fit backward: find x for a given y",
+  "solve": "return (48 - 6) / 0.8;",
+  "distractor_rationales": [
+   {
+    "choice": "60",
+    "reason": "Ignores the intercept 6 and divides the speed by the slope as if the line went through the origin: 48 / 0.8 = 60."
+   },
+   {
+    "choice": "44.4",
+    "reason": "Treats 48 as the x-value and substitutes it into the equation: 0.8 x 48 + 6 = 44.4, which is a typing speed, not minutes of practice."
+   },
+   {
+    "choice": "33.6",
+    "reason": "Subtracts the intercept correctly (48 - 6 = 42) but then multiplies by the slope instead of dividing: 42 x 0.8 = 33.6."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.SP.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MMG-D14",
+  "type": "multiple_choice",
+  "prompt": "Students in a school were asked whether they have a cell phone and whether they ride the bus to school. The table shows the results, where each entry is a percent of ALL the students surveyed. Of the students who have a cell phone, what percent ride the bus to school?",
+  "choices": [
+   "30",
+   "32",
+   "40",
+   "75"
+  ],
+  "correct_answer": "30",
+  "explanation": "Students with a cell phone make up 24% + 56% = 80% of everyone surveyed. Of those, 24% of everyone ride the bus. So the percent of phone owners who ride the bus is 24 / 80 = 0.3 = 30%.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Has a cell phone",
+    "Does not have a cell phone"
+   ],
+   "colLabels": [
+    "Rides the bus",
+    "Does not ride the bus"
+   ],
+   "cells": [
+    [
+     "24%",
+     "56%"
+    ],
+    [
+     "8%",
+     "12%"
+    ]
+   ],
+   "caption": "Percent of all students surveyed"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Row relative frequency from a table of percents of the whole",
+  "solve": "const p = 24, q = 56; return 100 * p / (p + q);",
+  "distractor_rationales": [
+   {
+    "choice": "32",
+    "reason": "Ignores the condition 'of the students who have a cell phone' and adds the bus column: 24% + 8% = 32% of all students ride the bus."
+   },
+   {
+    "choice": "40",
+    "reason": "Does the row calculation correctly but on the wrong row, the students WITHOUT a phone: 8 / (8 + 12) = 40%."
+   },
+   {
+    "choice": "75",
+    "reason": "Divides by the bus column total instead of the phone row total, 24 / 32 = 75%, which answers 'of the bus riders, what percent have a phone?'"
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "high",
+   "rit_band_target": "RIT 230-239",
+   "ccss": "8.SP.A.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MMG-D04",
+  "type": "multiple_choice",
+  "prompt": "A science class put water in some beakers. The table shows the line plot data: each row gives an amount of water, in liters, and the number of beakers that held that amount. All the water is poured together and then shared equally among all of the beakers. How many liters of water will be in each beaker?",
+  "choices": [
+   "1 3/32",
+   "7/16",
+   "3/8",
+   "3/20"
+  ],
+  "correct_answer": "7/16",
+  "explanation": "First find the total amount of water. 1 beaker x 1/8 = 1/8, 2 beakers x 1/4 = 4/8, 4 beakers x 3/8 = 12/8, and 3 beakers x 3/4 = 18/8. Total: 1/8 + 4/8 + 12/8 + 18/8 = 35/8 liters. There are 1 + 2 + 4 + 3 = 10 beakers. Sharing equally: 35/8 / 10 = 35/8 x 1/10 = 35/80 = 7/16 liter in each beaker.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1/8",
+    "1/4",
+    "3/8",
+    "3/4"
+   ],
+   "colLabels": [
+    "Number of beakers"
+   ],
+   "cells": [
+    [
+     "1"
+    ],
+    [
+     "2"
+    ],
+    [
+     "4"
+    ],
+    [
+     "3"
+    ]
+   ],
+   "caption": "Water in each beaker (liters)"
+  },
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Statistics and Probability",
+  "subskill": "Equal share of line-plot fractional data",
+  "solve": "const F = (v, D) => { const g = (a, b) => b ? g(b, a % b) : a; const n = Math.round(v * D); const w = Math.floor(n / D); let r = n % D, d = D; const k = g(r, d) || 1; r /= k; d /= k; return r ? (w ? w + ' ' + r + '/' + d : r + '/' + d) : String(w); }; return F((1*1/8 + 2*1/4 + 4*3/8 + 3*3/4) / (1+2+4+3), 80);",
+  "distractor_rationales": [
+   {
+    "choice": "1 3/32",
+    "reason": "Finds the correct total 35/8 but divides by the 4 rows of the table instead of the 10 beakers: 35/32 = 1 3/32."
+   },
+   {
+    "choice": "3/8",
+    "reason": "Averages the four amounts in the table, (12/8) / 4 = 3/8, treating the four rows as the data instead of the ten beakers."
+   },
+   {
+    "choice": "3/20",
+    "reason": "Adds each listed amount once (1/8 + 1/4 + 3/8 + 3/4 = 12/8), ignoring how many beakers held it, then divides by the 10 beakers: 12/80 = 3/20."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": "Measurement and Data",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.MD.B.2",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MMG-D03",
+  "type": "multiple_choice",
+  "prompt": "On Monday, Sam ran 4 laps around a track. One lap is 400 meters. On Tuesday, Sam ran 2.45 kilometers. How many kilometers did Sam run on the two days in all?",
+  "choices": [
+   "2.85",
+   "2.61",
+   "4.05",
+   "18.45"
+  ],
+  "correct_answer": "4.05",
+  "explanation": "On Monday Sam ran 4 x 400 = 1,600 meters. There are 1,000 meters in 1 kilometer, so 1,600 meters = 1,600 / 1,000 = 1.6 kilometers. In all: 1.6 + 2.45 = 4.05 kilometers. (Line up the decimal points: 1.60 + 2.45 = 4.05.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Statistics and Probability",
+  "subskill": "Combine meters and kilometers with decimals",
+  "solve": "const mon = 4 * 400 / 1000; return Math.round((mon + 2.45) * 100) / 100;",
+  "distractor_rationales": [
+   {
+    "choice": "2.85",
+    "reason": "Converts one lap, 400 m = 0.4 km, and forgets that Sam ran 4 laps: 0.4 + 2.45 = 2.85."
+   },
+   {
+    "choice": "2.61",
+    "reason": "Gets 1.6 but adds it to 2.45 by lining up the last digits (2.45 + 0.16), the classic decimal-alignment slip: 2.61."
+   },
+   {
+    "choice": "18.45",
+    "reason": "Divides 1,600 meters by 100 instead of 1,000 (mixing up meters-to-kilometers with centimeters-to-meters): 16 + 2.45 = 18.45."
+   }
+  ],
+  "map": {
+   "area": "data",
+   "area_25": "Measurement and Data",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.MD.A.1",
+   "author_difficulty": "medium"
+  }
+ }
+]
