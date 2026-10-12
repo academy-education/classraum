@@ -254,7 +254,6 @@ function selftest() {
 /* ------------------------------------------------------------------ commands */
 const cmd = process.argv[2]
 const isMain = import.meta.url === `file://${process.argv[1]}`
-if (isMain) await main()
 
 async function main() {
   if (cmd === '--selftest') { selftest(); return }
@@ -593,3 +592,6 @@ async function cmdInsert(commit) {
   const { data: ins, error: e3 } = await c.from('study_item_bank').insert(rows).select('id,verified,cohort,difficulty,domain'); if (e3) die(e3.message)
   console.log(`INSERTED ${ins.length} rows, verified=${[...new Set(ins.map(r => r.verified))].join(',')}`)
 }
+
+// run last: main() reaches module-scope consts declared below the command table (TDZ fix 2026-10-12, after the prereg; no bar changed)
+if (isMain) await main()
