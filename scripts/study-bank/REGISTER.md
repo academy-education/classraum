@@ -190,6 +190,12 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-12** — **ACT ENGLISH v9 CO-FOUNDER SITTING IN: CSE CLEAN, PoW IN THE DEAD ZONE. NOTHING FLIPS (prereg `5ad821dc`); ACT English stays at 7 forms.** Run `act-en9-cofounder-2026-10-10`, 40/40 answered, 1.25 min/item over 50 min, 0 abstentions, all 40 verdicts "only defensible".
+  - **CSE:** 9/24 = 37.5% vs 25.0% control. Cutoff CLEAN <= 9: CLEAN, on the bar.
+  - **PoW:** 5/12 = 41.7% vs 25.0%. Dead zone 5-7: per the prereg a SECOND READER sits a fresh PoW draw (27 unseen staged PoW rows); nothing flips until then.
+  - **KoL:** 1/4, report only.
+  - One note (PoW): "the most defensible choice, though its reasoning is a little overstated".
+  - The 130 `act-english-v9` rows stay `verified=false`. Owner decision needed: who the second reader is.
 - **2026-10-11** — **SSAT READING DRAFT 1 STAGED FOR THE CO-FOUNDER'S EDIT: 12 AI-DRAFTED PASSAGES x 6 = 72 ITEMS INSERTED `verified=false`, COHORT `ssat-reading-draft-1`, `verify_meta.draft` ON EVERY ROW. DRAWABLE SSAT READING UNCHANGED AT 150.** The owner's route: AI drafts, the co-founder fixes giveaway choices in the Drafts tab (`cc3552a2`), our checks run on his edited version, then a sitting.
   - **Authoring:** 3 authors on disjoint genres (fiction 2, poetry 2, memoir 2, essay 2, history 2, science 2); single world; WV6 lure brief, WV12/13 author-form attitude, separate-sense vocabulary, naturalness tells banned. Mechanical pre-check 0 problems; key slots balanced 15/15/14/14/14. The two poems are 281 and 265 words, under the requested 300 floor (verse allowed 220-400 in the brief).
   - **Options-only (no passage, no stem; diagnostic, not a gate):** candidate non-vocabulary **83.9%** (151/180) vs in-run live control **20.0%** (18/90); vocabulary 36.1%. Main idea 36/36, inference 35/36, purpose 33/36. 43 of 60 candidate picks the solvers called "no signal" hit the key (control 14/75): the leak exceeds the cues they can name. The cue they did name most: the keys tell one consistent story across the set (the PD v2 channel).
