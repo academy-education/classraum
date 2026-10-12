@@ -56,12 +56,23 @@ const canonGraphic = g => {
 const isBuildASentence = it =>
   it.type === 'arrange_words' || it.item_type === 'arrange_words' || /^\s*\[build a sentence\]/i.test(String(it.prompt ?? ''))
 
+/*
+ * WHOLE-SENTENCE ITEMS (2026-10-12, map-lu-mech-v1). "Which sentence is
+ * punctuated correctly?" is a fixed instruction: the item is its four full
+ * sentences, with no passage. Like Build a Sentence, two such items differ by
+ * their target, so the key adds the correct sentence. Opt-in by an explicit
+ * `stem_is_instruction: true` on the item (stored in item JSON, so live rows
+ * key the same way); a prompt regex would silently re-key other families.
+ */
+const isInstructionStem = it => it?.stem_is_instruction === true
+
 /** The duplicate key of one item, or null when it has no stem. */
 export function stemKey(it) {
   const p = norm(it?.prompt)
   if (!p) return null
   const parts = [p, norm(it.passage), canonGraphic(it.graphic)]
   if (isBuildASentence(it)) parts.push(norm(it.correct_answer).replace(/\s*\|\s*/g, ' '))
+  else if (isInstructionStem(it)) parts.push(norm(it.correct_answer))
   return createHash('sha1').update(parts.join('\u0001')).digest('hex')
 }
 
@@ -240,6 +251,12 @@ function selfTest() {
   const b2 = { id: 'b2', prompt: '[Build a Sentence] Tap the words in order.', correct_answer: 'The dog | ran' }
   if (findDuplicates([b1, b2]).length) fail('Build a Sentence with different targets flagged')
   if (findDuplicates([b1, { ...b2, correct_answer: 'The cat|sat' }]).length !== 1) fail('Build a Sentence with same target not caught')
+  // 5b. whole-sentence items: fixed instruction, differ by the correct sentence (opt-in flag only)
+  const w1 = { id: 'w1', stem_is_instruction: true, prompt: 'Which sentence is punctuated correctly?', correct_answer: 'We left, and Sam stayed.' }
+  const w2 = { id: 'w2', stem_is_instruction: true, prompt: 'Which sentence is punctuated correctly?', correct_answer: 'After lunch, we left.' }
+  if (findDuplicates([w1, w2]).length) fail('whole-sentence items with different targets flagged')
+  if (findDuplicates([w1, { ...w2, correct_answer: 'We  left, and Sam stayed.' }]).length !== 1) fail('whole-sentence items with the same target not caught')
+  if (findDuplicates([{ ...w1, stem_is_instruction: undefined }, { ...w2, stem_is_instruction: undefined }]).length !== 1) fail('the flag is not opt-in: unflagged fixed stems no longer collide')
   // 6. exemption: a shared group (raw ids in one batch, or a live group id)
   if (findDuplicates([{ ...A, set_id: 's1' }, { ...Atwin, set_id: 's1' }]).length) fail('shared set_id not exempt')
   if (findDuplicates([{ ...A, set_id: 's1' }, { ...Atwin, set_id: 's2' }]).length !== 1) fail('different set_ids exempted')
@@ -282,7 +299,7 @@ function selfTest() {
     if (go.dups) fail('gateBatch refused a clean item (or matched across families)')
   } finally { unlinkSync(fDup); unlinkSync(fOk) }
   if (bad) { console.error(`${bad} self-test failure(s)`); process.exit(1) }
-  console.log('stem-duplicates self-test: 19 checks (stem twin, normalisation, passage/graphic/BaS discrimination, group exemption, live, nested sets, clusters, gateBatch refuses/passes) — OK')
+  console.log('stem-duplicates self-test: 22 checks (stem twin, normalisation, passage/graphic/BaS/whole-sentence discrimination, group exemption, live, nested sets, clusters, gateBatch refuses/passes) — OK')
 }
 
 // The CLI body runs inside an async IIFE, not top-level await: jest imports

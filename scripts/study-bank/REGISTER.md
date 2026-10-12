@@ -190,6 +190,34 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-12** — **MAP LAUNCH PLAN + MAP-LU-MECH-V1 (first MAP batch eligible to insert, staged): FAILS S1-b AND S1-c. NOTHING INSERTED.** Plan: `MAP-LAUNCH-PLAN.md` (`2620d984`). Prereg `99ef2ddc` (before any item), freeze `d44bec26`, renders `a7811152` (before any solver or grader).
+  - **Re-banding, measured** (`map-reband-count.mjs`, read-only, paged over 9,635 live rows, selftest 8/8; the strand mapping is a judgement, written out in `classify()`). Everything lands in the Upper band (grades 9-11), per §13.
+    - Language Usage: Writing 424, Grammar 378, Punctuation 238, Capitalization 0, Spelling 0. That is 18 forms at 13 per area, or 0 if Mechanics must carry Capitalization and Spelling.
+    - Math: OA 1,757, Geometry 626, Stats 528, Number Systems 244, plus 206 untagged ACT IES. That is 24 forms at 10 per area.
+    - Reading: Informational 602, Vocabulary 105, Literary 40, plus 101 untagged ISEE (no genre field). That is 3 forms.
+    - Earlier the bank quoted Punctuation at "~56". It is 238 now: SAT SEC grew, and fragments are now counted as grammar.
+  - **Batch:** 28 authored, all 2x2 grids, grades 5-8. Two teacher raters each gave 82/84 yes; their union NO was 2 options on 1 item. That item got one rewrite, which re-rated 3/3 yes, so 0 were dropped. 20 items got an E1 readability trim. Frozen: 8 Capitalization, 8 Punctuation, 8 Grammar.
+  - **Bars:**
+    - S1-a exact: PASS
+    - **S1-b pilot-pass 17/24 (bar 20): FAIL**
+    - **S1-c easier 15/48 (bar 8): FAIL**
+    - S1-d offset −0.42/−0.46: pass
+    - S2 options-only 100.0% vs matched live SEC/CSE control 77.8%: pass. This is a weak screen by design, because the option set is the item.
+    - Key slots 6/6/6/6: pass.
+  - **Keys were right everywhere:** 48/48 cold picks on key, 24/24 keyed "correct", no accepted alternative.
+  - **Holds:** 5 too-easy items (4 Capitalization or possessive), 3 dead-by-both options, and one cold second-defensible ("wish I was").
+  - **Finding 1 (Capitalization):** 10 of the 15 `easier` calls are Capitalization. CCSS has no capitalization rule after grade 4, so Capitalization is a Lower-band strand (grades 5-6). Grammar fit its grade on 14/16 judgements.
+  - **Finding 2 (the fix built the next tell):** the new T1 rule required one under-cap and one over-cap site. That made the key the "mixed" option in every Capitalization grid, and both graders named it unprompted: "the option that capitalizes or punctuates one site but not the other".
+    - Exact count, dropping count-extreme options and picking among the rest: Capitalization 50.0% (8/8 keys mixed), Punctuation 37.5%, Grammar 28.1%, against 25% chance.
+    - Without T1 the opposite tell holds: two under-cap sites make the key the uniquely most-capitalized option.
+    - So every binary-site 2x2 is either "extreme-key" or "mixed-key", and options-only cannot see it (100% by rule knowledge).
+  - **Protocol:** grader b's session context included the auto-attached git status, so it had read the prereg commit message, "T1 (no count-axis key extreme)". It linked the pattern to that phrase, and said so unprompted. Grader a had no such context and found the same tell. **Prereg commit messages reach subagents: never describe an anti-tell rule there in a way that hands over the tell.**
+  - **Tooling:**
+    - `stem-duplicates.mjs` now keys `stem_is_instruction: true` items on the correct sentence. Without it, a fixed instruction stem refuses every whole-sentence batch. Selftest 22, break-tested.
+    - `insert-map-lu.mjs` is a gated staged inserter, unused.
+    - `map-lu-mech-v1.mjs --selftest` break-tests every bar.
+  - **Next:** Capitalization at grades 5-6 only; a site construction with no binary count rule, with the mixed-key and extreme-key rates measured before freeze; an E1 limit that fits grade 8; and Upper Mechanics = Punctuation plus a Spelling batch (plan Q10 revised).
+  - Evidence: `MAP-LU-MECH-V1{.prereg,-RESULT,-BRIEF}.md`, `map-lu-mech-v1/`, ledger `map-lu-mech-v1-2026-10-12` (killed).
 - **2026-10-12** — **MAP READING DRAFT 1 STAGED FOR THE CO-FOUNDER'S EDIT: 12 AI-DRAFTED PASSAGES x 4 = 48 FOUR-CHOICE ITEMS INSERTED `verified=false`, `family='map'`, `section='reading'`, COHORT `map-reading-draft-1`, `verify_meta.draft` ON EVERY ROW. MAP IS NOT SHIPPED; map/reading 0 DRAWABLE, 48 STAGED.** The owner moved B11 onto the SSAT route ("MAP test needs to keep going"): AI drafts, the co-founder fixes giveaway choices in the Drafts tab, our checks run on his version, then a sitting.
   - **Screen:** the Drafts tab is now a closed family allowlist, with SSAT reading (5 choices, unchanged; its tests pass unchanged) and MAP reading (`map-reading-draft-%`, 4 choices). Each passage shows a test chip, and a filter appears once two families have drafts. The editor and the server both enforce the family's choice count. A group mixing families is refused (403). Still never sets `verified`/`archived`.
   - **family/section:** nothing in the code decides them. They follow the MAP pilot batch files (`family: 'map'`, `map_subject: 'reading'`), and `MAP-LAUNCH-PLAN.md` §5 adopts the same values. If the launch ever changes them, change the allowlist, the contract and these rows together.

@@ -1,0 +1,113 @@
+{
+ "verdict": "FAIL",
+ "passIds": [
+  "MLM1-24",
+  "MLM1-08",
+  "MLM1-20",
+  "MLM1-06",
+  "MLM1-16",
+  "MLM1-14",
+  "MLM1-03",
+  "MLM1-25",
+  "MLM1-13",
+  "MLM1-12",
+  "MLM1-21",
+  "MLM1-22",
+  "MLM1-05",
+  "MLM1-19",
+  "MLM1-17",
+  "MLM1-11",
+  "MLM1-02"
+ ],
+ "holds": [
+  "MLM1-15: a too_easy; b too_easy",
+  "MLM1-04: a too_easy",
+  "MLM1-10: dead by both B",
+  "MLM1-26: a too_easy; b too_easy; dead by both B",
+  "MLM1-07: b too_easy",
+  "MLM1-01: a too_easy; b too_easy; dead by both A",
+  "MLM1-23: a 2nd D"
+ ],
+ "oo": {
+  "cand": 100,
+  "ctl": 77.77777777777777,
+  "unanCand": 24,
+  "unanCtl": 19,
+  "unanKeyCand": 24,
+  "flags": []
+ },
+ "ws": {
+  "pass": 17,
+  "easier": 15,
+  "harder": 3,
+  "ma": -0.4166666666666667,
+  "mb": -0.4583333333333333,
+  "coldOnKey": 48,
+  "deadBoth": 3,
+  "byStrand": {
+   "gram": {
+    "n": 8,
+    "pass": 6
+   },
+   "punct": {
+    "n": 8,
+    "pass": 6
+   },
+   "cap": {
+    "n": 8,
+    "pass": 5
+   }
+  },
+  "byGrade": {
+   "5": {
+    "n": 7,
+    "pass": 5
+   },
+   "6": {
+    "n": 7,
+    "pass": 6
+   },
+   "7": {
+    "n": 7,
+    "pass": 4
+   },
+   "8": {
+    "n": 3,
+    "pass": 2
+   }
+  }
+ },
+ "exact": {
+  "ok": true,
+  "longest": 1,
+  "shortest": 1,
+  "t1": {
+   "cap": {
+    "n": 8,
+    "ext": 0
+   },
+   "punct": {
+    "n": 8,
+    "ext": 0
+   },
+   "gram": {
+    "n": 8,
+    "ext": 2
+   }
+  }
+ },
+ "slots": {
+  "C": 6,
+  "A": 6,
+  "B": 6,
+  "D": 6
+ },
+ "bars": {
+  "b": false,
+  "c": false,
+  "d": true,
+  "oo": true,
+  "ooValid": true,
+  "slot": true
+ }
+}

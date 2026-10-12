@@ -29,10 +29,11 @@ instructional area. It shows **no RIT, no percentile and no band**.
 
 **What blocks it, in order:**
 
-1. **Capitalization and Spelling are 0 in the bank.** A Language Usage form
-   without them misrepresents the Mechanics area (MAP-RESEARCH §12). Both are
-   the cheapest items to author. The agent route has held for Mechanics
-   twice (§17), and `map-lu-mech-v1` (§7) tests it again at grades 5-8.
+1. **Spelling (and, below grade 7, Capitalization) is 0 in the bank.** A
+   Language Usage form without them misrepresents the Mechanics area
+   (MAP-RESEARCH §12). They are the cheapest items to author.
+   `map-lu-mech-v1` (§7) got every key right but failed on difficulty, and
+   it showed that Capitalization cannot be targeted above about grade 6.
 2. **The code wiring.** About 17 per-family switches, the same set SSAT/ISEE
    needed (§5). There is also one design question with no precedent: a
    re-banded item is a SAT/ACT row (§5.3).
@@ -146,8 +147,8 @@ failed and the register says a person writes or selects.
 
 | strand | Upper (9-11) | Middle (7-8) | Lower (5-6) | route |
 |---|---|---|---|---|
-| Capitalization | **author ~30** (0 held) | author | author | **Agent.** Mechanics held twice: pilot 3 9/10, pilot 4 8/10. `map-lu-mech-v1` covers gr 5-8 |
-| Spelling | **author ~30** | author | author | **Agent**, with the macOS spellchecker E4 caveat (§17): some commonest misspellings pass the dictionary and cannot be distractors |
+| Capitalization | **not targeted** (no grade 9-11 standard) | a few, at most | author | **Agent.** Pilots 3 and 4 held 9/10 and 8/10, but `map-lu-mech-v1` found 10 of 15 `easier` calls on Capitalization: target it at grades 5-6 (§7) |
+| Spelling | **author ~20** | author | author | **Agent**, with the macOS spellchecker E4 caveat (§17): some commonest misspellings pass the dictionary and cannot be distractors |
 | Punctuation | re-band 238 | author | author | **Agent** (2x2 grid, E9) |
 | Grammar and Usage | re-band 378 | author | author | **Agent, partly.** Pilot 4 usage held 3/8; `map-lu-mech-v1` tests a 2x2-grid version |
 | Writing: Purpose and Audience | re-band 424 | author | author | **Unproven.** Pilot 4 writing items played easy. Run a small pilot before committing |
@@ -172,8 +173,8 @@ Author ~30% over these targets for gate losses. Recent batches lose 15-40%.
 
 1. **now** — `map-lu-mech-v1`: 24 grade 5-8 Mechanics and grammar items
    through the full gate, staged (§7).
-2. **now** — An Upper-level Capitalization and Spelling batch. Same method,
-   about 30 items. This unblocks LU Upper.
+2. **now** — An Upper-level Spelling batch (about 20 items; Capitalization
+   is a Lower-band strand, §7). This unblocks LU Upper.
 3. after Q1/Q2 — Code wiring for `family='map'` (§5). A test pins the
    no-band rule.
 4. after Q8 — A person tags the 101 ISEE reading rows as literary or
@@ -326,10 +327,12 @@ Each is a question with a recommendation. Q1, Q2, Q5 and Q8 gate building.
    or require 4-item passage sets?** *Recommend passage sets for
    Literary/Informational and single items for Vocabulary only.* Decide
    before Reading, not before LU or Math.
-10. **Mechanics at launch: block LU Upper until Capitalization and Spelling
-    exist, or launch punctuation-only with a disclosure?** *Recommend
-    block.* The Upper Capitalization and Spelling batch is about 30 items
-    and the cheapest work in this plan.
+10. **Mechanics at launch: block LU Upper until Spelling exists, or launch
+    punctuation-only with a disclosure?** *Recommend block until an Upper
+    Spelling batch (~20 items) clears.* Revised after `map-lu-mech-v1`
+    (§7): Capitalization has no grade 9-11 standard, so Upper Mechanics
+    should be Punctuation plus Spelling. Capitalization appears in the
+    Middle and Lower levels.
 11. **Disclaimer and naming:** "MAP-style practice", with NWEA/HMH
     non-affiliation on every MAP screen? *Recommend yes* (MAP-RESEARCH §8:
     the industry pattern, and the one that keeps the trademark exposure
@@ -339,5 +342,32 @@ Each is a question with a recommendation. Q1, Q2, Q5 and Q8 gate building.
 
 ## 7. First authoring batch: `map-lu-mech-v1` (result)
 
-Pre-registered in `MAP-LU-MECH-V1.prereg.md`. Result: see
-`MAP-LU-MECH-V1-RESULT.md` and REGISTER §5 (2026-10-12).
+Pre-registered in `MAP-LU-MECH-V1.prereg.md`. Full result in
+`MAP-LU-MECH-V1-RESULT.md`.
+
+**FAIL, nothing inserted.**
+
+**Keys were right everywhere:** 48/48 cold picks on key, 24/24 keyed
+"correct", and options-only found no unanimous non-key pick.
+
+**It failed on difficulty:**
+- pilot-pass 17/24 (bar 20)
+- `easier` 15/48 (bar 8)
+
+10 of the 15 `easier` calls are Capitalization, because CCSS has no
+capitalization rule after grade 4. Grammar fit its grade on 14/16
+judgements.
+
+**Its new count-balance rule (T1) created a cross-item tell:** in a 2x2 grid
+the key became the "mixed" option. On Capitalization that is worth 50%
+against 25% chance. Both graders found it, and it was confirmed by exact
+count.
+
+**What this changes in the plan:**
+- **Capitalization is a Lower-band strand.** Target it at grades 5-6 only.
+- **Q10 changes.** The Upper Mechanics area should be served by punctuation
+  (238 re-banded) plus Spelling, not by grade 9-11 Capitalization, which
+  has no standard to anchor to.
+- **The next Mechanics batch** changes the site construction (no binary
+  count-balance rule) and measures the mixed-key and extreme-key rates
+  exactly before freeze.

@@ -8318,6 +8318,53 @@
           "verdict": "Two graders, key withheld, grade and target band shown: both picked the key on 48/48; flags recorded per row in grader_flags. Easier-than-band on 42/96 judgements (harder 1). Four mechanical passage fixes before insert (P08 logic connective, P12 name order and count, P07 duplicate name; no choice or stem touched). Risk high 41 / med 4 / low 3."
         }
       }
+    },
+    {
+      "id": "map-lu-mech-v1-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-mech-v1",
+      "contentSha": "1ec21b078d075b55d2abf35d69757fe270f50b649878f34b154aa27f089929d9",
+      "status": "killed",
+      "note": "First MAP batch eligible to insert (staged). 24 grades 5-8 Language Usage items (Capitalization 8, Punctuation 8, Grammar 8), every item a 2x2 grid. FAILED pre-registered S1-b (17/24, bar 20) and S1-c (easier 15/48, bar 8); nothing inserted. Keys 48/48 cold on key, 24/24 keyed correct. Both graders named a cross-item tell created by the batch's own T1 count-balance rule: the key is the mixed option (Capitalization 8/8, rule-free heuristic 50% vs 25%). contentSha = sha256 of map-lu-mech-v1.batch.json (the frozen 24). Elimination stage = exact no-rule-knowledge probes E7+T1 (no withheld source exists for whole-sentence items). MAP-LU-MECH-V1.prereg.md, MAP-LU-MECH-V1-RESULT.md; REGISTER section 5, 2026-10-12.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: all 24 pass E1 E5 E6 E7 E9 G (2x2 grid) and grade/ccss match; E3 key uniquely longest 1/24, shortest 1/24; T1 cap 0/8 punct 0/8 gram 2/8."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 24,
+          "pilotPass": 17,
+          "easier": 15,
+          "harder": 3,
+          "meanOffsetA": -0.42,
+          "meanOffsetB": -0.46,
+          "coldOnKey": 48,
+          "deadBoth": 3,
+          "verdict": "Two Claude graders, cold then keyed. S1-b pilot-pass c1-c5 17/24 (bar >= 20) FAIL; S1-c easier 15/48 (bar <= 8) FAIL, harder 3/48; S1-d -0.42/-0.46 pass. Keys 48/48 cold, 24/24 keyed correct, no accepted alternative. Easier calls: Capitalization 10, Punctuation 3, Grammar 2."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 24,
+          "candidatePct": 100,
+          "control": 77.8,
+          "controlN": 24,
+          "margin": 22.2,
+          "verdict": "Pre-registered as key recoverability, not a leak bar (the option set is the item): candidate >= control - 10 with control >= 25%. 100.0% (24/24 unanimous on key) vs matched live SAT SEC/ACT CSE control 77.8%. Weak screen by design; blind to the mixed-key tell."
+        },
+        "elimination": {
+          "passed": false,
+          "verdict": "Registered exact probes passed (E7 no unique medoid 0/24; T1 extremes within bar), but the T1 rule itself produced a mixed-key tell, measured exactly after both graders named it: drop count extremes -> Capitalization 50.0%, Punctuation 37.5%, Grammar 28.1% vs 25% chance. Recorded as failed: the registered probe could not see the tell its own rule created."
+        },
+        "tells": {
+          "passed": false,
+          "verdict": "E3 and key slots (6/6/6/6) pass; the cross-item mixed-key tell (named by both graders independently; grader b had also seen the prereg commit message via session git status) is a tell."
+        }
+      }
     }
   ],
   "auditedCohorts": [
