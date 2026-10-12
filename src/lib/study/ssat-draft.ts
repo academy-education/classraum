@@ -1,7 +1,8 @@
 /**
- * SSAT reading DRAFTS — the pure half of /admin/bank-qc?tab=drafts.
+ * Reading DRAFTS — the pure half of /admin/bank-qc?tab=drafts.
  *
- * The owner's method (2026-10-11): an AI drafts SSAT reading passage sets,
+ * The owner's method (2026-10-11 for SSAT reading, 2026-10-12 for MAP
+ * reading): an AI drafts reading passage sets,
  * the co-founder spends ~10 minutes per passage fixing giveaway answer
  * choices in an edit screen, and our checks run afterwards. The data
  * contract is scripts/study-bank/SSAT-DRAFT-EDIT-CONTRACT.md; another
@@ -18,13 +19,44 @@
  *   - a plan never contains `verified` or `archived` (drafts stay staged;
  *     the assembler ignores verified=false rows)
  *   - a plan touches only rows that pass isDraftRow
+ *
+ * Draft FAMILIES are a closed allowlist (DRAFT_FAMILIES). A row is a draft
+ * only if its family, section AND cohort prefix all match ONE entry; a
+ * passage group must be all drafts of one family. The SSAT entry is the
+ * original contract unchanged (5 choices); MAP reading takes 4, matching
+ * the real MAP and every MAP pilot.
  */
 import { createHash } from 'crypto'
 
+export type DraftFamilyKey = 'ssat-reading' | 'map-reading'
+
+export interface DraftFamily {
+  key: DraftFamilyKey
+  label: string
+  family: string
+  section: string
+  cohortPrefix: string
+  /** The PostgREST `like` pattern for the prefix. */
+  cohortLike: string
+  choiceCount: number
+}
+
+export const DRAFT_FAMILIES: readonly DraftFamily[] = Object.freeze(([
+  { key: 'ssat-reading', label: 'SSAT reading', family: 'ssat', section: 'reading', cohortPrefix: 'ssat-reading-draft-', cohortLike: 'ssat-reading-draft-%', choiceCount: 5 },
+  // MAP is not a shipped family. family/section follow the MAP pilot batch
+  // files (family 'map', map_subject 'reading'); nothing else decides them.
+  { key: 'map-reading', label: 'MAP reading', family: 'map', section: 'reading', cohortPrefix: 'map-reading-draft-', cohortLike: 'map-reading-draft-%', choiceCount: 4 },
+] as DraftFamily[]).map(f => Object.freeze(f)))
+
+/** The SSAT entry's values, kept under their original names. */
 export const DRAFT_COHORT_PREFIX = 'ssat-reading-draft-'
 /** The PostgREST `like` pattern for the same prefix. */
 export const DRAFT_COHORT_LIKE = 'ssat-reading-draft-%'
 export const DRAFT_CHOICE_COUNT = 5
+
+export function draftFamilyByKey(key: unknown): DraftFamily | null {
+  return DRAFT_FAMILIES.find(f => f.key === key) ?? null
+}
 
 export type DraftStatus = 'awaiting_edit' | 'edited' | 'skipped'
 export type DraftRisk = 'high' | 'med' | 'low'
@@ -69,11 +101,19 @@ export interface DraftRow {
   verify_meta: Record<string, unknown> | null
 }
 
+/**
+ * The allowlisted family whose family, section AND cohort prefix this row
+ * matches, or null. Says nothing about verified/archived (isDraftRow does).
+ */
+export function draftFamilyOf(r: Pick<DraftRow, 'family' | 'section' | 'cohort'>): DraftFamily | null {
+  return DRAFT_FAMILIES.find(f => r.family === f.family
+    && r.section === f.section
+    && typeof r.cohort === 'string' && r.cohort.startsWith(f.cohortPrefix)) ?? null
+}
+
 /** True only for rows the edit screen may touch. Every condition is required. */
 export function isDraftRow(r: Pick<DraftRow, 'family' | 'section' | 'cohort' | 'verified' | 'archived'>): boolean {
-  return r.family === 'ssat'
-    && r.section === 'reading'
-    && typeof r.cohort === 'string' && r.cohort.startsWith(DRAFT_COHORT_PREFIX)
+  return draftFamilyOf(r) !== null
     && r.verified === false
     && r.archived === false
 }
@@ -97,6 +137,9 @@ export function draftStatus(r: Pick<DraftRow, 'verify_meta'>): DraftStatus {
  * Postgres recomputes them from `item` on every update, so nothing here
  * computes them and nothing may write them. Reviews and attacks bind to
  * content_sha, so an edited draft's old measurements go stale on their own.
+ *
+ * MAP drafts use the same definition: MAP has no insert path of its own, and
+ * the map-reading-draft inserter imports this rule rather than restating it.
  */
 const norm = (s: unknown) => String(s ?? '').toLowerCase()
   .replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').trim()
@@ -118,13 +161,16 @@ export interface ItemEdit {
 
 export interface Validation { errors: string[]; warnings: string[] }
 
-/** Blocking errors and a non-blocking warning, for one edited item. */
-export function validateItemEdit(e: ItemEdit): Validation {
+/**
+ * Blocking errors and a non-blocking warning, for one edited item.
+ * choiceCount is the family's (DRAFT_FAMILIES); it defaults to SSAT's 5.
+ */
+export function validateItemEdit(e: ItemEdit, choiceCount: number = DRAFT_CHOICE_COUNT): Validation {
   const errors: string[] = []
   const warnings: string[] = []
   if (!e.prompt || !e.prompt.trim()) errors.push('The question is empty.')
   const choices = Array.isArray(e.choices) ? e.choices : []
-  if (choices.length !== DRAFT_CHOICE_COUNT) errors.push(`There must be exactly ${DRAFT_CHOICE_COUNT} answer choices (found ${choices.length}).`)
+  if (choices.length !== choiceCount) errors.push(`There must be exactly ${choiceCount} answer choices (found ${choices.length}).`)
   if (choices.some(c => typeof c !== 'string' || !c.trim())) errors.push('Every answer choice needs text.')
   const seen = new Set<string>()
   for (const c of choices) {
@@ -217,6 +263,8 @@ export function savedMeta(meta: DraftMeta, storedItem: DraftItemJson, ctx: { use
 
 export interface RowUpdate {
   id: string
+  /** The draft family of the row; the write is filtered on its family/section/cohort LIKE. */
+  scope: DraftFamily
   /** The row's content_sha when the editor loaded it; the write is conditional on it. */
   expectedSha: string | null
   patch: { item?: DraftItemJson; content_hash?: string; verify_meta: Record<string, unknown> }
@@ -233,19 +281,33 @@ export interface SaveRequest {
   items: (ItemEdit & { id: string; expectedSha: string | null })[]
 }
 
-/** Shared refusal: the group must exist and EVERY row in it must be a draft. */
-function checkGroup(rows: DraftRow[], group: string): Plan | null {
+/**
+ * Shared refusal: the group must exist, EVERY row in it must be a draft, and
+ * all of them drafts of ONE family. Returns that family when it passes.
+ */
+function checkGroup(rows: DraftRow[], group: string): Extract<Plan, { ok: false }> | DraftFamily {
   if (!group) return { ok: false, status: 400, error: 'group is required' }
   if (!rows.length) return { ok: false, status: 404, error: 'No rows in that passage group' }
   if (rows.some(r => r.passage_group_id !== group)) return { ok: false, status: 400, error: 'Row outside the requested group' }
   const bad = rows.filter(r => !isDraftRow(r))
-  if (bad.length) return { ok: false, status: 403, error: `Not a draft passage: ${bad.length} row(s) are not unverified ssat-reading-draft rows` }
-  return null
+  if (bad.length) return { ok: false, status: 403, error: `Not a draft passage: ${bad.length} row(s) are not unverified ${DRAFT_FAMILIES.map(f => f.cohortPrefix.replace(/-$/, '')).join(' / ')} rows` }
+  const fams = new Set(rows.map(r => draftFamilyOf(r)!.key))
+  if (fams.size !== 1) return { ok: false, status: 403, error: `Not one draft passage: the group mixes draft families (${[...fams].join(', ')})` }
+  return draftFamilyOf(rows[0])!
+}
+
+/** The draft family of a group, or null if checkGroup would refuse it. */
+export function groupFamily(rows: DraftRow[]): DraftFamily | null {
+  const g = rows[0]?.passage_group_id
+  if (!g) return null
+  const c = checkGroup(rows, g)
+  return 'ok' in c ? null : c
 }
 
 export function planSave(rows: DraftRow[], req: SaveRequest, ctx: { userId: string; now: string }): Plan {
-  const refused = checkGroup(rows, req.group)
-  if (refused) return refused
+  const checked = checkGroup(rows, req.group)
+  if ('ok' in checked) return checked
+  const fam = checked
   if (!Array.isArray(req.items) || !req.items.length) return { ok: false, status: 400, error: 'items are required' }
   const byId = new Map(rows.map(r => [r.id, r]))
   const ids = new Set<string>()
@@ -263,7 +325,7 @@ export function planSave(rows: DraftRow[], req: SaveRequest, ctx: { userId: stri
   }
   const details: Record<string, string[]> = {}
   for (const e of req.items) {
-    const v = validateItemEdit(e)
+    const v = validateItemEdit(e, fam.choiceCount)
     if (v.errors.length) details[e.id] = v.errors
   }
   if (Object.keys(details).length) return { ok: false, status: 400, error: 'Some questions need fixing before saving', details }
@@ -277,16 +339,17 @@ export function planSave(rows: DraftRow[], req: SaveRequest, ctx: { userId: stri
     const verify_meta = { ...(row.verify_meta ?? {}), draft: meta }
     if (changedFields(stored, next).length) {
       changed++
-      return { id: e.id, expectedSha: e.expectedSha, patch: { item: next, content_hash: ssatContentHash(next), verify_meta } }
+      return { id: e.id, scope: fam, expectedSha: e.expectedSha, patch: { item: next, content_hash: ssatContentHash(next), verify_meta } }
     }
-    return { id: e.id, expectedSha: e.expectedSha, patch: { verify_meta } }
+    return { id: e.id, scope: fam, expectedSha: e.expectedSha, patch: { verify_meta } }
   })
   return { ok: true, updates, changed }
 }
 
 export function planSkip(rows: DraftRow[], group: string): Plan {
-  const refused = checkGroup(rows, group)
-  if (refused) return refused
+  const checked = checkGroup(rows, group)
+  if ('ok' in checked) return checked
+  const fam = checked
   if (rows.some(r => nextStatus(draftStatus(r), 'skip') === null)) {
     return { ok: false, status: 409, error: 'This passage has saved edits; it cannot be skipped' }
   }
@@ -295,6 +358,7 @@ export function planSkip(rows: DraftRow[], group: string): Plan {
     changed: 0,
     updates: rows.map(r => ({
       id: r.id,
+      scope: fam,
       expectedSha: r.content_sha ?? null,
       patch: { verify_meta: { ...(r.verify_meta ?? {}), draft: { ...draftMeta(r), status: 'skipped' as DraftStatus } } },
     })),
@@ -305,6 +369,9 @@ export function planSkip(rows: DraftRow[], group: string): Plan {
 
 export interface PassageSummary {
   group: string
+  /** The draft family of the passage (DRAFT_FAMILIES key) and its label. */
+  family: DraftFamilyKey
+  familyLabel: string
   cohort: string
   items: number
   status: DraftStatus
@@ -329,6 +396,8 @@ export function summarise(rows: DraftRow[]): PassageSummary[] {
   }
   return [...groups.entries()].map(([group, rs]) => ({
     group,
+    family: draftFamilyOf(rs[0])!.key,
+    familyLabel: draftFamilyOf(rs[0])!.label,
     cohort: rs[0].cohort ?? '',
     items: rs.length,
     status: aggregateStatus(rs.map(draftStatus)),

@@ -3,12 +3,12 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 import type { TablesUpdate } from '@/lib/database.types'
 import {
-  DRAFT_COHORT_LIKE, planSave, planSkip, summarise, isDraftRow, draftMeta, draftStatus,
-  type DraftRow, type Plan, type SaveRequest,
+  DRAFT_FAMILIES, planSave, planSkip, summarise, isDraftRow, draftMeta, draftStatus, draftFamilyOf, groupFamily,
+  type DraftFamily, type DraftRow, type Plan, type SaveRequest,
 } from '@/lib/study/ssat-draft'
 
 /**
- * SSAT reading drafts for /admin/bank-qc?tab=drafts.
+ * Reading drafts (SSAT reading, MAP reading) for /admin/bank-qc?tab=drafts.
  * Contract: scripts/study-bank/SSAT-DRAFT-EDIT-CONTRACT.md.
  *
  *   GET                 list draft passages (summaries)
@@ -16,10 +16,11 @@ import {
  *   POST {action:'save', group, passage?, note?, items:[...]}
  *   POST {action:'skip', group}
  *
- * Every read and write is scoped to family=ssat, section=reading,
- * cohort LIKE 'ssat-reading-draft-%', verified=false, archived=false — in
- * the query AND re-checked on the rows (isDraftRow), so a filter typo
- * cannot widen it. Writes carry the same filters plus the content_sha the
+ * Every read and write is scoped to ONE allowlisted draft family
+ * (DRAFT_FAMILIES: family, section, cohort LIKE) plus verified=false,
+ * archived=false — in the query AND re-checked on the rows (isDraftRow /
+ * draftFamilyOf), so a filter typo cannot widen it. The list runs one query
+ * per family; a write is filtered on the family of the group it belongs to. Writes carry the same filters plus the content_sha the
  * editor loaded, so a row that stopped being a draft, or changed under the
  * editor, is not written. No write here ever sets verified or archived;
  * the plans in lib/study/ssat-draft.ts cannot express either.
@@ -28,10 +29,10 @@ export const dynamic = 'force-dynamic'
 
 const COLS = 'id, family, section, cohort, verified, archived, passage_group_id, content_sha, item, verify_meta, created_at'
 
-function draftQuery() {
+function draftQuery(f: DraftFamily) {
   return dbAdmin.from('study_item_bank').select(COLS)
-    .eq('family', 'ssat').eq('section', 'reading')
-    .like('cohort', DRAFT_COHORT_LIKE)
+    .eq('family', f.family).eq('section', f.section)
+    .like('cohort', f.cohortLike)
     .eq('verified', false).eq('archived', false)
 }
 
@@ -56,8 +57,13 @@ export async function GET(request: NextRequest) {
     const { rows } = loaded
     if (!rows.length) return NextResponse.json({ error: 'No rows in that passage group' }, { status: 404 })
     if (rows.some(r => !isDraftRow(r))) return NextResponse.json({ error: 'Not a draft passage' }, { status: 403 })
+    const fam = groupFamily(rows)
+    if (!fam) return NextResponse.json({ error: 'Not one draft passage: the group mixes draft families' }, { status: 403 })
     return NextResponse.json({
       group,
+      family: fam.key,
+      familyLabel: fam.label,
+      choiceCount: fam.choiceCount,
       cohort: rows[0].cohort,
       passage: rows.find(r => r.item?.passage)?.item?.passage ?? '',
       items: rows.map(r => {
@@ -81,12 +87,20 @@ export async function GET(request: NextRequest) {
   }
 
   // Paged AND ordered: PostgREST caps at 1000 and range() without order() is not paging.
+  // One query per family; each keeps only rows that really are drafts of
+  // THAT family, so neither query can widen the other.
   const rows: DraftRow[] = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await draftQuery().order('id', { ascending: true }).range(from, from + 999)
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-    rows.push(...((data ?? []) as unknown as DraftRow[]))
-    if (!data || data.length < 1000) break
+  const seen = new Set<string>()
+  for (const f of DRAFT_FAMILIES) {
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await draftQuery(f).order('id', { ascending: true }).range(from, from + 999)
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+      for (const r of (data ?? []) as unknown as DraftRow[]) {
+        if (seen.has(r.id) || !isDraftRow(r) || draftFamilyOf(r)?.key !== f.key) continue
+        seen.add(r.id); rows.push(r)
+      }
+      if (!data || data.length < 1000) break
+    }
   }
   const passages = summarise(rows)
   const counts = { awaiting_edit: 0, edited: 0, skipped: 0 }
@@ -104,8 +118,8 @@ async function apply(plan: Extract<Plan, { ok: true }>): Promise<{ written: stri
     let q = dbAdmin.from('study_item_bank')
       .update(patch)
       .eq('id', u.id)
-      .eq('family', 'ssat').eq('section', 'reading')
-      .like('cohort', DRAFT_COHORT_LIKE)
+      .eq('family', u.scope.family).eq('section', u.scope.section)
+      .like('cohort', u.scope.cohortLike)
       .eq('verified', false).eq('archived', false)
     if (u.expectedSha) q = q.eq('content_sha', u.expectedSha)
     const { data, error } = await q.select('id')

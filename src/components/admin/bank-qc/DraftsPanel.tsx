@@ -1,8 +1,9 @@
 'use client'
 
 /**
- * Drafts — AI-drafted SSAT reading passages for a person to fix before our
- * checks run. The owner's method (2026-10-11): the co-founder spends about
+ * Drafts — AI-drafted reading passages (SSAT reading, MAP reading) for a
+ * person to fix before our checks run. The owner's method (2026-10-11 SSAT,
+ * 2026-10-12 MAP): the co-founder spends about
  * ten minutes per passage rewriting answer choices that give the answer
  * away. Contract: scripts/study-bank/SSAT-DRAFT-EDIT-CONTRACT.md.
  *
@@ -14,7 +15,10 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertTriangle, ArrowLeft, CheckCircle2, Loader2, Pencil, RotateCcw, Save, SkipForward } from 'lucide-react'
-import { validateItemEdit, type DraftQc, type DraftStatus, type PassageSummary } from '@/lib/study/ssat-draft'
+import {
+  DRAFT_FAMILIES, draftFamilyByKey, validateItemEdit,
+  type DraftFamilyKey, type DraftQc, type DraftStatus, type PassageSummary,
+} from '@/lib/study/ssat-draft'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 const FIELD = 'w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm leading-relaxed'
@@ -32,7 +36,18 @@ interface LoadedItem {
   qc: DraftQc | null
   editedAt: string | null
 }
-interface LoadedPassage { group: string; cohort: string; passage: string; items: LoadedItem[] }
+interface LoadedPassage {
+  group: string; cohort: string; passage: string; items: LoadedItem[]
+  family?: DraftFamilyKey; familyLabel?: string; choiceCount?: number
+}
+
+/**
+ * The passage's choice count: the server's, else its family's. An unknown
+ * family falls back to SSAT's 5, the original contract.
+ */
+function choiceCountOf(p: Pick<LoadedPassage, 'family' | 'choiceCount'>): number {
+  return p.choiceCount ?? draftFamilyByKey(p.family)?.choiceCount ?? 5
+}
 interface EditItem { prompt: string; choices: string[]; correctIndex: number; explanation: string }
 interface LocalDraft { shas: Record<string, string | null>; passage: string; editPassage: boolean; note: string; items: Record<string, EditItem> }
 
@@ -63,9 +78,9 @@ function clearLocal(group: string) {
   try { window.localStorage.removeItem(storageKey(group)) } catch { /* ignore */ }
 }
 
-function toEdit(it: LoadedItem): EditItem {
+function toEdit(it: LoadedItem, choiceCount = 5): EditItem {
   const choices = [...it.choices]
-  while (choices.length < 5) choices.push('')
+  while (choices.length < choiceCount) choices.push('')
   return { prompt: it.prompt, choices, correctIndex: choices.indexOf(it.correctAnswer), explanation: it.explanation }
 }
 const sameEdit = (a: EditItem, b: EditItem) => JSON.stringify(a) === JSON.stringify(b)
@@ -86,7 +101,7 @@ function Chip({ status }: { status: DraftStatus }) {
   return <span className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${s.cls}`}>{s.label}</span>
 }
 
-function Guidance() {
+function Guidance({ questions, family }: { questions?: number; family?: DraftFamilyKey }) {
   return (
     <div className="rounded-xl bg-sky-50 ring-1 ring-sky-100 px-4 py-3 text-sm text-sky-950 leading-relaxed">
       <p className="font-semibold mb-1">How to fix a passage</p>
@@ -96,13 +111,23 @@ function Guidance() {
         fancier than the others.
       </p>
       <ul className="mt-1.5 list-disc pl-5 space-y-0.5">
-        <li>The right answers across the 6 questions tell one story; each wrong answer tells a different one. Make some wrong answers fit the other questions too.</li>
+        <li>The right answers across the {questions ? `${questions} questions` : 'questions of a passage'} tell one story; each wrong answer tells a different one. Make some wrong answers fit the other questions too.</li>
         <li>Main idea: the right answer is the only one that covers everything. Make wrong answers broad too, just wrong in focus.</li>
         <li>Purpose: the right answer uses a stock phrase (&ldquo;to prepare for&hellip;&rdquo;, &ldquo;to contrast&hellip;&rdquo;). Give wrong answers the same kind of phrasing.</li>
         <li>Inference: the right answer is the big theme cause. Make a wrong answer equally deep but unsupported.</li>
         <li>Attitude: AI guesses the warm word (admiring, wistful). Include a second warm or reflective option.</li>
         <li>Detail: if common sense alone picks the answer, make a wrong answer just as sensible.</li>
       </ul>
+      {family === 'map-reading' && (
+        <div data-testid="map-guidance">
+          <p className="mt-1.5 font-medium">Also seen in the MAP drafts</p>
+          <ul className="mt-0.5 list-disc pl-5 space-y-0.5">
+            <li>Theme: the right answer is the only upbeat, universal lesson. Give a wrong answer an equally upbeat lesson the story does not teach.</li>
+            <li>Word meaning: the right meaning is the only one that fits the story&apos;s topic, and the others are unrelated senses nobody would pick. Make every wrong meaning fit the sentence&apos;s topic too.</li>
+            <li>Structure, point of view, images: the right answer names the textbook device (a flashback, two explanations tested, a warm image). Put a device in a wrong answer too.</li>
+          </ul>
+        </div>
+      )}
       <p className="mt-1.5 text-[12px] text-sky-800">
         Saving does not put anything in front of students. These questions stay hidden until our checks run on your version.
       </p>
@@ -138,9 +163,18 @@ function QcPanel({ qc }: { qc: DraftQc | null }) {
 
 // ── List ──────────────────────────────────────────────────────────────
 
+function familyLabelOf(p: Pick<PassageSummary, 'family' | 'familyLabel'>): string {
+  return p.familyLabel ?? draftFamilyByKey(p.family)?.label ?? 'SSAT reading'
+}
+
+function FamilyChip({ label }: { label: string }) {
+  return <span className="inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 bg-sky-50 text-sky-800 ring-sky-200" data-testid="family-chip">{label}</span>
+}
+
 function DraftList({ onOpen }: { onOpen: (group: string) => void }) {
   const [data, setData] = useState<{ passages: PassageSummary[]; counts: Record<DraftStatus, number> } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [family, setFamily] = useState<'all' | DraftFamilyKey>('all')
   const load = useCallback(() => {
     setError(null)
     authed('/api/admin/bank-qc/drafts').then(setData).catch(e => setError(e.message))
@@ -149,20 +183,33 @@ function DraftList({ onOpen }: { onOpen: (group: string) => void }) {
 
   if (error) return <div className={`${CARD} p-5 text-sm text-red-700`}>Could not load drafts: {error} <button className="underline ml-2" onClick={load}>Retry</button></div>
   if (!data) return <div className={`${CARD} p-5 text-sm text-gray-500 flex items-center gap-2`}><Loader2 className="h-4 w-4 animate-spin" />Loading drafts...</div>
+  const present = DRAFT_FAMILIES.filter(f => data.passages.some(p => (p.family ?? 'ssat-reading') === f.key))
+  const shown = family === 'all' ? data.passages : data.passages.filter(p => (p.family ?? 'ssat-reading') === family)
   return (
     <div className={`${CARD} p-5 space-y-4`}>
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
         <h2 className="text-[15px] font-semibold text-gray-900">Draft passages</h2>
         <span className="text-[12px] text-gray-600">{data.counts.awaiting_edit} need editing · {data.counts.edited} edited · {data.counts.skipped} skipped</span>
+        {present.length > 1 && (
+          <label className="ml-auto text-[12px] text-gray-600 inline-flex items-center gap-1.5">
+            Test
+            <select aria-label="Filter by test" className="rounded-lg ring-1 ring-gray-200 px-2 py-1 text-[12px]" value={family}
+              onChange={e => setFamily(e.target.value as 'all' | DraftFamilyKey)}>
+              <option value="all">All</option>
+              {present.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+            </select>
+          </label>
+        )}
       </div>
       {data.passages.length === 0 ? (
         <p className="text-sm text-gray-500">No draft passages yet.</p>
       ) : (
         <ul className="divide-y divide-gray-100">
-          {data.passages.map(p => (
+          {shown.map(p => (
             <li key={p.group}>
               <button type="button" onClick={() => onOpen(p.group)} className="w-full text-left py-3 px-2 -mx-2 rounded-lg hover:bg-gray-50 flex items-center gap-3">
                 <Chip status={p.status} />
+                <FamilyChip label={familyLabelOf(p)} />
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm text-gray-900 truncate">{p.title}</span>
                   <span className="block text-[11px] text-gray-500 truncate">{p.items} questions · {p.cohort} · {p.group}</span>
@@ -198,7 +245,7 @@ function PassageEditor({ group, onBack }: { group: string; onBack: () => void })
     if (!keepMessage) setMessage(null)
     authed(`/api/admin/bank-qc/drafts?group=${encodeURIComponent(group)}`).then((p: LoadedPassage) => {
       setLoaded(p)
-      const base = Object.fromEntries(p.items.map(it => [it.id, toEdit(it)]))
+      const base = Object.fromEntries(p.items.map(it => [it.id, toEdit(it, choiceCountOf(p))]))
       const shas = Object.fromEntries(p.items.map(it => [it.id, it.sha]))
       const local = readLocal(group)
       // Restore unsaved work only onto the exact text it was made against.
@@ -213,7 +260,8 @@ function PassageEditor({ group, onBack }: { group: string; onBack: () => void })
   }, [group])
   useEffect(() => { load() }, [load])
 
-  const base = useMemo(() => loaded ? Object.fromEntries(loaded.items.map(it => [it.id, toEdit(it)])) : {}, [loaded])
+  const choiceCount = loaded ? choiceCountOf(loaded) : 5
+  const base = useMemo(() => loaded ? Object.fromEntries(loaded.items.map(it => [it.id, toEdit(it, choiceCountOf(loaded))])) : {}, [loaded])
   const dirtyIds = useMemo(() => Object.keys(items).filter(id => base[id] && !sameEdit(items[id], base[id])), [items, base])
   const passageDirty = !!loaded && passage !== loaded.passage
   const dirty = dirtyIds.length > 0 || passageDirty
@@ -231,7 +279,7 @@ function PassageEditor({ group, onBack }: { group: string; onBack: () => void })
 
   const validations = useMemo(() => Object.fromEntries(Object.entries(items).map(([id, e]) => [id, validateItemEdit({
     prompt: e.prompt, choices: e.choices, correct_answer: e.correctIndex >= 0 ? e.choices[e.correctIndex] ?? '' : '', explanation: e.explanation,
-  })])), [items])
+  }, choiceCount)])), [items, choiceCount])
   const errorCount = Object.values(validations).filter(v => v.errors.length).length + (editPassage && !passage.trim() ? 1 : 0)
 
   const setItem = (id: string, f: (e: EditItem) => EditItem) => setItems(prev => ({ ...prev, [id]: f(prev[id]) }))
@@ -300,10 +348,11 @@ function PassageEditor({ group, onBack }: { group: string; onBack: () => void })
       <div className="flex flex-wrap items-center gap-3">
         <button type="button" onClick={back} className="inline-flex items-center gap-1 text-sm text-gray-700 hover:text-gray-900"><ArrowLeft className="h-4 w-4" />All passages</button>
         <Chip status={status} />
+        <FamilyChip label={loaded.familyLabel ?? draftFamilyByKey(loaded.family)?.label ?? 'SSAT reading'} />
         <span className="text-[11px] text-gray-500 truncate">{loaded.cohort} · {group}</span>
       </div>
 
-      <Guidance />
+      <Guidance questions={loaded.items.length} family={loaded.family} />
 
       {restored && dirty && (
         <div className="rounded-xl bg-amber-50 ring-1 ring-amber-200 px-4 py-2 text-[13px] text-amber-900 flex flex-wrap items-center gap-2">

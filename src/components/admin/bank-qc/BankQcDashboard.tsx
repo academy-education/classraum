@@ -529,7 +529,7 @@ export function BankQcDashboard() {
       {/* Mounted only on its tab: it is super_admin-only, and fetching it
           behind a hidden tab would put a 403 in every admin's console. */}
       {tab === 'hardening' && <HardeningPanel />}
-      {/* SSAT reading drafts for a person to fix (owner's method, 2026-10-11).
+      {/* Reading drafts (SSAT, MAP) for a person to fix (owner's method, 2026-10-11/12).
           Mounted only on its tab so it fetches nothing elsewhere. */}
       {tab === 'drafts' && <DraftsPanel />}
       <div hidden={tab !== 'overview'}>
