@@ -1,0 +1,211 @@
+{
+ "strands": {
+  "spell": {
+   "verdict": "FAIL",
+   "n": 24,
+   "passIds": [
+    "MLV2-S29",
+    "MLV2-S13",
+    "MLV2-S19",
+    "MLV2-S27",
+    "MLV2-S12",
+    "MLV2-S11",
+    "MLV2-S18",
+    "MLV2-S04",
+    "MLV2-S14",
+    "MLV2-S22",
+    "MLV2-S17",
+    "MLV2-S26",
+    "MLV2-S03",
+    "MLV2-S28",
+    "MLV2-S09",
+    "MLV2-S30",
+    "MLV2-S10",
+    "MLV2-S20",
+    "MLV2-S21",
+    "MLV2-S25"
+   ],
+   "holds": [
+    "MLV2-S05 (g5): b too_easy",
+    "MLV2-S02 (g5): a too_easy; b too_easy; dead by both C",
+    "MLV2-S07 (g5): a too_easy",
+    "MLV2-S01 (g5): a too_easy; b too_easy"
+   ],
+   "ws": {
+    "pass": 20,
+    "easier": 11,
+    "harder": 0,
+    "ma": -0.4166666666666667,
+    "mb": -0.16666666666666666,
+    "coldOnKey": 48,
+    "deadBoth": 1,
+    "byGrade": {
+     "5": {
+      "n": 6,
+      "pass": 2
+     },
+     "6": {
+      "n": 6,
+      "pass": 6
+     },
+     "7": {
+      "n": 6,
+      "pass": 6
+     },
+     "8": {
+      "n": 6,
+      "pass": 6
+     }
+    }
+   },
+   "exact": {
+    "ok": true,
+    "longest": 4,
+    "shortest": 2,
+    "t2": {
+     "best": "between(vowels)",
+     "score": 0.3125,
+     "fwP": 0.614846288427893,
+     "fires": false
+    }
+   },
+   "oo": {
+    "cand": 100,
+    "ctl": 52.77777777777778,
+    "bar": 42.77777777777778
+   },
+   "slots": {
+    "A": 6,
+    "D": 6,
+    "B": 6,
+    "C": 6
+   },
+   "bars": {
+    "a": true,
+    "b": true,
+    "c": false,
+    "d": true,
+    "oo": true,
+    "ooValid": true,
+    "slot": true
+   }
+  },
+  "punct": {
+   "verdict": "FAIL",
+   "stage0": {
+    "stage0": "FAIL",
+    "why": "E3 key uniquely longest 3/10",
+    "n": 10,
+    "t2": {
+     "best": "unique_max(commas)",
+     "score": 0.325,
+     "fwP": 0.9460134966258436
+    }
+   },
+   "passIds": []
+  },
+  "gram": {
+   "verdict": "FAIL",
+   "stage0": {
+    "stage0": "FAIL",
+    "why": "E3 key uniquely longest 3/10",
+    "n": 10,
+    "t2": {
+     "best": "at_min(vowels)",
+     "score": 0.425,
+     "fwP": 0.2644338915271182
+    }
+   },
+   "passIds": []
+  },
+  "cap": {
+   "verdict": "FAIL",
+   "n": 8,
+   "passIds": [
+    "MLV2-C03",
+    "MLV2-C06",
+    "MLV2-C09",
+    "MLV2-C04",
+    "MLV2-C07",
+    "MLV2-C02"
+   ],
+   "holds": [
+    "MLV2-C08 (g6): b 2nd D",
+    "MLV2-C01 (g5): b too_hard"
+   ],
+   "ws": {
+    "pass": 6,
+    "easier": 2,
+    "harder": 4,
+    "ma": 0,
+    "mb": 0.375,
+    "coldOnKey": 16,
+    "deadBoth": 0,
+    "byGrade": {
+     "5": {
+      "n": 4,
+      "pass": 3
+     },
+     "6": {
+      "n": 4,
+      "pass": 3
+     }
+    }
+   },
+   "exact": {
+    "ok": true,
+    "longest": 0,
+    "shortest": 0,
+    "t2": {
+     "best": "unique_min(caps)",
+     "score": 0.375,
+     "fwP": 0.564608847788053,
+     "fires": false
+    }
+   },
+   "oo": {
+    "cand": 100,
+    "ctl": 52.77777777777778,
+    "bar": 42.77777777777778
+   },
+   "slots": {
+    "D": 2,
+    "B": 2,
+    "C": 2,
+    "A": 2
+   },
+   "bars": {
+    "a": true,
+    "b": false,
+    "c": false,
+    "d": true,
+    "oo": true,
+    "ooValid": true,
+    "slot": true
+   }
+  }
+ },
+ "oo": {
+  "arm": {
+   "ctl": {
+    "n": 24,
+    "pct": 52.77777777777778,
+    "unan": 19,
+    "unanKey": 11
+   },
+   "cap": {
+    "n": 8,
+    "pct": 100,
+    "unan": 8,
+    "unanKey": 8
+   },
+   "spell": {
+    "n": 24,
+    "pct": 100,
+    "unan": 24,
+    "unanKey": 24
+   }
+  },
+  "flags": []
+ }
+}

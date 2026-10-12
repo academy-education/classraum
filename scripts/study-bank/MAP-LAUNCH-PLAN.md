@@ -371,3 +371,29 @@ count.
 - **The next Mechanics batch** changes the site construction (no binary
   count-balance rule) and measures the mixed-key and extreme-key rates
   exactly before freeze.
+
+---
+
+## 8. Second authoring batch: `map-lu-v2` (result)
+
+Owner decisions of 2026-10-12: grades 5-8 come first, and Language Usage
+waits for about 20 cleared Spelling items. Pre-registered in
+`MAP-LU-V2.prereg.md`; full result in `MAP-LU-V2-RESULT.md`.
+
+**FAIL on every strand, nothing inserted. Spelling cleared: 0.** The
+Language Usage gate is not met.
+
+- **Spelling (24):**
+  - pilot-pass 20/24, exactly at the bar
+  - `easier` 11/48 against a bar of 8, so it fails
+  - **Grade 5 passed 2/6**: the list words tomorrow, answer, finally and
+    beautiful
+  - **Grades 6-8 passed 18/18**, with every key right and no structural tell
+    left
+- **Capitalization (grades 5-6):** 6/8. It is now slightly too hard at
+  grade 5, no longer too easy.
+- **Punctuation and Grammar:** stopped at Stage 0 by the per-strand E3 bar
+  (3/10 each). The batch-level structural check, T2, was clear on both. The
+  bar was a design error, and it is recorded.
+- **The next Spelling batch** keeps the method and changes the grade-5 words
+  (or starts at grade 6). It is the shortest path to the owner's 20.

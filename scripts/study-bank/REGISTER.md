@@ -190,6 +190,34 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-12** — **MAP-LU-V2 (grades 5-8 Language Usage, with a new SPELLING strand): EVERY STRAND FAILS, NOTHING INSERTED. SPELLING CLEARED: 0 of the owner's ~20 (pilot-pass 20/24, but calibration failed).** Prereg `abe4eb89`, amendment 1 `e758f73c` (after authoring, before any rater), freeze `f9bd9fca`, renders `001b9419`. All commit messages for this batch are neutral, so they cannot hand a tell to a grader.
+  - **Spelling** (24 frozen: 16 word-completion 2x2 grids, 8 "which sentence has a spelling error"):
+    - S1-b 20/24: PASS, exactly at the bar
+    - **S1-c easier 11/48 (bar 8): FAIL**
+    - S1-d −0.42/−0.17: pass
+    - options-only 100.0% vs control 52.8%: pass
+    - T2 clear
+    - **Grade 5 passed 2/6.** tomorrow, answer, finally and beautiful are list words, and the graders put them at grades 3-5. **Grades 6-8 passed 18/18.**
+    - Keys 48/48 cold and 24/24 keyed. No accepted alternative spelling, and the graders were asked about US and British forms.
+  - **Capitalization** (8, grades 5-6 only): S1-b 6/8 (bar 7) and S1-c harder 4/16 (bar < 4) FAIL. v1's "too easy" problem is gone (2 easier calls, against v1's 10). Grade 5 now splits harder: a title containing "Is", and a region vs a direction.
+  - **Punctuation and Grammar stopped at Stage 0.** Each had the key uniquely longest on 3/10, against the pre-registered per-strand E3 bar of ≤ 25%. T2 on the same items was clear (p 0.95 / 0.26). **Per-strand E3 at n = 10 was a design error in my prereg.** Pool E3 or let T2 carry it next time. The rule was not changed after the fact.
+  - **New exact check T2** (any simple structural feature predicting the key):
+    - 64 heuristics: 8 features × 8 selectors
+    - the control is derived from the data
+    - Westfall-Young min-p, fires at +10 points and family-wise p < 0.10
+    - break-tested on v1: it fires on Capitalization (p 0.005) and on the marginal Punctuation tell (p 0.099), and is clear on Grammar
+    - it refuses about 12% of random-key sets
+    - **On the authored set it found a tell the strand-level test could not see.** The misspelled sentence was the longest in 7/12 "sentence" items (p 0.010 within the format). The word items diluted it to p 0.169 at strand level.
+    - Amendment 1 added T2 per format and a seeded flat length-rank re-draw. After that the format read p 0.52.
+  - **Both graders named a cross-item slot pattern:** the "sentence" keys sat at A1 B0 C3 D4 in the stored order. The render dealt keys flat per strand, not per format. The assembler shuffles choices per session (`shuffleDrawnChoices`), so it does not reach students. **Deal keys flat per sub-format.**
+  - **Regional variants:** NSSpellChecker (en) accepts colour, centre, travelled and defence, and also occurence, accomodate, independant, colorfull and sweatre. It rejects harboured and tumour. So the spelling guard is NSSpellChecker plus web2 plus a 338-form variant list plus outright patterns (-ize, -yze, single/double l, judg(e)ment) plus transform checks. The author ran it as an oracle (`map-lu-v2.mjs spell`).
+  - **Protocol:** two parallel re-raters wrote the same `rate.py` into the shared session scratchpad, and one output vanished. Both were re-run with private helper directories and agree; the raced file is kept. **Every parallel brief needs a private helper path.**
+  - **Checker fixes, made before any rater output was read:**
+    - G uses a positional diff when token counts match (LCS mis-split adjacent sites)
+    - E4 scans in original case ("Saturday")
+    - E4-dup sends a revision-introduced word clash to the one-repair step
+  - **Next:** Spelling with this method at grades 6-8, and grade 5 rebuilt on harder words (or treated separately). Punctuation and Grammar rerun with E3 pooled.
+  - Evidence: `MAP-LU-V2{.prereg,-RESULT,-BRIEF-SPELLING,-BRIEF-MECH}.md`, `map-lu-v2.mjs` (selftest 116), `map-lu-v2/`, ledger `map-lu-v2-{spelling,capitalization,punctuation,grammar}-2026-10-12` (killed).
 - **2026-10-12** — **MAP LAUNCH PLAN + MAP-LU-MECH-V1 (first MAP batch eligible to insert, staged): FAILS S1-b AND S1-c. NOTHING INSERTED.** Plan: `MAP-LAUNCH-PLAN.md` (`2620d984`). Prereg `99ef2ddc` (before any item), freeze `d44bec26`, renders `a7811152` (before any solver or grader).
   - **Re-banding, measured** (`map-reband-count.mjs`, read-only, paged over 9,635 live rows, selftest 8/8; the strand mapping is a judgement, written out in `classify()`). Everything lands in the Upper band (grades 9-11), per §13.
     - Language Usage: Writing 424, Grammar 378, Punctuation 238, Capitalization 0, Spelling 0. That is 18 forms at 13 per area, or 0 if Mechanics must carry Capitalization and Spelling.

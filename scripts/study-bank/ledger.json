@@ -8365,6 +8365,136 @@
           "verdict": "E3 and key slots (6/6/6/6) pass; the cross-item mixed-key tell (named by both graders independently; grader b had also seen the prereg commit message via session git status) is a tell."
         }
       }
+    },
+    {
+      "id": "map-lu-v2-spelling-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v2-spelling",
+      "contentSha": "0659bea39b640205a53705830b847ad5bc4995446eeaa4c4a5a9e37d7c5bd7cd",
+      "status": "killed",
+      "note": "24 grades 5-8 Spelling items (16 word-completion 2x2 grids, 8 which-sentence-has-an-error), regional variants ruled out by a dictionary guard. FAILED pre-registered S1-c (easier 11/48, bar 8); pilot-pass 20/24 met its bar exactly; grade 5 passed 2/6 (tomorrow/answer/finally/beautiful too easy), grades 6-8 18/18. Spelling cleared: 0. contentSha = sha256 of map-lu-v2/frozen-spell.json. MAP-LU-V2.prereg.md (abe4eb89, amendment 1 e758f73c), freeze f9bd9fca, renders 001b9419, MAP-LU-V2-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: all 24 pass E1 E4 (dictionary + variant guard) E6 E7 G/G-DL L-rank; E3 4/24 longest, 2/24 shortest; T2 clear (strand fw p 0.61, word 0.58, sentence 0.52)."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 24,
+          "pilotPass": 20,
+          "easier": 11,
+          "harder": 0,
+          "meanOffsetA": -0.42,
+          "meanOffsetB": -0.17,
+          "coldOnKey": 48,
+          "deadBoth": 1,
+          "verdict": "Two Claude graders cold then keyed: keys 48/48 cold, 24/24 keyed correct, no accepted alternative (US/British asked). S1-b 20/24 pass; S1-c easier 11/48 (bar <= 8) FAIL; S1-d pass."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 24,
+          "candidatePct": 100,
+          "control": 52.8,
+          "controlN": 24,
+          "margin": 47.2,
+          "verdict": "Key recoverability, not a leak bar (options are the item): 100.0% vs matched live SAT SEC/ACT CSE control 52.8% (no live spelling item exists to match). Weak screen by design."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Exact no-rule-knowledge probes: E7 no unique medoid 0/24; T2 (64 structural heuristics, Westfall-Young min-p) clear per strand and per format. An authored-set length tell in the sentence format (7/12 key longest, fw p 0.010) was found by T2 pre-freeze and removed by a seeded length-rank re-draw (amendment 1)."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "E3 4/24, 2/24; T2 clear; key slots 6/6/6/6 per strand. Both graders named a per-FORMAT slot pattern in the stored render order (sentence keys A1 B0 C3 D4); the assembler shuffles choices per session, so it does not reach students; next render deals flat per format."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v2-capitalization-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v2-capitalization",
+      "contentSha": "43b066bd6446a2f070546b3aa4582f5de3c49f899993534618ffacc37cf0df4f",
+      "status": "killed",
+      "note": "8 grades 5-6 Capitalization 2x2 grids (no per-item count rule). FAILED S1-b (6/8, bar 7) and S1-c (harder 4/16, bar < 4). contentSha = sha256 of map-lu-v2/frozen-cap.json. MAP-LU-V2.prereg.md (abe4eb89, amendment 1 e758f73c), freeze f9bd9fca, renders 001b9419, MAP-LU-V2-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: all 8 pass E1 E5 E6 E7 G; E3 0/8, 0/8; T2 clear (fw p 0.56)."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 8,
+          "pilotPass": 6,
+          "easier": 2,
+          "harder": 4,
+          "meanOffsetA": 0,
+          "meanOffsetB": 0.38,
+          "coldOnKey": 16,
+          "deadBoth": 0,
+          "verdict": "Keys 16/16 cold, 8/8 keyed correct. Holds C01 (too hard, title with Is) and C08 (cold second defensible: brand name). S1-b 6/8 FAIL; S1-c harder 4/16 FAIL."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 8,
+          "candidatePct": 100,
+          "control": 52.8,
+          "controlN": 24,
+          "margin": 47.2,
+          "verdict": "Key recoverability: 100.0% vs control 52.8%. Weak screen by design."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "E7 0/8; T2 clear."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "E3 0/8; T2 clear; key slots 2/2/2/2."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v2-punctuation-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v2-punctuation",
+      "contentSha": "4d4ca76b207944b9db6edbefed5d9b1a0d910206dda4299248c23e41aeef4afd",
+      "status": "killed",
+      "note": "10 grades 5-8 Punctuation 2x2 grids. STOPPED at Stage 0 on the pre-registered per-strand E3 bar (key uniquely longest 3/10 > 25%); not rendered or graded. T2 on the same items was clear (unique_max(len) 32.5%, fw p 0.95): per-strand E3 at n=10 is a design error in the prereg, recorded, not changed. contentSha = sha256 of map-lu-v2/stage0-pick-punct.json. MAP-LU-V2.prereg.md (abe4eb89, amendment 1 e758f73c), freeze f9bd9fca, renders 001b9419, MAP-LU-V2-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: E3 key uniquely longest 3/10 (bar <= 25%)."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v2-grammar-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v2-grammar",
+      "contentSha": "f88f814a3cec4d5976600686155a60f12ab80193a8b6b16c64c2f1c60d57c609",
+      "status": "killed",
+      "note": "10 grades 5-8 Grammar and Usage 2x2 grids. STOPPED at Stage 0 on the pre-registered per-strand E3 bar (key uniquely longest 3/10 > 25%); not rendered or graded. T2 on the same items was clear (unique_max(len) 40.0%, fw p 0.26): per-strand E3 at n=10 is a design error in the prereg, recorded, not changed. contentSha = sha256 of map-lu-v2/stage0-pick-gram.json. MAP-LU-V2.prereg.md (abe4eb89, amendment 1 e758f73c), freeze f9bd9fca, renders 001b9419, MAP-LU-V2-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: E3 key uniquely longest 3/10 (bar <= 25%)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
