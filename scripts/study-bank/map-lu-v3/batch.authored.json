@@ -1,0 +1,2418 @@
+[
+ {
+  "id": "MLV3-S01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nWinning the state science fair was the greatest ____ of Maya's school year.",
+  "choices": [
+   "achievement",
+   "acheivement",
+   "achievment",
+   "acheivment"
+  ],
+  "correct_answer": "achievement",
+  "spelling_pattern": "ie/ei order plus keeping the final e of achieve before -ment",
+  "error_sites": [
+   "ie in the middle (achieve)",
+   "e kept before the suffix -ment"
+  ],
+  "student_error": {
+   "acheivement": "reverses ie to ei, misapplying \"i before e\"",
+   "achievment": "drops the silent e of achieve before adding -ment, as if -ment were a vowel suffix",
+   "acheivment": "makes both mistakes: ei for ie and drops the e before -ment"
+  },
+  "explanation": "\"achievement\" is the correct spelling (ie in the middle (achieve); e kept before the suffix -ment). \"acheivement\" reverses ie to ei, misapplying \"i before e\". \"achievment\" drops the silent e of achieve before adding -ment, as if -ment were a vowel suffix. \"acheivment\" makes both mistakes: ei for ie and drops the e before -ment."
+ },
+ {
+  "id": "MLV3-S02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Mia heard a wierd sound in the hall.",
+   "Neither of my brothers wanted to help me clean the garage on Saturday.",
+   "The paint on our kitchen ceiling is starting to peel.",
+   "My aunt likes to try foreign foods when she visits a new city."
+  ],
+  "correct_answer": "Mia heard a wierd sound in the hall.",
+  "spelling_pattern": "ei word that breaks \"i before e\" (weird misspelled as wierd)",
+  "targets": {
+   "Mia heard a wierd sound in the hall.": "wierd",
+   "Neither of my brothers wanted to help me clean the garage on Saturday.": "Neither",
+   "The paint on our kitchen ceiling is starting to peel.": "ceiling",
+   "My aunt likes to try foreign foods when she visits a new city.": "foreign"
+  },
+  "misspelled_word": "wierd",
+  "intended_word": "weird",
+  "key_length_rank": 4,
+  "student_error": {
+   "Neither of my brothers wanted to help me clean the garage on Saturday.": "Neither has ei, which a student may think should be ie",
+   "The paint on our kitchen ceiling is starting to peel.": "ceiling has ei, which looks wrong to a student who over-applies \"i before e\"",
+   "My aunt likes to try foreign foods when she visits a new city.": "foreign has an unexpected ei and a silent g, so it looks misspelled"
+  },
+  "explanation": "The key misspells \"weird\" as \"wierd\" (ei word that breaks \"i before e\" (weird misspelled as wierd)). The other sentences are spelled correctly: \"Neither\", \"ceiling\", \"foreign\"."
+ },
+ {
+  "id": "MLV3-S03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe weather ____ circles the earth and sends pictures of storms back to scientists.",
+  "choices": [
+   "sattellite",
+   "sattillite",
+   "satellite",
+   "satillite"
+  ],
+  "correct_answer": "satellite",
+  "spelling_pattern": "unstressed vowel and which consonant is doubled",
+  "error_sites": [
+   "unstressed e in the second syllable",
+   "single t (the doubled letter is l, not t)"
+  ],
+  "student_error": {
+   "satillite": "writes i for the unstressed e sound in the middle syllable",
+   "sattellite": "doubles the t as well as the l, unsure which consonant is doubled",
+   "sattillite": "writes i for the schwa and also doubles the t"
+  },
+  "explanation": "\"satellite\" is the correct spelling (unstressed e in the second syllable; single t (the doubled letter is l, not t)). \"satillite\" writes i for the unstressed e sound in the middle syllable. \"sattellite\" doubles the t as well as the l, unsure which consonant is doubled. \"sattillite\" writes i for the schwa and also doubles the t."
+ },
+ {
+  "id": "MLV3-S04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nLeo heard a ____ tapping noise coming from the dark attic late at night.",
+  "choices": [
+   "mysterious",
+   "misterous",
+   "misterious",
+   "mysterous"
+  ],
+  "correct_answer": "mysterious",
+  "spelling_pattern": "y spelling the short i sound, and the i kept before -ous",
+  "error_sites": [
+   "y in the first syllable",
+   "i before the suffix -ous"
+  ],
+  "student_error": {
+   "misterious": "spells the short i sound with i instead of y",
+   "mysterous": "drops the i before -ous, writing the word as it is often said",
+   "misterous": "spells the first vowel with i and also drops the i before -ous"
+  },
+  "explanation": "\"mysterious\" is the correct spelling (y in the first syllable; i before the suffix -ous). \"misterious\" spells the short i sound with i instead of y. \"mysterous\" drops the i before -ous, writing the word as it is often said. \"misterous\" spells the first vowel with i and also drops the i before -ous."
+ },
+ {
+  "id": "MLV3-S05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Fresh snow will glisen in the bright sun.",
+   "Ben has gained a lot of knowledge about birds from his uncle.",
+   "Lily pulled a muscle in her leg during the race.",
+   "The crowd stood in solemn silence during the ceremony at the memorial."
+  ],
+  "correct_answer": "Fresh snow will glisen in the bright sun.",
+  "spelling_pattern": "silent t in glisten dropped",
+  "targets": {
+   "Fresh snow will glisen in the bright sun.": "glisen",
+   "Ben has gained a lot of knowledge about birds from his uncle.": "knowledge",
+   "Lily pulled a muscle in her leg during the race.": "muscle",
+   "The crowd stood in solemn silence during the ceremony at the memorial.": "solemn"
+  },
+  "misspelled_word": "glisen",
+  "intended_word": "glisten",
+  "key_length_rank": 4,
+  "student_error": {
+   "Ben has gained a lot of knowledge about birds from his uncle.": "knowledge has a silent k and a d before g, so it looks like it has extra letters",
+   "Lily pulled a muscle in her leg during the race.": "muscle has a silent c, so a student may think it should be mussle",
+   "The crowd stood in solemn silence during the ceremony at the memorial.": "solemn has a silent n at the end, so a student may think it should be solem"
+  },
+  "explanation": "The key misspells \"glisten\" as \"glisen\" (silent t in glisten dropped). The other sentences are spelled correctly: \"knowledge\", \"muscle\", \"solemn\"."
+ },
+ {
+  "id": "MLV3-S06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nIn the chess final, Ana shook hands with her ____ before the first move.",
+  "choices": [
+   "oppenent",
+   "opponent",
+   "oppenant",
+   "opponant"
+  ],
+  "correct_answer": "opponent",
+  "spelling_pattern": "unstressed vowels in the middle syllable and the -ent ending",
+  "error_sites": [
+   "unstressed o in the second syllable",
+   "-ent ending"
+  ],
+  "student_error": {
+   "oppenent": "writes e for the unstressed o sound in the middle syllable",
+   "opponant": "uses -ant instead of -ent, since both endings sound the same",
+   "oppenant": "writes e for the middle schwa and also ends the word in -ant"
+  },
+  "explanation": "\"opponent\" is the correct spelling (unstressed o in the second syllable; -ent ending). \"oppenent\" writes e for the unstressed o sound in the middle syllable. \"opponant\" uses -ant instead of -ent, since both endings sound the same. \"oppenant\" writes e for the middle schwa and also ends the word in -ant."
+ },
+ {
+  "id": "MLV3-S07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nPlease use the ____ to cut along the dotted line on the paper.",
+  "choices": [
+   "scisers",
+   "scisors",
+   "scissers",
+   "scissors"
+  ],
+  "correct_answer": "scissors",
+  "spelling_pattern": "double s in the middle and the -ors ending",
+  "error_sites": [
+   "double s in the middle",
+   "-ors ending"
+  ],
+  "student_error": {
+   "scisors": "writes a single s in the middle, missing the doubled consonant",
+   "scissers": "spells the unstressed ending -ers instead of -ors",
+   "scisers": "uses a single s and also writes the ending as -ers"
+  },
+  "explanation": "\"scissors\" is the correct spelling (double s in the middle; -ors ending). \"scisors\" writes a single s in the middle, missing the doubled consonant. \"scissers\" spells the unstressed ending -ers instead of -ors. \"scisers\" uses a single s and also writes the ending as -ers."
+ },
+ {
+  "id": "MLV3-S08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The big delivery vehicle stopped in front of our house with a very heavy box.",
+   "Daily excercise helps keep your heart strong and healthy.",
+   "Grandma served each of us a warm biscuit with honey for breakfast.",
+   "Jack sincerely thanked the firefighters for saving his dog from the flood."
+  ],
+  "correct_answer": "Daily excercise helps keep your heart strong and healthy.",
+  "spelling_pattern": "extra c added after ex in exercise",
+  "targets": {
+   "The big delivery vehicle stopped in front of our house with a very heavy box.": "vehicle",
+   "Daily excercise helps keep your heart strong and healthy.": "excercise",
+   "Grandma served each of us a warm biscuit with honey for breakfast.": "biscuit",
+   "Jack sincerely thanked the firefighters for saving his dog from the flood.": "sincerely"
+  },
+  "misspelled_word": "excercise",
+  "intended_word": "exercise",
+  "key_length_rank": 4,
+  "student_error": {
+   "The big delivery vehicle stopped in front of our house with a very heavy box.": "vehicle has a silent h, so a student may think it should be veicle or vehical",
+   "Grandma served each of us a warm biscuit with honey for breakfast.": "biscuit has a silent u, so a student may think it should be biscut",
+   "Jack sincerely thanked the firefighters for saving his dog from the flood.": "sincerely keeps the e of sincere before -ly, which a student may think should be dropped"
+  },
+  "explanation": "The key misspells \"exercise\" as \"excercise\" (extra c added after ex in exercise). The other sentences are spelled correctly: \"vehicle\", \"biscuit\", \"sincerely\"."
+ },
+ {
+  "id": "MLV3-S09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nSam ____ knocked the glass of juice off the table with his elbow.",
+  "choices": [
+   "accidentally",
+   "acidentally",
+   "accidentaly",
+   "acidentaly"
+  ],
+  "correct_answer": "accidentally",
+  "spelling_pattern": "double c at the start and -al + -ly giving double l",
+  "error_sites": [
+   "double c after the a",
+   "double l where -al meets -ly"
+  ],
+  "student_error": {
+   "acidentally": "writes one c, missing the doubled consonant at the start",
+   "accidentaly": "adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental",
+   "acidentaly": "misses both doubled letters: one c and one l"
+  },
+  "explanation": "\"accidentally\" is the correct spelling (double c after the a; double l where -al meets -ly). \"acidentally\" writes one c, missing the doubled consonant at the start. \"accidentaly\" adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental. \"acidentaly\" misses both doubled letters: one c and one l."
+ },
+ {
+  "id": "MLV3-S10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The magician made a sudden appearance on the stage in a cloud of smoke.",
+   "Ana keeps her allowance in a small jar.",
+   "Perfect attendance earned Sam a special award this year.",
+   "Fixing the old clock took a lot of patiance."
+  ],
+  "correct_answer": "Fixing the old clock took a lot of patiance.",
+  "spelling_pattern": "-ence ending written as -ance",
+  "targets": {
+   "The magician made a sudden appearance on the stage in a cloud of smoke.": "appearance",
+   "Ana keeps her allowance in a small jar.": "allowance",
+   "Perfect attendance earned Sam a special award this year.": "attendance",
+   "Fixing the old clock took a lot of patiance.": "patiance"
+  },
+  "misspelled_word": "patiance",
+  "intended_word": "patience",
+  "key_length_rank": 3,
+  "student_error": {
+   "The magician made a sudden appearance on the stage in a cloud of smoke.": "appearance ends in -ance, which a student may think should be -ence",
+   "Ana keeps her allowance in a small jar.": "allowance ends in -ance and has a double l, so it may look wrong",
+   "Perfect attendance earned Sam a special award this year.": "attendance ends in -ance, which a student may think should be -ence"
+  },
+  "explanation": "The key misspells \"patience\" as \"patiance\" (-ence ending written as -ance). The other sentences are spelled correctly: \"appearance\", \"allowance\", \"attendance\"."
+ },
+ {
+  "id": "MLV3-S11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nOur dog has a ____ to bark loudly whenever the mail carrier comes to the door.",
+  "choices": [
+   "tendensy",
+   "tendansy",
+   "tendency",
+   "tendancy"
+  ],
+  "correct_answer": "tendency",
+  "spelling_pattern": "-ency ending and the soft c spelling of the s sound",
+  "error_sites": [
+   "e in the -ency ending",
+   "c spelling the s sound"
+  ],
+  "student_error": {
+   "tendancy": "uses -ancy instead of -ency, since the unstressed vowel sounds the same",
+   "tendensy": "spells the s sound with s instead of the soft c",
+   "tendansy": "uses -ancy and also spells the s sound with s"
+  },
+  "explanation": "\"tendency\" is the correct spelling (e in the -ency ending; c spelling the s sound). \"tendancy\" uses -ancy instead of -ency, since the unstressed vowel sounds the same. \"tendensy\" spells the s sound with s instead of the soft c. \"tendansy\" uses -ancy and also spells the s sound with s."
+ },
+ {
+  "id": "MLV3-S12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Dad asked me to vacuum the living room rug before the guests arrive at six.",
+   "Please keep paper and plastic in separate bins.",
+   "Our teacher looks at the grammar in every essay we turn in.",
+   "The villian in the movie wore a long black cape and laughed loudly."
+  ],
+  "correct_answer": "The villian in the movie wore a long black cape and laughed loudly.",
+  "spelling_pattern": "ai in the last syllable reversed to ia",
+  "targets": {
+   "Dad asked me to vacuum the living room rug before the guests arrive at six.": "vacuum",
+   "Please keep paper and plastic in separate bins.": "separate",
+   "Our teacher looks at the grammar in every essay we turn in.": "grammar",
+   "The villian in the movie wore a long black cape and laughed loudly.": "villian"
+  },
+  "misspelled_word": "villian",
+  "intended_word": "villain",
+  "key_length_rank": 2,
+  "student_error": {
+   "Dad asked me to vacuum the living room rug before the guests arrive at six.": "vacuum has a double u, which looks like a typo",
+   "Please keep paper and plastic in separate bins.": "separate has an a where many students expect an e (seperate)",
+   "Our teacher looks at the grammar in every essay we turn in.": "grammar ends in -ar, which a student may think should be -er"
+  },
+  "explanation": "The key misspells \"villain\" as \"villian\" (ai in the last syllable reversed to ia). The other sentences are spelled correctly: \"vacuum\", \"separate\", \"grammar\"."
+ },
+ {
+  "id": "MLV3-S13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nUse a ____ marker for the sign so the rain will not wash the words away.",
+  "choices": [
+   "permenent",
+   "permanant",
+   "permanent",
+   "permenant"
+  ],
+  "correct_answer": "permanent",
+  "spelling_pattern": "two unstressed vowels: the middle a and the -ent ending",
+  "error_sites": [
+   "unstressed a in the second syllable",
+   "-ent ending"
+  ],
+  "student_error": {
+   "permenent": "writes e for the unstressed a sound in the middle syllable",
+   "permanant": "uses -ant instead of -ent",
+   "permenant": "writes e for the middle a and also ends the word in -ant"
+  },
+  "explanation": "\"permanent\" is the correct spelling (unstressed a in the second syllable; -ent ending). \"permenent\" writes e for the unstressed a sound in the middle syllable. \"permanant\" uses -ant instead of -ent. \"permenant\" writes e for the middle a and also ends the word in -ant."
+ },
+ {
+  "id": "MLV3-S14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe customer was ____ with the cold soup and asked the waiter for a new bowl.",
+  "choices": [
+   "disatisfied",
+   "dissatisfied",
+   "disatisfyed",
+   "dissatisfyed"
+  ],
+  "correct_answer": "dissatisfied",
+  "spelling_pattern": "prefix dis- meeting a root that starts with s, and y changing to i before -ed",
+  "error_sites": [
+   "double s where dis- meets satisfied",
+   "y changed to i before -ed"
+  ],
+  "student_error": {
+   "disatisfied": "drops one s where the prefix dis- meets satisfied",
+   "dissatisfyed": "keeps the y of satisfy before -ed instead of changing it to i",
+   "disatisfyed": "drops an s at the prefix and also keeps the y before -ed"
+  },
+  "explanation": "\"dissatisfied\" is the correct spelling (double s where dis- meets satisfied; y changed to i before -ed). \"disatisfied\" drops one s where the prefix dis- meets satisfied. \"dissatisfyed\" keeps the y of satisfy before -ed instead of changing it to i. \"disatisfyed\" drops an s at the prefix and also keeps the y before -ed."
+ },
+ {
+  "id": "MLV3-S15",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "A sore throat is a common symptom of a cold.",
+   "Good hygeine means washing your hands often during the day.",
+   "Swimming is a great physical activity for people of all ages and sizes.",
+   "The bus schedule changes on holidays, so always look at it before you leave home."
+  ],
+  "correct_answer": "Good hygeine means washing your hands often during the day.",
+  "spelling_pattern": "ie reversed to ei in hygiene",
+  "targets": {
+   "A sore throat is a common symptom of a cold.": "symptom",
+   "Good hygeine means washing your hands often during the day.": "hygeine",
+   "Swimming is a great physical activity for people of all ages and sizes.": "physical",
+   "The bus schedule changes on holidays, so always look at it before you leave home.": "schedule"
+  },
+  "misspelled_word": "hygeine",
+  "intended_word": "hygiene",
+  "key_length_rank": 3,
+  "student_error": {
+   "A sore throat is a common symptom of a cold.": "symptom has a y and a silent-sounding p, so a student may think it is misspelled",
+   "Swimming is a great physical activity for people of all ages and sizes.": "physical spells the f sound with ph and the short i with y, so it looks wrong",
+   "The bus schedule changes on holidays, so always look at it before you leave home.": "schedule has a silent h after sc, so it looks odd"
+  },
+  "explanation": "The key misspells \"hygiene\" as \"hygeine\" (ie reversed to ei in hygiene). The other sentences are spelled correctly: \"symptom\", \"physical\", \"schedule\"."
+ },
+ {
+  "id": "MLV3-S16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe old church has a small ____ where many of the town's first settlers are buried.",
+  "choices": [
+   "cematary",
+   "cemetary",
+   "cematery",
+   "cemetery"
+  ],
+  "correct_answer": "cemetery",
+  "spelling_pattern": "unstressed vowels in the second and third syllables (all e)",
+  "error_sites": [
+   "e in the second syllable",
+   "e in the -ery ending"
+  ],
+  "student_error": {
+   "cematery": "writes a for the unstressed e in the second syllable",
+   "cemetary": "writes the ending as -ary, like library or dictionary",
+   "cematary": "writes a for both unstressed e sounds"
+  },
+  "explanation": "\"cemetery\" is the correct spelling (e in the second syllable; e in the -ery ending). \"cematery\" writes a for the unstressed e in the second syllable. \"cemetary\" writes the ending as -ary, like library or dictionary. \"cematary\" writes a for both unstressed e sounds."
+ },
+ {
+  "id": "MLV3-S17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nFrom the dark clouds, it was ____ that a big storm was coming soon.",
+  "choices": [
+   "apparent",
+   "apperent",
+   "apparant",
+   "apperant"
+  ],
+  "correct_answer": "apparent",
+  "spelling_pattern": "unstressed a after the double p, and the -ent ending",
+  "error_sites": [
+   "a after the double p",
+   "-ent ending"
+  ],
+  "student_error": {
+   "apperent": "writes e for the unstressed a after pp",
+   "apparant": "uses -ant instead of -ent",
+   "apperant": "writes e after pp and also ends the word in -ant"
+  },
+  "explanation": "\"apparent\" is the correct spelling (a after the double p; -ent ending). \"apperent\" writes e for the unstressed a after pp. \"apparant\" uses -ant instead of -ent. \"apperant\" writes e after pp and also ends the word in -ant."
+ },
+ {
+  "id": "MLV3-S18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The mischievous puppy hid one of my shoes under the couch again.",
+   "The sinking of the great ship was a tragedy that shocked the whole world.",
+   "Is that a genuine gold coin or a fake one?",
+   "Out of curiousity, Leo opened the old wooden box."
+  ],
+  "correct_answer": "Out of curiousity, Leo opened the old wooden box.",
+  "spelling_pattern": "u of curious wrongly kept in curiosity",
+  "targets": {
+   "The mischievous puppy hid one of my shoes under the couch again.": "mischievous",
+   "The sinking of the great ship was a tragedy that shocked the whole world.": "tragedy",
+   "Is that a genuine gold coin or a fake one?": "genuine",
+   "Out of curiousity, Leo opened the old wooden box.": "curiousity"
+  },
+  "misspelled_word": "curiousity",
+  "intended_word": "curiosity",
+  "key_length_rank": 3,
+  "student_error": {
+   "The mischievous puppy hid one of my shoes under the couch again.": "mischievous is often said with an extra syllable (mischievious), so the correct spelling can look short",
+   "The sinking of the great ship was a tragedy that shocked the whole world.": "tragedy has a g where a student may expect a j or dg",
+   "Is that a genuine gold coin or a fake one?": "genuine ends in -ine, which a student may expect to be -ein or -wine"
+  },
+  "explanation": "The key misspells \"curiosity\" as \"curiousity\" (u of curious wrongly kept in curiosity). The other sentences are spelled correctly: \"mischievous\", \"tragedy\", \"genuine\"."
+ },
+ {
+  "id": "MLV3-S19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe new store is ____ for us because it is only a short walk from our house.",
+  "choices": [
+   "conveniant",
+   "conviniant",
+   "convenient",
+   "convinient"
+  ],
+  "correct_answer": "convenient",
+  "spelling_pattern": "unstressed e in the second syllable and the -ent ending",
+  "error_sites": [
+   "e in the second syllable",
+   "-ent ending"
+  ],
+  "student_error": {
+   "convinient": "writes i for the e sound in the second syllable",
+   "conveniant": "uses -ant instead of -ent",
+   "conviniant": "writes i in the second syllable and also ends the word in -ant"
+  },
+  "explanation": "\"convenient\" is the correct spelling (e in the second syllable; -ent ending). \"convinient\" writes i for the e sound in the second syllable. \"conveniant\" uses -ant instead of -ent. \"conviniant\" writes i in the second syllable and also ends the word in -ant."
+ },
+ {
+  "id": "MLV3-S20",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The wind created resistance against the runners as they climbed the steep hill.",
+   "Many people doubt the existance of ghosts in old houses.",
+   "His ignorance of the rules cost our team a penalty in the last minute of the game.",
+   "The forest has an abundance of berries and mushrooms in the fall."
+  ],
+  "correct_answer": "Many people doubt the existance of ghosts in old houses.",
+  "spelling_pattern": "-ence ending written as -ance",
+  "targets": {
+   "The wind created resistance against the runners as they climbed the steep hill.": "resistance",
+   "Many people doubt the existance of ghosts in old houses.": "existance",
+   "His ignorance of the rules cost our team a penalty in the last minute of the game.": "ignorance",
+   "The forest has an abundance of berries and mushrooms in the fall.": "abundance"
+  },
+  "misspelled_word": "existance",
+  "intended_word": "existence",
+  "key_length_rank": 4,
+  "student_error": {
+   "The wind created resistance against the runners as they climbed the steep hill.": "resistance ends in -ance, which a student may think should be -ence",
+   "His ignorance of the rules cost our team a penalty in the last minute of the game.": "ignorance ends in -ance, which a student may think should be -ence",
+   "The forest has an abundance of berries and mushrooms in the fall.": "abundance ends in -ance, which a student may think should be -ence"
+  },
+  "explanation": "The key misspells \"existence\" as \"existance\" (-ence ending written as -ance). The other sentences are spelled correctly: \"resistance\", \"ignorance\", \"abundance\"."
+ },
+ {
+  "id": "MLV3-S21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe student ____ voted to hold the spring dance in the school gym.",
+  "choices": [
+   "comittee",
+   "committe",
+   "committee",
+   "comitte"
+  ],
+  "correct_answer": "committee",
+  "spelling_pattern": "three doubled letters: m, t and e (two tested)",
+  "error_sites": [
+   "double m",
+   "double e at the end"
+  ],
+  "student_error": {
+   "comittee": "writes a single m, keeping only the more obvious double t",
+   "committe": "drops the final e, as if the word ended like a plain -ee sound with one e",
+   "comitte": "misses both the double m and the final double e"
+  },
+  "explanation": "\"committee\" is the correct spelling (double m; double e at the end). \"comittee\" writes a single m, keeping only the more obvious double t. \"committe\" drops the final e, as if the word ended like a plain -ee sound with one e. \"comitte\" misses both the double m and the final double e."
+ },
+ {
+  "id": "MLV3-S22",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The army held the city under siege for many months.",
+   "In her leisure time, Nora enjoys painting and reading mystery novels by the lake.",
+   "The fake email tried to decieve people into sharing their passwords.",
+   "Keep the receipt in case you need to return the shirt."
+  ],
+  "correct_answer": "The fake email tried to decieve people into sharing their passwords.",
+  "spelling_pattern": "ei after c reversed to ie",
+  "targets": {
+   "The army held the city under siege for many months.": "siege",
+   "In her leisure time, Nora enjoys painting and reading mystery novels by the lake.": "leisure",
+   "The fake email tried to decieve people into sharing their passwords.": "decieve",
+   "Keep the receipt in case you need to return the shirt.": "receipt"
+  },
+  "misspelled_word": "decieve",
+  "intended_word": "deceive",
+  "key_length_rank": 2,
+  "student_error": {
+   "The army held the city under siege for many months.": "siege has ie, which a student may think should be ei",
+   "In her leisure time, Nora enjoys painting and reading mystery novels by the lake.": "leisure has ei, which a student may think should be ie",
+   "Keep the receipt in case you need to return the shirt.": "receipt has a silent p, so a student may think it should be receit"
+  },
+  "explanation": "The key misspells \"deceive\" as \"decieve\" (ei after c reversed to ie). The other sentences are spelled correctly: \"siege\", \"leisure\", \"receipt\"."
+ },
+ {
+  "id": "MLV3-S23",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe old map has been in my grandmother's ____ for more than fifty years.",
+  "choices": [
+   "posesion",
+   "posession",
+   "possesion",
+   "possession"
+  ],
+  "correct_answer": "possession",
+  "spelling_pattern": "two double-s pairs",
+  "error_sites": [
+   "first double s",
+   "second double s"
+  ],
+  "student_error": {
+   "posession": "writes one s in the first pair, doubling only the second",
+   "possesion": "writes one s in the second pair, doubling only the first",
+   "posesion": "writes single s in both places"
+  },
+  "explanation": "\"possession\" is the correct spelling (first double s; second double s). \"posession\" writes one s in the first pair, doubling only the second. \"possesion\" writes one s in the second pair, doubling only the first. \"posesion\" writes single s in both places."
+ },
+ {
+  "id": "MLV3-S24",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe novel shows how ____ against newcomers can divide a small town.",
+  "choices": [
+   "predjudise",
+   "prejudise",
+   "predjudice",
+   "prejudice"
+  ],
+  "correct_answer": "prejudice",
+  "spelling_pattern": "j sound spelled with j alone, and soft c for the s sound",
+  "error_sites": [
+   "j after pre- (no d)",
+   "c spelling the s sound"
+  ],
+  "student_error": {
+   "predjudice": "adds a d before j, as in judge and fudge",
+   "prejudise": "spells the final s sound with s instead of the soft c",
+   "predjudise": "adds a d before j and also writes s for the soft c"
+  },
+  "explanation": "\"prejudice\" is the correct spelling (j after pre- (no d); c spelling the s sound). \"predjudice\" adds a d before j, as in judge and fudge. \"prejudise\" spells the final s sound with s instead of the soft c. \"predjudise\" adds a d before j and also writes s for the soft c."
+ },
+ {
+  "id": "MLV3-S25",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The final rehearsal for the school play lasted until almost nine at night.",
+   "Mia bought a small souvenir at the museum gift shop for her cousin.",
+   "Jack wore a rediculous hat to the costume party.",
+   "Sam has the discipline to study each day."
+  ],
+  "correct_answer": "Jack wore a rediculous hat to the costume party.",
+  "spelling_pattern": "unstressed i in the first syllable written as e",
+  "targets": {
+   "The final rehearsal for the school play lasted until almost nine at night.": "rehearsal",
+   "Mia bought a small souvenir at the museum gift shop for her cousin.": "souvenir",
+   "Jack wore a rediculous hat to the costume party.": "rediculous",
+   "Sam has the discipline to study each day.": "discipline"
+  },
+  "misspelled_word": "rediculous",
+  "intended_word": "ridiculous",
+  "key_length_rank": 3,
+  "student_error": {
+   "The final rehearsal for the school play lasted until almost nine at night.": "rehearsal has an ear spelling that a student may expect to be er",
+   "Mia bought a small souvenir at the museum gift shop for her cousin.": "souvenir has ou and ends in -ir, so it looks unusual",
+   "Sam has the discipline to study each day.": "discipline has a silent c after s, so a student may think it should be disipline"
+  },
+  "explanation": "The key misspells \"ridiculous\" as \"rediculous\" (unstressed i in the first syllable written as e). The other sentences are spelled correctly: \"rehearsal\", \"souvenir\", \"discipline\"."
+ },
+ {
+  "id": "MLV3-S26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe store offers a ____ that the blender will work for at least two years.",
+  "choices": [
+   "guarentee",
+   "guarantee",
+   "garentee",
+   "garantee"
+  ],
+  "correct_answer": "guarantee",
+  "spelling_pattern": "silent u after g, and the unstressed a in the middle",
+  "error_sites": [
+   "silent u after g",
+   "unstressed a in the second syllable"
+  ],
+  "student_error": {
+   "garantee": "drops the silent u that keeps the g hard",
+   "guarentee": "writes e for the unstressed a in the middle syllable",
+   "garentee": "drops the silent u and also writes e for the middle a"
+  },
+  "explanation": "\"guarantee\" is the correct spelling (silent u after g; unstressed a in the second syllable). \"garantee\" drops the silent u that keeps the g hard. \"guarentee\" writes e for the unstressed a in the middle syllable. \"garentee\" drops the silent u and also writes e for the middle a."
+ },
+ {
+  "id": "MLV3-S27",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nAfter the rain, there was a ____ drop in the temperature outside.",
+  "choices": [
+   "noticeible",
+   "noticible",
+   "noticeable",
+   "noticable"
+  ],
+  "correct_answer": "noticeable",
+  "spelling_pattern": "keeping the final e before -able after soft c, and -able vs -ible",
+  "error_sites": [
+   "e kept after c before the suffix",
+   "-able ending"
+  ],
+  "student_error": {
+   "noticable": "drops the final e of notice before -able, applying the usual drop-e rule where the soft c needs it",
+   "noticeible": "uses -ible instead of -able",
+   "noticible": "drops the e and also writes -ible"
+  },
+  "explanation": "\"noticeable\" is the correct spelling (e kept after c before the suffix; -able ending). \"noticable\" drops the final e of notice before -able, applying the usual drop-e rule where the soft c needs it. \"noticeible\" uses -ible instead of -able. \"noticible\" drops the e and also writes -ible."
+ },
+ {
+  "id": "MLV3-S28",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The heavy backpack was a hindrance during the long hike up the mountain trail.",
+   "The angry pirate swore vengence on the captain who had stolen his ship.",
+   "Ben was not conscious of the time until it was dark.",
+   "Omar is not a close friend, just an acquaintance from my swim team."
+  ],
+  "correct_answer": "The angry pirate swore vengence on the captain who had stolen his ship.",
+  "spelling_pattern": "e of venge- kept but the a of -ance dropped",
+  "targets": {
+   "The heavy backpack was a hindrance during the long hike up the mountain trail.": "hindrance",
+   "The angry pirate swore vengence on the captain who had stolen his ship.": "vengence",
+   "Ben was not conscious of the time until it was dark.": "conscious",
+   "Omar is not a close friend, just an acquaintance from my swim team.": "acquaintance"
+  },
+  "misspelled_word": "vengence",
+  "intended_word": "vengeance",
+  "key_length_rank": 2,
+  "student_error": {
+   "The heavy backpack was a hindrance during the long hike up the mountain trail.": "hindrance drops the e of hinder, so a student may think it should be hinderance",
+   "Ben was not conscious of the time until it was dark.": "conscious has sc and -ious, so it looks misspelled",
+   "Omar is not a close friend, just an acquaintance from my swim team.": "acquaintance has cq and -ance, so it looks like it has extra letters"
+  },
+  "explanation": "The key misspells \"vengeance\" as \"vengence\" (e of venge- kept but the a of -ance dropped). The other sentences are spelled correctly: \"hindrance\", \"conscious\", \"acquaintance\"."
+ },
+ {
+  "id": "MLV3-S29",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe ____ of one important step in the recipe made the cake fall flat.",
+  "choices": [
+   "ommission",
+   "omision",
+   "omission",
+   "ommision"
+  ],
+  "correct_answer": "omission",
+  "spelling_pattern": "single m from omit, and double s in -ssion",
+  "error_sites": [
+   "single m after o",
+   "double s in -ssion"
+  ],
+  "student_error": {
+   "ommission": "doubles the m, as in commission",
+   "omision": "writes one s, as in vision or decision",
+   "ommision": "doubles the m and also writes only one s"
+  },
+  "explanation": "\"omission\" is the correct spelling (single m after o; double s in -ssion). \"ommission\" doubles the m, as in commission. \"omision\" writes one s, as in vision or decision. \"ommision\" doubles the m and also writes only one s."
+ },
+ {
+  "id": "MLV3-S30",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Students must be thirteen to be eligible for the summer camp.",
+   "Lily built a miniature castle out of sugar cubes.",
+   "The colonists fought against tyranny and unfair taxes.",
+   "The vote to name the class pet Pepper was unanamous among all the students in the room."
+  ],
+  "correct_answer": "The vote to name the class pet Pepper was unanamous among all the students in the room.",
+  "spelling_pattern": "unstressed i in the third syllable written as a",
+  "targets": {
+   "Students must be thirteen to be eligible for the summer camp.": "eligible",
+   "Lily built a miniature castle out of sugar cubes.": "miniature",
+   "The colonists fought against tyranny and unfair taxes.": "tyranny",
+   "The vote to name the class pet Pepper was unanamous among all the students in the room.": "unanamous"
+  },
+  "misspelled_word": "unanamous",
+  "intended_word": "unanimous",
+  "key_length_rank": 1,
+  "student_error": {
+   "Students must be thirteen to be eligible for the summer camp.": "eligible ends in -ible, which a student may think should be -able",
+   "Lily built a miniature castle out of sugar cubes.": "miniature has an a that is often not pronounced (minuture), so it looks extra",
+   "The colonists fought against tyranny and unfair taxes.": "tyranny has a y and a double n, so it looks unusual"
+  },
+  "explanation": "The key misspells \"unanimous\" as \"unanamous\" (unstressed i in the third syllable written as a). The other sentences are spelled correctly: \"eligible\", \"miniature\", \"tyranny\"."
+ },
+ {
+  "id": "MLV3-S31",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nDoctors ____ children against measles to protect them from the disease.",
+  "choices": [
+   "innocculate",
+   "innoculate",
+   "inocculate",
+   "inoculate"
+  ],
+  "correct_answer": "inoculate",
+  "spelling_pattern": "single n and single c, where students expect doubled consonants",
+  "error_sites": [
+   "single n after i",
+   "single c"
+  ],
+  "student_error": {
+   "innoculate": "doubles the n, as if the prefix in- met a root starting with n",
+   "inocculate": "doubles the c, as in occur or accurate",
+   "innocculate": "doubles both the n and the c"
+  },
+  "explanation": "\"inoculate\" is the correct spelling (single n after i; single c). \"innoculate\" doubles the n, as if the prefix in- met a root starting with n. \"inocculate\" doubles the c, as in occur or accurate. \"innocculate\" doubles both the n and the c."
+ },
+ {
+  "id": "MLV3-S32",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The lieutenant gave orders to the soldiers at dawn.",
+   "My parents finally paid off the morgage on the house they bought twenty years ago.",
+   "Ana served as the liaison between the students and the principal.",
+   "The sergeant shouted at the new recruits to march faster."
+  ],
+  "correct_answer": "My parents finally paid off the morgage on the house they bought twenty years ago.",
+  "spelling_pattern": "silent t dropped",
+  "targets": {
+   "The lieutenant gave orders to the soldiers at dawn.": "lieutenant",
+   "My parents finally paid off the morgage on the house they bought twenty years ago.": "morgage",
+   "Ana served as the liaison between the students and the principal.": "liaison",
+   "The sergeant shouted at the new recruits to march faster.": "sergeant"
+  },
+  "misspelled_word": "morgage",
+  "intended_word": "mortgage",
+  "key_length_rank": 1,
+  "student_error": {
+   "The lieutenant gave orders to the soldiers at dawn.": "lieutenant is spelled very differently from how it sounds, so it looks wrong",
+   "Ana served as the liaison between the students and the principal.": "liaison has two i's close together, so a student may think one is extra",
+   "The sergeant shouted at the new recruits to march faster.": "sergeant is said with an ar sound but spelled er, with an extra e"
+  },
+  "explanation": "The key misspells \"mortgage\" as \"morgage\" (silent t dropped). The other sentences are spelled correctly: \"lieutenant\", \"liaison\", \"sergeant\"."
+ },
+ {
+  "id": "MLV3-S33",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nA good map was ____ to the explorers as they crossed the unknown desert.",
+  "choices": [
+   "indispensable",
+   "indespensable",
+   "indispensible",
+   "indespensible"
+  ],
+  "correct_answer": "indispensable",
+  "spelling_pattern": "unstressed i in the second syllable, and -able vs -ible",
+  "error_sites": [
+   "i in the second syllable",
+   "-able ending"
+  ],
+  "student_error": {
+   "indespensable": "writes e for the unstressed i in the second syllable",
+   "indispensible": "uses -ible instead of -able, as in sensible",
+   "indespensible": "writes e in the second syllable and also uses -ible"
+  },
+  "explanation": "\"indispensable\" is the correct spelling (i in the second syllable; -able ending). \"indespensable\" writes e for the unstressed i in the second syllable. \"indispensible\" uses -ible instead of -able, as in sensible. \"indespensible\" writes e in the second syllable and also uses -ible."
+ },
+ {
+  "id": "MLV3-S34",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe speed of the downhill race seemed to ____ the young skiers.",
+  "choices": [
+   "exilarate",
+   "exhilarate",
+   "exilerate",
+   "exhilerate"
+  ],
+  "correct_answer": "exhilarate",
+  "spelling_pattern": "silent h after ex-, and the unstressed a",
+  "error_sites": [
+   "silent h after ex",
+   "unstressed a in the third syllable"
+  ],
+  "student_error": {
+   "exhilerate": "writes e for the unstressed a, as in accelerate",
+   "exilarate": "drops the silent h after ex-",
+   "exilerate": "drops the h and also writes e for the unstressed a"
+  },
+  "explanation": "\"exhilarate\" is the correct spelling (silent h after ex; unstressed a in the third syllable). \"exhilerate\" writes e for the unstressed a, as in accelerate. \"exilarate\" drops the silent h after ex-. \"exilerate\" drops the h and also writes e for the unstressed a."
+ },
+ {
+  "id": "MLV3-S35",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Climbing the mountain took great perseverance and courage.",
+   "The new rules will supersede the old ones next month.",
+   "The teacher helped Sam with the correct pronounciation of several difficult French words.",
+   "Please fill out the short questionnaire about your reading habits."
+  ],
+  "correct_answer": "The teacher helped Sam with the correct pronounciation of several difficult French words.",
+  "spelling_pattern": "o of pronounce wrongly kept in pronunciation",
+  "targets": {
+   "Climbing the mountain took great perseverance and courage.": "perseverance",
+   "The new rules will supersede the old ones next month.": "supersede",
+   "The teacher helped Sam with the correct pronounciation of several difficult French words.": "pronounciation",
+   "Please fill out the short questionnaire about your reading habits.": "questionnaire"
+  },
+  "misspelled_word": "pronounciation",
+  "intended_word": "pronunciation",
+  "key_length_rank": 1,
+  "student_error": {
+   "Climbing the mountain took great perseverance and courage.": "perseverance has no r after the second e, so a student may expect perserverance",
+   "The new rules will supersede the old ones next month.": "supersede ends in -sede, which a student may think should be -cede as in precede",
+   "Please fill out the short questionnaire about your reading habits.": "questionnaire has a double n, which looks like a typo"
+  },
+  "explanation": "The key misspells \"pronunciation\" as \"pronounciation\" (o of pronounce wrongly kept in pronunciation). The other sentences are spelled correctly: \"perseverance\", \"supersede\", \"questionnaire\"."
+ },
+ {
+  "id": "MLV3-S36",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe school has clear rules against bullying and ____ of any kind.",
+  "choices": [
+   "harassment",
+   "harrasment",
+   "harrassment",
+   "harasment"
+  ],
+  "correct_answer": "harassment",
+  "spelling_pattern": "single r and double s",
+  "error_sites": [
+   "single r",
+   "double s"
+  ],
+  "student_error": {
+   "harrassment": "doubles the r, as in embarrass",
+   "harasment": "writes one s before -ment",
+   "harrasment": "doubles the r and also writes one s"
+  },
+  "explanation": "\"harassment\" is the correct spelling (single r; double s). \"harrassment\" doubles the r, as in embarrass. \"harasment\" writes one s before -ment. \"harrasment\" doubles the r and also writes one s."
+ },
+ {
+  "id": "MLV3-S37",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe bright ____ lights in the hallway hummed softly all day long.",
+  "choices": [
+   "flourescent",
+   "fluoresent",
+   "fluorescent",
+   "flouresent"
+  ],
+  "correct_answer": "fluorescent",
+  "spelling_pattern": "uo order after fl, and the sc spelling of the s sound",
+  "error_sites": [
+   "uo after fl",
+   "sc in -escent"
+  ],
+  "student_error": {
+   "flourescent": "swaps uo to ou, as in flour",
+   "fluoresent": "drops the c of -scent, writing the s sound with s alone",
+   "flouresent": "swaps uo to ou and also drops the c"
+  },
+  "explanation": "\"fluorescent\" is the correct spelling (uo after fl; sc in -escent). \"flourescent\" swaps uo to ou, as in flour. \"fluoresent\" drops the c of -scent, writing the s sound with s alone. \"flouresent\" swaps uo to ou and also drops the c."
+ },
+ {
+  "id": "MLV3-S38",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Only a minuscule amount of salt is needed in this recipe.",
+   "The lifeguard was trained to resuscitate swimmers who stop breathing.",
+   "There was no discernible difference between the two paintings.",
+   "Young children and older adults are more suseptible to the flu during the cold winter months."
+  ],
+  "correct_answer": "Young children and older adults are more suseptible to the flu during the cold winter months.",
+  "spelling_pattern": "c of the sc spelling dropped",
+  "targets": {
+   "Only a minuscule amount of salt is needed in this recipe.": "minuscule",
+   "The lifeguard was trained to resuscitate swimmers who stop breathing.": "resuscitate",
+   "There was no discernible difference between the two paintings.": "discernible",
+   "Young children and older adults are more suseptible to the flu during the cold winter months.": "suseptible"
+  },
+  "misspelled_word": "suseptible",
+  "intended_word": "susceptible",
+  "key_length_rank": 1,
+  "student_error": {
+   "Only a minuscule amount of salt is needed in this recipe.": "minuscule has a u where many students expect an i (miniscule)",
+   "The lifeguard was trained to resuscitate swimmers who stop breathing.": "resuscitate has sc in the middle, so it looks like it has an extra letter",
+   "There was no discernible difference between the two paintings.": "discernible ends in -ible, which a student may think should be -able"
+  },
+  "explanation": "The key misspells \"susceptible\" as \"suseptible\" (c of the sc spelling dropped). The other sentences are spelled correctly: \"minuscule\", \"resuscitate\", \"discernible\"."
+ },
+ {
+  "id": "MLV3-S39",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nNora is a ____ student who reads every answer twice before handing in her test.",
+  "choices": [
+   "consientous",
+   "consientious",
+   "conscientous",
+   "conscientious"
+  ],
+  "correct_answer": "conscientious",
+  "spelling_pattern": "sc spelling the sh sound, and the i in -ious",
+  "error_sites": [
+   "sc after con",
+   "i before -ous"
+  ],
+  "student_error": {
+   "consientious": "drops the c of sc, writing the sh sound with s",
+   "conscientous": "drops the i before -ous, writing the word as it is said",
+   "consientous": "drops the c and also drops the i before -ous"
+  },
+  "explanation": "\"conscientious\" is the correct spelling (sc after con; i before -ous). \"consientious\" drops the c of sc, writing the sh sound with s. \"conscientous\" drops the i before -ous, writing the word as it is said. \"consientous\" drops the c and also drops the i before -ous."
+ },
+ {
+  "id": "MLV3-S40",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Leo faced a dilemna when both of his friends invited him to parties on the same night.",
+   "My mother's colleague brought cookies to the office on Friday.",
+   "A young entrepreneur opened a bakery on our street.",
+   "The camaraderie among the team members grew stronger with every game they played together this season."
+  ],
+  "correct_answer": "Leo faced a dilemna when both of his friends invited him to parties on the same night.",
+  "spelling_pattern": "mm written as mn",
+  "targets": {
+   "Leo faced a dilemna when both of his friends invited him to parties on the same night.": "dilemna",
+   "My mother's colleague brought cookies to the office on Friday.": "colleague",
+   "A young entrepreneur opened a bakery on our street.": "entrepreneur",
+   "The camaraderie among the team members grew stronger with every game they played together this season.": "camaraderie"
+  },
+  "misspelled_word": "dilemna",
+  "intended_word": "dilemma",
+  "key_length_rank": 2,
+  "student_error": {
+   "My mother's colleague brought cookies to the office on Friday.": "colleague has a double l and ends in -ague, so it looks unusual",
+   "A young entrepreneur opened a bakery on our street.": "entrepreneur ends in -eur, which a student may think should be -er or -ure",
+   "The camaraderie among the team members grew stronger with every game they played together this season.": "camaraderie has an a where many students expect an e or nothing (comradery)"
+  },
+  "explanation": "The key misspells \"dilemma\" as \"dilemna\" (mm written as mn). The other sentences are spelled correctly: \"colleague\", \"entrepreneur\", \"camaraderie\"."
+ },
+ {
+  "id": "MLV3-C01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our class walked from Hillside Middle school to Cedar Lake Park for the spring picnic.",
+   "Our class walked from Hillside Middle School to Cedar Lake park for the spring picnic.",
+   "Our class walked from Hillside Middle School to Cedar Lake Park for the spring picnic.",
+   "Our class walked from Hillside Middle school to Cedar Lake park for the spring picnic."
+  ],
+  "correct_answer": "Our class walked from Hillside Middle School to Cedar Lake Park for the spring picnic.",
+  "error_sites": [
+   "'School' as part of the name Hillside Middle School",
+   "'Park' as part of the name Cedar Lake Park"
+  ],
+  "student_error": {
+   "Our class walked from Hillside Middle school to Cedar Lake Park for the spring picnic.": "Capitalizes only the special words of the school's name and treats the everyday word 'school' as a common noun.",
+   "Our class walked from Hillside Middle School to Cedar Lake park for the spring picnic.": "Capitalizes only the special words of the park's name and treats the everyday word 'park' as a common noun.",
+   "Our class walked from Hillside Middle school to Cedar Lake park for the spring picnic.": "Believes the generic word at the end of a multi-word name (school, park) is never capitalized."
+  },
+  "explanation": "Hillside Middle School and Cedar Lake Park are the full names of particular places, so every main word, including 'School' and 'Park', is capitalized. 'spring' is a season and stays lowercase.",
+  "cap_rule": "every word of a multi-word place name, including the generic word (school, park)"
+ },
+ {
+  "id": "MLV3-C02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Every Summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.",
+   "Every summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.",
+   "Every Summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.",
+   "Every summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library."
+  ],
+  "correct_answer": "Every summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.",
+  "error_sites": [
+   "the season 'summer'",
+   "the season 'fall'"
+  ],
+  "student_error": {
+   "Every Summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.": "Capitalizes 'summer' because it names a time of year, like the holiday in the same sentence.",
+   "Every summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.": "Capitalizes 'fall' because it names a time of year, the way months and holidays are capitalized.",
+   "Every Summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.": "Believes seasons are capitalized like months and holidays."
+  },
+  "explanation": "Independence Day is the name of a holiday and is capitalized, but seasons such as summer and fall are common nouns and stay lowercase. 'pumpkin fair' is not the name of an event here.",
+  "cap_rule": "seasons stay lowercase while a holiday is capitalized"
+ },
+ {
+  "id": "MLV3-C03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Nina's Brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.",
+   "Nina's Brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.",
+   "Nina's brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.",
+   "Nina's brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend."
+  ],
+  "correct_answer": "Nina's Brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.",
+  "error_sites": [
+   "the nationality adjective 'Brazilian'",
+   "the language 'Portuguese'"
+  ],
+  "student_error": {
+   "Nina's brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.": "Lowercases 'Brazilian' because it is used as a describing word, not as a name.",
+   "Nina's Brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.": "Lowercases 'Portuguese' because it thinks a language is an ordinary subject like 'reading'.",
+   "Nina's brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.": "Believes only names of people and places are capitalized, not nationalities or languages."
+  },
+  "explanation": "Words formed from the names of countries and peoples are proper adjectives (Brazilian), and names of languages (Portuguese) are proper nouns, so both are capitalized.",
+  "cap_rule": "nationality adjectives and names of languages"
+ },
+ {
+  "id": "MLV3-C04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the Weekend instead.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the Weekend instead.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the weekend instead.",
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the weekend instead."
+  ],
+  "correct_answer": "The town pool is closed on Sundays in August, so we usually swim at the lake on the weekend instead.",
+  "error_sites": [
+   "the day name 'Sundays'",
+   "the general time word 'weekend'"
+  ],
+  "student_error": {
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the weekend instead.": "Writes the day of the week in lowercase, treating it like an ordinary time word.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the Weekend instead.": "Capitalizes 'weekend' because it is made up of the days Saturday and Sunday.",
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the Weekend instead.": "Mixes up which time words are names: lowercases the day and capitalizes the general word 'weekend'."
+  },
+  "explanation": "Days of the week (Sundays) and months (August) are capitalized; 'weekend' is a common noun and stays lowercase.",
+  "cap_rule": "days of the week vs a general time word (weekend)"
+ },
+ {
+  "id": "MLV3-C05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "When aunt Rosa visits next week, she will bring the puzzle that my Uncle gave us last year.",
+   "When aunt Rosa visits next week, she will bring the puzzle that my uncle gave us last year.",
+   "When Aunt Rosa visits next week, she will bring the puzzle that my Uncle gave us last year.",
+   "When Aunt Rosa visits next week, she will bring the puzzle that my uncle gave us last year."
+  ],
+  "correct_answer": "When Aunt Rosa visits next week, she will bring the puzzle that my uncle gave us last year.",
+  "error_sites": [
+   "the family title 'Aunt' before a name",
+   "the family word 'uncle' after 'my'"
+  ],
+  "student_error": {
+   "When aunt Rosa visits next week, she will bring the puzzle that my uncle gave us last year.": "Lowercases 'aunt' because it is a family word, not noticing that it is part of the name Aunt Rosa.",
+   "When Aunt Rosa visits next week, she will bring the puzzle that my Uncle gave us last year.": "Capitalizes 'uncle' as if it were a name, not noticing that 'my' makes it a common noun.",
+   "When aunt Rosa visits next week, she will bring the puzzle that my Uncle gave us last year.": "Has the family-word rule backwards: lowercases the title used with a name and capitalizes the word after 'my'."
+  },
+  "explanation": "'Aunt' is capitalized when it is used as part of a name (Aunt Rosa). After 'my', 'uncle' is a common noun and stays lowercase.",
+  "cap_rule": "family title used with a name vs family word after a possessive"
+ },
+ {
+  "id": "MLV3-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What It Hides.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What it Hides.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What It Hides.",
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What it Hides."
+  ],
+  "correct_answer": "For her book report, Dana chose a novel called Why the Sea Is Salty and What It Hides.",
+  "error_sites": [
+   "the short verb 'Is' in the title",
+   "the short pronoun 'It' in the title"
+  ],
+  "student_error": {
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What It Hides.": "Lowercases the verb 'is' in the title because it is a short word.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What it Hides.": "Lowercases the pronoun 'it' in the title because it is a short word.",
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What it Hides.": "Believes every short word in a title stays lowercase, not just articles, short prepositions and conjunctions."
+  },
+  "explanation": "In a title, only articles (the), coordinating conjunctions (and) and short prepositions stay lowercase. 'Is' is a verb and 'It' is a pronoun, so both are capitalized no matter how short they are.",
+  "cap_rule": "short verbs and pronouns inside a title are capitalized"
+ },
+ {
+  "id": "MLV3-C07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "In Middle School, Ben became interested in the knights and castles of the middle ages.",
+   "In middle school, Ben became interested in the knights and castles of the middle ages.",
+   "In Middle School, Ben became interested in the knights and castles of the Middle Ages.",
+   "In middle school, Ben became interested in the knights and castles of the Middle Ages."
+  ],
+  "correct_answer": "In middle school, Ben became interested in the knights and castles of the Middle Ages.",
+  "error_sites": [
+   "'middle school' used as a common noun",
+   "the historical period 'Middle Ages'"
+  ],
+  "student_error": {
+   "In Middle School, Ben became interested in the knights and castles of the Middle Ages.": "Capitalizes 'middle school' as if it were the name of a particular school.",
+   "In middle school, Ben became interested in the knights and castles of the middle ages.": "Lowercases 'Middle Ages' because 'middle' and 'ages' look like ordinary words.",
+   "In Middle School, Ben became interested in the knights and castles of the middle ages.": "Confuses the two look-alike phrases: capitalizes the general 'middle school' and lowercases the named period."
+  },
+  "explanation": "The Middle Ages is the name of a historical period, so it is capitalized. 'middle school' here names a kind of school, not a particular one, so it stays lowercase.",
+  "cap_rule": "named historical period vs the same word used as a common noun"
+ },
+ {
+  "id": "MLV3-C08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "We drove West for two days to visit my cousins, who live on a ranch in the Southwest.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the Southwest.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the southwest.",
+   "We drove West for two days to visit my cousins, who live on a ranch in the southwest."
+  ],
+  "correct_answer": "We drove west for two days to visit my cousins, who live on a ranch in the Southwest.",
+  "error_sites": [
+   "'west' as a direction of travel",
+   "'Southwest' as the name of a region"
+  ],
+  "student_error": {
+   "We drove West for two days to visit my cousins, who live on a ranch in the Southwest.": "Capitalizes 'west' even though it only tells the direction of the drive.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the southwest.": "Lowercases 'Southwest' because it is a compass word, not seeing that 'the Southwest' names a region.",
+   "We drove West for two days to visit my cousins, who live on a ranch in the southwest.": "Has the region-vs-direction rule reversed."
+  },
+  "explanation": "A compass word that tells a direction (drove west) stays lowercase. When it names a region (the Southwest), it is capitalized.",
+  "cap_rule": "compass direction vs the name of a region"
+ },
+ {
+  "id": "MLV3-C09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "On Mondays I have Math and French before lunch, and history right after it.",
+   "On Mondays I have math and French before lunch, and history right after it.",
+   "On Mondays I have Math and French before lunch, and History right after it.",
+   "On Mondays I have math and French before lunch, and History right after it."
+  ],
+  "correct_answer": "On Mondays I have math and French before lunch, and history right after it.",
+  "error_sites": [
+   "the school subject 'math'",
+   "the school subject 'history'"
+  ],
+  "student_error": {
+   "On Mondays I have Math and French before lunch, and history right after it.": "Capitalizes 'math' because it is a class on the schedule, like French.",
+   "On Mondays I have math and French before lunch, and History right after it.": "Capitalizes 'history' because it is a class on the schedule, like French.",
+   "On Mondays I have Math and French before lunch, and History right after it.": "Believes all school subjects are capitalized, since 'French' is."
+  },
+  "explanation": "School subjects such as math and history are common nouns. 'French' is capitalized only because it is the name of a language.",
+  "cap_rule": "school subjects are lowercase except languages"
+ },
+ {
+  "id": "MLV3-C10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Mr. Adams called our play \"A total success\" and said it was \"The best show in years.\"",
+   "Mr. Adams called our play \"a total success\" and said it was \"The best show in years.\"",
+   "Mr. Adams called our play \"A total success\" and said it was \"the best show in years.\"",
+   "Mr. Adams called our play \"a total success\" and said it was \"the best show in years.\""
+  ],
+  "correct_answer": "Mr. Adams called our play \"a total success\" and said it was \"the best show in years.\"",
+  "error_sites": [
+   "first word of the quoted fragment 'a total success'",
+   "first word of the quoted fragment 'the best show in years'"
+  ],
+  "student_error": {
+   "Mr. Adams called our play \"A total success\" and said it was \"the best show in years.\"": "Capitalizes the first word inside quotation marks, though the quotation is only a phrase.",
+   "Mr. Adams called our play \"a total success\" and said it was \"The best show in years.\"": "Capitalizes the first word inside quotation marks, though the quotation is only a phrase that finishes the sentence.",
+   "Mr. Adams called our play \"A total success\" and said it was \"The best show in years.\"": "Believes the first word inside quotation marks is always capitalized."
+  },
+  "explanation": "Only a quoted complete sentence begins with a capital letter. Both quotations are phrases that fit into the writer's own sentence, so they begin lowercase.",
+  "cap_rule": "a quoted fragment begins with a lowercase letter"
+ },
+ {
+  "id": "MLV3-P01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2b",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "After the storm knocked out the power in our whole neighborhood my brother and I, read comic books by flashlight.",
+   "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.",
+   "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+   "After the storm knocked out the power in our whole neighborhood, my brother and I, read comic books by flashlight."
+  ],
+  "correct_answer": "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+  "error_sites": [
+   "comma after the long introductory clause",
+   "comma between the subject and the verb"
+  ],
+  "student_error": {
+   "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.": "Leaves out the comma after a long introductory clause, so the opening runs into the main sentence.",
+   "After the storm knocked out the power in our whole neighborhood, my brother and I, read comic books by flashlight.": "Adds a comma where the reader pauses, between the subject 'my brother and I' and the verb 'read'.",
+   "After the storm knocked out the power in our whole neighborhood my brother and I, read comic books by flashlight.": "Puts the one comma at the wrong pause: after the subject instead of after the introductory clause."
+  },
+  "explanation": "A long introductory clause is followed by a comma. No comma goes between the subject (my brother and I) and its verb (read).",
+  "punct_rule": "comma after a long introductory clause"
+ },
+ {
+  "id": "MLV3-P02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Dad packed snacks for the car a map of the state park, and two jackets for the rainy hike.",
+   "Dad packed, snacks for the car, a map of the state park, and two jackets for the rainy hike.",
+   "Dad packed, snacks for the car a map of the state park, and two jackets for the rainy hike.",
+   "Dad packed snacks for the car, a map of the state park, and two jackets for the rainy hike."
+  ],
+  "correct_answer": "Dad packed snacks for the car, a map of the state park, and two jackets for the rainy hike.",
+  "error_sites": [
+   "comma between the verb and the start of the list",
+   "comma between the first and second items in the series"
+  ],
+  "student_error": {
+   "Dad packed, snacks for the car, a map of the state park, and two jackets for the rainy hike.": "Puts a comma before the list begins, right after the verb 'packed'.",
+   "Dad packed snacks for the car a map of the state park, and two jackets for the rainy hike.": "Leaves out the comma between the first two phrases in the series.",
+   "Dad packed, snacks for the car a map of the state park, and two jackets for the rainy hike.": "Thinks the comma goes in front of the list instead of between its items."
+  },
+  "explanation": "Commas separate the items in a series: 'snacks for the car, a map of the state park, and two jackets'. No comma goes between the verb and the first item.",
+  "punct_rule": "commas separating phrases in a series (none before the series)"
+ },
+ {
+  "id": "MLV3-P03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2c",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "You remembered to lock the back door before we left for the airport, didn't you?",
+   "You remembered to lock the back door before we left for the airport, didn't you.",
+   "You remembered to lock the back door before we left for the airport didn't you.",
+   "You remembered to lock the back door before we left for the airport didn't you?"
+  ],
+  "correct_answer": "You remembered to lock the back door before we left for the airport, didn't you?",
+  "error_sites": [
+   "comma before the tag question",
+   "question mark at the end"
+  ],
+  "student_error": {
+   "You remembered to lock the back door before we left for the airport didn't you?": "Leaves out the comma that sets off the tag 'didn't you' from the long statement.",
+   "You remembered to lock the back door before we left for the airport, didn't you.": "Ends with a period because the sentence starts out as a statement.",
+   "You remembered to lock the back door before we left for the airport didn't you.": "Does not recognize 'didn't you' as a tag question at all."
+  },
+  "explanation": "A tag question is set off with a comma, and because it asks something, the sentence ends with a question mark.",
+  "punct_rule": "tag question set off by a comma and ended with a question mark"
+ },
+ {
+  "id": "MLV3-P04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2d",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem \"The Green Bike\" afterward.",
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem The Green Bike afterward.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem The Green Bike afterward.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem \"The Green Bike\" afterward."
+  ],
+  "correct_answer": "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem \"The Green Bike\" afterward.",
+  "error_sites": [
+   "quotation marks around the song title",
+   "quotation marks around the poem title"
+  ],
+  "student_error": {
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem \"The Green Bike\" afterward.": "Leaves the song title unmarked, thinking capital letters are enough to show a title.",
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem The Green Bike afterward.": "Leaves the poem title unmarked, thinking capital letters are enough to show a title.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem The Green Bike afterward.": "Does not know that titles of songs and poems go in quotation marks."
+  },
+  "explanation": "Titles of short works such as songs and poems are placed in quotation marks: \"Rain on the Roof\" and \"The Green Bike.\"",
+  "punct_rule": "quotation marks around titles of songs and poems"
+ },
+ {
+  "id": "MLV3-P05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Ms. Grant, the coach who started our running club three years ago ordered new shirts for every runner on the team.",
+   "Ms. Grant the coach who started our running club three years ago ordered new shirts for every runner on the team.",
+   "Ms. Grant the coach who started our running club three years ago, ordered new shirts for every runner on the team.",
+   "Ms. Grant, the coach who started our running club three years ago, ordered new shirts for every runner on the team."
+  ],
+  "correct_answer": "Ms. Grant, the coach who started our running club three years ago, ordered new shirts for every runner on the team.",
+  "error_sites": [
+   "comma opening the appositive",
+   "comma closing the appositive"
+  ],
+  "student_error": {
+   "Ms. Grant the coach who started our running club three years ago, ordered new shirts for every runner on the team.": "Leaves out the opening comma and puts a comma only where the reader pauses before the verb.",
+   "Ms. Grant, the coach who started our running club three years ago ordered new shirts for every runner on the team.": "Opens the appositive with a comma but forgets to close it after the long phrase.",
+   "Ms. Grant the coach who started our running club three years ago ordered new shirts for every runner on the team.": "Does not see that the long phrase renames Ms. Grant and is extra information."
+  },
+  "explanation": "'the coach who started our running club three years ago' renames Ms. Grant and adds extra information, so it is set off by a comma on each side.",
+  "punct_rule": "a pair of commas around a long nonrestrictive appositive"
+ },
+ {
+  "id": "MLV3-P06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+   "Grandpa's old truck (the blue one parked behind the barn still starts on the coldest mornings.",
+   "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings.",
+   "Grandpa's old truck (the blue one parked behind the barn, still starts on the coldest mornings."
+  ],
+  "correct_answer": "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+  "error_sites": [
+   "closing parenthesis",
+   "comma after the parenthetical element"
+  ],
+  "student_error": {
+   "Grandpa's old truck (the blue one parked behind the barn still starts on the coldest mornings.": "Forgets to close the parentheses after the long added phrase.",
+   "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings.": "Adds a comma after the closing parenthesis, where the reader pauses before the verb.",
+   "Grandpa's old truck (the blue one parked behind the barn, still starts on the coldest mornings.": "Closes the parenthetical phrase with a comma, mixing up parentheses and commas."
+  },
+  "explanation": "Parentheses come in pairs, so the added phrase must be closed with ')'. No comma follows it, because the main sentence 'Grandpa's old truck still starts' has no comma between subject and verb.",
+  "punct_rule": "parentheses closed around a nonrestrictive element, with no comma after"
+ },
+ {
+  "id": "MLV3-P07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The bike that I got for my birthday has a flat tire which means I will walk to school today.",
+   "The bike, that I got for my birthday, has a flat tire, which means I will walk to school today.",
+   "The bike, that I got for my birthday, has a flat tire which means I will walk to school today.",
+   "The bike that I got for my birthday has a flat tire, which means I will walk to school today."
+  ],
+  "correct_answer": "The bike that I got for my birthday has a flat tire, which means I will walk to school today.",
+  "error_sites": [
+   "commas around the restrictive 'that' clause",
+   "comma before the nonrestrictive 'which' clause"
+  ],
+  "student_error": {
+   "The bike, that I got for my birthday, has a flat tire, which means I will walk to school today.": "Sets off the 'that' clause with commas as if it were extra information.",
+   "The bike that I got for my birthday has a flat tire which means I will walk to school today.": "Leaves out the comma before 'which', which adds a comment about the whole first clause.",
+   "The bike, that I got for my birthday, has a flat tire which means I will walk to school today.": "Has the restrictive/nonrestrictive comma rule reversed."
+  },
+  "explanation": "'that I got for my birthday' tells which bike, so it is restrictive and takes no commas. 'which means I will walk to school today' adds a comment, so it is nonrestrictive and is set off by a comma.",
+  "punct_rule": "no commas around a restrictive clause; comma before a nonrestrictive clause"
+ },
+ {
+  "id": "MLV3-P08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Three students from our class Ana, Raj, and Tomas, won ribbons at the science fair.",
+   "Three students from our class—Ana, Raj, and Tomas, won ribbons at the science fair.",
+   "Three students from our class—Ana, Raj, and Tomas—won ribbons at the science fair.",
+   "Three students from our class Ana, Raj, and Tomas—won ribbons at the science fair."
+  ],
+  "correct_answer": "Three students from our class—Ana, Raj, and Tomas—won ribbons at the science fair.",
+  "error_sites": [
+   "dash opening the interrupting list",
+   "dash closing the interrupting list"
+  ],
+  "student_error": {
+   "Three students from our class Ana, Raj, and Tomas—won ribbons at the science fair.": "Forgets the opening dash, so the names seem to run straight on from 'class'.",
+   "Three students from our class—Ana, Raj, and Tomas, won ribbons at the science fair.": "Opens with a dash but closes with a comma instead of a matching dash.",
+   "Three students from our class Ana, Raj, and Tomas, won ribbons at the science fair.": "Treats the names as an ordinary series and adds a comma before the verb."
+  },
+  "explanation": "The names interrupt the sentence and contain commas of their own, so they are set off by a pair of matching dashes. A dash that opens the element must be closed by a dash.",
+  "punct_rule": "matching dashes around an interrupting element that contains commas"
+ },
+ {
+  "id": "MLV3-P09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "We took a long windy walk past the three old, red barns on Miller Road.",
+   "We took a long, windy walk past the three old red barns on Miller Road.",
+   "We took a long windy walk past the three old red barns on Miller Road.",
+   "We took a long, windy walk past the three old, red barns on Miller Road."
+  ],
+  "correct_answer": "We took a long, windy walk past the three old red barns on Miller Road.",
+  "error_sites": [
+   "comma between the coordinate adjectives 'long' and 'windy'",
+   "comma between the cumulative adjectives 'old' and 'red'"
+  ],
+  "student_error": {
+   "We took a long windy walk past the three old red barns on Miller Road.": "Leaves out the comma between two adjectives that each describe the walk equally.",
+   "We took a long, windy walk past the three old, red barns on Miller Road.": "Puts a comma between 'old' and 'red', though they cannot be joined by 'and' or switched.",
+   "We took a long windy walk past the three old, red barns on Miller Road.": "Has the coordinate/cumulative rule backwards."
+  },
+  "explanation": "'long, windy walk' needs a comma because 'long and windy' makes sense and the order can switch. 'old red barns' takes no comma because 'old and red barns' or 'red old barns' sounds wrong: the adjectives are cumulative.",
+  "punct_rule": "comma between coordinate adjectives but not cumulative ones"
+ },
+ {
+  "id": "MLV3-P10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The tired, hungry campers ate warm vegetable soup out of small, metal bowls by the fire.",
+   "The tired, hungry campers ate warm, vegetable soup out of small metal bowls by the fire.",
+   "The tired, hungry campers ate warm vegetable soup out of small metal bowls by the fire.",
+   "The tired, hungry campers ate warm, vegetable soup out of small, metal bowls by the fire."
+  ],
+  "correct_answer": "The tired, hungry campers ate warm vegetable soup out of small metal bowls by the fire.",
+  "error_sites": [
+   "comma between the cumulative adjectives 'warm' and 'vegetable'",
+   "comma between the cumulative adjectives 'small' and 'metal'"
+  ],
+  "student_error": {
+   "The tired, hungry campers ate warm, vegetable soup out of small metal bowls by the fire.": "Puts a comma between 'warm' and 'vegetable', copying the comma in 'tired, hungry'.",
+   "The tired, hungry campers ate warm vegetable soup out of small, metal bowls by the fire.": "Puts a comma between 'small' and 'metal', copying the comma in 'tired, hungry'.",
+   "The tired, hungry campers ate warm, vegetable soup out of small, metal bowls by the fire.": "Believes a comma always goes between two adjectives before a noun."
+  },
+  "explanation": "'tired, hungry' are coordinate and take a comma. 'warm vegetable soup' and 'small metal bowls' are cumulative ('vegetable' and 'metal' name the kind of soup and bowl), so no comma goes between them.",
+  "punct_rule": "no comma between cumulative adjectives"
+ },
+ {
+  "id": "MLV3-P11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Everyone else's coats were dry, but our's were soaked after the long walk from the bus stop.",
+   "Everyone elses coats were dry, but ours were soaked after the long walk from the bus stop.",
+   "Everyone else's coats were dry, but ours were soaked after the long walk from the bus stop.",
+   "Everyone elses coats were dry, but our's were soaked after the long walk from the bus stop."
+  ],
+  "correct_answer": "Everyone else's coats were dry, but ours were soaked after the long walk from the bus stop.",
+  "error_sites": [
+   "apostrophe in the possessive 'everyone else's'",
+   "no apostrophe in the possessive pronoun 'ours'"
+  ],
+  "student_error": {
+   "Everyone elses coats were dry, but ours were soaked after the long walk from the bus stop.": "Leaves the apostrophe out of 'else's' because it does not see that the phrase shows ownership.",
+   "Everyone else's coats were dry, but our's were soaked after the long walk from the bus stop.": "Adds an apostrophe to the possessive pronoun 'ours'.",
+   "Everyone elses coats were dry, but our's were soaked after the long walk from the bus stop.": "Puts the apostrophe on the pronoun instead of on 'everyone else'."
+  },
+  "explanation": "'everyone else's coats' shows ownership, so the possessive takes an apostrophe and s. Possessive pronouns such as 'ours' never take an apostrophe.",
+  "punct_rule": "apostrophe for an indefinite-pronoun possessive, none in a possessive pronoun"
+ },
+ {
+  "id": "MLV3-P12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The womens' soccer team shared the field with the children's league while both teams' coaches watched.",
+   "The women's soccer team shared the field with the childrens' league while both teams' coaches watched.",
+   "The women's soccer team shared the field with the children's league while both teams' coaches watched.",
+   "The womens' soccer team shared the field with the childrens' league while both teams' coaches watched."
+  ],
+  "correct_answer": "The women's soccer team shared the field with the children's league while both teams' coaches watched.",
+  "error_sites": [
+   "apostrophe in the irregular plural possessive 'women's'",
+   "apostrophe in the irregular plural possessive 'children's'"
+  ],
+  "student_error": {
+   "The womens' soccer team shared the field with the children's league while both teams' coaches watched.": "Puts the apostrophe after the s in 'women's', following the rule for plurals that end in s.",
+   "The women's soccer team shared the field with the childrens' league while both teams' coaches watched.": "Puts the apostrophe after the s in 'children's', following the rule for plurals that end in s.",
+   "The womens' soccer team shared the field with the childrens' league while both teams' coaches watched.": "Believes every plural possessive puts the apostrophe after the s, as in 'teams''."
+  },
+  "explanation": "'women' and 'children' are already plural and do not end in s, so their possessives add 's: women's, children's. Only a plural that already ends in s, like 'teams', takes the apostrophe after the s.",
+  "punct_rule": "possessives of irregular plurals (apostrophe before the s)"
+ },
+ {
+  "id": "MLV3-P13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Because the field was flooded; the game was moved to the gym; most fans did not mind the change.",
+   "Because the field was flooded, the game was moved to the gym, most fans did not mind the change.",
+   "Because the field was flooded, the game was moved to the gym; most fans did not mind the change.",
+   "Because the field was flooded; the game was moved to the gym, most fans did not mind the change."
+  ],
+  "correct_answer": "Because the field was flooded, the game was moved to the gym; most fans did not mind the change.",
+  "error_sites": [
+   "comma after the introductory dependent clause",
+   "semicolon between the two independent clauses"
+  ],
+  "student_error": {
+   "Because the field was flooded; the game was moved to the gym; most fans did not mind the change.": "Uses a semicolon after the 'because' clause, though that clause cannot stand alone.",
+   "Because the field was flooded, the game was moved to the gym, most fans did not mind the change.": "Joins two complete sentences with only a comma, making a comma splice.",
+   "Because the field was flooded; the game was moved to the gym, most fans did not mind the change.": "Swaps the two marks, not knowing that a semicolon joins only complete clauses."
+  },
+  "explanation": "'Because the field was flooded' cannot stand alone, so it is followed by a comma. 'the game was moved to the gym' and 'most fans did not mind the change' are both complete sentences, so they are joined with a semicolon, not a comma.",
+  "punct_rule": "semicolon joining two independent clauses; comma after a dependent clause"
+ },
+ {
+  "id": "MLV3-P14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.",
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are planning trips and raising money."
+  ],
+  "correct_answer": "The club has three officers: Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.",
+  "error_sites": [
+   "colon after the complete clause introducing the list",
+   "colon between the verb 'are' and its complement"
+  ],
+  "student_error": {
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.": "Leaves out the colon after the complete clause that introduces the names.",
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.": "Puts a colon right after the verb 'are', before the list of jobs.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.": "Believes a colon belongs right before the list it introduces, wherever that is, rather than after a complete clause."
+  },
+  "explanation": "A colon introduces a list only after a complete clause ('The club has three officers'). 'their main jobs are' is not complete without what follows, so no colon goes after 'are'.",
+  "punct_rule": "colon after a complete clause to introduce a list, never after a verb"
+ },
+ {
+  "id": "MLV3-P15",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "My grandmother's garden—she planted it the year I was born, has grown bigger every summer since.",
+   "My grandmother's garden, she planted it the year I was born, has grown bigger every summer since.",
+   "My grandmother's garden—she planted it the year I was born—has grown bigger every summer since.",
+   "My grandmother's garden, she planted it the year I was born—has grown bigger every summer since."
+  ],
+  "correct_answer": "My grandmother's garden—she planted it the year I was born—has grown bigger every summer since.",
+  "error_sites": [
+   "dash opening the interrupting clause",
+   "dash closing the interrupting clause"
+  ],
+  "student_error": {
+   "My grandmother's garden, she planted it the year I was born—has grown bigger every summer since.": "Opens the break with a comma but closes it with a dash, so the marks do not match.",
+   "My grandmother's garden—she planted it the year I was born, has grown bigger every summer since.": "Opens the break with a dash but closes it with a comma, so the marks do not match.",
+   "My grandmother's garden, she planted it the year I was born, has grown bigger every summer since.": "Uses commas for the interruption, not seeing that a complete sentence dropped into another needs dashes."
+  },
+  "explanation": "'she planted it the year I was born' is a complete sentence that breaks into the main sentence. Commas cannot set off a complete clause like this; a matching pair of dashes shows the break.",
+  "punct_rule": "dashes around an interrupting independent clause (a break)"
+ },
+ {
+  "id": "MLV3-P16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2b",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "In her speech, the mayor said, \"Our new library ... will open next spring, and every student ... will get a free card.\"",
+   "In her speech, the mayor said, \"Our new library ... will open next spring, and every student, will get a free card.\"",
+   "In her speech, the mayor said, \"Our new library, will open next spring, and every student ... will get a free card.\"",
+   "In her speech, the mayor said, \"Our new library, will open next spring, and every student, will get a free card.\""
+  ],
+  "correct_answer": "In her speech, the mayor said, \"Our new library ... will open next spring, and every student ... will get a free card.\"",
+  "error_sites": [
+   "ellipsis marking words left out after 'library'",
+   "ellipsis marking words left out after 'student'"
+  ],
+  "student_error": {
+   "In her speech, the mayor said, \"Our new library, will open next spring, and every student ... will get a free card.\"": "Marks the gap after 'library' with a comma, which splits the subject from its verb.",
+   "In her speech, the mayor said, \"Our new library ... will open next spring, and every student, will get a free card.\"": "Marks the gap after 'student' with a comma, which splits the subject from its verb.",
+   "In her speech, the mayor said, \"Our new library, will open next spring, and every student, will get a free card.\"": "Believes a comma is the mark for words left out of a quotation."
+  },
+  "explanation": "An ellipsis (...) shows that words have been left out of a quotation. A comma cannot do this job, and here it would wrongly separate each subject (library, student) from its verb.",
+  "punct_rule": "ellipsis to show words omitted from a quotation"
+ },
+ {
+  "id": "MLV3-G01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "By the time Grandpa arrived at the station, the train has already left, so he took a taxi home.",
+   "By the time Grandpa arrived at the station, the train has already left, so he takes a taxi home.",
+   "By the time Grandpa arrived at the station, the train had already left, so he takes a taxi home.",
+   "By the time Grandpa arrived at the station, the train had already left, so he took a taxi home."
+  ],
+  "correct_answer": "By the time Grandpa arrived at the station, the train had already left, so he took a taxi home.",
+  "error_sites": [
+   "'had' (past perfect) for the action finished before Grandpa arrived",
+   "'took' keeping the story in past tense"
+  ],
+  "student_error": {
+   "By the time Grandpa arrived at the station, the train has already left, so he took a taxi home.": "Uses present perfect 'has left' for an action that was finished before another past action.",
+   "By the time Grandpa arrived at the station, the train had already left, so he takes a taxi home.": "Shifts the second verb into the present tense in the middle of a past-tense story.",
+   "By the time Grandpa arrived at the station, the train has already left, so he takes a taxi home.": "Slides the whole second half of the sentence into the present."
+  },
+  "explanation": "The story is in the past (arrived). The train left before Grandpa arrived, so the past perfect 'had already left' is needed, and 'took' keeps the tense consistent.",
+  "varied_dimension": "past perfect vs present perfect; past-tense consistency"
+ },
+ {
+  "id": "MLV3-G02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 5,
+  "ccss": "L.5.1e",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Neither the twins nor their older brother know how to fix the bike chain, so they asked a neighbor for help.",
+   "Neither the twins nor their older brother knows how to fix the bike chain, so they asked a neighbor for help.",
+   "Neither the twins or their older brother know how to fix the bike chain, so they asked a neighbor for help.",
+   "Neither the twins or their older brother knows how to fix the bike chain, so they asked a neighbor for help."
+  ],
+  "correct_answer": "Neither the twins nor their older brother knows how to fix the bike chain, so they asked a neighbor for help.",
+  "error_sites": [
+   "'nor' paired with 'neither'",
+   "singular verb 'knows' agreeing with 'brother'"
+  ],
+  "student_error": {
+   "Neither the twins or their older brother knows how to fix the bike chain, so they asked a neighbor for help.": "Pairs 'neither' with 'or' instead of 'nor'.",
+   "Neither the twins nor their older brother know how to fix the bike chain, so they asked a neighbor for help.": "Makes the verb plural because 'the twins' come first, instead of agreeing with the nearer subject 'brother'.",
+   "Neither the twins or their older brother know how to fix the bike chain, so they asked a neighbor for help.": "Does not know how correlative conjunctions work, either in the pairing or in agreement."
+  },
+  "explanation": "'Neither' is always paired with 'nor'. With 'neither ... nor', the verb agrees with the nearer subject, 'their older brother', so it is singular: 'knows'.",
+  "varied_dimension": "correlative pair (neither/nor); verb agreement with the nearer subject"
+ },
+ {
+  "id": "MLV3-G03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Since last fall, Owen has swam in every meet, and he has broken the school record twice.",
+   "Since last fall, Owen has swum in every meet, and he has broken the school record twice.",
+   "Since last fall, Owen has swum in every meet, and he has broke the school record twice.",
+   "Since last fall, Owen has swam in every meet, and he has broke the school record twice."
+  ],
+  "correct_answer": "Since last fall, Owen has swum in every meet, and he has broken the school record twice.",
+  "error_sites": [
+   "past participle 'swum' after 'has'",
+   "past participle 'broken' after 'has'"
+  ],
+  "student_error": {
+   "Since last fall, Owen has swam in every meet, and he has broken the school record twice.": "Uses the simple past 'swam' after 'has' instead of the past participle.",
+   "Since last fall, Owen has swum in every meet, and he has broke the school record twice.": "Uses the simple past 'broke' after 'has' instead of the past participle.",
+   "Since last fall, Owen has swam in every meet, and he has broke the school record twice.": "Uses the simple past form in the present perfect tense for irregular verbs."
+  },
+  "explanation": "The present perfect is 'has' plus the past participle. The past participles of swim and break are 'swum' and 'broken'.",
+  "varied_dimension": "past participle of swim; past participle of break"
+ },
+ {
+  "id": "MLV3-G04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Our group should of went to the library on Monday because now the books we need are all checked out.",
+   "Our group should have gone to the library on Monday because now the books we need are all checked out.",
+   "Our group should have went to the library on Monday because now the books we need are all checked out.",
+   "Our group should of gone to the library on Monday because now the books we need are all checked out."
+  ],
+  "correct_answer": "Our group should have gone to the library on Monday because now the books we need are all checked out.",
+  "error_sites": [
+   "helper 'have' after 'should'",
+   "past participle 'gone'"
+  ],
+  "student_error": {
+   "Our group should of gone to the library on Monday because now the books we need are all checked out.": "Writes 'of' for 'have' because 'should've' sounds like 'should of'.",
+   "Our group should have went to the library on Monday because now the books we need are all checked out.": "Uses the simple past 'went' after 'should have' instead of the past participle.",
+   "Our group should of went to the library on Monday because now the books we need are all checked out.": "Writes the phrase the way it is often spoken, 'should of went'."
+  },
+  "explanation": "The modal perfect is 'should have' plus the past participle. 'of' is not a verb, and the past participle of go is 'gone'.",
+  "varied_dimension": "modal perfect helper (have vs of); past participle (gone vs went)"
+ },
+ {
+  "id": "MLV3-G05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Coach Diaz asked Priya and I to collect the cones, so after practice she and I carried them all to the shed.",
+   "Coach Diaz asked Priya and me to collect the cones, so after practice her and me carried them all to the shed.",
+   "Coach Diaz asked Priya and I to collect the cones, so after practice her and me carried them all to the shed.",
+   "Coach Diaz asked Priya and me to collect the cones, so after practice she and I carried them all to the shed."
+  ],
+  "correct_answer": "Coach Diaz asked Priya and me to collect the cones, so after practice she and I carried them all to the shed.",
+  "error_sites": [
+   "'me' as part of the object of 'asked'",
+   "'she and I' as the subject of 'carried'"
+  ],
+  "student_error": {
+   "Coach Diaz asked Priya and I to collect the cones, so after practice she and I carried them all to the shed.": "Uses 'I' after 'and' because 'Priya and I' sounds more correct, though the pronoun is an object.",
+   "Coach Diaz asked Priya and me to collect the cones, so after practice her and me carried them all to the shed.": "Uses the object forms 'her and me' as the subject of 'carried'.",
+   "Coach Diaz asked Priya and I to collect the cones, so after practice her and me carried them all to the shed.": "Chooses pronoun case by sound instead of by its job in the sentence."
+  },
+  "explanation": "'me' is the object of 'asked' (Coach asked me). 'she and I' is the subject of 'carried' (she carried, I carried), so it uses subject pronouns.",
+  "varied_dimension": "objective case in a compound object; subjective case in a compound subject"
+ },
+ {
+  "id": "MLV3-G06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Jamal and I painted the whole fence by ourselves, and Dad said he couldn't have done a better job hisself.",
+   "Jamal and myself painted the whole fence by ourselves, and Dad said he couldn't have done a better job hisself.",
+   "Jamal and I painted the whole fence by ourselves, and Dad said he couldn't have done a better job himself.",
+   "Jamal and myself painted the whole fence by ourselves, and Dad said he couldn't have done a better job himself."
+  ],
+  "correct_answer": "Jamal and I painted the whole fence by ourselves, and Dad said he couldn't have done a better job himself.",
+  "error_sites": [
+   "'I' as part of the subject",
+   "the intensive pronoun 'himself'"
+  ],
+  "student_error": {
+   "Jamal and myself painted the whole fence by ourselves, and Dad said he couldn't have done a better job himself.": "Uses 'myself' as a subject because it sounds more formal.",
+   "Jamal and I painted the whole fence by ourselves, and Dad said he couldn't have done a better job hisself.": "Uses the nonstandard form 'hisself' for the intensive pronoun.",
+   "Jamal and myself painted the whole fence by ourselves, and Dad said he couldn't have done a better job hisself.": "Does not know the standard uses and forms of -self pronouns."
+  },
+  "explanation": "A -self pronoun cannot be the subject of a sentence, so the subject is 'Jamal and I'. The intensive pronoun for 'he' is 'himself'; 'hisself' is not standard.",
+  "varied_dimension": "reflexive pronoun misused as a subject; nonstandard intensive pronoun form"
+ },
+ {
+  "id": "MLV3-G07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 6,
+  "ccss": "L.6.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "When hikers reach the top of Bear Hill, they can see the whole valley, and most of them take out your phones.",
+   "When hikers reach the top of Bear Hill, they can see the whole valley, and most of them take out their phones.",
+   "When hikers reach the top of Bear Hill, you can see the whole valley, and most of them take out your phones.",
+   "When hikers reach the top of Bear Hill, you can see the whole valley, and most of them take out their phones."
+  ],
+  "correct_answer": "When hikers reach the top of Bear Hill, they can see the whole valley, and most of them take out their phones.",
+  "error_sites": [
+   "third-person 'they' referring to 'hikers'",
+   "third-person 'their' referring to 'most of them'"
+  ],
+  "student_error": {
+   "When hikers reach the top of Bear Hill, you can see the whole valley, and most of them take out their phones.": "Shifts to the general 'you' in the middle of a sentence about hikers.",
+   "When hikers reach the top of Bear Hill, they can see the whole valley, and most of them take out your phones.": "Shifts to 'your' after 'most of them'.",
+   "When hikers reach the top of Bear Hill, you can see the whole valley, and most of them take out your phones.": "Uses the everyday general 'you' instead of keeping to the third person of 'hikers'."
+  },
+  "explanation": "The sentence is about 'hikers' and 'most of them', which are third person, so the pronouns must stay third person: 'they' and 'their'.",
+  "varied_dimension": "pronoun person shift (subject); pronoun person shift (possessive)"
+ },
+ {
+  "id": "MLV3-G08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 6,
+  "ccss": "L.6.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "This morning the librarian told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.",
+   "This morning they told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.",
+   "This morning the librarian told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.",
+   "This morning they told us our books are due Friday, and the school newsletter says the late fee is ten cents a day."
+  ],
+  "correct_answer": "This morning the librarian told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.",
+  "error_sites": [
+   "'the librarian' instead of a 'they' that refers to no one",
+   "'the school newsletter says' instead of an 'it' that refers to nothing"
+  ],
+  "student_error": {
+   "This morning they told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.": "Uses 'they' the way people talk, without naming who told them.",
+   "This morning the librarian told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.": "Uses 'it says' with no noun for 'it' to refer to.",
+   "This morning they told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.": "Uses pronouns the way people speak, without antecedents."
+  },
+  "explanation": "A pronoun needs a clear antecedent. 'they' and 'it' refer to no noun in the sentence, so the clear version names the librarian and has the newsletter itself as the subject.",
+  "varied_dimension": "vague 'they' with no antecedent; vague 'it' with no antecedent"
+ },
+ {
+  "id": "MLV3-G09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 7,
+  "ccss": "L.7.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Running for the bus, his lunch fell out of his bag, so sitting in math class, his stomach growled nonstop.",
+   "While Theo was running for the bus, his lunch fell out of his bag, so during math class, his stomach growled nonstop.",
+   "While Theo was running for the bus, his lunch fell out of his bag, so sitting in math class, his stomach growled nonstop.",
+   "Running for the bus, his lunch fell out of his bag, so during math class, his stomach growled nonstop."
+  ],
+  "correct_answer": "While Theo was running for the bus, his lunch fell out of his bag, so during math class, his stomach growled nonstop.",
+  "error_sites": [
+   "the opening modifier with its own subject 'Theo'",
+   "the phrase 'during math class'"
+  ],
+  "student_error": {
+   "Running for the bus, his lunch fell out of his bag, so during math class, his stomach growled nonstop.": "Starts with 'Running for the bus', which then describes 'his lunch' instead of Theo.",
+   "While Theo was running for the bus, his lunch fell out of his bag, so sitting in math class, his stomach growled nonstop.": "Uses 'sitting in math class', which then describes 'his stomach' instead of Theo.",
+   "Running for the bus, his lunch fell out of his bag, so sitting in math class, his stomach growled nonstop.": "Does not check what the -ing phrase attaches to, because the meaning seems clear."
+  },
+  "explanation": "An -ing phrase describes the subject that comes right after it. 'Running for the bus' would describe 'his lunch' and 'sitting in math class' would describe 'his stomach'. Giving the first clause its own subject (While Theo was running) and using 'during' avoids both dangling modifiers.",
+  "varied_dimension": "dangling opening participial phrase; dangling participial phrase after a conjunction"
+ },
+ {
+  "id": "MLV3-G10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 7,
+  "ccss": "L.7.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Although the bus was late, Ms. Chu, who drives it every day, still got us to school on time.",
+   "Although the bus was late, Ms. Chu, who drives it every day, she still got us to school on time.",
+   "Although the bus was late, but Ms. Chu, who drives it every day, still got us to school on time.",
+   "Although the bus was late, but Ms. Chu, who drives it every day, she still got us to school on time."
+  ],
+  "correct_answer": "Although the bus was late, Ms. Chu, who drives it every day, still got us to school on time.",
+  "error_sites": [
+   "no 'but' after the 'although' clause",
+   "no repeated 'she' after the clause 'who drives it every day'"
+  ],
+  "student_error": {
+   "Although the bus was late, but Ms. Chu, who drives it every day, still got us to school on time.": "Adds 'but' after an 'although' clause, using two connecting words for one link.",
+   "Although the bus was late, Ms. Chu, who drives it every day, she still got us to school on time.": "Repeats the subject as 'she' because the 'who' clause separates 'Ms. Chu' from the verb.",
+   "Although the bus was late, but Ms. Chu, who drives it every day, she still got us to school on time.": "Loses track of the sentence structure and adds extra connecting words and subjects."
+  },
+  "explanation": "'Although' already links the two ideas, so 'but' is not used too. The subject 'Ms. Chu' goes with the verb 'got' even though a 'who' clause comes between them, so 'she' is not repeated.",
+  "varied_dimension": "extra conjunction after a subordinate clause (although...but); repeated subject pronoun after an interrupting clause"
+ },
+ {
+  "id": "MLV3-G11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 7,
+  "ccss": "L.7.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "The box of photos that my grandparents kept in the attic was opened at last, and each of the pictures have a date on it.",
+   "The box of photos that my grandparents kept in the attic were opened at last, and each of the pictures has a date on it.",
+   "The box of photos that my grandparents kept in the attic was opened at last, and each of the pictures has a date on it.",
+   "The box of photos that my grandparents kept in the attic were opened at last, and each of the pictures have a date on it."
+  ],
+  "correct_answer": "The box of photos that my grandparents kept in the attic was opened at last, and each of the pictures has a date on it.",
+  "error_sites": [
+   "'was' agreeing with 'box'",
+   "'has' agreeing with 'each'"
+  ],
+  "student_error": {
+   "The box of photos that my grandparents kept in the attic were opened at last, and each of the pictures has a date on it.": "Makes the verb agree with the nearby plural 'photos' or 'grandparents' instead of the subject 'box'.",
+   "The box of photos that my grandparents kept in the attic was opened at last, and each of the pictures have a date on it.": "Makes the verb agree with 'pictures' instead of the subject 'each'.",
+   "The box of photos that my grandparents kept in the attic were opened at last, and each of the pictures have a date on it.": "Makes each verb agree with the plural noun closest to it."
+  },
+  "explanation": "The subject of the first clause is 'box'; 'of photos' and 'that my grandparents kept in the attic' only describe it, so the verb is singular 'was'. In the second clause the subject is 'each', which is singular, so the verb is 'has'.",
+  "varied_dimension": "agreement across a prepositional phrase and a clause; agreement with 'each of'"
+ },
+ {
+  "id": "MLV3-G12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 7,
+  "ccss": "L.7.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "My cousin, who has never seen the ocean, visiting us next week, and we are taking him to the beach on Saturday.",
+   "My cousin, who has never seen the ocean, is visiting us next week, we are taking him to the beach on Saturday.",
+   "My cousin, who has never seen the ocean, visiting us next week, we are taking him to the beach on Saturday.",
+   "My cousin, who has never seen the ocean, is visiting us next week, and we are taking him to the beach on Saturday."
+  ],
+  "correct_answer": "My cousin, who has never seen the ocean, is visiting us next week, and we are taking him to the beach on Saturday.",
+  "error_sites": [
+   "full verb 'is visiting' for the subject 'My cousin'",
+   "'and' joining the two independent clauses"
+  ],
+  "student_error": {
+   "My cousin, who has never seen the ocean, visiting us next week, and we are taking him to the beach on Saturday.": "Uses 'visiting' alone, so 'My cousin' has no main verb.",
+   "My cousin, who has never seen the ocean, is visiting us next week, we are taking him to the beach on Saturday.": "Joins two complete sentences with only a comma.",
+   "My cousin, who has never seen the ocean, visiting us next week, we are taking him to the beach on Saturday.": "Loses track of the main clause after the long 'who' clause and strings the parts together with commas."
+  },
+  "explanation": "'My cousin' needs a complete verb, 'is visiting'; 'visiting' alone is not a main verb. The two independent clauses must be joined by a comma and a conjunction such as 'and'.",
+  "varied_dimension": "missing main verb (fragment); missing coordinating conjunction (comma splice)"
+ },
+ {
+  "id": "MLV3-G13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 8,
+  "ccss": "L.8.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "When Ms. Ortiz asked for quiet, the class stopped to talk at once, but Dev had forgotten to turn off his phone, and it rang.",
+   "When Ms. Ortiz asked for quiet, the class stopped to talk at once, but Dev had forgotten turning off his phone, and it rang.",
+   "When Ms. Ortiz asked for quiet, the class stopped talking at once, but Dev had forgotten turning off his phone, and it rang.",
+   "When Ms. Ortiz asked for quiet, the class stopped talking at once, but Dev had forgotten to turn off his phone, and it rang."
+  ],
+  "correct_answer": "When Ms. Ortiz asked for quiet, the class stopped talking at once, but Dev had forgotten to turn off his phone, and it rang.",
+  "error_sites": [
+   "gerund 'talking' after 'stopped'",
+   "infinitive 'to turn' after 'had forgotten'"
+  ],
+  "student_error": {
+   "When Ms. Ortiz asked for quiet, the class stopped to talk at once, but Dev had forgotten to turn off his phone, and it rang.": "Uses 'stopped to talk', which means they stopped in order to talk, the opposite of the meaning needed.",
+   "When Ms. Ortiz asked for quiet, the class stopped talking at once, but Dev had forgotten turning off his phone, and it rang.": "Uses 'forgotten turning off', which means he forgot that he had done it, though the phone then rang.",
+   "When Ms. Ortiz asked for quiet, the class stopped to talk at once, but Dev had forgotten turning off his phone, and it rang.": "Treats the gerund and infinitive after 'stop' and 'forget' as if they meant the same thing."
+  },
+  "explanation": "'stopped talking' means the talking ended; 'stopped to talk' means they stopped something else in order to talk. 'forgotten to turn off' means he did not do it; 'forgotten turning off' would mean he did it but forgot. Only 'talking' and 'to turn' fit the sentence.",
+  "varied_dimension": "gerund vs infinitive after 'stop'; infinitive vs gerund after 'forget'"
+ },
+ {
+  "id": "MLV3-G14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1b",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "The gym floor is being repaired this week, so the spring dance has been moved to the cafeteria.",
+   "The gym floor is been repaired this week, so the spring dance has been moved to the cafeteria.",
+   "The gym floor is being repaired this week, so the spring dance has being moved to the cafeteria.",
+   "The gym floor is been repaired this week, so the spring dance has being moved to the cafeteria."
+  ],
+  "correct_answer": "The gym floor is being repaired this week, so the spring dance has been moved to the cafeteria.",
+  "error_sites": [
+   "progressive passive helper 'is being'",
+   "perfect passive helper 'has been'"
+  ],
+  "student_error": {
+   "The gym floor is been repaired this week, so the spring dance has been moved to the cafeteria.": "Uses 'been' after 'is', mixing up 'being' and 'been'.",
+   "The gym floor is being repaired this week, so the spring dance has being moved to the cafeteria.": "Uses 'being' after 'has', mixing up 'being' and 'been'.",
+   "The gym floor is been repaired this week, so the spring dance has being moved to the cafeteria.": "Mixes up 'being' and 'been' in passive verbs."
+  },
+  "explanation": "The progressive passive is 'is being' plus the past participle; the perfect passive is 'has been' plus the past participle. 'been' follows 'has/have/had', and 'being' follows forms of 'be' such as 'is'.",
+  "varied_dimension": "progressive passive (is being); perfect passive (has been)"
+ },
+ {
+  "id": "MLV3-G15",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "If Omar had checked the weather before the hike last Saturday, he would have packed a raincoat instead of a thin sweatshirt.",
+   "If Omar had checked the weather before the hike last Saturday, he would pack a raincoat instead of a thin sweatshirt.",
+   "If Omar would have checked the weather before the hike last Saturday, he would pack a raincoat instead of a thin sweatshirt.",
+   "If Omar would have checked the weather before the hike last Saturday, he would have packed a raincoat instead of a thin sweatshirt."
+  ],
+  "correct_answer": "If Omar had checked the weather before the hike last Saturday, he would have packed a raincoat instead of a thin sweatshirt.",
+  "error_sites": [
+   "'had checked' in the if-clause",
+   "'would have packed' in the result clause"
+  ],
+  "student_error": {
+   "If Omar would have checked the weather before the hike last Saturday, he would have packed a raincoat instead of a thin sweatshirt.": "Puts 'would have' in the if-clause as well as the result clause.",
+   "If Omar had checked the weather before the hike last Saturday, he would pack a raincoat instead of a thin sweatshirt.": "Uses 'would pack' for a result that would have happened last Saturday.",
+   "If Omar would have checked the weather before the hike last Saturday, he would pack a raincoat instead of a thin sweatshirt.": "Does not know the form of a condition about the past."
+  },
+  "explanation": "A condition contrary to fact in the past uses 'had' plus the past participle in the if-clause and 'would have' plus the past participle in the result clause: 'If Omar had checked ..., he would have packed ...'.",
+  "varied_dimension": "past conditional in the if-clause; past conditional in the result clause"
+ },
+ {
+  "id": "MLV3-G16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Before the test begins, sharpen your pencil and write your name at the top, and when the timer starts, read each question twice.",
+   "Before the test begins, sharpen your pencil and write your name at the top, and when the timer starts, you will read each question twice.",
+   "Before the test begins, sharpen your pencil and you should write your name at the top, and when the timer starts, read each question twice.",
+   "Before the test begins, sharpen your pencil and you should write your name at the top, and when the timer starts, you will read each question twice."
+  ],
+  "correct_answer": "Before the test begins, sharpen your pencil and write your name at the top, and when the timer starts, read each question twice.",
+  "error_sites": [
+   "imperative 'write'",
+   "imperative 'read'"
+  ],
+  "student_error": {
+   "Before the test begins, sharpen your pencil and you should write your name at the top, and when the timer starts, read each question twice.": "Changes the second instruction into a statement ('you should write') after beginning with a command.",
+   "Before the test begins, sharpen your pencil and write your name at the top, and when the timer starts, you will read each question twice.": "Changes the last instruction into a statement ('you will read') after beginning with commands.",
+   "Before the test begins, sharpen your pencil and you should write your name at the top, and when the timer starts, you will read each question twice.": "Mixes commands and statements, not noticing the shift in mood."
+  },
+  "explanation": "The sentence begins with a command (sharpen), so the other instructions stay commands: 'write' and 'read'. Switching to 'you should write' or 'you will read' is an inappropriate shift in mood.",
+  "varied_dimension": "shift from imperative to indicative (second instruction); shift from imperative to indicative (third instruction)"
+ }
+]

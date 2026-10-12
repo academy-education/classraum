@@ -1,0 +1,30 @@
+{
+ "seed": "sha256(\"map-lu-v3-wprofile\")",
+ "note": "amendment 1: assigned key length profile per word-format Spelling item; each profile 4 times among each grade's first four word items (16) and twice among the last two (8). longest = distractor length deltas -1,-1,-2; shortest = +1,+1,+2; equal = 0,0,0; middle = -1,+1,0",
+ "profiles": {
+  "MLV3-S01": "shortest",
+  "MLV3-S03": "longest",
+  "MLV3-S04": "middle",
+  "MLV3-S06": "middle",
+  "MLV3-S07": "equal",
+  "MLV3-S09": "middle",
+  "MLV3-S11": "middle",
+  "MLV3-S13": "equal",
+  "MLV3-S14": "longest",
+  "MLV3-S16": "longest",
+  "MLV3-S17": "equal",
+  "MLV3-S19": "middle",
+  "MLV3-S21": "shortest",
+  "MLV3-S23": "shortest",
+  "MLV3-S24": "shortest",
+  "MLV3-S26": "middle",
+  "MLV3-S27": "shortest",
+  "MLV3-S29": "shortest",
+  "MLV3-S31": "equal",
+  "MLV3-S33": "equal",
+  "MLV3-S34": "longest",
+  "MLV3-S36": "equal",
+  "MLV3-S37": "longest",
+  "MLV3-S39": "longest"
+ }
+}

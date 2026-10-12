@@ -232,3 +232,47 @@ REGISTER §5 gets the numbers in the result commit.
 - Whether a word is "commonly misspelled at grade g" in any measured sense.
 - Whether T2 would catch a structural tell outside its 64 heuristics, or a
   weak one at n = 8-12.
+
+---
+
+## Amendment 1, 2026-10-12: after authoring, BEFORE any teacher, screener, solver or grader
+
+Committed before the teacher gate. Nothing below was prompted by a rater's,
+screener's, solver's or grader's output: none had run. The only data seen
+was the two authored files and the exact checks over them (report only,
+step 2).
+
+**Finding (exact, whole population).** In the 24 authored Spelling "word"
+items, most trouble spots DROP a letter, so the key is at the maximum length
+on 12 of 24 (uniquely on 4). T2 on that format: `at_max(len)` 40.6% vs
+control 25.0%, family-wise p 0.040, **fires**. On the 16 word items the
+freeze would take if nothing were dropped it is clear (best p 0.23), but
+`at_max(len)` there is still 35.9%: a student who picks the longest
+spelling gains 11 points, and T2 at n = 16 cannot see it. This is v2's
+amendment-1 situation again (a length tell the registered test could not
+see on the frozen subset), now in the other format.
+
+**Change (refusing direction; break-tested in `--selftest`, 70 checks).**
+1. **Seeded key length profile for the 24 word items, before the teacher
+   gate.** Each item is assigned one of four profiles, each used 6 times
+   (4 among each grade's first four word items, 2 among the last two),
+   shuffled by sha256("map-lu-v3-wprofile"); the assignment is
+   `map-lu-v3/wprofile.json`. The profile fixes the edit kinds, so the
+   distractors' length differences from the key are exactly
+   `longest` −1,−1,−2 / `shortest` +1,+1,+2 / `equal` 0,0,0 / `middle`
+   −1,0,+1. Under this assignment no length heuristic in T2 scores above
+   31.3% on the 24 or on the likely-frozen 16 (selftest), against 40.6%
+   authored. As in v2, a profile is ASSIGNED, never described as a
+   preference to the author.
+2. One re-profile agent (prompt 1b) rewrites the misspellings of the 20
+   items whose profile differs (4 already match). Keys stay unless a word
+   cannot carry its profile with real student errors. The as-authored file
+   is kept as `batch.authored.original.json`; `batch.authored.json` is the
+   file with the re-profile applied.
+3. **New exact check L-profile** enforces the assigned profile on every word
+   item through every later step (revision, repair). The selftest confirms
+   T2[word] fires on the authored set, that a wrong or missing profile
+   fails, and that the necessary-type grid reads as `middle`.
+
+**Not changed:** every bar, the screen, the freeze quotas, the teacher gate,
+the one-repair rule, the renders and the scoring.

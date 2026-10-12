@@ -152,3 +152,31 @@ was chosen on.
 
 (+ FENCE.) `words.json` is `map-lu-v3/screen.words.json` from `screen-input`:
 tested words only, sha256 order, no item, no grade, no label.
+
+## 1b. Re-profile (amendment 1; one agent, before the teacher gate)
+
+> Read `<MAP-LU-V3-BRIEF-SPELLING.md>`, then `<P/reprofile.input.json>`: the
+> 24 "Which word correctly completes the sentence?" items, each with an
+> assigned `key_length_profile` and its `current_profile`. The profile fixes
+> what KIND of edit each of the two trouble spots makes:
+> - `longest`: both trouble spots DROP one letter (the both-errors option
+>   drops both)
+> - `shortest`: both trouble spots ADD one letter
+> - `equal`: both trouble spots CHANGE one letter or SWAP two adjacent letters
+> - `middle`: one trouble spot drops one letter and the other adds one
+>
+> Rewrite the three misspellings of every item whose current profile differs
+> from its assigned one, so the item has its assigned profile. Keep the key,
+> the sentence and the item's grade; keep every rule in the brief (a 2x2 grid
+> of single-letter edits, first letter unchanged, every misspelling a
+> non-word that real students at the grade write, no regional variant). Only
+> if the key word cannot carry its profile with errors real students make,
+> replace the word with another at or above the item's grade (and change the
+> sentence to fit); say so. Run the brief's dictionary oracle on every new
+> misspelling and any new word. Update `error_sites`, `spelling_pattern`,
+> `student_error` and `explanation`, keep `key_length_profile`, and drop
+> `current_profile`. Write all 24 items (unchanged ones as they are) as a JSON
+> array to `<P/reprofile.out.json>` and, per changed item, one line saying
+> what changed.
+
+(+ FENCE, with the spelling author's oracle line.)

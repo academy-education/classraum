@@ -61,7 +61,26 @@ export const testedWord = it => (it.spelling_format === 'word' ? String(it.corre
 export function structural(it) {
   const r = structuralV2(it)
   if (strandOf(it) === 'spell' && it.spelling_format === 'sentence' && ![1, 2, 3, 4].includes(it.key_length_rank)) r.errs.push('L-rank key_length_rank (1-4, assigned in the brief) missing')
+  if (strandOf(it) === 'spell' && it.spelling_format === 'word') { const e = profileErr(it); if (e) r.errs.push(e) }
   return r
+}
+
+/**
+ * L-profile (amendment 1, after authoring, before any teacher, screener,
+ * solver or grader). The authored word items put the key at the maximum
+ * length on 12/24 (most trouble spots DROP a letter), and T2[word] fired on
+ * them (at_max(len) 40.6%, fw p 0.040). Each word item now carries a seeded
+ * key_length_profile (map-lu-v3/wprofile.json), enforced exactly: the
+ * distractors' length differences from the key are
+ *   longest -1,-1,-2 | shortest +1,+1,+2 | equal 0,0,0 | middle -1,+1,0
+ */
+export const PROFILES = { longest: '-2,-1,-1', shortest: '1,1,2', equal: '0,0,0', middle: '-1,0,1' }
+export const profileOf = it => { const k = String(it.correct_answer).length; return it.choices.map(String).filter(c => c !== String(it.correct_answer)).map(c => c.length - k).sort((a, b) => a - b).join(',') }
+export function profileErr(it) {
+  const want = PROFILES[it.key_length_profile]
+  if (!want) return `L-profile key_length_profile (${Object.keys(PROFILES).join('/')}, assigned) missing`
+  const got = profileOf(it)
+  return got === want ? null : `L-profile assigned "${it.key_length_profile}" needs distractor length differences ${want}, got ${got}`
 }
 
 /** v2's per-strand batch checks with E3 REMOVED from the verdict (it is reported, and decided pooled). */
@@ -236,6 +255,23 @@ async function selftest() {
   ss.targets = { [ss.choices[0]]: 'library', [ss.choices[1]]: 'seperate', [ss.choices[2]]: 'argument', [ss.choices[3]]: 'cemetery' }
   expect(structural(ss).errs.some(e => /key_length_rank/.test(e)), 'L-rank: a sentence item WITHOUT its assigned rank fails')
   expect(!structural({ ...ss, key_length_rank: 3 }).errs.some(e => /L-rank/.test(e)), `L-rank: the same item at its true rank passes (${structural({ ...ss, key_length_rank: 3 }).errs.join('; ')})`)
+  // L-profile (amendment 1): the authored word items' length tell, and the balanced assignment that removes it
+  const orig = rv('map-lu-v3/batch.authored.original.json').filter(i => i.spelling_format === 'word')
+  const to = t2(orig)
+  expect(to.fires, `T2[word] FIRES on the 24 authored word items (the finding behind amendment 1): ${fmtT2(to)}`)
+  const wp = rv('map-lu-v3/wprofile.json').profiles
+  expect(Object.keys(wp).length === 24 && ['longest', 'shortest', 'equal', 'middle'].every(p => Object.values(wp).filter(x => x === p).length === 6), 'wprofile assigns each profile to 6 of 24 word items')
+  const synthOf = (id, p) => { const key = 'abcdefgh', d = PROFILES[p].split(',').map(Number); return { id, choices: [key, ...d.map((x, j) => (x < 0 ? key.slice(0, 8 + x) : key + 'xyz'.slice(0, x)).slice(0, -1) + 'pqr'[j])], correct_answer: key } }
+  const bal = Object.entries(wp).map(([id, p]) => synthOf(id, p))
+  expect(bal.every(it => profileOf(it) === PROFILES[wp[it.id]]), 'synthetic items carry their assigned profiles')
+  const tb = t2(bal), lenH = Object.entries(tb.obs).filter(([n]) => /\(len\)/.test(n)).map(([n, v]) => [n, v])
+  expect(lenH.every(([, v]) => v <= 0.3126), `under the balanced assignment no length heuristic exceeds 31.3% (${lenH.map(([n, v]) => `${n} ${(100 * v).toFixed(1)}`).join(', ')})`)
+  const first16 = bal.filter(it => [1, 3, 4, 6].includes(+it.id.slice(-2) % 10 || 10))
+  const lf = Object.entries(t2(first16).obs).filter(([n]) => /\(len\)/.test(n))
+  expect(first16.length === 16 && lf.every(([, v]) => v <= 0.3126), `the same holds on the 16 likely-frozen word items (${lf.map(([n, v]) => `${n} ${(100 * v).toFixed(1)}`).join(', ')})`)
+  expect(!profileErr({ correct_answer: 'necessary', choices: ['necessary', 'neccessary', 'necesary', 'neccesary'], key_length_profile: 'middle' }), 'L-profile: necessary/neccessary/necesary/neccesary reads as middle')
+  expect(!!profileErr({ correct_answer: 'necessary', choices: ['necessary', 'neccessary', 'necesary', 'neccesary'], key_length_profile: 'longest' }), 'L-profile: a wrong assigned profile FAILS')
+  expect(!!profileErr({ correct_answer: 'necessary', choices: ['necessary', 'neccessary', 'necesary', 'neccesary'] }), 'L-profile: a word item without a profile FAILS')
   // T2 is v2's, unchanged: it still fires on v1 Capitalization's known tell
   const v1 = rv('map-lu-mech-v1.batch.json')
   expect(t2(v1.filter(i => strandOf(i) === 'cap')).fires, 'T2 (imported from v2) still fires on v1 Capitalization')
