@@ -8683,6 +8683,110 @@
           "verdict": "Key recoverability, not a leak bar (the options are the item): 100.0% vs matched live SAT SEC/ACT CSE control 50.0% (bar >= 40.0; fresh draw, 0 overlap with v2). Weak screen by design."
         }
       }
+    },
+    {
+      "id": "map-lu-v4-spelling-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v4-spelling",
+      "contentSha": "b4477100ca50648dad5741db0ff2fa7e8cc5b4f8574dcbd3b721c6d42e9c8c17",
+      "status": "killed",
+      "note": "48 grades 5-8 Spelling items authored (32 word 2x2 grids with SEEDED edit types fixing length and letter class, 16 which-sentence with seeded key length ranks). Teacher gate 56/222 NO; reviser replaced the key word on 21 of 24 flagged items; re-rate dropped 2, repair failed 1, word-grade screen dropped 3 (grade 7). Stage 0 passed on the first pick (re-draw unused): T2 and T2-L clear on strand and both formats. FAILED S1-b 21/28 (bar 23) and S1-c easier 12/56 (bar 9); sentence 9/9, word 12/19; 8 of 12 easier calls on reviser-replaced words. Keys 56/56 cold, 28/28 keyed. Spelling cleared: 0 (cumulative 0 of ~20). contentSha = sha256 of map-lu-v4/frozen-spell.json. MAP-LU-V4.prereg.md (28e11dea, no amendment), freeze f636c855, renders f4c1fd11, MAP-LU-V4-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: 28/28 pass E1 E4 E6 E7 G-DL L-rank L-class; T2 clear (fw p 0.26), T2-L clear (0.70); per format word 0.99/1.00, sentence 0.17/0.17; pooled E3 5/36 and 5/36."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 28,
+          "pilotPass": 21,
+          "easier": 12,
+          "harder": 5,
+          "meanOffsetA": -0.07,
+          "meanOffsetB": -0.29,
+          "coldOnKey": 56,
+          "deadBoth": 2,
+          "verdict": "Two Claude graders cold then keyed, cold files hashed unchanged: 56/56 cold on key, 28/28 keyed correct; one accepted alternative (S01 heighth, grader b). S1-b 21/28 (bar 23) FAIL, S1-c easier 12/56 (bar 9) FAIL, S1-d -0.07/-0.29."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 28,
+          "candidatePct": 100,
+          "control": 65.3,
+          "controlN": 24,
+          "margin": 34.7,
+          "verdict": "Key recoverability, not a leak bar: 100.0% vs fresh matched live SAT SEC/ACT CSE control 65.3% (bar 55.3)."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "T2 and T2-L clear at every stage; slots 7/7/8/6 (word 5/5/5/4, sentence 2/2/3/2). Graders found no count pattern in word items; noted the misspelled sentence at a length extreme in 7/9 (the seeded rank design)."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v4-grammar-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v4-grammar",
+      "contentSha": "feaa23ac69706fbf3f53063c415d49a0affd8147d63c18a06d466ea4743ad813",
+      "status": "killed",
+      "note": "16 grades 5-6 Grammar and Usage 2x2 grids authored (harder brief). STOPPED at Stage 0: T2 at_max(len) 50.0% vs 25.0%, family-wise p 0.091 on the 12 the freeze took (key uniquely longest 4/12). Not rendered or graded; grade fit not measured. contentSha = sha256 of map-lu-v4/stage0-pick-gram.json. MAP-LU-V4.prereg.md (28e11dea, no amendment), freeze f636c855, renders f4c1fd11, MAP-LU-V4-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: T2 at_max(len) 50.0% vs control 25.0%, fw p 0.0907 (n=12); T2-L at_max(consonants) 50.0% fw p 0.12 clear. Authored strand was clear (p 0.32)."
+        }
+      }
+    },
+    {
+      "id": "map-lu-v4-capitalization-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v4-capitalization",
+      "contentSha": "c300a99105181b073ac68938b14c640f114987b72efb948372def6c0a999ae6e",
+      "status": "killed",
+      "note": "10 grade-6 Capitalization 2x2 grids authored, 8 frozen. FAILED S1-b 5/8 (bar 7) and S1-c easier 5/16 (bar 2). Holds C04, C08, C02 (too easy). Both graders named a cross-item tell: key treats both sites alike on 7/8 (unique max or min of capitals), invisible to T2's one-sided selectors. Keys 16/16 cold, 8/8 keyed. contentSha = sha256 of map-lu-v4/frozen-cap.json. MAP-LU-V4.prereg.md (28e11dea, no amendment), freeze f636c855, renders f4c1fd11, MAP-LU-V4-RESULT.md; REGISTER section 5, 2026-10-12. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: 8/8 pass E1 E5 E7 G; T2 clear (odd_one(caps) 43.8%, fw p 0.11), T2-L clear (0.18)."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 8,
+          "pilotPass": 5,
+          "easier": 5,
+          "harder": 3,
+          "meanOffsetA": -0.13,
+          "meanOffsetB": -0.25,
+          "coldOnKey": 16,
+          "deadBoth": 0,
+          "verdict": "16/16 cold on key, 8/8 keyed correct, no accepted alternative. S1-b 5/8 FAIL, S1-c easier 5/16 FAIL."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 8,
+          "candidatePct": 100,
+          "control": 65.3,
+          "controlN": 24,
+          "margin": 34.7,
+          "verdict": "100.0% vs control 65.3% (bar 55.3); key recoverability only."
+        },
+        "tells": {
+          "passed": false,
+          "verdict": "Graders: consistent-corner key on 7/8 (discarding the two mixed options leaves 50/50); slots 2/2/2/2."
+        }
+      }
     }
   ],
   "auditedCohorts": [
