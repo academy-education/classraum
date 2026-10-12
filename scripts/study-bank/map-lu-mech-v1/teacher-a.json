@@ -1,0 +1,534 @@
+{
+ "MLM1-01": {
+  "distractors": [
+   {
+    "option": "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park.",
+    "would_pick": "yes",
+    "reason": "'avenue' lowercase after a street name and 'Lake' capitalized as if a name are both everyday errors"
+   },
+   {
+    "option": "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.",
+    "would_pick": "yes",
+    "reason": "lowercasing the street-type word in a street name is one of the most common grade 5 errors"
+   },
+   {
+    "option": "After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park.",
+    "would_pick": "yes",
+    "reason": "capitalizing a common noun like 'lake' because it sits near a park name is very common"
+   }
+  ]
+ },
+ "MLM1-02": {
+  "distractors": [
+   {
+    "option": "Our librarian, Ms. Ortiz, read The Night The Moon Was Late aloud to the third graders during their visit on Friday.",
+    "would_pick": "yes",
+    "reason": "capitalizing every word of a title, including 'the', is a typical habit"
+   },
+   {
+    "option": "Our librarian, Ms. Ortiz, read The Night the Moon was Late aloud to the third graders during their visit on Friday.",
+    "would_pick": "yes",
+    "reason": "students often lowercase short verbs like 'was' in titles thinking they are 'small words'"
+   },
+   {
+    "option": "Our librarian, Ms. Ortiz, read The Night The Moon was Late aloud to the third graders during their visit on Friday.",
+    "would_pick": "yes",
+    "reason": "mixes the two common title-case misconceptions; a quick reader will not see it as worse"
+   }
+  ]
+ },
+ "MLM1-03": {
+  "distractors": [
+   {
+    "option": "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than geography or health.",
+    "would_pick": "yes",
+    "reason": "lowercase 'english' as a school subject is a very common slip"
+   },
+   {
+    "option": "Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than Geography or health.",
+    "would_pick": "yes",
+    "reason": "students routinely capitalize all school subjects by analogy with English"
+   },
+   {
+    "option": "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than Geography or health.",
+    "would_pick": "yes",
+    "reason": "combines two common subject-name confusions; plausible for a weak student"
+   }
+  ]
+ },
+ "MLM1-04": {
+  "distractors": [
+   {
+    "option": "Before the recital, Grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.",
+    "would_pick": "yes",
+    "reason": "capitalizing 'Uncle' after 'my' is a classic confusion with names used as titles"
+   },
+   {
+    "option": "Before the recital, grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.",
+    "would_pick": "yes",
+    "reason": "students who don't know the 'used as a name' rule get both family words backwards"
+   },
+   {
+    "option": "Before the recital, grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone.",
+    "would_pick": "yes",
+    "reason": "lowercasing 'grandpa' used as a name is a common error"
+   }
+  ]
+ },
+ "MLM1-05": {
+  "distractors": [
+   {
+    "option": "The Ramos family lived in the American southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean.",
+    "would_pick": "yes",
+    "reason": "region vs. direction is a well-known trouble spot; both errors are typical"
+   },
+   {
+    "option": "The Ramos family lived in the American southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.",
+    "would_pick": "yes",
+    "reason": "students rarely know 'Southwest' is a proper region name"
+   },
+   {
+    "option": "The Ramos family lived in the American Southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean.",
+    "would_pick": "yes",
+    "reason": "capitalizing a compass direction of travel is a frequent error"
+   }
+  ]
+ },
+ "MLM1-06": {
+  "distractors": [
+   {
+    "option": "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the sixteenth century.",
+    "would_pick": "yes",
+    "reason": "students often don't treat historical periods as proper nouns"
+   },
+   {
+    "option": "Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century.",
+    "would_pick": "yes",
+    "reason": "capitalizing centuries as if they were named eras is common"
+   },
+   {
+    "option": "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century.",
+    "would_pick": "yes",
+    "reason": "both period/century confusions together; a weak student could pick it"
+   }
+  ]
+ },
+ "MLM1-07": {
+  "distractors": [
+   {
+    "option": "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of Canadian maple candy.",
+    "would_pick": "yes",
+    "reason": "'Japanese Garden' looks like a name to many students"
+   },
+   {
+    "option": "Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of canadian maple candy.",
+    "would_pick": "yes",
+    "reason": "some students lowercase nationality adjectives, especially before a food word"
+   },
+   {
+    "option": "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of canadian maple candy.",
+    "would_pick": "yes",
+    "reason": "two plausible errors together; still looks reasonable at a glance"
+   }
+  ]
+ },
+ "MLM1-08": {
+  "distractors": [
+   {
+    "option": "After the game, Coach Rivera told us that we had played \"with real heart,\" and then she added, \"next week we face the strongest team in the league.\"",
+    "would_pick": "yes",
+    "reason": "students often lowercase the first word of a quoted sentence after a comma"
+   },
+   {
+    "option": "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"next week we face the strongest team in the league.\"",
+    "would_pick": "yes",
+    "reason": "capitalizing a quoted fragment because it follows a quote mark is a common overgeneralization"
+   },
+   {
+    "option": "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"Next week we face the strongest team in the league.\"",
+    "would_pick": "yes",
+    "reason": "applying 'capitalize after every opening quote' consistently gives exactly this"
+   }
+  ]
+ },
+ "MLM1-09": {
+  "distractors": [
+   {
+    "option": "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852.",
+    "would_pick": "yes",
+    "reason": "lowercasing words in an organization's name plus capitalizing a season are both common"
+   },
+   {
+    "option": "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.",
+    "would_pick": "yes",
+    "reason": "students often only capitalize the first word of a multi-word organization name"
+   },
+   {
+    "option": "At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852.",
+    "would_pick": "yes",
+    "reason": "capitalizing seasons is one of the most frequent capitalization errors"
+   }
+  ]
+ },
+ "MLM1-10": {
+  "distractors": [
+   {
+    "option": "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they?",
+    "would_pick": "yes",
+    "reason": "leaving out the comma before a tag question is very common"
+   },
+   {
+    "option": "The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they.",
+    "would_pick": "yes",
+    "reason": "a fast reader may not see that the tag makes it a question"
+   },
+   {
+    "option": "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they.",
+    "would_pick": "yes",
+    "reason": "weak students write tag questions this way in their own work; plausible pick"
+   }
+  ]
+ },
+ "MLM1-11": {
+  "distractors": [
+   {
+    "option": "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin.",
+    "would_pick": "yes",
+    "reason": "missing a series comma after a long prepositional item is easy to miss"
+   },
+   {
+    "option": "A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.",
+    "would_pick": "yes",
+    "reason": "a comma between a long subject and its verb is one of the most common comma errors"
+   },
+   {
+    "option": "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.",
+    "would_pick": "yes",
+    "reason": "both are common errors; a student guessing on 'pauses' could choose it"
+   }
+  ]
+ },
+ "MLM1-12": {
+  "distractors": [
+   {
+    "option": "Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.",
+    "would_pick": "yes",
+    "reason": "forgetting the closing comma of a mid-sentence clause is very common"
+   },
+   {
+    "option": "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.",
+    "would_pick": "yes",
+    "reason": "students add commas around clauses wherever they hear a pause, and miss closing ones"
+   },
+   {
+    "option": "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings.",
+    "would_pick": "yes",
+    "reason": "setting off a restrictive 'who' clause with commas is a typical misconception"
+   }
+  ]
+ },
+ "MLM1-13": {
+  "distractors": [
+   {
+    "option": "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class which had won the poster contest, to design the cover of this year's yearbook.",
+    "would_pick": "yes",
+    "reason": "comma after a closing parenthesis and missing comma before 'which' both look natural to students"
+   },
+   {
+    "option": "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class, which had won the poster contest, to design the cover of this year's yearbook.",
+    "would_pick": "yes",
+    "reason": "putting a comma after the parenthetical before the verb is a common error"
+   },
+   {
+    "option": "Ms. Alvarez (the art teacher who painted the hallway mural) asked our class which had won the poster contest, to design the cover of this year's yearbook.",
+    "would_pick": "yes",
+    "reason": "dropping the opening comma of a 'which' clause is a frequent slip"
+   }
+  ]
+ },
+ "MLM1-14": {
+  "distractors": [
+   {
+    "option": "After a long exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.",
+    "would_pick": "yes",
+    "reason": "omitting the comma between coordinate adjectives is extremely common"
+   },
+   {
+    "option": "After a long, exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake.",
+    "would_pick": "yes",
+    "reason": "students put a comma between any two adjectives without testing 'and'"
+   },
+   {
+    "option": "After a long exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake.",
+    "would_pick": "yes",
+    "reason": "both coordinate-adjective errors; plausible for a student who doesn't know the rule"
+   }
+  ]
+ },
+ "MLM1-15": {
+  "distractors": [
+   {
+    "option": "The three team's coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins.",
+    "would_pick": "yes",
+    "reason": "singular vs plural possessive apostrophe is a standard confusion"
+   },
+   {
+    "option": "The three teams' coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.",
+    "would_pick": "yes",
+    "reason": "it's/its is one of the most common errors at every grade"
+   },
+   {
+    "option": "The three team's coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.",
+    "would_pick": "yes",
+    "reason": "two very common apostrophe errors; easily chosen"
+   }
+  ]
+ },
+ "MLM1-16": {
+  "distractors": [
+   {
+    "option": "On a cold, windy evening in December, the childrens' choir sang songs outside the town library.",
+    "would_pick": "yes",
+    "reason": "'childrens'' is a classic irregular-plural possessive error"
+   },
+   {
+    "option": "On a cold, windy, evening in December, the childrens' choir sang songs outside the town library.",
+    "would_pick": "yes",
+    "reason": "a comma between the last adjective and the noun is a frequent mistake"
+   },
+   {
+    "option": "On a cold, windy, evening in December, the children's choir sang songs outside the town library.",
+    "would_pick": "yes",
+    "reason": "the extra comma after 'windy' is a common error and the rest looks fine"
+   }
+  ]
+ },
+ "MLM1-17": {
+  "distractors": [
+   {
+    "option": "Although our bus was late; we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more.",
+    "would_pick": "yes",
+    "reason": "semicolon after an introductory clause is a common misuse, and the splice is easy to miss"
+   },
+   {
+    "option": "Although our bus was late; we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.",
+    "would_pick": "yes",
+    "reason": "students who think semicolons mark 'big pauses' would choose this"
+   },
+   {
+    "option": "Although our bus was late, we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more.",
+    "would_pick": "yes",
+    "reason": "the comma splice is the most common grade 8 sentence-boundary error"
+   }
+  ]
+ },
+ "MLM1-18": {
+  "distractors": [
+   {
+    "option": "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.",
+    "would_pick": "yes",
+    "reason": "students mix a colon with a closing dash when introducing a list"
+   },
+   {
+    "option": "Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night.",
+    "would_pick": "yes",
+    "reason": "closing a dash interruption with a comma is a frequent error"
+   },
+   {
+    "option": "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night.",
+    "would_pick": "yes",
+    "reason": "using a colon to introduce a list is a learned habit; the closing comma looks natural"
+   }
+  ]
+ },
+ "MLM1-19": {
+  "distractors": [
+   {
+    "option": "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and was reading the last chapter of her library book.",
+    "would_pick": "yes",
+    "reason": "'had already ate' is a very common spoken form"
+   },
+   {
+    "option": "By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and is reading the last chapter of her library book.",
+    "would_pick": "yes",
+    "reason": "tense shift to 'is' in a long sentence is easy to miss when reading quickly"
+   },
+   {
+    "option": "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and is reading the last chapter of her library book.",
+    "would_pick": "yes",
+    "reason": "both errors are common in student writing"
+   }
+  ]
+ },
+ "MLM1-20": {
+  "distractors": [
+   {
+    "option": "Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.",
+    "would_pick": "yes",
+    "reason": "'either...nor' mismatches are common in student writing"
+   },
+   {
+    "option": "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.",
+    "would_pick": "yes",
+    "reason": "students often don't know 'not only' needs 'but also' and accept 'and'"
+   },
+   {
+    "option": "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano or a model of the solar system for his own project.",
+    "would_pick": "yes",
+    "reason": "two common correlative errors together; still reads acceptably at speed"
+   }
+  ]
+ },
+ "MLM1-21": {
+  "distractors": [
+   {
+    "option": "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle theirselves.",
+    "would_pick": "yes",
+    "reason": "'Marisol and I' as an object is hypercorrection many students think is proper; 'theirselves' is common speech"
+   },
+   {
+    "option": "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle themselves.",
+    "would_pick": "yes",
+    "reason": "'X and I' as an object is the single most common pronoun error, often thought correct"
+   },
+   {
+    "option": "Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle theirselves.",
+    "would_pick": "yes",
+    "reason": "'theirselves' is a common nonstandard form students use"
+   }
+  ]
+ },
+ "MLM1-22": {
+  "distractors": [
+   {
+    "option": "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.",
+    "would_pick": "yes",
+    "reason": "shifting from 'students' to 'you' is an everyday pronoun shift"
+   },
+   {
+    "option": "If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders.",
+    "would_pick": "yes",
+    "reason": "'for we sixth graders' sounds formal to students who overcorrect"
+   },
+   {
+    "option": "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders.",
+    "would_pick": "yes",
+    "reason": "both pronoun errors are plausible for a weak student"
+   }
+  ]
+ },
+ "MLM1-23": {
+  "distractors": [
+   {
+    "option": "I wish I was better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round.",
+    "would_pick": "yes",
+    "reason": "'I wish I was' is what nearly everyone says"
+   },
+   {
+    "option": "I wish I were better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.",
+    "would_pick": "yes",
+    "reason": "'if I would have' is very common in speech"
+   },
+   {
+    "option": "I wish I was better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.",
+    "would_pick": "yes",
+    "reason": "both forms are standard in everyday speech; very likely to be chosen"
+   }
+  ]
+ },
+ "MLM1-24": {
+  "distractors": [
+   {
+    "option": "Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drives them to school in her truck.",
+    "would_pick": "yes",
+    "reason": "the tense shift to 'drives' is easy to miss"
+   },
+   {
+    "option": "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drives them to school in her truck.",
+    "would_pick": "yes",
+    "reason": "students taught 'neither' is singular will choose 'was' regardless of the nearer subject"
+   },
+   {
+    "option": "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drove them to school in her truck.",
+    "would_pick": "yes",
+    "reason": "the 'neither is singular' misconception makes this a strong distractor"
+   }
+  ]
+ },
+ "MLM1-25": {
+  "distractors": [
+   {
+    "option": "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end.",
+    "would_pick": "yes",
+    "reason": "dangling modifiers and 'although...but' both sound fine to students"
+   },
+   {
+    "option": "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.",
+    "would_pick": "yes",
+    "reason": "a dangling modifier with 'Talia's hands' is rarely noticed at this grade"
+   },
+   {
+    "option": "Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end.",
+    "would_pick": "yes",
+    "reason": "'although...but' is a common double-connector error"
+   }
+  ]
+ },
+ "MLM1-26": {
+  "distractors": [
+   {
+    "option": "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+    "would_pick": "no",
+    "reason": "'During the coach was explaining' is a form native grade 7 students don't write and it jars on any reading"
+   },
+   {
+    "option": "While the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.",
+    "would_pick": "yes",
+    "reason": "'which' in place of 'where' is a common relative-pronoun error"
+   },
+   {
+    "option": "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.",
+    "would_pick": "no",
+    "reason": "the 'During' + clause opening is plainly ungrammatical to native students, so the option is ruled out"
+   }
+  ]
+ },
+ "MLM1-27": {
+  "distractors": [
+   {
+    "option": "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks.",
+    "would_pick": "yes",
+    "reason": "'murals were' is a classic agreement-by-proximity error"
+   },
+   {
+    "option": "Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.",
+    "would_pick": "yes",
+    "reason": "the passive 'painted by us' is clumsy but not something students see as wrong"
+   },
+   {
+    "option": "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.",
+    "would_pick": "yes",
+    "reason": "proximity agreement plus a passive students accept; plausible pick"
+   }
+  ]
+ },
+ "MLM1-28": {
+  "distractors": [
+   {
+    "option": "After pouring the solution into the test tubes, each group should record the results on the chart, since there is three columns left to fill in.",
+    "would_pick": "yes",
+    "reason": "'there is' with a plural is extremely common in speech"
+   },
+   {
+    "option": "After pouring the solution into the test tubes, the results should be recorded on the chart, since there is three columns left to fill in.",
+    "would_pick": "yes",
+    "reason": "dangling modifiers sound fine to most students, and 'there is three' is common speech"
+   },
+   {
+    "option": "After pouring the solution into the test tubes, the results should be recorded on the chart, since there are three columns left to fill in.",
+    "would_pick": "yes",
+    "reason": "the dangling modifier is rarely noticed at this grade"
+   }
+  ]
+ }
+}

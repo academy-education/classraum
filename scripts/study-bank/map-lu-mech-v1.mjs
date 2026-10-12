@@ -86,7 +86,11 @@ export function medoid(it) {
   const min = Math.min(...sums), at = sums.map((x, i) => (x === min ? i : -1)).filter(i => i >= 0)
   return { unique: at.length === 1, uniqueIsKey: at.length === 1 && at[0] === ch.indexOf(String(it.correct_answer)) }
 }
-const stripP = s => String(s).replace(MARKS, '').replace(/\s+/g, ' ').trim()
+// E9 compares with ALL whitespace removed: a colon takes a following space and a
+// dash does not ("trip: my" vs "trip—my"), so collapsing spaces to one (pilot 3's
+// E9) refused a marks-only item. Changed 2026-10-12 after authoring, before any
+// teacher, solver or grader output was read; recorded in the result file.
+const stripP = s => String(s).replace(MARKS, '').replace(/\s+/g, '')
 export function structural(it) {
   const errs = []
   const s = strandOf(it)
@@ -191,6 +195,8 @@ function selftest() {
   const tb = batchChecks([underUnder, underUnder, underUnder, capOk].map(x => ({ ...x, cap_rule: Math.random().toString() })))
   expect(tb.errs.some(e => e.startsWith('T1')), 'T1: 3/4 unique extremes in a strand FAILS the batch')
   expect(touched('a b c', 'a b, c').has('tok1'), 'touched: a changed token is recorded')
+  expect(!structural({ ...punctOk, punct_rule: 'x', grade_target: 5, ccss: 'L.5.2a', choices: ['A trip—my bag was packed.', 'A trip: my bag was packed.', 'A trip—my bag, was packed.', 'A trip: my bag, was packed.'], correct_answer: 'A trip—my bag was packed.' }).errs.some(e => e.startsWith('E9')), 'E9: colon+space vs dash is marks-only (passes)')
+  expect(structural({ ...punctOk, punct_rule: 'x', grade_target: 5, ccss: 'L.5.2a', choices: ['A trip—my bag was packed.', 'A trip: my bag was packed.', 'A trip—my bags, was packed.', 'A trip: my bag, was packed.'], correct_answer: 'A trip—my bag was packed.' }).errs.some(e => e.startsWith('E9')), 'E9: a changed word FAILS')
   console.log(fail ? `SELFTEST FAILED (${fail})` : 'selftest passed: every bar and structural check can fail at its margin')
   process.exit(fail ? 1 : 0)
 }

@@ -1,0 +1,21 @@
+{
+  "MLM1-26": {
+    "distractors": [
+      {
+        "option": "Mia misses the week which she spent spring break at the lake cabin where she painted pictures each morning.",
+        "would_pick": "yes",
+        "reason": "Using 'which' after a time noun ('the week which') is a very common 7th-grade error; read quickly, it sounds fine, and the correct 'where' clause later makes the sentence look polished."
+      },
+      {
+        "option": "Mia misses the week when she spent spring break at the lake cabin which she painted pictures each morning.",
+        "would_pick": "yes",
+        "reason": "'The cabin which she painted' sounds natural on a quick read (it can even be parsed as painting the cabin), and students often use 'which' where 'where' or 'in which' is needed."
+      },
+      {
+        "option": "Mia misses the week which she spent spring break at the lake cabin which she painted pictures each morning.",
+        "would_pick": "yes",
+        "reason": "A student who thinks 'which' is the formal or 'proper' relative word for every noun will pick the option that uses it consistently; it is less likely than the single-error options but still a real choice."
+      }
+    ]
+  }
+}

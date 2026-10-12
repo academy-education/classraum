@@ -1,0 +1,786 @@
+[
+  {
+    "id": "MLM1-01",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park.",
+      "After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.",
+      "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.",
+      "After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park."
+    ],
+    "correct_answer": "After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.",
+    "error_sites": [
+      "\"Avenue\" in the street name Cedar Avenue (under-capitalization if lowercase)",
+      "\"lake\" used generically after \"the small\" (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.": "Treats \"avenue\" as an ordinary noun and does not see it is part of the street's name.",
+      "After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park.": "Capitalizes \"lake\" because lake names are usually capitalized, missing that \"the small lake\" names no particular lake.",
+      "After school, Priya and I rode our bikes down Cedar avenue, crossed the old bridge, and fed the ducks at the small Lake behind Willow Creek Park.": "Has the name/common-noun rule backwards for place words: lowercases the street-name word and capitalizes the generic one."
+    },
+    "explanation": "Correct: \"Avenue\" is part of the proper name Cedar Avenue, so it is capitalized. \"the small lake\" is a description, not a name, so \"lake\" stays lowercase (unlike Willow Creek Park, which is a name). The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "generic place word inside a proper name (Cedar Avenue) vs the same kind of word used generically (the small lake)"
+  },
+  {
+    "id": "MLM1-02",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Our librarian, Ms. Ortiz, read The Night the Moon Was Late aloud to the third graders during their visit on Friday.",
+      "Our librarian, Ms. Ortiz, read The Night The Moon Was Late aloud to the third graders during their visit on Friday.",
+      "Our librarian, Ms. Ortiz, read The Night the Moon was Late aloud to the third graders during their visit on Friday.",
+      "Our librarian, Ms. Ortiz, read The Night The Moon was Late aloud to the third graders during their visit on Friday."
+    ],
+    "correct_answer": "Our librarian, Ms. Ortiz, read The Night the Moon Was Late aloud to the third graders during their visit on Friday.",
+    "error_sites": [
+      "\"the\" in the middle of the book title (over-capitalization if capitalized)",
+      "the verb \"Was\" in the book title (under-capitalization if lowercase)"
+    ],
+    "student_error": {
+      "Our librarian, Ms. Ortiz, read The Night The Moon Was Late aloud to the third graders during their visit on Friday.": "Capitalizes every \"the\" in the title because the title begins with \"The\".",
+      "Our librarian, Ms. Ortiz, read The Night the Moon was Late aloud to the third graders during their visit on Friday.": "Lowercases \"was\" because it is a short word, treating it like \"a,\" \"of,\" or \"the.\"",
+      "Our librarian, Ms. Ortiz, read The Night The Moon was Late aloud to the third graders during their visit on Friday.": "Decides title capitals by guessing which little words matter, getting both short words wrong."
+    },
+    "explanation": "Correct: In a title, an article such as \"the\" is lowercase unless it is the first word. Verbs are always capitalized in a title, even short ones like \"Was.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "title capitalization: articles lowercase unless first, short verbs capitalized"
+  },
+  {
+    "id": "MLM1-03",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than geography or health.",
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than Geography or health.",
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than Geography or health.",
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than geography or health."
+    ],
+    "correct_answer": "Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than geography or health.",
+    "error_sites": [
+      "\"English,\" a language name used before a subject (under-capitalization if lowercase)",
+      "\"geography,\" a school subject (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than geography or health.": "Lowercases \"English\" because it names a school subject here, like art or health.",
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than Geography or health.": "Capitalizes \"geography\" because it is the name of a class on her schedule.",
+      "Ava has art with Mr. Okafor before lunch, but after lunch she has english literature, a class she enjoys far more than Geography or health.": "Treats school subjects as if they followed a single rule but applies it inconsistently, lowercasing the language and capitalizing the ordinary subject."
+    },
+    "explanation": "Correct: \"English\" names a language, and language names are always capitalized, even when part of a subject. \"geography\" is an ordinary school subject, like \"art\" and \"health,\" so it is lowercase. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "language name (English) vs ordinary school subject (geography)"
+  },
+  {
+    "id": "MLM1-04",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Before the recital, Grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.",
+      "Before the recital, grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.",
+      "Before the recital, Grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone.",
+      "Before the recital, grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone."
+    ],
+    "correct_answer": "Before the recital, Grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone.",
+    "error_sites": [
+      "\"Grandpa\" used as a name with no possessive (under-capitalization if lowercase)",
+      "\"uncle\" after the possessive \"my\" (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "Before the recital, grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone.": "Lowercases \"grandpa\" because it is a family word, not noticing it is used in place of his name.",
+      "Before the recital, Grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.": "Capitalizes \"Uncle\" because family titles are sometimes capitalized, missing that \"my\" makes it a common noun.",
+      "Before the recital, grandpa reminded my sister to thank her piano teacher, and my Uncle recorded the whole performance on his phone.": "Applies the family-word rule backwards: lowercases the word used as a name and capitalizes the one after \"my.\""
+    },
+    "explanation": "Correct: \"Grandpa\" stands alone in place of his name, so it is capitalized. \"my uncle\" has a possessive in front and no name after it, so \"uncle\" is lowercase. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "family title used as a name vs family word after a possessive"
+  },
+  {
+    "id": "MLM1-05",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "The Ramos family lived in the American southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean.",
+      "The Ramos family lived in the American Southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.",
+      "The Ramos family lived in the American southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.",
+      "The Ramos family lived in the American Southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean."
+    ],
+    "correct_answer": "The Ramos family lived in the American Southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.",
+    "error_sites": [
+      "\"Southwest\" naming a region after \"the American\" (under-capitalization if lowercase)",
+      "\"east\" as a direction of travel after \"drove\" (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "The Ramos family lived in the American southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.": "Lowercases \"southwest\" because compass words are usually lowercase, missing that it names a region here.",
+      "The Ramos family lived in the American Southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean.": "Capitalizes \"East\" because compass words that name places are capitalized, missing that \"drove east\" is only a direction.",
+      "The Ramos family lived in the American southwest for six years before they packed up the truck and drove East to their new home near the Atlantic Ocean.": "Mixes up region and direction both ways, lowercasing the region and capitalizing the direction."
+    },
+    "explanation": "Correct: \"the American Southwest\" names a region, so it is capitalized. \"drove east\" tells a direction of travel, so \"east\" is lowercase. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "region (the American Southwest) vs direction (drove east)"
+  },
+  {
+    "id": "MLM1-06",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 7,
+    "ccss": "L.7.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the sixteenth century.",
+      "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the sixteenth century.",
+      "Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century.",
+      "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century."
+    ],
+    "correct_answer": "Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the sixteenth century.",
+    "error_sites": [
+      "\"Middle Ages,\" a named historical period (under-capitalization if lowercase)",
+      "\"sixteenth century,\" a numbered century (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the sixteenth century.": "Lowercases \"middle ages\" because it sounds like an ordinary description of a time.",
+      "Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century.": "Capitalizes \"Sixteenth Century\" because it names a historical time, like the Middle Ages.",
+      "Our class learned that castles built during the middle ages were often surrounded by moats and that many of them were still standing in the Sixteenth Century.": "Cannot tell a named period from a numbered century and guesses wrong on both."
+    },
+    "explanation": "Correct: \"the Middle Ages\" is the name of a historical period, so both words are capitalized. Numbered centuries such as \"the sixteenth century\" are lowercase. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "named historical period (Middle Ages) vs numbered century"
+  },
+  {
+    "id": "MLM1-07",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 7,
+    "ccss": "L.7.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of Canadian maple candy.",
+      "Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of canadian maple candy.",
+      "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of canadian maple candy.",
+      "Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of Canadian maple candy."
+    ],
+    "correct_answer": "Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of Canadian maple candy.",
+    "error_sites": [
+      "\"garden\" after the proper adjective \"Japanese\" (over-capitalization if capitalized)",
+      "the proper adjective \"Canadian\" (under-capitalization if lowercase)"
+    ],
+    "student_error": {
+      "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of Canadian maple candy.": "Capitalizes the noun after a proper adjective as if \"Japanese Garden\" were the name of a place.",
+      "Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of canadian maple candy.": "Lowercases \"canadian\" because it is used as a describing word, not as the name of a country.",
+      "Hana's grandmother keeps a Japanese Garden behind her house, and every winter she mails us a box of canadian maple candy.": "Does not know that the capital belongs to the proper adjective only, so capitalizes the wrong word in one phrase and drops it in the other."
+    },
+    "explanation": "Correct: Only the proper adjective is capitalized; \"a Japanese garden\" is a kind of garden, not a named place. \"Canadian\" comes from the name Canada, so it is a proper adjective and is capitalized. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "proper adjective capitalized, the common noun after it lowercase"
+  },
+  {
+    "id": "MLM1-08",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 8,
+    "ccss": "L.8.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "After the game, Coach Rivera told us that we had played \"with real heart,\" and then she added, \"next week we face the strongest team in the league.\"",
+      "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"next week we face the strongest team in the league.\"",
+      "After the game, Coach Rivera told us that we had played \"with real heart,\" and then she added, \"Next week we face the strongest team in the league.\"",
+      "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"Next week we face the strongest team in the league.\""
+    ],
+    "correct_answer": "After the game, Coach Rivera told us that we had played \"with real heart,\" and then she added, \"Next week we face the strongest team in the league.\"",
+    "error_sites": [
+      "first word of the quoted fragment \"with real heart\" (over-capitalization if capitalized)",
+      "first word of the quoted full sentence \"Next week...\" (under-capitalization if lowercase)"
+    ],
+    "student_error": {
+      "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"Next week we face the strongest team in the league.\"": "Capitalizes the first word inside every pair of quotation marks, even a fragment worked into the sentence.",
+      "After the game, Coach Rivera told us that we had played \"with real heart,\" and then she added, \"next week we face the strongest team in the league.\"": "Lowercases \"next\" because the quotation comes in the middle of a longer sentence.",
+      "After the game, Coach Rivera told us that we had played \"With real heart,\" and then she added, \"next week we face the strongest team in the league.\"": "Has the quotation rule reversed: capitalizes the blended-in fragment and lowercases the full quoted sentence."
+    },
+    "explanation": "Correct: \"with real heart\" is a fragment that fits into the sentence after \"that,\" so it starts lowercase. \"Next week we face the strongest team in the league\" is a complete quoted sentence, so its first word is capitalized. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "quoted full sentence (capitalize first word) vs quoted fragment blended into the sentence"
+  },
+  {
+    "id": "MLM1-09",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 8,
+    "ccss": "L.8.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852.",
+      "At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.",
+      "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.",
+      "At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852."
+    ],
+    "correct_answer": "At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.",
+    "error_sites": [
+      "\"Historical Society\" in the organization's full name, shown by its abbreviation GHS (under-capitalization if lowercase)",
+      "the season \"spring\" (over-capitalization if capitalized)"
+    ],
+    "student_error": {
+      "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.": "Lowercases \"historical society\" because the words look like a description of the group rather than its name.",
+      "At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852.": "Capitalizes \"Spring\" because it sits next to a year and looks like a date.",
+      "At the town meeting, members of the Greenfield historical society (GHS) read aloud from a letter that the town's founders had written in the Spring of 1852.": "Capitalizes by how important a word feels: misses the official name and capitalizes the season attached to a date."
+    },
+    "explanation": "Correct: \"Greenfield Historical Society\" is the full name of an organization (its abbreviation GHS follows), so every main word is capitalized. Seasons are lowercase, even next to a year. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "cap_rule": "full name of an organization vs a season"
+  },
+  {
+    "id": "MLM1-10",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 5,
+    "ccss": "L.5.2c",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they?",
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they?",
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they.",
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they."
+    ],
+    "correct_answer": "The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they?",
+    "error_sites": [
+      "comma before the tag question \"don't they\" (missing if absent)",
+      "end mark after the tag question (wrong mark if a period)"
+    ],
+    "student_error": {
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they?": "Does not notice where the statement ends and the tag question begins, so leaves out the comma.",
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they.": "Ends with a period because the sentence starts out as a statement.",
+      "The posters for the science fair have to be finished before the judges arrive on Friday morning don't they.": "Reads the whole sentence as one long statement, so neither sets off the tag nor ends with a question mark."
+    },
+    "explanation": "Correct: A comma separates a tag question from the rest of the sentence. A sentence ending in a tag question asks something, so it ends with a question mark. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "comma before a tag question and a question mark after it"
+  },
+  {
+    "id": "MLM1-11",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 5,
+    "ccss": "L.5.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin.",
+      "A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.",
+      "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.",
+      "A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin."
+    ],
+    "correct_answer": "A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin.",
+    "error_sites": [
+      "comma after the first series item \"A tent with a broken zipper\" (missing if absent)",
+      "comma between the last series item and the verb \"were\" (wrongly present if added)"
+    ],
+    "student_error": {
+      "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin.": "Reads \"a broken zipper two muddy sleeping bags\" as one item because the first item is a long phrase.",
+      "A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.": "Puts a comma after the last item too, treating the series as if it needs a comma after every item.",
+      "A tent with a broken zipper two muddy sleeping bags, and a box of crushed granola bars, were all we found in the old shed behind the cabin.": "Loses track of where each item begins and ends, so misses the first comma and adds one before the verb."
+    },
+    "explanation": "Correct: Items in a series are separated by commas, including after the long first item \"A tent with a broken zipper.\" No comma goes between the last item of the series (the subject) and its verb \"were.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "commas separating phrases in a series; no comma between the series subject and its verb"
+  },
+  {
+    "id": "MLM1-12",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.",
+      "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.",
+      "Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings.",
+      "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings."
+    ],
+    "correct_answer": "Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings.",
+    "error_sites": [
+      "commas around \"who finished their projects early,\" a restrictive clause after \"Only the students\" (wrongly present if added)",
+      "closing comma after the nonrestrictive clause \"who runs the school garden\" (missing if absent)"
+    ],
+    "student_error": {
+      "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings.": "Puts commas around every \"who\" clause, not seeing that this one tells WHICH students were allowed.",
+      "Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.": "Opens the extra-information clause with a comma but forgets to close it before the sentence goes on.",
+      "Only the students, who finished their projects early, were allowed to help Mr. Castillo, who runs the school garden plant the new tomato seedlings.": "Thinks commas go wherever a \"who\" clause starts, so adds them to the needed clause and forgets the closing one."
+    },
+    "explanation": "Correct: \"who finished their projects early\" tells which students (\"Only\" shows not all of them), so it is restrictive and takes no commas. \"who runs the school garden\" adds extra information about Mr. Castillo, so it needs a comma on both sides. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "commas around a nonrestrictive clause (both sides) but none around a restrictive clause"
+  },
+  {
+    "id": "MLM1-13",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class which had won the poster contest, to design the cover of this year's yearbook.",
+      "Ms. Alvarez (the art teacher who painted the hallway mural) asked our class, which had won the poster contest, to design the cover of this year's yearbook.",
+      "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class, which had won the poster contest, to design the cover of this year's yearbook.",
+      "Ms. Alvarez (the art teacher who painted the hallway mural) asked our class which had won the poster contest, to design the cover of this year's yearbook."
+    ],
+    "correct_answer": "Ms. Alvarez (the art teacher who painted the hallway mural) asked our class, which had won the poster contest, to design the cover of this year's yearbook.",
+    "error_sites": [
+      "comma after the closing parenthesis, between the subject and the verb \"asked\" (wrongly present if added)",
+      "opening comma before the nonrestrictive clause \"which had won the poster contest\" (missing if absent)"
+    ],
+    "student_error": {
+      "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class, which had won the poster contest, to design the cover of this year's yearbook.": "Adds a comma after the parentheses as though the parenthetical needed commas too, splitting the subject from its verb.",
+      "Ms. Alvarez (the art teacher who painted the hallway mural) asked our class which had won the poster contest, to design the cover of this year's yearbook.": "Puts a comma only where the clause ends, forgetting that extra information needs a comma on both sides.",
+      "Ms. Alvarez (the art teacher who painted the hallway mural), asked our class which had won the poster contest, to design the cover of this year's yearbook.": "Places commas by where a pause seems to fall instead of by the rule, adding one after the parentheses and dropping the opening one."
+    },
+    "explanation": "Correct: The parentheses alone set off the extra information about Ms. Alvarez; a comma after them would separate the subject from the verb \"asked.\" \"which had won the poster contest\" adds extra information about \"our class,\" so it needs commas on both sides. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "parentheses and paired commas around nonrestrictive elements"
+  },
+  {
+    "id": "MLM1-14",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "After a long, exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.",
+      "After a long exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.",
+      "After a long, exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake.",
+      "After a long exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake."
+    ],
+    "correct_answer": "After a long, exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.",
+    "error_sites": [
+      "comma between the coordinate adjectives \"long\" and \"exhausting\" (missing if absent)",
+      "comma between the cumulative adjectives \"tall\" and \"pine\" (wrongly present if added)"
+    ],
+    "student_error": {
+      "After a long exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.": "Leaves out the comma because two adjectives in a row seem to need no punctuation.",
+      "After a long, exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake.": "Puts a comma between any two describing words, including \"tall pine.\"",
+      "After a long exhausting hike, the scouts set up their tents under two tall, pine trees beside the lake.": "Has the coordinate/cumulative test backwards, leaving out the needed comma and adding the wrong one."
+    },
+    "explanation": "Correct: \"long\" and \"exhausting\" each describe the hike equally (you could say \"long and exhausting\"), so a comma goes between them. \"tall pine trees\" cannot be \"tall and pine trees\"; \"tall\" describes \"pine trees,\" so no comma goes between them. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "comma between coordinate adjectives, none between cumulative adjectives"
+  },
+  {
+    "id": "MLM1-15",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "The three team's coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins.",
+      "The three teams' coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.",
+      "The three team's coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.",
+      "The three teams' coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins."
+    ],
+    "correct_answer": "The three teams' coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins.",
+    "error_sites": [
+      "plural possessive \"teams'\" after \"three\" (wrong apostrophe placement if \"team's\")",
+      "possessive pronoun \"its\" (wrongly present apostrophe if \"it's\")"
+    ],
+    "student_error": {
+      "The three team's coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins.": "Writes the singular possessive \"team's\" out of habit, not noticing that \"three\" makes it plural.",
+      "The three teams' coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.": "Adds an apostrophe to \"its\" because possessives usually take one, confusing it with \"it's\" (it is).",
+      "The three team's coaches met in the gym to decide whether the school should replace it's old scoreboard before the basketball season begins.": "Uses apostrophe-s for every possessive, giving both \"team's\" and \"it's.\""
+    },
+    "explanation": "Correct: The coaches belong to three teams, so the plural possessive \"teams'\" has the apostrophe after the s. The possessive pronoun \"its\" never takes an apostrophe; \"it's\" means \"it is.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "apostrophe in a plural possessive; no apostrophe in the possessive pronoun its"
+  },
+  {
+    "id": "MLM1-16",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "On a cold, windy evening in December, the childrens' choir sang songs outside the town library.",
+      "On a cold, windy, evening in December, the childrens' choir sang songs outside the town library.",
+      "On a cold, windy evening in December, the children's choir sang songs outside the town library.",
+      "On a cold, windy, evening in December, the children's choir sang songs outside the town library."
+    ],
+    "correct_answer": "On a cold, windy evening in December, the children's choir sang songs outside the town library.",
+    "error_sites": [
+      "comma between the last adjective \"windy\" and the noun \"evening\" (wrongly present if added)",
+      "possessive of the irregular plural \"children\" (wrong apostrophe placement if \"childrens'\")"
+    ],
+    "student_error": {
+      "On a cold, windy, evening in December, the children's choir sang songs outside the town library.": "Continues the comma pattern of the adjective list onto the noun, putting a comma after \"windy.\"",
+      "On a cold, windy evening in December, the childrens' choir sang songs outside the town library.": "Puts the apostrophe after the s because \"children\" is plural and plural possessives often end in s'.",
+      "On a cold, windy, evening in December, the childrens' choir sang songs outside the town library.": "Applies comma and apostrophe patterns by habit without checking what each mark is for."
+    },
+    "explanation": "Correct: Commas go between coordinate adjectives, never between the last adjective and the noun it describes. \"children\" is already plural without an s, so its possessive is \"children's.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "no comma between the final adjective and its noun; possessive of an irregular plural"
+  },
+  {
+    "id": "MLM1-17",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 8,
+    "ccss": "L.8.2",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Although our bus was late; we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more.",
+      "Although our bus was late, we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.",
+      "Although our bus was late; we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.",
+      "Although our bus was late, we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more."
+    ],
+    "correct_answer": "Although our bus was late, we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.",
+    "error_sites": [
+      "mark after the dependent clause \"Although our bus was late\" (wrong mark if a semicolon)",
+      "mark between the two independent clauses (wrong mark if a comma, creating a comma splice)"
+    ],
+    "student_error": {
+      "Although our bus was late; we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.": "Uses a semicolon after the \"Although\" clause because it is a long pause, not seeing that the clause cannot stand alone.",
+      "Although our bus was late, we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more.": "Joins the two complete sentences with only a comma, creating a comma splice.",
+      "Although our bus was late; we still reached the stadium before the opening ceremony, the storm that slowed us down had delayed the other teams even more.": "Has the comma and semicolon roles swapped, using a semicolon after the dependent clause and a comma between the independent ones."
+    },
+    "explanation": "Correct: A semicolon may only join two independent clauses; \"Although our bus was late\" cannot stand alone, so it takes a comma. \"we still reached the stadium...\" and \"the storm... had delayed the other teams even more\" are both complete sentences, so a comma alone cannot join them; the semicolon does. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "semicolon joining independent clauses vs comma after a dependent clause"
+  },
+  {
+    "id": "MLM1-18",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 8,
+    "ccss": "L.8.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.",
+      "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.",
+      "Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night.",
+      "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night."
+    ],
+    "correct_answer": "Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.",
+    "error_sites": [
+      "mark opening the break before \"my sleeping bag\" (wrong mark if a colon)",
+      "mark closing the break before \"was packed\" (wrong mark if a comma)"
+    ],
+    "student_error": {
+      "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.": "Uses a colon because a list follows, not noticing the sentence continues with \"was packed\" after the list.",
+      "Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night.": "Closes the break with a comma because the list already uses commas, so the pair no longer matches.",
+      "Everything I needed for the trip: my sleeping bag, my flashlight, and my hiking boots, was packed by Friday night.": "Treats the list as needing list punctuation on both ends, opening with a colon and closing with a comma."
+    },
+    "explanation": "Correct: The list interrupts the sentence between its subject \"Everything I needed for the trip\" and its verb \"was packed,\" so it is set off by a matching pair of dashes; a colon cannot introduce a list that the sentence then continues past. The closing mark must match the opening dash; a comma would also be confused with the commas inside the list. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "punct_rule": "matching dashes setting off a break that contains commas"
+  },
+  {
+    "id": "MLM1-19",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 5,
+    "ccss": "L.5.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and was reading the last chapter of her library book.",
+      "By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and is reading the last chapter of her library book.",
+      "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and is reading the last chapter of her library book.",
+      "By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and was reading the last chapter of her library book."
+    ],
+    "correct_answer": "By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and was reading the last chapter of her library book.",
+    "error_sites": [
+      "past participle in the past perfect \"had already eaten\" (wrong form if \"ate\")",
+      "tense of \"was reading\" in a past-tense sentence (inappropriate shift if \"is reading\")"
+    ],
+    "student_error": {
+      "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and was reading the last chapter of her library book.": "Uses the simple past \"ate\" after \"had,\" a common slip with irregular verbs.",
+      "By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and is reading the last chapter of her library book.": "Switches to present tense partway through, because \"is reading\" sounds like what she is doing.",
+      "By the time the bus pulled into the school parking lot, Jada had already ate her breakfast and is reading the last chapter of her library book.": "Does not keep track of the verb forms the time frame requires, slipping on the participle and the tense."
+    },
+    "explanation": "Correct: The past perfect is \"had\" plus the past participle, so it is \"had already eaten,\" not \"had already ate.\" The sentence is about the past (\"pulled,\" \"had eaten\"), so the second verb stays in the past: \"was reading.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "perfect-tense participle form; shift in verb tense"
+  },
+  {
+    "id": "MLM1-20",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 5,
+    "ccss": "L.5.1e",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.",
+      "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.",
+      "Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano or a model of the solar system for his own project.",
+      "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano or a model of the solar system for his own project."
+    ],
+    "correct_answer": "Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano or a model of the solar system for his own project.",
+    "error_sites": [
+      "second half of the \"not only ... but also\" pair (wrong conjunction if \"and\")",
+      "second half of the \"either ... or\" pair (wrong conjunction if \"nor\")"
+    ],
+    "student_error": {
+      "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano or a model of the solar system for his own project.": "Uses \"and\" because the sentence adds a second thing Kendra did, not matching it to \"Not only.\"",
+      "Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.": "Pairs \"either\" with \"nor,\" mixing it up with \"neither ... nor.\"",
+      "Not only did Kendra finish her science project two days early, and she also offered to help Theo choose either a volcano nor a model of the solar system for his own project.": "Does not know which words belong together in correlative pairs, so mismatches both."
+    },
+    "explanation": "Correct: \"Not only\" pairs with \"but also.\" \"either\" pairs with \"or\"; \"nor\" goes with \"neither.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "correlative pair not only/but also; correlative pair either/or"
+  },
+  {
+    "id": "MLM1-21",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 6,
+    "ccss": "L.6.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle theirselves.",
+      "Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle themselves.",
+      "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle themselves.",
+      "Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle theirselves."
+    ],
+    "correct_answer": "Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle themselves.",
+    "error_sites": [
+      "pronoun case of \"me\" as an object of \"asked\" (wrong case if \"I\")",
+      "intensive pronoun \"themselves\" (nonstandard form if \"theirselves\")"
+    ],
+    "student_error": {
+      "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle themselves.": "Uses \"I\" because \"Marisol and I\" sounds more correct, even though the pronoun is an object here.",
+      "Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle theirselves.": "Builds the intensive pronoun from \"their,\" like \"myself\" and \"yourself,\" producing \"theirselves.\"",
+      "Mr. Grant asked Marisol and I to paint the backdrop for the spring play, but the twins built the wooden castle theirselves.": "Chooses pronouns by what sounds formal or follows a pattern instead of by their job in the sentence."
+    },
+    "explanation": "Correct: \"Marisol and me\" is the object of \"asked\" (Mr. Grant asked me), so the object pronoun \"me\" is correct. The standard intensive pronoun is \"themselves\"; \"theirselves\" is not standard English. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "pronoun case in a compound object; intensive pronoun form"
+  },
+  {
+    "id": "MLM1-22",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 6,
+    "ccss": "L.6.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.",
+      "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.",
+      "If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders.",
+      "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders."
+    ],
+    "correct_answer": "If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.",
+    "error_sites": [
+      "pronoun referring back to \"students\" (inappropriate shift in person if \"you\")",
+      "pronoun case of \"us\" before \"sixth graders\" as the object of \"for\" (wrong case if \"we\")"
+    ],
+    "student_error": {
+      "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.": "Switches to \"you\" as if speaking to the reader, a common shift in person in school writing.",
+      "If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders.": "Uses \"we\" because \"we sixth graders\" sounds like a group name, not checking that it follows \"for.\"",
+      "If students want to join the robotics club, you need a form signed by a parent, and Mr. Diaz has promised to save the front table for we sixth graders.": "Chooses pronouns by sound rather than by person and case, slipping on both."
+    },
+    "explanation": "Correct: The sentence is about \"students,\" so the pronoun stays in third person: \"they need.\" \"for\" needs an object pronoun; drop \"sixth graders\" and you would say \"for us,\" so \"us sixth graders\" is correct. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "shift in pronoun person; pronoun case before an appositive noun"
+  },
+  {
+    "id": "MLM1-23",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 8,
+    "ccss": "L.8.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "I wish I was better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round.",
+      "I wish I were better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.",
+      "I wish I was better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.",
+      "I wish I were better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round."
+    ],
+    "correct_answer": "I wish I were better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round.",
+    "error_sites": [
+      "subjunctive \"were\" after \"I wish\" (wrong mood if \"was\")",
+      "past perfect \"had practiced\" in the \"if\" clause of a past condition (wrong form if \"would have practiced\")"
+    ],
+    "student_error": {
+      "I wish I was better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round.": "Uses \"was\" because \"I was\" is the usual past form, not recognizing the wish calls for the subjunctive.",
+      "I wish I were better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.": "Puts \"would have\" in both halves of the condition because the result clause uses it.",
+      "I wish I was better at chess, because if I would have practiced over the summer, I would have beaten Owen in the final round.": "Does not know the special verb forms for wishes and unreal conditions, so uses ordinary forms in both places."
+    },
+    "explanation": "Correct: A wish about something untrue takes the subjunctive \"were\" in formal written English: \"I wish I were.\" In a condition about the past that did not happen, the \"if\" clause takes the past perfect (\"had practiced\"); \"would have\" belongs only in the result clause. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "subjunctive mood after wish; past perfect in a counterfactual if-clause"
+  },
+  {
+    "id": "MLM1-24",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 5,
+    "ccss": "L.5.1e",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drives them to school in her truck.",
+      "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drives them to school in her truck.",
+      "Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drove them to school in her truck.",
+      "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drove them to school in her truck."
+    ],
+    "correct_answer": "Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drove them to school in her truck.",
+    "error_sites": [
+      "verb agreeing with the \"neither ... nor\" subject (wrong number if \"was\")",
+      "tense of \"drove\" in a past-tense sentence (inappropriate shift if \"drives\")"
+    ],
+    "student_error": {
+      "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drove them to school in her truck.": "Uses \"was\" because \"neither\" seems singular or because \"Ethan\" comes first, instead of matching the nearer subject \"sisters.\"",
+      "Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drives them to school in her truck.": "Switches to present tense in the second clause.",
+      "Neither Ethan nor his older sisters was at the bus stop when the storm started, so their mom drives them to school in her truck.": "Loses track of the verb after the first part of the sentence, getting both the number and the tense wrong."
+    },
+    "explanation": "Correct: With \"neither ... nor,\" the verb agrees with the nearer subject, \"sisters,\" so it is \"were.\" The sentence happens in the past (\"started\"), so the second verb stays past: \"drove.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "subject-verb agreement with a neither/nor subject; shift in verb tense across clauses"
+  },
+  {
+    "id": "MLM1-25",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 7,
+    "ccss": "L.7.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end.",
+      "Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.",
+      "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.",
+      "Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end."
+    ],
+    "correct_answer": "Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.",
+    "error_sites": [
+      "subject that the opening modifier \"Nervous about her speech\" describes (dangling modifier if \"Talia's hands\")",
+      "clause after \"although\" (extra conjunction if \"but she\")"
+    ],
+    "student_error": {
+      "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.": "Makes \"Talia's hands\" the subject, so the opening phrase says her hands were nervous; the student assumes the possessive \"Talia's\" is enough.",
+      "Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end.": "Adds \"but\" because the idea is a contrast, not noticing that \"although\" already does that job.",
+      "Nervous about her speech, Talia's hands gripped her note cards tightly, and although the microphone squealed twice, but she kept going until the very end.": "Builds each clause from the meaning instead of the structure, producing a dangling modifier and a doubled conjunction."
+    },
+    "explanation": "Correct: \"Nervous about her speech\" must describe the subject that follows; Talia was nervous, not her hands. \"although\" already joins the contrast to the main clause, so adding \"but\" before \"she kept going\" leaves the clause with two connectors. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "dangling modifier (possessive subject); doubled conjunction with although/but"
+  },
+  {
+    "id": "MLM1-26",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 7,
+    "ccss": "L.7.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "While the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+      "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+      "While the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.",
+      "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles."
+    ],
+    "correct_answer": "While the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+    "error_sites": [
+      "word introducing the clause \"the coach was explaining the new play\" (preposition before a clause if \"During\")",
+      "word introducing the clause \"they had left their water bottles\" (pronoun with no role in its clause if \"which\")"
+    ],
+    "student_error": {
+      "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.": "Uses \"During\" because it means the same time as \"While,\" not seeing that \"during\" must be followed by a noun phrase, not a clause.",
+      "While the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.": "Uses \"which\" because it refers to the locker room, not noticing the clause needs a word meaning \"in that place.\"",
+      "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.": "Picks connecting words by meaning alone, without checking whether each one can introduce a full clause."
+    },
+    "explanation": "Correct: \"While\" can introduce a clause with its own subject and verb; \"during\" is a preposition and needs a noun phrase (\"during the meeting\"). In \"they had left their water bottles\" the place is not a subject or object, so the clause needs \"where\" (or \"in which\"); \"which\" leaves it ungrammatical. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "subordinating conjunction vs preposition before a clause; relative adverb vs relative pronoun"
+  },
+  {
+    "id": "MLM1-27",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 8,
+    "ccss": "L.8.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks.",
+      "Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.",
+      "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.",
+      "Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks."
+    ],
+    "correct_answer": "Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks.",
+    "error_sites": [
+      "verb agreeing with the gerund phrase subject \"Painting the hallway murals\" (wrong number if \"were\")",
+      "voice of the last clause (inappropriate shift to passive if \"the walls were painted by us\")"
+    ],
+    "student_error": {
+      "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks.": "Makes the verb agree with \"murals,\" the nearest noun, instead of the gerund subject \"Painting.\"",
+      "Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.": "Switches to passive voice in the last clause, even though \"we\" did the painting.",
+      "Painting the hallway murals were harder than we expected, so we sketched every design on paper first, and then the walls were painted by us during lunch for two weeks.": "Does not track what the subject of each clause is, so gets the agreement and the voice wrong."
+    },
+    "explanation": "Correct: The subject is the gerund phrase \"Painting the hallway murals,\" which is singular, so the verb is \"was.\" The sentence is in active voice with \"we\" as the doer (\"we expected,\" \"we sketched\"); switching to \"the walls were painted by us\" is an inappropriate shift in voice. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "agreement with a gerund-phrase subject; shift from active to passive voice"
+  },
+  {
+    "id": "MLM1-28",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 8,
+    "ccss": "L.8.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "After pouring the solution into the test tubes, each group should record the results on the chart, since there is three columns left to fill in.",
+      "After pouring the solution into the test tubes, the results should be recorded on the chart, since there is three columns left to fill in.",
+      "After pouring the solution into the test tubes, each group should record the results on the chart, since there are three columns left to fill in.",
+      "After pouring the solution into the test tubes, the results should be recorded on the chart, since there are three columns left to fill in."
+    ],
+    "correct_answer": "After pouring the solution into the test tubes, each group should record the results on the chart, since there are three columns left to fill in.",
+    "error_sites": [
+      "subject that the verbal phrase \"After pouring the solution\" describes (dangling verbal if \"the results should be recorded\")",
+      "verb in \"there ___ three columns\" (wrong number if \"is\")"
+    ],
+    "student_error": {
+      "After pouring the solution into the test tubes, the results should be recorded on the chart, since there are three columns left to fill in.": "Uses the passive \"the results should be recorded,\" which sounds formal and scientific, so the opening phrase says the results did the pouring.",
+      "After pouring the solution into the test tubes, each group should record the results on the chart, since there is three columns left to fill in.": "Uses \"is\" because \"there is\" is the more familiar phrase, not checking the plural \"columns\" after it.",
+      "After pouring the solution into the test tubes, the results should be recorded on the chart, since there is three columns left to fill in.": "Writes in a formal-sounding lab style without checking who does each action or what the verb agrees with."
+    },
+    "explanation": "Correct: \"After pouring the solution\" needs the person who poured as the subject; \"each group\" poured, the results did not. In a \"there\" sentence the verb agrees with the noun after it, \"three columns,\" so it is \"are.\" The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+    "varied_dimension": "dangling verbal phrase; subject-verb agreement in a there-clause"
+  }
+]

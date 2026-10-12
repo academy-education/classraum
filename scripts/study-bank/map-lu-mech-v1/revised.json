@@ -1,0 +1,30 @@
+[
+ {
+  "id": "MLM1-26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 7,
+  "ccss": "L.7.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Mia misses the week when she spent spring break at the lake cabin where she painted pictures each morning.",
+   "Mia misses the week which she spent spring break at the lake cabin where she painted pictures each morning.",
+   "Mia misses the week when she spent spring break at the lake cabin which she painted pictures each morning.",
+   "Mia misses the week which she spent spring break at the lake cabin which she painted pictures each morning."
+  ],
+  "correct_answer": "Mia misses the week when she spent spring break at the lake cabin where she painted pictures each morning.",
+  "error_sites": [
+   "word introducing the clause \"she spent spring break\" after \"the week\" (\"which\" has no role in a clause that is already complete; needs \"when\")",
+   "word introducing the clause \"she painted pictures each morning\" after \"the lake cabin\" (\"which\" has no role in a clause that is already complete; needs \"where\")"
+  ],
+  "student_error": {
+   "Mia misses the week which she spent spring break at the lake cabin where she painted pictures each morning.": "Uses \"which\" because \"the week\" is a thing, reading \"which she spent\" as complete and not noticing that \"spring break\" already fills the object slot, so the clause needs \"when\".",
+   "Mia misses the week when she spent spring break at the lake cabin which she painted pictures each morning.": "Uses \"which\" because \"the lake cabin\" is a thing, reading \"which she painted\" as complete and not noticing that \"pictures\" already fills the object slot, so the clause needs \"where\".",
+   "Mia misses the week which she spent spring break at the lake cabin which she painted pictures each morning.": "Treats \"which\" as the all-purpose word for any non-person noun, so uses it after both the time noun and the place noun without checking whether it has a job in its clause."
+  },
+  "explanation": "Correct: each relative clause (\"she spent spring break\", \"she painted pictures each morning\") is already complete, with its own subject and object, so it must be introduced by a relative adverb that tells when or where: \"when\" after \"the week\" and \"where\" after \"the lake cabin\". \"Which\" is a pronoun and must fill a subject or object slot in its clause; here both slots are taken, so \"which\" leaves the clause ungrammatical. Each clause looks right at a glance (\"which she spent\", \"which she painted\") until the object that follows. The option with only the first error uses \"which\" after \"the week\", the option with only the second uses it after \"the lake cabin\", and the remaining option does both.",
+  "varied_dimension": "relative adverb \"when\" vs relative pronoun after a time noun; relative adverb \"where\" vs relative pronoun after a place noun"
+ }
+]

@@ -1,0 +1,48 @@
+[
+ {
+  "item": {
+   "id": "MLM1-26",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 7,
+   "ccss": "L.7.1a",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "While the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+    "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+    "While the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.",
+    "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles."
+   ],
+   "correct_answer": "While the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+   "error_sites": [
+    "word introducing the clause \"the coach was explaining the new play\" (preposition before a clause if \"During\")",
+    "word introducing the clause \"they had left their water bottles\" (pronoun with no role in its clause if \"which\")"
+   ],
+   "student_error": {
+    "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.": "Uses \"During\" because it means the same time as \"While,\" not seeing that \"during\" must be followed by a noun phrase, not a clause.",
+    "While the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.": "Uses \"which\" because it refers to the locker room, not noticing the clause needs a word meaning \"in that place.\"",
+    "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.": "Picks connecting words by meaning alone, without checking whether each one can introduce a full clause."
+   },
+   "explanation": "Correct: \"While\" can introduce a clause with its own subject and verb; \"during\" is a preposition and needs a noun phrase (\"during the meeting\"). In \"they had left their water bottles\" the place is not a subject or object, so the clause needs \"where\" (or \"in which\"); \"which\" leaves it ungrammatical. The option with only the first error breaks the first rule, the option with only the second error breaks the second, and the remaining option breaks both.",
+   "varied_dimension": "subordinating conjunction vs preposition before a clause; relative adverb vs relative pronoun"
+  },
+  "rated_no": [
+   {
+    "option": "During the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.",
+    "reasons": [
+     "'During the coach was explaining' is a form native grade 7 students don't write and it jars on any reading",
+     "'During the coach was explaining' sounds wrong to a native-speaking 7th grader even on a quick read."
+    ]
+   },
+   {
+    "option": "During the coach was explaining the new play, two players slipped back into the locker room, which they had left their water bottles.",
+    "reasons": [
+     "the 'During' + clause opening is plainly ungrammatical to native students, so the option is ruled out",
+     "The 'During the coach was' opening jumps out as wrong, so even weak students reject it."
+    ]
+   }
+  ]
+ }
+]
