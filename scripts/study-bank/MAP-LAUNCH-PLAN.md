@@ -397,3 +397,22 @@ Language Usage gate is not met.
   bar was a design error, and it is recorded.
 - **The next Spelling batch** keeps the method and changes the grade-5 words
   (or starts at grade 6). It is the shortest path to the owner's 20.
+
+## 9. Third authoring batch: `map-lu-v3` (result)
+
+Pre-registered in `MAP-LU-V3.prereg.md`; full result in `MAP-LU-V3-RESULT.md`.
+
+**Punctuation passes: 11 grades 5-8 items inserted staged** (cohort
+`map-lu-v3-punctuation`), the first MAP Language Usage items in the bank.
+**Spelling cleared: 0 (cumulative 0 of ~20).** The Language Usage gate is
+not met.
+
+- **Spelling:** stopped at Stage 0 by the structural-predictor check (a
+  vowel-count tell that the batch's own length fix created). Not graded.
+- **Capitalization:** grade 6 4/4, grade 5 0/4 (too easy). Grade-5
+  Capitalization has now missed in both directions; target grade 6 only.
+- **Grammar:** grades 7-8 6/6, grades 5-6 too easy; fails S1-b and S1-c.
+- **Next Spelling batch:** v3's words and screen, seeded edit profiles plus a
+  fixed letter class per edit, and the structural check run on the
+  likely-frozen subset before the teacher gate.
+

@@ -579,7 +579,17 @@ else if (mode === 'insert') {
   const s = arg; if (!STRANDS.includes(s)) die('usage: insert <strand> [--commit]')
   const commit = process.argv.includes('--commit'), OUT = W + `inserted-${s}.batch.json`
   const { gateBatch } = await import(SB + 'gate.mjs')
-  const g = gateBatch({ task: 'multiple_choice', family: 'map', section: 'language', itemFiles: [OUT] })
+  const { createClient } = await import('@supabase/supabase-js')
+  const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n').filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+  // stem-duplicates refuses a family with zero VERIFIED live rows (it cannot tell an empty read from a failed one).
+  // MAP is not shipped, so when the count is exactly 0 the empty live set is passed explicitly; the within-batch
+  // duplicate check still runs, and the content_hash check below reads every row, staged included. Same handling
+  // as map-math-g58-v1.mjs. Added at insert time; no bar changed.
+  const { count: liveMap, error: ce } = await db.from('study_item_bank').select('id', { count: 'exact', head: true }).eq('family', 'map').eq('verified', true).eq('archived', false)
+  if (ce || typeof liveMap !== 'number') die(`cannot count live map rows: ${ce?.message}`)
+  console.log(`live verified map rows: ${liveMap}${liveMap === 0 ? ' -> stem-duplicate check runs within the batch only' : ''}`)
+  const g = gateBatch({ task: 'multiple_choice', family: 'map', section: 'language', itemFiles: [OUT], ...(liveMap === 0 ? { liveStems: [] } : {}) })
   console.log(`gate (${g.family}, ledger ${g.batch ?? 'none'}): ${g.canInsert ? 'PASS' : 'REFUSED'} - ${g.reason}`)
   if (!g.canInsert) process.exit(2)
   const items = rd(OUT)
@@ -595,9 +605,6 @@ else if (mode === 'insert') {
       localId: id, map, prereg: 'scripts/study-bank/MAP-LU-V3.prereg.md', result: 'scripts/study-bank/MAP-LU-V3-RESULT.md', contentSha: g.sha,
     },
   }))
-  const { createClient } = await import('@supabase/supabase-js')
-  const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n').filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const { data: dup, error: e1x } = await db.from('study_item_bank').select('id,cohort').in('content_hash', rows.map(r => r.content_hash))
   if (e1x) die(e1x.message)
   if (dup.length) die(`${dup.length} content_hash already in the bank (${dup.map(d => d.cohort).join(',')})`)
