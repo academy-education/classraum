@@ -1,0 +1,217 @@
+{
+ "MLV2-S02": {
+  "distractors": [
+   {
+    "option": "Sam rowed a small boat out to the island on the lake.",
+    "would_pick": "yes",
+    "reason": "'rowed' can be mistaken for 'rode'/'road', so a student may think it is the misspelled word"
+   }
+  ]
+ },
+ "MLV2-S06": {
+  "distractors": [
+   {
+    "option": "ocasion",
+    "would_pick": "yes",
+    "reason": "single c / single s is a very common misspelling of occasion"
+   },
+   {
+    "option": "ocassion",
+    "would_pick": "yes",
+    "reason": "doubling the wrong consonant is a classic student spelling"
+   },
+   {
+    "option": "occassion",
+    "would_pick": "yes",
+    "reason": "doubling both consonants is a frequent overcorrection"
+   }
+  ]
+ },
+ "MLV2-S08": {
+  "distractors": [
+   {
+    "option": "Nora had no doubt that her team would win the game.",
+    "would_pick": "yes",
+    "reason": "silent b in 'doubt' looks wrong to many grade 5 spellers"
+   }
+  ]
+ },
+ "MLV2-S22": {
+  "distractors": [
+   {
+    "option": "hyphothisis",
+    "would_pick": "yes",
+    "reason": "weak spellers mix in 'hypho-' from 'hyphen' and write the middle vowel as i; looks close enough when reading quickly"
+   },
+   {
+    "option": "hyphothesis",
+    "would_pick": "yes",
+    "reason": "only the extra h differs; a student unsure of 'hyp-' vs 'hyph-' would pick it"
+   }
+  ]
+ },
+ "MLV2-P03": {
+  "distractors": [
+   {
+    "option": "You remembered to feed the fish before you left for school Dani didn't you?",
+    "would_pick": "yes",
+    "reason": "many grade 5 students leave out both commas around a name and before a tag question"
+   },
+   {
+    "option": "You remembered to feed the fish before you left for school Dani, didn't you?",
+    "would_pick": "yes",
+    "reason": "forgetting the comma before the direct address is the most common error here"
+   }
+  ]
+ },
+ "MLV2-P06": {
+  "distractors": [
+   {
+    "option": "My grandmother (she turns eighty next month) still walks two miles, every morning.",
+    "would_pick": "yes",
+    "reason": "students often add a comma before an adverbial phrase at the end of a sentence"
+   },
+   {
+    "option": "My grandmother (she turns eighty next month), still walks two miles, every morning.",
+    "would_pick": "yes",
+    "reason": "a comma after a closing parenthesis feels natural to students who pause there"
+   }
+  ]
+ },
+ "MLV2-P09": {
+  "distractors": [
+   {
+    "option": "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.",
+    "would_pick": "yes",
+    "reason": "students commonly comma-separate any two adjectives, not just coordinate ones"
+   },
+   {
+    "option": "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school.",
+    "would_pick": "yes",
+    "reason": "same coordinate-adjective misconception applied consistently; plausible for a student who over-commas"
+   }
+  ]
+ },
+ "MLV2-P10": {
+  "distractors": [
+   {
+    "option": "Our neighbor's loud, playful golden retriever, barks at every car that drives past.",
+    "would_pick": "yes",
+    "reason": "a comma between a long subject and its verb is one of the most common middle-school errors"
+   },
+   {
+    "option": "Our neighbor's loud playful golden retriever, barks at every car that drives past.",
+    "would_pick": "yes",
+    "reason": "misplacing the comma from the adjectives to after the subject is a typical pause-based error"
+   }
+  ]
+ },
+ "MLV2-G02": {
+  "distractors": [
+   {
+    "option": "Neither Marcus or his older sisters is going to walk the dog after dinner tonight.",
+    "would_pick": "yes",
+    "reason": "'neither...or' is a very common real error and the singular verb can seem right"
+   },
+   {
+    "option": "Neither Marcus or his older sisters are going to walk the dog after dinner tonight.",
+    "would_pick": "yes",
+    "reason": "'neither...or' with a plural verb sounds natural to many students reading quickly"
+   }
+  ]
+ },
+ "MLV2-G03": {
+  "distractors": [
+   {
+    "option": "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he met his cousins.",
+    "would_pick": "yes",
+    "reason": "a single tense shift in a list is easy to miss when reading quickly"
+   },
+   {
+    "option": "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he meets his cousins.",
+    "would_pick": "yes",
+    "reason": "present-tense slips in a long sentence are a common student error and still read smoothly"
+   }
+  ]
+ },
+ "MLV2-G09": {
+  "distractors": [
+   {
+    "option": "Despite the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.",
+    "would_pick": "no",
+    "reason": "two non-native constructions ('Despite the trail was', 'because of we had') read as plainly broken to native grade 7 students"
+   },
+   {
+    "option": "Despite the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+    "would_pick": "yes",
+    "reason": "'Despite' used as a conjunction is a real error students make, and the rest of the sentence is fine"
+   },
+   {
+    "option": "Although the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.",
+    "would_pick": "no",
+    "reason": "'because of we had' is not something native students write and sounds obviously wrong"
+   }
+  ]
+ },
+ "MLV2-G12": {
+  "distractors": [
+   {
+    "option": "Having grown up on a farm, Mateo was use to wake up before sunrise.",
+    "would_pick": "yes",
+    "reason": "'use to' for 'used to' is a very common spelling-by-sound error, and 'used to wake' is a familiar phrase"
+   },
+   {
+    "option": "Having grown up on a farm, Mateo was use to waking up before sunrise.",
+    "would_pick": "yes",
+    "reason": "'was use to' is exactly how many students write it, since the d is not heard"
+   }
+  ]
+ },
+ "MLV2-G13": {
+  "distractors": [
+   {
+    "option": "Read the directions carefully, answer every question, and your work should be checked before the timer goes off.",
+    "would_pick": "yes",
+    "reason": "a shift to passive voice in the last item of a list is easy to miss and sounds acceptable"
+   },
+   {
+    "option": "Read the directions carefully, every question should be answered, and your work should be checked before the timer goes off.",
+    "would_pick": "yes",
+    "reason": "the passive clauses sound formal and test-like, so some students would think it is correct"
+   }
+  ]
+ },
+ "MLV2-G14": {
+  "distractors": [
+   {
+    "option": "If Carmen would have left home ten minutes earlier, she would of caught the bus to the game.",
+    "would_pick": "yes",
+    "reason": "'would have' in the if-clause and 'would of' are both common in student writing"
+   },
+   {
+    "option": "If Carmen had left home ten minutes earlier, she would of caught the bus to the game.",
+    "would_pick": "yes",
+    "reason": "'would of' is an extremely common error that sounds identical to 'would've'"
+   }
+  ]
+ },
+ "MLV2-C06": {
+  "distractors": [
+   {
+    "option": "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and persian rugs.",
+    "would_pick": "yes",
+    "reason": "students often don't know 'Persian' as an adjective of nationality needs a capital"
+   },
+   {
+    "option": "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and Persian rugs.",
+    "would_pick": "yes",
+    "reason": "'Victorian' as an architectural style is very commonly left lowercase by students"
+   },
+   {
+    "option": "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and persian rugs.",
+    "would_pick": "yes",
+    "reason": "a student unaware that proper adjectives are capitalized would lowercase both"
+   }
+  ]
+ }
+}

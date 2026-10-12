@@ -1,0 +1,436 @@
+[
+ {
+  "id": "MLV2-S02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya studied the plants in her science notebook before the big test today.",
+   "Leo raised his hand to give the right anwser to the teacher.",
+   "The path to the old barn runs straight through the tall cornfield.",
+   "Sam rowed a small boat out to the island on the lake."
+  ],
+  "correct_answer": "Leo raised his hand to give the right anwser to the teacher.",
+  "spelling_pattern": "silent w in answer: the s and w swapped",
+  "targets": {
+   "Maya studied the plants in her science notebook before the big test today.": "science",
+   "Leo raised his hand to give the right anwser to the teacher.": "anwser",
+   "The path to the old barn runs straight through the tall cornfield.": "straight",
+   "Sam rowed a small boat out to the island on the lake.": "island"
+  },
+  "misspelled_word": "anwser",
+  "intended_word": "answer",
+  "student_error": {
+   "Maya studied the plants in her science notebook before the big test today.": "science has a silent c after the s, so a student who expects 'sience' may think it is wrong",
+   "The path to the old barn runs straight through the tall cornfield.": "straight has a silent gh, so the long spelling can look like an error",
+   "Sam rowed a small boat out to the island on the lake.": "island has a silent s that is not heard in 'eye-land', so a student who expects 'iland' may flag it as misspelled"
+  },
+  "explanation": "Answer has its silent w after the s (an-swer); anwser puts the w before the s. Science, straight and island are all spelled correctly, even though each has a silent letter.",
+  "key_length_rank": 3
+ },
+ {
+  "id": "MLV2-S06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nGrandpa's ninetieth birthday party was a special ____ for our whole family.",
+  "choices": [
+   "ocasion",
+   "occasion",
+   "ocassion",
+   "occassion"
+  ],
+  "correct_answer": "occasion",
+  "spelling_pattern": "doubled consonants: double c but single s in occasion",
+  "error_sites": [
+   "cc written c",
+   "s written ss"
+  ],
+  "student_error": {
+   "ocasion": "does not hear the double c, so writes the k sound with one c",
+   "occassion": "doubles the s as well as the c, expecting both consonants to be doubled",
+   "ocassion": "remembers that one consonant is doubled but doubles the wrong one, the s instead of the c"
+  },
+  "explanation": "Occasion has a double c and a single s: oc-ca-sion. Ocasion drops one c, occassion doubles the s, and ocassion does both, putting the double letter on the wrong consonant."
+ },
+ {
+  "id": "MLV2-S08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Lily heard a wierd noise coming from the attic.",
+   "The store was very busy on the Saturday before the big holiday.",
+   "Jack finished in fourth place in the school spelling bee.",
+   "Nora had no doubt that her team would win the game."
+  ],
+  "correct_answer": "Lily heard a wierd noise coming from the attic.",
+  "spelling_pattern": "ei exception: weird breaks 'i before e'",
+  "targets": {
+   "Lily heard a wierd noise coming from the attic.": "wierd",
+   "The store was very busy on the Saturday before the big holiday.": "busy",
+   "Jack finished in fourth place in the school spelling bee.": "fourth",
+   "Nora had no doubt that her team would win the game.": "doubt"
+  },
+  "misspelled_word": "wierd",
+  "intended_word": "weird",
+  "student_error": {
+   "The store was very busy on the Saturday before the big holiday.": "busy is said 'bizzy', so the u can look like an error",
+   "Jack finished in fourth place in the school spelling bee.": "fourth has a u not heard in 'forth', so it may look like an extra letter",
+   "Nora had no doubt that her team would win the game.": "doubt has a silent b that is not heard in 'dowt', so a student may think the b does not belong"
+  },
+  "explanation": "Weird is an exception to 'i before e' and is spelled w-e-i-r-d; wierd reverses the vowels. Busy, fourth and doubt are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S22",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nBefore testing, each group wrote a ____ predicting which plant would grow the tallest.",
+  "choices": [
+   "hypothisis",
+   "hypothesis",
+   "hyphothisis",
+   "hyphothesis"
+  ],
+  "correct_answer": "hypothesis",
+  "spelling_pattern": "the plain p of the Greek prefix hypo- (not ph), and the unstressed e in -the-",
+  "error_sites": [
+   "p written ph",
+   "-the- written -thi-"
+  ],
+  "student_error": {
+   "hyphothesis": "adds an h after the p because many Greek science words (photosynthesis, phase, hyphen) spell that sound ph",
+   "hypothisis": "spells the unstressed vowel in -the- with i, matching the -sis ending",
+   "hyphothisis": "remembers the word as a Greek science word full of h's and y's but not its letters: writes ph by analogy with photosynthesis and spells the unclear middle vowel like the i in -sis"
+  },
+  "explanation": "Hypothesis is hy-poth-e-sis, with a plain p and an e in the third syllable. Hyphothesis adds an h after the p, hypothisis uses i for the e, and hyphothisis does both."
+ },
+ {
+  "id": "MLV2-P03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2c",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "You remembered to feed the fish before you left for school Dani didn't you?",
+   "You remembered to feed the fish before you left for school, Dani didn't you?",
+   "You remembered to feed the fish before you left for school Dani, didn't you?",
+   "You remembered to feed the fish before you left for school, Dani, didn't you?"
+  ],
+  "correct_answer": "You remembered to feed the fish before you left for school, Dani, didn't you?",
+  "error_sites": [
+   "comma missing before the name in direct address",
+   "comma missing after the name, between it and the tag question"
+  ],
+  "student_error": {
+   "You remembered to feed the fish before you left for school Dani didn't you?": "does not set off the name in direct address at all, so it runs into both the sentence and the tag question",
+   "You remembered to feed the fish before you left for school, Dani didn't you?": "puts a comma before the name but forgets the comma after it, so the name runs into the tag question",
+   "You remembered to feed the fish before you left for school Dani, didn't you?": "puts the only comma just before the tag question, as with a tag question that has no name, and runs 'school' into 'Dani'"
+  },
+  "explanation": "A name used in direct address is set off with commas on both sides, so 'Dani' needs a comma before it (after 'school') and after it (before the tag question 'didn't you'). The tag question makes the sentence a question, so it ends with a question mark. Only the key has both commas.",
+  "punct_rule": "commas on both sides of a name in direct address that comes just before a tag question"
+ },
+ {
+  "id": "MLV2-P06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "My grandmother (she turns eighty next month) still walks two miles every morning.",
+   "My grandmother (she turns eighty next month) still walks two miles, every morning.",
+   "My grandmother (she turns eighty next month), still walks two miles, every morning.",
+   "My grandmother (she turns eighty next month), still walks two miles every morning."
+  ],
+  "correct_answer": "My grandmother (she turns eighty next month) still walks two miles every morning.",
+  "error_sites": [
+   "extra comma after the closing parenthesis, between subject and verb",
+   "extra comma before the time phrase \"every morning\""
+  ],
+  "student_error": {
+   "My grandmother (she turns eighty next month) still walks two miles, every morning.": "puts a comma where the voice pauses before the time phrase at the end",
+   "My grandmother (she turns eighty next month), still walks two miles, every morning.": "places a comma at every spot where a reader would pause, including after the parenthesis and before 'every morning'",
+   "My grandmother (she turns eighty next month), still walks two miles every morning.": "adds a comma after the parenthesis where the reader pauses before the verb"
+  },
+  "explanation": "Parentheses by themselves set off the extra information 'she turns eighty next month.' No comma goes after the closing parenthesis, because the sentence without the parenthetical, 'My grandmother still walks two miles every morning,' has no comma between subject and verb. 'Every morning' is a short time phrase that belongs with the verb, so no comma goes before it either. Only the key has neither extra comma.",
+  "punct_rule": "parentheses around a nonrestrictive element without added commas"
+ },
+ {
+  "id": "MLV2-P09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.",
+   "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.",
+   "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+   "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school."
+  ],
+  "correct_answer": "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+  "error_sites": [
+   "extra comma between cumulative modifiers \"warm\" and \"spring\"",
+   "extra comma between \"bright\" and \"yellow\", where \"bright\" describes the color, not the boots"
+  ],
+  "student_error": {
+   "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.": "puts a comma between any two describing words in a row without testing whether 'and' fits",
+   "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.": "treats 'bright' and 'yellow' as two separate adjectives for the boots instead of seeing that 'bright' tells what kind of yellow",
+   "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school.": "applies the coordinate-adjective comma to every pair of describing words in a row"
+  },
+  "explanation": "None of these modifiers are coordinate: 'warm and spring morning' makes no sense, and 'spring morning' works as a unit. 'Bright' describes the color yellow, not the boots, so 'bright and yellow boots' changes the meaning. Modifiers that are not coordinate take no comma between them, so only the key is correct.",
+  "punct_rule": "no comma between cumulative adjectives or between a color and the word describing it"
+ },
+ {
+  "id": "MLV2-P10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+   "Our neighbor's loud, playful golden retriever, barks at every car that drives past.",
+   "Our neighbor's loud playful golden retriever barks at every car that drives past.",
+   "Our neighbor's loud playful golden retriever, barks at every car that drives past."
+  ],
+  "correct_answer": "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+  "error_sites": [
+   "comma missing between the coordinate adjectives \"loud\" and \"playful\"",
+   "extra comma between the long subject \"Our neighbor's ... golden retriever\" and the verb \"barks\""
+  ],
+  "student_error": {
+   "Our neighbor's loud, playful golden retriever, barks at every car that drives past.": "adds a comma after the long subject because the reader pauses there before the verb",
+   "Our neighbor's loud playful golden retriever barks at every car that drives past.": "leaves out all commas in a string of adjectives",
+   "Our neighbor's loud playful golden retriever, barks at every car that drives past.": "punctuates by ear: hears no pause between the adjectives but hears one after the long subject"
+  },
+  "explanation": "'Loud' and 'playful' are coordinate ('loud and playful'), so they are separated by a comma; 'golden retriever' is the name of the breed, so no comma goes after 'playful.' The whole phrase 'Our neighbor's loud, playful golden retriever' is the subject, and no comma separates a subject from its verb, however long the subject is. Only the key has the comma after 'loud' and none before 'barks.'",
+  "punct_rule": "a comma between coordinate adjectives before a cumulative modifier, and no comma between a long subject and its verb"
+ },
+ {
+  "id": "MLV2-G02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 5,
+  "ccss": "L.5.1e",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Either Marcus or his older sisters is going to walk the dog after dinner tonight.",
+   "Neither Marcus or his older sisters is going to walk the dog after dinner tonight.",
+   "Neither Marcus or his older sisters are going to walk the dog after dinner tonight.",
+   "Either Marcus or his older sisters are going to walk the dog after dinner tonight."
+  ],
+  "correct_answer": "Either Marcus or his older sisters are going to walk the dog after dinner tonight.",
+  "error_sites": [
+   "\"Neither\" paired with \"or\" instead of \"Either\" (or \"nor\")",
+   "singular verb \"is\" used though the nearer subject \"sisters\" is plural"
+  ],
+  "student_error": {
+   "Either Marcus or his older sisters is going to walk the dog after dinner tonight.": "makes the verb agree with the first subject, 'Marcus,' instead of the nearer subject, 'sisters'",
+   "Neither Marcus or his older sisters is going to walk the dog after dinner tonight.": "pairs 'neither' with 'or' as in everyday speech and agrees the verb with 'Marcus'",
+   "Neither Marcus or his older sisters are going to walk the dog after dinner tonight.": "pairs 'neither' with 'or' as in everyday speech instead of 'either...or' or 'neither...nor'"
+  },
+  "explanation": "Correlative conjunctions come in fixed pairs: 'either...or' and 'neither...nor.' 'Neither...or' mixes the pairs. When two subjects are joined by 'either...or,' the verb agrees with the nearer subject, here the plural 'sisters,' so 'are' is correct. Only the key uses a matching pair and 'are.'",
+  "varied_dimension": "correlative conjunction pair; verb agreement with the nearer of two subjects"
+ },
+ {
+  "id": "MLV2-G03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 5,
+  "ccss": "L.5.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he met his cousins.",
+   "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he meets his cousins.",
+   "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he met his cousins.",
+   "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he meets his cousins."
+  ],
+  "correct_answer": "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he met his cousins.",
+  "error_sites": [
+   "present-tense \"packs\" shifts out of the past tense in the middle of the series of verbs",
+   "present-tense \"meets\" shifts out of the past tense in the later clause"
+  ],
+  "student_error": {
+   "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he meets his cousins.": "keeps the main verbs in the past but slips into present tense in the clause at the end, far from 'Last Saturday'",
+   "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he met his cousins.": "slips into present tense for one verb in the middle of the series, as happens in storytelling speech",
+   "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he meets his cousins.": "checks only the first and main verbs for tense and misses the two scattered present-tense slips between past-tense verbs"
+  },
+  "explanation": "'Last Saturday' places every action in the past, and 'woke' and 'rode' are past tense. The other verbs must stay in the past too: 'packed' and 'met.' Switching to 'packs' or 'meets' is an inappropriate tense shift. Only the key keeps the tense consistent.",
+  "varied_dimension": "tense shift in a series of verbs; tense shift in a later dependent clause"
+ },
+ {
+  "id": "MLV2-G09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 7,
+  "ccss": "L.7.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Despite the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.",
+   "Although the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+   "Despite the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+   "Although the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn."
+  ],
+  "correct_answer": "Although the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+  "error_sites": [
+   "preposition \"Despite\" used to introduce a clause where the subordinating conjunction \"Although\" is needed",
+   "prepositional phrase \"because of\" used to introduce a clause where a subordinating conjunction such as \"since\" is needed"
+  ],
+  "student_error": {
+   "Despite the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.": "treats prepositions that carry the right meaning ('despite' for contrast, 'because of' for cause) as if they could introduce a whole clause",
+   "Despite the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.": "uses 'despite' because it means the same as 'although,' not noticing it must be followed by a noun phrase, not a clause",
+   "Although the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.": "uses 'because of' because it means the same as 'because,' not noticing it must be followed by a noun phrase, not a clause"
+  },
+  "explanation": "'Despite' and 'because of' are prepositions: they introduce phrases ('despite the steep trail,' 'because of our early start'), not clauses with a subject and verb. 'The trail was steep and rocky' and 'we had started hiking at dawn' are clauses, so they need subordinating conjunctions: 'Although' for the contrast and 'since' for the cause. Only the key uses a conjunction before each clause.",
+  "varied_dimension": "contrast preposition used in place of a subordinating conjunction before a clause; cause preposition used in place of a subordinating conjunction before a clause"
+ },
+ {
+  "id": "MLV2-G12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "grade_target": 8,
+  "ccss": "L.8.1a",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Having grown up on a farm, Mateo was used to wake up before sunrise.",
+   "Having grown up on a farm, Mateo was use to wake up before sunrise.",
+   "Having grown up on a farm, Mateo was used to waking up before sunrise.",
+   "Having grown up on a farm, Mateo was use to waking up before sunrise."
+  ],
+  "correct_answer": "Having grown up on a farm, Mateo was used to waking up before sunrise.",
+  "error_sites": [
+   "base form \"use\" written for the participle \"used\" in \"was used to\"",
+   "base verb \"wake\" used instead of the gerund \"waking\" after \"was used to\""
+  ],
+  "student_error": {
+   "Having grown up on a farm, Mateo was used to wake up before sunrise.": "confuses 'was used to' (accustomed to, followed by a gerund) with 'used to' (habit, followed by a base verb)",
+   "Having grown up on a farm, Mateo was use to wake up before sunrise.": "writes the phrase the way it sounds ('yoosta'), dropping the d of 'used' and treating 'to' as part of an infinitive",
+   "Having grown up on a farm, Mateo was use to waking up before sunrise.": "drops the d of 'used' because it is not heard before 'to'"
+  },
+  "explanation": "In 'was used to' (meaning 'was accustomed to'), 'used' is a past participle and keeps its -d even though it is not heard before 'to.' The 'to' is a preposition, so it is followed by a gerund: 'waking up.' Only the key uses both verbal forms correctly.",
+  "varied_dimension": "past participle 'used' (not 'use') in 'be used to'; gerund after 'be used to'"
+ },
+ {
+  "id": "MLV2-G13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Read the directions carefully, every question should be answered, and check your work before the timer goes off.",
+   "Read the directions carefully, answer every question, and check your work before the timer goes off.",
+   "Read the directions carefully, answer every question, and your work should be checked before the timer goes off.",
+   "Read the directions carefully, every question should be answered, and your work should be checked before the timer goes off."
+  ],
+  "correct_answer": "Read the directions carefully, answer every question, and check your work before the timer goes off.",
+  "error_sites": [
+   "shift from active imperative to passive voice in the second instruction (\"every question should be answered\" for \"answer every question\")",
+   "shift from active imperative to passive voice in the third instruction (\"your work should be checked\" for \"check your work\")"
+  ],
+  "student_error": {
+   "Read the directions carefully, every question should be answered, and check your work before the timer goes off.": "varies the middle instruction to avoid repeating the same pattern, switching it into the passive",
+   "Read the directions carefully, answer every question, and your work should be checked before the timer goes off.": "turns the last instruction into a passive statement to sound more formal, shifting out of the active imperative",
+   "Read the directions carefully, every question should be answered, and your work should be checked before the timer goes off.": "hears the last two parts as matching each other and does not notice that both have shifted away from the active command 'Read'"
+  },
+  "explanation": "The sentence is a series of commands, so every item should be an active imperative verb: 'Read,' 'answer,' 'check.' 'Every question should be answered' and 'your work should be checked' shift into the passive voice and out of the imperative mood. Only the key keeps voice and mood consistent.",
+  "varied_dimension": "shift from active imperative to passive voice in a middle item of a series; the same shift in the final item"
+ },
+ {
+  "id": "MLV2-G14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1c",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "If Carmen would have left home ten minutes earlier, she would of caught the bus to the game.",
+   "If Carmen had left home ten minutes earlier, she would of caught the bus to the game.",
+   "If Carmen would have left home ten minutes earlier, she would have caught the bus to the game.",
+   "If Carmen had left home ten minutes earlier, she would have caught the bus to the game."
+  ],
+  "correct_answer": "If Carmen had left home ten minutes earlier, she would have caught the bus to the game.",
+  "error_sites": [
+   "\"would have left\" used in the if-clause of a past contrary-to-fact conditional instead of \"had left\"",
+   "\"would of\" written for the conditional \"would have\" in the result clause"
+  ],
+  "student_error": {
+   "If Carmen would have left home ten minutes earlier, she would of caught the bus to the game.": "writes both clauses the way they sound in speech: 'would have' in the if-clause and 'would've' heard as 'would of'",
+   "If Carmen had left home ten minutes earlier, she would of caught the bus to the game.": "hears the contraction 'would've' as 'would of' and writes it that way",
+   "If Carmen would have left home ten minutes earlier, she would have caught the bus to the game.": "uses 'would have' in both clauses, as is common in speech"
+  },
+  "explanation": "For an imagined past situation that did not happen, the if-clause uses the past perfect ('had left') and the result clause uses 'would have' plus the past participle ('would have caught'). 'Would have' does not belong in the if-clause, and 'would of' is not a verb form: it is a mishearing of 'would've.' Only the key uses the conditional mood correctly in both clauses.",
+  "varied_dimension": "past perfect, not 'would have', in the if-clause; 'would have', not 'would of', in the result clause"
+ },
+ {
+  "id": "MLV2-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and persian rugs.",
+   "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and Persian rugs.",
+   "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and Persian rugs.",
+   "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and persian rugs."
+  ],
+  "correct_answer": "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and Persian rugs.",
+  "error_sites": [
+   "proper adjective \"Victorian\" (from Queen Victoria) lowercased",
+   "proper adjective \"Persian\" (from Persia) lowercased"
+  ],
+  "student_error": {
+   "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and persian rugs.": "treats 'persian' as an ordinary word for a kind of rug, like 'modern' for a kind of furniture, not seeing it comes from a place name",
+   "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and Persian rugs.": "treats 'victorian' as an ordinary style word, like 'modern,' not seeing it comes from a person's name",
+   "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and persian rugs.": "thinks words describing styles of houses and furnishings are ordinary adjectives, so lowercases both proper adjectives along with 'modern'"
+  },
+  "explanation": "'Victorian' comes from a proper noun (Queen Victoria) and 'Persian' from a proper noun (Persia), so both are proper adjectives and are capitalized, even though they describe everyday things. 'Modern' is an ordinary adjective and stays lowercase in every option. Only the key capitalizes both proper adjectives.",
+  "cap_rule": "proper adjectives formed from a person's name or a place name are capitalized even when they describe everyday objects; an ordinary style adjective beside them is not"
+ }
+]

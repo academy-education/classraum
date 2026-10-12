@@ -290,6 +290,29 @@ export function spellChecks(it) {
   return errs
 }
 
+/**
+ * E4-dup (item level). Two spelling items testing one word fail Stage 0's
+ * batch rule. When a REVISION or REPAIR introduced the clash (the reviser and
+ * repairer see only their own items), the changed item fails, so the clash
+ * goes to the one-repair step instead of stopping the strand. If neither item
+ * was changed, the later id fails. Added 2026-10-12 after the teacher re-rate,
+ * before any repair, solver or grader ran (S06 was rewritten to "occasion",
+ * which S11 already tests).
+ */
+export function dupFails(items, changed = new Set()) {
+  const tw = it => (it.spelling_format === 'word' ? String(it.correct_answer) : String(it.intended_word ?? '')).toLowerCase()
+  const sp = items.filter(i => strandOf(i) === 'spell'), out = {}
+  for (const a of sp) for (const b of sp) {
+    if (a.id >= b.id) continue
+    const clash = tw(a) === tw(b) || b.choices.some(c => words(c).includes(tw(a))) || a.choices.some(c => words(c).includes(tw(b)))
+    if (!clash) continue
+    const loser = changed.has(b.id) && !changed.has(a.id) ? b : changed.has(a.id) && !changed.has(b.id) ? a : b
+    const other = loser === a ? b : a
+    out[loser.id] = `E4-dup tested word clashes with ${other.id} ("${tw(a)}" / "${tw(b)}")`
+  }
+  return out
+}
+
 // ---------- T2: does ANY simple structural feature predict the key? ----------
 const FEAT = {
   len: s => s.length, words: s => s.trim().split(/\s+/).length, caps: s => (s.match(/[A-Z]/g) ?? []).length,
@@ -491,6 +514,10 @@ async function selftest() {
   const mixed = [...tellSet, ...wordSet]
   const bm = batchChecks(mixed.map(i => ({ ...i, intended_word: 'x' + i.id })), 'spell')
   expect(bm.perFormat.sentence?.fires, `T2[sentence]: a format-confined length tell FIRES (${fmtT2(bm.perFormat.sentence)})`)
+  const d1 = { ...sw, id: 'X-01', correct_answer: 'occasion', choices: ['occasion', 'ocasion', 'occassion', 'ocassion'] }, d2 = { ...d1, id: 'X-02' }
+  expect(Object.keys(dupFails([d1, d2], new Set(['X-01'])))[0] === 'X-01', 'E4-dup: the REVISED item of a clashing pair fails')
+  expect(Object.keys(dupFails([d1, d2]))[0] === 'X-02', 'E4-dup: with neither revised, the later id fails')
+  expect(!Object.keys(dupFails([d1, { ...sw, id: 'X-03' }])).length, 'E4-dup: distinct words do not clash')
   // E1 bound by grade
   const long = 'The members of the environmental committee considered several complicated proposals regarding municipal transportation infrastructure improvements.'
   expect(e1({ grade_target: 8, prompt: '', choices: [long, long, long, long] }).errs.length > 0, 'E1: dense adult prose fails at grade 8')
@@ -628,7 +655,8 @@ else if (mode === 'repair-input' || mode === 'freeze') {
   }
   const after = authored.map(i => rev[i.id] ?? i).filter(i => !dropped.includes(i.id))
   if (mode === 'repair-input') {
-    const failing = after.map(i => [i, structural(i).errs]).filter(([, e]) => e.length)
+    const dups = dupFails(after, new Set(Object.keys(rev)))
+    const failing = after.map(i => [i, [...structural(i).errs, ...(dups[i.id] ? [dups[i.id] + '. Every tested spelling word in the batch: ' + after.filter(x => strandOf(x) === 'spell').map(x => (x.spelling_format === 'word' ? x.correct_answer : x.intended_word)).join(', ')] : [])]]).filter(([, e]) => e.length)
     wr(W + 'repair.input.json', failing.map(([item, errors]) => ({ item, errors })))
     console.log(`dropped at re-rate: ${dropped.join(', ') || 'none'}; ${failing.length} items fail an exact check -> repair.input.json`)
     for (const [i, e] of failing) console.log(`  ${i.id}: ${e.join('; ')}`)
@@ -636,14 +664,17 @@ else if (mode === 'repair-input' || mode === 'freeze') {
   }
   const repairs = existsSync(W + 'repairs.json') ? rd(W + 'repairs.json') : {}
   const fixed = after.map(i => repairs[i.id] ?? i)
-  const exactFail = fixed.filter(i => structural(i).errs.length)
-  const survivors = fixed.filter(i => !structural(i).errs.length)
+  const dups = dupFails(fixed, new Set([...Object.keys(rev), ...Object.keys(repairs)]))
+  const errsOf = i => [...structural(i).errs, ...(dups[i.id] ? [dups[i.id]] : [])]
+  const exactFail = fixed.filter(i => errsOf(i).length)
+  const survivors = fixed.filter(i => !errsOf(i).length)
   console.log(`dropped at teacher re-rate: ${dropped.join(', ') || 'none'}`)
-  console.log(`failing exact checks after repairs (dropped): ${exactFail.map(i => `${i.id} (${structural(i).errs[0]})`).join('; ') || 'none'}`)
+  console.log(`failing exact checks after repairs (dropped): ${exactFail.map(i => `${i.id} (${errsOf(i)[0]})`).join('; ') || 'none'}`)
   const frozen = [], report = {}
   for (const s of STRANDS) {
     const pick = []
     for (const [gr, q] of Object.entries(FREEZE[s])) pick.push(...survivors.filter(i => strandOf(i) === s && i.grade_target === +gr).slice(0, q))
+    if (pick.length) wr(W + `stage0-pick-${s}.json`, pick)
     const short = Object.entries(FREEZE[s]).filter(([gr, q]) => pick.filter(i => i.grade_target === +gr).length < q).map(([gr]) => gr)
     if (short.length) { report[s] = { stage0: 'FAIL', why: `fewer survivors than the quota at grade ${short.join(',')}`, n: pick.length }; continue }
     const b = batchChecks(pick, s)

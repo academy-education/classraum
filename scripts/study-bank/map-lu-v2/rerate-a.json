@@ -1,0 +1,63 @@
+{
+ "MLV2-S02": {"distractors": [
+  {"option": "Sam rowed a small boat out to the island on the lake.", "would_pick": "yes", "reason": "Silent s in 'island' and the rowed/rode homophone make students suspect an error here."}
+ ]},
+ "MLV2-S06": {"distractors": [
+  {"option": "ocasion", "would_pick": "yes", "reason": "Single c is one of the most common misspellings of this word at grade 5."},
+  {"option": "ocassion", "would_pick": "yes", "reason": "Swapping which consonant doubles is a classic error students make with this word."},
+  {"option": "occassion", "would_pick": "yes", "reason": "Doubling both consonants is a very common overcorrection."}
+ ]},
+ "MLV2-S08": {"distractors": [
+  {"option": "Nora had no doubt that her team would win the game.", "would_pick": "yes", "reason": "The silent b in 'doubt' looks wrong to many fifth graders."}
+ ]},
+ "MLV2-S22": {"distractors": [
+  {"option": "hyphothisis", "would_pick": "yes", "reason": "Weak spellers mix up the vowel and the hyph-/hypo- beginning (from 'hyphen'); looks close enough."},
+  {"option": "hyphothesis", "would_pick": "yes", "reason": "Only the stray h differs, and students confuse the start with 'hyphen'; easy to choose while reading quickly."}
+ ]},
+ "MLV2-P03": {"distractors": [
+  {"option": "You remembered to feed the fish before you left for school Dani didn't you?", "would_pick": "yes", "reason": "Students routinely leave out direct-address and tag-question commas."},
+  {"option": "You remembered to feed the fish before you left for school Dani, didn't you?", "would_pick": "yes", "reason": "Having one comma before the tag looks complete; students often miss the comma before the name."}
+ ]},
+ "MLV2-P06": {"distractors": [
+  {"option": "My grandmother (she turns eighty next month) still walks two miles, every morning.", "would_pick": "yes", "reason": "Students often add a pause comma before an adverbial phrase at the end."},
+  {"option": "My grandmother (she turns eighty next month), still walks two miles, every morning.", "would_pick": "yes", "reason": "A comma after a parenthetical feels natural to students, so they pick it even with the extra comma."}
+ ]},
+ "MLV2-P09": {"distractors": [
+  {"option": "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.", "would_pick": "yes", "reason": "Grade 7 students commonly put commas between any two adjectives."},
+  {"option": "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school.", "would_pick": "yes", "reason": "Students who use the 'comma between adjectives' rule apply it everywhere."}
+ ]},
+ "MLV2-P10": {"distractors": [
+  {"option": "Our neighbor's loud, playful golden retriever, barks at every car that drives past.", "would_pick": "yes", "reason": "A comma between a long subject and its verb is one of the most common student errors."},
+  {"option": "Our neighbor's loud playful golden retriever, barks at every car that drives past.", "would_pick": "yes", "reason": "Students often put a pause comma after a long subject and miss the comma between the adjectives."}
+ ]},
+ "MLV2-G02": {"distractors": [
+  {"option": "Neither Marcus or his older sisters is going to walk the dog after dinner tonight.", "would_pick": "yes", "reason": "'Neither...or' is common in student writing, and 'is' after Marcus sounds right."},
+  {"option": "Neither Marcus or his older sisters are going to walk the dog after dinner tonight.", "would_pick": "yes", "reason": "Students rarely notice the neither/or mismatch, and the verb agrees with the nearer subject, so it sounds fine."}
+ ]},
+ "MLV2-G03": {"distractors": [
+  {"option": "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he met his cousins.", "would_pick": "yes", "reason": "One tense shift in a long list is easy to miss when reading quickly."},
+  {"option": "Last Saturday, Jonah woke up early, packs a lunch, and rode his bike to the lake, where he meets his cousins.", "would_pick": "yes", "reason": "Fifth graders shift tense like this in their own writing and often do not hear it."}
+ ]},
+ "MLV2-G09": {"distractors": [
+  {"option": "Despite the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.", "would_pick": "no", "reason": "Two broken connectors; 'because of we had' sounds plainly wrong to a native seventh grader."},
+  {"option": "Despite the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.", "would_pick": "yes", "reason": "Students blur despite and although; when read quickly, 'Despite the trail was' can get past them."},
+  {"option": "Although the trail was steep and rocky, we reached the top before noon because of we had started hiking at dawn.", "would_pick": "no", "reason": "'because of we had started' is a form native students do not write and it jars right away."}
+ ]},
+ "MLV2-G12": {"distractors": [
+  {"option": "Having grown up on a farm, Mateo was use to wake up before sunrise.", "would_pick": "yes", "reason": "'use to' sounds the same as 'used to' and is very common; students might also accept the infinitive."},
+  {"option": "Having grown up on a farm, Mateo was use to waking up before sunrise.", "would_pick": "yes", "reason": "'was use to' is a very common spelling-by-ear error that sounds identical to the correct form."}
+ ]},
+ "MLV2-G13": {"distractors": [
+  {"option": "Read the directions carefully, answer every question, and your work should be checked before the timer goes off.", "would_pick": "yes", "reason": "Faulty parallelism in the last item is subtle for eighth graders and still makes sense."},
+  {"option": "Read the directions carefully, every question should be answered, and your work should be checked before the timer goes off.", "would_pick": "yes", "reason": "Clunky, but the meaning is clear; weak students do not test the items for parallel structure."}
+ ]},
+ "MLV2-G14": {"distractors": [
+  {"option": "If Carmen would have left home ten minutes earlier, she would of caught the bus to the game.", "would_pick": "yes", "reason": "'If...would have' and 'would of' are both common in speech and in student writing."},
+  {"option": "If Carmen had left home ten minutes earlier, she would of caught the bus to the game.", "would_pick": "yes", "reason": "'would of' is a classic spelling-by-ear error that many students think is correct."}
+ ]},
+ "MLV2-C06": {"distractors": [
+  {"option": "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture and persian rugs.", "would_pick": "yes", "reason": "Students often lowercase adjectives that come from names, like 'persian'."},
+  {"option": "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and Persian rugs.", "would_pick": "yes", "reason": "Many sixth graders do not know Victorian comes from a name and should be capitalized."},
+  {"option": "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture and persian rugs.", "would_pick": "yes", "reason": "Students who treat adjectives from names as common words would lowercase both."}
+ ]}
+}

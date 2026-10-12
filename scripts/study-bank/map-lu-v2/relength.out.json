@@ -1,0 +1,410 @@
+[
+ {
+  "id": "MLV2-S02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya studied the plants in her science notebook before the big test today.",
+   "Leo raised his hand to give the right anwser to the teacher.",
+   "The path to the old barn runs straight through the tall cornfield.",
+   "Sam waited one more minute before he opened the gift."
+  ],
+  "correct_answer": "Leo raised his hand to give the right anwser to the teacher.",
+  "spelling_pattern": "silent w in answer: the s and w swapped",
+  "targets": {
+   "Maya studied the plants in her science notebook before the big test today.": "science",
+   "Leo raised his hand to give the right anwser to the teacher.": "anwser",
+   "The path to the old barn runs straight through the tall cornfield.": "straight",
+   "Sam waited one more minute before he opened the gift.": "minute"
+  },
+  "misspelled_word": "anwser",
+  "intended_word": "answer",
+  "student_error": {
+   "Maya studied the plants in her science notebook before the big test today.": "science has a silent c after the s, so a student who expects 'sience' may think it is wrong",
+   "The path to the old barn runs straight through the tall cornfield.": "straight has a silent gh, so the long spelling can look like an error",
+   "Sam waited one more minute before he opened the gift.": "minute is said 'min-it', so a student may expect 'minit' and flag it"
+  },
+  "explanation": "Answer has its silent w after the s (an-swer); anwser puts the w before the s. Science, straight and minute are all spelled correctly.",
+  "key_length_rank": 3
+ },
+ {
+  "id": "MLV2-S05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ben will probably ride his bike to the park after lunch today.",
+   "Mia wrote her new address on the birthday card for her grandmother.",
+   "The rain finaly stopped, so the team went outside to play.",
+   "Omar cut the apple into four pieces and shared them with all of his friends."
+  ],
+  "correct_answer": "The rain finaly stopped, so the team went outside to play.",
+  "spelling_pattern": "suffix -ly added to a word ending in l (final + ly keeps both l's)",
+  "targets": {
+   "Ben will probably ride his bike to the park after lunch today.": "probably",
+   "Mia wrote her new address on the birthday card for her grandmother.": "address",
+   "The rain finaly stopped, so the team went outside to play.": "finaly",
+   "Omar cut the apple into four pieces and shared them with all of his friends.": "pieces"
+  },
+  "misspelled_word": "finaly",
+  "intended_word": "finally",
+  "student_error": {
+   "Ben will probably ride his bike to the park after lunch today.": "probably is often said 'probly', so the full spelling may look too long",
+   "Mia wrote her new address on the birthday card for her grandmother.": "address has two doubled letters (dd and ss), which can look like a mistake",
+   "Omar cut the apple into four pieces and shared them with all of his friends.": "pieces uses ie, and a student unsure of ie/ei may think it is reversed"
+  },
+  "explanation": "Finally is final + -ly, so it keeps both l's; finaly drops one. Probably, address and pieces are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Lily heard a wierd noise coming from the attic.",
+   "The store was very busy on the Saturday before the big holiday.",
+   "Jack finished in fourth place in the school spelling bee.",
+   "Nora and her dad built a birdhouse for the backyard."
+  ],
+  "correct_answer": "Lily heard a wierd noise coming from the attic.",
+  "spelling_pattern": "ei exception: weird breaks 'i before e'",
+  "targets": {
+   "Lily heard a wierd noise coming from the attic.": "wierd",
+   "The store was very busy on the Saturday before the big holiday.": "busy",
+   "Jack finished in fourth place in the school spelling bee.": "fourth",
+   "Nora and her dad built a birdhouse for the backyard.": "built"
+  },
+  "misspelled_word": "wierd",
+  "intended_word": "weird",
+  "student_error": {
+   "The store was very busy on the Saturday before the big holiday.": "busy is said 'bizzy', so the u can look like an error",
+   "Jack finished in fourth place in the school spelling bee.": "fourth has a u not heard in 'forth', so it may look like an extra letter",
+   "Nora and her dad built a birdhouse for the backyard.": "built has a silent u, so a student expecting 'bilt' may flag it"
+  },
+  "explanation": "Weird is an exception to 'i before e' and is spelled w-e-i-r-d; wierd reverses the vowels. Busy, fourth and built are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Our class will take a trip to the state capital in February.",
+   "Ana's uncle started a small business selling fresh bread.",
+   "Leo used his knowledge of maps to find the trail.",
+   "We had to seperate the red beads from the blue ones."
+  ],
+  "correct_answer": "We had to seperate the red beads from the blue ones.",
+  "spelling_pattern": "unstressed vowel in separate (sep-a-rate)",
+  "targets": {
+   "Our class will take a trip to the state capital in February.": "February",
+   "Ana's uncle started a small business selling fresh bread.": "business",
+   "Leo used his knowledge of maps to find the trail.": "knowledge",
+   "We had to seperate the red beads from the blue ones.": "seperate"
+  },
+  "misspelled_word": "seperate",
+  "intended_word": "separate",
+  "student_error": {
+   "Our class will take a trip to the state capital in February.": "February has an r many people do not say ('Febuary'), so the correct form can look wrong",
+   "Ana's uncle started a small business selling fresh bread.": "business is said 'biz-ness', so the u and i can look misplaced",
+   "Leo used his knowledge of maps to find the trail.": "knowledge has a silent k and a d before ge, which can look like extra letters"
+  },
+  "explanation": "Separate has an a after the p (sep-a-rate); seperate uses e. February, business and knowledge are spelled correctly.",
+  "key_length_rank": 3
+ },
+ {
+  "id": "MLV2-S13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya learned to say hello in a foreign language.",
+   "Ben was truely sorry that he forgot his friend's birthday.",
+   "The school nurse measured the height of every student in our class.",
+   "Sam added up the numbers in each column."
+  ],
+  "correct_answer": "Ben was truely sorry that he forgot his friend's birthday.",
+  "spelling_pattern": "dropping the final e of true before -ly (an exception)",
+  "targets": {
+   "Maya learned to say hello in a foreign language.": "foreign",
+   "Ben was truely sorry that he forgot his friend's birthday.": "truely",
+   "The school nurse measured the height of every student in our class.": "height",
+   "Sam added up the numbers in each column.": "column"
+  },
+  "misspelled_word": "truely",
+  "intended_word": "truly",
+  "student_error": {
+   "Maya learned to say hello in a foreign language.": "foreign breaks 'i before e' and has a silent g, so it can look misspelled",
+   "The school nurse measured the height of every student in our class.": "height uses ei for a long i sound, so a student may expect 'hight'",
+   "Sam added up the numbers in each column.": "column ends in a silent n, which can look like an extra letter"
+  },
+  "explanation": "Truly drops the e of true, an exception to keeping e before -ly; truely keeps it. Foreign, height and column are spelled correctly.",
+  "key_length_rank": 2
+ },
+ {
+  "id": "MLV2-S16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The bus schedual for our town changes when the new school year begins.",
+   "Our English teacher spends extra time on grammar every Friday.",
+   "Lily marked the day of the field trip on her calendar.",
+   "Jack borrowed three books from the school library."
+  ],
+  "correct_answer": "The bus schedual for our town changes when the new school year begins.",
+  "spelling_pattern": "the -ule ending of schedule written as -ual",
+  "targets": {
+   "The bus schedual for our town changes when the new school year begins.": "schedual",
+   "Our English teacher spends extra time on grammar every Friday.": "grammar",
+   "Lily marked the day of the field trip on her calendar.": "calendar",
+   "Jack borrowed three books from the school library.": "library"
+  },
+  "misspelled_word": "schedual",
+  "intended_word": "schedule",
+  "student_error": {
+   "Our English teacher spends extra time on grammar every Friday.": "grammar ends in -ar, and many students expect -er",
+   "Lily marked the day of the field trip on her calendar.": "calendar ends in -ar, and many students expect -er",
+   "Jack borrowed three books from the school library.": "library has an r many people skip ('libary'), so the full form can look wrong"
+  },
+  "explanation": "Schedule ends in -ule; schedual spells the ending like 'casual'. Grammar, calendar and library are spelled correctly.",
+  "key_length_rank": 1
+ },
+ {
+  "id": "MLV2-S18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Nora made a miniature castle out of clay for her art class.",
+   "Omar was not conscious of the time until his mother called him.",
+   "The commitee met after school to plan the dance.",
+   "Mia bought a small souvenir at the museum gift shop."
+  ],
+  "correct_answer": "The commitee met after school to plan the dance.",
+  "spelling_pattern": "the three doubled pairs of committee (mm, tt, ee): one t dropped",
+  "targets": {
+   "Nora made a miniature castle out of clay for her art class.": "miniature",
+   "Omar was not conscious of the time until his mother called him.": "conscious",
+   "The commitee met after school to plan the dance.": "commitee",
+   "Mia bought a small souvenir at the museum gift shop.": "souvenir"
+  },
+  "misspelled_word": "commitee",
+  "intended_word": "committee",
+  "student_error": {
+   "Nora made a miniature castle out of clay for her art class.": "miniature is often said 'min-i-chur', so the a after the i can look like an extra letter",
+   "Omar was not conscious of the time until his mother called him.": "conscious has sc and ious, which a student may think should be 'concious'",
+   "Mia bought a small souvenir at the museum gift shop.": "souvenir has an ou and an ir ending that look unusual"
+  },
+  "explanation": "Committee has double m, double t and double e; commitee drops a t. Miniature, conscious and souvenir are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "It was apparent from his smile that Ben had won the race.",
+   "Ana signed the letter with the word sincerely.",
+   "The museum keeps its most valuable paintings in a locked room.",
+   "The old cemetary behind the church is full of tall stone markers."
+  ],
+  "correct_answer": "The old cemetary behind the church is full of tall stone markers.",
+  "spelling_pattern": "unstressed vowel in the last syllable: cemetery ends in -ery, not -ary",
+  "targets": {
+   "It was apparent from his smile that Ben had won the race.": "apparent",
+   "Ana signed the letter with the word sincerely.": "sincerely",
+   "The museum keeps its most valuable paintings in a locked room.": "valuable",
+   "The old cemetary behind the church is full of tall stone markers.": "cemetary"
+  },
+  "misspelled_word": "cemetary",
+  "intended_word": "cemetery",
+  "student_error": {
+   "It was apparent from his smile that Ben had won the race.": "apparent has a double p and an -ent ending a student may think should be -ant",
+   "Ana signed the letter with the word sincerely.": "sincerely keeps the e of sincere before -ly, which can look like an extra letter",
+   "The museum keeps its most valuable paintings in a locked room.": "valuable drops the e of value, so a student may expect 'valueable'"
+  },
+  "explanation": "Cemetery is spelled with three e's (cem-e-ter-y); cemetary uses a. Apparent, sincerely and valuable are spelled correctly.",
+  "key_length_rank": 1
+ },
+ {
+  "id": "MLV2-S24",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Mia hopes to aquire a rare stamp for her collection this year.",
+   "The police will pursue the thief until they catch him.",
+   "Jack burned his tongue on the hot soup at dinner.",
+   "We counted the seconds between the flash of lightning and the thunder."
+  ],
+  "correct_answer": "Mia hopes to aquire a rare stamp for her collection this year.",
+  "spelling_pattern": "the c before qu in acquire (ac- + quire)",
+  "targets": {
+   "Mia hopes to aquire a rare stamp for her collection this year.": "aquire",
+   "The police will pursue the thief until they catch him.": "pursue",
+   "Jack burned his tongue on the hot soup at dinner.": "tongue",
+   "We counted the seconds between the flash of lightning and the thunder.": "lightning"
+  },
+  "misspelled_word": "aquire",
+  "intended_word": "acquire",
+  "student_error": {
+   "The police will pursue the thief until they catch him.": "pursue starts pur- though it sounds like 'per-sue', so a student may think it is wrong",
+   "Jack burned his tongue on the hot soup at dinner.": "tongue ends in a silent -ue, which can look like extra letters",
+   "We counted the seconds between the flash of lightning and the thunder.": "lightning has no e, so a student who expects 'lightening' may flag it"
+  },
+  "explanation": "Acquire has a c before the qu (ac-quire); aquire drops it. Pursue, tongue and lightning are spelled correctly.",
+  "key_length_rank": 2
+ },
+ {
+  "id": "MLV2-S26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Leo's conscience bothered him after he took the cookie.",
+   "The coins were in the family's possession for years.",
+   "Washing your hands often with soap is an important part of good hygiene.",
+   "The store offers a guarentee that the bike will last ten years."
+  ],
+  "correct_answer": "The store offers a guarentee that the bike will last ten years.",
+  "spelling_pattern": "unstressed a in the middle syllable of guarantee",
+  "targets": {
+   "Leo's conscience bothered him after he took the cookie.": "conscience",
+   "The coins were in the family's possession for years.": "possession",
+   "Washing your hands often with soap is an important part of good hygiene.": "hygiene",
+   "The store offers a guarentee that the bike will last ten years.": "guarentee"
+  },
+  "misspelled_word": "guarentee",
+  "intended_word": "guarantee",
+  "student_error": {
+   "Leo's conscience bothered him after he took the cookie.": "conscience combines sc and ie in a way that looks like science, so it may seem wrong",
+   "The coins were in the family's possession for years.": "possession has two sets of double s, which can look like too many",
+   "Washing your hands often with soap is an important part of good hygiene.": "hygiene has a y and ie, so a student may expect 'hygeine'"
+  },
+  "explanation": "Guarantee is guar-an-tee; guarentee uses e for the a. Conscience, possession and hygiene are spelled correctly.",
+  "key_length_rank": 2
+ },
+ {
+  "id": "MLV2-S29",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Scientists still argue about the existance of life on other planets.",
+   "The mischievous puppy hid one of Sam's shoes under the couch.",
+   "Our class read a story about a knight in medieval times.",
+   "Our school does not let anyone harass other students."
+  ],
+  "correct_answer": "Scientists still argue about the existance of life on other planets.",
+  "spelling_pattern": "-ence versus -ance: existence ends in -ence",
+  "targets": {
+   "Scientists still argue about the existance of life on other planets.": "existance",
+   "The mischievous puppy hid one of Sam's shoes under the couch.": "mischievous",
+   "Our class read a story about a knight in medieval times.": "medieval",
+   "Our school does not let anyone harass other students.": "harass"
+  },
+  "misspelled_word": "existance",
+  "intended_word": "existence",
+  "student_error": {
+   "The mischievous puppy hid one of Sam's shoes under the couch.": "mischievous is often said 'mis-chee-vee-us', so the correct three-syllable spelling can look short",
+   "Our class read a story about a knight in medieval times.": "medieval has an unusual ie-e vowel sequence that may look scrambled",
+   "Our school does not let anyone harass other students.": "harass has one r and two s's, and a student may expect 'harrass'"
+  },
+  "explanation": "Existence ends in -ence; existance uses -ance. Mischievous, medieval and harass are spelled correctly.",
+  "key_length_rank": 1
+ },
+ {
+  "id": "MLV2-S32",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The hotel can accommodate about two hundred guests at one time.",
+   "Omar is a conscientious student who always checks his homework twice.",
+   "Every parent filled out a short questionaire about lunch.",
+   "The sergeant gave the soldiers their orders at dawn."
+  ],
+  "correct_answer": "Every parent filled out a short questionaire about lunch.",
+  "spelling_pattern": "double n in questionnaire (question + -naire)",
+  "targets": {
+   "The hotel can accommodate about two hundred guests at one time.": "accommodate",
+   "Omar is a conscientious student who always checks his homework twice.": "conscientious",
+   "Every parent filled out a short questionaire about lunch.": "questionaire",
+   "The sergeant gave the soldiers their orders at dawn.": "sergeant"
+  },
+  "misspelled_word": "questionaire",
+  "intended_word": "questionnaire",
+  "student_error": {
+   "The hotel can accommodate about two hundred guests at one time.": "accommodate has double c and double m, and students often think one should be single",
+   "Omar is a conscientious student who always checks his homework twice.": "conscientious is long with sc, ie and tious, so it can look misspelled",
+   "The sergeant gave the soldiers their orders at dawn.": "sergeant is said 'sar-jent', so the er and ea can look wrong"
+  },
+  "explanation": "Questionnaire has a double n (question + -naire); questionaire has one. Accommodate, conscientious and sergeant are spelled correctly.",
+  "key_length_rank": 3
+ }
+]

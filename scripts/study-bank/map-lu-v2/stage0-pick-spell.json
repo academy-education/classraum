@@ -1,0 +1,738 @@
+[
+ {
+  "id": "MLV2-S01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nOur class will visit the history museum ____ morning if the weather is nice.",
+  "choices": [
+   "tomorow",
+   "tommorow",
+   "tomorrow",
+   "tommorrow"
+  ],
+  "correct_answer": "tomorrow",
+  "spelling_pattern": "single m versus double m in the first syllable, and the double r",
+  "error_sites": [
+   "doubled m (tom- written tomm-)",
+   "single r (-rrow written -row)"
+  ],
+  "student_error": {
+   "tommorrow": "doubles the m by analogy with the double r, as in 'tommy'",
+   "tomorow": "drops one r because only one r is heard",
+   "tommorow": "moves the doubling from the r to the m, the most common misspelling of the word"
+  },
+  "explanation": "Tomorrow has one m and two r's (to-mor-row). Tommorrow adds an m, tomorow drops an r, and tommorow does both."
+ },
+ {
+  "id": "MLV2-S02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya studied the plants in her science notebook before the big test today.",
+   "Leo raised his hand to give the right anwser to the teacher.",
+   "The path to the old barn runs straight through the tall cornfield.",
+   "Sam rowed a small boat out to the island on the lake."
+  ],
+  "correct_answer": "Leo raised his hand to give the right anwser to the teacher.",
+  "spelling_pattern": "silent w in answer: the s and w swapped",
+  "targets": {
+   "Maya studied the plants in her science notebook before the big test today.": "science",
+   "Leo raised his hand to give the right anwser to the teacher.": "anwser",
+   "The path to the old barn runs straight through the tall cornfield.": "straight",
+   "Sam rowed a small boat out to the island on the lake.": "island"
+  },
+  "misspelled_word": "anwser",
+  "intended_word": "answer",
+  "student_error": {
+   "Maya studied the plants in her science notebook before the big test today.": "science has a silent c after the s, so a student who expects 'sience' may think it is wrong",
+   "The path to the old barn runs straight through the tall cornfield.": "straight has a silent gh, so the long spelling can look like an error",
+   "Sam rowed a small boat out to the island on the lake.": "island has a silent s that is not heard in 'eye-land', so a student who expects 'iland' may flag it as misspelled"
+  },
+  "explanation": "Answer has its silent w after the s (an-swer); anwser puts the w before the s. Science, straight and island are all spelled correctly, even though each has a silent letter.",
+  "key_length_rank": 3
+ },
+ {
+  "id": "MLV2-S03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe magician made the white rabbit ____ under a large black hat.",
+  "choices": [
+   "disappear",
+   "dissapear",
+   "disapear",
+   "dissappear"
+  ],
+  "correct_answer": "disappear",
+  "spelling_pattern": "prefix dis- added to appear: one s from the prefix, double p kept from the root",
+  "error_sites": [
+   "dis- written diss-",
+   "app- written ap-"
+  ],
+  "student_error": {
+   "dissappear": "doubles the s as if the prefix ended in ss, like 'dissatisfy'",
+   "disapear": "drops a p, not keeping the double p of appear",
+   "dissapear": "moves the doubling from the p to the s, the classic misspelling"
+  },
+  "explanation": "Disappear is dis- plus appear: one s, two p's. Dissappear adds an s, disapear drops a p, and dissapear does both."
+ },
+ {
+  "id": "MLV2-S04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nFor the fair, Ana did an ____ to see which soil grows beans best.",
+  "choices": [
+   "expirement",
+   "experement",
+   "expiriment",
+   "experiment"
+  ],
+  "correct_answer": "experiment",
+  "spelling_pattern": "unstressed vowels in the second and third syllables (ex-per-i-ment)",
+  "error_sites": [
+   "-per- written -pir-",
+   "-i- written -e- before -ment"
+  ],
+  "student_error": {
+   "expiriment": "spells the unclear second vowel with i, as it sounds in 'expire'",
+   "experement": "spells the unstressed third vowel with e, matching the e's around it",
+   "expirement": "makes both vowel swaps, the very common 'expire' misspelling"
+  },
+  "explanation": "Experiment is spelled ex-per-i-ment. Expiriment changes the first e to i, experement changes the i to e, and expirement does both."
+ },
+ {
+  "id": "MLV2-S05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ben will probably ride his bike to the park after lunch today.",
+   "Mia wrote her new address on the birthday card for her grandmother.",
+   "The rain finaly stopped, so the team went outside to play.",
+   "Omar cut the apple into four pieces and shared them with all of his friends."
+  ],
+  "correct_answer": "The rain finaly stopped, so the team went outside to play.",
+  "spelling_pattern": "suffix -ly added to a word ending in l (final + ly keeps both l's)",
+  "targets": {
+   "Ben will probably ride his bike to the park after lunch today.": "probably",
+   "Mia wrote her new address on the birthday card for her grandmother.": "address",
+   "The rain finaly stopped, so the team went outside to play.": "finaly",
+   "Omar cut the apple into four pieces and shared them with all of his friends.": "pieces"
+  },
+  "misspelled_word": "finaly",
+  "intended_word": "finally",
+  "student_error": {
+   "Ben will probably ride his bike to the park after lunch today.": "probably is often said 'probly', so the full spelling may look too long",
+   "Mia wrote her new address on the birthday card for her grandmother.": "address has two doubled letters (dd and ss), which can look like a mistake",
+   "Omar cut the apple into four pieces and shared them with all of his friends.": "pieces uses ie, and a student unsure of ie/ei may think it is reversed"
+  },
+  "explanation": "Finally is final + -ly, so it keeps both l's; finaly drops one. Probably, address and pieces are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nWe watched the ____ sunset from the top of the hill last night.",
+  "choices": [
+   "beutifull",
+   "beautifull",
+   "beutiful",
+   "beautiful"
+  ],
+  "correct_answer": "beautiful",
+  "spelling_pattern": "the eau vowel group from beauty, and the suffix -ful with one l",
+  "error_sites": [
+   "beau- written beu-",
+   "-ful written -full"
+  ],
+  "student_error": {
+   "beutiful": "drops the silent a, spelling the 'byoo' sound as eu",
+   "beautifull": "spells the suffix like the word 'full'",
+   "beutifull": "makes both errors: the sound-spelled start and the 'full' ending"
+  },
+  "explanation": "Beautiful is beauty (y to i) + -ful, and the suffix -ful has one l. Beutiful drops the a, beautifull adds an l, and beutifull does both."
+ },
+ {
+  "id": "MLV2-S09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nPlanting trees and picking up trash are good ways to protect the ____.",
+  "choices": [
+   "enviroment",
+   "environment",
+   "enviorment",
+   "enviornment"
+  ],
+  "correct_answer": "environment",
+  "spelling_pattern": "the silent n of environ before -ment, and the ro order",
+  "error_sites": [
+   "-ron- written -or- (r and o swapped)",
+   "silent n before -ment dropped"
+  ],
+  "student_error": {
+   "enviornment": "swaps r and o, writing the middle as it is heard ('vi-or')",
+   "enviroment": "drops the n that is not pronounced before -ment",
+   "enviorment": "swaps the r and o and also drops the silent n"
+  },
+  "explanation": "Environment is environ + -ment: en-vi-ron-ment. Enviornment swaps r and o, enviroment drops the n, and enviorment does both."
+ },
+ {
+  "id": "MLV2-S10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Our class will take a trip to the state capital in February.",
+   "Ana's uncle started a small business selling fresh bread.",
+   "Leo used his knowledge of maps to find the trail.",
+   "We had to seperate the red beads from the blue ones."
+  ],
+  "correct_answer": "We had to seperate the red beads from the blue ones.",
+  "spelling_pattern": "unstressed vowel in separate (sep-a-rate)",
+  "targets": {
+   "Our class will take a trip to the state capital in February.": "February",
+   "Ana's uncle started a small business selling fresh bread.": "business",
+   "Leo used his knowledge of maps to find the trail.": "knowledge",
+   "We had to seperate the red beads from the blue ones.": "seperate"
+  },
+  "misspelled_word": "seperate",
+  "intended_word": "separate",
+  "student_error": {
+   "Our class will take a trip to the state capital in February.": "February has an r many people do not say ('Febuary'), so the correct form can look wrong",
+   "Ana's uncle started a small business selling fresh bread.": "business is said 'biz-ness', so the u and i can look misplaced",
+   "Leo used his knowledge of maps to find the trail.": "knowledge has a silent k and a d before ge, which can look like extra letters"
+  },
+  "explanation": "Separate has an a after the p (sep-a-rate); seperate uses e. February, business and knowledge are spelled correctly.",
+  "key_length_rank": 3
+ },
+ {
+  "id": "MLV2-S11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe whole family dressed up for the special ____ of my sister's graduation.",
+  "choices": [
+   "occasion",
+   "ocassion",
+   "occassion",
+   "ocasion"
+  ],
+  "correct_answer": "occasion",
+  "spelling_pattern": "double c and single s",
+  "error_sites": [
+   "cc written c",
+   "s written ss"
+  ],
+  "student_error": {
+   "ocasion": "writes one c because only one k sound is heard",
+   "occassion": "doubles the s as well, as in 'passion' or 'mission'",
+   "ocassion": "moves the doubling from the c to the s"
+  },
+  "explanation": "Occasion has two c's and one s. Ocasion drops a c, occassion adds an s, and ocassion does both."
+ },
+ {
+  "id": "MLV2-S12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nWhen the fire alarm rang, the students left the building ____ and quietly.",
+  "choices": [
+   "imediatly",
+   "immediatly",
+   "immediately",
+   "imediately"
+  ],
+  "correct_answer": "immediately",
+  "spelling_pattern": "double m from im- + mediate, and keeping the final e before -ly",
+  "error_sites": [
+   "mm written m",
+   "final e of immediate dropped before -ly"
+  ],
+  "student_error": {
+   "imediately": "writes one m because the prefix im- joining mediate is not noticed",
+   "immediatly": "drops the e of immediate before -ly, as if it were a vowel suffix",
+   "imediatly": "makes both errors: one m and no e"
+  },
+  "explanation": "Immediately is im- + mediate + -ly: two m's, and the e stays because -ly starts with a consonant. Imediately drops an m, immediatly drops the e, and imediatly does both."
+ },
+ {
+  "id": "MLV2-S13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya learned to say hello in a foreign language.",
+   "Ben was truely sorry that he forgot his friend's birthday.",
+   "The school nurse measured the height of every student in our class.",
+   "Sam added up the numbers in each column."
+  ],
+  "correct_answer": "Ben was truely sorry that he forgot his friend's birthday.",
+  "spelling_pattern": "dropping the final e of true before -ly (an exception)",
+  "targets": {
+   "Maya learned to say hello in a foreign language.": "foreign",
+   "Ben was truely sorry that he forgot his friend's birthday.": "truely",
+   "The school nurse measured the height of every student in our class.": "height",
+   "Sam added up the numbers in each column.": "column"
+  },
+  "misspelled_word": "truely",
+  "intended_word": "truly",
+  "student_error": {
+   "Maya learned to say hello in a foreign language.": "foreign breaks 'i before e' and has a silent g, so it can look misspelled",
+   "The school nurse measured the height of every student in our class.": "height uses ei for a long i sound, so a student may expect 'hight'",
+   "Sam added up the numbers in each column.": "column ends in a silent n, which can look like an extra letter"
+  },
+  "explanation": "Truly drops the e of true, an exception to keeping e before -ly; truely keeps it. Foreign, height and column are spelled correctly.",
+  "key_length_rank": 2
+ },
+ {
+  "id": "MLV2-S14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nBen loves all fruit, but he ____ enjoys sweet peaches in the summer.",
+  "choices": [
+   "expecially",
+   "especialy",
+   "expecialy",
+   "especially"
+  ],
+  "correct_answer": "especially",
+  "spelling_pattern": "es- (not ex-) at the start, and special + -ly keeping both l's",
+  "error_sites": [
+   "es- written ex-",
+   "-lly written -ly"
+  ],
+  "student_error": {
+   "expecially": "writes ex- by analogy with words like 'expect' and the common 'expecially' pronunciation",
+   "especialy": "adds -ly but drops one l, not keeping the l of special",
+   "expecialy": "makes both errors together"
+  },
+  "explanation": "Especially is especial + -ly: es- at the start and two l's. Expecially changes s to x, especialy drops an l, and expecialy does both."
+ },
+ {
+  "id": "MLV2-S17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nLeo felt ____ when he tripped on stage in front of the school.",
+  "choices": [
+   "embarased",
+   "embarrased",
+   "embarassed",
+   "embarrassed"
+  ],
+  "correct_answer": "embarrassed",
+  "spelling_pattern": "two sets of double consonants: rr and ss",
+  "error_sites": [
+   "rr written r",
+   "ss written s"
+  ],
+  "student_error": {
+   "embarassed": "keeps the double s but writes one r",
+   "embarrased": "keeps the double r but writes one s",
+   "embarased": "writes both consonants single, as they are heard"
+  },
+  "explanation": "Embarrassed has double r and double s. Embarassed drops an r, embarrased drops an s, and embarased drops both."
+ },
+ {
+  "id": "MLV2-S18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Nora made a miniature castle out of clay for her art class.",
+   "Omar was not conscious of the time until his mother called him.",
+   "The commitee met after school to plan the dance.",
+   "Mia bought a small souvenir at the museum gift shop."
+  ],
+  "correct_answer": "The commitee met after school to plan the dance.",
+  "spelling_pattern": "the three doubled pairs of committee (mm, tt, ee): one t dropped",
+  "targets": {
+   "Nora made a miniature castle out of clay for her art class.": "miniature",
+   "Omar was not conscious of the time until his mother called him.": "conscious",
+   "The commitee met after school to plan the dance.": "commitee",
+   "Mia bought a small souvenir at the museum gift shop.": "souvenir"
+  },
+  "misspelled_word": "commitee",
+  "intended_word": "committee",
+  "student_error": {
+   "Nora made a miniature castle out of clay for her art class.": "miniature is often said 'min-i-chur', so the a after the i can look like an extra letter",
+   "Omar was not conscious of the time until his mother called him.": "conscious has sc and ious, which a student may think should be 'concious'",
+   "Mia bought a small souvenir at the museum gift shop.": "souvenir has an ou and an ir ending that look unusual"
+  },
+  "explanation": "Committee has double m, double t and double e; commitee drops a t. Miniature, conscious and souvenir are spelled correctly.",
+  "key_length_rank": 4
+ },
+ {
+  "id": "MLV2-S19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nBeing line leader all week felt like a real ____ to Sam.",
+  "choices": [
+   "priviledge",
+   "privilege",
+   "priveledge",
+   "privelege"
+  ],
+  "correct_answer": "privilege",
+  "spelling_pattern": "unstressed i in the second syllable, and -lege with no d",
+  "error_sites": [
+   "-vi- written -ve-",
+   "-lege written -ledge"
+  ],
+  "student_error": {
+   "privelege": "spells the unstressed second vowel with e, matching the e's later in the word",
+   "priviledge": "adds a d, spelling the ending like 'knowledge' or 'ledge'",
+   "priveledge": "makes both errors: e for i and the 'ledge' ending"
+  },
+  "explanation": "Privilege is spelled priv-i-lege with no d. Privelege changes the i to e, priviledge adds a d, and priveledge does both."
+ },
+ {
+  "id": "MLV2-S20",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nDoctors ____ that children get at least nine hours of sleep each night.",
+  "choices": [
+   "recommend",
+   "reccomend",
+   "recomend",
+   "reccommend"
+  ],
+  "correct_answer": "recommend",
+  "spelling_pattern": "single c and double m (re- + commend)",
+  "error_sites": [
+   "c written cc",
+   "mm written m"
+  ],
+  "student_error": {
+   "reccommend": "doubles the c as well as the m",
+   "recomend": "writes one m because only one is heard",
+   "reccomend": "moves the doubling from the m to the c"
+  },
+  "explanation": "Recommend is re- + commend: one c, two m's. Reccommend adds a c, recomend drops an m, and reccomend does both."
+ },
+ {
+  "id": "MLV2-S21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "It was apparent from his smile that Ben had won the race.",
+   "Ana signed the letter with the word sincerely.",
+   "The museum keeps its most valuable paintings in a locked room.",
+   "The old cemetary behind the church is full of tall stone markers."
+  ],
+  "correct_answer": "The old cemetary behind the church is full of tall stone markers.",
+  "spelling_pattern": "unstressed vowel in the last syllable: cemetery ends in -ery, not -ary",
+  "targets": {
+   "It was apparent from his smile that Ben had won the race.": "apparent",
+   "Ana signed the letter with the word sincerely.": "sincerely",
+   "The museum keeps its most valuable paintings in a locked room.": "valuable",
+   "The old cemetary behind the church is full of tall stone markers.": "cemetary"
+  },
+  "misspelled_word": "cemetary",
+  "intended_word": "cemetery",
+  "student_error": {
+   "It was apparent from his smile that Ben had won the race.": "apparent has a double p and an -ent ending a student may think should be -ant",
+   "Ana signed the letter with the word sincerely.": "sincerely keeps the e of sincere before -ly, which can look like an extra letter",
+   "The museum keeps its most valuable paintings in a locked room.": "valuable drops the e of value, so a student may expect 'valueable'"
+  },
+  "explanation": "Cemetery is spelled with three e's (cem-e-ter-y); cemetary uses a. Apparent, sincerely and valuable are spelled correctly.",
+  "key_length_rank": 1
+ },
+ {
+  "id": "MLV2-S22",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nBefore testing, each group wrote a ____ predicting which plant would grow the tallest.",
+  "choices": [
+   "hypothisis",
+   "hypothesis",
+   "hyphothisis",
+   "hyphothesis"
+  ],
+  "correct_answer": "hypothesis",
+  "spelling_pattern": "the plain p of the Greek prefix hypo- (not ph), and the unstressed e in -the-",
+  "error_sites": [
+   "p written ph",
+   "-the- written -thi-"
+  ],
+  "student_error": {
+   "hyphothesis": "adds an h after the p because many Greek science words (photosynthesis, phase, hyphen) spell that sound ph",
+   "hypothisis": "spells the unstressed vowel in -the- with i, matching the -sis ending",
+   "hyphothisis": "remembers the word as a Greek science word full of h's and y's but not its letters: writes ph by analogy with photosynthesis and spells the unclear middle vowel like the i in -sis"
+  },
+  "explanation": "Hypothesis is hy-poth-e-sis, with a plain p and an e in the third syllable. Hyphothesis adds an h after the p, hypothisis uses i for the e, and hyphothisis does both."
+ },
+ {
+  "id": "MLV2-S25",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe city closed the bridge for a week of ____ and repairs.",
+  "choices": [
+   "maintenance",
+   "maintanence",
+   "maintenence",
+   "maintanance"
+  ],
+  "correct_answer": "maintenance",
+  "spelling_pattern": "unstressed e in the middle syllable and the -ance ending",
+  "error_sites": [
+   "-te- written -ta- (spelled like maintain)",
+   "-ance written -ence"
+  ],
+  "student_error": {
+   "maintanance": "spells the middle like 'maintain', using a instead of e",
+   "maintenence": "confuses -ance with -ence, repeating the e of the middle syllable",
+   "maintanence": "swaps the two vowels: a in the middle and e at the end"
+  },
+  "explanation": "Maintenance is main-te-nance. Maintanance uses a for the middle e, maintenence ends in -ence, and maintanence does both."
+ },
+ {
+  "id": "MLV2-S26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Leo's conscience bothered him after he took the cookie.",
+   "The coins were in the family's possession for years.",
+   "Washing your hands often with soap is an important part of good hygiene.",
+   "The store offers a guarentee that the bike will last ten years."
+  ],
+  "correct_answer": "The store offers a guarentee that the bike will last ten years.",
+  "spelling_pattern": "unstressed a in the middle syllable of guarantee",
+  "targets": {
+   "Leo's conscience bothered him after he took the cookie.": "conscience",
+   "The coins were in the family's possession for years.": "possession",
+   "Washing your hands often with soap is an important part of good hygiene.": "hygiene",
+   "The store offers a guarentee that the bike will last ten years.": "guarentee"
+  },
+  "misspelled_word": "guarentee",
+  "intended_word": "guarantee",
+  "student_error": {
+   "Leo's conscience bothered him after he took the cookie.": "conscience combines sc and ie in a way that looks like science, so it may seem wrong",
+   "The coins were in the family's possession for years.": "possession has two sets of double s, which can look like too many",
+   "Washing your hands often with soap is an important part of good hygiene.": "hygiene has a y and ie, so a student may expect 'hygeine'"
+  },
+  "explanation": "Guarantee is guar-an-tee; guarentee uses e for the a. Conscience, possession and hygiene are spelled correctly.",
+  "key_length_rank": 2
+ },
+ {
+  "id": "MLV2-S27",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nSnow in the desert is a rare ____ that people talk about for years.",
+  "choices": [
+   "ocurrance",
+   "occurrence",
+   "occurrance",
+   "ocurrence"
+  ],
+  "correct_answer": "occurrence",
+  "spelling_pattern": "double c, and the -ence ending",
+  "error_sites": [
+   "cc written c",
+   "-ence written -ance"
+  ],
+  "student_error": {
+   "ocurrence": "writes one c because only one k sound is heard",
+   "occurrance": "confuses -ence with -ance in the unstressed ending",
+   "ocurrance": "makes both errors: one c and the -ance ending"
+  },
+  "explanation": "Occurrence has double c, double r and ends in -ence. Ocurrence drops a c, occurrance ends in -ance, and ocurrance does both."
+ },
+ {
+  "id": "MLV2-S28",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe smell of fresh popcorn was ____, so we bought a big bag.",
+  "choices": [
+   "iresistable",
+   "irresistable",
+   "irresistible",
+   "iresistible"
+  ],
+  "correct_answer": "irresistible",
+  "spelling_pattern": "prefix ir- meeting a root starting with r, and the -ible ending",
+  "error_sites": [
+   "irr- written ir-",
+   "-ible written -able"
+  ],
+  "student_error": {
+   "iresistible": "writes one r, not seeing the prefix ir- joined to resist",
+   "irresistable": "uses -able, the more common suffix, instead of -ible",
+   "iresistable": "makes both errors: one r and -able"
+  },
+  "explanation": "Irresistible is ir- + resist + -ible: two r's and -ible. Iresistible drops an r, irresistable uses -able, and iresistable does both."
+ },
+ {
+  "id": "MLV2-S29",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Scientists still argue about the existance of life on other planets.",
+   "The mischievous puppy hid one of Sam's shoes under the couch.",
+   "Our class read a story about a knight in medieval times.",
+   "Our school does not let anyone harass other students."
+  ],
+  "correct_answer": "Scientists still argue about the existance of life on other planets.",
+  "spelling_pattern": "-ence versus -ance: existence ends in -ence",
+  "targets": {
+   "Scientists still argue about the existance of life on other planets.": "existance",
+   "The mischievous puppy hid one of Sam's shoes under the couch.": "mischievous",
+   "Our class read a story about a knight in medieval times.": "medieval",
+   "Our school does not let anyone harass other students.": "harass"
+  },
+  "misspelled_word": "existance",
+  "intended_word": "existence",
+  "student_error": {
+   "The mischievous puppy hid one of Sam's shoes under the couch.": "mischievous is often said 'mis-chee-vee-us', so the correct three-syllable spelling can look short",
+   "Our class read a story about a knight in medieval times.": "medieval has an unusual ie-e vowel sequence that may look scrambled",
+   "Our school does not let anyone harass other students.": "harass has one r and two s's, and a student may expect 'harrass'"
+  },
+  "explanation": "Existence ends in -ence; existance uses -ance. Mischievous, medieval and harass are spelled correctly.",
+  "key_length_rank": 1
+ },
+ {
+  "id": "MLV2-S30",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nSecurity cameras keep the store under ____ day and night.",
+  "choices": [
+   "surveilence",
+   "surveillence",
+   "surveilance",
+   "surveillance"
+  ],
+  "correct_answer": "surveillance",
+  "spelling_pattern": "double l after -ei-, and the -ance ending",
+  "error_sites": [
+   "ll written l",
+   "-ance written -ence"
+  ],
+  "student_error": {
+   "surveilance": "writes one l because only one l sound is heard",
+   "surveillence": "confuses -ance with -ence in the unstressed ending",
+   "surveilence": "makes both errors: one l and -ence"
+  },
+  "explanation": "Surveillance has double l and ends in -ance. Surveilance drops an l, surveillence ends in -ence, and surveilence does both."
+ }
+]

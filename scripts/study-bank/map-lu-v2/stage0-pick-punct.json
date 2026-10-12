@@ -1,0 +1,282 @@
+[
+ {
+  "id": "MLV2-P01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2b",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "After the long assembly about bike safety ended the students who had signed up for the race lined up near the gym doors.",
+   "After the long assembly about bike safety ended, the students who had signed up for the race, lined up near the gym doors.",
+   "After the long assembly about bike safety ended, the students who had signed up for the race lined up near the gym doors.",
+   "After the long assembly about bike safety ended the students who had signed up for the race, lined up near the gym doors."
+  ],
+  "correct_answer": "After the long assembly about bike safety ended, the students who had signed up for the race lined up near the gym doors.",
+  "error_sites": [
+   "comma after the long introductory clause (after \"ended\") is missing",
+   "an extra comma separates the long subject from its verb (after \"race\")"
+  ],
+  "student_error": {
+   "After the long assembly about bike safety ended the students who had signed up for the race lined up near the gym doors.": "leaves out the comma after a long introductory clause because the sentence has no obvious pause word",
+   "After the long assembly about bike safety ended, the students who had signed up for the race, lined up near the gym doors.": "adds a comma where a reader takes a breath at the end of a long subject",
+   "After the long assembly about bike safety ended the students who had signed up for the race, lined up near the gym doors.": "puts the one 'pause' comma at the end of the whole long opening instead of after the introductory clause"
+  },
+  "explanation": "The introductory clause 'After the long assembly about bike safety ended' needs a comma after 'ended'; without it the reader first reads 'ended the students.' The subject 'the students who had signed up for the race' must not be separated from its verb 'lined up' by a comma. Only the key has the first comma and not the second.",
+  "punct_rule": "comma after a long introductory clause; no comma between a long subject and its verb"
+ },
+ {
+  "id": "MLV2-P02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice, two jugs of lemonade, and something sweet.",
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice two jugs of lemonade, and something sweet.",
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice two jugs of lemonade, and something sweet.",
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice, two jugs of lemonade, and something sweet."
+  ],
+  "correct_answer": "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice, two jugs of lemonade, and something sweet.",
+  "error_sites": [
+   "comma missing after the series item \"plates and cups\"",
+   "comma missing after the series item \"a bag of ice\""
+  ],
+  "student_error": {
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice two jugs of lemonade, and something sweet.": "loses track of where one long series item ends and the next begins in the middle of the list",
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice two jugs of lemonade, and something sweet.": "thinks a comma is only needed before the final 'and' in a series",
+   "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice, two jugs of lemonade, and something sweet.": "treats the 'and' inside 'plates and cups' as if it already separates the items, so leaves out the comma after it"
+  },
+  "explanation": "The list has four items: 'plates and cups,' 'a bag of ice,' 'two jugs of lemonade,' and 'something sweet.' Each item must be separated from the next by a comma. The 'and' inside 'plates and cups' joins two things within one item, so the comma still goes after 'cups.' Only the key separates every item.",
+  "punct_rule": "commas separating items in a series of phrases, including an item that contains its own 'and'"
+ },
+ {
+  "id": "MLV2-P04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Only the students who finished the reading early were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.",
+   "Only the students who finished the reading early were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.",
+   "Only the students, who finished the reading early, were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.",
+   "Only the students, who finished the reading early, were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables."
+  ],
+  "correct_answer": "Only the students who finished the reading early were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.",
+  "error_sites": [
+   "commas wrongly placed around the restrictive clause \"who finished the reading early\"",
+   "commas missing around the nonrestrictive clause \"who teaches seventh grade\""
+  ],
+  "student_error": {
+   "Only the students who finished the reading early were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.": "does not recognize that a clause describing a person already named is extra information that needs commas",
+   "Only the students, who finished the reading early, were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.": "has the restrictive/nonrestrictive rule backwards, so puts commas around the needed clause and leaves them off the extra one",
+   "Only the students, who finished the reading early, were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.": "puts commas around every 'who' clause by habit"
+  },
+  "explanation": "'Who finished the reading early' tells which students ('Only the students...'), so it is restrictive and takes no commas. 'Who teaches seventh grade' adds extra information about Mr. Abara, who is already named, so it is nonrestrictive and must be set off by a pair of commas. Only the key treats both correctly.",
+  "punct_rule": "commas around a nonrestrictive clause, but none around a restrictive clause"
+ },
+ {
+  "id": "MLV2-P05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Ruby's science project a model volcano that really erupts, won first place at the county fair.",
+   "Ruby's science project a model volcano that really erupts won first place at the county fair.",
+   "Ruby's science project, a model volcano that really erupts, won first place at the county fair.",
+   "Ruby's science project, a model volcano that really erupts won first place at the county fair."
+  ],
+  "correct_answer": "Ruby's science project, a model volcano that really erupts, won first place at the county fair.",
+  "error_sites": [
+   "opening comma before the appositive \"a model volcano...\" is missing",
+   "closing comma after the appositive (after \"erupts\") is missing"
+  ],
+  "student_error": {
+   "Ruby's science project a model volcano that really erupts, won first place at the county fair.": "only puts a comma where the reader pauses before the verb and misses that the appositive starts after 'project'",
+   "Ruby's science project a model volcano that really erupts won first place at the county fair.": "does not recognize the long phrase as an appositive at all, so uses no commas",
+   "Ruby's science project, a model volcano that really erupts won first place at the county fair.": "opens the appositive with a comma but forgets to close it because the end is far from the start"
+  },
+  "explanation": "'A model volcano that really erupts' renames 'Ruby's science project' and is extra information, so it must be set off by a pair of commas: one before it and one after 'erupts.' Only the key has both commas of the pair.",
+  "punct_rule": "a matched pair of commas around a long nonrestrictive appositive"
+ },
+ {
+  "id": "MLV2-P06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "My grandmother (she turns eighty next month) still walks two miles every morning.",
+   "My grandmother (she turns eighty next month) still walks two miles, every morning.",
+   "My grandmother (she turns eighty next month), still walks two miles, every morning.",
+   "My grandmother (she turns eighty next month), still walks two miles every morning."
+  ],
+  "correct_answer": "My grandmother (she turns eighty next month) still walks two miles every morning.",
+  "error_sites": [
+   "extra comma after the closing parenthesis, between subject and verb",
+   "extra comma before the time phrase \"every morning\""
+  ],
+  "student_error": {
+   "My grandmother (she turns eighty next month) still walks two miles, every morning.": "puts a comma where the voice pauses before the time phrase at the end",
+   "My grandmother (she turns eighty next month), still walks two miles, every morning.": "places a comma at every spot where a reader would pause, including after the parenthesis and before 'every morning'",
+   "My grandmother (she turns eighty next month), still walks two miles every morning.": "adds a comma after the parenthesis where the reader pauses before the verb"
+  },
+  "explanation": "Parentheses by themselves set off the extra information 'she turns eighty next month.' No comma goes after the closing parenthesis, because the sentence without the parenthetical, 'My grandmother still walks two miles every morning,' has no comma between subject and verb. 'Every morning' is a short time phrase that belongs with the verb, so no comma goes before it either. Only the key has neither extra comma.",
+  "punct_rule": "parentheses around a nonrestrictive element without added commas"
+ },
+ {
+  "id": "MLV2-P08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "After the long tiring hike, we rested beside a cool quiet stream and ate our sandwiches.",
+   "After the long, tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.",
+   "After the long, tiring hike, we rested beside a cool quiet stream and ate our sandwiches.",
+   "After the long tiring hike, we rested beside a cool, quiet stream and ate our sandwiches."
+  ],
+  "correct_answer": "After the long, tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.",
+  "error_sites": [
+   "comma missing between the coordinate adjectives \"long\" and \"tiring\"",
+   "comma missing between the coordinate adjectives \"cool\" and \"quiet\""
+  ],
+  "student_error": {
+   "After the long tiring hike, we rested beside a cool quiet stream and ate our sandwiches.": "thinks commas never go between adjectives that come before a noun",
+   "After the long, tiring hike, we rested beside a cool quiet stream and ate our sandwiches.": "notices the first pair but treats short adjectives like 'cool quiet' as one unit",
+   "After the long tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.": "skips the comma in the opening phrase because a comma already follows 'hike'"
+  },
+  "explanation": "Coordinate adjectives each describe the noun separately: you could write 'long and tiring hike' or 'tiring, long hike,' and 'cool and quiet stream' or 'quiet, cool stream.' Coordinate adjectives are separated by a comma, so both pairs need one. Only the key has both commas.",
+  "punct_rule": "comma required between coordinate adjectives"
+ },
+ {
+  "id": "MLV2-P09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.",
+   "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.",
+   "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+   "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school."
+  ],
+  "correct_answer": "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+  "error_sites": [
+   "extra comma between cumulative modifiers \"warm\" and \"spring\"",
+   "extra comma between \"bright\" and \"yellow\", where \"bright\" describes the color, not the boots"
+  ],
+  "student_error": {
+   "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.": "puts a comma between any two describing words in a row without testing whether 'and' fits",
+   "On the first warm spring morning, Hana wore her bright, yellow rain boots to school.": "treats 'bright' and 'yellow' as two separate adjectives for the boots instead of seeing that 'bright' tells what kind of yellow",
+   "On the first warm, spring morning, Hana wore her bright, yellow rain boots to school.": "applies the coordinate-adjective comma to every pair of describing words in a row"
+  },
+  "explanation": "None of these modifiers are coordinate: 'warm and spring morning' makes no sense, and 'spring morning' works as a unit. 'Bright' describes the color yellow, not the boots, so 'bright and yellow boots' changes the meaning. Modifiers that are not coordinate take no comma between them, so only the key is correct.",
+  "punct_rule": "no comma between cumulative adjectives or between a color and the word describing it"
+ },
+ {
+  "id": "MLV2-P10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+   "Our neighbor's loud, playful golden retriever, barks at every car that drives past.",
+   "Our neighbor's loud playful golden retriever barks at every car that drives past.",
+   "Our neighbor's loud playful golden retriever, barks at every car that drives past."
+  ],
+  "correct_answer": "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+  "error_sites": [
+   "comma missing between the coordinate adjectives \"loud\" and \"playful\"",
+   "extra comma between the long subject \"Our neighbor's ... golden retriever\" and the verb \"barks\""
+  ],
+  "student_error": {
+   "Our neighbor's loud, playful golden retriever, barks at every car that drives past.": "adds a comma after the long subject because the reader pauses there before the verb",
+   "Our neighbor's loud playful golden retriever barks at every car that drives past.": "leaves out all commas in a string of adjectives",
+   "Our neighbor's loud playful golden retriever, barks at every car that drives past.": "punctuates by ear: hears no pause between the adjectives but hears one after the long subject"
+  },
+  "explanation": "'Loud' and 'playful' are coordinate ('loud and playful'), so they are separated by a comma; 'golden retriever' is the name of the breed, so no comma goes after 'playful.' The whole phrase 'Our neighbor's loud, playful golden retriever' is the subject, and no comma separates a subject from its verb, however long the subject is. Only the key has the comma after 'loud' and none before 'barks.'",
+  "punct_rule": "a comma between coordinate adjectives before a cumulative modifier, and no comma between a long subject and its verb"
+ },
+ {
+  "id": "MLV2-P12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our class had planned a picnic by the pond; dark clouds rolled in just before noon; although the forecast had promised sunshine.",
+   "Our class had planned a picnic by the pond; dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+   "Our class had planned a picnic by the pond, dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+   "Our class had planned a picnic by the pond, dark clouds rolled in just before noon; although the forecast had promised sunshine."
+  ],
+  "correct_answer": "Our class had planned a picnic by the pond; dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+  "error_sites": [
+   "comma used instead of a semicolon between two independent clauses (comma splice after \"pond\")",
+   "semicolon used instead of a comma before the dependent clause beginning \"although\""
+  ],
+  "student_error": {
+   "Our class had planned a picnic by the pond; dark clouds rolled in just before noon; although the forecast had promised sunshine.": "thinks a semicolon can go before any new group of words with its own subject and verb, including a dependent clause",
+   "Our class had planned a picnic by the pond, dark clouds rolled in just before noon, although the forecast had promised sunshine.": "joins two complete sentences with only a comma (comma splice)",
+   "Our class had planned a picnic by the pond, dark clouds rolled in just before noon; although the forecast had promised sunshine.": "swaps the two marks, using the semicolon before the strong-sounding word 'although' and the comma between the complete sentences"
+  },
+  "explanation": "'Our class had planned a picnic by the pond' and 'dark clouds rolled in just before noon' are both independent clauses with no joining word, so a semicolon (not a comma) goes between them. 'Although the forecast had promised sunshine' is a dependent clause and cannot follow a semicolon; it takes a comma. Only the key has the semicolon first and the comma second.",
+  "punct_rule": "semicolon joins two independent clauses but never introduces a dependent clause"
+ },
+ {
+  "id": "MLV2-P13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.",
+   "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+   "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+   "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark."
+  ],
+  "correct_answer": "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+  "error_sites": [
+   "extra colon between the verb \"includes\" and its objects",
+   "colon missing after the complete clause \"Ms. Tran added one more rule\""
+  ],
+  "student_error": {
+   "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.": "uses a colon before every list but not before an explanation, so places it in the wrong spot",
+   "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.": "puts a colon before any list, even when the words before it are not a complete clause",
+   "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.": "does not recognize that a short phrase explaining 'one more rule' needs a colon to introduce it"
+  },
+  "explanation": "A colon may follow only a complete clause. 'Our packing list includes' is not complete without its objects, so no colon goes after 'includes.' 'Ms. Tran added one more rule' is complete, and 'no phones after dark' explains what the rule is, so a colon must introduce it. Only the key is correct at both places.",
+  "punct_rule": "colon only after a complete clause, used to introduce an explanation"
+ }
+]

@@ -1,0 +1,287 @@
+{
+ "MLV2-S04": {
+  "id": "MLV2-S04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nFor the fair, Ana did an ____ to see which soil grows beans best.",
+  "choices": [
+   "expirement",
+   "experement",
+   "expiriment",
+   "experiment"
+  ],
+  "correct_answer": "experiment",
+  "spelling_pattern": "unstressed vowels in the second and third syllables (ex-per-i-ment)",
+  "error_sites": [
+   "-per- written -pir-",
+   "-i- written -e- before -ment"
+  ],
+  "student_error": {
+   "expiriment": "spells the unclear second vowel with i, as it sounds in 'expire'",
+   "experement": "spells the unstressed third vowel with e, matching the e's around it",
+   "expirement": "makes both vowel swaps, the very common 'expire' misspelling"
+  },
+  "explanation": "Experiment is spelled ex-per-i-ment. Expiriment changes the first e to i, experement changes the i to e, and expirement does both."
+ },
+ "MLV2-S06": {
+  "id": "MLV2-S06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nDark clouds are rolling in, so it will ____ rain this afternoon.",
+  "choices": [
+   "probebly",
+   "probably",
+   "probely",
+   "probaly"
+  ],
+  "correct_answer": "probably",
+  "spelling_pattern": "the -ably ending (prob-a-bly): the unstressed a before b, and the b of -bly that is swallowed in speech",
+  "error_sites": [
+   "-ba- written -be-",
+   "-bly written -ly (second b dropped)"
+  ],
+  "student_error": {
+   "probebly": "spells the unclear vowel in the unstressed middle syllable with e",
+   "probaly": "drops the second b because the word is often said quickly as 'prob-ly' or 'prob-a-ly'",
+   "probely": "writes the word as it is said in fast speech: the middle vowel as e and the second b left out"
+  },
+  "explanation": "Probably is spelled prob-a-bly, like probable with -ly. Probebly changes the a to e, probaly drops the second b, and probely does both."
+ },
+ "MLV2-S17": {
+  "id": "MLV2-S17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nLeo felt ____ when he tripped on stage in front of the school.",
+  "choices": [
+   "embarased",
+   "embarrased",
+   "embarassed",
+   "embarrassed"
+  ],
+  "correct_answer": "embarrassed",
+  "spelling_pattern": "two sets of double consonants: rr and ss",
+  "error_sites": [
+   "rr written r",
+   "ss written s"
+  ],
+  "student_error": {
+   "embarassed": "keeps the double s but writes one r",
+   "embarrased": "keeps the double r but writes one s",
+   "embarased": "writes both consonants single, as they are heard"
+  },
+  "explanation": "Embarrassed has double r and double s. Embarassed drops an r, embarrased drops an s, and embarased drops both."
+ },
+ "MLV2-S19": {
+  "id": "MLV2-S19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nBeing line leader all week felt like a real ____ to Sam.",
+  "choices": [
+   "priviledge",
+   "privilege",
+   "priveledge",
+   "privelege"
+  ],
+  "correct_answer": "privilege",
+  "spelling_pattern": "unstressed i in the second syllable, and -lege with no d",
+  "error_sites": [
+   "-vi- written -ve-",
+   "-lege written -ledge"
+  ],
+  "student_error": {
+   "privelege": "spells the unstressed second vowel with e, matching the e's later in the word",
+   "priviledge": "adds a d, spelling the ending like 'knowledge' or 'ledge'",
+   "priveledge": "makes both errors: e for i and the 'ledge' ending"
+  },
+  "explanation": "Privilege is spelled priv-i-lege with no d. Privelege changes the i to e, priviledge adds a d, and priveledge does both."
+ },
+ "MLV2-S23": {
+  "id": "MLV2-S23",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe marker leaves a ____ stain that will never wash out of your shirt.",
+  "choices": [
+   "permenant",
+   "permanant",
+   "permanent",
+   "permenent"
+  ],
+  "correct_answer": "permanent",
+  "spelling_pattern": "unstressed a in the middle syllable and the -ent (not -ant) ending",
+  "error_sites": [
+   "-ma- written -me-",
+   "-ent written -ant"
+  ],
+  "student_error": {
+   "permenent": "spells the unclear middle vowel with e, matching the other e's",
+   "permanant": "confuses -ent with -ant, repeating the a of the middle syllable",
+   "permenant": "swaps the two vowels: e in the middle and a at the end"
+  },
+  "explanation": "Permanent is per-ma-nent. Permenent changes the a to e, permanant ends in -ant, and permenant does both."
+ },
+ "MLV2-G13": {
+  "id": "MLV2-G13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "grade_target": 8,
+  "ccss": "L.8.1d",
+  "prompt": "Which sentence is written correctly?",
+  "choices": [
+   "Read the directions, each question should be answered, and check your work before time runs out.",
+   "Read the directions, answer each question, and check your work before time runs out.",
+   "Read the directions, answer each question, and your work should be checked before time runs out.",
+   "Read the directions, each question should be answered, and your work should be checked before time runs out."
+  ],
+  "correct_answer": "Read the directions, answer each question, and check your work before time runs out.",
+  "error_sites": [
+   "shift from active imperative to passive voice in the second instruction (\"each question should be answered\" for \"answer each question\")",
+   "shift from active imperative to passive voice in the third instruction (\"your work should be checked\" for \"check your work\")"
+  ],
+  "student_error": {
+   "Read the directions, each question should be answered, and check your work before time runs out.": "varies the middle instruction to avoid repeating the same pattern, switching it into the passive",
+   "Read the directions, answer each question, and your work should be checked before time runs out.": "turns the last instruction into a passive statement to sound more formal, shifting out of the active imperative",
+   "Read the directions, each question should be answered, and your work should be checked before time runs out.": "hears the last two parts as matching each other and does not notice that both have shifted away from the active command 'Read'"
+  },
+  "explanation": "The sentence is a series of commands, so every item should be an active imperative verb: 'Read,' 'answer,' 'check.' 'Each question should be answered' and 'your work should be checked' shift into the passive voice and out of the imperative mood. Only the key keeps voice and mood consistent.",
+  "varied_dimension": "shift from active imperative to passive voice in a middle item of a series; the same shift in the final item"
+ },
+ "MLV2-C02": {
+  "id": "MLV2-C02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "In class, we read the Bill of rights while we studied the American Revolution.",
+   "In class, we read the Bill of rights while we studied the American revolution.",
+   "In class, we read the Bill of Rights while we studied the American Revolution.",
+   "In class, we read the Bill of Rights while we studied the American revolution."
+  ],
+  "correct_answer": "In class, we read the Bill of Rights while we studied the American Revolution.",
+  "error_sites": [
+   "\"Rights\" lowercased in the name of the historical document",
+   "\"Revolution\" lowercased in the name of the historical event"
+  ],
+  "student_error": {
+   "In class, we read the Bill of rights while we studied the American Revolution.": "capitalizes only the first word of the document name, treating 'rights' as an ordinary word",
+   "In class, we read the Bill of rights while we studied the American revolution.": "capitalizes only the first word of each multi-word historical name",
+   "In class, we read the Bill of Rights while we studied the American revolution.": "capitalizes 'American' as a proper adjective but treats 'revolution' as a common noun"
+  },
+  "explanation": "The names of historical documents and events are proper nouns, so every important word is capitalized: 'Bill of Rights' and 'American Revolution.' Only the key capitalizes both.",
+  "cap_rule": "every important word in the name of a historical document or event"
+ },
+ "MLV2-C03": {
+  "id": "MLV2-C03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "After two days of driving south, the Lindqvist family reached the southwest, where Grandma owns a ranch.",
+   "After two days of driving south, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+   "After two days of driving South, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+   "After two days of driving South, the Lindqvist family reached the southwest, where Grandma owns a ranch."
+  ],
+  "correct_answer": "After two days of driving south, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+  "error_sites": [
+   "compass direction \"south\" wrongly capitalized",
+   "region name \"Southwest\" wrongly lowercased"
+  ],
+  "student_error": {
+   "After two days of driving south, the Lindqvist family reached the southwest, where Grandma owns a ranch.": "thinks direction words are never capitalized, even when they name a region",
+   "After two days of driving South, the Lindqvist family reached the Southwest, where Grandma owns a ranch.": "thinks direction words are always capitalized, even when they only tell which way someone moved",
+   "After two days of driving South, the Lindqvist family reached the southwest, where Grandma owns a ranch.": "cannot tell a direction from a region, so gets the rule backwards in both places"
+  },
+  "explanation": "'Driving south' tells the direction of travel, so 'south' is lowercase. 'The Southwest' names a region of the country (the place the family reached), so it is capitalized. Only the key gets both right.",
+  "cap_rule": "a region name is capitalized; a compass direction is not"
+ },
+ "MLV2-C06": {
+  "id": "MLV2-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Priya lives in an old Victorian house filled with modern furniture and persian rugs.",
+   "Priya lives in an old victorian house filled with modern furniture and Persian rugs.",
+   "Priya lives in an old Victorian house filled with modern furniture and Persian rugs.",
+   "Priya lives in an old victorian house filled with modern furniture and persian rugs."
+  ],
+  "correct_answer": "Priya lives in an old Victorian house filled with modern furniture and Persian rugs.",
+  "error_sites": [
+   "proper adjective \"Victorian\" (from Queen Victoria) lowercased",
+   "proper adjective \"Persian\" (from Persia) lowercased"
+  ],
+  "student_error": {
+   "Priya lives in an old Victorian house filled with modern furniture and persian rugs.": "treats 'persian' as an ordinary word for a kind of rug, like 'modern' for a kind of furniture, not seeing it comes from a place name",
+   "Priya lives in an old victorian house filled with modern furniture and Persian rugs.": "treats 'victorian' as an ordinary style word, like 'modern,' not seeing it comes from a person's name",
+   "Priya lives in an old victorian house filled with modern furniture and persian rugs.": "thinks words describing styles of houses and furnishings are ordinary adjectives, so lowercases both proper adjectives along with 'modern'"
+  },
+  "explanation": "'Victorian' comes from a proper noun (Queen Victoria) and 'Persian' from a proper noun (Persia), so both are proper adjectives and are capitalized, even though they describe everyday things. 'Modern' is an ordinary adjective and stays lowercase in every option. Only the key capitalizes both proper adjectives.",
+  "cap_rule": "proper adjectives formed from a person's name or a place name are capitalized even when they describe everyday objects; an ordinary style adjective beside them is not"
+ },
+ "MLV2-C10": {
+  "id": "MLV2-C10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "My sister helps the Friends of the Library on weekends, and my brother just joined the Lakeview Chess club.",
+   "My sister helps the Friends of the library on weekends, and my brother just joined the Lakeview Chess Club.",
+   "My sister helps the Friends of the Library on weekends, and my brother just joined the Lakeview Chess Club.",
+   "My sister helps the Friends of the library on weekends, and my brother just joined the Lakeview Chess club."
+  ],
+  "correct_answer": "My sister helps the Friends of the Library on weekends, and my brother just joined the Lakeview Chess Club.",
+  "error_sites": [
+   "\"Library\" lowercased inside the organization name",
+   "\"Club\" lowercased inside the organization name"
+  ],
+  "student_error": {
+   "My sister helps the Friends of the Library on weekends, and my brother just joined the Lakeview Chess club.": "treats 'club' at the end of the name as an ordinary word",
+   "My sister helps the Friends of the library on weekends, and my brother just joined the Lakeview Chess Club.": "thinks 'library' is just a building, not part of the group's name",
+   "My sister helps the Friends of the library on weekends, and my brother just joined the Lakeview Chess club.": "lowercases the generic word at the end of each organization's name"
+  },
+  "explanation": "The full name of an organization is a proper noun, so every important word is capitalized, including generic words that are part of the name: 'Friends of the Library' and 'Lakeview Chess Club.' The short words 'of' and 'the' stay lowercase. Only the key capitalizes both.",
+  "cap_rule": "every important word in the name of an organization or club, including a generic word that is part of the name"
+ }
+}

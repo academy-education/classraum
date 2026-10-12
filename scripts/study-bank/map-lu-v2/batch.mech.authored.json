@@ -1,0 +1,1066 @@
+[
+  {
+    "id": "MLV2-P01",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 5,
+    "ccss": "L.5.2b",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "After the long assembly about bike safety ended the students who had signed up for the race lined up near the gym doors.",
+      "After the long assembly about bike safety ended, the students who had signed up for the race, lined up near the gym doors.",
+      "After the long assembly about bike safety ended, the students who had signed up for the race lined up near the gym doors.",
+      "After the long assembly about bike safety ended the students who had signed up for the race, lined up near the gym doors."
+    ],
+    "correct_answer": "After the long assembly about bike safety ended, the students who had signed up for the race lined up near the gym doors.",
+    "error_sites": [
+      "comma after the long introductory clause (after \"ended\") is missing",
+      "an extra comma separates the long subject from its verb (after \"race\")"
+    ],
+    "student_error": {
+      "After the long assembly about bike safety ended the students who had signed up for the race lined up near the gym doors.": "leaves out the comma after a long introductory clause because the sentence has no obvious pause word",
+      "After the long assembly about bike safety ended, the students who had signed up for the race, lined up near the gym doors.": "adds a comma where a reader takes a breath at the end of a long subject",
+      "After the long assembly about bike safety ended the students who had signed up for the race, lined up near the gym doors.": "puts the one 'pause' comma at the end of the whole long opening instead of after the introductory clause"
+    },
+    "explanation": "The introductory clause 'After the long assembly about bike safety ended' needs a comma after 'ended'; without it the reader first reads 'ended the students.' The subject 'the students who had signed up for the race' must not be separated from its verb 'lined up' by a comma. Only the key has the first comma and not the second.",
+    "punct_rule": "comma after a long introductory clause; no comma between a long subject and its verb"
+  },
+  {
+    "id": "MLV2-P02",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 5,
+    "ccss": "L.5.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice, two jugs of lemonade, and something sweet.",
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice two jugs of lemonade, and something sweet.",
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice two jugs of lemonade, and something sweet.",
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice, two jugs of lemonade, and something sweet."
+    ],
+    "correct_answer": "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice, two jugs of lemonade, and something sweet.",
+    "error_sites": [
+      "comma missing after the series item \"plates and cups\"",
+      "comma missing after the series item \"a bag of ice\""
+    ],
+    "student_error": {
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice two jugs of lemonade, and something sweet.": "loses track of where one long series item ends and the next begins in the middle of the list",
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice two jugs of lemonade, and something sweet.": "thinks a comma is only needed before the final 'and' in a series",
+      "For the picnic, Ms. Ortiz asked us to bring plates and cups a bag of ice, two jugs of lemonade, and something sweet.": "treats the 'and' inside 'plates and cups' as if it already separates the items, so leaves out the comma after it"
+    },
+    "explanation": "The list has four items: 'plates and cups,' 'a bag of ice,' 'two jugs of lemonade,' and 'something sweet.' Each item must be separated from the next by a comma. The 'and' inside 'plates and cups' joins two things within one item, so the comma still goes after 'cups.' Only the key separates every item.",
+    "punct_rule": "commas separating items in a series of phrases, including an item that contains its own 'and'"
+  },
+  {
+    "id": "MLV2-P03",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 5,
+    "ccss": "L.5.2c",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "You remembered to feed the fish before you left for school, Dani didn't you.",
+      "You remembered to feed the fish before you left for school, Dani didn't you?",
+      "You remembered to feed the fish before you left for school, Dani, didn't you.",
+      "You remembered to feed the fish before you left for school, Dani, didn't you?"
+    ],
+    "correct_answer": "You remembered to feed the fish before you left for school, Dani, didn't you?",
+    "error_sites": [
+      "comma missing between the name in direct address and the tag question",
+      "period used instead of a question mark after the tag question"
+    ],
+    "student_error": {
+      "You remembered to feed the fish before you left for school, Dani didn't you.": "runs the name into the tag and ends with a period because the sentence starts like a statement",
+      "You remembered to feed the fish before you left for school, Dani didn't you?": "puts a comma before the name but forgets the comma after it, so the name runs into the tag question",
+      "You remembered to feed the fish before you left for school, Dani, didn't you.": "ends with a period because the sentence begins as a statement, not noticing the tag turns it into a question"
+    },
+    "explanation": "A name used in direct address is set off with commas on both sides, so a comma is needed after 'Dani' as well as before it. A tag question such as 'didn't you' makes the whole sentence a question, so it ends with a question mark. Only the key has both.",
+    "punct_rule": "commas around direct address before a tag question, and a question mark after the tag"
+  },
+  {
+    "id": "MLV2-P04",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Only the students who finished the reading early were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.",
+      "Only the students who finished the reading early were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.",
+      "Only the students, who finished the reading early, were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.",
+      "Only the students, who finished the reading early, were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables."
+    ],
+    "correct_answer": "Only the students who finished the reading early were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.",
+    "error_sites": [
+      "commas wrongly placed around the restrictive clause \"who finished the reading early\"",
+      "commas missing around the nonrestrictive clause \"who teaches seventh grade\""
+    ],
+    "student_error": {
+      "Only the students who finished the reading early were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.": "does not recognize that a clause describing a person already named is extra information that needs commas",
+      "Only the students, who finished the reading early, were allowed to help Mr. Abara who teaches seventh grade set up the science fair tables.": "has the restrictive/nonrestrictive rule backwards, so puts commas around the needed clause and leaves them off the extra one",
+      "Only the students, who finished the reading early, were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.": "puts commas around every 'who' clause by habit"
+    },
+    "explanation": "'Who finished the reading early' tells which students ('Only the students...'), so it is restrictive and takes no commas. 'Who teaches seventh grade' adds extra information about Mr. Abara, who is already named, so it is nonrestrictive and must be set off by a pair of commas. Only the key treats both correctly.",
+    "punct_rule": "commas around a nonrestrictive clause, but none around a restrictive clause"
+  },
+  {
+    "id": "MLV2-P05",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Ruby's science project a model volcano that really erupts, won first place at the county fair.",
+      "Ruby's science project a model volcano that really erupts won first place at the county fair.",
+      "Ruby's science project, a model volcano that really erupts, won first place at the county fair.",
+      "Ruby's science project, a model volcano that really erupts won first place at the county fair."
+    ],
+    "correct_answer": "Ruby's science project, a model volcano that really erupts, won first place at the county fair.",
+    "error_sites": [
+      "opening comma before the appositive \"a model volcano...\" is missing",
+      "closing comma after the appositive (after \"erupts\") is missing"
+    ],
+    "student_error": {
+      "Ruby's science project a model volcano that really erupts, won first place at the county fair.": "only puts a comma where the reader pauses before the verb and misses that the appositive starts after 'project'",
+      "Ruby's science project a model volcano that really erupts won first place at the county fair.": "does not recognize the long phrase as an appositive at all, so uses no commas",
+      "Ruby's science project, a model volcano that really erupts won first place at the county fair.": "opens the appositive with a comma but forgets to close it because the end is far from the start"
+    },
+    "explanation": "'A model volcano that really erupts' renames 'Ruby's science project' and is extra information, so it must be set off by a pair of commas: one before it and one after 'erupts.' Only the key has both commas of the pair.",
+    "punct_rule": "a matched pair of commas around a long nonrestrictive appositive"
+  },
+  {
+    "id": "MLV2-P06",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "My grandmother (she turns eighty next month) still walks two miles every morning.",
+      "My grandmother, (she turns eighty next month) still walks two miles every morning.",
+      "My grandmother, (she turns eighty next month), still walks two miles every morning.",
+      "My grandmother (she turns eighty next month), still walks two miles every morning."
+    ],
+    "correct_answer": "My grandmother (she turns eighty next month) still walks two miles every morning.",
+    "error_sites": [
+      "extra comma before the opening parenthesis",
+      "extra comma after the closing parenthesis, between subject and verb"
+    ],
+    "student_error": {
+      "My grandmother, (she turns eighty next month) still walks two miles every morning.": "adds a comma before the parentheses as if setting off the extra information with commas too",
+      "My grandmother, (she turns eighty next month), still walks two miles every morning.": "uses commas and parentheses together, marking the extra information twice",
+      "My grandmother (she turns eighty next month), still walks two miles every morning.": "adds a comma after the parenthesis where the reader pauses before the verb"
+    },
+    "explanation": "Parentheses by themselves set off the extra information 'she turns eighty next month.' No comma goes before the opening parenthesis, and no comma goes after the closing one, because the sentence without the parenthetical, 'My grandmother still walks two miles every morning,' has no comma between subject and verb. Only the key has neither extra comma.",
+    "punct_rule": "parentheses around a nonrestrictive element without added commas"
+  },
+  {
+    "id": "MLV2-P07",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 6,
+    "ccss": "L.6.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Our class read the novel Starlight Road, and its author Dana Whitfield visited our school in May.",
+      "Our class read the novel, Starlight Road, and its author Dana Whitfield visited our school in May.",
+      "Our class read the novel, Starlight Road, and its author, Dana Whitfield, visited our school in May.",
+      "Our class read the novel Starlight Road, and its author, Dana Whitfield, visited our school in May."
+    ],
+    "correct_answer": "Our class read the novel Starlight Road, and its author, Dana Whitfield, visited our school in May.",
+    "error_sites": [
+      "extra comma after \"novel\" treats the restrictive appositive \"Starlight Road\" as nonrestrictive",
+      "commas missing around the nonrestrictive appositive \"Dana Whitfield\""
+    ],
+    "student_error": {
+      "Our class read the novel Starlight Road, and its author Dana Whitfield visited our school in May.": "leaves out commas around a name that comes right after a describing noun, not noticing that a book has only one author",
+      "Our class read the novel, Starlight Road, and its author Dana Whitfield visited our school in May.": "has the restrictive/nonrestrictive appositive rule backwards, setting off the title that is needed and not the name that is extra",
+      "Our class read the novel, Starlight Road, and its author, Dana Whitfield, visited our school in May.": "puts commas around every name or title that follows a noun, even when it tells which one is meant"
+    },
+    "explanation": "'Starlight Road' tells which novel the class read out of all novels, so it is a restrictive appositive and takes no comma after 'novel' (the comma after 'Road' belongs to the compound sentence). A novel has only one author, so 'Dana Whitfield' is extra information that renames 'its author' and must be set off by a pair of commas. Only the key treats both appositives correctly.",
+    "punct_rule": "commas around a nonrestrictive appositive but not around a restrictive appositive"
+  },
+  {
+    "id": "MLV2-P08",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "After the long tiring hike, we rested beside a cool quiet stream and ate our sandwiches.",
+      "After the long, tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.",
+      "After the long, tiring hike, we rested beside a cool quiet stream and ate our sandwiches.",
+      "After the long tiring hike, we rested beside a cool, quiet stream and ate our sandwiches."
+    ],
+    "correct_answer": "After the long, tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.",
+    "error_sites": [
+      "comma missing between the coordinate adjectives \"long\" and \"tiring\"",
+      "comma missing between the coordinate adjectives \"cool\" and \"quiet\""
+    ],
+    "student_error": {
+      "After the long tiring hike, we rested beside a cool quiet stream and ate our sandwiches.": "thinks commas never go between adjectives that come before a noun",
+      "After the long, tiring hike, we rested beside a cool quiet stream and ate our sandwiches.": "notices the first pair but treats short adjectives like 'cool quiet' as one unit",
+      "After the long tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.": "skips the comma in the opening phrase because a comma already follows 'hike'"
+    },
+    "explanation": "Coordinate adjectives each describe the noun separately: you could write 'long and tiring hike' or 'tiring, long hike,' and 'cool and quiet stream' or 'quiet, cool stream.' Coordinate adjectives are separated by a comma, so both pairs need one. Only the key has both commas.",
+    "punct_rule": "comma required between coordinate adjectives"
+  },
+  {
+    "id": "MLV2-P09",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.",
+      "On the first warm spring morning, Hana wore her bright yellow, rain boots to school.",
+      "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+      "On the first warm, spring morning, Hana wore her bright yellow, rain boots to school."
+    ],
+    "correct_answer": "On the first warm spring morning, Hana wore her bright yellow rain boots to school.",
+    "error_sites": [
+      "extra comma between cumulative modifiers \"warm\" and \"spring\"",
+      "extra comma between cumulative modifiers \"yellow\" and \"rain\""
+    ],
+    "student_error": {
+      "On the first warm, spring morning, Hana wore her bright yellow rain boots to school.": "puts a comma between any two describing words in a row without testing whether 'and' fits",
+      "On the first warm spring morning, Hana wore her bright yellow, rain boots to school.": "treats 'rain' as a separate adjective like 'yellow' instead of part of the noun 'rain boots'",
+      "On the first warm, spring morning, Hana wore her bright yellow, rain boots to school.": "applies the coordinate-adjective comma to every string of modifiers"
+    },
+    "explanation": "These modifiers are cumulative: 'warm and spring morning' and 'yellow and rain boots' make no sense, and the order cannot be reversed. 'Spring' and 'rain' work with the noun as a unit ('spring morning,' 'rain boots'). Cumulative modifiers take no comma between them, so only the key is correct.",
+    "punct_rule": "no comma between cumulative adjectives or before a noun used as a modifier"
+  },
+  {
+    "id": "MLV2-P10",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+      "Our neighbor's loud playful, golden retriever barks at every car that drives past.",
+      "Our neighbor's loud playful golden retriever barks at every car that drives past.",
+      "Our neighbor's loud, playful, golden retriever barks at every car that drives past."
+    ],
+    "correct_answer": "Our neighbor's loud, playful golden retriever barks at every car that drives past.",
+    "error_sites": [
+      "comma missing between the coordinate adjectives \"loud\" and \"playful\"",
+      "extra comma between \"playful\" and the cumulative \"golden\" (part of \"golden retriever\")"
+    ],
+    "student_error": {
+      "Our neighbor's loud playful, golden retriever barks at every car that drives past.": "puts the single comma right before the color word instead of between the two adjectives that can be joined by 'and'",
+      "Our neighbor's loud playful golden retriever barks at every car that drives past.": "leaves out all commas in a string of adjectives",
+      "Our neighbor's loud, playful, golden retriever barks at every car that drives past.": "puts a comma after every adjective, as in a list"
+    },
+    "explanation": "'Loud' and 'playful' are coordinate ('loud and playful'), so they are separated by a comma. 'Golden retriever' is the name of the breed, so 'playful' and 'golden' are cumulative and take no comma. Only the key has a comma after 'loud' and none after 'playful.'",
+    "punct_rule": "in a mixed string, a comma only between the coordinate pair and none before the cumulative modifier"
+  },
+  {
+    "id": "MLV2-P11",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 7,
+    "ccss": "L.7.2",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "The womens' soccer team got only two weeks' notice before the big tournament.",
+      "The womens' soccer team got only two week's notice before the big tournament.",
+      "The women's soccer team got only two week's notice before the big tournament.",
+      "The women's soccer team got only two weeks' notice before the big tournament."
+    ],
+    "correct_answer": "The women's soccer team got only two weeks' notice before the big tournament.",
+    "error_sites": [
+      "apostrophe misplaced after the s of the irregular plural \"women's\"",
+      "apostrophe misplaced before the s of the plural time expression \"weeks'\""
+    ],
+    "student_error": {
+      "The womens' soccer team got only two weeks' notice before the big tournament.": "applies 'plural possessive = s plus apostrophe' to 'women,' which is already plural without an s",
+      "The womens' soccer team got only two week's notice before the big tournament.": "reverses the apostrophe rule in both places, putting it after s for the irregular plural and before s for the regular plural",
+      "The women's soccer team got only two week's notice before the big tournament.": "does not see that 'two weeks' is plural, so writes it as a singular possessive"
+    },
+    "explanation": "'Women' is already plural, so its possessive is 'women's.' 'Two weeks' is a regular plural ending in s, so its possessive adds only an apostrophe: 'two weeks' notice.' Only the key places both apostrophes correctly.",
+    "punct_rule": "apostrophes in an irregular plural possessive and a plural time-expression possessive"
+  },
+  {
+    "id": "MLV2-P12",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 8,
+    "ccss": "L.8.2",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Our class had planned a picnic by the pond; dark clouds rolled in just before noon; although the forecast had promised sunshine.",
+      "Our class had planned a picnic by the pond; dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+      "Our class had planned a picnic by the pond, dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+      "Our class had planned a picnic by the pond, dark clouds rolled in just before noon; although the forecast had promised sunshine."
+    ],
+    "correct_answer": "Our class had planned a picnic by the pond; dark clouds rolled in just before noon, although the forecast had promised sunshine.",
+    "error_sites": [
+      "comma used instead of a semicolon between two independent clauses (comma splice after \"pond\")",
+      "semicolon used instead of a comma before the dependent clause beginning \"although\""
+    ],
+    "student_error": {
+      "Our class had planned a picnic by the pond; dark clouds rolled in just before noon; although the forecast had promised sunshine.": "thinks a semicolon can go before any new group of words with its own subject and verb, including a dependent clause",
+      "Our class had planned a picnic by the pond, dark clouds rolled in just before noon, although the forecast had promised sunshine.": "joins two complete sentences with only a comma (comma splice)",
+      "Our class had planned a picnic by the pond, dark clouds rolled in just before noon; although the forecast had promised sunshine.": "swaps the two marks, using the semicolon before the strong-sounding word 'although' and the comma between the complete sentences"
+    },
+    "explanation": "'Our class had planned a picnic by the pond' and 'dark clouds rolled in just before noon' are both independent clauses with no joining word, so a semicolon (not a comma) goes between them. 'Although the forecast had promised sunshine' is a dependent clause and cannot follow a semicolon; it takes a comma. Only the key has the semicolon first and the comma second.",
+    "punct_rule": "semicolon joins two independent clauses but never introduces a dependent clause"
+  },
+  {
+    "id": "MLV2-P13",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 8,
+    "ccss": "L.8.2",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.",
+      "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+      "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+      "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark."
+    ],
+    "correct_answer": "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.",
+    "error_sites": [
+      "extra colon between the verb \"includes\" and its objects",
+      "colon missing after the complete clause \"Ms. Tran added one more rule\""
+    ],
+    "student_error": {
+      "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.": "uses a colon before every list but not before an explanation, so places it in the wrong spot",
+      "Our packing list includes: a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.": "puts a colon before any list, even when the words before it are not a complete clause",
+      "Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule no phones after dark.": "does not recognize that a short phrase explaining 'one more rule' needs a colon to introduce it"
+    },
+    "explanation": "A colon may follow only a complete clause. 'Our packing list includes' is not complete without its objects, so no colon goes after 'includes.' 'Ms. Tran added one more rule' is complete, and 'no phones after dark' explains what the rule is, so a colon must introduce it. Only the key is correct at both places.",
+    "punct_rule": "colon only after a complete clause, used to introduce an explanation"
+  },
+  {
+    "id": "MLV2-P14",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Punctuation",
+    "grade_target": 8,
+    "ccss": "L.8.2a",
+    "prompt": "Which sentence is punctuated correctly?",
+    "choices": [
+      "My older sister, after weeks of begging our parents for a puppy, finally convinced them that a small dog would not be much work.",
+      "My older sister, after weeks of begging our parents for a puppy, finally convinced them, that a small dog would not be much work.",
+      "My older sister, after weeks of begging our parents for a puppy finally convinced them, that a small dog would not be much work.",
+      "My older sister, after weeks of begging our parents for a puppy finally convinced them that a small dog would not be much work."
+    ],
+    "correct_answer": "My older sister, after weeks of begging our parents for a puppy, finally convinced them that a small dog would not be much work.",
+    "error_sites": [
+      "closing comma of the interrupting phrase (after \"puppy\") is missing",
+      "extra comma between \"convinced them\" and its that-clause object"
+    ],
+    "student_error": {
+      "My older sister, after weeks of begging our parents for a puppy, finally convinced them, that a small dog would not be much work.": "adds a comma before 'that' because the sentence feels long and needs a breath",
+      "My older sister, after weeks of begging our parents for a puppy finally convinced them, that a small dog would not be much work.": "loses track of the break that started after 'sister' and puts the closing comma at the next pause instead",
+      "My older sister, after weeks of begging our parents for a puppy finally convinced them that a small dog would not be much work.": "opens the interrupting phrase with a comma but forgets to close it because the end is far away"
+    },
+    "explanation": "The phrase 'after weeks of begging our parents for a puppy' breaks into the sentence between the subject 'My older sister' and the verb 'finally convinced,' so it needs commas on both sides. The clause 'that a small dog would not be much work' is the object of 'convinced them' and is not separated by a comma. Only the key closes the break and leaves the object attached.",
+    "punct_rule": "paired commas around a phrase that breaks between subject and verb; no comma before a that-clause object"
+  },
+  {
+    "id": "MLV2-G01",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 5,
+    "ccss": "L.5.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "By the time the bell rang, Ana has already written three pages of her story.",
+      "By the time the bell rang, Ana had already written three pages of her story.",
+      "By the time the bell rang, Ana has already wrote three pages of her story.",
+      "By the time the bell rang, Ana had already wrote three pages of her story."
+    ],
+    "correct_answer": "By the time the bell rang, Ana had already written three pages of her story.",
+    "error_sites": [
+      "present perfect \"has\" used instead of past perfect \"had\" for an action completed before a past time",
+      "simple past \"wrote\" used instead of the past participle \"written\" after had/has"
+    ],
+    "student_error": {
+      "By the time the bell rang, Ana has already written three pages of her story.": "uses present perfect because 'already' sounds like it goes with 'has,' ignoring the past time 'rang'",
+      "By the time the bell rang, Ana has already wrote three pages of her story.": "uses the everyday spoken forms 'has' and 'wrote' without checking either against the rule",
+      "By the time the bell rang, Ana had already wrote three pages of her story.": "uses the simple past 'wrote' after 'had' instead of the past participle"
+    },
+    "explanation": "'By the time the bell rang' sets a point in the past, and the writing was finished before it, so the past perfect 'had written' is needed. The perfect tenses use the past participle 'written,' not the simple past 'wrote.' Only the key has both.",
+    "varied_dimension": "past perfect vs present perfect; past participle form"
+  },
+  {
+    "id": "MLV2-G02",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 5,
+    "ccss": "L.5.1e",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Either Marcus or his older sisters is going to walk the dog after dinner tonight.",
+      "Either Marcus nor his older sisters is going to walk the dog after dinner tonight.",
+      "Either Marcus nor his older sisters are going to walk the dog after dinner tonight.",
+      "Either Marcus or his older sisters are going to walk the dog after dinner tonight."
+    ],
+    "correct_answer": "Either Marcus or his older sisters are going to walk the dog after dinner tonight.",
+    "error_sites": [
+      "\"nor\" used with \"either\" instead of \"or\"",
+      "singular verb \"is\" used though the nearer subject \"sisters\" is plural"
+    ],
+    "student_error": {
+      "Either Marcus or his older sisters is going to walk the dog after dinner tonight.": "makes the verb agree with the first subject, 'Marcus,' instead of the nearer subject, 'sisters'",
+      "Either Marcus nor his older sisters is going to walk the dog after dinner tonight.": "mixes up the either/or and neither/nor pairs and agrees the verb with 'Marcus'",
+      "Either Marcus nor his older sisters are going to walk the dog after dinner tonight.": "mixes up the pairs 'either...or' and 'neither...nor'"
+    },
+    "explanation": "The correlative pair is 'either...or'; 'nor' belongs with 'neither.' When two subjects are joined by 'either...or,' the verb agrees with the nearer subject, here the plural 'sisters,' so 'are' is correct. Only the key uses 'or' and 'are.'",
+    "varied_dimension": "correlative conjunction pair; verb agreement with the nearer of two subjects"
+  },
+  {
+    "id": "MLV2-G03",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 5,
+    "ccss": "L.5.1d",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he met his cousins.",
+      "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he meets his cousins.",
+      "Last Saturday, Jonah woke up early, packed a lunch, and rides his bike to the lake, where he met his cousins.",
+      "Last Saturday, Jonah woke up early, packed a lunch, and rides his bike to the lake, where he meets his cousins."
+    ],
+    "correct_answer": "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he met his cousins.",
+    "error_sites": [
+      "present-tense \"rides\" shifts out of the past tense in the series of verbs",
+      "present-tense \"meets\" shifts out of the past tense in the later clause"
+    ],
+    "student_error": {
+      "Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he meets his cousins.": "keeps the main verbs in the past but slips into present tense in the clause at the end, far from 'Last Saturday'",
+      "Last Saturday, Jonah woke up early, packed a lunch, and rides his bike to the lake, where he met his cousins.": "slips into present tense in the middle of the story, as in storytelling speech",
+      "Last Saturday, Jonah woke up early, packed a lunch, and rides his bike to the lake, where he meets his cousins.": "starts in the past and then switches to the present for the rest of the story"
+    },
+    "explanation": "'Last Saturday' places every action in the past, and the first verbs ('woke,' 'packed') are past tense. The other verbs must stay in the past: 'rode' and 'met.' Switching to 'rides' or 'meets' is an inappropriate tense shift. Only the key keeps the tense consistent.",
+    "varied_dimension": "tense shift in a series of verbs; tense shift in a later dependent clause"
+  },
+  {
+    "id": "MLV2-G04",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 6,
+    "ccss": "L.6.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Ms. Patel asked Leila and I to hand out the tests, and later her and I collected them.",
+      "Ms. Patel asked Leila and me to hand out the tests, and later her and I collected them.",
+      "Ms. Patel asked Leila and me to hand out the tests, and later she and I collected them.",
+      "Ms. Patel asked Leila and I to hand out the tests, and later she and I collected them."
+    ],
+    "correct_answer": "Ms. Patel asked Leila and me to hand out the tests, and later she and I collected them.",
+    "error_sites": [
+      "subjective \"I\" used in the compound object of \"asked\"",
+      "objective \"her\" used in the compound subject of \"collected\""
+    ],
+    "student_error": {
+      "Ms. Patel asked Leila and I to hand out the tests, and later her and I collected them.": "chooses each pronoun by how it sounds next to another name instead of by its job in the sentence",
+      "Ms. Patel asked Leila and me to hand out the tests, and later her and I collected them.": "uses 'her' in a compound subject because 'her and I' is common in speech",
+      "Ms. Patel asked Leila and I to hand out the tests, and later she and I collected them.": "believes 'and I' is always more correct than 'and me'"
+    },
+    "explanation": "'Leila and me' is the object of 'asked,' so the objective pronoun 'me' is correct (Ms. Patel asked me). 'She and I' is the subject of 'collected,' so the subjective pronoun 'she' is correct (she collected). Only the key uses the right case in both places.",
+    "varied_dimension": "objective pronoun in a compound object; subjective pronoun in a compound subject"
+  },
+  {
+    "id": "MLV2-G05",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 6,
+    "ccss": "L.6.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "My brother and I built the birdhouse ourselves, but Dad cut all the wood hisself.",
+      "My brother and I built the birdhouse ourselves, but Dad cut all the wood himself.",
+      "My brother and myself built the birdhouse ourselves, but Dad cut all the wood himself.",
+      "My brother and myself built the birdhouse ourselves, but Dad cut all the wood hisself."
+    ],
+    "correct_answer": "My brother and I built the birdhouse ourselves, but Dad cut all the wood himself.",
+    "error_sites": [
+      "reflexive/intensive \"myself\" used as part of the subject instead of \"I\"",
+      "nonstandard intensive form \"hisself\" instead of \"himself\""
+    ],
+    "student_error": {
+      "My brother and I built the birdhouse ourselves, but Dad cut all the wood hisself.": "builds the intensive pronoun from 'his' by analogy with 'myself' and 'yourself'",
+      "My brother and myself built the birdhouse ourselves, but Dad cut all the wood himself.": "uses 'myself' as a subject because it sounds more formal than 'I'",
+      "My brother and myself built the birdhouse ourselves, but Dad cut all the wood hisself.": "treats -self pronouns as ordinary pronouns that can go anywhere and forms them from the possessive"
+    },
+    "explanation": "An intensive pronoun emphasizes a noun already in the sentence; it cannot serve as the subject, so 'My brother and I' is correct, not 'My brother and myself.' The standard intensive for 'Dad' is 'himself'; 'hisself' is not a standard form. Only the key uses both correctly.",
+    "varied_dimension": "intensive pronoun misused as a subject; nonstandard intensive pronoun form"
+  },
+  {
+    "id": "MLV2-G06",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 6,
+    "ccss": "L.6.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Hikers who want to reach the top before dark should pack your bags the night before, so they can leave at sunrise.",
+      "Hikers who want to reach the top before dark should pack your bags the night before, so you can leave at sunrise.",
+      "Hikers who want to reach the top before dark should pack their bags the night before, so you can leave at sunrise.",
+      "Hikers who want to reach the top before dark should pack their bags the night before, so they can leave at sunrise."
+    ],
+    "correct_answer": "Hikers who want to reach the top before dark should pack their bags the night before, so they can leave at sunrise.",
+    "error_sites": [
+      "second-person \"your\" shifts away from the third-person antecedent \"Hikers\"",
+      "second-person \"you\" shifts away from the third-person antecedent \"Hikers\" in the later clause"
+    ],
+    "student_error": {
+      "Hikers who want to reach the top before dark should pack your bags the night before, so they can leave at sunrise.": "slips into giving advice to the reader ('pack your bags') in the middle of a sentence about hikers",
+      "Hikers who want to reach the top before dark should pack your bags the night before, so you can leave at sunrise.": "switches from writing about hikers to talking to 'you' and stays there for the rest of the sentence",
+      "Hikers who want to reach the top before dark should pack their bags the night before, so you can leave at sunrise.": "loses track of the antecedent 'Hikers' by the second clause and switches to 'you'"
+    },
+    "explanation": "The antecedent 'Hikers' is third-person plural, so every pronoun referring to it must be third-person plural: 'their bags' and 'they can leave.' Changing to 'your' or 'you' is an inappropriate shift in pronoun person. Only the key stays consistent.",
+    "varied_dimension": "shift in pronoun person in a possessive; shift in pronoun person in a subject"
+  },
+  {
+    "id": "MLV2-G07",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 6,
+    "ccss": "L.6.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "We sixth graders planned the whole party, but between you and me, the teachers did most of the work.",
+      "Us sixth graders planned the whole party, but between you and I, the teachers did most of the work.",
+      "Us sixth graders planned the whole party, but between you and me, the teachers did most of the work.",
+      "We sixth graders planned the whole party, but between you and I, the teachers did most of the work."
+    ],
+    "correct_answer": "We sixth graders planned the whole party, but between you and me, the teachers did most of the work.",
+    "error_sites": [
+      "objective \"Us\" used before the appositive noun in the subject position",
+      "subjective \"I\" used as the object of the preposition \"between\""
+    ],
+    "student_error": {
+      "Us sixth graders planned the whole party, but between you and I, the teachers did most of the work.": "uses the pronoun forms common in casual speech in both places instead of checking each pronoun's job",
+      "Us sixth graders planned the whole party, but between you and me, the teachers did most of the work.": "uses 'Us' because the noun 'sixth graders' after it hides that the pronoun is the subject",
+      "We sixth graders planned the whole party, but between you and I, the teachers did most of the work.": "thinks 'you and I' is always the polite, correct form, even after a preposition"
+    },
+    "explanation": "Remove the noun to test the first pronoun: 'We planned the whole party,' not 'Us planned,' so 'We sixth graders' is correct. 'Between' is a preposition, and its objects take the objective case: 'between you and me.' Only the key uses the right case in both places.",
+    "varied_dimension": "pronoun case before an appositive noun; pronoun case after a preposition"
+  },
+  {
+    "id": "MLV2-G08",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 7,
+    "ccss": "L.7.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Reaching for the top shelf, Grace knocked the jar of honey onto the floor that Mom had just bought.",
+      "Reaching for the top shelf, Grace's elbow knocked the jar of honey that Mom had just bought onto the floor.",
+      "Reaching for the top shelf, Grace knocked the jar of honey that Mom had just bought onto the floor.",
+      "Reaching for the top shelf, Grace's elbow knocked the jar of honey onto the floor that Mom had just bought."
+    ],
+    "correct_answer": "Reaching for the top shelf, Grace knocked the jar of honey that Mom had just bought onto the floor.",
+    "error_sites": [
+      "subject \"Grace's elbow\" leaves the opening participial phrase dangling (an elbow does not reach for a shelf)",
+      "relative clause \"that Mom had just bought\" misplaced after \"the floor\" instead of after \"the jar of honey\""
+    ],
+    "student_error": {
+      "Reaching for the top shelf, Grace knocked the jar of honey onto the floor that Mom had just bought.": "adds the extra detail at the end of the sentence without checking which noun it now describes",
+      "Reaching for the top shelf, Grace's elbow knocked the jar of honey that Mom had just bought onto the floor.": "names the body part that did the knocking without noticing the opening phrase must describe the subject",
+      "Reaching for the top shelf, Grace's elbow knocked the jar of honey onto the floor that Mom had just bought.": "reads the sentence for meaning and does not check what either modifier is attached to"
+    },
+    "explanation": "An opening participial phrase describes the subject that follows it. 'Grace' was reaching for the shelf, so 'Grace' must be the subject; 'Grace's elbow' makes the elbow do the reaching. A modifying clause belongs next to the noun it describes: Mom bought the jar of honey, not the floor. Only the key has both modifiers attached correctly.",
+    "varied_dimension": "dangling participial phrase; misplaced relative clause"
+  },
+  {
+    "id": "MLV2-G09",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 7,
+    "ccss": "L.7.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Because the trail was steep and rocky, we reached the top before noon even though we had started hiking at dawn.",
+      "Although the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+      "Because the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+      "Although the trail was steep and rocky, we reached the top before noon even though we had started hiking at dawn."
+    ],
+    "correct_answer": "Although the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.",
+    "error_sites": [
+      "\"Because\" signals cause where the opening clause states a contrast",
+      "\"even though\" signals contrast where the closing clause gives the cause"
+    ],
+    "student_error": {
+      "Because the trail was steep and rocky, we reached the top before noon even though we had started hiking at dawn.": "picks a subordinating conjunction for each clause without checking how that clause relates to the main idea",
+      "Because the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.": "starts with 'Because' out of habit, without noticing a steep trail would slow the hikers down rather than help",
+      "Although the trail was steep and rocky, we reached the top before noon even though we had started hiking at dawn.": "repeats the contrast idea from the opening clause instead of seeing that starting early explains the early arrival"
+    },
+    "explanation": "A steep, rocky trail would make the hike slower, so reaching the top early happened in spite of it: 'Although' signals that contrast. Starting at dawn is the reason the hikers arrived before noon, so a cause conjunction such as 'since' is needed. Only the key signals both relationships correctly.",
+    "varied_dimension": "contrast conjunction in the opening dependent clause; cause conjunction in the closing dependent clause"
+  },
+  {
+    "id": "MLV2-G10",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 7,
+    "ccss": "L.7.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Collecting old coins and stamps are a hobby that keeps my grandparents busy all winter.",
+      "Collecting old coins and stamps is a hobby that keep my grandparents busy all winter.",
+      "Collecting old coins and stamps are a hobby that keep my grandparents busy all winter.",
+      "Collecting old coins and stamps is a hobby that keeps my grandparents busy all winter."
+    ],
+    "correct_answer": "Collecting old coins and stamps is a hobby that keeps my grandparents busy all winter.",
+    "error_sites": [
+      "plural verb \"are\" used with the singular gerund-phrase subject \"Collecting old coins and stamps\"",
+      "plural verb \"keep\" in the relative clause whose antecedent is the singular \"hobby\""
+    ],
+    "student_error": {
+      "Collecting old coins and stamps are a hobby that keeps my grandparents busy all winter.": "makes the verb agree with the nearby plural 'coins and stamps' instead of the whole gerund phrase",
+      "Collecting old coins and stamps is a hobby that keep my grandparents busy all winter.": "makes the relative-clause verb agree with 'grandparents,' the plural noun after it, instead of 'hobby'",
+      "Collecting old coins and stamps are a hobby that keep my grandparents busy all winter.": "matches each verb to the closest plural noun instead of finding its real subject"
+    },
+    "explanation": "The subject is the gerund phrase 'Collecting old coins and stamps,' which names one activity, so it takes the singular verb 'is.' In the relative clause, 'that' refers to 'a hobby,' which is singular, so the verb is 'keeps.' Only the key has both singular verbs.",
+    "varied_dimension": "verb agreement with a gerund-phrase subject; verb agreement inside a relative clause"
+  },
+  {
+    "id": "MLV2-G11",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 7,
+    "ccss": "L.7.1b",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Although the power went out during the storm, we played board games by candlelight, and nobody missed the TV.",
+      "The power went out during the storm, we played board games by candlelight, and nobody missed the TV.",
+      "The power went out during the storm, we played board games by candlelight, nobody missed the TV.",
+      "Although the power went out during the storm, we played board games by candlelight, nobody missed the TV."
+    ],
+    "correct_answer": "Although the power went out during the storm, we played board games by candlelight, and nobody missed the TV.",
+    "error_sites": [
+      "subordinating conjunction \"Although\" missing, leaving two independent clauses joined only by a comma (\"Although the\" vs \"The\")",
+      "coordinating conjunction \"and\" missing before the last independent clause"
+    ],
+    "student_error": {
+      "The power went out during the storm, we played board games by candlelight, and nobody missed the TV.": "writes the first idea as its own clause and joins it with a comma, not seeing that it needs a subordinating word",
+      "The power went out during the storm, we played board games by candlelight, nobody missed the TV.": "strings complete clauses together with commas, the way events are listed in speech",
+      "Although the power went out during the storm, we played board games by candlelight, nobody missed the TV.": "drops the joining word before the last clause because the comma seems to be enough"
+    },
+    "explanation": "This is a compound-complex sentence. 'Although' makes the first clause dependent, so it can attach to the main clause with a comma. The last two clauses are both independent, so they must be joined by a comma plus a coordinating conjunction ('and'). Removing either word leaves independent clauses joined by a comma alone. Only the key is a correctly built sentence.",
+    "varied_dimension": "subordinating conjunction that makes a clause dependent; coordinating conjunction joining independent clauses"
+  },
+  {
+    "id": "MLV2-G12",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Parts of Speech",
+    "grade_target": 8,
+    "ccss": "L.8.1a",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Having grown up on a farm, Mateo was used to wake up before sunrise.",
+      "Having grew up on a farm, Mateo was used to wake up before sunrise.",
+      "Having grown up on a farm, Mateo was used to waking up before sunrise.",
+      "Having grew up on a farm, Mateo was used to waking up before sunrise."
+    ],
+    "correct_answer": "Having grown up on a farm, Mateo was used to waking up before sunrise.",
+    "error_sites": [
+      "simple past \"grew\" used instead of the past participle \"grown\" in the perfect participial phrase",
+      "base verb \"wake\" used instead of the gerund \"waking\" after \"was used to\""
+    ],
+    "student_error": {
+      "Having grown up on a farm, Mateo was used to wake up before sunrise.": "confuses 'was used to' (accustomed to, followed by a gerund) with 'used to' (habit, followed by a base verb)",
+      "Having grew up on a farm, Mateo was used to wake up before sunrise.": "does not recognize either verbal: uses the simple past after 'Having' and treats 'to' as part of an infinitive",
+      "Having grew up on a farm, Mateo was used to waking up before sunrise.": "uses the simple past 'grew' after 'Having' instead of the past participle"
+    },
+    "explanation": "A perfect participle is 'having' plus the past participle, so 'Having grown' is correct. In 'was used to' (meaning 'was accustomed to'), 'to' is a preposition, so it is followed by a gerund: 'waking up.' Only the key uses both verbal forms correctly.",
+    "varied_dimension": "past participle in a perfect participial phrase; gerund after 'be used to'"
+  },
+  {
+    "id": "MLV2-G13",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 8,
+    "ccss": "L.8.1d",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "Read the directions carefully, every question should be answered, and check your work before the timer goes off.",
+      "Read the directions carefully, answer every question, and check your work before the timer goes off.",
+      "Read the directions carefully, answer every question, and you should check your work before the timer goes off.",
+      "Read the directions carefully, every question should be answered, and you should check your work before the timer goes off."
+    ],
+    "correct_answer": "Read the directions carefully, answer every question, and check your work before the timer goes off.",
+    "error_sites": [
+      "shift from active imperative to passive voice (\"every question should be answered\" for \"answer every question\")",
+      "shift from imperative to indicative mood (\"you should check\" for \"check\")"
+    ],
+    "student_error": {
+      "Read the directions carefully, every question should be answered, and check your work before the timer goes off.": "varies the middle instruction to avoid repeating the same pattern, switching it into the passive",
+      "Read the directions carefully, answer every question, and you should check your work before the timer goes off.": "changes the last command into a suggestion to sound more polite, shifting out of the imperative",
+      "Read the directions carefully, every question should be answered, and you should check your work before the timer goes off.": "rewords each instruction a different way, not noticing that the series must keep the same voice and mood"
+    },
+    "explanation": "The sentence is a series of commands, so every item should be an active imperative verb: 'Read,' 'answer,' 'check.' 'Every question should be answered' shifts into passive voice, and 'you should check' shifts from the imperative into the indicative mood. Only the key keeps voice and mood consistent.",
+    "varied_dimension": "shift from active to passive voice; shift from imperative to indicative mood"
+  },
+  {
+    "id": "MLV2-G14",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Grammar, Usage",
+    "map_strand": "Phrases, Clauses, Agreement, Sentences",
+    "grade_target": 8,
+    "ccss": "L.8.1c",
+    "prompt": "Which sentence is written correctly?",
+    "choices": [
+      "If Carmen would have left home ten minutes earlier, she had caught the bus to the game.",
+      "If Carmen had left home ten minutes earlier, she had caught the bus to the game.",
+      "If Carmen would have left home ten minutes earlier, she would have caught the bus to the game.",
+      "If Carmen had left home ten minutes earlier, she would have caught the bus to the game."
+    ],
+    "correct_answer": "If Carmen had left home ten minutes earlier, she would have caught the bus to the game.",
+    "error_sites": [
+      "\"would have left\" used in the if-clause of a past contrary-to-fact conditional instead of \"had left\"",
+      "\"had caught\" used in the result clause instead of the conditional \"would have caught\""
+    ],
+    "student_error": {
+      "If Carmen would have left home ten minutes earlier, she had caught the bus to the game.": "swaps the two verb forms, putting 'would have' in the if-clause and 'had' in the result clause",
+      "If Carmen had left home ten minutes earlier, she had caught the bus to the game.": "uses the same past perfect form in both clauses to keep the tenses matching",
+      "If Carmen would have left home ten minutes earlier, she would have caught the bus to the game.": "uses 'would have' in both clauses, as is common in speech"
+    },
+    "explanation": "For an imagined past situation that did not happen, the if-clause uses the past perfect ('had left') and the result clause uses 'would have' plus the past participle ('would have caught'). 'Would have' does not belong in the if-clause, and 'had caught' states a fact rather than an imagined result. Only the key uses the conditional mood correctly in both clauses.",
+    "varied_dimension": "conditional mood in the if-clause; conditional mood in the result clause"
+  },
+  {
+    "id": "MLV2-C01",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "For her book report, Talia chose a novel called Why the Moon Is Always Following Us.",
+      "For her book report, Talia chose a novel called Why the Moon is Always Following Us.",
+      "For her book report, Talia chose a novel called Why The Moon is Always Following Us.",
+      "For her book report, Talia chose a novel called Why The Moon Is Always Following Us."
+    ],
+    "correct_answer": "For her book report, Talia chose a novel called Why the Moon Is Always Following Us.",
+    "error_sites": [
+      "article \"the\" capitalized in the middle of the title",
+      "short verb \"Is\" lowercased in the title"
+    ],
+    "student_error": {
+      "For her book report, Talia chose a novel called Why the Moon is Always Following Us.": "lowercases every short word in a title, including the verb 'Is'",
+      "For her book report, Talia chose a novel called Why The Moon is Always Following Us.": "decides by feel rather than by part of speech, capitalizing the article and lowercasing the short verb",
+      "For her book report, Talia chose a novel called Why The Moon Is Always Following Us.": "capitalizes every word of a title"
+    },
+    "explanation": "In a title, the first word and all important words are capitalized, including short verbs such as 'Is.' Articles such as 'the' stay lowercase unless they are the first or last word. Only the key capitalizes 'Is' and keeps 'the' lowercase.",
+    "cap_rule": "titles of works: a short article inside the title stays lowercase, but a short verb is capitalized"
+  },
+  {
+    "id": "MLV2-C02",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "In social studies, our class read part of the Bill of rights while we studied the American Revolution.",
+      "In social studies, our class read part of the Bill of rights while we studied the American revolution.",
+      "In social studies, our class read part of the Bill of Rights while we studied the American Revolution.",
+      "In social studies, our class read part of the Bill of Rights while we studied the American revolution."
+    ],
+    "correct_answer": "In social studies, our class read part of the Bill of Rights while we studied the American Revolution.",
+    "error_sites": [
+      "\"Rights\" lowercased in the name of the historical document",
+      "\"Revolution\" lowercased in the name of the historical event"
+    ],
+    "student_error": {
+      "In social studies, our class read part of the Bill of rights while we studied the American Revolution.": "capitalizes only the first word of the document name, treating 'rights' as an ordinary word",
+      "In social studies, our class read part of the Bill of rights while we studied the American revolution.": "capitalizes only the first word of each multi-word historical name",
+      "In social studies, our class read part of the Bill of Rights while we studied the American revolution.": "capitalizes 'American' as a proper adjective but treats 'revolution' as a common noun"
+    },
+    "explanation": "The names of historical documents and events are proper nouns, so every important word is capitalized: 'Bill of Rights' and 'American Revolution.' Only the key capitalizes both.",
+    "cap_rule": "every important word in the name of a historical document or event"
+  },
+  {
+    "id": "MLV2-C03",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "After two days of driving south, the Lindqvist family finally reached the southwest, where Grandma owns a small ranch.",
+      "After two days of driving south, the Lindqvist family finally reached the Southwest, where Grandma owns a small ranch.",
+      "After two days of driving South, the Lindqvist family finally reached the Southwest, where Grandma owns a small ranch.",
+      "After two days of driving South, the Lindqvist family finally reached the southwest, where Grandma owns a small ranch."
+    ],
+    "correct_answer": "After two days of driving south, the Lindqvist family finally reached the Southwest, where Grandma owns a small ranch.",
+    "error_sites": [
+      "compass direction \"south\" wrongly capitalized",
+      "region name \"Southwest\" wrongly lowercased"
+    ],
+    "student_error": {
+      "After two days of driving south, the Lindqvist family finally reached the southwest, where Grandma owns a small ranch.": "thinks direction words are never capitalized, even when they name a region",
+      "After two days of driving South, the Lindqvist family finally reached the Southwest, where Grandma owns a small ranch.": "thinks direction words are always capitalized, even when they only tell which way someone moved",
+      "After two days of driving South, the Lindqvist family finally reached the southwest, where Grandma owns a small ranch.": "cannot tell a direction from a region, so gets the rule backwards in both places"
+    },
+    "explanation": "'Driving south' tells the direction of travel, so 'south' is lowercase. 'The Southwest' names a region of the country (the place the family reached), so it is capitalized. Only the key gets both right.",
+    "cap_rule": "a region name is capitalized; a compass direction is not"
+  },
+  {
+    "id": "MLV2-C04",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Last weekend my Uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.",
+      "Last weekend my uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.",
+      "Last weekend my Uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.",
+      "Last weekend my uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us."
+    ],
+    "correct_answer": "Last weekend my uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.",
+    "error_sites": [
+      "\"uncle\" after the possessive \"my\" wrongly capitalized",
+      "\"grandmother\" after the possessive \"my\" wrongly capitalized"
+    ],
+    "student_error": {
+      "Last weekend my Uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.": "capitalizes 'Uncle' because family titles are sometimes capitalized, missing the 'my' before it",
+      "Last weekend my uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.": "sees 'Grandpa' capitalized and capitalizes 'grandmother' the same way",
+      "Last weekend my Uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.": "capitalizes every family word in the sentence"
+    },
+    "explanation": "A family word is capitalized only when it is used as a name, as 'Grandpa' is here. After a possessive such as 'my,' it is a common noun and stays lowercase: 'my uncle,' 'my grandmother.' Only the key keeps both lowercase.",
+    "cap_rule": "a family word after a possessive is lowercase; a family word used as a name is capitalized"
+  },
+  {
+    "id": "MLV2-C05",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 5,
+    "ccss": "L.5.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "On Mondays I have science first, then spanish, then math, and english is my last class of the day.",
+      "On Mondays I have science first, then Spanish, then math, and English is my last class of the day.",
+      "On Mondays I have science first, then spanish, then math, and English is my last class of the day.",
+      "On Mondays I have science first, then Spanish, then math, and english is my last class of the day."
+    ],
+    "correct_answer": "On Mondays I have science first, then Spanish, then math, and English is my last class of the day.",
+    "error_sites": [
+      "the language \"Spanish\" lowercased as a school subject",
+      "the language \"English\" lowercased as a school subject"
+    ],
+    "student_error": {
+      "On Mondays I have science first, then spanish, then math, and english is my last class of the day.": "treats all school subjects the same and lowercases them all",
+      "On Mondays I have science first, then spanish, then math, and English is my last class of the day.": "lowercases 'spanish' because it sits in a list between lowercase subjects",
+      "On Mondays I have science first, then Spanish, then math, and english is my last class of the day.": "lowercases 'english' because it is named as a class, like 'math'"
+    },
+    "explanation": "School subjects such as 'science' and 'math' are lowercase, but subjects named for a language are always capitalized because languages are proper nouns: 'Spanish' and 'English.' Only the key capitalizes both languages.",
+    "cap_rule": "a language used as a school subject is capitalized; other school subjects are not"
+  },
+  {
+    "id": "MLV2-C06",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Priya's family lives in an old Victorian house, but every room inside is filled with Modern furniture.",
+      "Priya's family lives in an old victorian house, but every room inside is filled with Modern furniture.",
+      "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture.",
+      "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture."
+    ],
+    "correct_answer": "Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture.",
+    "error_sites": [
+      "proper adjective \"Victorian\" lowercased",
+      "ordinary adjective \"modern\" wrongly capitalized"
+    ],
+    "student_error": {
+      "Priya's family lives in an old Victorian house, but every room inside is filled with Modern furniture.": "treats 'Modern' as the name of a style, the same way 'Victorian' is",
+      "Priya's family lives in an old victorian house, but every room inside is filled with Modern furniture.": "cannot tell which style word comes from a proper noun, so gets both backwards",
+      "Priya's family lives in an old victorian house, but every room inside is filled with modern furniture.": "treats all describing words for styles as ordinary adjectives, not seeing that 'Victorian' comes from a name"
+    },
+    "explanation": "'Victorian' is a proper adjective formed from a proper noun (Queen Victoria), so it is capitalized. 'Modern' is an ordinary adjective, so it stays lowercase. Only the key gets both right.",
+    "cap_rule": "a proper adjective formed from a name is capitalized; an ordinary descriptive adjective is not"
+  },
+  {
+    "id": "MLV2-C07",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+      "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+      "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"",
+      "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\""
+    ],
+    "correct_answer": "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+    "error_sites": [
+      "first word of the quoted complete sentence \"Keep\" lowercased",
+      "first word of the quoted fragment \"the\" wrongly capitalized"
+    ],
+    "student_error": {
+      "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"": "lowercases the quotation because it comes in the middle of the larger sentence",
+      "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"": "capitalizes the first word inside every set of quotation marks",
+      "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"": "cannot tell a quoted full sentence from a quoted phrase, so reverses the rule in both places"
+    },
+    "explanation": "A quotation that is a complete sentence, introduced by 'told us,' begins with a capital letter: 'Keep.' A quoted fragment that blends into the writer's own sentence ('called our passing \"the best...\"') begins with a lowercase letter. Only the key gets both right.",
+    "cap_rule": "a quoted complete sentence begins with a capital; a quoted fragment worked into the sentence does not"
+  },
+  {
+    "id": "MLV2-C08",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer Crackers.",
+      "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer crackers.",
+      "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer Crackers.",
+      "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer crackers."
+    ],
+    "correct_answer": "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer crackers.",
+    "error_sites": [
+      "product noun \"sunscreen\" capitalized after the brand name",
+      "product noun \"crackers\" capitalized after the brand name"
+    ],
+    "student_error": {
+      "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer Crackers.": "treats the product word as part of every brand name",
+      "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer crackers.": "continues the run of capitals in 'Sunny Day' onto the next word",
+      "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer Crackers.": "capitalizes 'Crackers' as if 'Trailblazer Crackers' were one name"
+    },
+    "explanation": "A brand name is a proper noun and is capitalized ('Sunny Day,' 'Trailblazer'), but the common noun naming the product ('sunscreen,' 'crackers') is not part of the name and stays lowercase. Only the key keeps both product nouns lowercase.",
+    "cap_rule": "a brand name is capitalized; the common product noun after it is not"
+  },
+  {
+    "id": "MLV2-C09",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the river.",
+      "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the river.",
+      "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the River.",
+      "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the River."
+    ],
+    "correct_answer": "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the river.",
+    "error_sites": [
+      "generic \"park\" used alone wrongly capitalized",
+      "generic \"river\" used alone wrongly capitalized"
+    ],
+    "student_error": {
+      "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the river.": "capitalizes 'Park' because it refers back to the named park",
+      "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the River.": "keeps capitalizing 'park' and 'river' because both words were capitalized in the full name",
+      "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the River.": "capitalizes 'River' because it means the Hollis River"
+    },
+    "explanation": "'Hollis River Park' is a full proper name, so each word is capitalized. When 'park' or 'river' is used by itself later, it is a common noun and stays lowercase, even though it refers to the same place. Only the key keeps both lowercase.",
+    "cap_rule": "a generic word used alone stays lowercase even when it was part of a proper name earlier in the sentence"
+  },
+  {
+    "id": "MLV2-C10",
+    "family": "map",
+    "map_subject": "language_usage",
+    "map_area": "Language: Understand, Edit for Mechanics",
+    "map_strand": "Capitalization",
+    "grade_target": 6,
+    "ccss": "L.6.2",
+    "prompt": "Which sentence is capitalized correctly?",
+    "choices": [
+      "My sister volunteers with the Friends of the Library on weekends, and my brother just joined the Lakeview Chess club.",
+      "My sister volunteers with the Friends of the library on weekends, and my brother just joined the Lakeview Chess Club.",
+      "My sister volunteers with the Friends of the Library on weekends, and my brother just joined the Lakeview Chess Club.",
+      "My sister volunteers with the Friends of the library on weekends, and my brother just joined the Lakeview Chess club."
+    ],
+    "correct_answer": "My sister volunteers with the Friends of the Library on weekends, and my brother just joined the Lakeview Chess Club.",
+    "error_sites": [
+      "\"Library\" lowercased inside the organization name",
+      "\"Club\" lowercased inside the organization name"
+    ],
+    "student_error": {
+      "My sister volunteers with the Friends of the Library on weekends, and my brother just joined the Lakeview Chess club.": "treats 'club' at the end of the name as an ordinary word",
+      "My sister volunteers with the Friends of the library on weekends, and my brother just joined the Lakeview Chess Club.": "thinks 'library' is just a building, not part of the group's name",
+      "My sister volunteers with the Friends of the library on weekends, and my brother just joined the Lakeview Chess club.": "lowercases the generic word at the end of each organization's name"
+    },
+    "explanation": "The full name of an organization is a proper noun, so every important word is capitalized, including generic words that are part of the name: 'Friends of the Library' and 'Lakeview Chess Club.' The short words 'of' and 'the' stay lowercase. Only the key capitalizes both.",
+    "cap_rule": "every important word in the name of an organization or club, including a generic word that is part of the name"
+  }
+]

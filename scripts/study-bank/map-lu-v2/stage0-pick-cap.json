@@ -1,0 +1,226 @@
+[
+ {
+  "id": "MLV2-C01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "For her book report, Talia chose a novel called Why the Moon Is Always Following Us.",
+   "For her book report, Talia chose a novel called Why the Moon is Always Following Us.",
+   "For her book report, Talia chose a novel called Why The Moon is Always Following Us.",
+   "For her book report, Talia chose a novel called Why The Moon Is Always Following Us."
+  ],
+  "correct_answer": "For her book report, Talia chose a novel called Why the Moon Is Always Following Us.",
+  "error_sites": [
+   "article \"the\" capitalized in the middle of the title",
+   "short verb \"Is\" lowercased in the title"
+  ],
+  "student_error": {
+   "For her book report, Talia chose a novel called Why the Moon is Always Following Us.": "lowercases every short word in a title, including the verb 'Is'",
+   "For her book report, Talia chose a novel called Why The Moon is Always Following Us.": "decides by feel rather than by part of speech, capitalizing the article and lowercasing the short verb",
+   "For her book report, Talia chose a novel called Why The Moon Is Always Following Us.": "capitalizes every word of a title"
+  },
+  "explanation": "In a title, the first word and all important words are capitalized, including short verbs such as 'Is.' Articles such as 'the' stay lowercase unless they are the first or last word. Only the key capitalizes 'Is' and keeps 'the' lowercase.",
+  "cap_rule": "titles of works: a short article inside the title stays lowercase, but a short verb is capitalized"
+ },
+ {
+  "id": "MLV2-C02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "In class, we read the Bill of rights while we studied the American Revolution.",
+   "In class, we read the Bill of rights while we studied the American revolution.",
+   "In class, we read the Bill of Rights while we studied the American Revolution.",
+   "In class, we read the Bill of Rights while we studied the American revolution."
+  ],
+  "correct_answer": "In class, we read the Bill of Rights while we studied the American Revolution.",
+  "error_sites": [
+   "\"Rights\" lowercased in the name of the historical document",
+   "\"Revolution\" lowercased in the name of the historical event"
+  ],
+  "student_error": {
+   "In class, we read the Bill of rights while we studied the American Revolution.": "capitalizes only the first word of the document name, treating 'rights' as an ordinary word",
+   "In class, we read the Bill of rights while we studied the American revolution.": "capitalizes only the first word of each multi-word historical name",
+   "In class, we read the Bill of Rights while we studied the American revolution.": "capitalizes 'American' as a proper adjective but treats 'revolution' as a common noun"
+  },
+  "explanation": "The names of historical documents and events are proper nouns, so every important word is capitalized: 'Bill of Rights' and 'American Revolution.' Only the key capitalizes both.",
+  "cap_rule": "every important word in the name of a historical document or event"
+ },
+ {
+  "id": "MLV2-C03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "After two days of driving south, the Lindqvist family reached the southwest, where Grandma owns a ranch.",
+   "After two days of driving south, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+   "After two days of driving South, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+   "After two days of driving South, the Lindqvist family reached the southwest, where Grandma owns a ranch."
+  ],
+  "correct_answer": "After two days of driving south, the Lindqvist family reached the Southwest, where Grandma owns a ranch.",
+  "error_sites": [
+   "compass direction \"south\" wrongly capitalized",
+   "region name \"Southwest\" wrongly lowercased"
+  ],
+  "student_error": {
+   "After two days of driving south, the Lindqvist family reached the southwest, where Grandma owns a ranch.": "thinks direction words are never capitalized, even when they name a region",
+   "After two days of driving South, the Lindqvist family reached the Southwest, where Grandma owns a ranch.": "thinks direction words are always capitalized, even when they only tell which way someone moved",
+   "After two days of driving South, the Lindqvist family reached the southwest, where Grandma owns a ranch.": "cannot tell a direction from a region, so gets the rule backwards in both places"
+  },
+  "explanation": "'Driving south' tells the direction of travel, so 'south' is lowercase. 'The Southwest' names a region of the country (the place the family reached), so it is capitalized. Only the key gets both right.",
+  "cap_rule": "a region name is capitalized; a compass direction is not"
+ },
+ {
+  "id": "MLV2-C04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Last weekend my Uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.",
+   "Last weekend my uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.",
+   "Last weekend my Uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.",
+   "Last weekend my uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us."
+  ],
+  "correct_answer": "Last weekend my uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.",
+  "error_sites": [
+   "\"uncle\" after the possessive \"my\" wrongly capitalized",
+   "\"grandmother\" after the possessive \"my\" wrongly capitalized"
+  ],
+  "student_error": {
+   "Last weekend my Uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.": "capitalizes 'Uncle' because family titles are sometimes capitalized, missing the 'my' before it",
+   "Last weekend my uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.": "sees 'Grandpa' capitalized and capitalizes 'grandmother' the same way",
+   "Last weekend my Uncle drove Grandpa and me to the lake, and my Grandmother packed lunch for all three of us.": "capitalizes every family word in the sentence"
+  },
+  "explanation": "A family word is capitalized only when it is used as a name, as 'Grandpa' is here. After a possessive such as 'my,' it is a common noun and stays lowercase: 'my uncle,' 'my grandmother.' Only the key keeps both lowercase.",
+  "cap_rule": "a family word after a possessive is lowercase; a family word used as a name is capitalized"
+ },
+ {
+  "id": "MLV2-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Priya lives in an old Victorian house filled with modern furniture and persian rugs.",
+   "Priya lives in an old victorian house filled with modern furniture and Persian rugs.",
+   "Priya lives in an old Victorian house filled with modern furniture and Persian rugs.",
+   "Priya lives in an old victorian house filled with modern furniture and persian rugs."
+  ],
+  "correct_answer": "Priya lives in an old Victorian house filled with modern furniture and Persian rugs.",
+  "error_sites": [
+   "proper adjective \"Victorian\" (from Queen Victoria) lowercased",
+   "proper adjective \"Persian\" (from Persia) lowercased"
+  ],
+  "student_error": {
+   "Priya lives in an old Victorian house filled with modern furniture and persian rugs.": "treats 'persian' as an ordinary word for a kind of rug, like 'modern' for a kind of furniture, not seeing it comes from a place name",
+   "Priya lives in an old victorian house filled with modern furniture and Persian rugs.": "treats 'victorian' as an ordinary style word, like 'modern,' not seeing it comes from a person's name",
+   "Priya lives in an old victorian house filled with modern furniture and persian rugs.": "thinks words describing styles of houses and furnishings are ordinary adjectives, so lowercases both proper adjectives along with 'modern'"
+  },
+  "explanation": "'Victorian' comes from a proper noun (Queen Victoria) and 'Persian' from a proper noun (Persia), so both are proper adjectives and are capitalized, even though they describe everyday things. 'Modern' is an ordinary adjective and stays lowercase in every option. Only the key capitalizes both proper adjectives.",
+  "cap_rule": "proper adjectives formed from a person's name or a place name are capitalized even when they describe everyday objects; an ordinary style adjective beside them is not"
+ },
+ {
+  "id": "MLV2-C07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+   "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+   "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"",
+   "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\""
+  ],
+  "correct_answer": "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"",
+  "error_sites": [
+   "first word of the quoted complete sentence \"Keep\" lowercased",
+   "first word of the quoted fragment \"the\" wrongly capitalized"
+  ],
+  "student_error": {
+   "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"the best he had seen all season.\"": "lowercases the quotation because it comes in the middle of the larger sentence",
+   "Coach Benson told us, \"Keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"": "capitalizes the first word inside every set of quotation marks",
+   "Coach Benson told us, \"keep your eyes on the ball,\" and later he called our passing \"The best he had seen all season.\"": "cannot tell a quoted full sentence from a quoted phrase, so reverses the rule in both places"
+  },
+  "explanation": "A quotation that is a complete sentence, introduced by 'told us,' begins with a capital letter: 'Keep.' A quoted fragment that blends into the writer's own sentence ('called our passing \"the best...\"') begins with a lowercase letter. Only the key gets both right.",
+  "cap_rule": "a quoted complete sentence begins with a capital; a quoted fragment worked into the sentence does not"
+ },
+ {
+  "id": "MLV2-C08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer Crackers.",
+   "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer crackers.",
+   "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer Crackers.",
+   "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer crackers."
+  ],
+  "correct_answer": "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer crackers.",
+  "error_sites": [
+   "product noun \"sunscreen\" capitalized after the brand name",
+   "product noun \"crackers\" capitalized after the brand name"
+  ],
+  "student_error": {
+   "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer Crackers.": "treats the product word as part of every brand name",
+   "For the camping trip, Mom packed a bottle of Sunny Day Sunscreen and a box of Trailblazer crackers.": "continues the run of capitals in 'Sunny Day' onto the next word",
+   "For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer Crackers.": "capitalizes 'Crackers' as if 'Trailblazer Crackers' were one name"
+  },
+  "explanation": "A brand name is a proper noun and is capitalized ('Sunny Day,' 'Trailblazer'), but the common noun naming the product ('sunscreen,' 'crackers') is not part of the name and stays lowercase. Only the key keeps both product nouns lowercase.",
+  "cap_rule": "a brand name is capitalized; the common product noun after it is not"
+ },
+ {
+  "id": "MLV2-C09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the river.",
+   "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the river.",
+   "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the River.",
+   "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the River."
+  ],
+  "correct_answer": "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the river.",
+  "error_sites": [
+   "generic \"park\" used alone wrongly capitalized",
+   "generic \"river\" used alone wrongly capitalized"
+  ],
+  "student_error": {
+   "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the river.": "capitalizes 'Park' because it refers back to the named park",
+   "Our school is across the street from Hollis River Park, so after class we often walk to the Park to watch the River.": "keeps capitalizing 'park' and 'river' because both words were capitalized in the full name",
+   "Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the River.": "capitalizes 'River' because it means the Hollis River"
+  },
+  "explanation": "'Hollis River Park' is a full proper name, so each word is capitalized. When 'park' or 'river' is used by itself later, it is a common noun and stays lowercase, even though it refers to the same place. Only the key keeps both lowercase.",
+  "cap_rule": "a generic word used alone stays lowercase even when it was part of a proper name earlier in the sentence"
+ }
+]

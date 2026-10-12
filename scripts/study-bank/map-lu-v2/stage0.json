@@ -1,0 +1,87 @@
+{
+ "spell": {
+  "stage0": "pass",
+  "n": 24,
+  "ids": [
+   "MLV2-S01",
+   "MLV2-S02",
+   "MLV2-S03",
+   "MLV2-S04",
+   "MLV2-S05",
+   "MLV2-S07",
+   "MLV2-S09",
+   "MLV2-S10",
+   "MLV2-S11",
+   "MLV2-S12",
+   "MLV2-S13",
+   "MLV2-S14",
+   "MLV2-S17",
+   "MLV2-S18",
+   "MLV2-S19",
+   "MLV2-S20",
+   "MLV2-S21",
+   "MLV2-S22",
+   "MLV2-S25",
+   "MLV2-S26",
+   "MLV2-S27",
+   "MLV2-S28",
+   "MLV2-S29",
+   "MLV2-S30"
+  ],
+  "t2": {
+   "best": "between(vowels)",
+   "score": 0.3125,
+   "fwP": 0.614846288427893
+  },
+  "longest": 4,
+  "shortest": 2
+ },
+ "punct": {
+  "stage0": "FAIL",
+  "why": "E3 key uniquely longest 3/10",
+  "n": 10,
+  "t2": {
+   "best": "unique_max(commas)",
+   "score": 0.325,
+   "fwP": 0.9460134966258436
+  }
+ },
+ "gram": {
+  "stage0": "FAIL",
+  "why": "E3 key uniquely longest 3/10",
+  "n": 10,
+  "t2": {
+   "best": "at_min(vowels)",
+   "score": 0.425,
+   "fwP": 0.2644338915271182
+  }
+ },
+ "cap": {
+  "stage0": "pass",
+  "n": 8,
+  "ids": [
+   "MLV2-C01",
+   "MLV2-C02",
+   "MLV2-C03",
+   "MLV2-C04",
+   "MLV2-C06",
+   "MLV2-C07",
+   "MLV2-C08",
+   "MLV2-C09"
+  ],
+  "t2": {
+   "best": "unique_min(caps)",
+   "score": 0.375,
+   "fwP": 0.564608847788053
+  },
+  "longest": 0,
+  "shortest": 0
+ },
+ "_pooled": {
+  "best": "between(vowels)",
+  "score": 0.296875,
+  "fwP": 0.6758310422394401,
+  "fires": false,
+  "n": 32
+ }
+}
