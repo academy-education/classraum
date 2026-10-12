@@ -15,7 +15,8 @@
 //             only measured.
 //
 // Reads  <builddir>/classraum-<doc>.src.html and the image sidecars in
-//        <builddir>/img2-ko or img2-en (__IMG_name__ tokens -> base64 data URIs).
+//        <builddir>/img2-ko or img2-en, or the doc's own img folder if DOCS sets one
+//        (__IMG_name__ tokens -> base64 data URIs).
 // Writes <outdir>/<clear file name>.pdf, and for the plain A4 screen build also
 //        <builddir>/classraum-<doc>.html (images inlined) and _split-<doc>-pN.png.
 //
@@ -38,18 +39,22 @@ const DOCS = {
   'academy-en': { lang: 'en', name: 'Classraum for Academies - EN' },
   'study-ko':   { lang: 'ko', name: 'Classraum Study 소개서 - KO' },
   'study-en':   { lang: 'en', name: 'Classraum Study - EN' },
+  // Rebuilt 2026-10-12 from the co-founder's final PDF; its screenshots are the ones
+  // embedded in that PDF, so they live in their own sidecar folder.
+  'sat-camps-en': { lang: 'en', name: 'Classraum SAT Camps - EN', img: 'img2-camps-en' },
 }
 if (!SP || !DOCS[DOC]) { console.error(`usage: _render-split.mjs <builddir> <${Object.keys(DOCS).join('|')}> [outdir]`); process.exit(2) }
 const OUT = OUT_ARG ?? SP
 mkdirSync(OUT, { recursive: true })
 const { lang, name } = DOCS[DOC]
+const IMG_DIR = DOCS[DOC].img ?? `img2-${lang}`
 const BLEED = !!process.env.BLEED
 const PRINT = !!(process.env.PRINT || process.env.PRINT16)
 const B5 = process.env.SIZE === 'b5'
 
 let html = readFileSync(`${SP}/classraum-${DOC}.src.html`, 'utf8')
 html = html.replace(/__IMG_([\w-]+)__/g, (_, n) => {
-  const f = `${SP}/img2-${lang}/${n}.b64`
+  const f = `${SP}/${IMG_DIR}/${n}.b64`
   if (!existsSync(f)) { console.error(`missing image sidecar: ${n}`); process.exitCode = 2; return '' }
   return 'data:image/jpeg;base64,' + readFileSync(f, 'utf8').replace(/\s+/g, '')
 })
