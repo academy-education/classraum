@@ -1,0 +1,722 @@
+[
+ {
+  "id": "MLV3-S01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe coach was pleased with the ____ of Maya's skills over the school year.",
+  "choices": [
+   "devellopment",
+   "development",
+   "devellopement",
+   "developement"
+  ],
+  "correct_answer": "development",
+  "spelling_pattern": "a single l in develop, and nothing added between develop and the suffix -ment",
+  "error_sites": [
+   "single l in develop",
+   "no e between develop and -ment"
+  ],
+  "student_error": {
+   "developement": "adds an e after develop, as if the base word were spelled develope",
+   "devellopment": "doubles the l, unsure which consonant in develop is doubled",
+   "devellopement": "doubles the l and also adds an e before -ment"
+  },
+  "explanation": "\"development\" is the correct spelling (single l in develop; no e between develop and -ment). \"developement\" adds an e after develop, as if the base word were spelled develope. \"devellopment\" doubles the l, unsure which consonant in develop is doubled. \"devellopement\" doubles the l and also adds an e before -ment.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nSam ____ knocked the glass of juice off the table with his elbow.",
+  "choices": [
+   "accidentally",
+   "acidentaly",
+   "accidentaly",
+   "acidentally"
+  ],
+  "correct_answer": "accidentally",
+  "spelling_pattern": "double c at the start and -al + -ly giving double l",
+  "error_sites": [
+   "double c after the a",
+   "double l where -al meets -ly"
+  ],
+  "student_error": {
+   "acidentally": "writes one c, missing the doubled consonant at the start",
+   "accidentaly": "adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental",
+   "acidentaly": "misses both doubled letters: one c and one l"
+  },
+  "explanation": "\"accidentally\" is the correct spelling (double c after the a; double l where -al meets -ly). \"acidentally\" writes one c, missing the doubled consonant at the start. \"accidentaly\" adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental. \"acidentaly\" misses both doubled letters: one c and one l.",
+  "key_length_profile": "longest"
+ },
+ {
+  "id": "MLV3-S04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe guard grew ____ when the stranger kept peeking through the window of the closed bank.",
+  "choices": [
+   "suspiscious",
+   "suspicous",
+   "suspiscous",
+   "suspicious"
+  ],
+  "correct_answer": "suspicious",
+  "spelling_pattern": "c alone spelling the s sound (not sc), and the i kept in -cious",
+  "error_sites": [
+   "c alone after suspi (no sc)",
+   "i before the suffix -ous"
+  ],
+  "student_error": {
+   "suspiscious": "adds an s before the c, writing sc as in science and conscious",
+   "suspicous": "drops the i of -cious, writing the ending as it sounds",
+   "suspiscous": "adds an s before the c and also drops the i before -ous"
+  },
+  "explanation": "\"suspicious\" is the correct spelling (c alone after suspi (no sc); i before the suffix -ous). \"suspiscious\" adds an s before the c, writing sc as in science and conscious. \"suspicous\" drops the i of -cious, writing the ending as it sounds. \"suspiscous\" adds an s before the c and also drops the i before -ous.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe ____ of one important step in the recipe made the cake fall flat.",
+  "choices": [
+   "omision",
+   "ommision",
+   "ommission",
+   "omission"
+  ],
+  "correct_answer": "omission",
+  "spelling_pattern": "single m from omit, and double s in -ssion",
+  "error_sites": [
+   "single m after o",
+   "double s in -ssion"
+  ],
+  "student_error": {
+   "ommission": "doubles the m, as in commission",
+   "omision": "writes one s, as in vision or decision",
+   "ommision": "doubles the m and also writes only one s"
+  },
+  "explanation": "\"omission\" is the correct spelling (single m after o; double s in -ssion). \"ommission\" doubles the m, as in commission. \"omision\" writes one s, as in vision or decision. \"ommision\" doubles the m and also writes only one s.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe old church has a small ____ where many of the town's first settlers are buried.",
+  "choices": [
+   "cemetery",
+   "cematary",
+   "cemetary",
+   "cematery"
+  ],
+  "correct_answer": "cemetery",
+  "spelling_pattern": "unstressed vowels in the second and third syllables (all e)",
+  "error_sites": [
+   "e in the second syllable",
+   "e in the -ery ending"
+  ],
+  "student_error": {
+   "cematery": "writes a for the unstressed e in the second syllable",
+   "cemetary": "writes the ending as -ary, like library or dictionary",
+   "cematary": "writes a for both unstressed e sounds"
+  },
+  "explanation": "\"cemetery\" is the correct spelling (e in the second syllable; e in the -ery ending). \"cematery\" writes a for the unstressed e in the second syllable. \"cemetary\" writes the ending as -ary, like library or dictionary. \"cematary\" writes a for both unstressed e sounds.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nWe wanted to swim this afternoon, but ____ the pool was closed for repairs.",
+  "choices": [
+   "unfortunantly",
+   "unfortunatly",
+   "unfortunately",
+   "unfortunantely"
+  ],
+  "correct_answer": "unfortunately",
+  "spelling_pattern": "the base word fortunate kept whole: no extra n before the t, and the final e kept before the consonant suffix -ly",
+  "error_sites": [
+   "no n before the t of fortunate",
+   "e of fortunate kept before -ly"
+  ],
+  "student_error": {
+   "unfortunantely": "adds an n before the t, as if the word were unfortunant + ly",
+   "unfortunatly": "drops the final e of fortunate before -ly",
+   "unfortunantly": "adds the n and also drops the e before -ly"
+  },
+  "explanation": "\"unfortunately\" is the correct spelling (no n before the t of fortunate; e of fortunate kept before -ly). \"unfortunantely\" adds an n before the t, as if the word were unfortunant + ly. \"unfortunatly\" drops the final e of fortunate before -ly. \"unfortunantly\" adds the n and also drops the e before -ly.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe school has clear rules against bullying and ____ of any kind.",
+  "choices": [
+   "harrasment",
+   "harasment",
+   "harassment",
+   "harrassment"
+  ],
+  "correct_answer": "harassment",
+  "spelling_pattern": "single r and double s",
+  "error_sites": [
+   "single r",
+   "double s"
+  ],
+  "student_error": {
+   "harrassment": "doubles the r, as in embarrass",
+   "harasment": "writes one s before -ment",
+   "harrasment": "doubles the r and also writes one s"
+  },
+  "explanation": "\"harassment\" is the correct spelling (single r; double s). \"harrassment\" doubles the r, as in embarrass. \"harasment\" writes one s before -ment. \"harrasment\" doubles the r and also writes one s.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nUse a ____ marker for the sign so the rain will not wash the words away.",
+  "choices": [
+   "permenent",
+   "permanant",
+   "permanent",
+   "permenant"
+  ],
+  "correct_answer": "permanent",
+  "spelling_pattern": "two unstressed vowels: the middle a and the -ent ending",
+  "error_sites": [
+   "unstressed a in the second syllable",
+   "-ent ending"
+  ],
+  "student_error": {
+   "permenent": "writes e for the unstressed a sound in the middle syllable",
+   "permanant": "uses -ant instead of -ent",
+   "permenant": "writes e for the middle a and also ends the word in -ant"
+  },
+  "explanation": "\"permanent\" is the correct spelling (unstressed a in the second syllable; -ent ending). \"permenent\" writes e for the unstressed a sound in the middle syllable. \"permanant\" uses -ant instead of -ent. \"permenant\" writes e for the middle a and also ends the word in -ant.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nNora wore a bright scarf as an ____ with her plain winter coat.",
+  "choices": [
+   "accessory",
+   "accesory",
+   "acesory",
+   "acessory"
+  ],
+  "correct_answer": "accessory",
+  "spelling_pattern": "two different doubled consonants: cc and ss",
+  "error_sites": [
+   "double c after a",
+   "double s before -ory"
+  ],
+  "student_error": {
+   "acessory": "writes one c, missing the doubled consonant at the start",
+   "accesory": "writes one s, doubling only the c",
+   "acesory": "writes a single c and a single s"
+  },
+  "explanation": "\"accessory\" is the correct spelling (double c after a; double s before -ory). \"acessory\" writes one c, missing the doubled consonant at the start. \"accesory\" writes one s, doubling only the c. \"acesory\" writes a single c and a single s.",
+  "key_length_profile": "longest"
+ },
+ {
+  "id": "MLV3-S16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe student ____ voted to hold the spring dance in the school gym.",
+  "choices": [
+   "comitee",
+   "commitee",
+   "comittee",
+   "committee"
+  ],
+  "correct_answer": "committee",
+  "spelling_pattern": "three doubled letters (m, t and e); the doubled m and t are tested",
+  "error_sites": [
+   "double m",
+   "double t"
+  ],
+  "student_error": {
+   "comittee": "writes a single m, keeping only the more obvious double t",
+   "commitee": "writes a single t, as in commit",
+   "comitee": "writes a single m and a single t, keeping only the double e"
+  },
+  "explanation": "\"committee\" is the correct spelling (double m; double t). \"comittee\" writes a single m, keeping only the more obvious double t. \"commitee\" writes a single t, as in commit. \"comitee\" writes a single m and a single t, keeping only the double e.",
+  "key_length_profile": "longest"
+ },
+ {
+  "id": "MLV3-S17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nFrom the dark clouds, it was ____ that a big storm was coming soon.",
+  "choices": [
+   "apparent",
+   "apperent",
+   "apparant",
+   "apperant"
+  ],
+  "correct_answer": "apparent",
+  "spelling_pattern": "unstressed a after the double p, and the -ent ending",
+  "error_sites": [
+   "a after the double p",
+   "-ent ending"
+  ],
+  "student_error": {
+   "apperent": "writes e for the unstressed a after pp",
+   "apparant": "uses -ant instead of -ent",
+   "apperant": "writes e after pp and also ends the word in -ant"
+  },
+  "explanation": "\"apparent\" is the correct spelling (a after the double p; -ent ending). \"apperent\" writes e for the unstressed a after pp. \"apparant\" uses -ant instead of -ent. \"apperant\" writes e after pp and also ends the word in -ant.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe new store is ____ for us because it is only a short walk from our house.",
+  "choices": [
+   "convienent",
+   "convenient",
+   "convienient",
+   "convenent"
+  ],
+  "correct_answer": "convenient",
+  "spelling_pattern": "the ie sits only in the -ient ending, not after conv-",
+  "error_sites": [
+   "e alone after conv (no i before it)",
+   "i in the -ient ending"
+  ],
+  "student_error": {
+   "convienient": "adds an i after conv, writing ie twice as in the -ient ending",
+   "convenent": "drops the i of -ient, writing the ending as it is often said",
+   "convienent": "moves the i: adds one after conv and drops the one in -ient"
+  },
+  "explanation": "\"convenient\" is the correct spelling (e alone after conv (no i before it); i in the -ient ending). \"convienient\" adds an i after conv, writing ie twice as in the -ient ending. \"convenent\" drops the i of -ient, writing the ending as it is often said. \"convienent\" moves the i: adds one after conv and drops the one in -ient.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe flood was ____ for the farmers, who lost almost all of their crops.",
+  "choices": [
+   "disasterous",
+   "dissasterous",
+   "disastrous",
+   "dissastrous"
+  ],
+  "correct_answer": "disastrous",
+  "spelling_pattern": "single s after di, and disaster dropping its e before -ous",
+  "error_sites": [
+   "single s after di",
+   "no e between t and r before -ous"
+  ],
+  "student_error": {
+   "dissastrous": "doubles the s, as if dis- met a root starting with s, as in dissatisfied",
+   "disasterous": "keeps the e of disaster before -ous",
+   "dissasterous": "doubles the s and also keeps the e of disaster"
+  },
+  "explanation": "\"disastrous\" is the correct spelling (single s after di; no e between t and r before -ous). \"dissastrous\" doubles the s, as if dis- met a root starting with s, as in dissatisfied. \"disasterous\" keeps the e of disaster before -ous. \"dissasterous\" doubles the s and also keeps the e of disaster.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S23",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nDoctors ____ children against measles to protect them from the disease.",
+  "choices": [
+   "innocculate",
+   "inoculate",
+   "inocculate",
+   "innoculate"
+  ],
+  "correct_answer": "inoculate",
+  "spelling_pattern": "single n and single c, where students expect doubled consonants",
+  "error_sites": [
+   "single n after i",
+   "single c"
+  ],
+  "student_error": {
+   "innoculate": "doubles the n, as if the prefix in- met a root starting with n",
+   "inocculate": "doubles the c, as in occur or accurate",
+   "innocculate": "doubles both the n and the c"
+  },
+  "explanation": "\"inoculate\" is the correct spelling (single n after i; single c). \"innoculate\" doubles the n, as if the prefix in- met a root starting with n. \"inocculate\" doubles the c, as in occur or accurate. \"innocculate\" doubles both the n and the c.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S24",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nMaya felt ____ after she said something unkind to her best friend at lunch.",
+  "choices": [
+   "regrettful",
+   "regrettfull",
+   "regretfull",
+   "regretful"
+  ],
+  "correct_answer": "regretful",
+  "spelling_pattern": "no consonant doubling before the consonant suffix -ful, and -ful spelled with one l",
+  "error_sites": [
+   "single t before the suffix -ful",
+   "single l in the suffix -ful"
+  ],
+  "student_error": {
+   "regrettful": "doubles the t as in regretted and regretting, though -ful starts with a consonant",
+   "regretfull": "spells the suffix -ful like the word full",
+   "regrettfull": "doubles the t and also writes the suffix as -full"
+  },
+  "explanation": "\"regretful\" is the correct spelling (single t before the suffix -ful; single l in the suffix -ful). \"regrettful\" doubles the t as in regretted and regretting, though -ful starts with a consonant. \"regretfull\" spells the suffix -ful like the word full. \"regrettfull\" doubles the t and also writes the suffix as -full.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe store offers a ____ that the blender will work for at least two years.",
+  "choices": [
+   "guarrantee",
+   "garantee",
+   "guarantee",
+   "garrantee"
+  ],
+  "correct_answer": "guarantee",
+  "spelling_pattern": "silent u after g, and a single r",
+  "error_sites": [
+   "silent u after g",
+   "single r"
+  ],
+  "student_error": {
+   "garantee": "drops the silent u that keeps the g hard",
+   "guarrantee": "doubles the r, as in warranty",
+   "garrantee": "drops the silent u and also doubles the r"
+  },
+  "explanation": "\"guarantee\" is the correct spelling (silent u after g; single r). \"garantee\" drops the silent u that keeps the g hard. \"guarrantee\" doubles the r, as in warranty. \"garrantee\" drops the silent u and also doubles the r.",
+  "key_length_profile": "middle"
+ },
+ {
+  "id": "MLV3-S27",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe two poems share a topic, but their styles are completely ____.",
+  "choices": [
+   "dissimiliar",
+   "dissimmilar",
+   "dissimmiliar",
+   "dissimilar"
+  ],
+  "correct_answer": "dissimilar",
+  "spelling_pattern": "similar inside dis-: one m, and the ending -lar with no extra i",
+  "error_sites": [
+   "single m after dissi",
+   "no i before the final -ar"
+  ],
+  "student_error": {
+   "dissimmilar": "doubles the m of similar, as in simmer or summer",
+   "dissimiliar": "adds an i before -ar, as in familiar",
+   "dissimmiliar": "doubles the m and also adds an i before -ar"
+  },
+  "explanation": "\"dissimilar\" is the correct spelling (single m after dissi; no i before the final -ar). \"dissimmilar\" doubles the m of similar, as in simmer or summer. \"dissimiliar\" adds an i before -ar, as in familiar. \"dissimmiliar\" doubles the m and also adds an i before -ar.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S29",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe weather report was ____ because it promised sun, but it rained all day.",
+  "choices": [
+   "inaccurrate",
+   "inaccurate",
+   "innaccurrate",
+   "innaccurate"
+  ],
+  "correct_answer": "inaccurate",
+  "spelling_pattern": "prefix in- + accurate: the n is not doubled because the root starts with a, and accurate has one r",
+  "error_sites": [
+   "single n in the prefix in-",
+   "single r in accurate"
+  ],
+  "student_error": {
+   "innaccurate": "doubles the n, as if in- met a root starting with n, as in innumerable",
+   "inaccurrate": "doubles the r, as in occur and current",
+   "innaccurrate": "doubles both the n and the r"
+  },
+  "explanation": "\"inaccurate\" is the correct spelling (single n in the prefix in-; single r in accurate). \"innaccurate\" doubles the n, as if in- met a root starting with n, as in innumerable. \"inaccurrate\" doubles the r, as in occur and current. \"innaccurrate\" doubles both the n and the r.",
+  "key_length_profile": "shortest"
+ },
+ {
+  "id": "MLV3-S31",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nOmar finished the long race after falling twice, which showed his great ____.",
+  "choices": [
+   "persaverence",
+   "perseverance",
+   "perseverence",
+   "persaverance"
+  ],
+  "correct_answer": "perseverance",
+  "spelling_pattern": "unstressed e in the second syllable, and the -ance ending (not -ence)",
+  "error_sites": [
+   "e in the second syllable (perse-)",
+   "-ance ending"
+  ],
+  "student_error": {
+   "perseverence": "uses -ence instead of -ance, since the two endings sound the same",
+   "persaverance": "writes a for the unstressed e in the second syllable",
+   "persaverence": "writes a in the second syllable and also uses -ence"
+  },
+  "explanation": "\"perseverance\" is the correct spelling (e in the second syllable (perse-); -ance ending). \"perseverence\" uses -ence instead of -ance, since the two endings sound the same. \"persaverance\" writes a for the unstressed e in the second syllable. \"persaverence\" writes a in the second syllable and also uses -ence.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S33",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nA good map was ____ to the explorers as they crossed the unknown desert.",
+  "choices": [
+   "indispensable",
+   "indespensable",
+   "indispensible",
+   "indespensible"
+  ],
+  "correct_answer": "indispensable",
+  "spelling_pattern": "unstressed i in the second syllable, and -able vs -ible",
+  "error_sites": [
+   "i in the second syllable",
+   "-able ending"
+  ],
+  "student_error": {
+   "indespensable": "writes e for the unstressed i in the second syllable",
+   "indispensible": "uses -ible instead of -able, as in sensible",
+   "indespensible": "writes e in the second syllable and also uses -ible"
+  },
+  "explanation": "\"indispensable\" is the correct spelling (i in the second syllable; -able ending). \"indespensable\" writes e for the unstressed i in the second syllable. \"indispensible\" uses -ible instead of -able, as in sensible. \"indespensible\" writes e in the second syllable and also uses -ible.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S34",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe police ____ spoke to reporters about the new safety plan for the city.",
+  "choices": [
+   "commisioner",
+   "comisioner",
+   "commissioner",
+   "comissioner"
+  ],
+  "correct_answer": "commissioner",
+  "spelling_pattern": "double m after co and double s in -ssion",
+  "error_sites": [
+   "double m after co",
+   "double s before -ioner"
+  ],
+  "student_error": {
+   "comissioner": "writes a single m after co, doubling only the s",
+   "commisioner": "writes one s, as in vision",
+   "comisioner": "writes a single m and a single s"
+  },
+  "explanation": "\"commissioner\" is the correct spelling (double m after co; double s before -ioner). \"comissioner\" writes a single m after co, doubling only the s. \"commisioner\" writes one s, as in vision. \"comisioner\" writes a single m and a single s.",
+  "key_length_profile": "longest"
+ },
+ {
+  "id": "MLV3-S36",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe class discussed the ____ of a leader who breaks the same rules he makes for others.",
+  "choices": [
+   "hipocrisy",
+   "hypocrisy",
+   "hipocrasy",
+   "hypocrasy"
+  ],
+  "correct_answer": "hypocrisy",
+  "spelling_pattern": "y spelling the short i sound, and the i in the -crisy ending",
+  "error_sites": [
+   "y in the first syllable",
+   "i in the -crisy ending"
+  ],
+  "student_error": {
+   "hypocrasy": "writes a for the i of -crisy, as in democracy",
+   "hipocrisy": "spells the short i sound with i instead of y",
+   "hipocrasy": "writes i for the y and also writes a in the -crisy ending"
+  },
+  "explanation": "\"hypocrisy\" is the correct spelling (y in the first syllable; i in the -crisy ending). \"hypocrasy\" writes a for the i of -crisy, as in democracy. \"hipocrisy\" spells the short i sound with i instead of y. \"hipocrasy\" writes i for the y and also writes a in the -crisy ending.",
+  "key_length_profile": "equal"
+ },
+ {
+  "id": "MLV3-S37",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nThe bright ____ lights in the hallway hummed softly all day long.",
+  "choices": [
+   "fluresent",
+   "fluoresent",
+   "fluorescent",
+   "flurescent"
+  ],
+  "correct_answer": "fluorescent",
+  "spelling_pattern": "the vowel pair uo after fl, and the sc spelling of the s sound",
+  "error_sites": [
+   "uo after fl",
+   "sc in -escent"
+  ],
+  "student_error": {
+   "flurescent": "drops the o of uo, writing the word as it is often said (flur-)",
+   "fluoresent": "drops the c of -scent, writing the s sound with s alone",
+   "fluresent": "drops the o and also drops the c"
+  },
+  "explanation": "\"fluorescent\" is the correct spelling (uo after fl; sc in -escent). \"flurescent\" drops the o of uo, writing the word as it is often said (flur-). \"fluoresent\" drops the c of -scent, writing the s sound with s alone. \"fluresent\" drops the o and also drops the c.",
+  "key_length_profile": "longest"
+ },
+ {
+  "id": "MLV3-S39",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "word",
+  "prompt": "Which word correctly completes the sentence?\n\nNora is a ____ student who reads every answer twice before handing in her test.",
+  "choices": [
+   "consientous",
+   "consientious",
+   "conscientous",
+   "conscientious"
+  ],
+  "correct_answer": "conscientious",
+  "spelling_pattern": "sc spelling the sh sound, and the i in -ious",
+  "error_sites": [
+   "sc after con",
+   "i before -ous"
+  ],
+  "student_error": {
+   "consientious": "drops the c of sc, writing the sh sound with s",
+   "conscientous": "drops the i before -ous, writing the word as it is said",
+   "consientous": "drops the c and also drops the i before -ous"
+  },
+  "explanation": "\"conscientious\" is the correct spelling (sc after con; i before -ous). \"consientious\" drops the c of sc, writing the sh sound with s. \"conscientous\" drops the i before -ous, writing the word as it is said. \"consientous\" drops the c and also drops the i before -ous.",
+  "key_length_profile": "longest"
+ }
+]

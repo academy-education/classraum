@@ -1,0 +1,287 @@
+[
+ {
+  "item": {
+   "id": "MLV3-S13",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nUse a ____ marker for the sign so the rain will not wash the words away.",
+   "choices": [
+    "permenent",
+    "permanant",
+    "permanent",
+    "permenant"
+   ],
+   "correct_answer": "permanent",
+   "spelling_pattern": "two unstressed vowels: the middle a and the -ent ending",
+   "error_sites": [
+    "unstressed a in the second syllable",
+    "-ent ending"
+   ],
+   "student_error": {
+    "permenent": "writes e for the unstressed a sound in the middle syllable",
+    "permanant": "uses -ant instead of -ent",
+    "permenant": "writes e for the middle a and also ends the word in -ant"
+   },
+   "explanation": "\"permanent\" is the correct spelling (unstressed a in the second syllable; -ent ending). \"permenent\" writes e for the unstressed a sound in the middle syllable. \"permanant\" uses -ant instead of -ent. \"permenant\" writes e for the middle a and also ends the word in -ant.",
+   "key_length_profile": "equal"
+  },
+  "errors": [
+   "E1 stem FK 3.9 outside [4, 9) (16 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S26",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe store offers a ____ that the blender will work for at least two years.",
+   "choices": [
+    "guarrantee",
+    "garantee",
+    "guarantee",
+    "garrantee"
+   ],
+   "correct_answer": "guarantee",
+   "spelling_pattern": "silent u after g, and a single r",
+   "error_sites": [
+    "silent u after g",
+    "single r"
+   ],
+   "student_error": {
+    "garantee": "drops the silent u that keeps the g hard",
+    "guarrantee": "doubles the r, as in warranty",
+    "garrantee": "drops the silent u and also doubles the r"
+   },
+   "explanation": "\"guarantee\" is the correct spelling (silent u after g; single r). \"garantee\" drops the silent u that keeps the g hard. \"guarrantee\" doubles the r, as in warranty. \"garrantee\" drops the silent u and also doubles the r.",
+   "key_length_profile": "middle"
+  },
+  "errors": [
+   "E1 stem FK 3.6 outside [4, 10) (15 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S31",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nOmar finished the long race after falling twice, which showed his great ____.",
+   "choices": [
+    "persaverence",
+    "perseverance",
+    "perseverence",
+    "persaverance"
+   ],
+   "correct_answer": "perseverance",
+   "spelling_pattern": "unstressed e in the second syllable, and the -ance ending (not -ence)",
+   "error_sites": [
+    "e in the second syllable (perse-)",
+    "-ance ending"
+   ],
+   "student_error": {
+    "perseverence": "uses -ence instead of -ance, since the two endings sound the same",
+    "persaverance": "writes a for the unstressed e in the second syllable",
+    "persaverence": "writes a in the second syllable and also uses -ence"
+   },
+   "explanation": "\"perseverance\" is the correct spelling (e in the second syllable (perse-); -ance ending). \"perseverence\" uses -ence instead of -ance, since the two endings sound the same. \"persaverance\" writes a for the unstressed e in the second syllable. \"persaverence\" writes a in the second syllable and also uses -ence.",
+   "key_length_profile": "equal"
+  },
+  "errors": [
+   "E4-dup tested word clashes with MLV3-S35 (\"perseverance\" / \"pronunciation\"). Every tested spelling word in the batch: altogether, weird, possibility, cinnamon, glisten, omission, performance, exercise, unfortunately, patience, harassment, villain, permanent, approximately, hygiene, committee, apparent, curiosity, convenient, existence, disastrous, deceive, monstrosity, ridiculous, guarantee, comparison, vengeance, unanimous, perseverance, mortgage, indispensable, commissioner, pronunciation, hypocrisy, fluorescent, susceptible, conscientious, dilemma"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S40",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 8,
+   "ccss": "L.8.2c",
+   "spelling_format": "sentence",
+   "prompt": "Which sentence has a spelling error?",
+   "choices": [
+    "Leo faced a dilemna when both of his friends invited him to parties on the same night.",
+    "My mother's colleague brought cookies to the office on Friday.",
+    "A young entrepreneur opened a bakery on our street.",
+    "The camaraderie among the team members grew stronger with every game they played together this season."
+   ],
+   "correct_answer": "Leo faced a dilemna when both of his friends invited him to parties on the same night.",
+   "spelling_pattern": "mm written as mn",
+   "targets": {
+    "Leo faced a dilemna when both of his friends invited him to parties on the same night.": "dilemna",
+    "My mother's colleague brought cookies to the office on Friday.": "colleague",
+    "A young entrepreneur opened a bakery on our street.": "entrepreneur",
+    "The camaraderie among the team members grew stronger with every game they played together this season.": "camaraderie"
+   },
+   "misspelled_word": "dilemna",
+   "intended_word": "dilemma",
+   "key_length_rank": 2,
+   "student_error": {
+    "My mother's colleague brought cookies to the office on Friday.": "colleague has a double l and ends in -ague, so it looks unusual",
+    "A young entrepreneur opened a bakery on our street.": "entrepreneur ends in -eur, which a student may think should be -er or -ure",
+    "The camaraderie among the team members grew stronger with every game they played together this season.": "camaraderie has an a where many students expect an e or nothing (comradery)"
+   },
+   "explanation": "The key misspells \"dilemma\" as \"dilemna\" (mm written as mn). The other sentences are spelled correctly: \"colleague\", \"entrepreneur\", \"camaraderie\"."
+  },
+  "errors": [
+   "E1 optD FK 12.0 outside [4, 10) (16 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-C02",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 5,
+   "ccss": "L.5.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Every Summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.",
+    "Every summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.",
+    "Every Summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.",
+    "Every summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library."
+   ],
+   "correct_answer": "Every summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.",
+   "error_sites": [
+    "the season 'summer'",
+    "the season 'fall'"
+   ],
+   "student_error": {
+    "Every Summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.": "Capitalizes 'summer' because it names a time of year, like the holiday in the same sentence.",
+    "Every summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.": "Capitalizes 'fall' because it names a time of year, the way months and holidays are capitalized.",
+    "Every Summer our town holds a parade on Independence Day, and every Fall it holds a pumpkin fair behind the library.": "Believes seasons are capitalized like months and holidays."
+   },
+   "explanation": "Independence Day is the name of a holiday and is capitalized, but seasons such as summer and fall are common nouns and stay lowercase. 'pumpkin fair' is not the name of an event here.",
+   "cap_rule": "seasons stay lowercase while a holiday is capitalized"
+  },
+  "errors": [
+   "E1 optA FK 11.7 outside [4, 9) (21 words)",
+   "E1 optB FK 11.7 outside [4, 9) (21 words)",
+   "E1 optC FK 11.7 outside [4, 9) (21 words)",
+   "E1 optD FK 11.7 outside [4, 9) (21 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-C03",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Capitalization",
+   "grade_target": 5,
+   "ccss": "L.5.2",
+   "prompt": "Which sentence is capitalized correctly?",
+   "choices": [
+    "Nina's Brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.",
+    "Nina's Brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.",
+    "Nina's brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.",
+    "Nina's brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend."
+   ],
+   "correct_answer": "Nina's Brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.",
+   "error_sites": [
+    "the nationality adjective 'Brazilian'",
+    "the language 'Portuguese'"
+   ],
+   "student_error": {
+    "Nina's brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.": "Lowercases 'Brazilian' because it is used as a describing word, not as a name.",
+    "Nina's Brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.": "Lowercases 'Portuguese' because it thinks a language is an ordinary subject like 'reading'.",
+    "Nina's brazilian grandmother is teaching her to speak portuguese, and Nina practices with her every weekend.": "Believes only names of people and places are capitalized, not nationalities or languages."
+   },
+   "explanation": "Words formed from the names of countries and peoples are proper adjectives (Brazilian), and names of languages (Portuguese) are proper nouns, so both are capitalized.",
+   "cap_rule": "nationality adjectives and names of languages"
+  },
+  "errors": [
+   "E1 optA FK 12.0 outside [4, 9) (16 words)",
+   "E1 optB FK 12.0 outside [4, 9) (16 words)",
+   "E1 optC FK 12.0 outside [4, 9) (16 words)",
+   "E1 optD FK 12.0 outside [4, 9) (16 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-P09",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Punctuation",
+   "grade_target": 7,
+   "ccss": "L.7.2a",
+   "prompt": "Which sentence is punctuated correctly?",
+   "choices": [
+    "We took a long windy walk past the three old, red barns on Miller Road.",
+    "We took a long, windy walk past the three old red barns on Miller Road.",
+    "We took a long windy walk past the three old red barns on Miller Road.",
+    "We took a long, windy walk past the three old, red barns on Miller Road."
+   ],
+   "correct_answer": "We took a long, windy walk past the three old red barns on Miller Road.",
+   "error_sites": [
+    "comma between the coordinate adjectives 'long' and 'windy'",
+    "comma between the cumulative adjectives 'old' and 'red'"
+   ],
+   "student_error": {
+    "We took a long windy walk past the three old red barns on Miller Road.": "Leaves out the comma between two adjectives that each describe the walk equally.",
+    "We took a long, windy walk past the three old, red barns on Miller Road.": "Puts a comma between 'old' and 'red', though they cannot be joined by 'and' or switched.",
+    "We took a long windy walk past the three old, red barns on Miller Road.": "Has the coordinate/cumulative rule backwards."
+   },
+   "explanation": "'long, windy walk' needs a comma because 'long and windy' makes sense and the order can switch. 'old red barns' takes no comma because 'old and red barns' or 'red old barns' sounds wrong: the adjectives are cumulative.",
+   "punct_rule": "comma between coordinate adjectives but not cumulative ones"
+  },
+  "errors": [
+   "E1 optA FK 3.6 outside [4, 10) (15 words)",
+   "E1 optB FK 3.6 outside [4, 10) (15 words)",
+   "E1 optC FK 3.6 outside [4, 10) (15 words)",
+   "E1 optD FK 3.6 outside [4, 10) (15 words)"
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-G08",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 6,
+   "ccss": "L.6.1d",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "This morning the librarian told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.",
+    "This morning they told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.",
+    "This morning the librarian told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.",
+    "This morning they told us our books are due Friday, and the school newsletter says the late fee is ten cents a day."
+   ],
+   "correct_answer": "This morning the librarian told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.",
+   "error_sites": [
+    "'the librarian' instead of a 'they' that refers to no one",
+    "'the school newsletter says' instead of an 'it' that refers to nothing"
+   ],
+   "student_error": {
+    "This morning they told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.": "Uses 'they' the way people talk, without naming who told them.",
+    "This morning the librarian told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.": "Uses 'it says' with no noun for 'it' to refer to.",
+    "This morning they told us our books are due Friday, and in the school newsletter it says the late fee is ten cents a day.": "Uses pronouns the way people speak, without antecedents."
+   },
+   "explanation": "A pronoun needs a clear antecedent. 'they' and 'it' refer to no noun in the sentence, so the clear version names the librarian and has the newsletter itself as the subject.",
+   "varied_dimension": "vague 'they' with no antecedent; vague 'it' with no antecedent"
+  },
+  "errors": [
+   "E1 optC FK 9.1 outside [4, 9) (26 words)"
+  ]
+ }
+]

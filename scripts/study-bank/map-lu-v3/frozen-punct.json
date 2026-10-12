@@ -1,0 +1,338 @@
+[
+ {
+  "id": "MLV3-P01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2b",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "After the storm, knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.",
+   "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.",
+   "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+   "After the storm, knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight."
+  ],
+  "correct_answer": "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+  "error_sites": [
+   "comma after the whole introductory clause (after neighborhood)",
+   "no comma inside the introductory clause (after storm)"
+  ],
+  "student_error": {
+   "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.": "Leaves out the comma after a long introductory clause, so the opening runs into the main sentence.",
+   "After the storm, knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.": "Treats 'After the storm' as a short introductory phrase and puts a comma after it, as well as after the full clause.",
+   "After the storm, knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.": "Thinks the introductory part is only 'After the storm', so the comma goes after storm instead of after neighborhood."
+  },
+  "explanation": "The introductory element is the whole clause 'After the storm knocked out the power in our whole neighborhood', so the comma goes after neighborhood. A comma after storm splits the clause's subject (storm) from its verb (knocked).",
+  "punct_rule": "comma after the full introductory clause, not inside it"
+ },
+ {
+  "id": "MLV3-P03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2c",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "You remembered to lock the back door before we left for the airport, didn't you Grandpa?",
+   "You remembered to lock the back door before we left for the airport, didn't you, Grandpa.",
+   "You remembered to lock the back door before we left for the airport, didn't you, Grandpa?",
+   "You remembered to lock the back door before we left for the airport, didn't you Grandpa."
+  ],
+  "correct_answer": "You remembered to lock the back door before we left for the airport, didn't you, Grandpa?",
+  "error_sites": [
+   "comma before the name in direct address at the end",
+   "question mark ending the tag question"
+  ],
+  "student_error": {
+   "You remembered to lock the back door before we left for the airport, didn't you Grandpa?": "Sets off the tag but forgets that a name at the end, in direct address, also needs a comma before it.",
+   "You remembered to lock the back door before we left for the airport, didn't you, Grandpa.": "Ends with a period because the sentence starts out as a long statement.",
+   "You remembered to lock the back door before we left for the airport, didn't you Grandpa.": "Reads the whole sentence as a statement, so adds no question mark and runs the name onto the tag."
+  },
+  "explanation": "A name used in direct address is set off with a comma, even at the end of a sentence (', Grandpa'). Because 'didn't you' turns the sentence into a question, it ends with a question mark.",
+  "punct_rule": "tag question ended with a question mark, with a comma before a name in direct address at the end"
+ },
+ {
+  "id": "MLV3-P04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 5,
+  "ccss": "L.5.2d",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem \"The Green Bike\" afterward.",
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem The Green Bike afterward.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem The Green Bike afterward.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem \"The Green Bike\" afterward."
+  ],
+  "correct_answer": "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem \"The Green Bike\" afterward.",
+  "error_sites": [
+   "quotation marks around the song title",
+   "quotation marks around the poem title"
+  ],
+  "student_error": {
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem \"The Green Bike\" afterward.": "Leaves the song title unmarked, thinking capital letters are enough to show a title.",
+   "Our class sang \"Rain on the Roof\" at the concert, and Ava read her poem The Green Bike afterward.": "Leaves the poem title unmarked, thinking capital letters are enough to show a title.",
+   "Our class sang Rain on the Roof at the concert, and Ava read her poem The Green Bike afterward.": "Does not know that titles of songs and poems go in quotation marks."
+  },
+  "explanation": "Titles of short works such as songs and poems are placed in quotation marks: \"Rain on the Roof\" and \"The Green Bike.\"",
+  "punct_rule": "quotation marks around titles of songs and poems"
+ },
+ {
+  "id": "MLV3-P05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Ms. Grant, the coach who started our running club three years ago ordered new shirts for every runner on the team.",
+   "Ms. Grant the coach who started our running club three years ago ordered new shirts for every runner on the team.",
+   "Ms. Grant the coach who started our running club three years ago, ordered new shirts for every runner on the team.",
+   "Ms. Grant, the coach who started our running club three years ago, ordered new shirts for every runner on the team."
+  ],
+  "correct_answer": "Ms. Grant, the coach who started our running club three years ago, ordered new shirts for every runner on the team.",
+  "error_sites": [
+   "comma opening the appositive",
+   "comma closing the appositive"
+  ],
+  "student_error": {
+   "Ms. Grant the coach who started our running club three years ago, ordered new shirts for every runner on the team.": "Leaves out the opening comma and puts a comma only where the reader pauses before the verb.",
+   "Ms. Grant, the coach who started our running club three years ago ordered new shirts for every runner on the team.": "Opens the appositive with a comma but forgets to close it after the long phrase.",
+   "Ms. Grant the coach who started our running club three years ago ordered new shirts for every runner on the team.": "Does not see that the long phrase renames Ms. Grant and is extra information."
+  },
+  "explanation": "'the coach who started our running club three years ago' renames Ms. Grant and adds extra information, so it is set off by a comma on each side.",
+  "punct_rule": "a pair of commas around a long nonrestrictive appositive"
+ },
+ {
+  "id": "MLV3-P06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Grandpa's old truck, (the blue one parked behind the barn) still starts on the coldest mornings.",
+   "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+   "Grandpa's old truck, (the blue one parked behind the barn), still starts on the coldest mornings.",
+   "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings."
+  ],
+  "correct_answer": "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+  "error_sites": [
+   "no comma before the opening parenthesis",
+   "no comma after the closing parenthesis"
+  ],
+  "student_error": {
+   "Grandpa's old truck, (the blue one parked behind the barn) still starts on the coldest mornings.": "Adds a comma before the parentheses, where the reader pauses before the added phrase.",
+   "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings.": "Adds a comma after the closing parenthesis, where the reader pauses before the verb.",
+   "Grandpa's old truck, (the blue one parked behind the barn), still starts on the coldest mornings.": "Treats the parentheses like commas and sets the phrase off with commas as well, on both sides."
+  },
+  "explanation": "Parentheses already set off the added phrase, so no comma goes before or after them. Without the parenthetical the sentence is 'Grandpa's old truck still starts on the coldest mornings', with no comma between subject and verb.",
+  "punct_rule": "parentheses around a nonrestrictive element, with no extra commas around them"
+ },
+ {
+  "id": "MLV3-P07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The bike that I got for my birthday has a flat tire which means I will walk to school today.",
+   "The bike, that I got for my birthday, has a flat tire, which means I will walk to school today.",
+   "The bike, that I got for my birthday, has a flat tire which means I will walk to school today.",
+   "The bike that I got for my birthday has a flat tire, which means I will walk to school today."
+  ],
+  "correct_answer": "The bike that I got for my birthday has a flat tire, which means I will walk to school today.",
+  "error_sites": [
+   "commas around the restrictive 'that' clause",
+   "comma before the nonrestrictive 'which' clause"
+  ],
+  "student_error": {
+   "The bike, that I got for my birthday, has a flat tire, which means I will walk to school today.": "Sets off the 'that' clause with commas as if it were extra information.",
+   "The bike that I got for my birthday has a flat tire which means I will walk to school today.": "Leaves out the comma before 'which', which adds a comment about the whole first clause.",
+   "The bike, that I got for my birthday, has a flat tire which means I will walk to school today.": "Has the restrictive/nonrestrictive comma rule reversed."
+  },
+  "explanation": "'that I got for my birthday' tells which bike, so it is restrictive and takes no commas. 'which means I will walk to school today' adds a comment, so it is nonrestrictive and is set off by a comma.",
+  "punct_rule": "no commas around a restrictive clause; comma before a nonrestrictive clause"
+ },
+ {
+  "id": "MLV3-P09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "We took a long windy walk past the three old, red barns on Miller Avenue.",
+   "We took a long, windy walk past the three old red barns on Miller Avenue.",
+   "We took a long windy walk past the three old red barns on Miller Avenue.",
+   "We took a long, windy walk past the three old, red barns on Miller Avenue."
+  ],
+  "correct_answer": "We took a long, windy walk past the three old red barns on Miller Avenue.",
+  "error_sites": [
+   "comma between the coordinate adjectives 'long' and 'windy'",
+   "comma between the cumulative adjectives 'old' and 'red'"
+  ],
+  "student_error": {
+   "We took a long windy walk past the three old red barns on Miller Avenue.": "Leaves out the comma between two adjectives that each describe the walk equally.",
+   "We took a long, windy walk past the three old, red barns on Miller Avenue.": "Puts a comma between 'old' and 'red', though they cannot be joined by 'and' or switched.",
+   "We took a long windy walk past the three old, red barns on Miller Avenue.": "Has the coordinate/cumulative rule backwards."
+  },
+  "explanation": "'long, windy walk' needs a comma because 'long and windy' makes sense and the order can switch. 'old red barns' takes no comma because 'old and red barns' or 'red old barns' sounds wrong: the adjectives are cumulative.",
+  "punct_rule": "comma between coordinate adjectives but not cumulative ones"
+ },
+ {
+  "id": "MLV3-P10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The tired, hungry campers ate warm vegetable soup out of small, metal bowls by the fire.",
+   "The tired, hungry campers ate warm, vegetable soup out of small metal bowls by the fire.",
+   "The tired, hungry campers ate warm vegetable soup out of small metal bowls by the fire.",
+   "The tired, hungry campers ate warm, vegetable soup out of small, metal bowls by the fire."
+  ],
+  "correct_answer": "The tired, hungry campers ate warm vegetable soup out of small metal bowls by the fire.",
+  "error_sites": [
+   "comma between the cumulative adjectives 'warm' and 'vegetable'",
+   "comma between the cumulative adjectives 'small' and 'metal'"
+  ],
+  "student_error": {
+   "The tired, hungry campers ate warm, vegetable soup out of small metal bowls by the fire.": "Puts a comma between 'warm' and 'vegetable', copying the comma in 'tired, hungry'.",
+   "The tired, hungry campers ate warm vegetable soup out of small, metal bowls by the fire.": "Puts a comma between 'small' and 'metal', copying the comma in 'tired, hungry'.",
+   "The tired, hungry campers ate warm, vegetable soup out of small, metal bowls by the fire.": "Believes a comma always goes between two adjectives before a noun."
+  },
+  "explanation": "'tired, hungry' are coordinate and take a comma. 'warm vegetable soup' and 'small metal bowls' are cumulative ('vegetable' and 'metal' name the kind of soup and bowl), so no comma goes between them.",
+  "punct_rule": "no comma between cumulative adjectives"
+ },
+ {
+  "id": "MLV3-P11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 7,
+  "ccss": "L.7.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Everyone else's coats were dry, but our's were soaked after the long walk from the bus stop.",
+   "Everyone elses coats were dry, but ours were soaked after the long walk from the bus stop.",
+   "Everyone else's coats were dry, but ours were soaked after the long walk from the bus stop.",
+   "Everyone elses coats were dry, but our's were soaked after the long walk from the bus stop."
+  ],
+  "correct_answer": "Everyone else's coats were dry, but ours were soaked after the long walk from the bus stop.",
+  "error_sites": [
+   "apostrophe in the possessive 'everyone else's'",
+   "no apostrophe in the possessive pronoun 'ours'"
+  ],
+  "student_error": {
+   "Everyone elses coats were dry, but ours were soaked after the long walk from the bus stop.": "Leaves the apostrophe out of 'else's' because it does not see that the phrase shows ownership.",
+   "Everyone else's coats were dry, but our's were soaked after the long walk from the bus stop.": "Adds an apostrophe to the possessive pronoun 'ours'.",
+   "Everyone elses coats were dry, but our's were soaked after the long walk from the bus stop.": "Puts the apostrophe on the pronoun instead of on 'everyone else'."
+  },
+  "explanation": "'everyone else's coats' shows ownership, so the possessive takes an apostrophe and s. Possessive pronouns such as 'ours' never take an apostrophe.",
+  "punct_rule": "apostrophe for an indefinite-pronoun possessive, none in a possessive pronoun"
+ },
+ {
+  "id": "MLV3-P13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Because the field was flooded; the game was moved to the gym; most fans did not mind the change.",
+   "Because the field was flooded, the game was moved to the gym, most fans did not mind the change.",
+   "Because the field was flooded, the game was moved to the gym; most fans did not mind the change.",
+   "Because the field was flooded; the game was moved to the gym, most fans did not mind the change."
+  ],
+  "correct_answer": "Because the field was flooded, the game was moved to the gym; most fans did not mind the change.",
+  "error_sites": [
+   "comma after the introductory dependent clause",
+   "semicolon between the two independent clauses"
+  ],
+  "student_error": {
+   "Because the field was flooded; the game was moved to the gym; most fans did not mind the change.": "Uses a semicolon after the 'because' clause, though that clause cannot stand alone.",
+   "Because the field was flooded, the game was moved to the gym, most fans did not mind the change.": "Joins two complete sentences with only a comma, making a comma splice.",
+   "Because the field was flooded; the game was moved to the gym, most fans did not mind the change.": "Swaps the two marks, not knowing that a semicolon joins only complete clauses."
+  },
+  "explanation": "'Because the field was flooded' cannot stand alone, so it is followed by a comma. 'the game was moved to the gym' and 'most fans did not mind the change' are both complete sentences, so they are joined with a semicolon, not a comma.",
+  "punct_rule": "semicolon joining two independent clauses; comma after a dependent clause"
+ },
+ {
+  "id": "MLV3-P14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.",
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are planning trips and raising money."
+  ],
+  "correct_answer": "The club has three officers: Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.",
+  "error_sites": [
+   "colon after the complete clause introducing the list",
+   "colon between the verb 'are' and its complement"
+  ],
+  "student_error": {
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.": "Leaves out the colon after the complete clause that introduces the names.",
+   "The club has three officers: Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.": "Puts a colon right after the verb 'are', before the list of jobs.",
+   "The club has three officers Nora, Ben, and Ivy, and their main jobs are: planning trips and raising money.": "Believes a colon belongs right before the list it introduces, wherever that is, rather than after a complete clause."
+  },
+  "explanation": "A colon introduces a list only after a complete clause ('The club has three officers'). 'their main jobs are' is not complete without what follows, so no colon goes after 'are'.",
+  "punct_rule": "colon after a complete clause to introduce a list, never after a verb"
+ },
+ {
+  "id": "MLV3-P15",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "grade_target": 8,
+  "ccss": "L.8.2a",
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "My grandmother's garden—she planted it the year I was born, has grown bigger every summer since.",
+   "My grandmother's garden, she planted it the year I was born, has grown bigger every summer since.",
+   "My grandmother's garden—she planted it the year I was born—has grown bigger every summer since.",
+   "My grandmother's garden, she planted it the year I was born—has grown bigger every summer since."
+  ],
+  "correct_answer": "My grandmother's garden—she planted it the year I was born—has grown bigger every summer since.",
+  "error_sites": [
+   "dash opening the interrupting clause",
+   "dash closing the interrupting clause"
+  ],
+  "student_error": {
+   "My grandmother's garden, she planted it the year I was born—has grown bigger every summer since.": "Opens the break with a comma but closes it with a dash, so the marks do not match.",
+   "My grandmother's garden—she planted it the year I was born, has grown bigger every summer since.": "Opens the break with a dash but closes it with a comma, so the marks do not match.",
+   "My grandmother's garden, she planted it the year I was born, has grown bigger every summer since.": "Uses commas for the interruption, not seeing that a complete sentence dropped into another needs dashes."
+  },
+  "explanation": "'she planted it the year I was born' is a complete sentence that breaks into the main sentence. Commas cannot set off a complete clause like this; a matching pair of dashes shows the break.",
+  "punct_rule": "dashes around an interrupting independent clause (a break)"
+ }
+]

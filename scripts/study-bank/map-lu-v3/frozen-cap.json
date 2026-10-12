@@ -1,0 +1,226 @@
+[
+ {
+  "id": "MLV3-C01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our class walked from Hillside Middle school to Cedar Lake Park for the spring picnic.",
+   "Our class walked from Hillside Middle School to Cedar Lake park for the spring picnic.",
+   "Our class walked from Hillside Middle School to Cedar Lake Park for the spring picnic.",
+   "Our class walked from Hillside Middle school to Cedar Lake park for the spring picnic."
+  ],
+  "correct_answer": "Our class walked from Hillside Middle School to Cedar Lake Park for the spring picnic.",
+  "error_sites": [
+   "'School' as part of the name Hillside Middle School",
+   "'Park' as part of the name Cedar Lake Park"
+  ],
+  "student_error": {
+   "Our class walked from Hillside Middle school to Cedar Lake Park for the spring picnic.": "Capitalizes only the special words of the school's name and treats the everyday word 'school' as a common noun.",
+   "Our class walked from Hillside Middle School to Cedar Lake park for the spring picnic.": "Capitalizes only the special words of the park's name and treats the everyday word 'park' as a common noun.",
+   "Our class walked from Hillside Middle school to Cedar Lake park for the spring picnic.": "Believes the generic word at the end of a multi-word name (school, park) is never capitalized."
+  },
+  "explanation": "Hillside Middle School and Cedar Lake Park are the full names of particular places, so every main word, including 'School' and 'Park', is capitalized. 'spring' is a season and stays lowercase.",
+  "cap_rule": "every word of a multi-word place name, including the generic word (school, park)"
+ },
+ {
+  "id": "MLV3-C02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Every Summer we hold a parade on Independence Day, and every fall a fair.",
+   "Every summer we hold a parade on Independence Day, and every Fall a fair.",
+   "Every Summer we hold a parade on Independence Day, and every Fall a fair.",
+   "Every summer we hold a parade on Independence Day, and every fall a fair."
+  ],
+  "correct_answer": "Every summer we hold a parade on Independence Day, and every fall a fair.",
+  "error_sites": [
+   "the season 'summer'",
+   "the season 'fall'"
+  ],
+  "student_error": {
+   "Every Summer we hold a parade on Independence Day, and every fall a fair.": "Capitalizes 'summer' because it names a time of year, like the holiday in the same sentence.",
+   "Every summer we hold a parade on Independence Day, and every Fall a fair.": "Capitalizes 'fall' because it names a time of year, the way months and holidays are capitalized.",
+   "Every Summer we hold a parade on Independence Day, and every Fall a fair.": "Believes seasons are capitalized like months and holidays."
+  },
+  "explanation": "Independence Day is the name of a holiday and is capitalized, but seasons such as summer and fall are common nouns and stay lowercase. 'fair' is not the name of an event here.",
+  "cap_rule": "seasons stay lowercase while a holiday is capitalized"
+ },
+ {
+  "id": "MLV3-C03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Nina's Brazilian grandmother is teaching her to speak portuguese, and they practice every weekend.",
+   "Nina's Brazilian grandmother is teaching her to speak Portuguese, and they practice every weekend.",
+   "Nina's brazilian grandmother is teaching her to speak portuguese, and they practice every weekend.",
+   "Nina's brazilian grandmother is teaching her to speak Portuguese, and they practice every weekend."
+  ],
+  "correct_answer": "Nina's Brazilian grandmother is teaching her to speak Portuguese, and they practice every weekend.",
+  "error_sites": [
+   "the nationality adjective 'Brazilian'",
+   "the language 'Portuguese'"
+  ],
+  "student_error": {
+   "Nina's brazilian grandmother is teaching her to speak Portuguese, and they practice every weekend.": "Lowercases 'Brazilian' because it is used as a describing word, not as a name.",
+   "Nina's Brazilian grandmother is teaching her to speak portuguese, and they practice every weekend.": "Lowercases 'Portuguese' because it thinks a language is an ordinary subject like 'reading'.",
+   "Nina's brazilian grandmother is teaching her to speak portuguese, and they practice every weekend.": "Believes only names of people and places are capitalized, not nationalities or languages."
+  },
+  "explanation": "Words formed from the names of countries and peoples are proper adjectives (Brazilian), and names of languages (Portuguese) are proper nouns, so both are capitalized.",
+  "cap_rule": "nationality adjectives and names of languages"
+ },
+ {
+  "id": "MLV3-C04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the Weekend instead.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the Weekend instead.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the weekend instead.",
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the weekend instead."
+  ],
+  "correct_answer": "The town pool is closed on Sundays in August, so we usually swim at the lake on the weekend instead.",
+  "error_sites": [
+   "the day name 'Sundays'",
+   "the general time word 'weekend'"
+  ],
+  "student_error": {
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the weekend instead.": "Writes the day of the week in lowercase, treating it like an ordinary time word.",
+   "The town pool is closed on Sundays in August, so we usually swim at the lake on the Weekend instead.": "Capitalizes 'weekend' because it is made up of the days Saturday and Sunday.",
+   "The town pool is closed on sundays in August, so we usually swim at the lake on the Weekend instead.": "Mixes up which time words are names: lowercases the day and capitalizes the general word 'weekend'."
+  },
+  "explanation": "Days of the week (Sundays) and months (August) are capitalized; 'weekend' is a common noun and stays lowercase.",
+  "cap_rule": "days of the week vs a general time word (weekend)"
+ },
+ {
+  "id": "MLV3-C06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What It Hides.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What it Hides.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What It Hides.",
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What it Hides."
+  ],
+  "correct_answer": "For her book report, Dana chose a novel called Why the Sea Is Salty and What It Hides.",
+  "error_sites": [
+   "the short verb 'Is' in the title",
+   "the short pronoun 'It' in the title"
+  ],
+  "student_error": {
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What It Hides.": "Lowercases the verb 'is' in the title because it is a short word.",
+   "For her book report, Dana chose a novel called Why the Sea Is Salty and What it Hides.": "Lowercases the pronoun 'it' in the title because it is a short word.",
+   "For her book report, Dana chose a novel called Why the Sea is Salty and What it Hides.": "Believes every short word in a title stays lowercase, not just articles, short prepositions and conjunctions."
+  },
+  "explanation": "In a title, only articles (the), coordinating conjunctions (and) and short prepositions stay lowercase. 'Is' is a verb and 'It' is a pronoun, so both are capitalized no matter how short they are.",
+  "cap_rule": "short verbs and pronouns inside a title are capitalized"
+ },
+ {
+  "id": "MLV3-C07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "In Middle School, Ben became interested in the knights and castles of the middle ages.",
+   "In middle school, Ben became interested in the knights and castles of the middle ages.",
+   "In Middle School, Ben became interested in the knights and castles of the Middle Ages.",
+   "In middle school, Ben became interested in the knights and castles of the Middle Ages."
+  ],
+  "correct_answer": "In middle school, Ben became interested in the knights and castles of the Middle Ages.",
+  "error_sites": [
+   "'middle school' used as a common noun",
+   "the historical period 'Middle Ages'"
+  ],
+  "student_error": {
+   "In Middle School, Ben became interested in the knights and castles of the Middle Ages.": "Capitalizes 'middle school' as if it were the name of a particular school.",
+   "In middle school, Ben became interested in the knights and castles of the middle ages.": "Lowercases 'Middle Ages' because 'middle' and 'ages' look like ordinary words.",
+   "In Middle School, Ben became interested in the knights and castles of the middle ages.": "Confuses the two look-alike phrases: capitalizes the general 'middle school' and lowercases the named period."
+  },
+  "explanation": "The Middle Ages is the name of a historical period, so it is capitalized. 'middle school' here names a kind of school, not a particular one, so it stays lowercase.",
+  "cap_rule": "named historical period vs the same word used as a common noun"
+ },
+ {
+  "id": "MLV3-C08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "We drove West for two days to visit my cousins, who live on a ranch in the Southwest.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the Southwest.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the southwest.",
+   "We drove West for two days to visit my cousins, who live on a ranch in the southwest."
+  ],
+  "correct_answer": "We drove west for two days to visit my cousins, who live on a ranch in the Southwest.",
+  "error_sites": [
+   "'west' as a direction of travel",
+   "'Southwest' as the name of a region"
+  ],
+  "student_error": {
+   "We drove West for two days to visit my cousins, who live on a ranch in the Southwest.": "Capitalizes 'west' even though it only tells the direction of the drive.",
+   "We drove west for two days to visit my cousins, who live on a ranch in the southwest.": "Lowercases 'Southwest' because it is a compass word, not seeing that 'the Southwest' names a region.",
+   "We drove West for two days to visit my cousins, who live on a ranch in the southwest.": "Has the region-vs-direction rule reversed."
+  },
+  "explanation": "A compass word that tells a direction (drove west) stays lowercase. When it names a region (the Southwest), it is capitalized.",
+  "cap_rule": "compass direction vs the name of a region"
+ },
+ {
+  "id": "MLV3-C09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "On Mondays I have Math and French before lunch, and history right after it.",
+   "On Mondays I have math and French before lunch, and history right after it.",
+   "On Mondays I have Math and French before lunch, and History right after it.",
+   "On Mondays I have math and French before lunch, and History right after it."
+  ],
+  "correct_answer": "On Mondays I have math and French before lunch, and history right after it.",
+  "error_sites": [
+   "the school subject 'math'",
+   "the school subject 'history'"
+  ],
+  "student_error": {
+   "On Mondays I have Math and French before lunch, and history right after it.": "Capitalizes 'math' because it is a class on the schedule, like French.",
+   "On Mondays I have math and French before lunch, and History right after it.": "Capitalizes 'history' because it is a class on the schedule, like French.",
+   "On Mondays I have Math and French before lunch, and History right after it.": "Believes all school subjects are capitalized, since 'French' is."
+  },
+  "explanation": "School subjects such as math and history are common nouns. 'French' is capitalized only because it is the name of a language.",
+  "cap_rule": "school subjects are lowercase except languages"
+ }
+]

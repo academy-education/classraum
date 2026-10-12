@@ -171,9 +171,13 @@ function pipeline() {
   const after = authored.map(i => rev[i.id] ?? i).filter(i => !dropped.includes(i.id))
   const repairs = existsSync(W + 'repairs.json') ? rd(W + 'repairs.json') : {}
   const fixed = after.map(i => repairs[i.id] ?? i)
-  const dups = dupFails(fixed, new Set([...Object.keys(rev), ...Object.keys(repairs)]))
+  // the amendment-1 re-profile is a revision too: a word clash it introduced fails the re-profiled item
+  const core = i => JSON.stringify([i.prompt, i.choices, i.correct_answer])
+  const orig = existsSync(W + 'batch.authored.original.json') ? Object.fromEntries(rd(W + 'batch.authored.original.json').map(i => [i.id, core(i)])) : {}
+  const reprofiled = authored.filter(i => orig[i.id] && orig[i.id] !== core(i)).map(i => i.id)
+  const dups = dupFails(fixed, new Set([...reprofiled, ...Object.keys(rev), ...Object.keys(repairs)]))
   const errsOf = i => [...structural(i).errs, ...(dups[i.id] ? [dups[i.id]] : [])]
-  return { authored, rev, dropped, after, repairs, fixed, errsOf, exactFail: fixed.filter(i => errsOf(i).length), survivors: fixed.filter(i => !errsOf(i).length) }
+  return { authored, reprofiled, rev, dropped, after, repairs, fixed, errsOf, exactFail: fixed.filter(i => errsOf(i).length), survivors: fixed.filter(i => !errsOf(i).length) }
 }
 
 // ---------- selftest ----------
@@ -379,7 +383,7 @@ else if (mode === 'rerate-input') {
 }
 else if (mode === 'repair-input') {
   const P = pipeline()
-  const dups = dupFails(P.after, new Set(Object.keys(P.rev)))
+  const dups = dupFails(P.after, new Set([...P.reprofiled, ...Object.keys(P.rev)]))
   const failing = P.after.map(i => [i, [...structural(i).errs, ...(dups[i.id] ? [dups[i.id] + '. Every tested spelling word in the batch: ' + P.after.filter(x => strandOf(x) === 'spell').map(testedWord).join(', ')] : [])]]).filter(([, e]) => e.length)
   wr(W + 'repair.input.json', failing.map(([item, errors]) => ({ item, errors })))
   console.log(`dropped at re-rate: ${P.dropped.join(', ') || 'none'}; ${failing.length} items fail an exact check -> repair.input.json`)

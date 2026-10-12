@@ -1,0 +1,106 @@
+{
+ "spell": {
+  "stage0": "FAIL",
+  "why": "T2[word] unique_min(vowels) predicts the key: 39.1% vs control 25.0%, family-wise p 0.0862",
+  "n": 24,
+  "t2": {
+   "best": "unique_min(vowels)",
+   "score": 0.3645833333333333,
+   "fwP": 0.4546363409147713
+  }
+ },
+ "punct": {
+  "stage0": "pass",
+  "n": 12,
+  "ids": [
+   "MLV3-P01",
+   "MLV3-P03",
+   "MLV3-P04",
+   "MLV3-P05",
+   "MLV3-P06",
+   "MLV3-P07",
+   "MLV3-P09",
+   "MLV3-P10",
+   "MLV3-P11",
+   "MLV3-P13",
+   "MLV3-P14",
+   "MLV3-P15"
+  ],
+  "t2": {
+   "best": "unique_min(words)",
+   "score": 0.3125,
+   "fwP": 0.8822794301424643
+  },
+  "perFormat": {},
+  "longest": 2,
+  "shortest": 3
+ },
+ "gram": {
+  "stage0": "pass",
+  "n": 12,
+  "ids": [
+   "MLV3-G01",
+   "MLV3-G02",
+   "MLV3-G03",
+   "MLV3-G05",
+   "MLV3-G06",
+   "MLV3-G07",
+   "MLV3-G09",
+   "MLV3-G10",
+   "MLV3-G11",
+   "MLV3-G13",
+   "MLV3-G15",
+   "MLV3-G16"
+  ],
+  "t2": {
+   "best": "at_min(vowels)",
+   "score": 0.4791666666666667,
+   "fwP": 0.10497375656085979
+  },
+  "perFormat": {},
+  "longest": 2,
+  "shortest": 3
+ },
+ "cap": {
+  "stage0": "pass",
+  "n": 8,
+  "ids": [
+   "MLV3-C01",
+   "MLV3-C02",
+   "MLV3-C03",
+   "MLV3-C04",
+   "MLV3-C06",
+   "MLV3-C07",
+   "MLV3-C08",
+   "MLV3-C09"
+  ],
+  "t2": {
+   "best": "unique_max(caps)",
+   "score": 0.375,
+   "fwP": 0.7215696075981005
+  },
+  "perFormat": {},
+  "longest": 0,
+  "shortest": 0
+ },
+ "_pooledE3": {
+  "n": 32,
+  "longest": 4,
+  "shortest": 6,
+  "fails": {}
+ },
+ "_pooledT2": {
+  "best": "at_min(vowels)",
+  "score": 0.3359375,
+  "fwP": 0.15271182204448888,
+  "fires": false,
+  "n": 32
+ },
+ "_screen": {
+  "drops": {
+   "MLV3-S22": "screen: \"deceive\" graded 6 and 6, both below target 7",
+   "MLV3-S25": "screen: \"ridiculous\" graded 6 and 6, both below target 7"
+  },
+  "words": 38
+ }
+}

@@ -1,0 +1,689 @@
+[
+ {
+  "item": {
+   "id": "MLV3-S01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe coach was pleased with the ____ of Maya's skills over the school year.",
+   "choices": [
+    "devellopment",
+    "development",
+    "devellopement",
+    "developement"
+   ],
+   "correct_answer": "development",
+   "spelling_pattern": "a single l in develop, and nothing added between develop and the suffix -ment",
+   "error_sites": [
+    "single l in develop",
+    "no e between develop and -ment"
+   ],
+   "student_error": {
+    "developement": "adds an e after develop, as if the base word were spelled develope",
+    "devellopment": "doubles the l, unsure which consonant in develop is doubled",
+    "devellopement": "doubles the l and also adds an e before -ment"
+   },
+   "explanation": "\"development\" is the correct spelling (single l in develop; no e between develop and -ment). \"developement\" adds an e after develop, as if the base word were spelled develope. \"devellopment\" doubles the l, unsure which consonant in develop is doubled. \"devellopement\" doubles the l and also adds an e before -ment.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "devellopement",
+    "reasons": [
+     "two separate errors stacked; looks off even to weak spellers"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S03",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nSam ____ knocked the glass of juice off the table with his elbow.",
+   "choices": [
+    "accidentally",
+    "acidentaly",
+    "accidentaly",
+    "acidentally"
+   ],
+   "correct_answer": "accidentally",
+   "spelling_pattern": "double c at the start and -al + -ly giving double l",
+   "error_sites": [
+    "double c after the a",
+    "double l where -al meets -ly"
+   ],
+   "student_error": {
+    "acidentally": "writes one c, missing the doubled consonant at the start",
+    "accidentaly": "adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental",
+    "acidentaly": "misses both doubled letters: one c and one l"
+   },
+   "explanation": "\"accidentally\" is the correct spelling (double c after the a; double l where -al meets -ly). \"acidentally\" writes one c, missing the doubled consonant at the start. \"accidentaly\" adds -ly to the sound of the word and keeps only one l, forgetting the base is accidental. \"acidentaly\" misses both doubled letters: one c and one l.",
+   "key_length_profile": "longest"
+  },
+  "rated_no": [
+   {
+    "option": "acidentaly",
+    "reasons": [
+     "drops both doubled letters; unlikely to look right"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S04",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe guard grew ____ when the stranger kept peeking through the window of the closed bank.",
+   "choices": [
+    "suspiscious",
+    "suspicous",
+    "suspiscous",
+    "suspicious"
+   ],
+   "correct_answer": "suspicious",
+   "spelling_pattern": "c alone spelling the s sound (not sc), and the i kept in -cious",
+   "error_sites": [
+    "c alone after suspi (no sc)",
+    "i before the suffix -ous"
+   ],
+   "student_error": {
+    "suspiscious": "adds an s before the c, writing sc as in science and conscious",
+    "suspicous": "drops the i of -cious, writing the ending as it sounds",
+    "suspiscous": "adds an s before the c and also drops the i before -ous"
+   },
+   "explanation": "\"suspicious\" is the correct spelling (c alone after suspi (no sc); i before the suffix -ous). \"suspiscious\" adds an s before the c, writing sc as in science and conscious. \"suspicous\" drops the i of -cious, writing the ending as it sounds. \"suspiscous\" adds an s before the c and also drops the i before -ous.",
+   "key_length_profile": "middle"
+  },
+  "rated_no": [
+   {
+    "option": "suspiscous",
+    "reasons": [
+     "two errors together; looks unfamiliar"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S07",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 5,
+   "ccss": "L.5.2e",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe old church has a small ____ where many of the town's first settlers are buried.",
+   "choices": [
+    "cemetery",
+    "cematary",
+    "cemetary",
+    "cematery"
+   ],
+   "correct_answer": "cemetery",
+   "spelling_pattern": "unstressed vowels in the second and third syllables (all e)",
+   "error_sites": [
+    "e in the second syllable",
+    "e in the -ery ending"
+   ],
+   "student_error": {
+    "cematery": "writes a for the unstressed e in the second syllable",
+    "cemetary": "writes the ending as -ary, like library or dictionary",
+    "cematary": "writes a for both unstressed e sounds"
+   },
+   "explanation": "\"cemetery\" is the correct spelling (e in the second syllable; e in the -ery ending). \"cematery\" writes a for the unstressed e in the second syllable. \"cemetary\" writes the ending as -ary, like library or dictionary. \"cematary\" writes a for both unstressed e sounds.",
+   "key_length_profile": "equal"
+  },
+  "rated_no": [
+   {
+    "option": "cematary",
+    "reasons": [
+     "two a vowels; rarely written"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S14",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 6,
+   "ccss": "L.6.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nNora wore a bright scarf as an ____ with her plain winter coat.",
+   "choices": [
+    "accessory",
+    "accesory",
+    "acesory",
+    "acessory"
+   ],
+   "correct_answer": "accessory",
+   "spelling_pattern": "two different doubled consonants: cc and ss",
+   "error_sites": [
+    "double c after a",
+    "double s before -ory"
+   ],
+   "student_error": {
+    "acessory": "writes one c, missing the doubled consonant at the start",
+    "accesory": "writes one s, doubling only the c",
+    "acesory": "writes a single c and a single s"
+   },
+   "explanation": "\"accessory\" is the correct spelling (double c after a; double s before -ory). \"acessory\" writes one c, missing the doubled consonant at the start. \"accesory\" writes one s, doubling only the c. \"acesory\" writes a single c and a single s.",
+   "key_length_profile": "longest"
+  },
+  "rated_no": [
+   {
+    "option": "acesory",
+    "reasons": [
+     "both letters single; looks clearly off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S21",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe flood was ____ for the farmers, who lost almost all of their crops.",
+   "choices": [
+    "disasterous",
+    "dissasterous",
+    "disastrous",
+    "dissastrous"
+   ],
+   "correct_answer": "disastrous",
+   "spelling_pattern": "single s after di, and disaster dropping its e before -ous",
+   "error_sites": [
+    "single s after di",
+    "no e between t and r before -ous"
+   ],
+   "student_error": {
+    "dissastrous": "doubles the s, as if dis- met a root starting with s, as in dissatisfied",
+    "disasterous": "keeps the e of disaster before -ous",
+    "dissasterous": "doubles the s and also keeps the e of disaster"
+   },
+   "explanation": "\"disastrous\" is the correct spelling (single s after di; no e between t and r before -ous). \"dissastrous\" doubles the s, as if dis- met a root starting with s, as in dissatisfied. \"disasterous\" keeps the e of disaster before -ous. \"dissasterous\" doubles the s and also keeps the e of disaster.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "dissastrous",
+    "reasons": [
+     "doubled s without the extra e is a rare form"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S23",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nDoctors ____ children against measles to protect them from the disease.",
+   "choices": [
+    "innocculate",
+    "inoculate",
+    "inocculate",
+    "innoculate"
+   ],
+   "correct_answer": "inoculate",
+   "spelling_pattern": "single n and single c, where students expect doubled consonants",
+   "error_sites": [
+    "single n after i",
+    "single c"
+   ],
+   "student_error": {
+    "innoculate": "doubles the n, as if the prefix in- met a root starting with n",
+    "inocculate": "doubles the c, as in occur or accurate",
+    "innocculate": "doubles both the n and the c"
+   },
+   "explanation": "\"inoculate\" is the correct spelling (single n after i; single c). \"innoculate\" doubles the n, as if the prefix in- met a root starting with n. \"inocculate\" doubles the c, as in occur or accurate. \"innocculate\" doubles both the n and the c.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "innocculate",
+    "reasons": [
+     "doubling both consonants is rare"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S24",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nMaya felt ____ after she said something unkind to her best friend at lunch.",
+   "choices": [
+    "regrettful",
+    "regrettfull",
+    "regretfull",
+    "regretful"
+   ],
+   "correct_answer": "regretful",
+   "spelling_pattern": "no consonant doubling before the consonant suffix -ful, and -ful spelled with one l",
+   "error_sites": [
+    "single t before the suffix -ful",
+    "single l in the suffix -ful"
+   ],
+   "student_error": {
+    "regrettful": "doubles the t as in regretted and regretting, though -ful starts with a consonant",
+    "regretfull": "spells the suffix -ful like the word full",
+    "regrettfull": "doubles the t and also writes the suffix as -full"
+   },
+   "explanation": "\"regretful\" is the correct spelling (single t before the suffix -ful; single l in the suffix -ful). \"regrettful\" doubles the t as in regretted and regretting, though -ful starts with a consonant. \"regretfull\" spells the suffix -ful like the word full. \"regrettfull\" doubles the t and also writes the suffix as -full.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "regrettfull",
+    "reasons": [
+     "double t and double l together looks wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S27",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe two poems share a topic, but their styles are completely ____.",
+   "choices": [
+    "dissimiliar",
+    "dissimmilar",
+    "dissimmiliar",
+    "dissimilar"
+   ],
+   "correct_answer": "dissimilar",
+   "spelling_pattern": "similar inside dis-: one m, and the ending -lar with no extra i",
+   "error_sites": [
+    "single m after dissi",
+    "no i before the final -ar"
+   ],
+   "student_error": {
+    "dissimmilar": "doubles the m of similar, as in simmer or summer",
+    "dissimiliar": "adds an i before -ar, as in familiar",
+    "dissimmiliar": "doubles the m and also adds an i before -ar"
+   },
+   "explanation": "\"dissimilar\" is the correct spelling (single m after dissi; no i before the final -ar). \"dissimmilar\" doubles the m of similar, as in simmer or summer. \"dissimiliar\" adds an i before -ar, as in familiar. \"dissimmiliar\" doubles the m and also adds an i before -ar.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "dissimmilar",
+    "reasons": [
+     "doubled m is not a typical error"
+    ]
+   },
+   {
+    "option": "dissimmiliar",
+    "reasons": [
+     "two odd errors together; unlikely"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-S29",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Spelling",
+   "grade_target": 7,
+   "ccss": "L.7.2b",
+   "spelling_format": "word",
+   "prompt": "Which word correctly completes the sentence?\n\nThe weather report was ____ because it promised sun, but it rained all day.",
+   "choices": [
+    "inaccurrate",
+    "inaccurate",
+    "innaccurrate",
+    "innaccurate"
+   ],
+   "correct_answer": "inaccurate",
+   "spelling_pattern": "prefix in- + accurate: the n is not doubled because the root starts with a, and accurate has one r",
+   "error_sites": [
+    "single n in the prefix in-",
+    "single r in accurate"
+   ],
+   "student_error": {
+    "innaccurate": "doubles the n, as if in- met a root starting with n, as in innumerable",
+    "inaccurrate": "doubles the r, as in occur and current",
+    "innaccurrate": "doubles both the n and the r"
+   },
+   "explanation": "\"inaccurate\" is the correct spelling (single n in the prefix in-; single r in accurate). \"innaccurate\" doubles the n, as if in- met a root starting with n, as in innumerable. \"inaccurrate\" doubles the r, as in occur and current. \"innaccurrate\" doubles both the n and the r.",
+   "key_length_profile": "shortest"
+  },
+  "rated_no": [
+   {
+    "option": "innaccurrate",
+    "reasons": [
+     "doubled n and r together looks off"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-P01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Punctuation",
+   "grade_target": 5,
+   "ccss": "L.5.2b",
+   "prompt": "Which sentence is punctuated correctly?",
+   "choices": [
+    "After the storm knocked out the power in our whole neighborhood my brother and I, read comic books by flashlight.",
+    "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.",
+    "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+    "After the storm knocked out the power in our whole neighborhood, my brother and I, read comic books by flashlight."
+   ],
+   "correct_answer": "After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.",
+   "error_sites": [
+    "comma after the long introductory clause",
+    "comma between the subject and the verb"
+   ],
+   "student_error": {
+    "After the storm knocked out the power in our whole neighborhood my brother and I read comic books by flashlight.": "Leaves out the comma after a long introductory clause, so the opening runs into the main sentence.",
+    "After the storm knocked out the power in our whole neighborhood, my brother and I, read comic books by flashlight.": "Adds a comma where the reader pauses, between the subject 'my brother and I' and the verb 'read'.",
+    "After the storm knocked out the power in our whole neighborhood my brother and I, read comic books by flashlight.": "Puts the one comma at the wrong pause: after the subject instead of after the introductory clause."
+   },
+   "explanation": "A long introductory clause is followed by a comma. No comma goes between the subject (my brother and I) and its verb (read).",
+   "punct_rule": "comma after a long introductory clause"
+  },
+  "rated_no": [
+   {
+    "option": "After the storm knocked out the power in our whole neighborhood my brother and I, read comic books by flashlight.",
+    "reasons": [
+     "comma only after the subject with none after the clause looks wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-P02",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Punctuation",
+   "grade_target": 5,
+   "ccss": "L.5.2a",
+   "prompt": "Which sentence is punctuated correctly?",
+   "choices": [
+    "Dad packed snacks for the car a map of the state park, and two jackets for the rainy hike.",
+    "Dad packed, snacks for the car, a map of the state park, and two jackets for the rainy hike.",
+    "Dad packed, snacks for the car a map of the state park, and two jackets for the rainy hike.",
+    "Dad packed snacks for the car, a map of the state park, and two jackets for the rainy hike."
+   ],
+   "correct_answer": "Dad packed snacks for the car, a map of the state park, and two jackets for the rainy hike.",
+   "error_sites": [
+    "comma between the verb and the start of the list",
+    "comma between the first and second items in the series"
+   ],
+   "student_error": {
+    "Dad packed, snacks for the car, a map of the state park, and two jackets for the rainy hike.": "Puts a comma before the list begins, right after the verb 'packed'.",
+    "Dad packed snacks for the car a map of the state park, and two jackets for the rainy hike.": "Leaves out the comma between the first two phrases in the series.",
+    "Dad packed, snacks for the car a map of the state park, and two jackets for the rainy hike.": "Thinks the comma goes in front of the list instead of between its items."
+   },
+   "explanation": "Commas separate the items in a series: 'snacks for the car, a map of the state park, and two jackets'. No comma goes between the verb and the first item.",
+   "punct_rule": "commas separating phrases in a series (none before the series)"
+  },
+  "rated_no": [
+   {
+    "option": "Dad packed, snacks for the car a map of the state park, and two jackets for the rainy hike.",
+    "reasons": [
+     "two visible errors, inconsistent list commas",
+     "two separate errors make it read badly"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-P03",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Punctuation",
+   "grade_target": 5,
+   "ccss": "L.5.2c",
+   "prompt": "Which sentence is punctuated correctly?",
+   "choices": [
+    "You remembered to lock the back door before we left for the airport, didn't you?",
+    "You remembered to lock the back door before we left for the airport, didn't you.",
+    "You remembered to lock the back door before we left for the airport didn't you.",
+    "You remembered to lock the back door before we left for the airport didn't you?"
+   ],
+   "correct_answer": "You remembered to lock the back door before we left for the airport, didn't you?",
+   "error_sites": [
+    "comma before the tag question",
+    "question mark at the end"
+   ],
+   "student_error": {
+    "You remembered to lock the back door before we left for the airport didn't you?": "Leaves out the comma that sets off the tag 'didn't you' from the long statement.",
+    "You remembered to lock the back door before we left for the airport, didn't you.": "Ends with a period because the sentence starts out as a statement.",
+    "You remembered to lock the back door before we left for the airport didn't you.": "Does not recognize 'didn't you' as a tag question at all."
+   },
+   "explanation": "A tag question is set off with a comma, and because it asks something, the sentence ends with a question mark.",
+   "punct_rule": "tag question set off by a comma and ended with a question mark"
+  },
+  "rated_no": [
+   {
+    "option": "You remembered to lock the back door before we left for the airport didn't you.",
+    "reasons": [
+     "no comma and no question mark looks unfinished"
+    ]
+   },
+   {
+    "option": "You remembered to lock the back door before we left for the airport didn't you?",
+    "reasons": [
+     "a question with no comma and a period looks plainly wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-P06",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Mechanics",
+   "map_strand": "Punctuation",
+   "grade_target": 6,
+   "ccss": "L.6.2a",
+   "prompt": "Which sentence is punctuated correctly?",
+   "choices": [
+    "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+    "Grandpa's old truck (the blue one parked behind the barn still starts on the coldest mornings.",
+    "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings.",
+    "Grandpa's old truck (the blue one parked behind the barn, still starts on the coldest mornings."
+   ],
+   "correct_answer": "Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.",
+   "error_sites": [
+    "closing parenthesis",
+    "comma after the parenthetical element"
+   ],
+   "student_error": {
+    "Grandpa's old truck (the blue one parked behind the barn still starts on the coldest mornings.": "Forgets to close the parentheses after the long added phrase.",
+    "Grandpa's old truck (the blue one parked behind the barn), still starts on the coldest mornings.": "Adds a comma after the closing parenthesis, where the reader pauses before the verb.",
+    "Grandpa's old truck (the blue one parked behind the barn, still starts on the coldest mornings.": "Closes the parenthetical phrase with a comma, mixing up parentheses and commas."
+   },
+   "explanation": "Parentheses come in pairs, so the added phrase must be closed with ')'. No comma follows it, because the main sentence 'Grandpa's old truck still starts' has no comma between subject and verb.",
+   "punct_rule": "parentheses closed around a nonrestrictive element, with no comma after"
+  },
+  "rated_no": [
+   {
+    "option": "Grandpa's old truck (the blue one parked behind the barn still starts on the coldest mornings.",
+    "reasons": [
+     "missing closing parenthesis is visibly broken",
+     "an unclosed parenthesis is visibly broken"
+    ]
+   },
+   {
+    "option": "Grandpa's old truck (the blue one parked behind the barn, still starts on the coldest mornings.",
+    "reasons": [
+     "mismatched paren and comma looks broken",
+     "parenthesis closed by a comma looks broken"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-G01",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Parts of Speech",
+   "grade_target": 5,
+   "ccss": "L.5.1d",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "By the time Grandpa arrived at the station, the train has already left, so he took a taxi home.",
+    "By the time Grandpa arrived at the station, the train has already left, so he takes a taxi home.",
+    "By the time Grandpa arrived at the station, the train had already left, so he takes a taxi home.",
+    "By the time Grandpa arrived at the station, the train had already left, so he took a taxi home."
+   ],
+   "correct_answer": "By the time Grandpa arrived at the station, the train had already left, so he took a taxi home.",
+   "error_sites": [
+    "'had' (past perfect) for the action finished before Grandpa arrived",
+    "'took' keeping the story in past tense"
+   ],
+   "student_error": {
+    "By the time Grandpa arrived at the station, the train has already left, so he took a taxi home.": "Uses present perfect 'has left' for an action that was finished before another past action.",
+    "By the time Grandpa arrived at the station, the train had already left, so he takes a taxi home.": "Shifts the second verb into the present tense in the middle of a past-tense story.",
+    "By the time Grandpa arrived at the station, the train has already left, so he takes a taxi home.": "Slides the whole second half of the sentence into the present."
+   },
+   "explanation": "The story is in the past (arrived). The train left before Grandpa arrived, so the past perfect 'had already left' is needed, and 'took' keeps the tense consistent.",
+   "varied_dimension": "past perfect vs present perfect; past-tense consistency"
+  },
+  "rated_no": [
+   {
+    "option": "By the time Grandpa arrived at the station, the train has already left, so he takes a taxi home.",
+    "reasons": [
+     "tense shifts back and forth twice; reads wrong"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-G12",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 7,
+   "ccss": "L.7.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "My cousin, who has never seen the ocean, visiting us next week, and we are taking him to the beach on Saturday.",
+    "My cousin, who has never seen the ocean, is visiting us next week, we are taking him to the beach on Saturday.",
+    "My cousin, who has never seen the ocean, visiting us next week, we are taking him to the beach on Saturday.",
+    "My cousin, who has never seen the ocean, is visiting us next week, and we are taking him to the beach on Saturday."
+   ],
+   "correct_answer": "My cousin, who has never seen the ocean, is visiting us next week, and we are taking him to the beach on Saturday.",
+   "error_sites": [
+    "full verb 'is visiting' for the subject 'My cousin'",
+    "'and' joining the two independent clauses"
+   ],
+   "student_error": {
+    "My cousin, who has never seen the ocean, visiting us next week, and we are taking him to the beach on Saturday.": "Uses 'visiting' alone, so 'My cousin' has no main verb.",
+    "My cousin, who has never seen the ocean, is visiting us next week, we are taking him to the beach on Saturday.": "Joins two complete sentences with only a comma.",
+    "My cousin, who has never seen the ocean, visiting us next week, we are taking him to the beach on Saturday.": "Loses track of the main clause after the long 'who' clause and strings the parts together with commas."
+   },
+   "explanation": "'My cousin' needs a complete verb, 'is visiting'; 'visiting' alone is not a main verb. The two independent clauses must be joined by a comma and a conjunction such as 'and'.",
+   "varied_dimension": "missing main verb (fragment); missing coordinating conjunction (comma splice)"
+  },
+  "rated_no": [
+   {
+    "option": "My cousin, who has never seen the ocean, visiting us next week, we are taking him to the beach on Saturday.",
+    "reasons": [
+     "fragment plus splice reads clearly broken"
+    ]
+   }
+  ]
+ },
+ {
+  "item": {
+   "id": "MLV3-G14",
+   "family": "map",
+   "map_subject": "language_usage",
+   "map_area": "Language: Understand, Edit for Grammar, Usage",
+   "map_strand": "Phrases, Clauses, Agreement, Sentences",
+   "grade_target": 8,
+   "ccss": "L.8.1b",
+   "prompt": "Which sentence is written correctly?",
+   "choices": [
+    "The gym floor is being repaired this week, so the spring dance has been moved to the cafeteria.",
+    "The gym floor is been repaired this week, so the spring dance has been moved to the cafeteria.",
+    "The gym floor is being repaired this week, so the spring dance has being moved to the cafeteria.",
+    "The gym floor is been repaired this week, so the spring dance has being moved to the cafeteria."
+   ],
+   "correct_answer": "The gym floor is being repaired this week, so the spring dance has been moved to the cafeteria.",
+   "error_sites": [
+    "progressive passive helper 'is being'",
+    "perfect passive helper 'has been'"
+   ],
+   "student_error": {
+    "The gym floor is been repaired this week, so the spring dance has been moved to the cafeteria.": "Uses 'been' after 'is', mixing up 'being' and 'been'.",
+    "The gym floor is being repaired this week, so the spring dance has being moved to the cafeteria.": "Uses 'being' after 'has', mixing up 'being' and 'been'.",
+    "The gym floor is been repaired this week, so the spring dance has being moved to the cafeteria.": "Mixes up 'being' and 'been' in passive verbs."
+   },
+   "explanation": "The progressive passive is 'is being' plus the past participle; the perfect passive is 'has been' plus the past participle. 'been' follows 'has/have/had', and 'being' follows forms of 'be' such as 'is'.",
+   "varied_dimension": "progressive passive (is being); perfect passive (has been)"
+  },
+  "rated_no": [
+   {
+    "option": "The gym floor is been repaired this week, so the spring dance has being moved to the cafeteria.",
+    "reasons": [
+     "two verb errors make it read wrong"
+    ]
+   }
+  ]
+ }
+]
