@@ -8787,6 +8787,24 @@
           "verdict": "Graders: consistent-corner key on 7/8 (discarding the two mixed options leaves 50/50); slots 2/2/2/2."
         }
       }
+    },
+    {
+      "id": "map-math-g58-v2-2026-10-12",
+      "createdAt": "2026-10-12",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-g58-v2",
+      "contentSha": "8d54a88c9eacad3f11aaecad0255b35743b2c21f412216c366a6613f25107d52",
+      "status": "killed",
+      "note": "Second MAP maths batch, grades 5-8, the three areas v1 held (Operations and Algebraic Thinking, Real and Complex Number Systems, Geometry), 20 per area. STOPPED at Stage 0: after the pre-freeze screen (29 of 60 failed pass 1, returned once; 17 still failed pass 2 and were dropped) geo kept 12 of 20, under the pre-registered freeze bar of 15 per area (oa 16, num 15). Nothing frozen, rendered, graded or inserted. contentSha = sha256 of map-math-g58-v2/stage0.assembled.json. MAP-MATH-G58-V2.prereg.md (de3e3bd8, no amendment); REGISTER section 5, 2026-10-12. Forms projection from the staged v1+v2 pool: 0.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: 60/60 PART OK (sandbox key + distractor recompute, v1 mechanical checks, declared bound screen); near-dup 0 flagged vs sat/act/isee/ssat and v1; cold screen pass 1 29 fail, pass 2 17 still fail -> dropped; per-area survivors oa 16, num 15, geo 12 < 15."
+        }
+      }
     }
   ],
   "auditedCohorts": [

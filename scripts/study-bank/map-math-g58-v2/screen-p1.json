@@ -1,0 +1,115 @@
+{
+ "screened": 60,
+ "fails": {
+  "MM2-N04": [
+   "S-R4 3 struck without solving: [\"0.16\",\"3.4\",\"3.28\"] (0.16: about 80/25 is near 3, far too small; 3.4 and 3.28: even all 79 m over 25 is under 80/25 = 3.2)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MM2-N20": [
+   "S-R7 option pair 128 and 2048, factor 2^4 = 16"
+  ],
+  "MM2-O01": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-O19": [
+   "S-R7 option pair 48 and 60, 48 = 60 x 0.8 (20% off)"
+  ],
+  "MM2-G05": [
+   "S-R4 2 struck without solving: [\"26\",\"28\"] (26, 28: the fence spans x 1 to 13 and y 1 to 8, so it is at least 2(12+7) = 38)"
+  ],
+  "MM2-G20": [
+   "S-R4 3 struck without solving: [\"710.64\",\"1219.32\",\"1275.84\"] (all three: the cone is less than 1/3 of a 12x12x9 box = 432, so the wood left is over 1728-432 = 1296)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (cone < (1/3)(12 x 12 x 9) = 432, so the remainder > 1296)"
+  ],
+  "MM2-N08": [
+   "S-R4 2 struck without solving: [\"1.91\",\"13.45\"] (hundredths digit: B ends in 4 (from 2-8, borrowing), minus 5 leaves 9; 1.91 and 13.45 do not end in 9)"
+  ],
+  "MM2-G11": [
+   "S-R4 3 struck without solving: [\"54.84\",\"64.26\",\"149.04\"] (54.84, 64.26: each semicircle is bigger than its inscribed 6x3 triangle (9), so the total is over 72; 149.04: each semicircle is smaller than a 6x3 rectangle (1)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM2-N06": [
+   "S-R4 3 struck without solving: [\"6.20\",\"7.12\",\"7.90\"] (6.20: that is 12.40/2, but 1.6 < 2 so the price must be more; 7.12: 1.6 x 7.12 has a nonzero thousandths digit (6x2); 7.90: 1.6 x 7.9 ends in hundredths 4 (6x9))",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM2-N03": [
+   "S-R4 3 struck without solving: [\"3 2/5\",\"3 1/5\",\"4 1/15\"] (3 2/5, 3 1/5: fifths minus thirds must leave a denominator of 15; 4 1/15: 6-2 = 4 but 1/5 < 2/3, so the answer is below 4)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM2-N15": [
+   "S-R4 3 struck without solving: [\"-7 5/6\",\"-7 3/4\",\"-6 1/8\"] (-7 5/6, -7 3/4: only one term has eighths, so the sum must be in eighths; -6 1/8: the whole parts already total 7 plus some positive fractions, so the size is a)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM2-G04": [
+   "S-R4 3 struck without solving: [\"120\",\"144\",\"340\"] (all three: B's bottom (8) is less than 1/6 of A's (54), so its volume is under 540/6 = 90)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (base 8 < 54/6, so volume < 90)"
+  ],
+  "MM2-N19": [
+   "S-R4 2 struck without solving: [\"0.900\",\"0.060\"] (0.900: 2/3 and 0.6 are close, so the gap is tiny; 0.060: 2/3 > 0.666, so the gap is above 0.066)"
+  ],
+  "MM2-O07": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-G09": [
+   "S-R4 3 struck without solving: [\"165\",\"56\",\"54\"] (165: height 15 alone pushes the perimeter past 30; 56, 54: the width is 11 from the coordinates and the area is 11 x height, so neither is a multiple of 11 at a)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM2-O17": [
+   "S-R4 2 struck without solving: [\"-19\",\"24\"] (-19: then y = 3x-5 is negative too, so x+y cannot be 43; 24: y = 67 alone already exceeds x+y = 43)"
+  ],
+  "MM2-G17": [
+   "S-R4 3 struck without solving: [\"70\",\"88\",\"78\"] (all three: the 4-unit down shift alone limits the overlap to 10 x 6 = 60)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (overlap <= 10 x (10-4) = 60)"
+  ],
+  "MM2-G15": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-G07": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-G06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-G01": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-N16": [
+   "S-R4 2 struck without solving: [\"51615000\",\"5185000\"] (51615000: larger than the starting amount; 5185000: taking away ~385,000 must drop below 5,000,000)"
+  ],
+  "MM2-O11": [
+   "S-R4 2 struck without solving: [\"-4.5\",\"-58.5\"] (-4.5: adding 7.5 raises the value, so 3x < -36 and x < -12; -58.5: 3x would be near -175, far past -36)"
+  ],
+  "MM2-G08": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM2-O10": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MM2-G18": [
+   "S-R4 2 struck without solving: [\"2198\",\"219.8\"] (2198: can fits in a 10x10x7 box (700); 219.8: is 31.4 x 7, the label area)"
+  ],
+  "MM2-O13": [
+   "S-R7 option pair 48 & 60: 12 per year x 4 vs x 5 (5 = 4 + 1)"
+  ],
+  "MM2-O03": [
+   "S-R4 3 struck without solving: [\"19\",\"28\",\"33\"] (bracket is at most 8x5+9 = 49, so the result is under 17, killing 19, 28 and 33)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (result < (8x5+9)/3 < 17)"
+  ],
+  "MM2-N11": [
+   "S-R4 3 struck without solving: [\"7.5\",\"6.2\",\"5.9\"] (3.4 > 3, so the product exceeds 3 x 2.5 = 7.5, killing 7.5, 6.2 and 5.9)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (product > 3 x 2.5 = 7.5)"
+  ]
+ }
+}

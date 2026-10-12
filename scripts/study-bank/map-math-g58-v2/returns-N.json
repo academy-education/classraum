@@ -1,0 +1,176 @@
+{
+ "MM2-N04": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"0.16\",\"3.4\",\"3.28\"] (0.16: about 80/25 is near 3, far too small; 3.4 and 3.28: even all 79 m over 25 is under 80/25 = 3.2)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 2"
+  ],
+  "screener": {
+   "my_answer": "3.04",
+   "struck": [
+    "0.16",
+    "3.4",
+    "3.28"
+   ],
+   "free_elimination": "0.16: about 80/25 is near 3, far too small; 3.4 and 3.28: even all 79 m over 25 is under 80/25 = 3.2",
+   "extreme_single_bound": null,
+   "plugback_tries": 2,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "(79-3)/25 = 3.04; the 3.2 cap from 80/25 leaves only 3.04"
+  }
+ },
+ "MM2-N20": {
+  "screen_fails": [
+   "S-R7 option pair 128 and 2048, factor 2^4 = 16"
+  ],
+  "screener": {
+   "my_answer": "2048",
+   "struck": [
+    "-128"
+   ],
+   "free_elimination": "-128: a power of 2 cannot be negative",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": "128 and 2048, factor 2^4 = 16",
+   "note": "2^9 / 2^-2 = 2^11 = 2048"
+  }
+ },
+ "MM2-N08": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"1.91\",\"13.45\"] (hundredths digit: B ends in 4 (from 2-8, borrowing), minus 5 leaves 9; 1.91 and 13.45 do not end in 9)"
+  ],
+  "screener": {
+   "my_answer": "1.59",
+   "struck": [
+    "1.91",
+    "13.45"
+   ],
+   "free_elimination": "hundredths digit: B ends in 4 (from 2-8, borrowing), minus 5 leaves 9; 1.91 and 13.45 do not end in 9",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "B = 2.84, |2.84-1.25| = 1.59; 1.69 differs only in the tenths digit"
+  }
+ },
+ "MM2-N06": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"6.20\",\"7.12\",\"7.90\"] (6.20: that is 12.40/2, but 1.6 < 2 so the price must be more; 7.12: 1.6 x 7.12 has a nonzero thousandths digit (6x2); 7.90: 1.6 x 7.9 ends in hundredths 4 (6x9))",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "7.75",
+   "struck": [
+    "6.20",
+    "7.12",
+    "7.90"
+   ],
+   "free_elimination": "6.20: that is 12.40/2, but 1.6 < 2 so the price must be more; 7.12: 1.6 x 7.12 has a nonzero thousandths digit (6x2); 7.90: 1.6 x 7.9 ends in hundredths 4 (6x9), not 12.40",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "12.4/1.6 = 7.75; the last-digit checks kill both close distractors"
+  }
+ },
+ "MM2-N03": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"3 2/5\",\"3 1/5\",\"4 1/15\"] (3 2/5, 3 1/5: fifths minus thirds must leave a denominator of 15; 4 1/15: 6-2 = 4 but 1/5 < 2/3, so the answer is below 4)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "3 8/15",
+   "struck": [
+    "3 2/5",
+    "3 1/5",
+    "4 1/15"
+   ],
+   "free_elimination": "3 2/5, 3 1/5: fifths minus thirds must leave a denominator of 15; 4 1/15: 6-2 = 4 but 1/5 < 2/3, so the answer is below 4",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "93/15 - 40/15 = 53/15; a denominator check plus one bound leaves only the key"
+  }
+ },
+ "MM2-N15": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"-7 5/6\",\"-7 3/4\",\"-6 1/8\"] (-7 5/6, -7 3/4: only one term has eighths, so the sum must be in eighths; -6 1/8: the whole parts already total 7 plus some positive fractions, so the size is a)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "-7 7/8",
+   "struck": [
+    "-7 5/6",
+    "-7 3/4",
+    "-6 1/8"
+   ],
+   "free_elimination": "-7 5/6, -7 3/4: only one term has eighths, so the sum must be in eighths; -6 1/8: the whole parts already total 7 plus some positive fractions, so the size is above 7",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "8/24 + 9/24 + 4/24 = 7/8; a denominator check plus a bound leaves only the key"
+  }
+ },
+ "MM2-N19": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"0.900\",\"0.060\"] (0.900: 2/3 and 0.6 are close, so the gap is tiny; 0.060: 2/3 > 0.666, so the gap is above 0.066)"
+  ],
+  "screener": {
+   "my_answer": "0.067",
+   "struck": [
+    "0.900",
+    "0.060"
+   ],
+   "free_elimination": "0.900: 2/3 and 0.6 are close, so the gap is tiny; 0.060: 2/3 > 0.666, so the gap is above 0.066",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "0.0666... rounds to 0.067; 0.066 is the truncation trap"
+  }
+ },
+ "MM2-N16": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"51615000\",\"5185000\"] (51615000: larger than the starting amount; 5185000: taking away ~385,000 must drop below 5,000,000)"
+  ],
+  "screener": {
+   "my_answer": "4815000",
+   "struck": [
+    "51615000",
+    "5185000"
+   ],
+   "free_elimination": "51615000: larger than the starting amount; 5185000: taking away ~385,000 must drop below 5,000,000",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "leaves 4825000 vs 4815000, a borrowing-digit decision"
+  }
+ },
+ "MM2-N11": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"7.5\",\"6.2\",\"5.9\"] (3.4 > 3, so the product exceeds 3 x 2.5 = 7.5, killing 7.5, 6.2 and 5.9)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (product > 3 x 2.5 = 7.5)"
+  ],
+  "screener": {
+   "my_answer": "8.5",
+   "struck": [
+    "7.5",
+    "6.2",
+    "5.9"
+   ],
+   "free_elimination": "3.4 > 3, so the product exceeds 3 x 2.5 = 7.5, killing 7.5, 6.2 and 5.9",
+   "extreme_single_bound": "product > 3 x 2.5 = 7.5",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "key largest; all distractors under-estimate; 5.9 = 3.4 + 2.5"
+  }
+ }
+}

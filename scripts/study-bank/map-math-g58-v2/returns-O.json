@@ -1,0 +1,139 @@
+{
+ "MM2-O01": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "18",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "8 + 10 = 18; ignoring the parentheses gives a smaller divisor, so every misgrouping error lands higher"
+  }
+ },
+ "MM2-O19": {
+  "screen_fails": [
+   "S-R7 option pair 48 and 60, 48 = 60 x 0.8 (20% off)"
+  ],
+  "screener": {
+   "my_answer": "60",
+   "struck": [
+    "1.35"
+   ],
+   "free_elimination": "1.35: smaller than the $9 shipping charge alone, so the price cannot be that",
+   "extreme_single_bound": null,
+   "plugback_tries": 4,
+   "one_sided": false,
+   "option_pair_tell": "48 and 60, 48 = 60 x 0.8 (20% off)",
+   "note": "0.15P = 9, so P = 60"
+  }
+ },
+ "MM2-O07": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "8",
+   "struck": [
+    "92"
+   ],
+   "free_elimination": "92: bigger than either car's speed (A is 50 mph)",
+   "extreme_single_bound": "B > 40 mph (168/4 > 40), so the difference < 50 - 40 = 10",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "50 - 42 = 8; the distractors are B's speed, the distance difference and the sum, all larger"
+  }
+ },
+ "MM2-O17": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"-19\",\"24\"] (-19: then y = 3x-5 is negative too, so x+y cannot be 43; 24: y = 67 alone already exceeds x+y = 43)"
+  ],
+  "screener": {
+   "my_answer": "12",
+   "struck": [
+    "-19",
+    "24"
+   ],
+   "free_elimination": "-19: then y = 3x-5 is negative too, so x+y cannot be 43; 24: y = 67 alone already exceeds x+y = 43",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "x + y = 43, 4x - 5 = 43, x = 12; 11 is the close neighbour"
+  }
+ },
+ "MM2-O11": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"-4.5\",\"-58.5\"] (-4.5: adding 7.5 raises the value, so 3x < -36 and x < -12; -58.5: 3x would be near -175, far past -36)"
+  ],
+  "screener": {
+   "my_answer": "-14.5",
+   "struck": [
+    "-4.5",
+    "-58.5"
+   ],
+   "free_elimination": "-4.5: adding 7.5 raises the value, so 3x < -36 and x < -12; -58.5: 3x would be near -175, far past -36",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "3x = -43.5; -19.5 = -12-7.5 survives the cheap bounds"
+  }
+ },
+ "MM2-O10": {
+  "screen_fails": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "screener": {
+   "my_answer": "36",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": 2,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "red 48, blue 84; once counts found, checking 18 then 36 is routine"
+  }
+ },
+ "MM2-O13": {
+  "screen_fails": [
+   "S-R7 option pair 48 & 60: 12 per year x 4 vs x 5 (5 = 4 + 1)"
+  ],
+  "screener": {
+   "my_answer": "48",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": "48 & 60: 12 per year x 4 vs x 5 (5 = 4 + 1)",
+   "note": "210 - 162; 108 and 84 apply one rate to the $600 gap"
+  }
+ },
+ "MM2-O03": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"19\",\"28\",\"33\"] (bracket is at most 8x5+9 = 49, so the result is under 17, killing 19, 28 and 33)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (result < (8x5+9)/3 < 17)"
+  ],
+  "screener": {
+   "my_answer": "13",
+   "struck": [
+    "19",
+    "28",
+    "33"
+   ],
+   "free_elimination": "bracket is at most 8x5+9 = 49, so the result is under 17, killing 19, 28 and 33",
+   "extreme_single_bound": "result < (8x5+9)/3 < 17",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "39/3; the bound costs about as much as the work, but all distractors sit above it"
+  }
+ }
+}
