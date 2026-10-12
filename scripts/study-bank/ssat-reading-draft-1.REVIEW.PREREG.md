@@ -28,3 +28,9 @@ not his tool. His judgments become the training signal for the authoring agents.
   with the distilled rules, sat blind by him later, against this run's blind rate and the 20.8% control.
 - Revised versions of these 72 may be produced for the bank, but they need a fresh blind reader or a
   fresh batch-level measurement before any release; his second look at a revised item is feedback only.
+
+## Amendment 1 (2026-10-12, before he answered anything: 0 of 72 seen)
+Owner asked for a shorter run. Trimmed to one passage per genre: P01 fiction, P03 poetry, P05 memoir,
+P07 essay, P09 history, P11 science = 36 items (6 whole passages). The 36 rows of P02/P04/P06/P08/P10/P12
+were deleted unseen. Remaining deal A7 B8 C7 D7 E7, so the control is 8/36 = 22.2% (was 20.8%).
+The other six passages stay staged for a later review or for the improved-brief comparison.
