@@ -31,6 +31,7 @@ import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 import { raiseAlert } from '@/lib/ops/alert'
 import { withApiFailureLogging } from '@/lib/ops/api-failure'
+import { repeatedBlankWords } from '@/lib/study/complete-words'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -1722,7 +1723,10 @@ async function handlePOST(req: NextRequest) {
           // by inline-placeholder count and keeps only the best 1,
           // so any well-formed item that survives to here is worth
           // shipping even if a few placeholders are trailing.
-          return allPlaceholders.length >= 5
+          if (allPlaceholders.length < 5) return false
+          // Every blank must be a DIFFERENT word (2026-10-16: one item
+          // blanked "boundaries" four times).
+          return repeatedBlankWords(q.passage, q.blanks).length === 0
         }
         case 'arrange_words':
           // choices ARE the word/phrase chips (6-10), correct_answer is
@@ -2613,6 +2617,7 @@ function buildToeflReadingTaskPrompt(args: {
       'FORMAT (READ CAREFULLY — this is the most common failure mode):',
       'Each item is a SHORT academic paragraph, 100-150 words (longer than standard so students see more context). The FIRST sentence is COMPLETE — no blanks. The SECOND and THIRD sentences EACH contain multiple words where the second half of the word is missing, marked as [N] tokens INLINE. Blanks should target ACADEMIC vocabulary or morphologically-tricky endings (-tion, -ment, -ology, -itive, -ceive, -pheric) — not trivial short words.',
       'The [N] tokens MUST be INTERSPERSED WITHIN WORDS in sentences 2 and 3 — NOT clustered at the end of the passage.',
+      'Every blank MUST be a DIFFERENT word. Never blank the same word twice in one paragraph (e.g. "bound[3]aries" and "bound[6]aries"), even when the word repeats in the text — leave later occurrences complete and blank a different word. Items that repeat a blanked word are rejected.',
       '',
       'CONCRETE EXAMPLE of the correct format for the passage field:',
       '',
@@ -3344,6 +3349,7 @@ function extraGuidanceFor(
       `TASK C — "Complete the Words" (EXACTLY 1 item per ETS Jan-2026 spec, type="fill_in_blanks"):`,
       '- ONE short academic paragraph (60-120 words) where the SECOND AND THIRD SENTENCES contain EXACTLY 10 incomplete words — typically the second half of each word is missing. Mark each blank as [1] [2] … [10] in the passage field. Do NOT generate multiple Complete-the-Words items; the real ETS section has just one such paragraph.',
       '- For each blank, provide the missing letter(s) in the "blanks" array: [{ "id": 1, "answer": "s" }, { "id": 2, "answer": "tion" }, …]. Blanks are typically 1-5 letters (a word ending, suffix, or short fragment).',
+      '- All 10 blanks MUST be DIFFERENT words. Never blank the same word twice; if a word repeats in the paragraph, leave the later occurrences complete. Items that repeat a blanked word are rejected.',
       '- "prompt" should just say "[Complete the Words] Fill in the missing letters in each word." (no further question stem).',
       '- "choices" must be an empty array, "correct_answer" must be null. Set passageGroupId to null (each Complete-the-Words item stands alone — one paragraph = one item with 10 blanks).',
       '',

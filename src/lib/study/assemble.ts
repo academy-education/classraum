@@ -13,6 +13,7 @@ import { shuffleChoices } from '@/lib/test-verify'
 import { capWarmupItems } from '@/lib/study/toefl-warmup'
 import { assertFullDraw } from '@/lib/study/section-availability'
 import { bandTier, chooseExactFill, setScore } from '@/lib/study/toefl-pack'
+import { repeatedBlankWords } from '@/lib/study/complete-words'
 
 /**
  * Randomise choice order AT DRAW TIME, for every bank-assembled test.
@@ -228,7 +229,7 @@ export function resolveBankDifficulty(rowDifficulty: unknown, itemDifficulty: un
   return null
 }
 
-function readBankItem(item: unknown, rowDifficulty?: unknown): Question | null {
+export function readBankItem(item: unknown, rowDifficulty?: unknown): Question | null {
   if (item === null || typeof item !== 'object' || Array.isArray(item)) return null
   const b = bagOf(item)
 
@@ -256,6 +257,13 @@ function readBankItem(item: unknown, rowDifficulty?: unknown): Question | null {
   if (typeof correctAnswer !== 'string' && !(correctAnswer === null && FREE_RESPONSE.has(type))) return null
   const key = typeof correctAnswer === 'string' ? correctAnswer : ''
   if (!Array.isArray(choices) || !choices.every((c: unknown) => typeof c === 'string')) return null
+  // Complete the Words: a paragraph whose blanks repeat a word (four
+  // "bound[N]aries" in one item, 2026-10-16) is never served.
+  if (type === 'fill_in_blanks') {
+    const blanks = readBlanks(b.get('blanks'))
+    const passage = asString(b.get('passage'))
+    if (blanks && passage && repeatedBlankWords(passage, blanks).length > 0) return null
+  }
 
   return {
     passage: asString(b.get('passage')),
