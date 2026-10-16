@@ -5,7 +5,12 @@
 //   node scripts/shots/_render-split.mjs <builddir> <doc> [outdir]
 //
 //   SIZE=b5   JIS B5 (182x257mm): the A4 layout zoomed by 0.86667, as in _render-intro.mjs
-//   BLEED=1   3mm bleed on every side
+//   BLEED=1   3mm bleed on every side. The page box grows by the bleed and stays
+//             border-box, so the content area is identical to the trim build. (Until
+//             2026-10-16 bleed switched to content-box: every page was laid out taller by
+//             its padding and the cover, padding-bottom 0, showed ~22mm of white at the foot.)
+//             The cover screenshot runs on into the bottom bleed, so a low trim never
+//             shows a navy line under it.
 //   PRINT=1   print booklet: inserts the pages authored in <template id="print-pages">
 //             (<!--AFTER-COVER--> after the front cover, <!--BEFORE-BACK--> ahead of the
 //             back cover). The result MUST be a multiple of 4 pages or the build fails.
@@ -69,9 +74,9 @@ if (PRINT) {
   if (beforeBack) { const back = html.lastIndexOf('<section class="page back-page">'); html = html.slice(0, back) + beforeBack + '\n' + html.slice(back) }
 } else if (tm) html = html.replace(tm[0], '')
 
-if (BLEED) html = html.replace('</style>', '@page{ size:216mm 303mm; margin:0 } @media print{ .page{ box-sizing:content-box; border:3mm solid transparent; } }</style>')
+if (BLEED) html = html.replace('</style>', '@page{ size:216mm 303mm; margin:0 } @media print{ .page{ box-sizing:border-box; width:216mm; height:303mm; border:3mm solid transparent; flex:none; } .cover-page{ overflow:visible; } .cover-page .cov-shot{ margin-bottom:-3mm !important; } .cover-page .cov-shot .shot{ padding-bottom:3mm; } }</style>')
 if (B5) html = html.replace('</style>', '.micro,.bk-micro{ font-size:8pt; } .lp-add p,.lp-anchor,th{ font-size:7.8pt; }</style>')
-const B5_PRINT = `@page{ size:${BLEED ? '188mm 263mm' : '182mm 257mm'}; margin:0 } @media print{ .page{ width:210mm; height:296.5mm; zoom:0.86667; ${BLEED ? 'box-sizing:content-box; border:3.4615mm solid transparent;' : ''} } }`
+const B5_PRINT = `@page{ size:${BLEED ? '188mm 263mm' : '182mm 257mm'}; margin:0 } @media print{ .page{ width:${BLEED ? 'calc(210mm + 6.9230769mm)' : '210mm'}; height:${BLEED ? 'calc(296.5mm + 6.9230769mm + 0.1mm)' : '296.5mm'}; zoom:0.86667; flex:none; ${BLEED ? 'box-sizing:border-box; border:3.46153846mm solid transparent;' : ''} }${BLEED ? ' .cover-page{ overflow:visible; } .cover-page .cov-shot{ margin-bottom:-3.46153846mm !important; } .cover-page .cov-shot .shot{ padding-bottom:3.46153846mm; }' : ''} }`
 const SCREEN = !BLEED && !B5 && !PRINT
 if (SCREEN) writeFileSync(`${SP}/classraum-${DOC}.html`, html)
 const wrapped = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">${html}</body></html>`
@@ -99,7 +104,10 @@ if (folio.missing.length) { console.error('contents refs with no target: ' + fol
 // OVERFLOW CHECK (same two signals as _render-intro.mjs): a page whose body is taller
 // than the page is clipped silently by overflow:hidden.
 await p.emulateMediaType('print')
-const report = await p.evaluate(() => [...document.querySelectorAll('.page')].map((pg, i) => {
+// In a bleed build the cover screenshot deliberately runs into the bottom bleed; allow exactly
+// that much overrun on the cover (3mm, in the page's own unzoomed px) and nothing more.
+const coverBleedPx = BLEED ? (B5 ? 3.46153846 : 3) * 96 / 25.4 : 0
+const report = await p.evaluate((coverBleedPx) => [...document.querySelectorAll('.page')].map((pg, i) => {
   const body = pg.querySelector('.body')
   const bb = body.getBoundingClientRect()
   let maxBottom = -Infinity, used = 0
@@ -113,9 +121,10 @@ const report = await p.evaluate(() => [...document.querySelectorAll('.page')].ma
   // A text box wider than its column (a long unbreakable word) is clipped too.
   let wide = 0
   for (const el of body.querySelectorAll('*')) if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflow === 'hidden' && el.clientWidth > 0 && !el.closest('.shot,.dev-phone,svg')) wide++
-  const over = Math.round(Math.max(maxBottom - bb.bottom, body.scrollHeight - body.clientHeight))
+  const allow = pg.classList.contains('cover-page') ? coverBleedPx : 0
+  const over = Math.round(Math.max(maxBottom - bb.bottom, body.scrollHeight - body.clientHeight - allow))
   return { page: i + 1, content: Math.round(used), client: Math.round(bb.height), over, wide, fill: bb.height ? Math.round(100 * used / bb.height) : 0 }
-}))
+}), coverBleedPx)
 for (const r of report) console.log(`page ${String(r.page).padStart(2)}: content ${r.content}/${r.client}px  ${r.fill}% full  ${(r.over > 0 || r.fill > 100) ? 'OVERFLOW +' + Math.max(r.over, r.content - r.client) + 'px  <-- CLIPPED' : 'ok'}${r.wide ? `  (${r.wide} box(es) wider than their column)` : ''}`)
 
 if (B5) await p.evaluate(css => { const s = document.createElement('style'); s.textContent = css; document.body.appendChild(s) }, B5_PRINT)
