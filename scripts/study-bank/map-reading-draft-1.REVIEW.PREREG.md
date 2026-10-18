@@ -10,8 +10,13 @@ MAP is not live, so "release" here means `verified=true` ready for launch; nothi
 
 ## The run
 - run id `map-draft1-cofounder-<draw date>`, reviewer `support@classraum.com` (`6ca6edaf…`)
-- all 48 `map-reading-draft-1` rows (12 passages x 4, four choices), `DRAW_COHORT=map-reading-draft-1
-  DRAW_FAMILY=map`, domain as stored on the rows, flat four-wide deal (control 25.0%).
+- all 48 `map-reading-draft-1` rows (12 passages x 4, four choices), flat four-wide deal (control 25.0%):
+
+      DRAW_FAMILY=map DRAW_COHORT=map-reading-draft-1 node scripts/study-bank/draw-review-run.mjs \
+        "Informational Text:18,Literary Text:18,Vocabulary:12" 0 6ca6edaf-4044-4eed-84e0-137ebd79a81d map-draft1-cofounder-<draw date>
+
+  (domains as stored: Informational 18, Literary 18, Vocabulary 12 = 48; the vocabulary items
+  belong to the same 12 passages, so the per-passage rule counts across domains.)
 
 ## Release rule (fixed now)
 1. **Batch guard:** blind >= 24/48 (50%, double the 25% control) -> nothing released, held whole.
