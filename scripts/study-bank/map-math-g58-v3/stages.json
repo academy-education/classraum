@@ -1,0 +1,910 @@
+{
+ "prereg": "MAP-MATH-G58-V3.prereg.md",
+ "frozenSha": "1e11b2c2852ad13459fc5fe92a00d249c690a732b348ab24b7f423ca3587f4dd",
+ "n": 74,
+ "optionsOnly": {
+  "res": {
+   "all": {
+    "cand": {
+     "n": 74,
+     "picks": 222,
+     "hits": 74,
+     "unan": 19
+    },
+    "ctrl": {
+     "n": 74,
+     "picks": 222,
+     "hits": 57,
+     "unan": 15
+    },
+    "status": "pass",
+    "cr": 33.333333333333336,
+    "kr": 25.675675675675677,
+    "cu": 25.675675675675677,
+    "ku": 20.27027027027027,
+    "margin": 7.6576576576576585,
+    "umar": 5.405405405405407,
+    "why": "candidate 33.3% vs control 25.7% (margin 7.7, bar +10); unanimous-correct 25.7% vs 20.3% (5.4, bar +15)"
+   },
+   "oa": {
+    "cand": {
+     "n": 28,
+     "picks": 84,
+     "hits": 20,
+     "unan": 6
+    },
+    "ctrl": {
+     "n": 28,
+     "picks": 84,
+     "hits": 17,
+     "unan": 5
+    },
+    "status": "pass",
+    "cr": 23.80952380952381,
+    "kr": 20.238095238095237,
+    "cu": 21.428571428571427,
+    "ku": 17.857142857142858,
+    "margin": 3.571428571428573,
+    "umar": 3.5714285714285694,
+    "why": "candidate 23.8% vs control 20.2% (margin 3.6, bar +10); unanimous-correct 21.4% vs 17.9% (3.6, bar +15)"
+   },
+   "num": {
+    "cand": {
+     "n": 24,
+     "picks": 72,
+     "hits": 28,
+     "unan": 6
+    },
+    "ctrl": {
+     "n": 24,
+     "picks": 72,
+     "hits": 14,
+     "unan": 4
+    },
+    "status": "hold",
+    "cr": 38.888888888888886,
+    "kr": 19.444444444444443,
+    "cu": 25,
+    "ku": 16.666666666666668,
+    "margin": 19.444444444444443,
+    "umar": 8.333333333333332,
+    "why": "candidate 38.9% vs control 19.4% (margin 19.4, bar +10); unanimous-correct 25.0% vs 16.7% (8.3, bar +15)"
+   },
+   "geo": {
+    "cand": {
+     "n": 22,
+     "picks": 66,
+     "hits": 26,
+     "unan": 7
+    },
+    "ctrl": {
+     "n": 22,
+     "picks": 66,
+     "hits": 26,
+     "unan": 6
+    },
+    "status": "pass",
+    "cr": 39.39393939393939,
+    "kr": 39.39393939393939,
+    "cu": 31.818181818181817,
+    "ku": 27.272727272727273,
+    "margin": 0,
+    "umar": 4.545454545454543,
+    "why": "candidate 39.4% vs control 39.4% (margin 0.0, bar +10); unanimous-correct 31.8% vs 27.3% (4.5, bar +15)"
+   }
+  },
+  "letterControl": 25.675675675675677
+ },
+ "difficulty": {
+  "n": 74,
+  "judgments": 148,
+  "tooEasy": 5,
+  "tooHard": 3,
+  "tooEasyPct": 3.3783783783783785,
+  "tooHardPct": 2.027027027027027,
+  "offA": 0.08108108108108109,
+  "offB": 0.013513513513513514,
+  "spreadA": 1.8934782608695653,
+  "spreadB": 1.8565217391304347,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 148,
+ "items": {
+  "MM3-G03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O18": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-N22": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G15": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O25": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-N03": {
+   "drop": [
+    "R6 plug-back routine <= 2 (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM3-N16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G01": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MM3-O02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O28": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-G22": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G23": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O24": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O22": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-N23": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O20": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MM3-N05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N15": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G25": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM3-G11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-G14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O08": {
+   "drop": [
+    "EXT-1 drop_recommend",
+    "G1 too easy for its grade (both)"
+   ],
+   "hold": [
+    "OFF off-blueprint (both)"
+   ],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MM3-O15": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N26": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O26": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G26": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N24": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-O23": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-N25": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM3-O21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-N11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G27": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N27": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O06": {
+   "drop": [
+    "EXT-1 drop_recommend",
+    "G1 too easy for its grade (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MM3-O07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-G18": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-O09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM3-G12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-G10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM3-N20": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-N07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM3-O27": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  }
+ },
+ "areas": {
+  "oa": {
+   "frozen": 28,
+   "kept": 25,
+   "keptIds": [
+    "MM3-O17",
+    "MM3-O12",
+    "MM3-O18",
+    "MM3-O01",
+    "MM3-O03",
+    "MM3-O25",
+    "MM3-O02",
+    "MM3-O28",
+    "MM3-O24",
+    "MM3-O13",
+    "MM3-O22",
+    "MM3-O10",
+    "MM3-O05",
+    "MM3-O15",
+    "MM3-O19",
+    "MM3-O26",
+    "MM3-O14",
+    "MM3-O04",
+    "MM3-O23",
+    "MM3-O21",
+    "MM3-O16",
+    "MM3-O07",
+    "MM3-O09",
+    "MM3-O11",
+    "MM3-O27"
+   ],
+   "extremity": {
+    "total": 25,
+    "n": 25,
+    "nonNumeric": 0,
+    "otherSkip": 0,
+    "ext": 14,
+    "rate": 0.56,
+    "chance": 0.5,
+    "threshold": 0.4,
+    "status": "pass",
+    "reason": "key at an extreme 14/25 = 56.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 25)"
+   },
+   "oo": "pass",
+   "status": "pass",
+   "reasons": []
+  },
+  "num": {
+   "frozen": 24,
+   "kept": 22,
+   "keptIds": [
+    "MM3-N08",
+    "MM3-N14",
+    "MM3-N17",
+    "MM3-N22",
+    "MM3-N01",
+    "MM3-N09",
+    "MM3-N16",
+    "MM3-N23",
+    "MM3-N05",
+    "MM3-N13",
+    "MM3-N19",
+    "MM3-N15",
+    "MM3-N21",
+    "MM3-N26",
+    "MM3-N06",
+    "MM3-N24",
+    "MM3-N02",
+    "MM3-N11",
+    "MM3-N27",
+    "MM3-N04",
+    "MM3-N20",
+    "MM3-N07"
+   ],
+   "extremity": {
+    "total": 22,
+    "n": 22,
+    "nonNumeric": 0,
+    "otherSkip": 0,
+    "ext": 11,
+    "rate": 0.5,
+    "chance": 0.5,
+    "threshold": 0.4,
+    "status": "pass",
+    "reason": "key at an extreme 11/22 = 50.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 22)"
+   },
+   "oo": "hold",
+   "status": "held",
+   "reasons": [
+    "options-only hold"
+   ]
+  },
+  "geo": {
+   "frozen": 22,
+   "kept": 20,
+   "keptIds": [
+    "MM3-G03",
+    "MM3-G16",
+    "MM3-G15",
+    "MM3-G13",
+    "MM3-G07",
+    "MM3-G19",
+    "MM3-G17",
+    "MM3-G22",
+    "MM3-G23",
+    "MM3-G09",
+    "MM3-G05",
+    "MM3-G21",
+    "MM3-G08",
+    "MM3-G11",
+    "MM3-G14",
+    "MM3-G26",
+    "MM3-G27",
+    "MM3-G18",
+    "MM3-G12",
+    "MM3-G10"
+   ],
+   "extremity": {
+    "total": 20,
+    "n": 20,
+    "nonNumeric": 0,
+    "otherSkip": 0,
+    "ext": 8,
+    "rate": 0.4,
+    "chance": 0.5,
+    "threshold": 0.4,
+    "status": "pass",
+    "reason": "key at an extreme 8/20 = 40.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 20)"
+   },
+   "oo": "pass",
+   "status": "pass",
+   "reasons": []
+  }
+ },
+ "passIds": [
+  "MM3-O17",
+  "MM3-O12",
+  "MM3-O18",
+  "MM3-O01",
+  "MM3-O03",
+  "MM3-O25",
+  "MM3-O02",
+  "MM3-O28",
+  "MM3-O24",
+  "MM3-O13",
+  "MM3-O22",
+  "MM3-O10",
+  "MM3-O05",
+  "MM3-O15",
+  "MM3-O19",
+  "MM3-O26",
+  "MM3-O14",
+  "MM3-O04",
+  "MM3-O23",
+  "MM3-O21",
+  "MM3-O16",
+  "MM3-O07",
+  "MM3-O09",
+  "MM3-O11",
+  "MM3-O27",
+  "MM3-G03",
+  "MM3-G16",
+  "MM3-G15",
+  "MM3-G13",
+  "MM3-G07",
+  "MM3-G19",
+  "MM3-G17",
+  "MM3-G22",
+  "MM3-G23",
+  "MM3-G09",
+  "MM3-G05",
+  "MM3-G21",
+  "MM3-G08",
+  "MM3-G11",
+  "MM3-G14",
+  "MM3-G26",
+  "MM3-G27",
+  "MM3-G18",
+  "MM3-G12",
+  "MM3-G10"
+ ],
+ "verdict": "PASS"
+}

@@ -8823,6 +8823,51 @@
           "verdict": "Stage 0 FAIL: E3 key uniquely longest 8/28 > 25% (shortest 5/28); T2 at_max(marks) 39.3% fw p 0.18 clear; T2-L mode(vv) 29.2% fw p 0.96 clear (n=28)."
         }
       }
+    },
+    {
+      "id": "map-math-g58-v3-2026-10-20",
+      "createdAt": "2026-10-20",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-g58-v3",
+      "contentSha": "0f851882740e01dc8bb93c81682114f4c909a8175762f32ac6fe0323a2664a27",
+      "status": "staged",
+      "note": "Third MAP maths batch, grades 5-8, the three areas v1 held, 28 per area (3 Claude authors x two runs of 14). Pre-freeze screen: pass 1 failed 42 of 84 (returned once), pass 2 failed 10 -> dropped; frozen 74 (oa 28, num 24, geo 22; bar 15). Near-dup re-check at freeze vs live ISEE/SSAT: 74 read, 0 flagged. Graders: 148/148 cold on key, coldcheck 0 changed; 3 single-grader R6 flags to tie-break F (N03 dropped 2 of 3). Kept 67; 7 dropped (EXT-1 6, R6 1). Operations and Algebraic Thinking PASS (25), Geometry PASS (20; kept-set key at an extreme 40.0%, exactly the 0.8 x chance bar), Real and Complex Number Systems HELD whole (options-only +19.4 > +10). 45 INSERTED STAGED (verified=false). contentSha = sha256 of map-math-g58-v3.inserted.batch.json. MAP-MATH-G58-V3.prereg.md (3d3cd64f), freeze b046faa8, renders 78bcaacf; REGISTER section 5, 2026-10-20. A person releases; never verified=true from a script.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Stage 0: 84/84 PART OK (sandbox key + distractor recompute, slot, mechanical checks, declared bound screen); cold screen pass 1 42 fail (R4/R5/R8/R10 mostly), one return, pass 2 10 still fail -> dropped; frozen 74, every area >= 15 (oa 28, num 24, geo 22)."
+        },
+        "withsource": {
+          "passed": true,
+          "n": 74,
+          "coldOnKey": 148,
+          "kept": 67,
+          "inserted": 45,
+          "tooEasy": 5,
+          "tooHard": 3,
+          "offsetD": 0.08,
+          "offsetE": 0.01,
+          "spreadD": 1.89,
+          "spreadE": 1.86,
+          "verdict": "Two Claude graders, cold then keyed, private folders, coldcheck 148 rows 0 changed. 148/148 cold on key, 0 key disputes. 7 dropped: G01 (R8 both + EXT-1), O08 (EXT-1, too easy and off-blueprint by both), O06 (EXT-1, too easy by both), O20, G25, N25 (EXT-1), N03 (R6, one grader + tie-break F). D1 too_easy 3.4% (bar 15), too_hard 2.0% (bar 25); D2 offsets 0.08/0.01; D3 spreads 1.89/1.86."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 74,
+          "candidatePct": 33.3,
+          "control": 25.7,
+          "controlN": 74,
+          "margin": 7.7,
+          "verdict": "Options-only, 3 samples of one Claude solver, 74 candidates vs 74 matched live ISEE maths. oa 23.8 vs 20.2 (+3.6) pass; geo 39.4 vs 39.4 (+0.0) pass; num 38.9 vs 19.4 (+19.4) HOLD (bar +10). Unanimity within +15 everywhere. Measures whether the option set alone decides an item; the stem-visible half is the graders'. Num held whole, not inserted."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key slots flat by construction (options-only deal per arm A19 B19 C18 D18; with-source halves A10 B9 C9 D9 each); inserted set key at an extreme 22/45 = 48.9% (bar 40.0%), per area oa 56.0%, geo 40.0%; no same-template pair named by either grader (same_template_as empty on all 148 cold rows)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

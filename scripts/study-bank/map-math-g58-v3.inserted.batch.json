@@ -1,0 +1,2072 @@
+[
+ {
+  "id": "MM3-O17",
+  "type": "multiple_choice",
+  "prompt": "Jo has $120. She buys 3 shirts. Each shirt has a regular price of $18.50, and every shirt is on sale for 20% off. How many dollars does Jo have left after she pays for the 3 shirts?",
+  "choices": [
+   "66.9",
+   "75.6",
+   "53.4",
+   "68.2"
+  ],
+  "correct_answer": "75.6",
+  "explanation": "20% of $18.50 is 0.20 x 18.50 = $3.70, so each shirt costs 18.50 - 3.70 = $14.80 (that is, 80% of $18.50). Three shirts cost 3 x 14.80 = $44.40. Jo has 120 - 44.40 = $75.60 left.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Money left after buying several items at a percent discount",
+  "solve": "return String(Math.round((120 - 3 * 18.5 * 0.8) * 100) / 100);",
+  "distractor_rationales": [
+   {
+    "choice": "66.9",
+    "reason": "The student knows Jo pays 80% but subtracts 80 cents from each price (18.50 - 0.80 = 17.70), so the shirts cost 53.10 and 120 - 53.10 = 66.90."
+   },
+   {
+    "choice": "53.4",
+    "reason": "The student adds 20% to the price instead of taking it off (1.2 x 18.50 = 22.20 per shirt), so the shirts cost 66.60 and 120 - 66.60 = 53.40."
+   },
+   {
+    "choice": "68.2",
+    "reason": "The student takes the $3.70 discount off only once, from the 3-shirt total 55.50, so the shirts cost 51.80 and 120 - 51.80 = 68.20."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.RP.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O12",
+  "type": "multiple_choice",
+  "prompt": "Garden A has 60 tulips. The ratio of red tulips to yellow tulips in Garden A is 3 to 7. Garden B has 40 tulips, and its ratio of red tulips to yellow tulips is 1 to 3. How many more yellow tulips does Garden A have than Garden B?",
+  "choices": [
+   "14",
+   "20",
+   "32",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Garden A: 3 + 7 = 10 parts, so each part is 60 / 10 = 6 tulips and there are 7 x 6 = 42 yellow tulips. Garden B: 1 + 3 = 4 parts, so each part is 40 / 4 = 10 tulips and there are 3 x 10 = 30 yellow tulips. Garden A has 42 - 30 = 12 more yellow tulips.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Part of a total from a part-to-part ratio, in two groups",
+  "solve": "return String(60 * 7 / (3 + 7) - 40 * 3 / (1 + 3));",
+  "distractor_rationales": [
+   {
+    "choice": "14",
+    "reason": "The student finds 42 yellow tulips in Garden A, then uses Garden A's fraction 7/10 for Garden B too: 7/10 of 40 = 28, and 42 - 28 = 14."
+   },
+   {
+    "choice": "20",
+    "reason": "The student compares the garden totals instead of the yellow tulips: 60 - 40 = 20."
+   },
+   {
+    "choice": "32",
+    "reason": "The student finds 42 yellow tulips in Garden A but subtracts Garden B's 10 red tulips instead of its yellow ones: 42 - 10 = 32."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.RP.A.3a",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O18",
+  "type": "multiple_choice",
+  "prompt": "A farm stand sold 160 pounds of apples on Saturday. On Sunday it sold 20% more pounds of apples than on Saturday. On Monday it sold 25% fewer pounds of apples than on Sunday. How many pounds of apples did the farm stand sell on the three days in all?",
+  "choices": [
+   "472",
+   "400",
+   "496",
+   "475"
+  ],
+  "correct_answer": "496",
+  "explanation": "Sunday: 20% of 160 is 32, so Sunday's sales were 160 + 32 = 192 pounds. Monday: 25% of 192 is 48, so Monday's sales were 192 - 48 = 144 pounds. Total: 160 + 192 + 144 = 496 pounds.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Chained percent more / percent fewer, then a total",
+  "solve": "const sun = 160 * 1.2; const mon = sun * 0.75; return String(Math.round(160 + sun + mon));",
+  "distractor_rationales": [
+   {
+    "choice": "472",
+    "reason": "The student takes Monday's 25% off Saturday's 160 instead of Sunday's 192, so Monday is 120 and the total is 160 + 192 + 120 = 472."
+   },
+   {
+    "choice": "400",
+    "reason": "The student reads '25% fewer than Sunday' as '25% of Sunday' and uses 48 for Monday: 160 + 192 + 48 = 400."
+   },
+   {
+    "choice": "475",
+    "reason": "The student adds the 20 as pounds instead of 20%, so Sunday is 180; then Monday is 25% fewer, 135, and the total is 160 + 180 + 135 = 475."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.RP.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O01",
+  "type": "multiple_choice",
+  "prompt": "On a quiz, Jada must simplify 90 / (2 + 4) x 3, following the order of operations. What number should she get?",
+  "choices": [
+   "57",
+   "5",
+   "147",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "First work inside the parentheses: 2 + 4 = 6. The expression becomes 90 / 6 x 3. Division and multiplication are done in order from left to right: 90 / 6 = 15, then 15 x 3 = 45.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Evaluate: parentheses, then divide and multiply left to right",
+  "solve": "return String(90 / (2 + 4) * 3);",
+  "distractor_rationales": [
+   {
+    "choice": "57",
+    "reason": "The student ignores the parentheses and uses the usual order: 90 / 2 = 45 and 4 x 3 = 12, then 45 + 12 = 57."
+   },
+   {
+    "choice": "5",
+    "reason": "The student multiplies 6 x 3 = 18 first because multiplication 'comes before' division, then finds 90 / 18 = 5."
+   },
+   {
+    "choice": "147",
+    "reason": "The student ignores the parentheses and simply works from left to right: 90 / 2 = 45, 45 + 4 = 49, 49 x 3 = 147."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "low",
+   "rit_band_target": "RIT 190-199",
+   "ccss": "5.OA.A.1",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O03",
+  "type": "multiple_choice",
+  "prompt": "Mia writes two number patterns. Pattern A begins with 1, and each number after that is 3 more than the number before it. Pattern B begins with 20, and each number after that is 8 more than the number before it. How much greater is the 9th number in Pattern B than the 9th number in Pattern A?",
+  "choices": [
+   "59",
+   "57",
+   "43",
+   "45"
+  ],
+  "correct_answer": "59",
+  "explanation": "The 1st numbers are 1 and 20, so Pattern B starts 19 ahead. Each step adds 8 to Pattern B but only 3 to Pattern A, so the gap grows by 5 each step. The 9th number comes after 8 steps, so the gap is 19 + 8 x 5 = 59. Check: the 9th number in Pattern B is 20 + 8 x 8 = 84, the 9th number in Pattern A is 1 + 8 x 3 = 25, and 84 - 25 = 59.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Gap between matching terms of two patterns",
+  "solve": "const b = 20 + 8 * 8; const a = 1 + 8 * 3; return String(b - a);",
+  "distractor_rationales": [
+   {
+    "choice": "57",
+    "reason": "The student builds Pattern B correctly (84) but treats Pattern A as the multiples of 3 (3, 6, 9, ..., 27), using the wrong starting number, and gets 84 - 27 = 57."
+   },
+   {
+    "choice": "43",
+    "reason": "The student starts the gap at 19 correctly but then grows it by Pattern A's rule, 3, each step instead of by the difference of the rules: 19 + 8 x 3 = 43."
+   },
+   {
+    "choice": "45",
+    "reason": "The student finds each 9th number by multiplying the rule by 9 (9 x 8 = 72 and 9 x 3 = 27), as if the patterns were the multiples of 8 and 3, and subtracts to get 45."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.OA.B.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O25",
+  "type": "multiple_choice",
+  "prompt": "Each day Ana runs 6 laps around a small track. One lap of the small track is 80 meters shorter than one lap of the big track. Ben runs 4 laps around the big track and then runs 100 more meters. Ana and Ben run the same distance. How many meters long is one lap of the big track?",
+  "choices": [
+   "90",
+   "240",
+   "290",
+   "440"
+  ],
+  "correct_answer": "290",
+  "explanation": "Let x be the length of one lap of the big track, in meters. One small lap is x - 80 meters, so Ana runs 6(x - 80) meters. Ben runs 4x + 100 meters. Set them equal: 6(x - 80) = 4x + 100. Distribute: 6x - 480 = 4x + 100. Subtract 4x from both sides: 2x - 480 = 100. Add 480: 2x = 580. Divide by 2: x = 290. One lap of the big track is 290 meters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Write and solve a(x - p) = bx + q from a story",
+  "solve": "return String((100 + 6 * 80) / (6 - 4));",
+  "distractor_rationales": [
+   {
+    "choice": "90",
+    "reason": "The student writes 6x - 80 = 4x + 100, taking the 80 meters off only once instead of off each of the 6 laps, and gets 2x = 180."
+   },
+   {
+    "choice": "240",
+    "reason": "The student leaves out Ben's extra 100 meters, solves 6(x - 80) = 4x, and gets 2x = 480."
+   },
+   {
+    "choice": "440",
+    "reason": "The student attaches the 100 meters to every one of Ben's laps, 6(x - 80) = 4(x + 100), and gets 2x = 880."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.EE.C.7b",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O02",
+  "type": "multiple_choice",
+  "prompt": "Ana shares 168 stickers equally among her 8 friends. Ben shares 56 stickers equally among his 7 friends. How many more stickers does each of Ana's friends get than each of Ben's friends?",
+  "choices": [
+   "14",
+   "13",
+   "17",
+   "16"
+  ],
+  "correct_answer": "13",
+  "explanation": "Each of Ana's friends gets 168 / 8 = 21 stickers. Each of Ben's friends gets 56 / 7 = 8 stickers. The expression is 168 / 8 - 56 / 7 = 21 - 8 = 13. Each of Ana's friends gets 13 more stickers.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Record a comparison of two equal shares as a / b - c / d",
+  "solve": "return String(168 / 8 - 56 / 7);",
+  "distractor_rationales": [
+   {
+    "choice": "14",
+    "reason": "The student divides both totals by Ana's 8 friends: 21 - 56 / 8 = 21 - 7 = 14."
+   },
+   {
+    "choice": "17",
+    "reason": "The student pairs each total with the other child's number of friends: 168 / 7 - 56 / 8 = 24 - 7 = 17."
+   },
+   {
+    "choice": "16",
+    "reason": "The student divides both totals by Ben's 7 friends: 168 / 7 - 8 = 24 - 8 = 16."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "low",
+   "rit_band_target": "RIT 190-199",
+   "ccss": "5.OA.A.2",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O28",
+  "type": "multiple_choice",
+  "prompt": "A pool is drained at a constant rate, starting at 8:30 a.m. At 9:45 a.m. the pool holds 11830 gallons of water, and at 11:15 a.m. it holds 9490 gallons. How many gallons of water did the pool hold at 8:30 a.m., when the draining started?",
+  "choices": [
+   "13180",
+   "14080",
+   "11440",
+   "13780"
+  ],
+  "correct_answer": "13780",
+  "explanation": "From 9:45 to 11:15 is 1 hour 30 minutes, or 90 minutes. In that time the pool lost 11830 - 9490 = 2340 gallons, so it drains 2340 / 90 = 26 gallons per minute. From 8:30 to 9:45 is 1 hour 15 minutes, or 75 minutes. During those 75 minutes the pool lost 26 x 75 = 1950 gallons. So at 8:30 it held 11830 + 1950 = 13780 gallons.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Initial value from two clock-time readings of a linear function",
+  "solve": "const rate = (11830 - 9490) / 90; return String(11830 + rate * 75);",
+  "distractor_rationales": [
+   {
+    "choice": "13180",
+    "reason": "The student subtracts the clock times as base-ten numbers, 1115 - 945 = 170, reads it as 1 hour 70 minutes = 130 minutes, and gets a rate of 2340 / 130 = 18 gallons per minute."
+   },
+   {
+    "choice": "14080",
+    "reason": "The student finds 1 hour 30 minutes but writes it as 1.30 hours = 78 minutes, so the rate is 2340 / 78 = 30 gallons per minute."
+   },
+   {
+    "choice": "11440",
+    "reason": "The student finds the rate correctly but works back 75 minutes from the 11:15 reading, 9490 + 1950, as if 9490 were the 9:45 amount."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "high",
+   "rit_band_target": "RIT 230-239",
+   "ccss": "8.F.B.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-O24",
+  "type": "multiple_choice",
+  "prompt": "At a deli, every sandwich has the same price and every juice has the same price. Two sandwiches and 1 juice cost $12.75. Two sandwiches and 2 juices cost $16.00. How many dollars more does one sandwich cost than one juice?",
+  "choices": [
+   "8.00",
+   "6.25",
+   "1.50",
+   "3.25"
+  ],
+  "correct_answer": "1.50",
+  "explanation": "Let s be the price of a sandwich and j the price of a juice. Then 2s + j = 12.75 and 2s + 2j = 16.00. Subtract the first equation from the second: j = 3.25. Then 2s = 12.75 - 3.25 = 9.50, so s = 4.75. A sandwich costs 4.75 - 3.25 = $1.50 more than a juice.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "System from two orders, then the price difference",
+  "solve": "const j = 16.00 - 12.75; const s = (12.75 - j) / 2; return (s - j).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "8.00",
+    "reason": "The student finds both prices but adds them, 4.75 + 3.25 = 8.00, instead of subtracting."
+   },
+   {
+    "choice": "6.25",
+    "reason": "The student finds j = 3.25 and 2s = 9.50 but forgets to divide by 2, so 9.50 - 3.25 = 6.25."
+   },
+   {
+    "choice": "3.25",
+    "reason": "The student reads 'how much more' and subtracts the two totals, 16.00 - 12.75 = 3.25, giving the difference of the orders instead of the difference of the prices."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.EE.C.8c",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O13",
+  "type": "multiple_choice",
+  "prompt": "At Lakeview School, 30% of the students are in sixth grade. Of the sixth graders, 25% walk to school. Exactly 36 sixth graders walk to school. How many students are at Lakeview School?",
+  "choices": [
+   "480",
+   "400",
+   "720",
+   "30"
+  ],
+  "correct_answer": "480",
+  "explanation": "36 is 25% of the sixth graders, so there are 36 / 0.25 = 144 sixth graders. 144 is 30% of the school, so the school has 144 / 0.30 = 480 students. Check: 30% of 480 is 144, and 25% of 144 is 36.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Find the whole from a percent of a percent",
+  "solve": "const g6 = 36 / 0.25; return String(Math.round(g6 / 0.30));",
+  "distractor_rationales": [
+   {
+    "choice": "400",
+    "reason": "The student uses the 30% for both steps (36 / 0.30 = 120, then 120 / 0.30 = 400), applying the sixth-grade percent to the walkers as well."
+   },
+   {
+    "choice": "720",
+    "reason": "The student subtracts the percents (30% - 25% = 5%) and treats 36 as 5% of the school: 36 / 0.05 = 720."
+   },
+   {
+    "choice": "30",
+    "reason": "The student multiplies by one percent and divides by the other (36 x 0.25 / 0.30 = 30), mixing up which way each percent should be undone."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "6.RP.A.3c",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-O22",
+  "type": "multiple_choice",
+  "prompt": "A truck drives along a straight highway, away from a city, at a steady speed. Two hours after noon, the truck is 168 kilometers from the city. Seven hours after noon, it is 483 kilometers from the city. What is the truck's speed, in kilometers per hour?",
+  "choices": [
+   "45",
+   "63",
+   "35",
+   "69"
+  ],
+  "correct_answer": "63",
+  "explanation": "The speed is the rate of change of the distance. From 2 hours to 7 hours after noon is 7 - 2 = 5 hours. In that time the distance grows by 483 - 168 = 315 kilometers. The speed is 315 / 5 = 63 kilometers per hour.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Rate of change from two points given in words",
+  "solve": "return String((483 - 168) / (7 - 2));",
+  "distractor_rationales": [
+   {
+    "choice": "45",
+    "reason": "The student finds the change in distance, 315, but divides by the later time, 7 hours, instead of by the 5 hours between the readings."
+   },
+   {
+    "choice": "35",
+    "reason": "The student finds the change in distance, 315, but adds the two times instead of subtracting them, 315 / (7 + 2) = 35."
+   },
+   {
+    "choice": "69",
+    "reason": "The student treats the distance as proportional to the time and divides 483 by 7, ignoring that the truck was already some distance from the city at noon."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "low",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "8.F.B.4",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O10",
+  "type": "multiple_choice",
+  "prompt": "A box on a slow conveyor belt moves at a steady speed of 90 feet per hour. What is the box's speed in inches per minute?",
+  "choices": [
+   "15",
+   "17",
+   "1.5",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "In one hour the box moves 90 feet, so in one minute it moves 90 / 60 = 1.5 feet. One foot is 12 inches, so 1.5 feet = 1.5 x 12 = 18 inches. The speed is 18 inches per minute.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Convert a rate in feet per hour to inches per minute",
+  "solve": "return String(90 / 60 * 12);",
+  "distractor_rationales": [
+   {
+    "choice": "15",
+    "reason": "The student uses 10 inches in a foot: 1.5 x 10 = 15."
+   },
+   {
+    "choice": "17",
+    "reason": "The student reads 1.5 feet as 1 foot 5 inches, the way '1.5' can look like a feet-and-inches reading, and gets 12 + 5 = 17 inches."
+   },
+   {
+    "choice": "1.5",
+    "reason": "The student changes hours to minutes but forgets to change feet to inches, giving 1.5 (feet per minute)."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.RP.A.3d",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O05",
+  "type": "multiple_choice",
+  "prompt": "Jin wrote two expressions. Expression P is 2 x (30 + 18). Expression Q is (30 + 18) / 8. The value of expression P is how many times the value of expression Q?",
+  "choices": [
+   "16",
+   "12",
+   "0.25",
+   "13"
+  ],
+  "correct_answer": "16",
+  "explanation": "P = 2 x (30 + 18) = 2 x 48 = 96. Q = (30 + 18) / 8 = 48 / 8 = 6. To find how many times as large P is, divide: 96 / 6 = 16. (P is 2 groups of 48 and Q is one eighth of 48, so P is 2 x 8 = 16 times Q.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "How many times as large: m x (sum) versus (sum) / n",
+  "solve": "const P = 2 * (30 + 18); const Q = (30 + 18) / 8; return String(P / Q);",
+  "distractor_rationales": [
+   {
+    "choice": "12",
+    "reason": "The student divides P by the 8 printed in Q instead of by the value of Q: 96 / 8 = 12."
+   },
+   {
+    "choice": "0.25",
+    "reason": "The student reads (30 + 18) / 8 as 48 x 8 = 384, so P / Q = 96 / 384 = 0.25."
+   },
+   {
+    "choice": "13",
+    "reason": "The student ignores the parentheses in P and computes 2 x 30 + 18 = 78, then 78 / 6 = 13."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.OA.A.2",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O15",
+  "type": "multiple_choice",
+  "prompt": "Four friends each bought one concert ticket at the regular price. Each friend used an $8 coupon on their ticket. Together, they paid $60 after the coupons. What was the regular price, in dollars, of one ticket?",
+  "choices": [
+   "17",
+   "23",
+   "47",
+   "13"
+  ],
+  "correct_answer": "23",
+  "explanation": "Let x be the regular price. Each friend paid x - 8, and four friends paid 4(x - 8) = 60. Divide both sides by 4: x - 8 = 15. Add 8: x = 23. The regular price was $23.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Solve p(x - q) = r from a coupon story",
+  "solve": "return String(60 / 4 + 8);",
+  "distractor_rationales": [
+   {
+    "choice": "17",
+    "reason": "The student writes 4x - 8 = 60, counting the $8 coupon once instead of once per friend: 4x = 68, x = 17."
+   },
+   {
+    "choice": "47",
+    "reason": "The student finds 15 paid per ticket but then adds back all four coupons (4 x 8 = 32) to one ticket: 15 + 32 = 47."
+   },
+   {
+    "choice": "13",
+    "reason": "The student writes 4x + 8 = 60 (one coupon, and on the wrong side) and gets x = 52 / 4 = 13."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "7.EE.B.4a",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O19",
+  "type": "multiple_choice",
+  "prompt": "Shop A sells a bike helmet for $80 and is taking 30% off. Shop B sells the same helmet for $70 and is taking 15% off. After the discounts, how many dollars less does the helmet cost at Shop A than at Shop B?",
+  "choices": [
+   "13.5",
+   "15",
+   "3.5",
+   "9.5"
+  ],
+  "correct_answer": "3.5",
+  "explanation": "Shop A: 30% of $80 is $24, so the sale price is 80 - 24 = $56. Shop B: 15% of $70 is $10.50, so the sale price is 70 - 10.50 = $59.50. The helmet costs 59.50 - 56 = $3.50 less at Shop A.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Compare two sale prices with different discounts",
+  "solve": "return String((70 - 70 * 0.15) - (80 - 80 * 0.30));",
+  "distractor_rationales": [
+   {
+    "choice": "13.5",
+    "reason": "The student compares the discount amounts, $24 and $10.50, instead of the sale prices: 24 - 10.50 = 13.50."
+   },
+   {
+    "choice": "15",
+    "reason": "The student subtracts the percents, 30% - 15% = 15, and gives 15 as the dollar difference."
+   },
+   {
+    "choice": "9.5",
+    "reason": "The student reads Shop A's 30% off as $30 off, so Shop A's price is 50, and 59.50 - 50 = 9.50."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.RP.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O26",
+  "type": "multiple_choice",
+  "prompt": "Function A is linear. When x = 0, the output of function A is 15, and when x = 2, its output is 25. Function B is defined by the equation y = 6x - 12. For what value of x is the output of function B 40 more than the output of function A?",
+  "choices": [
+   "67",
+   "37",
+   "-8",
+   "77"
+  ],
+  "correct_answer": "67",
+  "explanation": "Function A goes up 25 - 15 = 10 while x goes up 2, so its rate of change is 10 / 2 = 5, and its initial value is 15: y = 5x + 15. Function B's output minus function A's output is (6x - 12) - (5x + 15) = x - 27. Set this equal to 40: x - 27 = 40, so x = 67. Check: A gives 5(67) + 15 = 350, B gives 6(67) - 12 = 390, and 390 - 350 = 40.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Function from two values vs an equation: when is one k more",
+  "solve": "const mA = (25 - 15) / 2; return String((40 + 15 + 12) / (6 - mA));",
+  "distractor_rationales": [
+   {
+    "choice": "37",
+    "reason": "The student subtracts A's x-term but adds A's initial value, writing 6x - 12 - 5x + 15 = x + 3, so x + 3 = 40 and x = 37."
+   },
+   {
+    "choice": "-8",
+    "reason": "The student treats A as proportional, using 25 / 2 = 12.5 as its rate and no initial value, so 6x - 12 - 12.5x = 40, -6.5x = 52 and x = -8."
+   },
+   {
+    "choice": "77",
+    "reason": "The student takes A's output at x = 2, which is 25, as A's initial value, writing A as 5x + 25, so x - 37 = 40 and x = 77."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.F.A.2",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O14",
+  "type": "multiple_choice",
+  "prompt": "Ana can fold 9 letters per minute, and Ben can fold 7 letters per minute. They work together, each at a steady rate, to fold a stack of 24 letters. How many seconds does it take them to fold all 24 letters?",
+  "choices": [
+   "40",
+   "90",
+   "110",
+   "80"
+  ],
+  "correct_answer": "90",
+  "explanation": "Working together they fold 9 + 7 = 16 letters per minute. The time for 24 letters is 24 / 16 = 1.5 minutes. One minute is 60 seconds, so 1.5 minutes is 1.5 x 60 = 90 seconds.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Combined unit rate, time converted to seconds",
+  "solve": "const rate = 9 + 7; return String(24 / rate * 60);",
+  "distractor_rationales": [
+   {
+    "choice": "40",
+    "reason": "The student divides the wrong way, 16 / 24 of a minute, and converts that to 40 seconds."
+   },
+   {
+    "choice": "110",
+    "reason": "The student finds 1.5 minutes correctly but reads it as 1 minute 50 seconds, so 60 + 50 = 110 seconds."
+   },
+   {
+    "choice": "80",
+    "reason": "The student finds Ana's time alone (24 / 9 of a minute = 160 seconds) and halves it, thinking two workers take half the time of one."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "6.RP.A.3b",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-O04",
+  "type": "multiple_choice",
+  "prompt": "Ben wrote two expressions: 8 x (39 + 20) and 5 x (39 + 20). How much greater is the value of Ben's first expression than the value of his second expression?",
+  "choices": [
+   "767",
+   "137",
+   "177",
+   "117"
+  ],
+  "correct_answer": "177",
+  "explanation": "Both expressions use the same sum, 39 + 20 = 59. The first is 8 groups of 59 and the second is 5 groups of 59, so the first is 3 groups of 59 greater: 3 x 59 = 177. Check: 8 x 59 = 472 and 5 x 59 = 295, and 472 - 295 = 177.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Compare k x (a + b) with m x (a + b) by structure",
+  "solve": "return String(8 * (39 + 20) - 5 * (39 + 20));",
+  "distractor_rationales": [
+   {
+    "choice": "767",
+    "reason": "The student adds the two values, 472 + 295 = 767, instead of subtracting to find how much greater."
+   },
+   {
+    "choice": "137",
+    "reason": "The student sees that 8 - 5 = 3 but then writes 3 x 39 + 20, multiplying only the 39 by 3 instead of the whole sum."
+   },
+   {
+    "choice": "117",
+    "reason": "The student ignores the parentheses in both expressions (8 x 39 + 20 = 332 and 5 x 39 + 20 = 215), so the 20 is added once to each and cancels: 332 - 215 = 117."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.OA.A.2",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O23",
+  "type": "multiple_choice",
+  "prompt": "Two elevators start from the ground floor at the same time and rise at constant speeds. Elevator A rises 24 feet in 3 seconds. The height y, in feet, of Elevator B after x seconds is given by y = 12x. After 32 seconds, how many feet higher is Elevator B than Elevator A?",
+  "choices": [
+   "360",
+   "8",
+   "288",
+   "128"
+  ],
+  "correct_answer": "128",
+  "explanation": "Elevator A rises 24 / 3 = 8 feet each second, so after 32 seconds it is 8 x 32 = 256 feet high. Elevator B rises 12 feet each second, so after 32 seconds it is 12 x 32 = 384 feet high. Elevator B is 384 - 256 = 128 feet higher. (Or: B gains 12 - 8 = 4 feet on A each second, and 4 x 32 = 128.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Compare two proportional relationships given two ways",
+  "solve": "return String(12 * 32 - (24 / 3) * 32);",
+  "distractor_rationales": [
+   {
+    "choice": "360",
+    "reason": "The student finds B's height at 32 seconds, 384, but subtracts A's printed 24 feet, which is A's height at 3 seconds, not at 32 seconds."
+   },
+   {
+    "choice": "8",
+    "reason": "The student finds the difference in speeds, 12 - 8 = 4 feet per second, and then divides the 32 seconds by it instead of multiplying."
+   },
+   {
+    "choice": "288",
+    "reason": "The student takes Elevator A's speed to be the printed 3 (the seconds, not the feet per second) and computes (12 - 3) x 32."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "low",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "8.EE.B.5",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O21",
+  "type": "multiple_choice",
+  "prompt": "A pair of shoes costs $65. The shoes can be bought in two ways. Plan 1: take 20% off the price, then add 8% sales tax. Plan 2: add 8% sales tax to the price, then take $13 off. How many dollars more does Plan 2 cost than Plan 1?",
+  "choices": [
+   "8.60",
+   "1.04",
+   "4.91",
+   "4.78"
+  ],
+  "correct_answer": "1.04",
+  "explanation": "Plan 1: 20% of $65 is $13, so the sale price is $52; with 8% tax, 52 x 1.08 = $56.16. Plan 2: with 8% tax the price is 65 x 1.08 = $70.20; then $13 off gives $57.20. Plan 2 costs 57.20 - 56.16 = $1.04 more. (In Plan 2 the $13 is taken off after tax, so the buyer pays tax on that $13: 8% of $13 = $1.04.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Order of a discount and a tax: compare two plans",
+  "solve": "const p1 = 65 * 0.80 * 1.08; const p2 = 65 * 1.08 - 13; return (Math.round((p2 - p1) * 100) / 100).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "8.60",
+    "reason": "The student takes 20% off as $20 off, so Plan 1 is 45 x 1.08 = 48.60, and 57.20 - 48.60 = 8.60."
+   },
+   {
+    "choice": "4.91",
+    "reason": "The student reads Plan 2's $13 off as 13% off, so Plan 2 is 70.20 x 0.87 = 61.07 (to the cent), and gives the gap between 61.07 and 56.16 as 4.91."
+   },
+   {
+    "choice": "4.78",
+    "reason": "The student writes Plan 1's 8% tax as 0.008, so Plan 1 is 52 x 1.008 = 52.42 (to the cent), and 57.20 - 52.42 = 4.78."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "7.RP.A.3",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-O16",
+  "type": "multiple_choice",
+  "prompt": "Mia simplifies the expression 4(3x - 8) - 3(x - 7) as far as she can. Her answer has an x-term and a number term. What is the number term?",
+  "choices": [
+   "-39",
+   "-53",
+   "-11",
+   "13"
+  ],
+  "correct_answer": "-11",
+  "explanation": "4(3x - 8) = 12x - 32. -3(x - 7) = -3x + 21, because -3 times -7 is +21. Combine: 12x - 3x = 9x and -32 + 21 = -11. The simplified expression is 9x - 11, so the number term is -11.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Subtract a multiple of a binomial; read the constant term",
+  "solve": "return String(-4 * 8 + 3 * 7);",
+  "distractor_rationales": [
+   {
+    "choice": "-39",
+    "reason": "The student writes -3(x - 7) as -3x - 7: it multiplies only the x by 3 and keeps the minus sign, so -32 - 7 = -39."
+   },
+   {
+    "choice": "-53",
+    "reason": "The student takes -3 times -7 as -21, so the number term is -32 - 21 = -53."
+   },
+   {
+    "choice": "13",
+    "reason": "The student writes 4(3x - 8) as 12x - 8, multiplying only the first term by 4, so -8 + 21 = 13."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "7.EE.A.1",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O07",
+  "type": "multiple_choice",
+  "prompt": "A theater has 31 rows with 21 seats in each row. For the afternoon show, 5 of the rows are closed, and every seat in the other rows can be used. For the evening show, every row is open, but 2 seats in each row are saved for the crew and cannot be used. How many more seats can be used for the evening show than for the afternoon show?",
+  "choices": [
+   "93",
+   "103",
+   "63",
+   "43"
+  ],
+  "correct_answer": "43",
+  "explanation": "Afternoon: 31 - 5 = 26 open rows, so 26 x 21 = 546 seats can be used. Evening: each row has 21 - 2 = 19 usable seats, so 31 x 19 = 589 seats can be used. The evening show has 589 - 546 = 43 more usable seats.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Record and compare (a - b) x c with a x (c - d)",
+  "solve": "return String(31 * (21 - 2) - (31 - 5) * 21);",
+  "distractor_rationales": [
+   {
+    "choice": "93",
+    "reason": "For the afternoon the student closes 5 seats in every row instead of 5 whole rows: 31 x 16 = 496, and 589 - 496 = 93."
+   },
+   {
+    "choice": "103",
+    "reason": "For the evening the student subtracts the 2 crew seats only once, not once in every row: 651 - 2 = 649, and 649 - 546 = 103."
+   },
+   {
+    "choice": "63",
+    "reason": "For the evening the student takes away 2 whole rows instead of 2 seats in each row: 29 x 21 = 609, and 609 - 546 = 63."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": "Operations and Algebraic Thinking",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.OA.A.2",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-O09",
+  "type": "multiple_choice",
+  "prompt": "A paint color is made by mixing blue paint and white paint in the ratio 2.5 liters of blue to 2 liters of white. Kai uses 7 liters of white paint. How many liters of blue paint does he need to make the same color?",
+  "choices": [
+   "7.5",
+   "5.6",
+   "8.75",
+   "8.5"
+  ],
+  "correct_answer": "8.75",
+  "explanation": "7 liters of white paint is 7 / 2 = 3.5 groups of 2 liters. Each group needs 2.5 liters of blue, so Kai needs 3.5 x 2.5 = 8.75 liters of blue. (Or: 2.5 / 2 = 1.25 liters of blue for each liter of white, and 1.25 x 7 = 8.75.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Scale a decimal ratio to a new amount",
+  "solve": "return String(7 / 2 * 2.5);",
+  "distractor_rationales": [
+   {
+    "choice": "7.5",
+    "reason": "The student reasons additively: the mix has 0.5 liter more blue than white, so 7 + 0.5 = 7.5."
+   },
+   {
+    "choice": "5.6",
+    "reason": "The student flips the ratio, using 2 liters of blue for every 2.5 liters of white: 7 x 2 / 2.5 = 5.6."
+   },
+   {
+    "choice": "8.5",
+    "reason": "The student counts 3 full groups of 2 liters (6 liters) and 1 liter left over: 3 x 2.5 = 7.5 for the groups, then adds just 1 liter of blue for the extra liter, 7.5 + 1 = 8.5."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "6.RP.A.3a",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-O11",
+  "type": "multiple_choice",
+  "prompt": "Lena simplified 3(6x + 5) + 8x as far as possible. Her answer had one term with x and one number term without x. When she subtracts the number term from the coefficient of x, what does she get?",
+  "choices": [
+   "27",
+   "11",
+   "41",
+   "21"
+  ],
+  "correct_answer": "11",
+  "explanation": "Distribute the 3 to both terms: 3(6x + 5) = 18x + 15. Then combine like terms: 18x + 15 + 8x = 26x + 15. So a = 26 and b = 15, and a - b = 26 - 15 = 11.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Distribute and combine like terms, then read the parts",
+  "solve": "const a = 3 * 6 + 8; const b = 3 * 5; return String(a - b);",
+  "distractor_rationales": [
+   {
+    "choice": "27",
+    "reason": "The student adds 8x to 6x inside the parentheses before distributing, 3(14x + 5) = 42x + 15, so a - b = 42 - 15 = 27."
+   },
+   {
+    "choice": "41",
+    "reason": "The student simplifies correctly to 26x + 15 but adds a and b instead of subtracting: 26 + 15 = 41."
+   },
+   {
+    "choice": "21",
+    "reason": "The student multiplies only the first term by 3, writing 18x + 5 + 8x = 26x + 5, so a - b = 26 - 5 = 21."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.EE.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-O27",
+  "type": "multiple_choice",
+  "prompt": "Barrel A is being drained at a constant rate. It holds 340 liters of water 2 minutes after draining starts and 250 liters 5 minutes after draining starts. Barrel B is being filled, and the number of liters in it t minutes after the start is V = 180 + 25t. How many liters of water are in the two barrels in all 8 minutes after the start?",
+  "choices": [
+   "540",
+   "480",
+   "450",
+   "390"
+  ],
+  "correct_answer": "540",
+  "explanation": "Barrel A loses 340 - 250 = 90 liters in 5 - 2 = 3 minutes, so it drains 30 liters per minute. At the start it held 340 + 2 x 30 = 400 liters, so A = 400 - 30t. At t = 8, A holds 400 - 240 = 160 liters. Barrel B holds 180 + 25 x 8 = 380 liters. In all: 160 + 380 = 540 liters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Build one function from two readings, add another function's value",
+  "solve": "const r = (340 - 250) / (5 - 2); const a0 = 340 + 2 * r; return String((a0 - r * 8) + (180 + 25 * 8));",
+  "distractor_rationales": [
+   {
+    "choice": "480",
+    "reason": "The student finds the rate correctly but treats the 2-minute reading, 340, as the starting amount: 340 - 240 = 100, so the total is 100 + 380 = 480."
+   },
+   {
+    "choice": "450",
+    "reason": "The student divides the 90-liter drop by the first time, 2 minutes, instead of the 3 minutes between readings, so A drains 45 per minute, starts at 430 and holds 70 at 8 minutes: 70 + 380 = 450."
+   },
+   {
+    "choice": "390",
+    "reason": "The student finds the rate, 30 liters per minute, but treats the 5-minute reading, 250, as the starting amount and subtracts 8 minutes of draining: 250 - 240 = 10, so the total is 10 + 380 = 390."
+   }
+  ],
+  "map": {
+   "area": "oa",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "high",
+   "rit_band_target": "RIT 230-239",
+   "ccss": "8.F.B.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G03",
+  "type": "multiple_choice",
+  "prompt": "A town map is drawn on a coordinate grid, and each unit on the grid is one block. Maya's home is at (2, 3), Joe's home is at (11, 13), and the school is at (11, 34). Maya walks along grid lines from her home straight right to the point below the school, then straight up to the school. Joe walks straight up from his home to the school. How many more blocks does Maya walk than Joe?",
+  "choices": [
+   "19",
+   "29",
+   "27",
+   "40"
+  ],
+  "correct_answer": "19",
+  "explanation": "Maya walks right from x = 2 to x = 11, which is 11 - 2 = 9 blocks, then up from y = 3 to y = 34, which is 34 - 3 = 31 blocks. She walks 9 + 31 = 40 blocks. Joe walks up from y = 13 to y = 34, which is 34 - 13 = 21 blocks. Maya walks 40 - 21 = 19 more blocks than Joe.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Compare two grid-line routes on a coordinate map",
+  "solve": "return ((11 - 2) + (34 - 3)) - (34 - 13);",
+  "distractor_rationales": [
+   {
+    "choice": "29",
+    "reason": "Finds each of Maya's legs by adding the two coordinates (2 + 11 and 3 + 34) instead of subtracting them."
+   },
+   {
+    "choice": "27",
+    "reason": "Reads Joe's y-coordinate 13 as the number of blocks he walks, instead of 34 - 13."
+   },
+   {
+    "choice": "40",
+    "reason": "Finds how far Maya walks and stops, without comparing with Joe's walk."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": "Geometry",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.G.A.2",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G16",
+  "type": "multiple_choice",
+  "prompt": "Points A, O and D lie on a straight line, with O between A and D. Rays OB and OC are drawn on the same side of the line, and ray OB is closer to ray OA. Angle AOB measures 44 degrees, and angles BOC and COD have the same measure. What is the measure of angle AOC, in degrees?",
+  "choices": [
+   "112",
+   "88",
+   "67",
+   "134"
+  ],
+  "correct_answer": "112",
+  "explanation": "Angles AOB, BOC and COD together make the straight angle AOD, which is 180 degrees. So angles BOC and COD together are 180 - 44 = 136 degrees, and each one is 136 / 2 = 68 degrees. Angle AOC is angle AOB plus angle BOC: 44 + 68 = 112 degrees.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Adjacent angles on a straight line with two equal parts",
+  "solve": "return 44 + (180 - 44) / 2;",
+  "distractor_rationales": [
+   {
+    "choice": "88",
+    "reason": "Takes angle BOC to be equal to angle AOB instead of angle COD, so adds 44 + 44."
+   },
+   {
+    "choice": "67",
+    "reason": "Uses 90 degrees instead of 180 for the angle the three angles fill, so each equal angle is (90 - 44) / 2 = 23 and angle AOC is 67."
+   },
+   {
+    "choice": "134",
+    "reason": "Splits the whole straight angle in half (90) without first taking away angle AOB, then adds 44."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "7.G.B.5",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G15",
+  "type": "multiple_choice",
+  "prompt": "On a floor plan, 4 centimeters represent 7 meters. A hallway is 9.6 centimeters long on the floor plan. How long is the real hallway, in meters?",
+  "choices": [
+   "15.6",
+   "12.6",
+   "16.8",
+   "14.8"
+  ],
+  "correct_answer": "16.8",
+  "explanation": "Every 4 centimeters on the plan stand for 7 meters. The hallway is 9.6 / 4 = 2.4 groups of 4 centimeters, so it is 2.4 x 7 = 16.8 meters long.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Actual length from a scale with a non-unit ratio",
+  "solve": "return 9.6 / 4 * 7;",
+  "distractor_rationales": [
+   {
+    "choice": "15.6",
+    "reason": "Scales the two whole groups of 4 centimeters (8 cm = 14 m) but adds the leftover 1.6 centimeters as 1.6 meters without scaling them: 14 + 1.6 = 15.6."
+   },
+   {
+    "choice": "12.6",
+    "reason": "Thinks of the scale additively: 7 meters is 3 more than 4 centimeters, so adds 3 to 9.6."
+   },
+   {
+    "choice": "14.8",
+    "reason": "Finds 2.4 groups correctly, but in 2.4 x 7 writes the 8 from 4 x 7 = 28 and forgets to carry the 2, so 2 x 7 gives 14 and the answer reads 14.8."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "7.G.A.1",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G13",
+  "type": "multiple_choice",
+  "prompt": "A rhombus has diagonals that are 24 centimeters and 18 centimeters long, and each of its four sides is 15 centimeters long. The height of the rhombus is the distance between two opposite sides, measured at a right angle to them. What is the height of the rhombus, in centimeters?",
+  "choices": [
+   "12",
+   "7.2",
+   "9",
+   "14.4"
+  ],
+  "correct_answer": "14.4",
+  "explanation": "The diagonals of a rhombus cut it into four right triangles, so its area is half of 24 x 18 = 216 square centimeters. A rhombus is also a parallelogram, so its area is base x height, with a side of 15 centimeters as the base: 15 x height = 216. The height is 216 / 15 = 14.4 centimeters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Height of a rhombus from its diagonals and side",
+  "solve": "return (24*18/2) / 15;",
+  "distractor_rationales": [
+   {
+    "choice": "12",
+    "reason": "Finds the area 216 correctly but divides by the short diagonal 18 instead of the side 15."
+   },
+   {
+    "choice": "7.2",
+    "reason": "Uses half of the long diagonal (12) in the area, getting half of 12 x 18 = 108, then divides by the side 15."
+   },
+   {
+    "choice": "9",
+    "reason": "Finds the area 216 correctly but divides by the long diagonal 24 instead of the side, as if the height were drawn to a diagonal."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "6.G.A.1",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G07",
+  "type": "multiple_choice",
+  "prompt": "A box shaped like a rectangular prism is 15 inches long, 8 inches wide, and 6 inches tall. Ana turns the box onto one of its sides so that it now stands 8 inches tall. Then she pours sand into the box until the sand is 5 inches deep. How many cubic inches of sand are in the box?",
+  "choices": [
+   "540",
+   "600",
+   "240",
+   "450"
+  ],
+  "correct_answer": "450",
+  "explanation": "When the box stands 8 inches tall, the 8-inch edge points up, so the bottom of the box is the face that is 15 inches by 6 inches. Its area is 15 x 6 = 90 square inches. The sand is 5 inches deep, so its volume is 90 x 5 = 450 cubic inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Volume of sand after a box is turned on its side",
+  "solve": "return 15*6*5;",
+  "distractor_rationales": [
+   {
+    "choice": "540",
+    "reason": "Finds the new 15-by-6 bottom but fills it to the old height of 6 inches instead of the 5-inch sand depth: 15 x 6 x 6."
+   },
+   {
+    "choice": "600",
+    "reason": "Keeps the old 15-by-8 bottom, as if the box had not been turned: 15 x 8 x 5."
+   },
+   {
+    "choice": "240",
+    "reason": "Builds the bottom from the two edges named in the turn, 8 and 6, leaving out the 15-inch length: 8 x 6 x 5."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": "Measurement and Data",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.MD.C.5b",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G19",
+  "type": "multiple_choice",
+  "prompt": "A wooden pencil is shaped like a prism that is 148 millimeters long. Each end of the pencil is a six-sided shape made of 6 identical triangles that meet at the center, and each triangle has a base of 4 millimeters and a height of 3.5 millimeters. What is the volume of the pencil, in cubic millimeters?",
+  "choices": [
+   "3552",
+   "3636",
+   "12432",
+   "6216"
+  ],
+  "correct_answer": "6216",
+  "explanation": "Each triangle has area 4 x 3.5 / 2 = 7 square millimeters, so each end has area 6 x 7 = 42 square millimeters. The volume of a prism is the area of its base times its length: 42 x 148 = 6216 cubic millimeters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Volume of a prism whose base is six triangles",
+  "solve": "return 6 * (4 * 3.5 / 2) * 148;",
+  "distractor_rationales": [
+   {
+    "choice": "3552",
+    "reason": "Finds the area of the six long side faces (6 x 4 x 148), the paint on the sides, instead of the volume."
+   },
+   {
+    "choice": "3636",
+    "reason": "Finds the whole surface area, the six side faces plus the two ends (3552 + 84), instead of the volume."
+   },
+   {
+    "choice": "12432",
+    "reason": "Uses base x height for each triangle without the half, so the end has area 84 and the volume is doubled."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.G.B.6",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G17",
+  "type": "multiple_choice",
+  "prompt": "A wooden block is shaped like a prism. Each of its two ends is a trapezoid whose parallel sides are 3 centimeters and 9 centimeters long, whose height is 4 centimeters, and whose two slanted sides are each 5 centimeters long. The block is 14 centimeters long from one end to the other. What is the total surface area of the block, in square centimeters?",
+  "choices": [
+   "328",
+   "286",
+   "356",
+   "336"
+  ],
+  "correct_answer": "356",
+  "explanation": "Each trapezoid end has area (3 + 9) / 2 x 4 = 24 square centimeters, so the two ends have 48. The other four faces are rectangles 14 centimeters long; their widths are the four sides of the trapezoid, 3 + 9 + 5 + 5 = 22 centimeters, so together they have 22 x 14 = 308 square centimeters. The total surface area is 48 + 308 = 356 square centimeters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Surface area of a prism with trapezoid ends",
+  "solve": "return 2*((3+9)/2*4) + (3+9+5+5)*14;",
+  "distractor_rationales": [
+   {
+    "choice": "328",
+    "reason": "Uses the trapezoid's 4-centimeter height as the width of the two slanted faces instead of the 5-centimeter slanted sides: (3 + 9 + 4 + 4) x 14 + 48."
+   },
+   {
+    "choice": "286",
+    "reason": "Counts only one of the two 5-centimeter slanted faces, as if the trapezoid had three sides around it: (3 + 9 + 5) x 14 + 48."
+   },
+   {
+    "choice": "336",
+    "reason": "Finds the volume, the end area 24 times the length 14, instead of the surface area."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.G.B.6",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G22",
+  "type": "multiple_choice",
+  "prompt": "A computer screen is shaped like a rectangle. The diagonal of the screen is 20 inches long, and the screen is 12 inches tall. What is the area of the screen, in square inches?",
+  "choices": [
+   "192",
+   "200",
+   "96",
+   "120"
+  ],
+  "correct_answer": "192",
+  "explanation": "The diagonal, the height and the width make a right triangle with the diagonal as the hypotenuse. So width x width + 12 x 12 = 20 x 20, which gives width x width = 400 - 144 = 256, and the width is 16 inches. The area is 16 x 12 = 192 square inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Area of a rectangle from its diagonal and one side",
+  "solve": "var w = Math.sqrt(20*20 - 12*12); return w * 12;",
+  "distractor_rationales": [
+   {
+    "choice": "200",
+    "reason": "Uses half the diagonal squared, the area rule for a square from its diagonal, as if the screen were a square."
+   },
+   {
+    "choice": "96",
+    "reason": "Finds the width by subtracting the lengths, 20 - 12 = 8, instead of subtracting their squares, then multiplies by 12."
+   },
+   {
+    "choice": "120",
+    "reason": "Takes half of the diagonal times the height, as if the screen were a triangle with the diagonal as its base."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "low",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "8.G.B.7",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G23",
+  "type": "multiple_choice",
+  "prompt": "A globe is shaped like a sphere with a diameter of 12 inches. Using 3.14 for pi, what is the volume of the globe, in cubic inches?",
+  "choices": [
+   "678.24",
+   "904.32",
+   "150.72",
+   "7234.56"
+  ],
+  "correct_answer": "904.32",
+  "explanation": "The radius is half the diameter: 12 / 2 = 6 inches. The volume of a sphere is 4/3 x pi x r x r x r = 4/3 x 3.14 x 6 x 6 x 6 = 4/3 x 3.14 x 216 = 904.32 cubic inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Volume of a sphere from its diameter",
+  "solve": "var r = 12 / 2; return Math.round(4 / 3 * 3.14 * r * r * r * 100) / 100;",
+  "distractor_rationales": [
+   {
+    "choice": "678.24",
+    "reason": "Leaves out the 4/3 in the formula: 3.14 x 6 x 6 x 6."
+   },
+   {
+    "choice": "150.72",
+    "reason": "Squares the radius instead of cubing it: 4/3 x 3.14 x 6 x 6."
+   },
+   {
+    "choice": "7234.56",
+    "reason": "Uses the diameter, 12, as the radius in the formula."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "low",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "8.G.C.9",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G09",
+  "type": "multiple_choice",
+  "prompt": "A sign is shaped like a hexagon. It is made of a rectangle that is 6 inches wide and 11 inches tall, with one triangle attached to its left side and another triangle attached to its right side. For each triangle, the base is the 11-inch side of the rectangle and the height is 8 inches. What is the area of the sign, in square inches?",
+  "choices": [
+   "187",
+   "110",
+   "114",
+   "154"
+  ],
+  "correct_answer": "154",
+  "explanation": "The rectangle's area is 6 x 11 = 66 square inches. Each triangle has base 11 and height 8, so its area is (11 x 8) / 2 = 44 square inches. There are two triangles, so the sign's area is 66 + 44 + 44 = 154 square inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Area of a hexagon made of a rectangle and two triangles",
+  "solve": "return 6*11 + 2*(11*8/2);",
+  "distractor_rationales": [
+   {
+    "choice": "187",
+    "reason": "Uses the 11-inch side as both the base and the height of each triangle, ignoring the printed height of 8 inches."
+   },
+   {
+    "choice": "110",
+    "reason": "Adds the rectangle and only one triangle, forgetting the triangle on the other side."
+   },
+   {
+    "choice": "114",
+    "reason": "Uses the rectangle's 6-inch width as each triangle's base instead of the 11-inch side the triangle is attached to."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "6.G.A.1",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G05",
+  "type": "multiple_choice",
+  "prompt": "A toy box is shaped like a rectangular prism. It is 5 inches wide. Its length is twice its width, and its height is 3 inches less than its length. What is the volume of the toy box, in cubic inches?",
+  "choices": [
+   "350",
+   "100",
+   "650",
+   "150"
+  ],
+  "correct_answer": "350",
+  "explanation": "The width is 5 inches. The length is twice the width: 2 x 5 = 10 inches. The height is 3 inches less than the length: 10 - 3 = 7 inches. The volume is 5 x 10 x 7 = 50 x 7 = 350 cubic inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Volume of a box whose edges are given by relations",
+  "solve": "const w = 5; const l = 2*w; const h = l - 3; return w*l*h;",
+  "distractor_rationales": [
+   {
+    "choice": "100",
+    "reason": "Takes the 3 inches away from the width instead of the length, so the height is 5 - 3 = 2: 5 x 10 x 2 = 100."
+   },
+   {
+    "choice": "650",
+    "reason": "Adds 3 to the length instead of taking 3 away, so the height is 13: 5 x 10 x 13 = 650."
+   },
+   {
+    "choice": "150",
+    "reason": "Uses the printed 3 inches as the height instead of 3 less than the length: 5 x 10 x 3 = 150."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": "Measurement and Data",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.MD.C.5b",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G21",
+  "type": "multiple_choice",
+  "prompt": "Angle P and angle Q are complementary. The supplement of angle P is 40 degrees greater than the supplement of angle Q. What is the measure of the supplement of angle Q, in degrees?",
+  "choices": [
+   "110",
+   "115",
+   "95",
+   "130"
+  ],
+  "correct_answer": "115",
+  "explanation": "The supplement of P is 180 - P and the supplement of Q is 180 - Q. If (180 - P) is 40 more than (180 - Q), then Q is 40 more than P. Complementary angles add to 90, so P + Q = 90 and Q - P = 40. Adding the two facts: 2Q = 130, so Q = 65 degrees (and P = 25). The supplement of Q is 180 - 65 = 115 degrees. Check: the supplement of P is 155, and 155 - 115 = 40.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Supplement of one of two complementary angles from a difference",
+  "solve": "return 180 - (90 + 40) / 2;",
+  "distractor_rationales": [
+   {
+    "choice": "110",
+    "reason": "Halves the 40 correctly but takes the 20 away from 90 instead of adding it to 45, so Q = 70 and its supplement is 110."
+   },
+   {
+    "choice": "95",
+    "reason": "Starts from two equal angles of 45 and adds the whole 40 to Q instead of splitting the difference, so Q = 85 and its supplement is 95."
+   },
+   {
+    "choice": "130",
+    "reason": "Treats the 40-degree difference as angle P itself, so Q = 90 - 40 = 50 and its supplement is 130."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "7.G.B.5",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G08",
+  "type": "multiple_choice",
+  "prompt": "A rectangular wall is 30 inches wide and 28 inches tall. It is covered completely, with no gaps or overlaps, by tiles shaped like right triangles. On each tile the two sides that meet at the right angle are 5 inches and 4 inches long. How many tiles cover the wall?",
+  "choices": [
+   "42",
+   "60",
+   "70",
+   "84"
+  ],
+  "correct_answer": "84",
+  "explanation": "The wall's area is 30 x 28 = 840 square inches. Each tile is a right triangle, so its area is half of 5 x 4: (5 x 4) / 2 = 10 square inches. The number of tiles is 840 / 10 = 84. (Two tiles together make a 5-by-4 rectangle; 6 of those fit across the 30 inches and 7 fit up the 28 inches, so 42 rectangles, which is 84 tiles.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Geometry",
+  "subskill": "Number of right-triangle tiles that cover a rectangle",
+  "solve": "return (30*28) / (5*4/2);",
+  "distractor_rationales": [
+   {
+    "choice": "42",
+    "reason": "Uses 5 x 4 = 20 as the area of a triangle tile, the rectangle formula without the half, so divides 840 by 20."
+   },
+   {
+    "choice": "60",
+    "reason": "Treats the tiles as '5-inch tiles' and uses the 5-inch leg in both directions: 6 rectangles fit across the 30 inches and 5 whole ones up the 28 inches (28/5 = 5.6), so 2 x 6 x 5 = 60."
+   },
+   {
+    "choice": "70",
+    "reason": "Lays the 5-inch side up the wall and the 4-inch side across, so only 7 rectangles fit across (30/4 = 7.5) and 5 up (28/5 = 5.6), and counts 2 x 7 x 5 = 70 whole tiles."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "low",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "6.G.A.1",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM3-G11",
+  "type": "multiple_choice",
+  "prompt": "Parallelogram ABCD is drawn in the coordinate plane with vertices A(-5, -5), B(4, -5), C(9, 9), and D(0, 9). Each unit on the grid is 1 meter. What is the area of the parallelogram, in square meters?",
+  "choices": [
+   "150",
+   "126",
+   "36",
+   "63"
+  ],
+  "correct_answer": "126",
+  "explanation": "Side AB is horizontal, from x = -5 to x = 4, so the base is 4 - (-5) = 9 meters. Side DC is on the line y = 9 and side AB is on the line y = -5, so the height between them is 9 - (-5) = 14 meters. The area of a parallelogram is base x height: 9 x 14 = 126 square meters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Area of a parallelogram drawn in the coordinate plane",
+  "solve": "return (4 - (-5)) * (9 - (-5));",
+  "distractor_rationales": [
+   {
+    "choice": "150",
+    "reason": "Counts grid points instead of units along each side (10 across and 15 up), so multiplies 10 x 15."
+   },
+   {
+    "choice": "36",
+    "reason": "Finds the height as 9 - 5 = 4, ignoring that -5 is below the x-axis, so 9 x 4 = 36."
+   },
+   {
+    "choice": "63",
+    "reason": "Uses the triangle formula, half of base x height, for the parallelogram."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.G.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G14",
+  "type": "multiple_choice",
+  "prompt": "Kai wants to make a closed box shaped like a rectangular prism that is 10 inches long, 7 inches wide, and 5 inches tall. He will cut its net from cardboard, with no flaps or overlaps. He has one rectangular piece of cardboard that is 12 inches long and 10 inches wide, which is not enough. How many more square inches of cardboard does he need?",
+  "choices": [
+   "230",
+   "300",
+   "220",
+   "190"
+  ],
+  "correct_answer": "190",
+  "explanation": "The net is made of the box's six faces. Two faces are 10 by 7 (70 square inches each), two are 10 by 5 (50 each), and two are 7 by 5 (35 each). The net's area is 2 x (70 + 50 + 35) = 2 x 155 = 310 square inches. Kai has 12 x 10 = 120 square inches, so he needs 310 - 120 = 190 more square inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Extra cardboard needed for a box's net",
+  "solve": "return 2*(10*7 + 10*5 + 7*5) - 12*10;",
+  "distractor_rationales": [
+   {
+    "choice": "230",
+    "reason": "Uses the box's volume (10 x 7 x 5 = 350) as the area of the net, then takes away 120."
+   },
+   {
+    "choice": "300",
+    "reason": "Uses the biggest face, 10 by 7, for all six faces of the net (6 x 70 = 420), then takes away 120."
+   },
+   {
+    "choice": "220",
+    "reason": "Uses the 10-by-5 front face for all four side faces (2 x 70 + 4 x 50 = 340) instead of two 10-by-5 faces and two 7-by-5 faces, then takes away 120."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "high",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "6.G.A.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G26",
+  "type": "multiple_choice",
+  "prompt": "A pitcher shaped like a cylinder has an inside radius of 6 centimeters and is filled with water to a height of 17 centimeters. Each glass is shaped like a cylinder with an inside radius of 3 centimeters and a height of 5 centimeters. How many glasses can be filled completely with the water in the pitcher?",
+  "choices": [
+   "6",
+   "3",
+   "54",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Water in the pitcher: pi x 6 x 6 x 17 = 612 x pi cubic centimeters. One glass holds pi x 3 x 3 x 5 = 45 x pi cubic centimeters. 612 / 45 = 13.6, so the water fills 13 glasses completely, with some left over for a 14th glass that is not full.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Number of full cylinders poured from a larger cylinder",
+  "solve": "return Math.floor((6*6*17) / (3*3*5));",
+  "distractor_rationales": [
+   {
+    "choice": "6",
+    "reason": "Uses the radii without squaring them: (6 x 17) / (3 x 5) = 6.8, so 6 glasses."
+   },
+   {
+    "choice": "3",
+    "reason": "Compares only the heights, 17 / 5 = 3.4, and ignores that the pitcher is wider than a glass."
+   },
+   {
+    "choice": "54",
+    "reason": "Treats the glass's 3 centimeters as its diameter, so uses a radius of 1.5 and gets 612 / 11.25 = 54.4, so 54 glasses."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.G.C.9",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G27",
+  "type": "multiple_choice",
+  "prompt": "A ball is placed inside a closed box shaped like a cube with inside edges 6 inches long. The ball just fits: it touches all six faces of the box. Using 3.14 for pi, how many cubic inches of space inside the box are not taken up by the ball?",
+  "choices": [
+   "102.96",
+   "113.04",
+   "131.22",
+   "178.32"
+  ],
+  "correct_answer": "102.96",
+  "explanation": "The ball touches all six faces, so its diameter equals the edge of the cube, 6 inches, and its radius is 3 inches. The ball's volume is 4/3 x 3.14 x 3 x 3 x 3 = 113.04 cubic inches. The box holds 6 x 6 x 6 = 216 cubic inches. The space not taken up by the ball is 216 - 113.04 = 102.96 cubic inches.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Empty space in a cube around a ball that just fits",
+  "solve": "return Math.round((6*6*6 - 4/3*3.14*3*3*3) * 100) / 100;",
+  "distractor_rationales": [
+   {
+    "choice": "113.04",
+    "reason": "Finds the ball's volume correctly and gives it as the answer, the space the ball takes up instead of the space it leaves."
+   },
+   {
+    "choice": "131.22",
+    "reason": "Leaves the 4/3 out of the sphere formula, so takes away only 3.14 x 27 = 84.78."
+   },
+   {
+    "choice": "178.32",
+    "reason": "Squares the radius instead of cubing it in the sphere formula, so takes away only 4/3 x 3.14 x 9 = 37.68."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "high",
+   "rit_band_target": "RIT 230-239",
+   "ccss": "8.G.C.9",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM3-G18",
+  "type": "multiple_choice",
+  "prompt": "Line AB and line CD cross at point E. Angle AEC measures (3x + 5) degrees, and angle BED measures (5x - 31) degrees. What is the measure of angle AED, in degrees?",
+  "choices": [
+   "121",
+   "136",
+   "18",
+   "31"
+  ],
+  "correct_answer": "121",
+  "explanation": "Angles AEC and BED are across from each other where the lines cross, so they are vertical angles and are equal: 3x + 5 = 5x - 31. Then 36 = 2x, so x = 18, and angle AEC = 3(18) + 5 = 59 degrees. Angle AED is next to angle AEC along line CD, so the two add to 180: angle AED = 180 - 59 = 121 degrees.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Name the vertical pair, solve, then find the adjacent angle",
+  "solve": "var x = (5 + 31) / (5 - 3); return 180 - (3 * x + 5);",
+  "distractor_rationales": [
+   {
+    "choice": "136",
+    "reason": "Moving the numbers, writes 31 - 5 = 26 instead of 31 + 5 = 36, so x = 13, angle AEC = 44, and angle AED = 136."
+   },
+   {
+    "choice": "18",
+    "reason": "Solves the equation for x = 18 and gives x as the angle's measure."
+   },
+   {
+    "choice": "31",
+    "reason": "Finds angle AEC = 59 correctly, then subtracts from 90 as if angles next to each other were complementary."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.G.B.5",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G12",
+  "type": "multiple_choice",
+  "prompt": "A wooden block shaped like a rectangular prism is 12 centimeters long, 7 centimeters wide, and 5 centimeters tall. Ana cuts it into two blocks of the same size with one straight cut that is parallel to the faces that are 7 centimeters by 5 centimeters. What is the total surface area of the two new blocks, in square centimeters?",
+  "choices": [
+   "478",
+   "526",
+   "358",
+   "428"
+  ],
+  "correct_answer": "428",
+  "explanation": "The cut is parallel to the 7-by-5 faces, so it splits the 12-centimeter length: each new block is 6 by 7 by 5. One new block has surface area 2 x (6 x 7 + 6 x 5 + 7 x 5) = 2 x (42 + 30 + 35) = 214 square centimeters. The two blocks together have 2 x 214 = 428 square centimeters. (Check: the old block had 358 square centimeters, and the cut added two new 7-by-5 faces, 70 more.)",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Geometry",
+  "subskill": "Total surface area after a box is cut into two halves",
+  "solve": "return 2 * (2*(6*7 + 6*5 + 7*5));",
+  "distractor_rationales": [
+   {
+    "choice": "478",
+    "reason": "Halves the 7-centimeter width instead of the length, so each half is 12 by 3.5 by 5 and the new faces are 12 by 5."
+   },
+   {
+    "choice": "526",
+    "reason": "Halves the 5-centimeter height instead of the length, so each half is 12 by 7 by 2.5 and the new faces are 12 by 7."
+   },
+   {
+    "choice": "358",
+    "reason": "Gives the old block's surface area, forgetting that the cut makes two new faces."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.G.A.4",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM3-G10",
+  "type": "multiple_choice",
+  "prompt": "A triangle has a base of 16 centimeters and a height of 9 centimeters. A parallelogram has the same area as the triangle. The sides of the parallelogram are 15 centimeters and 10 centimeters long. What is the distance between the two 10-centimeter sides of the parallelogram, in centimeters?",
+  "choices": [
+   "7.2",
+   "4.5",
+   "3.6",
+   "4.8"
+  ],
+  "correct_answer": "7.2",
+  "explanation": "The triangle's area is 1/2 x 16 x 9 = 72 square centimeters, so the parallelogram's area is also 72. The distance between the two 10-centimeter sides is the height when a 10-centimeter side is the base: 72 = 10 x height, so the height is 72 / 10 = 7.2 centimeters.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Geometry",
+  "subskill": "Height of a parallelogram with the same area as a triangle",
+  "solve": "return (16*9/2) / 10;",
+  "distractor_rationales": [
+   {
+    "choice": "4.5",
+    "reason": "Divides the area 72 by the triangle's base, 16, instead of by the parallelogram's 10-centimeter side."
+   },
+   {
+    "choice": "3.6",
+    "reason": "Finds the triangle's area, 72, then takes half of it a second time before dividing by 10 (halving once for the formula and again out of habit), so 36 / 10 = 3.6."
+   },
+   {
+    "choice": "4.8",
+    "reason": "Divides the area 72 by the 15-centimeter side, which gives the distance between the two 15-centimeter sides, not between the 10-centimeter sides."
+   }
+  ],
+  "map": {
+   "area": "geo",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.G.A.1",
+   "author_difficulty": "medium"
+  }
+ }
+]
