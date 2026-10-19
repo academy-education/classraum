@@ -243,7 +243,12 @@ else if (mode === 'itemchecks') {
   if (!arg) die('usage: itemchecks <file.json>')
   const items = rd(arg)
   if (!Array.isArray(items) || !items.length) die(`${arg} holds no items`)
-  const dups = dupFails(items)
+  // --against <file>: the rest of the batch. Amendment 1: a tested word of this file may not be a tested
+  // word of, or appear in, any item there, and none of theirs may appear here (cross-author duplicates).
+  const ai = process.argv.indexOf('--against'), others = ai > 0 ? rd(process.argv[ai + 1]) : []
+  const dupsAll = dupFails([...others, ...items].map(x => ({ ...x })), new Set(items.map(i => i.id)))
+  const mine = new Set(items.map(i => i.id))
+  const dups = Object.fromEntries(Object.entries(dupsAll).filter(([id]) => mine.has(id)))
   let bad = 0
   for (const it of items) { const e = [...structural(it).errs, ...(dups[it.id] ? [dups[it.id]] : [])]; if (e.length) bad++; console.log(`${e.length ? 'FAIL' : 'ok  '} ${it.id}${e.length ? '\n       x ' + e.join('\n       x ') : ''}`) }
   console.log(bad ? `${bad} of ${items.length} items fail` : `all ${items.length} items pass the exact item checks`)

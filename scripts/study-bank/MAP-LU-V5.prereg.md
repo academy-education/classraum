@@ -101,3 +101,28 @@ immediately before the result commit and committed with it. REGISTER §5 gets th
   word format returns only when a construction for it passes. Stated now, not discovered later.
 - Cost, stated: the strict teacher and screen rules throw items away. With 12 authored per grade, 5 drops per
   grade are absorbed; a sixth fails the quota. The direction is conservative: it never ships a rejected item.
+
+
+## Amendment 1 (2026-10-20, after authoring, BEFORE any rater, screener, solver or grader saw any item)
+
+**What happened.** The two authors each checked tested words only within their own 24 items. Combined, 9 of
+the 12 grade-7 items clash with grades 5-6 items (the same tested word, or one item's tested word used as a
+correctly spelled word in another): S25 S26 S27 S28 S29 S30 S31 S34 S35. Under the duplicate rule each
+drops, leaving grade 7 with 3 survivors against a quota of 7, so Stage 0 would fail on a process defect
+(no shared word list), before anything about the items was measured. The cause is the commission, not
+the items.
+
+**The change, and only this.** A fresh author re-writes exactly those 9 slots (same ids, same assigned key
+length ranks, same brief), given `map-lu-v5/exclusion-words.json` (187 words: every target, intended
+and misspelled word in the other 39 items) and the new `itemchecks <file> --against <the other 39>`, which
+refuses any cross-item clash (break-tested: it fails all 9 originals; the 39 pass alone). The 39 kept items
+are unchanged. Nothing else in this pre-registration changes.
+
+- kept 39 as authored: `map-lu-v5/kept39.authored.json` sha256 45d8e305ff4af115893ffc2009be86b9e11ed99f8cc4d5a03ff0af5631b004c2
+- the 9 originals, recorded as dropped at E4-dup: `map-lu-v5/dropped9.e4dup.json` sha256 44a82148775a4f4f80f64ec55f4edd8272bf4c8e77cc3634f55a80667a98d7ba
+
+Why this is not the rewrite v5 forbids: v5 bans changing an item after a teacher or screener has judged it
+(v4's reviser replaced judged words and leaked the grade). No judgement exists yet; the 9 are discarded
+whole and replaced by new items under the identical brief, before the teacher gate. Recorded so that the
+result can be read against it. Also recorded: both authors used one `sed` on their own output file to
+lengthen a sentence (outside the two allowed commands; no other effect).
