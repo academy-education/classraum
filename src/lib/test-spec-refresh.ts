@@ -22,6 +22,15 @@
 
 import { generateObject, generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
+
+/** A short, log-safe reason for a provider error: status and message, never headers or keys. */
+export function errorReason(err: unknown): string {
+  const e = err as { statusCode?: number; status?: number; message?: string; data?: { error?: { code?: string; message?: string } } } | null
+  const status = e?.statusCode ?? e?.status
+  const code = e?.data?.error?.code
+  const msg = (e?.data?.error?.message ?? e?.message ?? String(err)).replace(/sk-[A-Za-z0-9_-]+/g, 'sk-…')
+  return [status, code, msg.slice(0, 160)].filter(Boolean).join(' ')
+}
 import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
@@ -155,6 +164,7 @@ export async function refreshTestSpec(
   const openai = createOpenAI({ apiKey })
   let researchText = ''
   let citedUrls: string[] = []
+  let searchError = ''
 
   try {
     const research = await generateText({
@@ -171,11 +181,16 @@ export async function refreshTestSpec(
       .filter((u): u is string => typeof u === 'string')
   } catch (err) {
     console.error('[test-spec-refresh] web search failed', { family, sectionKey, err })
+    searchError = errorReason(err)
   }
 
   if (!researchText) {
-    await markAttempt(family, sectionKey, 'web search returned no usable text')
-    return { family, sectionKey, ok: false, notes: 'no research text', sources: [] }
+    /* The provider's own reason goes into the notes (and so into the job's failure alert). Until 2026-10-20
+       this said only "no research text": the job failed 17 runs in a row from 2026-10-03 and the alert could
+       not say why, because the error was only in the Vercel function log. */
+    const why = searchError ? `web search failed: ${searchError}` : 'web search returned no usable text'
+    await markAttempt(family, sectionKey, why)
+    return { family, sectionKey, ok: false, notes: searchError ? `no research text (${searchError})` : 'no research text', sources: [] }
   }
 
   let spec: SectionSpec
@@ -387,7 +402,7 @@ export async function refreshTestSpecExamples(
       .filter((u): u is string => typeof u === 'string')
   } catch (err) {
     console.error('[test-spec-refresh] samples web search failed', { family, sectionKey, err })
-    return { family, sectionKey, ok: false, notes: 'samples search failed', sources: [], examplesAdded: 0 }
+    return { family, sectionKey, ok: false, notes: `samples search failed (${errorReason(err)})`, sources: [], examplesAdded: 0 }
   }
 
   if (!researchText) {
