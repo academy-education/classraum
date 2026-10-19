@@ -379,6 +379,10 @@ const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   // though Writing is free-response and not yet served, so that when it
   // ships it cannot be the one section priced by a stale literal.
   act: { english: 3, math: 3, reading: 3, science: 3, writing: 3 },
+  // MAP (not shipped; behind the coming-soon gate). 2 per subject, the
+  // SSAT/ISEE price, per MAP-LAUNCH-PLAN Q7's recommendation. PROVISIONAL:
+  // the owner has not priced MAP yet - confirm before the gate flips.
+  map: { reading: 2, language: 2, math: 2 },
 }
 
 /** Credit cost to start one full test for (family, section). */

@@ -36,7 +36,7 @@
  *   - SCORED    what the score is out of. Excludes unscored pilots and
  *               open-response items. Lives in study_sessions.total_count.
  *  Every label rendering one of these must name its unit. */
-import { scoreAdmission, type AdmissionScore } from './admission-tests'
+import { scoreAdmission, type AdmissionFamily, type AdmissionScore } from './admission-tests'
 import { scoreActSection, type ActSectionKey, type ActSectionScore } from './act-test'
 import { bracketedLabel, normaliseSectionLabel } from './section-breakdown'
 import { RESPONSE_SKILL_BY_TYPE } from './openResponse'
@@ -293,7 +293,7 @@ export function tallyRows(rows: ResultRow[]): ResultTally {
  * recoverable from rows the submit path already writes.
  */
 export function admissionScoreFromRows(
-  family: 'ssat' | 'isee',
+  family: AdmissionFamily,
   rows: ResultRow[],
   correctCount: number,
 ): AdmissionScore {
@@ -338,7 +338,7 @@ export function scaleFraction(value: number, min: number, max: number): number {
   return Math.max(0, Math.min(1, (value - min) / (max - min)))
 }
 
-export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'act' | 'other'
+export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'act' | 'map' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
 /**
@@ -360,6 +360,7 @@ export function familyFromTopicSlug(slugOrFamily: string | null | undefined): Te
   // suffix and a careless startsWith would collide.
   if (s === 'ssat' || s.startsWith('ssat-')) return 'ssat'
   if (s === 'isee' || s.startsWith('isee-')) return 'isee'
+  if (s === 'map' || s.startsWith('map-')) return 'map'
   // 'act-' shares no prefix with 'sat-' or 'ssat-', so order is not
   // load-bearing here the way it is for ssat/sat — but it sits before the
   // sat line anyway so the block reads as "every family, then the

@@ -190,6 +190,11 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-19** — **MAP WIRED END TO END BEHIND THE GATE; STILL NOT SHIPPED.** Three untimed blocks (Reading 39, Language Usage 39, Math 40) drawn to per-area quotas; runner shows elapsed time when a block has no clock; result shows percentage and right/wrong/blank with no RIT, percentile or grade level; 2 credits per subject, provisional until the owner prices it. Owner decisions taken and recommendations used are listed in `MAP-LAUNCH-PLAN.md` §5, with the four launch steps still open.
+  - **The full suite caught a real conflict the new tests did not**: `bijective-set-form-leak.test.ts` pins every non-reading draw at one item per group, and a per-area `perPassage` number hid that cap behind a variable. The quota now says only whether an area draws by passage; Literary and Informational Text use `ITEMS_PER_PASSAGE.map`, everything else a literal 1, and a test pins which areas may draw by passage.
+  - **One mutation first survived**: ignoring the per-passage count passed because the fixture's passages held 3 items, so the 3-per-passage limit never bound. Fixture now uses 6-item passages; the mutant fails.
+  - Staged-row draw (read-only): 0 rows with a domain outside the quota areas; Reading 39/39, Language 11/39, Math 11/40.
+
 - **2026-10-18** — **SSAT READING DRAFT 1 CO-FOUNDER REVIEW IN (36 items, 6 passages, feedback run): HUMAN OPTIONS-ONLY 6/36 = 16.7% vs 22.2% deal control (20% chance) — WHERE THE AI SOLVERS SCORED 83.9%. 36/36 "only defensible", 30/36 "authentic", 0 notes.** Run `ssat-draft1-review-cofounder-2026-10-12`, prereg `ssat-reading-draft-1.REVIEW.PREREG.md` (+ amendment 1).
   - Per subskill (human hits / AI mean of 3): attitude 0/6 (1.17), detail 0/6 (2.00), inference 2/6 (2.83), main-idea 2/6 (3.00), purpose 1/6 (3.00), vocabulary 1/6 (0.83). Per passage: P01 3/6, P07 2/6, P11 1/6, P03/P05/P09 0/6.
   - **The model/human split again**: the options-only instrument saturates on agent-written SSAT reading the way it does on ACT Science and TOEFL MC (CLAUDE.md 2026-09-21). The 83.9% leak the AI measured is not one a person sees. By that rule the with-source half and the human sitting decide this family, not the blind model number.

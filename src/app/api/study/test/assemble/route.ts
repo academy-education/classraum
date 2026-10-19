@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, recordTestExposures, toeflSectionShape, type ToeflSection } from '@/lib/study/assemble'
-import { ADMISSION_BLUEPRINT } from '@/lib/study/admission-tests'
+import { ADMISSION_BLUEPRINT, type AdmissionFamily } from '@/lib/study/admission-tests'
 import { ACT_BLUEPRINT, type ActSectionKey } from '@/lib/study/act-test'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
 import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
@@ -91,10 +91,13 @@ async function handlePOST(req: NextRequest) {
   const family = requestedFamily === 'toefl' ? 'toefl'
     : requestedFamily === 'ssat' ? 'ssat'
     : requestedFamily === 'isee' ? 'isee'
+    // MAP is wired but NOT shipped: isShippedTestFamily refuses it below
+    // until 'map' joins SHIPPED_TEST_FAMILIES.
+    : requestedFamily === 'map' ? 'map'
     : requestedFamily === 'act' ? 'act'
     : 'sat'
   const isToefl = family === 'toefl'
-  const isAdmission = family === 'ssat' || family === 'isee'
+  const isAdmission = family === 'ssat' || family === 'isee' || family === 'map'
   /* ACT is linear with a published blueprint, like SSAT/ISEE, and the
      request's `section` is likewise a BLUEPRINT KEY ('english', 'math',
      'reading', 'science'). bankSection comes from the blueprint, never
@@ -112,7 +115,7 @@ async function handlePOST(req: NextRequest) {
    * one, and would size the coverage gate against the wrong pool.
    */
   const block = isAdmission
-    ? ADMISSION_BLUEPRINT[family as 'ssat' | 'isee'].find(b => b.key === body.section && b.bankSection !== null)
+    ? ADMISSION_BLUEPRINT[family as AdmissionFamily].find(b => b.key === body.section && b.bankSection !== null)
     : null
   // Multiple-choice ACT sections only: the essay is free-response and
   // has no bank draw, so 'writing' is rejected here rather than reaching
@@ -130,7 +133,7 @@ async function handlePOST(req: NextRequest) {
   if (!section) {
     const valid = isToefl ? 'reading, listening, writing or speaking'
       : isAdmission
-        ? ADMISSION_BLUEPRINT[family as 'ssat' | 'isee'].filter(b => b.bankSection).map(b => b.key).join(', ')
+        ? ADMISSION_BLUEPRINT[family as AdmissionFamily].filter(b => b.bankSection).map(b => b.key).join(', ')
         : isAct
           ? ACT_BLUEPRINT.filter(b => b.bankSection && b.choiceCount > 0).map(b => b.key).join(', ')
           : 'math or reading_writing'
@@ -354,7 +357,7 @@ async function handlePOST(req: NextRequest) {
         )
       : isAdmission
         ? await assembleAdmissionSection(
-            { family: family as 'ssat' | 'isee', sectionKey: section, studentId: user.id, requireFull, deferExposures: true },
+            { family: family as AdmissionFamily, sectionKey: section, studentId: user.id, requireFull, deferExposures: true },
             sess.id,
           )
       : isAct

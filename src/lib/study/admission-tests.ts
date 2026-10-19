@@ -11,7 +11,19 @@
  * which carry the published EMA and ERB formats.
  */
 
-export type AdmissionFamily = 'ssat' | 'isee'
+/*
+ * 'map' (MAP Growth, 2026-10-19) rides the same fixed-block machinery but
+ * differs in three ways the blueprint has to say out loud:
+ *  - each SUBJECT is its own test, so the "form" is one block a sitting;
+ *  - it is UNTIMED on the real test (NWEA: MAP Growth 2-12 has no time
+ *    limit), so `minutes` is 0 and the runner shows elapsed time;
+ *  - every block draws to per-INSTRUCTIONAL-AREA quotas (MAP_AREA_QUOTAS),
+ *    which SSAT/ISEE do not publish.
+ * Owner decisions 2026-10-12: grades 5-8 first, Math included, Language
+ * Usage waits for ~20 cleared Spelling items. The family stays behind the
+ * coming-soon gate (shipped-tests.ts) until its items clear human review.
+ */
+export type AdmissionFamily = 'ssat' | 'isee' | 'map'
 
 export interface AdmissionSection {
   /** Stable id for this block within its test. */
@@ -19,8 +31,10 @@ export interface AdmissionSection {
   name: string
   /** study_item_bank.section this block draws from. null = not drawn from
    *  the bank (essay prompts, which are free-response). */
-  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | null
+  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | 'language' | null
   questions: number
+  /** 0 = untimed (MAP). The runner then counts elapsed time up and never
+   *  auto-submits; see TestSession `untimed`. */
   minutes: number
   choiceCount: number
   /**
@@ -65,6 +79,49 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
     // TEST_SPECS keeps the official "Mathematics Achievement" / "Essay".
     { key: 'mathach',   name: 'Mathematics',              bankSection: 'math',    questions: 47, minutes: 40, choiceCount: 4, scored: true },
     { key: 'essay',     name: 'Writing',                  bankSection: 'writing', questions: 1,  minutes: 30, choiceCount: 0, scored: false },
+  ],
+  /*
+   * MAP Growth: one subject per sitting, no fixed delivery order between
+   * them. Counts follow MAP-LAUNCH-PLAN.md §1: an event is "max 43 incl.
+   * field test", so ~39-40 scored; Reading and Language Usage are balanced
+   * at 13 per instructional area, Math 6+ per-area counts are not published
+   * so it is balanced at 10 x 4. Four-option multiple choice only.
+   */
+  map: [
+    { key: 'reading',   name: 'Reading',                  bankSection: 'reading',  questions: 39, minutes: 0, choiceCount: 4, scored: true },
+    { key: 'language',  name: 'Language Usage',           bankSection: 'language', questions: 39, minutes: 0, choiceCount: 4, scored: true },
+    { key: 'math',      name: 'Math',                     bankSection: 'math',     questions: 40, minutes: 0, choiceCount: 4, scored: true },
+  ],
+}
+
+/**
+ * MAP instructional areas and how many questions each block draws from
+ * each, keyed by study_item_bank.domain (the strings the MAP cohorts are
+ * banked with). The names are NWEA's public 6+ instructional areas.
+ *
+ * Sums MUST equal the block's `questions`; a test pins it. A thin area
+ * backfills from the rest of the block with a warning rather than serving
+ * a short test — the same rule as the verbal type mix.
+ */
+/* `passages`: drawn by whole passage at ITEMS_PER_PASSAGE.map. Every other
+ * area takes one item per group, the bijective-set rule every non-reading
+ * admission draw keeps. */
+export const MAP_AREA_QUOTAS: Record<'reading' | 'language' | 'math', Array<{ area: string; count: number; passages: boolean }>> = {
+  reading: [
+    { area: 'Literary Text',      count: 13, passages: true },
+    { area: 'Informational Text', count: 13, passages: true },
+    { area: 'Vocabulary',         count: 13, passages: false },
+  ],
+  language: [
+    { area: 'Writing: Write, Revise Texts for Purpose and Audience', count: 13, passages: false },
+    { area: 'Language: Understand, Edit for Grammar, Usage',         count: 13, passages: false },
+    { area: 'Language: Understand, Edit for Mechanics',              count: 13, passages: false },
+  ],
+  math: [
+    { area: 'Operations and Algebraic Thinking', count: 10, passages: false },
+    { area: 'Real and Complex Number Systems',   count: 10, passages: false },
+    { area: 'Geometry',                           count: 10, passages: false },
+    { area: 'Statistics and Probability',         count: 10, passages: false },
   ],
 }
 
@@ -152,6 +209,12 @@ export function scoreAdmission(family: AdmissionFamily, t: RawTally): AdmissionS
 const SCALE_NOTE: Record<AdmissionFamily, string> = {
   ssat: 'Practice raw score only. The real SSAT reports a 500-800 scaled score and a percentile against same-grade, same-gender test takers over three years; we have no norm group, so no scaled score is shown.',
   isee: 'Practice raw score only. The real ISEE reports a stanine (1-9) cut from a percentile against same-grade applicants; we have no norm group, so no stanine is shown.',
+  /* No RIT range either, though the owner asked (2026-10-12). RIT is a Rasch
+   * scale defined by NWEA's calibrated item pool; a range computed from our
+   * percent-correct would be a fabricated number a parent reads as real.
+   * Revisit only with real-score calibration (students reporting their
+   * actual MAP RIT beside our practice score). */
+  map: 'Practice percentage only. The real MAP Growth reports a RIT score from an adaptive test calibrated on NWEA\'s item pool; this practice set is fixed and uncalibrated, so no RIT, percentile or grade level is shown.',
 }
 
 /**
@@ -228,6 +291,7 @@ export type VerbalKind = 'synonym' | 'analogy' | 'sentence completion'
 export const VERBAL_TYPES: Record<AdmissionFamily, Array<{ kind: VerbalKind; count: number }>> = {
   ssat: [{ kind: 'synonym', count: 30 }, { kind: 'analogy', count: 30 }],
   isee: [{ kind: 'synonym', count: 20 }, { kind: 'sentence completion', count: 20 }],
+  map: [], // MAP has no verbal block; its areas are MAP_AREA_QUOTAS
 }
 
 /**
@@ -267,6 +331,9 @@ export function verbalKind(item: { prompt?: string | null }, task?: string | nul
 export const ITEMS_PER_PASSAGE: Record<AdmissionFamily, number> = {
   isee: 6,
   ssat: 6,
+  /* MAP Literary and Informational Text draw whole passages at this count
+   * (MAP_AREA_QUOTAS `passages`). The draft passages carry 3 each. */
+  map: 3,
 }
 
 /**
@@ -454,6 +521,11 @@ export const ADMISSION_TOPIC_SLUGS: Record<string, { family: AdmissionFamily; ke
   'isee-reading':          { family: 'isee', key: 'reading' },
   'isee-math-achievement': { family: 'isee', key: 'mathach' },
   'isee-essay':            { family: 'isee', key: 'essay' },
+  // MAP: the study_topics rows do not exist yet. They are created at launch,
+  // with these slugs, together with SECTION_TOPIC entries (MAP-LAUNCH-PLAN §5.5).
+  'map-reading':           { family: 'map', key: 'reading' },
+  'map-language':          { family: 'map', key: 'language' },
+  'map-math':              { family: 'map', key: 'math' },
 }
 
 /** The blueprint section a topic slug names, or null if the slug is not

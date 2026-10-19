@@ -1,7 +1,7 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { readBankPaged } from '@/lib/study/bank-read'
 import {
-  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, VERBAL_TYPES, verbalKind,
+  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, MAP_AREA_QUOTAS, VERBAL_TYPES, verbalKind,
   type AdmissionFamily,
 } from './admission-tests'
 import {
@@ -1642,14 +1642,15 @@ export async function assembleAdmissionSection(p: {
   if (!block) throw new Error(`unknown ${p.family} section '${p.sectionKey}'`)
   if (!block.bankSection) throw new Error(`${p.family}/${p.sectionKey} is free-response, not drawn from the bank`)
 
-  const data = await readBankPaged<{ id: string; difficulty: string | null; item: unknown; passage_group_id: string | null; task: string | null }>(
+  const data = await readBankPaged<{ id: string; difficulty: string | null; item: unknown; passage_group_id: string | null; task: string | null; domain: string | null }>(
     (withCount) => dbAdmin
       .from('study_item_bank')
       /* `task` carries the verbal question type for the two cohorts that
        * predate the "[Synonym]"/"[Analogy]" prompt tags — without it, 52 of
        * 180 SSAT verbal rows classify as nothing and drop out of the split
        * draw. */
-      .select('id, difficulty, item, passage_group_id, task', withCount ? { count: 'exact' } : undefined)
+      /* `domain` is MAP's instructional area (MAP_AREA_QUOTAS). */
+      .select('id, difficulty, item, passage_group_id, task, domain', withCount ? { count: 'exact' } : undefined)
       .eq('family', p.family)
       .eq('section', block.bankSection!)
       .eq('verified', true)
@@ -1670,6 +1671,7 @@ export async function assembleAdmissionSection(p: {
       id: row.id, item,
       passageGroupId: row.passage_group_id as string | null,
       task: row.task as string | null,
+      domain: row.domain as string | null,
     }]
   })
   if (rows.length === 0) throw new Error(`no verified items for ${p.family}/${block.bankSection}`)
@@ -1728,7 +1730,9 @@ export async function assembleAdmissionSection(p: {
    * below: seededShuffle over the whole section reproduced the right mix
    * and then scattered it, which is not the section either test publishes. */
   let orderedBlocks: Array<typeof ranked> | null = null
-  if (block.bankSection === 'reading') {
+  if (p.family === 'map') {
+    picked = drawMapAreas(ranked, block.bankSection as keyof typeof MAP_AREA_QUOTAS, block.questions, fresh)
+  } else if (block.bankSection === 'reading') {
     picked = drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family], fresh)
   } else if (block.bankSection === 'verbal' && VERBAL_TYPES[p.family]) {
     const taken = new Set<string>()
@@ -1792,6 +1796,39 @@ export async function assembleAdmissionSection(p: {
     composition: { [block.name]: mixed.length },
     itemIds: mixed.map(r => r.id),
   }
+}
+
+/**
+ * MAP: draw each instructional area to its count (MAP_AREA_QUOTAS), passage
+ * areas by whole passage, then backfill a thin area from the rest of the
+ * block, loudly. MAP itself interleaves areas, so the caller shuffles the
+ * result (reading by passage, everything else by item).
+ *
+ * Rows whose domain names no area are never drawn by an area and only reach
+ * a form as backfill: an untagged row is not guessed into an area.
+ */
+export function drawMapAreas<T extends { id: string; domain?: string | null; passageGroupId: string | null }>(
+  ranked: T[], section: keyof typeof MAP_AREA_QUOTAS, n: number, isFresh?: (row: T) => boolean,
+): T[] {
+  const taken = new Set<string>()
+  const out: T[] = []
+  for (const { area, count, passages } of MAP_AREA_QUOTAS[section]) {
+    const pool = ranked.filter(r => r.domain === area)
+    const got = passages
+      ? drawByPassage(pool, count, ITEMS_PER_PASSAGE.map, isFresh)
+      : drawByPassage(pool, count, 1, isFresh)
+    if (got.length < count) {
+      console.warn(`[assemble] map/${section} SHORT ON ${area} - wanted ${count}, drew ${got.length} from a pool of ${pool.length}`)
+    }
+    for (const r of got) { out.push(r); taken.add(r.id) }
+  }
+  if (out.length < n) {
+    const rest = ranked.filter(r => !taken.has(r.id))
+    out.push(...(section === 'reading'
+      ? drawByPassage(rest, n - out.length, ITEMS_PER_PASSAGE.map, isFresh)
+      : drawByPassage(rest, n - out.length, 1, isFresh)))
+  }
+  return out.slice(0, n)
 }
 
 /** Keep each passage's questions together and in authored order; shuffle

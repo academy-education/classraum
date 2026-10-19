@@ -1,5 +1,6 @@
 "use client"
 
+import { isUntimedTest } from '@/lib/study/test-clock'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -1653,8 +1654,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         ? String(currentRange.startAt)
         : `${currentRange.startAt}–${currentRange.endAt}`)
     : String(currentIdx + 1)
-  const timeCritical = remainingMs < 60_000
-  const timeWarning = !timeCritical && remainingMs < 5 * 60_000
+  /* UNTIMED (MAP Growth, 2026-10-19): without this the header would count
+   * DOWN from 0:00 and sit red for the whole sitting. See isUntimedTest. */
+  const untimed = isUntimedTest({ adaptive: isAdaptiveTest, writingBlocks: !!writingSections, timeLimitMinutes: test.timeLimitMinutes })
+  const timeCritical = !untimed && remainingMs < 60_000
+  const timeWarning = !untimed && !timeCritical && remainingMs < 5 * 60_000
 
   /* One question-map renderer, used by BOTH the phone dropdown and the
    * desktop rail. Written as a function rather than copied into two places:
@@ -1780,8 +1784,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               {/* role=timer is aria-live="off" by default: the value is
                   readable on demand but never announced every second. */}
               <Clock className="w-3 h-3" aria-hidden />
-              <span className="sr-only">{String(t('study.a11y.timeRemaining'))}</span>
-              <span role="timer" aria-live="off">{formatTime(remainingMs)}</span>
+              <span className="sr-only">{String(t(untimed ? 'study.a11y.timeElapsed' : 'study.a11y.timeRemaining'))}</span>
+              <span role="timer" aria-live="off">{formatTime(untimed ? currentElapsedMs() : remainingMs)}</span>
             </div>
             <button
               type="button"

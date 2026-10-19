@@ -17,13 +17,14 @@ import { sectionCreditCostsFor } from './plans'
 /** Display order and names for families. A newly shipped family that is
  *  missing here still appears (upper-cased, at the end) rather than being
  *  silently dropped from the copy. */
-const FAMILY_ORDER = ['sat', 'act', 'toefl', 'ssat', 'isee'] as const
+const FAMILY_ORDER = ['sat', 'act', 'toefl', 'ssat', 'isee', 'map'] as const
 const FAMILY_NAME: Record<string, string> = {
   sat: 'SAT',
   act: 'ACT',
   toefl: 'TOEFL',
   ssat: 'SSAT',
   isee: 'ISEE',
+  map: 'MAP',
 }
 
 /** Shipped families in display order (lower-case keys). */

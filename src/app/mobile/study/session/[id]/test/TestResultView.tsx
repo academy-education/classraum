@@ -147,7 +147,7 @@ export function TestResultView({
   /* SSAT/ISEE raw score. Derived from rows the submit path already
      writes — study_attempts keeps student_answer null for a blank — so
      this needed no schema change and no second source of truth. */
-  const admission = (model.family === 'ssat' || model.family === 'isee')
+  const admission = (model.family === 'ssat' || model.family === 'isee' || model.family === 'map')
     ? admissionScoreFromRows(model.family, model.rows, model.correctCount)
     : null
   /* ACT raw score. Rights only - the form's own directions say there is
@@ -417,7 +417,7 @@ export function TestResultView({
             * shipped one of those before. `scaleNote` says so in words
             * instead.
             */}
-          {(model.family === 'ssat' || model.family === 'isee') && admission && scoreReady && scorable && (
+          {admission && scoreReady && scorable && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
 
@@ -433,6 +433,9 @@ export function TestResultView({
                 note={model.family === 'ssat'
                   ? (ko ? '정답 +1점, 오답 -1/4점, 무응답 0점입니다.'
                         : 'Correct +1, wrong −¼, blank 0.')
+                  : model.family === 'map'
+                    ? (ko ? 'MAP은 정답만 셉니다. 시간 제한이 없으니 서두르지 말고 모든 문항에 답하세요.'
+                          : 'MAP counts right answers only, and it is untimed — take your time and answer everything.')
                   : (ko ? 'ISEE는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
                         : 'ISEE counts right answers only — no penalty, so answer everything.')}
               />

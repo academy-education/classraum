@@ -30,7 +30,7 @@ import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
 import { shippedTestList } from '@/lib/study/plan-copy'
-import { admissionSectionForSlug, type AdmissionSection } from '@/lib/study/admission-tests'
+import { admissionSectionForSlug, type AdmissionFamily, type AdmissionSection } from '@/lib/study/admission-tests'
 import { actSectionForSlug, type ActSection } from '@/lib/study/act-test'
 import { passCreditLabel } from '../../_shared/pass-label'
 import type { TestFamily } from '@/lib/study-prompt-context'
@@ -564,7 +564,7 @@ function TopicInner({ slug }: { slug: string }) {
  * adaptive would put the assemble route into SAT's two-module flow.
  */
   const startAdmissionSection = async (
-    family: 'ssat' | 'isee',
+    family: AdmissionFamily,
     /* The real blueprint type, not a structural stand-in: bankSection is
        nullable there (a block that is not drawn from the bank) and
        narrowing it here would have hidden that from this call site. */
@@ -1134,7 +1134,7 @@ function TopicInner({ slug }: { slug: string }) {
                          * bare `return` in startBankTest.
                          */
                         const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
-                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee' || fam === 'act') {
+                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee' || fam === 'act' || fam === 'map') {
                           requestBankStart()
                         } else {
                           openTestSheet()
@@ -1236,7 +1236,7 @@ function TopicInner({ slug }: { slug: string }) {
  *  "<family>-<section>" for leaves (e.g., toefl-reading, sat-math).
  *  Section name returned in English to match TEST_SPECS' name_en. */
 function parseTestSlug(slug: string): { family: TestFamily | null; section: string | null } {
-  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre', 'ssat', 'isee']
+  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre', 'ssat', 'isee', 'map']
   // Parent: test-<family> → all sections; defaultsForTestSection returns sections[0].
   const rootMatch = slug.match(/^test-(.+)$/)
   if (rootMatch) {

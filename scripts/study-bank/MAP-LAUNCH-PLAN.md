@@ -186,7 +186,43 @@ Author ~30% over these targets for gate losses. Recent batches lose 15-40%.
 
 ---
 
-## 5. Code needed (scoped, NOT built)
+## 5. Code needed (BUILT 2026-10-19 behind the gate, except the launch list below)
+
+**Built 2026-10-19, MAP still not shipped.** `'map'` is an `AdmissionFamily`
+with three untimed blocks (Reading 39, Language Usage 39, Math 40) drawn to
+`MAP_AREA_QUOTAS` by `drawMapAreas` in `assemble.ts`. Owner answers used:
+Q1 grades 5-8, Q2 Math in. Recommendations taken where the owner had not
+answered, all reversible before launch:
+- **Q3 score:** percentage, right/wrong/blank and the scale note. No RIT
+  range, though the owner asked (2026-10-12): a range computed from
+  percent-correct would be a fabricated RIT. Revisit with real-score
+  calibration.
+- **Q4 untimed:** blocks carry 0 minutes. The runner counts elapsed time up
+  (`isUntimedTest`), and auto-submit already needed a limit above zero.
+- **Q5 moot:** grades 5-8 is all newly authored `family='map'` rows, so no
+  re-banded SAT/ACT rows are drawn.
+- **Q7 credits: 2 per subject, PROVISIONAL.** The owner has not priced MAP.
+- **Q8 level: no column yet.** One launch level (grades 5-8), so the draw
+  takes every verified MAP row. New rows keep `verify_meta.map.grade_target`.
+
+Checked against the staged rows (read-only, 2026-10-19): every MAP row's
+domain names a quota area (0 unknown); Reading fills 39/39 from the drafts;
+Language and Math fill 11 each, one area apiece. `map-wiring.test.ts` pins
+the blueprint, the gate, the prices, the score and the draw; each mechanism
+was reverted once to confirm its test fails.
+
+**Still to do at launch, in order:**
+1. `study_topics` rows: `test-map`, `map-reading`, `map-language`,
+   `map-math`, then their ids in `SECTION_TOPIC` (`section-topics.ts`).
+2. Landing card (`mobile/study/page.tsx` `TEST_THEMES`, `admissionStat`)
+   and onboarding `available`.
+3. A per-area breakdown on the result screen (the plan's "raw per area").
+   Today it shows the section total only.
+4. Confirm the price, then add `test-map` / `map` to `SHIPPED_TEST_SLUGS` /
+   `SHIPPED_TEST_FAMILIES` and drop it from `COMING_SOON_EXTRA`. This is
+   the flip, and it goes last.
+
+### Original scope (2026-10-12)
 
 **No migration is needed for the family itself.** `study_item_bank` has no
 CHECK constraint on `family`, `section` or `domain`

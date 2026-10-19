@@ -40,6 +40,7 @@ export type TestFamily =
   | 'gre'
   | 'ssat'
   | 'isee'
+  | 'map'    // MAP Growth (NWEA); bank-only, behind the coming-soon gate
 
 interface TopicRow {
   id: string
@@ -121,6 +122,7 @@ function mapTestFamily(slug: string): TestFamily | null {
   if (slug === 'test-gre')  return 'gre'
   if (slug === 'test-ssat') return 'ssat'
   if (slug === 'test-isee') return 'isee'
+  if (slug === 'test-map')  return 'map'
   return null
 }
 
@@ -256,6 +258,11 @@ export function testFormatGuidanceEn(family: TestFamily, section: string | null)
                 : '',
       'Calibrate to a strong 13-17-year-old applying to secondary school.',
     ].filter(Boolean).join(' ')
+    case 'map': return [
+      'This is MAP Growth (NWEA), the untimed K-12 progress test, here at grades 5-8.',
+      'Format: 4-choice multiple choice, untimed. Reading covers literary text, informational text and vocabulary; Language Usage covers writing for purpose and audience, grammar and usage, and mechanics (punctuation, capitalization, spelling); Math covers operations and algebraic thinking, number systems, geometry, and statistics and probability.',
+      'Never claim a RIT score, percentile or grade level: those come from NWEA\'s calibrated adaptive test, not from practice items. Calibrate each item to the stated grade.',
+    ].join(' ')
   }
 }
 
@@ -373,6 +380,11 @@ export function testFormatGuidanceKo(family: TestFamily, section: string | null)
                 : '',
       '수준은 중등학교에 지원하는 우수한 13-17세에 맞출 것.',
     ].filter(Boolean).join(' ')
+    case 'map': return [
+      'MAP Growth(NWEA) — 시간 제한이 없는 K-12 학업 성장 평가, 여기서는 5-8학년 수준.',
+      '형식: 4지선다, 시간 제한 없음. 읽기는 문학 지문·정보 지문·어휘, 언어 사용은 목적과 독자에 맞는 글쓰기·문법과 어법·표기(구두점, 대문자, 철자), 수학은 연산과 대수적 사고·수 체계·기하·통계와 확률.',
+      'RIT 점수, 백분위, 학년 수준을 절대 주장하지 말 것: 이는 NWEA의 보정된 적응형 시험에서만 나온다. 각 문항은 명시된 학년에 맞출 것.',
+    ].join(' ')
   }
 }
 
