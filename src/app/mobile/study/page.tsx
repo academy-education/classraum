@@ -322,6 +322,19 @@ const TEST_THEMES: Record<string, {
     stat_en: '5 sections · 3h',
     stat_ko: '5영역 · 3시간',
   },
+  /* MAP Growth. Inert until a test-map topic row exists and the family is
+   * shipped (shipped-tests.ts). Untimed, so the chip names subjects rather
+   * than a clock: the blueprint's minutes are 0 by design. */
+  map: {
+    Icon: BookOpen,
+    gradient: 'bg-gradient-to-br from-teal-500 via-teal-600 to-cyan-800',
+    accent: 'text-teal-50',
+    ring: 'ring-teal-900/20',
+    mono: 'MAP',
+    decorChars: ['\u00BD', 'Aa', '\u2234'],
+    stat_en: '3 subjects · untimed',
+    stat_ko: '3과목 · 시간 제한 없음',
+  },
   ap: {
     Icon: GraduationCap,
     gradient: 'bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-800',

@@ -214,8 +214,13 @@ was reverted once to confirm its test fails.
 **Still to do at launch, in order:**
 1. `study_topics` rows: `test-map`, `map-reading`, `map-language`,
    `map-math`, then their ids in `SECTION_TOPIC` (`section-topics.ts`).
-2. Landing card (`mobile/study/page.tsx` `TEST_THEMES`, `admissionStat`)
-   and onboarding `available`.
+2. Landing card theme: DONE 2026-10-19 (`TEST_THEMES.map`, "3 subjects ·
+   untimed"). Onboarding `available` flips with the gate.
+   Step 1 is deliberately NOT done early: rows created before the flip put
+   "MAP Test" and a leaf named plain "Reading" into study search, where a
+   tap ends in a refusal; fixed ids in SECTION_TOPIC before the rows exist
+   make verify-section-topics.mjs report three missing topics. Do 1 and 4
+   together.
 3. ~~A per-area breakdown on the result screen~~ DONE 2026-10-19
    (`mapAreaBreakdown`; the draw stamps the area onto each question, since
    most MAP item JSON has no `domain`). No "weak in X" verdict.
