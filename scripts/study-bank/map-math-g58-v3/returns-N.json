@@ -1,0 +1,367 @@
+{
+ "MM3-N19": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"3.4\",\"-15.8\"] (3.4: a drop of under 1 degree in 20 minutes is far too small; -15.8: slower than 1 degree per minute so the drop is under 20)",
+   "S-R7 option pair -3.8 and -4.8, differ by 1 (printed '1 degree')"
+  ],
+  "screener": {
+   "my_answer": "-3.8",
+   "struck": [
+    "3.4",
+    "-15.8"
+   ],
+   "free_elimination": "3.4: a drop of under 1 degree in 20 minutes is far too small; -15.8: slower than 1 degree per minute so the drop is under 20",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": "-3.8 and -4.8, differ by 1 (printed '1 degree')",
+   "note": "8 drops, 4.2-8; -4.8 is off-by-one drop count"
+  }
+ },
+ "MM3-N02": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"5/8\",\"1 3/10\",\"1 3/8\"] (5/8: 8 pounds for 5 people is more than 1 each; 1 3/10 and 1 3/8: sharing among 5 gives fifths, 3/10 and 3/8 are not fifths)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "1 3/5",
+   "struck": [
+    "5/8",
+    "1 3/10",
+    "1 3/8"
+   ],
+   "free_elimination": "5/8: 8 pounds for 5 people is more than 1 each; 1 3/10 and 1 3/8: sharing among 5 gives fifths, 3/10 and 3/8 are not fifths",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "denominator legality alone leaves only the key; low tier so maybe acceptable but fully free"
+  }
+ },
+ "MM3-N14": {
+  "screen_fails": [
+   "S-R7 option pair 4 and 5, n+1 (counting the first moment the stem excludes)"
+  ],
+  "screener": {
+   "my_answer": "4",
+   "struck": [
+    "20"
+   ],
+   "free_elimination": "20: joint departures cannot exceed Ferry B's 300/25 = 12",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": "4 and 5, n+1 (counting the first moment the stem excludes)",
+   "note": "LCM 75, 300/75=4; 20 = Ferry A count"
+  }
+ },
+ "MM3-N28": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "3 3/8",
+   "struck": [
+    "42 7/8"
+   ],
+   "free_elimination": "42 7/8: the second cube is smaller, so its volume is under 8",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "edge 2 -> 1.5, 27/8; key smallest; 7 1/2 = 8-1/2 (subtract from volume), errors land high"
+  }
+ },
+ "MM3-N07": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"21/40\",\"2 3/8\",\"2 7/20\"] (21/40: 13 sections is more than one lap of 7/8; 2 3/8 and 2 7/20: 13*7/40 has odd numerator not divisible by 5, so the lowest-terms denominator must be 40)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "2 11/40",
+   "struck": [
+    "21/40",
+    "2 3/8",
+    "2 7/20"
+   ],
+   "free_elimination": "21/40: 13 sections is more than one lap of 7/8; 2 3/8 and 2 7/20: 13*7/40 has odd numerator not divisible by 5, so the lowest-terms denominator must be 40",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "91/40; only one option has denominator 40 and is above 1"
+  }
+ },
+ "MM3-N09": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"6 1/3\",\"4 1/12\",\"4 1/3\"] (6 1/3: bench longer than 1 foot so ratio is under 5 1/3; 4 1/12 and 4 1/3: (16/3)/(5/4) = 64/15 and 64 has no factor 3 or 5, so denominator must be 15)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "4 4/15",
+   "struck": [
+    "6 1/3",
+    "4 1/12",
+    "4 1/3"
+   ],
+   "free_elimination": "6 1/3: bench longer than 1 foot so ratio is under 5 1/3; 4 1/12 and 4 1/3: (16/3)/(5/4) = 64/15 and 64 has no factor 3 or 5, so denominator must be 15",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "64/15; only fifteenths option is the key"
+  }
+ },
+ "MM3-N24": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"-3\",\"68\",\"34\"] (-3: 2^a < 1 so a is negative and b-a > b > 0; 68 and 34: 2^7=128 and 3^4=81 so both exponents are tiny and b-a is under 13)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "11",
+   "struck": [
+    "-3",
+    "68",
+    "34"
+   ],
+   "free_elimination": "-3: 2^a < 1 so a is negative and b-a > b > 0; 68 and 34: 2^7=128 and 3^4=81 so both exponents are tiny and b-a is under 13",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "a=-7, b=4; STEM DEFECT: says whole-number exponents but a is negative; magnitude alone leaves only 11"
+  }
+ },
+ "MM3-N05": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"1 13/24\",\"1 1/3\",\"1 1/6\"] (1 13/24: Lee drank juice, so total is under 3/4 + 5/8 = 1 9/24; 1 1/3 and 1 1/6: in 24ths the 5/8 term (15) is odd and the rest even, so the result cannot reduc)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "1 5/24",
+   "struck": [
+    "1 13/24",
+    "1 1/3",
+    "1 1/6"
+   ],
+   "free_elimination": "1 13/24: Lee drank juice, so total is under 3/4 + 5/8 = 1 9/24; 1 1/3 and 1 1/6: in 24ths the 5/8 term (15) is odd and the rest even, so the result cannot reduce to thirds or sixths",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "29/24; 1 13/24 adds the 1/6"
+  }
+ },
+ "MM3-N16": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"-5.09\",\"-4.75\",\"-5.22\"] (all three: Tuesday fell 2/5 of over 2.5, so more than 1, and the total is below -5.35)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (Tuesday drop > 1 (2/5 of more than 2.5), so total < -5.35)"
+  ],
+  "screener": {
+   "my_answer": "-6.09",
+   "struck": [
+    "-5.09",
+    "-4.75",
+    "-5.22"
+   ],
+   "free_elimination": "all three: Tuesday fell 2/5 of over 2.5, so more than 1, and the total is below -5.35",
+   "extreme_single_bound": "Tuesday drop > 1 (2/5 of more than 2.5), so total < -5.35",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "-4.35 - 1.74; key most negative, every distractor under-counts Tuesday"
+  }
+ },
+ "MM3-N10": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"1.15\",\"1.21\",\"4.05\"] (all three: Leo ran under 2.5*1.8 = 4.5, so Leo minus 3.6 is under 0.9)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (Leo < 2.5*1.8 = 4.5, so difference < 0.9)"
+  ],
+  "screener": {
+   "my_answer": "0.81",
+   "struck": [
+    "1.15",
+    "1.21",
+    "4.05"
+   ],
+   "free_elimination": "all three: Leo ran under 2.5*1.8 = 4.5, so Leo minus 3.6 is under 0.9",
+   "extreme_single_bound": "Leo < 2.5*1.8 = 4.5, so difference < 0.9",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "4.41 - 3.6; key smallest and the only option under 0.9"
+  }
+ },
+ "MM3-N11": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"283\",\"136\",\"109\"] (283: diver is above the submarine, so under 245+38; 136 and 109: diver is deeper than half of 245 (3/5 > 1/2), so distance is over 122+38 = 160)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "185",
+   "struck": [
+    "283",
+    "136",
+    "109"
+   ],
+   "free_elimination": "283: diver is above the submarine, so under 245+38; 136 and 109: diver is deeper than half of 245 (3/5 > 1/2), so distance is over 122+38 = 160",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "147+38; 109 = 147-38; two cheap bounds leave only the key"
+  }
+ },
+ "MM3-N01": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"5\",\"12 1/18\"] (5: 3 bags over 4 lb each exceed 12; 12 1/18: tripling 1/6 cannot shrink the fraction below 1/6)"
+  ],
+  "screener": {
+   "my_answer": "12 1/2",
+   "struck": [
+    "5",
+    "12 1/18"
+   ],
+   "free_elimination": "5: 3 bags over 4 lb each exceed 12; 12 1/18: tripling 1/6 cannot shrink the fraction below 1/6",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "12 + 3/6; the 12 1/18 strike extended to 12 1/6 is the work itself"
+  }
+ },
+ "MM3-N27": {
+  "screen_fails": [
+   "S-R7 option pair 2 7/9,1 2/3,square (exponent 2 printed)"
+  ],
+  "screener": {
+   "my_answer": "2 7/9",
+   "struck": [
+    "5/18"
+   ],
+   "free_elimination": "5/18: x<1 since x^3<1, so x^-2 > 1",
+   "extreme_single_bound": "x<1 so x^-2 = (1/x)^2 > 1/x > 1",
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": [
+    "2 7/9",
+    "1 2/3",
+    "square (exponent 2 printed)"
+   ],
+   "note": "x=0.6, 1/0.36=25/9; 1 2/3 is x^-1 and squares to the key"
+  }
+ },
+ "MM3-N18": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"-7.2\",\"-7.5\"] (-7.2, -7.5: fell 8 degrees in 5 h, more than 1 per hour, so 3 more hours puts it below -7.5)"
+  ],
+  "screener": {
+   "my_answer": "-9.3",
+   "struck": [
+    "-7.2",
+    "-7.5"
+   ],
+   "free_elimination": "-7.2, -7.5: fell 8 degrees in 5 h, more than 1 per hour, so 3 more hours puts it below -7.5",
+   "extreme_single_bound": "rate > 1 degree/hour so temperature < -7.5",
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "1.6/h x3 = 4.8 below -4.5; key is smallest option; leaves -8.5 vs -9.3"
+  }
+ },
+ "MM3-N04": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"1.30\",\"2.35\"] (1.30: 4x1.30+1.80 = 7.00, far short; 2.35: cents, 4x.35 = 1.40 so total ends .20 not .40)"
+  ],
+  "screener": {
+   "my_answer": "2.65",
+   "struck": [
+    "1.30",
+    "2.35"
+   ],
+   "free_elimination": "1.30: 4x1.30+1.80 = 7.00, far short; 2.35: cents, 4x.35 = 1.40 so total ends .20 not .40",
+   "extreme_single_bound": null,
+   "plugback_tries": 4,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "10.60/4; 2.15 and 2.65 both pass the cents check"
+  }
+ },
+ "MM3-N12": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"2\",\"10\"] (2, 10: pieces under 1/2 yard, so more than 2x6 2/3 = 13 pieces)"
+  ],
+  "screener": {
+   "my_answer": "17",
+   "struck": [
+    "2",
+    "10"
+   ],
+   "free_elimination": "2, 10: pieces under 1/2 yard, so more than 2x6 2/3 = 13 pieces",
+   "extreme_single_bound": null,
+   "plugback_tries": 4,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "160/9 = 17.8, floor 17; key largest; 16 vs 17 needs the work"
+  }
+ },
+ "MM3-N25": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"19200\",\"1200000000\"] (1200000000: each grain < 1 g so total < 4.8 million; 19200: each grain > 0.01 g so total > 48,000)"
+  ],
+  "screener": {
+   "my_answer": "120000",
+   "struck": [
+    "19200",
+    "1200000000"
+   ],
+   "free_elimination": "1200000000: each grain < 1 g so total < 4.8 million; 19200: each grain > 0.01 g so total > 48,000",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "2.5x4.8=12, x10^4; per-grain bounds leave 73000 vs 120000"
+  }
+ },
+ "MM3-N08": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"3.35\",\"1.75\"] (3.35, 1.75: erasers 4.00 and pencils at least 7x0.40 = 2.80, so the difference is at most 1.20)"
+  ],
+  "screener": {
+   "my_answer": "0.85",
+   "struck": [
+    "3.35",
+    "1.75"
+   ],
+   "free_elimination": "3.35, 1.75: erasers 4.00 and pencils at least 7x0.40 = 2.80, so the difference is at most 1.20",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "4.00-3.15; leaves 0.95 vs 0.85"
+  }
+ },
+ "MM3-N13": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"37\",\"63\"] (37, 63: about 1300/32 = 40 and 1500/45 = 33 boxes, so the total is about 74)",
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "75",
+   "struck": [
+    "37",
+    "63"
+   ],
+   "free_elimination": "37, 63: about 1300/32 = 40 and 1500/45 = 33 boxes, so the total is about 74",
+   "extreme_single_bound": "total >= 1300/32 + 1500/45 = 73.9",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "41+34; neither count divides evenly, so both round up; key is largest, floor/one-round errors fall below"
+  }
+ }
+}

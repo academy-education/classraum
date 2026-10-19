@@ -1,0 +1,250 @@
+{
+ "MM3-G14": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "87",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "195 - 108; key smallest, every distractor = too little surface area subtracted (141 = 195-54 one of each face)"
+  }
+ },
+ "MM3-G24": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "294",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "scale 3.5, 24*12.25; key largest, distractors scale only one dimension or none (84 = 24*3.5, 168 = 14*12)"
+  }
+ },
+ "MM3-G17": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "200",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "56 ends + 24*6 lateral; key largest, every distractor omits faces (144 = lateral only)"
+  }
+ },
+ "MM3-G06": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"158\",\"108\",\"92\"] (158: wood can only be cut from the front 5 cm, at most 5*12*2 = 120; 108 and 92: nothing is cut below 5 cm, so the cut is at most 5*7*2 = 70)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (cut lies in front 5 cm above height 5: at most 5*7*2 = 70)"
+  ],
+  "screener": {
+   "my_answer": "62",
+   "struck": [
+    "158",
+    "108",
+    "92"
+   ],
+   "free_elimination": "158: wood can only be cut from the front 5 cm, at most 5*12*2 = 120; 108 and 92: nothing is cut below 5 cm, so the cut is at most 5*7*2 = 70",
+   "extreme_single_bound": "cut lies in front 5 cm above height 5: at most 5*7*2 = 70",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "3*7*2 + 2*5*2 = 62; key smallest, one coarse box bound kills all three"
+  }
+ },
+ "MM3-G04": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "372",
+   "struck": [
+    "480"
+   ],
+   "free_elimination": "480: equals the uncut block, and wood was removed",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "480 - 6*3*6; 408 uses 4 instead of 6; key smallest, distractors under-cut"
+  }
+ },
+ "MM3-G08": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "84",
+   "struck": [
+    "12"
+   ],
+   "free_elimination": "12: 12 small tiles of area 10 cover 120, nowhere near 840",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "840/10; key largest, 42 counts rectangles (forgot the half)"
+  }
+ },
+ "MM3-G28": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "252",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "AC = 5+16 = 21, 21*24/2; key largest, distractors are partial triangles (192 = triangle CBD)"
+  }
+ },
+ "MM3-G07": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"51\",\"192\"] (51: below smallest face 4x5=20 times depth 3 = 60; 192: above largest face 12x5=60 times depth 3 = 180)"
+  ],
+  "screener": {
+   "my_answer": "144",
+   "struck": [
+    "51",
+    "192"
+   ],
+   "free_elimination": "51: below smallest face 4x5=20 times depth 3 = 60; 192: above largest face 12x5=60 times depth 3 = 180",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "base 12x4 after turning, x3 = 144; face-area bounds leave 180 vs 144"
+  }
+ },
+ "MM3-G05": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"490\",\"1862\"] (490: units digit, 7x14 ends 8 and the height (14-5) ends 9, so the volume ends 2; 1862: height < length 14 so V < 7x14x14 = 1372)"
+  ],
+  "screener": {
+   "my_answer": "882",
+   "struck": [
+    "490",
+    "1862"
+   ],
+   "free_elimination": "490: units digit, 7x14 ends 8 and the height (14-5) ends 9, so the volume ends 2; 1862: height < length 14 so V < 7x14x14 = 1372",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "7x14x9=882; 1862 uses h=l+5; 252 also fails divisibility by 98 if the student computes 7x14"
+  }
+ },
+ "MM3-G20": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "728",
+   "struck": [
+    "1120"
+   ],
+   "free_elimination": "1120: front wall fits inside the 8x10 box with corners cut off, so area < 80 and V < 80x14",
+   "extreme_single_bound": "front wall area < 8x10 = 80",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "24+28=52, x14; key smallest, natural errors (no half on triangle, triangle height 10) all overshoot"
+  }
+ },
+ "MM3-G02": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"16\",\"45\"] (16: odd minus even is odd; 45: both y-values lie between 36 and 51, so the gap is under 16)"
+  ],
+  "screener": {
+   "my_answer": "15",
+   "struck": [
+    "16",
+    "45"
+   ],
+   "free_elimination": "16: odd minus even is odd; 45: both y-values lie between 36 and 51, so the gap is under 16",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "51-36; the work is one subtraction so any further strike is the work"
+  }
+ },
+ "MM3-G15": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"5.6\",\"9.4\",\"11.4\"] (8.4 cm is more than 4 groups of 2 cm, so the hallway exceeds 4x3 = 12 m, killing all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (8.4 > 4x2 so length > 12)"
+  ],
+  "screener": {
+   "my_answer": "12.6",
+   "struck": [
+    "5.6",
+    "9.4",
+    "11.4"
+   ],
+   "free_elimination": "8.4 cm is more than 4 groups of 2 cm, so the hallway exceeds 4x3 = 12 m, killing all three",
+   "extreme_single_bound": "8.4 > 4x2 so length > 12",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "8.4x1.5; key is the only option above 12; divide/add errors all fall below"
+  }
+ },
+ "MM3-G10": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"6.2\",\"12\",\"15\"] (triangle area is half of base x height, base 20 is near the 16 length, so the height must be roughly double 15, killing all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (bh = 2x240 = 480 with b = 20 < 32, so h > 15)"
+  ],
+  "screener": {
+   "my_answer": "24",
+   "struck": [
+    "6.2",
+    "12",
+    "15"
+   ],
+   "free_elimination": "triangle area is half of base x height, base 20 is near the 16 length, so the height must be roughly double 15, killing all three",
+   "extreme_single_bound": "bh = 2x240 = 480 with b = 20 < 32, so h > 15",
+   "plugback_tries": 4,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "480/20; key largest, the forgotten-half error (12) and echo 15 fall below"
+  }
+ },
+ "MM3-G21": {
+  "screen_fails": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "screener": {
+   "my_answer": "65",
+   "struck": [
+    "110"
+   ],
+   "free_elimination": "110: complementary angles are each under 90",
+   "extreme_single_bound": null,
+   "plugback_tries": 2,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "Q-P=40, Q+P=90; plug 50 fails, 65 works; P<Q also gives Q>45, which kills nothing more"
+  }
+ }
+}

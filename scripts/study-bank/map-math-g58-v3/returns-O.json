@@ -1,0 +1,168 @@
+{
+ "MM3-O07": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "112",
+   "struck": [
+    "148"
+   ],
+   "free_elimination": "148: 16 open rows x 7 usable seats must end in 2 (units digit)",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "16*7=112; key smallest, all distractors under-subtract (172 = 176-4)"
+  }
+ },
+ "MM3-O08": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"136\",\"235\"] (136: a whole percent of 500 is a multiple of 5; 235: exceeds 32% of 500 = 160, the white total)",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (difference under 20% of 500 = 100 (32-15 < 20))"
+  ],
+  "screener": {
+   "my_answer": "85",
+   "struck": [
+    "136",
+    "235"
+   ],
+   "free_elimination": "136: a whole percent of 500 is a multiple of 5; 235: exceeds 32% of 500 = 160, the white total",
+   "extreme_single_bound": "difference under 20% of 500 = 100 (32-15 < 20)",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "17% of 500; 145 = 160-15 mixing percent and count; key smallest"
+  }
+ },
+ "MM3-O18": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"585\",\"303\"] (585 and 303: Sat 240, Sun over 240, Mon over 75% of 240 = 180, so total over 660)"
+  ],
+  "screener": {
+   "my_answer": "723",
+   "struck": [
+    "585",
+    "303"
+   ],
+   "free_elimination": "585 and 303: Sat 240, Sun over 240, Mon over 75% of 240 = 180, so total over 660",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "240+276+207; 696 = Monday taken as 25% off Saturday; key largest, cheap lower bound leaves only 696 vs 723"
+  }
+ },
+ "MM3-O15": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"255\",\"256\",\"360\"] (255 and 256: 15% of 240 is more than 10% = 24, so the total is over 264; 360: 15% is far less than half)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "276",
+   "struck": [
+    "255",
+    "256",
+    "360"
+   ],
+   "free_elimination": "255 and 256: 15% of 240 is more than 10% = 24, so the total is over 264; 360: 15% is far less than half",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "240*1.15; 255 = 240+15, 360 = +50%; 10% benchmark leaves only the key"
+  }
+ },
+ "MM3-O02": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"78\",\"52\"] (78: shirts alone cost 40, so at most 60 is left; 52: 4*18 ends in 2, so 100 minus it ends in 8)",
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "28",
+   "struck": [
+    "78",
+    "52"
+   ],
+   "free_elimination": "78: shirts alone cost 40, so at most 60 is left; 52: 4*18 ends in 2, so 100 minus it ends in 8",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "100-72; key smallest, distractors under-count printing (52 = printing once)"
+  }
+ },
+ "MM3-O10": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"84\",\"120\"] (84 and 120: each hose delivers more than 1 L per minute, so total > 2x60 = 120)"
+  ],
+  "screener": {
+   "my_answer": "170",
+   "struck": [
+    "84",
+    "120"
+   ],
+   "free_elimination": "84 and 120: each hose delivers more than 1 L per minute, so total > 2x60 = 120",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "90+80; A alone = 90 (easy 1.5x60) then B>60 kills 140 too, but that is half the work"
+  }
+ },
+ "MM3-O16": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"16\",\"19\"] (16, 19: y-x grows with x (2 at x=4, 5 at x=10), so at x=14 y-x > 5, y > 19)"
+  ],
+  "screener": {
+   "my_answer": "21",
+   "struck": [
+    "16",
+    "19"
+   ],
+   "free_elimination": "16, 19: y-x grows with x (2 at x=4, 5 at x=10), so at x=14 y-x > 5, y > 19",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "y=1.5x; 19 is the additive 15+4 error; also 16, 19 fail y=3x/2 divisibility by 3"
+  }
+ },
+ "MM3-O12": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"3475\",\"285\"] (3475: exceeds 12n^2 = 300; 285: 12n^2 - n^3 = n^2(12-n) is a multiple of 25)"
+  ],
+  "screener": {
+   "my_answer": "175",
+   "struck": [
+    "3475",
+    "285"
+   ],
+   "free_elimination": "3475: exceeds 12n^2 = 300; 285: 12n^2 - n^3 = n^2(12-n) is a multiple of 25",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "300-125; leaves 275 vs 175"
+  }
+ },
+ "MM3-O09": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"108\",\"113\"] (108: 3.5 yd > 3 yd = 108 in; 113: 3.5x36 is even)"
+  ],
+  "screener": {
+   "my_answer": "126",
+   "struck": [
+    "108",
+    "113"
+   ],
+   "free_elimination": "108: 3.5 yd > 3 yd = 108 in; 113: 3.5x36 is even",
+   "extreme_single_bound": "more than 3 yards = 108 inches",
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "108+18; key largest; leaves 114 vs 126"
+  }
+ }
+}

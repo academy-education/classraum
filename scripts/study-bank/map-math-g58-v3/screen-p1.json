@@ -1,0 +1,158 @@
+{
+ "screened": 84,
+ "fails": {
+  "MM3-G14": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-O07": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N19": [
+   "S-R4 2 struck without solving: [\"3.4\",\"-15.8\"] (3.4: a drop of under 1 degree in 20 minutes is far too small; -15.8: slower than 1 degree per minute so the drop is under 20)",
+   "S-R7 option pair -3.8 and -4.8, differ by 1 (printed '1 degree')"
+  ],
+  "MM3-O08": [
+   "S-R4 2 struck without solving: [\"136\",\"235\"] (136: a whole percent of 500 is a multiple of 5; 235: exceeds 32% of 500 = 160, the white total)",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (difference under 20% of 500 = 100 (32-15 < 20))"
+  ],
+  "MM3-G24": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N02": [
+   "S-R4 3 struck without solving: [\"5/8\",\"1 3/10\",\"1 3/8\"] (5/8: 8 pounds for 5 people is more than 1 each; 1 3/10 and 1 3/8: sharing among 5 gives fifths, 3/10 and 3/8 are not fifths)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-N14": [
+   "S-R7 option pair 4 and 5, n+1 (counting the first moment the stem excludes)"
+  ],
+  "MM3-G17": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-O18": [
+   "S-R4 2 struck without solving: [\"585\",\"303\"] (585 and 303: Sat 240, Sun over 240, Mon over 75% of 240 = 180, so total over 660)"
+  ],
+  "MM3-N28": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N07": [
+   "S-R4 3 struck without solving: [\"21/40\",\"2 3/8\",\"2 7/20\"] (21/40: 13 sections is more than one lap of 7/8; 2 3/8 and 2 7/20: 13*7/40 has odd numerator not divisible by 5, so the lowest-terms denominator must be 40)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-N09": [
+   "S-R4 3 struck without solving: [\"6 1/3\",\"4 1/12\",\"4 1/3\"] (6 1/3: bench longer than 1 foot so ratio is under 5 1/3; 4 1/12 and 4 1/3: (16/3)/(5/4) = 64/15 and 64 has no factor 3 or 5, so denominator must be 15)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-G06": [
+   "S-R4 3 struck without solving: [\"158\",\"108\",\"92\"] (158: wood can only be cut from the front 5 cm, at most 5*12*2 = 120; 108 and 92: nothing is cut below 5 cm, so the cut is at most 5*7*2 = 70)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (cut lies in front 5 cm above height 5: at most 5*7*2 = 70)"
+  ],
+  "MM3-N24": [
+   "S-R4 3 struck without solving: [\"-3\",\"68\",\"34\"] (-3: 2^a < 1 so a is negative and b-a > b > 0; 68 and 34: 2^7=128 and 3^4=81 so both exponents are tiny and b-a is under 13)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-G04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N05": [
+   "S-R4 3 struck without solving: [\"1 13/24\",\"1 1/3\",\"1 1/6\"] (1 13/24: Lee drank juice, so total is under 3/4 + 5/8 = 1 9/24; 1 1/3 and 1 1/6: in 24ths the 5/8 term (15) is odd and the rest even, so the result cannot reduc)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-G08": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N16": [
+   "S-R4 3 struck without solving: [\"-5.09\",\"-4.75\",\"-5.22\"] (all three: Tuesday fell 2/5 of over 2.5, so more than 1, and the total is below -5.35)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (Tuesday drop > 1 (2/5 of more than 2.5), so total < -5.35)"
+  ],
+  "MM3-N10": [
+   "S-R4 3 struck without solving: [\"1.15\",\"1.21\",\"4.05\"] (all three: Leo ran under 2.5*1.8 = 4.5, so Leo minus 3.6 is under 0.9)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (Leo < 2.5*1.8 = 4.5, so difference < 0.9)"
+  ],
+  "MM3-O15": [
+   "S-R4 3 struck without solving: [\"255\",\"256\",\"360\"] (255 and 256: 15% of 240 is more than 10% = 24, so the total is over 264; 360: 15% is far less than half)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-G28": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N11": [
+   "S-R4 3 struck without solving: [\"283\",\"136\",\"109\"] (283: diver is above the submarine, so under 245+38; 136 and 109: diver is deeper than half of 245 (3/5 > 1/2), so distance is over 122+38 = 160)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM3-O02": [
+   "S-R4 2 struck without solving: [\"78\",\"52\"] (78: shirts alone cost 40, so at most 60 is left; 52: 4*18 ends in 2, so 100 minus it ends in 8)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-G07": [
+   "S-R4 2 struck without solving: [\"51\",\"192\"] (51: below smallest face 4x5=20 times depth 3 = 60; 192: above largest face 12x5=60 times depth 3 = 180)"
+  ],
+  "MM3-G05": [
+   "S-R4 2 struck without solving: [\"490\",\"1862\"] (490: units digit, 7x14 ends 8 and the height (14-5) ends 9, so the volume ends 2; 1862: height < length 14 so V < 7x14x14 = 1372)"
+  ],
+  "MM3-N01": [
+   "S-R4 2 struck without solving: [\"5\",\"12 1/18\"] (5: 3 bags over 4 lb each exceed 12; 12 1/18: tripling 1/6 cannot shrink the fraction below 1/6)"
+  ],
+  "MM3-N27": [
+   "S-R7 option pair 2 7/9,1 2/3,square (exponent 2 printed)"
+  ],
+  "MM3-O10": [
+   "S-R4 2 struck without solving: [\"84\",\"120\"] (84 and 120: each hose delivers more than 1 L per minute, so total > 2x60 = 120)"
+  ],
+  "MM3-O16": [
+   "S-R4 2 struck without solving: [\"16\",\"19\"] (16, 19: y-x grows with x (2 at x=4, 5 at x=10), so at x=14 y-x > 5, y > 19)"
+  ],
+  "MM3-N18": [
+   "S-R4 2 struck without solving: [\"-7.2\",\"-7.5\"] (-7.2, -7.5: fell 8 degrees in 5 h, more than 1 per hour, so 3 more hours puts it below -7.5)"
+  ],
+  "MM3-G20": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM3-N04": [
+   "S-R4 2 struck without solving: [\"1.30\",\"2.35\"] (1.30: 4x1.30+1.80 = 7.00, far short; 2.35: cents, 4x.35 = 1.40 so total ends .20 not .40)"
+  ],
+  "MM3-N12": [
+   "S-R4 2 struck without solving: [\"2\",\"10\"] (2, 10: pieces under 1/2 yard, so more than 2x6 2/3 = 13 pieces)"
+  ],
+  "MM3-N25": [
+   "S-R4 2 struck without solving: [\"19200\",\"1200000000\"] (1200000000: each grain < 1 g so total < 4.8 million; 19200: each grain > 0.01 g so total > 48,000)"
+  ],
+  "MM3-O12": [
+   "S-R4 2 struck without solving: [\"3475\",\"285\"] (3475: exceeds 12n^2 = 300; 285: 12n^2 - n^3 = n^2(12-n) is a multiple of 25)"
+  ],
+  "MM3-G02": [
+   "S-R4 2 struck without solving: [\"16\",\"45\"] (16: odd minus even is odd; 45: both y-values lie between 36 and 51, so the gap is under 16)"
+  ],
+  "MM3-N08": [
+   "S-R4 2 struck without solving: [\"3.35\",\"1.75\"] (3.35, 1.75: erasers 4.00 and pencils at least 7x0.40 = 2.80, so the difference is at most 1.20)"
+  ],
+  "MM3-G15": [
+   "S-R4 3 struck without solving: [\"5.6\",\"9.4\",\"11.4\"] (8.4 cm is more than 4 groups of 2 cm, so the hallway exceeds 4x3 = 12 m, killing all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (8.4 > 4x2 so length > 12)"
+  ],
+  "MM3-G10": [
+   "S-R4 3 struck without solving: [\"6.2\",\"12\",\"15\"] (triangle area is half of base x height, base 20 is near the 16 length, so the height must be roughly double 15, killing all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (bh = 2x240 = 480 with b = 20 < 32, so h > 15)"
+  ],
+  "MM3-G21": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MM3-O09": [
+   "S-R4 2 struck without solving: [\"108\",\"113\"] (108: 3.5 yd > 3 yd = 108 in; 113: 3.5x36 is even)"
+  ],
+  "MM3-N13": [
+   "S-R4 2 struck without solving: [\"37\",\"63\"] (37, 63: about 1300/32 = 40 and 1500/45 = 33 boxes, so the total is about 74)",
+   "S-R8 one-sided extreme key"
+  ]
+ }
+}

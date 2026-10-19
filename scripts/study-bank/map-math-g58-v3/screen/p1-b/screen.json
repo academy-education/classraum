@@ -1,0 +1,682 @@
+{
+ "MM3-G27": {
+  "my_answer": "102.96",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "216 - 113.04; 113.04 is the ball itself and 102.96+113.04=216 (6^3, not printed); 'ball fills over half' would kill all three but is not a cheap fact for grade 8"
+ },
+ "MM3-O13": {
+  "my_answer": "480",
+  "struck": [
+   "30"
+  ],
+  "n_struck": 1,
+  "free_elimination": "30: fewer students than the 36 walkers alone",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "36/0.25=144, 144/0.3=480; 30 echoes the printed 30%"
+ },
+ "MM3-G07": {
+  "my_answer": "144",
+  "struck": [
+   "51",
+   "192"
+  ],
+  "n_struck": 2,
+  "free_elimination": "51: below smallest face 4x5=20 times depth 3 = 60; 192: above largest face 12x5=60 times depth 3 = 180",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "base 12x4 after turning, x3 = 144; face-area bounds leave 180 vs 144"
+ },
+ "MM3-G05": {
+  "my_answer": "882",
+  "struck": [
+   "490",
+   "1862"
+  ],
+  "n_struck": 2,
+  "free_elimination": "490: units digit, 7x14 ends 8 and the height (14-5) ends 9, so the volume ends 2; 1862: height < length 14 so V < 7x14x14 = 1372",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "7x14x9=882; 1862 uses h=l+5; 252 also fails divisibility by 98 if the student computes 7x14"
+ },
+ "MM3-O06": {
+  "my_answer": "52",
+  "struck": [
+   "40"
+  ],
+  "n_struck": 1,
+  "free_elimination": "40: units digit, 180 - 6x13 - 5x10 ends 2 (6x3=18, 5x10 ends 0)",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "78+50=128, 180-128=52; 42 and 22 also end in 2 so units digit leaves three"
+ },
+ "MM3-N17": {
+  "my_answer": "-31.20",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "net -2.60 per share x12; all options negative multiples of 12 and of 60 cents, so sign, divisibility and cents give nothing"
+ },
+ "MM3-N01": {
+  "my_answer": "12 1/2",
+  "struck": [
+   "5",
+   "12 1/18"
+  ],
+  "n_struck": 2,
+  "free_elimination": "5: 3 bags over 4 lb each exceed 12; 12 1/18: tripling 1/6 cannot shrink the fraction below 1/6",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "12 + 3/6; the 12 1/18 strike extended to 12 1/6 is the work itself"
+ },
+ "MM3-N27": {
+  "my_answer": "2 7/9",
+  "struck": [
+   "5/18"
+  ],
+  "n_struck": 1,
+  "free_elimination": "5/18: x<1 since x^3<1, so x^-2 > 1",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": "x<1 so x^-2 = (1/x)^2 > 1/x > 1",
+  "single_bound_kills_all": false,
+  "option_pair_tell": [
+   "2 7/9",
+   "1 2/3",
+   "square (exponent 2 printed)"
+  ],
+  "note": "x=0.6, 1/0.36=25/9; 1 2/3 is x^-1 and squares to the key"
+ },
+ "MM3-N22": {
+  "my_answer": "250",
+  "struck": [
+   "25000000000"
+  ],
+  "n_struck": 1,
+  "free_elimination": "25000000000: exponents differ by 2 (10^-4 vs 10^-6), magnitude absurd",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "2.5x10^2; 300/700 die only via 5/2=2.5, which is the work"
+ },
+ "MM3-O10": {
+  "my_answer": "170",
+  "struck": [
+   "84",
+   "120"
+  ],
+  "n_struck": 2,
+  "free_elimination": "84 and 120: each hose delivers more than 1 L per minute, so total > 2x60 = 120",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "90+80; A alone = 90 (easy 1.5x60) then B>60 kills 140 too, but that is half the work"
+ },
+ "MM3-O16": {
+  "my_answer": "21",
+  "struck": [
+   "16",
+   "19"
+  ],
+  "n_struck": 2,
+  "free_elimination": "16, 19: y-x grows with x (2 at x=4, 5 at x=10), so at x=14 y-x > 5, y > 19",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "y=1.5x; 19 is the additive 15+4 error; also 16, 19 fail y=3x/2 divisibility by 3"
+ },
+ "MM3-O17": {
+  "my_answer": "75.6",
+  "struck": [
+   "53.4"
+  ],
+  "n_struck": 1,
+  "free_elimination": "53.4: even at full price 3 shirts cost 55.50, so at least 64.50 is left",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": "sale price < 18.50 so left > 64.50",
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "14.80x3=44.40, 120-44.40; key is the largest option, all distractors leave less money"
+ },
+ "MM3-G01": {
+  "my_answer": "28",
+  "struck": [
+   "87"
+  ],
+  "n_struck": 1,
+  "free_elimination": "87: 6x3x4 is even, 100 minus even is even",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "100-72; 82 is 100-6x3 and digit reversal of key"
+ },
+ "MM3-N18": {
+  "my_answer": "-9.3",
+  "struck": [
+   "-7.2",
+   "-7.5"
+  ],
+  "n_struck": 2,
+  "free_elimination": "-7.2, -7.5: fell 8 degrees in 5 h, more than 1 per hour, so 3 more hours puts it below -7.5",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": "rate > 1 degree/hour so temperature < -7.5",
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "1.6/h x3 = 4.8 below -4.5; key is smallest option; leaves -8.5 vs -9.3"
+ },
+ "MM3-G20": {
+  "my_answer": "728",
+  "struck": [
+   "1120"
+  ],
+  "n_struck": 1,
+  "free_elimination": "1120: front wall fits inside the 8x10 box with corners cut off, so area < 80 and V < 80x14",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": true,
+  "extreme_single_bound": "front wall area < 8x10 = 80",
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "24+28=52, x14; key smallest, natural errors (no half on triangle, triangle height 10) all overshoot"
+ },
+ "MM3-O03": {
+  "my_answer": "59",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "25 vs 84; gap is 19 + 5k so only 59 is 4 mod 5, but noticing that is the work; all options odd"
+ },
+ "MM3-G18": {
+  "my_answer": "121",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "vertical angles x=18, AEC=59, AED=121; 18 is x and 31 is a printed constant, both legal angle sizes"
+ },
+ "MM3-O22": {
+  "my_answer": "63",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "315/5; 69=483/7 and 45=315/7; position at noon >= 0 gives v <= 84, kills nothing"
+ },
+ "MM3-O25": {
+  "my_answer": "290",
+  "struck": [
+   "90"
+  ],
+  "n_struck": 1,
+  "free_elimination": "90: small lap would be 10 m, Ana's 60 m cannot match Ben's 360+100",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "6(L-80)=4L+100, L=290; plug-back 240 fails, 290 works on third try"
+ },
+ "MM3-N26": {
+  "my_answer": "31",
+  "struck": [
+   "6"
+  ],
+  "n_struck": 1,
+  "free_elimination": "6: every n from 16 to 36 qualifies (perfect squares 4^2..6^2), at least 21 values",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "13..43; perfect-square bounds give 21..35, cannot separate 27/31/34"
+ },
+ "MM3-O21": {
+  "my_answer": "1.04",
+  "struck": [
+   "8.60"
+  ],
+  "n_struck": 1,
+  "free_elimination": "8.60: plans differ by less than the whole tax on 65 (5.20)",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "56.16 vs 57.20; 13 = 20% of 65 so difference = 8% of 13; spotting that is the insight being tested"
+ },
+ "MM3-N04": {
+  "my_answer": "2.65",
+  "struck": [
+   "1.30",
+   "2.35"
+  ],
+  "n_struck": 2,
+  "free_elimination": "1.30: 4x1.30+1.80 = 7.00, far short; 2.35: cents, 4x.35 = 1.40 so total ends .20 not .40",
+  "key_identifiable_free": false,
+  "plugback_tries": 4,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "10.60/4; 2.15 and 2.65 both pass the cents check"
+ },
+ "MM3-G25": {
+  "my_answer": "216.66",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "36pi+33pi=69pi; key is largest, 113.04 is cylinder alone; all options are multiples of 3.14"
+ },
+ "MM3-N12": {
+  "my_answer": "17",
+  "struck": [
+   "2",
+   "10"
+  ],
+  "n_struck": 2,
+  "free_elimination": "2, 10: pieces under 1/2 yard, so more than 2x6 2/3 = 13 pieces",
+  "key_identifiable_free": false,
+  "plugback_tries": 4,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "160/9 = 17.8, floor 17; key largest; 16 vs 17 needs the work"
+ },
+ "MM3-N06": {
+  "my_answer": "56",
+  "struck": [
+   "30"
+  ],
+  "n_struck": 1,
+  "free_elimination": "30: floor > 3x2 = 6 sq m and a tile is 1/6 sq m, so > 36 tiles",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "7 by 8; upper bound 4x3x6=72 kills none"
+ },
+ "MM3-N20": {
+  "my_answer": "-10.6",
+  "struck": [
+   "-33.8"
+  ],
+  "n_struck": 1,
+  "free_elimination": "-33.8: rise of 2/3 of 17.4 exceeds the 4.8 dive, so it ends above -17.4",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "-5.8 then -10.6; -16.4 and -7.4 survive cheap bounds"
+ },
+ "MM3-N25": {
+  "my_answer": "120000",
+  "struck": [
+   "19200",
+   "1200000000"
+  ],
+  "n_struck": 2,
+  "free_elimination": "1200000000: each grain < 1 g so total < 4.8 million; 19200: each grain > 0.01 g so total > 48,000",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "2.5x4.8=12, x10^4; per-grain bounds leave 73000 vs 120000"
+ },
+ "MM3-O12": {
+  "my_answer": "175",
+  "struck": [
+   "3475",
+   "285"
+  ],
+  "n_struck": 2,
+  "free_elimination": "3475: exceeds 12n^2 = 300; 285: 12n^2 - n^3 = n^2(12-n) is a multiple of 25",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "300-125; leaves 275 vs 175"
+ },
+ "MM3-G02": {
+  "my_answer": "15",
+  "struck": [
+   "16",
+   "45"
+  ],
+  "n_struck": 2,
+  "free_elimination": "16: odd minus even is odd; 45: both y-values lie between 36 and 51, so the gap is under 16",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "51-36; the work is one subtraction so any further strike is the work"
+ },
+ "MM3-O26": {
+  "my_answer": "67",
+  "struck": [
+   "-8"
+  ],
+  "n_struck": 1,
+  "free_elimination": "-8: at x=0 B is 27 below A and B gains 1 per unit x, so x must be positive and large",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "A=5x+15, x-27=40; 77-37=40 is a distractor-only pair"
+ },
+ "MM3-N08": {
+  "my_answer": "0.85",
+  "struck": [
+   "3.35",
+   "1.75"
+  ],
+  "n_struck": 2,
+  "free_elimination": "3.35, 1.75: erasers 4.00 and pencils at least 7x0.40 = 2.80, so the difference is at most 1.20",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "4.00-3.15; leaves 0.95 vs 0.85"
+ },
+ "MM3-G15": {
+  "my_answer": "12.6",
+  "struck": [
+   "5.6",
+   "9.4",
+   "11.4"
+  ],
+  "n_struck": 3,
+  "free_elimination": "8.4 cm is more than 4 groups of 2 cm, so the hallway exceeds 4x3 = 12 m, killing all three",
+  "key_identifiable_free": true,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": true,
+  "extreme_single_bound": "8.4 > 4x2 so length > 12",
+  "single_bound_kills_all": true,
+  "option_pair_tell": null,
+  "note": "8.4x1.5; key is the only option above 12; divide/add errors all fall below"
+ },
+ "MM3-O04": {
+  "my_answer": "177",
+  "struck": [
+   "767"
+  ],
+  "n_struck": 1,
+  "free_elimination": "767: the difference is smaller than the first expression 8x59 < 480",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "3x59; all options end in 7; 3x(50..60) bound kills 117/137 but is the work"
+ },
+ "MM3-G19": {
+  "my_answer": "6216",
+  "struck": [
+   "12432"
+  ],
+  "n_struck": 1,
+  "free_elimination": "12432: each triangle is smaller than its 4x3.5 rectangle, so V < 6x4x3.5x148 = 12432",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "42x148; 12432 is exactly double the key (no half)"
+ },
+ "MM3-G09": {
+  "my_answer": "154",
+  "struck": [
+   "114"
+  ],
+  "n_struck": 1,
+  "free_elimination": "114: every piece has the 11-inch side as a factor, so the area is a multiple of 11",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "66+88; 187 and 110 are also multiples of 11"
+ },
+ "MM3-G10": {
+  "my_answer": "24",
+  "struck": [
+   "6.2",
+   "12",
+   "15"
+  ],
+  "n_struck": 3,
+  "free_elimination": "triangle area is half of base x height, base 20 is near the 16 length, so the height must be roughly double 15, killing all three",
+  "key_identifiable_free": true,
+  "plugback_tries": 4,
+  "plugback_routine": false,
+  "one_sided": true,
+  "extreme_single_bound": "bh = 2x240 = 480 with b = 20 < 32, so h > 15",
+  "single_bound_kills_all": true,
+  "option_pair_tell": null,
+  "note": "480/20; key largest, the forgotten-half error (12) and echo 15 fall below"
+ },
+ "MM3-O27": {
+  "my_answer": "540",
+  "struck": [],
+  "n_struck": 0,
+  "free_elimination": "none",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "A(8)=160, B(8)=380; key largest; A(8) < 250 gives total < 630 which kills nothing"
+ },
+ "MM3-G21": {
+  "my_answer": "65",
+  "struck": [
+   "110"
+  ],
+  "n_struck": 1,
+  "free_elimination": "110: complementary angles are each under 90",
+  "key_identifiable_free": false,
+  "plugback_tries": 2,
+  "plugback_routine": true,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "Q-P=40, Q+P=90; plug 50 fails, 65 works; P<Q also gives Q>45, which kills nothing more"
+ },
+ "MM3-O09": {
+  "my_answer": "126",
+  "struck": [
+   "108",
+   "113"
+  ],
+  "n_struck": 2,
+  "free_elimination": "108: 3.5 yd > 3 yd = 108 in; 113: 3.5x36 is even",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": "more than 3 yards = 108 inches",
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "108+18; key largest; leaves 114 vs 126"
+ },
+ "MM3-O23": {
+  "my_answer": "128",
+  "struck": [
+   "8"
+  ],
+  "n_struck": 1,
+  "free_elimination": "8: after 32 s the heights are in the hundreds and B gains 4 ft/s, so the gap is far above 8",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "(12-8)x32; 8 is A's speed and 360 = 384-24"
+ },
+ "MM3-O20": {
+  "my_answer": "19",
+  "struck": [
+   "4"
+  ],
+  "n_struck": 1,
+  "free_elimination": "4: four minutes drops only 30 m from 160",
+  "key_identifiable_free": false,
+  "plugback_tries": 3,
+  "plugback_routine": false,
+  "one_sided": false,
+  "extreme_single_bound": null,
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "135/7.5 = 18 exactly gives 25 m, not lower; key 19 sits next to the 18 boundary trap"
+ },
+ "MM3-N13": {
+  "my_answer": "75",
+  "struck": [
+   "37",
+   "63"
+  ],
+  "n_struck": 2,
+  "free_elimination": "37, 63: about 1300/32 = 40 and 1500/45 = 33 boxes, so the total is about 74",
+  "key_identifiable_free": false,
+  "plugback_tries": null,
+  "plugback_routine": false,
+  "one_sided": true,
+  "extreme_single_bound": "total >= 1300/32 + 1500/45 = 73.9",
+  "single_bound_kills_all": false,
+  "option_pair_tell": null,
+  "note": "41+34; neither count divides evenly, so both round up; key is largest, floor/one-round errors fall below"
+ }
+}
