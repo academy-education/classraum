@@ -36,7 +36,7 @@
  *   - SCORED    what the score is out of. Excludes unscored pilots and
  *               open-response items. Lives in study_sessions.total_count.
  *  Every label rendering one of these must name its unit. */
-import { scoreAdmission, type AdmissionFamily, type AdmissionScore } from './admission-tests'
+import { MAP_AREA_QUOTAS, scoreAdmission, type AdmissionFamily, type AdmissionScore } from './admission-tests'
 import { scoreActSection, type ActSectionKey, type ActSectionScore } from './act-test'
 import { bracketedLabel, normaliseSectionLabel } from './section-breakdown'
 import { RESPONSE_SKILL_BY_TYPE } from './openResponse'
@@ -113,6 +113,8 @@ export interface ResultRowQuestion extends ResultQuestion {
    *  the per-set card is not an SAT feature — it self-hides there
    *  because there is nothing to group on, not because we branch. */
   passageGroupId?: string | null
+  /** Content area. MAP stamps its instructional area here at draw time. */
+  domain?: string | null
   choices?: string[] | null
   explanation?: string | null
   graphic?: unknown
@@ -305,6 +307,33 @@ export function admissionScoreFromRows(
   // score, which is the one direction this must not fail in.
   const wrong = Math.max(0, tally.counted - correctCount - omitted)
   return scoreAdmission(family, { correct: correctCount, wrong, omitted })
+}
+
+/**
+ * MAP: right answers per instructional area, in MAP's own area order.
+ *
+ * Same population as the headline (scored rows only: no pilots, nothing
+ * rubric-graded), so the parts add up to the whole. A row whose area is not
+ * one of MAP's goes under "Other" rather than vanishing, which would make the
+ * parts sum to less than the score. Returns [] when fewer than two areas are
+ * present: a one-row breakdown repeats the headline.
+ *
+ * No "weak in X" verdict is drawn from it. NWEA's own 13-item area scores
+ * run reliability 0.75-0.91 and ours have none measured (MAP-LAUNCH-PLAN §1).
+ */
+export function mapAreaBreakdown(rows: ResultRow[]): Array<{ area: string; correct: number; total: number }> {
+  const order = Object.values(MAP_AREA_QUOTAS).flat().map(a => a.area)
+  const acc = new Map<string, { correct: number; total: number }>()
+  for (const r of rows) {
+    if (r.ungraded || r.isPilot) continue
+    const area = r.question.domain && order.includes(r.question.domain) ? r.question.domain : 'Other'
+    const a = acc.get(area) ?? { correct: 0, total: 0 }
+    a.total += 1
+    if (r.correct) a.correct += 1
+    acc.set(area, a)
+  }
+  if (acc.size < 2) return []
+  return [...order, 'Other'].filter(a => acc.has(a)).map(area => ({ area, ...acc.get(area)! }))
 }
 
 /**

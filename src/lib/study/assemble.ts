@@ -1667,6 +1667,10 @@ export async function assembleAdmissionSection(p: {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
+    /* MAP's instructional area lives in the COLUMN; most MAP item JSON has
+     * no `domain` (reading and language: 0 of 59 on 2026-10-19). Stamped on
+     * the question so the result screen can break the score down by area. */
+    if (p.family === 'map' && !item.domain && row.domain) item.domain = row.domain
     return [{
       id: row.id, item,
       passageGroupId: row.passage_group_id as string | null,

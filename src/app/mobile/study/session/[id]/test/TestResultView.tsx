@@ -15,7 +15,7 @@ import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
   tallyRows, scaleFraction, scoreSplit, moduleSplit, passageSetBreakdown,
-  admissionScoreFromRows, testTiming, objectiveProportion, hasReportableScore,
+  admissionScoreFromRows, mapAreaBreakdown, testTiming, objectiveProportion, hasReportableScore,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { actScoreFromRows } from '@/lib/study/test-result'
@@ -150,6 +150,8 @@ export function TestResultView({
   const admission = (model.family === 'ssat' || model.family === 'isee' || model.family === 'map')
     ? admissionScoreFromRows(model.family, model.rows, model.correctCount)
     : null
+  /* MAP: right answers per instructional area. Self-hides below two areas. */
+  const mapAreas = model.family === 'map' ? mapAreaBreakdown(model.rows) : []
   /* ACT raw score. Rights only - the form's own directions say there is
      no penalty for guessing - so the raw IS the correct count; the block
      exists to show wrong vs blank (different diagnostic facts at the
@@ -445,6 +447,16 @@ export function TestResultView({
                 <span>{ko ? '무응답' : 'Blank'} {admission.omitted}</span>
                 <span>{ko ? '정답률' : 'Accuracy'} {admission.percentCorrect}%</span>
               </div>
+              {mapAreas.length > 0 && (
+                <ul className="space-y-1 text-[13px] text-white/85 tabular-nums" aria-label={ko ? '영역별 정답' : 'Correct by area'}>
+                  {mapAreas.map(a => (
+                    <li key={a.area} className="flex justify-between gap-4">
+                      <span className="min-w-0">{a.area === 'Other' ? (ko ? '기타' : 'Other') : a.area}</span>
+                      <span>{a.correct} / {a.total}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <p className="text-[13px] leading-relaxed text-white/70 max-w-prose">
                 {admission.scaleNote}
               </p>

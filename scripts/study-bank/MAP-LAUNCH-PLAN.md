@@ -216,8 +216,9 @@ was reverted once to confirm its test fails.
    `map-math`, then their ids in `SECTION_TOPIC` (`section-topics.ts`).
 2. Landing card (`mobile/study/page.tsx` `TEST_THEMES`, `admissionStat`)
    and onboarding `available`.
-3. A per-area breakdown on the result screen (the plan's "raw per area").
-   Today it shows the section total only.
+3. ~~A per-area breakdown on the result screen~~ DONE 2026-10-19
+   (`mapAreaBreakdown`; the draw stamps the area onto each question, since
+   most MAP item JSON has no `domain`). No "weak in X" verdict.
 4. Confirm the price, then add `test-map` / `map` to `SHIPPED_TEST_SLUGS` /
    `SHIPPED_TEST_FAMILIES` and drop it from `COMING_SOON_EXTRA`. This is
    the flip, and it goes last.

@@ -12,7 +12,7 @@ import {
 import { drawMapAreas } from '@/lib/study/assemble'
 import { isShippedTestFamily, isShippedTestSlug } from '@/lib/study/shipped-tests'
 import { creditCostForTest } from '@/lib/study/plans'
-import { familyFromTopicSlug } from '@/lib/study/test-result'
+import { familyFromTopicSlug, mapAreaBreakdown, type ResultRow } from '@/lib/study/test-result'
 import { isUntimedTest } from '@/lib/study/test-clock'
 
 type Row = { id: string; domain: string | null; passageGroupId: string | null }
@@ -146,5 +146,33 @@ describe('untimed clock', () => {
     expect(isUntimedTest({ adaptive: false, writingBlocks: false, timeLimitMinutes: 60 })).toBe(false)
     expect(isUntimedTest({ adaptive: true, writingBlocks: false, timeLimitMinutes: 0 })).toBe(false)
     expect(isUntimedTest({ adaptive: false, writingBlocks: true, timeLimitMinutes: 0 })).toBe(false)
+  })
+})
+
+describe('mapAreaBreakdown', () => {
+  const row = (domain: string | null, correct: boolean, extra: Partial<ResultRow> = {}): ResultRow => ({
+    question: { prompt: 'q', type: 'multiple_choice', domain } as ResultRow['question'],
+    studentAnswer: 'A', correct, ungraded: false, isPilot: false,
+    correctAnswerDisplay: 'A', range: null, position: null, ...extra,
+  })
+
+  it('counts right answers per area in MAP order, and the parts sum to the scored whole', () => {
+    const rows = [
+      row('Vocabulary', true), row('Literary Text', true), row('Literary Text', false),
+      row('Informational Text', true), row('Mystery', false),
+      row('Literary Text', true, { isPilot: true }), row('Vocabulary', false, { ungraded: true }),
+    ]
+    const got = mapAreaBreakdown(rows)
+    expect(got).toEqual([
+      { area: 'Literary Text', correct: 1, total: 2 },
+      { area: 'Informational Text', correct: 1, total: 1 },
+      { area: 'Vocabulary', correct: 1, total: 1 },
+      { area: 'Other', correct: 0, total: 1 },
+    ])
+    expect(got.reduce((n, a) => n + a.total, 0)).toBe(5)
+  })
+
+  it('hides itself when only one area is present', () => {
+    expect(mapAreaBreakdown([row('Geometry', true), row('Geometry', false)])).toEqual([])
   })
 })
