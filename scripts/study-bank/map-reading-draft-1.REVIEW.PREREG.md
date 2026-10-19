@@ -28,3 +28,19 @@ MAP is not live, so "release" here means `verified=true` ready for launch; nothi
 One reader, n=48 (about +/-12 points). The grader-reported difficulty problem (items easier than
 their target grade on 42 of 96 judgements) is NOT tested by this sitting; record his
 Authentic/Authored and any "too easy" notes for the launch decision.
+
+## Amendment 1 (2026-10-19, before any draw: 0 of 48 seen, no run exists)
+Owner asked for a shorter sitting. Trimmed to 6 whole passages = 24 items, one or two per genre:
+P01 fiction, P02 poetry, P06 folktale (Literary); P07 science, P09 history, P12 opinion
+(Informational); each with its Vocabulary item. P03, P04, P05, P08, P10, P11 stay staged, unseen,
+for a later sitting.
+
+- **Draw:** the command above, unchanged (the draw tool picks items, not passages). Then, BEFORE he
+  opens the run, delete that run's 24 rows whose items belong to P03/P04/P05/P08/P10/P11 and confirm
+  24 rows remain, 4 per kept passage. Same procedure as the SSAT draft-1 Amendment 1 trim.
+- **Control:** after the trim the deal is no longer flat. The control is the best fixed-slot score on
+  the 24 remaining rows, per domain and overall, printed before he starts. If the overall control is
+  above 9/24, delete the run and redraw before he is told (the guard below needs headroom).
+- **Batch guard:** blind >= 12/24 (50%) -> nothing released, held whole.
+- Rules 2-4 unchanged (per item, per passage at 2 or more of 4, unanswered stay staged).
+- Known limit: n=24, about +/-17 points. Only the 24 reviewed items can be released by this sitting.
