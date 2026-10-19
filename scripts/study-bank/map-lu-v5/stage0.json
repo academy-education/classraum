@@ -1,0 +1,71 @@
+{
+ "teacherDrops": {
+  "MLV5-S01": "teacher: no student would pick 1 option(s): Our class read a mysterious story about a lost ship and an o",
+  "MLV5-S03": "teacher: no student would pick 1 option(s): Nora saves part of her weekly allowance to buy a new bike fo",
+  "MLV5-S07": "teacher: no student would pick 1 option(s): Our coach explained a new strategy for winning the relay rac",
+  "MLV5-S08": "teacher: no student would pick 1 option(s): Our old car is not fast, but it is always reliable.",
+  "MLV5-S09": "teacher: no student would pick 1 option(s): Flour is the main ingredient in the bread that Sam baked tod",
+  "MLV5-S17": "teacher: no student would pick 1 option(s): A prominent author visited our school to talk about her book",
+  "MLV5-S29": "teacher: no student would pick 1 option(s): The plan to close the library caused a lot of controversy in",
+  "MLV5-S30": "teacher: no student would pick 1 option(s): After the long run, Ben wiped the perspiration from his face",
+  "MLV5-S48": "teacher: no student would pick 1 option(s): The town built a statue to commemorate the soldiers."
+ },
+ "exactDrops": {},
+ "screenDrops": {
+  "MLV5-S31": "screen: \"particularly\" graded 7 and 6, target 7"
+ },
+ "preflight": {
+  "which": "first",
+  "errsFirst": [],
+  "errsSecond": null
+ },
+ "n": 28,
+ "ids": [
+  "MLV5-S02",
+  "MLV5-S04",
+  "MLV5-S05",
+  "MLV5-S06",
+  "MLV5-S10",
+  "MLV5-S11",
+  "MLV5-S12",
+  "MLV5-S13",
+  "MLV5-S14",
+  "MLV5-S15",
+  "MLV5-S16",
+  "MLV5-S18",
+  "MLV5-S19",
+  "MLV5-S20",
+  "MLV5-S25",
+  "MLV5-S26",
+  "MLV5-S27",
+  "MLV5-S28",
+  "MLV5-S32",
+  "MLV5-S33",
+  "MLV5-S34",
+  "MLV5-S37",
+  "MLV5-S38",
+  "MLV5-S39",
+  "MLV5-S40",
+  "MLV5-S41",
+  "MLV5-S42",
+  "MLV5-S43"
+ ],
+ "longest": 8,
+ "shortest": 5,
+ "fam": {
+  "T2": {
+   "best": "at_max(marks)",
+   "score": 0.39285714285714285,
+   "fwP": 0.17645588602849288,
+   "fires": false
+  },
+  "T2L": {
+   "best": "mode(vv)",
+   "score": 0.29166666666666663,
+   "fwP": 0.9622594351412147,
+   "fires": false
+  }
+ },
+ "stage0": "FAIL",
+ "why": "pooled E3 key uniquely longest 8/28 > 25%, and 8/28 in this strand"
+}

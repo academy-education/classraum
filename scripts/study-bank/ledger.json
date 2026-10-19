@@ -8805,6 +8805,24 @@
           "verdict": "Stage 0 FAIL: 60/60 PART OK (sandbox key + distractor recompute, v1 mechanical checks, declared bound screen); near-dup 0 flagged vs sat/act/isee/ssat and v1; cold screen pass 1 29 fail, pass 2 17 still fail -> dropped; per-area survivors oa 16, num 15, geo 12 < 15."
         }
       }
+    },
+    {
+      "id": "map-lu-v5-spelling-2026-10-20",
+      "createdAt": "2026-10-20",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v5-spelling",
+      "contentSha": "2671e3d165791e66902ee82de54bd7186c3c673563c4f7023f48bdf8470f53e3",
+      "status": "killed",
+      "note": "48 grades 5-8 Spelling items authored, sentence format only (39 as first written + 9 grade-7 slots re-authored under Amendment 1 before any rater). Teacher gate: rater A 0 NO, rater B 9 NO -> 9 dropped; exact checks 0; strict screen 1 (particularly). Survivors g5 7, g6 11, g7 9, g8 11. Pre-flight clear (re-draw unused). STOPPED at Stage 0: E3 key uniquely longest 8/28 (cap 7); seeded key ranks were balanced over the expected first 28 and the drops skewed the frozen pick to 8/8/7/5. Not rendered or graded. Spelling cleared: 0 (cumulative 0 of ~20). contentSha = sha256 of map-lu-v5/stage0-pick.json. MAP-LU-V5.prereg.md (4b34f9e8, amendment 1 96da3305), MAP-LU-V5-RESULT.md; REGISTER section 5, 2026-10-20. Nothing inserted.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "verdict": "Stage 0 FAIL: E3 key uniquely longest 8/28 > 25% (shortest 5/28); T2 at_max(marks) 39.3% fw p 0.18 clear; T2-L mode(vv) 29.2% fw p 0.96 clear (n=28)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

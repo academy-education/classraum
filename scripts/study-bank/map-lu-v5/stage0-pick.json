@@ -1,0 +1,954 @@
+[
+ {
+  "id": "MLV5-S02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ana wrote a letter to her pen pal in a foreign country.",
+   "Each column in the chart shows how many books our class read this month.",
+   "Lily sincerely thanked her aunt for the warm gloves.",
+   "After dinner, Jack used the vaccum to clean the crumbs under the kitchen table."
+  ],
+  "correct_answer": "After dinner, Jack used the vaccum to clean the crumbs under the kitchen table.",
+  "spelling_pattern": "vacuum: one c and a double u; the error doubles the wrong letter",
+  "targets": {
+   "Ana wrote a letter to her pen pal in a foreign country.": "foreign",
+   "Each column in the chart shows how many books our class read this month.": "column",
+   "Lily sincerely thanked her aunt for the warm gloves.": "sincerely",
+   "After dinner, Jack used the vaccum to clean the crumbs under the kitchen table.": "vaccum"
+  },
+  "misspelled_word": "vaccum",
+  "intended_word": "vacuum",
+  "key_length_rank": 1,
+  "student_error": {
+   "Ana wrote a letter to her pen pal in a foreign country.": "Foreign breaks the 'i before e' rule and has a silent g, so it looks wrong to many students.",
+   "Each column in the chart shows how many books our class read this month.": "The silent n at the end of column makes students think it is an extra letter.",
+   "Lily sincerely thanked her aunt for the warm gloves.": "Students often drop the e before -ly ('sincerly'), so the correct form can look too long."
+  },
+  "explanation": "Vacuum is spelled with one c and two u's; 'vaccum' is misspelled. Foreign, column and sincerely are correct."
+ },
+ {
+  "id": "MLV5-S04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The courageous firefighter carried the puppy out of the smoky house.",
+   "Leo's curiousity about bugs and spiders never ends.",
+   "Learning to play the piano well takes years of discipline.",
+   "The team was desperate for a goal in the last minute of the game."
+  ],
+  "correct_answer": "Leo's curiousity about bugs and spiders never ends.",
+  "spelling_pattern": "curiosity: the u of curious is dropped before -ity",
+  "targets": {
+   "The courageous firefighter carried the puppy out of the smoky house.": "courageous",
+   "Leo's curiousity about bugs and spiders never ends.": "curiousity",
+   "Learning to play the piano well takes years of discipline.": "discipline",
+   "The team was desperate for a goal in the last minute of the game.": "desperate"
+  },
+  "misspelled_word": "curiousity",
+  "intended_word": "curiosity",
+  "key_length_rank": 4,
+  "student_error": {
+   "The courageous firefighter carried the puppy out of the smoky house.": "Courage + -ous keeps the e, and students who drop it ('couragous') may think the e is extra.",
+   "Learning to play the piano well takes years of discipline.": "The silent c after s in discipline looks odd, so students may think it should be 'disipline'.",
+   "The team was desperate for a goal in the last minute of the game.": "The unstressed middle vowel in desperate is often written as a ('desparate'), so the correct e can look wrong."
+  },
+  "explanation": "Curiosity drops the u of curious before -ity; 'curiousity' is misspelled. Courageous, discipline and desperate are correct."
+ },
+ {
+  "id": "MLV5-S05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "An old cemetery sits on the hill behind the church.",
+   "The song on the radio sounded familiar to Maya.",
+   "Our teacher checks the grammar in every story we write for class.",
+   "In the play, the villian tried to steal the queen's crown."
+  ],
+  "correct_answer": "In the play, the villian tried to steal the queen's crown.",
+  "spelling_pattern": "villain: the -ain ending is reversed to -ian",
+  "targets": {
+   "An old cemetery sits on the hill behind the church.": "cemetery",
+   "The song on the radio sounded familiar to Maya.": "familiar",
+   "Our teacher checks the grammar in every story we write for class.": "grammar",
+   "In the play, the villian tried to steal the queen's crown.": "villian"
+  },
+  "misspelled_word": "villian",
+  "intended_word": "villain",
+  "key_length_rank": 2,
+  "student_error": {
+   "An old cemetery sits on the hill behind the church.": "Students often expect '-ary' ('cemetary'), so the three e's of cemetery look wrong.",
+   "The song on the radio sounded familiar to Maya.": "The ending of familiar sounds like '-ier' or '-yer', so students may suspect the 'iar'.",
+   "Our teacher checks the grammar in every story we write for class.": "Many students write 'grammer', so the -ar ending can look like the mistake."
+  },
+  "explanation": "Villain ends in -ain; 'villian' is misspelled. Cemetery, familiar and grammar are correct."
+ },
+ {
+  "id": "MLV5-S06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Please do not interupt your sister while she is talking.",
+   "Omar made an accurate drawing of the bridge for his science project.",
+   "The horse pulled a carriage down the road.",
+   "The river forms the boundary between the two farms on the east side of town."
+  ],
+  "correct_answer": "Please do not interupt your sister while she is talking.",
+  "spelling_pattern": "interrupt: inter- + rupt keeps the double r where prefix meets root",
+  "targets": {
+   "Please do not interupt your sister while she is talking.": "interupt",
+   "Omar made an accurate drawing of the bridge for his science project.": "accurate",
+   "The horse pulled a carriage down the road.": "carriage",
+   "The river forms the boundary between the two farms on the east side of town.": "boundary"
+  },
+  "misspelled_word": "interupt",
+  "intended_word": "interrupt",
+  "key_length_rank": 3,
+  "student_error": {
+   "Omar made an accurate drawing of the bridge for his science project.": "Students unsure whether accurate has one c or two, and one r or two, may suspect it.",
+   "The horse pulled a carriage down the road.": "Carriage comes from carry, and students may expect 'carrage' or 'carryage', so the 'i' looks wrong.",
+   "The river forms the boundary between the two farms on the east side of town.": "The middle a in boundary is barely said, and students often write 'boundry', so the correct form may look too long."
+  },
+  "explanation": "Interrupt is inter- + rupt and needs a double r; 'interupt' is misspelled. Accurate, carriage and boundary are correct."
+ },
+ {
+  "id": "MLV5-S10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Winning the spelling bee was a big acheivement for Nora.",
+   "Mia ran a campaign to become class president.",
+   "The crowd grew quiet and solemn as the old flag was lowered.",
+   "Grandpa always keeps a clean handkerchief in the pocket of his coat."
+  ],
+  "correct_answer": "Winning the spelling bee was a big acheivement for Nora.",
+  "spelling_pattern": "achievement: ie/ei reversed (i before e after ch)",
+  "targets": {
+   "Winning the spelling bee was a big acheivement for Nora.": "acheivement",
+   "Mia ran a campaign to become class president.": "campaign",
+   "The crowd grew quiet and solemn as the old flag was lowered.": "solemn",
+   "Grandpa always keeps a clean handkerchief in the pocket of his coat.": "handkerchief"
+  },
+  "misspelled_word": "acheivement",
+  "intended_word": "achievement",
+  "key_length_rank": 3,
+  "student_error": {
+   "Mia ran a campaign to become class president.": "The silent g in campaign makes students think it should be 'campain'.",
+   "The crowd grew quiet and solemn as the old flag was lowered.": "The silent n at the end of solemn looks like an extra letter.",
+   "Grandpa always keeps a clean handkerchief in the pocket of his coat.": "The silent d and the 'ie' in handkerchief both look wrong to students who spell it by sound."
+  },
+  "explanation": "Achievement is spelled 'ie' after ch; 'acheivement' is misspelled. Campaign, solemn and handkerchief are correct."
+ },
+ {
+  "id": "MLV5-S11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The government built a new bridge across the river last summer.",
+   "It is necessary to wear a helmet when you ride.",
+   "Please seperate the paper and the plastic before recycling.",
+   "The mischievous puppy hid Dad's shoes under the couch."
+  ],
+  "correct_answer": "Please seperate the paper and the plastic before recycling.",
+  "spelling_pattern": "separate: unstressed second vowel written e instead of a",
+  "targets": {
+   "The government built a new bridge across the river last summer.": "government",
+   "It is necessary to wear a helmet when you ride.": "necessary",
+   "Please seperate the paper and the plastic before recycling.": "seperate",
+   "The mischievous puppy hid Dad's shoes under the couch.": "mischievous"
+  },
+  "misspelled_word": "seperate",
+  "intended_word": "separate",
+  "key_length_rank": 2,
+  "student_error": {
+   "The government built a new bridge across the river last summer.": "The n in government is barely said, so students who write 'goverment' may think it is extra.",
+   "It is necessary to wear a helmet when you ride.": "Necessary has one c and a double s, and students often swap them, so it can look wrong.",
+   "The mischievous puppy hid Dad's shoes under the couch.": "Many students say and write 'mischievious', so the correct form may look like it is missing a letter."
+  },
+  "explanation": "Separate has an a in the second syllable; 'seperate' is misspelled. Government, necessary and mischievous are correct."
+ },
+ {
+  "id": "MLV5-S12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Check your work so you do not misspell any names.",
+   "Perfect attendance earned Jack a prize at the end of the year.",
+   "Brushing your teeth every day is part of good hygiene.",
+   "Long ago, people argued about the existance of the giant squid in the deep sea."
+  ],
+  "correct_answer": "Long ago, people argued about the existance of the giant squid in the deep sea.",
+  "spelling_pattern": "existence: -ence ending written as -ance",
+  "targets": {
+   "Check your work so you do not misspell any names.": "misspell",
+   "Perfect attendance earned Jack a prize at the end of the year.": "attendance",
+   "Brushing your teeth every day is part of good hygiene.": "hygiene",
+   "Long ago, people argued about the existance of the giant squid in the deep sea.": "existance"
+  },
+  "misspelled_word": "existance",
+  "intended_word": "existence",
+  "key_length_rank": 1,
+  "student_error": {
+   "Check your work so you do not misspell any names.": "Mis- + spell gives a double s that students often think is a mistake ('mispell').",
+   "Perfect attendance earned Jack a prize at the end of the year.": "Students mix up -ance and -ence, so attendance may look like it should be 'attendence'.",
+   "Brushing your teeth every day is part of good hygiene.": "The y and the 'ie' in hygiene make it look wrong to students who would write 'hygeine'."
+  },
+  "explanation": "Existence ends in -ence; 'existance' is misspelled. Misspell, attendance and hygiene are correct."
+ },
+ {
+  "id": "MLV5-S13",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Maya's concience bothered her after she took the last cookie without asking anyone.",
+   "Reading is how Leo likes to spend his leisure time.",
+   "The doctor gave Ben a thorough checkup before the big soccer game.",
+   "It was apparent from her smile that Ana had won the race."
+  ],
+  "correct_answer": "Maya's concience bothered her after she took the last cookie without asking anyone.",
+  "spelling_pattern": "conscience: the silent s of the 'sc' cluster is dropped",
+  "targets": {
+   "Maya's concience bothered her after she took the last cookie without asking anyone.": "concience",
+   "Reading is how Leo likes to spend his leisure time.": "leisure",
+   "The doctor gave Ben a thorough checkup before the big soccer game.": "thorough",
+   "It was apparent from her smile that Ana had won the race.": "apparent"
+  },
+  "misspelled_word": "concience",
+  "intended_word": "conscience",
+  "key_length_rank": 1,
+  "student_error": {
+   "Reading is how Leo likes to spend his leisure time.": "Leisure breaks the 'i before e' rule, so students may think it should be 'liesure'.",
+   "The doctor gave Ben a thorough checkup before the big soccer game.": "Thorough is easily confused with 'through' and 'though', so its spelling looks doubtful.",
+   "It was apparent from her smile that Ana had won the race.": "Students often write 'apparant' or 'aparent', so the double p and -ent ending look suspicious."
+  },
+  "explanation": "Conscience is con + science and keeps the s; 'concience' is misspelled. Leisure, thorough and apparent are correct."
+ },
+ {
+  "id": "MLV5-S14",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Old stories about brave knights fascinate my little brother.",
+   "Sam faced a dilemna when two friends had parties on the same day.",
+   "The two roads run parallel to each other for several miles through the valley.",
+   "Her persistent cough kept Ana home from school all week."
+  ],
+  "correct_answer": "Sam faced a dilemna when two friends had parties on the same day.",
+  "spelling_pattern": "dilemma: double m written as mn",
+  "targets": {
+   "Old stories about brave knights fascinate my little brother.": "fascinate",
+   "Sam faced a dilemna when two friends had parties on the same day.": "dilemna",
+   "The two roads run parallel to each other for several miles through the valley.": "parallel",
+   "Her persistent cough kept Ana home from school all week.": "persistent"
+  },
+  "misspelled_word": "dilemna",
+  "intended_word": "dilemma",
+  "key_length_rank": 2,
+  "student_error": {
+   "Old stories about brave knights fascinate my little brother.": "The silent c after s in fascinate makes students think it should be 'fasinate'.",
+   "The two roads run parallel to each other for several miles through the valley.": "Parallel has a double l in the middle and a single l at the end, which students often reverse.",
+   "Her persistent cough kept Ana home from school all week.": "Students mix up -ent and -ant, so persistent may look like it should be 'persistant'."
+  },
+  "explanation": "Dilemma is spelled with a double m; 'dilemna' is misspelled. Fascinate, parallel and persistent are correct."
+ },
+ {
+  "id": "MLV5-S15",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ask only questions that are relevent to the topic.",
+   "The vicious dog next door barks at everyone.",
+   "Omar is an amateur painter who sells his work at the weekend market.",
+   "The new ramp makes the library accessible to people who use wheelchairs."
+  ],
+  "correct_answer": "Ask only questions that are relevent to the topic.",
+  "spelling_pattern": "relevant: -ant ending written as -ent",
+  "targets": {
+   "Ask only questions that are relevent to the topic.": "relevent",
+   "The vicious dog next door barks at everyone.": "vicious",
+   "Omar is an amateur painter who sells his work at the weekend market.": "amateur",
+   "The new ramp makes the library accessible to people who use wheelchairs.": "accessible"
+  },
+  "misspelled_word": "relevent",
+  "intended_word": "relevant",
+  "key_length_rank": 3,
+  "student_error": {
+   "The vicious dog next door barks at everyone.": "The 'ci' that sounds like sh in vicious makes students suspect it should be 'visious'.",
+   "Omar is an amateur painter who sells his work at the weekend market.": "The -eur ending of amateur does not match how it sounds, so students may expect 'amature'.",
+   "The new ramp makes the library accessible to people who use wheelchairs.": "Accessible has a double c, a double s and -ible, and students often write 'accessable'."
+  },
+  "explanation": "Relevant ends in -ant; 'relevent' is misspelled. Vicious, amateur and accessible are correct."
+ },
+ {
+  "id": "MLV5-S16",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The sergeant ordered the soldiers to march across the field.",
+   "Training every day for the race takes real committment.",
+   "The wind created resistance against the kite as Lily ran across the beach.",
+   "His ignorance of the rules cost our team an easy point in the game."
+  ],
+  "correct_answer": "Training every day for the race takes real committment.",
+  "spelling_pattern": "commitment: the t is not doubled before -ment (consonant suffix)",
+  "targets": {
+   "The sergeant ordered the soldiers to march across the field.": "sergeant",
+   "Training every day for the race takes real committment.": "committment",
+   "The wind created resistance against the kite as Lily ran across the beach.": "resistance",
+   "His ignorance of the rules cost our team an easy point in the game.": "ignorance"
+  },
+  "misspelled_word": "committment",
+  "intended_word": "commitment",
+  "key_length_rank": 4,
+  "student_error": {
+   "The sergeant ordered the soldiers to march across the field.": "Sergeant is spelled with 'er' and 'ea' where students hear 'ar' and 'e', so it looks wrong.",
+   "The wind created resistance against the kite as Lily ran across the beach.": "Students mix up -ance and -ence, so resistance may look like it should be 'resistence'.",
+   "His ignorance of the rules cost our team an easy point in the game.": "Students unsure between -ance and -ence may suspect ignorance."
+  },
+  "explanation": "Commitment has a double m and a single t; 'committment' is misspelled. Sergeant, resistance and ignorance are correct."
+ },
+ {
+  "id": "MLV5-S18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The city will condemn the old building because the roof is no longer safe.",
+   "Students who acquire new skills often feel more confident.",
+   "Jack tends to exaggerate when he talks about fishing.",
+   "I would recomend this book to anyone who enjoys a good adventure."
+  ],
+  "correct_answer": "I would recomend this book to anyone who enjoys a good adventure.",
+  "spelling_pattern": "recommend: re- + commend keeps the double m",
+  "targets": {
+   "The city will condemn the old building because the roof is no longer safe.": "condemn",
+   "Students who acquire new skills often feel more confident.": "acquire",
+   "Jack tends to exaggerate when he talks about fishing.": "exaggerate",
+   "I would recomend this book to anyone who enjoys a good adventure.": "recomend"
+  },
+  "misspelled_word": "recomend",
+  "intended_word": "recommend",
+  "key_length_rank": 2,
+  "student_error": {
+   "The city will condemn the old building because the roof is no longer safe.": "The silent n at the end of condemn looks like an extra letter.",
+   "Students who acquire new skills often feel more confident.": "The c before q in acquire is silent, so students often write 'aquire' and may think the c is wrong.",
+   "Jack tends to exaggerate when he talks about fishing.": "The double g in exaggerate is a common error point ('exagerate'), so the correct form can look wrong."
+  },
+  "explanation": "Recommend is re- + commend, with one c and a double m; 'recomend' is misspelled. Condemn, acquire and exaggerate are correct."
+ },
+ {
+  "id": "MLV5-S19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The millionaire gave money to build a new park.",
+   "Nora built a miniature castle out of cardboard and glue for the art fair.",
+   "Our cat has a calm temperment and almost never gets upset when visitors come to the house.",
+   "The flood was a catastrophe for the farms along the river."
+  ],
+  "correct_answer": "Our cat has a calm temperment and almost never gets upset when visitors come to the house.",
+  "spelling_pattern": "temperament: the unstressed a in the middle syllable is dropped",
+  "targets": {
+   "The millionaire gave money to build a new park.": "millionaire",
+   "Nora built a miniature castle out of cardboard and glue for the art fair.": "miniature",
+   "Our cat has a calm temperment and almost never gets upset when visitors come to the house.": "temperment",
+   "The flood was a catastrophe for the farms along the river.": "catastrophe"
+  },
+  "misspelled_word": "temperment",
+  "intended_word": "temperament",
+  "key_length_rank": 1,
+  "student_error": {
+   "The millionaire gave money to build a new park.": "Millionaire has a double l and ends in -aire, so students may expect 'millionare'.",
+   "Nora built a miniature castle out of cardboard and glue for the art fair.": "The middle a in miniature is barely said, so students who write 'miniture' may think it is extra.",
+   "The flood was a catastrophe for the farms along the river.": "The -phe ending sounds like 'fee', so students may expect 'catastrophy'."
+  },
+  "explanation": "Temperament keeps the a before -ment; 'temperment' is misspelled. Millionaire, miniature and catastrophe are correct."
+ },
+ {
+  "id": "MLV5-S20",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The artist showed us a new technique for mixing paint.",
+   "After high school, Mia plans to persue a career in music and dance.",
+   "The barking dog next door is a nuisance at night.",
+   "It took great perseverance for Leo to finish the marathon in the cold rain."
+  ],
+  "correct_answer": "After high school, Mia plans to persue a career in music and dance.",
+  "spelling_pattern": "pursue: the first vowel is written e (per-) instead of u (pur-)",
+  "targets": {
+   "The artist showed us a new technique for mixing paint.": "technique",
+   "After high school, Mia plans to persue a career in music and dance.": "persue",
+   "The barking dog next door is a nuisance at night.": "nuisance",
+   "It took great perseverance for Leo to finish the marathon in the cold rain.": "perseverance"
+  },
+  "misspelled_word": "persue",
+  "intended_word": "pursue",
+  "key_length_rank": 2,
+  "student_error": {
+   "The artist showed us a new technique for mixing paint.": "The 'ch' that sounds like k and the -ique ending make technique look wrong.",
+   "The barking dog next door is a nuisance at night.": "The 'ui' in nuisance and its -ance ending are both easy to doubt.",
+   "It took great perseverance for Leo to finish the marathon in the cold rain.": "Students often write 'perseverence' or 'perserverance', so the correct form looks suspicious."
+  },
+  "explanation": "Pursue begins pur-; 'persue' is misspelled. Technique, nuisance and perseverance are correct."
+ },
+ {
+  "id": "MLV5-S25",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Leo was not conscious of the time until his mother called him in for dinner.",
+   "Maya was surprised to meet an old acquaintence from summer camp at the crowded train station.",
+   "The small cabin could accommodate six people at once.",
+   "There was a noticeable change in the air after the storm passed."
+  ],
+  "correct_answer": "Maya was surprised to meet an old acquaintence from summer camp at the crowded train station.",
+  "spelling_pattern": "-ance/-ence suffix: acquaintance ends in -ance",
+  "targets": {
+   "Leo was not conscious of the time until his mother called him in for dinner.": "conscious",
+   "Maya was surprised to meet an old acquaintence from summer camp at the crowded train station.": "acquaintence",
+   "The small cabin could accommodate six people at once.": "accommodate",
+   "There was a noticeable change in the air after the storm passed.": "noticeable"
+  },
+  "misspelled_word": "acquaintence",
+  "intended_word": "acquaintance",
+  "key_length_rank": 1,
+  "student_error": {
+   "Leo was not conscious of the time until his mother called him in for dinner.": "The silent 'sc' and the 'ious' ending make conscious look wrong; students often write 'concious' or 'conscous'.",
+   "The small cabin could accommodate six people at once.": "Students are unsure whether accommodate has one or two c's and m's, so the doubled letters look suspicious.",
+   "There was a noticeable change in the air after the storm passed.": "Students think the e should be dropped before -able ('noticable'), so the kept e looks like an error."
+  },
+  "explanation": "Acquaintance is spelled with -ance, not -ence, so the sentence with 'acquaintence' has the error. Conscious, accommodate (double c, double m) and noticeable (keeps e to keep the soft c) are spelled correctly."
+ },
+ {
+  "id": "MLV5-S26",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "After the debate, the class reached a consensus about where to go on the field trip.",
+   "Ben kept the old coin in his posession for years.",
+   "With so much rain all week, a flood along the river seemed inevitable.",
+   "Many adolescent students need more sleep than they get."
+  ],
+  "correct_answer": "Ben kept the old coin in his posession for years.",
+  "spelling_pattern": "doubled consonant: possession has double s twice",
+  "targets": {
+   "After the debate, the class reached a consensus about where to go on the field trip.": "consensus",
+   "Ben kept the old coin in his posession for years.": "posession",
+   "With so much rain all week, a flood along the river seemed inevitable.": "inevitable",
+   "Many adolescent students need more sleep than they get.": "adolescent"
+  },
+  "misspelled_word": "posession",
+  "intended_word": "possession",
+  "key_length_rank": 4,
+  "student_error": {
+   "After the debate, the class reached a consensus about where to go on the field trip.": "Students often write 'concensus', so the s in the middle of consensus looks wrong to them.",
+   "With so much rain all week, a flood along the river seemed inevitable.": "Students confuse -able and -ible and the unstressed middle vowel, so inevitable may look like it should be 'inevitible'.",
+   "Many adolescent students need more sleep than they get.": "The silent c in the 'sc' cluster makes students think adolescent is misspelled ('adolesent')."
+  },
+  "explanation": "Possession has a double s in both places; 'posession' is missing one. Consensus, inevitable and adolescent are spelled correctly."
+ },
+ {
+  "id": "MLV5-S27",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ana broke the big project into manageable tasks for each day.",
+   "The doctor told Mia that a mild rash is a common occurrence after taking this kind of medicine.",
+   "Only students over the age of twelve are eligible to join the hiking club.",
+   "It was a strange coincidance that Sam and Omar wore the same shirt to the party."
+  ],
+  "correct_answer": "It was a strange coincidance that Sam and Omar wore the same shirt to the party.",
+  "spelling_pattern": "-ance/-ence suffix: coincidence ends in -ence",
+  "targets": {
+   "Ana broke the big project into manageable tasks for each day.": "manageable",
+   "The doctor told Mia that a mild rash is a common occurrence after taking this kind of medicine.": "occurrence",
+   "Only students over the age of twelve are eligible to join the hiking club.": "eligible",
+   "It was a strange coincidance that Sam and Omar wore the same shirt to the party.": "coincidance"
+  },
+  "misspelled_word": "coincidance",
+  "intended_word": "coincidence",
+  "key_length_rank": 2,
+  "student_error": {
+   "Ana broke the big project into manageable tasks for each day.": "Students expect the final e to drop before -able ('managable'), so the kept e looks wrong.",
+   "The doctor told Mia that a mild rash is a common occurrence after taking this kind of medicine.": "Students are unsure about the double c, double r and the -ence ending, so occurrence looks like it could be misspelled.",
+   "Only students over the age of twelve are eligible to join the hiking club.": "Students mix up -able and -ible, so eligible may look like it should be 'eligable'."
+  },
+  "explanation": "Coincidence ends in -ence; 'coincidance' is wrong. Manageable (keeps e to keep the soft g), occurrence and eligible are correct."
+ },
+ {
+  "id": "MLV5-S28",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Lily has an extraordinary memory and can sing back any song she hears once.",
+   "The store clerk spotted a counterfeit bill in the cash drawer.",
+   "My cousin is a sophomore in high school and plays on the soccer team.",
+   "The cost of the repair was negligable, so Jack paid it right away."
+  ],
+  "correct_answer": "The cost of the repair was negligable, so Jack paid it right away.",
+  "spelling_pattern": "-able/-ible suffix: negligible ends in -ible",
+  "targets": {
+   "Lily has an extraordinary memory and can sing back any song she hears once.": "extraordinary",
+   "The store clerk spotted a counterfeit bill in the cash drawer.": "counterfeit",
+   "My cousin is a sophomore in high school and plays on the soccer team.": "sophomore",
+   "The cost of the repair was negligable, so Jack paid it right away.": "negligable"
+  },
+  "misspelled_word": "negligable",
+  "intended_word": "negligible",
+  "key_length_rank": 3,
+  "student_error": {
+   "Lily has an extraordinary memory and can sing back any song she hears once.": "The 'a' in the middle of extraordinary is barely said, so students think it should be 'extrordinary'.",
+   "The store clerk spotted a counterfeit bill in the cash drawer.": "The 'ei' in counterfeit breaks the 'i before e' rule, so students think it should be 'counterfiet'.",
+   "My cousin is a sophomore in high school and plays on the soccer team.": "The middle o is silent in speech, so students expect 'sophmore' and think the word is wrong."
+  },
+  "explanation": "Negligible ends in -ible; 'negligable' is wrong. Extraordinary, counterfeit and sophomore are spelled correctly."
+ },
+ {
+  "id": "MLV5-S32",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The student committee voted to hold the spring dance in the gym this year.",
+   "Old maps always fascinate my younger brother Leo.",
+   "My mother's colleague brought homemade bread and a big salad to the office party on Friday.",
+   "The flood was disasterous for the farms along the river."
+  ],
+  "correct_answer": "The flood was disasterous for the farms along the river.",
+  "spelling_pattern": "dropping the e of -er when adding -ous: disastrous, not disasterous",
+  "targets": {
+   "The student committee voted to hold the spring dance in the gym this year.": "committee",
+   "Old maps always fascinate my younger brother Leo.": "fascinate",
+   "My mother's colleague brought homemade bread and a big salad to the office party on Friday.": "colleague",
+   "The flood was disasterous for the farms along the river.": "disasterous"
+  },
+  "misspelled_word": "disasterous",
+  "intended_word": "disastrous",
+  "key_length_rank": 3,
+  "student_error": {
+   "The student committee voted to hold the spring dance in the gym this year.": "committee has three double letters, and students often drop one (comittee, commitee)",
+   "Old maps always fascinate my younger brother Leo.": "the silent c after s makes fascinate look misspelled",
+   "My mother's colleague brought homemade bread and a big salad to the office party on Friday.": "the double l and the -eague ending make colleague look wrong"
+  },
+  "explanation": "Disaster loses its e before -ous, giving disastrous; disasterous is a common error. Committee, fascinate and colleague are correct."
+ },
+ {
+  "id": "MLV5-S33",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Good hygiene helps stop the spread of germs at school.",
+   "The mayor publically thanked the volunteers who cleaned up the park after the big storm.",
+   "The sick puppy stayed in quarantine for two weeks.",
+   "The band had one last rehearsal on the night before the big concert."
+  ],
+  "correct_answer": "The mayor publically thanked the volunteers who cleaned up the park after the big storm.",
+  "spelling_pattern": "-ly versus -ally after -ic: publicly is the exception, not publically",
+  "targets": {
+   "Good hygiene helps stop the spread of germs at school.": "hygiene",
+   "The mayor publically thanked the volunteers who cleaned up the park after the big storm.": "publically",
+   "The sick puppy stayed in quarantine for two weeks.": "quarantine",
+   "The band had one last rehearsal on the night before the big concert.": "rehearsal"
+  },
+  "misspelled_word": "publically",
+  "intended_word": "publicly",
+  "key_length_rank": 1,
+  "student_error": {
+   "Good hygiene helps stop the spread of germs at school.": "the y and the ie in hygiene look odd, and students write hygeine",
+   "The sick puppy stayed in quarantine for two weeks.": "the qu and the -ine ending (sounds like -een) make quarantine look misspelled",
+   "The band had one last rehearsal on the night before the big concert.": "the -ear- in the middle sounds like -er-, so students suspect rehersal is right"
+  },
+  "explanation": "Publicly is spelled with -ly, unlike most -ic words; publically is a common error. Hygiene, quarantine and rehearsal are correct."
+ },
+ {
+  "id": "MLV5-S34",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "There is a strong resemblance between Maya and her sister.",
+   "Jack was undoubtedly the fastest runner on the whole track team this year.",
+   "The physician listened to the boy's heart and asked him questions.",
+   "Sam's handwriting was so messy that it was illegable."
+  ],
+  "correct_answer": "Sam's handwriting was so messy that it was illegable.",
+  "spelling_pattern": "-able/-ible suffix: illegible ends in -ible",
+  "targets": {
+   "There is a strong resemblance between Maya and her sister.": "resemblance",
+   "Jack was undoubtedly the fastest runner on the whole track team this year.": "undoubtedly",
+   "The physician listened to the boy's heart and asked him questions.": "physician",
+   "Sam's handwriting was so messy that it was illegable.": "illegable"
+  },
+  "misspelled_word": "illegable",
+  "intended_word": "illegible",
+  "key_length_rank": 4,
+  "student_error": {
+   "There is a strong resemblance between Maya and her sister.": "Students expect 'resemblence' with -ence, so the -ance ending looks wrong.",
+   "Jack was undoubtedly the fastest runner on the whole track team this year.": "The silent b in 'doubt' makes students think undoubtedly is misspelled.",
+   "The physician listened to the boy's heart and asked him questions.": "The 'ph' and the 'cian' ending make physician look wrong to students who would write 'fisician' or 'physition'."
+  },
+  "explanation": "Illegible ends in -ible; 'illegable' is wrong. Resemblance, undoubtedly and physician are correct."
+ },
+ {
+  "id": "MLV5-S37",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Ben grew tired of the bureaucracy at the city office.",
+   "Maya is a conscientious student who always checks her work twice.",
+   "The young entrepeneur started a business walking dogs and soon hired three of her friends.",
+   "My uncle is a connoisseur of fine cheese."
+  ],
+  "correct_answer": "The young entrepeneur started a business walking dogs and soon hired three of her friends.",
+  "spelling_pattern": "dropped consonant in a cluster: entrepreneur has an r after the second p",
+  "targets": {
+   "Ben grew tired of the bureaucracy at the city office.": "bureaucracy",
+   "Maya is a conscientious student who always checks her work twice.": "conscientious",
+   "The young entrepeneur started a business walking dogs and soon hired three of her friends.": "entrepeneur",
+   "My uncle is a connoisseur of fine cheese.": "connoisseur"
+  },
+  "misspelled_word": "entrepeneur",
+  "intended_word": "entrepreneur",
+  "key_length_rank": 1,
+  "student_error": {
+   "Ben grew tired of the bureaucracy at the city office.": "the eau in bureaucracy looks foreign and students suspect burocracy or bureaucrasy",
+   "Maya is a conscientious student who always checks her work twice.": "conscientious has sc and a -tious ending, and students often write consientious",
+   "My uncle is a connoisseur of fine cheese.": "the double n, double s and -oi- spelling make connoisseur look wrong"
+  },
+  "explanation": "Entrepreneur needs an r after the second p; entrepeneur drops it. Bureaucracy, conscientious and connoisseur are correct."
+ },
+ {
+  "id": "MLV5-S38",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Only a minuscule amount of salt is needed for this recipe.",
+   "The school has a parent liason for new families.",
+   "There is an idiosyncrasy in the way Leo ties his shoes before every race.",
+   "People around the world celebrated the start of the new millennium."
+  ],
+  "correct_answer": "The school has a parent liason for new families.",
+  "spelling_pattern": "missing vowel in a vowel cluster: liaison has i before the second s",
+  "targets": {
+   "Only a minuscule amount of salt is needed for this recipe.": "minuscule",
+   "The school has a parent liason for new families.": "liason",
+   "There is an idiosyncrasy in the way Leo ties his shoes before every race.": "idiosyncrasy",
+   "People around the world celebrated the start of the new millennium.": "millennium"
+  },
+  "misspelled_word": "liason",
+  "intended_word": "liaison",
+  "key_length_rank": 4,
+  "student_error": {
+   "Only a minuscule amount of salt is needed for this recipe.": "students connect the word to mini and expect miniscule",
+   "There is an idiosyncrasy in the way Leo ties his shoes before every race.": "the -asy ending looks wrong to students who expect -acy, as in democracy",
+   "People around the world celebrated the start of the new millennium.": "millennium has a double l and a double n, and students often drop one"
+  },
+  "explanation": "Liaison has two i's (li-ai-son); liason drops one. Minuscule, idiosyncrasy and millennium are correct."
+ },
+ {
+  "id": "MLV5-S39",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The playwright stayed late after the first show to talk with fans.",
+   "Each parent filled out a short questionaire about the trip.",
+   "Through hard work and perseverance, Ana became the fastest runner on her team.",
+   "These new rules will supersede the old ones."
+  ],
+  "correct_answer": "Each parent filled out a short questionaire about the trip.",
+  "spelling_pattern": "undoubled consonant: questionnaire has a double n",
+  "targets": {
+   "The playwright stayed late after the first show to talk with fans.": "playwright",
+   "Each parent filled out a short questionaire about the trip.": "questionaire",
+   "Through hard work and perseverance, Ana became the fastest runner on her team.": "perseverance",
+   "These new rules will supersede the old ones.": "supersede"
+  },
+  "misspelled_word": "questionaire",
+  "intended_word": "questionnaire",
+  "key_length_rank": 3,
+  "student_error": {
+   "The playwright stayed late after the first show to talk with fans.": "students think a playwright writes plays and expect playwrite",
+   "Through hard work and perseverance, Ana became the fastest runner on her team.": "students add an r (perserverance) because of persevere's sound, so the correct form looks short",
+   "These new rules will supersede the old ones.": "students expect the -cede ending of precede and recede, so supersede looks wrong"
+  },
+  "explanation": "Questionnaire has a double n; questionaire is a common error. Playwright, perseverance and supersede are correct."
+ },
+ {
+  "id": "MLV5-S40",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The pharaoh was buried with gold and jewels.",
+   "The tired hikers sat down at the threshhold of the old cabin.",
+   "After a long debate, Sam decided to acquiesce to the weekend plan that his sister made.",
+   "The camaraderie among the players made the season fun."
+  ],
+  "correct_answer": "The tired hikers sat down at the threshhold of the old cabin.",
+  "spelling_pattern": "extra consonant at a compound-like boundary: threshold has one h in the middle",
+  "targets": {
+   "The pharaoh was buried with gold and jewels.": "pharaoh",
+   "The tired hikers sat down at the threshhold of the old cabin.": "threshhold",
+   "After a long debate, Sam decided to acquiesce to the weekend plan that his sister made.": "acquiesce",
+   "The camaraderie among the players made the season fun.": "camaraderie"
+  },
+  "misspelled_word": "threshhold",
+  "intended_word": "threshold",
+  "key_length_rank": 2,
+  "student_error": {
+   "The pharaoh was buried with gold and jewels.": "students often reverse the ending vowels and write pharoah",
+   "After a long debate, Sam decided to acquiesce to the weekend plan that his sister made.": "the silent c before q and the -esce ending make acquiesce look misspelled",
+   "The camaraderie among the players made the season fun.": "the middle a is often dropped in speech (camraderie), so the full spelling looks wrong"
+  },
+  "explanation": "Threshold has only one h after the s; threshhold is a common error. Pharaoh, acquiesce and camaraderie are correct."
+ },
+ {
+  "id": "MLV5-S41",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The fluorescent lights in the hallway buzzed all night.",
+   "The fast boat ride seemed to exhilarate every child on board, even the shyest ones in back.",
+   "A good map is indispensable on a long hike.",
+   "Doctors innoculate babies against several diseases during their first year."
+  ],
+  "correct_answer": "Doctors innoculate babies against several diseases during their first year.",
+  "spelling_pattern": "falsely doubled consonant after a prefix-like start: inoculate has one n",
+  "targets": {
+   "The fluorescent lights in the hallway buzzed all night.": "fluorescent",
+   "The fast boat ride seemed to exhilarate every child on board, even the shyest ones in back.": "exhilarate",
+   "A good map is indispensable on a long hike.": "indispensable",
+   "Doctors innoculate babies against several diseases during their first year.": "innoculate"
+  },
+  "misspelled_word": "innoculate",
+  "intended_word": "inoculate",
+  "key_length_rank": 2,
+  "student_error": {
+   "The fluorescent lights in the hallway buzzed all night.": "the uo and the sc make fluorescent look wrong; students write flourescent",
+   "The fast boat ride seemed to exhilarate every child on board, even the shyest ones in back.": "the silent h in exhilarate is often left out, so its presence looks like an error",
+   "A good map is indispensable on a long hike.": "-able versus -ible makes students doubt indispensable"
+  },
+  "explanation": "Inoculate has one n; innoculate is a common error. Fluorescent, exhilarate and indispensable are correct."
+ },
+ {
+  "id": "MLV5-S42",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "Grandpa likes to reminisce about the farm where he grew up.",
+   "Our Spanish teacher helps us practice the correct pronounciation of each new word on the list.",
+   "Mia stayed home from school for a week with pneumonia.",
+   "Choosing the music for the party was the prerogative of the birthday girl."
+  ],
+  "correct_answer": "Our Spanish teacher helps us practice the correct pronounciation of each new word on the list.",
+  "spelling_pattern": "carrying the root vowel into a derived form: pronounce becomes pronunciation, with no o after the first n",
+  "targets": {
+   "Grandpa likes to reminisce about the farm where he grew up.": "reminisce",
+   "Our Spanish teacher helps us practice the correct pronounciation of each new word on the list.": "pronounciation",
+   "Mia stayed home from school for a week with pneumonia.": "pneumonia",
+   "Choosing the music for the party was the prerogative of the birthday girl.": "prerogative"
+  },
+  "misspelled_word": "pronounciation",
+  "intended_word": "pronunciation",
+  "key_length_rank": 1,
+  "student_error": {
+   "Grandpa likes to reminisce about the farm where he grew up.": "the sc in reminisce looks odd, and students write reminice or reminisse",
+   "Mia stayed home from school for a week with pneumonia.": "the silent p at the start makes pneumonia look misspelled",
+   "Choosing the music for the party was the prerogative of the birthday girl.": "students often say and write perogative, so the pre- spelling looks doubtful"
+  },
+  "explanation": "Pronunciation drops the o of pronounce; pronounciation is a very common error. Reminisce, pneumonia and prerogative are correct."
+ },
+ {
+  "id": "MLV5-S43",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "grade_target": 8,
+  "ccss": "L.8.2c",
+  "spelling_format": "sentence",
+  "prompt": "Which sentence has a spelling error?",
+  "choices": [
+   "The lifeguard learned how to resuscitate a swimmer during her training course.",
+   "Some villagers thought the new statue was sacreligious.",
+   "We saw the silhouette of a deer at dusk.",
+   "The city council voted to rescind the rule about parking on Main Street overnight."
+  ],
+  "correct_answer": "Some villagers thought the new statue was sacreligious.",
+  "spelling_pattern": "vowel transposition by analogy with religious: sacrilegious, not sacreligious",
+  "targets": {
+   "The lifeguard learned how to resuscitate a swimmer during her training course.": "resuscitate",
+   "Some villagers thought the new statue was sacreligious.": "sacreligious",
+   "We saw the silhouette of a deer at dusk.": "silhouette",
+   "The city council voted to rescind the rule about parking on Main Street overnight.": "rescind"
+  },
+  "misspelled_word": "sacreligious",
+  "intended_word": "sacrilegious",
+  "key_length_rank": 3,
+  "student_error": {
+   "The lifeguard learned how to resuscitate a swimmer during her training course.": "the sc and the -sus- syllable make resuscitate look misspelled (resussitate)",
+   "We saw the silhouette of a deer at dusk.": "the silent h and the -ette ending make silhouette look wrong",
+   "The city council voted to rescind the rule about parking on Main Street overnight.": "the silent c after s makes rescind look misspelled"
+  },
+  "explanation": "Sacrilegious comes from sacrilege, not religious; sacreligious is a common error. Resuscitate, silhouette and rescind are correct."
+ }
+]
