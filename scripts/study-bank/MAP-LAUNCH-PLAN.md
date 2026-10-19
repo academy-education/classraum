@@ -201,7 +201,7 @@ answered, all reversible before launch:
   (`isUntimedTest`), and auto-submit already needed a limit above zero.
 - **Q5 moot:** grades 5-8 is all newly authored `family='map'` rows, so no
   re-banded SAT/ACT rows are drawn.
-- **Q7 credits: 2 per subject, PROVISIONAL.** The owner has not priced MAP.
+- **Q7 credits: 2 per subject.** Owner decision 2026-10-20 (the SSAT/ISEE price).
 - **Q8 level: no column yet.** One launch level (grades 5-8), so the draw
   takes every verified MAP row. New rows keep `verify_meta.map.grade_target`.
 
@@ -224,7 +224,7 @@ was reverted once to confirm its test fails.
 3. ~~A per-area breakdown on the result screen~~ DONE 2026-10-19
    (`mapAreaBreakdown`; the draw stamps the area onto each question, since
    most MAP item JSON has no `domain`). No "weak in X" verdict.
-4. Confirm the price, then add `test-map` / `map` to `SHIPPED_TEST_SLUGS` /
+4. (Price confirmed 2026-10-20: 2 per subject.) Add `test-map` / `map` to `SHIPPED_TEST_SLUGS` /
    `SHIPPED_TEST_FAMILIES` and drop it from `COMING_SOON_EXTRA`. This is
    the flip, and it goes last.
 
