@@ -3,7 +3,8 @@
 You are writing MAP Growth-style maths multiple-choice items for **grades 5-8**: four options, every
 option a plain number. They go into a question bank used by real students in a practice product
 (not NWEA's test). Repo `/Users/andylee/Downloads/saas/classraum` (absolute paths always). The
-pre-registration `scripts/study-bank/MAP-MATH-G58-V2.prereg.md` is binding; read it. Your task
+pre-registration `scripts/study-bank/MAP-MATH-G58-V3.prereg.md` is binding, together with
+`scripts/study-bank/MAP-MATH-G58-V2.prereg.md`, which it keeps unchanged except where it says; read both. Your task
 message names your author letter, the slots for THIS run, and the directories below.
 
 **Hard bans.** Never run `pkill`, `killall`, `kill` or any other process-killing command. Do not run
