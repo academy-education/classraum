@@ -190,6 +190,8 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-21** — **SAT R&W LABEL SYNC APPLIED (owner: "Fix the labels"): the jsonb copies `item.domain` / `item.difficulty` now equal the row columns on all 182 live rows.** `sync-rw-item-domain-2026-10-09.mjs --write`: updated 182 of 182 (120 domain + 70 difficulty, 8 both, all cohort `v2`); the script's guards held (snapshot match, content_sha and dedup_key unchanged). Re-run dry: **0 rows would change**. `verify-sat-hard-route.ts reading_writing` after: all-hard repeat-free forms 3 of 3, tally = composition 3 of 3. Reviews / attacks on these rows: 41 / 54, none made stale. Student-visible effect: none (nothing renders `Question.domain`); the served domain is now true for the 120. Rollback: `--rollback` (snapshot `snapshot-2026-10-09-rw-item-domain.json`). Not touched, as recorded on 10-09: 35 R&W subskill copies, SAT math / TOEFL / ACT difficulty copies (`sync-item-difficulty-2026-10-06.mjs`, still unrun).
+
 - **2026-10-20** — **ACT ENGLISH v9: HELD. Production of Writing pooled 10/24 (5 + 5) against a release line of <= 9; nothing flips, no further sitting pre-registered. Owner decision.** Prereg `act-english-v9.PoW-SECOND-SITTING.PREREG.md` (`40832da0`).
   - Second sitting `act-en9-pow2-cofounder-2026-10-20`: **5/12 = 41.7%** vs 25.0% flat control, the same as his first 12. Pooled **10/24 = 41.7%**, one item into the HOLD band (10-14). CSE stays clean (9/24); KoL 1/4.
   - Recorded weakness, as the prereg said at the time: this is one reader twice, not two readers. The two sittings agree with each other (5 and 5), which reads as a stable signal about this reader on these items rather than noise.
