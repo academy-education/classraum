@@ -1,0 +1,67 @@
+{
+ "teacherDrops": {
+  "MLV6-S14": "teacher: no student would pick 1 option(s): Leo was afraid and began to hesitate at the edge of the pool",
+  "MLV6-S25": "teacher: no student would pick 1 option(s): Our coach wants to eliminate mistakes before the big game."
+ },
+ "exactDrops": {},
+ "screenDrops": {
+  "MLV6-S37": "screen: \"repetition\" graded 6 and 7, target 7",
+  "MLV6-S44": "screen: \"regrettable\" graded 6 and 7, target 7",
+  "MLV6-S53": "screen: \"pharaoh\" graded 7 and 8, target 8",
+  "MLV6-S60": "screen: \"unconscious\" graded 7 and 8, target 8",
+  "MLV6-S61": "screen: \"perpendicular\" graded 7 and 8, target 8"
+ },
+ "preflight": {
+  "which": "first",
+  "errsFirst": [],
+  "errsSecond": null
+ },
+ "n": 28,
+ "ids": [
+  "MLV6-S01",
+  "MLV6-S02",
+  "MLV6-S03",
+  "MLV6-S04",
+  "MLV6-S05",
+  "MLV6-S06",
+  "MLV6-S07",
+  "MLV6-S17",
+  "MLV6-S18",
+  "MLV6-S20",
+  "MLV6-S21",
+  "MLV6-S22",
+  "MLV6-S26",
+  "MLV6-S29",
+  "MLV6-S33",
+  "MLV6-S35",
+  "MLV6-S36",
+  "MLV6-S38",
+  "MLV6-S40",
+  "MLV6-S41",
+  "MLV6-S43",
+  "MLV6-S49",
+  "MLV6-S50",
+  "MLV6-S52",
+  "MLV6-S54",
+  "MLV6-S55",
+  "MLV6-S57",
+  "MLV6-S58"
+ ],
+ "longest": 7,
+ "shortest": 7,
+ "fam": {
+  "T2": {
+   "best": "odd_one(words)",
+   "score": 0.30357142857142855,
+   "fwP": 0.4038990252436891,
+   "fires": false
+  },
+  "T2L": {
+   "best": "at_min(distinct)",
+   "score": 0.4404761904761905,
+   "fwP": 0.2316920769807548,
+   "fires": false
+  }
+ },
+ "stage0": "pass"
+}
