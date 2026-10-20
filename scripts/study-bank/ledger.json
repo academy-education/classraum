@@ -4011,6 +4011,33 @@
       }
     },
     {
+      "id": "isee-reading-draft-1-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-1",
+      "contentSha": "bde893584ec68c124090cc947617b2dce5551fcc39f3ebfb5fbe7238eeab4a3c",
+      "status": "staged-for-human-edit",
+      "note": "SSAT draft route applied to ISEE Upper reading: 6 passages x 6 four-choice items = 36, written in-session by Claude (no agents), inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in isee-reading-draft-1.RELEASE.PREREG.md. ssat-draft.ts now allowlists isee-reading so the Drafts tab shows them. contentSha = sha256 of isee-reading-draft-1.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bde893584ec68c124090cc947617b2dce5551fcc39f3ebfb5fbe7238eeab4a3c",
+          "verdict": "merge.mjs at K=4 (SSAT draft-2 checks): 0 problems. Pre-insert author edit for length: key uniquely longest 13/36 -> 7/36 by lengthening one distractor on 6 items (a full fix to 0/36 was undone as the reverse tell); key uniquely shortest 3/36. Key slots 9/9/9/9 seeded. Edit screen 36/36 isDraft, hash, validates (choiceCount 4)."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author self-review only."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",

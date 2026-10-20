@@ -28,7 +28,7 @@
  */
 import { createHash } from 'crypto'
 
-export type DraftFamilyKey = 'ssat-reading' | 'map-reading'
+export type DraftFamilyKey = 'ssat-reading' | 'map-reading' | 'isee-reading'
 
 export interface DraftFamily {
   key: DraftFamilyKey
@@ -46,6 +46,8 @@ export const DRAFT_FAMILIES: readonly DraftFamily[] = Object.freeze(([
   // MAP is not a shipped family. family/section follow the MAP pilot batch
   // files (family 'map', map_subject 'reading'); nothing else decides them.
   { key: 'map-reading', label: 'MAP reading', family: 'map', section: 'reading', cohortPrefix: 'map-reading-draft-', cohortLike: 'map-reading-draft-%', choiceCount: 4 },
+  // ISEE Upper reading: four choices, the same draft-then-sitting route (2026-10-21).
+  { key: 'isee-reading', label: 'ISEE reading', family: 'isee', section: 'reading', cohortPrefix: 'isee-reading-draft-', cohortLike: 'isee-reading-draft-%', choiceCount: 4 },
 ] as DraftFamily[]).map(f => Object.freeze(f)))
 
 /** The SSAT entry's values, kept under their original names. */

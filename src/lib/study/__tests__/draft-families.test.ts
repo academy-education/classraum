@@ -37,15 +37,17 @@ const req = (rows: DraftRow[], over: Partial<SaveRequest> = {}, edits?: SaveRequ
   ({ group: rows[0]?.passage_group_id ?? GROUP, items: edits ?? rows.map(r => editOf(r)), ...over })
 
 describe('DRAFT_FAMILIES', () => {
-  it('is exactly the two allowlisted families, frozen', () => {
+  it('is exactly the three allowlisted families, frozen', () => {
     expect(DRAFT_FAMILIES.map(f => [f.key, f.family, f.section, f.cohortPrefix, f.cohortLike, f.choiceCount])).toEqual([
       ['ssat-reading', 'ssat', 'reading', 'ssat-reading-draft-', 'ssat-reading-draft-%', 5],
       ['map-reading', 'map', 'reading', 'map-reading-draft-', 'map-reading-draft-%', 4],
+      ['isee-reading', 'isee', 'reading', 'isee-reading-draft-', 'isee-reading-draft-%', 4],
     ])
     expect(Object.isFrozen(DRAFT_FAMILIES)).toBe(true)
     expect(Object.isFrozen(DRAFT_FAMILIES[1])).toBe(true)
     expect(draftFamilyByKey('map-reading')?.choiceCount).toBe(4)
-    expect(draftFamilyByKey('isee-reading')).toBeNull()
+    expect(draftFamilyByKey('isee-reading')?.choiceCount).toBe(4)
+    expect(draftFamilyByKey('toefl-reading')).toBeNull()
   })
 })
 
@@ -53,6 +55,9 @@ describe('isDraftRow / draftFamilyOf across families', () => {
   it('accepts a MAP draft row and names its family', () => {
     expect(isDraftRow(mapRow(0))).toBe(true)
     expect(draftFamilyOf(mapRow(0))?.key).toBe('map-reading')
+    const isee = { ...mapRow(0), family: 'isee', cohort: 'isee-reading-draft-1' }
+    expect(isDraftRow(isee)).toBe(true)
+    expect(draftFamilyOf(isee)?.key).toBe('isee-reading')
   })
   it.each([
     ['MAP family with the SSAT prefix', { cohort: 'ssat-reading-draft-1' }],
@@ -62,7 +67,8 @@ describe('isDraftRow / draftFamilyOf across families', () => {
     ['MAP verified', { verified: true }],
     ['MAP archived', { archived: true }],
     ['SSAT family with the MAP prefix', { family: 'ssat', cohort: 'map-reading-draft-1' }],
-    ['unlisted family with a draft prefix', { family: 'isee', cohort: 'map-reading-draft-1' }],
+    ['unlisted family with a draft prefix', { family: 'toefl', cohort: 'map-reading-draft-1' }],
+    ['ISEE family with the MAP prefix', { family: 'isee', cohort: 'map-reading-draft-1' }],
   ])('refuses %s', (_n, over) => expect(isDraftRow({ ...mapRow(0), ...over })).toBe(false))
 })
 

@@ -79,10 +79,14 @@ it('lists with one query per family, each with its own filters, keeping only tha
   expect(body.passages.map((p: { group: string; family: string; items: number }) => [p.group, p.family, p.items]).sort())
     .toEqual([['draft1-D1-P01', 'ssat-reading', 1], [GROUP, 'map-reading', 4]])
   const lists = calls.filter(c => c.ops.some(([o]) => o === 'range'))
-  expect(lists).toHaveLength(2)
+  expect(lists).toHaveLength(3)
   expect(lists[0].ops).toEqual(expect.arrayContaining([['eq', ['family', 'ssat']], ['like', ['cohort', 'ssat-reading-draft-%']]]))
   expect(lists[1].ops).toEqual(expect.arrayContaining([
     ['eq', ['family', 'map']], ['eq', ['section', 'reading']], ['like', ['cohort', 'map-reading-draft-%']],
+    ['eq', ['verified', false]], ['eq', ['archived', false]],
+  ]))
+  expect(lists[2].ops).toEqual(expect.arrayContaining([
+    ['eq', ['family', 'isee']], ['eq', ['section', 'reading']], ['like', ['cohort', 'isee-reading-draft-%']],
     ['eq', ['verified', false]], ['eq', ['archived', false]],
   ]))
 })
