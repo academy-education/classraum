@@ -44,8 +44,8 @@ const T = {
     p2meta: 'Classraum Study + SAT Camps · 2026', p2foot: 'Classraum Study + SAT Camps',
     p2title: 'Two Ways to Use Classraum',
     p2lede: 'One platform, used two ways. Students prepare on their own with Classraum Study; schools run a complete SAT or TOEFL camp on the same platform with Classraum SAT Camps.',
-    cardStudy: { k: 'Classraum Study · for students', t: 'One App for All Your Test Prep', p: 'Mock tests built like the real exam show where a student stands, and every wrong answer is explained and turned into a flashcard. Start on a computer and pick up on a phone, with one account.', f: [['5', 'Tests: SAT, ACT, TOEFL, SSAT, ISEE'], ['₩0', 'Free to start'], ['3', 'Platforms: Web, iOS, Android']], go: 'Part 1 · pages 03–07' },
-    cardCamps: { k: 'SAT Camps · for schools', t: 'An SAT Camp, Ready to Run', p: 'The school brings an SAT teacher, a room, a schedule and its students. Classraum brings everything else: lesson materials, mock tests, assignments, grading, per-question review and score analysis.', f: [['4', 'Steps: teach, practice, analyze, improve'], ['8', 'SAT domains in every result'], ['6', 'Program formats, break camps to year-round']], go: 'Part 2 · pages 08–15' },
+    cardStudy: { k: 'Classraum Study · for students', t: 'One App for All Your Test Prep', p: 'Mock tests built like the real exam show where a student stands, and every wrong answer is explained and turned into a flashcard. Start on a computer and pick up on a phone, with one account.', f: [['5', 'tests: SAT, ACT, TOEFL, SSAT, ISEE'], ['₩0', 'to start'], ['3', 'platforms: web, iOS, Android']], go: 'Part 1 · pages 03–07' },
+    cardCamps: { k: 'SAT Camps · for schools', t: 'An SAT Camp, Ready to Run', p: 'The school brings an SAT teacher, a room, a schedule and its students. Classraum brings everything else: lesson materials, mock tests, assignments, grading, per-question review and score analysis.', f: [['4', 'steps: teach, practice, analyze, improve'], ['8', 'SAT domains in every result'], ['6', 'program formats']], go: 'Part 2 · pages 08–15' },
     contents: 'Contents', part1: 'Part 1 · Classraum Study', part2: 'Part 2 · SAT Camps for Schools',
     bridge: ['Part 2 · SAT Camps for Schools', 'The same platform, run as a camp at your school. Everything in Part 1 is what your students use during the program; the pages that follow are what the school and the teacher get on top of it.'],
     backMid: `<p class="bk-tag">Practice Like It’s Test Day.<br><span>At Home, or at Your School.</span></p>
@@ -68,7 +68,7 @@ const T = {
     p2title: '클래스라움을 쓰는 두 가지 방법',
     p2lede: '하나의 플랫폼을 두 가지 방법으로 씁니다. 학생은 Classraum Study로 혼자 준비하고, 학교는 같은 플랫폼 위에서 클래스라움 SAT 캠프로 완성된 SAT·TOEFL 캠프를 운영합니다.',
     cardStudy: { k: 'Classraum Study · 학생용', t: '시험 준비를 앱 하나로', p: '실제 시험과 똑같은 모의고사로 지금 실력을 확인하고, 틀린 문제는 해설과 플래시카드로 정리됩니다. 컴퓨터에서 풀던 문제를 휴대폰에서 이어서, 하나의 계정으로.', f: [['5', '시험: SAT, ACT, TOEFL, SSAT, ISEE'], ['₩0', '무료로 시작'], ['3', '플랫폼: 웹, iOS, Android']], go: '1부 · 03–07쪽' },
-    cardCamps: { k: 'SAT 캠프 · 학교용', t: '바로 시작하는 SAT 캠프', p: '학교는 SAT 선생님과 강의실, 캠프 일정, 학생만 준비하면 됩니다. 수업 자료, 모의고사, 과제, 채점, 문항별 리뷰, 성취도 분석은 클래스라움이 제공합니다.', f: [['4', '단계: 가르치기 · 연습하기 · 분석하기 · 개선하기'], ['8', '모든 결과를 SAT 영역별로 분석'], ['6', '운영 형태, 방학 캠프부터 정규 과정까지']], go: '2부 · 08–15쪽' },
+    cardCamps: { k: 'SAT 캠프 · 학교용', t: '바로 시작하는 SAT 캠프', p: '학교는 SAT 선생님과 강의실, 캠프 일정, 학생만 준비하면 됩니다. 수업 자료, 모의고사, 과제, 채점, 문항별 리뷰, 성취도 분석은 클래스라움이 제공합니다.', f: [['4', '단계: 가르치기 · 연습 · 분석 · 개선'], ['8', 'SAT 영역별 결과 분석'], ['6', '가지 운영 형태']], go: '2부 · 08–15쪽' },
     contents: '목차', part1: '1부 · Classraum Study', part2: '2부 · 학교를 위한 SAT 캠프',
     bridge: ['2부 · 학교를 위한 SAT 캠프', '같은 플랫폼을 학교에서 캠프로 운영합니다. 1부의 내용은 캠프 동안 학생이 쓰는 화면이고, 이어지는 내용은 그 위에 학교와 선생님이 받는 것입니다.'],
     backMid: `<p class="bk-tag">모의고사는 실전처럼,<br><span>집에서도 학교에서도.</span></p>
@@ -98,14 +98,11 @@ const p2src = cut(study, S[1])
 const SB = (p2src.match(/<div class="dev-phone">(<svg[\s\S]*?<\/svg>)/) ?? [])[1] ?? die('phone status bar')
 const RH = grab(p2src, /<div class="rh">[\s\S]*?<\/div>/, 'Study running head')
 const RF = grab(p2src, /<div class="rf">[\s\S]*?<\/div>/, 'Study running foot')
-const FACT_ICONS = [...p2src.matchAll(/<div><span class="mi">(<svg[\s\S]*?<\/svg>)<\/span><b>/g)].map(m => m[1])
-if (FACT_ICONS.length < 4) die('Study facts icons not found')
-const CAMP_ICONS = [...cut(camps, C[1]).matchAll(/<div><span class="mi">(<svg[\s\S]*?<\/svg>)<\/span><b>/g)].map(m => m[1])   // 4 steps, 8 domains, 6 formats, 2 languages
-if (CAMP_ICONS.length < 3) die('Camps facts icons not found')
 const phone = img => `<div class="dev-phone">${SB}<img src="__IMG_${img}__" alt=""></div>`
 
 // ---------- page 1: the new cover ----------
-const row = ([name, who, line], win, ph) => `<div class="cv-row"><div class="cv-txt"><p class="cv-name">${name}</p><p class="cv-who">${who}</p><p class="cv-line">${line}</p></div><div class="cv-pair"><div class="shot win"><img src="__IMG_${win}__" alt=""></div>${phone(ph)}</div></div>`
+// One composition, nothing cropped: the Camps dashboard in a browser window, the Study app on a phone
+// in front of its lower-left corner, a one-line caption for each. No boxes; the headline carries it.
 const COVER = `<section class="page cover-page combo-cover">
   <div class="body">
     <div class="cov-top">${LOGO}<span class="cov-meta">${T.meta}</span></div>
@@ -113,30 +110,33 @@ const COVER = `<section class="page cover-page combo-cover">
       <h1 class="cov-title">${T.title}</h1>
       <p class="cov-lede">${T.lede}</p>
     </div>
-    <div class="cv-rows">${row(T.rowStudy, 'home', 'pp-tests')}${row(T.rowCamps, 'camp-dashboard', 'ph-assignments')}</div>
+    <div class="cv-stage">
+      <figure class="cv-phone"><figcaption><b>${T.rowStudy[0]}</b>${T.rowStudy[1]}</figcaption>${phone('pp-tests')}</figure>
+      <figure class="cv-win"><figcaption><b>${T.rowCamps[0]}</b>${T.rowCamps[1]}</figcaption><div class="shot win"><img src="__IMG_camp-dashboard__" alt=""></div></figure>
+    </div>
   </div>
 </section>
 `
 const COVER_CSS = `
-  /* combined booklet cover (2026-10-20): each product shown whole, one row each */
-  .combo-cover{ padding-bottom:14mm !important; }
-  .combo-cover .cov-body{ margin-top:var(--s4); }
-  .combo-cover .cov-title{ font-size:40pt; max-width:17ch; }
-  .combo-cover .cov-lede{ font-size:11pt; max-width:60ch; margin-top:var(--s3); }
-  .combo-cover .cv-rows{ margin-top:auto; display:flex; flex-direction:column; gap:5mm; }
-  .combo-cover .cv-row{ display:grid; grid-template-columns:47mm 1fr; gap:6mm; align-items:center; padding:5mm 6mm; border-radius:8px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); }
-  .combo-cover .cv-name{ margin:0; font-family:var(--display); font-weight:800; font-size:15pt; line-height:1.1; color:#fff; }
-  .combo-cover .cv-who{ margin:1.2mm 0 0; font-size:8.4pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#6AA6FF; }
-  .combo-cover .cv-line{ margin:2.6mm 0 0; font-size:9pt; line-height:1.45; color:#C7D2E4; word-break:keep-all; }
-  .combo-cover .cv-pair{ display:grid; grid-template-columns:1fr 24mm; gap:4.5mm; align-items:center; }
-  .combo-cover .cv-pair .shot.win{ border:0; border-radius:6px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,.35); }
-  .combo-cover .cv-pair .shot.win img{ display:block; width:100%; height:auto; }
-  .combo-cover .cv-pair .dev-phone{ box-shadow:0 0 0 1px #45484E, 0 10px 24px rgba(0,0,0,.4); }
+  /* combined booklet cover (2026-10-20, simplified): one composition, captions only */
+  .combo-cover{ padding-bottom:16mm !important; }
+  .combo-cover .cov-body{ margin-top:var(--s5); }
+  .combo-cover .cov-title{ font-size:42pt; max-width:16ch; }
+  .combo-cover .cov-lede{ font-size:11.2pt; max-width:58ch; margin-top:var(--s3); }
+  .combo-cover .cv-stage{ margin-top:auto; display:grid; grid-template-columns:44mm 1fr; align-items:end; }
+  .combo-cover .cv-stage figure{ margin:0; display:flex; flex-direction:column; gap:3mm; }
+  .combo-cover .cv-phone{ position:relative; z-index:2; margin-right:-16mm; }
+  .combo-cover .cv-phone .dev-phone{ width:40mm; box-shadow:0 0 0 1px #45484E, 0 14px 30px rgba(0,0,0,.45); }
+  .combo-cover .cv-win figcaption{ align-self:flex-end; text-align:right; }
+  .combo-cover .cv-stage figcaption{ display:flex; flex-direction:column; gap:.8mm; font-size:8.4pt; letter-spacing:.06em; text-transform:uppercase; color:#6AA6FF; font-weight:700; }
+  .combo-cover .cv-stage figcaption b{ font-family:var(--display); font-size:12pt; letter-spacing:0; text-transform:none; color:#fff; font-weight:800; }
+  .combo-cover .cv-win .shot.win{ border:0; border-radius:6px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+  .combo-cover .cv-win .shot.win img{ display:block; width:100%; height:auto; }
+  .combo-cover .cv-phone figcaption{ margin-bottom:1mm; }
 `
 
 // ---------- page 2: two ways + combined contents ----------
-const fact = ([b, s], icon) => `<div><span class="mi">${icon}</span><b>${b}</b><span>${s}</span></div>`
-const card = (c, img, icons) => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><p class="cc-p">${c.p}</p><div class="facts cc-f">${c.f.map((f, i) => fact(f, icons[i])).join('')}</div><div class="shot win cc-shot"><img src="__IMG_${img}__" alt=""></div></div>`
+const card = c => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><p class="cc-p">${c.p}</p><div class="cc-f">${c.f.map(([b, t]) => `<div><b>${b}</b><span>${t}</span></div>`).join('')}</div><p class="cc-go">${c.go}</p></div>`
 const tocEntries = (src, range) => [...cut(src, range).matchAll(/<div class="te"><span class="tn">(\d\d)<\/span><span class="tt">([^<]+)<span class="td">[^<]*<\/span><\/span><span class="tl"><\/span><span class="tp" data-ref="(s-\d\d)">00<\/span><\/div>/g)].map(m => ({ n: m[1], t: m[2].trim(), ref: m[3] }))
 const studyEntries = tocEntries(study, S[1]), campEntries = tocEntries(camps, C[1])
 if (studyEntries.length !== 5) die(`Study contents: ${studyEntries.length} chapters, expected 5`)
@@ -146,7 +146,7 @@ const P2 = `<section class="page combo-two">
   ${RH.replace(/<span class="r">[^<]*<\/span>/, `<span class="r">${T.p2meta}</span>`)}
   <div class="body">
     <div class="cc-head"><h1 class="h-title">${T.p2title}</h1><p class="lede">${T.p2lede}</p></div>
-    <div class="cc-grid">${card(T.cardStudy, 'stats', [FACT_ICONS[0], FACT_ICONS[1], FACT_ICONS[3]])}${card(T.cardCamps, 'classrooms', CAMP_ICONS.slice(0, 3))}</div>
+    <div class="cc-grid">${card(T.cardStudy)}${card(T.cardCamps)}</div>
     <div class="cc-toc"><div class="eyebrow">${TOC_ICON}${T.contents}</div>
       <div class="toc toc2 combo-toc"><div class="tcol"><div class="tpart">${T.part1}</div>${studyEntries.map(e => te(e, e.ref)).join('')}</div><div class="tcol"><div class="tpart">${T.part2}</div>${campEntries.map(e => te(e, 'camp-' + e.ref)).join('')}</div></div></div>
   </div>
@@ -154,21 +154,19 @@ const P2 = `<section class="page combo-two">
 </section>
 `
 const P2_CSS = `
-  /* combined booklet page 2 (2026-10-20): the two products side by side, then the combined contents */
-  .combo-two .body{ display:flex; flex-direction:column; gap:var(--s3); }
-  .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:70ch; }
-  .combo-two .cc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
-  .combo-two .cc{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; padding:4mm 4mm 4mm; background:#fff; }
+  /* combined booklet page 2 (2026-10-20, simplified): two open columns, no boxes or screenshots, then the contents */
+  .combo-two .body{ display:flex; flex-direction:column; gap:var(--s5); }
+  .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:68ch; }
+  .combo-two .cc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .combo-two .cc{ display:flex; flex-direction:column; padding:6mm 7mm 6mm 0; }
+  .combo-two .cc + .cc{ padding:6mm 0 6mm 7mm; border-left:1px solid var(--line); }
   .combo-two .cc-k{ margin:0; font-size:8pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); }
-  .combo-two .cc-t{ margin:1.6mm 0 0; font-family:var(--display); font-weight:800; font-size:13pt; line-height:1.15; color:var(--ink); word-break:keep-all; }
-  .combo-two .cc-p{ margin:2mm 0 0; font-size:8.8pt; line-height:1.45; color:var(--ink-2); word-break:keep-all; }
-  .combo-two .cc-f{ grid-template-columns:1fr; gap:1.2mm; margin-top:2.4mm; }
-  .combo-two .cc-f > div{ grid-template-columns:24px 1fr; }
-  .combo-two .cc-f b{ font-size:11pt; }
-  .combo-two .cc-shot{ margin-top:auto; }
-  .combo-two .cc-f + .cc-shot{ margin-top:3mm; }
-  .combo-two .cc-shot img{ display:block; width:100%; height:auto; }
-  .combo-two .cc-go{ margin:2.4mm 0 0; font-size:8pt; font-weight:600; color:var(--muted); }
+  .combo-two .cc-t{ margin:2mm 0 0; font-family:var(--display); font-weight:800; font-size:14pt; line-height:1.15; color:var(--ink); word-break:keep-all; }
+  .combo-two .cc-p{ margin:2.6mm 0 0; font-size:9.2pt; line-height:1.55; color:var(--ink-2); word-break:keep-all; }
+  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:5mm; }
+  .combo-two .cc-f b{ display:block; font-family:var(--display); font-weight:800; font-size:17pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
+  .combo-two .cc-f span{ display:block; margin-top:1.4mm; font-size:7.8pt; line-height:1.35; color:var(--muted); word-break:keep-all; }
+  .combo-two .cc-go{ margin:auto 0 0; padding-top:5mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
   .combo-toc .tpart{ font-size:8.4pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); padding-bottom:1.6mm; margin-bottom:1.2mm; border-bottom:1px solid var(--line); }
 `
 
