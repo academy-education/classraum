@@ -3955,6 +3955,35 @@
       }
     },
     {
+      "id": "ssat-essay-v4-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "ssat",
+      "section": "writing",
+      "task": "essay_choice",
+      "family": "production",
+      "cohort": "essay-v4",
+      "contentSha": "c6a3cb48966523f372e1fa0965201310c62e252aca7b1905f229db0fdeb7a5e6",
+      "status": "shipped",
+      "note": "Six SSAT Writing Sample pairs (SW12-SW17), written in-session by Claude (no agents, per the owner's 2026-10-12 instruction) after real-student exposure showed two students had seen all 5 live pairs. Written against the v2 panel's three hold reasons: 5 of 6 essays are not school-policy questions (honesty vs kindness, recording moments, advice vs mistakes, zoos, competition prizes; the sixth is a family phone-age question), and no story starter is an impossible event or an omen. Unscored on the real exam; sent to schools.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c6a3cb48966523f372e1fa0965201310c62e252aca7b1905f229db0fdeb7a5e6",
+          "verdict": "check-essay-shape.mjs essay-prompts-v4.json against v1+v2+v3 (32 prompts): 12 prompts, 6 complete pairs, shape ok, no theme collision. First run FAILED SW15a (opposing view introduced with \"Critics say\", which the checker does not read as a second position); reworded to the house \"Some people ... Others ...\" form and re-run. Break-tests: a dropped SW13b fails \"incomplete SSAT pair\"; deleting SW12a's \"Others ...\" sentence still PASSES, because the closing question (\"honesty or kindness?\") satisfies the two-sidedness heuristic, so that check is weaker than its comment suggests and the with-source read covers it."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "c6a3cb48966523f372e1fa0965201310c62e252aca7b1905f229db0fdeb7a5e6",
+          "verdict": "ONE reader, and it is the author: Claude re-read all 12 halves against the v2 panel's briefs (general, fairness/redundancy, grader-discriminability). Each essay states two positions a 12-year-old can genuinely hold; each guidance credits reasoning over knowledge (SW15a says outright that statistics are not expected); each accessibility note names a route for a student without the setting (no phone, no train, no younger sibling, never visited a zoo). This is weaker than v3's three independent reviewers, and recorded as such. A co-founder read of the six pairs is the obvious upgrade and costs nothing to the students already blocked."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "c6a3cb48966523f372e1fa0965201310c62e252aca7b1905f229db0fdeb7a5e6",
+          "verdict": "Free response has no key, so no letter, length or option tell can exist. Theme repetition was checked mechanically against all 32 earlier prompts (live and held): no collision. Starters were also checked by hand against the live template families (strange-vehicle, impossible object, inherited letter): none reused."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
