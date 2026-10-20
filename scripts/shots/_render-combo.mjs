@@ -43,7 +43,7 @@ const T = {
     rowCamps: ['SAT Camps', 'For schools', 'A complete SAT or TOEFL camp at your school: curriculum, mock tests, grading and score analysis, ready to run.'],
     p2meta: 'Classraum Study + SAT Camps · 2026', p2foot: 'Classraum Study + SAT Camps',
     p2title: 'Two Ways to Use Classraum',
-    p2lede: 'One platform, used two ways. Students prepare on their own with Classraum Study; schools run a complete SAT or TOEFL camp on the same platform with Classraum SAT Camps.',
+    p2lede: 'One platform: students practice on their own, and schools run complete camps.',
     cardStudy: { k: 'Classraum Study · for students', t: 'One App for All Your Test Prep', p: 'Mock tests built like the real exam show where a student stands, and every wrong answer is explained and turned into a flashcard. Start on a computer and pick up on a phone, with one account.', f: [['5', 'tests: SAT, ACT, TOEFL, SSAT, ISEE'], ['₩0', 'to start'], ['3', 'platforms: web, iOS, Android']], go: 'Part 1 · pages 03–07' },
     cardCamps: { k: 'SAT Camps · for schools', t: 'An SAT Camp, Ready to Run', p: 'The school brings an SAT teacher, a room, a schedule and its students. Classraum brings everything else: lesson materials, mock tests, assignments, grading, per-question review and score analysis.', f: [['4', 'steps: teach, practice, analyze, improve'], ['8', 'SAT domains in every result'], ['6', 'program formats']], go: 'Part 2 · pages 08–15' },
     contents: 'Contents', part1: 'Part 1 · Classraum Study', part2: 'Part 2 · SAT Camps for Schools',
@@ -66,7 +66,7 @@ const T = {
     rowCamps: ['SAT 캠프', '학교용', '학교에서 운영하는 완성된 SAT·TOEFL 캠프. 커리큘럼, 모의고사, 채점, 성취도 분석까지 모두 준비되어 있습니다.'],
     p2meta: 'Classraum Study + SAT 캠프 · 2026', p2foot: 'Classraum Study + SAT 캠프',
     p2title: '클래스라움을 쓰는 두 가지 방법',
-    p2lede: '하나의 플랫폼을 두 가지 방법으로 씁니다. 학생은 Classraum Study로 혼자 준비하고, 학교는 같은 플랫폼 위에서 클래스라움 SAT 캠프로 완성된 SAT·TOEFL 캠프를 운영합니다.',
+    p2lede: '하나의 플랫폼으로, 학생은 혼자 연습하고 학교는 완성된 캠프를 운영합니다.',
     cardStudy: { k: 'Classraum Study · 학생용', t: '시험 준비를 앱 하나로', p: '실제 시험과 똑같은 모의고사로 지금 실력을 확인하고, 틀린 문제는 해설과 플래시카드로 정리됩니다. 컴퓨터에서 풀던 문제를 휴대폰에서 이어서, 하나의 계정으로.', f: [['5', '시험: SAT, ACT, TOEFL, SSAT, ISEE'], ['₩0', '무료로 시작'], ['3', '플랫폼: 웹, iOS, Android']], go: '1부 · 03–07쪽' },
     cardCamps: { k: 'SAT 캠프 · 학교용', t: '바로 시작하는 SAT 캠프', p: '학교는 SAT 선생님과 강의실, 캠프 일정, 학생만 준비하면 됩니다. 수업 자료, 모의고사, 과제, 채점, 문항별 리뷰, 성취도 분석은 클래스라움이 제공합니다.', f: [['4', '단계: 가르치기 · 연습 · 분석 · 개선'], ['8', 'SAT 영역별 결과 분석'], ['6', '가지 운영 형태']], go: '2부 · 08–15쪽' },
     contents: '목차', part1: '1부 · Classraum Study', part2: '2부 · 학교를 위한 SAT 캠프',
@@ -136,7 +136,10 @@ const COVER_CSS = `
 `
 
 // ---------- page 2: two ways + combined contents ----------
-const card = c => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><p class="cc-p">${c.p}</p><div class="cc-f">${c.f.map(([b, t]) => `<div><b>${b}</b><span>${t}</span></div>`).join('')}</div><p class="cc-go">${c.go}</p></div>`
+// each column: label, title, a picture (shown whole), three numbers, page range. No paragraph.
+const card = (c, pic) => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><div class="cc-g">${pic}</div><div class="cc-f">${c.f.map(([b, t]) => `<div><b>${b}</b><span>${t}</span></div>`).join('')}</div><p class="cc-go">${c.go}</p></div>`
+const PIC_STUDY = `<div class="shot win"><img src="__IMG_stats__" alt=""></div>${phone('pp-stats')}`
+const PIC_CAMPS = `<div class="shot cc-card"><img src="__IMG_answer-review__" alt=""></div>${phone('ph-assignments')}`
 const tocEntries = (src, range) => [...cut(src, range).matchAll(/<div class="te"><span class="tn">(\d\d)<\/span><span class="tt">([^<]+)<span class="td">[^<]*<\/span><\/span><span class="tl"><\/span><span class="tp" data-ref="(s-\d\d)">00<\/span><\/div>/g)].map(m => ({ n: m[1], t: m[2].trim(), ref: m[3] }))
 const studyEntries = tocEntries(study, S[1]), campEntries = tocEntries(camps, C[1])
 if (studyEntries.length !== 5) die(`Study contents: ${studyEntries.length} chapters, expected 5`)
@@ -146,7 +149,7 @@ const P2 = `<section class="page combo-two">
   ${RH.replace(/<span class="r">[^<]*<\/span>/, `<span class="r">${T.p2meta}</span>`)}
   <div class="body">
     <div class="cc-head"><h1 class="h-title">${T.p2title}</h1><p class="lede">${T.p2lede}</p></div>
-    <div class="cc-grid">${card(T.cardStudy)}${card(T.cardCamps)}</div>
+    <div class="cc-grid">${card(T.cardStudy, PIC_STUDY)}${card(T.cardCamps, PIC_CAMPS)}</div>
     <div class="cc-toc"><div class="eyebrow">${TOC_ICON}${T.contents}</div>
       <div class="toc toc2 combo-toc"><div class="tcol"><div class="tpart">${T.part1}</div>${studyEntries.map(e => te(e, e.ref)).join('')}</div><div class="tcol"><div class="tpart">${T.part2}</div>${campEntries.map(e => te(e, 'camp-' + e.ref)).join('')}</div></div></div>
   </div>
@@ -155,15 +158,22 @@ const P2 = `<section class="page combo-two">
 `
 const P2_CSS = `
   /* combined booklet page 2 (2026-10-20, simplified): two open columns, no boxes or screenshots, then the contents */
-  .combo-two .body{ display:flex; flex-direction:column; gap:var(--s5); }
-  .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:68ch; }
+  .combo-two .body{ display:flex; flex-direction:column; gap:var(--s4); }
+  .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:none; }
   .combo-two .cc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .combo-two .cc{ display:flex; flex-direction:column; padding:6mm 7mm 6mm 0; }
   .combo-two .cc + .cc{ padding:6mm 0 6mm 7mm; border-left:1px solid var(--line); }
   .combo-two .cc-k{ margin:0; font-size:8pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); }
   .combo-two .cc-t{ margin:2mm 0 0; font-family:var(--display); font-weight:800; font-size:14pt; line-height:1.15; color:var(--ink); word-break:keep-all; }
-  .combo-two .cc-p{ margin:2.6mm 0 0; font-size:9.2pt; line-height:1.55; color:var(--ink-2); word-break:keep-all; }
-  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:5mm; }
+  .combo-two .cc-g{ display:flex; align-items:flex-end; justify-content:center; gap:3.5mm; height:48mm; margin-top:4mm; }
+  .combo-two .cc-g .shot{ border:1px solid var(--line-2); border-radius:6px; overflow:hidden; box-shadow:0 6px 16px rgba(15,23,42,.10); }
+  .combo-two .cc-g .shot img{ display:block; height:100%; width:auto; }
+  .combo-two .cc-g .shot.win{ height:31mm; }
+  .combo-two .cc-g .shot.win img{ height:calc(31mm - 21px); }
+  .combo-two .cc-g .cc-card{ height:43mm; }
+  .combo-two .cc-g .dev-phone{ flex:none; width:21.5mm; }
+  .combo-two .cc-g .dev-phone img{ width:100%; height:auto; }
+  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:5.5mm; }
   .combo-two .cc-f b{ display:block; font-family:var(--display); font-weight:800; font-size:17pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
   .combo-two .cc-f span{ display:block; margin-top:1.4mm; font-size:7.8pt; line-height:1.35; color:var(--muted); word-break:keep-all; }
   .combo-two .cc-go{ margin:auto 0 0; padding-top:5mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
@@ -193,7 +203,7 @@ p2 = once(p2, '</style>', BRIDGE_CSS + '</style>', 'Camps stylesheet end')
 // ---------- image sidecars for part 1: Study's own plus three Camps screenshots ----------
 const IMG = join(SP, `img2-combo-${LANG}`); rmSync(IMG, { recursive: true, force: true }); mkdirSync(IMG)
 for (const f of readdirSync(join(SP, T.studyImg))) copyFileSync(join(SP, T.studyImg, f), join(IMG, f))
-for (const n of ['camp-dashboard', 'classrooms', 'ph-assignments']) copyFileSync(join(SP, 'img2-camps-en', n + '.b64'), join(IMG, n + '.b64'))
+for (const n of ['camp-dashboard', 'classrooms', 'ph-assignments', 'answer-review']) copyFileSync(join(SP, 'img2-camps-en', n + '.b64'), join(IMG, n + '.b64'))
 
 writeFileSync(join(SP, `classraum-combo-study-${LANG}.src.html`), p1)
 writeFileSync(join(SP, `classraum-combo-camps-${LANG}.src.html`), p2)
