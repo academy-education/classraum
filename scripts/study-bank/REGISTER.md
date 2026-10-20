@@ -190,6 +190,13 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-20** — **MAP-MATH-G58-V4 (Real and Complex Number Systems only): HELD, NOTHING INSERTED — on key position, not on guessability.** Prereg `c805f764`, freeze `27798bc9`, renders `344c173e`. Staged map/math unchanged at 56; forms still 0 (Real 0).
+  - **The guessability fix worked:** options-only 35.1% vs matched live control 33.3% (**+1.8**; v3 +19.4), with LONE and SLIP enforced through the return. n = 19, three samples of one solver: wide, but the direction is clear. Graders 38/38 cold on key; difficulty bars pass.
+  - **What held it:** kept-set key at an extreme **2/14 = 14.3%** (bar 40%). Authored 60% extreme (24/40); the screen's and graders' rules for extreme keys (one-sided, single bound kills all) remove extreme-key items preferentially: 7/19 at freeze, 2/14 kept. Predicted at freeze and recorded then. **Every number-systems batch so far loses its extreme keys to the very rules that make extreme keys safe.**
+  - **Next design (stated, not run):** author the extreme slots at ~80% so ~40% survive, or freeze per position cell as spelling v6 freezes per length cell (and author more per cell). The second is the v6 lesson applied here.
+  - Funnel: 40 -> screen p1 29 fail -> return -> p2 21 fail -> 19 frozen -> 5 dropped (N21 too hard by both; N15/N37/N12 single bound by both; N09 EXT-1) -> 14 kept.
+  - Process deviations in `map-math-g58-v4/DEVIATIONS.md` (shell commands beyond the allowed set by every author; B grepped the checker once and printed 4 lines; two script edits of own parts later overwritten). Ledger `map-math-g58-v4-2026-10-20` (killed), committed with this line.
+
 - **2026-10-20** — **MAP-LU-V6 (Spelling gr 5-8, sentence format): PASSES EVERY BAR, 26 INSERTED STAGED (`verified=false`, cohort `map-lu-v6-spelling`). SPELLING CLEARED: 26 — the first, above the owner's ~20; the Language Usage Spelling gate is met.** Prereg `1aa16264`, freeze `9d52651e`, renders `ab7cb754`. map/language: 0 drawable, 37 staged.
   - **Funnel:** 64 authored -> teacher 2 dropped (rater a 2 NO, b 0) -> screen 5 dropped -> every grade x rank cell filled -> 28 frozen; E3 7/28 both ends by construction.
   - **Bars:** pilot-pass 26/28 (bar 23); easier 8/56 (bar 9); **harder 13/56 (bar < 14: passed by one)**; offsets +0.07 / +0.11; options-only 100% vs control 62.5% (key recoverability only); slots 7/7/7/7. Held S54 (too easy), S04 (too hard).

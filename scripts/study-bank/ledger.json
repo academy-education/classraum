@@ -8915,6 +8915,45 @@
           "verdict": "No-rule-knowledge probes that ran: T2 (structural heuristics, Westfall-Young min-p) clear on the frozen 28 (fw p 0.40) and T2-L (63 letter-class heuristics) clear (fw p 0.23); both graders' free_elimination null on all 28 items (56 judgments), dead options by both 0/28. E7 (unique medoid) is not applied to sentence-format spelling and is not claimed. The one elimination that does work is reading the misspelled word, which is the construct."
         }
       }
+    },
+    {
+      "id": "map-math-g58-v4-2026-10-20",
+      "createdAt": "2026-10-20",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-g58-v4",
+      "contentSha": "ce2d842e657dce92e99a606f1c790d691707fc404ac080a8df534f5dae2af762",
+      "status": "killed",
+      "note": "Fourth MAP maths batch: Real and Complex Number Systems only, 40 authored (2 Claude authors x two runs of 10) under two new construction rules (LONE: no option alone by sign or size; SLIP: at most one computational-slip distractor, three named misconceptions). Screen pass 1 failed 29/40, one return, pass 2 failed 21/29 -> frozen 19 (bar 15; near-dup vs live ISEE/SSAT 0). Options-only 35.1% vs matched live control 33.3% (+1.8; v3 was +19.4): PASS. Graders 38/38 cold on key, coldcheck 0 changed; D1-D3 pass. Kept 14 after 5 drops (N21 too hard by both; N15, N37, N12 single bound by both; N09 EXT-1). HELD: kept-set key at an extreme 2/14 = 14.3% < 40% bar. Nothing inserted. contentSha = sha256 of map-math-g58-v4.batch.json (frozen 19). MAP-MATH-G58-V4.prereg.md (c805f764), freeze 27798bc9, renders 344c173e; REGISTER section 5, 2026-10-20.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Stage 0: 40/40 PART OK incl. LONE and SLIP; screen p1 29 fail, one return, p2 21 still fail; frozen 19 >= 15."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 19,
+          "candidatePct": 35.1,
+          "control": 33.3,
+          "controlN": 19,
+          "margin": 1.8,
+          "verdict": "Options-only, 3 samples of one Claude solver vs 19 matched live ISEE num: 35.1% vs 33.3% (+1.8, bar +10); unanimity 31.6% vs 21.1% (+10.5, bar +15). n = 19: a small sample; three samples of one solver."
+        },
+        "withsource": {
+          "passed": false,
+          "n": 19,
+          "coldOnKey": 38,
+          "kept": 14,
+          "inserted": 0,
+          "tooEasy": 0,
+          "tooHard": 3,
+          "offsetD": 0.26,
+          "offsetE": 0.11,
+          "verdict": "Two Claude graders cold then keyed; 38/38 cold on key; D1 0.0% / 7.9%, D2 0.26 / 0.11, D3 1.86 / 1.86 pass. Kept 14; kept-set key extremity 2/14 = 14.3% (bar 40%) -> area HELD."
+        }
+      }
     }
   ],
   "auditedCohorts": [

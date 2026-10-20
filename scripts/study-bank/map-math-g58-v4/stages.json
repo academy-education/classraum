@@ -1,0 +1,313 @@
+{
+ "prereg": "MAP-MATH-G58-V4.prereg.md",
+ "frozenSha": "ce2d842e657dce92e99a606f1c790d691707fc404ac080a8df534f5dae2af762",
+ "n": 19,
+ "optionsOnly": {
+  "res": {
+   "all": {
+    "cand": {
+     "n": 19,
+     "picks": 57,
+     "hits": 20,
+     "unan": 6
+    },
+    "ctrl": {
+     "n": 19,
+     "picks": 57,
+     "hits": 19,
+     "unan": 4
+    },
+    "status": "pass",
+    "cr": 35.08771929824562,
+    "kr": 33.333333333333336,
+    "cu": 31.57894736842105,
+    "ku": 21.05263157894737,
+    "margin": 1.7543859649122808,
+    "umar": 10.526315789473681,
+    "why": "candidate 35.1% vs control 33.3% (margin 1.8, bar +10); unanimous-correct 31.6% vs 21.1% (10.5, bar +15)"
+   },
+   "oa": {
+    "cand": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "ctrl": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "status": "no-measurement",
+    "cr": null,
+    "kr": null,
+    "why": "empty arm"
+   },
+   "num": {
+    "cand": {
+     "n": 19,
+     "picks": 57,
+     "hits": 20,
+     "unan": 6
+    },
+    "ctrl": {
+     "n": 19,
+     "picks": 57,
+     "hits": 19,
+     "unan": 4
+    },
+    "status": "pass",
+    "cr": 35.08771929824562,
+    "kr": 33.333333333333336,
+    "cu": 31.57894736842105,
+    "ku": 21.05263157894737,
+    "margin": 1.7543859649122808,
+    "umar": 10.526315789473681,
+    "why": "candidate 35.1% vs control 33.3% (margin 1.8, bar +10); unanimous-correct 31.6% vs 21.1% (10.5, bar +15)"
+   },
+   "geo": {
+    "cand": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "ctrl": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "status": "no-measurement",
+    "cr": null,
+    "kr": null,
+    "why": "empty arm"
+   }
+  },
+  "letterControl": 26.31578947368421
+ },
+ "difficulty": {
+  "n": 19,
+  "judgments": 38,
+  "tooEasy": 0,
+  "tooHard": 3,
+  "tooEasyPct": 0,
+  "tooHardPct": 7.894736842105263,
+  "offA": 0.2631578947368421,
+  "offB": 0.10526315789473684,
+  "spreadA": 1.8571428571428572,
+  "spreadB": 1.8571428571428572,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 38,
+ "items": {
+  "MM4-N19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM4-N01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM4-N20": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM4-N34": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM4-N17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM4-N11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM4-N21": {
+   "drop": [
+    "G1 too hard for its grade (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM4-N04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM4-N15": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "R10 single bound kills all (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM4-N28": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM4-N18": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM4-N13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM4-N39": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM4-N37": {
+   "drop": [
+    "R10 single bound kills all (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MM4-N12": {
+   "drop": [
+    "R10 single bound kills all (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MM4-N22": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM4-N35": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM4-N09": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MM4-N23": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  }
+ },
+ "areas": {
+  "num": {
+   "frozen": 19,
+   "kept": 14,
+   "keptIds": [
+    "MM4-N19",
+    "MM4-N01",
+    "MM4-N20",
+    "MM4-N34",
+    "MM4-N17",
+    "MM4-N11",
+    "MM4-N04",
+    "MM4-N28",
+    "MM4-N18",
+    "MM4-N13",
+    "MM4-N39",
+    "MM4-N22",
+    "MM4-N35",
+    "MM4-N23"
+   ],
+   "extremity": {
+    "total": 14,
+    "n": 14,
+    "nonNumeric": 0,
+    "otherSkip": 0,
+    "ext": 2,
+    "rate": 0.14285714285714285,
+    "chance": 0.5,
+    "threshold": 0.4,
+    "status": "fail",
+    "reason": "key at an extreme 2/14 = 14.3%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 14)"
+   },
+   "oo": "pass",
+   "status": "held",
+   "reasons": [
+    "kept-set extremity fail: key at an extreme 2/14 = 14.3%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 14)"
+   ]
+  }
+ },
+ "passIds": [],
+ "verdict": "FAIL"
+}
