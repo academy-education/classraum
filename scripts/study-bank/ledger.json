@@ -7599,7 +7599,7 @@
       },
       "contentSha": "c7c9d36aed40e041ece94fdd07de60c421fef26730ac7ed8dd115e9402998819",
       "frozenSha": "bda8a6b742b360eecbd92870657605f429f886ac0268120a17323d34215c73b1",
-      "status": "staged",
+      "status": "shipped",
       "cohort": "announcement-v6",
       "note": "STAGED (BANK_VERIFIED=false) for the co-founder sitting; releases at <= 8/20, archives at >= 12/20. Frozen batch announcement-v6.batch.json (sha bda8a6b7, 101736c2); inserted file announcement-v6.graded.json = frozen + grader-median difficulty only (all other fields byte-identical, checked). Keep list announcement-v6.keep.json (28 of 30; AN6-06 dropped at G2). Inserted 28 rows / 14 sets staged 2026-10-09. Live depth unchanged 5/5/11/11; projected with the cohort released 11/12/16/11 (Announcement 12/12/24/24; lower/easy then binds on Choose a Response). Sitting prepared and queued, not drawn (ssat-wv6-cofounder-2026-10-07 open). ANNOUNCEMENT-V6-RESULT.md; REGISTER section 5, 2026-10-09.",
       "stages": {
@@ -7638,6 +7638,11 @@
           "passed": true,
           "contentSha": "c7c9d36aed40e041ece94fdd07de60c421fef26730ac7ed8dd115e9402998819",
           "verdict": "Cross-item hunters: grader-a none above 3/30; grader-b \"superseded value is a distractor\" 12/30; grader-c \"key is the post-change arrangement\" 24/30 and \"why-items key the rationale given next\" 8/8. Both of grader-c's rules need the transcript to know which option is the change / the next sentence (grader-a: \"without the transcript you cannot tell which option is the default\"), so neither is a no-source rule; their no-source measure is the blind attack (35.6% vs 26.7%). Recorded as the conv-hard-v2 precedent was (17/17 last-mentioned): makes items easier for a listener who tracks only the final change; grid direction was dealt 4 latest / 4 earlier. Key uniquely longest 6/28, shortest 7/28 kept."
+        },
+        "human_sitting": {
+          "passed": true,
+          "run": "announcement-v6-cofounder-2026-10-20",
+          "verdict": "Co-founder sitting under PREREG-ANNOUNCEMENT-V6-2026-10-09.md (v5's rule): blind 8/20 = 40.0% vs 25.0% flat control; rule <= 8 releases (exactly on the line). 20/20 'Only defensible', 0 abstentions, 0 stale rows; pace 0.42 min/item over 8 min. 28 released (verified=true) 2026-10-20, 0 archived. toefl-form-depth: listening:announcement 12 sittings lower / 24 upper; lower/easy now bound at 11 by choose_response."
         }
       }
     },

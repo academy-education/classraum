@@ -190,6 +190,11 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-20** — **TOEFL ANNOUNCEMENTS v6: 28 RELEASED (`verified=true`) on the co-founder's sitting, under the rule pre-registered 2026-10-09 (`PREREG-ANNOUNCEMENT-V6`). Announcement depth: 12 sittings lower / 24 upper (projection was 5 -> 11). TOEFL lower/easy is now bound at 11 by Choose a Response.**
+  - Run `announcement-v6-cofounder-2026-10-20`: blind **8/20 = 40.0%** vs 25.0% flat control. The rule releases at <= 8, so this is **exactly on the line**: one more correct pick would have sent it to a second reader. n = 20 is about +/-13 points. 20/20 "Only defensible", 0 abstentions, 0 stale rows. Script `release-announcement-v6-2026-10-20.mjs` (refuses on any unmet precondition).
+  - **Pace 0.42 min/item (8 minutes for 20)**, fast for listening items read from a transcript. Not a bar; recorded because a quick sitting reads options more than passages.
+  - Notes: "B is a slightly indirect key"; "'this term' creates a small gap". Wording follow-ups for a person, not release blockers under the rule.
+
 - **2026-10-20** — **SSAT READING DRAFT 1: 36 RELEASED (`verified=true`) on the co-founder's release sitting, under the rule pre-registered before the draw (`80eef6bb`). ssat/reading: 186 drawable (was 150), 36 staged. Clean SSAT Reading forms: 4 (`admission-form-depth.ts`; form 5 reaches 20/40).**
   - Run `ssat-draft1-release-cofounder-2026-10-18`: blind **13/36 = 36.1%** vs 22.2% deal control (+13.9; guard >= 18/36 not reached; n = 36 is about +/-13 points, so "inconclusive", not clean). 36/36 "Only defensible", 0 abstentions, 0 stale rows. Script `release-ssat-reading-draft1-2026-10-20.mjs` (refuses on any unmet precondition; dry run first).
   - **Higher than his feedback sitting (6/36 = 16.7%)**, and in the conservative direction the prereg named: he had read 36 sibling items to the same brief. Three of his eight notes say the answer is "obvious" / "easy". Not a bar; recorded so the next batch's brief can answer it.
