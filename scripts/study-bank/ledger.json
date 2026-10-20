@@ -3984,6 +3984,33 @@
       }
     },
     {
+      "id": "ssat-reading-draft-2-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-2",
+      "contentSha": "eea9d108d99a48aab528c300cbd56d8e010d057afd5910aba6037e51c1a70412",
+      "status": "staged-for-human-edit",
+      "note": "Draft 1 route (owner B10), second batch: 6 passages x 6 = 36 items written in-session by Claude to SSAT-READING-DRAFT-1-AUTHOR-BRIEF.md (no agents, owner 2026-10-12), inserted verified=false with verify_meta.draft {status awaiting_edit, qid, qc.note, original_item}. Release only by the co-founder sitting pre-registered in ssat-reading-draft-2.RELEASE.PREREG.md (draft 1 rule unchanged), drawn after map-draft1b closes. contentSha = sha256 of ssat-reading-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "eea9d108d99a48aab528c300cbd56d8e010d057afd5910aba6037e51c1a70412",
+          "verdict": "merge.mjs (draft 1 checks + one negation per paragraph, no attitude-table word in a passage, five attitude directions, explanation/rationales quote their choice): 0 problems; each new check break-tested by a planted defect (6/6 fail, clean passes). Key slots A8 B7 C7 D7 E7 seeded; key uniquely longest 3/36. Edit screen ssat-draft.ts: 36/36 isDraft, hash, validates."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN. On draft 1 the AI options-only attack read 83.9% where the person read 16.7% / 36.1%; it does not decide this family."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author self-review only. The sitting supplies the exclusivity judgement."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
