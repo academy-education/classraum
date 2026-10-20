@@ -190,6 +190,11 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-20** — **MAP READING DRAFT 1: 24 READY (`verified=true`; MAP is not live, so no student sees them) on the co-founder's sitting under Amendment 1 (6 whole passages). map/reading: 24 drawable, 24 staged (P03 P04 P05 P08 P10 P11, for a later sitting).**
+  - Run `map-draft1-cofounder-2026-10-20`, drawn and trimmed to 24 before he opened it (`draw-map-reading-draft1-trimmed.mjs`; control 9/24, exactly at the redraw limit, not over it). Blind **5/24 = 20.8%**, every domain under its own control (Informational 2/9 vs 33.3%, Literary 2/9 vs 44.4%, Vocabulary 1/6 vs 33.3%). AI options-only had read this cohort at 84.3%: the third family where the model's number does not reach a person.
+  - 24/24 "Only defensible"; 23 authentic, 1 artificial (a P07 item). **Pace 0.30 min/item: 7 minutes for 24 reading items with passages.** Not a bar; a fast sitting reads options more than passages, so "only defensible" here is a lighter check than at SSAT's 3.87 min/item.
+  - Note: "A is the only answer, assuming the paragraph breaks": a passage formatting check for a person. The grader-reported difficulty problem (42 of 96 judgements easier than target) is untested by this sitting and still open for the launch decision.
+
 - **2026-10-20** — **TOEFL ANNOUNCEMENTS v6: 28 RELEASED (`verified=true`) on the co-founder's sitting, under the rule pre-registered 2026-10-09 (`PREREG-ANNOUNCEMENT-V6`). Announcement depth: 12 sittings lower / 24 upper (projection was 5 -> 11). TOEFL lower/easy is now bound at 11 by Choose a Response.**
   - Run `announcement-v6-cofounder-2026-10-20`: blind **8/20 = 40.0%** vs 25.0% flat control. The rule releases at <= 8, so this is **exactly on the line**: one more correct pick would have sent it to a second reader. n = 20 is about +/-13 points. 20/20 "Only defensible", 0 abstentions, 0 stale rows. Script `release-announcement-v6-2026-10-20.mjs` (refuses on any unmet precondition).
   - **Pace 0.42 min/item (8 minutes for 20)**, fast for listening items read from a transcript. Not a bar; recorded because a quick sitting reads options more than passages.
