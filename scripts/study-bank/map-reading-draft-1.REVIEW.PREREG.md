@@ -44,3 +44,15 @@ for a later sitting.
 - **Batch guard:** blind >= 12/24 (50%) -> nothing released, held whole.
 - Rules 2-4 unchanged (per item, per passage at 2 or more of 4, unanswered stay staged).
 - Known limit: n=24, about +/-17 points. Only the 24 reviewed items can be released by this sitting.
+
+## Amendment 2 (2026-10-21, before the second draw: the remaining 24 items, 0 of them seen)
+The first sitting (`map-draft1-cofounder-2026-10-20`, Amendment 1) released 24 (blind 5/24). The other six
+passages, **P03, P04, P05, P08, P10, P11** (24 items, 4 each), get their own sitting under the same rules:
+
+- **Draw:** the command above with run id `map-draft1b-cofounder-<draw date>`. The draw tool skips items the
+  reviewer has already seen, so it can only take these 24; confirm 24 rows, 4 per passage, none from the first six.
+- **Control:** best fixed-slot score on the 24, printed before he starts; above 9/24 -> delete and redraw.
+- **Batch guard:** blind >= 12/24 -> nothing released, held whole. Rules 2-4 unchanged (per item; per passage at
+  2 or more of 4 flagged; unanswered stay staged).
+- Known limit as before (n=24, about +/-17 points), plus: he has now read 24 sibling items written to the same
+  brief, the conservative direction for the guard.
