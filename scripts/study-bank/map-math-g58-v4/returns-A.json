@@ -1,0 +1,266 @@
+{
+ "MM4-N17": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"-0.75\",\"-0.6\"] (-0.75: not a multiple of the 0.2 step from -3; -0.6: 18 of 40 parts is nearly half the way, so the stop is near the midpoint 1, not negative)"
+  ],
+  "screener": {
+   "my_answer": "0.6",
+   "struck": [
+    "-0.75",
+    "-0.6"
+   ],
+   "free_elimination": "-0.75: not a multiple of the 0.2 step from -3; -0.6: 18 of 40 parts is nearly half the way, so the stop is near the midpoint 1, not negative",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "step 8/40 = 0.2; -3 + 3.6 = 0.6; 0.8 (19 parts) remains as a near neighbour"
+  }
+ },
+ "MM4-N10": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"8 1/3\",\"10 2/3\"] (8 1/3: barely above 4 x 2 = 8, ignores the cross terms; 10 2/3: 4 2/3 > 4.5 and 4.5 x 2.5 = 11.25)",
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "11 2/3",
+   "struck": [
+    "8 1/3",
+    "10 2/3"
+   ],
+   "free_elimination": "8 1/3: barely above 4 x 2 = 8, ignores the cross terms; 10 2/3: 4 2/3 > 4.5 and 4.5 x 2.5 = 11.25",
+   "extreme_single_bound": "4 2/3 x 2 1/2 > 4.5 x 2.5 = 11.25",
+   "plugback_tries": 4,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "14/3 x 5/2 = 35/3; key is the largest and partial-product errors underestimate; 11 1/3 survives the bound"
+  }
+ },
+ "MM4-N02": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"3 4/5\",\"4 1/6\",\"4 3/4\"] (3 4/5: 5/6 + 3/4 > 1, so the total exceeds 4 (and fifths cannot arise); 4 1/6: both fractions are at least 3/4, so the total exceeds 4 1/2; 4 3/4: 5/6 < 1, so t)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "4 7/12",
+   "struck": [
+    "3 4/5",
+    "4 1/6",
+    "4 3/4"
+   ],
+   "free_elimination": "3 4/5: 5/6 + 3/4 > 1, so the total exceeds 4 (and fifths cannot arise); 4 1/6: both fractions are at least 3/4, so the total exceeds 4 1/2; 4 3/4: 5/6 < 1, so the total is under 3 + 1 3/4",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "34/12 + 21/12 = 55/12; the two-sided bound 4 1/2 < sum < 4 3/4 leaves only the key"
+  }
+ },
+ "MM4-N11": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"14\",\"18\"] (14 and 18: the y-values 3 and -10 can be at most 3 + 10 = 13 apart)"
+  ],
+  "screener": {
+   "my_answer": "13",
+   "struck": [
+    "14",
+    "18"
+   ],
+   "free_elimination": "14 and 18: the y-values 3 and -10 can be at most 3 + 10 = 13 apart",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "same x, so 3 - (-10) = 13; 7 = 10 - 3 survives"
+  }
+ },
+ "MM4-N03": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"3\",\"1 5/8\",\"2 1/2\"] (3: 3/8 < 1/2, so the total is under 6 x 1/2 = 3; 1 5/8 = 13/8: the eighths numerator must be a multiple of 3; 2 1/2 = 20/8: same divisibility)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 2"
+  ],
+  "screener": {
+   "my_answer": "2 1/4",
+   "struck": [
+    "3",
+    "1 5/8",
+    "2 1/2"
+   ],
+   "free_elimination": "3: 3/8 < 1/2, so the total is under 6 x 1/2 = 3; 1 5/8 = 13/8: the eighths numerator must be a multiple of 3; 2 1/2 = 20/8: same divisibility",
+   "extreme_single_bound": null,
+   "plugback_tries": 2,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "18/8 = 2 1/4; the half-litre bound plus a multiple of 3/8 leaves only the key"
+  }
+ },
+ "MM4-N20": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"96\",\"48\"] (96: more bracelets than the 48 red beads; 48: 180 is not divisible by 48)"
+  ],
+  "screener": {
+   "my_answer": "12",
+   "struck": [
+    "96",
+    "48"
+   ],
+   "free_elimination": "96: more bracelets than the 48 red beads; 48: 180 is not divisible by 48",
+   "extreme_single_bound": null,
+   "plugback_tries": 3,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "gcd(48,144,180) = 12; descending plug-back fails 96 and 48, then hits 12 on the third try (each check is a quick divisibility test)"
+  }
+ },
+ "MM4-N19": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"4.54\",\"5.95\",\"4.05\"] (4.54: any sum of the printed decimal parts ends in 0 or 5; 5.95: every number lies in [-3, 2.25], so the distance is under 5.25; 4.05: the least is -2 3/4 and t)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "4.95",
+   "struck": [
+    "4.54",
+    "5.95",
+    "4.05"
+   ],
+   "free_elimination": "4.54: any sum of the printed decimal parts ends in 0 or 5; 5.95: every number lies in [-3, 2.25], so the distance is under 5.25; 4.05: the least is -2 3/4 and the greatest is at least 1.8, so the distance is at least 4.55",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "2.2 - (-2.75) = 4.95; the hundredths digit plus two magnitude bounds leave only the key"
+  }
+ },
+ "MM4-N14": {
+  "screen_fails": [
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "-5.5",
+   "struck": [],
+   "free_elimination": "none",
+   "extreme_single_bound": "two reflections give coordinates of size 2 and 3.5, so the sum is at least -5.5",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "C = (-2, -3.5); the key is the most negative option and every missed flip raises the sum"
+  }
+ },
+ "MM4-N05": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"11/12\",\"1 7/12\",\"1 5/8\"] (7/4 x 5/6 has denominator 24 and a numerator (35) that is odd and not a multiple of 3, so it cannot reduce; only 1 11/24 has denominator 24)",
+   "S-R5 key identifiable without solving"
+  ],
+  "screener": {
+   "my_answer": "1 11/24",
+   "struck": [
+    "11/12",
+    "1 7/12",
+    "1 5/8"
+   ],
+   "free_elimination": "7/4 x 5/6 has denominator 24 and a numerator (35) that is odd and not a multiple of 3, so it cannot reduce; only 1 11/24 has denominator 24",
+   "extreme_single_bound": null,
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "35/24 = 1 11/24; the denominator alone picks the key, which is a legality tell."
+  }
+ },
+ "MM4-N08": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"17\",\"21\"] (0.35 < 0.4 so the count exceeds 8.5/0.4 = 21.25, killing 17 and 21)",
+   "S-R6 plug-back routine at try 1"
+  ],
+  "screener": {
+   "my_answer": "24",
+   "struck": [
+    "17",
+    "21"
+   ],
+   "free_elimination": "0.35 < 0.4 so the count exceeds 8.5/0.4 = 21.25, killing 17 and 21",
+   "extreme_single_bound": null,
+   "plugback_tries": 1,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "8.5/0.35 = 24.28 so 24; key is the largest option, and on a most-cups stem checking it first (24 x 0.35 = 8.4 <= 8.5) finishes in one try."
+  }
+ },
+ "MM4-N07": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"5 3/4\",\"4 7/8\"] (each glass takes more than 1 cup so less than 5 is left, killing 5 3/4; 6 x 1/8 = 3/4 so the answer is in quarters and cannot end in 7/8)",
+   "S-R8 one-sided extreme key"
+  ],
+  "screener": {
+   "my_answer": "4 1/4",
+   "struck": [
+    "5 3/4",
+    "4 7/8"
+   ],
+   "free_elimination": "each glass takes more than 1 cup so less than 5 is left, killing 5 3/4; 6 x 1/8 = 3/4 so the answer is in quarters and cannot end in 7/8",
+   "extreme_single_bound": "left < 11 - 6 = 5",
+   "plugback_tries": null,
+   "one_sided": true,
+   "option_pair_tell": null,
+   "note": "6 x 1 1/8 = 6 3/4, so 11 - 6 3/4 = 4 1/4; key is the smallest and all the errors under-subtract; 4 1/2 survives."
+  }
+ },
+ "MM4-N16": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"133\",\"126\"] (rows of 4 force an even total, killing 133 (odd); the last two digits 26 are not a multiple of 4, killing 126)"
+  ],
+  "screener": {
+   "my_answer": "144",
+   "struck": [
+    "133",
+    "126"
+   ],
+   "free_elimination": "rows of 4 force an even total, killing 133 (odd); the last two digits 26 are not a multiple of 4, killing 126",
+   "extreme_single_bound": null,
+   "plugback_tries": 4,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "LCM 36, and the only multiple in 115-150 is 144; 120 also dies to the digit-sum test for 9, so divisibility tests on the options solve it."
+  }
+ },
+ "MM4-N06": {
+  "screen_fails": [
+   "S-R4 3 struck without solving: [\"100\",\"82\",\"75\"] (Monday holds 100 and Tuesday is not empty, killing 100; Tuesday is more than 1/4 full (over 30 books) so the difference is under 70, killing 82 and 75)",
+   "S-R5 key identifiable without solving",
+   "S-R10 single bound kills all (difference < 100 - 30 = 70 because 3/8 > 1/4)"
+  ],
+  "screener": {
+   "my_answer": "55",
+   "struck": [
+    "100",
+    "82",
+    "75"
+   ],
+   "free_elimination": "Monday holds 100 and Tuesday is not empty, killing 100; Tuesday is more than 1/4 full (over 30 books) so the difference is under 70, killing 82 and 75",
+   "extreme_single_bound": "difference < 100 - 30 = 70 because 3/8 > 1/4",
+   "plugback_tries": null,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "100 - 45 = 55; key is the smallest and every distractor sits above a quarter-full bound."
+  }
+ },
+ "MM4-N12": {
+  "screen_fails": [
+   "S-R4 2 struck without solving: [\"12.48\",\"18.72\"] (dividing by 0.8 < 1 gives more than 15.6, killing 12.48; 18.72 x 0.8 has a nonzero thousandths digit (2 x 8) so it cannot equal 15.6)"
+  ],
+  "screener": {
+   "my_answer": "19.5",
+   "struck": [
+    "12.48",
+    "18.72"
+   ],
+   "free_elimination": "dividing by 0.8 < 1 gives more than 15.6, killing 12.48; 18.72 x 0.8 has a nonzero thousandths digit (2 x 8) so it cannot equal 15.6",
+   "extreme_single_bound": null,
+   "plugback_tries": 4,
+   "one_sided": false,
+   "option_pair_tell": null,
+   "note": "156/8 = 19.5; 19.35 also dies to a hundredths-digit check (0.8 x 19.35 = 15.48), so last-digit reasoning nearly isolates the key."
+  }
+ }
+}

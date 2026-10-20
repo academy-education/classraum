@@ -1,0 +1,111 @@
+{
+ "screened": 40,
+ "fails": {
+  "MM4-N40": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N17": [
+   "S-R4 2 struck without solving: [\"-0.75\",\"-0.6\"] (-0.75: not a multiple of the 0.2 step from -3; -0.6: 18 of 40 parts is nearly half the way, so the stop is near the midpoint 1, not negative)"
+  ],
+  "MM4-N10": [
+   "S-R4 2 struck without solving: [\"8 1/3\",\"10 2/3\"] (8 1/3: barely above 4 x 2 = 8, ignores the cross terms; 10 2/3: 4 2/3 > 4.5 and 4.5 x 2.5 = 11.25)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N02": [
+   "S-R4 3 struck without solving: [\"3 4/5\",\"4 1/6\",\"4 3/4\"] (3 4/5: 5/6 + 3/4 > 1, so the total exceeds 4 (and fifths cannot arise); 4 1/6: both fractions are at least 3/4, so the total exceeds 4 1/2; 4 3/4: 5/6 < 1, so t)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM4-N31": [
+   "S-R4 2 struck without solving: [\"1.65\",\"1.73\"] (1.65: half of 3.3, and 1.65^2 < 3; 1.73: the familiar root of 3, and 3.3 > 3)"
+  ],
+  "MM4-N27": [
+   "S-R4 3 struck without solving: [\"4.74\",\"8.34\",\"5.91\"] (all three: 1.36 > 1.2, so 4.2 - 1.36 < 3 and the result is below 1.5 x 3 = 4.5)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (|1.36 - 4.2| < 3, so the result < 4.5)"
+  ],
+  "MM4-N25": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MM4-N11": [
+   "S-R4 2 struck without solving: [\"14\",\"18\"] (14 and 18: the y-values 3 and -10 can be at most 3 + 10 = 13 apart)"
+  ],
+  "MM4-N03": [
+   "S-R4 3 struck without solving: [\"3\",\"1 5/8\",\"2 1/2\"] (3: 3/8 < 1/2, so the total is under 6 x 1/2 = 3; 1 5/8 = 13/8: the eighths numerator must be a multiple of 3; 2 1/2 = 20/8: same divisibility)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MM4-N20": [
+   "S-R4 2 struck without solving: [\"96\",\"48\"] (96: more bracelets than the 48 red beads; 48: 180 is not divisible by 48)"
+  ],
+  "MM4-N35": [
+   "S-R4 2 struck without solving: [\"7\",\"2\"] (7: sqrt36 = 6 and the repeating 0.555... are clearly rational; 2: pi and the two growing-run decimals are irrational, so at least 3)"
+  ],
+  "MM4-N19": [
+   "S-R4 3 struck without solving: [\"4.54\",\"5.95\",\"4.05\"] (4.54: any sum of the printed decimal parts ends in 0 or 5; 5.95: every number lies in [-3, 2.25], so the distance is under 5.25; 4.05: the least is -2 3/4 and t)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM4-N14": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N33": [
+   "S-R4 2 struck without solving: [\"2.24\",\"2.50\"] (sqrt2 > 1 and sqrt3 > 1.5 so the sum exceeds 2.5, killing 2.24 and 2.50)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N30": [
+   "S-R4 2 struck without solving: [\"13.3\",\"25.2\"] (9 floors at least 2.8 m each gives at least 25.2, and strictly more because some floors are taller, killing 13.3 and 25.2)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N05": [
+   "S-R4 3 struck without solving: [\"11/12\",\"1 7/12\",\"1 5/8\"] (7/4 x 5/6 has denominator 24 and a numerator (35) that is odd and not a multiple of 3, so it cannot reduce; only 1 11/24 has denominator 24)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM4-N08": [
+   "S-R4 2 struck without solving: [\"17\",\"21\"] (0.35 < 0.4 so the count exceeds 8.5/0.4 = 21.25, killing 17 and 21)",
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MM4-N26": [
+   "S-R4 2 struck without solving: [\"-10.2\",\"-5.8\"] (3.5(1.6) < 8 so the total is above -10, killing -10.2; 3.5(1.6) > 3.5(1.5) = 5.25 so the total is below -7.25, killing -5.8)"
+  ],
+  "MM4-N38": [
+   "S-R4 2 struck without solving: [\"-6\",\"-4\"] (8^-2 = 2^-6 and dividing by 32 > 1 makes the exponent smaller than -6, killing -6 and -4)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N07": [
+   "S-R4 2 struck without solving: [\"5 3/4\",\"4 7/8\"] (each glass takes more than 1 cup so less than 5 is left, killing 5 3/4; 6 x 1/8 = 3/4 so the answer is in quarters and cannot end in 7/8)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N24": [
+   "S-R4 2 struck without solving: [\"2 13/24\",\"4 1/12\"] (n = 1 3/8 + 2 5/6 > 3 3/8, killing 2 13/24; 9/24 + 20/24 has an odd numerator so the denominator stays 24, killing 4 1/12)"
+  ],
+  "MM4-N16": [
+   "S-R4 2 struck without solving: [\"133\",\"126\"] (rows of 4 force an even total, killing 133 (odd); the last two digits 26 are not a multiple of 4, killing 126)"
+  ],
+  "MM4-N32": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N06": [
+   "S-R4 3 struck without solving: [\"100\",\"82\",\"75\"] (Monday holds 100 and Tuesday is not empty, killing 100; Tuesday is more than 1/4 full (over 30 books) so the difference is under 70, killing 82 and 75)",
+   "S-R5 key identifiable without solving",
+   "S-R10 single bound kills all (difference < 100 - 30 = 70 because 3/8 > 1/4)"
+  ],
+  "MM4-N29": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N39": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N21": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MM4-N12": [
+   "S-R4 2 struck without solving: [\"12.48\",\"18.72\"] (dividing by 0.8 < 1 gives more than 15.6, killing 12.48; 18.72 x 0.8 has a nonzero thousandths digit (2 x 8) so it cannot equal 15.6)"
+  ],
+  "MM4-N36": [
+   "S-R4 3 struck without solving: [\"2 2/5\",\"2/5\",\"1/5\"] (the negative exponent makes the value less than 1, killing 2 2/5; the result is (2/5)^2, a square, so the numerator and denominator are perfect squares, killing)",
+   "S-R5 key identifiable without solving",
+   "S-R7 option pair 2/5 and 4/25 (squared; 2 is the printed exponent)",
+   "S-R8 one-sided extreme key"
+  ]
+ }
+}

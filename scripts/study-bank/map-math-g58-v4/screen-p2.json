@@ -1,0 +1,77 @@
+{
+ "screened": 29,
+ "fails": {
+  "MM4-N02": [
+   "S-R4 2 struck without solving: [\"3 1/4\",\"3 3/5\"] (3 1/4: denominator 4 cannot arise from sixths plus tenths (LCD 30); 3 3/5: 1/6 + 3/10 < 0.2 + 0.3 = 1/2)"
+  ],
+  "MM4-N03": [
+   "S-R4 3 struck without solving: [\"3.17\",\"2.9\",\"2.905\"] (3.17 > 3.1 printed cap; 2.9 < 2.95 printed floor; 2.905 < 2.95 printed floor)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM4-N05": [
+   "S-R7 option pair 128 and 112, x 7/8 (8 printed; 8-1 over 8)"
+  ],
+  "MM4-N06": [
+   "S-R4 2 struck without solving: [\"383\",\"297\"] (383 and 297: 9/10 and 2/5 of 550 are both multiples of 5, so the difference ends in 0 or 5)"
+  ],
+  "MM4-N07": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N08": [
+   "S-R4 2 struck without solving: [\"27\",\"28\"] (27 and 28: 30 cups x 0.35 = 10.5 <= 10.9, so at least 30 fill)",
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N10": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N14": [
+   "S-R7 option pair 3.5 and -3.5, x(-1) (-1 printed)"
+  ],
+  "MM4-N16": [
+   "S-R4 2 struck without solving: [\"7.35\",\"12.25\"] (7.35: the distance is more than Maya's 10.25 below zero; 12.25: .25 + .9 makes the tenths digit 1, not 2)",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (distance > 10.25 + 2 = 12.25)"
+  ],
+  "MM4-N24": [
+   "S-R4 3 struck without solving: [\"7.16\",\"9.8\",\"9.9\"] (7.16: dividing 6.2 by 0.8 < 1 gives more than 6.2, so the sum > 8.4; 9.8 and 9.9: 62/8 = 31/4 ends in .25 or .75, so the sum ends in 5 hundredths)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N25": [
+   "S-R4 2 struck without solving: [\"-16.6\",\"-16.5\"] (-16.6 and -16.5: 6.8 x 5/8 = 0.85 x 5 ends in 5 hundredths, so the sum must too)"
+  ],
+  "MM4-N26": [
+   "S-R4 2 struck without solving: [\"-6.55\",\"-4.48\"] (-6.55: 1.9/0.4 < 5 and the product < 0.2, so the magnitude < 5.2; -4.48: .x5 +/- .x8 ends in 3 or 7 hundredths)"
+  ],
+  "MM4-N27": [
+   "S-R4 2 struck without solving: [\"-6.56\",\"-11.78\"] (-6.56: magnitude > 5.48 + 2.7 since dividing by 0.4 enlarges; -11.78: 27/4 ends in .75, and .48 + .75 ends in 3 hundredths)"
+  ],
+  "MM4-N29": [
+   "S-R4 2 struck without solving: [\"-4.68\",\"-5.02\"] (-4.68 and -5.02: 4.8 x 0.6 ends in 8 hundredths and .25 + .x8 ends in 3, so the answer ends in 3)"
+  ],
+  "MM4-N30": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM4-N31": [
+   "S-R10 single bound kills all (sqrt(7.6) > 2.75 since 2.75^2 = 7.5625)"
+  ],
+  "MM4-N32": [
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (7 x 2.236 > 7 x 2.23 = 15.61)"
+  ],
+  "MM4-N33": [
+   "S-R10 single bound kills all (sqrt(20) > 4.46 since 4.46^2 = 19.89)"
+  ],
+  "MM4-N36": [
+   "S-R4 3 struck without solving: [\"15\",\"12.5\",\"13.5\"] (15, 12.5, 13.5: 2^-3 = 1/8 and 75 is odd, so 75/8 needs three decimal places; none of these has them)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM4-N38": [
+   "S-R4 2 struck without solving: [\"-17\",\"-14\"] (-17 and -14: 8 = 2^3 and 32^3 = 2^15, so both exponents are multiples of 3 and so is the result)"
+  ],
+  "MM4-N40": [
+   "S-R8 one-sided extreme key"
+  ]
+ }
+}
