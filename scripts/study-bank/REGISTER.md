@@ -190,6 +190,12 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-20** — **ACT ENGLISH v9: HELD. Production of Writing pooled 10/24 (5 + 5) against a release line of <= 9; nothing flips, no further sitting pre-registered. Owner decision.** Prereg `act-english-v9.PoW-SECOND-SITTING.PREREG.md` (`40832da0`).
+  - Second sitting `act-en9-pow2-cofounder-2026-10-20`: **5/12 = 41.7%** vs 25.0% flat control, the same as his first 12. Pooled **10/24 = 41.7%**, one item into the HOLD band (10-14). CSE stays clean (9/24); KoL 1/4.
+  - Recorded weakness, as the prereg said at the time: this is one reader twice, not two readers. The two sittings agree with each other (5 and 5), which reads as a stable signal about this reader on these items rather than noise.
+  - **Pace 0.40 min/item: 5 minutes for 12.** Note: "A is the answer but it's a slightly loose fit."
+  - Options for the owner (none taken): a genuine second reader on a fresh 12 (the original design); split the cohort and release CSE alone, which needs its own pre-registration because v9's rule releases the 130 as one cohort; or archive PoW and re-author it.
+
 - **2026-10-20** — **MAP-MATH-G58-V5P (Number Systems end-position PILOT, 12 items, every key S or L): 3 of 12 survive screen + graders -> pre-registered decision OWNER (1-3). Nothing inserted (measurement only).** Prereg `95abbbc1`.
   - **End-position survival tripled but is still under the bar:** survive both **3/12 = 25%** (v4's end-position items: 2/24 = 8.3%, and that with a return). Screen pass 1: **5/12** (v4 end keys: 4/24). Kept by graders: 5/12. Cold answers on key 24/24; coldcheck 0 changed.
   - **Two of the five screen survivors died on tier labels, not guessability:** N04 and N05 rated too hard for their tier by BOTH graders (N04 low -> mid, N05 mid -> high). With tiers set right, 5/12 = 42% would have survived. The pilot dropped them as pre-registered; relabelling after the fact is not allowed.
