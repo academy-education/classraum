@@ -56,3 +56,5 @@ passages, **P03, P04, P05, P08, P10, P11** (24 items, 4 each), get their own sit
   2 or more of 4 flagged; unanswered stay staged).
 - Known limit as before (n=24, about +/-17 points), plus: he has now read 24 sibling items written to the same
   brief, the conservative direction for the guard.
+- Draw counts (2026-10-21, before any row existed): the command above asks 18/18/12 and refused, since only the
+  unseen 9 / 9 / 6 remain; drawn as `"Informational Text:9,Literary Text:9,Vocabulary:6"`. Same 24 items.
