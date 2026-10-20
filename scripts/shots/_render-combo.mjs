@@ -136,8 +136,8 @@ const COVER_CSS = `
 `
 
 // ---------- page 2: two ways + combined contents ----------
-// each column: label, title, a picture (shown whole), three numbers, page range. No paragraph.
-const card = (c, pic) => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><div class="cc-g">${pic}</div><div class="cc-f">${c.f.map(([b, t]) => `<div><b>${b}</b><span>${t}</span></div>`).join('')}</div><p class="cc-go">${c.go}</p></div>`
+// each column: label, title, one browser window (both the same size), page range. No paragraph, no numbers.
+const card = (c, pic) => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><div class="cc-g">${pic}</div><p class="cc-go">${c.go}</p></div>`
 // one browser window per column, full column width, so more of each screen shows
 const PIC_STUDY = `<div class="shot win"><img src="__IMG_stats__" alt=""></div>`
 const PIC_CAMPS = `<div class="shot win"><img src="__IMG_classrooms__" alt=""></div>`
@@ -169,11 +169,10 @@ const P2_CSS = `
   .combo-two .cc-t{ margin:2mm 0 0; font-family:var(--display); font-weight:800; font-size:14pt; line-height:1.15; color:var(--ink); word-break:keep-all; }
   .combo-two .cc-g{ margin-top:4.5mm; }
   .combo-two .cc-g .shot.win{ border:1px solid var(--line-2); border-radius:6px; overflow:hidden; box-shadow:0 6px 16px rgba(15,23,42,.10); }
-  .combo-two .cc-g .shot.win img{ display:block; width:100%; height:auto; }
-  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:auto; padding-top:5.5mm; }   /* bottom-aligned, so the number rows line up across columns whatever each screenshot's height */
-  .combo-two .cc-f b{ display:block; font-family:var(--display); font-weight:800; font-size:17pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
-  .combo-two .cc-f span{ display:block; margin-top:1.4mm; font-size:7.8pt; line-height:1.35; color:var(--muted); word-break:keep-all; }
-  .combo-two .cc-go{ margin:0; padding-top:5mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
+  /* both windows the same size: one 2:1 screen area, each screenshot anchored top-left (Study loses ~5% at the
+     bottom, Classrooms ~9% at the right) */
+  .combo-two .cc-g .shot.win img{ display:block; width:100%; aspect-ratio:2 / 1; object-fit:cover; object-position:left top; }
+  .combo-two .cc-go{ margin:0; padding-top:4mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
   .combo-toc .tpart{ font-size:8.4pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); padding-bottom:1.6mm; margin-bottom:1.2mm; border-bottom:1px solid var(--line); }
 `
 
