@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
   const BUDGET_MS = 240_000
   const started = Date.now()
   const summary = await withHeartbeat('refresh-test-specs', async () => {
-    const targets = await listSpecTargetsForCron()
+    const targets = await listSpecTargetsForCron('format')
     const results = []
     let remaining = 0
     for (const t of targets) {

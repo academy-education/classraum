@@ -35,7 +35,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
 import { verifyAndCorrect, type Question } from '@/lib/test-verify'
-import { describeExtractionError, orderByLeastRecentlyAttempted } from '@/lib/test-spec-refresh-summary'
+import { describeExtractionError, orderByLeastRecentlyAttempted, isNonMcSection, cronSkipsFamily, normalizeDifficultyMix } from '@/lib/test-spec-refresh-summary'
 
 /** Refresh target — uses arbitrary strings so any test works, not
  *  limited to the 8 hardcoded TestFamily values. */
@@ -70,11 +70,11 @@ export const SectionSpecSchema = z.object({
   // .nullish(), not .optional(): the schema is sent non-strict, so a model
   // that has nothing to say emits `null`, and .optional() rejects null —
   // which fails the whole object for a field we treat as optional anyway.
-  difficultyMix: z.object({
+  difficultyMix: z.preprocess(normalizeDifficultyMix, z.object({
     easy: z.number().min(0).max(1),
     medium: z.number().min(0).max(1),
     hard: z.number().min(0).max(1),
-  }).nullish().transform(v => v ?? undefined),
+  }).nullish()).transform(v => v ?? undefined),
   hardItemFraming_en: z.string().nullish().transform(v => v ?? undefined),
   hardItemFraming_ko: z.string().nullish().transform(v => v ?? undefined),
 })
@@ -89,6 +89,8 @@ interface RefreshResult {
 
 interface SamplesResult extends RefreshResult {
   examplesAdded: number
+  /** ran correctly, nothing usable found (see RefreshOutcome.empty) */
+  empty?: boolean
 }
 
 const FORMAT_PROMPT = (target: RefreshTarget) => `
@@ -361,6 +363,10 @@ export async function refreshTestSpecExamples(
 ): Promise<SamplesResult> {
   const { family, sectionKey } = target
   const targetCount = opts.targetCount ?? 8
+  // Essay / speaking sections have no MC items; this pass collects MC only and could never succeed there.
+  if (isNonMcSection(sectionKey)) {
+    return { family, sectionKey, ok: true, notes: 'skipped — no multiple-choice items in this section', sources: [], examplesAdded: 0 }
+  }
 
   if (!opts.force) {
     const { data: existing } = await dbAdmin
@@ -406,7 +412,7 @@ export async function refreshTestSpecExamples(
   }
 
   if (!researchText) {
-    return { family, sectionKey, ok: false, notes: 'no samples returned', sources: citedUrls, examplesAdded: 0 }
+    return { family, sectionKey, ok: true, empty: true, notes: 'no samples returned', sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 2: extract to structured items
@@ -431,7 +437,7 @@ export async function refreshTestSpecExamples(
   const mcItems = items.filter(it => it.choices.length >= 4 && it.choices.length <= 5)
   if (mcItems.length === 0) {
     await markAttempt(family, sectionKey, `samples: extracted ${items.length} items but none were MC`)
-    return { family, sectionKey, ok: false, notes: `${items.length} items extracted, 0 MC`, sources: citedUrls, examplesAdded: 0 }
+    return { family, sectionKey, ok: true, empty: true, notes: `${items.length} items extracted, 0 MC`, sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 3: verify each item's answer key + actual difficulty via the
@@ -470,7 +476,7 @@ export async function refreshTestSpecExamples(
 
   if (verifiedHard.length === 0) {
     await markAttempt(family, sectionKey, `examples: 0 of ${mcItems.length} MC items verified as hard`)
-    return { family, sectionKey, ok: false, notes: 'no items verified as hard', sources: citedUrls, examplesAdded: 0 }
+    return { family, sectionKey, ok: true, empty: true, notes: 'no items verified as hard', sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 4: format as inline exemplars (matches the hand-curated format
@@ -626,16 +632,9 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
  * Family is derived from the root test topic's slug ("test-sat" → "sat",
  * "test-aleks" → "aleks"). Section key is the leaf's English name.
  */
-/** Families to skip during automatic refresh. The hardcoded baselines
- *  for these are known to be more accurate than what web search
- *  returns — typically because the test maker's docs describe the
- *  test per-module rather than per-section (Digital SAT), so the
- *  refresh's sanity check would reject the extraction anyway and
- *  just waste API calls. Manual refresh via the admin endpoint still
- *  works (no filter applied there). */
-const SKIP_FAMILIES_IN_CRON = new Set<string>(['sat'])
-
-export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean } = {}): Promise<RefreshTarget[]> {
+/** Families skipped by the crons: see cronSkipsFamily in test-spec-refresh-summary.ts (SAT for both passes;
+ *  TOEFL for the format pass). Manual refresh via the admin endpoint passes includeSkipped. */
+export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean; kind?: 'format' | 'examples' } = {}): Promise<RefreshTarget[]> {
   // Test-prep leaves are topics whose parent is a "test-*" root.
   const { data: leaves } = await dbAdmin
     .from('study_topics')
@@ -662,7 +661,7 @@ export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean 
     // "SAT" as if it were a single section would waste API calls.
     if (!parent.slug.startsWith('test-') || parent.slug === 'test-prep') continue
     const family = parent.slug.replace(/^test-/, '')
-    if (!opts.includeSkipped && SKIP_FAMILIES_IN_CRON.has(family)) continue
+    if (!opts.includeSkipped && cronSkipsFamily(opts.kind ?? 'format', family)) continue
     targets.push({
       family,
       sectionKey: leaf.name_en,
@@ -679,8 +678,8 @@ export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean 
  * order is kept and the error logged — ordering is a fairness measure,
  * not a correctness one, and must not stop the refresh.
  */
-export async function listSpecTargetsForCron(): Promise<RefreshTarget[]> {
-  const targets = await listAllSpecTargetsFromDB()
+export async function listSpecTargetsForCron(kind: 'format' | 'examples' = 'format'): Promise<RefreshTarget[]> {
+  const targets = await listAllSpecTargetsFromDB({ kind })
   const { data, error } = await dbAdmin
     .from('study_test_specs')
     .select('family, section_key, last_attempted_at')

@@ -9,6 +9,10 @@ export interface RefreshOutcome {
   ok: boolean
   notes?: string
   examplesAdded?: number
+  /** The target ran correctly and found nothing usable (no MC items, none verified hard). Counted as ok,
+   *  reported separately: on 2026-10-20 these were 9 of the examples pass's 14 "failures", a red job
+   *  every day for an answer that was simply "nothing to add". */
+  empty?: boolean
 }
 
 export interface RefreshSummary {
@@ -23,6 +27,9 @@ export interface RefreshSummary {
   status: RunStatus
   /** First few failure notes, so the heartbeat says WHY, not just how many. */
   failures: string[]
+  /** Ran fine, found nothing usable. Not failures; listed so they stay visible. */
+  empty: number
+  emptyNotes: string[]
 }
 
 const isFreshSkip = (r: RefreshOutcome) => r.ok && /skipped/.test(r.notes ?? '')
@@ -52,7 +59,48 @@ export function summarizeRefresh(
     failures: failedRows
       .slice(0, 8)
       .map(r => `${r.family ?? '?'}/${r.sectionKey ?? '?'}: ${(r.notes ?? '').slice(0, 120)}`),
+    empty: results.filter(r => r.ok && r.empty).length,
+    emptyNotes: results
+      .filter(r => r.ok && r.empty)
+      .slice(0, 8)
+      .map(r => `${r.family ?? '?'}/${r.sectionKey ?? '?'}: ${(r.notes ?? '').slice(0, 120)}`),
   }
+}
+
+/**
+ * Sections with no multiple-choice items at all (essays, speaking). The examples pass collects MC items only,
+ * so it can never succeed on them: 2026-10-20 failed toeic/Writing, ssat/Writing and ielts/Speaking for exactly
+ * this. "Reading and Writing" (SAT) is MC and is not matched.
+ */
+export function isNonMcSection(sectionKey: string): boolean {
+  return /\b(writing|speaking|essay)\b/i.test(sectionKey) && !/reading/i.test(sectionKey)
+}
+
+/**
+ * Families the FORMAT cron skips. Their makers document the test per module, so web search returns per-module
+ * counts and the sanity check rejects every extraction (SAT since 2026-09; TOEFL failed it daily through
+ * 2026-10-20: "extracted 20 Q vs baseline 48", "28 vs 48"). The hardcoded baselines stay; the admin endpoint
+ * still refreshes them by hand. The examples cron is not affected.
+ */
+const FORMAT_SKIP = new Set(['sat', 'toefl'])
+const EXAMPLES_SKIP = new Set(['sat'])
+export function cronSkipsFamily(kind: 'format' | 'examples', family: string): boolean {
+  return (kind === 'format' ? FORMAT_SKIP : EXAMPLES_SKIP).has(family)
+}
+
+/**
+ * A difficulty mix given in percent (30/50/20) instead of fractions. IELTS Listening failed the format refresh
+ * on 2026-10-20 with "difficultyMix.hard: Number must be less than or equal to 1". Converted only when every
+ * value is a number, at least one is above 1, and they sum to about 100; anything else is left for the schema.
+ */
+export function normalizeDifficultyMix(v: unknown): unknown {
+  if (!v || typeof v !== 'object') return v
+  const o = v as Record<string, unknown>
+  const vals = ['easy', 'medium', 'hard'].map(k => o[k])
+  if (!vals.every(x => typeof x === 'number')) return v
+  const nums = vals as number[], sum = nums.reduce((a, b) => a + b, 0)
+  if (!nums.some(x => x > 1) || sum < 90 || sum > 110) return v
+  return { ...o, easy: nums[0] / 100, medium: nums[1] / 100, hard: nums[2] / 100 }
 }
 
 /**

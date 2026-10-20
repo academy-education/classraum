@@ -7,6 +7,9 @@ import {
   summarizeRefresh,
   orderByLeastRecentlyAttempted,
   describeExtractionError,
+  isNonMcSection,
+  cronSkipsFamily,
+  normalizeDifficultyMix,
 } from '../test-spec-refresh-summary'
 
 jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: {} }))
@@ -124,5 +127,64 @@ describe('examples pass sends the passage to the answer-key verifier', () => {
     const src = readFileSync(join(process.cwd(), 'src/lib/test-spec-refresh.ts'), 'utf8')
     expect(src).toMatch(/mcItems\.map\(it => \(\{\n\s+passage: it\.passage,/)
     expect(src).toMatch(/passage: z\.string\(\)\.nullish\(\)/)
+  })
+})
+
+
+describe('2026-10-20: the failures that were answers, not errors', () => {
+  const empty = (notes: string) => ({ ok: true, empty: true, notes })
+  it('reproduces the 2026-10-20 examples run: 9 "nothing usable" results no longer fail the job', () => {
+    // 15 attempted: 2 added examples, 9 found nothing usable, 4 real errors. Before: 14 failures -> failed.
+    const s = summarizeRefresh([...rep(pass, 2), ...rep(empty('no items verified as hard'), 9), ...rep(fail, 4)], 28)
+    expect(s.failed).toBe(4)
+    expect(s.empty).toBe(9)
+    expect(s.emptyNotes.length).toBe(8)
+    expect(s.status).toBe('degraded')
+  })
+  it('an empty result is not a fresh skip: it costs a model call and stays in the attempted denominator', () => {
+    const s = summarizeRefresh([empty('0 items extracted, 0 MC'), fail], 0)
+    expect(s.attempted).toBe(2)
+    expect(s.skippedFresh).toBe(0)
+  })
+  it('all empty is ok, not failed', () => {
+    expect(summarizeRefresh(rep(empty('no samples returned'), 5), 0).status).toBe('ok')
+  })
+  it('a failure flagged empty by mistake is still a failure (ok decides)', () => {
+    expect(summarizeRefresh([{ ok: false, empty: true, notes: 'x' }], 0).failed).toBe(1)
+  })
+})
+
+describe('isNonMcSection', () => {
+  it.each(['Writing', 'Speaking', 'Essay', 'ACT Writing', 'TOEIC Speaking'])('%s has no MC items', k => expect(isNonMcSection(k)).toBe(true))
+  it.each(['Reading and Writing', 'Reading', 'Listening', 'Verbal Reasoning', 'Mathematics', 'English'])('%s is MC', k => expect(isNonMcSection(k)).toBe(false))
+})
+
+describe('cronSkipsFamily', () => {
+  it('TOEFL is skipped by the format cron only (per-module docs fail the sanity check every day)', () => {
+    expect(cronSkipsFamily('format', 'toefl')).toBe(true)
+    expect(cronSkipsFamily('examples', 'toefl')).toBe(false)
+  })
+  it('SAT is skipped by both; IELTS by neither', () => {
+    expect(cronSkipsFamily('format', 'sat') && cronSkipsFamily('examples', 'sat')).toBe(true)
+    expect(cronSkipsFamily('format', 'ielts') || cronSkipsFamily('examples', 'ielts')).toBe(false)
+  })
+})
+
+describe('normalizeDifficultyMix', () => {
+  it('converts a percent mix (the 2026-10-20 IELTS Listening failure) to fractions', () => {
+    expect(normalizeDifficultyMix({ easy: 30, medium: 50, hard: 20 })).toEqual({ easy: 0.3, medium: 0.5, hard: 0.2 })
+  })
+  it('leaves fractions, nulls and nonsense alone for the schema to judge', () => {
+    expect(normalizeDifficultyMix({ easy: 0.3, medium: 0.5, hard: 0.2 })).toEqual({ easy: 0.3, medium: 0.5, hard: 0.2 })
+    expect(normalizeDifficultyMix(null)).toBeNull()
+    expect(normalizeDifficultyMix({ easy: 300, medium: 500, hard: 200 })).toEqual({ easy: 300, medium: 500, hard: 200 })
+  })
+  it('SectionSpecSchema accepts a percent mix end to end, and still rejects a mix that is neither', () => {
+    const base = SectionSpecSchema.safeParse({}).error?.issues.map(i => i.path[0]) ?? []
+    const field = SectionSpecSchema.shape.difficultyMix
+    expect(field.safeParse({ easy: 30, medium: 50, hard: 20 }).success).toBe(true)
+    expect(field.safeParse({ easy: 300, medium: 500, hard: 200 }).success).toBe(false)
+    expect(field.safeParse(null).success).toBe(true)
+    expect(base).toContain('minutesPerSection')
   })
 })
