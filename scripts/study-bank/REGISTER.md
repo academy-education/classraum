@@ -190,6 +190,12 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-20** — **SSAT READING DRAFT 1: 36 RELEASED (`verified=true`) on the co-founder's release sitting, under the rule pre-registered before the draw (`80eef6bb`). ssat/reading: 186 drawable (was 150), 36 staged. Clean SSAT Reading forms: 4 (`admission-form-depth.ts`; form 5 reaches 20/40).**
+  - Run `ssat-draft1-release-cofounder-2026-10-18`: blind **13/36 = 36.1%** vs 22.2% deal control (+13.9; guard >= 18/36 not reached; n = 36 is about +/-13 points, so "inconclusive", not clean). 36/36 "Only defensible", 0 abstentions, 0 stale rows. Script `release-ssat-reading-draft1-2026-10-20.mjs` (refuses on any unmet precondition; dry run first).
+  - **Higher than his feedback sitting (6/36 = 16.7%)**, and in the conservative direction the prereg named: he had read 36 sibling items to the same brief. Three of his eight notes say the answer is "obvious" / "easy". Not a bar; recorded so the next batch's brief can answer it.
+  - **Two notes name a key worded more precisely than the passage supports** (the poem's "pond behind the Mallory place" keyed as a "village pond"; the lighting-board key says slider "settings" where the passage means what each slider controlled). Both rated "Only defensible" and released by the rule. Wording fixes on live rows need owner approval: open in §3.
+  - One note asks for a paragraph break in a passage; one says option C is "kind of close". Owner/co-founder follow-up.
+
 - **2026-10-20** — **MAP-MATH-G58-V4 (Real and Complex Number Systems only): HELD, NOTHING INSERTED — on key position, not on guessability.** Prereg `c805f764`, freeze `27798bc9`, renders `344c173e`. Staged map/math unchanged at 56; forms still 0 (Real 0).
   - **The guessability fix worked:** options-only 35.1% vs matched live control 33.3% (**+1.8**; v3 +19.4), with LONE and SLIP enforced through the return. n = 19, three samples of one solver: wide, but the direction is clear. Graders 38/38 cold on key; difficulty bars pass.
   - **What held it:** kept-set key at an extreme **2/14 = 14.3%** (bar 40%). Authored 60% extreme (24/40); the screen's and graders' rules for extreme keys (one-sided, single bound kills all) remove extreme-key items preferentially: 7/19 at freeze, 2/14 kept. Predicted at freeze and recorded then. **Every number-systems batch so far loses its extreme keys to the very rules that make extreme keys safe.**
