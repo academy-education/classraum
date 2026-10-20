@@ -1,6 +1,7 @@
 // Combined Classraum Study + SAT Camps booklet, 16 pages, B5, 3mm bleed (2026-10-20).
 //
-//   node scripts/shots/_render-combo.mjs "<Introduction PDFs>/sources" "<Introduction PDFs>/Study + Camps" [en|ko]
+//   node scripts/shots/_render-combo.mjs "<Introduction PDFs>/sources" "<Introduction PDFs>/Study + Camps" [en|ko] [trim]
+//   trim = no bleed, cut to B5 (182 x 257 mm): the copy for email and screens. Default is the print file.
 //
 // Page plan (16 = a saddle-stitch multiple of 4, no filler pages):
 //    1      NEW cover: combined copy; Study and SAT Camps each shown whole (browser window + phone),
@@ -25,7 +26,8 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readd
 import { execFileSync } from 'node:child_process'
 import { join } from 'node:path'
 
-const [SP, OUT, LANG = 'en'] = process.argv.slice(2)
+const [SP, OUT, LANG = 'en', MODE = 'print'] = process.argv.slice(2)
+const TRIM = MODE === 'trim'
 if (!SP || !OUT || !['en', 'ko'].includes(LANG)) { console.error('usage: _render-combo.mjs <sources dir> <output dir> [en|ko]'); process.exit(2) }
 const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const read = f => { if (!existsSync(f)) die('missing ' + f); return readFileSync(f, 'utf8') }
@@ -207,7 +209,7 @@ writeFileSync(join(SP, `classraum-combo-camps-${LANG}.src.html`), p2)
 
 // ---------- render: Camps first (its section pages fill the contents), then Study ----------
 const RS = new URL('./_render-split.mjs', import.meta.url).pathname
-const run = (doc, env) => execFileSync('node', [RS, SP, doc, OUT], { stdio: 'inherit', env: { ...process.env, SIZE: 'b5', BLEED: '1', FOLIO_TOTAL: '16', ...env } })
+const run = (doc, env) => execFileSync('node', [RS, SP, doc, OUT], { stdio: 'inherit', env: { ...process.env, SIZE: 'b5', BLEED: TRIM ? '' : '1', FOLIO_TOTAL: '16', ...env } })
 const refs = join(SP, `_combo-camps-refs-${LANG}.json`)
 run(`combo-camps-${LANG}`, { FOLIO_OFFSET: '7', REFDUMP: refs })
 const ids = JSON.parse(read(refs))
@@ -215,8 +217,9 @@ const map = Object.fromEntries(campEntries.map(e => { if (!(e.ref in ids)) die(`
 run(`combo-study-${LANG}`, { FOLIO_OFFSET: '0', TP_MAP: JSON.stringify(map) })
 
 const tag = LANG.toUpperCase()
-const part1 = join(OUT, `_combo-part1-study-${tag} - B5 - 3mm bleed.pdf`), part2 = join(OUT, `_combo-part2-camps-${tag} - B5 - 3mm bleed.pdf`)
-const final = join(OUT, T.out)
+const sfx = TRIM ? 'B5' : 'B5 - 3mm bleed'
+const part1 = join(OUT, `_combo-part1-study-${tag} - ${sfx}.pdf`), part2 = join(OUT, `_combo-part2-camps-${tag} - ${sfx}.pdf`)
+const final = join(OUT, TRIM ? T.out.replace(' - PRINT (16 pages, 3mm bleed)', '') : T.out)
 execFileSync('pdfunite', [part1, part2, final])
 rmSync(part1); rmSync(part2)
 const pages = Number(execFileSync('pdfinfo', [final]).toString().match(/Pages:\s+(\d+)/)?.[1] ?? 0)
