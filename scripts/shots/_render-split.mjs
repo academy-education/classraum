@@ -47,6 +47,10 @@ const DOCS = {
   // Rebuilt 2026-10-12 from the co-founder's final PDF; its screenshots are the ones
   // embedded in that PDF, so they live in their own sidecar folder.
   'sat-camps-en': { lang: 'en', name: 'Classraum SAT Camps - EN', img: 'img2-camps-en' },
+  // 2026-10-20: the two halves of the combined Study + SAT Camps booklet, written by
+  // _render-combo.mjs and merged there. Each keeps its own stylesheet (the two diverge).
+  'combo-study-en': { lang: 'en', name: '_combo-part1-study-EN', img: 'img2-combo-en' },
+  'combo-camps-en': { lang: 'en', name: '_combo-part2-camps-EN', img: 'img2-camps-en' },
 }
 if (!SP || !DOCS[DOC]) { console.error(`usage: _render-split.mjs <builddir> <${Object.keys(DOCS).join('|')}> [outdir]`); process.exit(2) }
 const OUT = OUT_ARG ?? SP
@@ -56,6 +60,11 @@ const IMG_DIR = DOCS[DOC].img ?? `img2-${lang}`
 const BLEED = !!process.env.BLEED
 const PRINT = !!(process.env.PRINT || process.env.PRINT16)
 const B5 = process.env.SIZE === 'b5'
+// Combined-booklet parts (all default off): number this part's pages from FOLIO_OFFSET + 1 out of
+// FOLIO_TOTAL, and fill contents entries whose data-ref is in TP_MAP (a JSON {ref: page}) from the
+// map, so a contents page can list sections that live in the other part.
+const FOLIO_OFFSET = Number(process.env.FOLIO_OFFSET ?? 0), FOLIO_TOTAL = Number(process.env.FOLIO_TOTAL ?? 0)
+const TP_MAP = process.env.TP_MAP ? JSON.parse(process.env.TP_MAP) : {}
 
 let html = readFileSync(`${SP}/classraum-${DOC}.src.html`, 'utf8')
 html = html.replace(/__IMG_([\w-]+)__/g, (_, n) => {
@@ -89,16 +98,20 @@ await p.goto('file://' + WRAP, { waitUntil: 'load', timeout: 120000 })
 await p.evaluateHandle('document.fonts.ready')
 
 // Folios and contents numbers from position. A ref that resolves to nothing is an error.
-const folio = await p.evaluate(() => {
+const folio = await p.evaluate(({ OFF, TOTAL, MAP }) => {
   const pages = [...document.querySelectorAll('.page')], pad = n => String(n).padStart(2, '0'), missing = []
-  pages.forEach((pg, i) => pg.querySelectorAll('.rh .r').forEach(r => { if (/^\d\d \/ \d\d$/.test(r.textContent.trim())) r.textContent = `${pad(i + 1)} / ${pad(pages.length)}` }))
+  pages.forEach((pg, i) => pg.querySelectorAll('.rh .r').forEach(r => { if (/^\d\d \/ \d\d$/.test(r.textContent.trim())) r.textContent = `${pad(i + 1 + OFF)} / ${pad(TOTAL || pages.length)}` }))
   document.querySelectorAll('.tp[data-ref]').forEach(tp => {
+    if (tp.dataset.ref in MAP) { tp.textContent = pad(MAP[tp.dataset.ref]); return }
     const t = document.getElementById(tp.dataset.ref), pg = t && t.closest('.page')
     if (!pg) { missing.push(tp.dataset.ref); return }
-    tp.textContent = pad(pages.indexOf(pg) + 1)
+    tp.textContent = pad(pages.indexOf(pg) + 1 + OFF)
   })
-  return { pages: pages.length, missing }
-})
+  // every section id and the page it lands on (after the offset), for a builder that needs it
+  const ids = Object.fromEntries([...document.querySelectorAll('.page [id]')].map(el => [el.id, pages.indexOf(el.closest('.page')) + 1 + OFF]))
+  return { pages: pages.length, missing, ids }
+}, { OFF: FOLIO_OFFSET, TOTAL: FOLIO_TOTAL, MAP: TP_MAP })
+if (process.env.REFDUMP) writeFileSync(process.env.REFDUMP, JSON.stringify(folio.ids, null, 1))
 if (folio.missing.length) { console.error('contents refs with no target: ' + folio.missing.join(', ')); process.exitCode = 2 }
 
 // OVERFLOW CHECK (same two signals as _render-intro.mjs): a page whose body is taller
