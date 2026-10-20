@@ -8868,6 +8868,53 @@
           "verdict": "Key slots flat by construction (options-only deal per arm A19 B19 C18 D18; with-source halves A10 B9 C9 D9 each); inserted set key at an extreme 22/45 = 48.9% (bar 40.0%), per area oa 56.0%, geo 40.0%; no same-template pair named by either grader (same_template_as empty on all 148 cold rows)."
         }
       }
+    },
+    {
+      "id": "map-lu-v6-spelling-2026-10-20",
+      "createdAt": "2026-10-20",
+      "targetTest": "map",
+      "section": "language",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "map-lu-v6-spelling",
+      "contentSha": "f1fe4124fee3cc32dd4ce2625177f5d2bb26535adcff8473edd134321d4a4010",
+      "status": "staged",
+      "note": "64 grades 5-8 Spelling items authored, sentence format only (author 1 grades 5-6 target words a-m, author 2 grades 7-8 n-z). Teacher gate 2 dropped (rater a 2 NO, rater b 0); exact 0; strict screen 5. Freeze by grade x key-length-rank cell quota: 28 frozen, 7 per grade, each rank 7 (pre-flight clear, re-draw unused). PASSED every pre-registered bar; the 26 pilot-pass items INSERTED STAGED (verified=false), cohort map-lu-v6-spelling; held MLV6-S54 (g8, grader b too_easy) and MLV6-S04 (g5, grader b too_hard). Spelling cleared: 26 (the first; owner's ~20 met). contentSha = sha256 of map-lu-v6/inserted-spell.batch.json. MAP-LU-V6.prereg.md (1aa16264), freeze 9d52651e, renders ab7cb754, MAP-LU-V6-RESULT.md; REGISTER section 5, 2026-10-20. A person releases; never verified=true from a script.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "S1-a: 28/28 pass the item checks and L-rank; E3 7/28 longest, 7/28 shortest (cap 25%, held by the cell quota); T2 clear (odd_one(words) 30.4%, fw p 0.40); T2-L clear (at_min(distinct) 44.0%, fw p 0.23)."
+        },
+        "withsource": {
+          "passed": true,
+          "n": 28,
+          "pilotPass": 26,
+          "easier": 8,
+          "harder": 13,
+          "meanOffsetA": 0.07,
+          "meanOffsetB": 0.11,
+          "coldOnKey": 56,
+          "deadBoth": 0,
+          "verdict": "Two Claude graders cold then keyed, private folders, cold files hashed and byte-checked unchanged: 56/56 cold on key, 56/56 keyed correct, no accepted alternative. S1-b 26/28 (bar 23), S1-c easier 8/56 (bar <= 9) harder 13/56 (bar < 14, one inside), S1-d 0.07 / 0.11."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 28,
+          "candidatePct": 100,
+          "control": 62.5,
+          "controlN": 24,
+          "margin": 37.5,
+          "verdict": "Key recoverability, not a leak bar (the misspelling is visible in the options; it is the construct): 100.0% vs fresh matched live SAT SEC/ACT CSE control 62.5% (bar >= 52.5). Never reported as 'does not leak'."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key slots 7/7/7/7 in the stored render; E3 7/28 both ends; T2 / T2-L clear. Graders: no position, length or wording tell; grader a noted two 'commit' words (items 21, 27), a correctly spelled 'conscious' beside the 'conscience' item, and two -geous items."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "No-rule-knowledge probes that ran: T2 (structural heuristics, Westfall-Young min-p) clear on the frozen 28 (fw p 0.40) and T2-L (63 letter-class heuristics) clear (fw p 0.23); both graders' free_elimination null on all 28 items (56 judgments), dead options by both 0/28. E7 (unique medoid) is not applied to sentence-format spelling and is not claimed. The one elimination that does work is reading the misspelled word, which is the construct."
+        }
+      }
     }
   ],
   "auditedCohorts": [

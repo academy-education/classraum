@@ -1,0 +1,94 @@
+{
+ "verdict": "PASS",
+ "n": 28,
+ "passIds": [
+  "MLV6-S07",
+  "MLV6-S02",
+  "MLV6-S01",
+  "MLV6-S52",
+  "MLV6-S06",
+  "MLV6-S05",
+  "MLV6-S49",
+  "MLV6-S50",
+  "MLV6-S38",
+  "MLV6-S36",
+  "MLV6-S43",
+  "MLV6-S35",
+  "MLV6-S22",
+  "MLV6-S33",
+  "MLV6-S21",
+  "MLV6-S40",
+  "MLV6-S41",
+  "MLV6-S03",
+  "MLV6-S17",
+  "MLV6-S55",
+  "MLV6-S20",
+  "MLV6-S58",
+  "MLV6-S26",
+  "MLV6-S18",
+  "MLV6-S29",
+  "MLV6-S57"
+ ],
+ "holds": [
+  "MLV6-S54 (g8): b too_easy",
+  "MLV6-S04 (g5): b too_hard"
+ ],
+ "ws": {
+  "pass": 26,
+  "easier": 8,
+  "harder": 13,
+  "ma": 0.07142857142857142,
+  "mb": 0.10714285714285714,
+  "coldOnKey": 56,
+  "deadBoth": 0,
+  "byGrade": {
+   "5": {
+    "n": 7,
+    "pass": 6,
+    "easier": 0
+   },
+   "6": {
+    "n": 7,
+    "pass": 7,
+    "easier": 0
+   },
+   "7": {
+    "n": 7,
+    "pass": 7,
+    "easier": 3
+   },
+   "8": {
+    "n": 7,
+    "pass": 6,
+    "easier": 5
+   }
+  }
+ },
+ "oo": {
+  "arm": {
+   "spell": {
+    "n": 28,
+    "pct": 100,
+    "unan": 28,
+    "unanKey": 28
+   },
+   "ctl": {
+    "n": 24,
+    "pct": 62.5,
+    "unan": 19,
+    "unanKey": 13
+   }
+  },
+  "flags": [],
+  "bar": 52.5
+ },
+ "bars": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": true,
+  "oo": true,
+  "ooValid": true,
+  "slot": true
+ }
+}

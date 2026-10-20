@@ -1,0 +1,2 @@
+- author 1 (2026-10-20): 32/32 itemchecks ok. Breaches: mkdir of own folder; one sed -i on own output (7 sentences) after first itemchecks; tail pipe. Self-flagged grade-5 risk: anniversary (key S15), mosquito, foreign, applause, calendar; grade 6 harass/acquire maybe too hard.
+- author 2 (2026-10-20): 32/32 itemchecks ok. Breaches: grep -c on own output (count before an Edit); grep -v filter on two spell runs. Self-flagged grade-7 correct targets possibly low: yacht, satellite, sacrifice, vicious, physician, tuition; grade-8 renaissance/sovereign/reminiscent possibly high.
