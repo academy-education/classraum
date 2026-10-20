@@ -1,0 +1,1531 @@
+[
+ {
+  "id": "MM5P-N01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.NBT.B.7",
+  "area_25": "Number and Operations",
+  "subskill": "Money left after a decimal times whole and two subtractions",
+  "grade_rationale": "Low for grade 5: 5.NBT.B.7 decimal operations to hundredths in two routine steps (3 x 4.45, then subtract both costs from 50.00). The only care points are the carries in 3 x 4.45 and regrouping across the zeros of 50.00, which most grade-5 students handle.",
+  "prompt": "Maya has $50.00. She buys 3 notebooks that cost $4.45 each and 1 pen that costs $2.62. How much money, in dollars, does Maya have left?",
+  "choices": [
+   "34.03",
+   "34.93",
+   "35.13",
+   "37.69"
+  ],
+  "correct_answer": "34.03",
+  "explanation": "The 3 notebooks cost 3 x 4.45 = 13.35 dollars. Together with the pen, Maya spends 13.35 + 2.62 = 15.97 dollars. She has 50.00 - 15.97 = 34.03 dollars left.",
+  "solve": "return (50 - 3*4.45 - 2.62).toFixed(2);",
+  "distractor_solve": {
+   "34.93": "return (50 - (3*4 + 0.45) - 2.62).toFixed(2);",
+   "35.13": "var b=Math.round((3*4.45+2.62)*100), bd=[], i; for(i=0;i<4;i++){bd.push(b%10); b=Math.floor(b/10);} var top=[10,10,10,4]; var r=0, p=1; for(i=0;i<4;i++){ r+=(top[i]-bd[i])*p; p*=10; } return (r/100).toFixed(2);",
+   "37.69": "return (50 - (3*2.62 + 4.45)).toFixed(2);"
+  },
+  "mechanism": [
+   "multiply a decimal price by a whole number",
+   "add the two costs",
+   "subtract from a whole-dollar amount, regrouping across zeros"
+  ],
+  "quantity_asked": "dollars Maya has left after both purchases",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must add it to the full cost 3 x 4.45 + 2.62 and see 50.00, which is the whole computation; no option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "34.93": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies only the whole-dollar part of the price and copies the cents",
+    "why": "The student writes 3 x 4.45 as 3 x 4 = 12 with the .45 tacked on, 12.45, so the notebooks look cheaper and more money seems left."
+   },
+   "35.13": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "regroups across zeros by turning each 0 into 10 without reducing the next place",
+    "why": "Subtracting 15.97 from 50.00, the student borrows and makes every zero a 10 instead of 9, 9, 10, so the tenths and ones each come out one too big: 35.13."
+   },
+   "37.69": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies the count of 3 to the wrong item",
+    "why": "The student multiplies the pen price by 3 and adds one notebook: 3 x 2.62 + 4.45 = 12.31, then 50.00 - 12.31 = 37.69."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (50 - 3*(4.45 + 2.62)).toFixed(2);",
+   "direction": "below",
+   "why": "Multiplying both prices by 3 (as if she bought 3 pens too) gives 50 - 21.21 = 28.79, below the key."
+  },
+  "far_distractor": {
+   "option": "37.69",
+   "natural_side": "below",
+   "why": "Putting the count on the wrong item usually makes the money left TOO SMALL, because in most shopping stories the item bought several times is the cheap one, so the swap inflates the cost. Here the item bought 3 times (4.45) costs more than the single item (2.62), so the swap shrinks the cost and the money left lands above the key."
+  },
+  "structure_check": "No. The stem multiplies (raises the cost) and subtracts (lowers the money). An error in the multiplication can make the cost too small (whole part only) or too big (multiplying both prices, an extra carry); an error in the subtraction can go either way; the swap goes up or down depending on which price is bigger. A student cannot tell from the stem that every error lands above.",
+  "intermediate_check": "34.93: no, it is not the notebook cost or the total spent; no printed rate turns it into 34.03. 35.13: no, it is a wrong difference, not a step on the way. 37.69: no, the swap's cost 12.31 is not printed and 37.69 is a final wrong answer, not a value the key follows from through one printed price.",
+  "cheap_bound_check": "Cheapest one-sided bound: 4.45 > 4 and 2.62 > 2, so Maya spends more than 12 + 2 = 14 and has less than 36.00 left. That strikes 37.69 only; 34.93 and 35.13 sit on the key's side, within 3.3% of the key.",
+  "shape_check": "Hands over: positive, less than 50, a dollar amount with cents. All four options survive every property together.",
+  "interior_parity_check": "Middle values 34.93 and 35.13: both two-decimal dollar amounts ending in 3, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are two-decimal amounts; three end in 3 (as the key does) and 37.69 ends in 9; none is round, whole or negative.",
+  "dup_search": {
+   "queries": [
+    "each&left|change",
+    "notebook|pen&each",
+    "money&left&each",
+    "each&buys&left",
+    "buys&costs&each&dollars"
+   ],
+   "hits_read": 22,
+   "nearest": "MM3-O17 (money left after 3 shirts at 20% off: a percent-discount chain, whole-number answer form) and MM4-N19 (as many markers as possible, a division remainder). Neither multiplies a decimal price by a count and subtracts two costs."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the answer is a positive amount and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "4.45 > 4 and 2.62 > 2, so the money left is less than 50 - 12 - 2 = 36",
+    "strikes": [
+     "37.69"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a dollar amount with cents has no parity; the cents of three options are odd and of 37.69 odd too",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the cents digit: 0 - 5 - 2 ends in 3, so the answer ends in 3",
+    "strikes": [
+     "37.69"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "less than the printed 50.00",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate: about 13 + 3 = 16 spent, so about 34 left; this does not separate 34.03 from 34.93 or 35.13 without computing the cents exactly. Covering the work, a student cannot tell from the stem which way the errors go: a multiplication error can raise or lower the cost and the swap depends on which price is bigger, so the stem does not sign all three, and no one bound from the stem strikes all three (the 36 bound strikes only 37.69). Could a student check an option in one routine step? No: checking needs the full cost. Is any distractor a solved intermediate? No. Is this really a low item for grade 5? Yes: two routine 5.NBT.B.7 steps, aimed at the bottom band (RIT 190-199), not easier than that. Which cheap bound strikes the most distractors? The magnitude bound and the cents digit each strike only 37.69, so at most one."
+  }
+ },
+ {
+  "id": "MM5P-N02",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.NF.B.6",
+  "area_25": "Number and Operations",
+  "subskill": "Area with mixed numbers, then subtract with regrouping",
+  "grade_rationale": "Mid for grade 5: 5.NF.B.6 multiplying two mixed numbers (the step about half the grade gets right, since many multiply wholes and fractions separately or add the sides), then 5.NF.A.2 subtracting a mixed number with regrouping in twelfths. Two real steps on grade-5 fraction standards.",
+  "prompt": "A rectangular garden is 2 1/4 meters long and 2 1/3 meters wide. Ben covers 1 2/3 square meters of the garden with stones. How many square meters of the garden are not covered with stones?",
+  "choices": [
+   "2 11/12",
+   "3 1/12",
+   "3 5/12",
+   "3 7/12"
+  ],
+  "correct_answer": "3 7/12",
+  "explanation": "Area = 2 1/4 x 2 1/3 = 9/4 x 7/3 = 63/12 = 5 3/12 square meters. Write 1 2/3 as 1 8/12. To subtract, rename 5 3/12 as 4 15/12. Then 4 15/12 - 1 8/12 = 3 7/12 square meters are not covered.",
+  "solve": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f(9*7-20,12);",
+  "distractor_solve": {
+   "2 11/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f(27+28-20,12);",
+   "3 1/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f(48+8+1-20,12);",
+   "3 5/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} var whole=4, part=3+10; return f((whole-1)*12+(part-8),12);"
+  },
+  "mechanism": [
+   "convert mixed numbers and multiply for the area",
+   "rename a mixed number in twelfths",
+   "subtract with regrouping"
+  ],
+  "quantity_asked": "square meters of the garden not covered with stones",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must add 1 2/3 to it and compare with the area 2 1/4 x 2 1/3, which is the whole multiplication; no option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "2 11/12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the length and width instead of multiplying for area",
+    "why": "The student finds 2 1/4 + 2 1/3 = 4 7/12 as the 'area', then subtracts 1 2/3 to get 2 11/12."
+   },
+   "3 1/12": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out one partial product in the area model",
+    "why": "Splitting 2 1/4 x 2 1/3 into parts, the student adds 2 x 2, 2 x 1/3 and 1/4 x 1/3 but forgets 1/4 x 2, so the area is 4 3/4 and the answer 3 1/12."
+   },
+   "3 5/12": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "regroups one whole as 10 parts instead of 12 twelfths",
+    "why": "To subtract 1 8/12 from 5 3/12 the student borrows 1 and adds 10 to the numerator, as in base ten: 4 13/12 - 1 8/12 = 3 5/12."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return '4 5/12';",
+   "direction": "above",
+   "why": "Subtracting the smaller numerator from the larger (8/12 - 3/12) instead of regrouping gives 4 5/12, above the key."
+  },
+  "far_distractor": {
+   "option": "3 5/12",
+   "natural_side": "above",
+   "why": "Borrowing '10 parts' instead of one whole usually makes the answer TOO BIG, because grade-5 fractions are mostly halves, fourths and eighths, where 10 parts is more than one whole. Here the parts are twelfths, so 10 twelfths is less than a whole and the answer lands below the key."
+  },
+  "structure_check": "No. Multiplying by a mixed number raises the amount and subtracting lowers it. Errors in the regrouping can go up (subtracting the smaller numerator from the larger, borrowing 10 of a small denominator) or down (borrowing 10 twelfths); forgetting the stones goes up; adding the sides goes down here but up for sides below 2. The stem does not say which way every error goes.",
+  "intermediate_check": "2 11/12: no, it is a final wrong answer; the key does not follow from it through one printed number. 3 1/12: no, it is not the area or any printed relation away from the key. 3 5/12: no, it is a wrong difference, not a step on the way.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: both sides are more than 2, so the area is more than 4 and the answer more than 4 - 1 2/3 = 2 1/3; this strikes no option. A sharper one, 2 x 2 1/3 = 4 2/3, gives more than 3 and strikes only 2 11/12; 3 1/12 and 3 5/12 sit on the key's side, 3 5/12 within 5% of the key.",
+  "shape_check": "Hands over: a positive area less than the whole garden (under 2 1/2 x 2 1/2 - 1 2/3, about 4.6). All four options survive both properties.",
+  "interior_parity_check": "Middle values 3 1/12 and 3 5/12: both mixed numbers in twelfths with whole part 3, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four options are mixed numbers in twelfths with numerators 1, 5, 7 or 11; no option is whole, round or negative.",
+  "dup_search": {
+   "queries": [
+    "garden&square meters&covered|not",
+    "rectangular&1/4&1/3",
+    "square&not covered|uncovered",
+    "meters long&meters wide&1/",
+    "area&1/4|1/3|2/3&rectangle|rectangular"
+   ],
+   "hits_read": 3,
+   "nearest": "MM3-N06 (tiles on a 3 1/2 by 2 2/3 floor: a division count of tiles, whole-number answer). Mine multiplies mixed numbers for an area and subtracts with regrouping; the lawn-and-paths SSAT item is whole-number area."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: an area is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "area more than 2 x 2 1/3 = 4 2/3, so the answer is more than 3",
+    "strikes": [
+     "2 11/12"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the answer is a mixed number; parity does not apply",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the twelfths part needs the full product 63/12; every option is in twelfths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none: no single printed number bounds the uncovered area (it can be above or below each printed length); every option lies between the printed 2 1/4 and 2 1/3 + 1 2/3",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate 2 x 2 = 4, minus about 1 2/3, so about 2 1/3 to 3 1/2; that leaves all four options. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: regrouping errors go up or down depending on the parts, and adding the sides goes down here only because both sides are above 2. Does one bound from the stem strike all three? No: the sharpest cheap bound (more than 3) strikes only 2 11/12. Is any distractor a solved intermediate? No, none is the area or a printed step from the key. Is this really a mid item for grade 5? Yes: multiplying mixed numbers is the step about half of grade 5 gets right, plus regrouping in twelfths. Which cheap bound strikes the most distractors? The magnitude bound, at most one (2 11/12). (read) DPAIR/DSUM: 3 7/12 + 3 5/12 = 7, which the check matches to the denominators 4 + 3. Those are denominators, not quantities in the story, and 7 has no meaning in the problem (not the area, not a side, not a total), so the pair hands nothing over; the sum arises because borrowing 10 instead of 12 moves the numerator by exactly 2 around the middle of the twelfths."
+  }
+ },
+ {
+  "id": "MM5P-N03",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.NBT.B.7",
+  "area_25": "Number and Operations",
+  "subskill": "Decimal times a decimal below 1, plus a second cost",
+  "grade_rationale": "High for grade 5: 5.NBT.B.7 at its hardest, multiplying a two-place decimal by a decimal less than 1 (0.6 x 7.25, a three-place product that must be placed correctly), combined with a whole-number-times-decimal cost and a sum. The tempting misconceptions are real for grade 5: multiplying only the whole-dollar part, expecting multiplication to make the amount bigger, and adding the count to the price.",
+  "prompt": "Ribbon costs $7.25 per meter. Nora buys 0.6 meter of ribbon and 2 bows that cost $1.70 each. How much does Nora spend in all, in dollars?",
+  "choices": [
+   "7.75",
+   "7.85",
+   "8.05",
+   "10.65"
+  ],
+  "correct_answer": "7.75",
+  "explanation": "The ribbon costs 0.6 x 7.25 = 4.35 dollars (6 x 725 = 4350, and the factors have 3 decimal places in all, so 4.350). The bows cost 2 x 1.70 = 3.40 dollars. Nora spends 4.35 + 3.40 = 7.75 dollars.",
+  "solve": "return (0.6*7.25 + 2*1.70).toFixed(2);",
+  "distractor_solve": {
+   "7.85": "return (0.6*7 + 0.25 + 2*1.70).toFixed(2);",
+   "8.05": "return (0.6*7.25 + (2 + 1.70)).toFixed(2);",
+   "10.65": "return (7.25 + 2*1.70).toFixed(2);"
+  },
+  "mechanism": [
+   "multiply a decimal price by a decimal less than 1",
+   "multiply a price by a whole number",
+   "add the two costs"
+  ],
+  "quantity_asked": "total dollars Nora spends",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option can only be checked by computing both costs and adding them, which is the whole problem; nothing about an option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "7.85": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies only the whole-dollar part and copies the cents unchanged",
+    "why": "The student does 0.6 x 7 = 4.20 and tacks on the 25 cents, 4.45, so the ribbon looks 10 cents dearer: 7.85."
+   },
+   "8.05": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the number of bows to the price instead of multiplying",
+    "why": "The student writes 2 + 1.70 = 3.70 for the bows, then adds the ribbon: 4.35 + 3.70 = 8.05."
+   },
+   "10.65": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the price for one meter as the cost of 0.6 meter",
+    "why": "The student ignores the 0.6 (or treats any part of a meter as a whole meter) and adds 7.25 + 3.40 = 10.65."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (0.6*7.25 + 1.70).toFixed(2);",
+   "direction": "below",
+   "why": "Counting only one bow gives 4.35 + 1.70 = 6.05, below the key."
+  },
+  "far_distractor": {
+   "option": "7.85",
+   "natural_side": "below",
+   "why": "Multiplying only the whole-dollar part usually makes a product TOO SMALL, because the multiplier is usually a whole number above 1 (3 x 4.45 done as 12.45 is short). Here the multiplier 0.6 is less than 1, so copying the 25 cents unmultiplied adds more than 0.6 x 0.25 and the total lands above the key. The bows error is the same kind of flip: 2 + 1.70 is less than 2 x 1.70 for prices above 2, but here the price is below 2, so it lands above."
+  },
+  "structure_check": "No. The ribbon is multiplied by a number below 1 (lowers) and the bows by 2 (raises), so errors in the two parts push in opposite directions: forgetting a bow, a dropped carry, or doubling the ribbon land below; copying cents, adding the count, or ignoring the 0.6 land above. Which way each one goes depends on the size of the multiplier and price, which the stem does not sign.",
+  "intermediate_check": "7.85: no, it is not the ribbon cost or the bow cost; the key does not follow from it through a printed price. 8.05: no, same reason. 10.65: no, it is 7.25 + 3.40, not a value the key follows from through one printed rate (the key would need 0.6 applied to only part of it).",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's upper side: less than a meter costs less than 7.25, so the total is less than 7.25 + 3.40 = 10.65; it strikes 10.65 only. A rough product with whole dollars, 0.6 x 8 = 4.80, gives a total under 8.20, which also strikes only 10.65; 7.85 and 8.05 sit on the key's side, within 4% of the key.",
+  "shape_check": "Hands over: a positive dollar amount, more than the 3.40 for the bows, less than 7.25 + 3.40. All four options are positive and above 3.40; three are below 10.65 (10.65 sits on the bound itself). At least two survive every property together.",
+  "interior_parity_check": "Middle values 7.85 and 8.05: both two-decimal amounts ending in 5, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are two-decimal amounts ending in 5; none is whole, round or negative.",
+  "dup_search": {
+   "queries": [
+    "per pound&0.6|0.8|0.75",
+    "per pound&each&in all|total",
+    "cheese|pound&loaves|loaf"
+   ],
+   "hits_read": 3,
+   "nearest": "MM2-N06 (2.2 pounds of cheese at 4.75 a pound: one decimal product with a multiplier above 1). Mine multiplies by a decimal BELOW 1 and adds a second whole-times-decimal cost, so the error directions differ; MMG-N03 is a fraction loaves count."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a cost is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than a meter costs less than 7.25, so the total is less than 7.25 + 3.40 = 10.65",
+    "strikes": [
+     "10.65"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a dollar amount with cents has no parity; all options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the cents digit: 0.6 x 7.25 = 4.350 ends in 5 cents and 3.40 adds 0, so the answer ends in 5; every option ends in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 1.70 (and more than 2 x 1.70); every option is",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would expect multiplication to make the ribbon cost bigger or would round 0.6 up to 1; both point away from the key. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: the ribbon is scaled down and the bows up, so errors split by part, and the copied-cents and added-count errors land above only because 0.6 < 1 and 1.70 < 2. Does one bound from the stem strike all three? No: the cheapest (less than a meter costs less than 7.25) strikes only 10.65, and a whole-dollar rough product (0.6 x 8) also strikes only 10.65. Could a student check an option in one routine step? No, checking needs both products. Is any distractor a solved intermediate? No. Is this really a high item for grade 5? Yes: a decimal times a decimal below 1 with a three-place product is the hardest multiplication in 5.NBT.B.7, and the item adds a second step and a sum. Which cheap bound strikes the most distractors? The magnitude bound, at most one (10.65)."
+  }
+ },
+ {
+  "id": "MM5P-N04",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.NS.B.3",
+  "subskill": "Unit price by dividing by a decimal, then a difference",
+  "grade_rationale": "Low for grade 6: 6.NS.B.3 dividing a multi-digit decimal by a decimal (4.80 / 0.75) to get a price per pound, then one subtraction. Both steps are routine grade-6 decimal operations that most of the grade gets right.",
+  "prompt": "At a deli, 0.75 pound of cheddar cheese costs $4.80. Swiss cheese costs $0.90 less per pound than cheddar cheese. What is the price of 1 pound of Swiss cheese, in dollars?",
+  "choices": [
+   "2.70",
+   "5.10",
+   "5.40",
+   "5.50"
+  ],
+  "correct_answer": "5.50",
+  "explanation": "Cheddar costs 4.80 / 0.75 = 6.40 dollars per pound (480 / 75 = 6.4). Swiss costs 0.90 less: 6.40 - 0.90 = 5.50 dollars per pound.",
+  "solve": "return (4.80/0.75 - 0.90).toFixed(2);",
+  "distractor_solve": {
+   "2.70": "return (4.80*0.75 - 0.90).toFixed(2);",
+   "5.10": "return (4.80*1.25 - 0.90).toFixed(2);",
+   "5.40": "var q = Math.floor(480/75), r = 480 - 75*q; return (q + r/100 - 0.90).toFixed(2);"
+  },
+  "mechanism": [
+   "divide a decimal price by a decimal weight below 1",
+   "subtract a per-pound difference"
+  ],
+  "quantity_asked": "price of 1 pound of Swiss cheese in dollars",
+  "plugback": {
+   "substitutable": true,
+   "verify": "var x = Number(v); return Math.abs((x + 0.90)*0.75 - 4.80) < 1e-9;",
+   "why": "A student can add 0.90 to an option and multiply by 0.75 to see whether it gives 4.80. Trying options from smallest up, the key is the largest and is reached only at try 4."
+  },
+  "distractor_meta": {
+   "2.70": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by the decimal weight instead of dividing by it",
+    "why": "The student computes 4.80 x 0.75 = 3.60 as the price per pound, then subtracts 0.90 to get 2.70."
+   },
+   "5.10": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks 0.75 pound is 25% short, so adds 25% of the price",
+    "why": "The student adds a quarter of 4.80 (1.20) to get 6.00 for a pound, a percent of the wrong base, then subtracts 0.90: 5.10."
+   },
+   "5.40": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads a remainder as the decimal part of the quotient",
+    "why": "Dividing 480 by 75 the student gets 6 remainder 30 and writes 6.30, then subtracts 0.90: 5.40."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (4.80/0.75).toFixed(2);",
+   "direction": "above",
+   "why": "Stopping at the cheddar price, 6.40, lands above the key."
+  },
+  "far_distractor": {
+   "option": "2.70",
+   "natural_side": "above",
+   "why": "Multiplying where you should divide usually makes the answer TOO BIG, because the divisor is usually a whole number of pounds or items. Here the weight is 0.75, less than 1, so multiplying by it shrinks the price and the answer lands below the key."
+  },
+  "structure_check": "No. Dividing by 0.75 raises the amount and the 0.90 lowers it. Errors on the division can go up (stopping at cheddar, adding instead of subtracting the 0.90) or down (multiplying, adding only 25%, a remainder misread), so a student cannot tell from the stem that every error lands below.",
+  "intermediate_check": "2.70: no, it is not the cheddar price; no printed rate turns it into 5.50 in one step. 5.10: no, it is a final wrong answer. 5.40: no, it is a final wrong answer, not the cheddar price (6.40), and the key does not follow from it through one printed number.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: less than a pound costs 4.80, so a pound of cheddar costs more than 4.80 and Swiss more than 4.80 - 0.90 = 3.90. It strikes 2.70 only; 5.10 and 5.40 sit on the key's side, 5.40 within 2% of the key.",
+  "shape_check": "Hands over: a positive price, more than 3.90 (see the bound), less than 2 x 4.80 - 0.90 since 0.75 is more than half a pound. 5.10, 5.40 and 5.50 survive every property together.",
+  "interior_parity_check": "Middle values 5.10 and 5.40: both two-decimal amounts ending in 0, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are two-decimal dollar amounts ending in 0; none is whole or negative, and the key is not the only round one.",
+  "dup_search": {
+   "queries": [
+    "0.75 pound|0.75 kilogram|0.75 kg",
+    "costs&less per pound|less per kilogram",
+    "price of 1 pound|cost of 1 pound|price per pound"
+   ],
+   "hits_read": 1,
+   "nearest": "MM4-N12 (puppy 15.84 lb / kitten 0.75 lb: one division, how many times as heavy). Mine finds a unit price from a part-pound cost and then takes a per-pound difference; the distractors come from a remainder misread and a percent of the wrong base, not decimal-shift slips."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a price is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "0.75 pound costs 4.80, so a pound costs more than 4.80 and Swiss more than 3.90",
+    "strikes": [
+     "2.70"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all options are dollar amounts ending in 0 cents",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option ends in 0 in the hundredths place, and the tenths digit needs the division",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 0.90 (a price after taking off 0.90 must be positive); every option is",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would notice 0.75 is less than 1 and expect a pound to cost more than 4.80; that strikes only 2.70. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: dividing by 0.75 raises and the 0.90 lowers, and stopping at cheddar or adding the 0.90 both land above. Does one bound from the stem strike all three? No; the sharpest cheap one (more than 3.90) strikes only 2.70. Could a student check an option in one routine step? Checking takes two steps (add 0.90, multiply by 0.75), and in ascending order the key is try 4. Is any distractor a solved intermediate? No: the cheddar price 6.40 is not an option. Is this really a low item for grade 6? Yes: a routine decimal division and a subtraction, the RIT 200-209 band. Which cheap bound strikes the most distractors? The magnitude bound, at most one (2.70). Printed numbers: 4.80 sits below 5.10, 5.40 and the key and above 2.70 only, so it puts only 2.70 beyond it."
+  }
+ },
+ {
+  "id": "MM5P-N05",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.NS.C.7",
+  "subskill": "Locate a negative rational point, then a distance",
+  "grade_rationale": "Mid for grade 6: 6.NS.C.6-7 rational numbers on a number line. The student must place a point left of a negative mixed number (moving left makes it more negative), then find the distance between two negative points as a difference of absolute values, regrouping in eighths. Two real steps on the grade's key idea of absolute value as distance; about half the grade gets both right.",
+  "prompt": "On a number line, point P is 1 1/4 units to the left of -6 1/4. Point Q is at -2 7/8. What is the distance between point P and point Q?",
+  "choices": [
+   "4 5/8",
+   "4 7/8",
+   "5 3/8",
+   "6 3/8"
+  ],
+  "correct_answer": "4 5/8",
+  "explanation": "Moving left from -6 1/4 makes the number more negative: P = -6 1/4 - 1 1/4 = -7 1/2. Both points are negative, so the distance is |-7 1/2| - |-2 7/8| = 7 1/2 - 2 7/8 = 7 4/8 - 2 7/8 = 6 12/8 - 2 7/8 = 4 5/8.",
+  "solve": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} var P=-(50+10), Q=-23; return f(Q-P,8);",
+  "distractor_solve": {
+   "4 7/8": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} var whole=7-1, part=4+10; return f((whole-2)*8+(part-7),8);",
+   "5 3/8": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f((7-2)*8+(7-4),8);",
+   "6 3/8": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} var P=-60, Qmis=-16+7; return f(Qmis-P,8);"
+  },
+  "mechanism": [
+   "move left from a negative mixed number",
+   "distance between two negatives as a difference of absolute values",
+   "subtract mixed numbers with regrouping"
+  ],
+  "quantity_asked": "distance between P and Q on the number line",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must first find P (a separate step), then add the option to -7 1/2 and compare with -2 7/8, regrouping in eighths; no option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "4 7/8": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "regroups one whole as 10 parts instead of 8 eighths",
+    "why": "Subtracting 2 7/8 from 7 4/8, the student borrows 1 and adds 10 to the numerator as in base ten: 6 14/8 - 2 7/8 = 4 7/8."
+   },
+   "5 3/8": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the smaller numerator from the larger instead of regrouping",
+    "why": "Seeing 4/8 - 7/8, the student does 7/8 - 4/8 = 3/8 and 7 - 2 = 5, writing 5 3/8."
+   },
+   "6 3/8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads a negative mixed number -2 7/8 as -2 + 7/8",
+    "why": "The student places Q at -2 + 7/8 = -1 1/8, so the distance becomes 7 1/2 - 1 1/8 = 6 3/8."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return '2 1/8';",
+   "direction": "below",
+   "why": "Moving right instead of left puts P at -5, and the distance 5 - 2 7/8 = 2 1/8 lands below the key; misreading -6 1/4 as -6 + 1/4 also lands below (4 1/8)."
+  },
+  "far_distractor": {
+   "option": "6 3/8",
+   "natural_side": "below",
+   "why": "Reading a negative mixed number as -2 + 7/8 moves that point toward zero. Usually that SHORTENS a distance, because the misread point is the far one or the points sit on opposite sides of zero. Here the misread point Q is the one nearer zero on the same side as P, so moving it toward zero stretches the gap and the answer lands above the key."
+  },
+  "structure_check": "No. Moving left makes P more negative (raises the distance) and the distance is a difference (lowers it). Errors go both ways: moving right, or misreading -6 1/4, lands below; regrouping errors and misreading -2 7/8 land above. The stem does not sign every error.",
+  "intermediate_check": "4 7/8: no, it is not P or any printed step from the key. 5 3/8: no, same. 6 3/8: no, it is a final wrong distance; the key does not follow from it through one printed number.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's upper side: P is -7 1/2 and Q is more than 2 units from zero on the same side, so the distance is less than 7 1/2 - 2 = 5 1/2. It strikes 6 3/8 only; 4 7/8 (within 6% of the key) and 5 3/8 sit on the key's side.",
+  "shape_check": "Hands over: a positive distance, less than |P| = 7 1/2, more than 6 1/4 - 2 7/8 = 3 3/8 since P is left of -6 1/4. All four options survive all three together.",
+  "interior_parity_check": "Middle values 4 7/8 and 5 3/8: both mixed numbers in eighths, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are mixed numbers in eighths with odd numerators; none is whole or negative.",
+  "dup_search": {
+   "queries": [
+    "number line&distance&7/8|5/8|3/8",
+    "units to the left of&number line",
+    "distance between&-2|-6&1/",
+    "number line&distance",
+    "number line&to the left|to the right"
+   ],
+   "hits_read": 6,
+   "nearest": "MM4-N19 first draft (distance between the least and greatest of four mixed decimals and fractions, across zero). Mine places a point by moving left from a negative mixed number and finds a distance between two NEGATIVE points with regrouping; the live -7 to 5 item is whole numbers across zero."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a distance is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "P = -7 1/2 and Q is more than 2 from zero on the same side, so the distance is less than 5 1/2",
+    "strikes": [
+     "6 3/8"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the answer is a mixed number; parity does not apply",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the eighths part needs the regrouping; every option is in eighths with an odd numerator",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "from one printed number: less than the printed 6 1/4 + 1 1/4 is two numbers; the cheapest single-number read is 'less than 7 1/2 = |P|' after locating P, and more than 6 1/4 - 2 7/8; 'less than the printed 6' is not readable, because P is beyond -6 1/4 and Q is under 3 from zero, so the distance can exceed 6 for all the stem says",
+    "strikes": [
+     "6 3/8"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate P about -7.5 and Q about -3, a gap about 4.5; that leaves 4 5/8 and 4 7/8 and does not separate them without the regrouping. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: moving the wrong way or misreading -6 1/4 lands below, regrouping errors and misreading -2 7/8 land above. Does one bound from the stem strike all three? No: the sharpest cheap one (less than 5 1/2) strikes only 6 3/8. Could a student check an option in one routine step? No: P must be found first, then a regrouped subtraction. Is any distractor a solved intermediate? No: P (-7 1/2) is not an option and no option is a printed step from the key. Is this really a mid item for grade 6? Yes: placing a point left of a negative number and using absolute values for a same-side distance is 6.NS.C.7's key idea, plus regrouping in eighths. Which cheap bound strikes the most distractors? The magnitude bound, at most one (6 3/8). (read) DPAIR/DSUM: 4 5/8 + 5 3/8 = 10 and 4 5/8 + 6 3/8 = 11, which the check matches to 4 + 6 and 4 + 7; the 4 is a denominator (1/4) and the 7 a numerator (7/8), not quantities, and neither 10 nor 11 means anything in the problem. 4 5/8 and 5 3/8 do sit symmetrically about 5 (the gap between the whole parts), which is how subtracting numerators the wrong way always lands; a student who spots the symmetry still has to choose between the two, and the other pair (4 7/8, 6 3/8) has no such partner."
+  }
+ },
+ {
+  "id": "MM5P-N06",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.A.1",
+  "subskill": "Mixed number divided by a fraction, as laps",
+  "grade_rationale": "High for grade 6: 6.NS.A.1 dividing a mixed number by a fraction less than 1 in a word problem, after first removing the part that does not count, with an answer in twelfths. The hard step is dividing the WHOLE mixed number: grade-6 students commonly divide only the whole part or only the fraction part, or mis-convert 10 1/4 to an improper fraction; only stronger students carry 41/4 x 5/3 through.",
+  "prompt": "One lap of a track is 3/5 mile. Jo runs 10 1/2 miles in all, but 1/4 mile of that is on the road to and from the track. The rest is on the track. How many laps of the track does Jo run?",
+  "choices": [
+   "4 7/12",
+   "10 5/12",
+   "16 11/12",
+   "17 1/12"
+  ],
+  "correct_answer": "17 1/12",
+  "explanation": "On the track Jo runs 10 1/2 - 1/4 = 10 1/4 miles. Laps = 10 1/4 / 3/5 = 41/4 x 5/3 = 205/12 = 17 1/12 laps.",
+  "solve": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} var R=42-1; return f(R*5,4*3);",
+  "distractor_solve": {
+   "4 7/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f((10+1)*5,4*3);",
+   "10 5/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f(10*12 + 1*5, 12);",
+   "16 11/12": "function g(a,b){return b?g(b,a%b):a;} function f(n,d){var k=g(n,d);n/=k;d/=k;var w=Math.floor(n/d),r=n-w*d;return r?(w?w+' '+r+'/'+d:r+'/'+d):String(w);} return f(10*5*4 + 1*3, 12);"
+  },
+  "mechanism": [
+   "subtract to find the miles on the track",
+   "convert a mixed number and divide by a fraction below 1"
+  ],
+  "quantity_asked": "number of laps of the track Jo runs",
+  "plugback": {
+   "substitutable": true,
+   "verify": "var x; if(typeof v==='number'){x=v;} else {var s=String(v).trim(); if(s.indexOf('/')<0){x=Number(s);} else {var m=s.split(' '), w=0, fr=s; if(m.length==2){w=Number(m[0]); fr=m[1];} var t=fr.split('/'); x=w+Number(t[0])/Number(t[1]);}} return Math.abs(x*3/5 - 41/4) < 1e-6;",
+   "why": "A student can multiply an option by 3/5 and compare with 10 1/4 (after first finding 10 1/4). Trying options from smallest up, the key is the largest and is reached only at try 4."
+  },
+  "distractor_meta": {
+   "4 7/12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "converts a mixed number by adding the whole number to the numerator",
+    "why": "The student writes 10 1/4 as (10 + 1)/4 = 11/4, then divides correctly: 11/4 x 5/3 = 55/12 = 4 7/12."
+   },
+   "10 5/12": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides only the fraction part of the mixed number",
+    "why": "The student keeps the 10 and divides only 1/4 by 3/5 = 5/12, writing 10 5/12."
+   },
+   "16 11/12": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides only the whole-number part and copies the fraction",
+    "why": "The student divides 10 by 3/5 to get 16 2/3 and then tacks on the leftover 1/4 mile unchanged: 16 2/3 + 1/4 = 16 11/12."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return '17 1/2';",
+   "direction": "above",
+   "why": "Forgetting to take off the 1/4 mile of road gives 10 1/2 / 3/5 = 17 1/2 laps, above the key; adding the road instead (10 3/4 miles) gives 17 11/12, also above."
+  },
+  "far_distractor": {
+   "option": "16 11/12",
+   "natural_side": "above",
+   "why": "Dividing the whole part and copying the fraction usually makes the answer TOO BIG, because in most sharing problems the divisor is more than 1, so the copied fraction should have been made smaller. Here the divisor 3/5 is less than 1, so the copied 1/4 should have been made LARGER (5/12), and the answer lands below the key."
+  },
+  "structure_check": "No. Taking off the road lowers the distance; dividing by 3/5 raises it. Errors on the subtraction (forgetting the road, adding it) land above the key; errors on the division land below here, but the part-division errors flip side whenever the divisor is above 1, so a student cannot read one direction for every error from the stem.",
+  "intermediate_check": "4 7/12: no, it is not the track distance (10 1/4) and no printed rate turns it into 17 1/12 in one step. 10 5/12: no, it is not 10 1/4 and is a final wrong answer. 16 11/12: no, it is a final wrong answer, not a value the key follows from through a printed rate.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: a lap is less than a mile, so Jo runs more laps than track miles (10 1/4). It strikes 4 7/12 only; 10 5/12 and 16 11/12 sit on the key's side, 16 11/12 within 1% of the key.",
+  "shape_check": "Hands over: a positive number of laps, more than the track miles 10 1/4 (lap under a mile), less than 2 x 10 1/4 (lap over half a mile). 10 5/12, 16 11/12 and 17 1/12 survive all three.",
+  "interior_parity_check": "Middle values 10 5/12 and 16 11/12: both mixed numbers in twelfths, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are mixed numbers in twelfths; none is whole or negative.",
+  "dup_search": {
+   "queries": [
+    "track&laps&mile",
+    "lap&2/3|3/4|3/5",
+    "how many laps",
+    "divided|divide&2/3&mile|miles",
+    "how many&2/3 mile|2/3-mile",
+    "fraction&remainder|left over&laps|pieces"
+   ],
+   "hits_read": 2,
+   "nearest": "MM2-N04 (3/4-mile laps, 4 1/2 laps planned, miles still to run: multiplies laps by lap length and subtracts). Mine DIVIDES miles by the lap length to get laps after removing road miles; MM3-N06 is tile counting."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a number of laps is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "a lap is less than a mile, so laps are more than the 10 1/4 track miles",
+    "strikes": [
+     "4 7/12"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the answer is a mixed number; parity does not apply",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the twelfths part needs the division; every option is in twelfths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 10 1/2 is not valid (road miles do not count); more than 10 (the whole miles) strikes only 4 7/12",
+    "strikes": [
+     "4 7/12"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would expect dividing by a fraction to give a bigger number and pick something above the track miles; that strikes only 4 7/12 and leaves 16 11/12 against 17 1/12, which only dividing the whole mixed number separates. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: subtraction errors land above the key, and the part-division errors land below only because the divisor is under 1. Does one bound from the stem strike all three? No: the cheapest (more laps than track miles) strikes only 4 7/12. Could a student check an option in one routine step? Checking needs 10 1/4 first and then a multiplication by 3/5; in ascending order the key is try 4. Is any distractor a solved intermediate? No: the track distance 10 1/4 is not an option. Is this really a high item for grade 6? Yes: a fraction division of a mixed number by a fraction below 1 after a subtraction, with three genuinely tempting partial methods. Which cheap bound strikes the most distractors? The magnitude bound, at most one (4 7/12). The covered option set has no hub: the key shares neither its whole part nor its twelfths with another option."
+  }
+ },
+ {
+  "id": "MM5P-N07",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.NS.A.1",
+  "subskill": "Negative balance after a charge and a credit",
+  "grade_rationale": "Low for grade 7: 7.NS.A.1 adding and subtracting rational numbers in a money context, two routine steps (-23.46 - 8.75, then + 2.60) and reading the result as an amount owed. Most of grade 7 handles a charge and a credit on a negative balance.",
+  "prompt": "Kai's bank account balance is -$23.46. The bank charges him an $8.75 fee. Then a $2.60 refund is added to his account. How much money, in dollars, does Kai owe the bank now?",
+  "choices": [
+   "29.61",
+   "30.41",
+   "30.61",
+   "34.81"
+  ],
+  "correct_answer": "29.61",
+  "explanation": "The fee makes the balance -23.46 - 8.75 = -32.21. The refund adds 2.60: -32.21 + 2.60 = -29.61. A balance of -29.61 dollars means Kai owes the bank 29.61 dollars.",
+  "solve": "return (-(-23.46 - 8.75 + 2.60)).toFixed(2);",
+  "distractor_solve": {
+   "30.41": "var a=Math.round((23.46+8.75)*100), b=260, r=0, p=1; while(a>0||b>0){ r+=Math.abs(a%10-b%10)*p; a=Math.floor(a/10); b=Math.floor(b/10); p*=10; } return (r/100).toFixed(2);",
+   "30.61": "var a=Math.round((23.46+8.75)*100), b=260, r=0, p=1; while(a>0||b>0){ var t=a%10, u=b%10; r+=(t>=u? t-u : t+10-u)*p; a=Math.floor(a/10); b=Math.floor(b/10); p*=10; } return (r/100).toFixed(2);",
+   "34.81": "return (-(-23.46 - 8.75 - 2.60)).toFixed(2);"
+  },
+  "mechanism": [
+   "subtract a charge from a negative balance",
+   "add a credit to a negative balance",
+   "read a negative balance as an amount owed"
+  ],
+  "quantity_asked": "dollars Kai owes the bank after the fee and the refund",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must rebuild the balance -23.46 - 8.75 + 2.60 and compare, which is the whole computation; no option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "30.41": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the smaller digit from the larger in each column instead of regrouping",
+    "why": "For 32.21 - 2.60 the student writes 6 - 2 = 4 in the tenths instead of regrouping, getting 30.41."
+   },
+   "30.61": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "regroups without reducing the digit it borrowed from",
+    "why": "For 32.21 - 2.60 the student borrows to make 12 tenths but leaves the ones digit at 2, so the ones place comes out one too big: 30.61."
+   },
+   "34.81": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats a credit to a negative balance as moving it further below zero",
+    "why": "The student thinks adding 2.60 to -32.21 makes it -34.81 (adds the sizes and keeps the negative sign), so Kai seems to owe 34.81."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return (23.46 - 8.75 - 2.60).toFixed(2);",
+   "direction": "below",
+   "why": "Treating the fee as money added (the balance moves up 8.75) gives -23.46 + 8.75 + 2.60 = -12.11, so 12.11 owed, below the key."
+  },
+  "far_distractor": {
+   "option": "34.81",
+   "natural_side": "below",
+   "why": "Treating a credit as moving a negative balance further from zero usually makes the ANSWER smaller, because the question usually asks for the balance, and the error pushes the balance down. Here the question asks how much is OWED, the size of the negative balance, so the same error makes the answer bigger and it lands above the key."
+  },
+  "structure_check": "No. The fee raises the amount owed and the refund lowers it. Treating the fee as a credit lands below the key; treating the refund as a charge, or a regrouping error, lands above. Which way a sign error goes depends on which of the two moves it hits, so the stem does not sign every error.",
+  "intermediate_check": "30.41: no, it is not the balance after the fee (32.21); no printed amount turns it into 29.61 in one step. 30.61: no, same. 34.81: no, it is a final wrong amount, not a step on the way, and the key does not follow from it through one printed amount.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's upper side: the refund lowers what Kai owes, so he owes less than 23.46 + 8.75 = 32.21. It strikes 34.81 only; 30.41 and 30.61 sit on the key's side, within 4% of the key.",
+  "shape_check": "Hands over: a positive amount owed (the balance stays negative), less than 32.21, more than 23.46 - 2.60 + ... (the fee is bigger than the refund) so more than 23.46. 29.61, 30.41 and 30.61 survive every property together.",
+  "interior_parity_check": "Middle values 30.41 and 30.61: both two-decimal amounts ending in 1, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are two-decimal dollar amounts ending in 1; none is whole, round or negative.",
+  "dup_search": {
+   "queries": [
+    "balance&fee|refund",
+    "owe&balance",
+    "account&-$|negative balance"
+   ],
+   "hits_read": 4,
+   "nearest": "MM4-N21 (balance -94.25 rising by equal weekly amounts to -36.70: a rate per week) and MM4-N28 (owed $40, weekly payments, then borrows 1/4 of what is owed). Mine is one charge and one credit on a negative balance, asked as the amount owed."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the amount owed is positive (the fee is bigger than the refund, so the balance stays negative); every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the refund lowers what is owed, so less than 23.46 + 8.75 = 32.21",
+    "strikes": [
+     "34.81"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a dollar amount with cents has no parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the cents digit: 6 + 5 - 0 ends in 1, so the answer ends in 1; every option ends in 1",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 23.46 (the fee is larger than the refund); every option is",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate 23 + 9 - 3 = 29 and look near 29 to 30; that leaves 29.61, 30.41 and 30.61, which only exact regrouping separates. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: a sign error on the fee lands below the key and one on the refund lands above. Does one bound from the stem strike all three? No: less than 32.21 strikes only 34.81. Could a student check an option in one routine step? No: checking means rebuilding the balance. Is any distractor a solved intermediate? No: the balance after the fee, 32.21, is not an option. Is this really a low item for grade 7? Yes: two routine 7.NS.A.1 steps with a negative balance, RIT 200-209. Which cheap bound strikes the most distractors? The magnitude bound, at most one (34.81). (read) PAIR 34.81 - 29.61 = 5.20 = 2 x 2.60: flipping the sign of the refund always moves the answer by twice the refund. A student who notices it learns only that one of the pair is the refund-flipped version of the other; the stem does not say which, and the cheap bound already strikes 34.81 alone, so the pair adds no second strike."
+  }
+ },
+ {
+  "id": "MM5P-N08",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.3",
+  "subskill": "Signed rates times time, then a depth",
+  "grade_rationale": "Mid for grade 7: 7.NS.A.3 a multistep problem with rational numbers. The student multiplies two signed decimal rates by times (7 x (-0.9) and 3 x 1.5), adds them to a negative start, and reads the result as a depth. Each step is grade-7 routine, but carrying signs and decimals through three steps is where about half the grade slips.",
+  "prompt": "A diver's elevation is -8.8 meters (8.8 meters below the surface). Her elevation changes by -0.9 meter each minute for 7 minutes. Then it changes by +1.5 meters each minute for 3 minutes. How many meters below the surface is the diver now?",
+  "choices": [
+   "10.6",
+   "11.6",
+   "12.2",
+   "19.6"
+  ],
+  "correct_answer": "10.6",
+  "explanation": "First 7 minutes: 7 x (-0.9) = -6.3, so the elevation is -8.8 + (-6.3) = -15.1. Next 3 minutes: 3 x 1.5 = 4.5, so the elevation is -15.1 + 4.5 = -10.6. An elevation of -10.6 meters means the diver is 10.6 meters below the surface.",
+  "solve": "return (-(-8.8 + 7*(-0.9) + 3*1.5)).toFixed(1);",
+  "distractor_solve": {
+   "11.6": "return (-(-8.8 + 7*(-0.9) + (3*1 + 0.5))).toFixed(1);",
+   "12.2": "return (-(-8.8 - (0.9 + 7) + 3*1.5)).toFixed(1);",
+   "19.6": "var e1 = -8.8 + 7*(-0.9); return (Math.abs(e1) + 3*1.5).toFixed(1);"
+  },
+  "mechanism": [
+   "multiply signed decimal rates by times",
+   "add the changes to a negative start",
+   "read a negative elevation as a depth"
+  ],
+  "quantity_asked": "meters below the surface after both stages",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must rebuild -8.8 + 7 x (-0.9) + 3 x 1.5 and compare, which is the whole computation; nothing about an option can be confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "11.6": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies only the whole-number part of a decimal and copies the tenths",
+    "why": "The student writes 3 x 1.5 as 3 x 1 = 3 with the .5 tacked on, 3.5, so the rise looks smaller: -15.1 + 3.5 = -11.6."
+   },
+   "12.2": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the rate and the number of minutes instead of multiplying",
+    "why": "The student writes the first change as -(0.9 + 7) = -7.9, so the elevation becomes -16.7 and then -16.7 + 4.5 = -12.2."
+   },
+   "19.6": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds a positive number to a negative by adding the sizes and keeping the negative sign",
+    "why": "At -15.1 + 4.5 the student adds 15.1 + 4.5 = 19.6 and keeps the negative sign, as if rising took her deeper."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return (-(-8.8 + 7*0.9 - 3*1.5)).toFixed(1);",
+   "direction": "below",
+   "why": "Swapping the directions (rising 0.9 each minute, sinking 1.5) gives -8.8 + 6.3 - 4.5 = -7.0, so 7.0 m deep, below the key; forgetting the first stage also lands below (4.3)."
+  },
+  "far_distractor": {
+   "option": "12.2",
+   "natural_side": "below",
+   "why": "Adding instead of multiplying usually makes a change TOO SMALL, because rates and times are usually 2 or more (3 + 5 < 3 x 5). Here the rate 0.9 is less than 1, so 0.9 + 7 = 7.9 is MORE than 7 x 0.9 = 6.3; the sinking stage comes out too big and the depth lands above the key. Copying the tenths of 1.5 is the same kind of flip: it usually makes a product too small, and here that product is a rise, so the depth lands above."
+  },
+  "structure_check": "No. The first stage takes the diver deeper and the second brings her up. Sign errors on the first stage (swapping directions, forgetting it) land below the key; errors that shrink the rise or grow the sinking land above. Which way each error goes depends on which stage it hits and on whether the factor is above or below 1, so the stem does not sign all of them.",
+  "intermediate_check": "11.6: no, it is not the elevation after the first stage (-15.1) or a printed step from the key. 12.2: no, same. 19.6: no, it is a final wrong answer; the key does not follow from it through one printed rate.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's upper side: the rising stage brings her up, so she is less than 8.8 + 7 x 0.9 = 15.1 m deep (or, with a rougher product, less than 8.8 + 7 = 15.8). Either strikes 19.6 only; 11.6 and 12.2 sit on the key's side, 11.6 within 10% of the key.",
+  "shape_check": "Hands over: a positive depth, more than 8.8 - 4.5 = 4.3 (the rise is at most 4.5), less than 15.1. 10.6, 11.6 and 12.2 survive every property together.",
+  "interior_parity_check": "Middle values 11.6 and 12.2: both one-decimal numbers of the same size, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are one-decimal numbers with an even tenths digit; three end in .6 as the key does; none is whole or negative.",
+  "dup_search": {
+   "queries": [
+    "temperature&each hour&rose|fell",
+    "below zero&each hour",
+    "fell&degrees&per hour|each hour"
+   ],
+   "hits_read": 1,
+   "nearest": "Live ISEE 4ff65112 (-4 degrees, falls 3 degrees each hour for 5 hours: one whole-number rate stage). Mine has two DECIMAL signed-rate stages in opposite directions and asks for a depth, so the errors (rate below 1, copying tenths, adding sizes) do not exist in that item."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a depth below the surface is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the rise brings her up, so the depth is less than 8.8 + 7 x 0.9 = 15.1 (less than 15.8 with 7 x 1)",
+    "strikes": [
+     "19.6"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a one-decimal depth has no parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the tenths digit: .8 + .3 - .5 = .6, so the answer ends in .6",
+    "strikes": [
+     "12.2"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 8.8 (the first stage sinks more than the second rises: 7 x 0.9 > 3 x 1.5); every option is",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate 8.8 + 6.3 - 4.5 = about 10.6 if they can do the products, which is solving; a rougher estimate (8.8 + 7 - 4.5 = 11.3) does not separate 10.6 from 11.6 or 12.2. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: errors on the first stage can land below (swapping directions, forgetting it) and errors on the second above; the add-instead-of-multiply error lands above only because 0.9 < 1. Does one bound from the stem strike all three? No: the cheapest (less than 15.1 or 15.8) strikes only 19.6, and the tenths digit strikes only 12.2. Could a student check an option in one routine step? No. Is any distractor a solved intermediate? No: -15.1 is not an option. Is this really a mid item for grade 7? Yes: two signed decimal products and a sum, read as a depth, RIT 210-219. Which cheap bound strikes the most distractors? Each strikes at most one (magnitude: 19.6; tenths digit: 12.2)."
+  }
+ },
+ {
+  "id": "MM5P-N09",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.3",
+  "subskill": "Negative balance, fraction deposit, amount still needed",
+  "grade_rationale": "High for grade 7: 7.NS.A.3 a multistep problem with rational numbers. The student must find 2/5 of the paycheck, add it to a NEGATIVE balance (18 + (-6.40), a subtraction with regrouping across a zero), and then find the gap to a positive target. Three steps, with the sign of the starting balance and the regrouping both genuinely tempting places to go wrong; only stronger grade-7 students carry all three.",
+  "prompt": "Mia's bank balance is -$6.40. She deposits 2/5 of her $45 paycheck into the account. How much more money, in dollars, must she deposit to bring her balance up to $60?",
+  "choices": [
+   "35.60",
+   "47.40",
+   "47.60",
+   "48.40"
+  ],
+  "correct_answer": "48.40",
+  "explanation": "2/5 of 45 is 45 / 5 x 2 = 18 dollars. Her balance becomes -6.40 + 18 = 18.00 - 6.40 = 11.60 dollars. To reach 60 dollars she needs 60 - 11.60 = 48.40 dollars more.",
+  "solve": "return (60 - (-6.40 + 45*2/5)).toFixed(2);",
+  "distractor_solve": {
+   "35.60": "return (60 - (6.40 + 45*2/5)).toFixed(2);",
+   "47.40": "var a=Math.round(45*2/5*100), b=640, r=0, p=1; while(a>0||b>0){ var t=a%10, u=b%10; r+=(t>=u? t-u : t+10-u)*p; a=Math.floor(a/10); b=Math.floor(b/10); p*=10; } return (60 - r/100).toFixed(2);",
+   "47.60": "var a=Math.round(45*2/5*100), b=640, r=0, p=1; while(a>0||b>0){ r+=Math.abs(a%10-b%10)*p; a=Math.floor(a/10); b=Math.floor(b/10); p*=10; } return (60 - r/100).toFixed(2);"
+  },
+  "mechanism": [
+   "find a fraction of an amount",
+   "add it to a negative balance",
+   "subtract the new balance from a target"
+  ],
+  "quantity_asked": "additional dollars Mia must deposit to reach a $60 balance",
+  "plugback": {
+   "substitutable": true,
+   "verify": "var x = Number(v); return Math.abs(-6.40 + 45*2/5 + x - 60) < 1e-9;",
+   "why": "A student can add an option to -6.40 + 18 and see whether it makes 60 (after first finding 2/5 of 45 and the new balance). Trying options from smallest up, the key is the largest and is reached only at try 4."
+  },
+  "distractor_meta": {
+   "35.60": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the negative balance as money she already has",
+    "why": "The student drops the negative sign, so the balance after the deposit is 6.40 + 18 = 24.40 and she seems to need 60 - 24.40 = 35.60."
+   },
+   "47.40": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "regroups across the zero without reducing the ones digit",
+    "why": "For 18.00 - 6.40 the student borrows to make 10 tenths but leaves the 8 ones as 8, getting 12.60 for the balance and 60 - 12.60 = 47.40."
+   },
+   "47.60": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the smaller digit from the larger in each column",
+    "why": "For 18.00 - 6.40 the student writes 4 - 0 = 4 in the tenths instead of regrouping, getting 12.40 for the balance and 60 - 12.40 = 47.60."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (60 - (-6.40)).toFixed(2);",
+   "direction": "above",
+   "why": "Forgetting the paycheck deposit gives 60 - (-6.40) = 66.40, above the key; writing 2/5 as 0.25 (a deposit of 11.25) also lands above (55.15), and so does keeping the negative sign on the new balance (-11.60, so 71.60)."
+  },
+  "far_distractor": {
+   "option": "35.60",
+   "natural_side": "above",
+   "why": "Dropping the negative sign of a balance usually makes the ANSWER bigger, because the question usually asks for the balance, and the error turns -6.40 into +6.40. Here the question asks how much MORE is needed to reach 60, so a balance that looks bigger makes the answer smaller, and it lands below the key."
+  },
+  "structure_check": "No. The deposit raises the balance (lowering the amount needed) and the negative start raises the amount needed. Forgetting the deposit, shrinking it (2/5 read as 0.25) or keeping a negative sign on the new balance lands above the key; dropping the starting sign or a regrouping error that inflates the balance lands below. Which way each error goes depends on which quantity it hits, so the stem does not sign every error.",
+  "intermediate_check": "35.60: no, it is not the deposit (18) or the new balance (11.60); no printed number turns it into 48.40 in one step. 47.40: no, it is 60 minus a wrong balance, not a step on the way. 47.60: no, same.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: 2/5 is less than half, so the deposit is under 22.50 and she needs more than 66.40 - 22.50 = 43.90. It strikes 35.60 only; 47.40 and 47.60 sit on the key's side, within 3% of the key. The bound 'deposit at most 45' (more than 21.40) strikes nothing.",
+  "shape_check": "Hands over: a positive amount, less than 60 + 6.40 = 66.40, more than 43.90 (deposit under half the paycheck). 47.40, 47.60 and 48.40 survive all three together.",
+  "interior_parity_check": "Middle values 47.40 and 47.60: both two-decimal amounts ending in 0, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are two-decimal dollar amounts ending in 0; none is whole-dollar or negative, and the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "deposit&paycheck|balance",
+    "2/5 of&deposit|paycheck",
+    "how much more&balance"
+   ],
+   "hits_read": 9,
+   "nearest": "The live deposit items are interest or weekly-deposit growth (ISEE s16, s10; SAT v30, v26); none starts from a negative balance or deposits a fraction of a paycheck. MM4-N21 / N28 (negative balances) use weekly rates and a fraction of the amount owed."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the amount still needed is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "2/5 is under half, so the deposit is under 22.50 and the answer is more than 43.90",
+    "strikes": [
+     "35.60"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: dollar amounts with cents have no parity; every option ends in 0",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option ends in 0 cents; the tenths digit needs the regrouping in 18.00 - 6.40",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "'more than the printed 45' is not readable without the work: it needs the deposit to be under 21.40, i.e. 2/5 of 45 computed (18), which is the first step; from printed numbers alone the answer is only known to be more than 21.40 (deposit at most 45) or 43.90 (deposit under half)",
+    "strikes": [
+     "35.60"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "high",
+   "note": "A test-wise student would estimate the deposit as a bit under half of 45 and the gap as about 66 - 18 = 48; that leaves 47.40, 47.60 and 48.40, which only exact regrouping separates. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: forgetting the deposit, misreading 2/5 as 0.25 or keeping the minus sign on the new balance lands above; dropping the starting sign or inflating the balance lands below. Does one bound from the stem strike all three? No: the half-paycheck bound (more than 43.90) strikes only 35.60. Could a student check an option in one routine step? Yes once the deposit and balance are found, so the key sits at try 4 ascending. Is any distractor a solved intermediate? No: 18 and 11.60 are not options. Is this really a high item for grade 7? It is three steps with a fraction of an amount, a negative balance and a gap to a target; I rate the risk high because two distractors are regrouping errors rather than grade-7 ideas, which graders may call weak. Which cheap bound strikes the most distractors? The half-paycheck bound, one (35.60). (read) PAIR 48.40 - 35.60 = 12.80 = 2 x 6.40: dropping the sign of a balance always moves the answer by twice its size; it identifies 35.60 as the sign-flipped partner of some option but not which one is right. (read) PRINTED 45: answered in bound_screen (range)."
+  }
+ },
+ {
+  "id": "MM5P-N10",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "difficulty": "easy",
+  "ccss": "8.EE.A.1",
+  "subskill": "Product of powers with a negative exponent, then a difference",
+  "grade_rationale": "Low for grade 8: 8.EE.A.1 one routine use of the product rule with a negative exponent (2^7 x 2^-2 = 2^5), then evaluating 9 x 32 - 5 x 2^2 in the right order. Most of grade 8 combines the exponents and evaluates powers before multiplying.",
+  "prompt": "A game saves 9 x 2^7 x 2^(-2) kilobytes of data. Later, 5 x 2^2 kilobytes of that data are deleted. How many kilobytes of data are left?",
+  "choices": [
+   "128",
+   "188",
+   "238",
+   "268"
+  ],
+  "correct_answer": "268",
+  "explanation": "2^7 x 2^(-2) = 2^(7 + (-2)) = 2^5 = 32, so the first term is 9 x 32 = 288. The second term is 5 x 2^2 = 5 x 4 = 20. The value is 288 - 20 = 268.",
+  "solve": "return String(9*Math.pow(2,7)*Math.pow(2,-2) - 5*Math.pow(2,2));",
+  "distractor_solve": {
+   "128": "return String((9-5)*Math.pow(2,7+(-2)));",
+   "188": "return String(9*Math.pow(2,7-2) - Math.pow(5*2,2));",
+   "238": "return String(9*Math.pow(2,7-2) - Math.pow(5,2)*2);"
+  },
+  "mechanism": [
+   "add exponents for a product of powers with the same base",
+   "evaluate powers before multiplying",
+   "subtract the two terms"
+  ],
+  "quantity_asked": "kilobytes of data left (the value of 9 x 2^7 x 2^(-2) - 5 x 2^2)",
+  "plugback": {
+   "substitutable": false,
+   "why": "The expression has no unknown; the only check of an option is evaluating the whole expression, which is the work itself."
+  },
+  "distractor_meta": {
+   "128": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "combines unlike powers as if they were like terms",
+    "why": "After getting 9 x 2^5, the student subtracts the coefficients as though 9 x 2^5 and 5 x 2^2 were like terms: (9 - 5) x 2^5 = 4 x 32 = 128."
+   },
+   "188": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the coefficient into the base before applying the exponent",
+    "why": "The student reads 5 x 2^2 as (5 x 2)^2 = 100, so the value becomes 288 - 100 = 188."
+   },
+   "238": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies the exponent to the coefficient instead of the base",
+    "why": "The student squares the 5 instead of the 2: 5^2 x 2 = 50, so the value becomes 288 - 50 = 238."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return String(9*Math.pow(4,5) - 5*Math.pow(2,2));",
+   "direction": "above",
+   "why": "Multiplying the bases as well as adding the exponents (2^7 x 2^-2 = 4^5) gives 9 x 1024 - 20 = 9196, far above the key; reading 2^(-2) as 2^2 (2^9 = 512) also lands above (4588)."
+  },
+  "far_distractor": {
+   "option": "188",
+   "natural_side": "above",
+   "why": "Multiplying the coefficient into the base before squaring usually makes a value TOO BIG ((5 x 2)^2 = 100 instead of 20), so it usually raises the answer. Here that term is subtracted, so the bigger value pulls the answer below the key."
+  },
+  "structure_check": "No. The expression has a product of powers (which raises the value) and a subtracted term (which lowers it). Errors in the first term can go up (multiplying the bases, dropping the negative sign of the exponent) or down; errors in the subtracted term that make it bigger lower the answer. The stem does not sign every error.",
+  "intermediate_check": "128: no, it is not 288, 20 or 32, and no printed number turns it into 268 in one step. 188: no, it is a final wrong value. 238: no, same.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: the subtracted term 5 x 2^2 is smaller than 5 x 2^5, so the value is more than (9 - 5) x 2^5 = 128. It strikes 128 only (on the bound); 188 and 238 sit on the key's side, 238 within 12% of the key.",
+  "shape_check": "Hands over: a whole number (all exponents combine to non-negative powers), positive, less than 9 x 32 = 288. All four options survive all three.",
+  "interior_parity_check": "Middle values 188 and 238: both three-digit whole numbers ending in 8, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are even three-digit whole numbers ending in 8; none is round or negative.",
+  "dup_search": {
+   "queries": [
+    "2^7|2^-2|2^(-2)",
+    "value of&2^5|2^7&-",
+    "exponent&negative&value of",
+    "power|exponent&simplify|value"
+   ],
+   "hits_read": 4,
+   "nearest": "MM2-N20 ((2^-2 x 2^6)^3 / (2^2)^2: a pure chain of exponent rules with a fraction or power-of-2 answer). Mine has coefficients and a subtracted term, so the errors are about order of operations and unlike terms, not power-of-a-power; MM4-N40 counts powers in a range."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the value is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than (9 - 5) x 2^5 = 128, since 5 x 2^2 is less than 5 x 2^5; less than 9 x 32 = 288",
+    "strikes": [
+     "128"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "the value is even (both terms are even); every option is even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "9 x 32 ends in 8 and 5 x 4 = 20 ends in 0, so the value ends in 8; every option ends in 8",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "less than the 288 from the first term once 2^5 is found; no single printed number bounds it more tightly; every option is below 288",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would compute 2^5 = 32 and 9 x 32 = 288 and then must still decide what 5 x 2^2 is, which is the whole point; no shortcut separates 268 from 238 or 188. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: errors in the first term can raise the value far above the key (4^5, 2^9), errors that inflate the subtracted term lower it. Does one bound from the stem strike all three? No: the like-terms bound (more than 128) strikes only 128, and the last digit is 8 for every option. Could a student check an option in one routine step? No, there is no unknown to substitute. Is any distractor a solved intermediate? No: 32, 288 and 20 are not options. Is this really a low item for grade 8? Yes: one product-rule step with a negative exponent and a routine evaluation, RIT 210-219. Which cheap bound strikes the most distractors? The magnitude bound, at most one (128)."
+  }
+ },
+ {
+  "id": "MM5P-N11",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.EE.A.4",
+  "subskill": "Two quotients in scientific notation, then a difference",
+  "grade_rationale": "Mid for grade 8: 8.EE.A.4 dividing numbers in scientific notation twice (8.4 x 10^6 / 1.2 x 10^4 and 4.2 x 10^6 / 1.4 x 10^4) and comparing the results. Each quotient is one real step (divide coefficients, subtract exponents); doing both correctly and subtracting is where about half of grade 8 slips.",
+  "prompt": "Country A has 8.4 x 10^6 people living on 1.2 x 10^4 square kilometers. Country B has 4.2 x 10^6 people living on 1.4 x 10^4 square kilometers. How many more people per square kilometer does Country A have than Country B?",
+  "choices": [
+   "400",
+   "420",
+   "520",
+   "1000"
+  ],
+  "correct_answer": "400",
+  "explanation": "Country A: (8.4 x 10^6) / (1.2 x 10^4) = (8.4 / 1.2) x 10^(6 - 4) = 7 x 10^2 = 700 people per square kilometer. Country B: (4.2 x 10^6) / (1.4 x 10^4) = 3 x 10^2 = 300 people per square kilometer. Country A has 700 - 300 = 400 more people per square kilometer.",
+  "solve": "return String(Math.round(8.4e6/1.2e4 - 4.2e6/1.4e4));",
+  "distractor_solve": {
+   "420": "return String(Math.round(8.4e6/1.2e4 - (4.2-1.4)*1e2));",
+   "520": "return String(Math.round((8/1 + (0.4/0.2)/10)*1e2 - 4.2e6/1.4e4));",
+   "1000": "return String(Math.round(8.4e6/1.2e4 + 4.2e6/1.4e4));"
+  },
+  "mechanism": [
+   "divide coefficients and subtract exponents for each density",
+   "compare the two densities by subtraction"
+  ],
+  "quantity_asked": "how many more people per square kilometer Country A has than Country B",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without computing both densities; the smallest option can only be confirmed by doing both divisions."
+  },
+  "distractor_meta": {
+   "420": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the coefficients instead of dividing them",
+    "why": "For Country B the student does 4.2 - 1.4 = 2.8, so B seems to have 280 people per square kilometer and the difference becomes 700 - 280 = 420."
+   },
+   "520": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the whole-number parts and the decimal parts separately",
+    "why": "For Country A the student does 8 / 1 = 8 and 0.4 / 0.2 = 2 and writes 8.2, so A seems to have 820 and the difference is 820 - 300 = 520."
+   },
+   "1000": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "combines the two densities by adding instead of comparing them",
+    "why": "The student finds 700 and 300 correctly but adds them, answering the total 1000 instead of how many more."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return String(Math.round(8.4e6/1.2e4 - (4/1 + (0.2/0.4))*1e2));",
+   "direction": "below",
+   "why": "Dividing Country B's coefficients part by part (4 / 1 = 4 and 0.2 / 0.4 = 0.5, so 4.5) makes B 450 and the difference 250, below the key."
+  },
+  "far_distractor": {
+   "option": "420",
+   "natural_side": "below",
+   "why": "Subtracting the coefficients here makes Country B's density too SMALL (2.8 instead of 3), and a density that comes out too small would normally make an answer about density too small. Because Country B's density is the one being subtracted, the smaller value pushes the difference UP, so the answer lands above the key."
+  },
+  "structure_check": "No. Country A's density adds to the answer and Country B's is subtracted, so an error that inflates or shrinks a density moves the answer up or down depending on which country it hits: part-by-part division inflates A (up) but inflates B (down, to 250); subtracting coefficients shrinks B (up). The stem does not sign every error.",
+  "intermediate_check": "420: no, it is not 700 or 300, and the key does not follow from it through one printed number. 520: no, same. 1000: no; it is the sum of the two densities, a final wrong answer, not a step from which 400 follows through a printed rate.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's upper side: 1.2 > 1, so Country A has fewer than 8.4 x 10^2 = 840 people per square kilometer, and the difference is less than 840. It strikes 1000 only; 420 (within 5% of the key) and 520 sit on the key's side.",
+  "shape_check": "Hands over: a positive whole number of people per square kilometer, less than 840. 400, 420 and 520 survive every property together.",
+  "interior_parity_check": "Middle values 420 and 520: both three-digit whole numbers ending in 20, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are whole numbers ending in 0; 400 and 1000 are round hundreds, so the key is not alone in that class.",
+  "dup_search": {
+   "queries": [
+    "per square kilometer|per square mile",
+    "population&density",
+    "people&square kilometers&x 10",
+    "scientific notation",
+    "x 10"
+   ],
+   "hits_read": 10,
+   "nearest": "Live ISEE 4c6d326c and SAT 927d9cdb (population density with percents and merged towns, whole numbers). Mine finds two densities by dividing numbers in scientific notation and subtracts them; MM3-N22 is a single scientific-notation quotient."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the difference is positive (A's density is larger) and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "1.2 > 1, so A's density is under 840 and the difference is under 840",
+    "strikes": [
+     "1000"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: every option is a multiple of 10",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every option ends in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "less than 8.4 x 10^2 from one printed coefficient and power; the cheapest single-number read strikes only 1000",
+    "strikes": [
+     "1000"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would see 8.4 / 1.2 = 7 and 4.2 / 1.4 = 3 quickly; that is the work, and a slip on either country gives 420 or 520. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: errors on Country A move the answer one way and errors on Country B the other; part-by-part division on B lands below the key (250). Does one bound from the stem strike all three? No: the cheapest (under 840) strikes only 1000. Could a student check an option in one routine step? No: both divisions are needed. Is any distractor a solved intermediate? No: 700 and 300 are not options. Is this really a mid item for grade 8? Yes: two scientific-notation quotients and a comparison, RIT 220-229. Which cheap bound strikes the most distractors? The magnitude bound, at most one (1000). (read) PAIR 1000 / 400 = 10/4: a ratio of two printed digits by coincidence; it does not point to the key, since 1000 is the sum of the densities and is struck by the bound anyway. (read) PAIR 420 - 400 = 20 and 400 / 420 = 4 / 4.2: the 20 is 2.8 vs 3 hundreds (B's coefficient error), and 4 / 4.2 is a coincidence of the printed 4.2; neither tells a student which of 400 and 420 is right without dividing 4.2 by 1.4."
+  }
+ },
+ {
+  "id": "MM5P-N12",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.A.4",
+  "subskill": "Divide by a negative power of ten, then adjust a count",
+  "grade_rationale": "High for grade 8: 8.EE.A.4 operations with scientific notation at their hardest for the grade. Dividing by 1.35 x 10^-1 needs a non-trivial coefficient division (5.13 / 1.35 = 3.8) and subtracting a NEGATIVE exponent (10^(5 - (-1)) = 10^6); then two more amounts in scientific notation must be written at the right place value and combined with the right signs. Only stronger grade-8 students carry all of it.",
+  "prompt": "A factory makes 5.13 x 10^5 grams of candy. Each piece of candy has a mass of 1.35 x 10^(-1) gram. Then 2.6 x 10^4 of the pieces are thrown away, and 4.5 x 10^3 pieces made the day before are added. How many pieces of candy are there now?",
+  "choices": [
+   "3544500",
+   "3758500",
+   "3769500",
+   "3778500"
+  ],
+  "correct_answer": "3778500",
+  "explanation": "Number of pieces made: (5.13 x 10^5) / (1.35 x 10^-1) = (5.13 / 1.35) x 10^(5 - (-1)) = 3.8 x 10^6 = 3,800,000. Throwing away 2.6 x 10^4 = 26,000 pieces leaves 3,774,000. Adding 4.5 x 10^3 = 4,500 pieces gives 3,778,500 pieces.",
+  "solve": "return String(Math.round(5.13e5/1.35e-1 - 2.6e4 + 4.5e3));",
+  "distractor_solve": {
+   "3544500": "return String(Math.round(5.13e5/1.35e-1 - 2.6e5 + 4.5e3));",
+   "3758500": "return String(Math.round((5.13-1.35)*1e6 - 2.6e4 + 4.5e3));",
+   "3769500": "return String(Math.round(5.13e5/1.35e-1 - 2.6e4 - 4.5e3));"
+  },
+  "mechanism": [
+   "divide coefficients and subtract a negative exponent",
+   "write amounts in scientific notation in standard form",
+   "subtract and add the adjustments"
+  ],
+  "quantity_asked": "number of pieces of candy now",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no simple check from an option: a student would have to undo the adjustments and multiply by 1.35 x 10^-1, which is the whole problem in reverse."
+  },
+  "distractor_meta": {
+   "3544500": {
+    "error_kind": "wrong_base",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves the decimal one place too many when writing 2.6 x 10^4 in standard form",
+    "why": "The student writes 2.6 x 10^4 as 260,000, so 3,800,000 - 260,000 + 4,500 = 3,544,500."
+   },
+   "3758500": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the coefficients instead of dividing them",
+    "why": "The student does 5.13 - 1.35 = 3.78 with 10^6, so there seem to be 3,780,000 pieces, then 3,780,000 - 26,000 + 4,500 = 3,758,500."
+   },
+   "3769500": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts every adjustment, including the pieces that are added",
+    "why": "The student takes both 26,000 and 4,500 away: 3,800,000 - 26,000 - 4,500 = 3,769,500."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "return String(Math.round(5.13e5/1.35e-1 - 2.6e4 + 4.5e4));",
+   "direction": "above",
+   "why": "Writing 4.5 x 10^3 as 45,000 (one place too many) gives 3,819,000, above the key; writing 2.6 x 10^4 as 2,600 also lands above (3,801,900)."
+  },
+  "far_distractor": {
+   "option": "3544500",
+   "natural_side": "above",
+   "why": "Moving the decimal one place too many usually makes a number TOO BIG and so makes the answer too big. Here the number written too big is the amount thrown AWAY, so more is subtracted and the answer lands below the key."
+  },
+  "structure_check": "No. The division builds a large count, the thrown-away pieces lower it and the added pieces raise it. Writing 4.5 x 10^3 or 2.6 x 10^4 with the wrong number of places can land above or below depending on which one it is; dividing with the wrong exponent lands far away either way. The stem does not sign every error.",
+  "intermediate_check": "3544500: no, it is not 3,800,000 or 3,774,000, and the key does not follow from it through one printed amount. 3758500: no, same. 3769500: no; it differs from the key by 2 x 4,500, not by one printed amount.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's lower side: 1.35 < 1.4, so 5.13 / 1.35 > 5.13 / 1.4 > 3.6, giving more than 3,600,000 - 26,000 = 3,574,000 pieces. It strikes 3544500 only; 3758500 and 3769500 sit on the key's side, within 1% of the key.",
+  "shape_check": "Hands over: a whole number of pieces, positive, ending in 500 (the 4,500 added). All four options survive all three.",
+  "interior_parity_check": "Middle values 3758500 and 3769500: both seven-digit whole numbers ending in 500, same complexity; the key is not one of them.",
+  "arith_class_check": "No. All four are seven-digit whole numbers ending in 500; none is round to the thousand, none negative.",
+  "dup_search": {
+   "queries": [
+    "candy|pieces&gram&x 10",
+    "mass&each&x 10",
+    "rejected|removed&x 10",
+    "scientific notation",
+    "x 10"
+   ],
+   "hits_read": 8,
+   "nearest": "MM3-N25 (rice: a PRODUCT 3.5 x 10^-2 g x 4.6 x 10^6 grains) and MM2-N18 (bolts: a product minus a shipped amount). Mine DIVIDES by a negative power of ten and then makes two adjustments of opposite sign; the live ACT items ask only for the scientific-notation form of one quotient."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a count is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "5.13 / 1.35 > 5.13 / 1.4 > 3.6, so more than 3,600,000 - 26,000 = 3,574,000",
+    "strikes": [
+     "3544500"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "the count is even (every term is even); every option is even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the count ends in 500 (from the 4,500); every option ends in 500",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the printed 5.13 x 10^5 (each piece is less than 1 gram); every option is",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would estimate 5.13 / 1.35 as about 3.8 and the count as about 3.8 million; that leaves 3758500, 3769500 and 3778500, which only exact work on the coefficient and the signs separates. Covering the work, could a student tell from the stem which way the errors go and strike all three? No: place-value errors on the 4.5 x 10^3 land above the key and on the 2.6 x 10^4 below; dividing with the wrong exponent lands far away in either direction. Does one bound from the stem strike all three? No: the cheapest (more than 3,574,000) strikes only 3544500, and every option ends in 500. Could a student check an option in one routine step? No. Is any distractor a solved intermediate? No: 3,800,000 and 3,774,000 are not options. Is this really a high item for grade 8? Yes: a non-trivial coefficient division, a negative exponent in the divisor, and two signed adjustments across place values, RIT 230-239. Which cheap bound strikes the most distractors? The magnitude bound, at most one (3544500)."
+  }
+ }
+]

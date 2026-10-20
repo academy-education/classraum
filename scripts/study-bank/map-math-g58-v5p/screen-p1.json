@@ -1,0 +1,35 @@
+{
+ "screened": 12,
+ "fails": {
+  "MM5P-N12": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM5P-N01": [
+   "S-R4 3 struck without solving: [\"37.69\",\"34.93\",\"35.13\"] (37.69: hundredths must be 3 since 3x4.45 ends .35 and +2.62 makes spending end in 7; 34.93 and 35.13: spending > 3x4.40 + 2.60 = 15.80 so money left < 34.20)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (left <= 50 - (3x4.40 + 2.60) = 34.20)"
+  ],
+  "MM5P-N03": [
+   "S-R4 2 struck without solving: [\"10.65\",\"8.05\"] (10.65: equals a full meter plus bows (7.25 + 3.40), and 0.6 m must cost less; 8.05: 0.6x7.25 < 0.6x7.50 = 4.50 so total < 7.90)"
+  ],
+  "MM5P-N08": [
+   "S-R4 3 struck without solving: [\"11.6\",\"12.2\",\"19.6\"] (12.2: tenths must be .6 (.8 + .3 - .5); 19.6: deepest point < 8.8 + 7x1 = 15.8 before she rises; 11.6: depth < 9 + 7x1 - 3x1.5 = 11.5 after rounding every desce)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (depth < 9 + 7x1 - 4.5 = 11.5)"
+  ],
+  "MM5P-N07": [
+   "S-R4 3 struck without solving: [\"30.61\",\"30.41\",\"34.81\"] (30.41 and 34.81: hundredths must be 1 (6 + 5 + 0); 30.61: owed < 24 + 9 - 2.60 = 30.40 after rounding the debt and fee up)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (owed < 24 + 9 - 2.60 = 30.40)"
+  ],
+  "MM5P-N06": [
+   "S-R4 2 struck without solving: [\"4 7/12\",\"10 5/12\"] (4 7/12: a lap is under 1 mile, so laps must exceed the roughly 10 track miles; 10 5/12: magnitude, laps are about 10 / (3/5), roughly 5/3 x 10, or about 17)"
+  ],
+  "MM5P-N09": [
+   "S-R4 2 struck without solving: [\"35.60\",\"47.60\"] (35.60 and 47.60: the cents digit, since 2/5 of $45 is a whole number of dollars (45 is a multiple of 5), so the amount owed keeps the .40 cents from 60 + 6.40)"
+  ]
+ }
+}

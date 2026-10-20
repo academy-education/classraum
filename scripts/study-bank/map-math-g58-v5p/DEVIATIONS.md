@@ -1,0 +1,1 @@
+- pilot author (2026-10-20): 12/12 PART OK. Breaches: node search scripts + sed on scratch; ls/mkdir; one empty python3 heredoc in parts dir. Self-flagged: regrouping/whole-part ideas repeated across items; N09 weakest; N11/N12 sci-notation overlap; far-side flips often by framing.
