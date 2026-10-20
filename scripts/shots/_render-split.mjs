@@ -49,8 +49,13 @@ const DOCS = {
   'sat-camps-en': { lang: 'en', name: 'Classraum SAT Camps - EN', img: 'img2-camps-en' },
   // 2026-10-20: the two halves of the combined Study + SAT Camps booklet, written by
   // _render-combo.mjs and merged there. Each keeps its own stylesheet (the two diverge).
+  // 2026-10-20: SAT Camps KO made editable (sources/build-sat-camps-ko.py: the EN source with the
+  // co-founder's 2026-10-16 Korean text); same screenshots as EN.
+  'sat-camps-ko': { lang: 'ko', name: 'Classraum SAT Camps - KO', img: 'img2-camps-en' },
   'combo-study-en': { lang: 'en', name: '_combo-part1-study-EN', img: 'img2-combo-en' },
   'combo-camps-en': { lang: 'en', name: '_combo-part2-camps-EN', img: 'img2-camps-en' },
+  'combo-study-ko': { lang: 'ko', name: '_combo-part1-study-KO', img: 'img2-combo-ko' },
+  'combo-camps-ko': { lang: 'ko', name: '_combo-part2-camps-KO', img: 'img2-camps-en' },
 }
 if (!SP || !DOCS[DOC]) { console.error(`usage: _render-split.mjs <builddir> <${Object.keys(DOCS).join('|')}> [outdir]`); process.exit(2) }
 const OUT = OUT_ARG ?? SP
