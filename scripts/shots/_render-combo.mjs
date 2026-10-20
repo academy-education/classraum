@@ -160,7 +160,8 @@ const P2 = `<section class="page combo-two">
 const P2_CSS = `
   /* combined booklet page 2 (2026-10-20, simplified): two open columns, no boxes or screenshots, then the contents */
   .combo-two .body{ display:flex; flex-direction:column; gap:var(--s4); }
-  .combo-two .cc-toc{ margin-top:9mm; }   /* more air between the two columns and the contents */
+  .combo-two .cc-toc{ margin-top:9mm; }
+  .combo-two .cc-toc .eyebrow{ margin-bottom:5mm; }   /* air between the contents heading and the two lists */   /* more air between the two columns and the contents */
   .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:none; }
   .combo-two .cc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .combo-two .cc{ display:flex; flex-direction:column; padding:6mm 7mm 6mm 0; }
