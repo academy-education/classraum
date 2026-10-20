@@ -171,7 +171,9 @@ const P2_CSS = `
   .combo-two .cc-g .shot.win{ height:31mm; }
   .combo-two .cc-g .shot.win img{ height:calc(31mm - 21px); }
   .combo-two .cc-g .cc-card{ height:43mm; }
-  .combo-two .cc-g .dev-phone{ flex:none; width:21.5mm; }
+  /* phones are drawn at the cover's 40mm and zoomed down, so the bezel, corner radius and buttons shrink with
+     the screen; at a plain 21.5mm width the frame kept its full-size thickness and looked squat */
+  .combo-two .cc-g .dev-phone{ flex:none; width:40mm; zoom:.54; }
   .combo-two .cc-g .dev-phone img{ width:100%; height:auto; }
   .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:5.5mm; }
   .combo-two .cc-f b{ display:block; font-family:var(--display); font-weight:800; font-size:17pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
