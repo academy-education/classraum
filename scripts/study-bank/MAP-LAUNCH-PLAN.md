@@ -458,3 +458,13 @@ not met.
   fixed letter class per edit, and the structural check run on the
   likely-frozen subset before the teacher gate.
 
+
+## 10. 2026-10-20 batches: Spelling cleared, Math still one area short
+
+- **`map-lu-v6` Spelling PASSED: 26 staged** (grades 5-8, sentence format). The ~20-item Spelling gate on
+  Language Usage (decision 10) is **met**. Staged map/language: Punctuation 11 + Spelling 26 = 37; none
+  released. v4 and v5 had failed (grade fit; then a Stage 0 construction defect). `MAP-LU-V6-RESULT.md`.
+- **`map-math-g58-v3`: Operations 25 and Geometry 20 staged; Number Systems held** (options-only +19.4).
+  Staged map/math 56; pooled grades 5-8 Oper 25 / Real 0 / Stat 11 / Geom 20: **still 0 forms** until
+  Number Systems has 10. `map-math-g58-v4` (Number Systems only, 40 items) is authoring now.
+- Staged rows reach students only when a person releases them (`verified=true`); no script does that.
