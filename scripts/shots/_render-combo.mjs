@@ -138,8 +138,9 @@ const COVER_CSS = `
 // ---------- page 2: two ways + combined contents ----------
 // each column: label, title, a picture (shown whole), three numbers, page range. No paragraph.
 const card = (c, pic) => `<div class="cc"><p class="cc-k">${c.k}</p><h2 class="cc-t">${c.t}</h2><div class="cc-g">${pic}</div><div class="cc-f">${c.f.map(([b, t]) => `<div><b>${b}</b><span>${t}</span></div>`).join('')}</div><p class="cc-go">${c.go}</p></div>`
-const PIC_STUDY = `<div class="shot win"><img src="__IMG_stats__" alt=""></div>${phone('pp-stats')}`
-const PIC_CAMPS = `<div class="shot cc-card"><img src="__IMG_answer-review__" alt=""></div>${phone('ph-assignments')}`
+// one browser window per column, full column width, so more of each screen shows
+const PIC_STUDY = `<div class="shot win"><img src="__IMG_stats__" alt=""></div>`
+const PIC_CAMPS = `<div class="shot win"><img src="__IMG_classrooms__" alt=""></div>`
 const tocEntries = (src, range) => [...cut(src, range).matchAll(/<div class="te"><span class="tn">(\d\d)<\/span><span class="tt">([^<]+)<span class="td">[^<]*<\/span><\/span><span class="tl"><\/span><span class="tp" data-ref="(s-\d\d)">00<\/span><\/div>/g)].map(m => ({ n: m[1], t: m[2].trim(), ref: m[3] }))
 const studyEntries = tocEntries(study, S[1]), campEntries = tocEntries(camps, C[1])
 if (studyEntries.length !== 5) die(`Study contents: ${studyEntries.length} chapters, expected 5`)
@@ -159,26 +160,20 @@ const P2 = `<section class="page combo-two">
 const P2_CSS = `
   /* combined booklet page 2 (2026-10-20, simplified): two open columns, no boxes or screenshots, then the contents */
   .combo-two .body{ display:flex; flex-direction:column; gap:var(--s4); }
+  .combo-two .cc-toc{ margin-top:9mm; }   /* more air between the two columns and the contents */
   .combo-two .cc-head .lede{ margin-top:var(--s2); max-width:none; }
   .combo-two .cc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .combo-two .cc{ display:flex; flex-direction:column; padding:6mm 7mm 6mm 0; }
   .combo-two .cc + .cc{ padding:6mm 0 6mm 7mm; border-left:1px solid var(--line); }
   .combo-two .cc-k{ margin:0; font-size:8pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); }
   .combo-two .cc-t{ margin:2mm 0 0; font-family:var(--display); font-weight:800; font-size:14pt; line-height:1.15; color:var(--ink); word-break:keep-all; }
-  .combo-two .cc-g{ display:flex; align-items:flex-end; justify-content:center; gap:3.5mm; height:48mm; margin-top:4mm; }
-  .combo-two .cc-g .shot{ border:1px solid var(--line-2); border-radius:6px; overflow:hidden; box-shadow:0 6px 16px rgba(15,23,42,.10); }
-  .combo-two .cc-g .shot img{ display:block; height:100%; width:auto; }
-  .combo-two .cc-g .shot.win{ height:31mm; }
-  .combo-two .cc-g .shot.win img{ height:calc(31mm - 21px); }
-  .combo-two .cc-g .cc-card{ height:43mm; }
-  /* phones are drawn at the cover's 40mm and zoomed down, so the bezel, corner radius and buttons shrink with
-     the screen; at a plain 21.5mm width the frame kept its full-size thickness and looked squat */
-  .combo-two .cc-g .dev-phone{ flex:none; width:40mm; zoom:.54; }
-  .combo-two .cc-g .dev-phone img{ width:100%; height:auto; }
-  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:5.5mm; }
+  .combo-two .cc-g{ margin-top:4.5mm; }
+  .combo-two .cc-g .shot.win{ border:1px solid var(--line-2); border-radius:6px; overflow:hidden; box-shadow:0 6px 16px rgba(15,23,42,.10); }
+  .combo-two .cc-g .shot.win img{ display:block; width:100%; height:auto; }
+  .combo-two .cc-f{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:auto; padding-top:5.5mm; }   /* bottom-aligned, so the number rows line up across columns whatever each screenshot's height */
   .combo-two .cc-f b{ display:block; font-family:var(--display); font-weight:800; font-size:17pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
   .combo-two .cc-f span{ display:block; margin-top:1.4mm; font-size:7.8pt; line-height:1.35; color:var(--muted); word-break:keep-all; }
-  .combo-two .cc-go{ margin:auto 0 0; padding-top:5mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
+  .combo-two .cc-go{ margin:0; padding-top:5mm; font-size:8.2pt; font-weight:600; color:var(--blue); }
   .combo-toc .tpart{ font-size:8.4pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); padding-bottom:1.6mm; margin-bottom:1.2mm; border-bottom:1px solid var(--line); }
 `
 
