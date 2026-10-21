@@ -94,3 +94,11 @@ The ORIGINAL release rule applies, unchanged, with the batch guard on the pooled
 `ssat-draft2-release-cofounder-2026-10-21` (D2-P02, D2-P05): blind 4/12 = 33.3% vs 25.0% control;
 12/12 "Only defensible"; realism P02 6/6 authentic, P05 1/6 authentic (5 "artificial"); ~9 minutes.
 Run 2 drawn: `ssat-draft2-release2-cofounder-2026-10-21` (D2-P01, D2-P03), 12 unseen, slots A3 B3 D3 E3.
+
+### Run 2 answered (2026-10-21)
+`ssat-draft2-release2-cofounder-2026-10-21` (D2-P01, D2-P03): blind **0/12** vs 25.0% control; 12/12
+"Only defensible"; 12/12 authentic. Notes: P03 inference "E is a close second" (still rated unique);
+P03 main idea "easy and a little flat"; P01 purpose: **the review panel showed the passage as one block
+without paragraph breaks**, so "the final paragraph" could not be checked. Fixed in the panel the same
+day (`ReviewPanel.tsx`, whitespace-pre-wrap); the student test view already keeps breaks (helpers.tsx).
+Run 3 drawn: `ssat-draft2-release3-cofounder-2026-10-21` (D2-P04, D2-P06), 12 unseen, control 25.0%.

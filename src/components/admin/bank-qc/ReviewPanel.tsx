@@ -319,7 +319,9 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               : <><CheckCircle2 className="w-3.5 h-3.5" /> {t('admin.bankQc.review.notGuessable')}</>}
           </div>
 
-          <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100">
+          {/* pre-wrap: passages carry "\n\n" paragraph breaks, and items ask about "the final paragraph";
+              without it the browser collapses the passage into one block (co-founder note, 2026-10-21). */}
+          <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100 whitespace-pre-wrap">
             {reveal.stimulus || <em className="text-gray-400">{t('admin.bankQc.review.noStimulus')}</em>}
           </p>
           {reveal.prompt && <p className="text-[12.5px] text-gray-500 mt-2">{reveal.prompt}</p>}
