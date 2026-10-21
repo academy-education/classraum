@@ -95,3 +95,8 @@ Run 4 drawn: `toefl-conv1-release4`.
 ## Queue order amendment (2026-10-21, before any later run is drawn)
 Because Academic Talk now binds the hard route, `toefl-talk-draft-1`'s three runs are drawn next, right
 after run 4, ahead of the remaining conv-draft-1 runs and conv-draft-2. Order only; no rule changes.
+
+## Run 4 answered and released (2026-10-22)
+`toefl-conv1-release4`: pooled blind 9/48 = 18.8%, 12/12 Only defensible. Released 6 (24 of 32 live);
+audio pre-warmed (62 clips, 0 failed). Note: v5-11 "the transcript is unclear about who signs what"
+(rated unique). Next per the queue amendment: `toefl-talk1-release1` (T01 T02 T03), drawn.

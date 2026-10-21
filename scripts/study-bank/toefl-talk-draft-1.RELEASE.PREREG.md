@@ -26,3 +26,7 @@ TOEFL conversation drafts, before ISEE draft 1.
 ## Queue order amendment (2026-10-21, before any run is drawn)
 Drawn right after `toefl-conv1-release4` (Academic Talk became the hard-route binder at 14 after
 conversation runs 1-3 released 18 conversations). Order only; the rule is unchanged.
+
+## Run 1 drawn (2026-10-22)
+`toefl-talk1-release1-cofounder-2026-10-22`: lectures T01 T02 T03 (12 items, flat 3/3/3/3, control 25%).
+Run 2 will be the final short run (T04 T05, 8 items).
