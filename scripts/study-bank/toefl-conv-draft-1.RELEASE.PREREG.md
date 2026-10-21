@@ -62,3 +62,11 @@ conversations; draw-review-run.mjs is item-level). The panel serves rows in id o
 conversation's second question may follow its first after the transcript has been revealed: the blind
 pick on the later sibling is then not blind, which can only raise the blind score (the conservative
 direction for the guard). Same as every passage sitting so far.
+
+## Run 1 answered and released (2026-10-21)
+`toefl-conv1-release1`: blind 2/12 (16.7%, guard 50%), 12/12 Only defensible, 0 stale. Released 6
+conversations (12 items, verified=true) by `release-toefl-conv-runs.mjs`; audio pre-warmed
+(`prewarm-toefl-audio.mjs run`: 72 clips, 0 failed, all live clips cached). Realism 6/12 authentic.
+Note: v5-01 "D is the only answer but the key line is slightly ambiguous." Depth (`toefl-form-depth.ts`):
+upper/hard 11 -> 12 clean sittings (still bound by Conversation, 12[14]). Run 2 drawn:
+`toefl-conv1-release2` (v6-03 v6-04 v6-06 v6-11 v6-12 v6-13).
