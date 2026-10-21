@@ -41,3 +41,7 @@ exclusivity check by a reader other than the author.
 - He has now sat 72 draft-1 siblings written to the same brief; familiarity could raise his blind
   score, the conservative direction for the guard.
 - Author and checker are the same model; the cheap checks are pre-flight only.
+
+## Drawn (2026-10-21)
+Run `ssat-draft2-release-cofounder-2026-10-21`, 36 items, five-wide deal A8 B7 C7 D7 E7 (control
+22.2%), drawn after the MAP run was withdrawn unseen (map-reading-draft-1 Amendment 3). Rule unchanged.

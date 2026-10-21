@@ -58,3 +58,13 @@ passages, **P03, P04, P05, P08, P10, P11** (24 items, 4 each), get their own sit
   brief, the conservative direction for the guard.
 - Draw counts (2026-10-21, before any row existed): the command above asks 18/18/12 and refused, since only the
   unseen 9 / 9 / 6 remain; drawn as `"Informational Text:9,Literary Text:9,Vocabulary:6"`. Same 24 items.
+
+## Amendment 3 (2026-10-21, before any item of the second sitting was seen)
+
+Owner, 2026-10-21: reduce the co-founder's load and do first what students need. MAP is not live, and
+two real SSAT students are one form from exhausting SSAT Reading, so the reviewer's one open run is
+given to `ssat-draft2-release-cofounder-2026-10-21`. Run `map-draft1b-cofounder-2026-10-21` was
+withdrawn with **0 of 24 seen** (blind_at, blind_pick and verdict null on every row; snapshot
+`fixes/snapshot-map-draft1b-run-withdrawn-2026-10-21.json`). The same six passages (P03 P04 P05 P08 P10
+P11), the same counts and the same release rule (Amendment 2) apply when it is re-drawn; nothing
+about the rule changes, only the date.
