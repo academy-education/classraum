@@ -45,3 +45,28 @@ exclusivity check by a reader other than the author.
 ## Drawn (2026-10-21)
 Run `ssat-draft2-release-cofounder-2026-10-21`, 36 items, five-wide deal A8 B7 C7 D7 E7 (control
 22.2%), drawn after the MAP run was withdrawn unseen (map-reading-draft-1 Amendment 3). Rule unchanged.
+
+## Amendment 1 (2026-10-21, before any item is seen): a 12-item SAMPLE sitting replaces the 36
+
+Owner, 2026-10-21: reduce the number of questions the co-founder has to do. The run drawn above is
+trimmed, unseen, to **two passages (12 items)**, chosen by the lowest sha256 of
+`ssat-reading-draft-2-sample:<passage_id>` over P01-P06: **D2-P02 (0df56614) and D2-P05 (36c52e98)**.
+The other 24 rows are withdrawn unseen.
+
+Rule (replaces "Release rule" above for this batch):
+1. **Batch guard.** Blind >= 6/12 (50%): nothing is released; the batch is held whole.
+2. **All 12 "Only defensible"** (and the guard not reached): **all 36 items released**, the 24
+   unsampled on the strength of the sample.
+3. **Exactly 1 of 12 flagged** ("Another is also defensible" / "No unique answer"): that item is
+   archived; the sampled passage it belongs to is archived only under the 2-of-6 passage rule; the
+   24 unsampled items are NOT released on the sample: they go to a follow-up sitting of the
+   remaining four passages under the original per-item rule.
+4. **2 or more of 12 flagged:** nothing released; the 24 go to a full sitting under the original rule.
+
+Why this is defensible, and its limit, stated before the number exists:
+- Draft 1 (same brief): 72/72 items judged "Only defensible" across two sittings, 0 rejected. A
+  per-item reject rate of 5% would leave a clean 12 with probability 0.54; 10%, 0.28; 20%, 0.07. So
+  a clean sample is weak evidence against a 5% defect rate and fair evidence against 20%.
+- Draft 2 has a different author (Claude in-session, not the draft-1 agents), so draft 1's rate may
+  not transfer. **24 items will reach students without a human exclusivity read** if rule 2 fires.
+- A student report of a defective item archives it (existing path); nothing else watches them.
