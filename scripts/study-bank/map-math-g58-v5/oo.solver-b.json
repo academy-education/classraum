@@ -1,0 +1,168 @@
+{
+ "L001": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L002": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L003": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L004": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L005": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L006": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L007": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L008": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L009": {
+  "pick": "B",
+  "basis": "guess"
+ },
+ "L010": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L011": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L012": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L013": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L014": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L015": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L016": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L017": {
+  "pick": "B",
+  "basis": "guess"
+ },
+ "L018": {
+  "pick": "B",
+  "basis": "guess"
+ },
+ "L019": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L020": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L021": {
+  "pick": "B",
+  "basis": "confident"
+ },
+ "L022": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L023": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L024": {
+  "pick": "B",
+  "basis": "guess"
+ },
+ "L025": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L026": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L027": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L028": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L029": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L030": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L031": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L032": {
+  "pick": "D",
+  "basis": "guess"
+ },
+ "L033": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L034": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L035": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L036": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L037": {
+  "pick": "C",
+  "basis": "guess"
+ },
+ "L038": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L039": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "L040": {
+  "pick": "A",
+  "basis": "guess"
+ },
+ "_heuristics": {
+  "hub/centrality (option from which the others look like +/- small offsets, digit swaps, doubles or reciprocals)": 32,
+  "digit-variant pairing (one option a digit-edit of another, pick the 'cleaner' source)": 5,
+  "assumed 'which is largest' comparison by logarithms (L021, 2^100)": 1,
+  "arbitrary tie-break": 2
+ }
+}

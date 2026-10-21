@@ -1,0 +1,554 @@
+[
+ {
+  "id": "MM5-N07",
+  "type": "multiple_choice",
+  "prompt": "Each of 5 shelves is 2 1/6 feet long. Mr. Diaz cuts 1 1/4 feet off one of the shelves. What is the total length of the 5 shelves now, in feet?",
+  "choices": [
+   "9 7/12",
+   "9 1/12",
+   "8 11/12",
+   "5 5/12"
+  ],
+  "correct_answer": "9 7/12",
+  "explanation": "Before the cut the shelves are 5 x 2 1/6 = 10 + 5/6 = 10 5/6 feet long in all. Rename in twelfths: 10 5/6 = 10 10/12 and 1 1/4 = 1 3/12. Then 10 10/12 - 1 3/12 = 9 7/12. The shelves are 9 7/12 feet long in all.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Multiply a mixed number by a whole number, then subtract",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n%d;return (w?w+(r?' ':''):'')+(r?r+'/'+d:'');}; return f(5*26-15,12);",
+  "distractor_rationales": [
+   {
+    "choice": "9 1/12",
+    "reason": "to write 1/4 in twelfths the student adds 8 to both parts, getting 9/12 instead of 3/12, so it subtracts 1 9/12 and lands at 9 1/12"
+   },
+   {
+    "choice": "8 11/12",
+    "reason": "the student finds 5 x 1/6 as 5/30, which is still 1/6, so the shelves total 10 1/6 instead of 10 5/6, and 10 2/12 - 1 3/12 = 8 11/12"
+   },
+   {
+    "choice": "5 5/12",
+    "reason": "the student writes 2 1/6 as (2 x 1 + 6)/6 = 8/6 instead of 13/6, so the 5 shelves come to 40/6 = 6 2/3 and the answer is 5 5/12"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.NF.B.4",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM5-N16",
+  "type": "multiple_choice",
+  "prompt": "On a map drawn on a coordinate plane, each unit stands for 1 meter. A rectangular garden has corners at (-10, 5), (22, 5), (22, 23) and (-10, 23). A fence will go all the way around the garden except for a gate that is 4 meters wide. How many meters of fence are needed?",
+  "choices": [
+   "116",
+   "96",
+   "56",
+   "46"
+  ],
+  "correct_answer": "96",
+  "explanation": "The bottom side goes from (-10, 5) to (22, 5). The points are on opposite sides of the y-axis, so its length is 10 + 22 = 32 meters. The right side goes from (22, 5) to (22, 23). Both points are above the x-axis, so its length is 23 - 5 = 18 meters. The distance all the way around is 32 + 18 + 32 + 18 = 100 meters. Leave out the 4-meter gate: 100 - 4 = 96 meters of fence.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Side lengths from coordinates, one side across an axis",
+  "solve": "return String(2*((22-(-10))+(23-5))-4);",
+  "distractor_rationales": [
+   {
+    "choice": "116",
+    "reason": "the student has learned 'add the numbers to find a distance' and finds the right side as 5 + 23 = 28, as if one point were below the x-axis"
+   },
+   {
+    "choice": "56",
+    "reason": "the student finds the bottom side as 22 - 10 = 12, ignoring that -10 and 22 are on opposite sides of the y-axis"
+   },
+   {
+    "choice": "46",
+    "reason": "the student adds one length and one width, 32 + 18 = 50, and takes off the gate, leaving out the other two sides"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.NS.C.8",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM5-N18",
+  "type": "multiple_choice",
+  "prompt": "A school has 210 liters of juice for a fair. A store gives the school 30 more liters of juice. All of the juice is poured into bottles that each hold 0.75 liter. The school gives away 60 of the bottles. How many bottles of juice does the school have left?",
+  "choices": [
+   "220",
+   "120",
+   "260",
+   "250"
+  ],
+  "correct_answer": "260",
+  "explanation": "The school has 210 + 30 = 240 liters of juice. Each bottle holds 0.75 liter, so the number of bottles is 240 / 0.75 = 24000 / 75 = 320. After giving away 60 bottles, the school has 320 - 60 = 260 bottles left.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Combine amounts, divide by a decimal, then subtract",
+  "solve": "return String(Math.round((210+30)/0.75-60));",
+  "distractor_rationales": [
+   {
+    "choice": "220",
+    "reason": "the student pours only the first 210 liters into bottles, 210 / 0.75 = 280, and takes away 60, forgetting the 30 liters the store gave"
+   },
+   {
+    "choice": "120",
+    "reason": "the student expects the number of bottles to be smaller than the number of liters, so finds 240 x 0.75 = 180 bottles and then takes away 60"
+   },
+   {
+    "choice": "250",
+    "reason": "the student divides 210 by 0.75 to get 280 bottles, then adds the 30 liters as if they were 30 bottles, then takes away 60"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": null,
+   "grade_target": 6,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "6.NS.B.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM5-N10",
+  "type": "multiple_choice",
+  "prompt": "A school raised $1,520 at a fair and $35 at a bake sale. It spent $480 of that money on supplies. Then it shared the rest of the money equally among 20 classrooms. How many dollars did each classroom get?",
+  "choices": [
+   "53.75",
+   "53.25",
+   "53.15",
+   "50.25"
+  ],
+  "correct_answer": "53.75",
+  "explanation": "The money left after supplies is 1,520 + 35 - 480 = 1,075 dollars. Share it among 20 classrooms: 1,075 / 20 = 53 with 15 left over, and 15 / 20 = 3/4 = 0.75 of a dollar. Each classroom gets $53.75.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Combine amounts, then divide by a two-digit number to hundredths",
+  "solve": "return ((1520+35-480)/20).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "53.25",
+    "reason": "in 1,555 - 480 the student regroups the tens and then uses 15 - 8 = 6, getting 1,065, and 1,065 / 20 = 53.25"
+   },
+   {
+    "choice": "53.15",
+    "reason": "the student divides 1,075 by 20, gets 53 R15, and writes it as 53.15 instead of changing 15/20 into 0.75"
+   },
+   {
+    "choice": "50.25",
+    "reason": "the student lumps the $35 from the bake sale with the $480 of spending and takes both away: (1,520 - 35 - 480) / 20 = 50.25"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.NBT.B.6",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM5-N01",
+  "type": "multiple_choice",
+  "prompt": "Each bag of rice weighs 1.15 kilograms. Mia puts 7 bags of rice and a box that weighs 2.15 kilograms in a cart. How many kilograms are in the cart?",
+  "choices": [
+   "9.30",
+   "10.20",
+   "10.10",
+   "9.90"
+  ],
+  "correct_answer": "10.20",
+  "explanation": "The rice weighs 7 x 1.15 = 8.05 kilograms (7 x 1 = 7 and 7 x 0.15 = 1.05). Add the box: 8.05 + 2.15 = 10.20. There are 10.20 kilograms in the cart.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Multiply a decimal by a whole number, then add a decimal",
+  "solve": "return (7*1.15+2.15).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "9.30",
+    "reason": "the student does 7 x 1 = 7, writes the 0.15 once as if it belonged to one bag (7.15), and adds the box: 7.15 + 2.15 = 9.30"
+   },
+   {
+    "choice": "10.10",
+    "reason": "adding 8.05 + 2.15, the student writes 0 for 10 hundredths but forgets to carry the 1 tenth, so the tenths come out 1 instead of 2 and the sum is 10.10"
+   },
+   {
+    "choice": "9.90",
+    "reason": "the student rounds 1.15 down to 1.1, finds 7 x 1.1 = 7.7, adds back the 0.05 only once (7.75) instead of 7 times, and adds the box: 7.75 + 2.15 = 9.90"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "low",
+   "rit_band_target": "RIT 190-199",
+   "ccss": "5.NBT.B.7",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM5-N11",
+  "type": "multiple_choice",
+  "prompt": "A tank had 9 3/8 gallons of water in it. A pipe drained 3/8 gallon of water out of the tank each minute for 10 minutes. Then Ana poured 1 1/2 gallons of water into the tank. How many gallons of water are in the tank now?",
+  "choices": [
+   "7 7/8",
+   "9 5/8",
+   "7 1/8",
+   "7 3/8"
+  ],
+  "correct_answer": "7 1/8",
+  "explanation": "The pipe drained 10 x 3/8 = 30/8 = 3 6/8 gallons. Regroup 9 3/8 as 8 11/8; then 8 11/8 - 3 6/8 = 5 5/8 gallons. Ana added 1 1/2 = 1 4/8 gallons: 5 5/8 + 1 4/8 = 6 9/8 = 7 1/8. There are 7 1/8 gallons in the tank.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Multi-step problem: repeated fraction amount, subtract, then add",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n%d;return (w?w+(r?' ':''):'')+(r?r+'/'+d:'');}; return f(75-10*3+12,8);",
+  "distractor_rationales": [
+   {
+    "choice": "7 7/8",
+    "reason": "the student writes 30/8 as 3 0/8, taking the 3 as the wholes and the 0 as eighths, so only 3 gallons are drained instead of 3 3/4"
+   },
+   {
+    "choice": "9 5/8",
+    "reason": "the student finds 10 x 1/8 = 1 2/8 (10 eighths) and forgets that each minute drains 3 eighths, so too little water is taken out"
+   },
+   {
+    "choice": "7 3/8",
+    "reason": "dividing 30 by 8 the student takes 8 x 3 = 24 but then writes 30 - 24 = 4, so the pipe drains 3 4/8 gallons instead of 3 6/8"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.NF.B.4",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM5-N27",
+  "type": "multiple_choice",
+  "prompt": "The water level in a pond was measured every morning. Over four days, the level changed by +0.8 cm, -6.3 cm, -9.5 cm and +4.4 cm. What was the mean (average) change per day, in centimeters?",
+  "choices": [
+   "-3.05",
+   "-3.95",
+   "-2.55",
+   "-2.65"
+  ],
+  "correct_answer": "-2.65",
+  "explanation": "The mean is the total change divided by the number of days. Total: 0.8 + (-6.3) + (-9.5) + 4.4. The rises add to 0.8 + 4.4 = 5.2 and the drops add to -6.3 + (-9.5) = -15.8, so the total is 5.2 + (-15.8) = -10.6 cm. Mean: -10.6 ÷ 4 = -2.65 cm per day.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "mean of positive and negative decimal changes",
+  "solve": "const t = 0.8 - 6.3 - 9.5 + 4.4; return (t / 4).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "-3.05",
+    "reason": "The student writes the first change as -0.8, so the total is -12.2 and the mean is -3.05."
+   },
+   {
+    "choice": "-3.95",
+    "reason": "The student adds only the drops, -6.3 + (-9.5) = -15.8, and divides by 4 to get -3.95, forgetting that the two rises raise the total."
+   },
+   {
+    "choice": "-2.55",
+    "reason": "The student takes the largest change, 4.4, and the smallest, -9.5, and finds the number halfway between them: (4.4 + (-9.5)) ÷ 2 = -2.55."
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": null,
+   "grade_target": 7,
+   "tier": "mid",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "7.NS.A.3",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM5-N09",
+  "type": "multiple_choice",
+  "prompt": "A box of 6 bottles of juice costs $24.30, and each bottle costs the same amount. Ms. Ray has $50.00. She buys 4 bottles of the juice at that price per bottle. Then her friend gives her $2.50. How many dollars does Ms. Ray have now?",
+  "choices": [
+   "36.30",
+   "34.50",
+   "28.20",
+   "36.10"
+  ],
+  "correct_answer": "36.30",
+  "explanation": "One bottle costs 24.30 / 6. 24 / 6 = 4; 3 tenths cannot be shared by 6, so write 0 tenths and use 30 hundredths: 30 / 6 = 5 hundredths. One bottle costs $4.05. Four bottles cost 4 x 4.05 = $16.20. She has 50.00 - 16.20 = 33.80, and then 33.80 + 2.50 = 36.30. She has $36.30.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "hard",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Unit price with a zero in the quotient, then a multi-step total",
+  "solve": "return (50 - 4*(24.30/6) + 2.50).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "34.50",
+    "reason": "dividing 24.30 by 6 the student writes 4, then 30 / 6 = 5 right after the point, getting $4.50 a bottle; 4 bottles are then $18.00 and she has 34.50"
+   },
+   {
+    "choice": "28.20",
+    "reason": "the student subtracts the $24.30 box price as if she bought all 6 bottles, then adds the gift: 50 - 24.30 + 2.50 = 28.20"
+   },
+   {
+    "choice": "36.10",
+    "reason": "the student rounds $4.05 to $4.10 to make the multiplying easier and keeps the rounded price: 4 x 4.10 = 16.40, so she has 36.10"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "high",
+   "rit_band_target": "RIT 210-219",
+   "ccss": "5.NBT.B.7",
+   "author_difficulty": "hard"
+  }
+ },
+ {
+  "id": "MM5-N03",
+  "type": "multiple_choice",
+  "prompt": "Look at these numbers: 4.643, 4.645, 4.648, 4.65, 4.651, 4.653, 4.655, 4.657, 4.704, 4.741, 4.752. How many of them round to 4.7 when they are rounded to the nearest tenth?",
+  "choices": [
+   "7",
+   "1",
+   "9",
+   "3"
+  ],
+  "correct_answer": "7",
+  "explanation": "To round to the nearest tenth, look at the hundredths digit. 4.643, 4.645 and 4.648 have 4 hundredths, so they round down to 4.6. 4.65, 4.651, 4.653, 4.655 and 4.657 have 5 hundredths, so they round up to 4.7. 4.704 and 4.741 have 0 and 4 hundredths, so they round down to 4.7. 4.752 has 5 hundredths, so it rounds up to 4.8. Seven numbers round to 4.7: 4.65, 4.651, 4.653, 4.655, 4.657, 4.704 and 4.741.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Round decimals to the nearest tenth",
+  "solve": "const L=[4.643,4.645,4.648,4.65,4.651,4.653,4.655,4.657,4.704,4.741,4.752]; return String(L.filter(x=>Math.abs(Math.round(x*10+1e-9)/10-4.7)<1e-9).length);",
+  "distractor_rationales": [
+   {
+    "choice": "1",
+    "reason": "the student rounds each number to two decimal places and counts only those that become 4.70; only 4.704 does"
+   },
+   {
+    "choice": "9",
+    "reason": "the student rounds 4.645 to 4.65 and then to 4.7, and 4.648 the same way, so both are counted along with the seven correct ones, giving 9"
+   },
+   {
+    "choice": "3",
+    "reason": "the student cuts each number off after the tenths digit, so only numbers that start with 4.7 count: 4.704, 4.741 and 4.752"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "low",
+   "rit_band_target": "RIT 190-199",
+   "ccss": "5.NBT.A.4",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM5-N02",
+  "type": "multiple_choice",
+  "prompt": "A ribbon is 16 feet long. Lena uses 5/12 of the ribbon to make a bow. How many feet of ribbon does she use?",
+  "choices": [
+   "5 2/3",
+   "7 1/3",
+   "6 2/3",
+   "6 1/3"
+  ],
+  "correct_answer": "6 2/3",
+  "explanation": "Find 5/12 of 16 by multiplying: 5/12 x 16 = 80/12. 80 divided by 12 is 6 with 8 left over, so 80/12 = 6 8/12 = 6 2/3. Lena uses 6 2/3 feet of ribbon.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "easy",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Multiply a whole number by a fraction",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n%d;return (w?w+(r?' ':''):'')+(r?r+'/'+d:'');}; return f(5*16,12);",
+  "distractor_rationales": [
+   {
+    "choice": "5 2/3",
+    "reason": "the student finds 1/12 of 16 as 1 4/12, multiplies by 5 to get 5 20/12, then writes 20/12 as 8/12 and loses the whole it contains, getting 5 8/12 = 5 2/3"
+   },
+   {
+    "choice": "7 1/3",
+    "reason": "dividing 80 by 12, the student picks 7 (12 x 7 = 84) and writes the 4 between 84 and 80 as the remainder, getting 7 4/12 = 7 1/3"
+   },
+   {
+    "choice": "6 1/3",
+    "reason": "the student finds 1/12 of 16 = 1 1/3 and then adds 5 instead of taking 5 of those twelfths, getting 6 1/3"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "low",
+   "rit_band_target": "RIT 190-199",
+   "ccss": "5.NF.B.4",
+   "author_difficulty": "easy"
+  }
+ },
+ {
+  "id": "MM5-N06",
+  "type": "multiple_choice",
+  "prompt": "Leo buys a book for $6.24, a cap for $2.63, a snack for $3.95, and a toy for $1.61. To estimate the total, he rounds each price to the nearest ten cents and then adds the rounded prices. What estimate does he get, in dollars?",
+  "choices": [
+   "14.70",
+   "14.30",
+   "14.40",
+   "14.60"
+  ],
+  "correct_answer": "14.40",
+  "explanation": "Round each price to the nearest ten cents by looking at the hundredths digit. $6.24 rounds down to $6.20 (4 is less than 5). $2.63 rounds down to $2.60 (3 is less than 5). $3.95 rounds up: 9 tenths and 1 more tenth make 10 tenths, which is 1 whole dollar, so $3.95 rounds to $4.00. $1.61 rounds down to $1.60. Add: 6.20 + 2.60 + 4.00 + 1.60 = 14.40. His estimate is $14.40.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Round four prices to tenths, then add the rounded prices",
+  "solve": "const r=c=>Math.floor((c+5)/10)*10; const P=[624,263,395,161]; return (P.reduce((a,c)=>a+r(c),0)/100).toFixed(2);",
+  "distractor_rationales": [
+   {
+    "choice": "14.70",
+    "reason": "the student rounds every price up to the next ten cents (6.30, 2.70, 4.00, 1.70), including the three that should go down, and gets 14.70"
+   },
+   {
+    "choice": "14.30",
+    "reason": "the student thinks a 5 is exactly halfway and should round down, so $3.95 becomes $3.90 and the total is 6.20 + 2.60 + 3.90 + 1.60 = 14.30"
+   },
+   {
+    "choice": "14.60",
+    "reason": "the student looks at the tenths digit to decide: 6.24 has 2 tenths so it goes down to 6.20, but 2.63 and 1.61 have 6 tenths so they go up to 2.70 and 1.70, and 3.95 goes up to 4.00, giving 14.60"
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": "Number and Operations",
+   "grade_target": 5,
+   "tier": "mid",
+   "rit_band_target": "RIT 200-209",
+   "ccss": "5.NBT.A.4",
+   "author_difficulty": "medium"
+  }
+ },
+ {
+  "id": "MM5-N38",
+  "type": "multiple_choice",
+  "prompt": "The populations of three towns are shown in scientific notation. Town A: 3.284 x 10^5 people. Town B: 1.9 x 10^4 people. Town C: 1.68 x 10^5 people. What is the mean population of the three towns?",
+  "choices": [
+   "168000",
+   "171800",
+   "228800",
+   "166100"
+  ],
+  "correct_answer": "171800",
+  "explanation": "Write each population in standard form: 3.284 x 10^5 = 328,400; 1.9 x 10^4 = 19,000; 1.68 x 10^5 = 168,000. Add them: 328,400 + 19,000 + 168,000 = 515,400. Divide by the number of towns: 515,400 / 3 = 171,800. The mean population is 171,800 people.",
+  "graphic": null,
+  "passage": null,
+  "passageGroupId": null,
+  "blanks": null,
+  "correct_answers": null,
+  "acceptable_answers": null,
+  "difficulty": "medium",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "mean of three numbers given in scientific notation",
+  "solve": "return String((328400 + 19000 + 168000) / 3);",
+  "distractor_rationales": [
+   {
+    "choice": "168000",
+    "reason": "The student puts the three populations in order and takes the middle one, 168,000, instead of adding and dividing."
+   },
+   {
+    "choice": "228800",
+    "reason": "The student adds 3.284 + 1.9 + 1.68 = 6.864, divides by 3 to get 2.288 and attaches 10^5, treating 1.9 x 10^4 as if it were 1.9 x 10^5."
+   },
+   {
+    "choice": "166100",
+    "reason": "The student writes 1.9 x 10^4 as 1,900, a four-digit number, instead of 19,000, then finds (328,400 + 1,900 + 168,000) / 3 = 166,100."
+   }
+  ],
+  "map": {
+   "area": "num",
+   "area_25": null,
+   "grade_target": 8,
+   "tier": "mid",
+   "rit_band_target": "RIT 220-229",
+   "ccss": "8.EE.A.4",
+   "author_difficulty": "medium"
+  }
+ }
+]

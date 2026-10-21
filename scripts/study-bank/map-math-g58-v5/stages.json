@@ -1,0 +1,338 @@
+{
+ "prereg": "MAP-MATH-G58-V5.prereg.md",
+ "frozenSha": "2a8c72fe819ca1b3303bbf6a46517c730e8b597a651e88a657920ff13594f279",
+ "n": 20,
+ "optionsOnly": {
+  "res": {
+   "all": {
+    "cand": {
+     "n": 20,
+     "picks": 60,
+     "hits": 22,
+     "unan": 5
+    },
+    "ctrl": {
+     "n": 20,
+     "picks": 60,
+     "hits": 21,
+     "unan": 5
+    },
+    "status": "pass",
+    "cr": 36.666666666666664,
+    "kr": 35,
+    "cu": 25,
+    "ku": 25,
+    "margin": 1.6666666666666643,
+    "umar": 0,
+    "why": "candidate 36.7% vs control 35.0% (margin 1.7, bar +10); unanimous-correct 25.0% vs 25.0% (0.0, bar +15)"
+   },
+   "oa": {
+    "cand": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "ctrl": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "status": "no-measurement",
+    "cr": null,
+    "kr": null,
+    "why": "empty arm"
+   },
+   "num": {
+    "cand": {
+     "n": 20,
+     "picks": 60,
+     "hits": 22,
+     "unan": 5
+    },
+    "ctrl": {
+     "n": 20,
+     "picks": 60,
+     "hits": 21,
+     "unan": 5
+    },
+    "status": "pass",
+    "cr": 36.666666666666664,
+    "kr": 35,
+    "cu": 25,
+    "ku": 25,
+    "margin": 1.6666666666666643,
+    "umar": 0,
+    "why": "candidate 36.7% vs control 35.0% (margin 1.7, bar +10); unanimous-correct 25.0% vs 25.0% (0.0, bar +15)"
+   },
+   "geo": {
+    "cand": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "ctrl": {
+     "n": 0,
+     "picks": 0,
+     "hits": 0,
+     "unan": 0
+    },
+    "status": "no-measurement",
+    "cr": null,
+    "kr": null,
+    "why": "empty arm"
+   }
+  },
+  "letterControl": 25
+ },
+ "difficulty": {
+  "n": 20,
+  "judgments": 40,
+  "tooEasy": 0,
+  "tooHard": 1,
+  "tooEasyPct": 0,
+  "tooHardPct": 2.5,
+  "offA": -0.05,
+  "offB": -0.05,
+  "spreadA": 1.75,
+  "spreadB": 2,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 40,
+ "items": {
+  "MM5-N07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM5-N16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM5-N18": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM5-N08": {
+   "drop": [
+    "R7 option pair (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM5-N10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM5-N01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM5-N11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM5-N27": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM5-N09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MM5-N28": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [
+    "MM5-N11"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM5-N03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM5-N26": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM5-N02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MM5-N37": {
+   "drop": [
+    "R8 one-sided extreme key (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM5-N22": {
+   "drop": [],
+   "hold": [
+    "OFF off-blueprint (both)"
+   ],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MM5-N05": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MM5-N06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MM5-N33": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MM5-N23": {
+   "drop": [
+    "R8 one-sided extreme key (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MM5-N38": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  }
+ },
+ "areas": {
+  "num": {
+   "frozen": 20,
+   "kept": 12,
+   "keptIds": [
+    "MM5-N07",
+    "MM5-N16",
+    "MM5-N18",
+    "MM5-N10",
+    "MM5-N01",
+    "MM5-N11",
+    "MM5-N27",
+    "MM5-N09",
+    "MM5-N03",
+    "MM5-N02",
+    "MM5-N06",
+    "MM5-N38"
+   ],
+   "extremity": {
+    "total": 12,
+    "n": 12,
+    "nonNumeric": 0,
+    "otherSkip": 0,
+    "ext": 6,
+    "rate": 0.5,
+    "chance": 0.5,
+    "threshold": 0.4,
+    "status": "pass",
+    "reason": "key at an extreme 6/12 = 50.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 12)"
+   },
+   "oo": "pass",
+   "status": "pass",
+   "reasons": []
+  }
+ },
+ "passIds": [
+  "MM5-N07",
+  "MM5-N16",
+  "MM5-N18",
+  "MM5-N10",
+  "MM5-N01",
+  "MM5-N11",
+  "MM5-N27",
+  "MM5-N09",
+  "MM5-N03",
+  "MM5-N02",
+  "MM5-N06",
+  "MM5-N38"
+ ],
+ "verdict": "PASS"
+}

@@ -4119,6 +4119,44 @@
       }
     },
     {
+      "id": "map-math-g58-v5-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-g58-v5",
+      "contentSha": "8387f3754c02e3a5656820abb51e7f754ddd7f5727359ced4a8c63cb79684e8a",
+      "status": "staged",
+      "note": "MAP maths Number Systems v5 (MAP-MATH-G58-V5.prereg.md, d4765a2e). 44 slots, 26 authored (A 11+3, B 7+5; 18 slots left empty by the authors rather than bend a rule), N29 withdrawn as a v1 near-duplicate before assembly -> 25. Screen pass 1: 14 of 25 failed, returned once; pass 2: 5 still failed -> dropped. Frozen 20 (c96879e4; bar 15). Kept 12; 8 dropped by the graders. 12 INSERTED STAGED (verified=false). contentSha = sha256 of map-math-g58-v5.inserted.batch.json. A person releases; never verified=true from a script.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "25/25 PART OK (LONE, SLIP, FORM exact digit, near-dups incl. v4 and the pilot); cold screen pass 1 14 fail, one return, pass 2 5 still fail (N25/N39/N40 R4, N04/N44 R7) -> dropped; frozen 20 >= 15."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 20,
+          "candidatePct": 36.7,
+          "control": 35.0,
+          "controlN": 20,
+          "margin": 1.7,
+          "verdict": "Options-only, 3 samples of one Claude solver, 20 candidates vs 20 matched live ISEE num items, flat deals A5 B5 C5 D5: 22/60 vs 21/60, margin +1.7 (bar +10); unanimous-correct 25.0% vs 25.0%. The option set alone does not decide these; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "n": 20,
+          "coldOnKey": 40,
+          "kept": 12,
+          "verdict": "Two Claude graders cold then keyed in private folders, coldcheck 40 rows 0 changed, 40/40 cold on key, 0 key disputes. Tie-break F on 4 single-grader flags (N18, N01, N11, N06): all kept. Dropped 8: N37, N33, N23 (R8 one-sided, both graders), N08 (R7 option pair, both), N28 (R11 template of N11, both), N22 (off-blueprint unit rate, both), N05 (EXT-1: 'every other seat' reads as alternate seats), N26 (EXT-1: the reversal error is not offered). D1 too_easy 0.0%, too_hard 2.5%; D2 offsets -0.05/-0.05; D3 spreads 1.75/2.00."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Kept-set key at an extreme 6/12 = 50.0% (bar 0.8 x 50.0% = 40.0%), the gate v4 failed at 14.3%. Banked difficulty easy 3 / medium 6 / hard 3."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
