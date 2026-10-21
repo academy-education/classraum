@@ -4157,6 +4157,35 @@
       }
     },
     {
+      "id": "bas-v2-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "toefl",
+      "section": "writing",
+      "task": "arrange_words",
+      "family": "production",
+      "cohort": "bas-v2",
+      "contentSha": "db158771e30506635bc4775bc368374edbedbed242bcaa9e70c1a832f8e7d7e7",
+      "status": "shipped",
+      "note": "TOEFL Build a Sentence, 45 authored in-session by Claude to bas-v1's ambiguity doctrine (BAS-V2-PREREGISTERED.md); 36 kept after bas-v1's three gates, unchanged. Owner approved ~9 agents for this batch's QC only (2026-10-21). contentSha = sha256 of bas-v2.rows.json. Evidence in bas-v2-qc/. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "db158771e30506635bc4775bc368374edbedbed242bcaa9e70c1a832f8e7d7e7",
+          "verdict": "bas-v2-gate1.mjs: 0 problems on 45 and on the kept 36 (5-7 chips of 1-4 words, exact permutation, scrambled, no terminal punctuation, no duplicate chip); break-tested with a non-permutation, a duplicate chip and a verbatim live key."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "db158771e30506635bc4775bc368374edbedbed242bcaa9e70c1a832f8e7d7e7",
+          "verdict": "Assembly convergence: 3 blind solvers, chips only, own seeded shuffle each: 45/45 items reproduced exactly by >= 2 of 3 (in fact 3/3 on all 45). Ambiguity hunt: 3 hunters with the key; 10 distinct alternatives on 9 items, all valid chip permutations, sent with solvers' alternatives to 3 blind adjudicators (pairs unlabelled, order seeded). bas-v1 rule, any acceptable-or-better kills: all 10 alternatives judged at least acceptable by every judge, so 9 items killed (BAS2-02 03 05 09 11 18 22 23 38), 20.0% (re-register bar > 33.3%). Kept 36."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "db158771e30506635bc4775bc368374edbedbed242bcaa9e70c1a832f8e7d7e7",
+          "verdict": "Key token-Jaccard max 0.31 vs 165 live keys, 0.25 within batch (bar 0.5); passive-with-agent 0/36 (bar <= 20%); 34 structure families; difficulty 23 medium / 13 hard as authored."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
