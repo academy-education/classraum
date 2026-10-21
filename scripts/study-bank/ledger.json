@@ -4065,6 +4065,33 @@
       }
     },
     {
+      "id": "isee-reading-draft-2-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-2",
+      "contentSha": "fbb927894ffe5f9be547766bd9a6c6d2f2b01a1781a506622627bbb9a2ba674b",
+      "status": "staged-for-human-edit",
+      "note": "Second ISEE draft-route batch: 6 passages x 6 four-choice items, written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in isee-reading-draft-2.RELEASE.PREREG.md. contentSha = sha256 of isee-reading-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "fbb927894ffe5f9be547766bd9a6c6d2f2b01a1781a506622627bbb9a2ba674b",
+          "verdict": "merge.mjs at K=4: 0 problems after pre-insert edits (2 vocabulary items re-headworded for length ratio; 3 paragraphs reduced to one negation; key uniquely longest 11/36 -> 7/36 by one lengthened distractor on 4 items; uniquely shortest 5/36). Key slots 9/9/9/9. Edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author self-review only."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
