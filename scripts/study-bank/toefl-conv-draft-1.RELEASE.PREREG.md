@@ -54,3 +54,11 @@ answer.
   the protection there, and it is coarse.
 - Author labels, not grader medians: some "medium" sets may play easy, which affects difficulty, not
   correctness.
+
+## Run 1 drawn (2026-10-21)
+`toefl-conv1-release1-cofounder-2026-10-21`: v5-01 v5-09 v5-10 v5-13 v5-16 v6-01 (the first six listed
+in-band sets), 12 items, flat A3 B3 C3 D3 (control 25.0%), by `draw-toefl-conv-runs.mjs` (whole
+conversations; draw-review-run.mjs is item-level). The panel serves rows in id order, so a
+conversation's second question may follow its first after the transcript has been revealed: the blind
+pick on the later sibling is then not blind, which can only raise the blind score (the conservative
+direction for the guard). Same as every passage sitting so far.

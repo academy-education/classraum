@@ -3992,7 +3992,7 @@
       "family": "mc_hidden_source",
       "cohort": "ssat-reading-draft-2",
       "contentSha": "eea9d108d99a48aab528c300cbd56d8e010d057afd5910aba6037e51c1a70412",
-      "status": "staged-for-human-edit",
+      "status": "shipped",
       "note": "Draft 1 route (owner B10), second batch: 6 passages x 6 = 36 items written in-session by Claude to SSAT-READING-DRAFT-1-AUTHOR-BRIEF.md (no agents, owner 2026-10-12), inserted verified=false with verify_meta.draft {status awaiting_edit, qid, qc.note, original_item}. Release only by the co-founder sitting pre-registered in ssat-reading-draft-2.RELEASE.PREREG.md (draft 1 rule unchanged), drawn after map-draft1b closes. contentSha = sha256 of ssat-reading-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
       "stages": {
         "shape": {
@@ -4007,6 +4007,11 @@
         "withsource": {
           "passed": null,
           "verdict": "NOT RUN by an independent reader; author self-review only. The sitting supplies the exclusivity judgement."
+        },
+        "human_sitting": {
+          "passed": true,
+          "run": "ssat-draft2-release{,2,3}-cofounder-2026-10-21",
+          "verdict": "Co-founder, three runs of 12 under ssat-reading-draft-2.RELEASE.PREREG.md Amendment 2 (committed before any item was seen): pooled blind 4/36 = 11.1% (runs 4/12, 0/12, 0/12) vs ~25% controls; guard >= 18/36 not reached. 36/36 Only defensible, 0 stale item_sha. Released 36 (verified=true) 2026-10-21 by release-ssat-reading-draft2-2026-10-21.mjs. Realism 31/36 authentic (5 artificial, all on the history passage)."
         }
       }
     },
