@@ -1,0 +1,1422 @@
+{
+ "cohort": "toefl-conv-draft-2",
+ "created": "2026-10-21",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Hi, I reserved one of the field microscopes for Saturday, but the booking page says pending. B: That's because field kits need a supervisor's signature now. Has your professor signed the form? A: She's away at a conference until Monday. B: Then the department chair can sign in her place. A: The chair? I've never even spoken to him. B: It's a formality. He signs a dozen of these a week. A: Okay. But if he signs today, is Saturday still mine? B: It is, as long as the form reaches me before five on Friday. After that the kit goes to the waiting list.",
+    "passageGroupId": "pg-f197b393ed6c1b0a26b92a11b2647745",
+    "prompt": "[Conversation — Equipment desk] What does the manager imply when saying, 'He signs a dozen of these a week'?",
+    "choices": [
+     "The student need not worry about approaching the chair",
+     "The chair is far too busy to sign another form this week",
+     "The student should wait for the professor to return",
+     "The form must be signed in person rather than online"
+    ],
+    "correct_answer": "The student need not worry about approaching the chair",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The student has 'never even spoken to him'; the manager answers that it is 'a formality' the chair handles routinely.",
+    "distractor_rationales": [
+     {
+      "choice": "The chair is far too busy to sign another form this week",
+      "reason": "The chair is busy, but the manager's point is that signing is routine; the chair can sign today."
+     },
+     {
+      "choice": "The student should wait for the professor to return",
+      "reason": "The manager offers the chair precisely so the student need not wait until Monday."
+     },
+     {
+      "choice": "The form must be signed in person rather than online",
+      "reason": "Nothing is said about how the form is signed."
+     }
+    ]
+   },
+   "content_hash": "cd84751f84dfd5c6b7282144057d4314",
+   "word_count": 106,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Hi, I reserved one of the field microscopes for Saturday, but the booking page says pending. B: That's because field kits need a supervisor's signature now. Has your professor signed the form? A: She's away at a conference until Monday. B: Then the department chair can sign in her place. A: The chair? I've never even spoken to him. B: It's a formality. He signs a dozen of these a week. A: Okay. But if he signs today, is Saturday still mine? B: It is, as long as the form reaches me before five on Friday. After that the kit goes to the waiting list.",
+    "passageGroupId": "pg-f197b393ed6c1b0a26b92a11b2647745",
+    "prompt": "[Conversation — Equipment desk] What must happen for the student to keep the Saturday booking?",
+    "choices": [
+     "The signed form must reach the manager before five on Friday",
+     "The professor must sign the form when she returns on Monday",
+     "The chair must sign the form before Saturday morning",
+     "The student must join the waiting list before Friday"
+    ],
+    "correct_answer": "The signed form must reach the manager before five on Friday",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "Saturday stays the student's 'as long as the form reaches me before five on Friday'.",
+    "distractor_rationales": [
+     {
+      "choice": "The professor must sign the form when she returns on Monday",
+      "reason": "Monday is after the Friday deadline, and the chair is signing in her place."
+     },
+     {
+      "choice": "The chair must sign the form before Saturday morning",
+      "reason": "The deadline is five on Friday, not Saturday morning."
+     },
+     {
+      "choice": "The student must join the waiting list before Friday",
+      "reason": "The waiting list is what happens if the form is late."
+     }
+    ]
+   },
+   "content_hash": "024286e967daf28400c75f4e2d2c7041",
+   "word_count": 106,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I booked a session for my history essay, but I only have an outline so far. Is that a waste of your time? B: Not at all. Outlines are often easier to fix than finished drafts. A: Really? I assumed you'd want something complete. B: People who bring two thousand words are usually reluctant to change any of them. A: That's fair. My argument is about the canal strikes, but I'm not sure my second section belongs. B: Then let's start there. Read me just the topic sentences, and we'll see whether they follow from your thesis. A: Only the topic sentences? B: For now. If they don't connect, the paragraphs underneath won't either.",
+    "passageGroupId": "pg-0a402dfc6786a7b895901f3fdb61ec35",
+    "prompt": "[Conversation — Writing center] Why does the tutor mention people who bring 'two thousand words'?",
+    "choices": [
+     "To explain why an early outline can be more useful than a draft",
+     "To warn that the essay should not go over a word limit",
+     "To suggest that the student has already written too much",
+     "To point out that most drafts arrive at the center too short"
+    ],
+    "correct_answer": "To explain why an early outline can be more useful than a draft",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The remark supports 'Outlines are often easier to fix than finished drafts': writers of long drafts resist changing them.",
+    "distractor_rationales": [
+     {
+      "choice": "To warn that the essay should not go over a word limit",
+      "reason": "No word limit is mentioned."
+     },
+     {
+      "choice": "To suggest that the student has already written too much",
+      "reason": "The student has only an outline."
+     },
+     {
+      "choice": "To point out that most drafts arrive at the center too short",
+      "reason": "The tutor's point concerns long drafts, not short ones."
+     }
+    ]
+   },
+   "content_hash": "4a1beedbe4e89e3dce4b77383017de8f",
+   "word_count": 115,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I booked a session for my history essay, but I only have an outline so far. Is that a waste of your time? B: Not at all. Outlines are often easier to fix than finished drafts. A: Really? I assumed you'd want something complete. B: People who bring two thousand words are usually reluctant to change any of them. A: That's fair. My argument is about the canal strikes, but I'm not sure my second section belongs. B: Then let's start there. Read me just the topic sentences, and we'll see whether they follow from your thesis. A: Only the topic sentences? B: For now. If they don't connect, the paragraphs underneath won't either.",
+    "passageGroupId": "pg-0a402dfc6786a7b895901f3fdb61ec35",
+    "prompt": "[Conversation — Writing center] What will the student and the tutor do first?",
+    "choices": [
+     "Check whether the topic sentences follow from the thesis",
+     "Rewrite the whole second section of the outline together",
+     "Read every paragraph under the second heading",
+     "Decide whether the canal strikes are the right topic"
+    ],
+    "correct_answer": "Check whether the topic sentences follow from the thesis",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Read me just the topic sentences, and we'll see whether they follow from your thesis.'",
+    "distractor_rationales": [
+     {
+      "choice": "Rewrite the whole second section of the outline together",
+      "reason": "Rewriting is not proposed; the tutor first wants to test the section."
+     },
+     {
+      "choice": "Read every paragraph under the second heading",
+      "reason": "The tutor asks for 'just the topic sentences'."
+     },
+     {
+      "choice": "Decide whether the canal strikes are the right topic",
+      "reason": "The topic is not questioned; only the second section is."
+     }
+    ]
+   },
+   "content_hash": "a41de02d5d87cd9c4d14a13fe0ae4374",
+   "word_count": 115,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I need to drop Statistics, but the system won't let me. B: The drop deadline was last Friday. After that it's a withdrawal, not a drop. A: What's the difference? B: A drop erases the course. A withdrawal stays on your transcript as a W, but it doesn't count in your grade average. A: So my average is safe either way. B: Your average, yes. But if this takes you below twelve credits, the scholarship office has to approve it first. A: I'd be at nine. B: Then go to them before you come back here. I can't process it without their stamp.",
+    "passageGroupId": "pg-f9f8cce85c393eace4caf0e99021831f",
+    "prompt": "[Conversation — Registrar's office] What is true of a withdrawal, according to the clerk?",
+    "choices": [
+     "It appears on the transcript but not in the grade average",
+     "It removes the course from the transcript entirely",
+     "It lowers the grade average by a fixed amount",
+     "It can be processed only before the Friday deadline"
+    ],
+    "correct_answer": "It appears on the transcript but not in the grade average",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "A withdrawal 'stays on your transcript as a W, but it doesn't count in your grade average.'",
+    "distractor_rationales": [
+     {
+      "choice": "It removes the course from the transcript entirely",
+      "reason": "Erasing the course is what a drop does."
+     },
+     {
+      "choice": "It lowers the grade average by a fixed amount",
+      "reason": "The clerk says the average is not affected."
+     },
+     {
+      "choice": "It can be processed only before the Friday deadline",
+      "reason": "Withdrawal is what is left after the Friday deadline."
+     }
+    ]
+   },
+   "content_hash": "63ac5daeeb5bafd23135fda4672f92db",
+   "word_count": 104,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I need to drop Statistics, but the system won't let me. B: The drop deadline was last Friday. After that it's a withdrawal, not a drop. A: What's the difference? B: A drop erases the course. A withdrawal stays on your transcript as a W, but it doesn't count in your grade average. A: So my average is safe either way. B: Your average, yes. But if this takes you below twelve credits, the scholarship office has to approve it first. A: I'd be at nine. B: Then go to them before you come back here. I can't process it without their stamp.",
+    "passageGroupId": "pg-f9f8cce85c393eace4caf0e99021831f",
+    "prompt": "[Conversation — Registrar's office] Why must the student visit the scholarship office first?",
+    "choices": [
+     "Withdrawing would leave the student with fewer than twelve credits",
+     "The withdrawal would lower the student's overall grade average",
+     "Scholarship students have an earlier drop deadline",
+     "The clerk cannot process any course after Friday"
+    ],
+    "correct_answer": "Withdrawing would leave the student with fewer than twelve credits",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "Approval is needed 'if this takes you below twelve credits', and the student would be 'at nine'.",
+    "distractor_rationales": [
+     {
+      "choice": "The withdrawal would lower the student's overall grade average",
+      "reason": "The clerk confirms the average is safe."
+     },
+     {
+      "choice": "Scholarship students have an earlier drop deadline",
+      "reason": "No separate deadline for scholarship students is mentioned."
+     },
+     {
+      "choice": "The clerk cannot process any course after Friday",
+      "reason": "The clerk can process it once it carries the office's stamp."
+     }
+    ]
+   },
+   "content_hash": "05111f00272278c0128a0110130cc787",
+   "word_count": 104,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I was diagnosed with a nut allergy last month, and I'd like to switch off the unlimited plan. B: You can, but you might not need to. There's a separate allergen station in the west hall. A: I didn't know that. Is it the same menu? B: Smaller, but it rotates daily, and nothing there is prepared near nuts. A: The west hall's a long walk from my dorm, though. B: True. If that's the real problem, a lighter plan plus kitchen access in your building might suit you better. A: Can I try the allergen station for a week before deciding? B: Of course. Your plan doesn't change unless you tell me.",
+    "passageGroupId": "pg-e005f1a92bfaaf48a7c47440c00d9275",
+    "prompt": "[Conversation — Dining services] Why does the manager say, 'If that's the real problem'?",
+    "choices": [
+     "To separate the concern about distance from the allergy itself",
+     "To suggest that the student is exaggerating the allergy",
+     "To turn down the request to change meal plans",
+     "To point out that the west hall is much nearer than it seems"
+    ],
+    "correct_answer": "To separate the concern about distance from the allergy itself",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The allergen station solves the allergy; the walk is a different problem, and a lighter plan with kitchen access answers that one.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that the student is exaggerating the allergy",
+      "reason": "Nothing questions the allergy; the manager offers a safe station."
+     },
+     {
+      "choice": "To turn down the request to change meal plans",
+      "reason": "The manager says 'You can' switch."
+     },
+     {
+      "choice": "To point out that the west hall is much nearer than it seems",
+      "reason": "The manager agrees it is far: 'True.'"
+     }
+    ]
+   },
+   "content_hash": "1300f82d38744971e9d15aa2a31c70bc",
+   "word_count": 114,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I was diagnosed with a nut allergy last month, and I'd like to switch off the unlimited plan. B: You can, but you might not need to. There's a separate allergen station in the west hall. A: I didn't know that. Is it the same menu? B: Smaller, but it rotates daily, and nothing there is prepared near nuts. A: The west hall's a long walk from my dorm, though. B: True. If that's the real problem, a lighter plan plus kitchen access in your building might suit you better. A: Can I try the allergen station for a week before deciding? B: Of course. Your plan doesn't change unless you tell me.",
+    "passageGroupId": "pg-e005f1a92bfaaf48a7c47440c00d9275",
+    "prompt": "[Conversation — Dining services] What does the student decide to do?",
+    "choices": [
+     "Try the allergen station for a week first",
+     "Switch to a lighter plan with kitchen access",
+     "Cancel the unlimited plan straight away",
+     "Move to a dorm closer to the west hall"
+    ],
+    "correct_answer": "Try the allergen station for a week first",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Can I try the allergen station for a week before deciding?' 'Of course.'",
+    "distractor_rationales": [
+     {
+      "choice": "Switch to a lighter plan with kitchen access",
+      "reason": "The lighter plan is offered, not chosen."
+     },
+     {
+      "choice": "Cancel the unlimited plan straight away",
+      "reason": "The plan does not change unless the student says so."
+     },
+     {
+      "choice": "Move to a dorm closer to the west hall",
+      "reason": "Moving is never discussed."
+     }
+    ]
+   },
+   "content_hash": "cc09652957a5b429279a76376920bde2",
+   "word_count": 114,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My laptop crashed and I lost a lab report that's due tomorrow. B: Was it saved in the university cloud folder or on the desktop? A: On the desktop, I think. B: Then the cloud won't have it, but the laptop itself might. A crash doesn't usually erase the drive. A: The screen won't even turn on. B: That's the screen, not the drive. Leave it with us and we can copy the drive onto a loaner by this afternoon. A: And the report? B: Email your instructor now. Most will give a day's grace for a hardware failure if they hear before the deadline, not after.",
+    "passageGroupId": "pg-998f2acc69c47763ed1cb8a6793e5d19",
+    "prompt": "[Conversation — IT help desk] What does the technician suggest about the lost report?",
+    "choices": [
+     "It is probably still on the laptop's drive",
+     "It was most likely saved to the cloud folder",
+     "It cannot be recovered after a crash like this",
+     "It will have to be rewritten on the loaner"
+    ],
+    "correct_answer": "It is probably still on the laptop's drive",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "'A crash doesn't usually erase the drive', and 'That's the screen, not the drive.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was most likely saved to the cloud folder",
+      "reason": "Saved on the desktop, so 'the cloud won't have it'."
+     },
+     {
+      "choice": "It cannot be recovered after a crash like this",
+      "reason": "The technician expects to copy the drive."
+     },
+     {
+      "choice": "It will have to be rewritten on the loaner",
+      "reason": "The drive is being copied onto the loaner, so nothing needs rewriting."
+     }
+    ]
+   },
+   "content_hash": "6e64e66e474510b4e8cffeca55803027",
+   "word_count": 108,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My laptop crashed and I lost a lab report that's due tomorrow. B: Was it saved in the university cloud folder or on the desktop? A: On the desktop, I think. B: Then the cloud won't have it, but the laptop itself might. A crash doesn't usually erase the drive. A: The screen won't even turn on. B: That's the screen, not the drive. Leave it with us and we can copy the drive onto a loaner by this afternoon. A: And the report? B: Email your instructor now. Most will give a day's grace for a hardware failure if they hear before the deadline, not after.",
+    "passageGroupId": "pg-998f2acc69c47763ed1cb8a6793e5d19",
+    "prompt": "[Conversation — IT help desk] What will happen to the student's laptop?",
+    "choices": [
+     "Its drive will be copied onto a loaner computer",
+     "Its screen will be replaced by this afternoon",
+     "It will be sent back to the manufacturer",
+     "Its files will be restored from the cloud folder"
+    ],
+    "correct_answer": "Its drive will be copied onto a loaner computer",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'We can copy the drive onto a loaner by this afternoon.'",
+    "distractor_rationales": [
+     {
+      "choice": "Its screen will be replaced by this afternoon",
+      "reason": "The afternoon is when the copy is ready; no screen repair is promised."
+     },
+     {
+      "choice": "It will be sent back to the manufacturer",
+      "reason": "The help desk keeps the laptop."
+     },
+     {
+      "choice": "Its files will be restored from the cloud folder",
+      "reason": "The report was not in the cloud folder."
+     }
+    ]
+   },
+   "content_hash": "45170d2f7827fea580d92e75b4e79f03",
+   "word_count": 108,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I got a summer internship at a design firm. Can it count for credit? B: It can, if you register it before you start. When do you start? A: The second week of June. B: Then you have time. You'll need a faculty sponsor and a short learning plan. A: Does the sponsor have to be in design? B: No, any full-time faculty member, though someone who knows your work will write a more useful evaluation. A: My studio instructor is part-time. B: Then she can't sponsor, but she could still write you a reference for the firm. For credit, try your advisor.",
+    "passageGroupId": "pg-59d4eeee4504636b1564c6edcc34371d",
+    "prompt": "[Conversation — Career center] What does the counselor say about the faculty sponsor?",
+    "choices": [
+     "The sponsor can be any full-time faculty member",
+     "The sponsor must be someone who teaches design",
+     "The sponsor must be the student's studio instructor",
+     "The sponsor can be chosen after the internship starts"
+    ],
+    "correct_answer": "The sponsor can be any full-time faculty member",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'No, any full-time faculty member.'",
+    "distractor_rationales": [
+     {
+      "choice": "The sponsor must be someone who teaches design",
+      "reason": "The answer to 'in design?' is 'No'."
+     },
+     {
+      "choice": "The sponsor must be the student's studio instructor",
+      "reason": "The studio instructor is part-time and cannot sponsor."
+     },
+     {
+      "choice": "The sponsor can be chosen after the internship starts",
+      "reason": "The internship must be registered 'before you start'."
+     }
+    ]
+   },
+   "content_hash": "49b73077ab3cb1522eac9fce41d29fb8",
+   "word_count": 104,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C06",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I got a summer internship at a design firm. Can it count for credit? B: It can, if you register it before you start. When do you start? A: The second week of June. B: Then you have time. You'll need a faculty sponsor and a short learning plan. A: Does the sponsor have to be in design? B: No, any full-time faculty member, though someone who knows your work will write a more useful evaluation. A: My studio instructor is part-time. B: Then she can't sponsor, but she could still write you a reference for the firm. For credit, try your advisor.",
+    "passageGroupId": "pg-59d4eeee4504636b1564c6edcc34371d",
+    "prompt": "[Conversation — Career center] Why can't the studio instructor be the sponsor?",
+    "choices": [
+     "Sponsors must hold full-time teaching positions",
+     "The instructor does not know the student's work",
+     "The instructor already wrote a reference for the firm",
+     "Sponsors must teach in the student's own major"
+    ],
+    "correct_answer": "Sponsors must hold full-time teaching positions",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The rule is 'any full-time faculty member', and the instructor 'is part-time'.",
+    "distractor_rationales": [
+     {
+      "choice": "The instructor does not know the student's work",
+      "reason": "Knowing the work makes a better evaluation; it is not the rule that excludes her."
+     },
+     {
+      "choice": "The instructor already wrote a reference for the firm",
+      "reason": "The reference is suggested as something she could still do."
+     },
+     {
+      "choice": "Sponsors must teach in the student's own major",
+      "reason": "The counselor says the sponsor need not be in design."
+     }
+    ]
+   },
+   "content_hash": "5f70d46e95abefa5388a33571133923a",
+   "word_count": 104,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C06",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C07-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Our group booked study room four for Thursday, but someone else was in it when we arrived. B: Let me check. Your booking is there, but it's for Thursday the ninth, and today is the second. A: Oh no. I must have clicked the wrong week. B: It happens a lot. Room six is free right now if you can manage with five chairs. A: There are six of us. B: Then take six anyway, and I'll bring a chair from the office. I'll leave the ninth as it is, unless you'd rather cancel it. A: No, keep it. We'll need it again for the final review.",
+    "passageGroupId": "pg-d1859e1d022b87e74a26a9cff985afcf",
+    "prompt": "[Conversation — Library front desk] Why was another group using the room?",
+    "choices": [
+     "The student's booking was for the following week",
+     "The other group had booked the same time slot",
+     "The booking had been canceled by mistake",
+     "Room four was reserved for a final review"
+    ],
+    "correct_answer": "The student's booking was for the following week",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The booking is 'for Thursday the ninth, and today is the second'.",
+    "distractor_rationales": [
+     {
+      "choice": "The other group had booked the same time slot",
+      "reason": "No double booking is mentioned; the student's own date was wrong."
+     },
+     {
+      "choice": "The booking had been canceled by mistake",
+      "reason": "The booking 'is there'."
+     },
+     {
+      "choice": "Room four was reserved for a final review",
+      "reason": "The final review is the student's own later use of the room."
+     }
+    ]
+   },
+   "content_hash": "6706237b56b1f7c1b4c9fb21831a287d",
+   "word_count": 108,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C07",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C07-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Our group booked study room four for Thursday, but someone else was in it when we arrived. B: Let me check. Your booking is there, but it's for Thursday the ninth, and today is the second. A: Oh no. I must have clicked the wrong week. B: It happens a lot. Room six is free right now if you can manage with five chairs. A: There are six of us. B: Then take six anyway, and I'll bring a chair from the office. I'll leave the ninth as it is, unless you'd rather cancel it. A: No, keep it. We'll need it again for the final review.",
+    "passageGroupId": "pg-d1859e1d022b87e74a26a9cff985afcf",
+    "prompt": "[Conversation — Library front desk] What does the librarian offer to do?",
+    "choices": [
+     "Bring an extra chair into room six",
+     "Move the other group to room six",
+     "Cancel the booking for the ninth",
+     "Change the booking to Thursday the second"
+    ],
+    "correct_answer": "Bring an extra chair into room six",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Take six anyway, and I'll bring a chair from the office.'",
+    "distractor_rationales": [
+     {
+      "choice": "Move the other group to room six",
+      "reason": "The other group stays in room four."
+     },
+     {
+      "choice": "Cancel the booking for the ninth",
+      "reason": "The librarian keeps the ninth unless asked to cancel, and the student says keep it."
+     },
+     {
+      "choice": "Change the booking to Thursday the second",
+      "reason": "The group is sent to room six, not rebooked."
+     }
+    ]
+   },
+   "content_hash": "f753c22b0dfd8e3dca01774146b1d16d",
+   "word_count": 108,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C07",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C08-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I wanted to ask about question three on the midterm. I think it was marked wrong because of the units. B: Let me see. You wrote meters per second where it asked for kilometers per hour. A: But the number's right if you convert it. B: It is. The conversion was half the point of the question, though. A: So I lose half? B: You lose the half for the conversion. You were marked down the full five points, which was a mistake. I'll change it to two and a half. A: Thank you. B: Check the units on the final, though. I won't be this generous twice.",
+    "passageGroupId": "pg-c2667722c41b3ce9c5b01525b923af4f",
+    "prompt": "[Conversation — Professor's office] How will the professor change the student's score?",
+    "choices": [
+     "Give back half of the five points",
+     "Give back all five points for question three",
+     "Leave the score on question three unchanged",
+     "Add the points to the final exam instead"
+    ],
+    "correct_answer": "Give back half of the five points",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'You were marked down the full five points, which was a mistake. I'll change it to two and a half.'",
+    "distractor_rationales": [
+     {
+      "choice": "Give back all five points for question three",
+      "reason": "The conversion half is still lost."
+     },
+     {
+      "choice": "Leave the score on question three unchanged",
+      "reason": "The professor admits a mistake and changes it."
+     },
+     {
+      "choice": "Add the points to the final exam instead",
+      "reason": "The final is mentioned only as a warning."
+     }
+    ]
+   },
+   "content_hash": "0997f6349c6c40dd309146c2d3725eb3",
+   "word_count": 109,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C08",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C08-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I wanted to ask about question three on the midterm. I think it was marked wrong because of the units. B: Let me see. You wrote meters per second where it asked for kilometers per hour. A: But the number's right if you convert it. B: It is. The conversion was half the point of the question, though. A: So I lose half? B: You lose the half for the conversion. You were marked down the full five points, which was a mistake. I'll change it to two and a half. A: Thank you. B: Check the units on the final, though. I won't be this generous twice.",
+    "passageGroupId": "pg-c2667722c41b3ce9c5b01525b923af4f",
+    "prompt": "[Conversation — Professor's office] What is the professor's attitude toward the student's request?",
+    "choices": [
+     "Willing to correct the error but firm about the rule",
+     "Annoyed that the student questioned the grading",
+     "Unsure whether the unit conversion was really required",
+     "Persuaded that the answer deserves full credit"
+    ],
+    "correct_answer": "Willing to correct the error but firm about the rule",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The professor corrects the over-deduction but keeps the conversion penalty and warns 'I won't be this generous twice.'",
+    "distractor_rationales": [
+     {
+      "choice": "Annoyed that the student questioned the grading",
+      "reason": "The professor concedes 'which was a mistake' without complaint."
+     },
+     {
+      "choice": "Unsure whether the unit conversion was really required",
+      "reason": "The professor states the conversion 'was half the point'."
+     },
+     {
+      "choice": "Persuaded that the answer deserves full credit",
+      "reason": "Only half the points are returned."
+     }
+    ]
+   },
+   "content_hash": "658e9dacddaab4763f3e7b2becc6ec2b",
+   "word_count": 109,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C08",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C09-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My rear brake has stopped working. Can you fix it today? B: Probably. If it's just the cable, it's ten minutes. If the brake pads are gone, I'll have to order them. A: How would I know which? B: Squeeze the lever. If it goes all the way to the handlebar with no resistance, it's the cable. A: It goes all the way. B: Then it's the cable. Leave it here and come back at four. A: Can I ride it in the meantime? B: Not without a rear brake. Walk it over to the rack by the door, and I'll get to it after lunch.",
+    "passageGroupId": "pg-6bad55b7a87043b1cd1bbc9a99fa4c77",
+    "prompt": "[Conversation — Bike repair shop] What does the mechanic conclude about the brake?",
+    "choices": [
+     "Only the cable needs to be replaced",
+     "New brake pads have to be ordered",
+     "Both the cable and the pads are worn",
+     "The brake lever itself is broken"
+    ],
+    "correct_answer": "Only the cable needs to be replaced",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The lever goes all the way, so 'Then it's the cable.'",
+    "distractor_rationales": [
+     {
+      "choice": "New brake pads have to be ordered",
+      "reason": "Pads would need ordering only if they were the problem."
+     },
+     {
+      "choice": "Both the cable and the pads are worn",
+      "reason": "The test pointed to the cable alone."
+     },
+     {
+      "choice": "The brake lever itself is broken",
+      "reason": "The lever is used to diagnose; it is not faulty."
+     }
+    ]
+   },
+   "content_hash": "0d3ce17bf423c2d61137df9acbd36a00",
+   "word_count": 107,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C09",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C09-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My rear brake has stopped working. Can you fix it today? B: Probably. If it's just the cable, it's ten minutes. If the brake pads are gone, I'll have to order them. A: How would I know which? B: Squeeze the lever. If it goes all the way to the handlebar with no resistance, it's the cable. A: It goes all the way. B: Then it's the cable. Leave it here and come back at four. A: Can I ride it in the meantime? B: Not without a rear brake. Walk it over to the rack by the door, and I'll get to it after lunch.",
+    "passageGroupId": "pg-6bad55b7a87043b1cd1bbc9a99fa4c77",
+    "prompt": "[Conversation — Bike repair shop] What does the mechanic tell the student to do?",
+    "choices": [
+     "Leave the bike and come back later in the afternoon",
+     "Ride the bike slowly and carefully until four o'clock",
+     "Order new brake pads from the shop",
+     "Bring the bike back after lunch tomorrow"
+    ],
+    "correct_answer": "Leave the bike and come back later in the afternoon",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "'Leave it here and come back at four.'",
+    "distractor_rationales": [
+     {
+      "choice": "Ride the bike slowly and carefully until four o'clock",
+      "reason": "Riding is refused: 'Not without a rear brake.'"
+     },
+     {
+      "choice": "Order new brake pads from the shop",
+      "reason": "No pads are needed."
+     },
+     {
+      "choice": "Bring the bike back after lunch tomorrow",
+      "reason": "'After lunch' is when the mechanic will work on it today."
+     }
+    ]
+   },
+   "content_hash": "5effa350179dbdbd774888fd5373307b",
+   "word_count": 107,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C09",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C10-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'm on work-study at the gym, but they only give me five hours a week. My award allows fifteen. B: The award is a maximum, not a guarantee. The gym decides how many hours it can offer. A: So I just lose the rest? B: Not necessarily. You can hold a second work-study job, as long as the two together stay under fifteen. A: Where would I find one? B: The job board lists every open work-study position. The library and the mail room are usually short of people in the evenings. A: Evenings would actually suit me better. B: Then start there, and let the gym know, so your supervisor can plan around it.",
+    "passageGroupId": "pg-4b5f70536b8947edd8435c92458a2e0c",
+    "prompt": "[Conversation — Financial aid office] What does the officer say about the fifteen hours?",
+    "choices": [
+     "They are the most the student may work, not a promise",
+     "The gym is required to provide all fifteen hours each week",
+     "Any unused hours carry over to the next semester",
+     "They must all be worked at a single job"
+    ],
+    "correct_answer": "They are the most the student may work, not a promise",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'The award is a maximum, not a guarantee.'",
+    "distractor_rationales": [
+     {
+      "choice": "The gym is required to provide all fifteen hours each week",
+      "reason": "'The gym decides how many hours it can offer.'"
+     },
+     {
+      "choice": "Any unused hours carry over to the next semester",
+      "reason": "Carrying hours over is never mentioned."
+     },
+     {
+      "choice": "They must all be worked at a single job",
+      "reason": "A second job is allowed within the total."
+     }
+    ]
+   },
+   "content_hash": "49b4b4494caf56ecee10f9575eca7669",
+   "word_count": 116,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C10",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C10-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'm on work-study at the gym, but they only give me five hours a week. My award allows fifteen. B: The award is a maximum, not a guarantee. The gym decides how many hours it can offer. A: So I just lose the rest? B: Not necessarily. You can hold a second work-study job, as long as the two together stay under fifteen. A: Where would I find one? B: The job board lists every open work-study position. The library and the mail room are usually short of people in the evenings. A: Evenings would actually suit me better. B: Then start there, and let the gym know, so your supervisor can plan around it.",
+    "passageGroupId": "pg-4b5f70536b8947edd8435c92458a2e0c",
+    "prompt": "[Conversation — Financial aid office] Why does the officer mention the library and the mail room?",
+    "choices": [
+     "To suggest places likely to need evening workers",
+     "To name the only jobs open to work-study students",
+     "To explain where the gym finds its other workers",
+     "To warn that those jobs pay less than the gym"
+    ],
+    "correct_answer": "To suggest places likely to need evening workers",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "They 'are usually short of people in the evenings', and the student wants evenings.",
+    "distractor_rationales": [
+     {
+      "choice": "To name the only jobs open to work-study students",
+      "reason": "'The job board lists every open work-study position'; these are examples."
+     },
+     {
+      "choice": "To explain where the gym finds its other workers",
+      "reason": "The gym's staffing is not discussed."
+     },
+     {
+      "choice": "To warn that those jobs pay less than the gym",
+      "reason": "Pay is never mentioned."
+     }
+    ]
+   },
+   "content_hash": "8a445e8b5a1fa599afc30781b4fd4f91",
+   "word_count": 116,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C10",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C11-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'm flying home for winter break. Do I need anything signed before I go? B: Yes, your travel signature. It's on the second page of your form, and it's good for one year. A: Mine's from last January. B: Then it runs out next month, before you'd come back. We'll sign it again. A: Does that take long? B: Five minutes, if you have the form with you. A: It's in my room. B: Then bring it in any weekday before Friday. After that we close for the holidays.",
+    "passageGroupId": "pg-c47725a85b0aa76389cd65e28e0a40f5",
+    "prompt": "[Conversation — International student office] Why does the student need a new signature?",
+    "choices": [
+     "The current one will run out before the student returns",
+     "The current one is on the wrong page of the travel form",
+     "A signature must be renewed before every trip",
+     "The current one was never properly dated"
+    ],
+    "correct_answer": "The current one will run out before the student returns",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "Signed last January and 'good for one year', it 'runs out next month, before you'd come back.'",
+    "distractor_rationales": [
+     {
+      "choice": "The current one is on the wrong page of the travel form",
+      "reason": "The signature belongs on the second page, and nothing says it is misplaced."
+     },
+     {
+      "choice": "A signature must be renewed before every trip",
+      "reason": "It is 'good for one year', not one trip."
+     },
+     {
+      "choice": "The current one was never properly dated",
+      "reason": "The date is known: last January."
+     }
+    ]
+   },
+   "content_hash": "f4bc2bafe5570d26446a2f38c16981ba",
+   "word_count": 90,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C11",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C11-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'm flying home for winter break. Do I need anything signed before I go? B: Yes, your travel signature. It's on the second page of your form, and it's good for one year. A: Mine's from last January. B: Then it runs out next month, before you'd come back. We'll sign it again. A: Does that take long? B: Five minutes, if you have the form with you. A: It's in my room. B: Then bring it in any weekday before Friday. After that we close for the holidays.",
+    "passageGroupId": "pg-c47725a85b0aa76389cd65e28e0a40f5",
+    "prompt": "[Conversation — International student office] What does the adviser tell the student to do?",
+    "choices": [
+     "Bring the form in on a weekday before Friday",
+     "Mail the form to the office during the holidays",
+     "Have the form signed at the airport on the way out",
+     "Come back in January to have the form signed"
+    ],
+    "correct_answer": "Bring the form in on a weekday before Friday",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Bring it in any weekday before Friday. After that we close for the holidays.'",
+    "distractor_rationales": [
+     {
+      "choice": "Mail the form to the office during the holidays",
+      "reason": "The office is closed over the holidays."
+     },
+     {
+      "choice": "Have the form signed at the airport on the way out",
+      "reason": "The signature comes from this office."
+     },
+     {
+      "choice": "Come back in January to have the form signed",
+      "reason": "January is after the trip, too late."
+     }
+    ]
+   },
+   "content_hash": "bd9da364f4b17a270b5fb6bf6893f476",
+   "word_count": 90,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C11",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C12-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I signed up to help in the costume shop, but I've never sewn anything. B: That's fine. Half our volunteers haven't. We'll start you on fittings and labeling. A: Labeling? B: Every costume gets a tag with the actor's name and the scene. During a quick change, a missing tag can cost thirty seconds. A: That doesn't sound like much. B: On stage, thirty seconds of an empty set feels like an hour. A: Fair enough. When do you need me? B: Tuesdays and Thursdays from four. Wear closed shoes. There are pins everywhere.",
+    "passageGroupId": "pg-0d795b710717023d058cbc7726beb21f",
+    "prompt": "[Conversation — Theater costume shop] Why does the shop manager say thirty seconds 'feels like an hour'?",
+    "choices": [
+     "To show why careful labeling matters during a show",
+     "To complain that actors change costumes too slowly",
+     "To warn the student that the shifts are very long",
+     "To explain why volunteers must come twice a week"
+    ],
+    "correct_answer": "To show why careful labeling matters during a show",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The student doubts that 'thirty seconds' matters; the manager answers that a delay on stage is very noticeable, so tags matter.",
+    "distractor_rationales": [
+     {
+      "choice": "To complain that actors change costumes too slowly",
+      "reason": "The delay comes from a missing tag, not slow actors."
+     },
+     {
+      "choice": "To warn the student that the shifts are very long",
+      "reason": "The remark is about time on stage, not shift length."
+     },
+     {
+      "choice": "To explain why volunteers must come twice a week",
+      "reason": "The schedule is given separately and not justified."
+     }
+    ]
+   },
+   "content_hash": "c0d10e659815a5c7a3817d71610ef438",
+   "word_count": 95,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C12",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CD2-C12-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I signed up to help in the costume shop, but I've never sewn anything. B: That's fine. Half our volunteers haven't. We'll start you on fittings and labeling. A: Labeling? B: Every costume gets a tag with the actor's name and the scene. During a quick change, a missing tag can cost thirty seconds. A: That doesn't sound like much. B: On stage, thirty seconds of an empty set feels like an hour. A: Fair enough. When do you need me? B: Tuesdays and Thursdays from four. Wear closed shoes. There are pins everywhere.",
+    "passageGroupId": "pg-0d795b710717023d058cbc7726beb21f",
+    "prompt": "[Conversation — Theater costume shop] What will the student do at first?",
+    "choices": [
+     "Help with fittings and label costumes",
+     "Sew new costumes for the next production",
+     "Help actors with quick changes on stage",
+     "Collect stray pins from the shop floor"
+    ],
+    "correct_answer": "Help with fittings and label costumes",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'We'll start you on fittings and labeling.'",
+    "distractor_rationales": [
+     {
+      "choice": "Sew new costumes for the next production",
+      "reason": "The student has never sewn and is not asked to."
+     },
+     {
+      "choice": "Help actors with quick changes on stage",
+      "reason": "Quick changes are where tags matter; the student labels in the shop."
+     },
+     {
+      "choice": "Collect stray pins from the shop floor",
+      "reason": "Pins are a reason for closed shoes, not a task."
+     }
+    ]
+   },
+   "content_hash": "a70f67144a8abdad9a0bd54a13af4c34",
+   "word_count": 95,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "cd2-C12",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard sets). Speakers by role only. Release only by the co-founder sitting (toefl-conv-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}

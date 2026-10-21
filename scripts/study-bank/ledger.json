@@ -4186,6 +4186,33 @@
       }
     },
     {
+      "id": "toefl-conv-draft-2-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-conv-draft-2",
+      "contentSha": "e4f9134bdc8533abcd85c65ece181fdcce8d1cd96c0560e4462094ff29313a54",
+      "status": "staged-for-human-edit",
+      "note": "12 medium/hard two-question conversations written in-session by Claude for the upper/hard band; staged verified=false; release only by the co-founder runs in toefl-conv-draft-2.RELEASE.PREREG.md (draft 1's rule). contentSha = sha256 of toefl-conv-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e4f9134bdc8533abcd85c65ece181fdcce8d1cd96c0560e4462094ff29313a54",
+          "verdict": "conversation-gate.ts 0 violations on 12; 12 groups x 2; key uniquely longest 6/24 after lengthening one distractor on 8 items (was 12/24), shortest 2/24; speakers by role only."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides TOEFL listening."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",
