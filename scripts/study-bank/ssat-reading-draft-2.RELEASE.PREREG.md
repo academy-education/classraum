@@ -70,3 +70,9 @@ Why this is defensible, and its limit, stated before the number exists:
 - Draft 2 has a different author (Claude in-session, not the draft-1 agents), so draft 1's rate may
   not transfer. **24 items will reach students without a human exclusivity read** if rule 2 fires.
 - A student report of a defective item archives it (existing path); nothing else watches them.
+
+### Trimmed (2026-10-21)
+Run now 12 rows (D2-P02 + D2-P05), all unseen; 24 withdrawn rows snapshotted in
+`fixes/snapshot-ssat-draft2-run-trimmed-2026-10-21.json`. Kept key slots A3 B1 C2 D3 E3: the
+always-pick-the-commonest-letter control is 25.0% (sum of p^2 22.2%), so the 6/12 guard sits at
+double the control.
