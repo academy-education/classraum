@@ -76,3 +76,16 @@ Run now 12 rows (D2-P02 + D2-P05), all unseen; 24 withdrawn rows snapshotted in
 `fixes/snapshot-ssat-draft2-run-trimmed-2026-10-21.json`. Kept key slots A3 B1 C2 D3 E3: the
 always-pick-the-commonest-letter control is 25.0% (sum of p^2 22.2%), so the 6/12 guard sits at
 double the control.
+
+## Amendment 2 (2026-10-21, before any item is seen): Amendment 1's sample rule is withdrawn
+
+Owner, 2026-10-21: "I still want him to finish all of them." Every one of the 36 items gets the
+co-founder's per-item read; nothing is released on a sample. To keep each sitting short, the batch is
+sat in **three runs of two passages (12 items)**, in this order: D2-P02 + D2-P05 (already drawn),
+then D2-P01 + D2-P03, then D2-P04 + D2-P06. Each later run is drawn only when the previous closes.
+
+The ORIGINAL release rule applies, unchanged, with the batch guard on the pooled 36:
+1. Pooled blind >= 18/36: nothing released.
+2. Per item: "Only defensible" -> `verified=true`; otherwise `archived=true`.
+3. Per passage: 2 or more of 6 flagged -> the passage is archived.
+**Nothing is released until all three runs are answered**, so the guard is evaluated once, on 36.
