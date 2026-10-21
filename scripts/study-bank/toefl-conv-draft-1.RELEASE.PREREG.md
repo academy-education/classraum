@@ -70,3 +70,18 @@ conversations (12 items, verified=true) by `release-toefl-conv-runs.mjs`; audio 
 Note: v5-01 "D is the only answer but the key line is slightly ambiguous." Depth (`toefl-form-depth.ts`):
 upper/hard 11 -> 12 clean sittings (still bound by Conversation, 12[14]). Run 2 drawn:
 `toefl-conv1-release2` (v6-03 v6-04 v6-06 v6-11 v6-12 v6-13).
+
+## Run 2 answered and released (2026-10-21)
+`toefl-conv1-release2`: blind 3/12 (pooled 5/24 = 20.8%), 12/12 Only defensible, 0 stale. Released 6
+conversations; audio pre-warmed (54 clips, 0 failed). **His notes found three quality defects the rule
+does not catch (all items still rated unique):** (1) the v6 transcripts have no contractions ("I do not
+think I ever registered it", "Let us do that") and sound scripted; (2) v6-04's explanation is
+self-contradictory (the subject is called a preference but acted on as a requirement); (3) v6-12
+contradicts itself about winter gowns (ordered vs rented on the day; is the September deadline past?).
+Also: "her" in options is not established by the transcript (the voice establishes it in audio).
+**Live rows (v6-03 04 06 11 12 13): wording fixes need owner approval; not changed.**
+**Unreviewed rows: pre-sitting edit made.** Contractions added to the 9 unseen v6 conversations
+(18 rows; passage, explanation, rationale reasons) by `fixes/contract-toefl-conv-draft1-v6-2026-10-21.mjs`
+(snapshot first; refuses on any reviewed row; sentence-final "it is" and "in there is" left alone). Read
+for contradictions like v6-04/12: none found. Run 3 drawn: `toefl-conv1-release3` (v6-14 v6-15 v5-02
+v5-03 v5-04 v5-05).
