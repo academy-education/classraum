@@ -4213,6 +4213,33 @@
       }
     },
     {
+      "id": "toefl-talk-draft-1-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "academic_talk",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-1",
+      "contentSha": "429d217998b7c7551c182ee3d70665de713a2f0166be0a50fc1761132e635238",
+      "status": "staged-for-human-edit",
+      "note": "5 medium/hard four-question lectures written in-session by Claude for the upper/hard band; staged verified=false; release only by the co-founder runs in toefl-talk-draft-1.RELEASE.PREREG.md. contentSha = sha256 of toefl-talk-draft-1.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "429d217998b7c7551c182ee3d70665de713a2f0166be0a50fc1761132e635238",
+          "verdict": "5 lectures x 4, 277-303 words, monologue; key uniquely longest 6/20 after lengthening one distractor on 8 items (was 12/20), shortest 1/20; option length ratio <= 1.5."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides TOEFL listening."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",

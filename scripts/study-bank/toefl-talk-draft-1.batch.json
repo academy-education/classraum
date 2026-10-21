@@ -1,0 +1,1186 @@
+{
+ "cohort": "toefl-talk-draft-1",
+ "created": "2026-10-21",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Suppose you want to know when the last large earthquake struck a fault that no instrument was watching. Written records won't help if the region was thinly settled, and a radiocarbon date on buried soil gives you a window of a century or more. Trees, it turns out, can do much better.\n\nA tree growing beside a fault keeps an annual record in its rings. When a major quake shakes the ground, roots tear, the trunk may tilt, and the tree spends the next few years growing slowly while it repairs itself. Those years show up as a run of narrow rings. Count back from the bark, and you have a calendar year for the damage.\n\nHere is the catch, and it's a serious one. A run of narrow rings is not a signature of earthquakes. Droughts produce them. So do insect outbreaks, and a severe winter can stunt a whole stand for a season. A single tree with a thin patch tells you that something went wrong for that tree, nothing more.\n\nSo the method depends on comparison, in two directions. First, across distance: trees growing right on the fault trace should show the damage, and trees of the same species a kilometer away, on the same soil, should not. A drought hits both groups; an earthquake hits only one. Second, across kinds of damage: a tilted trunk that starts laying down lopsided rings, as the tree works to straighten itself, is much harder to blame on the weather than a merely thin ring.\n\nWhen both comparisons agree, the date can be startlingly precise, sometimes down to the season, because the damage may begin partway through a growing year. When they disagree, the honest report is that the trees are silent, and silence is not the same thing as a quiet fault.",
+    "passageGroupId": "pg-8c306f544f5de1fe32f89ded011c1021",
+    "prompt": "[Academic Talk — Geology] Why does the lecturer mention droughts, insect outbreaks, and severe winters?",
+    "choices": [
+     "To show that thin rings alone cannot identify an earthquake",
+     "To explain why trees near faults grow more slowly than others",
+     "To argue that radiocarbon dates are more reliable than rings",
+     "To describe the kinds of damage earthquakes do to tree roots"
+    ],
+    "correct_answer": "To show that thin rings alone cannot identify an earthquake",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Right after them: 'A single tree with a thin patch tells you that something went wrong for that tree, nothing more.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why trees near faults grow more slowly than others",
+      "reason": "Trees near faults are not said to grow slowly in general; damaged ones do for a few years."
+     },
+     {
+      "choice": "To argue that radiocarbon dates are more reliable than rings",
+      "reason": "Radiocarbon is described as much less precise."
+     },
+     {
+      "choice": "To describe the kinds of damage earthquakes do to tree roots",
+      "reason": "Root damage comes from earthquakes; these are the other causes of thin rings."
+     }
+    ]
+   },
+   "content_hash": "a37a2b4adee5b2ac4308421144a7bc6e",
+   "word_count": 303,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Suppose you want to know when the last large earthquake struck a fault that no instrument was watching. Written records won't help if the region was thinly settled, and a radiocarbon date on buried soil gives you a window of a century or more. Trees, it turns out, can do much better.\n\nA tree growing beside a fault keeps an annual record in its rings. When a major quake shakes the ground, roots tear, the trunk may tilt, and the tree spends the next few years growing slowly while it repairs itself. Those years show up as a run of narrow rings. Count back from the bark, and you have a calendar year for the damage.\n\nHere is the catch, and it's a serious one. A run of narrow rings is not a signature of earthquakes. Droughts produce them. So do insect outbreaks, and a severe winter can stunt a whole stand for a season. A single tree with a thin patch tells you that something went wrong for that tree, nothing more.\n\nSo the method depends on comparison, in two directions. First, across distance: trees growing right on the fault trace should show the damage, and trees of the same species a kilometer away, on the same soil, should not. A drought hits both groups; an earthquake hits only one. Second, across kinds of damage: a tilted trunk that starts laying down lopsided rings, as the tree works to straighten itself, is much harder to blame on the weather than a merely thin ring.\n\nWhen both comparisons agree, the date can be startlingly precise, sometimes down to the season, because the damage may begin partway through a growing year. When they disagree, the honest report is that the trees are silent, and silence is not the same thing as a quiet fault.",
+    "passageGroupId": "pg-8c306f544f5de1fe32f89ded011c1021",
+    "prompt": "[Academic Talk — Geology] According to the lecturer, why is comparing trees on and off the fault useful?",
+    "choices": [
+     "A drought affects both groups, while an earthquake affects only one",
+     "Trees away from the fault live much longer and keep longer records",
+     "Trees of different species record shaking in different ways",
+     "Trees away from the fault show when the last drought ended"
+    ],
+    "correct_answer": "A drought affects both groups, while an earthquake affects only one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'A drought hits both groups; an earthquake hits only one.'",
+    "distractor_rationales": [
+     {
+      "choice": "Trees away from the fault live much longer and keep longer records",
+      "reason": "Lifespan is never compared."
+     },
+     {
+      "choice": "Trees of different species record shaking in different ways",
+      "reason": "The comparison uses 'trees of the same species'."
+     },
+     {
+      "choice": "Trees away from the fault show when the last drought ended",
+      "reason": "The off-fault trees serve as a check, not as a drought record."
+     }
+    ]
+   },
+   "content_hash": "4180a76b7c18d2a0790fb4d9da9a3bf0",
+   "word_count": 303,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Suppose you want to know when the last large earthquake struck a fault that no instrument was watching. Written records won't help if the region was thinly settled, and a radiocarbon date on buried soil gives you a window of a century or more. Trees, it turns out, can do much better.\n\nA tree growing beside a fault keeps an annual record in its rings. When a major quake shakes the ground, roots tear, the trunk may tilt, and the tree spends the next few years growing slowly while it repairs itself. Those years show up as a run of narrow rings. Count back from the bark, and you have a calendar year for the damage.\n\nHere is the catch, and it's a serious one. A run of narrow rings is not a signature of earthquakes. Droughts produce them. So do insect outbreaks, and a severe winter can stunt a whole stand for a season. A single tree with a thin patch tells you that something went wrong for that tree, nothing more.\n\nSo the method depends on comparison, in two directions. First, across distance: trees growing right on the fault trace should show the damage, and trees of the same species a kilometer away, on the same soil, should not. A drought hits both groups; an earthquake hits only one. Second, across kinds of damage: a tilted trunk that starts laying down lopsided rings, as the tree works to straighten itself, is much harder to blame on the weather than a merely thin ring.\n\nWhen both comparisons agree, the date can be startlingly precise, sometimes down to the season, because the damage may begin partway through a growing year. When they disagree, the honest report is that the trees are silent, and silence is not the same thing as a quiet fault.",
+    "passageGroupId": "pg-8c306f544f5de1fe32f89ded011c1021",
+    "prompt": "[Academic Talk — Geology] Why does the lecturer treat lopsided rings as stronger evidence than thin rings?",
+    "choices": [
+     "Weather seldom makes a tree grow unevenly to right a tilted trunk",
+     "Lopsided rings form only in the first year after a quake",
+     "Thin rings are too narrow to count back from the bark",
+     "Lopsided rings also appear in trees far from the fault"
+    ],
+    "correct_answer": "Weather seldom makes a tree grow unevenly to right a tilted trunk",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Lopsided growth that straightens a tilted trunk 'is much harder to blame on the weather than a merely thin ring.'",
+    "distractor_rationales": [
+     {
+      "choice": "Lopsided rings form only in the first year after a quake",
+      "reason": "No such timing rule is given."
+     },
+     {
+      "choice": "Thin rings are too narrow to count back from the bark",
+      "reason": "Counting back from the bark is how the date is found."
+     },
+     {
+      "choice": "Lopsided rings also appear in trees far from the fault",
+      "reason": "Trees far from the fault 'should not' show the damage."
+     }
+    ]
+   },
+   "content_hash": "ea7311271bd7bf96766fefa91a8ef317",
+   "word_count": 303,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Suppose you want to know when the last large earthquake struck a fault that no instrument was watching. Written records won't help if the region was thinly settled, and a radiocarbon date on buried soil gives you a window of a century or more. Trees, it turns out, can do much better.\n\nA tree growing beside a fault keeps an annual record in its rings. When a major quake shakes the ground, roots tear, the trunk may tilt, and the tree spends the next few years growing slowly while it repairs itself. Those years show up as a run of narrow rings. Count back from the bark, and you have a calendar year for the damage.\n\nHere is the catch, and it's a serious one. A run of narrow rings is not a signature of earthquakes. Droughts produce them. So do insect outbreaks, and a severe winter can stunt a whole stand for a season. A single tree with a thin patch tells you that something went wrong for that tree, nothing more.\n\nSo the method depends on comparison, in two directions. First, across distance: trees growing right on the fault trace should show the damage, and trees of the same species a kilometer away, on the same soil, should not. A drought hits both groups; an earthquake hits only one. Second, across kinds of damage: a tilted trunk that starts laying down lopsided rings, as the tree works to straighten itself, is much harder to blame on the weather than a merely thin ring.\n\nWhen both comparisons agree, the date can be startlingly precise, sometimes down to the season, because the damage may begin partway through a growing year. When they disagree, the honest report is that the trees are silent, and silence is not the same thing as a quiet fault.",
+    "passageGroupId": "pg-8c306f544f5de1fe32f89ded011c1021",
+    "prompt": "[Academic Talk — Geology] What does the lecturer mean by saying that 'silence is not the same thing as a quiet fault'?",
+    "choices": [
+     "Unclear tree evidence does not show that no earthquake happened",
+     "Faults that never move leave no record at all in nearby trees",
+     "Trees stop recording damage once a fault becomes inactive",
+     "Earthquakes are harder to date in quiet, thinly settled regions"
+    ],
+    "correct_answer": "Unclear tree evidence does not show that no earthquake happened",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "When the comparisons disagree, the trees give no answer; that is different from evidence that the fault was inactive.",
+    "distractor_rationales": [
+     {
+      "choice": "Faults that never move leave no record at all in nearby trees",
+      "reason": "This turns the remark into a claim about inactive faults."
+     },
+     {
+      "choice": "Trees stop recording damage once a fault becomes inactive",
+      "reason": "Trees keep recording every year regardless of the fault."
+     },
+     {
+      "choice": "Earthquakes are harder to date in quiet, thinly settled regions",
+      "reason": "Thinly settled regions are mentioned about written records, not silence."
+     }
+    ]
+   },
+   "content_hash": "00f074346de5bba7acac32bb3d3a767c",
+   "word_count": 303,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T01",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Auctions look like the purest kind of market. Many buyers, one object, and the price rises until only one bidder is left. Economists used to treat the final price as a clean measure of what the object was worth to the people in the room. Laboratory studies have made that view harder to hold.\n\nConsider the opening bid. In theory it shouldn't matter much; it's just where the climbing starts. But when researchers ran identical auctions with different starting prices, the final prices moved with the start. A high opening figure seemed to tell bidders what the object was worth before any of them had decided for themselves. Psychologists call this anchoring, and auction houses had used it long before anyone named it.\n\nNow, anchoring cuts both ways, and this is the part people forget. Some auction sites deliberately start bidding very low, a dollar for an expensive watch. You'd expect a low anchor to drag the price down. Often it doesn't. A low start attracts more bidders, and once someone has placed a bid, they begin to feel the object is partly theirs. They bid higher to avoid losing it. The low anchor and the feeling of ownership pull in opposite directions, and on busy sites the second one frequently wins.\n\nSo what does a final auction price measure? Not nothing. It still reflects what people were willing to pay in that room on that day. But it measures willingness under particular conditions: who opened the bidding, how many rivals joined, how long they had been competing. Change those conditions, and the same object fetches a different price from the same people.\n\nThat doesn't make auctions irrational. It makes their prices local, and a careful analyst reports the conditions along with the number.",
+    "passageGroupId": "pg-ad03c953d8f2b8a0c68a1a694ad1bbce",
+    "prompt": "[Academic Talk — Economics] What is the main point of the lecture?",
+    "choices": [
+     "An auction price depends on how the auction was run, not only on value",
+     "Auctions with low opening bids always produce the highest prices",
+     "Economists have stopped using auctions to study markets",
+     "Auction houses invented anchoring long before psychologists studied it"
+    ],
+    "correct_answer": "An auction price depends on how the auction was run, not only on value",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The price 'measures willingness under particular conditions', so 'a careful analyst reports the conditions along with the number.'",
+    "distractor_rationales": [
+     {
+      "choice": "Auctions with low opening bids always produce the highest prices",
+      "reason": "Low starts 'frequently' win on busy sites, not always."
+     },
+     {
+      "choice": "Economists have stopped using auctions to study markets",
+      "reason": "The lecture refines how auction prices are read, not abandons them."
+     },
+     {
+      "choice": "Auction houses invented anchoring long before psychologists studied it",
+      "reason": "This is a side remark, not the point."
+     }
+    ]
+   },
+   "content_hash": "dd5c55e003063715ade4f501f32836bf",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Auctions look like the purest kind of market. Many buyers, one object, and the price rises until only one bidder is left. Economists used to treat the final price as a clean measure of what the object was worth to the people in the room. Laboratory studies have made that view harder to hold.\n\nConsider the opening bid. In theory it shouldn't matter much; it's just where the climbing starts. But when researchers ran identical auctions with different starting prices, the final prices moved with the start. A high opening figure seemed to tell bidders what the object was worth before any of them had decided for themselves. Psychologists call this anchoring, and auction houses had used it long before anyone named it.\n\nNow, anchoring cuts both ways, and this is the part people forget. Some auction sites deliberately start bidding very low, a dollar for an expensive watch. You'd expect a low anchor to drag the price down. Often it doesn't. A low start attracts more bidders, and once someone has placed a bid, they begin to feel the object is partly theirs. They bid higher to avoid losing it. The low anchor and the feeling of ownership pull in opposite directions, and on busy sites the second one frequently wins.\n\nSo what does a final auction price measure? Not nothing. It still reflects what people were willing to pay in that room on that day. But it measures willingness under particular conditions: who opened the bidding, how many rivals joined, how long they had been competing. Change those conditions, and the same object fetches a different price from the same people.\n\nThat doesn't make auctions irrational. It makes their prices local, and a careful analyst reports the conditions along with the number.",
+    "passageGroupId": "pg-ad03c953d8f2b8a0c68a1a694ad1bbce",
+    "prompt": "[Academic Talk — Economics] Why does the lecturer describe auctions that start at one dollar?",
+    "choices": [
+     "To show that a low anchor does not reliably lower the final price",
+     "To prove that anchoring has no effect when many bidders join",
+     "To argue that expensive watches should not be sold at auction",
+     "To explain why auction houses prefer high opening bids"
+    ],
+    "correct_answer": "To show that a low anchor does not reliably lower the final price",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'You'd expect a low anchor to drag the price down. Often it doesn't.'",
+    "distractor_rationales": [
+     {
+      "choice": "To prove that anchoring has no effect when many bidders join",
+      "reason": "Anchoring still operates; a second force often outweighs it."
+     },
+     {
+      "choice": "To argue that expensive watches should not be sold at auction",
+      "reason": "No such recommendation is made."
+     },
+     {
+      "choice": "To explain why auction houses prefer high opening bids",
+      "reason": "The example concerns sites that start low on purpose."
+     }
+    ]
+   },
+   "content_hash": "d5a1b1f37dc47008cf60fb74dfcb9d6f",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Auctions look like the purest kind of market. Many buyers, one object, and the price rises until only one bidder is left. Economists used to treat the final price as a clean measure of what the object was worth to the people in the room. Laboratory studies have made that view harder to hold.\n\nConsider the opening bid. In theory it shouldn't matter much; it's just where the climbing starts. But when researchers ran identical auctions with different starting prices, the final prices moved with the start. A high opening figure seemed to tell bidders what the object was worth before any of them had decided for themselves. Psychologists call this anchoring, and auction houses had used it long before anyone named it.\n\nNow, anchoring cuts both ways, and this is the part people forget. Some auction sites deliberately start bidding very low, a dollar for an expensive watch. You'd expect a low anchor to drag the price down. Often it doesn't. A low start attracts more bidders, and once someone has placed a bid, they begin to feel the object is partly theirs. They bid higher to avoid losing it. The low anchor and the feeling of ownership pull in opposite directions, and on busy sites the second one frequently wins.\n\nSo what does a final auction price measure? Not nothing. It still reflects what people were willing to pay in that room on that day. But it measures willingness under particular conditions: who opened the bidding, how many rivals joined, how long they had been competing. Change those conditions, and the same object fetches a different price from the same people.\n\nThat doesn't make auctions irrational. It makes their prices local, and a careful analyst reports the conditions along with the number.",
+    "passageGroupId": "pg-ad03c953d8f2b8a0c68a1a694ad1bbce",
+    "prompt": "[Academic Talk — Economics] According to the lecturer, why do bidders who have already bid tend to bid higher?",
+    "choices": [
+     "They come to feel that the object partly belongs to them",
+     "They learn more about the object's value as bidding goes on",
+     "They expect the opening price to return to its first level",
+     "They are required to raise their bid by a fixed amount"
+    ],
+    "correct_answer": "They come to feel that the object partly belongs to them",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'They begin to feel the object is partly theirs. They bid higher to avoid losing it.'",
+    "distractor_rationales": [
+     {
+      "choice": "They learn more about the object's value as bidding goes on",
+      "reason": "Learning about value is not the reason given."
+     },
+     {
+      "choice": "They expect the opening price to return to its first level",
+      "reason": "No return to the opening price is mentioned."
+     },
+     {
+      "choice": "They are required to raise their bid by a fixed amount",
+      "reason": "No bidding rule is described."
+     }
+    ]
+   },
+   "content_hash": "0210a5c4d201036d32c1ff70c3a8b37b",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Auctions look like the purest kind of market. Many buyers, one object, and the price rises until only one bidder is left. Economists used to treat the final price as a clean measure of what the object was worth to the people in the room. Laboratory studies have made that view harder to hold.\n\nConsider the opening bid. In theory it shouldn't matter much; it's just where the climbing starts. But when researchers ran identical auctions with different starting prices, the final prices moved with the start. A high opening figure seemed to tell bidders what the object was worth before any of them had decided for themselves. Psychologists call this anchoring, and auction houses had used it long before anyone named it.\n\nNow, anchoring cuts both ways, and this is the part people forget. Some auction sites deliberately start bidding very low, a dollar for an expensive watch. You'd expect a low anchor to drag the price down. Often it doesn't. A low start attracts more bidders, and once someone has placed a bid, they begin to feel the object is partly theirs. They bid higher to avoid losing it. The low anchor and the feeling of ownership pull in opposite directions, and on busy sites the second one frequently wins.\n\nSo what does a final auction price measure? Not nothing. It still reflects what people were willing to pay in that room on that day. But it measures willingness under particular conditions: who opened the bidding, how many rivals joined, how long they had been competing. Change those conditions, and the same object fetches a different price from the same people.\n\nThat doesn't make auctions irrational. It makes their prices local, and a careful analyst reports the conditions along with the number.",
+    "passageGroupId": "pg-ad03c953d8f2b8a0c68a1a694ad1bbce",
+    "prompt": "[Academic Talk — Economics] What is the lecturer's attitude toward the claim that auctions are irrational?",
+    "choices": [
+     "Rejects it, while denying that auction prices are a pure measure of value",
+     "Accepts it, because anchoring shows that bidders cannot judge value",
+     "Leaves it open until more laboratory studies are completed",
+     "Rejects it, because final prices measure exactly what the objects are worth"
+    ],
+    "correct_answer": "Rejects it, while denying that auction prices are a pure measure of value",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'That doesn't make auctions irrational. It makes their prices local.'",
+    "distractor_rationales": [
+     {
+      "choice": "Accepts it, because anchoring shows that bidders cannot judge value",
+      "reason": "The lecturer explicitly denies that auctions are irrational."
+     },
+     {
+      "choice": "Leaves it open until more laboratory studies are completed",
+      "reason": "The lecturer gives a definite view."
+     },
+     {
+      "choice": "Rejects it, because final prices measure exactly what the objects are worth",
+      "reason": "The lecturer says prices depend on conditions, not that they measure exact worth."
+     }
+    ]
+   },
+   "content_hash": "689cf9da8f0d83fc8c21a3b79e23fdda",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T02",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a painting turns up without a signature or a reliable history, curators reach for every kind of evidence. Style is the oldest tool and the least trusted, because a skilled follower can imitate a master's brushwork closely enough to fool experts for decades. So in the last thirty years, attention has turned to something no forger thought to fake: the canvas itself.\n\nLinen canvas was woven on hand looms, and every bolt has its own irregular pattern of thread density, slightly more threads per centimeter here, slightly fewer there. Using X-rays, researchers can count those threads across a whole painting and draw a map of the irregularities. Two paintings cut from the same bolt will have maps that line up like the two halves of a torn ticket.\n\nThat makes the method very strong in one direction and weak in the other. If an unattributed picture matches a bolt used for three securely documented works by the same artist, that's powerful evidence that it came from the same studio at about the same time. A workshop bought cloth by the bolt and used it up.\n\nBut a mismatch proves very little. Artists bought from different suppliers, reused old canvases, and sometimes painted on cloth bought years earlier. Absence of a match is the normal condition, not a warning sign.\n\nNotice, too, what even a match does not settle. It places the painting in a studio. It does not tell us whose hand held the brush, and large studios employed assistants who worked on the same cloth as the master. The canvas can move a painting into a room. It cannot, by itself, tell us who was standing at the easel.",
+    "passageGroupId": "pg-03256b6da6607ec662a9d6632112fd4a",
+    "prompt": "[Academic Talk — Art History] Why have researchers turned to the canvas itself?",
+    "choices": [
+     "Forgers and followers did not think to imitate canvas patterns",
+     "Canvas is far easier to examine than the paint on the surface",
+     "Style can no longer be studied with X-ray equipment",
+     "Signatures are usually hidden beneath the canvas weave"
+    ],
+    "correct_answer": "Forgers and followers did not think to imitate canvas patterns",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Style can be imitated, so attention turned to 'something no forger thought to fake: the canvas itself.'",
+    "distractor_rationales": [
+     {
+      "choice": "Canvas is far easier to examine than the paint on the surface",
+      "reason": "Ease of examination is never given as the reason."
+     },
+     {
+      "choice": "Style can no longer be studied with X-ray equipment",
+      "reason": "X-rays are used on the canvas; style is judged by eye."
+     },
+     {
+      "choice": "Signatures are usually hidden beneath the canvas weave",
+      "reason": "The paintings in question lack signatures."
+     }
+    ]
+   },
+   "content_hash": "18618519663113bda905674a3979d46f",
+   "word_count": 281,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a painting turns up without a signature or a reliable history, curators reach for every kind of evidence. Style is the oldest tool and the least trusted, because a skilled follower can imitate a master's brushwork closely enough to fool experts for decades. So in the last thirty years, attention has turned to something no forger thought to fake: the canvas itself.\n\nLinen canvas was woven on hand looms, and every bolt has its own irregular pattern of thread density, slightly more threads per centimeter here, slightly fewer there. Using X-rays, researchers can count those threads across a whole painting and draw a map of the irregularities. Two paintings cut from the same bolt will have maps that line up like the two halves of a torn ticket.\n\nThat makes the method very strong in one direction and weak in the other. If an unattributed picture matches a bolt used for three securely documented works by the same artist, that's powerful evidence that it came from the same studio at about the same time. A workshop bought cloth by the bolt and used it up.\n\nBut a mismatch proves very little. Artists bought from different suppliers, reused old canvases, and sometimes painted on cloth bought years earlier. Absence of a match is the normal condition, not a warning sign.\n\nNotice, too, what even a match does not settle. It places the painting in a studio. It does not tell us whose hand held the brush, and large studios employed assistants who worked on the same cloth as the master. The canvas can move a painting into a room. It cannot, by itself, tell us who was standing at the easel.",
+    "passageGroupId": "pg-03256b6da6607ec662a9d6632112fd4a",
+    "prompt": "[Academic Talk — Art History] What does the lecturer compare to 'the two halves of a torn ticket'?",
+    "choices": [
+     "Thread-density maps of two paintings cut from one bolt",
+     "The front and back of a single linen canvas",
+     "A forged painting and the original it copies",
+     "A painting and its X-ray image taken years later"
+    ],
+    "correct_answer": "Thread-density maps of two paintings cut from one bolt",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Two paintings cut from the same bolt will have maps that line up like the two halves of a torn ticket.'",
+    "distractor_rationales": [
+     {
+      "choice": "The front and back of a single linen canvas",
+      "reason": "One canvas does not form a matching pair."
+     },
+     {
+      "choice": "A forged painting and the original it copies",
+      "reason": "Forgers are not said to copy canvas."
+     },
+     {
+      "choice": "A painting and its X-ray image taken years later",
+      "reason": "The comparison is between two paintings."
+     }
+    ]
+   },
+   "content_hash": "d4a75e020a3bc9240c3a279c28006351",
+   "word_count": 281,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a painting turns up without a signature or a reliable history, curators reach for every kind of evidence. Style is the oldest tool and the least trusted, because a skilled follower can imitate a master's brushwork closely enough to fool experts for decades. So in the last thirty years, attention has turned to something no forger thought to fake: the canvas itself.\n\nLinen canvas was woven on hand looms, and every bolt has its own irregular pattern of thread density, slightly more threads per centimeter here, slightly fewer there. Using X-rays, researchers can count those threads across a whole painting and draw a map of the irregularities. Two paintings cut from the same bolt will have maps that line up like the two halves of a torn ticket.\n\nThat makes the method very strong in one direction and weak in the other. If an unattributed picture matches a bolt used for three securely documented works by the same artist, that's powerful evidence that it came from the same studio at about the same time. A workshop bought cloth by the bolt and used it up.\n\nBut a mismatch proves very little. Artists bought from different suppliers, reused old canvases, and sometimes painted on cloth bought years earlier. Absence of a match is the normal condition, not a warning sign.\n\nNotice, too, what even a match does not settle. It places the painting in a studio. It does not tell us whose hand held the brush, and large studios employed assistants who worked on the same cloth as the master. The canvas can move a painting into a room. It cannot, by itself, tell us who was standing at the easel.",
+    "passageGroupId": "pg-03256b6da6607ec662a9d6632112fd4a",
+    "prompt": "[Academic Talk — Art History] Why does the lecturer say that a mismatch 'proves very little'?",
+    "choices": [
+     "Artists often used cloth from several sources at different times",
+     "Thread counts cannot be made on canvases that were painted twice",
+     "A mismatch usually means the painting is a later forgery",
+     "X-ray maps of old canvases are rarely complete enough"
+    ],
+    "correct_answer": "Artists often used cloth from several sources at different times",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Artists bought from different suppliers, reused old canvases, and sometimes painted on cloth bought years earlier.'",
+    "distractor_rationales": [
+     {
+      "choice": "Thread counts cannot be made on canvases that were painted twice",
+      "reason": "Reuse makes mismatches common; it does not stop counting."
+     },
+     {
+      "choice": "A mismatch usually means the painting is a later forgery",
+      "reason": "'Absence of a match is the normal condition, not a warning sign.'"
+     },
+     {
+      "choice": "X-ray maps of old canvases are rarely complete enough",
+      "reason": "Completeness of the maps is not raised."
+     }
+    ]
+   },
+   "content_hash": "4b7ecb143a4650c97e62a57d869a0b85",
+   "word_count": 281,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a painting turns up without a signature or a reliable history, curators reach for every kind of evidence. Style is the oldest tool and the least trusted, because a skilled follower can imitate a master's brushwork closely enough to fool experts for decades. So in the last thirty years, attention has turned to something no forger thought to fake: the canvas itself.\n\nLinen canvas was woven on hand looms, and every bolt has its own irregular pattern of thread density, slightly more threads per centimeter here, slightly fewer there. Using X-rays, researchers can count those threads across a whole painting and draw a map of the irregularities. Two paintings cut from the same bolt will have maps that line up like the two halves of a torn ticket.\n\nThat makes the method very strong in one direction and weak in the other. If an unattributed picture matches a bolt used for three securely documented works by the same artist, that's powerful evidence that it came from the same studio at about the same time. A workshop bought cloth by the bolt and used it up.\n\nBut a mismatch proves very little. Artists bought from different suppliers, reused old canvases, and sometimes painted on cloth bought years earlier. Absence of a match is the normal condition, not a warning sign.\n\nNotice, too, what even a match does not settle. It places the painting in a studio. It does not tell us whose hand held the brush, and large studios employed assistants who worked on the same cloth as the master. The canvas can move a painting into a room. It cannot, by itself, tell us who was standing at the easel.",
+    "passageGroupId": "pg-03256b6da6607ec662a9d6632112fd4a",
+    "prompt": "[Academic Talk — Art History] What limitation of a canvas match does the lecturer stress at the end?",
+    "choices": [
+     "It can place a painting in a studio but cannot name the painter",
+     "It can date a painting but cannot place it in any studio",
+     "It works only for artists who signed most of their pictures",
+     "It works only when the artist bought all cloth from one supplier"
+    ],
+    "correct_answer": "It can place a painting in a studio but cannot name the painter",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The canvas can move a painting into a room. It cannot, by itself, tell us who was standing at the easel.'",
+    "distractor_rationales": [
+     {
+      "choice": "It can date a painting but cannot place it in any studio",
+      "reason": "A match is said to place a painting in a studio."
+     },
+     {
+      "choice": "It works only for artists who signed most of their pictures",
+      "reason": "Signed works are the documented comparison set, not a requirement."
+     },
+     {
+      "choice": "It works only when the artist bought all cloth from one supplier",
+      "reason": "Single suppliers are not required for a match."
+     }
+    ]
+   },
+   "content_hash": "41921f342437f0375681a876c6407a2e",
+   "word_count": 281,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T03",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A few years ago, a team tried to repeat a hundred published psychology experiments, carefully, with larger samples. Fewer than half produced the original result. The headlines called it a crisis, and in some ways it was. But the lesson most people took from it, that the original researchers were careless or dishonest, is mostly the wrong one.\n\nStart with what journals publish. A study that finds a striking effect is far more likely to be accepted than one that finds nothing. Researchers know this, so studies with null results tend to stay in a drawer. Now imagine twenty labs testing the same weak idea. By chance alone, one of them will probably get a result that looks impressive. That one gets published. The nineteen others don't. Nobody has lied, and yet the published record says the idea works.\n\nThere's a second, quieter problem. Small studies produce noisy estimates. When a small study happens to find an effect, the effect it reports is likely to be inflated, because only the lucky overestimates clear the bar for statistical significance. So even when an effect is real, the first published version of it tends to be too large, and a careful repetition will find something smaller, which can look like a failure.\n\nNone of this means the field is worthless. It means a single study, especially a small, surprising one, should be treated as a lead rather than a finding. The reforms now spreading, such as registering a study's plan before collecting data and publishing null results, are aimed at the system, not at individual villains. That's the right target, because the system produced the problem without anyone intending it.",
+    "passageGroupId": "pg-2d19cdf29a385b381be7add62a742473",
+    "prompt": "[Academic Talk — Psychology] What does the lecturer say is the wrong lesson to draw from the failed repetitions?",
+    "choices": [
+     "That the original researchers were careless or dishonest",
+     "That small studies tend to report effects that are too large",
+     "That journals favor studies with striking results",
+     "That a single study should be treated as a lead"
+    ],
+    "correct_answer": "That the original researchers were careless or dishonest",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The lesson most people took from it, that the original researchers were careless or dishonest, is mostly the wrong one.'",
+    "distractor_rationales": [
+     {
+      "choice": "That small studies tend to report effects that are too large",
+      "reason": "This is one of the lecturer's own explanations."
+     },
+     {
+      "choice": "That journals favor studies with striking results",
+      "reason": "This is part of the lecturer's account of the problem."
+     },
+     {
+      "choice": "That a single study should be treated as a lead",
+      "reason": "This is the lecturer's recommendation."
+     }
+    ]
+   },
+   "content_hash": "ef2e8fc3875fdeb040f221f7a89962b7",
+   "word_count": 278,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A few years ago, a team tried to repeat a hundred published psychology experiments, carefully, with larger samples. Fewer than half produced the original result. The headlines called it a crisis, and in some ways it was. But the lesson most people took from it, that the original researchers were careless or dishonest, is mostly the wrong one.\n\nStart with what journals publish. A study that finds a striking effect is far more likely to be accepted than one that finds nothing. Researchers know this, so studies with null results tend to stay in a drawer. Now imagine twenty labs testing the same weak idea. By chance alone, one of them will probably get a result that looks impressive. That one gets published. The nineteen others don't. Nobody has lied, and yet the published record says the idea works.\n\nThere's a second, quieter problem. Small studies produce noisy estimates. When a small study happens to find an effect, the effect it reports is likely to be inflated, because only the lucky overestimates clear the bar for statistical significance. So even when an effect is real, the first published version of it tends to be too large, and a careful repetition will find something smaller, which can look like a failure.\n\nNone of this means the field is worthless. It means a single study, especially a small, surprising one, should be treated as a lead rather than a finding. The reforms now spreading, such as registering a study's plan before collecting data and publishing null results, are aimed at the system, not at individual villains. That's the right target, because the system produced the problem without anyone intending it.",
+    "passageGroupId": "pg-2d19cdf29a385b381be7add62a742473",
+    "prompt": "[Academic Talk — Psychology] Why does the lecturer describe twenty labs testing the same weak idea?",
+    "choices": [
+     "To show how a false result can be published without anyone lying",
+     "To estimate how many psychology experiments are dishonest",
+     "To argue that labs should share data before testing ideas",
+     "To explain why larger samples always confirm the original results"
+    ],
+    "correct_answer": "To show how a false result can be published without anyone lying",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "One lab gets an impressive result by chance and is published; 'Nobody has lied, and yet the published record says the idea works.'",
+    "distractor_rationales": [
+     {
+      "choice": "To estimate how many psychology experiments are dishonest",
+      "reason": "The point is that no one need be dishonest."
+     },
+     {
+      "choice": "To argue that labs should share data before testing ideas",
+      "reason": "Data sharing is not the remedy discussed here."
+     },
+     {
+      "choice": "To explain why larger samples always confirm the original results",
+      "reason": "Larger samples often find smaller effects, not confirmations."
+     }
+    ]
+   },
+   "content_hash": "ba5d5dd20242b96b4a7e0db21c5cd0ee",
+   "word_count": 278,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A few years ago, a team tried to repeat a hundred published psychology experiments, carefully, with larger samples. Fewer than half produced the original result. The headlines called it a crisis, and in some ways it was. But the lesson most people took from it, that the original researchers were careless or dishonest, is mostly the wrong one.\n\nStart with what journals publish. A study that finds a striking effect is far more likely to be accepted than one that finds nothing. Researchers know this, so studies with null results tend to stay in a drawer. Now imagine twenty labs testing the same weak idea. By chance alone, one of them will probably get a result that looks impressive. That one gets published. The nineteen others don't. Nobody has lied, and yet the published record says the idea works.\n\nThere's a second, quieter problem. Small studies produce noisy estimates. When a small study happens to find an effect, the effect it reports is likely to be inflated, because only the lucky overestimates clear the bar for statistical significance. So even when an effect is real, the first published version of it tends to be too large, and a careful repetition will find something smaller, which can look like a failure.\n\nNone of this means the field is worthless. It means a single study, especially a small, surprising one, should be treated as a lead rather than a finding. The reforms now spreading, such as registering a study's plan before collecting data and publishing null results, are aimed at the system, not at individual villains. That's the right target, because the system produced the problem without anyone intending it.",
+    "passageGroupId": "pg-2d19cdf29a385b381be7add62a742473",
+    "prompt": "[Academic Talk — Psychology] According to the lecturer, why might a careful repetition of a real effect look like a failure?",
+    "choices": [
+     "The first small study probably overstated the size of the effect",
+     "The repetition was likely run with too few participants",
+     "Real effects usually disappear soon after they are first published",
+     "Careful repetitions are judged by stricter statistical rules"
+    ],
+    "correct_answer": "The first small study probably overstated the size of the effect",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Even when an effect is real, the first published version of it tends to be too large', so the repetition finds something smaller.",
+    "distractor_rationales": [
+     {
+      "choice": "The repetition was likely run with too few participants",
+      "reason": "The repetitions used 'larger samples'."
+     },
+     {
+      "choice": "Real effects usually disappear soon after they are first published",
+      "reason": "The effect is real but smaller, not gone."
+     },
+     {
+      "choice": "Careful repetitions are judged by stricter statistical rules",
+      "reason": "No stricter rule is described."
+     }
+    ]
+   },
+   "content_hash": "6fbb4a55b0ef5f1eb9fa0c1614aef20f",
+   "word_count": 278,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A few years ago, a team tried to repeat a hundred published psychology experiments, carefully, with larger samples. Fewer than half produced the original result. The headlines called it a crisis, and in some ways it was. But the lesson most people took from it, that the original researchers were careless or dishonest, is mostly the wrong one.\n\nStart with what journals publish. A study that finds a striking effect is far more likely to be accepted than one that finds nothing. Researchers know this, so studies with null results tend to stay in a drawer. Now imagine twenty labs testing the same weak idea. By chance alone, one of them will probably get a result that looks impressive. That one gets published. The nineteen others don't. Nobody has lied, and yet the published record says the idea works.\n\nThere's a second, quieter problem. Small studies produce noisy estimates. When a small study happens to find an effect, the effect it reports is likely to be inflated, because only the lucky overestimates clear the bar for statistical significance. So even when an effect is real, the first published version of it tends to be too large, and a careful repetition will find something smaller, which can look like a failure.\n\nNone of this means the field is worthless. It means a single study, especially a small, surprising one, should be treated as a lead rather than a finding. The reforms now spreading, such as registering a study's plan before collecting data and publishing null results, are aimed at the system, not at individual villains. That's the right target, because the system produced the problem without anyone intending it.",
+    "passageGroupId": "pg-2d19cdf29a385b381be7add62a742473",
+    "prompt": "[Academic Talk — Psychology] Why does the lecturer approve of reforms aimed at the system?",
+    "choices": [
+     "The problem arose from incentives rather than from individuals",
+     "Individual researchers are too hard to identify and punish",
+     "Journals have refused to publish any more null results",
+     "Registered studies always produce larger effects"
+    ],
+    "correct_answer": "The problem arose from incentives rather than from individuals",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'That's the right target, because the system produced the problem without anyone intending it.'",
+    "distractor_rationales": [
+     {
+      "choice": "Individual researchers are too hard to identify and punish",
+      "reason": "Punishment is not the lecturer's concern."
+     },
+     {
+      "choice": "Journals have refused to publish any more null results",
+      "reason": "Publishing null results is one of the reforms."
+     },
+     {
+      "choice": "Registered studies always produce larger effects",
+      "reason": "No such claim is made."
+     }
+    ]
+   },
+   "content_hash": "c031f3839ed4b0a9042930cb15caae0e",
+   "word_count": 278,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T04",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When wolves were returned to a large national park in the 1990s, the story that followed became famous. With wolves hunting them, elk stopped lingering along rivers. Willows and aspens along the banks grew back, beavers returned to use them, and the rivers themselves were said to change course. It's a beautiful example of what ecologists call a trophic cascade: an effect at the top of a food chain rippling all the way down.\n\nI want to complicate that story, not to debunk it.\n\nFirst, wolves were not the only thing that changed. Over the same decades, bears and cougars increased, human hunting of elk outside the park continued, and several dry years reduced the forage available. Elk numbers would probably have fallen somewhat even without wolves. Separating the wolves' share of the change from everything else is genuinely hard.\n\nSecond, the recovery of the willows has been patchy. In some valleys they came back strongly. In others they're still struggling, even where elk are now scarce. One explanation is that decades of heavy grazing lowered the water table, because there were no beaver dams holding water in the soil. Willows need that water. So removing the elk may not be enough; the ground itself may have to recover first, and that can take a long time.\n\nNone of this means the cascade isn't real. There's good evidence that wolves matter. But the tidy version, wolves in, landscape restored, suggests that you can repair a damaged ecosystem by putting back one missing piece. Ecosystems that have been altered for a long time can settle into a new condition, and pulling one lever may not move them back.",
+    "passageGroupId": "pg-e2f98e7347ceb67b0bd014111cdcf2ed",
+    "prompt": "[Academic Talk — Ecology] What is the lecturer's purpose in discussing the wolf story?",
+    "choices": [
+     "To add complications to it without rejecting it",
+     "To prove that wolves had no effect on the park",
+     "To show that elk were the main cause of river changes",
+     "To argue that wolves should be removed from the park"
+    ],
+    "correct_answer": "To add complications to it without rejecting it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'I want to complicate that story, not to debunk it.'",
+    "distractor_rationales": [
+     {
+      "choice": "To prove that wolves had no effect on the park",
+      "reason": "'There's good evidence that wolves matter.'"
+     },
+     {
+      "choice": "To show that elk were the main cause of river changes",
+      "reason": "The lecture does not single out elk as the main cause."
+     },
+     {
+      "choice": "To argue that wolves should be removed from the park",
+      "reason": "No removal is proposed."
+     }
+    ]
+   },
+   "content_hash": "bef6658b7a4c972adfc7b806381fba5d",
+   "word_count": 277,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When wolves were returned to a large national park in the 1990s, the story that followed became famous. With wolves hunting them, elk stopped lingering along rivers. Willows and aspens along the banks grew back, beavers returned to use them, and the rivers themselves were said to change course. It's a beautiful example of what ecologists call a trophic cascade: an effect at the top of a food chain rippling all the way down.\n\nI want to complicate that story, not to debunk it.\n\nFirst, wolves were not the only thing that changed. Over the same decades, bears and cougars increased, human hunting of elk outside the park continued, and several dry years reduced the forage available. Elk numbers would probably have fallen somewhat even without wolves. Separating the wolves' share of the change from everything else is genuinely hard.\n\nSecond, the recovery of the willows has been patchy. In some valleys they came back strongly. In others they're still struggling, even where elk are now scarce. One explanation is that decades of heavy grazing lowered the water table, because there were no beaver dams holding water in the soil. Willows need that water. So removing the elk may not be enough; the ground itself may have to recover first, and that can take a long time.\n\nNone of this means the cascade isn't real. There's good evidence that wolves matter. But the tidy version, wolves in, landscape restored, suggests that you can repair a damaged ecosystem by putting back one missing piece. Ecosystems that have been altered for a long time can settle into a new condition, and pulling one lever may not move them back.",
+    "passageGroupId": "pg-e2f98e7347ceb67b0bd014111cdcf2ed",
+    "prompt": "[Academic Talk — Ecology] Why does the lecturer mention bears, cougars, hunting, and dry years?",
+    "choices": [
+     "To show that other factors also reduced the elk population",
+     "To explain why wolves were returned to the park",
+     "To list the animals that benefited from the wolves",
+     "To argue that the park was already recovering before the 1990s"
+    ],
+    "correct_answer": "To show that other factors also reduced the elk population",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Elk numbers would probably have fallen somewhat even without wolves.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why wolves were returned to the park",
+      "reason": "The reintroduction's reasons are not discussed."
+     },
+     {
+      "choice": "To list the animals that benefited from the wolves",
+      "reason": "These are causes of elk decline, not beneficiaries."
+     },
+     {
+      "choice": "To argue that the park was already recovering before the 1990s",
+      "reason": "No earlier recovery is claimed."
+     }
+    ]
+   },
+   "content_hash": "f7887f1b60559580d9840ad16f89664f",
+   "word_count": 277,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When wolves were returned to a large national park in the 1990s, the story that followed became famous. With wolves hunting them, elk stopped lingering along rivers. Willows and aspens along the banks grew back, beavers returned to use them, and the rivers themselves were said to change course. It's a beautiful example of what ecologists call a trophic cascade: an effect at the top of a food chain rippling all the way down.\n\nI want to complicate that story, not to debunk it.\n\nFirst, wolves were not the only thing that changed. Over the same decades, bears and cougars increased, human hunting of elk outside the park continued, and several dry years reduced the forage available. Elk numbers would probably have fallen somewhat even without wolves. Separating the wolves' share of the change from everything else is genuinely hard.\n\nSecond, the recovery of the willows has been patchy. In some valleys they came back strongly. In others they're still struggling, even where elk are now scarce. One explanation is that decades of heavy grazing lowered the water table, because there were no beaver dams holding water in the soil. Willows need that water. So removing the elk may not be enough; the ground itself may have to recover first, and that can take a long time.\n\nNone of this means the cascade isn't real. There's good evidence that wolves matter. But the tidy version, wolves in, landscape restored, suggests that you can repair a damaged ecosystem by putting back one missing piece. Ecosystems that have been altered for a long time can settle into a new condition, and pulling one lever may not move them back.",
+    "passageGroupId": "pg-e2f98e7347ceb67b0bd014111cdcf2ed",
+    "prompt": "[Academic Talk — Ecology] According to the lecturer, why have willows failed to recover in some valleys?",
+    "choices": [
+     "The water table may have dropped while beavers were absent",
+     "Elk have returned to those valleys in large numbers",
+     "Wolves avoid the valleys where willows once grew",
+     "Dry years killed the willow roots before the wolves arrived"
+    ],
+    "correct_answer": "The water table may have dropped while beavers were absent",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Heavy grazing 'lowered the water table, because there were no beaver dams holding water in the soil.'",
+    "distractor_rationales": [
+     {
+      "choice": "Elk have returned to those valleys in large numbers",
+      "reason": "Willows struggle 'even where elk are now scarce'."
+     },
+     {
+      "choice": "Wolves avoid the valleys where willows once grew",
+      "reason": "Wolf movement is not discussed."
+     },
+     {
+      "choice": "Dry years killed the willow roots before the wolves arrived",
+      "reason": "Dry years are linked to forage, not willow roots."
+     }
+    ]
+   },
+   "content_hash": "e6a64fed323956c1d2cf14948de36cf5",
+   "word_count": 277,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD1-T05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When wolves were returned to a large national park in the 1990s, the story that followed became famous. With wolves hunting them, elk stopped lingering along rivers. Willows and aspens along the banks grew back, beavers returned to use them, and the rivers themselves were said to change course. It's a beautiful example of what ecologists call a trophic cascade: an effect at the top of a food chain rippling all the way down.\n\nI want to complicate that story, not to debunk it.\n\nFirst, wolves were not the only thing that changed. Over the same decades, bears and cougars increased, human hunting of elk outside the park continued, and several dry years reduced the forage available. Elk numbers would probably have fallen somewhat even without wolves. Separating the wolves' share of the change from everything else is genuinely hard.\n\nSecond, the recovery of the willows has been patchy. In some valleys they came back strongly. In others they're still struggling, even where elk are now scarce. One explanation is that decades of heavy grazing lowered the water table, because there were no beaver dams holding water in the soil. Willows need that water. So removing the elk may not be enough; the ground itself may have to recover first, and that can take a long time.\n\nNone of this means the cascade isn't real. There's good evidence that wolves matter. But the tidy version, wolves in, landscape restored, suggests that you can repair a damaged ecosystem by putting back one missing piece. Ecosystems that have been altered for a long time can settle into a new condition, and pulling one lever may not move them back.",
+    "passageGroupId": "pg-e2f98e7347ceb67b0bd014111cdcf2ed",
+    "prompt": "[Academic Talk — Ecology] What does the lecturer suggest about repairing long-altered ecosystems?",
+    "choices": [
+     "Restoring one missing species may not be enough to reverse them",
+     "They return to their original state once predators are restored",
+     "They cannot be studied without decades of experiments",
+     "They recover fastest when grazing animals are removed entirely"
+    ],
+    "correct_answer": "Restoring one missing species may not be enough to reverse them",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Altered ecosystems 'can settle into a new condition, and pulling one lever may not move them back.'",
+    "distractor_rationales": [
+     {
+      "choice": "They return to their original state once predators are restored",
+      "reason": "This is the 'tidy version' the lecturer warns against."
+     },
+     {
+      "choice": "They cannot be studied without decades of experiments",
+      "reason": "No claim about study length is made."
+     },
+     {
+      "choice": "They recover fastest when grazing animals are removed entirely",
+      "reason": "Removing elk 'may not be enough'."
+     }
+    ]
+   },
+   "content_hash": "dc5abdba42ade79dbfd1d84a2ec0f5c9",
+   "word_count": 277,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td1-T05",
+     "note": "Written in-session by Claude 2026-10-21 for the upper/hard band (medium/hard lectures). Monologue. Release only by the co-founder sitting (toefl-talk-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
