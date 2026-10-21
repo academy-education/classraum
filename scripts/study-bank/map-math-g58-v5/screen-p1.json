@@ -1,0 +1,57 @@
+{
+ "screened": 25,
+ "fails": {
+  "MM5-N28": [
+   "S-R4 2 struck without solving: [\"4 7/8\",\"12 1/8\"] (4 7/8: five moves of more than 2 to the right put it past 8 even after the left move; 12 1/8: at most -1 1/8 + 5*2.4 = about 10 7/8 before the left move, so the)"
+  ],
+  "MM5-N44": [
+   "S-R4 3 struck without solving: [\"245\",\"55\",\"25\"] (245: (3*5)^2=225 and the cube root of a negative number is negative, so the value is below 225; 55 and 25: 100^3=1,000,000 > 8000, so the cube root's size is un)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM5-N04": [
+   "S-R4 2 struck without solving: [\"6 5/12\",\"6 7/12\"] (6 5/12 and 6 7/12: the jar holds more than 8 - 3 + 1 2/3 = 6 2/3 = 6 8/12)"
+  ],
+  "MM5-N38": [
+   "S-R4 2 struck without solving: [\"304000\",\"159460\"] (304000: only one city is above 162000, so the mean is at most (312000+162000+162000)/3, about 212000; 159460: every population is a multiple of 100, so 3 times )"
+  ],
+  "MM5-N06": [
+   "S-R4 2 struck without solving: [\"11.40\",\"12.10\"] (each rounding moves a price by at most 0.05, so the estimate is within 0.15 of the exact total 12.26, i.e. between 12.11 and 12.41; this kills 11.40 and 12.10)"
+  ],
+  "MM5-N02": [
+   "S-R4 3 struck without solving: [\"4.30\",\"3.50\",\"3.20\"] (4.30: 4 x 4 = 16 > 14.80 and its cents x4 end in .20 not .80; 3.50: cents .50 x4 end in .00 not .80; 3.20: estimate 14.80/4 is near 15/4 = 3.75, so 3.20 is too )",
+   "S-R5 key identifiable without solving"
+  ],
+  "MM5-N40": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MM5-N01": [
+   "S-R4 2 struck without solving: [\"9.45\",\"9.35\"] (9.45 and 9.35: 3 x 3.40 = 10.20 is a floor, so anything below 10.20 is too small)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM5-N25": [
+   "S-R4 3 struck without solving: [\"-8 4/5\",\"-4 2/5\",\"-4 4/5\"] (-8 4/5: subtracting a negative raises the value, so it must be above -6 1/5; -4 2/5 and -4 4/5: adding more than 2 to -6 1/5 gives more than -4 1/5)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (-6 1/5 + (more than 2) > -4 1/5)"
+  ],
+  "MM5-N33": [
+   "S-R4 2 struck without solving: [\"-7.50\",\"-6.20\"] (-7.50: an integer total split over 5 remaining days gives a multiple of 0.2, and 2 minus that stays a multiple of 0.2; -6.20: the first days are positive, so ea)",
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM5-N39": [
+   "S-R4 2 struck without solving: [\"1200\",\"300\"] (1200 and 300: a stone of area 0.64 square meter has a side close to 1 m, so about 100 stones cover 96 m, not hundreds)",
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key"
+  ],
+  "MM5-N22": [
+   "S-R4 2 struck without solving: [\"19.00\",\"14.00\"] (19.00: 4 kg of fruit at about $4/kg is near $16, far below 19; 14.00: pears cost more than apples, so the total exceeds 4 kg at the $3.50 apple price)"
+  ],
+  "MM5-N27": [
+   "S-R4 2 struck without solving: [\"298\",\"328\"] (298 and 328: the under-par scores (25) outweigh the over-par scores (15), so the total is below 4 x 72 = 288)"
+  ],
+  "MM5-N03": [
+   "S-R4 2 struck without solving: [\"13\",\"1\"] (13: values like 0.06 are plainly below 0.4, so not all qualify; 1: 0.5 and 0.45 are plainly above 0.4, so at least 2)"
+  ]
+ }
+}

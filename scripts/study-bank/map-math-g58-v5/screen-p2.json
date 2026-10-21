@@ -1,0 +1,20 @@
+{
+ "screened": 14,
+ "fails": {
+  "MM5-N04": [
+   "S-R7 option pair 7 7/24 and 7 5/24, differ by 1/12"
+  ],
+  "MM5-N25": [
+   "S-R4 2 struck without solving: [\"-26 1/4\",\"-14 1/4\"] (-26 1/4: 5 x 3 = 15 caps the size; -14 1/4: 5 x 2.5 = 12.5 caps the size)"
+  ],
+  "MM5-N39": [
+   "S-R4 2 struck without solving: [\"56\",\"16\"] (56 and 16: raising to the -4 power gives a multiple of 4, and dividing by 5^-42 adds 42, so n = 42 - 4k is 2 mod 4, which rules out both multiples of 4)"
+  ],
+  "MM5-N40": [
+   "S-R4 2 struck without solving: [\"41\",\"37\"] (41 and 37: the two changes to 31 (minus 40, plus 16) are both multiples of 4, so n is 3 mod 4, and both of these are 1 mod 4)"
+  ],
+  "MM5-N44": [
+   "S-R7 option pair 456000 and 570000, total 2280000 divided by 5 vs by 4 (5 - 1)"
+  ]
+ }
+}
