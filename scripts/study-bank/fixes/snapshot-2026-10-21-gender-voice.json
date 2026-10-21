@@ -1,0 +1,3274 @@
+[
+ {
+  "id": "1049e195-3cd6-4299-99a5-f54ce47ab125",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH39-1",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Shuttle Office] What does the dispatcher imply when he says, 'Well, Signy would know, I'm sure'?",
+   "choices": [
+    "He assumes the friend must work for the shuttle service.",
+    "He isn't convinced the friend's report can be relied on.",
+    "He considers the friend's report good enough to go on.",
+    "He wants the friend to confirm the report in person."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Shuttle office, what can I do for you? B: I'd like to book the late 84 from Dunmore Annex on Thursday. A: The 84? That stopped going to Dunmore last year. You'd want the 29 from the Halloran Building. B: No, it's back. My friend Signy catches it at Dunmore every week. A: Well, Signy would know, I'm sure. But I go by what's printed. Let me pull up this term's timetable. B: Sure, go ahead. A: Okay, night service, 84, Dunmore Annex. Huh. It's back on. You were right. And the 29 doesn't go anywhere near Dunmore. B: Told you. Does the 84 stop at Halloran too? A: Not at night. It skips Halloran in the evenings, so Dunmore's your stop. B: Great, Dunmore it is. A: You're booked.",
+   "difficulty": "hard",
+   "explanation": "He immediately adds 'But I go by what's printed. Let me pull up this term's timetable', and only accepts the claim once he sees it there.",
+   "listeningTask": "conversation",
+   "correct_answer": "He isn't convinced the friend's report can be relied on.",
+   "passageGroupId": "pg-d0330abadb441cd1851394e7b68e69b9",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He considers the friend's report good enough to go on.",
+     "reason": "'But I go by what's printed. Let me pull up this term's timetable.'"
+    },
+    {
+     "choice": "He assumes the friend must work for the shuttle service.",
+     "reason": "Signy is described as a rider: 'catches it at Dunmore every week.'"
+    },
+    {
+     "choice": "He wants the friend to confirm the report in person.",
+     "reason": "He checks it himself: 'Let me pull up this term's timetable.'"
+    }
+   ]
+  },
+  "content_hash": "a5f6f4c8660a78cd7ca713b23b5e9c75",
+  "word_count": 132,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:39.346241+00:00",
+  "updated_at": "2026-10-02T06:33:39.346241+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "c50849894c685f0bbf824b181cb20afa",
+  "dedup_key": "da7ccda1b1c440bc034a215b74488df3"
+ },
+ {
+  "id": "1cfe28e4-cd52-418a-ae68-3c49f34d46d9",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH40-2",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Archaeology Dig] What is the supervisor's attitude toward bag 137?",
+   "choices": [
+    "She is worried the pieces could break during washing.",
+    "She suspects it could be the best find of the season.",
+    "She considers it worthless and would rather discard it.",
+    "She thinks it is unremarkable but wants it processed anyway."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Morning! Where do you want me today? B: Let's see. You're labelling finds with the second-years. A: Again? I did labelling all day yesterday. B: Did you? Oh, sorry, I'm reading Nkechi's line. You're washing finds today. A: Okay. Over at Ravensworth Hall, like usual? B: Not this week. The water's shut off there, so we've set up basins in the field tent. A: Got it. Anything I should start with? B: Bag 137, from yesterday. Honestly, it's mostly modern junk, bottle glass and such, but it gets washed and logged like everything else. A: Should I be careful with it? B: No need, it's sturdy stuff. Scrub away.",
+   "difficulty": "medium",
+   "explanation": "'Honestly, it's mostly modern junk, bottle glass and such, but it gets washed and logged like everything else.'",
+   "listeningTask": "conversation",
+   "correct_answer": "She thinks it is unremarkable but wants it processed anyway.",
+   "passageGroupId": "pg-47172d9ac0e55b18d4925617e8208be0",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She suspects it could be the best find of the season.",
+     "reason": "'Honestly, it's mostly modern junk, bottle glass and such.'"
+    },
+    {
+     "choice": "She considers it worthless and would rather discard it.",
+     "reason": "'but it gets washed and logged like everything else.'"
+    },
+    {
+     "choice": "She is worried the pieces could break during washing.",
+     "reason": "'No need, it's sturdy stuff. Scrub away.'"
+    }
+   ]
+  },
+  "content_hash": "1b4f80536961dc121bd0a52bbc156870",
+  "word_count": 111,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:39.667609+00:00",
+  "updated_at": "2026-10-02T06:33:39.667609+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "f9c8ce40ccad744d414d49a31a480190",
+  "dedup_key": "69c5d19e4c866556ac4f25dd81250223"
+ },
+ {
+  "id": "251860c9-3a0e-4a93-9d18-c8070165847d",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH35-2",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Orchestra Library] How does the student intend to get his part back?",
+   "choices": [
+    "Collect it from the Whitcombe Wing tomorrow morning",
+    "Collect it from the library shelves tomorrow morning",
+    "Collect it from the library shelves this afternoon",
+    "Collect it from the Whitcombe Wing this afternoon"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm here for my viola part, the one with all my bowings. I dropped it in the return slot on Tuesday, I'm pretty sure. B: Hmm, the slot log's empty for Tuesday. Did you maybe hand it to Benedikta at rehearsal? She collects parts at the break. That's a Wednesday thing. A: Tuesday, Wednesday... oh, right, rehearsal was Wednesday. Yeah, I gave it to her. B: Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first so the bowings can be copied. A: Okay, can I run over there this afternoon? B: It's locked until tomorrow morning, sorry. A: Tomorrow morning, then. Could I borrow a clean copy for tonight? B: Clean copies can't leave the room, but you're welcome to use one at the carrel. A: Fine. I'll pick mine up first thing tomorrow.",
+   "difficulty": "medium",
+   "explanation": "Marked parts 'go over to the Whitcombe Wing first', which is 'locked until tomorrow morning', and the student says 'I'll pick mine up first thing tomorrow.'",
+   "listeningTask": "conversation",
+   "correct_answer": "Collect it from the Whitcombe Wing tomorrow morning",
+   "passageGroupId": "pg-c6c718b8e21b96f8a8d0f384a2859b8a",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Collect it from the library shelves this afternoon",
+     "reason": "'Then it won't be on these shelves'; and the afternoon is ruled out by 'locked until tomorrow morning'."
+    },
+    {
+     "choice": "Collect it from the library shelves tomorrow morning",
+     "reason": "'Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first.'"
+    },
+    {
+     "choice": "Collect it from the Whitcombe Wing this afternoon",
+     "reason": "'Can I run over there this afternoon?' is answered 'It's locked until tomorrow morning.'"
+    }
+   ]
+  },
+  "content_hash": "cbad4b1d8a33db36e43dacb1a5f182a5",
+  "word_count": 144,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:38.519055+00:00",
+  "updated_at": "2026-10-02T06:33:38.519055+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "97be282e538acf6004ea52e2074c0faa",
+  "dedup_key": "02e7ea1997763ab28cd63ed975bfe716"
+ },
+ {
+  "id": "33cf1298-40dc-4bdc-8f8b-18935c996a17",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH34-2",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Climbing Wall] What does the supervisor mean when he says, 'Well, the binder's the binder'?",
+   "choices": [
+    "He is refusing to bend the printed rule for the student.",
+    "He will go by the printed rule rather than his own memory.",
+    "He suspects the printed rule is out of date and unreliable.",
+    "He wants a colleague to confirm the printed rule first."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, before you tie in, can I see your belay card? Okay, this is from last spring. Cards expire every semester, so you'd need the retest. That's Thursday at 10:25. B: Really? I thought they switched it to twelve months. There was an email about it in August. A: Twelve months? Hang on, let me check the binder. Huh. Valid twelve months from date of test. Well, the binder's the binder. B: So I can belay today? A: Top-rope, yes. But you said earlier you wanted to lead. That's a separate check. B: Is that the Thursday one too? A: No, lead checks are Wednesdays. Same slot as the retest, I think... no, sorry, they moved it to the afternoon. 3:55. B: Wednesday at 3:55. Do I sign up here? A: Sheet's by the chalk bin. Lorcan runs it.",
+   "difficulty": "hard",
+   "explanation": "He had said cards expire every semester, then reads 'Valid twelve months from date of test' and immediately lets the student belay: 'Top-rope, yes.'",
+   "listeningTask": "conversation",
+   "correct_answer": "He will go by the printed rule rather than his own memory.",
+   "passageGroupId": "pg-5192c8d6a4478761e1b2977e8262bc48",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He is refusing to bend the printed rule for the student.",
+     "reason": "The rule favours the student, and he grants permission at once: 'Top-rope, yes.'"
+    },
+    {
+     "choice": "He suspects the printed rule is out of date and unreliable.",
+     "reason": "He acts on what it says without question: 'Top-rope, yes.'"
+    },
+    {
+     "choice": "He wants a colleague to confirm the printed rule first.",
+     "reason": "He decides on the spot; no one else is consulted before 'Top-rope, yes.'"
+    }
+   ]
+  },
+  "content_hash": "023e630ce49e4a5e697f76840530d745",
+  "word_count": 141,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:38.312355+00:00",
+  "updated_at": "2026-10-02T06:33:38.312355+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "6efb63c903aa65984a18edece0324d00",
+  "dedup_key": "7c94c936a495a0d933e96c8181481508"
+ },
+ {
+  "id": "8e0eaedd-aae5-4316-9233-641e54bae05b",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH35-1",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Orchestra Library] Why does the librarian say, 'That's a Wednesday thing'?",
+   "choices": [
+    "To suggest he is misremembering when he handed the part in",
+    "To warn that the part can't be released before Wednesday",
+    "To point out that Benedikta, not the library, takes returns",
+    "To explain that bowings are copied only on Wednesdays"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm here for my viola part, the one with all my bowings. I dropped it in the return slot on Tuesday, I'm pretty sure. B: Hmm, the slot log's empty for Tuesday. Did you maybe hand it to Benedikta at rehearsal? She collects parts at the break. That's a Wednesday thing. A: Tuesday, Wednesday... oh, right, rehearsal was Wednesday. Yeah, I gave it to her. B: Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first so the bowings can be copied. A: Okay, can I run over there this afternoon? B: It's locked until tomorrow morning, sorry. A: Tomorrow morning, then. Could I borrow a clean copy for tonight? B: Clean copies can't leave the room, but you're welcome to use one at the carrel. A: Fine. I'll pick mine up first thing tomorrow.",
+   "difficulty": "hard",
+   "explanation": "The student claimed Tuesday; the librarian notes rehearsal collection is on Wednesdays, and he replies 'oh, right, rehearsal was Wednesday. Yeah, I gave it to her.'",
+   "listeningTask": "conversation",
+   "correct_answer": "To suggest he is misremembering when he handed the part in",
+   "passageGroupId": "pg-c6c718b8e21b96f8a8d0f384a2859b8a",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To explain that bowings are copied only on Wednesdays",
+     "reason": "The line follows 'She collects parts at the break'; copying is mentioned later with no day: 'Marked parts go over to the Whitcombe Wing first.'"
+    },
+    {
+     "choice": "To warn that the part can't be released before Wednesday",
+     "reason": "Wednesday has already passed ('rehearsal was Wednesday'); the part is available 'tomorrow morning'."
+    },
+    {
+     "choice": "To point out that Benedikta, not the library, takes returns",
+     "reason": "The library does take returns: 'the slot log's empty for Tuesday.'"
+    }
+   ]
+  },
+  "content_hash": "1869622ef135604a0455980a126e2997",
+  "word_count": 144,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:38.416486+00:00",
+  "updated_at": "2026-10-02T06:33:38.416486+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "c5b7904305a9bd1d7d03364601b1b14b",
+  "dedup_key": "3e8d18984642c9b943925f069c780bb9"
+ },
+ {
+  "id": "a35407b0-183a-44a3-9b3c-b62b7f4e87fe",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH43-1",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Microscopy Suite] What does the technician imply when she asks, 'Did you open the confirmation?'",
+   "choices": [
+    "She suspects the email says something he hasn't noticed.",
+    "She thinks he may have booked under another name.",
+    "She needs to see the email before she lets him in.",
+    "She wants to know whether the email reached him at all."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm here for my session on the electron microscope. Room 316, today, Tuesday. B: Let me check. I don't see you today. You're down for Wednesday. A: Wednesday? I'm sure I picked Tuesday. I got a confirmation. B: Did you open the confirmation? The system books the next free slot if the one you chose is taken, and Amaryllis already had today. A: Oh. Yeah, here it is. Wednesday. I only read the subject line. B: Happens all the time. And it's not in 316 either. That scope's down for service, so you're on the one in 251. A: Is it the same model? B: Older, but it'll do what you need. Bring your own sample holders. A: Okay. Wednesday, in 251. B: See you then.",
+   "difficulty": "medium",
+   "explanation": "She explains the system may have moved his slot, and he finds 'Wednesday' in it: 'I only read the subject line.'",
+   "listeningTask": "conversation",
+   "correct_answer": "She suspects the email says something he hasn't noticed.",
+   "passageGroupId": "pg-ac92eae39629de33921529f70878ef72",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She needs to see the email before she lets him in.",
+     "reason": "She has already found his booking herself: 'You're down for Wednesday.'"
+    },
+    {
+     "choice": "She wants to know whether the email reached him at all.",
+     "reason": "He has just said 'I got a confirmation.'"
+    },
+    {
+     "choice": "She thinks he may have booked under another name.",
+     "reason": "She finds him under his own booking: 'You're down for Wednesday.'"
+    }
+   ]
+  },
+  "content_hash": "8cea1cfc115c55369f163e2989e9e8d0",
+  "word_count": 129,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:40.242692+00:00",
+  "updated_at": "2026-10-02T06:33:40.242692+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "8d96088831de5e86a81aa161a4557486",
+  "dedup_key": "4c217da4381091ce8281a8c7215359e3"
+ },
+ {
+  "id": "c336260e-8763-4813-b660-7a68da93401a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "id": "CH44-2",
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Alumni Office] Why does the officer say, 'They wrote the small print'?",
+   "choices": [
+    "To warn her that the committee rarely bends on references",
+    "To assure her that the committee will honor its own rule",
+    "To suggest the committee hides conditions applicants miss",
+    "To hint that she should have read the rules more closely"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Alumni office, what can I do for you? B: I'm applying for the alumni travel grant, and the form says I need a faculty reference. My adviser's on leave until next term, though. A: The reference is required, I'm afraid. The committee won't read an application without one. B: Even if my adviser's away? A: Even then. What's the trip for, though? B: I'm joining an alumni chapter overseas on their oral history project. A: Oh, a chapter project? Then the chapter's coordinator can write it instead. Chapter trips are the one case where that's allowed. B: And the committee really accepts that? A: They wrote the small print. Who's coordinating? B: Someone called Evander. A: Evander? He's great. Have him email the letter straight to us. Don't attach it yourself.",
+   "difficulty": "medium",
+   "explanation": "It answers 'And the committee really accepts that?' after he has said 'Chapter trips are the one case where that's allowed', and he moves straight on to arranging the letter.",
+   "listeningTask": "conversation",
+   "correct_answer": "To assure her that the committee will honor its own rule",
+   "passageGroupId": "pg-cfe092262f8167c5be29b0406dc1a067",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To warn her that the committee rarely bends on references",
+     "reason": "He is answering 'really accepts that?' about a case he has just called allowed: 'Chapter trips are the one case where that's allowed.'"
+    },
+    {
+     "choice": "To suggest the committee hides conditions applicants miss",
+     "reason": "He goes straight on to arranging the letter, 'Who's coordinating?', with no criticism of the rules."
+    },
+    {
+     "choice": "To hint that she should have read the rules more closely",
+     "reason": "He himself first said 'The reference is required, I'm afraid', so he is not faulting her reading."
+    }
+   ]
+  },
+  "content_hash": "6ce1c31c0d2ced01be30ad09771d9e48",
+  "word_count": 133,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  },
+  "source": "hand",
+  "created_at": "2026-10-02T06:33:40.631704+00:00",
+  "updated_at": "2026-10-02T06:33:40.631704+00:00",
+  "archived": false,
+  "cohort": "conv-hard-v2",
+  "task": "conversation",
+  "content_sha": "1117656df5f7a4380a8e3f5153ae045c",
+  "dedup_key": "c9b771d6f73baf0ab50b78ef9a7896cf"
+ },
+ {
+  "id": "e01d2cf7-44af-46d8-a866-b92abadd2f3c",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-3cbabc8026347913c31a56d7f93a73df",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — professor↔student office hours] What does the professor suggest the student do to improve his grade?",
+   "choices": [
+    "Participate more in upcoming group projects and discussions.",
+    "Attend every one of the remaining sessions without missing a single class.",
+    "Check in with the professor after each class for the next three weeks.",
+    "Write an extra credit essay to make up the points."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, Professor Liu. I wanted to talk about my grade in Environmental Science 204. I’m a bit confused about the participation component. B: Of course, Alex. The syllabus does mention that class participation is 20% of the final grade. Is there something specific you’re unclear about? A: Well, I noticed that I got a 12 out of 20, but I’ve attended almost every session. I suppose I’m not sure what else counts besides attendance. B: Attendance is just one part. I also look for contributions during discussions and group activities. Did you participate in the debate last week? A: I was there, but I didn’t say much. I was nervous about speaking up. B: That’s understandable. The thing is, engagement is key. Even asking questions counts.\n\nWhat do you mean by ‘nervous’? Is it about the topic or speaking in front of others? A: More about speaking in front of others. I worry I’ll say something wrong. B: I see. In that case, maybe you could try preparing a few comments ahead of time. Would that help? A: I think so. Is it possible to improve my participation grade if I start contributing more now? B: Yes, there are still three weeks left. If you make a consistent effort, I can reconsider your score. Just make sure to participate in the next two group projects and the final discussion. A: Thank you, Professor. I’ll do my best. B: Great. Let’s check in again after the next project, okay? A: Sounds good. Thanks again.",
+   "difficulty": "medium",
+   "explanation": "The professor tells the student to engage more in the next two group projects and the final discussion.",
+   "listeningTask": "conversation",
+   "correct_answer": "Participate more in upcoming group projects and discussions.",
+   "passageGroupId": "pg-3cbabc8026347913c31a56d7f93a73df",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": []
+  },
+  "content_hash": "492a13f04719455a4b3e26ff82b6fafe",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-01T05:01:28.980025+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "'participate in the next two group projects' stated",
+   "harvested_from": "test-cache",
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "conversation",
+  "content_sha": "032b518686aba072356d74736bc6c2c3",
+  "dedup_key": "4854c22277340983a6440de22dc08b46"
+ },
+ {
+  "id": "f3a10f1f-621b-4363-b212-c1c156908d08",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-3cbabc8026347913c31a56d7f93a73df",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — professor↔student office hours] What is the main problem the student brings up?",
+   "choices": [
+    "He disagrees with what the syllabus says about participation.",
+    "He is confused about the participation grade criteria.",
+    "He is worried that he missed the deadline for a group project.",
+    "He missed a number of class sessions and wants to make them up."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, Professor Liu. I wanted to talk about my grade in Environmental Science 204. I’m a bit confused about the participation component. B: Of course, Alex. The syllabus does mention that class participation is 20% of the final grade. Is there something specific you’re unclear about? A: Well, I noticed that I got a 12 out of 20, but I’ve attended almost every session. I suppose I’m not sure what else counts besides attendance. B: Attendance is just one part. I also look for contributions during discussions and group activities. Did you participate in the debate last week? A: I was there, but I didn’t say much. I was nervous about speaking up. B: That’s understandable. The thing is, engagement is key. Even asking questions counts.\n\nWhat do you mean by ‘nervous’? Is it about the topic or speaking in front of others? A: More about speaking in front of others. I worry I’ll say something wrong. B: I see. In that case, maybe you could try preparing a few comments ahead of time. Would that help? A: I think so. Is it possible to improve my participation grade if I start contributing more now? B: Yes, there are still three weeks left. If you make a consistent effort, I can reconsider your score. Just make sure to participate in the next two group projects and the final discussion. A: Thank you, Professor. I’ll do my best. B: Great. Let’s check in again after the next project, okay? A: Sounds good. Thanks again.",
+   "difficulty": "easy",
+   "explanation": "The student is unsure how the participation grade is determined and asks for clarification.",
+   "listeningTask": "conversation",
+   "correct_answer": "He is confused about the participation grade criteria.",
+   "passageGroupId": "pg-3cbabc8026347913c31a56d7f93a73df",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": []
+  },
+  "content_hash": "44e374b2a6789e2358c488faa99348fe",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-01T05:01:28.980025+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "confusion stated in the opening turn",
+   "harvested_from": "test-cache",
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "conversation",
+  "content_sha": "8c0ea0f41df1b6b560f14da4b5e088e8",
+  "dedup_key": "359e1d89de0a8762164238092fa873bf"
+ },
+ {
+  "id": "944076c9-4af0-4358-a5bc-6459e4ce88d7",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-49fa4719858a5907f8e81cb4daea092e",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — student and campus IT about a printing quota issue] What is the main problem the student is experiencing?",
+   "choices": [
+    "Her thesis draft was deleted before she could send it to the library printer.",
+    "She cannot open the student email account her print log was sent to.",
+    "She was charged ten cents a page for printing she never authorized.",
+    "She has exceeded her monthly printing quota unexpectedly."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, this is the IT help desk. How can I help you today? B: Hi, I’m calling because I just tried to print my research paper in the library, but it said I’ve reached my printing quota for the month. I don’t understand how that’s possible. A: Let’s see. The standard quota is 200 pages per month for undergraduates. Have you printed a lot recently? B: I don’t think so. I printed my biology notes last week, maybe 30 pages, and a few articles for my HIST 204 class. But that shouldn’t be anywhere near 200 pages. A: Sometimes double-sided printing can be counted incorrectly. Did you print double-sided? B: Yes, I always do. Are you saying that could have used up my quota faster? A: It’s possible. The system sometimes counts each side as a separate page, even if it’s on the same sheet.\n\nI can check your print log if you’d like. B: Please do. Also, what happens if I really need to print something important, like my thesis draft? A: Well, you can purchase additional pages for $0.10 per page at the IT desk in Room 112. Or, if it’s for a required assignment, sometimes professors can request a temporary quota increase. B: I see. What do you mean by a temporary increase? A: The thing is, your professor would have to email us explaining why you need more pages, and we’d adjust your quota for this month only. B: I suppose I’ll talk to my professor, then. But for now, could you email me my print log? A: Absolutely. I’ll send it to your student email. If you have any other issues, just stop by Room 112. B: Thanks, I appreciate your help. A: No problem. Have a good day.",
+   "difficulty": "easy",
+   "explanation": "The student is surprised to find she has reached her printing quota even though she doesn't think she printed that much.",
+   "listeningTask": "conversation",
+   "correct_answer": "She has exceeded her monthly printing quota unexpectedly.",
+   "passageGroupId": "pg-49fa4719858a5907f8e81cb4daea092e",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She cannot open the student email account her print log was sent to.",
+     "reason": "The student requests an email but does not mention trouble accessing it."
+    },
+    {
+     "choice": "Her thesis draft was deleted before she could send it to the library printer.",
+     "reason": "She is concerned about printing her thesis, not about a deleted file."
+    },
+    {
+     "choice": "She was charged ten cents a page for printing she never authorized.",
+     "reason": "The issue is about quota, not charges."
+    }
+   ]
+  },
+  "content_hash": "e6844f873509b54b0d6cc99d890cdb98",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T18:40:19.605094+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "problem stated in the second turn",
+   "harvested_from": "test-cache",
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "conversation",
+  "content_sha": "b0f6ef6bfa826916e899e105cc638be6",
+  "dedup_key": "041fd9bcce50f053a7f6904e89486b3e"
+ },
+ {
+  "id": "0a2eeeb3-d586-4080-9c5c-50fad249adb0",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-50ff2b4291d66e8d4d471e8bcbae19e3",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Office hours] Why does the advisor mention the journal 'Renewable Energy'?",
+   "choices": [
+    "To suggest a reliable source for current information",
+    "To point him to one particular article he should read first",
+    "To test the student's grasp of the subject area.",
+    "To emphasize how promising solar energy has become as a field"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm here to discuss my thesis topic with you. B: Sure, what do you have in mind? A: I'm considering something related to renewable energy sources. B: That's a broad field. Have you narrowed it down?\n\nA: Not yet, but I was thinking of focusing on solar energy. B: Solar energy is promising. Have you looked into the latest research? A: A bit, but I could use some guidance. B: Why don't you start with the recent articles in the journal 'Renewable Energy'?",
+   "difficulty": "medium",
+   "explanation": "The advisor recommends the journal to help the student find current research on solar energy.",
+   "listeningTask": "conversation",
+   "correct_answer": "To suggest a reliable source for current information",
+   "passageGroupId": "pg-50ff2b4291d66e8d4d471e8bcbae19e3",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To point him to one particular article he should read first",
+     "reason": "The advisor suggests the journal, not a specific article."
+    },
+    {
+     "choice": "To emphasize how promising solar energy has become as a field",
+     "reason": "The advisor is guiding research, not emphasizing importance."
+    },
+    {
+     "choice": "To test the student's grasp of the subject area.",
+     "reason": "The advisor is providing guidance, not testing knowledge."
+    }
+   ]
+  },
+  "content_hash": "43fcbacf4b6d643d000dc74a500b45a8",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-06-30T15:56:50.950066+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "journal offered plainly as a starting source",
+   "harvested_from": "test-cache",
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "conversation",
+  "content_sha": "d49b784cfd73fae561af5fb4d9d09c24",
+  "dedup_key": "f8f89e26c6e4f9facc23a5105176c75c"
+ },
+ {
+  "id": "a51c2c02-2d43-46ef-96ce-4d0cd9e1acc1",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-a23ff73903f82aa049e087166c69aec0",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Advising] Why does the advisor suggest looking at the syllabi together?",
+   "choices": [
+    "To steer the student toward courses with lighter reading.",
+    "To show that the debate club has to go if he takes eighteen credits.",
+    "To persuade him to drop from eighteen credits to a lighter load.",
+    "To identify periods when assignments and exams might overlap."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I’m here for my advising appointment, but I think I might be a little early. B: No problem at all. I just finished with my last student. Please, have a seat. A: Thanks. I wanted to talk about my course schedule for next semester. I’m thinking of taking a heavier load, but I’m worried about balancing everything. B: That’s a common concern. How many credits are you considering? A: Eighteen. I know it’s a lot, but I want to graduate a semester early if possible. B: Eighteen is definitely ambitious. Are you working or involved in any extracurriculars?\n\nA: I have a part-time job and I’m in the debate club, but I could cut back if I need to. B: It’s important to consider your overall workload. Have you mapped out the assignments and exam periods for those classes? A: Not in detail yet. I was hoping you could help me with that. B: Absolutely. Let’s look at the syllabi together and see where the busiest weeks are. Sometimes, courses cluster major assignments. A: That would be great. I just don’t want to get overwhelmed halfway through. B: I understand. It’s better to plan now than to regret later. Let’s start with your core courses.",
+   "difficulty": "medium",
+   "explanation": "The advisor wants to help the student avoid workload peaks by mapping out assignment and exam timing.",
+   "listeningTask": "conversation",
+   "correct_answer": "To identify periods when assignments and exams might overlap.",
+   "passageGroupId": "pg-a23ff73903f82aa049e087166c69aec0",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To recommend dropping extracurricular activities.",
+     "reason": "The advisor only asks about them, not recommends dropping."
+    },
+    {
+     "choice": "To encourage the student to take fewer credits.",
+     "reason": "The advisor does not directly suggest fewer credits."
+    },
+    {
+     "choice": "To help the student find easier courses.",
+     "reason": "The advisor focuses on planning, not course difficulty."
+    }
+   ]
+  },
+  "content_hash": "4bd74fc79c631166c4a6d719f425d438",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-01T03:52:57.433019+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "'see where the busiest weeks are' stated",
+   "harvested_from": "test-cache",
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "conversation",
+  "content_sha": "3e8803f75ca079486046884506cfbad2",
+  "dedup_key": "8bbcfc3181bab5bb215d84a7b7251cb9"
+ },
+ {
+  "id": "bc261e54-fc97-4204-af30-5e6a17781332",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-086bb48ad99a91a59a0ed21a3662e9cb",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — student and financial-aid officer about a scholarship deadline] What can be inferred about the state of the student’s application at the end of the conversation?",
+   "choices": [
+    "The officer will add the recommendation letter to the file herself if it arrives a day late",
+    "The automated portal has already locked at five p.m., so none of her materials can be uploaded",
+    "One required item is in someone else’s hands, so she cannot complete it on her own",
+    "She must start the whole application over because last year’s FAFSA is no longer valid"
+   ],
+   "passage": "Transcript: A: Hi, I’m trying to figure out if I’m still eligible for the Dean’s Opportunity Scholarship. I heard the deadline is coming up, and I want to make sure I have everything in order before I submit my application. Could you tell me exactly when the deadline is? B: Yes, the application deadline is March 15th at 5 p.m. sharp. It’s really important to have everything in by then. Have you already started your application, or are you just beginning? A: I’ve filled out most of it, but I’m still waiting on a recommendation letter from my ECON 302 professor. I asked him last week, but he hasn’t sent it yet. What happens if the letter comes in after the deadline? Would my application still be considered, or is it automatically disqualified? B: The thing is, all materials—including recommendation letters—must be submitted by the deadline. If anything is missing, even by a few minutes, your application unfortunately won’t be considered for the scholarship. The system actually locks at 5 p.m. on March 15th, so nothing can be added after that point. A: I suppose I should remind my professor, then.\n\nIs there any flexibility if the letter is just a day late, or is it a strict cut-off? I know sometimes there’s a short grace period with other applications. B: Unfortunately, there’s no grace period for this scholarship. The system is automated and won’t accept late submissions, even if it’s just a few minutes past the deadline. If you’re worried about timing, it’s a good idea to ask your professor to upload the recommendation a day or two early, just to be safe. Would you like me to send him a reminder as well? A: That would be really helpful, thank you. Also, do I need to submit my FAFSA again this year for the scholarship, or does last year’s submission count? B: Yes, a current FAFSA is required for this scholarship cycle, so make sure you’ve submitted the most recent one and that it’s on file before the deadline. If you need help checking your FAFSA status, I can walk you through the process. A: Thanks for clarifying. I’ll double-check everything today and reach out if I run into any issues. B: Sounds good. Let me know if you need help with the online portal or if you have any other questions about the application process. Good luck!",
+   "difficulty": "hard",
+   "explanation": "Combining \"I’ve filled out most of it\" with the professor still owing the recommendation shows the remaining item depends on another person. The system locks only at the March 15th deadline, which has not passed; a current FAFSA is required but that means submitting one, not rewriting the application; and the officer offers only to send a reminder, having just said nothing can be added late.",
+   "listeningTask": "conversation",
+   "correct_answer": "One required item is in someone else’s hands, so she cannot complete it on her own",
+   "passageGroupId": "pg-086bb48ad99a91a59a0ed21a3662e9cb"
+  },
+  "content_hash": "de453bdd5feb9beba5a9d366b970278a",
+  "word_count": 400,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Inference; one distractor echoes the portal-locks wording",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld",
+   "difficulty_regraded_full_transcript": true
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:15.233632+00:00",
+  "updated_at": "2026-07-27T17:29:15.233632+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "7c3ac98d16427cc75e183a6f640f0ae0",
+  "dedup_key": "759c26655ef7963f7cec6cdca444c37d"
+ },
+ {
+  "id": "91b940b5-5bf2-4b9e-8b89-a8ef43f5848e",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — Friends] Why does Speaker B say, \"Let me know how it is if you go\"?",
+   "choices": [
+    "To show that she is still interested even though she cannot come along",
+    "To confirm that Speaker A has already made up his mind to go",
+    "To propose that they postpone the visit until her paper is finished",
+    "To ask Speaker A to pick up a ticket for her"
+   ],
+   "passage": "Transcript: A: \"I heard there's a new exhibit at the museum. Want to check it out this weekend?\" B: \"I'd love to, but I have a paper due on Monday.\" A: \"Oh, that's too bad. Maybe next time?\" B: \"Yeah, definitely. Let me know how it is if you go.\"",
+   "difficulty": "hard",
+   "explanation": "The conditional \"if you go\" keeps the friendship warm after a refusal. That same \"if\" shows his plans are undecided rather than confirmed; postponement is what Speaker A floats with \"maybe next time,\" so attributing it to B confuses the speakers; and no ticket is mentioned.",
+   "listeningTask": "conversation",
+   "correct_answer": "To show that she is still interested even though she cannot come along",
+   "passageGroupId": "pg-5996cde914c2b45033403fa03180a853"
+  },
+  "content_hash": "0c56878c74e6c55a5affc906de2a84bc",
+  "word_count": 50,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "transparent expression of continued interest",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.259772+00:00",
+  "updated_at": "2026-07-27T17:29:16.259772+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "cc1b609343e93caa2faedc40d71c8e5f",
+  "dedup_key": "213b74add9568fc2f7e08875a58a9448"
+ },
+ {
+  "id": "9db8ac9c-dbee-4980-a350-42847abc82f7",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — Friends] What does Speaker A’s reply, \"Oh, that’s too bad. Maybe next time?\", suggest about him?",
+   "choices": [
+    "He has decided not to visit the exhibit himself either",
+    "He thinks Speaker B should have started her paper sooner",
+    "He is offended that his invitation was turned down",
+    "He accepts the refusal and leaves the door open for a later outing"
+   ],
+   "passage": "Transcript: A: \"I heard there's a new exhibit at the museum. Want to check it out this weekend?\" B: \"I'd love to, but I have a paper due on Monday.\" A: \"Oh, that's too bad. Maybe next time?\" B: \"Yeah, definitely. Let me know how it is if you go.\"",
+   "difficulty": "hard",
+   "explanation": "Mild sympathy plus \"maybe next time\" is a face-saving close that keeps the offer alive. There is no sign of offence in either turn; B’s later \"if you go\" shows he may still visit on his own; and he passes no judgement on her time management.",
+   "listeningTask": "conversation",
+   "correct_answer": "He accepts the refusal and leaves the door open for a later outing",
+   "passageGroupId": "pg-5996cde914c2b45033403fa03180a853"
+  },
+  "content_hash": "3e62887f218f6d72b6fc1930fb682216",
+  "word_count": 50,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'maybe next time' reads straightforwardly",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.284219+00:00",
+  "updated_at": "2026-07-27T17:29:16.284219+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "60565a4111472eeb60b858b6dd9e70a0",
+  "dedup_key": "40d21e7fb943f9080447b9a15b1fb51a"
+ },
+ {
+  "id": "dc503367-4125-4f82-9173-e16da2c2a29f",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — Friends] Why does Speaker B begin with \"I’d love to\"?",
+   "choices": [
+    "To ask Speaker A to suggest a different weekend outing",
+    "To accept the invitation and confirm she will go this weekend",
+    "To soften the refusal that follows immediately after it",
+    "To indicate that she has already been to the new exhibit"
+   ],
+   "passage": "Transcript: A: \"I heard there's a new exhibit at the museum. Want to check it out this weekend?\" B: \"I'd love to, but I have a paper due on Monday.\" A: \"Oh, that's too bad. Maybe next time?\" B: \"Yeah, definitely. Let me know how it is if you go.\"",
+   "difficulty": "hard",
+   "explanation": "The phrase is followed by \"but I have a paper due on Monday,\" making it a polite lead-in to a no. Reading it as acceptance ignores the contrast that follows; she never says she has been to the exhibit; and no alternative venue is discussed.",
+   "listeningTask": "conversation",
+   "correct_answer": "To soften the refusal that follows immediately after it",
+   "passageGroupId": "pg-5996cde914c2b45033403fa03180a853"
+  },
+  "content_hash": "1d67520e41785c418aa67f19ca176d20",
+  "word_count": 50,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "literal reading of 'I'd love to' is the trap",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.236319+00:00",
+  "updated_at": "2026-07-27T17:29:16.236319+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "25eff5850168c23acaf0a75c9d1b2b45",
+  "dedup_key": "7219f51a2d4ef483a04558e77388673e"
+ },
+ {
+  "id": "8f873376-540c-44fc-af91-177c9015400a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-870227eed9d793c42f52c3c5d01d5b90",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — Campus] What can be inferred about the first speaker by the end of the conversation?",
+   "choices": [
+    "The speaker has used the bike-share before and prefers it to the shuttle.",
+    "The speaker plans to use a service he had not known existed.",
+    "The speaker will ask a friend for a ride to the meeting.",
+    "The speaker has decided to wait for the delayed shuttle after all."
+   ],
+   "passage": "Transcript: A: I heard the campus shuttle is running late today. B: Yes, there was an announcement about delays due to roadwork. A: Oh no, I have a meeting at 10 AM. What should I do? B: You might want to catch an earlier bus or try the bike-share service.\n\nA: I didn't know about the bike-share. How does it work? B: It's pretty simple. You just need to sign up online, and then you can pick up a bike from any station. A: That sounds perfect. I'll try that. Thanks!",
+   "section": "listening",
+   "difficulty": "hard",
+   "explanation": "\"I didn't know about the bike-share\" followed by \"That sounds perfect. I'll try that\" gives both halves of the inference: the speaker plans to use a service he had not known existed. The answer that the speaker has used the bike-share before and prefers it to the shuttle reverses that explicit statement of unfamiliarity. The answer that he has decided to wait for the delayed shuttle after all contradicts the decision he announces at the end. And the answer that he will ask a friend for a ride to the meeting introduces an option never discussed.",
+   "listeningTask": "conversation",
+   "correct_answer": "The speaker plans to use a service he had not known existed.",
+   "passageGroupId": "pg-870227eed9d793c42f52c3c5d01d5b90"
+  },
+  "content_hash": "61e118652f22f70f42fd81f564c7205f",
+  "word_count": 91,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'I didn't know about the bike-share' plus 'I'll try that'",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.714134+00:00",
+  "updated_at": "2026-07-27T17:29:16.714134+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "3da2b735eb4fda883d5d7af66d706563",
+  "dedup_key": "c38cf36e30dacc55bbb1ecfbfb48821f"
+ },
+ {
+  "id": "af834814-5581-4187-bf15-39cba81d7cb2",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-9ca78af11a14cae332c23feb57758483",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Announcement — Transit] What can be inferred about why the passenger speaks up?",
+   "choices": [
+    "The first announcement told her there was a delay but not how long it would last",
+    "She missed which destination was announced and wants to be sure it was her own train",
+    "She doubts that the track maintenance is really necessary at this time of day",
+    "She wants to find out whether passengers will be compensated for a delay this long"
+   ],
+   "passage": "Transcript: A: \"Attention all passengers, the 3:00 PM train to Boston is delayed due to track maintenance.\" B: \"How long is the delay expected to be?\" A: \"We anticipate a delay of about 45 minutes. We apologize for the inconvenience.\"",
+   "difficulty": "hard",
+   "explanation": "Her only question is \"How long is the delay expected to be?\", filling the gap the announcement left. The destination was clearly stated and she does not ask about it; compensation is never raised; and she expresses no scepticism about the maintenance.",
+   "listeningTask": "conversation",
+   "correct_answer": "The first announcement told her there was a delay but not how long it would last",
+   "passageGroupId": "pg-9ca78af11a14cae332c23feb57758483"
+  },
+  "content_hash": "514af555bd7627d9b06cad6bb9db0503",
+  "word_count": 40,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Announcement",
+   "difficulty_why": "the first announcement plainly omitted the duration",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.026873+00:00",
+  "updated_at": "2026-07-27T17:29:16.026873+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "0a8adc18104ef063ef9c906bf31f2396",
+  "dedup_key": "f0edf71c198f7a3ef9e4a74d538f5541"
+ },
+ {
+  "id": "c077875b-f01f-4b0f-bfc5-240284c0fe84",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-a78a0c4b019c80f6ae49d143540a12a1",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — student↔librarian] How does the librarian respond when the student asks to start at 3:00 rather than 3:30?",
+   "choices": [
+    "She says the student may start at 3:00 as long as she shows her student ID at the desk",
+    "She offers to move the group holding the earlier slot downstairs into one of the first-floor study rooms",
+    "She turns the request down but points the group to nearby open seating for the earlier half hour",
+    "She agrees to the earlier start, since the group that holds the room until 3:30 rarely stays that long"
+   ],
+   "passage": "Transcript: A: Good morning. I’m here to ask about the library’s group study rooms. I heard they’re booked up quickly, especially around this time of year. Is that true? I’m worried my group won’t be able to find a spot for our meeting. B: Yes, that’s right. The group study rooms tend to fill up pretty fast, especially during midterms and finals. Are you hoping to reserve a room for a particular date and time, or are you just looking for general information about availability? A: I actually need a room for my History 312 group on October 28th, from 3 to 5 PM. But when I checked the online booking system this morning, it looked like there was nothing available at all during that time slot. B: Let me double-check for you. Sometimes there are last-minute cancellations or updates that don’t show up right away online. When you say ‘nothing’s available,’ do you mean you checked all the group rooms on both floors, or just one? A: I only checked the first floor, to be honest. I didn’t realize there were group study rooms on the second floor too. Should I have looked there as well? B: Yes, we actually have several group study rooms on the second floor that a lot of students overlook.\n\nLet me take a quick look at our reservation system… Okay, it looks like Room 217 on the second floor is open from 3:30 to 5 PM. A: That’s pretty close to what we need. Is there any way to get access to the room starting at 3 instead of 3:30? Or is the earlier slot definitely taken? B: Unfortunately, it’s reserved until 3:30 by another group. We have a strict policy about start and end times to make sure everyone gets their full reservation. However, you and your group are welcome to use the open seating area nearby before 3:30 if you need to get started early. A: Okay, that works for us. How do I go about reserving Room 217 for 3:30 to 5 PM? B: I’ll just need your student ID number and the course number for your group project. A: Sure, my student ID is 3021456 and the course is History 312. B: Great, I’ve made the reservation for you. You’ll get a confirmation email shortly. Is there anything else I can help you with today? A: No, that’s all. Thanks so much for your help and for checking the second floor for me. B: You’re very welcome. Good luck with your project, and let us know if you need anything else!",
+   "difficulty": "hard",
+   "explanation": "She cites a strict policy on start and end times, then adds that the group is welcome to use the open seating area before 3:30. Nothing is said about how fully the earlier group uses its slot; relocating that group is never proposed; and the student ID is collected to make the reservation, not to unlock a room early.",
+   "listeningTask": "conversation",
+   "correct_answer": "She turns the request down but points the group to nearby open seating for the earlier half hour",
+   "passageGroupId": "pg-a78a0c4b019c80f6ae49d143540a12a1"
+  },
+  "content_hash": "bec77f156ab7cf248937c3e5225c5e44",
+  "word_count": 432,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Two-part answer; student-ID and downstairs distractors echo real bits",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld",
+   "difficulty_regraded_full_transcript": true
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:16.177298+00:00",
+  "updated_at": "2026-07-27T17:29:16.177298+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "a2dd81b69d8428552b3c2c905cc7e9a7",
+  "dedup_key": "8c003886e3ec47246307345252966a5b"
+ },
+ {
+  "id": "f4550ae0-25c5-4bc6-bbb5-b0e04fec1ecc",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "conversation",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-f6dc2b60985c299162c33ce60506d57c",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "[Conversation — Work] What will the first speaker most likely do next?",
+   "choices": [
+    "Resend the same draft for a second review once the other speaker has more time",
+    "Look at the recent survey data and update that part of the draft",
+    "Drop the market trends section, since the other speaker called it outdated",
+    "Commission a new survey of consumer preferences herself"
+   ],
+   "passage": "Transcript: A: Did you get a chance to review the draft I sent? B: Yes, but I'm concerned about the section on market trends. A: Oh, why is that? B: It seems a bit outdated. The latest report suggests a shift in consumer preferences. A: I see. Do you have any suggestions for updating it? B: You might want to include data from the recent survey. It provides a more current perspective. A: Thanks, I'll look into that.",
+   "difficulty": "hard",
+   "explanation": "His closing \"I’ll look into that\" responds directly to the suggestion to include data from the recent survey. Deleting the section goes beyond a request to update it; the survey already exists, so no new one is needed; and resending unchanged contradicts his agreement to act.",
+   "listeningTask": "conversation",
+   "correct_answer": "Look at the recent survey data and update that part of the draft",
+   "passageGroupId": "pg-f6dc2b60985c299162c33ce60506d57c"
+  },
+  "content_hash": "3958756f78c04dfb63d47eaf5aeb2d4e",
+  "word_count": 78,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Next action inferred; distractor echoes 'outdated'",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T17:29:15.684626+00:00",
+  "updated_at": "2026-07-27T17:29:15.684626+00:00",
+  "archived": false,
+  "cohort": "orphan-v1",
+  "task": "conversation",
+  "content_sha": "0101fed80fccafc8d987da3cf0bc3baa",
+  "dedup_key": "bb2697df1e625f4ff77a1dd9076f1eec"
+ },
+ {
+  "id": "2c07041f-909a-4361-9e96-7b91ed7992dd",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Library Help Desk] What is the student's main problem?",
+   "choices": [
+    "She has lost her borrowing privileges and cannot check out the books she needs",
+    "She cannot find enough scholarly sources for her research paper",
+    "She cannot log in to the library's databases from her dorm with her student ID",
+    "She owes a fine on an overdue book and must clear it first"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, you look a little lost. Can I help? B: I hope so. I have a paper on urban beekeeping due next week, and every time I search the catalog I get either popular magazine articles or nothing at all. My professor said magazine articles won't count. A: Okay, so you need peer-reviewed sources. The main catalog searches our physical books, but for journal articles you want the databases—those are separate. B: I didn't know that. A: Most people don't. For a topic like yours that crosses fields, I'd start with the environmental sciences database and maybe the agriculture one. Try the phrase 'urban apiculture'—that's the technical term, and it'll cut out the hobby blogs. B: Apiculture. Okay. A: One more thing: when you find a good article, look at its reference list. The sources it cites are often exactly what you need, and it's faster than searching blind. B: That's really helpful. Do I need anything to get into the databases from my dorm? A: Just log in with your student ID through the library portal—same password as your email. If it asks you to pay for an article, stop; don't pay. We almost certainly have access, so come back and we'll get it for free.",
+   "difficulty": "medium",
+   "explanation": "The student explains she keeps finding popular magazine articles or nothing, but needs sources that will count for her paper.",
+   "listeningTask": "conversation",
+   "correct_answer": "She cannot find enough scholarly sources for her research paper",
+   "passageGroupId": "L4-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She has lost her borrowing privileges and cannot check out the books she needs",
+     "reason": "Borrowing privileges are never mentioned; her issue is finding the right kind of sources."
+    },
+    {
+     "choice": "She cannot log in to the library's databases from her dorm with her student ID",
+     "reason": "Logging in from her dorm comes up only at the end and is explained smoothly, not as her problem."
+    },
+    {
+     "choice": "She owes a fine on an overdue book and must clear it first",
+     "reason": "No fine or overdue book is discussed anywhere."
+    }
+   ]
+  },
+  "content_hash": "2e34963803f36a5bc97e2ca7c46c7f62",
+  "word_count": 209,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Problem stated in the student's opening turn",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.71661+00:00",
+  "updated_at": "2026-07-21T17:53:23.71661+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "8bfdd7f975c79985f87370facd825d0b",
+  "dedup_key": "fec9a831ec8d52c531456c11ac9dd141"
+ },
+ {
+  "id": "e4218247-f73a-4c02-b7e1-642402af9f94",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Library Help Desk] What does the librarian imply the student should do if a database asks her to pay for an article?",
+   "choices": [
+    "Not pay, because the library likely already provides access",
+    "Wait until she is on campus, since the databases cannot be reached from her dorm",
+    "Pay the fee herself and then submit the receipt to the library for reimbursement",
+    "Search the article's reference list for a similar source she can download for free"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, you look a little lost. Can I help? B: I hope so. I have a paper on urban beekeeping due next week, and every time I search the catalog I get either popular magazine articles or nothing at all. My professor said magazine articles won't count. A: Okay, so you need peer-reviewed sources. The main catalog searches our physical books, but for journal articles you want the databases—those are separate. B: I didn't know that. A: Most people don't. For a topic like yours that crosses fields, I'd start with the environmental sciences database and maybe the agriculture one. Try the phrase 'urban apiculture'—that's the technical term, and it'll cut out the hobby blogs. B: Apiculture. Okay. A: One more thing: when you find a good article, look at its reference list. The sources it cites are often exactly what you need, and it's faster than searching blind. B: That's really helpful. Do I need anything to get into the databases from my dorm? A: Just log in with your student ID through the library portal—same password as your email. If it asks you to pay for an article, stop; don't pay. We almost certainly have access, so come back and we'll get it for free.",
+   "difficulty": "medium",
+   "explanation": "The librarian says to stop and not pay because the library almost certainly has access and can get it for free.",
+   "listeningTask": "conversation",
+   "correct_answer": "Not pay, because the library likely already provides access",
+   "passageGroupId": "L4-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Pay the fee herself and then submit the receipt to the library for reimbursement",
+     "reason": "The librarian explicitly says 'don't pay,' with no mention of reimbursement."
+    },
+    {
+     "choice": "Search the article's reference list for a similar source she can download for free",
+     "reason": "She is told to come back for help getting that article free, not to abandon it."
+    },
+    {
+     "choice": "Wait until she is on campus, since the databases cannot be reached from her dorm",
+     "reason": "Access from the dorm works via the portal; being on campus is not required."
+    }
+   ]
+  },
+  "content_hash": "151d6a24866751a323abcb3db227e5af",
+  "word_count": 209,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Stop; don't pay' stated with the reason",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.769887+00:00",
+  "updated_at": "2026-07-21T17:53:23.769887+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "02d839c25efc6c200a57cefd7a62bbc7",
+  "dedup_key": "7fd3ea8dccdc66840abca341685b5ffa"
+ },
+ {
+  "id": "ff998db7-4ceb-4247-8fb0-7da6ee732ab6",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Library Help Desk] Why does the librarian suggest looking at a good article's reference list?",
+   "choices": [
+    "It is required in order to cite that article correctly in her finished paper",
+    "It shows whether the article she has found counts as a peer-reviewed source",
+    "It reveals which of the separate databases the library actually subscribes to",
+    "It is a faster way to find other relevant sources than searching blindly"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, you look a little lost. Can I help? B: I hope so. I have a paper on urban beekeeping due next week, and every time I search the catalog I get either popular magazine articles or nothing at all. My professor said magazine articles won't count. A: Okay, so you need peer-reviewed sources. The main catalog searches our physical books, but for journal articles you want the databases—those are separate. B: I didn't know that. A: Most people don't. For a topic like yours that crosses fields, I'd start with the environmental sciences database and maybe the agriculture one. Try the phrase 'urban apiculture'—that's the technical term, and it'll cut out the hobby blogs. B: Apiculture. Okay. A: One more thing: when you find a good article, look at its reference list. The sources it cites are often exactly what you need, and it's faster than searching blind. B: That's really helpful. Do I need anything to get into the databases from my dorm? A: Just log in with your student ID through the library portal—same password as your email. If it asks you to pay for an article, stop; don't pay. We almost certainly have access, so come back and we'll get it for free.",
+   "difficulty": "medium",
+   "explanation": "The librarian says the sources an article cites are often exactly what she needs and it is faster than searching blind.",
+   "listeningTask": "conversation",
+   "correct_answer": "It is a faster way to find other relevant sources than searching blindly",
+   "passageGroupId": "L4-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "It shows whether the article she has found counts as a peer-reviewed source",
+     "reason": "The reference list is suggested for finding more sources, not for checking peer-review status."
+    },
+    {
+     "choice": "It is required in order to cite that article correctly in her finished paper",
+     "reason": "Citation formatting is never discussed; the point is discovering related sources."
+    },
+    {
+     "choice": "It reveals which of the separate databases the library actually subscribes to",
+     "reason": "The librarian already names the databases to use; the reference list is unrelated to that."
+    }
+   ]
+  },
+  "content_hash": "658e229564eeef0976e0bdcb9671e784",
+  "word_count": 209,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Faster than searching blind' verbatim",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.750761+00:00",
+  "updated_at": "2026-07-21T17:53:23.750761+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "7546831ba51020795619df11c266eb81",
+  "dedup_key": "f31c169fbe7e4745c7c46fc2323444b4"
+ },
+ {
+  "id": "4e3023e5-6d5b-49fe-807a-2e64a37f6c44",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Financial Aid] Why has the student come to the financial aid office?",
+   "choices": [
+    "Her aid award dropped and she wants to understand why",
+    "She is asking to defer her tuition payment deadline",
+    "She wants to apply for a new student credit card",
+    "She needs to report that she has changed her major"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, what can I do for you? B: My aid package for next year came through, and my grant is almost two thousand dollars lower than this year. Nothing's changed at home, so I don't understand it. A: Let's look. Can I have your student ID? ... Okay. So the grant amount itself didn't change. What changed is that you dropped below full-time enrollment last spring—you took nine credits instead of twelve. That reduced the grant, and the system carried the lower figure forward. B: But that was one semester. I'm back to full-time now. A: Right, and that's fixable. The award was calculated before your fall registration posted. Once the system sees you're enrolled full-time again, it should recalculate. But it won't do that automatically for the grant—you have to file a reevaluation request. B: How do I do that? A: There's a form on the aid portal, 'Enrollment Status Update.' Fill it out, and it routes to me. I'd do it this week, because if the grant is corrected after the billing date, you might get a temporary charge you'd have to wait to see reversed. B: I'll do it tonight. A: Good. And don't worry—this is a common one.",
+   "difficulty": "easy",
+   "explanation": "The student opens by saying her grant is nearly two thousand dollars lower and she does not understand why.",
+   "listeningTask": "conversation",
+   "correct_answer": "Her aid award dropped and she wants to understand why",
+   "passageGroupId": "L4-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She wants to apply for a new student credit card",
+     "reason": "No credit card is mentioned; the issue is a grant reduction."
+    },
+    {
+     "choice": "She is asking to defer her tuition payment deadline",
+     "reason": "Billing timing comes up only as a caution, not as a deferral request."
+    },
+    {
+     "choice": "She needs to report that she has changed her major",
+     "reason": "A major change is never mentioned; enrollment credits, not major, caused the change."
+    }
+   ]
+  },
+  "content_hash": "800280d3f58ad74f7053d8a0e53ed1fd",
+  "word_count": 204,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Complaint stated in the opening turn",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.863196+00:00",
+  "updated_at": "2026-07-21T17:53:23.863196+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "750cd1617cd7b044acca20c065b9c05b",
+  "dedup_key": "b64cc34ff6010a96ce98f55e478bdcc0"
+ },
+ {
+  "id": "541bb058-4bf8-4171-bc01-70aa33cf9ae0",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Financial Aid] According to the officer, why was the student's grant reduced?",
+   "choices": [
+    "The grant program's total funding was cut for the coming year",
+    "Her family's income rose enough to change her level of need",
+    "She dropped below full-time enrollment for one semester",
+    "She missed the deadline to file an Enrollment Status Update"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, what can I do for you? B: My aid package for next year came through, and my grant is almost two thousand dollars lower than this year. Nothing's changed at home, so I don't understand it. A: Let's look. Can I have your student ID? ... Okay. So the grant amount itself didn't change. What changed is that you dropped below full-time enrollment last spring—you took nine credits instead of twelve. That reduced the grant, and the system carried the lower figure forward. B: But that was one semester. I'm back to full-time now. A: Right, and that's fixable. The award was calculated before your fall registration posted. Once the system sees you're enrolled full-time again, it should recalculate. But it won't do that automatically for the grant—you have to file a reevaluation request. B: How do I do that? A: There's a form on the aid portal, 'Enrollment Status Update.' Fill it out, and it routes to me. I'd do it this week, because if the grant is corrected after the billing date, you might get a temporary charge you'd have to wait to see reversed. B: I'll do it tonight. A: Good. And don't worry—this is a common one.",
+   "difficulty": "medium",
+   "explanation": "The officer explains she took nine credits instead of twelve last spring, dropping below full-time, which reduced the grant.",
+   "listeningTask": "conversation",
+   "correct_answer": "She dropped below full-time enrollment for one semester",
+   "passageGroupId": "L4-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Her family's income rose enough to change her level of need",
+     "reason": "The student says nothing has changed at home, and the officer attributes it to enrollment, not income."
+    },
+    {
+     "choice": "She missed the deadline to file an Enrollment Status Update",
+     "reason": "No missed renewal deadline is mentioned."
+    },
+    {
+     "choice": "The grant program's total funding was cut for the coming year",
+     "reason": "The officer says the grant amount itself did not change; the cause was her credit load."
+    }
+   ]
+  },
+  "content_hash": "2221f6971e61db2772ddccf699bb4c67",
+  "word_count": 204,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Nine-credits explanation stated directly",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.881914+00:00",
+  "updated_at": "2026-07-21T17:53:23.881914+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "1a5940dc3dd7335a1b93b5f56560e0b9",
+  "dedup_key": "c9794f547753490ae1b0225e82656ac4"
+ },
+ {
+  "id": "7d5f33f8-e19f-4294-bfef-b3c48732eaf8",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Financial Aid] What does the student need to do to have the grant corrected?",
+   "choices": [
+    "Re-register for full-time classes for the fall",
+    "File an 'Enrollment Status Update' form on the aid portal",
+    "Wait for the system to recalculate the grant automatically",
+    "Provide documentation of her family's finances"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, what can I do for you? B: My aid package for next year came through, and my grant is almost two thousand dollars lower than this year. Nothing's changed at home, so I don't understand it. A: Let's look. Can I have your student ID? ... Okay. So the grant amount itself didn't change. What changed is that you dropped below full-time enrollment last spring—you took nine credits instead of twelve. That reduced the grant, and the system carried the lower figure forward. B: But that was one semester. I'm back to full-time now. A: Right, and that's fixable. The award was calculated before your fall registration posted. Once the system sees you're enrolled full-time again, it should recalculate. But it won't do that automatically for the grant—you have to file a reevaluation request. B: How do I do that? A: There's a form on the aid portal, 'Enrollment Status Update.' Fill it out, and it routes to me. I'd do it this week, because if the grant is corrected after the billing date, you might get a temporary charge you'd have to wait to see reversed. B: I'll do it tonight. A: Good. And don't worry—this is a common one.",
+   "difficulty": "medium",
+   "explanation": "The officer tells her to fill out the 'Enrollment Status Update' form on the aid portal, which routes to him.",
+   "listeningTask": "conversation",
+   "correct_answer": "File an 'Enrollment Status Update' form on the aid portal",
+   "passageGroupId": "L4-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Wait for the system to recalculate the grant automatically",
+     "reason": "The officer explicitly says it won't recalculate the grant automatically, so she must file the request."
+    },
+    {
+     "choice": "Re-register for full-time classes for the fall",
+     "reason": "She is already back to full-time; re-registration is not needed."
+    },
+    {
+     "choice": "Provide documentation of her family's finances",
+     "reason": "Family finances are not the cause, and no financial documents are requested."
+    }
+   ]
+  },
+  "content_hash": "ce53734879c76d8737007bd6a1723e0f",
+  "word_count": 204,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Form named explicitly",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.899488+00:00",
+  "updated_at": "2026-07-21T17:53:23.899488+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "b51fe8b434aa5a810c5b60fa6a15990c",
+  "dedup_key": "04fd57bcf06842e8bc01ebe45e738446"
+ },
+ {
+  "id": "ce7c4752-799e-4ce8-bc5f-e1a94fed7c20",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Financial Aid] Why does the officer urge the student to submit the form this week?",
+   "choices": [
+    "So she can enroll in additional classes before they fill",
+    "Because grant funds are given out on a first-come basis",
+    "To avoid a temporary charge if the correction comes after the billing date",
+    "Because the form will be removed from the portal next week"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, what can I do for you? B: My aid package for next year came through, and my grant is almost two thousand dollars lower than this year. Nothing's changed at home, so I don't understand it. A: Let's look. Can I have your student ID? ... Okay. So the grant amount itself didn't change. What changed is that you dropped below full-time enrollment last spring—you took nine credits instead of twelve. That reduced the grant, and the system carried the lower figure forward. B: But that was one semester. I'm back to full-time now. A: Right, and that's fixable. The award was calculated before your fall registration posted. Once the system sees you're enrolled full-time again, it should recalculate. But it won't do that automatically for the grant—you have to file a reevaluation request. B: How do I do that? A: There's a form on the aid portal, 'Enrollment Status Update.' Fill it out, and it routes to me. I'd do it this week, because if the grant is corrected after the billing date, you might get a temporary charge you'd have to wait to see reversed. B: I'll do it tonight. A: Good. And don't worry—this is a common one.",
+   "difficulty": "medium",
+   "explanation": "The officer warns that if the grant is corrected after the billing date she might face a temporary charge she'd have to wait to see reversed.",
+   "listeningTask": "conversation",
+   "correct_answer": "To avoid a temporary charge if the correction comes after the billing date",
+   "passageGroupId": "L4-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Because the form will be removed from the portal next week",
+     "reason": "Nothing suggests the form has a deadline or will disappear."
+    },
+    {
+     "choice": "Because grant funds are given out on a first-come basis",
+     "reason": "The grant is a reevaluation of her existing award, not a first-come distribution."
+    },
+    {
+     "choice": "So she can enroll in additional classes before they fill",
+     "reason": "She is already full-time; no additional enrollment is discussed."
+    }
+   ]
+  },
+  "content_hash": "45ea09b168e233de9600b5efa78504c7",
+  "word_count": 204,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Reason is a conditional about the billing date",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:23.926849+00:00",
+  "updated_at": "2026-07-21T17:53:23.926849+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "593d08b9f7154ea12e7a4a2cb889ffc6",
+  "dedup_key": "2cc955305e0654a5a9f99f470fa2bb53"
+ },
+ {
+  "id": "00b96c17-ca5a-4891-af5f-ef9e333c8076",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Lab Session] Why does the TA refuse to let the student use another group's data?",
+   "choices": [
+    "Using another group's data as her own counts as plagiarism",
+    "The other group's measurements are likely inaccurate",
+    "Each group used a different chemical in the experiment",
+    "The professor has forbidden students from sharing files"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, you weren't in lab Tuesday—everything okay? B: Yeah, I had a fever, I emailed the professor. But I missed the whole titration experiment, and the report's due Friday. I don't know what to do. A: Okay, first, don't panic. Missing one lab isn't the disaster it feels like. The question is whether you can get the data. B: Can I just borrow someone's numbers? A: No—and I'd stop you there. Using another group's data as your own is a plagiarism issue, even with permission. What you can do is repeat the experiment. There's an open lab session Thursday afternoon, two to five, and the equipment's all set up for this unit. B: I could make Thursday. Would you be there? A: I supervise that session, so yes. Come at two, and I'll walk you through the setup once. After that you run it yourself and record your own numbers—that's the part that matters for the report. B: That's a relief. Should I email the professor to confirm? A: I'll tell her you're making it up Thursday, so you don't need to. Just bring your goggles; I can't let you in without them.",
+   "difficulty": "medium",
+   "explanation": "The TA says using another group's data as her own is a plagiarism issue, even with permission.",
+   "listeningTask": "conversation",
+   "correct_answer": "Using another group's data as her own counts as plagiarism",
+   "passageGroupId": "L4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "The other group's measurements are likely inaccurate",
+     "reason": "Accuracy of other data is never questioned; the objection is about plagiarism."
+    },
+    {
+     "choice": "The professor has forbidden students from sharing files",
+     "reason": "No specific rule from the professor about file-sharing is mentioned."
+    },
+    {
+     "choice": "Each group used a different chemical in the experiment",
+     "reason": "The transcript never says groups used different chemicals."
+    }
+   ]
+  },
+  "content_hash": "5e789128792f2ac15da60c9f98c66824",
+  "word_count": 195,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'That's a plagiarism issue' stated outright",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.042624+00:00",
+  "updated_at": "2026-07-21T17:53:24.042624+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "66692bb7144743b9d3bd5d4a599a6874",
+  "dedup_key": "3e9f3a6f65db49a023d338b9b543ec0b"
+ },
+ {
+  "id": "3526c7a8-ae82-4365-8bd0-0cfd7e900fba",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Lab Session] What does the TA say is the part that matters most for the report?",
+   "choices": [
+    "That the student emails the professor her results",
+    "That the student records her own measurements",
+    "That the student watches the setup demonstration twice",
+    "That the student finishes before the session ends at five"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, you weren't in lab Tuesday—everything okay? B: Yeah, I had a fever, I emailed the professor. But I missed the whole titration experiment, and the report's due Friday. I don't know what to do. A: Okay, first, don't panic. Missing one lab isn't the disaster it feels like. The question is whether you can get the data. B: Can I just borrow someone's numbers? A: No—and I'd stop you there. Using another group's data as your own is a plagiarism issue, even with permission. What you can do is repeat the experiment. There's an open lab session Thursday afternoon, two to five, and the equipment's all set up for this unit. B: I could make Thursday. Would you be there? A: I supervise that session, so yes. Come at two, and I'll walk you through the setup once. After that you run it yourself and record your own numbers—that's the part that matters for the report. B: That's a relief. Should I email the professor to confirm? A: I'll tell her you're making it up Thursday, so you don't need to. Just bring your goggles; I can't let you in without them.",
+   "difficulty": "medium",
+   "explanation": "The TA says she should run it herself and record her own numbers, which is the part that matters for the report.",
+   "listeningTask": "conversation",
+   "correct_answer": "That the student records her own measurements",
+   "passageGroupId": "L4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "That the student finishes before the session ends at five",
+     "reason": "The session runs two to five, but finishing by five is not called the important part."
+    },
+    {
+     "choice": "That the student watches the setup demonstration twice",
+     "reason": "The TA walks her through the setup once, not twice."
+    },
+    {
+     "choice": "That the student emails the professor her results",
+     "reason": "The TA says she will inform the professor, so the student need not email results."
+    }
+   ]
+  },
+  "content_hash": "136fb4ac3060f4cba49bbca048f8e52f",
+  "word_count": 195,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'That's the part that matters' verbatim",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.063507+00:00",
+  "updated_at": "2026-07-21T17:53:24.063507+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "687f650325332d87aa1e6e3ad4f0a284",
+  "dedup_key": "2e0c1f27664926fe06ee78d044ff6b13"
+ },
+ {
+  "id": "5fd745e3-7ed4-4fda-a292-9922f2bf3a9d",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Lab Session] Why does the student come to speak with the teaching assistant?",
+   "choices": [
+    "She wants the TA to regrade the lab report she handed in Friday",
+    "She wants to move permanently into the Thursday open lab session instead",
+    "She missed a lab experiment and wants to know how to make it up",
+    "She lost her lab notebook and needs the TA's copy of the data"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, you weren't in lab Tuesday—everything okay? B: Yeah, I had a fever, I emailed the professor. But I missed the whole titration experiment, and the report's due Friday. I don't know what to do. A: Okay, first, don't panic. Missing one lab isn't the disaster it feels like. The question is whether you can get the data. B: Can I just borrow someone's numbers? A: No—and I'd stop you there. Using another group's data as your own is a plagiarism issue, even with permission. What you can do is repeat the experiment. There's an open lab session Thursday afternoon, two to five, and the equipment's all set up for this unit. B: I could make Thursday. Would you be there? A: I supervise that session, so yes. Come at two, and I'll walk you through the setup once. After that you run it yourself and record your own numbers—that's the part that matters for the report. B: That's a relief. Should I email the professor to confirm? A: I'll tell her you're making it up Thursday, so you don't need to. Just bring your goggles; I can't let you in without them.",
+   "difficulty": "easy",
+   "explanation": "The student says she missed the titration experiment while sick and the report is due Friday, so she needs a way to make it up.",
+   "listeningTask": "conversation",
+   "correct_answer": "She missed a lab experiment and wants to know how to make it up",
+   "passageGroupId": "L4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She wants the TA to regrade the lab report she handed in Friday",
+     "reason": "The report hasn't been done yet; she missed the experiment, not received a grade."
+    },
+    {
+     "choice": "She wants to move permanently into the Thursday open lab session instead",
+     "reason": "She only needs a one-time make-up session, not a permanent section change."
+    },
+    {
+     "choice": "She lost her lab notebook and needs the TA's copy of the data",
+     "reason": "No lost notebook is mentioned; only goggles are required for the make-up."
+    }
+   ]
+  },
+  "content_hash": "c8304fc331d48246899c86cd525fdcfa",
+  "word_count": 195,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Missed lab stated in the first turns",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.023614+00:00",
+  "updated_at": "2026-07-21T17:53:24.023614+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "991fd60642eb268151f13bd30fcf123c",
+  "dedup_key": "2997b143fbe2f55c496922b07c49ff82"
+ },
+ {
+  "id": "66602f59-0057-4604-b4e9-0559a2075799",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Lab Session] What does the TA remind the student to bring on Thursday?",
+   "choices": [
+    "A note from the professor",
+    "Her own titration equipment",
+    "Her safety goggles",
+    "Her completed lab report"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, you weren't in lab Tuesday—everything okay? B: Yeah, I had a fever, I emailed the professor. But I missed the whole titration experiment, and the report's due Friday. I don't know what to do. A: Okay, first, don't panic. Missing one lab isn't the disaster it feels like. The question is whether you can get the data. B: Can I just borrow someone's numbers? A: No—and I'd stop you there. Using another group's data as your own is a plagiarism issue, even with permission. What you can do is repeat the experiment. There's an open lab session Thursday afternoon, two to five, and the equipment's all set up for this unit. B: I could make Thursday. Would you be there? A: I supervise that session, so yes. Come at two, and I'll walk you through the setup once. After that you run it yourself and record your own numbers—that's the part that matters for the report. B: That's a relief. Should I email the professor to confirm? A: I'll tell her you're making it up Thursday, so you don't need to. Just bring your goggles; I can't let you in without them.",
+   "difficulty": "easy",
+   "explanation": "The TA says to bring her goggles because he cannot let her into the lab without them.",
+   "listeningTask": "conversation",
+   "correct_answer": "Her safety goggles",
+   "passageGroupId": "L4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Her completed lab report",
+     "reason": "The report is due Friday and depends on the experiment she has not yet done."
+    },
+    {
+     "choice": "A note from the professor",
+     "reason": "The TA says he will inform the professor himself, so no note is needed."
+    },
+    {
+     "choice": "Her own titration equipment",
+     "reason": "The equipment is already set up for the unit at the open session."
+    }
+   ]
+  },
+  "content_hash": "174bb0b4bac0cc0fe46f8ec48f8627cc",
+  "word_count": 195,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Goggles named in the closing line",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.083604+00:00",
+  "updated_at": "2026-07-21T17:53:24.083604+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "8293d5d489e4002988a4c8f87c735aa1",
+  "dedup_key": "76515418703c53124e556272fa2e67f4"
+ },
+ {
+  "id": "5c87a933-1b12-45d9-b551-d846f46d3b2b",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Gym] What is the student's main problem?",
+   "choices": [
+    "He lost the ID card he needs to enter the gym",
+    "He was charged a membership fee he thought was included in tuition",
+    "He was told a fitness class he signed up for is full",
+    "He wants to cancel a membership he no longer uses"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Excuse me, I just got a forty-dollar charge on my student account labeled 'rec center membership,' and I'm confused — isn't the gym free for students? B: So, the main fitness floor and the track are free with your student ID, yeah. The forty dollars is the premium tier — that's the pool, the climbing wall, and the group classes like spin and yoga. A: But I never signed up for premium. B: Hmm. Did you attend an orientation event here in September? Sometimes people tap in for a free trial week and it auto-converts if you don't cancel. A: I... maybe? There was a climbing thing during welcome week. B: That'd do it. The trial's genuinely free, but there's a card you're supposed to sign that explains the auto-renew. A: Nobody gave me a card. B: Okay — in that case you can dispute it. Go to the membership office on the second floor, tell them you weren't given the disclosure, and they'll usually reverse a first charge. Bring your student ID. A: Great. Is the office open now? B: Until five today. If you go before then you'll catch Marisol — she handles the reversals.",
+   "difficulty": "medium",
+   "explanation": "The student opens by objecting to a forty-dollar rec center membership charge he did not expect, which is the core problem.",
+   "listeningTask": "conversation",
+   "correct_answer": "He was charged a membership fee he thought was included in tuition",
+   "passageGroupId": "L5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He wants to cancel a membership he no longer uses",
+     "reason": "He disputes a charge he never knowingly signed up for, not a membership he used and now wants to end."
+    },
+    {
+     "choice": "He lost the ID card he needs to enter the gym",
+     "reason": "His student ID is only mentioned as something to bring to the office, not as lost."
+    }
+   ]
+  },
+  "content_hash": "8e76bb11222d24d49e24bd7f82525693",
+  "word_count": 199,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Charge complaint opens the conversation",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.259325+00:00",
+  "updated_at": "2026-07-21T17:53:24.259325+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "f2ef2de745a87619bac55e0f27ce5504",
+  "dedup_key": "62fdb56772b459512477cc1e304ffd28"
+ },
+ {
+  "id": "b831cac7-8e2e-4296-9f01-673f7a46caaf",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Gym] What can be inferred about why the student was charged?",
+   "choices": [
+    "He signed up for the premium tier back in September and then forgot about it",
+    "His student account was billed by mistake for someone else's premium membership",
+    "The gym charged him for the single climbing event he attended in welcome week",
+    "A free trial he joined converted to a paid membership automatically"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Excuse me, I just got a forty-dollar charge on my student account labeled 'rec center membership,' and I'm confused — isn't the gym free for students? B: So, the main fitness floor and the track are free with your student ID, yeah. The forty dollars is the premium tier — that's the pool, the climbing wall, and the group classes like spin and yoga. A: But I never signed up for premium. B: Hmm. Did you attend an orientation event here in September? Sometimes people tap in for a free trial week and it auto-converts if you don't cancel. A: I... maybe? There was a climbing thing during welcome week. B: That'd do it. The trial's genuinely free, but there's a card you're supposed to sign that explains the auto-renew. A: Nobody gave me a card. B: Okay — in that case you can dispute it. Go to the membership office on the second floor, tell them you weren't given the disclosure, and they'll usually reverse a first charge. Bring your student ID. A: Great. Is the office open now? B: Until five today. If you go before then you'll catch Marisol — she handles the reversals.",
+   "difficulty": "medium",
+   "explanation": "The staff links his welcome-week climbing trial to an auto-convert free trial, implying the trial turned into a paid membership because he didn't cancel.",
+   "listeningTask": "conversation",
+   "correct_answer": "A free trial he joined converted to a paid membership automatically",
+   "passageGroupId": "L5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He signed up for the premium tier back in September and then forgot about it",
+     "reason": "He insists he never signed up for premium, and the staff attributes it to an auto-converting trial."
+    },
+    {
+     "choice": "The gym charged him for the single climbing event he attended in welcome week",
+     "reason": "The charge is a membership auto-renewal, not a per-class fee."
+    }
+   ]
+  },
+  "content_hash": "c9e1675d58604db28a884fe9fcb33136",
+  "word_count": 199,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Auto-conversion must be inferred from the trial aside",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.299896+00:00",
+  "updated_at": "2026-07-21T17:53:24.299896+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "221c163d5ac66357a54866359566ec84",
+  "dedup_key": "9bbe83838df57b92c099b3a9fb001c40"
+ },
+ {
+  "id": "236febac-8715-4df3-9f95-93986d9394a3",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — IT Help Desk] What problem does the student describe?",
+   "choices": [
+    "He cannot log in to the campus wireless network from either his laptop or his phone",
+    "He forgot the password he needs to register a wired connection on the campus portal",
+    "The Wi-Fi cuts out in the library whenever he tries to join one of his video calls",
+    "He keeps getting disconnected from Wi-Fi in his dorm room"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, my Wi-Fi in my dorm keeps dropping — like every ten minutes it just cuts out, and it's driving me crazy during video calls. B: Okay, let's narrow it down. Does it drop everywhere on campus, or just your room? A: Just my room, I think. The library's been fine. B: Got it. And is it only your laptop, or your phone too? A: Huh. Now that you mention it, my phone's been fine. Just the laptop. B: Okay, that actually tells us a lot — if it were the dorm's access point, your phone would drop too. So it's probably your laptop's network adapter or a driver. First thing I'd try: forget the campus network in your settings and reconnect fresh. Nine times out of ten that clears it. A: And if it doesn't? B: Then bring the laptop to the desk and we'll update the wireless driver — but try the reconnect first, because I don't want you carrying it over here for nothing. A: Makes sense. One more thing — is there a wired option in the dorms? B: There is, actually. Every desk has an Ethernet port; you just need to register the cable's connection on the campus portal. I can send you that link.",
+   "difficulty": "easy",
+   "explanation": "The student says his dorm Wi-Fi keeps dropping every ten minutes, disrupting his video calls.",
+   "listeningTask": "conversation",
+   "correct_answer": "He keeps getting disconnected from Wi-Fi in his dorm room",
+   "passageGroupId": "L5-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He cannot log in to the campus wireless network from either his laptop or his phone",
+     "reason": "He connects fine but keeps getting dropped; logging in is not the issue."
+    },
+    {
+     "choice": "The Wi-Fi cuts out in the library whenever he tries to join one of his video calls",
+     "reason": "No virus is mentioned; the technician suspects a driver or adapter issue."
+    }
+   ]
+  },
+  "content_hash": "29cc3e5c04682f821a27e3b7f5062123",
+  "word_count": 212,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Dorm Wi-Fi dropping stated first",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.415503+00:00",
+  "updated_at": "2026-07-21T17:53:24.415503+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "3ffe3cd4ec02e8d7047563715824c41d",
+  "dedup_key": "cd47b55912ad01bf38c265175fef9d3b"
+ },
+ {
+  "id": "71a4c24b-a56a-44e4-aa2b-66be9c2456a2",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — IT Help Desk] What does the technician say the student must do to use the wired connection?",
+   "choices": [
+    "Register the cable's connection on the campus portal",
+    "Update the laptop's wireless driver beforehand",
+    "Buy an approved Ethernet cable from the campus computer store",
+    "Ask the dorm office to activate the Ethernet port at his desk"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, my Wi-Fi in my dorm keeps dropping — like every ten minutes it just cuts out, and it's driving me crazy during video calls. B: Okay, let's narrow it down. Does it drop everywhere on campus, or just your room? A: Just my room, I think. The library's been fine. B: Got it. And is it only your laptop, or your phone too? A: Huh. Now that you mention it, my phone's been fine. Just the laptop. B: Okay, that actually tells us a lot — if it were the dorm's access point, your phone would drop too. So it's probably your laptop's network adapter or a driver. First thing I'd try: forget the campus network in your settings and reconnect fresh. Nine times out of ten that clears it. A: And if it doesn't? B: Then bring the laptop to the desk and we'll update the wireless driver — but try the reconnect first, because I don't want you carrying it over here for nothing. A: Makes sense. One more thing — is there a wired option in the dorms? B: There is, actually. Every desk has an Ethernet port; you just need to register the cable's connection on the campus portal. I can send you that link.",
+   "difficulty": "easy",
+   "explanation": "The technician says every desk has an Ethernet port and the student just needs to register the cable's connection on the campus portal.",
+   "listeningTask": "conversation",
+   "correct_answer": "Register the cable's connection on the campus portal",
+   "passageGroupId": "L5-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Buy an approved Ethernet cable from the campus computer store",
+     "reason": "No purchase is mentioned; the ports already exist at every desk."
+    },
+    {
+     "choice": "Update the laptop's wireless driver beforehand",
+     "reason": "The driver update concerns the Wi-Fi problem, not enabling the wired connection."
+    }
+   ]
+  },
+  "content_hash": "bd39946d2a2cd54d347e485130a632d6",
+  "word_count": 212,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Register the cable's connection' verbatim",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.478701+00:00",
+  "updated_at": "2026-07-21T17:53:24.478701+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "b7f54d85953a859f32d6f4fbe97cac84",
+  "dedup_key": "c8fa4033f202ae26674aee33e8f8be06"
+ },
+ {
+  "id": "854e2533-912c-41b5-b9e6-eb17525d557a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — IT Help Desk] Why does the technician ask whether the student's phone also drops the connection?",
+   "choices": [
+    "To decide which of the student's two devices should have its wireless driver updated first",
+    "To determine whether the phone is on the campus network or the student's own phone plan",
+    "To figure out whether the problem is the dorm's access point or the laptop",
+    "To check whether the student has registered his connection on the campus portal yet"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, my Wi-Fi in my dorm keeps dropping — like every ten minutes it just cuts out, and it's driving me crazy during video calls. B: Okay, let's narrow it down. Does it drop everywhere on campus, or just your room? A: Just my room, I think. The library's been fine. B: Got it. And is it only your laptop, or your phone too? A: Huh. Now that you mention it, my phone's been fine. Just the laptop. B: Okay, that actually tells us a lot — if it were the dorm's access point, your phone would drop too. So it's probably your laptop's network adapter or a driver. First thing I'd try: forget the campus network in your settings and reconnect fresh. Nine times out of ten that clears it. A: And if it doesn't? B: Then bring the laptop to the desk and we'll update the wireless driver — but try the reconnect first, because I don't want you carrying it over here for nothing. A: Makes sense. One more thing — is there a wired option in the dorms? B: There is, actually. Every desk has an Ethernet port; you just need to register the cable's connection on the campus portal. I can send you that link.",
+   "difficulty": "medium",
+   "explanation": "The technician reasons that if the dorm access point were faulty the phone would drop too, so comparing devices isolates whether the laptop is at fault.",
+   "listeningTask": "conversation",
+   "correct_answer": "To figure out whether the problem is the dorm's access point or the laptop",
+   "passageGroupId": "L5-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To decide which of the student's two devices should have its wireless driver updated first",
+     "reason": "The comparison is diagnostic; the driver update applies only to the laptop and comes later."
+    },
+    {
+     "choice": "To check whether the student has registered his connection on the campus portal yet",
+     "reason": "Portal registration relates to the wired Ethernet option, not the phone question."
+    }
+   ]
+  },
+  "content_hash": "e3144b05a5f73d7c2b827c70c34ed6d5",
+  "word_count": 212,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Diagnostic logic stated but must be followed",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.434341+00:00",
+  "updated_at": "2026-07-21T17:53:24.434341+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "0ee0c544b3d6ee13b280fa7cfc30535d",
+  "dedup_key": "421225272567b6c30c5e5a47396ed3a8"
+ },
+ {
+  "id": "85d184de-ba76-4e6f-9b67-1573d4ad38bf",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "L5-4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — IT Help Desk] What does the technician suggest the student try first?",
+   "choices": [
+    "Forgetting the campus network and reconnecting to it",
+    "Switching to a wired Ethernet connection at his desk",
+    "Bringing the laptop to the help desk for a driver update",
+    "Moving closer to the dorm's wireless access point"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hey, my Wi-Fi in my dorm keeps dropping — like every ten minutes it just cuts out, and it's driving me crazy during video calls. B: Okay, let's narrow it down. Does it drop everywhere on campus, or just your room? A: Just my room, I think. The library's been fine. B: Got it. And is it only your laptop, or your phone too? A: Huh. Now that you mention it, my phone's been fine. Just the laptop. B: Okay, that actually tells us a lot — if it were the dorm's access point, your phone would drop too. So it's probably your laptop's network adapter or a driver. First thing I'd try: forget the campus network in your settings and reconnect fresh. Nine times out of ten that clears it. A: And if it doesn't? B: Then bring the laptop to the desk and we'll update the wireless driver — but try the reconnect first, because I don't want you carrying it over here for nothing. A: Makes sense. One more thing — is there a wired option in the dorms? B: There is, actually. Every desk has an Ethernet port; you just need to register the cable's connection on the campus portal. I can send you that link.",
+   "difficulty": "medium",
+   "explanation": "The technician says the first thing to try is to forget the campus network and reconnect fresh.",
+   "listeningTask": "conversation",
+   "correct_answer": "Forgetting the campus network and reconnecting to it",
+   "passageGroupId": "L5-4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Bringing the laptop to the help desk for a driver update",
+     "reason": "That is the fallback only if reconnecting fails, not the first step."
+    },
+    {
+     "choice": "Switching to a wired Ethernet connection at his desk",
+     "reason": "The wired option is raised separately at the end, not proposed as the first fix."
+    }
+   ]
+  },
+  "content_hash": "1811231c3536628fcb9c6303db87ccef",
+  "word_count": 212,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'First thing I'd try' names the step",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T17:53:24.460481+00:00",
+  "updated_at": "2026-07-21T17:53:24.460481+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "c2986d69b45d16b5143517948010ae41",
+  "dedup_key": "d958c198189cfb16a5e90fa4b3b3f697"
+ },
+ {
+  "id": "184bdd71-cff0-435a-a759-ae2f1c8e0c37",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Writing Center] Why does the tutor ask whether the student has read the essay aloud?",
+   "choices": [
+    "To point out that the essay is too long to read silently.",
+    "To check whether the student rehearsed for an oral presentation.",
+    "To determine whether the student wrote the draft himself.",
+    "To suggest a technique that helps writers notice rough spots."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Thanks for seeing me. I've got a draft of my argument essay, and honestly, I'm not sure it's working. B: No problem — that's exactly what we're here for. Have you read it aloud yet? A: Uh, no. B: Try it sometime; you'll hear the rough spots. But let's look at what you've got. What's your main claim? A: That cities should make public transit free. B: Good, that's clear. Now, where does it appear? A: In the... third paragraph, I think. B: See, that's the first thing. Your reader shouldn't have to hunt for your thesis. Bring it up front, in the intro, so everything after it has something to lean on. A: Okay, that makes sense. B: The other thing — your evidence is strong, but you introduce a counterargument and then just drop it. You never answer it. A: I ran out of room. B: I get it, but an unanswered objection actually weakens you. Cut a weaker example if you need space, and use that room to respond. Don't add new points — go deeper on the ones you have. A: So, move the thesis up and deal with the counterargument. B: Right. Do those two things and the whole draft tightens up.",
+   "difficulty": "medium",
+   "explanation": "The tutor follows the question by saying reading aloud lets you hear the rough spots, offering it as a revision technique.",
+   "listeningTask": "conversation",
+   "correct_answer": "To suggest a technique that helps writers notice rough spots.",
+   "passageGroupId": "M4-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To check whether the student rehearsed for an oral presentation.",
+     "reason": "The assignment is a written essay, not a presentation."
+    },
+    {
+     "choice": "To point out that the essay is too long to read silently.",
+     "reason": "Length is never raised; the tutor even suggests cutting only a weak example."
+    },
+    {
+     "choice": "To determine whether the student wrote the draft himself.",
+     "reason": "The tutor never questions authorship; the aim is to help him revise."
+    }
+   ]
+  },
+  "content_hash": "c55cf7effdd89d313078969a9f5fe265",
+  "word_count": 209,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'You'll hear the rough spots' stated",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.364896+00:00",
+  "updated_at": "2026-07-21T18:55:31.364896+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "62acc5e677b130504070df3898fc42be",
+  "dedup_key": "68e72ad76c70b32189cdf937fca259cf"
+ },
+ {
+  "id": "c583ce4f-d806-4c59-8dea-0925cbc379e6",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Writing Center] What does the student want help with?",
+   "choices": [
+    "Improving his spelling and grammar only.",
+    "Formatting his citations in the correct style.",
+    "Strengthening a draft of an argumentative essay.",
+    "Choosing a topic for a research paper."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Thanks for seeing me. I've got a draft of my argument essay, and honestly, I'm not sure it's working. B: No problem — that's exactly what we're here for. Have you read it aloud yet? A: Uh, no. B: Try it sometime; you'll hear the rough spots. But let's look at what you've got. What's your main claim? A: That cities should make public transit free. B: Good, that's clear. Now, where does it appear? A: In the... third paragraph, I think. B: See, that's the first thing. Your reader shouldn't have to hunt for your thesis. Bring it up front, in the intro, so everything after it has something to lean on. A: Okay, that makes sense. B: The other thing — your evidence is strong, but you introduce a counterargument and then just drop it. You never answer it. A: I ran out of room. B: I get it, but an unanswered objection actually weakens you. Cut a weaker example if you need space, and use that room to respond. Don't add new points — go deeper on the ones you have. A: So, move the thesis up and deal with the counterargument. B: Right. Do those two things and the whole draft tightens up.",
+   "difficulty": "easy",
+   "explanation": "The student brings a draft of his argument essay and says he isn't sure it's working, asking the tutor to help improve it.",
+   "listeningTask": "conversation",
+   "correct_answer": "Strengthening a draft of an argumentative essay.",
+   "passageGroupId": "M4-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Choosing a topic for a research paper.",
+     "reason": "He already has a topic and a draft; the claim about free transit is set."
+    },
+    {
+     "choice": "Formatting his citations in the correct style.",
+     "reason": "Citation formatting is never mentioned in the conversation."
+    },
+    {
+     "choice": "Improving his spelling and grammar only.",
+     "reason": "The tutor focuses on thesis placement and the counterargument, not surface errors."
+    }
+   ]
+  },
+  "content_hash": "51fe50d62618970ff1fdcd585c1f7041",
+  "word_count": 209,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Argument-essay draft stated in the first turn",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.320548+00:00",
+  "updated_at": "2026-07-21T18:55:31.320548+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "d1c26118b1b0b2b583b9999e2d4ab447",
+  "dedup_key": "8c62d4e1d6780362fefbc0c72c641455"
+ },
+ {
+  "id": "65031929-f2f2-4501-bc60-a266b7584288",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-3",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Health Center] Why is the student calling the health center?",
+   "choices": [
+    "To refill a prescription the clinic gave him before.",
+    "To ask whether the clinic is open this weekend.",
+    "To make an appointment about a persistent cough.",
+    "To get results from a test he had here last week."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'd like to book an appointment. I've had this cough for about two weeks and it's not going away. B: Sorry to hear that. Have you been seen here before? A: No, this would be my first time. B: Okay, then I'll set you up as a new patient. Can I get your student ID number? A: Sure — it's 4-4-8-2-9-1. B: Got it. And two weeks, you said — any fever with that? A: A little, a few days ago, but it's gone now. B: All right. I can offer you Thursday at ten, or Friday at two-thirty. A: Thursday's tricky, I have a lab until eleven. B: Then let's do Friday at two-thirty with Dr. Reyes. One thing — because you're a new patient, please come fifteen minutes early to fill out intake forms. A: Can I do those online instead? B: You can, actually. I'll email you the link. Fill it out beforehand and you can just walk in at your appointment time. A: Oh, that's much better. B: And bring your insurance card either way. A: Will do. Friday at two-thirty.",
+   "difficulty": "easy",
+   "explanation": "The student opens by asking to book an appointment for a cough he's had for about two weeks.",
+   "listeningTask": "conversation",
+   "correct_answer": "To make an appointment about a persistent cough.",
+   "passageGroupId": "M4-3",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To refill a prescription he already has.",
+     "reason": "No prescription or refill is mentioned; he is a first-time patient."
+    },
+    {
+     "choice": "To get results from a blood test.",
+     "reason": "No test results are discussed; he is booking a first visit."
+    },
+    {
+     "choice": "To ask whether the clinic is open on weekends.",
+     "reason": "Hours are never the topic; the receptionist offers weekday slots."
+    }
+   ]
+  },
+  "content_hash": "900797dd74f531207ccd5f3ac9fa2071",
+  "word_count": 188,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Cough and appointment stated in the opening turn",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.409544+00:00",
+  "updated_at": "2026-07-21T18:55:31.409544+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "62074e8ef8ae876746402db0e530c500",
+  "dedup_key": "f912122b2401c1038b3641413cff1d3e"
+ },
+ {
+  "id": "6dfee38b-f592-4392-8722-0de0d89c1156",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-3",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Health Center] What does completing the intake forms online allow the student to do?",
+   "choices": [
+    "Skip bringing his insurance card to the visit.",
+    "Arrive at his appointment time instead of fifteen minutes early.",
+    "See the doctor by video instead of in person.",
+    "Cancel the appointment without a fee."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'd like to book an appointment. I've had this cough for about two weeks and it's not going away. B: Sorry to hear that. Have you been seen here before? A: No, this would be my first time. B: Okay, then I'll set you up as a new patient. Can I get your student ID number? A: Sure — it's 4-4-8-2-9-1. B: Got it. And two weeks, you said — any fever with that? A: A little, a few days ago, but it's gone now. B: All right. I can offer you Thursday at ten, or Friday at two-thirty. A: Thursday's tricky, I have a lab until eleven. B: Then let's do Friday at two-thirty with Dr. Reyes. One thing — because you're a new patient, please come fifteen minutes early to fill out intake forms. A: Can I do those online instead? B: You can, actually. I'll email you the link. Fill it out beforehand and you can just walk in at your appointment time. A: Oh, that's much better. B: And bring your insurance card either way. A: Will do. Friday at two-thirty.",
+   "difficulty": "medium",
+   "explanation": "The receptionist says filling out the forms online beforehand lets him just walk in at his appointment time rather than fifteen minutes early.",
+   "listeningTask": "conversation",
+   "correct_answer": "Arrive at his appointment time instead of fifteen minutes early.",
+   "passageGroupId": "M4-3",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Skip bringing his insurance card to the visit.",
+     "reason": "The receptionist says to bring the insurance card either way, online or not."
+    },
+    {
+     "choice": "Cancel the appointment without a fee.",
+     "reason": "Cancellation is never discussed."
+    },
+    {
+     "choice": "See the doctor by video instead of in person.",
+     "reason": "Only the forms are online; the visit itself is in person with Dr. Reyes."
+    }
+   ]
+  },
+  "content_hash": "12df9247de7def1863778b28916d4640",
+  "word_count": 188,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Just walk in at your appointment time' stated",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.452637+00:00",
+  "updated_at": "2026-07-21T18:55:31.452637+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "3e77a72fb5054388ee78199560602dae",
+  "dedup_key": "74016562e28dc64d65c5bf76ded7a8df"
+ },
+ {
+  "id": "87cdc309-2615-4e9c-a46a-cbbfab9e2f23",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-3",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Health Center] Why does the student choose the Friday appointment over Thursday?",
+   "choices": [
+    "He has a lab class that runs until eleven on Thursday.",
+    "The Thursday slot costs more as a new patient.",
+    "Dr. Reyes is only available on Fridays.",
+    "He wants extra time to complete the intake forms."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'd like to book an appointment. I've had this cough for about two weeks and it's not going away. B: Sorry to hear that. Have you been seen here before? A: No, this would be my first time. B: Okay, then I'll set you up as a new patient. Can I get your student ID number? A: Sure — it's 4-4-8-2-9-1. B: Got it. And two weeks, you said — any fever with that? A: A little, a few days ago, but it's gone now. B: All right. I can offer you Thursday at ten, or Friday at two-thirty. A: Thursday's tricky, I have a lab until eleven. B: Then let's do Friday at two-thirty with Dr. Reyes. One thing — because you're a new patient, please come fifteen minutes early to fill out intake forms. A: Can I do those online instead? B: You can, actually. I'll email you the link. Fill it out beforehand and you can just walk in at your appointment time. A: Oh, that's much better. B: And bring your insurance card either way. A: Will do. Friday at two-thirty.",
+   "difficulty": "easy",
+   "explanation": "The student says Thursday is tricky because he has a lab until eleven, so he takes the Friday afternoon slot.",
+   "listeningTask": "conversation",
+   "correct_answer": "He has a lab class that runs until eleven on Thursday.",
+   "passageGroupId": "M4-3",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Dr. Reyes is only available on Fridays.",
+     "reason": "The receptionist offers both days; Dr. Reyes is simply who he ends up seeing Friday."
+    },
+    {
+     "choice": "The Thursday slot costs more as a new patient.",
+     "reason": "Cost is never mentioned; the conflict is his lab schedule."
+    },
+    {
+     "choice": "He wants extra time to complete the intake forms.",
+     "reason": "The form issue is separate and resolved by doing them online, not by the day chosen."
+    }
+   ]
+  },
+  "content_hash": "eb6dd6b15e934f3a7d6501bfded57827",
+  "word_count": 188,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Lab until eleven' given as the conflict",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.430811+00:00",
+  "updated_at": "2026-07-21T18:55:31.430811+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "f5d8d87982b074c15244ce5cfb660ed9",
+  "dedup_key": "ebb009c2de1fbc44c063bccd9a378783"
+ },
+ {
+  "id": "0433e560-246e-4172-a5a8-c195ab4bcd98",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-5",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Campus Security] Why does the student come to the campus security office?",
+   "choices": [
+    "To ask for an escort across campus late at night.",
+    "To report a laptop he thinks he lost in the library.",
+    "To report that a laptop was stolen from a quiet study room.",
+    "To pick up a student ID card that was turned in to the lost and found."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I think I left my laptop in the library last night and now I can't find it anywhere. B: Okay, let's see if we can track it down. Do you remember which floor? A: The third floor, one of the quiet study rooms. B: Good. A lot of found items from the library end up with us, actually — staff do a sweep after closing. Let me check the log. What does the laptop look like? A: It's a silver one, with a big cracked sticker of a mountain on the lid. B: Hang on... yeah, we've got a silver laptop turned in last night from the third floor. Mountain sticker. A: Oh, thank goodness. B: Before I release it, though, I need you to verify it's yours. Can you tell me the login name, or unlock it? A: The login is j-torres. B: Let me check... that matches. Great. Now, I do need a photo ID to release it — student card's fine. A: It's, um, on the laptop. In the case. B: Ah. Then I'm afraid I can't hand it over right now. Bring any other photo ID and it's yours.",
+   "difficulty": "easy",
+   "explanation": "The student opens by saying he thinks he left his laptop in the library and can't find it, seeking help recovering it.",
+   "listeningTask": "conversation",
+   "correct_answer": "To report a laptop he thinks he lost in the library.",
+   "passageGroupId": "M4-5",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To pick up a student ID card that was turned in to the lost and found.",
+     "reason": "No bicycle is mentioned; the item is a laptop."
+    },
+    {
+     "choice": "To report that a laptop was stolen from a quiet study room.",
+     "reason": "The conversation is about a lost laptop in the library, not a dorm lock."
+    },
+    {
+     "choice": "To ask for an escort across campus late at night.",
+     "reason": "No escort is requested; he is recovering a lost item."
+    }
+   ]
+  },
+  "content_hash": "20fd8d7d11d948613ece136f16fd918c",
+  "word_count": 196,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Lost laptop stated in the first turn",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.587468+00:00",
+  "updated_at": "2026-07-21T18:55:31.587468+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "ba0dcd08a78df9450ef544e2d08db5b3",
+  "dedup_key": "0d9cb9ee2043e6d79ab1e59dc24757b8"
+ },
+ {
+  "id": "6c94b2fb-f870-4675-8906-95818b3d91be",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-5",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Campus Security] What will the student most likely do next?",
+   "choices": [
+    "Go back to the third-floor study room to look again.",
+    "File a written report about the missing laptop.",
+    "Return with another form of photo identification.",
+    "Ask the library staff to unlock the laptop for him."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I think I left my laptop in the library last night and now I can't find it anywhere. B: Okay, let's see if we can track it down. Do you remember which floor? A: The third floor, one of the quiet study rooms. B: Good. A lot of found items from the library end up with us, actually — staff do a sweep after closing. Let me check the log. What does the laptop look like? A: It's a silver one, with a big cracked sticker of a mountain on the lid. B: Hang on... yeah, we've got a silver laptop turned in last night from the third floor. Mountain sticker. A: Oh, thank goodness. B: Before I release it, though, I need you to verify it's yours. Can you tell me the login name, or unlock it? A: The login is j-torres. B: Let me check... that matches. Great. Now, I do need a photo ID to release it — student card's fine. A: It's, um, on the laptop. In the case. B: Ah. Then I'm afraid I can't hand it over right now. Bring any other photo ID and it's yours.",
+   "difficulty": "medium",
+   "explanation": "The officer says to bring any other photo ID and the laptop is his, so the student will return with different ID.",
+   "listeningTask": "conversation",
+   "correct_answer": "Return with another form of photo identification.",
+   "passageGroupId": "M4-5",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Go back to the third-floor study room to look again.",
+     "reason": "The laptop has already been found at the security office; there's no need to search."
+    },
+    {
+     "choice": "File a written report about the missing laptop.",
+     "reason": "No written report is requested; the item is located."
+    },
+    {
+     "choice": "Ask the library staff to unlock the laptop for him.",
+     "reason": "The remaining issue is photo ID, not unlocking the laptop."
+    }
+   ]
+  },
+  "content_hash": "56941d151f726c2cbfa7b9d96fa6c5f9",
+  "word_count": 196,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'Bring any other photo ID' states the next step",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.656204+00:00",
+  "updated_at": "2026-07-21T18:55:31.656204+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "ff02189bd28c32ab3fad874f0670f452",
+  "dedup_key": "d87f03c834eb238fbc52ec88254847ab"
+ },
+ {
+  "id": "52f7a635-a80a-4a66-9f0f-82295b3a5195",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Bookstore] What does the student want to do at the bookstore?",
+   "choices": [
+    "Sell back a book at the end of the term.",
+    "Return a textbook he no longer needs.",
+    "Reserve a book that is out of stock.",
+    "Buy a used copy of a chemistry textbook."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'd like to return this textbook. I dropped the class it was for. B: Okay, do you have your receipt? A: Yeah, right here. I bought it, um, nine days ago. B: Let me see... okay, the good news is you're inside our fourteen-day return window. The other news is the book has to be in original condition. A: It should be — I barely opened it. B: Hmm. There's a bit of writing on the first page, though. See, right here. A: Oh — that was already there when I bought it. It was sold as new but somebody had written in it. B: Ah, I believe you, but that does complicate things. If the shrink-wrap's off, we normally can't take it as new. A: But it was like that when I got it. That's not fair. B: I hear you. Tell you what — this is above what I can decide. Let me get the manager; she can authorize a full refund in a case like this. A: Thank you. I'd really appreciate that. B: One second, I'll page her.",
+   "difficulty": "easy",
+   "explanation": "The student says he'd like to return the textbook because he dropped the class it was for.",
+   "listeningTask": "conversation",
+   "correct_answer": "Return a textbook he no longer needs.",
+   "passageGroupId": "M4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Buy a used copy of a chemistry textbook.",
+     "reason": "He is returning a book, not buying one, and no subject is specified."
+    },
+    {
+     "choice": "Sell back a book at the end of the term.",
+     "reason": "This is a return within the return window, not an end-of-term buyback."
+    },
+    {
+     "choice": "Reserve a book that is out of stock.",
+     "reason": "No reservation is discussed; he wants a refund for a return."
+    }
+   ]
+  },
+  "content_hash": "7b65277beefa359f636f0a042ff924eb",
+  "word_count": 185,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Return request opens the conversation",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.676102+00:00",
+  "updated_at": "2026-07-21T18:55:31.676102+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "d8d74946e215b9b653761f929389001e",
+  "dedup_key": "8bc2b947ccd6cb0e2c8760f039c8c044"
+ },
+ {
+  "id": "fb812fe7-b2ac-40fe-a10d-fa959e554b0a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-6",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Bookstore] What does the student claim about the writing in the book?",
+   "choices": [
+    "It was already there when he bought the book as new.",
+    "A previous classmate lent him the book with notes in it.",
+    "The writing is only on a removable bookmark.",
+    "He made a few notes but then erased them."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'd like to return this textbook. I dropped the class it was for. B: Okay, do you have your receipt? A: Yeah, right here. I bought it, um, nine days ago. B: Let me see... okay, the good news is you're inside our fourteen-day return window. The other news is the book has to be in original condition. A: It should be — I barely opened it. B: Hmm. There's a bit of writing on the first page, though. See, right here. A: Oh — that was already there when I bought it. It was sold as new but somebody had written in it. B: Ah, I believe you, but that does complicate things. If the shrink-wrap's off, we normally can't take it as new. A: But it was like that when I got it. That's not fair. B: I hear you. Tell you what — this is above what I can decide. Let me get the manager; she can authorize a full refund in a case like this. A: Thank you. I'd really appreciate that. B: One second, I'll page her.",
+   "difficulty": "easy",
+   "explanation": "The student insists the writing was already there when he bought it, sold as new despite someone having written in it.",
+   "listeningTask": "conversation",
+   "correct_answer": "It was already there when he bought the book as new.",
+   "passageGroupId": "M4-6",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He made a few notes but then erased them.",
+     "reason": "He denies writing in it at all, saying the marks predate his purchase."
+    },
+    {
+     "choice": "A previous classmate lent him the book with notes in it.",
+     "reason": "He bought it new from the store; no classmate is involved."
+    },
+    {
+     "choice": "The writing is only on a removable bookmark.",
+     "reason": "The writing is on the first page of the book itself, not a bookmark."
+    }
+   ]
+  },
+  "content_hash": "f4003476aabb0310faa13db2dc09a2ed",
+  "word_count": 185,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Student states it was already there when bought",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.721792+00:00",
+  "updated_at": "2026-07-21T18:55:31.721792+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "c66079b06930d8d3780fa3cb7d39e363",
+  "dedup_key": "5e55f1b5cc954150b1819c57d744f032"
+ },
+ {
+  "id": "06106a1e-005f-40c9-a045-61fc2c5c8d3f",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-7",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Academic Advising] What does the advisor say she will do once the geology course is on his schedule?",
+   "choices": [
+    "Change his astronomy grade to a letter grade.",
+    "Clear the hold on his graduation application.",
+    "Enroll him in the geology class herself.",
+    "Waive the general education science requirement."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm hoping to graduate in the spring, and I just want to make sure I've got everything checked off. B: Smart to check now. Let me pull up your audit. Okay... your major requirements look complete, that's great. A: Oh good. B: But there's one thing flagged here — you're short on your general education science credit. A: Wait, didn't my astronomy course cover that? B: It would have, except you took it pass/fail. And the science requirement has to be a graded course. A: Ugh. I had no idea. B: It's a common mix-up. The good news is you only need one course, and there's a three-credit geology class offered in spring that fills it. A: Okay, I can add that. Is there anything else? B: That's the only gap. Once that's on your schedule, I'll clear the hold on your graduation application. But do it before registration closes next Friday — after that, spring sections fill up fast. A: Right. Add the geology course by Friday. B: Exactly. Do that and you're on track.",
+   "difficulty": "medium",
+   "explanation": "The advisor says that once the geology course is on his schedule, she'll clear the hold on his graduation application.",
+   "listeningTask": "conversation",
+   "correct_answer": "Clear the hold on his graduation application.",
+   "passageGroupId": "M4-7",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Waive the general education science requirement.",
+     "reason": "She doesn't waive it; he must actually take the geology course to fill it."
+    },
+    {
+     "choice": "Change his astronomy grade to a letter grade.",
+     "reason": "A grade change is never offered; he takes a new graded course instead."
+    },
+    {
+     "choice": "Enroll him in the geology class herself.",
+     "reason": "The student says he can add it; she just clears the hold afterward."
+    }
+   ]
+  },
+  "content_hash": "95cb454f984ddf3d96a9a0b750b0e3a8",
+  "word_count": 179,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'I'll clear the hold' stated directly",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.818129+00:00",
+  "updated_at": "2026-07-21T18:55:31.818129+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "a090a03fe97c33aad839c405969905e2",
+  "dedup_key": "6708b3bc244c627ae0b76531fa727e41"
+ },
+ {
+  "id": "654a6dcf-8aa8-41eb-a48b-370b6e837614",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-7",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Academic Advising] Why did the student's astronomy course not satisfy the science requirement?",
+   "choices": [
+    "He earned a failing grade in it and will have to repeat the course",
+    "He took it pass/fail rather than for a letter grade.",
+    "He took it at another institution, so the credits did not transfer",
+    "It carried only two credits, and the requirement calls for three"
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm hoping to graduate in the spring, and I just want to make sure I've got everything checked off. B: Smart to check now. Let me pull up your audit. Okay... your major requirements look complete, that's great. A: Oh good. B: But there's one thing flagged here — you're short on your general education science credit. A: Wait, didn't my astronomy course cover that? B: It would have, except you took it pass/fail. And the science requirement has to be a graded course. A: Ugh. I had no idea. B: It's a common mix-up. The good news is you only need one course, and there's a three-credit geology class offered in spring that fills it. A: Okay, I can add that. Is there anything else? B: That's the only gap. Once that's on your schedule, I'll clear the hold on your graduation application. But do it before registration closes next Friday — after that, spring sections fill up fast. A: Right. Add the geology course by Friday. B: Exactly. Do that and you're on track.",
+   "difficulty": "medium",
+   "explanation": "The advisor says the astronomy course would have counted except he took it pass/fail, and the requirement needs a graded course.",
+   "listeningTask": "conversation",
+   "correct_answer": "He took it pass/fail rather than for a letter grade.",
+   "passageGroupId": "M4-7",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He earned a failing grade in it and will have to repeat the course",
+     "reason": "The issue is the pass/fail option, not a failing grade."
+    },
+    {
+     "choice": "It carried only two credits, and the requirement calls for three",
+     "reason": "Credit count of astronomy is never the problem; the grading basis is."
+    },
+    {
+     "choice": "He took it at another institution, so the credits did not transfer",
+     "reason": "Nothing suggests a transfer course; the problem is pass/fail grading."
+    }
+   ]
+  },
+  "content_hash": "f9a02c7d0da2e9eb1bfe54ab59cd55e7",
+  "word_count": 179,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Pass/fail explanation stated outright",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.794826+00:00",
+  "updated_at": "2026-07-21T18:55:31.794826+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "a41ebb5a995c49f0c636ba4a81e63ec4",
+  "dedup_key": "b2ccf78e170423a4e49e027866d5be4b"
+ },
+ {
+  "id": "cbd5306e-a13d-410e-98a9-f12a7f0b1571",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M4-7",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Academic Advising] Why does the student meet with his advisor?",
+   "choices": [
+    "To confirm he has met all his graduation requirements.",
+    "To request a letter of recommendation for a geology program.",
+    "To add a second major now that his major requirements are complete.",
+    "To appeal the pass/fail grade he was given in his astronomy course."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I'm hoping to graduate in the spring, and I just want to make sure I've got everything checked off. B: Smart to check now. Let me pull up your audit. Okay... your major requirements look complete, that's great. A: Oh good. B: But there's one thing flagged here — you're short on your general education science credit. A: Wait, didn't my astronomy course cover that? B: It would have, except you took it pass/fail. And the science requirement has to be a graded course. A: Ugh. I had no idea. B: It's a common mix-up. The good news is you only need one course, and there's a three-credit geology class offered in spring that fills it. A: Okay, I can add that. Is there anything else? B: That's the only gap. Once that's on your schedule, I'll clear the hold on your graduation application. But do it before registration closes next Friday — after that, spring sections fill up fast. A: Right. Add the geology course by Friday. B: Exactly. Do that and you're on track.",
+   "difficulty": "easy",
+   "explanation": "The student says he hopes to graduate in the spring and wants to make sure everything is checked off, prompting the audit review.",
+   "listeningTask": "conversation",
+   "correct_answer": "To confirm he has met all his graduation requirements.",
+   "passageGroupId": "M4-7",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "To add a second major now that his major requirements are complete.",
+     "reason": "No second major is discussed; his existing major requirements are already complete."
+    },
+    {
+     "choice": "To appeal the pass/fail grade he was given in his astronomy course.",
+     "reason": "The pass/fail astronomy issue is about credit type, not a grade appeal."
+    },
+    {
+     "choice": "To request a letter of recommendation for a geology program.",
+     "reason": "No recommendation letter is mentioned."
+    }
+   ]
+  },
+  "content_hash": "24ca4e83dc835d58f761e5b4f7f8ced5",
+  "word_count": 179,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "Graduation check stated in the first turn",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.774554+00:00",
+  "updated_at": "2026-07-21T18:55:31.774554+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "52f18c729f55ed2950228fabe71a35b4",
+  "dedup_key": "79906d08b5dc16d81f48ec571b9a65e1"
+ },
+ {
+  "id": "2b859327-34b5-4196-8dfa-9c36f8507cca",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Service Desk] Why does the student decide to book an evening slot?",
+   "choices": [
+    "The lab manager is only available in the evenings.",
+    "Evening slots are cheaper than daytime slots.",
+    "The microscope works better after the room cools down.",
+    "His imaging takes longer than the daytime two-hour limit."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I need to book the confocal microscope for my senior project. Is that something you handle? B: I do — I'm the lab manager. Which microscope, the one in room 214? A: Yeah, that one. My advisor said I'd need it for imaging cell samples. B: Okay. First thing: have you completed the equipment orientation? Nobody touches that scope without it. A: I did the general lab safety module, but not one specific to the microscope. B: Then that's step one. I run a short hands-on session every Tuesday afternoon. Once you've done it, your card gets activated for the reservation system. A: Got it. And after that, how far ahead do I book? B: The scope's popular, so I'd reserve at least a week out. And here's the thing people forget — sessions are capped at two hours during the day. If you need longer runs, you book an evening slot after six, when demand drops. A: My samples take about three hours to image, so evenings it is. B: Smart. One more thing — cancel at least twenty-four hours ahead if your plans change, or the system locks you out of booking for a week. A: Noted. I'll come to the Tuesday session first, then.",
+   "difficulty": "medium",
+   "explanation": "Daytime sessions are capped at two hours, and since his samples take about three hours he chooses an evening slot, which allows longer runs.",
+   "listeningTask": "conversation",
+   "correct_answer": "His imaging takes longer than the daytime two-hour limit.",
+   "passageGroupId": "M5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Evening slots are cheaper than daytime slots.",
+     "reason": "Price is never discussed; the reason is the two-hour daytime cap."
+    },
+    {
+     "choice": "The lab manager is only available in the evenings.",
+     "reason": "The manager runs sessions Tuesday afternoons; his availability is not the reason."
+    },
+    {
+     "choice": "The microscope works better after the room cools down.",
+     "reason": "The manager says evenings work because demand drops, not because of temperature."
+    }
+   ]
+  },
+  "content_hash": "0a7ddb60cbb8028e24b5f42062262522",
+  "word_count": 210,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "links three-hour need to the two-hour daytime cap",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:32.000819+00:00",
+  "updated_at": "2026-07-21T18:55:32.000819+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "2bd6bf9e69f2d79217071fcdc9cc1d8c",
+  "dedup_key": "09892957d597438132ee20b9e2eac3b6"
+ },
+ {
+  "id": "c9f02a8d-d85a-4d08-aebe-03ad276e540f",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Service Desk] What must the student do before he can reserve the microscope?",
+   "choices": [
+    "Get written approval from his advisor.",
+    "Complete the microscope-specific orientation session.",
+    "Retake the general lab safety module.",
+    "Pay a deposit for evening equipment use."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I need to book the confocal microscope for my senior project. Is that something you handle? B: I do — I'm the lab manager. Which microscope, the one in room 214? A: Yeah, that one. My advisor said I'd need it for imaging cell samples. B: Okay. First thing: have you completed the equipment orientation? Nobody touches that scope without it. A: I did the general lab safety module, but not one specific to the microscope. B: Then that's step one. I run a short hands-on session every Tuesday afternoon. Once you've done it, your card gets activated for the reservation system. A: Got it. And after that, how far ahead do I book? B: The scope's popular, so I'd reserve at least a week out. And here's the thing people forget — sessions are capped at two hours during the day. If you need longer runs, you book an evening slot after six, when demand drops. A: My samples take about three hours to image, so evenings it is. B: Smart. One more thing — cancel at least twenty-four hours ahead if your plans change, or the system locks you out of booking for a week. A: Noted. I'll come to the Tuesday session first, then.",
+   "difficulty": "medium",
+   "explanation": "The manager says the equipment orientation is step one and that completing the Tuesday hands-on session activates his card for the reservation system.",
+   "listeningTask": "conversation",
+   "correct_answer": "Complete the microscope-specific orientation session.",
+   "passageGroupId": "M5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Get written approval from his advisor.",
+     "reason": "The advisor recommended the scope, but no written approval is required."
+    },
+    {
+     "choice": "Pay a deposit for evening equipment use.",
+     "reason": "No deposit or fee is mentioned anywhere."
+    },
+    {
+     "choice": "Retake the general lab safety module.",
+     "reason": "He already completed that module; what he lacks is the microscope-specific session."
+    }
+   ]
+  },
+  "content_hash": "439290b513d2babf318919891a0ace17",
+  "word_count": 210,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "'general lab safety module' is a verbatim-echo distractor",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.979841+00:00",
+  "updated_at": "2026-07-21T18:55:31.979841+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "d1a6bf99e16caacb9a335b239d62b3eb",
+  "dedup_key": "122b02f9c5c3ddb5142e09317d1493cc"
+ },
+ {
+  "id": "ef1a86db-a0ec-4d69-912f-2f8676dc898a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Service Desk] What does the lab manager warn will happen if the student cancels too late?",
+   "choices": [
+    "He will be locked out of booking for a week.",
+    "His orientation certification will be revoked.",
+    "He will be charged a late-cancellation fee.",
+    "His advisor will be notified of the missed session."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I need to book the confocal microscope for my senior project. Is that something you handle? B: I do — I'm the lab manager. Which microscope, the one in room 214? A: Yeah, that one. My advisor said I'd need it for imaging cell samples. B: Okay. First thing: have you completed the equipment orientation? Nobody touches that scope without it. A: I did the general lab safety module, but not one specific to the microscope. B: Then that's step one. I run a short hands-on session every Tuesday afternoon. Once you've done it, your card gets activated for the reservation system. A: Got it. And after that, how far ahead do I book? B: The scope's popular, so I'd reserve at least a week out. And here's the thing people forget — sessions are capped at two hours during the day. If you need longer runs, you book an evening slot after six, when demand drops. A: My samples take about three hours to image, so evenings it is. B: Smart. One more thing — cancel at least twenty-four hours ahead if your plans change, or the system locks you out of booking for a week. A: Noted. I'll come to the Tuesday session first, then.",
+   "difficulty": "medium",
+   "explanation": "The manager says to cancel at least twenty-four hours ahead or the system locks the student out of booking for a week.",
+   "listeningTask": "conversation",
+   "correct_answer": "He will be locked out of booking for a week.",
+   "passageGroupId": "M5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "He will be charged a late-cancellation fee.",
+     "reason": "The penalty is a booking lockout, not a fee; no fees are mentioned."
+    },
+    {
+     "choice": "His advisor will be notified of the missed session.",
+     "reason": "The manager never says the advisor is notified."
+    },
+    {
+     "choice": "His orientation certification will be revoked.",
+     "reason": "The consequence is losing booking access temporarily, not losing certification."
+    }
+   ]
+  },
+  "content_hash": "d116da68def667fb0029e67e3847c22e",
+  "word_count": 210,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "lockout consequence stated outright",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:32.023091+00:00",
+  "updated_at": "2026-07-21T18:55:32.023091+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "12f94a94c7d4741003a393b5b63616bd",
+  "dedup_key": "a4e53f151651a9cefa2beaa220394055"
+ },
+ {
+  "id": "fc03ca7b-8e5a-4386-9a05-cedccd406f26",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Conversation",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "M5-2",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Conversation — Service Desk] What does the student want to do at the lab?",
+   "choices": [
+    "Reserve the confocal microscope for his project.",
+    "Report that a machine in the lab is broken.",
+    "Return a piece of equipment he borrowed last week.",
+    "Sign up for a safety training session."
+   ],
+   "graphic": null,
+   "passage": "Transcript: A: Hi, I need to book the confocal microscope for my senior project. Is that something you handle? B: I do — I'm the lab manager. Which microscope, the one in room 214? A: Yeah, that one. My advisor said I'd need it for imaging cell samples. B: Okay. First thing: have you completed the equipment orientation? Nobody touches that scope without it. A: I did the general lab safety module, but not one specific to the microscope. B: Then that's step one. I run a short hands-on session every Tuesday afternoon. Once you've done it, your card gets activated for the reservation system. A: Got it. And after that, how far ahead do I book? B: The scope's popular, so I'd reserve at least a week out. And here's the thing people forget — sessions are capped at two hours during the day. If you need longer runs, you book an evening slot after six, when demand drops. A: My samples take about three hours to image, so evenings it is. B: Smart. One more thing — cancel at least twenty-four hours ahead if your plans change, or the system locks you out of booking for a week. A: Noted. I'll come to the Tuesday session first, then.",
+   "difficulty": "easy",
+   "explanation": "The student opens by saying he needs to book the confocal microscope for his senior project.",
+   "listeningTask": "conversation",
+   "correct_answer": "Reserve the confocal microscope for his project.",
+   "passageGroupId": "M5-2",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Return a piece of equipment he borrowed last week.",
+     "reason": "He wants to book, not return, equipment; nothing was borrowed."
+    },
+    {
+     "choice": "Sign up for a safety training session.",
+     "reason": "He has already done the general safety module; training is a step toward the real goal of booking."
+    },
+    {
+     "choice": "Report that a machine in the lab is broken.",
+     "reason": "No broken equipment is mentioned in the conversation."
+    }
+   ]
+  },
+  "content_hash": "1df669b0345d7c0065f56c0036607c2a",
+  "word_count": 210,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "purpose given in the opening line",
+   "passage_needed": true,
+   "difficulty_before": "easy",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T18:55:31.957896+00:00",
+  "updated_at": "2026-07-21T18:55:31.957896+00:00",
+  "archived": false,
+  "cohort": "v3-claude",
+  "task": "conversation",
+  "content_sha": "b6b9c10a0b58544419eeba7ab5dab295",
+  "dedup_key": "40fcce6866b005baea5d8b8eaac70ffd"
+ }
+]

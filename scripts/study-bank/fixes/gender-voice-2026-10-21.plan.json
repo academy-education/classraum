@@ -1,0 +1,2094 @@
+[
+ {
+  "id": "1049e195-3cd6-4299-99a5-f54ce47ab125",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=dispatcher (nova, F), B=student (onyx, M); dispatcher written as he",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Shuttle Office] What does the dispatcher imply when he says, 'Well, Signy would know, I'm sure'?",
+    "to": "[Conversation — Shuttle Office] What does the dispatcher imply when she says, 'Well, Signy would know, I'm sure'?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "He assumes the friend must work for the shuttle service.",
+    "to": "She assumes the friend must work for the shuttle service."
+   },
+   {
+    "field": "choices[1]",
+    "from": "He isn't convinced the friend's report can be relied on.",
+    "to": "She isn't convinced the friend's report can be relied on."
+   },
+   {
+    "field": "choices[2]",
+    "from": "He considers the friend's report good enough to go on.",
+    "to": "She considers the friend's report good enough to go on."
+   },
+   {
+    "field": "choices[3]",
+    "from": "He wants the friend to confirm the report in person.",
+    "to": "She wants the friend to confirm the report in person."
+   },
+   {
+    "field": "correct_answer",
+    "from": "He isn't convinced the friend's report can be relied on.",
+    "to": "She isn't convinced the friend's report can be relied on."
+   },
+   {
+    "field": "explanation",
+    "from": "He immediately adds 'But I go by what's printed. Let me pull up this term's timetable', and only accepts the claim once he sees it there.",
+    "to": "She immediately adds 'But I go by what's printed. Let me pull up this term's timetable', and only accepts the claim once she sees it there."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He considers the friend's report good enough to go on.",
+    "to": "She considers the friend's report good enough to go on."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "He assumes the friend must work for the shuttle service.",
+    "to": "She assumes the friend must work for the shuttle service."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "He wants the friend to confirm the report in person.",
+    "to": "She wants the friend to confirm the report in person."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "He checks it himself: 'Let me pull up this term's timetable.'",
+    "to": "She checks it herself: 'Let me pull up this term's timetable.'"
+   }
+  ]
+ },
+ {
+  "id": "1cfe28e4-cd52-418a-ae68-3c49f34d46d9",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=student digger (nova, F), B=supervisor (onyx, M); supervisor written as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "She is worried the pieces could break during washing.",
+    "to": "He is worried the pieces could break during washing."
+   },
+   {
+    "field": "choices[1]",
+    "from": "She suspects it could be the best find of the season.",
+    "to": "He suspects it could be the best find of the season."
+   },
+   {
+    "field": "choices[2]",
+    "from": "She considers it worthless and would rather discard it.",
+    "to": "He considers it worthless and would rather discard it."
+   },
+   {
+    "field": "choices[3]",
+    "from": "She thinks it is unremarkable but wants it processed anyway.",
+    "to": "He thinks it is unremarkable but wants it processed anyway."
+   },
+   {
+    "field": "correct_answer",
+    "from": "She thinks it is unremarkable but wants it processed anyway.",
+    "to": "He thinks it is unremarkable but wants it processed anyway."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She suspects it could be the best find of the season.",
+    "to": "He suspects it could be the best find of the season."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She considers it worthless and would rather discard it.",
+    "to": "He considers it worthless and would rather discard it."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She is worried the pieces could break during washing.",
+    "to": "He is worried the pieces could break during washing."
+   }
+  ]
+ },
+ {
+  "id": "251860c9-3a0e-4a93-9d18-c8070165847d",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=librarian (onyx, M); student written as his",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Orchestra Library] How does the student intend to get his part back?",
+    "to": "[Conversation — Orchestra Library] How does the student intend to get her part back?"
+   }
+  ]
+ },
+ {
+  "id": "33cf1298-40dc-4bdc-8f8b-18935c996a17",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=supervisor (nova, F), B=climber (onyx, M); supervisor written as he",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Climbing Wall] What does the supervisor mean when he says, 'Well, the binder's the binder'?",
+    "to": "[Conversation — Climbing Wall] What does the supervisor mean when she says, 'Well, the binder's the binder'?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "He is refusing to bend the printed rule for the student.",
+    "to": "She is refusing to bend the printed rule for the student."
+   },
+   {
+    "field": "choices[1]",
+    "from": "He will go by the printed rule rather than his own memory.",
+    "to": "She will go by the printed rule rather than her own memory."
+   },
+   {
+    "field": "choices[2]",
+    "from": "He suspects the printed rule is out of date and unreliable.",
+    "to": "She suspects the printed rule is out of date and unreliable."
+   },
+   {
+    "field": "choices[3]",
+    "from": "He wants a colleague to confirm the printed rule first.",
+    "to": "She wants a colleague to confirm the printed rule first."
+   },
+   {
+    "field": "correct_answer",
+    "from": "He will go by the printed rule rather than his own memory.",
+    "to": "She will go by the printed rule rather than her own memory."
+   },
+   {
+    "field": "explanation",
+    "from": "He had said cards expire every semester, then reads 'Valid twelve months from date of test' and immediately lets the student belay: 'Top-rope, yes.'",
+    "to": "She had said cards expire every semester, then reads 'Valid twelve months from date of test' and immediately lets the student belay: 'Top-rope, yes.'"
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He is refusing to bend the printed rule for the student.",
+    "to": "She is refusing to bend the printed rule for the student."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "The rule favours the student, and he grants permission at once: 'Top-rope, yes.'",
+    "to": "The rule favours the student, and she grants permission at once: 'Top-rope, yes.'"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "He suspects the printed rule is out of date and unreliable.",
+    "to": "She suspects the printed rule is out of date and unreliable."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "He acts on what it says without question: 'Top-rope, yes.'",
+    "to": "She acts on what it says without question: 'Top-rope, yes.'"
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "He wants a colleague to confirm the printed rule first.",
+    "to": "She wants a colleague to confirm the printed rule first."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "He decides on the spot; no one else is consulted before 'Top-rope, yes.'",
+    "to": "She decides on the spot; no one else is consulted before 'Top-rope, yes.'"
+   }
+  ]
+ },
+ {
+  "id": "8e0eaedd-aae5-4316-9233-641e54bae05b",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "scoped",
+  "speakers": "A=student (nova, F), B=librarian (onyx, M); student written as he (her = Benedikta, kept)",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "To suggest he is misremembering when he handed the part in",
+    "to": "To suggest she is misremembering when she handed the part in"
+   },
+   {
+    "field": "correct_answer",
+    "from": "To suggest he is misremembering when he handed the part in",
+    "to": "To suggest she is misremembering when she handed the part in"
+   },
+   {
+    "field": "explanation",
+    "from": "The student claimed Tuesday; the librarian notes rehearsal collection is on Wednesdays, and he replies 'oh, right, rehearsal was Wednesday. Yeah, I gave it to her.'",
+    "to": "The student claimed Tuesday; the librarian notes rehearsal collection is on Wednesdays, and she replies 'oh, right, rehearsal was Wednesday. Yeah, I gave it to her.'"
+   }
+  ]
+ },
+ {
+  "id": "a35407b0-183a-44a3-9b3c-b62b7f4e87fe",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=technician (onyx, M); technician written as she, student as he",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Microscopy Suite] What does the technician imply when she asks, 'Did you open the confirmation?'",
+    "to": "[Conversation — Microscopy Suite] What does the technician imply when he asks, 'Did you open the confirmation?'"
+   },
+   {
+    "field": "choices[0]",
+    "from": "She suspects the email says something he hasn't noticed.",
+    "to": "He suspects the email says something she hasn't noticed."
+   },
+   {
+    "field": "choices[1]",
+    "from": "She thinks he may have booked under another name.",
+    "to": "He thinks she may have booked under another name."
+   },
+   {
+    "field": "choices[2]",
+    "from": "She needs to see the email before she lets him in.",
+    "to": "He needs to see the email before he lets her in."
+   },
+   {
+    "field": "choices[3]",
+    "from": "She wants to know whether the email reached him at all.",
+    "to": "He wants to know whether the email reached her at all."
+   },
+   {
+    "field": "correct_answer",
+    "from": "She suspects the email says something he hasn't noticed.",
+    "to": "He suspects the email says something she hasn't noticed."
+   },
+   {
+    "field": "explanation",
+    "from": "She explains the system may have moved his slot, and he finds 'Wednesday' in it: 'I only read the subject line.'",
+    "to": "He explains the system may have moved her slot, and she finds 'Wednesday' in it: 'I only read the subject line.'"
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She needs to see the email before she lets him in.",
+    "to": "He needs to see the email before he lets her in."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "She has already found his booking herself: 'You're down for Wednesday.'",
+    "to": "He has already found her booking himself: 'You're down for Wednesday.'"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She wants to know whether the email reached him at all.",
+    "to": "He wants to know whether the email reached her at all."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "He has just said 'I got a confirmation.'",
+    "to": "She has just said 'I got a confirmation.'"
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She thinks he may have booked under another name.",
+    "to": "He thinks she may have booked under another name."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "She finds him under his own booking: 'You're down for Wednesday.'",
+    "to": "He finds her under her own booking: 'You're down for Wednesday.'"
+   }
+  ]
+ },
+ {
+  "id": "c336260e-8763-4813-b660-7a68da93401a",
+  "cohort": "conv-hard-v2",
+  "passage_group_id": null,
+  "mode": "flip",
+  "speakers": "A=alumni officer (nova, F), B=student (onyx, M); student written as her, officer as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "To warn her that the committee rarely bends on references",
+    "to": "To warn him that the committee rarely bends on references"
+   },
+   {
+    "field": "choices[1]",
+    "from": "To assure her that the committee will honor its own rule",
+    "to": "To assure him that the committee will honor its own rule"
+   },
+   {
+    "field": "choices[3]",
+    "from": "To hint that she should have read the rules more closely",
+    "to": "To hint that he should have read the rules more closely"
+   },
+   {
+    "field": "correct_answer",
+    "from": "To assure her that the committee will honor its own rule",
+    "to": "To assure him that the committee will honor its own rule"
+   },
+   {
+    "field": "explanation",
+    "from": "It answers 'And the committee really accepts that?' after he has said 'Chapter trips are the one case where that's allowed', and he moves straight on to arranging the letter.",
+    "to": "It answers 'And the committee really accepts that?' after she has said 'Chapter trips are the one case where that's allowed', and she moves straight on to arranging the letter."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "To warn her that the committee rarely bends on references",
+    "to": "To warn him that the committee rarely bends on references"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He is answering 'really accepts that?' about a case he has just called allowed: 'Chapter trips are the one case where that's allowed.'",
+    "to": "She is answering 'really accepts that?' about a case she has just called allowed: 'Chapter trips are the one case where that's allowed.'"
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "He goes straight on to arranging the letter, 'Who's coordinating?', with no criticism of the rules.",
+    "to": "She goes straight on to arranging the letter, 'Who's coordinating?', with no criticism of the rules."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "To hint that she should have read the rules more closely",
+    "to": "To hint that he should have read the rules more closely"
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "He himself first said 'The reference is required, I'm afraid', so he is not faulting her reading.",
+    "to": "She herself first said 'The reference is required, I'm afraid', so she is not faulting his reading."
+   }
+  ]
+ },
+ {
+  "id": "e01d2cf7-44af-46d8-a866-b92abadd2f3c",
+  "cohort": "harvest-v1",
+  "passage_group_id": "pg-3cbabc8026347913c31a56d7f93a73df",
+  "mode": "flip",
+  "speakers": "A=student Alex (nova, F), B=professor (onyx, M); student written as his/he",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — professor↔student office hours] What does the professor suggest the student do to improve his grade?",
+    "to": "[Conversation — professor↔student office hours] What does the professor suggest the student do to improve her grade?"
+   }
+  ]
+ },
+ {
+  "id": "f3a10f1f-621b-4363-b212-c1c156908d08",
+  "cohort": "harvest-v1",
+  "passage_group_id": "pg-3cbabc8026347913c31a56d7f93a73df",
+  "mode": "flip",
+  "speakers": "A=student Alex (nova, F), B=professor (onyx, M); student written as his/he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He disagrees with what the syllabus says about participation.",
+    "to": "She disagrees with what the syllabus says about participation."
+   },
+   {
+    "field": "choices[1]",
+    "from": "He is confused about the participation grade criteria.",
+    "to": "She is confused about the participation grade criteria."
+   },
+   {
+    "field": "choices[2]",
+    "from": "He is worried that he missed the deadline for a group project.",
+    "to": "She is worried that she missed the deadline for a group project."
+   },
+   {
+    "field": "choices[3]",
+    "from": "He missed a number of class sessions and wants to make them up.",
+    "to": "She missed a number of class sessions and wants to make them up."
+   },
+   {
+    "field": "correct_answer",
+    "from": "He is confused about the participation grade criteria.",
+    "to": "She is confused about the participation grade criteria."
+   }
+  ]
+ },
+ {
+  "id": "944076c9-4af0-4358-a5bc-6459e4ce88d7",
+  "cohort": "harvest-v1",
+  "passage_group_id": "pg-49fa4719858a5907f8e81cb4daea092e",
+  "mode": "flip",
+  "speakers": "A=IT staff (nova, F), B=student (onyx, M); student written as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Her thesis draft was deleted before she could send it to the library printer.",
+    "to": "His thesis draft was deleted before he could send it to the library printer."
+   },
+   {
+    "field": "choices[1]",
+    "from": "She cannot open the student email account her print log was sent to.",
+    "to": "He cannot open the student email account his print log was sent to."
+   },
+   {
+    "field": "choices[2]",
+    "from": "She was charged ten cents a page for printing she never authorized.",
+    "to": "He was charged ten cents a page for printing he never authorized."
+   },
+   {
+    "field": "choices[3]",
+    "from": "She has exceeded her monthly printing quota unexpectedly.",
+    "to": "He has exceeded his monthly printing quota unexpectedly."
+   },
+   {
+    "field": "correct_answer",
+    "from": "She has exceeded her monthly printing quota unexpectedly.",
+    "to": "He has exceeded his monthly printing quota unexpectedly."
+   },
+   {
+    "field": "explanation",
+    "from": "The student is surprised to find she has reached her printing quota even though she doesn't think she printed that much.",
+    "to": "The student is surprised to find he has reached his printing quota even though he doesn't think he printed that much."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She cannot open the student email account her print log was sent to.",
+    "to": "He cannot open the student email account his print log was sent to."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "Her thesis draft was deleted before she could send it to the library printer.",
+    "to": "His thesis draft was deleted before he could send it to the library printer."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "She is concerned about printing her thesis, not about a deleted file.",
+    "to": "He is concerned about printing his thesis, not about a deleted file."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She was charged ten cents a page for printing she never authorized.",
+    "to": "He was charged ten cents a page for printing he never authorized."
+   }
+  ]
+ },
+ {
+  "id": "0a2eeeb3-d586-4080-9c5c-50fad249adb0",
+  "cohort": "harvest-v1",
+  "passage_group_id": "pg-50ff2b4291d66e8d4d471e8bcbae19e3",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=advisor (onyx, M); student written as him/he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "To point him to one particular article he should read first",
+    "to": "To point her to one particular article she should read first"
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "To point him to one particular article he should read first",
+    "to": "To point her to one particular article she should read first"
+   }
+  ]
+ },
+ {
+  "id": "a51c2c02-2d43-46ef-96ce-4d0cd9e1acc1",
+  "cohort": "harvest-v1",
+  "passage_group_id": "pg-a23ff73903f82aa049e087166c69aec0",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=advisor (onyx, M); student written as he/him",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "To show that the debate club has to go if he takes eighteen credits.",
+    "to": "To show that the debate club has to go if she takes eighteen credits."
+   },
+   {
+    "field": "choices[2]",
+    "from": "To persuade him to drop from eighteen credits to a lighter load.",
+    "to": "To persuade her to drop from eighteen credits to a lighter load."
+   }
+  ]
+ },
+ {
+  "id": "bc261e54-fc97-4204-af30-5e6a17781332",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-086bb48ad99a91a59a0ed21a3662e9cb",
+  "mode": "scoped",
+  "speakers": "A=student (nova, F), B=aid officer (onyx, M); one distractor says the officer herself (student she already right)",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "The officer will add the recommendation letter to the file herself if it arrives a day late",
+    "to": "The officer will add the recommendation letter to the file himself if it arrives a day late"
+   }
+  ]
+ },
+ {
+  "id": "91b940b5-5bf2-4b9e-8b89-a8ef43f5848e",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "mode": "flip",
+  "speakers": "A (nova, F), B (onyx, M); Speaker A written as he, Speaker B as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "To show that she is still interested even though she cannot come along",
+    "to": "To show that he is still interested even though he cannot come along"
+   },
+   {
+    "field": "choices[1]",
+    "from": "To confirm that Speaker A has already made up his mind to go",
+    "to": "To confirm that Speaker A has already made up her mind to go"
+   },
+   {
+    "field": "choices[2]",
+    "from": "To propose that they postpone the visit until her paper is finished",
+    "to": "To propose that they postpone the visit until his paper is finished"
+   },
+   {
+    "field": "choices[3]",
+    "from": "To ask Speaker A to pick up a ticket for her",
+    "to": "To ask Speaker A to pick up a ticket for him"
+   },
+   {
+    "field": "correct_answer",
+    "from": "To show that she is still interested even though she cannot come along",
+    "to": "To show that he is still interested even though he cannot come along"
+   },
+   {
+    "field": "explanation",
+    "from": "The conditional \"if you go\" keeps the friendship warm after a refusal. That same \"if\" shows his plans are undecided rather than confirmed; postponement is what Speaker A floats with \"maybe next time,\" so attributing it to B confuses the speakers; and no ticket is mentioned.",
+    "to": "The conditional \"if you go\" keeps the friendship warm after a refusal. That same \"if\" shows her plans are undecided rather than confirmed; postponement is what Speaker A floats with \"maybe next time,\" so attributing it to B confuses the speakers; and no ticket is mentioned."
+   }
+  ]
+ },
+ {
+  "id": "9db8ac9c-dbee-4980-a350-42847abc82f7",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "mode": "flip",
+  "speakers": "A (nova, F), B (onyx, M); Speaker A written as he, Speaker B as she",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Friends] What does Speaker A’s reply, \"Oh, that’s too bad. Maybe next time?\", suggest about him?",
+    "to": "[Conversation — Friends] What does Speaker A’s reply, \"Oh, that’s too bad. Maybe next time?\", suggest about her?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "He has decided not to visit the exhibit himself either",
+    "to": "She has decided not to visit the exhibit herself either"
+   },
+   {
+    "field": "choices[1]",
+    "from": "He thinks Speaker B should have started her paper sooner",
+    "to": "She thinks Speaker B should have started his paper sooner"
+   },
+   {
+    "field": "choices[2]",
+    "from": "He is offended that his invitation was turned down",
+    "to": "She is offended that her invitation was turned down"
+   },
+   {
+    "field": "choices[3]",
+    "from": "He accepts the refusal and leaves the door open for a later outing",
+    "to": "She accepts the refusal and leaves the door open for a later outing"
+   },
+   {
+    "field": "correct_answer",
+    "from": "He accepts the refusal and leaves the door open for a later outing",
+    "to": "She accepts the refusal and leaves the door open for a later outing"
+   },
+   {
+    "field": "explanation",
+    "from": "Mild sympathy plus \"maybe next time\" is a face-saving close that keeps the offer alive. There is no sign of offence in either turn; B’s later \"if you go\" shows he may still visit on his own; and he passes no judgement on her time management.",
+    "to": "Mild sympathy plus \"maybe next time\" is a face-saving close that keeps the offer alive. There is no sign of offence in either turn; B’s later \"if you go\" shows she may still visit on her own; and she passes no judgement on his time management."
+   }
+  ]
+ },
+ {
+  "id": "dc503367-4125-4f82-9173-e16da2c2a29f",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-5996cde914c2b45033403fa03180a853",
+  "mode": "flip",
+  "speakers": "A (nova, F), B (onyx, M); Speaker A written as he, Speaker B as she",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "To accept the invitation and confirm she will go this weekend",
+    "to": "To accept the invitation and confirm he will go this weekend"
+   },
+   {
+    "field": "choices[3]",
+    "from": "To indicate that she has already been to the new exhibit",
+    "to": "To indicate that he has already been to the new exhibit"
+   },
+   {
+    "field": "explanation",
+    "from": "The phrase is followed by \"but I have a paper due on Monday,\" making it a polite lead-in to a no. Reading it as acceptance ignores the contrast that follows; she never says she has been to the exhibit; and no alternative venue is discussed.",
+    "to": "The phrase is followed by \"but I have a paper due on Monday,\" making it a polite lead-in to a no. Reading it as acceptance ignores the contrast that follows; he never says he has been to the exhibit; and no alternative venue is discussed."
+   }
+  ]
+ },
+ {
+  "id": "8f873376-540c-44fc-af91-177c9015400a",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-870227eed9d793c42f52c3c5d01d5b90",
+  "mode": "flip",
+  "speakers": "A=first speaker (nova, F), B=second (onyx, M); first speaker written as he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "The speaker plans to use a service he had not known existed.",
+    "to": "The speaker plans to use a service she had not known existed."
+   },
+   {
+    "field": "correct_answer",
+    "from": "The speaker plans to use a service he had not known existed.",
+    "to": "The speaker plans to use a service she had not known existed."
+   },
+   {
+    "field": "explanation",
+    "from": "\"I didn't know about the bike-share\" followed by \"That sounds perfect. I'll try that\" gives both halves of the inference: the speaker plans to use a service he had not known existed. The answer that the speaker has used the bike-share before and prefers it to the shuttle reverses that explicit statement of unfamiliarity. The answer that he has decided to wait for the delayed shuttle after all contradicts the decision he announces at the end. And the answer that he will ask a friend for a ride to the meeting introduces an option never discussed.",
+    "to": "\"I didn't know about the bike-share\" followed by \"That sounds perfect. I'll try that\" gives both halves of the inference: the speaker plans to use a service she had not known existed. The answer that the speaker has used the bike-share before and prefers it to the shuttle reverses that explicit statement of unfamiliarity. The answer that she has decided to wait for the delayed shuttle after all contradicts the decision she announces at the end. And the answer that she will ask a friend for a ride to the meeting introduces an option never discussed."
+   }
+  ]
+ },
+ {
+  "id": "af834814-5581-4187-bf15-39cba81d7cb2",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-9ca78af11a14cae332c23feb57758483",
+  "mode": "flip",
+  "speakers": "A=announcer (nova, F), B=passenger (onyx, M); passenger written as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "The first announcement told her there was a delay but not how long it would last",
+    "to": "The first announcement told him there was a delay but not how long it would last"
+   },
+   {
+    "field": "choices[1]",
+    "from": "She missed which destination was announced and wants to be sure it was her own train",
+    "to": "He missed which destination was announced and wants to be sure it was his own train"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She doubts that the track maintenance is really necessary at this time of day",
+    "to": "He doubts that the track maintenance is really necessary at this time of day"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She wants to find out whether passengers will be compensated for a delay this long",
+    "to": "He wants to find out whether passengers will be compensated for a delay this long"
+   },
+   {
+    "field": "correct_answer",
+    "from": "The first announcement told her there was a delay but not how long it would last",
+    "to": "The first announcement told him there was a delay but not how long it would last"
+   },
+   {
+    "field": "explanation",
+    "from": "Her only question is \"How long is the delay expected to be?\", filling the gap the announcement left. The destination was clearly stated and she does not ask about it; compensation is never raised; and she expresses no scepticism about the maintenance.",
+    "to": "His only question is \"How long is the delay expected to be?\", filling the gap the announcement left. The destination was clearly stated and he does not ask about it; compensation is never raised; and he expresses no scepticism about the maintenance."
+   }
+  ]
+ },
+ {
+  "id": "c077875b-f01f-4b0f-bfc5-240284c0fe84",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-a78a0c4b019c80f6ae49d143540a12a1",
+  "mode": "scoped",
+  "speakers": "A=student (nova, F), B=librarian (onyx, M); librarian written as she (student she already right)",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "She says the student may start at 3:00 as long as she shows her student ID at the desk",
+    "to": "He says the student may start at 3:00 as long as she shows her student ID at the desk"
+   },
+   {
+    "field": "choices[1]",
+    "from": "She offers to move the group holding the earlier slot downstairs into one of the first-floor study rooms",
+    "to": "He offers to move the group holding the earlier slot downstairs into one of the first-floor study rooms"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She turns the request down but points the group to nearby open seating for the earlier half hour",
+    "to": "He turns the request down but points the group to nearby open seating for the earlier half hour"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She agrees to the earlier start, since the group that holds the room until 3:30 rarely stays that long",
+    "to": "He agrees to the earlier start, since the group that holds the room until 3:30 rarely stays that long"
+   },
+   {
+    "field": "correct_answer",
+    "from": "She turns the request down but points the group to nearby open seating for the earlier half hour",
+    "to": "He turns the request down but points the group to nearby open seating for the earlier half hour"
+   },
+   {
+    "field": "explanation",
+    "from": "She cites a strict policy on start and end times, then adds that the group is welcome to use the open seating area before 3:30. Nothing is said about how fully the earlier group uses its slot; relocating that group is never proposed; and the student ID is collected to make the reservation, not to unlock a room early.",
+    "to": "He cites a strict policy on start and end times, then adds that the group is welcome to use the open seating area before 3:30. Nothing is said about how fully the earlier group uses its slot; relocating that group is never proposed; and the student ID is collected to make the reservation, not to unlock a room early."
+   }
+  ]
+ },
+ {
+  "id": "f4550ae0-25c5-4bc6-bbb5-b0e04fec1ecc",
+  "cohort": "orphan-v1",
+  "passage_group_id": "pg-f6dc2b60985c299162c33ce60506d57c",
+  "mode": "scoped",
+  "speakers": "A=first speaker (nova, F), B=colleague (onyx, M); explanation calls the first speaker his (choice herself already right)",
+  "edits": [
+   {
+    "field": "explanation",
+    "from": "His closing \"I’ll look into that\" responds directly to the suggestion to include data from the recent survey. Deleting the section goes beyond a request to update it; the survey already exists, so no new one is needed; and resending unchanged contradicts his agreement to act.",
+    "to": "Her closing \"I’ll look into that\" responds directly to the suggestion to include data from the recent survey. Deleting the section goes beyond a request to update it; the survey already exists, so no new one is needed; and resending unchanged contradicts her agreement to act."
+   }
+  ]
+ },
+ {
+  "id": "2c07041f-909a-4361-9e96-7b91ed7992dd",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-2",
+  "mode": "flip",
+  "speakers": "A=librarian (nova, F), B=student (onyx, M); student written as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "She has lost her borrowing privileges and cannot check out the books she needs",
+    "to": "He has lost his borrowing privileges and cannot check out the books he needs"
+   },
+   {
+    "field": "choices[1]",
+    "from": "She cannot find enough scholarly sources for her research paper",
+    "to": "He cannot find enough scholarly sources for his research paper"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She cannot log in to the library's databases from her dorm with her student ID",
+    "to": "He cannot log in to the library's databases from his dorm with his student ID"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She owes a fine on an overdue book and must clear it first",
+    "to": "He owes a fine on an overdue book and must clear it first"
+   },
+   {
+    "field": "correct_answer",
+    "from": "She cannot find enough scholarly sources for her research paper",
+    "to": "He cannot find enough scholarly sources for his research paper"
+   },
+   {
+    "field": "explanation",
+    "from": "The student explains she keeps finding popular magazine articles or nothing, but needs sources that will count for her paper.",
+    "to": "The student explains he keeps finding popular magazine articles or nothing, but needs sources that will count for his paper."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She has lost her borrowing privileges and cannot check out the books she needs",
+    "to": "He has lost his borrowing privileges and cannot check out the books he needs"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "Borrowing privileges are never mentioned; her issue is finding the right kind of sources.",
+    "to": "Borrowing privileges are never mentioned; his issue is finding the right kind of sources."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She cannot log in to the library's databases from her dorm with her student ID",
+    "to": "He cannot log in to the library's databases from his dorm with his student ID"
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "Logging in from her dorm comes up only at the end and is explained smoothly, not as her problem.",
+    "to": "Logging in from his dorm comes up only at the end and is explained smoothly, not as his problem."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She owes a fine on an overdue book and must clear it first",
+    "to": "He owes a fine on an overdue book and must clear it first"
+   }
+  ]
+ },
+ {
+  "id": "e4218247-f73a-4c02-b7e1-642402af9f94",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-2",
+  "mode": "flip",
+  "speakers": "A=librarian (nova, F), B=student (onyx, M); student written as she",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Library Help Desk] What does the librarian imply the student should do if a database asks her to pay for an article?",
+    "to": "[Conversation — Library Help Desk] What does the librarian imply the student should do if a database asks him to pay for an article?"
+   },
+   {
+    "field": "choices[1]",
+    "from": "Wait until she is on campus, since the databases cannot be reached from her dorm",
+    "to": "Wait until he is on campus, since the databases cannot be reached from his dorm"
+   },
+   {
+    "field": "choices[2]",
+    "from": "Pay the fee herself and then submit the receipt to the library for reimbursement",
+    "to": "Pay the fee himself and then submit the receipt to the library for reimbursement"
+   },
+   {
+    "field": "choices[3]",
+    "from": "Search the article's reference list for a similar source she can download for free",
+    "to": "Search the article's reference list for a similar source he can download for free"
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Pay the fee herself and then submit the receipt to the library for reimbursement",
+    "to": "Pay the fee himself and then submit the receipt to the library for reimbursement"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "Search the article's reference list for a similar source she can download for free",
+    "to": "Search the article's reference list for a similar source he can download for free"
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "She is told to come back for help getting that article free, not to abandon it.",
+    "to": "He is told to come back for help getting that article free, not to abandon it."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Wait until she is on campus, since the databases cannot be reached from her dorm",
+    "to": "Wait until he is on campus, since the databases cannot be reached from his dorm"
+   }
+  ]
+ },
+ {
+  "id": "ff998db7-4ceb-4247-8fb0-7da6ee732ab6",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-2",
+  "mode": "flip",
+  "speakers": "A=librarian (nova, F), B=student (onyx, M); student written as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "It is required in order to cite that article correctly in her finished paper",
+    "to": "It is required in order to cite that article correctly in his finished paper"
+   },
+   {
+    "field": "choices[1]",
+    "from": "It shows whether the article she has found counts as a peer-reviewed source",
+    "to": "It shows whether the article he has found counts as a peer-reviewed source"
+   },
+   {
+    "field": "explanation",
+    "from": "The librarian says the sources an article cites are often exactly what she needs and it is faster than searching blind.",
+    "to": "The librarian says the sources an article cites are often exactly what he needs and it is faster than searching blind."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "It shows whether the article she has found counts as a peer-reviewed source",
+    "to": "It shows whether the article he has found counts as a peer-reviewed source"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "It is required in order to cite that article correctly in her finished paper",
+    "to": "It is required in order to cite that article correctly in his finished paper"
+   }
+  ]
+ },
+ {
+  "id": "4e3023e5-6d5b-49fe-807a-2e64a37f6c44",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-4",
+  "mode": "flip",
+  "speakers": "A=aid officer (nova, F), B=student (onyx, M); student written as she, officer as him",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Her aid award dropped and she wants to understand why",
+    "to": "His aid award dropped and he wants to understand why"
+   },
+   {
+    "field": "choices[1]",
+    "from": "She is asking to defer her tuition payment deadline",
+    "to": "He is asking to defer his tuition payment deadline"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She wants to apply for a new student credit card",
+    "to": "He wants to apply for a new student credit card"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She needs to report that she has changed her major",
+    "to": "He needs to report that he has changed his major"
+   },
+   {
+    "field": "correct_answer",
+    "from": "Her aid award dropped and she wants to understand why",
+    "to": "His aid award dropped and he wants to understand why"
+   },
+   {
+    "field": "explanation",
+    "from": "The student opens by saying her grant is nearly two thousand dollars lower and she does not understand why.",
+    "to": "The student opens by saying his grant is nearly two thousand dollars lower and he does not understand why."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She wants to apply for a new student credit card",
+    "to": "He wants to apply for a new student credit card"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She is asking to defer her tuition payment deadline",
+    "to": "He is asking to defer his tuition payment deadline"
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She needs to report that she has changed her major",
+    "to": "He needs to report that he has changed his major"
+   }
+  ]
+ },
+ {
+  "id": "541bb058-4bf8-4171-bc01-70aa33cf9ae0",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-4",
+  "mode": "flip",
+  "speakers": "A=aid officer (nova, F), B=student (onyx, M); student written as she, officer as him",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "Her family's income rose enough to change her level of need",
+    "to": "His family's income rose enough to change his level of need"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She dropped below full-time enrollment for one semester",
+    "to": "He dropped below full-time enrollment for one semester"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She missed the deadline to file an Enrollment Status Update",
+    "to": "He missed the deadline to file an Enrollment Status Update"
+   },
+   {
+    "field": "correct_answer",
+    "from": "She dropped below full-time enrollment for one semester",
+    "to": "He dropped below full-time enrollment for one semester"
+   },
+   {
+    "field": "explanation",
+    "from": "The officer explains she took nine credits instead of twelve last spring, dropping below full-time, which reduced the grant.",
+    "to": "The officer explains he took nine credits instead of twelve last spring, dropping below full-time, which reduced the grant."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Her family's income rose enough to change her level of need",
+    "to": "His family's income rose enough to change his level of need"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She missed the deadline to file an Enrollment Status Update",
+    "to": "He missed the deadline to file an Enrollment Status Update"
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "The officer says the grant amount itself did not change; the cause was her credit load.",
+    "to": "The officer says the grant amount itself did not change; the cause was his credit load."
+   }
+  ]
+ },
+ {
+  "id": "7d5f33f8-e19f-4294-bfef-b3c48732eaf8",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-4",
+  "mode": "flip",
+  "speakers": "A=aid officer (nova, F), B=student (onyx, M); student written as she, officer as him",
+  "edits": [
+   {
+    "field": "choices[3]",
+    "from": "Provide documentation of her family's finances",
+    "to": "Provide documentation of his family's finances"
+   },
+   {
+    "field": "explanation",
+    "from": "The officer tells her to fill out the 'Enrollment Status Update' form on the aid portal, which routes to him.",
+    "to": "The officer tells him to fill out the 'Enrollment Status Update' form on the aid portal, which routes to her."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "The officer explicitly says it won't recalculate the grant automatically, so she must file the request.",
+    "to": "The officer explicitly says it won't recalculate the grant automatically, so he must file the request."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "She is already back to full-time; re-registration is not needed.",
+    "to": "He is already back to full-time; re-registration is not needed."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Provide documentation of her family's finances",
+    "to": "Provide documentation of his family's finances"
+   }
+  ]
+ },
+ {
+  "id": "ce7c4752-799e-4ce8-bc5f-e1a94fed7c20",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-4",
+  "mode": "flip",
+  "speakers": "A=aid officer (nova, F), B=student (onyx, M); student written as she, officer as him",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "So she can enroll in additional classes before they fill",
+    "to": "So he can enroll in additional classes before they fill"
+   },
+   {
+    "field": "explanation",
+    "from": "The officer warns that if the grant is corrected after the billing date she might face a temporary charge she'd have to wait to see reversed.",
+    "to": "The officer warns that if the grant is corrected after the billing date he might face a temporary charge he'd have to wait to see reversed."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "The grant is a reevaluation of her existing award, not a first-come distribution.",
+    "to": "The grant is a reevaluation of his existing award, not a first-come distribution."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "So she can enroll in additional classes before they fill",
+    "to": "So he can enroll in additional classes before they fill"
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "She is already full-time; no additional enrollment is discussed.",
+    "to": "He is already full-time; no additional enrollment is discussed."
+   }
+  ]
+ },
+ {
+  "id": "00b96c17-ca5a-4891-af5f-ef9e333c8076",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-6",
+  "mode": "flip",
+  "speakers": "A=TA (nova, F), B=student (onyx, M); items call the student she and the TA he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Using another group's data as her own counts as plagiarism",
+    "to": "Using another group's data as his own counts as plagiarism"
+   },
+   {
+    "field": "correct_answer",
+    "from": "Using another group's data as her own counts as plagiarism",
+    "to": "Using another group's data as his own counts as plagiarism"
+   },
+   {
+    "field": "explanation",
+    "from": "The TA says using another group's data as her own is a plagiarism issue, even with permission.",
+    "to": "The TA says using another group's data as his own is a plagiarism issue, even with permission."
+   }
+  ]
+ },
+ {
+  "id": "3526c7a8-ae82-4365-8bd0-0cfd7e900fba",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-6",
+  "mode": "flip",
+  "speakers": "A=TA (nova, F), B=student (onyx, M); items call the student she and the TA he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "That the student emails the professor her results",
+    "to": "That the student emails the professor his results"
+   },
+   {
+    "field": "choices[1]",
+    "from": "That the student records her own measurements",
+    "to": "That the student records his own measurements"
+   },
+   {
+    "field": "correct_answer",
+    "from": "That the student records her own measurements",
+    "to": "That the student records his own measurements"
+   },
+   {
+    "field": "explanation",
+    "from": "The TA says she should run it herself and record her own numbers, which is the part that matters for the report.",
+    "to": "The TA says he should run it himself and record his own numbers, which is the part that matters for the report."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "The TA walks her through the setup once, not twice.",
+    "to": "The TA walks him through the setup once, not twice."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "That the student emails the professor her results",
+    "to": "That the student emails the professor his results"
+   }
+  ]
+ },
+ {
+  "id": "5fd745e3-7ed4-4fda-a292-9922f2bf3a9d",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-6",
+  "mode": "flip",
+  "speakers": "A=TA (nova, F), B=student (onyx, M); items call the student she and the TA he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "She wants the TA to regrade the lab report she handed in Friday",
+    "to": "He wants the TA to regrade the lab report he handed in Friday"
+   },
+   {
+    "field": "choices[1]",
+    "from": "She wants to move permanently into the Thursday open lab session instead",
+    "to": "He wants to move permanently into the Thursday open lab session instead"
+   },
+   {
+    "field": "choices[2]",
+    "from": "She missed a lab experiment and wants to know how to make it up",
+    "to": "He missed a lab experiment and wants to know how to make it up"
+   },
+   {
+    "field": "choices[3]",
+    "from": "She lost her lab notebook and needs the TA's copy of the data",
+    "to": "He lost his lab notebook and needs the TA's copy of the data"
+   },
+   {
+    "field": "correct_answer",
+    "from": "She missed a lab experiment and wants to know how to make it up",
+    "to": "He missed a lab experiment and wants to know how to make it up"
+   },
+   {
+    "field": "explanation",
+    "from": "The student says she missed the titration experiment while sick and the report is due Friday, so she needs a way to make it up.",
+    "to": "The student says he missed the titration experiment while sick and the report is due Friday, so he needs a way to make it up."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "She wants the TA to regrade the lab report she handed in Friday",
+    "to": "He wants the TA to regrade the lab report he handed in Friday"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "The report hasn't been done yet; she missed the experiment, not received a grade.",
+    "to": "The report hasn't been done yet; he missed the experiment, not received a grade."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "She wants to move permanently into the Thursday open lab session instead",
+    "to": "He wants to move permanently into the Thursday open lab session instead"
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "She only needs a one-time make-up session, not a permanent section change.",
+    "to": "He only needs a one-time make-up session, not a permanent section change."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "She lost her lab notebook and needs the TA's copy of the data",
+    "to": "He lost his lab notebook and needs the TA's copy of the data"
+   }
+  ]
+ },
+ {
+  "id": "66602f59-0057-4604-b4e9-0559a2075799",
+  "cohort": "v3-claude",
+  "passage_group_id": "L4-6",
+  "mode": "flip",
+  "speakers": "A=TA (nova, F), B=student (onyx, M); items call the student she and the TA he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "Her own titration equipment",
+    "to": "His own titration equipment"
+   },
+   {
+    "field": "choices[2]",
+    "from": "Her safety goggles",
+    "to": "His safety goggles"
+   },
+   {
+    "field": "choices[3]",
+    "from": "Her completed lab report",
+    "to": "His completed lab report"
+   },
+   {
+    "field": "correct_answer",
+    "from": "Her safety goggles",
+    "to": "His safety goggles"
+   },
+   {
+    "field": "explanation",
+    "from": "The TA says to bring her goggles because he cannot let her into the lab without them.",
+    "to": "The TA says to bring his goggles because she cannot let him into the lab without them."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Her completed lab report",
+    "to": "His completed lab report"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "The report is due Friday and depends on the experiment she has not yet done.",
+    "to": "The report is due Friday and depends on the experiment he has not yet done."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "The TA says he will inform the professor himself, so no note is needed.",
+    "to": "The TA says she will inform the professor herself, so no note is needed."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Her own titration equipment",
+    "to": "His own titration equipment"
+   }
+  ]
+ },
+ {
+  "id": "5c87a933-1b12-45d9-b551-d846f46d3b2b",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=staff (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He lost the ID card he needs to enter the gym",
+    "to": "She lost the ID card she needs to enter the gym"
+   },
+   {
+    "field": "choices[1]",
+    "from": "He was charged a membership fee he thought was included in tuition",
+    "to": "She was charged a membership fee she thought was included in tuition"
+   },
+   {
+    "field": "choices[2]",
+    "from": "He was told a fitness class he signed up for is full",
+    "to": "She was told a fitness class she signed up for is full"
+   },
+   {
+    "field": "choices[3]",
+    "from": "He wants to cancel a membership he no longer uses",
+    "to": "She wants to cancel a membership she no longer uses"
+   },
+   {
+    "field": "correct_answer",
+    "from": "He was charged a membership fee he thought was included in tuition",
+    "to": "She was charged a membership fee she thought was included in tuition"
+   },
+   {
+    "field": "explanation",
+    "from": "The student opens by objecting to a forty-dollar rec center membership charge he did not expect, which is the core problem.",
+    "to": "The student opens by objecting to a forty-dollar rec center membership charge she did not expect, which is the core problem."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He wants to cancel a membership he no longer uses",
+    "to": "She wants to cancel a membership she no longer uses"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He disputes a charge he never knowingly signed up for, not a membership he used and now wants to end.",
+    "to": "She disputes a charge she never knowingly signed up for, not a membership she used and now wants to end."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "He lost the ID card he needs to enter the gym",
+    "to": "She lost the ID card she needs to enter the gym"
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "His student ID is only mentioned as something to bring to the office, not as lost.",
+    "to": "Her student ID is only mentioned as something to bring to the office, not as lost."
+   }
+  ]
+ },
+ {
+  "id": "b831cac7-8e2e-4296-9f01-673f7a46caaf",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=staff (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He signed up for the premium tier back in September and then forgot about it",
+    "to": "She signed up for the premium tier back in September and then forgot about it"
+   },
+   {
+    "field": "choices[1]",
+    "from": "His student account was billed by mistake for someone else's premium membership",
+    "to": "Her student account was billed by mistake for someone else's premium membership"
+   },
+   {
+    "field": "choices[2]",
+    "from": "The gym charged him for the single climbing event he attended in welcome week",
+    "to": "The gym charged her for the single climbing event she attended in welcome week"
+   },
+   {
+    "field": "choices[3]",
+    "from": "A free trial he joined converted to a paid membership automatically",
+    "to": "A free trial she joined converted to a paid membership automatically"
+   },
+   {
+    "field": "correct_answer",
+    "from": "A free trial he joined converted to a paid membership automatically",
+    "to": "A free trial she joined converted to a paid membership automatically"
+   },
+   {
+    "field": "explanation",
+    "from": "The staff links his welcome-week climbing trial to an auto-convert free trial, implying the trial turned into a paid membership because he didn't cancel.",
+    "to": "The staff links her welcome-week climbing trial to an auto-convert free trial, implying the trial turned into a paid membership because she didn't cancel."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He signed up for the premium tier back in September and then forgot about it",
+    "to": "She signed up for the premium tier back in September and then forgot about it"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He insists he never signed up for premium, and the staff attributes it to an auto-converting trial.",
+    "to": "She insists she never signed up for premium, and the staff attributes it to an auto-converting trial."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "The gym charged him for the single climbing event he attended in welcome week",
+    "to": "The gym charged her for the single climbing event she attended in welcome week"
+   }
+  ]
+ },
+ {
+  "id": "236febac-8715-4df3-9f95-93986d9394a3",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-4",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=technician (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He cannot log in to the campus wireless network from either his laptop or his phone",
+    "to": "She cannot log in to the campus wireless network from either her laptop or her phone"
+   },
+   {
+    "field": "choices[1]",
+    "from": "He forgot the password he needs to register a wired connection on the campus portal",
+    "to": "She forgot the password she needs to register a wired connection on the campus portal"
+   },
+   {
+    "field": "choices[2]",
+    "from": "The Wi-Fi cuts out in the library whenever he tries to join one of his video calls",
+    "to": "The Wi-Fi cuts out in the library whenever she tries to join one of her video calls"
+   },
+   {
+    "field": "choices[3]",
+    "from": "He keeps getting disconnected from Wi-Fi in his dorm room",
+    "to": "She keeps getting disconnected from Wi-Fi in her dorm room"
+   },
+   {
+    "field": "correct_answer",
+    "from": "He keeps getting disconnected from Wi-Fi in his dorm room",
+    "to": "She keeps getting disconnected from Wi-Fi in her dorm room"
+   },
+   {
+    "field": "explanation",
+    "from": "The student says his dorm Wi-Fi keeps dropping every ten minutes, disrupting his video calls.",
+    "to": "The student says her dorm Wi-Fi keeps dropping every ten minutes, disrupting her video calls."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He cannot log in to the campus wireless network from either his laptop or his phone",
+    "to": "She cannot log in to the campus wireless network from either her laptop or her phone"
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He connects fine but keeps getting dropped; logging in is not the issue.",
+    "to": "She connects fine but keeps getting dropped; logging in is not the issue."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "The Wi-Fi cuts out in the library whenever he tries to join one of his video calls",
+    "to": "The Wi-Fi cuts out in the library whenever she tries to join one of her video calls"
+   }
+  ]
+ },
+ {
+  "id": "71a4c24b-a56a-44e4-aa2b-66be9c2456a2",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-4",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=technician (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[3]",
+    "from": "Ask the dorm office to activate the Ethernet port at his desk",
+    "to": "Ask the dorm office to activate the Ethernet port at her desk"
+   }
+  ]
+ },
+ {
+  "id": "854e2533-912c-41b5-b9e6-eb17525d557a",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-4",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=technician (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[3]",
+    "from": "To check whether the student has registered his connection on the campus portal yet",
+    "to": "To check whether the student has registered her connection on the campus portal yet"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "To check whether the student has registered his connection on the campus portal yet",
+    "to": "To check whether the student has registered her connection on the campus portal yet"
+   }
+  ]
+ },
+ {
+  "id": "85d184de-ba76-4e6f-9b67-1573d4ad38bf",
+  "cohort": "v3-claude",
+  "passage_group_id": "L5-4",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=technician (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "Switching to a wired Ethernet connection at his desk",
+    "to": "Switching to a wired Ethernet connection at her desk"
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "Switching to a wired Ethernet connection at his desk",
+    "to": "Switching to a wired Ethernet connection at her desk"
+   }
+  ]
+ },
+ {
+  "id": "184bdd71-cff0-435a-a759-ae2f1c8e0c37",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=tutor (onyx, M); student written as his/himself",
+  "edits": [
+   {
+    "field": "choices[2]",
+    "from": "To determine whether the student wrote the draft himself.",
+    "to": "To determine whether the student wrote the draft herself."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "To determine whether the student wrote the draft himself.",
+    "to": "To determine whether the student wrote the draft herself."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "The tutor never questions authorship; the aim is to help him revise.",
+    "to": "The tutor never questions authorship; the aim is to help her revise."
+   }
+  ]
+ },
+ {
+  "id": "c583ce4f-d806-4c59-8dea-0925cbc379e6",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=tutor (onyx, M); student written as his/himself",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Improving his spelling and grammar only.",
+    "to": "Improving her spelling and grammar only."
+   },
+   {
+    "field": "choices[1]",
+    "from": "Formatting his citations in the correct style.",
+    "to": "Formatting her citations in the correct style."
+   },
+   {
+    "field": "explanation",
+    "from": "The student brings a draft of his argument essay and says he isn't sure it's working, asking the tutor to help improve it.",
+    "to": "The student brings a draft of her argument essay and says she isn't sure it's working, asking the tutor to help improve it."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He already has a topic and a draft; the claim about free transit is set.",
+    "to": "She already has a topic and a draft; the claim about free transit is set."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "Formatting his citations in the correct style.",
+    "to": "Formatting her citations in the correct style."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Improving his spelling and grammar only.",
+    "to": "Improving her spelling and grammar only."
+   }
+  ]
+ },
+ {
+  "id": "65031929-f2f2-4501-bc60-a266b7584288",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-3",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=receptionist (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "To refill a prescription the clinic gave him before.",
+    "to": "To refill a prescription the clinic gave her before."
+   },
+   {
+    "field": "choices[3]",
+    "from": "To get results from a test he had here last week.",
+    "to": "To get results from a test she had here last week."
+   },
+   {
+    "field": "explanation",
+    "from": "The student opens by asking to book an appointment for a cough he's had for about two weeks.",
+    "to": "The student opens by asking to book an appointment for a cough she's had for about two weeks."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "To refill a prescription he already has.",
+    "to": "To refill a prescription she already has."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "No prescription or refill is mentioned; he is a first-time patient.",
+    "to": "No prescription or refill is mentioned; she is a first-time patient."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "No test results are discussed; he is booking a first visit.",
+    "to": "No test results are discussed; she is booking a first visit."
+   }
+  ]
+ },
+ {
+  "id": "6dfee38b-f592-4392-8722-0de0d89c1156",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-3",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=receptionist (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Skip bringing his insurance card to the visit.",
+    "to": "Skip bringing her insurance card to the visit."
+   },
+   {
+    "field": "choices[1]",
+    "from": "Arrive at his appointment time instead of fifteen minutes early.",
+    "to": "Arrive at her appointment time instead of fifteen minutes early."
+   },
+   {
+    "field": "correct_answer",
+    "from": "Arrive at his appointment time instead of fifteen minutes early.",
+    "to": "Arrive at her appointment time instead of fifteen minutes early."
+   },
+   {
+    "field": "explanation",
+    "from": "The receptionist says filling out the forms online beforehand lets him just walk in at his appointment time rather than fifteen minutes early.",
+    "to": "The receptionist says filling out the forms online beforehand lets her just walk in at her appointment time rather than fifteen minutes early."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Skip bringing his insurance card to the visit.",
+    "to": "Skip bringing her insurance card to the visit."
+   }
+  ]
+ },
+ {
+  "id": "87cdc309-2615-4e9c-a46a-cbbfab9e2f23",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-3",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=receptionist (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He has a lab class that runs until eleven on Thursday.",
+    "to": "She has a lab class that runs until eleven on Thursday."
+   },
+   {
+    "field": "choices[3]",
+    "from": "He wants extra time to complete the intake forms.",
+    "to": "She wants extra time to complete the intake forms."
+   },
+   {
+    "field": "correct_answer",
+    "from": "He has a lab class that runs until eleven on Thursday.",
+    "to": "She has a lab class that runs until eleven on Thursday."
+   },
+   {
+    "field": "explanation",
+    "from": "The student says Thursday is tricky because he has a lab until eleven, so he takes the Friday afternoon slot.",
+    "to": "The student says Thursday is tricky because she has a lab until eleven, so she takes the Friday afternoon slot."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "The receptionist offers both days; Dr. Reyes is simply who he ends up seeing Friday.",
+    "to": "The receptionist offers both days; Dr. Reyes is simply who she ends up seeing Friday."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "Cost is never mentioned; the conflict is his lab schedule.",
+    "to": "Cost is never mentioned; the conflict is her lab schedule."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "He wants extra time to complete the intake forms.",
+    "to": "She wants extra time to complete the intake forms."
+   }
+  ]
+ },
+ {
+  "id": "0433e560-246e-4172-a5a8-c195ab4bcd98",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-5",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=security officer (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "To report a laptop he thinks he lost in the library.",
+    "to": "To report a laptop she thinks she lost in the library."
+   },
+   {
+    "field": "correct_answer",
+    "from": "To report a laptop he thinks he lost in the library.",
+    "to": "To report a laptop she thinks she lost in the library."
+   },
+   {
+    "field": "explanation",
+    "from": "The student opens by saying he thinks he left his laptop in the library and can't find it, seeking help recovering it.",
+    "to": "The student opens by saying she thinks she left her laptop in the library and can't find it, seeking help recovering it."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "No escort is requested; he is recovering a lost item.",
+    "to": "No escort is requested; she is recovering a lost item."
+   }
+  ]
+ },
+ {
+  "id": "6c94b2fb-f870-4675-8906-95818b3d91be",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-5",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=security officer (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[3]",
+    "from": "Ask the library staff to unlock the laptop for him.",
+    "to": "Ask the library staff to unlock the laptop for her."
+   },
+   {
+    "field": "explanation",
+    "from": "The officer says to bring any other photo ID and the laptop is his, so the student will return with different ID.",
+    "to": "The officer says to bring any other photo ID and the laptop is hers, so the student will return with different ID."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Ask the library staff to unlock the laptop for him.",
+    "to": "Ask the library staff to unlock the laptop for her."
+   }
+  ]
+ },
+ {
+  "id": "52f7a635-a80a-4a66-9f0f-82295b3a5195",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-6",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=clerk (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[1]",
+    "from": "Return a textbook he no longer needs.",
+    "to": "Return a textbook she no longer needs."
+   },
+   {
+    "field": "correct_answer",
+    "from": "Return a textbook he no longer needs.",
+    "to": "Return a textbook she no longer needs."
+   },
+   {
+    "field": "explanation",
+    "from": "The student says he'd like to return the textbook because he dropped the class it was for.",
+    "to": "The student says she'd like to return the textbook because she dropped the class it was for."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He is returning a book, not buying one, and no subject is specified.",
+    "to": "She is returning a book, not buying one, and no subject is specified."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "No reservation is discussed; he wants a refund for a return.",
+    "to": "No reservation is discussed; she wants a refund for a return."
+   }
+  ]
+ },
+ {
+  "id": "fb812fe7-b2ac-40fe-a10d-fa959e554b0a",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-6",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=clerk (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "It was already there when he bought the book as new.",
+    "to": "It was already there when she bought the book as new."
+   },
+   {
+    "field": "choices[1]",
+    "from": "A previous classmate lent him the book with notes in it.",
+    "to": "A previous classmate lent her the book with notes in it."
+   },
+   {
+    "field": "choices[3]",
+    "from": "He made a few notes but then erased them.",
+    "to": "She made a few notes but then erased them."
+   },
+   {
+    "field": "correct_answer",
+    "from": "It was already there when he bought the book as new.",
+    "to": "It was already there when she bought the book as new."
+   },
+   {
+    "field": "explanation",
+    "from": "The student insists the writing was already there when he bought it, sold as new despite someone having written in it.",
+    "to": "The student insists the writing was already there when she bought it, sold as new despite someone having written in it."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He made a few notes but then erased them.",
+    "to": "She made a few notes but then erased them."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He denies writing in it at all, saying the marks predate his purchase.",
+    "to": "She denies writing in it at all, saying the marks predate her purchase."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "A previous classmate lent him the book with notes in it.",
+    "to": "A previous classmate lent her the book with notes in it."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "He bought it new from the store; no classmate is involved.",
+    "to": "She bought it new from the store; no classmate is involved."
+   }
+  ]
+ },
+ {
+  "id": "06106a1e-005f-40c9-a045-61fc2c5c8d3f",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-7",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=advisor (onyx, M); student written as he, advisor as she",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Academic Advising] What does the advisor say she will do once the geology course is on his schedule?",
+    "to": "[Conversation — Academic Advising] What does the advisor say he will do once the geology course is on her schedule?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "Change his astronomy grade to a letter grade.",
+    "to": "Change her astronomy grade to a letter grade."
+   },
+   {
+    "field": "choices[1]",
+    "from": "Clear the hold on his graduation application.",
+    "to": "Clear the hold on her graduation application."
+   },
+   {
+    "field": "choices[2]",
+    "from": "Enroll him in the geology class herself.",
+    "to": "Enroll her in the geology class himself."
+   },
+   {
+    "field": "correct_answer",
+    "from": "Clear the hold on his graduation application.",
+    "to": "Clear the hold on her graduation application."
+   },
+   {
+    "field": "explanation",
+    "from": "The advisor says that once the geology course is on his schedule, she'll clear the hold on his graduation application.",
+    "to": "The advisor says that once the geology course is on her schedule, he'll clear the hold on her graduation application."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "She doesn't waive it; he must actually take the geology course to fill it.",
+    "to": "He doesn't waive it; she must actually take the geology course to fill it."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "Change his astronomy grade to a letter grade.",
+    "to": "Change her astronomy grade to a letter grade."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "A grade change is never offered; he takes a new graded course instead.",
+    "to": "A grade change is never offered; she takes a new graded course instead."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "Enroll him in the geology class herself.",
+    "to": "Enroll her in the geology class himself."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "The student says he can add it; she just clears the hold afterward.",
+    "to": "The student says she can add it; he just clears the hold afterward."
+   }
+  ]
+ },
+ {
+  "id": "654a6dcf-8aa8-41eb-a48b-370b6e837614",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-7",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=advisor (onyx, M); student written as he, advisor as she",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He earned a failing grade in it and will have to repeat the course",
+    "to": "She earned a failing grade in it and will have to repeat the course"
+   },
+   {
+    "field": "choices[1]",
+    "from": "He took it pass/fail rather than for a letter grade.",
+    "to": "She took it pass/fail rather than for a letter grade."
+   },
+   {
+    "field": "choices[2]",
+    "from": "He took it at another institution, so the credits did not transfer",
+    "to": "She took it at another institution, so the credits did not transfer"
+   },
+   {
+    "field": "correct_answer",
+    "from": "He took it pass/fail rather than for a letter grade.",
+    "to": "She took it pass/fail rather than for a letter grade."
+   },
+   {
+    "field": "explanation",
+    "from": "The advisor says the astronomy course would have counted except he took it pass/fail, and the requirement needs a graded course.",
+    "to": "The advisor says the astronomy course would have counted except she took it pass/fail, and the requirement needs a graded course."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He earned a failing grade in it and will have to repeat the course",
+    "to": "She earned a failing grade in it and will have to repeat the course"
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "He took it at another institution, so the credits did not transfer",
+    "to": "She took it at another institution, so the credits did not transfer"
+   }
+  ]
+ },
+ {
+  "id": "cbd5306e-a13d-410e-98a9-f12a7f0b1571",
+  "cohort": "v3-claude",
+  "passage_group_id": "M4-7",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=advisor (onyx, M); student written as he, advisor as she",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Academic Advising] Why does the student meet with his advisor?",
+    "to": "[Conversation — Academic Advising] Why does the student meet with her advisor?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "To confirm he has met all his graduation requirements.",
+    "to": "To confirm she has met all her graduation requirements."
+   },
+   {
+    "field": "choices[2]",
+    "from": "To add a second major now that his major requirements are complete.",
+    "to": "To add a second major now that her major requirements are complete."
+   },
+   {
+    "field": "choices[3]",
+    "from": "To appeal the pass/fail grade he was given in his astronomy course.",
+    "to": "To appeal the pass/fail grade she was given in her astronomy course."
+   },
+   {
+    "field": "correct_answer",
+    "from": "To confirm he has met all his graduation requirements.",
+    "to": "To confirm she has met all her graduation requirements."
+   },
+   {
+    "field": "explanation",
+    "from": "The student says he hopes to graduate in the spring and wants to make sure everything is checked off, prompting the audit review.",
+    "to": "The student says she hopes to graduate in the spring and wants to make sure everything is checked off, prompting the audit review."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "To add a second major now that his major requirements are complete.",
+    "to": "To add a second major now that her major requirements are complete."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "No second major is discussed; his existing major requirements are already complete.",
+    "to": "No second major is discussed; her existing major requirements are already complete."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "To appeal the pass/fail grade he was given in his astronomy course.",
+    "to": "To appeal the pass/fail grade she was given in her astronomy course."
+   }
+  ]
+ },
+ {
+  "id": "2b859327-34b5-4196-8dfa-9c36f8507cca",
+  "cohort": "v3-claude",
+  "passage_group_id": "M5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=lab manager (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[3]",
+    "from": "His imaging takes longer than the daytime two-hour limit.",
+    "to": "Her imaging takes longer than the daytime two-hour limit."
+   },
+   {
+    "field": "correct_answer",
+    "from": "His imaging takes longer than the daytime two-hour limit.",
+    "to": "Her imaging takes longer than the daytime two-hour limit."
+   },
+   {
+    "field": "explanation",
+    "from": "Daytime sessions are capped at two hours, and since his samples take about three hours he chooses an evening slot, which allows longer runs.",
+    "to": "Daytime sessions are capped at two hours, and since her samples take about three hours she chooses an evening slot, which allows longer runs."
+   }
+  ]
+ },
+ {
+  "id": "c9f02a8d-d85a-4d08-aebe-03ad276e540f",
+  "cohort": "v3-claude",
+  "passage_group_id": "M5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=lab manager (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "prompt",
+    "from": "[Conversation — Service Desk] What must the student do before he can reserve the microscope?",
+    "to": "[Conversation — Service Desk] What must the student do before she can reserve the microscope?"
+   },
+   {
+    "field": "choices[0]",
+    "from": "Get written approval from his advisor.",
+    "to": "Get written approval from her advisor."
+   },
+   {
+    "field": "explanation",
+    "from": "The manager says the equipment orientation is step one and that completing the Tuesday hands-on session activates his card for the reservation system.",
+    "to": "The manager says the equipment orientation is step one and that completing the Tuesday hands-on session activates her card for the reservation system."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Get written approval from his advisor.",
+    "to": "Get written approval from her advisor."
+   },
+   {
+    "field": "distractor_rationales[2].reason",
+    "from": "He already completed that module; what he lacks is the microscope-specific session.",
+    "to": "She already completed that module; what she lacks is the microscope-specific session."
+   }
+  ]
+ },
+ {
+  "id": "ef1a86db-a0ec-4d69-912f-2f8676dc898a",
+  "cohort": "v3-claude",
+  "passage_group_id": "M5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=lab manager (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "He will be locked out of booking for a week.",
+    "to": "She will be locked out of booking for a week."
+   },
+   {
+    "field": "choices[1]",
+    "from": "His orientation certification will be revoked.",
+    "to": "Her orientation certification will be revoked."
+   },
+   {
+    "field": "choices[2]",
+    "from": "He will be charged a late-cancellation fee.",
+    "to": "She will be charged a late-cancellation fee."
+   },
+   {
+    "field": "choices[3]",
+    "from": "His advisor will be notified of the missed session.",
+    "to": "Her advisor will be notified of the missed session."
+   },
+   {
+    "field": "correct_answer",
+    "from": "He will be locked out of booking for a week.",
+    "to": "She will be locked out of booking for a week."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "He will be charged a late-cancellation fee.",
+    "to": "She will be charged a late-cancellation fee."
+   },
+   {
+    "field": "distractor_rationales[1].choice",
+    "from": "His advisor will be notified of the missed session.",
+    "to": "Her advisor will be notified of the missed session."
+   },
+   {
+    "field": "distractor_rationales[2].choice",
+    "from": "His orientation certification will be revoked.",
+    "to": "Her orientation certification will be revoked."
+   }
+  ]
+ },
+ {
+  "id": "fc03ca7b-8e5a-4386-9a05-cedccd406f26",
+  "cohort": "v3-claude",
+  "passage_group_id": "M5-2",
+  "mode": "flip",
+  "speakers": "A=student (nova, F), B=lab manager (onyx, M); student written as he",
+  "edits": [
+   {
+    "field": "choices[0]",
+    "from": "Reserve the confocal microscope for his project.",
+    "to": "Reserve the confocal microscope for her project."
+   },
+   {
+    "field": "choices[2]",
+    "from": "Return a piece of equipment he borrowed last week.",
+    "to": "Return a piece of equipment she borrowed last week."
+   },
+   {
+    "field": "correct_answer",
+    "from": "Reserve the confocal microscope for his project.",
+    "to": "Reserve the confocal microscope for her project."
+   },
+   {
+    "field": "explanation",
+    "from": "The student opens by saying he needs to book the confocal microscope for his senior project.",
+    "to": "The student opens by saying she needs to book the confocal microscope for her senior project."
+   },
+   {
+    "field": "distractor_rationales[0].choice",
+    "from": "Return a piece of equipment he borrowed last week.",
+    "to": "Return a piece of equipment she borrowed last week."
+   },
+   {
+    "field": "distractor_rationales[0].reason",
+    "from": "He wants to book, not return, equipment; nothing was borrowed.",
+    "to": "She wants to book, not return, equipment; nothing was borrowed."
+   },
+   {
+    "field": "distractor_rationales[1].reason",
+    "from": "He has already done the general safety module; training is a step toward the real goal of booking.",
+    "to": "She has already done the general safety module; training is a step toward the real goal of booking."
+   }
+  ]
+ }
+]
