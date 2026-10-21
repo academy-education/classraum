@@ -89,3 +89,8 @@ The ORIGINAL release rule applies, unchanged, with the batch guard on the pooled
 2. Per item: "Only defensible" -> `verified=true`; otherwise `archived=true`.
 3. Per passage: 2 or more of 6 flagged -> the passage is archived.
 **Nothing is released until all three runs are answered**, so the guard is evaluated once, on 36.
+
+### Run 1 answered (2026-10-21), nothing released yet (Amendment 2: release after all three runs)
+`ssat-draft2-release-cofounder-2026-10-21` (D2-P02, D2-P05): blind 4/12 = 33.3% vs 25.0% control;
+12/12 "Only defensible"; realism P02 6/6 authentic, P05 1/6 authentic (5 "artificial"); ~9 minutes.
+Run 2 drawn: `ssat-draft2-release2-cofounder-2026-10-21` (D2-P01, D2-P03), 12 unseen, slots A3 B3 D3 E3.
