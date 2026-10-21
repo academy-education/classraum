@@ -85,3 +85,13 @@ Also: "her" in options is not established by the transcript (the voice establish
 (snapshot first; refuses on any reviewed row; sentence-final "it is" and "in there is" left alone). Read
 for contradictions like v6-04/12: none found. Run 3 drawn: `toefl-conv1-release3` (v6-14 v6-15 v5-02
 v5-03 v5-04 v5-05).
+
+## Run 3 answered and released (2026-10-21)
+`toefl-conv1-release3`: blind 3/12 (pooled 8/36 = 22.2%), 12/12 Only defensible. Released 6 (18 of 32
+conversations live); audio pre-warmed (58 clips, 0 failed). Note: v5-02 "a logic gap gives B some pull"
+(rated unique). Depth: **upper/hard 12 -> 14, now bound by Academic Talk (14); Conversation 16[17].**
+Run 4 drawn: `toefl-conv1-release4`.
+
+## Queue order amendment (2026-10-21, before any later run is drawn)
+Because Academic Talk now binds the hard route, `toefl-talk-draft-1`'s three runs are drawn next, right
+after run 4, ahead of the remaining conv-draft-1 runs and conv-draft-2. Order only; no rule changes.

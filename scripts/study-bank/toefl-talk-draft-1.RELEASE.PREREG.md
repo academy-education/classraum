@@ -22,3 +22,7 @@ per LECTURE: if 2 or more of a lecture's 4 items are flagged, the whole lecture 
 with exactly 1 flagged item is archived too (the assembler serves sets whole, and a 3-item remainder
 changes the set size the depth projection assumed). Runs of 12 items = 3 lectures, drawn after the two
 TOEFL conversation drafts, before ISEE draft 1.
+
+## Queue order amendment (2026-10-21, before any run is drawn)
+Drawn right after `toefl-conv1-release4` (Academic Talk became the hard-route binder at 14 after
+conversation runs 1-3 released 18 conversations). Order only; the rule is unchanged.
