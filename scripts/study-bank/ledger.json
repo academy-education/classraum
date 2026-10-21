@@ -4092,6 +4092,33 @@
       }
     },
     {
+      "id": "toefl-conv-draft-1-2026-10-21",
+      "createdAt": "2026-10-21",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-conv-draft-1",
+      "contentSha": "395f71814adf14f6c6a6d59c6efbdd567ace88d6f778f3a7a76e151c92b2f608",
+      "status": "staged-for-human-edit",
+      "note": "32 two-question conversations from the never-gated Sept toefl-conv-v5/v6 files, gender references corrected to the player voice order, staged verified=false. Release only by the co-founder runs in toefl-conv-draft-1.RELEASE.PREREG.md. contentSha = sha256 of toefl-conv-draft-1.batch.json. REGISTER section 5, 2026-10-21.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "395f71814adf14f6c6a6d59c6efbdd567ace88d6f778f3a7a76e151c92b2f608",
+          "verdict": "conversation-gate.ts: 0 violations on 32 transcripts; 32 groups x 2; 0/64 already in the bank. Gender references fixed in 20 of 32 sets (fix-gender.mjs, diff read line by line). Key uniquely longest 14/64, shortest 17/64."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; on TOEFL listening the model attack saturates and the human sitting decides."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader."
+        }
+      }
+    },
+    {
       "id": "sat-wic-v3-kept-2026-09-21",
       "createdAt": "2026-09-21",
       "targetTest": "sat",

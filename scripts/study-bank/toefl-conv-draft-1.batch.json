@@ -1,0 +1,2950 @@
+{
+ "cohort": "toefl-conv-draft-1",
+ "created": "2026-10-21",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Hi — I'd like to move out of my room in Hartley. Who handles that? B: I do. But we don't take room-change requests during the first week. A: Really? The handbook made it sound like the first week was the window. B: That was the old rule. The form only opens in week two now, once occupancy is settled. A: Okay. And do I need my resident assistant to sign off? B: No. If you're swapping with someone, I need both residents' signatures and nothing else. A: What if nobody wants to swap with me? B: Then you go on the wait list, and I place you when a single opens in any hall. A: Any hall? I was hoping to stay in Hartley. B: You can turn down one placement. After that the list drops you to the bottom.",
+    "passageGroupId": "pg-f98f425d3920f4c452f469ec9b17a7a6",
+    "prompt": "[Conversation — Housing office] When can the student submit her room-change request?",
+    "choices": [
+     "Once her resident assistant has approved the move",
+     "During the first week, as the handbook describes",
+     "In the second week of the term",
+     "As soon as both residents have signed the form"
+    ],
+    "correct_answer": "In the second week of the term",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says the first-week window was the old rule and that the form now opens in week two, once occupancy is settled. The handbook answer is the rule he explicitly retires. The signature answer describes what a swap needs, not when the form opens, and he says outright that the resident assistant is no longer part of the process.",
+    "distractor_rationales": []
+   },
+   "content_hash": "7f231ec58310075cdae02fa010eabb52",
+   "word_count": 142,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-01",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Hi — I'd like to move out of my room in Hartley. Who handles that? B: I do. But we don't take room-change requests during the first week. A: Really? The handbook made it sound like the first week was the window. B: That was the old rule. The form only opens in week two now, once occupancy is settled. A: Okay. And do I need my resident assistant to sign off? B: No. If you're swapping with someone, I need both residents' signatures and nothing else. A: What if nobody wants to swap with me? B: Then you go on the wait list, and I place you when a single opens in any hall. A: Any hall? I was hoping to stay in Hartley. B: You can turn down one placement. After that the list drops you to the bottom.",
+    "passageGroupId": "pg-f98f425d3920f4c452f469ec9b17a7a6",
+    "prompt": "[Conversation — Housing office] What happens if the student refuses a room she is offered from the wait list?",
+    "choices": [
+     "She is taken off the wait list after a single refusal",
+     "She keeps her position however many offers she refuses",
+     "She may refuse once; a second refusal moves her to the end of the list",
+     "She can refuse only offers outside the hall she currently lives in"
+    ],
+    "correct_answer": "She may refuse once; a second refusal moves her to the end of the list",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says she can turn down one placement and that after that the list drops her to the bottom. Keeping her position however many offers she refuses is the opposite of what he says; being taken off the list entirely is harsher than what he describes; and he says placements can come from any hall, with no special right to refuse the ones outside Hartley.",
+    "distractor_rationales": []
+   },
+   "content_hash": "dfb1452792020967513098004706dc77",
+   "word_count": 142,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-01",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The dryer on my floor took my money and never started. B: Sorry about that. Did you pay with your campus card or with coins? A: Card. There's no coin slot at all in Merrick. B: Right, Merrick was converted last summer. So the charge sits on your account, and I can't reverse it from this desk. A: Who can? B: Dining Services runs the card balances. Every refund goes through them, laundry included. A: That seems roundabout. B: It is, but it's one system. Meanwhile, report the dryer on the facilities web form so a technician gets scheduled. A: Can't you log it while I'm standing here? B: The form is what generates the ticket number. Without one, the technician has nothing to look up.",
+    "passageGroupId": "pg-f2e0f10e29717b3ed144b37c74680ffa",
+    "prompt": "[Conversation — Residence hall laundry] Where does the student have to go to get her money back?",
+    "choices": [
+     "To the coin refund box in the laundry room",
+     "To the facilities desk she is already standing at",
+     "To the housing office that runs Merrick",
+     "To Dining Services, which manages the card accounts"
+    ],
+    "correct_answer": "To Dining Services, which manages the card accounts",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man says Dining Services runs the card balances and handles every refund, laundry included. He states directly that he cannot reverse the charge from his own desk; the housing office is never mentioned; and the student says there is no coin slot in Merrick at all.",
+    "distractor_rationales": []
+   },
+   "content_hash": "bf66af2659941c10b059933a161f2116",
+   "word_count": 127,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-02",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The dryer on my floor took my money and never started. B: Sorry about that. Did you pay with your campus card or with coins? A: Card. There's no coin slot at all in Merrick. B: Right, Merrick was converted last summer. So the charge sits on your account, and I can't reverse it from this desk. A: Who can? B: Dining Services runs the card balances. Every refund goes through them, laundry included. A: That seems roundabout. B: It is, but it's one system. Meanwhile, report the dryer on the facilities web form so a technician gets scheduled. A: Can't you log it while I'm standing here? B: The form is what generates the ticket number. Without one, the technician has nothing to look up.",
+    "passageGroupId": "pg-f2e0f10e29717b3ed144b37c74680ffa",
+    "prompt": "[Conversation — Residence hall laundry] Why does the man tell the student to fill in the web form herself?",
+    "choices": [
+     "Staff are not permitted to enter repair requests for students",
+     "The form produces the ticket number the technician works from",
+     "Only a technician is able to open a ticket in the system",
+     "A technician must inspect the machine before a request is opened"
+    ],
+    "correct_answer": "The form produces the ticket number the technician works from",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says the form is what generates the ticket number, and without one the technician has nothing to look up — the reason is the ticket, not a rule about who is allowed to type. He never says staff are barred from filing, the inspection order is reversed (the ticket is what gets a technician scheduled), and he is asking her to open the ticket herself, so it is not something only a technician can do.",
+    "distractor_rationales": []
+   },
+   "content_hash": "16c69d338756cfb7c59a770ca4d2a500",
+   "word_count": 127,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-02",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Does the college store things over the winter break? B: We do — two boxes per student, and there's no charge. A: Only two? I assumed there'd be a fee and no limit. B: It's the other way round. Free, but tight. And the room is off campus, on Delaney Street. A: How do I get boxes out there? B: The shuttle runs on Thursdays. You can drive them yourself if you have a car. A: What about my bicycle? It won't go in a box. B: Bikes aren't accepted at Delaney. Leave it locked in the hall rack — those stay open all break. A: Is the rack covered? B: Half of it is. Get there early if you want the covered end.",
+    "passageGroupId": "pg-2eec9207bed72fc3df8ddda3b57b70d9",
+    "prompt": "[Conversation — Break storage] What does the man say about the cost of storage?",
+    "choices": [
+     "There is no charge for the first two boxes and a fee after that",
+     "There is no charge, but only two boxes are allowed",
+     "The fee depends on how far the shuttle has to carry the boxes",
+     "There is a flat fee, and any number of boxes may be stored"
+    ],
+    "correct_answer": "There is no charge, but only two boxes are allowed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "He says two boxes per student with no charge, and confirms it when the student guesses the opposite: \"Free, but tight.\" The flat-fee answer is exactly the assumption he corrects; nothing is said about paying beyond a second box; and the shuttle is described as transport, never as something billed by distance.",
+    "distractor_rationales": []
+   },
+   "content_hash": "89d59db5850669f17da00f0d742a11b2",
+   "word_count": 125,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-03",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Does the college store things over the winter break? B: We do — two boxes per student, and there's no charge. A: Only two? I assumed there'd be a fee and no limit. B: It's the other way round. Free, but tight. And the room is off campus, on Delaney Street. A: How do I get boxes out there? B: The shuttle runs on Thursdays. You can drive them yourself if you have a car. A: What about my bicycle? It won't go in a box. B: Bikes aren't accepted at Delaney. Leave it locked in the hall rack — those stay open all break. A: Is the rack covered? B: Half of it is. Get there early if you want the covered end.",
+    "passageGroupId": "pg-2eec9207bed72fc3df8ddda3b57b70d9",
+    "prompt": "[Conversation — Break storage] What will the student most likely do with her bicycle?",
+    "choices": [
+     "Take it home with her, since the racks are closed over the break",
+     "Take it out to Delaney Street on the Thursday shuttle",
+     "Lock it at the hall rack, which is open through the break",
+     "Ask whether the covered half of the rack can be reserved"
+    ],
+    "correct_answer": "Lock it at the hall rack, which is open through the break",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says bikes are not accepted at the storage room and tells her to leave it locked in the hall rack, which stays open all break. Taking it to Delaney contradicts that refusal; the racks are open, not closed; and he says to arrive early for the covered end, which is the opposite of reserving it.",
+    "distractor_rationales": []
+   },
+   "content_hash": "8efa8627d6f1610de1473330dceaad0a",
+   "word_count": 125,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-03",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My ID stopped opening the art building after eleven. B: The building's open all night. It's Studio 3 that locks at eleven. A: Nobody told us that. B: It came in when the kiln was installed — a condition from the fire marshal. A: Can I get in anyway? I have a piece drying. B: Only with an instructor present. I can't grant that from this desk. A: All right. While I'm here, I think my card is cracked. B: Let me see. Yes, I'll print you a new one. The first replacement is free. A: Should I hand this one in? B: Keep it. It works until you tap the new one, and then it's dead.",
+    "passageGroupId": "pg-847a6db72edee0809424d36a46a5dfa1",
+    "prompt": "[Conversation — Campus card office] What does the man say about the art building after eleven at night?",
+    "choices": [
+     "Anyone entering after eleven needs an instructor with them",
+     "The building closes at eleven, though the studios stay open",
+     "The fire marshal has to approve any entry after that hour",
+     "The building stays open; one studio inside it is locked"
+    ],
+    "correct_answer": "The building stays open; one studio inside it is locked",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "He corrects the student immediately: the building is open all night and it is Studio 3 that locks at eleven. The answer that closes the building and keeps the studios open reverses him exactly. The instructor requirement is what gets somebody into the locked studio, not into the building, and the fire marshal is named as the origin of the studio rule rather than as someone who approves entries.",
+    "distractor_rationales": []
+   },
+   "content_hash": "97cadd1fa0a5e1290ee96beaed1426b2",
+   "word_count": 118,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-04",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My ID stopped opening the art building after eleven. B: The building's open all night. It's Studio 3 that locks at eleven. A: Nobody told us that. B: It came in when the kiln was installed — a condition from the fire marshal. A: Can I get in anyway? I have a piece drying. B: Only with an instructor present. I can't grant that from this desk. A: All right. While I'm here, I think my card is cracked. B: Let me see. Yes, I'll print you a new one. The first replacement is free. A: Should I hand this one in? B: Keep it. It works until you tap the new one, and then it's dead.",
+    "passageGroupId": "pg-847a6db72edee0809424d36a46a5dfa1",
+    "prompt": "[Conversation — Campus card office] What will happen to the student's cracked card?",
+    "choices": [
+     "It stops working the moment the replacement is printed",
+     "It keeps working until she uses the replacement for the first time",
+     "She can keep using it as a second card for the rest of the year",
+     "She has to turn it in before the replacement can be printed"
+    ],
+    "correct_answer": "It keeps working until she uses the replacement for the first time",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "He tells her to keep it: it works until she taps the new one, and then it is dead. Printing is not the cutoff, tapping is; he specifically says she does not need to hand the old card in; and it dies at the first tap, so it cannot serve as a spare.",
+    "distractor_rationales": []
+   },
+   "content_hash": "0d8120bc4b514a8aff03fded85a402ea",
+   "word_count": 118,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-04",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'd like to see the Ferris papers this afternoon. B: Requests normally need two days' notice. A: Two days? My paper is due Monday. B: Hold on. If a box is still on the reshelving cart from another reader, I can bring it straight out. Box four is there. A: That's the one I need. What am I allowed to bring in? B: Laptop, yes. Camera, yes, but no flash. Bags go in the lockers outside. A: And pencils only, I assume. B: Pencil or nothing. We sell them at the desk if you don't have one. A: How long can I keep the box? B: Until we close at four. We don't hold boxes overnight for readers.",
+    "passageGroupId": "pg-5b96e6b09f97f6b7fea008890042a762",
+    "prompt": "[Conversation — Archive reading room] Why can the student see the material the same afternoon?",
+    "choices": [
+     "Another reader has cancelled a booking for that box",
+     "The box she needs has not been put back on the shelves yet",
+     "Requests for the Ferris papers are handled the same day",
+     "A deadline shortens the usual notice period"
+    ],
+    "correct_answer": "The box she needs has not been put back on the shelves yet",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man makes the exception only after checking the reshelving cart and finding box four still on it — the two-day rule stands, but that box has not gone back yet. Nothing marks the Ferris papers as same-day material, the deadline is what she offers as a reason and it is not what he acts on, and no cancellation is mentioned.",
+    "distractor_rationales": []
+   },
+   "content_hash": "e07e55faf1812a5a2a0b20c3d03d440b",
+   "word_count": 119,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-05",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I'd like to see the Ferris papers this afternoon. B: Requests normally need two days' notice. A: Two days? My paper is due Monday. B: Hold on. If a box is still on the reshelving cart from another reader, I can bring it straight out. Box four is there. A: That's the one I need. What am I allowed to bring in? B: Laptop, yes. Camera, yes, but no flash. Bags go in the lockers outside. A: And pencils only, I assume. B: Pencil or nothing. We sell them at the desk if you don't have one. A: How long can I keep the box? B: Until we close at four. We don't hold boxes overnight for readers.",
+    "passageGroupId": "pg-5b96e6b09f97f6b7fea008890042a762",
+    "prompt": "[Conversation — Archive reading room] What does the man say will happen to the box at the end of the day?",
+    "choices": [
+     "It is held at the desk for her to return to tomorrow",
+     "It goes back; the archive will not keep it out overnight",
+     "It is left out for whoever has booked it next",
+     "It can stay out if she gives two days' notice"
+    ],
+    "correct_answer": "It goes back; the archive will not keep it out overnight",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "She can keep the box until the archive closes at four, and the man adds that boxes are not held overnight for readers. Holding it at the desk for the next day is exactly what he rules out; nothing is said about passing a box to another reader; and the two days' notice governs requesting material, not keeping it out.",
+    "distractor_rationales": []
+   },
+   "content_hash": "6f06dad1ba953d269f4951ff226d62dc",
+   "word_count": 119,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-05",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: How long does an interlibrary loan take? B: Depends what it is. A scanned article is usually here overnight. A: And a whole book? B: Two weeks, sometimes three, and those can't be extended. A: Not even once? Our own books go out twice that long. B: The lending library sets the term, not us. We can't stretch somebody else's book. A: So if I need it in April I should ask in April. B: Exactly. Time the request to the writing, not to the reading list. A: Is there a cap on how many I can have going? B: Fifteen open requests. Most people never come near it.",
+    "passageGroupId": "pg-62c023864b106b72b4fefb1c08acaa61",
+    "prompt": "[Conversation — Interlibrary loan desk] What does the man advise the student to do?",
+    "choices": [
+     "Keep well under the limit of fifteen open requests",
+     "Ask for a scan of the whole book so it arrives overnight",
+     "Send in each request close to the time she will actually use the book",
+     "Put in all of her titles at the start of the term so nothing is missed"
+    ],
+    "correct_answer": "Send in each request close to the time she will actually use the book",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "\"Time the request to the writing, not to the reading list\" tells her to order a book when she is about to write with it rather than when it appears on a syllabus — he agrees with her own restatement, ask in April for April. Submitting the whole list at once is the habit he is arguing against; the overnight arrival applies to scanned articles, not to whole books; and he mentions fifteen only to say most people never come near it, so it is not a number he is urging her to stay under.",
+    "distractor_rationales": []
+   },
+   "content_hash": "8cef386a23da2569e2c82728815a48f3",
+   "word_count": 110,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-06",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: How long does an interlibrary loan take? B: Depends what it is. A scanned article is usually here overnight. A: And a whole book? B: Two weeks, sometimes three, and those can't be extended. A: Not even once? Our own books go out twice that long. B: The lending library sets the term, not us. We can't stretch somebody else's book. A: So if I need it in April I should ask in April. B: Exactly. Time the request to the writing, not to the reading list. A: Is there a cap on how many I can have going? B: Fifteen open requests. Most people never come near it.",
+    "passageGroupId": "pg-62c023864b106b72b4fefb1c08acaa61",
+    "prompt": "[Conversation — Interlibrary loan desk] Why is the loan period on a borrowed book fixed?",
+    "choices": [
+     "The request expires once fifteen others are open",
+     "Two weeks is the maximum this library allows on any loan",
+     "The library that owns the book decides how long it is out",
+     "Scanned material and printed material are on the same schedule"
+    ],
+    "correct_answer": "The library that owns the book decides how long it is out",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man says the lending library sets the term and that his library cannot stretch somebody else's book. Two weeks is not this library's ceiling — the student points out that its own books go out twice as long. The fifteen figure is a cap on open requests, not on any loan's length, and the two formats are described as taking very different amounts of time.",
+    "distractor_rationales": []
+   },
+   "content_hash": "48d95c1fd2901cfb28f24c7011211569",
+   "word_count": 110,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-06",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-07-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I need a camera for a project. What's the loan period? B: Three days on the camera body. The tripod is a week. A: Different lengths for two things in the same bag? B: They're catalogued separately. People kept the tripods and brought the bodies back, so the terms split. A: What's the fine if I'm late? B: There is no fine. Your borrowing stops until the item is back. A: All of it? Books too? B: Everything with your name on it. It works better than a dollar a day. A: Can I reserve one for next Thursday? B: Not for equipment. First come, first served, from nine in the morning.",
+    "passageGroupId": "pg-186f2184d172de5af41e4e9b215fde62",
+    "prompt": "[Conversation — Media equipment desk] How long can the student keep the tripod?",
+    "choices": [
+     "Until the Thursday she has reserved",
+     "One week",
+     "For as long as no one else asks for it",
+     "Three days"
+    ],
+    "correct_answer": "One week",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man gives two different terms in one line: three days on the body, a week on the tripod. Three days is the camera body's term, not the tripod's; there is no Thursday reservation, since he says equipment cannot be reserved; and nothing suggests the term stretches when demand is low.",
+    "distractor_rationales": []
+   },
+   "content_hash": "4f8e6cdc4d7a0586a11e94a809b717ae",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-07",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-07-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I need a camera for a project. What's the loan period? B: Three days on the camera body. The tripod is a week. A: Different lengths for two things in the same bag? B: They're catalogued separately. People kept the tripods and brought the bodies back, so the terms split. A: What's the fine if I'm late? B: There is no fine. Your borrowing stops until the item is back. A: All of it? Books too? B: Everything with your name on it. It works better than a dollar a day. A: Can I reserve one for next Thursday? B: Not for equipment. First come, first served, from nine in the morning.",
+    "passageGroupId": "pg-186f2184d172de5af41e4e9b215fde62",
+    "prompt": "[Conversation — Media equipment desk] What happens if the student returns the equipment late?",
+    "choices": [
+     "She can still borrow books, but no more equipment",
+     "She loses her place in line the next morning at nine",
+     "She is unable to borrow anything at all until it comes back",
+     "She is charged a dollar for each day it is overdue"
+    ],
+    "correct_answer": "She is unable to borrow anything at all until it comes back",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man says there is no fine and that borrowing stops until the item is back — everything with her name on it, books included. The dollar a day is the penalty he compares his policy favourably with, the books exemption is the one he rules out when she asks, and the nine o'clock line is about how equipment is handed out, not about lateness.",
+    "distractor_rationales": []
+   },
+   "content_hash": "2f249ca4bbe4c5063c7b6e4a15958160",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-07",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-08-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The reserve copy of Halloran is out again. B: It's a two-hour loan, so it turns over. Have you tried the electronic reserve? A: There's an electronic one? B: For most of the list. Eight people can be in it at the same time. A: Then why is anyone waiting in line for the printed copy? B: Because only chapter six is scanned. Copyright lets us post one chapter per book. A: Chapter six is the one I need. B: Then you're in luck, and you needn't come in at all. A: How do I reach it? B: Through the course page, not the catalogue. Students look in the catalogue and decide it isn't there.",
+    "passageGroupId": "pg-85864664b585a336b4ad8c933cf8e363",
+    "prompt": "[Conversation — Library reserve desk] Why do other students still wait for the printed copy?",
+    "choices": [
+     "The electronic version is also limited to two hours",
+     "The electronic version holds only part of the book",
+     "Only eight people may use the printed copy each day",
+     "The electronic version cannot be opened from off campus"
+    ],
+    "correct_answer": "The electronic version holds only part of the book",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The librarian explains that only chapter six is scanned, because copyright allows one chapter per book — so anyone needing another chapter has to use the printed copy. The figure of eight describes simultaneous users of the electronic version, not the printed one; the two-hour limit belongs to the printed loan; and nothing is said about off-campus access.",
+    "distractor_rationales": []
+   },
+   "content_hash": "992677d286c0f5c325787fcdebacef1f",
+   "word_count": 116,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-08",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-08-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The reserve copy of Halloran is out again. B: It's a two-hour loan, so it turns over. Have you tried the electronic reserve? A: There's an electronic one? B: For most of the list. Eight people can be in it at the same time. A: Then why is anyone waiting in line for the printed copy? B: Because only chapter six is scanned. Copyright lets us post one chapter per book. A: Chapter six is the one I need. B: Then you're in luck, and you needn't come in at all. A: How do I reach it? B: Through the course page, not the catalogue. Students look in the catalogue and decide it isn't there.",
+    "passageGroupId": "pg-85864664b585a336b4ad8c933cf8e363",
+    "prompt": "[Conversation — Library reserve desk] Where should the student look for the scanned reading?",
+    "choices": [
+     "On the page for her course",
+     "In the library catalogue, under the author's name",
+     "In the electronic reserve section of the catalogue",
+     "At the reserve desk, where a copy can be printed for her"
+    ],
+    "correct_answer": "On the page for her course",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The librarian says to go through the course page and not the catalogue, and adds that students who search the catalogue wrongly conclude the reading is not there. Both catalogue answers are the mistake he is warning against, and he never offers to print anything at the desk.",
+    "distractor_rationales": []
+   },
+   "content_hash": "ba5efe7792e26b047c3c562df2b1cbb7",
+   "word_count": 116,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-08",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-09-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I've booked two hours on the diffractometer, eight to ten. Is that enough for six samples? B: How long does one sample take you? A: About fifteen minutes. B: Then no. You're the first booking of the day, so the forty-minute warm-up comes out of your two hours. A: I thought the machine was warm before the slot started. B: Only if somebody ran ahead of you. The clock starts when you badge in. A: Can I take the slot after mine as well? B: One booking at a time. Release this one and whoever is watching the calendar takes it. A: When does the calendar open? B: Ten days ahead, at six in the morning. The early slots go in about a minute.",
+    "passageGroupId": "pg-7d62d61048acff1f8ed0491524369fb7",
+    "prompt": "[Conversation — Instrument lab] How many of her six samples can the student run in the booking she has?",
+    "choices": [
+     "Five",
+     "Three",
+     "All six",
+     "Four"
+    ],
+    "correct_answer": "Five",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The booking is two hours and forty minutes of it is warm-up, which leaves eighty minutes; at about fifteen minutes each, five samples fit and the sixth does not. All six is what the student assumes and the technician rejects. Four and three both subtract more than the warm-up the technician actually describes.",
+    "distractor_rationales": []
+   },
+   "content_hash": "c00f85a0fa134dfb5ddf292342023ce1",
+   "word_count": 125,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-09",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-09-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I've booked two hours on the diffractometer, eight to ten. Is that enough for six samples? B: How long does one sample take you? A: About fifteen minutes. B: Then no. You're the first booking of the day, so the forty-minute warm-up comes out of your two hours. A: I thought the machine was warm before the slot started. B: Only if somebody ran ahead of you. The clock starts when you badge in. A: Can I take the slot after mine as well? B: One booking at a time. Release this one and whoever is watching the calendar takes it. A: When does the calendar open? B: Ten days ahead, at six in the morning. The early slots go in about a minute.",
+    "passageGroupId": "pg-7d62d61048acff1f8ed0491524369fb7",
+    "prompt": "[Conversation — Instrument lab] Why does the technician warn the student about giving up her booking?",
+    "choices": [
+     "A student may hold only one booking for the whole term",
+     "The calendar will not accept a new booking for another ten days",
+     "Someone else is likely to claim the slot as soon as it is released",
+     "Released slots are held for the department rather than for students"
+    ],
+    "correct_answer": "Someone else is likely to claim the slot as soon as it is released",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The technician says one booking at a time, and that whoever is watching the calendar will take a released slot — the risk is losing it to another user. The one-booking rule is about holding two at once, not one per term; ten days describes how far ahead the calendar opens, not a waiting period; and no departmental hold is mentioned.",
+    "distractor_rationales": []
+   },
+   "content_hash": "fa17aff651f78602dd17b9ac47415497",
+   "word_count": 125,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-09",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-10-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I finished the online safety module last night. Am I cleared for the lab? B: Not on its own. There's an in-person session as well. A: I was told the module was the requirement. B: The module is the reading. The session is where you handle the extinguisher and the eyewash. A: How often does it run? B: Once a month, on the first Wednesday. A: That's three weeks off. My group starts Monday. B: Did you do chemistry safety anywhere else on campus? A: Last spring, over in biology. B: Then you're covered. Anything inside eighteen months transfers between departments.",
+    "passageGroupId": "pg-3fe3fb4f93fce64291d3771ba2748118",
+    "prompt": "[Conversation — Lab safety office] How does the man describe the online module?",
+    "choices": [
+     "As the only part of the training that is required",
+     "As a substitute for the session held each month",
+     "As a test the student still has to pass",
+     "As the reading that goes with the training"
+    ],
+    "correct_answer": "As the reading that goes with the training",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says the module is the reading and the session is where the extinguisher and the eyewash are handled. Treating the module as the whole requirement is the student's belief, which he corrects in his first line; he presents it as a companion to the monthly session rather than a replacement for it; and he never calls it a test.",
+    "distractor_rationales": []
+   },
+   "content_hash": "05276b4081391db44fc41d8a6f524b8d",
+   "word_count": 102,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-10",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-10-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I finished the online safety module last night. Am I cleared for the lab? B: Not on its own. There's an in-person session as well. A: I was told the module was the requirement. B: The module is the reading. The session is where you handle the extinguisher and the eyewash. A: How often does it run? B: Once a month, on the first Wednesday. A: That's three weeks off. My group starts Monday. B: Did you do chemistry safety anywhere else on campus? A: Last spring, over in biology. B: Then you're covered. Anything inside eighteen months transfers between departments.",
+    "passageGroupId": "pg-3fe3fb4f93fce64291d3771ba2748118",
+    "prompt": "[Conversation — Lab safety office] Why will the student not have to wait three weeks?",
+    "choices": [
+     "An extra session is added whenever a new group begins",
+     "Her adviser is able to waive the requirement for her",
+     "Her group's start date takes priority over the monthly schedule",
+     "Training she did in another department last spring still counts"
+    ],
+    "correct_answer": "Training she did in another department last spring still counts",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man asks whether she has done safety training elsewhere on campus, and when she says biology last spring he tells her she is covered, because anything inside eighteen months transfers between departments. The Monday start is the problem, not the solution; no extra session is offered; and no adviser has any waiver in his account.",
+    "distractor_rationales": []
+   },
+   "content_hash": "fb4cbd1f09505b02e969033f82613132",
+   "word_count": 102,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-10",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-11-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The calibration on the mass spec — is that logged in the software? B: In the paper book on the bench. The software log doesn't count for this. A: Everything else in here is electronic. B: I know. The auditors want a signature, and nobody has found a way around that. A: What if I forget to sign? B: Then the run counts as uncalibrated, and the numbers can't go into a paper. A: That seems severe. B: It's happened twice this year. Both students repeated about a month of work. A: When is the instrument actually calibrated? B: Friday mornings. That's why a Friday slot is two hours instead of four.",
+    "passageGroupId": "pg-3c92f689db50cb2a3135c6ca17161c86",
+    "prompt": "[Conversation — Shared instrument facility] What happens to a run the student forgets to sign for?",
+    "choices": [
+     "Its results cannot be used in published work",
+     "The student loses access to the instrument for a month",
+     "It has to be repeated before the end of the same day",
+     "The software log is accepted in place of the signature"
+    ],
+    "correct_answer": "Its results cannot be used in published work",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says an unsigned run counts as uncalibrated and the numbers cannot go into a paper. No same-day repeat is described; he says explicitly that the software log does not count for this; and the month belongs to the two students who lost that much work, not to any suspension of access.",
+    "distractor_rationales": []
+   },
+   "content_hash": "c777614b830f23d42f27d8971f353478",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-11",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-11-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: The calibration on the mass spec — is that logged in the software? B: In the paper book on the bench. The software log doesn't count for this. A: Everything else in here is electronic. B: I know. The auditors want a signature, and nobody has found a way around that. A: What if I forget to sign? B: Then the run counts as uncalibrated, and the numbers can't go into a paper. A: That seems severe. B: It's happened twice this year. Both students repeated about a month of work. A: When is the instrument actually calibrated? B: Friday mornings. That's why a Friday slot is two hours instead of four.",
+    "passageGroupId": "pg-3c92f689db50cb2a3135c6ca17161c86",
+    "prompt": "[Conversation — Shared instrument facility] What is different about a booking on a Friday?",
+    "choices": [
+     "It is half as long as a booking on another day",
+     "It is four hours rather than two",
+     "It is open only to the staff who calibrate the instrument",
+     "It has to be recorded in the software instead"
+    ],
+    "correct_answer": "It is half as long as a booking on another day",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "Calibration takes the Friday morning, so a Friday slot is two hours instead of four. The four-and-two answer reverses those numbers; students are still booking on Fridays, so the day is not reserved for staff; and the paper book is the record on every day of the week.",
+    "distractor_rationales": []
+   },
+   "content_hash": "5b00a865edfecce169355de4999cdd4f",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-11",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-12-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: You weren't at the bench on Tuesday. A: I know, I was ill. Should I bring a doctor's note? B: We don't ask for notes. You make the session up instead. A: With our own section, later in the week? B: With any section that runs the same week. Wednesday afternoon, Thursday morning, whichever suits you. A: And it counts the same? B: It counts the same. Get your sheet signed by whoever is running the bench that day. A: Not by you? B: Not by me. I wasn't there. A: Is there a limit on this? B: Two a term. The third one is a zero, note or no note.",
+    "passageGroupId": "pg-efe1b32a4992b5a6d2e039f5f8ab9c06",
+    "prompt": "[Conversation — Chemistry lab section] Who signs the student's sheet for a made-up session?",
+    "choices": [
+     "Whoever is running the session he attends",
+     "Nobody — attendance at a make-up is recorded automatically",
+     "The assistant who teaches his own section",
+     "The professor, once he has produced a note"
+    ],
+    "correct_answer": "Whoever is running the session he attends",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The woman tells him to get the sheet signed by whoever is running the bench that day, and refuses to sign it herself because she was not there. That refusal rules out his own section's assistant; no professor is involved; and the signature requirement is the opposite of automatic recording.",
+    "distractor_rationales": []
+   },
+   "content_hash": "1e30cb2c698e83784eb72af199e8bda0",
+   "word_count": 112,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-12",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-12-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: You weren't at the bench on Tuesday. A: I know, I was ill. Should I bring a doctor's note? B: We don't ask for notes. You make the session up instead. A: With our own section, later in the week? B: With any section that runs the same week. Wednesday afternoon, Thursday morning, whichever suits you. A: And it counts the same? B: It counts the same. Get your sheet signed by whoever is running the bench that day. A: Not by you? B: Not by me. I wasn't there. A: Is there a limit on this? B: Two a term. The third one is a zero, note or no note.",
+    "passageGroupId": "pg-efe1b32a4992b5a6d2e039f5f8ab9c06",
+    "prompt": "[Conversation — Chemistry lab section] What does the woman tell the student about a third missed session?",
+    "choices": [
+     "It counts against him only if he has no documentation",
+     "It requires documentation, unlike the first two",
+     "It is allowed if he arranges it with her beforehand",
+     "It is scored zero whether or not he has documentation"
+    ],
+    "correct_answer": "It is scored zero whether or not he has documentation",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The cap is two make-ups a term, and she says the third one is a zero, note or no note. The other answers all give documentation some power over the count — making it necessary, buying an exception, or excusing the absence — and her phrase is there precisely to say it has none.",
+    "distractor_rationales": []
+   },
+   "content_hash": "b4fcfed315daabf671d40023a2e5fedf",
+   "word_count": 112,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-12",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-13-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Can I take a second campus job? I'm at ten hours in the mail room. B: You can, as long as the two together stay under the cap. A: Which is twenty? B: Twenty most weeks. Twelve during the two exam weeks. A: That's awkward — the dining hall wants me most in December. B: Then settle it with them now. Payroll trims the hours automatically, and your supervisors never see it coming. A: They just stop paying me? B: The hours over the cap don't get approved. You've worked them, and afterwards there's nothing anyone can do. A: So the warning has to come from me. B: From you, before the shift rather than after it.",
+    "passageGroupId": "pg-6b955ac6e7ecbae2f8a291487b7a64fa",
+    "prompt": "[Conversation — Student employment office] What is the weekly limit during the exam weeks?",
+    "choices": [
+     "Twenty hours, as in any other week",
+     "Twelve hours",
+     "There is no limit for students holding two jobs",
+     "Ten hours"
+    ],
+    "correct_answer": "Twelve hours",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man gives two figures in one line — twenty most weeks, twelve during the two exam weeks. Twenty is the ordinary cap, ten is the number of hours she already has in the mail room, and holding a second job is what makes the cap bind rather than what removes it.",
+    "distractor_rationales": []
+   },
+   "content_hash": "a65e191c8a80a9cffbc7e06eec66778e",
+   "word_count": 118,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-13",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-13-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Can I take a second campus job? I'm at ten hours in the mail room. B: You can, as long as the two together stay under the cap. A: Which is twenty? B: Twenty most weeks. Twelve during the two exam weeks. A: That's awkward — the dining hall wants me most in December. B: Then settle it with them now. Payroll trims the hours automatically, and your supervisors never see it coming. A: They just stop paying me? B: The hours over the cap don't get approved. You've worked them, and afterwards there's nothing anyone can do. A: So the warning has to come from me. B: From you, before the shift rather than after it.",
+    "passageGroupId": "pg-6b955ac6e7ecbae2f8a291487b7a64fa",
+    "prompt": "[Conversation — Student employment office] Why does the man tell the student to talk to the dining hall in advance?",
+    "choices": [
+     "A supervisor has to approve a second campus job before it starts",
+     "Payroll needs written notice before the December schedule is set",
+     "The dining hall is not allowed to schedule students during exams",
+     "Work beyond the cap goes unpaid and cannot be corrected afterwards"
+    ],
+    "correct_answer": "Work beyond the cap goes unpaid and cannot be corrected afterwards",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "He says the over-cap hours are not approved, that she will already have worked them, and that afterwards there is nothing anyone can do — so the only useful moment is before the shift. The supervisors in his account are the ones taken by surprise, not the ones approving anything; payroll acts automatically rather than on notice; and the dining hall's December scheduling is a demand he expects, not something forbidden.",
+    "distractor_rationales": []
+   },
+   "content_hash": "d2378f65af4be5688cf1ec1223159f78",
+   "word_count": 118,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-13",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-14-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: You're down for Saturday, and I hear you can't be here. A: That's right. Do I ask you to cover it, or do I post it? B: You post it. I don't arrange the swaps. A: At my last job the manager did all of that. B: Here the board does. Whoever picks it up, picks it up. A: So it's settled once somebody claims it? B: It's settled once somebody works it. If they don't turn up, it's still your shift. A: Even though I posted it in good faith? B: Even then. That's why people swap with someone they know. A: Is there anything that can't be swapped? B: A swap that pushes the other person over their weekly hours. The system turns those down.",
+    "passageGroupId": "pg-29a04a16483e4d39a37303efa923dfcb",
+    "prompt": "[Conversation — Campus job supervisor] How does the student arrange for someone to cover Saturday?",
+    "choices": [
+     "He puts the shift on the board for other students to take",
+     "He finds a replacement and has the supervisor approve the swap",
+     "He asks the supervisor to reassign the shift",
+     "He calls payroll and has the shift removed from his schedule"
+    ],
+    "correct_answer": "He puts the shift on the board for other students to take",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The supervisor tells him to post it and says she does not arrange swaps — the board does. Both answers that route the swap through her contradict that, whether she reassigns it herself or signs off on his arrangement, and payroll plays no part in the swap she describes.",
+    "distractor_rationales": []
+   },
+   "content_hash": "4b3ceb57dc9214c4a13aaad150bb680a",
+   "word_count": 128,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-14",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-14-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: You're down for Saturday, and I hear you can't be here. A: That's right. Do I ask you to cover it, or do I post it? B: You post it. I don't arrange the swaps. A: At my last job the manager did all of that. B: Here the board does. Whoever picks it up, picks it up. A: So it's settled once somebody claims it? B: It's settled once somebody works it. If they don't turn up, it's still your shift. A: Even though I posted it in good faith? B: Even then. That's why people swap with someone they know. A: Is there anything that can't be swapped? B: A swap that pushes the other person over their weekly hours. The system turns those down.",
+    "passageGroupId": "pg-29a04a16483e4d39a37303efa923dfcb",
+    "prompt": "[Conversation — Campus job supervisor] What does the supervisor say about the student's responsibility for the Saturday shift?",
+    "choices": [
+     "It passes to him only after he checks the other student's hours",
+     "It stays his until he has found a second replacement",
+     "It passes to the other student as soon as the claim is recorded",
+     "It stays his if the student who claims it does not appear"
+    ],
+    "correct_answer": "It stays his if the student who claims it does not appear",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The supervisor draws the line at working rather than claiming: if the other student does not turn up, it is still his shift, and posting in good faith does not change that. Claiming is explicitly not enough; the hours limit is enforced by the system, which turns such swaps down, so it is not his to check; and no second replacement is ever asked for.",
+    "distractor_rationales": []
+   },
+   "content_hash": "e22ec46b89bf0e8fece275c120ec1a48",
+   "word_count": 128,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-14",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-15-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I sent my hours in on Monday afternoon and I wasn't paid. B: The cutoff is Monday at noon. Anything later rolls into the next run. A: Can it be paid on its own? B: We don't issue off-cycle payments. You'll get both periods together in two weeks. A: And the deposit — I signed up for direct deposit back in September. B: Your first payment always comes as a paper check. The bank details take one cycle to verify. A: Where would that check be now? B: Here at the window, until you collect it. We stopped mailing them. A: Nobody mentioned a check. B: It's on the form, in small type. You're the fourth person this week.",
+    "passageGroupId": "pg-0b7b6667f2ee3872a2307b6127f86e35",
+    "prompt": "[Conversation — Payroll window] Why was the student not paid for the period she is asking about?",
+    "choices": [
+     "Her hours arrived after the deadline for that payroll run",
+     "Off-cycle payments are made only at the end of the month",
+     "Her supervisor had not approved the hours she submitted",
+     "The payroll run covering that period was cancelled"
+    ],
+    "correct_answer": "Her hours arrived after the deadline for that payroll run",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "She submitted on Monday afternoon and the cutoff is Monday at noon, so the hours rolled into the next run. No supervisor approval is mentioned anywhere; the clerk says off-cycle payments are not issued at all, rather than issued monthly; and no run was cancelled.",
+    "distractor_rationales": []
+   },
+   "content_hash": "49aef8d6ebb54ee5ace77d39547f86b4",
+   "word_count": 120,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-15",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-15-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I sent my hours in on Monday afternoon and I wasn't paid. B: The cutoff is Monday at noon. Anything later rolls into the next run. A: Can it be paid on its own? B: We don't issue off-cycle payments. You'll get both periods together in two weeks. A: And the deposit — I signed up for direct deposit back in September. B: Your first payment always comes as a paper check. The bank details take one cycle to verify. A: Where would that check be now? B: Here at the window, until you collect it. We stopped mailing them. A: Nobody mentioned a check. B: It's on the form, in small type. You're the fourth person this week.",
+    "passageGroupId": "pg-0b7b6667f2ee3872a2307b6127f86e35",
+    "prompt": "[Conversation — Payroll window] Where is the student's first payment?",
+    "choices": [
+     "At the payroll window, waiting to be picked up",
+     "In her campus mailbox, where checks are delivered",
+     "Still unissued, and it will arrive with the next run",
+     "In her bank account, once the details finish verifying"
+    ],
+    "correct_answer": "At the payroll window, waiting to be picked up",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The clerk says the check is there at the window until she collects it, and that they have stopped mailing them — which rules out the mailbox. The account answer misses that a first payment is always a check, and the payment is not unissued: it exists and is being held.",
+    "distractor_rationales": []
+   },
+   "content_hash": "982325245b9b46de2efb9902ee16f7fc",
+   "word_count": 120,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-15",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-16-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: This archives assistant post says work-study only. I don't have an award. B: You can still apply. The same job exists on a departmental line for students without one. A: The posting doesn't say that anywhere. B: No, and it should. Half the people who read it rule themselves out. A: Is the work identical? B: Identical. The money comes out of a different budget, that's all. A: How does the interview run? One to one? B: Four of you at a table with two archivists. They watch how you handle a disagreement. A: That's unusual for a campus job. B: It's a reading-room job. You'll be telling people no all day.",
+    "passageGroupId": "pg-18a72cfc40f589ce6001767bcab19966",
+    "prompt": "[Conversation — Student employment office] What does the man tell the student about the position?",
+    "choices": [
+     "The posting will be corrected before applications close",
+     "An award is arranged for whoever is hired into the position",
+     "The same job is also open to students without a work-study award",
+     "She should apply now and request an award afterwards"
+    ],
+    "correct_answer": "The same job is also open to students without a work-study award",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says the same job exists on a departmental line for students without an award, with identical work and a different budget. No award is created for the person hired, he does not tell her to apply for one later, and although he agrees the posting is misleading he does not say it will be changed.",
+    "distractor_rationales": []
+   },
+   "content_hash": "c44a638a6425788215e3e1ff7ebc54b2",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-16",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV5-16-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: This archives assistant post says work-study only. I don't have an award. B: You can still apply. The same job exists on a departmental line for students without one. A: The posting doesn't say that anywhere. B: No, and it should. Half the people who read it rule themselves out. A: Is the work identical? B: Identical. The money comes out of a different budget, that's all. A: How does the interview run? One to one? B: Four of you at a table with two archivists. They watch how you handle a disagreement. A: That's unusual for a campus job. B: It's a reading-room job. You'll be telling people no all day.",
+    "passageGroupId": "pg-18a72cfc40f589ce6001767bcab19966",
+    "prompt": "[Conversation — Student employment office] Why does the man mention the reading room at the end?",
+    "choices": [
+     "To account for the budget the position is paid from",
+     "To indicate that previous archive experience is expected",
+     "To warn the student that readers dislike the staff there",
+     "To explain why the interview is built around disagreement"
+    ],
+    "correct_answer": "To explain why the interview is built around disagreement",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The student calls the interview format unusual, and he answers by naming the duty that makes it appropriate: in a reading room the assistant refuses requests all day, so the archivists test exactly that. He describes the task, not the readers' feelings, asks for no prior experience, and the budget point belongs to the earlier exchange about the two lines.",
+    "distractor_rationales": []
+   },
+   "content_hash": "d26d00e59fd648a0c9f1220f72c1d913",
+   "word_count": 113,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v5-16",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Two things, if you have a minute. A practice room key, and one of the instrument lockers. B: Two different desks, I'm afraid. The key comes from me; the lockers are held by the ensemble office upstairs. A: Do I need to be a music major for either? B: Not for the key. Anyone enrolled in lessons can take one. The lockers go to majors before anyone else. A: Then there's no point asking. B: There is. Whatever is left after the second week goes to the general list, and last year eleven were left. A: And the key, is there a deposit? B: Twenty dollars, back when you return it. The locker costs nothing, but you buy your own padlock. A: Different desks, different rules. B: Start with the key, since that one I can do while you're standing here.",
+    "passageGroupId": "pg-5b09c88605e6fb84785c6feb1191cf17",
+    "prompt": "[Conversation - Music building] What does the woman learn about the instrument lockers?",
+    "choices": [
+     "Music majors are given them before other students",
+     "They are issued together with the practice room key",
+     "They carry the same twenty-dollar deposit as the key",
+     "They are handed out in the second week"
+    ],
+    "correct_answer": "Music majors are given them before other students",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says the lockers go to majors before anyone else, and only the leftovers reach a general list after week two. Issuing them with the key contradicts his opening point that the key and the lockers come from two different desks. The deposit belongs to the key alone; he says the locker costs nothing. The second week is when the surplus reaches the general list, not when lockers are handed out.",
+    "distractor_rationales": []
+   },
+   "content_hash": "10ada9c3b4800bcec1d12ee32ffd62dd",
+   "word_count": 142,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-01",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Two things, if you have a minute. A practice room key, and one of the instrument lockers. B: Two different desks, I'm afraid. The key comes from me; the lockers are held by the ensemble office upstairs. A: Do I need to be a music major for either? B: Not for the key. Anyone enrolled in lessons can take one. The lockers go to majors before anyone else. A: Then there's no point asking. B: There is. Whatever is left after the second week goes to the general list, and last year eleven were left. A: And the key, is there a deposit? B: Twenty dollars, back when you return it. The locker costs nothing, but you buy your own padlock. A: Different desks, different rules. B: Start with the key, since that one I can do while you're standing here.",
+    "passageGroupId": "pg-5b09c88605e6fb84785c6feb1191cf17",
+    "prompt": "[Conversation - Music building] Why does the man tell the woman to begin with the key?",
+    "choices": [
+     "He issues it himself instead of sending her upstairs",
+     "It costs less than an instrument locker does",
+     "The deposit must be paid before any other equipment is issued",
+     "She needs it for the lessons she is already enrolled in"
+    ],
+    "correct_answer": "He issues it himself instead of sending her upstairs",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "His reason is that the key is the thing he can do while she is standing there; the lockers are upstairs at the ensemble office. Cost points the wrong way, since he says the locker costs nothing and the key carries a twenty-dollar deposit. No ordering rule about the deposit is stated anywhere in the conversation. Enrolment in lessons is the eligibility condition for a key, not a reason to collect it first.",
+    "distractor_rationales": []
+   },
+   "content_hash": "d12c10b4c50611b51b29298af18698c8",
+   "word_count": 142,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-01",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I signed up to volunteer in the greenhouse, but nobody has told me what I am doing. B: That is on me. I keep the schedule, and the training is run by Dr. Okafor. A: How long does the training take? B: One afternoon. You cannot water anything until you have done it, though you can pot and repot from your first day. A: What about the propagation house? B: Everything in there is checked every second week rather than daily, so it runs on its own cycle. A: So on a Tuesday slot I might have nothing to do in there. B: You would still have the benches in the main house. A: Is Tuesday a bad day to take? B: No day is bad. What I would rather have is two shorter visits from you than one long one. A: Why is that? B: The plants notice the gaps more than they notice the hours.",
+    "passageGroupId": "pg-ebc80c81bff9acf61f891ce4368da5bb",
+    "prompt": "[Conversation - Greenhouse] What does the man say about the propagation house?",
+    "choices": [
+     "It is checked every second week rather than daily",
+     "It is opened only on training afternoons",
+     "It is potted up from the main house benches",
+     "It is checked by Dr. Okafor in person"
+    ],
+    "correct_answer": "It is checked every second week rather than daily",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "He says everything in the propagation house is checked every second week instead of daily. Nothing in the conversation limits that house to training afternoons; the restriction he names is watering anywhere, not a place. Potting and repotting are what the student may do from her first day, and he attaches them to no particular house. Dr. Okafor is named as the person who runs the training, with no checking duty attached.",
+    "distractor_rationales": []
+   },
+   "content_hash": "0f7a7639619d8dc8bd8e5918c6494068",
+   "word_count": 158,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-02",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: I signed up to volunteer in the greenhouse, but nobody has told me what I am doing. B: That is on me. I keep the schedule, and the training is run by Dr. Okafor. A: How long does the training take? B: One afternoon. You cannot water anything until you have done it, though you can pot and repot from your first day. A: What about the propagation house? B: Everything in there is checked every second week rather than daily, so it runs on its own cycle. A: So on a Tuesday slot I might have nothing to do in there. B: You would still have the benches in the main house. A: Is Tuesday a bad day to take? B: No day is bad. What I would rather have is two shorter visits from you than one long one. A: Why is that? B: The plants notice the gaps more than they notice the hours.",
+    "passageGroupId": "pg-ebc80c81bff9acf61f891ce4368da5bb",
+    "prompt": "[Conversation - Greenhouse] What working pattern does the man recommend?",
+    "choices": [
+     "Two shorter visits rather than one long one",
+     "A single afternoon each week, always the same",
+     "One visit every second week, matching the checks",
+     "Any hours at all, so long as they total four"
+    ],
+    "correct_answer": "Two shorter visits rather than one long one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says outright that he would rather she took two shorter visits than one long one, and explains it by saying the plants notice the gaps more than the hours. One fixed afternoon a week is the single long visit he is arguing against. Visiting once every second week would leave the longest gaps of all, which is exactly what he objects to. A total number of hours is the measure he sets aside when he says the gaps matter more than the hours.",
+    "distractor_rationales": []
+   },
+   "content_hash": "9b119615061879a25630e3c93ef6e3c8",
+   "word_count": 158,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-02",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: My bicycle is gone from the rack outside Kemp Hall. Somebody said security takes them. A: We do, when a rack is being repaired. There was a notice on that one for a week. B: I never saw it. How do I get it back? A: It is in the compound behind the depot. Take the registration sticker number and something with your name on it. B: I do not think I ever registered it. A: Then we register it here first and you collect afterwards. Registration is free, but the depot will not release anything unregistered. B: Is there a fine? A: Not for a rack removal. There is a charge when we cut a lock, and we did not cut one, because yours was not locked. B: It was locked. A: Then what is in the compound is somebody else's bicycle, and that is worth knowing before you walk out there.",
+    "passageGroupId": "pg-ac25dc98e6f2b9a97aae612532448095",
+    "prompt": "[Conversation - Campus security] What does the officer say the depot will not do?",
+    "choices": [
+     "Release a bicycle that is not registered",
+     "Release a bicycle without a charge being paid",
+     "Hold a bicycle once the rack is repaired",
+     "Take in a bicycle whose lock was not cut"
+    ],
+    "correct_answer": "Release a bicycle that is not registered",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The officer says the depot will not release anything unregistered, which is why they register the bicycle at the office before she goes. A charge arises only when security has cut a lock, and he says they cut none here. Nothing is said about the compound emptying when a rack is repaired. Bicycles are taken in from a rack under repair whether or not a lock had to be cut, which is how this one got there.",
+    "distractor_rationales": []
+   },
+   "content_hash": "b3e31882e5386b4d0f161dfcd89a3fd3",
+   "word_count": 154,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-03",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: My bicycle is gone from the rack outside Kemp Hall. Somebody said security takes them. A: We do, when a rack is being repaired. There was a notice on that one for a week. B: I never saw it. How do I get it back? A: It is in the compound behind the depot. Take the registration sticker number and something with your name on it. B: I do not think I ever registered it. A: Then we register it here first and you collect afterwards. Registration is free, but the depot will not release anything unregistered. B: Is there a fine? A: Not for a rack removal. There is a charge when we cut a lock, and we did not cut one, because yours was not locked. B: It was locked. A: Then what is in the compound is somebody else's bicycle, and that is worth knowing before you walk out there.",
+    "passageGroupId": "pg-ac25dc98e6f2b9a97aae612532448095",
+    "prompt": "[Conversation - Campus security] Why does the officer doubt the bicycle in the compound belongs to the student?",
+    "choices": [
+     "The bicycle they removed had no lock on it",
+     "The bicycle they removed carried no sticker",
+     "The rack it was taken from was not under repair",
+     "Her name is not in the depot's record"
+    ],
+    "correct_answer": "The bicycle they removed had no lock on it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The officer's doubt turns on one detail: he says the bicycle they took was not locked, and the student answers that hers was. The missing registration is a fact about the student's own bicycle that she volunteers, not something the officer reports about the machine in the compound. The rack outside Kemp Hall is exactly the one that was being repaired, which is why it was cleared. Names are what the student is told to bring, so the depot has no record to check against.",
+    "distractor_rationales": []
+   },
+   "content_hash": "9e7b3c841beac9722f515f5e2eb11820",
+   "word_count": 154,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-03",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Nothing has happened with my conversation partner. I signed up in September. B: Let me look. You asked for a native speaker of Spanish who is also studying engineering. The second half is the trouble. We match on language first and treat the subject as a preference, and this semester there was no engineer to give you. A: Then I should drop the engineering part. B: You do not have to. I can put you on the open list and leave the preference sitting on your record. A: And in the meantime? B: In the meantime you are matched this week with whoever is free. Most people take that and keep the preference for later. A: Let us do that. B: Done. You will hear from a partner before Friday.",
+    "passageGroupId": "pg-f1411c2d2b9145714f5187c17eb477a2",
+    "prompt": "[Conversation - Language lab] Why has the student not been matched?",
+    "choices": [
+     "The subject she asked for went unfilled this semester",
+     "Her request was entered under the wrong language",
+     "No native speakers of Spanish enrolled this semester",
+     "Her name was left off the open list by mistake"
+    ],
+    "correct_answer": "The subject she asked for went unfilled this semester",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The woman identifies the engineering condition as the obstacle and says there was no engineer to give her this semester. The woman reads the request back correctly as Spanish, so the language on it is not in question. Language is the criterion the lab matches on first, and she offers a partner this week, so speakers were available. An error on the open list is ruled out by the fact that she is only now being put on that list.",
+    "distractor_rationales": []
+   },
+   "content_hash": "f9f43e75af42f7c89dcb7a33b85cfc07",
+   "word_count": 131,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-04",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Nothing has happened with my conversation partner. I signed up in September. B: Let me look. You asked for a native speaker of Spanish who is also studying engineering. The second half is the trouble. We match on language first and treat the subject as a preference, and this semester there was no engineer to give you. A: Then I should drop the engineering part. B: You do not have to. I can put you on the open list and leave the preference sitting on your record. A: And in the meantime? B: In the meantime you are matched this week with whoever is free. Most people take that and keep the preference for later. A: Let us do that. B: Done. You will hear from a partner before Friday.",
+    "passageGroupId": "pg-f1411c2d2b9145714f5187c17eb477a2",
+    "prompt": "[Conversation - Language lab] What does the man arrange for the student?",
+    "choices": [
+     "A match with whichever partner is free this week",
+     "A transfer of her request to the engineering department",
+     "A place on a wait list kept for native speakers",
+     "A new request for Spanish with no subject named"
+    ],
+    "correct_answer": "A match with whichever partner is free this week",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The arrangement is the open list plus a partner this week, with the preference left on her record for later. The engineering department is never approached; engineering is only the subject she hoped her partner would study. A separate wait list for native speakers does not exist, since language is the first thing the lab matches on. Dropping the subject entirely is what the student proposes and the man tells her she does not have to do.",
+    "distractor_rationales": []
+   },
+   "content_hash": "2074964ba118260b0b3aa81dc4b5e860",
+   "word_count": 131,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-04",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: About the Saturday field trip. Do I get a seat on the van automatically? B: If you are enrolled in the course, yes. The question is the second van. A: There are two? B: Only above sixteen people. We are at fifteen, so everyone fits in one and three people are taking their own cars. A: Could I drive myself and claim the mileage? B: You can drive. The mileage goes to whoever carries other students, and that is settled the week before, not on the morning. A: And if I show up and there is no room? B: There will be room. Counting is the whole point of the sign-up sheet, and I close it on Thursday. A: Then I will sign now. B: Do, and mark whether you are driving.",
+    "passageGroupId": "pg-079f20d3bff440bf6795581794087efd",
+    "prompt": "[Conversation - Field trip] When is a second van provided?",
+    "choices": [
+     "When more than sixteen students are going",
+     "When more than three students drive themselves",
+     "When the enrolled list passes twenty",
+     "When every seat in the first van is taken"
+    ],
+    "correct_answer": "When more than sixteen students are going",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man gives the threshold plainly: a second van runs only above sixteen people, and the trip currently stands at fifteen. The three students taking their own cars are what keeps that number down, so more of them would make a second van less likely, not more. Twenty is a figure he never names. A full first van is what the sixteen-person rule anticipates, but the count he acts on is the sign-up sheet, not the seats.",
+    "distractor_rationales": []
+   },
+   "content_hash": "4d045bfd0dabf36ed5cc0fcacfad47d1",
+   "word_count": 133,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-05",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: About the Saturday field trip. Do I get a seat on the van automatically? B: If you are enrolled in the course, yes. The question is the second van. A: There are two? B: Only above sixteen people. We are at fifteen, so everyone fits in one and three people are taking their own cars. A: Could I drive myself and claim the mileage? B: You can drive. The mileage goes to whoever carries other students, and that is settled the week before, not on the morning. A: And if I show up and there is no room? B: There will be room. Counting is the whole point of the sign-up sheet, and I close it on Thursday. A: Then I will sign now. B: Do, and mark whether you are driving.",
+    "passageGroupId": "pg-079f20d3bff440bf6795581794087efd",
+    "prompt": "[Conversation - Field trip] Who is paid the mileage?",
+    "choices": [
+     "A student who carries other students in her car",
+     "A student whose car is listed on the sign-up sheet",
+     "A student who signs the sheet before it closes",
+     "A student for whom no seat in the van is left"
+    ],
+    "correct_answer": "A student who carries other students in her car",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man restricts the payment to whoever carries other students, and adds that it is arranged the week before rather than on the day. Being listed as a driver on the sheet is what he asks for at the end, and he never ties the payment to it. Signing early affects the count and the seat, not the payment. Nobody is left without a seat, because he says there will be room.",
+    "distractor_rationales": []
+   },
+   "content_hash": "b27787a6801dea69cb9cfe6b9a4975f5",
+   "word_count": 133,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-05",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Do you print at A0? I need a conference poster by Friday. B: We do, if the file reaches us by Wednesday noon. A: How is it paid for? B: You pay us, and the department pays you back, since you are presenting. We do not bill them. A: Does it matter what I send? B: A PDF with the fonts embedded. Send the design file and the type will shift when we open it. A: Then get me onto Thursday's run. B: Send the PDF tonight.",
+    "passageGroupId": "pg-ef46086a330b5491a2d812fd5abcfb90",
+    "prompt": "[Conversation - Print shop] How is the poster paid for?",
+    "choices": [
+     "The student pays and the department pays her back",
+     "The print shop bills the department directly",
+     "The student pays a deposit and the department the balance",
+     "The conference covers the cost for presenters"
+    ],
+    "correct_answer": "The student pays and the department pays her back",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says she pays the shop and the department pays her back afterward, and adds that they do not bill the department. Direct billing is the arrangement he explicitly rules out. No deposit is mentioned at any point, and nothing is split between two payers. The conference is where she is presenting, which is the condition for repayment, not the source of the money.",
+    "distractor_rationales": []
+   },
+   "content_hash": "0bf730867b8d902ed8f12b74d4c1f778",
+   "word_count": 88,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-06",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Do you print at A0? I need a conference poster by Friday. B: We do, if the file reaches us by Wednesday noon. A: How is it paid for? B: You pay us, and the department pays you back, since you are presenting. We do not bill them. A: Does it matter what I send? B: A PDF with the fonts embedded. Send the design file and the type will shift when we open it. A: Then get me onto Thursday's run. B: Send the PDF tonight.",
+    "passageGroupId": "pg-ef46086a330b5491a2d812fd5abcfb90",
+    "prompt": "[Conversation - Print shop] Why does the man ask for a PDF?",
+    "choices": [
+     "So the type stays where the designer put it",
+     "So the file can be enlarged without loss",
+     "So the shop can print it at full size",
+     "So the poster can go into Thursday's print run"
+    ],
+    "correct_answer": "So the type stays where the designer put it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "His stated reason is that opening a design file makes the type shift, which she will only notice on Friday; embedded fonts prevent that. Enlargement is not what he warns about, and he never suggests detail would be lost. Printing at full size is what the shop does with any file it accepts, and he raises no doubt about it. Thursday's run is the slot he books once he has the file, not the reason for choosing the format.",
+    "distractor_rationales": []
+   },
+   "content_hash": "003b0560f8aad2d8f574f2fa0f45d670",
+   "word_count": 88,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-06",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-07-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: The club's observing night, is it canceled? The forecast says cloud. A: We decide at four, never before. Cloud at noon tells us nothing. B: If it is canceled do we lose the slot? A: You keep it. A weather cancellation rolls to the next clear Wednesday, and that is the only thing that moves a booking. B: Someone in the club wanted to swap because of an exam. A: That I cannot do. An exam is not weather, and if I moved one booking for one I would be moving forty. B: Fair enough. What about the small dome? A: Different again. The small dome is open whenever the building is and takes no booking at all. B: Nobody signs up for it? A: Nobody has to. It is the big one people wait months for. B: Then we will use the small one if Wednesday goes. A: Sensible. It sees less, but it sees something.",
+    "passageGroupId": "pg-e3b12918f5a030e36d65904dfa89e41a",
+    "prompt": "[Conversation - Observatory] What happens to a booking canceled because of weather?",
+    "choices": [
+     "It moves to the next clear Wednesday",
+     "It is held until the club names a date",
+     "It is swapped for a small-dome slot",
+     "It goes to the back of the line"
+    ],
+    "correct_answer": "It moves to the next clear Wednesday",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man says a weather cancellation rolls to the next clear Wednesday and that this is the only thing that moves a booking. Waiting for the club to name a date would make it the club's decision, which is the arrangement he refuses elsewhere. The small dome needs no booking at all, so nothing can be exchanged for a slot there. Waiting is how the large dome is allocated in the first place, not what a cancellation does.",
+    "distractor_rationales": []
+   },
+   "content_hash": "159535e91ecb86c44a3c48df71704b4a",
+   "word_count": 158,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-07",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-07-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: The club's observing night, is it canceled? The forecast says cloud. A: We decide at four, never before. Cloud at noon tells us nothing. B: If it is canceled do we lose the slot? A: You keep it. A weather cancellation rolls to the next clear Wednesday, and that is the only thing that moves a booking. B: Someone in the club wanted to swap because of an exam. A: That I cannot do. An exam is not weather, and if I moved one booking for one I would be moving forty. B: Fair enough. What about the small dome? A: Different again. The small dome is open whenever the building is and takes no booking at all. B: Nobody signs up for it? A: Nobody has to. It is the big one people wait months for. B: Then we will use the small one if Wednesday goes. A: Sensible. It sees less, but it sees something.",
+    "passageGroupId": "pg-e3b12918f5a030e36d65904dfa89e41a",
+    "prompt": "[Conversation - Observatory] Why will the man not move the booking for an exam?",
+    "choices": [
+     "He would have to move a great many others as well",
+     "The decision on any booking is taken at four on the day",
+     "The club has already used its one change of date",
+     "Exam conflicts are handled by the department"
+    ],
+    "correct_answer": "He would have to move a great many others as well",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says that moving one booking for an exam would mean moving forty, which is a statement about precedent rather than about this club. Four o'clock is when the weather call is made, not when bookings are reallocated. Nothing suggests the club has moved a date before; the student is raising the possibility for the first time. No department is mentioned as having any part in the observing schedule.",
+    "distractor_rationales": []
+   },
+   "content_hash": "5033acac68e7b77f56161a34816a4ebe",
+   "word_count": 158,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-07",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-08-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: There is a card in my box about a package, but the counter is closed by the time my class ends. B: The counter is. The lockers by the side door run until eleven at night. A: Can anything go in a locker? B: Anything that fits and is not signed for. A signed item has to come off me in person, with your ID. A: Mine says signature required. B: Then the locker is out. What I can do is hold it and let you send somebody, with a note in your handwriting and their own ID. A: Would my roommate do? B: Anyone would, with the note. People send friends all through exam week. A: I will write one tonight. B: Bring it any morning. We open at eight.",
+    "passageGroupId": "pg-8ffe6ce2a5a31166f6b9a873c06955e1",
+    "prompt": "[Conversation - Mail room] Why can the student's package not go in a locker?",
+    "choices": [
+     "A signature is required when it is handed over",
+     "It is larger than the lockers by the side door",
+     "The lockers are emptied at eleven each night",
+     "The card in her box was issued too long ago"
+    ],
+    "correct_answer": "A signature is required when it is handed over",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The clerk allows lockers for anything that fits and is not signed for, and the student reads signature required off her card. Size is the other half of that rule but is never said to be the problem here. Eleven at night is when the lockers stop running, which is offered as a convenience rather than a restriction on this package. Nothing is said about the age of the card or any period after which it lapses.",
+    "distractor_rationales": []
+   },
+   "content_hash": "adcd958e925fbce05fb2111e2f140b8f",
+   "word_count": 132,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-08",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-08-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: There is a card in my box about a package, but the counter is closed by the time my class ends. B: The counter is. The lockers by the side door run until eleven at night. A: Can anything go in a locker? B: Anything that fits and is not signed for. A signed item has to come off me in person, with your ID. A: Mine says signature required. B: Then the locker is out. What I can do is hold it and let you send somebody, with a note in your handwriting and their own ID. A: Would my roommate do? B: Anyone would, with the note. People send friends all through exam week. A: I will write one tonight. B: Bring it any morning. We open at eight.",
+    "passageGroupId": "pg-8ffe6ce2a5a31166f6b9a873c06955e1",
+    "prompt": "[Conversation - Mail room] What does the clerk offer to do?",
+    "choices": [
+     "Hold the package for a person the student sends",
+     "Move the package into a locker by the side door",
+     "Deliver the package to the student's own box",
+     "Open the counter early on the day of collection"
+    ],
+    "correct_answer": "Hold the package for a person the student sends",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The clerk says what he can do is hold it and let the student send somebody with a note and an ID of their own. The locker is the option he has just ruled out for a signed-for item. The box is where the card was left, and the package itself is too big for that route, which is why a card was left at all. Eight in the morning is the shop's ordinary opening time, not a favour extended to this student.",
+    "distractor_rationales": []
+   },
+   "content_hash": "f5b13cd6fee02edea7f48081bffd8d7c",
+   "word_count": 132,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-08",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-09-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: We lost by forfeit last night with only four players. Is that right? B: Five to play, so four is a forfeit whatever they say. They were welcome to play you four on five, but the standings are not theirs to decide. A: Does it put us out? B: One does not. Two in a season does, and you now have one. A: Can we add players? B: Until the end of the fourth week, anyone with a student ID. After that the roster is frozen. A: That is this Friday. B: It is. I would spend today on it.",
+    "passageGroupId": "pg-d414487c8c3d8769075161d3cf407b2f",
+    "prompt": "[Conversation - Intramural sports] What does the man say about the forfeit?",
+    "choices": [
+     "A second one in the season would put the team out",
+     "It stands only because the other team reported it",
+     "It can be reversed if both teams agree to replay",
+     "It counts as a loss but not in the standings"
+    ],
+    "correct_answer": "A second one in the season would put the team out",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says one forfeit does not put the team out but two in a season does, and that they now have one. Nobody reported anything; the shortage of players is what creates the forfeit. The other side's willingness to play is exactly what he says cannot decide the standings. Counting it outside the standings would contradict his point that the standings are not the other team's to decide.",
+    "distractor_rationales": []
+   },
+   "content_hash": "96eb6702cfea29a972d7dd96a10269a3",
+   "word_count": 101,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-09",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-09-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: We lost by forfeit last night with only four players. Is that right? B: Five to play, so four is a forfeit whatever they say. They were welcome to play you four on five, but the standings are not theirs to decide. A: Does it put us out? B: One does not. Two in a season does, and you now have one. A: Can we add players? B: Until the end of the fourth week, anyone with a student ID. After that the roster is frozen. A: That is this Friday. B: It is. I would spend today on it.",
+    "passageGroupId": "pg-d414487c8c3d8769075161d3cf407b2f",
+    "prompt": "[Conversation - Intramural sports] What happens at the end of the fourth week?",
+    "choices": [
+     "The roster is closed to new players",
+     "A second forfeit begins to count against the team",
+     "The standings are published for the rest of the season",
+     "Teams must name five starters in writing"
+    ],
+    "correct_answer": "The roster is closed to new players",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "He says additions are open to anyone with a student ID until the end of the fourth week, after which the roster is frozen. The two-forfeit rule he describes runs across the whole season and is not attached to any week. He says nothing about when standings are published. Five to play is stated at the outset as the fixed requirement, with no separate declaration of starters.",
+    "distractor_rationales": []
+   },
+   "content_hash": "9d94fa2fb2cc1bdd5877a4234cc49d0e",
+   "word_count": 101,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-09",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-10-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Cast tickets. I was told I get two free ones for family. B: Two each, and they come out of the Thursday house rather than opening night. A: My parents can only come on Saturday. B: Then you buy Saturday at the student rate, and you would not be the first to do it. A: Can I give my two Thursday tickets to a friend instead? B: You can. They are yours. A: So you would print her name on them? B: That I cannot do. You pick them up and hand them over yourself. A: When do tickets go on sale generally? B: Monday for members of the theater, Wednesday for everyone else. Cast tickets I hold back, so yours are safe either way. A: Then I will take Thursday now. B: Two, under your name, picked up here on the night.",
+    "passageGroupId": "pg-1e94142aece0e8ef8cdcb559ad18db14",
+    "prompt": "[Conversation - Box office] Which performance are the cast member's free tickets for?",
+    "choices": [
+     "The Thursday performance",
+     "The opening night performance",
+     "The Saturday evening performance",
+     "The Wednesday performance"
+    ],
+    "correct_answer": "The Thursday performance",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The man says the free pair comes out of the Thursday house rather than opening night. Opening night is named only to be excluded. Saturday evening is when the student's parents can attend, which is why he is told he would have to buy those at the student rate. Wednesday is the day general sales open, not a performance the free tickets cover.",
+    "distractor_rationales": []
+   },
+   "content_hash": "8ebe8709d0f9443c77e3fd45e313c43a",
+   "word_count": 144,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-10",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-10-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Cast tickets. I was told I get two free ones for family. B: Two each, and they come out of the Thursday house rather than opening night. A: My parents can only come on Saturday. B: Then you buy Saturday at the student rate, and you would not be the first to do it. A: Can I give my two Thursday tickets to a friend instead? B: You can. They are yours. A: So you would print her name on them? B: That I cannot do. You pick them up and hand them over yourself. A: When do tickets go on sale generally? B: Monday for members of the theater, Wednesday for everyone else. Cast tickets I hold back, so yours are safe either way. A: Then I will take Thursday now. B: Two, under your name, picked up here on the night.",
+    "passageGroupId": "pg-1e94142aece0e8ef8cdcb559ad18db14",
+    "prompt": "[Conversation - Box office] What does the man say about passing the tickets to a friend?",
+    "choices": [
+     "They cannot be printed in the friend's name",
+     "They cannot be transferred once they are issued",
+     "The friend must pay the student rate for them",
+     "The friend must pick them up on the night"
+    ],
+    "correct_answer": "They cannot be printed in the friend's name",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man allows the handover and names one limit: he cannot print them in anyone else's name, so the student picks them up and passes them on himself. A bar on transfer is the opposite of what he agrees to. The student rate belongs to the Saturday seats the parents would need. Picking them up in person is what the student does, precisely because the friend cannot be named on them.",
+    "distractor_rationales": []
+   },
+   "content_hash": "3b01fd712515836942591c57d7d14d7c",
+   "word_count": 144,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-10",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-11-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: Three applications for a show, and I have never heard anything back. A: Applications go to the programming meeting, which meets once a month. Have you done the training? B: I did the studio training in the spring. A: That is the one that expires. Anything older than a semester has to be done again before a name goes to the meeting, so your application has been sitting with me. B: Nobody told me that. A: We should have. Do it again on Thursday and I will put you on this month's list myself. B: Would I get a late slot? A: The meeting decides that, not me. New hosts tend to start on weekends, although I have seen exceptions. B: Weekends are fine. A: Thursday, then, and we will see what they say.",
+    "passageGroupId": "pg-4eefd7b277b634d537605892c9d40c6e",
+    "prompt": "[Conversation - Campus radio] Why has the student's application not reached the meeting?",
+    "choices": [
+     "Her studio training is no longer current",
+     "The programming meeting meets monthly",
+     "She applied after the list had closed",
+     "New hosts get only weekend slots"
+    ],
+    "correct_answer": "Her studio training is no longer current",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The man says training older than a semester must be done again before a name goes to the meeting, and hers was in the spring. The monthly meeting explains how often applications are considered, not why three of hers were never seen. No closing date for the list is mentioned, and he offers to add her to this month's himself. Weekend starts are a tendency in how the meeting assigns slots, which is a later stage than the one she is stuck at.",
+    "distractor_rationales": []
+   },
+   "content_hash": "172af7afef7a9f108a1db49cbf4ff2bc",
+   "word_count": 135,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-11",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-11-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: Three applications for a show, and I have never heard anything back. A: Applications go to the programming meeting, which meets once a month. Have you done the training? B: I did the studio training in the spring. A: That is the one that expires. Anything older than a semester has to be done again before a name goes to the meeting, so your application has been sitting with me. B: Nobody told me that. A: We should have. Do it again on Thursday and I will put you on this month's list myself. B: Would I get a late slot? A: The meeting decides that, not me. New hosts tend to start on weekends, although I have seen exceptions. B: Weekends are fine. A: Thursday, then, and we will see what they say.",
+    "passageGroupId": "pg-4eefd7b277b634d537605892c9d40c6e",
+    "prompt": "[Conversation - Campus radio] What does the man say he will do?",
+    "choices": [
+     "Add her name to this month's list himself",
+     "Arrange a training session for Thursday",
+     "Ask the meeting for a late slot",
+     "Explain the delay to the programming meeting"
+    ],
+    "correct_answer": "Add her name to this month's list himself",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He commits to one thing, which is adding her to this month's list himself once she has retrained. Thursday is when she is to do the training, and he treats it as something already running rather than something he sets up. He says the late slot is the meeting's decision and not his. He accepts that nobody told her, but he does not offer to take that to the meeting.",
+    "distractor_rationales": []
+   },
+   "content_hash": "3b72dd25161aa54573478f87c2cfffdf",
+   "word_count": 135,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-11",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-12-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My confirmation says pick up in May. I ordered the cap and gown back in March. B: That is the standard date. Are you graduating at the winter ceremony? A: I am. B: Then March was the wrong form. The winter order closes in September and those gowns come from another supplier. A: So I have ordered nothing useful. B: You have ordered a spring gown, which I can cancel and refund in full up to four weeks before the spring date, and that has not passed. A: And the winter one? B: Rented on the day. We keep a stock of gowns in the hall. It is the hood that has to be ordered, because the color follows your degree. A: Then let us do the hood now. B: Tell me the degree and I will take the measurement off your record.",
+    "passageGroupId": "pg-119983ef4199334e37e8f24c533a8cfc",
+    "prompt": "[Conversation - Graduation office] What is wrong with the order the student placed in March?",
+    "choices": [
+     "It was placed for the wrong ceremony",
+     "It was placed after the September deadline",
+     "It went to the winter ceremony's supplier",
+     "It can no longer be refunded in full now"
+    ],
+    "correct_answer": "It was placed for the wrong ceremony",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The man establishes that the student is graduating in the winter and then says March was the wrong form, because the winter order closes in September. September closes the winter order, and the March order was never a winter one, so it cannot have missed that date. The winter supplier is a different firm that the March order never reached. A full refund is still available, since the man says the four-week point has not passed.",
+    "distractor_rationales": []
+   },
+   "content_hash": "5f6e1a0033cf18768148b6ab954d26f7",
+   "word_count": 144,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-12",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-12-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: My confirmation says pick up in May. I ordered the cap and gown back in March. B: That is the standard date. Are you graduating at the winter ceremony? A: I am. B: Then March was the wrong form. The winter order closes in September and those gowns come from another supplier. A: So I have ordered nothing useful. B: You have ordered a spring gown, which I can cancel and refund in full up to four weeks before the spring date, and that has not passed. A: And the winter one? B: Rented on the day. We keep a stock of gowns in the hall. It is the hood that has to be ordered, because the color follows your degree. A: Then let us do the hood now. B: Tell me the degree and I will take the measurement off your record.",
+    "passageGroupId": "pg-119983ef4199334e37e8f24c533a8cfc",
+    "prompt": "[Conversation - Graduation office] What does the man say he can still do about the March order?",
+    "choices": [
+     "Cancel it for a full refund",
+     "Move it across to the winter supplier",
+     "Hold it open until four weeks before the spring date",
+     "Exchange it for the hood the student needs"
+    ],
+    "correct_answer": "Cancel it for a full refund",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says he can cancel the spring gown and refund it in full, since the four-week point has not passed. The winter gowns come from another supplier, and he never offers to move an order between the two. Four weeks before the spring date is the limit on the refund, not a period he would hold the order open for. The hood is ordered separately at the end of the conversation, as a new order rather than an exchange.",
+    "distractor_rationales": []
+   },
+   "content_hash": "00f0d7a622091a1e5ff67bf2a75d3cbd",
+   "word_count": 144,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-12",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-13-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: If I take a literature course in Vienna, will it count toward my major here? B: Only when the department signs off before you go. Afterward is too late, and that is the part people get wrong. A: Who signs, you or the department? B: The department. I check that the credits convert, and they decide whether the content counts. A: I have no syllabus yet, only a course title. B: A title will not be enough for them. Send the reading list when it shows up, because that is what they actually read. A: And if it does not show up until August? B: Then it is tight but possible. Send it to me and I will walk it over myself. What does not work is coming home in January with a transcript and asking.",
+    "passageGroupId": "pg-ef56b877b484b8ad3eefc103d7519f55",
+    "prompt": "[Conversation - Study abroad office] What does the adviser say about approval sought after the course is taken?",
+    "choices": [
+     "It comes too late to count toward the major",
+     "It is granted once the credits convert cleanly",
+     "It takes longer than approval sought in advance",
+     "It is settled by the adviser rather than the department"
+    ],
+    "correct_answer": "It comes too late to count toward the major",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The adviser says the department must sign off before the student goes and that afterward is too late, and she names coming home in January with a transcript as the thing that does not work. Credit conversion is her own check and she never presents it as sufficient on its own. She describes late approval as impossible rather than slow. She is explicit that the department decides whether the content counts, not her.",
+    "distractor_rationales": []
+   },
+   "content_hash": "ede15bb61841d62b415d4db673ba2e5a",
+   "word_count": 137,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-13",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-13-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: If I take a literature course in Vienna, will it count toward my major here? B: Only when the department signs off before you go. Afterward is too late, and that is the part people get wrong. A: Who signs, you or the department? B: The department. I check that the credits convert, and they decide whether the content counts. A: I have no syllabus yet, only a course title. B: A title will not be enough for them. Send the reading list when it shows up, because that is what they actually read. A: And if it does not show up until August? B: Then it is tight but possible. Send it to me and I will walk it over myself. What does not work is coming home in January with a transcript and asking.",
+    "passageGroupId": "pg-ef56b877b484b8ad3eefc103d7519f55",
+    "prompt": "[Conversation - Study abroad office] What does the adviser ask the student to send him?",
+    "choices": [
+     "The reading list for the course",
+     "The course title as it is advertised",
+     "The transcript issued at the end",
+     "The syllabus once Vienna signs it"
+    ],
+    "correct_answer": "The reading list for the course",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "She twice names the reading list, saying it is what the department actually reads and that she will walk it over herself. The title is what the student already has, and the adviser says it will not be enough. A transcript arrives afterwards, and she describes arriving in January with one as the thing that cannot work. The student mentions having no syllabus, but the adviser asks for the reading list instead of one.",
+    "distractor_rationales": []
+   },
+   "content_hash": "e89dd8999a5dd93e181fd4fec942a72f",
+   "word_count": 137,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-13",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-14-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Forty hours at the food bank, near enough, and I have been writing them in a notebook. B: The notebook will not count, I am afraid. Hours go into the portal and the site supervisor confirms each entry. A: Can I enter forty at once? B: You can enter them. She would then be confirming a month of work from memory, and supervisors reject what they cannot remember. A: So week by week from now on. B: Week by week from now, and for the forty, ask her to confirm them all in one line by email. I will take an email for anything already past. A: Does the total matter, or the number of weeks? B: The total is what the award is set against. The weeks matter for the recommendation letter, which is the part employers actually read.",
+    "passageGroupId": "pg-1ad5db427bc29232fb2cace282bbc5fd",
+    "prompt": "[Conversation - Service learning] Why does the man doubt the forty hours would be confirmed?",
+    "choices": [
+     "The supervisor would be recalling a month at once",
+     "The supervisor may not have been on site for all of them",
+     "The portal may reject entries dated that far back",
+     "The award office may query one large entry"
+    ],
+    "correct_answer": "The supervisor would be recalling a month at once",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "His objection is about memory: entering forty hours together leaves the supervisor confirming a month of work at once, and he says supervisors reject what they cannot remember. He never questions whether she was present, only whether she will remember. He raises no limit in the portal on how old an entry may be, and offers to take an email for anything already past. The award office is mentioned only as what the total is set against.",
+    "distractor_rationales": []
+   },
+   "content_hash": "dbf097de58a61ba6f9ff33436f06f7e4",
+   "word_count": 141,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-14",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-14-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Forty hours at the food bank, near enough, and I have been writing them in a notebook. B: The notebook will not count, I am afraid. Hours go into the portal and the site supervisor confirms each entry. A: Can I enter forty at once? B: You can enter them. She would then be confirming a month of work from memory, and supervisors reject what they cannot remember. A: So week by week from now on. B: Week by week from now, and for the forty, ask her to confirm them all in one line by email. I will take an email for anything already past. A: Does the total matter, or the number of weeks? B: The total is what the award is set against. The weeks matter for the recommendation letter, which is the part employers actually read.",
+    "passageGroupId": "pg-1ad5db427bc29232fb2cace282bbc5fd",
+    "prompt": "[Conversation - Service learning] What does the man say the number of weeks affects?",
+    "choices": [
+     "The recommendation letter written for the student",
+     "The award the student is working toward",
+     "The supervisor's ability to confirm entries",
+     "The order of the entries in the portal"
+    ],
+    "correct_answer": "The recommendation letter written for the student",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He divides the two plainly: the total is what the award is set against, and the weeks matter for the recommendation letter. The award is therefore governed by the total, not by how many weeks the hours fall across. Confirmation depends on how recently an entry was made rather than on the count of weeks. Nothing is said about how the portal orders anything.",
+    "distractor_rationales": []
+   },
+   "content_hash": "915c7b2f3811ad988f9d8887f41fe9da",
+   "word_count": 141,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-14",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-15-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: Number sixty on the parking wait list. Is there any chance this year? A: For the lot behind the science building, no. For the north lot you would be driving in by October. B: I did not know they were separate. A: One list, two lots. You checked the science lot only, so you are behind everyone who checked both. B: Can I change that? A: You can, and you keep your number, which surprises people. Changing the lot does not send you down. B: Is the north lot far? A: Twelve minutes on foot, or the shuttle when it rains. There is also the evening permit, free after four. B: I am on campus at eight in the morning. A: Then the evening one is no use to you. Let me add the north lot.",
+    "passageGroupId": "pg-7321e6b604a42bd346d4ff16d7871467",
+    "prompt": "[Conversation - Parking office] What happens to the student's place on the list if the north lot is added?",
+    "choices": [
+     "It stays where it is, at number sixty",
+     "It slips behind those who checked both",
+     "It restarts from the date of the change",
+     "It moves to a separate list for that lot"
+    ],
+    "correct_answer": "It stays where it is, at number sixty",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The man says she keeps her number and that changing the lot does not send her down, adding that this surprises people. Sitting behind those who checked both is her position now, and it is a consequence of the original single check rather than of any change. Nothing is recalculated from a date. There is one list for two lots, which he states when she assumes otherwise.",
+    "distractor_rationales": []
+   },
+   "content_hash": "46b559801f876e0ddb639d9d4c6a617b",
+   "word_count": 137,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-15",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-15-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: B: Number sixty on the parking wait list. Is there any chance this year? A: For the lot behind the science building, no. For the north lot you would be driving in by October. B: I did not know they were separate. A: One list, two lots. You checked the science lot only, so you are behind everyone who checked both. B: Can I change that? A: You can, and you keep your number, which surprises people. Changing the lot does not send you down. B: Is the north lot far? A: Twelve minutes on foot, or the shuttle when it rains. There is also the evening permit, free after four. B: I am on campus at eight in the morning. A: Then the evening one is no use to you. Let me add the north lot.",
+    "passageGroupId": "pg-7321e6b604a42bd346d4ff16d7871467",
+    "prompt": "[Conversation - Parking office] Why is the evening permit of no use to the student?",
+    "choices": [
+     "She is on campus before it takes effect",
+     "She is too far down the list to be issued one",
+     "She walks to the north lot rather than driving",
+     "She already pays for a space by the science building"
+    ],
+    "correct_answer": "She is on campus before it takes effect",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The permit is free after four, and the student says she is on campus at eight in the morning, which is what makes the man drop it. Her place on the list is what he has just told her she keeps, and the evening permit is offered as something outside the list altogether. She is asking about driving in, not walking; the twelve-minute walk is what the shuttle covers in the rain. Nothing suggests she holds a space already, which is why she is on the list at all.",
+    "distractor_rationales": []
+   },
+   "content_hash": "77b789cdff42dcde66318ed422d22389",
+   "word_count": 137,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-15",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-16-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Two bound copies of my thesis by the twelfth. Can you do that? B: Hard binding takes five working days from the moment you approve the proof. Soft is same day. A: The library wants hard, I think. B: The library takes soft now. It is your department that may still want hard, and they all differ, so I would call rather than guess. A: If they say hard, the twelfth is tight. B: It is fine if the file is here on Monday. What delays people is not the binding, it is the page numbering. A: Numbering? B: We will not start with the front matter numbered wrong. A: Roman numerals and then Arabic? B: That is the usual pattern, but check your handbook, because two departments here do it the other way. A: I will ask them about both. B: One call, two questions. Cheaper than reprinting.",
+    "passageGroupId": "pg-516da51004a29edf92a29cb7b72248e0",
+    "prompt": "[Conversation - Bindery] What does the man say about the library's requirement?",
+    "choices": [
+     "The library now accepts soft binding",
+     "The library still requires hard binding",
+     "The library follows the department",
+     "The library sets the numbering style"
+    ],
+    "correct_answer": "The library now accepts soft binding",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "The student says the library wants hard binding and the man corrects her: the library takes soft now. Two copies is the number she came in asking for, not something the library is said to require. The man puts the remaining hard-binding requirement on the department rather than making the library follow it. Numbering is governed by the handbook and varies by department, with the library playing no part.",
+    "distractor_rationales": []
+   },
+   "content_hash": "abbb04d7c3bb3fb780029028d5b41c44",
+   "word_count": 150,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-16",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Conversation",
+   "subskill": null,
+   "task": "conversation",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "conversation",
+   "passage_group_id": null,
+   "item": {
+    "id": "CONV6-16-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: A: Two bound copies of my thesis by the twelfth. Can you do that? B: Hard binding takes five working days from the moment you approve the proof. Soft is same day. A: The library wants hard, I think. B: The library takes soft now. It is your department that may still want hard, and they all differ, so I would call rather than guess. A: If they say hard, the twelfth is tight. B: It is fine if the file is here on Monday. What delays people is not the binding, it is the page numbering. A: Numbering? B: We will not start with the front matter numbered wrong. A: Roman numerals and then Arabic? B: That is the usual pattern, but check your handbook, because two departments here do it the other way. A: I will ask them about both. B: One call, two questions. Cheaper than reprinting.",
+    "passageGroupId": "pg-516da51004a29edf92a29cb7b72248e0",
+    "prompt": "[Conversation - Bindery] What does the man say usually delays a thesis?",
+    "choices": [
+     "Front matter that is numbered wrong",
+     "Files sent in the wrong page size",
+     "Copies ordered in the wrong binding",
+     "Proofs left unapproved over a weekend"
+    ],
+    "correct_answer": "Front matter that is numbered wrong",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "He says plainly that what delays people is not the binding but the page numbering, and that they will not start with the front matter numbered wrong. Page size never comes up; the size he discusses is the binding, hard against soft. Ordering the wrong binding is the mistake he heads off by telling her to call the department, and he does not name it as the usual delay. Proof approval starts the five working days, and he treats that clock as the ordinary schedule rather than a hold-up.",
+    "distractor_rationales": []
+   },
+   "content_hash": "e9a21fb8a82ec48a1a0777d0f9b7a676",
+   "word_count": 150,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-conv-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "toefl-conv-v6-16",
+     "note": "Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked. Gendered references corrected to the voice order (first speaker nova/female, second onyx/male). Release only by the co-founder sitting (toefl-conv-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
