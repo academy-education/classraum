@@ -1,0 +1,26 @@
+{
+  "note": "The co-founder's release-sitting order (2026-10-22). Each entry is satisfied when its cohort has no staged row he has not reviewed, or when the cohort has had `upTo` runs drawn. draw-next.mjs draws the first unsatisfied entry. Order follows the runout monitor (real student closest to a repeat first); every move is an order-only amendment recorded in the cohort's prereg or REGISTER.",
+  "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
+  "queue": [
+    { "cohort": "isee-reading-draft-1", "tool": "item", "domain": "Reading Comprehension", "size": 36, "family": "isee", "runId": "isee-draft1-release-cofounder-{date}" },
+    { "cohort": "ssat-reading-draft-3", "tool": "item", "domain": "Reading Comprehension", "size": 36, "family": "ssat", "runId": "ssat-draft3-release-cofounder-{date}" },
+    { "cohort": "cr-v11", "tool": "item", "domain": "Choose a Response", "size": 12, "family": "toefl", "upTo": 1, "runId": "crv11-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "upTo": 1, "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-talk-draft-1", "tool": "sets", "runId": "toefl-talk1-release{n}-cofounder-{date}" },
+    { "cohort": "cr-v11", "tool": "item", "domain": "Choose a Response", "size": 12, "family": "toefl", "runId": "crv11-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "upTo": 2, "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "cr-v12", "tool": "item", "domain": "Choose a Response", "size": 12, "family": "toefl", "upTo": 1, "runId": "crv12-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "upTo": 3, "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "cr-v12", "tool": "item", "domain": "Choose a Response", "size": 12, "family": "toefl", "runId": "crv12-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "upTo": 4, "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-passage-draft-1", "tool": "sets", "upTo": 1, "runId": "toefl-passage1-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "upTo": 5, "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-passage-draft-1", "tool": "sets", "upTo": 2, "runId": "toefl-passage1-release{n}-cofounder-{date}" },
+    { "cohort": "ssat-verbal-draft-1", "tool": "item", "domain": "Verbal", "size": 12, "family": "ssat", "runId": "ssatvd1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-passage-draft-1", "tool": "sets", "runId": "toefl-passage1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-conv-draft-1", "tool": "sets", "runId": "toefl-conv1-release{n}-cofounder-{date}" },
+    { "cohort": "toefl-conv-draft-2", "tool": "sets", "runId": "toefl-conv2-release{n}-cofounder-{date}" },
+    { "cohort": "isee-reading-draft-2", "tool": "item", "domain": "Reading Comprehension", "size": 36, "family": "isee", "runId": "isee-draft2-release-cofounder-{date}" },
+    { "cohort": "isee-reading-draft-3", "tool": "item", "domain": "Reading Comprehension", "size": 36, "family": "isee", "runId": "isee-draft3-release-cofounder-{date}" }
+  ]
+}
