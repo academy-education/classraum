@@ -10515,6 +10515,53 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "sat-ii-hard-v22-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v22-ii-hard",
+      "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+      "status": "inserted",
+      "note": "PREREG-II22-2026-10-23.md (v21 method; 2x2 banned, table designs varied). Four Claude authors x 6, frozen 2748923b. 21 of 24 kept (12 hard / 9 medium), 3 dropped (the three trend-break table items, median struck 2). All three graders named the four-group two-factor textual design as a cross-item template (strike the both-vs-neither option); recorded, not a drop rule.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+          "verdict": "bank-helper check OK; ii22-merge 0 problems (after two checker bugs fixed pre-freeze, Amendment 1); dupscan 0/24."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+          "verdict": "rw17-oo-render ii: candidate 27.8% (20/72) vs live CoE control 72.2% (52/72, measured), E = -44.4 vs +10: PASS. Unanimity 5/24 vs 15/24."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+          "verdict": "elimination-paired (24 v 24): 0.0% vs 0.0%, margin 0.0 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0,
+          "margin": 0,
+          "threshold": 0.2,
+          "n": 24,
+          "controlN": 24,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+          "verdict": "Graders d/e/f phase 1 cold sha-recorded; cold 24/24 each; key_ok false 0; recommend_drop 0. ii22-gate kept 21, dropped A-06, B-06, C-06."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "7e82f8e15f1ab5a690a456099532725b919beee83b5bdd8cd7278ef137179d1a",
+          "verdict": "verify-answer-key-spread --batch kept ok (n=21; windows 38.9% vs 11.7% latent, choices shuffled at draw); key strictly longest 1/21, shortest 3/21."
+        }
+      }
     }
   ],
   "auditedCohorts": [

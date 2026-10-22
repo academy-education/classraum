@@ -1,0 +1,151 @@
+{
+ "grader": "e",
+ "phase": 2,
+ "batch_note": "Yes, in three ways. (1) Key-letter sequences repeat across sub-cohorts: A-01..06 and D-01..06 are both C,A,D,B,D,A, and B-01..06 is C,A,D,B,C,A. The overall letter spread is 6/6/6/6, so a per-cohort histogram will not catch it. Shuffle within each sub-cohort independently. (2) All 12 hypothesis items use one 2x2 template: the key is always the comparison that changes only one factor, and the both-vs-neither option is never keyed. A student who learns that the confounded comparison is never right strikes one option per item for free. Each remaining item still needs the matrix built, so this is a weak tell, not a fatal one. (3) Table items: in II22A-06, II22C-06 and II22B-06 the key is the only comparison that breaks the trend, and the other options show the ordinary pattern on sight. II22A-06 and II22C-06 share the same phrasing: the lower or nearer site is named first with the larger value. II22D-04's distractors share one identical ratio. All 24 keys matched my cold answers and none is defective, so I recommend no drops. The fixes are re-shuffling the letters and varying the trend-reversal items' distractors.",
+ "items": {
+  "II22A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key C is the only noise-against comparison; explanation correctly classes A and D as supporting and B as confounded."
+  },
+  "II22A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Cassel vs Fairlie isolates fungi; the explanation's handling of the shade comparisons is sound."
+  },
+  "II22A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Bypass earlier than the lit quiet lanes is the one comparison against lamps; the reasoning holds."
+  },
+  "II22A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "R-07 is the only strain passing both conditions; each distractor fails exactly one, as explained."
+  },
+  "II22A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Carrow Point 35/64 is the only colony above half; sound, but easy for a hard-route slot."
+  },
+  "II22A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but the key is the only option naming the lower site first with the larger value, and B and C are on-trend increases struck on sight; this phrasing tell, shared with II22C-06, is worth fixing."
+  },
+  "II22B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "North July over north March weakens freeze-thaw; correct, though it is the lone option favouring a non-freeze-thaw window."
+  },
+  "II22B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Sealed wool over ventilated cotton isolates the lining as a source; the explanation is coherent."
+  },
+  "II22B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Iselund pre-pump vs post-pump in normal years weakens Lark; the explanation correctly sets aside the Kalvnesby look-alike and the confounded drought comparison."
+  },
+  "II22B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Garvik is deepest and lost 19 days against Hesk's 27; all distractors are accurate but compare the wrong lake, a good hard design."
+  },
+  "II22B-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Ivarsby is the only young-sediment well over 100 m above the limit; sound."
+  },
+  "II22B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Joskar thicker than the nearer Ilvikmoen is correct; distractors are weak because all three show the ordinary trend."
+  },
+  "II22C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Nolvaston over Rossmere isolates breakfast from tardiness; the reasoning holds."
+  },
+  "II22C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Pruett (radio only) over Nantle (contact only) weakens Paredes; sound."
+  },
+  "II22C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Fourth floor is the only lottery floor with daylight; the explanation is correct."
+  },
+  "II22C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Nuskirk's 7/30 is the only drop over one-fifth; Orvel's larger absolute drop is a good trap."
+  },
+  "II22C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Medlow meets both conditions; options omit the card percentage, so the lookup is forced, and the explanation is accurate."
+  },
+  "II22C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; same tell as II22A-06: the key names the nearer town first with the larger value, and A and C are on-trend, so two distractors fall on sight."
+  },
+  "II22D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Wrennick vs Skarra isolates climate; the explanation is correct."
+  },
+  "II22D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Ulving (pine, damp) over Tamm (oak, dry) weakens oak; sound."
+  },
+  "II22D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Same-decade Tolvik vs Saltrup isolates glass access; the explanation correctly treats the 1720s Tolvik case as pre-glassworks."
+  },
+  "II22D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but all three distractors (and the unlisted Vanner) sit at exactly 0.70, so the key is the odd ratio out and can be picked without testing the two-thirds bar; vary the distractor ratios (e.g. 0.68, 0.70, 0.72)."
+  },
+  "II22D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "1500s-1510s is the only steady-paper step where books fell; the 1480s-1490s trap is well built. The render's table header lacks the silver unit the options use; check it is present in the live item."
+  },
+  "II22D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Sollen alone meets both conditions; the explanation's per-seat arithmetic is correct."
+  }
+ }
+}

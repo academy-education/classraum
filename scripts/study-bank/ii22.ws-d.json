@@ -1,0 +1,151 @@
+{
+ "grader": "d",
+ "phase": 2,
+ "batch_note": "Yes, at two levels. (1) Twelve of the 24 items (all A/B/C/D-01..03) use one 2x2 dissociation template: two hypotheses, four groups crossing the two factors, and four comparison options. Without fail, one option compares the both-factors group with the neither-factor group (confounded, predicted by both), two options vary only one factor in the direction the target hypothesis predicts, and the key is the crossed comparison (factor-A-only vs factor-B-only) for 'weaken' items, or the single-factor isolation of the target for 'support' items. A student who learns the template can strike the confounded option every time and then pick the crossed pair for 'weaken' items without reading the specifics; B-02 partly breaks this because its key is a both-variables-differ comparison. (2) The quantitative items fall into three repeated shapes: two-condition filter (A-04, B-05, C-05, D-06), threshold ratio with an absolute-magnitude trap (A-05, C-04, D-04), and 'one point breaks the monotone trend' (A-06, B-06, C-06, and D-05 in a two-column variant). In the trend-break shape the key always names the single out-of-order adjacent pair, findable by scanning, and the other options restate the normal trend, which makes those items easier than their placement. Key letters are balanced (6 each), so there is no positional tell.",
+ "items": {
+  "II22A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key and explanation correct; a clean two-factor dissociation."
+  },
+  "II22A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly assigns each distractor to shade support or confound."
+  },
+  "II22A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation sound, with B correctly identified as predicted by both accounts."
+  },
+  "II22A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; arithmetic in the explanation checks out for all four strains."
+  },
+  "II22A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the near-miss Avelin 44/90 is handled correctly."
+  },
+  "II22A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and coherent, but the single dip in the column is found on a scan, so two distractors are weak; borderline for the hard route, not a drop."
+  },
+  "II22B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation sound, though the key is the only option where the July/rain month wins, a mild shortcut."
+  },
+  "II22B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation rightly frames the two-factor key as pitting the sources, and correctly calls C contrary to both accounts."
+  },
+  "II22B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly notes both comparison periods are normal-rainfall years and that C bears on neither claim."
+  },
+  "II22B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; all options accurate, so only the depth column decides, which is a good hard-route design."
+  },
+  "II22B-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly shows only Ivarsby meets both conditions."
+  },
+  "II22B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but the item is easy for the hard route: the only non-monotone pair is visible on a scan and the three distractors all show ordinary thinning."
+  },
+  "II22C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation sound on the confounded Mendrick-vs-Rossmere option."
+  },
+  "II22C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly maps each town to contact and signal."
+  },
+  "II22C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly reads floor 4 as the only lottery floor with daylight."
+  },
+  "II22C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the absolute-vs-relative trap at Orvel is well built and the arithmetic is right."
+  },
+  "II22C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; requires the card column the options omit, and the explanation's ratios are right."
+  },
+  "II22C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but as with A-06 the single price inversion is found by scanning, so two distractors are weak."
+  },
+  "II22D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly isolates stream type with fees held at none."
+  },
+  "II22D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation sound on the dissociation and on the confounded Selander-vs-Vass option."
+  },
+  "II22D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; explanation correctly handles the decade and location confounds in B and C."
+  },
+  "II22D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the arithmetic is right, and D's largest absolute saving is a good magnitude trap."
+  },
+  "II22D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; B, the other paper-flat step where books rose, is the right strong distractor."
+  },
+  "II22D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the per-seat division is verified for all halls, including the Ulmar decoy that passes volume."
+  }
+ }
+}
