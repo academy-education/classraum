@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "semantic narrowing",
+  "passage": "The English word \"meat\" once referred to food of any kind, which is why an old phrase could speak of \"meat and drink\" to mean an entire meal. Only over several centuries did the word come to name animal flesh in particular. Historical dictionaries document such shifts by quoting passages in order of date, so that a reader can watch the word's earlier, broader ______ give way to the narrower one still in use today.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "region",
+    "register",
+    "sense",
+    "readership"
+  ],
+  "correct_answer": "sense",
+  "explanation": "The passage describes \"meat\" narrowing from food of any kind to animal flesh, a change in what the word means, so the dated quotations show its broader \"sense\" giving way to a narrower one. \"Register\" would describe how formal the word sounds, and \"region\" and \"readership\" would describe where or by whom it was used; the passage discusses none of these, only what the word refers to.",
+  "antonym_pairs": [],
+  "polarity": {
+    "region": "0",
+    "register": "0",
+    "sense": "0",
+    "readership": "0"
+  },
+  "rarity_order": [
+    "sense",
+    "region",
+    "readership",
+    "register"
+  ],
+  "killed_by": {
+    "region": "logic",
+    "register": "logic",
+    "readership": "logic"
+  },
+  "after_blank": "give",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

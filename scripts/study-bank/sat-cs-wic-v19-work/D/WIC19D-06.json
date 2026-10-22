@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "composite aircraft inspection",
+  "passage": "Lighter aircraft burn less fuel, and carbon-fiber composites cut an airframe's weight dramatically. Their weakness shows only after an impact. Aluminum dents where it is struck, but a composite panel can crack internally while its surface still looks intact, so inspectors must check it with ultrasound, a slower and costlier process than looking. Airlines that switch to composites therefore ______ part of what they save on fuel.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "squander",
+    "surrender",
+    "rebate",
+    "understate"
+  ],
+  "correct_answer": "surrender",
+  "explanation": "Composites save fuel, but their hidden cracks force slower, costlier ultrasound checks, so airlines give back, or \"surrender,\" part of those savings. \"Squander\" implies wasting money foolishly, yet the inspections are a necessary cost, not a careless one. \"Rebate\" would mean returning money to someone else, and \"understate\" would mean reporting the savings as smaller than they are; the passage describes neither.",
+  "antonym_pairs": [],
+  "polarity": {
+    "squander": "-",
+    "surrender": "0",
+    "rebate": "0",
+    "understate": "0"
+  },
+  "rarity_order": [
+    "surrender",
+    "rebate",
+    "squander",
+    "understate"
+  ],
+  "killed_by": {
+    "squander": "logic",
+    "rebate": "logic",
+    "understate": "logic"
+  },
+  "after_blank": "part",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "narrow-spectrum antibiotics",
+  "passage": "The first antibiotics killed many kinds of bacteria at once, including the harmless microbes that line the human gut and help digest food. Patients cured of an infection therefore often suffered weeks of digestive trouble afterward. Researchers now hope that more ______ drugs will avoid this problem. Several compounds in trials, for instance, each attack a single bacterial species and leave its neighbors untouched.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "synthetic",
+    "soluble",
+    "selective",
+    "regulated"
+  ],
+  "correct_answer": "selective",
+  "explanation": "The digestive trouble came from killing harmless gut microbes along with the infection, and the compounds in trials attack only one species, so the hoped-for drugs are more \"selective.\" \"Synthetic\" and \"soluble\" describe how a drug is made or how it dissolves, neither of which would spare the gut. \"Regulated\" concerns legal oversight, which does nothing to stop a drug from killing harmless bacteria.",
+  "antonym_pairs": [],
+  "polarity": {
+    "synthetic": "0",
+    "soluble": "0",
+    "selective": "0",
+    "regulated": "0"
+  },
+  "rarity_order": [
+    "regulated",
+    "selective",
+    "synthetic",
+    "soluble"
+  ],
+  "killed_by": {
+    "synthetic": "logic",
+    "soluble": "logic",
+    "regulated": "logic"
+  },
+  "after_blank": "drugs",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

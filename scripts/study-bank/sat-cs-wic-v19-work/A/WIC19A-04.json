@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "fungicide resistance in wheat rust",
+  "passage": "Within a single growing season, a strain of wheat rust that resists one class of fungicide spread across most of a region's fields. Genetic tests, however, showed that the resistance protects the fungus against that class alone. In fields sprayed with a chemically different fungicide, the strain caused no more damage than ordinary rust did. The strain's advantage, then, is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cumulative",
+    "bounded",
+    "contagious",
+    "cosmetic"
+  ],
+  "correct_answer": "bounded",
+  "explanation": "The strain spread quickly where one fungicide was used but did no extra damage under a different one, so its advantage is real yet confined to particular conditions: it is \"bounded.\" \"Cosmetic\" would make the advantage superficial, but the strain's rapid spread shows it was real. \"Cumulative\" implies an advantage that builds over time, which nothing in the passage describes, and \"contagious\" mistakes the spread of the strain for the passing of its advantage to other fungi.",
+  "antonym_pairs": [],
+  "polarity": {
+    "cumulative": "0",
+    "bounded": "0",
+    "contagious": "0",
+    "cosmetic": "-"
+  },
+  "rarity_order": [
+    "contagious",
+    "cumulative",
+    "cosmetic",
+    "bounded"
+  ],
+  "killed_by": {
+    "cumulative": "logic",
+    "contagious": "logic",
+    "cosmetic": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "elements of a statutory offense",
+  "passage": "Under one nineteenth-century statute, a person who handed a passing fugitive a meal or pointed out the road north committed no offense. The law punished only those who concealed a fugitive in a house, barn, or cellar for some period, shielding him from the officers searching for him. To win a conviction, prosecutors therefore had to prove that the accused had ______ the fugitive, not merely met or assisted him along the way.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["enlisted", "fed", "deputized", "harbored"],
+  "correct_answer": "harbored",
+  "explanation": "The word \"harbored\" fits because the offense required concealing and sheltering the fugitive in a building for some time. \"Enlisted\" fails because recruiting the fugitive into some service says nothing about hiding him from searchers, which is what the statute punished. \"Fed\" fails because the passage says handing a fugitive a meal was no offense. \"Deputized\" fails because giving the fugitive official authority has nothing to do with concealing him from the officers.",
+  "antonym_pairs": [],
+  "polarity": {"enlisted": "0", "fed": "0", "deputized": "0", "harbored": "0"},
+  "rarity_order": ["fed", "enlisted", "harbored", "deputized"],
+  "killed_by": {"enlisted": "logic", "fed": "explicit", "deputized": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

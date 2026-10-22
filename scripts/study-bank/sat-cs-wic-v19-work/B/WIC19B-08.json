@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "mill town recovery",
+  "passage": "Two neighboring mill towns lost their main employer in the same year. In one, the owners sold the buildings to a workers' cooperative that kept about a third of the looms running; in the other, the buildings stood empty for a decade, and most of the trained weavers left for the cities. Twenty years later, the region's new electronics plants were staffed largely by former weavers from the first town. One historian argues that the cooperative mattered less for the jobs it saved than for the skilled workers it ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["employed", "drew", "held", "educated"],
+  "correct_answer": "held",
+  "explanation": "The word \"held\" fits because the second town lost its trained weavers to the cities, while the first town kept its weavers long enough for them to staff the new plants. \"Employed\" fails because the historian sets the workers apart from the jobs the cooperative saved, and employing them is just those jobs. \"Drew\" fails because the weavers were already in the town, not attracted from elsewhere. \"Educated\" fails because the weavers were already trained; what differed between the towns was whether they stayed.",
+  "antonym_pairs": [],
+  "polarity": {"employed": "0", "drew": "0", "held": "0", "educated": "+"},
+  "rarity_order": ["held", "drew", "employed", "educated"],
+  "killed_by": {"employed": "logic", "drew": "logic", "educated": "logic"},
+  "after_blank": "",
+  "pos": "verb",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "home advantage in soccer",
+  "passage": "Home teams in professional soccer have long won more often than visiting teams, and researchers once credited the tiring effects of travel. Then, for most of a season, matches were played in empty stadiums because of a public-health emergency. Visiting teams traveled exactly as before, yet the home teams' ______ nearly disappeared, a result that points to the crowd rather than the journey as its main source.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["grip", "following", "edge", "flair"],
+  "correct_answer": "edge",
+  "explanation": "The word \"edge\" fits because the passage is about home teams' modest advantage in winning more often, which shrank when crowds were absent. \"Grip\" fails because it suggests firm control, but home teams only won somewhat more often. \"Following\" fails because the absent crowd is offered as the cause of what disappeared, so the thing that vanished cannot be the crowd itself. \"Flair\" fails because what the passage tracks is a winning record, not a style of play.",
+  "antonym_pairs": [],
+  "polarity": {"grip": "0", "following": "0", "edge": "+", "flair": "+"},
+  "rarity_order": ["following", "edge", "grip", "flair"],
+  "killed_by": {"grip": "logic", "following": "logic", "flair": "logic"},
+  "after_blank": "nearly",
+  "pos": "noun",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

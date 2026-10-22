@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "workplace correction norms",
+  "passage": "In many offices, a person who makes an error in a meeting, whatever their rank, is seldom corrected in front of the group; a colleague instead raises the point afterward in private, or phrases it as a question. One sociologist argues that these customs exist less to protect the truth than to protect ______. An open correction, she notes, lowers a person's standing in the eyes of others, while a private word leaves that standing intact.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["goodwill", "face", "decorum", "hierarchy"],
+  "correct_answer": "face",
+  "explanation": "The word \"face\" fits because the sociologist explains that the customs shield a person's standing in the eyes of others, which an open correction would lower. \"Goodwill\" fails because the concern she names is each individual's public standing, not friendly feeling between colleagues. \"Decorum\" fails because the customs are themselves a form of decorum; the passage asks what they protect, and the answer it gives is standing. \"Hierarchy\" fails because the customs apply to people whatever their rank.",
+  "antonym_pairs": [],
+  "polarity": {"goodwill": "+", "face": "0", "decorum": "+", "hierarchy": "0"},
+  "rarity_order": ["face", "goodwill", "hierarchy", "decorum"],
+  "killed_by": {"goodwill": "logic", "decorum": "logic", "hierarchy": "explicit"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

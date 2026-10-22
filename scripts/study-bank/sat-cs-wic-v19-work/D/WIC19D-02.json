@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "diagnostic scan ordering",
+  "passage": "Two clinics handled patients arriving with a persistent cough in different ways. The first sent every such patient for a chest scan. The second scanned only those whose physical examination pointed to pneumonia, so it ordered barely a third as many scans. Yet over the same year the two clinics diagnosed nearly the same number of pneumonia cases. For the second clinic, then, the ______ of each scan was roughly triple the first clinic's.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "size",
+    "yield",
+    "resolution",
+    "turnaround"
+  ],
+  "correct_answer": "yield",
+  "explanation": "The second clinic found about as many cases with a third as many scans, so each of its scans produced about three times as many diagnoses; that output per scan is its \"yield.\" The comparison rests only on cases found and scans ordered, so it says nothing about the \"size\" of each scan file, the image \"resolution,\" or how quickly results came back (\"turnaround\").",
+  "antonym_pairs": [],
+  "polarity": {
+    "size": "0",
+    "yield": "0",
+    "resolution": "0",
+    "turnaround": "0"
+  },
+  "rarity_order": [
+    "size",
+    "resolution",
+    "yield",
+    "turnaround"
+  ],
+  "killed_by": {
+    "size": "logic",
+    "resolution": "logic",
+    "turnaround": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

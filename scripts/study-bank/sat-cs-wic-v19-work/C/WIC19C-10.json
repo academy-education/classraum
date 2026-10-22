@@ -1,0 +1,20 @@
+{
+  "id": "WIC19C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "visual art: cleaning an old painting",
+  "passage": "Conservators cleaning an old painting work in small squares, testing each solvent on a patch no larger than a fingernail before treating the whole surface. A solution that lifts yellowed varnish cleanly from the sky may also dissolve the paint of a face nearby, and such damage cannot be reversed. For this reason, the work rewards ______ far more than speed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["nerve", "luck", "patience", "knack"],
+  "correct_answer": "patience",
+  "explanation": "Because every solvent is tested slowly on a tiny patch and a mistake cannot be undone, the work rewards slow, careful effort: \"patience.\" Bold \"nerve\" is the wrong quality where one rash step causes permanent damage. The method of testing patch by patch is designed to leave nothing to \"luck,\" and it relies on a careful procedure rather than a natural \"knack.\"",
+  "antonym_pairs": [],
+  "polarity": {"nerve": "+", "luck": "0", "patience": "+", "knack": "+"},
+  "rarity_order": ["luck", "patience", "nerve", "knack"],
+  "killed_by": {"nerve": "logic", "luck": "logic", "knack": "logic"},
+  "after_blank": "far",
+  "pos": "noun",
+  "shape": "process and its demands",
+  "key_from_one_sentence": true
+}

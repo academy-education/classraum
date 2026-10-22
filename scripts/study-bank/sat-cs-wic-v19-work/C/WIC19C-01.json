@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "architecture: passive shading",
+  "passage": "In a library designed for a hot, dry city, the architect lined the south facade with deep stone fins instead of installing large cooling units. At midday the fins cast broad shadows across the glass, and the reading rooms behind them stay several degrees cooler than the street outside. The fins thus ______ a task that, in most buildings of this size, is left to machinery hidden in the basement.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "prolong",
+    "perform",
+    "quantify",
+    "obstruct"
+  ],
+  "correct_answer": "perform",
+  "explanation": "The fins keep the rooms cool all day without cooling units, so they do the job usually left to machinery: they \"perform\" that task. They do not \"prolong\" it, since nothing suggests the cooling takes longer, and they do not \"quantify\" it, since they lower the temperature rather than measure it. Although the fins block sunlight, they do not \"obstruct\" the cooling task; they accomplish it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "prolong": "0",
+    "perform": "0",
+    "quantify": "0",
+    "obstruct": "-"
+  },
+  "rarity_order": [
+    "perform",
+    "prolong",
+    "obstruct",
+    "quantify"
+  ],
+  "killed_by": {
+    "prolong": "logic",
+    "quantify": "logic",
+    "obstruct": "logic"
+  },
+  "after_blank": "a",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

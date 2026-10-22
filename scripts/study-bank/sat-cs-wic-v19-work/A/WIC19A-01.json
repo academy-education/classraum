@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "marsh facilitation",
+  "passage": "In a coastal marsh, an ecologist cleared the dominant cordgrass from several plots, expecting the smaller plants growing in its shade to flourish once the competition was gone. Instead, many of them died within weeks. Without cordgrass roots piping air into the waterlogged mud, the soil had quickly become too starved of oxygen for the smaller plants' roots to function. The cordgrass, it turned out, had been ______ the very plants it was thought to suppress.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cooling",
+    "buffering",
+    "cloaking",
+    "acclimating"
+  ],
+  "correct_answer": "buffering",
+  "explanation": "The plants died once the cordgrass was removed because its roots had been supplying air to the oxygen-starved mud, so the cordgrass had been \"buffering\" them against the soil. \"Cooling\" and \"cloaking\" draw on the mention of shade, but the deaths are traced to the soil, not to heat or exposure. \"Acclimating\" would mean the plants had been adjusted to cope on their own, whereas they died as soon as the cordgrass was gone.",
+  "antonym_pairs": [],
+  "polarity": {
+    "cooling": "+",
+    "buffering": "+",
+    "cloaking": "0",
+    "acclimating": "0"
+  },
+  "rarity_order": [
+    "cooling",
+    "buffering",
+    "acclimating",
+    "cloaking"
+  ],
+  "killed_by": {
+    "cooling": "logic",
+    "cloaking": "logic",
+    "acclimating": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

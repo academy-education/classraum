@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lossless audio compression",
+  "passage": "Formats such as MP3 make music files small by discarding sounds that listeners are unlikely to notice, such as a faint tone masked by a louder one at a similar pitch. Lossless formats also shrink files, though less dramatically, by writing repeated patterns in a compact shorthand instead of spelling each one out in full. A player decoding a lossless file can therefore ______ the original recording, something no MP3 player is able to do.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "refine",
+    "summarize",
+    "simulate",
+    "restore"
+  ],
+  "correct_answer": "restore",
+  "explanation": "A lossless file only abbreviates repeated patterns rather than discarding sounds, so expanding the shorthand can \"restore\" the recording in full, which an MP3, having thrown sounds away, cannot. \"Refine\" fails because decoding returns the recording as it was rather than improving it. \"Simulate\" and \"summarize\" describe what an MP3 already does, approximating the recording with less of it, so neither is something an MP3 player cannot do.",
+  "antonym_pairs": [],
+  "polarity": {
+    "refine": "+",
+    "summarize": "0",
+    "simulate": "0",
+    "restore": "+"
+  },
+  "rarity_order": [
+    "restore",
+    "summarize",
+    "simulate",
+    "refine"
+  ],
+  "killed_by": {
+    "refine": "logic",
+    "summarize": "logic",
+    "simulate": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

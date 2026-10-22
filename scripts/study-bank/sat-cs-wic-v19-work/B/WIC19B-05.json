@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "minimum wage study",
+  "passage": "A study found that employment at fast-food restaurants did not fall after one state raised its minimum wage. Its author is careful about how far the finding reaches: the increase was modest, the state's economy was growing, and restaurants could pass small price increases on to customers. Her conclusion is therefore deliberately ______: it states plainly that this raise, under these conditions, cost no jobs, and it makes no claim about larger raises or weaker economies.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["diplomatic", "hedged", "hypothetical", "inconclusive"],
+  "correct_answer": "hedged",
+  "explanation": "The word \"hedged\" fits because the author limits her conclusion with explicit qualifications about the size of the raise and the state of the economy. \"Diplomatic\" fails because the limits come from the conditions of her study, not from a wish to avoid offending anyone. \"Hypothetical\" fails because her conclusion concerns a raise that actually happened and was measured. \"Inconclusive\" fails because she states plainly that this raise cost no jobs.",
+  "antonym_pairs": [],
+  "polarity": {"diplomatic": "+", "hedged": "0", "hypothetical": "0", "inconclusive": "-"},
+  "rarity_order": ["diplomatic", "inconclusive", "hypothetical", "hedged"],
+  "killed_by": {"diplomatic": "logic", "hypothetical": "logic", "inconclusive": "explicit"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

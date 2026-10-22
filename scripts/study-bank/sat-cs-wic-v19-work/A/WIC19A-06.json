@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "migration timing in songbirds",
+  "passage": "Many temperate songbirds leave for the south weeks before food grows scarce or nights turn cold. To learn why, researchers kept caged birds under artificial summer daylight while lowering the temperature and rationing their seed. The birds showed none of the restlessness that normally precedes migration until the lamps were adjusted to mimic shortening autumn days, at which point they grew restless within a week, even on full rations. For these birds, then, shortening days serve as the decisive ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "challenge",
+    "cue",
+    "backdrop",
+    "constraint"
+  ],
+  "correct_answer": "cue",
+  "explanation": "The birds ignored cold and hunger but began preparing to migrate once the light imitated autumn, so shortening days act as the decisive \"cue\" that sets migration off. A \"challenge\" would be a hardship, yet the birds responded even on full rations when nothing was hard. Short days impose no limit on the birds, so they are not a \"constraint,\" and a \"backdrop\" is passive scenery, whereas the changing light is what actually triggered the restlessness.",
+  "antonym_pairs": [],
+  "polarity": {
+    "challenge": "-",
+    "cue": "0",
+    "backdrop": "0",
+    "constraint": "-"
+  },
+  "rarity_order": [
+    "challenge",
+    "cue",
+    "constraint",
+    "backdrop"
+  ],
+  "killed_by": {
+    "challenge": "logic",
+    "backdrop": "logic",
+    "constraint": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "experiment isolating a factor",
+  "key_from_one_sentence": false
+}

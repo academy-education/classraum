@@ -1,0 +1,682 @@
+[
+  {
+    "id": "WIC19A-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "marsh facilitation",
+    "passage": "In a coastal marsh, an ecologist cleared the dominant cordgrass from several plots, expecting the smaller plants growing in its shade to flourish once the competition was gone. Instead, many of them died within weeks. Without cordgrass roots piping air into the waterlogged mud, the soil had quickly become too starved of oxygen for the smaller plants' roots to function. The cordgrass, it turned out, had been ______ the very plants it was thought to suppress.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "cooling",
+      "acclimating",
+      "buffering",
+      "cloaking"
+    ],
+    "correct_answer": "buffering",
+    "explanation": "The plants died once the cordgrass was removed because its roots had been supplying air to the oxygen-starved mud, so the cordgrass had been \"buffering\" them against the soil. \"Cooling\" and \"cloaking\" draw on the mention of shade, but the deaths are traced to the soil, not to heat or exposure. \"Acclimating\" would mean the plants had been adjusted to cope on their own, whereas they died as soon as the cordgrass was gone."
+  },
+  {
+    "id": "WIC19A-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "biocontrol survey design",
+    "passage": "Before releasing a beetle that feeds on an invasive vine, a team of ecologists spent two summers counting the vine's stems in every plot where the beetle would later be set loose. The counts revealed nothing about the beetle itself, which had not yet arrived. Without them, though, any later decline in the vine could not have been measured, let alone credited to the insect rather than to a dry year. The early surveys thus served as the study's ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "blueprint",
+      "catalog",
+      "calibration",
+      "baseline"
+    ],
+    "correct_answer": "baseline",
+    "explanation": "The surveys recorded the vine before the beetle arrived so that any later decline could be measured against them, which makes them the study's \"baseline.\" A \"blueprint\" would lay out the study's plan, but the surveys measured the vine rather than designing anything. A \"catalog\" lists an assortment of items, not a before-count kept for comparison, and a \"calibration\" adjusts a measuring tool, whereas the surveys measured the vine itself."
+  },
+  {
+    "id": "WIC19A-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "bacterial light in deep-sea fish",
+    "passage": "Many deep-sea fishes glow faintly along the belly, matching the dim light that filters down from above and so hiding their silhouettes from predators below. In a few species, though, the glow comes from bacteria living in the gut, whose light leaks through the fish's thin body wall. These fish glow whether or not predators are near, and close relatives that lack the bacteria survive just as well. For such species, researchers suspect, the glow merely ______ the partnership with the bacteria.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "accompanies",
+      "advertises",
+      "benefits",
+      "cements"
+    ],
+    "correct_answer": "accompanies",
+    "explanation": "Because these fish glow regardless of predators and relatives without the bacteria survive just as well, the glow gives them nothing and simply comes along with hosting the bacteria: it \"accompanies\" the partnership. \"Benefits\" and \"cements\" both credit the glow with an effect, which the equal survival of glowless relatives rules out. \"Advertises\" would make the glow a signal aimed at viewers, but it shines whether or not anything is watching."
+  },
+  {
+    "id": "WIC19A-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "fungicide resistance in wheat rust",
+    "passage": "Within a single growing season, a strain of wheat rust that resists one class of fungicide spread across most of a region's fields. Genetic tests, however, showed that the resistance protects the fungus against that class alone. In fields sprayed with a chemically different fungicide, the strain caused no more damage than ordinary rust did. The strain's advantage, then, is ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "bounded",
+      "cosmetic",
+      "contagious",
+      "cumulative"
+    ],
+    "correct_answer": "bounded",
+    "explanation": "The strain spread quickly where one fungicide was used but did no extra damage under a different one, so its advantage is real yet confined to particular conditions: it is \"bounded.\" \"Cosmetic\" would make the advantage superficial, but the strain's rapid spread shows it was real. \"Cumulative\" implies an advantage that builds over time, which nothing in the passage describes, and \"contagious\" mistakes the spread of the strain for the passing of its advantage to other fungi."
+  },
+  {
+    "id": "WIC19A-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "earthquake foreshocks",
+    "passage": "Seismologists readily concede that many large earthquakes are preceded by clusters of small tremors. The difficulty lies elsewhere. Small tremors are nearly constant in active fault zones, most clusters fade without incident, and only after a major quake can anyone say which cluster had been its foreshocks. A fresh swarm of tremors is therefore ______ as a warning, however closely it resembles the swarms that came before past disasters.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "alarming",
+      "ambiguous",
+      "baseless",
+      "belated"
+    ],
+    "correct_answer": "ambiguous",
+    "explanation": "Since most clusters fade harmlessly and foreshocks can be identified only afterward, a new swarm could signal either outcome, making it \"ambiguous\" as a warning. \"Baseless\" contradicts the concession that many large quakes are in fact preceded by such clusters. \"Belated\" misreads \"only after\": the swarm itself comes before the quake, and it is the identification that comes late, while \"alarming\" ignores that most such swarms come to nothing."
+  },
+  {
+    "id": "WIC19A-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "migration timing in songbirds",
+    "passage": "Many temperate songbirds leave for the south weeks before food grows scarce or nights turn cold. To learn why, researchers kept caged birds under artificial summer daylight while lowering the temperature and rationing their seed. The birds showed none of the restlessness that normally precedes migration until the lamps were adjusted to mimic shortening autumn days, at which point they grew restless within a week, even on full rations. For these birds, then, shortening days serve as the decisive ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "constraint",
+      "backdrop",
+      "challenge",
+      "cue"
+    ],
+    "correct_answer": "cue",
+    "explanation": "The birds ignored cold and hunger but began preparing to migrate once the light imitated autumn, so shortening days act as the decisive \"cue\" that sets migration off. A \"challenge\" would be a hardship, yet the birds responded even on full rations when nothing was hard. Short days impose no limit on the birds, so they are not a \"constraint,\" and a \"backdrop\" is passive scenery, whereas the changing light is what actually triggered the restlessness."
+  },
+  {
+    "id": "WIC19A-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "lake sediment bands",
+    "passage": "In some deep lakes, each year deposits a pair of thin bands on the bottom: a pale summer layer of algae remains and a dark winter layer of clay. Because the pairs pile up in order, a core drilled from the lakebed can be read like a calendar, and counting pairs downward gives the age of any layer. Where floods or burrowing animals have churned the sediment, however, bands are missing or jumbled, and the count through those stretches becomes ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "abbreviated",
+      "cursory",
+      "approximate",
+      "arbitrary"
+    ],
+    "correct_answer": "approximate",
+    "explanation": "Missing and jumbled bands mean the count can no longer give an exact age, only an \"approximate\" one. \"Abbreviated\" fits the missing bands but not the jumbled ones, which are still present. \"Cursory\" describes careless effort by the counter rather than a flaw in the record, and \"arbitrary\" goes too far, since the count is still based on the bands that survive."
+  },
+  {
+    "id": "WIC19A-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "eggshell thickness",
+    "passage": "A thicker eggshell is less likely to crack beneath a brooding parent, but each added layer also slows the flow of oxygen through the shell's pores to the embryo inside. Comparing hundreds of bird species, biologists found that shell thickness closely tracks the weight of the parent, settling near the point where an egg is just strong enough to bear the sitting adult and no thicker. Shell thicknesses are therefore best read as ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "constants",
+      "byproducts",
+      "barriers",
+      "compromises"
+    ],
+    "correct_answer": "compromises",
+    "explanation": "Extra thickness buys strength at the cost of oxygen, and each species settles at just the strength it needs, so shell thicknesses are \"compromises\" between two pressures. The shell is a barrier, but its thickness is a setting, not one of the \"barriers\" itself. \"Constants\" fails because thickness changes with the weight of the parent, and \"byproducts\" fails because thickness is closely tuned rather than incidental."
+  },
+  {
+    "id": "WIC19A-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "recessive alleles in foxes",
+    "passage": "In one population of mountain foxes, an allele for pale fur is rarely seen but far from rare. A pup is pale only if it inherits the allele from both of its parents. Breeders' records, meanwhile, show pale pups appearing regularly in litters born to two dark-coated parents, and dark adults make up nearly the entire population. Field counts of pale foxes thus badly understate how many animals ______ the allele.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "betray",
+      "contract",
+      "conserve",
+      "carry"
+    ],
+    "correct_answer": "carry",
+    "explanation": "Since a pale pup needs the allele from both parents and pale pups are born to dark parents, many dark foxes must hold the allele without showing it, so counting pale foxes misses most animals that \"carry\" it. \"Betray\" fails because those dark foxes give no outward sign of the allele. \"Contract\" treats the allele as something caught, though it is inherited, and \"conserve\" implies active preservation, whereas the foxes simply hold copies passed down to them."
+  },
+  {
+    "id": "WIC19A-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "glacier mass",
+    "passage": "A glacier gains mass from winter snow and loses it to summer melt. For that reason a glacier can shrink even in a year of record snowfall, if the following summer is warm enough, and it can grow in a year of light snow if the summer stays cool. What decides its fate, glaciologists stress, is neither figure taken alone but the ______ between them.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "correlation",
+      "balance",
+      "alternation",
+      "connection"
+    ],
+    "correct_answer": "balance",
+    "explanation": "A glacier's growth or shrinkage depends on how the snow gained compares with the melt lost, which is the \"balance\" between them. \"Alternation\" describes the yearly swing from winter to summer, which happens whether the glacier grows or shrinks. \"Connection\" and \"correlation\" imply that snowfall and melt are linked or vary together, but the passage treats them as separate figures whose net result matters."
+  },
+  {
+    "id": "WIC19B-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "share issuance and ownership",
+    "passage": "When a young company issues new shares to raise money, its founders keep every share they already held. Yet each of those shares now stands for a smaller fraction of the company, because the company has more owners than before, so a founder who once controlled half the votes may lose her majority. Economists therefore say that a new issue ______ the founders' stake, even in cases where the company's total value rises.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "devalues",
+      "encumbers",
+      "depletes",
+      "dilutes"
+    ],
+    "correct_answer": "dilutes",
+    "explanation": "The word \"dilutes\" fits because the founders keep all their shares while each share becomes a smaller fraction of a company with more owners, so their proportional stake weakens. \"Depletes\" fails because nothing is used up: the founders still hold every share they had. \"Devalues\" fails because the passage allows the company's total value to rise, so the stake's worth need not fall; the loss is in proportion, not price. \"Encumbers\" fails because no debt or legal claim is placed on the founders' shares."
+  },
+  {
+    "id": "WIC19B-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "judicial review of agency interpretation",
+    "passage": "In some legal systems, when a government agency interprets a statute it administers, a reviewing court does not ask whether the agency's reading is the best one. If the statute is ambiguous and the agency's reading is reasonable, the court accepts it, even if the judges themselves would have read the law differently. Critics argue that this ______ hands interpretive power to officials who were never elected; defenders reply that agencies hold technical expertise that judges lack.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "immunity",
+      "deference",
+      "detachment",
+      "indulgence"
+    ],
+    "correct_answer": "deference",
+    "explanation": "The word \"deference\" fits because the court yields to the agency's reasonable reading even when the judges would have read the law another way, and critics say that yielding shifts power to unelected officials. \"Immunity\" fails because the agency is not shielded from review: the court still checks whether its reading is reasonable. \"Detachment\" fails because the court is not standing aloof; it engages with the statute and the agency's reading before accepting it. \"Indulgence\" fails because it suggests overlooking a fault, whereas the court accepts only readings it finds reasonable."
+  },
+  {
+    "id": "WIC19B-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "survey weighting",
+    "passage": "A phone survey of one town reached far more retirees than young renters, since retirees were likelier to answer calls from unknown numbers, even though renters outnumber retirees in the town. Rather than throw out any answers, the pollster counted each retiree's response as somewhat less than one and each renter's as somewhat more, until each group's total weight matched its share of the town's population. This weighting is meant to ______ the retirees' influence on the result.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "freeze",
+      "dampen",
+      "equalize",
+      "excise"
+    ],
+    "correct_answer": "dampen",
+    "explanation": "The word \"dampen\" fits because the pollster keeps every retiree's answer but counts each as less than one response, reducing the retirees' oversized effect. \"Freeze\" fails because the weighting changes the retirees' influence rather than holding it at its current level. \"Equalize\" fails because the groups are weighted to their shares of the population, and renters outnumber retirees, so the two groups do not end up counting equally. \"Excise\" fails because the pollster chose not to throw out any answers."
+  },
+  {
+    "id": "WIC19B-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "constitutional convention texts",
+    "passage": "The delegates never voted on the text that their five-member committee first circulated. That version was marked up during three weeks of floor debate, returned to the committee, and recirculated twice before the final vote, by which point about a third of its clauses had been rewritten. Historians who quote the first version as though it were the constitution itself are therefore confusing the committee's early ______ with the document the delegates actually adopted.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "excerpt",
+      "digest",
+      "draft",
+      "gloss"
+    ],
+    "correct_answer": "draft",
+    "explanation": "The word \"draft\" fits because the first version was a complete proposed text that was then debated, revised, and recirculated before anything was adopted. \"Digest\" fails because a digest summarizes some other text, while the first version was the proposed text itself. \"Gloss\" fails because a gloss is commentary on a text, not the text under debate. \"Excerpt\" fails because the passage describes a whole version whose clauses were later rewritten, not a portion taken from a larger document."
+  },
+  {
+    "id": "WIC19B-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "minimum wage study",
+    "passage": "A study found that employment at fast-food restaurants did not fall after one state raised its minimum wage. Its author is careful about how far the finding reaches: the increase was modest, the state's economy was growing, and restaurants could pass small price increases on to customers. Her conclusion is therefore deliberately ______: it states plainly that this raise, under these conditions, cost no jobs, and it makes no claim about larger raises or weaker economies.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "hedged",
+      "inconclusive",
+      "diplomatic",
+      "hypothetical"
+    ],
+    "correct_answer": "hedged",
+    "explanation": "The word \"hedged\" fits because the author limits her conclusion with explicit qualifications about the size of the raise and the state of the economy. \"Diplomatic\" fails because the limits come from the conditions of her study, not from a wish to avoid offending anyone. \"Hypothetical\" fails because her conclusion concerns a raise that actually happened and was measured. \"Inconclusive\" fails because she states plainly that this raise cost no jobs."
+  },
+  {
+    "id": "WIC19B-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "elements of a statutory offense",
+    "passage": "Under one nineteenth-century statute, a person who handed a passing fugitive a meal or pointed out the road north committed no offense. The law punished only those who concealed a fugitive in a house, barn, or cellar for some period, shielding him from the officers searching for him. To win a conviction, prosecutors therefore had to prove that the accused had ______ the fugitive, not merely met or assisted him along the way.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "harbored",
+      "enlisted",
+      "deputized",
+      "fed"
+    ],
+    "correct_answer": "harbored",
+    "explanation": "The word \"harbored\" fits because the offense required concealing and sheltering the fugitive in a building for some time. \"Enlisted\" fails because recruiting the fugitive into some service says nothing about hiding him from searchers, which is what the statute punished. \"Fed\" fails because the passage says handing a fugitive a meal was no offense. \"Deputized\" fails because giving the fugitive official authority has nothing to do with concealing him from the officers."
+  },
+  {
+    "id": "WIC19B-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "workplace correction norms",
+    "passage": "In many offices, a person who makes an error in a meeting, whatever their rank, is seldom corrected in front of the group; a colleague instead raises the point afterward in private, or phrases it as a question. One sociologist argues that these customs exist less to protect the truth than to protect ______. An open correction, she notes, lowers a person's standing in the eyes of others, while a private word leaves that standing intact.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "goodwill",
+      "hierarchy",
+      "decorum",
+      "face"
+    ],
+    "correct_answer": "face",
+    "explanation": "The word \"face\" fits because the sociologist explains that the customs shield a person's standing in the eyes of others, which an open correction would lower. \"Goodwill\" fails because the concern she names is each individual's public standing, not friendly feeling between colleagues. \"Decorum\" fails because the customs are themselves a form of decorum; the passage asks what they protect, and the answer it gives is standing. \"Hierarchy\" fails because the customs apply to people whatever their rank."
+  },
+  {
+    "id": "WIC19B-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "mill town recovery",
+    "passage": "Two neighboring mill towns lost their main employer in the same year. In one, the owners sold the buildings to a workers' cooperative that kept about a third of the looms running; in the other, the buildings stood empty for a decade, and most of the trained weavers left for the cities. Twenty years later, the region's new electronics plants were staffed largely by former weavers from the first town. One historian argues that the cooperative mattered less for the jobs it saved than for the skilled workers it ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "employed",
+      "educated",
+      "drew",
+      "held"
+    ],
+    "correct_answer": "held",
+    "explanation": "The word \"held\" fits because the second town lost its trained weavers to the cities, while the first town kept its weavers long enough for them to staff the new plants. \"Employed\" fails because the historian sets the workers apart from the jobs the cooperative saved, and employing them is just those jobs. \"Drew\" fails because the weavers were already in the town, not attracted from elsewhere. \"Educated\" fails because the weavers were already trained; what differed between the towns was whether they stayed."
+  },
+  {
+    "id": "WIC19B-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "short-term unemployment",
+    "passage": "Even in a strong economy, some workers are briefly between jobs. A nurse who moves to a new city may spend weeks finding a hospital that suits her, and a machinist laid off on a Friday may start elsewhere the next Monday. Economists treat this kind of unemployment as a sign of ______ in the process of matching workers to openings, not of a shortage of jobs: the openings exist, and filling them simply takes time.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "inertia",
+      "friction",
+      "imbalance",
+      "failure"
+    ],
+    "correct_answer": "friction",
+    "explanation": "The word \"friction\" fits because the passage describes a matching process that works but is slowed by the time it takes workers and openings to find each other. \"Failure\" fails because the openings do get filled; the process is slow, not broken. \"Inertia\" fails because the workers are not reluctant to move, as the machinist who starts a new job the next Monday shows. \"Imbalance\" fails because the passage says this unemployment is not a sign of a shortage of jobs."
+  },
+  {
+    "id": "WIC19B-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "home advantage in soccer",
+    "passage": "Home teams in professional soccer have long won more often than visiting teams, and researchers once credited the tiring effects of travel. Then, for most of a season, matches were played in empty stadiums because of a public-health emergency. Visiting teams traveled exactly as before, yet the home teams' ______ nearly disappeared, a result that points to the crowd rather than the journey as its main source.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "grip",
+      "following",
+      "flair",
+      "edge"
+    ],
+    "correct_answer": "edge",
+    "explanation": "The word \"edge\" fits because the passage is about home teams' modest advantage in winning more often, which shrank when crowds were absent. \"Grip\" fails because it suggests firm control, but home teams only won somewhat more often. \"Following\" fails because the absent crowd is offered as the cause of what disappeared, so the thing that vanished cannot be the crowd itself. \"Flair\" fails because what the passage tracks is a winning record, not a style of play."
+  },
+  {
+    "id": "WIC19C-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "architecture: passive shading",
+    "passage": "In a library designed for a hot, dry city, the architect lined the south facade with deep stone fins instead of installing large cooling units. At midday the fins cast broad shadows across the glass, and the reading rooms behind them stay several degrees cooler than the street outside. The fins thus ______ a task that, in most buildings of this size, is left to machinery hidden in the basement.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "quantify",
+      "perform",
+      "prolong",
+      "obstruct"
+    ],
+    "correct_answer": "perform",
+    "explanation": "The fins keep the rooms cool all day without cooling units, so they do the job usually left to machinery: they \"perform\" that task. They do not \"prolong\" it, since nothing suggests the cooling takes longer, and they do not \"quantify\" it, since they lower the temperature rather than measure it. Although the fins block sunlight, they do not \"obstruct\" the cooling task; they accomplish it."
+  },
+  {
+    "id": "WIC19C-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "music: two recordings of one sonata",
+    "passage": "Two recordings of the same sonata, made forty years apart by one pianist, differ less than listeners tend to expect. The tempos are nearly identical, and every ornament falls in the same place. What changed is the role of the left hand: in the early recording the bass simply supports the melody, while in the later one it seems to answer the melody phrase by phrase, like a second voice. Compared with the early recording, the later performance is more ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "nimble",
+      "pensive",
+      "layered",
+      "lilting"
+    ],
+    "correct_answer": "layered",
+    "explanation": "The only change described is that the bass stops merely supporting the melody and becomes an independent second voice, so the later performance has more distinct strands of sound: it is more \"layered.\" It is not more \"nimble,\" since the tempos are nearly identical. Nothing suggests a more \"lilting\" rhythm or a more \"pensive\" mood; the difference lies in how the voices relate, not in rhythm or mood."
+  },
+  {
+    "id": "WIC19C-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "literature: a critic limits her praise",
+    "passage": "A critic's review praised a debut novel's dialogue as the finest she had read in a decade. In her last paragraph, though, she noted that the praise applied only to the scenes set in the city; in the rural chapters, she wrote, the characters speak in stiff, borrowed phrases. Rather than retracting her opening judgment, that final paragraph ______ it.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "paraphrases",
+      "narrows",
+      "proves",
+      "mocks"
+    ],
+    "correct_answer": "narrows",
+    "explanation": "The last paragraph keeps the praise but restricts it to the city scenes, so it \"narrows\" the opening judgment. It does not \"prove\" the judgment, since it offers no evidence for the praise, and it does not \"paraphrase\" it, since it adds a restriction the opening lacked. Nor does it \"mock\" the judgment; the critic still stands by her praise of the city scenes."
+  },
+  {
+    "id": "WIC19C-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "music: cathedral organ timing",
+    "passage": "Organists in large cathedrals learn to play slightly ahead of what they hear. The pipes may stand at the far end of the nave, and their sound reaches the console a fraction of a second after the keys are pressed; a player who waits for it will fall behind the choir standing beside the console. Experienced organists therefore treat this ______ as part of the instrument, building it into their timing rather than reacting to it.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "overtone",
+      "muffling",
+      "lag",
+      "lull"
+    ],
+    "correct_answer": "lag",
+    "explanation": "The passage describes sound arriving a fraction of a second after the keys are pressed, which organists must build into their timing; that delay is a \"lag.\" It is not a \"lull,\" because the sound is not a quiet stretch between notes, only late. An \"overtone\" or \"muffling\" concerns the quality or loudness of the sound, but the problem described, and the reason it affects timing, is when the sound arrives."
+  },
+  {
+    "id": "WIC19C-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "visual art: a sculptor's acknowledgments",
+    "passage": "In the catalogue for her retrospective, the sculptor thanked by name every gallery that had ever exhibited her work, with one exception: the gallery that had given her a first solo show and, a decade later, ended their partnership over a contract dispute. Readers unfamiliar with her career noticed nothing unusual. Critics who knew the history, however, read the omission as ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "pointed",
+      "melancholy",
+      "noncommittal",
+      "mischievous"
+    ],
+    "correct_answer": "pointed",
+    "explanation": "Because the sculptor thanked every other gallery and left out only the one she had quarreled with, critics who knew the history would see the omission as deliberate and meant to be noticed, that is, \"pointed.\" It was not \"noncommittal,\" since singling out one gallery among all the others sends a clear message. A contract dispute gives no reason to read the gap as playfully \"mischievous,\" and nothing suggests sadness that would make it \"melancholy.\""
+  },
+  {
+    "id": "WIC19C-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "music: two tempo markings",
+    "passage": "One composer's scores distinguish two markings that most performers treat as interchangeable: the first asks the player to slow down gradually, the second to hold back the melody while the pulse underneath stays steady. Many published editions merge the two symbols, and most listeners would never notice the change. Yet trained players who have learned both effects say they feel the difference at once. The distinction, then, is real but ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "outdated",
+      "minor",
+      "ornamental",
+      "jarring"
+    ],
+    "correct_answer": "minor",
+    "explanation": "Trained players feel the difference, so it is real, yet most listeners would never notice it if the markings were merged, so it is small: \"minor.\" It is not \"jarring,\" since ordinary listeners miss it. Merged editions might suggest the distinction is \"outdated,\" but trained players still use and feel it today, and it is not \"ornamental,\" because it governs how tempo and pulse relate rather than adding decoration."
+  },
+  {
+    "id": "WIC19C-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "music: ornamentation in early scores",
+    "passage": "Composers of the early eighteenth century often wrote out only the bare outline of a slow melody, expecting each performer to add trills and runs of his or her own. Two players working from the same page might therefore produce noticeably different versions, and audiences expected as much. A modern edition that prints one fully ornamented version as the single correct reading thus takes away the ______ the composer meant the player to have.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "melody",
+      "pulse",
+      "notes",
+      "liberty"
+    ],
+    "correct_answer": "liberty",
+    "explanation": "The composers left the ornaments to each performer, so different players were expected to produce different versions; an edition that fixes one correct reading removes that freedom, or \"liberty.\" Such an edition adds written \"notes\" rather than taking them away, and it does nothing to the melody's \"pulse.\" It also keeps the composer's \"melody,\" since it prints that outline in full; what it removes is the player's choice."
+  },
+  {
+    "id": "WIC19C-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "architecture: an isolated concert hall",
+    "passage": "Seen from the street, the concert hall looks like a single smooth shell of white tile. Inside, the building is in fact two separate structures: the auditorium rests on rubber pads within an outer frame, so that the rumble of traffic cannot travel through the walls into the hall. The unbroken tile exterior, which covers only the outer frame, ______ this division.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "masks",
+      "permits",
+      "joins",
+      "mirrors"
+    ],
+    "correct_answer": "masks",
+    "explanation": "From outside the hall appears to be one smooth shell, although inside it is two separate structures, so the exterior hides the division: it \"masks\" it. A single unbroken shell cannot \"mirror\" a split into two structures. The tile covers only the outer frame, so it does not \"join\" the two structures (if it did, traffic rumble could pass into the hall), and it is the rubber pads, not the tile, that make the separation possible, so the exterior does not \"permit\" it either."
+  },
+  {
+    "id": "WIC19C-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "literature: a memoir's stated purpose",
+    "passage": "The narrator of the memoir says in her preface that she is writing to correct errors in an earlier biography of her father. Yet the biography is mentioned only twice in the three hundred pages that follow, each time in a sentence or two, and the father himself appears mainly at the edges of chapters devoted to her own childhood. The announced purpose, it seems, serves less as a goal than as the book's ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "motto",
+      "postscript",
+      "occasion",
+      "milestone"
+    ],
+    "correct_answer": "occasion",
+    "explanation": "The memoir claims to correct the biography but barely discusses it and turns to the narrator's own childhood, so the stated aim works as the starting point that prompts the book rather than its real goal: its \"occasion.\" It is not a \"motto,\" since a motto is repeated, while the biography comes up only twice. It is not a \"milestone,\" because the book never works toward or reaches that aim, and it is not a \"postscript,\" because the purpose is announced in the preface rather than added at the end."
+  },
+  {
+    "id": "WIC19C-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "visual art: cleaning an old painting",
+    "passage": "Conservators cleaning an old painting work in small squares, testing each solvent on a patch no larger than a fingernail before treating the whole surface. A solution that lifts yellowed varnish cleanly from the sky may also dissolve the paint of a face nearby, and such damage cannot be reversed. For this reason, the work rewards ______ far more than speed.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "luck",
+      "nerve",
+      "patience",
+      "knack"
+    ],
+    "correct_answer": "patience",
+    "explanation": "Because every solvent is tested slowly on a tiny patch and a mistake cannot be undone, the work rewards slow, careful effort: \"patience.\" Bold \"nerve\" is the wrong quality where one rash step causes permanent damage. The method of testing patch by patch is designed to leave nothing to \"luck,\" and it relies on a careful procedure rather than a natural \"knack.\""
+  },
+  {
+    "id": "WIC19D-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "bridge expansion joints",
+    "passage": "On hot afternoons the steel deck of a long bridge can grow longer by several centimeters, and on winter nights it shrinks back. Engineers learned long ago that trying to prevent this movement only builds stress until something cracks. Modern bridges therefore include expansion joints designed to ______ it. At each joint, interlocking metal fingers slide apart as the deck contracts and mesh again as it expands, so the span changes length without pushing against the supports at either end.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "tolerate",
+      "relay",
+      "record",
+      "rectify"
+    ],
+    "correct_answer": "tolerate",
+    "explanation": "Since preventing the movement would only build stress, and the sliding fingers let the span change length freely, the joints are designed to \"tolerate\" it. \"Rectify\" fails because the passage treats the movement as something to allow, not a fault to correct. \"Record\" fails because the fingers make room for the movement rather than measure it, and \"relay\" fails because the span changes length without passing the movement on to the supports."
+  },
+  {
+    "id": "WIC19D-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "diagnostic scan ordering",
+    "passage": "Two clinics handled patients arriving with a persistent cough in different ways. The first sent every such patient for a chest scan. The second scanned only those whose physical examination pointed to pneumonia, so it ordered barely a third as many scans. Yet over the same year the two clinics diagnosed nearly the same number of pneumonia cases. For the second clinic, then, the ______ of each scan was roughly triple the first clinic's.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "size",
+      "resolution",
+      "yield",
+      "turnaround"
+    ],
+    "correct_answer": "yield",
+    "explanation": "The second clinic found about as many cases with a third as many scans, so each of its scans produced about three times as many diagnoses; that output per scan is its \"yield.\" The comparison rests only on cases found and scans ordered, so it says nothing about the \"size\" of each scan file, the image \"resolution,\" or how quickly results came back (\"turnaround\")."
+  },
+  {
+    "id": "WIC19D-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "semantic narrowing",
+    "passage": "The English word \"meat\" once referred to food of any kind, which is why an old phrase could speak of \"meat and drink\" to mean an entire meal. Only over several centuries did the word come to name animal flesh in particular. Historical dictionaries document such shifts by quoting passages in order of date, so that a reader can watch the word's earlier, broader ______ give way to the narrower one still in use today.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "register",
+      "sense",
+      "readership",
+      "region"
+    ],
+    "correct_answer": "sense",
+    "explanation": "The passage describes \"meat\" narrowing from food of any kind to animal flesh, a change in what the word means, so the dated quotations show its broader \"sense\" giving way to a narrower one. \"Register\" would describe how formal the word sounds, and \"region\" and \"readership\" would describe where or by whom it was used; the passage discusses none of these, only what the word refers to."
+  },
+  {
+    "id": "WIC19D-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "narrow-spectrum antibiotics",
+    "passage": "The first antibiotics killed many kinds of bacteria at once, including the harmless microbes that line the human gut and help digest food. Patients cured of an infection therefore often suffered weeks of digestive trouble afterward. Researchers now hope that more ______ drugs will avoid this problem. Several compounds in trials, for instance, each attack a single bacterial species and leave its neighbors untouched.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "selective",
+      "synthetic",
+      "regulated",
+      "soluble"
+    ],
+    "correct_answer": "selective",
+    "explanation": "The digestive trouble came from killing harmless gut microbes along with the infection, and the compounds in trials attack only one species, so the hoped-for drugs are more \"selective.\" \"Synthetic\" and \"soluble\" describe how a drug is made or how it dissolves, neither of which would spare the gut. \"Regulated\" concerns legal oversight, which does nothing to stop a drug from killing harmless bacteria."
+  },
+  {
+    "id": "WIC19D-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "phone low-power mode",
+    "passage": "When a phone's battery falls below a set level, many operating systems switch into a low-power mode. Apps keep running in this mode, and messages still arrive, but email is fetched every half hour instead of every few minutes, and backups wait until the phone is plugged in. The system, in other words, begins to ______ their activity, so that the remaining charge lasts as many hours as possible.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "relocate",
+      "ration",
+      "synchronize",
+      "tally"
+    ],
+    "correct_answer": "ration",
+    "explanation": "Apps keep running but do their work less often or later, so the system doles out a limited allowance of activity to stretch the charge: it begins to \"ration\" their activity. \"Synchronize\" would mean timing the apps' work to coincide, but the examples show work made less frequent, not aligned. \"Tally\" would mean merely counting the activity, and \"relocate\" would mean moving it elsewhere, while the passage describes work reduced or postponed on the same phone."
+  },
+  {
+    "id": "WIC19D-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "composite aircraft inspection",
+    "passage": "Lighter aircraft burn less fuel, and carbon-fiber composites cut an airframe's weight dramatically. Their weakness shows only after an impact. Aluminum dents where it is struck, but a composite panel can crack internally while its surface still looks intact, so inspectors must check it with ultrasound, a slower and costlier process than looking. Airlines that switch to composites therefore ______ part of what they save on fuel.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "understate",
+      "rebate",
+      "surrender",
+      "squander"
+    ],
+    "correct_answer": "surrender",
+    "explanation": "Composites save fuel, but their hidden cracks force slower, costlier ultrasound checks, so airlines give back, or \"surrender,\" part of those savings. \"Squander\" implies wasting money foolishly, yet the inspections are a necessary cost, not a careless one. \"Rebate\" would mean returning money to someone else, and \"understate\" would mean reporting the savings as smaller than they are; the passage describes neither."
+  },
+  {
+    "id": "WIC19D-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "pooled blood testing",
+    "passage": "Blood banks must check every donation for rare infections, but testing each sample separately would be slow and expensive. Many labs instead mix small portions of sixteen donations and test the mixture once. Only when a mixture tests positive are its sixteen samples examined one by one. Because the vast majority of mixtures come back clean, this method allows a single lab to ______ thousands of donations a day while running only a fraction of the tests that separate checks would require.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "screen",
+      "stockpile",
+      "sterilize",
+      "transfuse"
+    ],
+    "correct_answer": "screen",
+    "explanation": "Pooling lets every donation be checked for infection with far fewer tests, so a lab can \"screen\" thousands of donations a day. \"Stockpile\" fits a blood bank's storage role, but the method described is about testing, not storing. \"Transfuse\" concerns giving blood to patients, and \"sterilize\" would mean removing infections, whereas the method only detects them."
+  },
+  {
+    "id": "WIC19D-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "medium",
+    "topic_tag": "field laptops",
+    "passage": "Some laptops are built not for office desks but for soldiers, field geologists, and construction crews. Their cases are sealed against dust and driving rain, their displays stay readable in direct sunlight, and before sale they are dropped again and again onto concrete to make sure they survive. Manufacturers market these ______ machines to buyers whose work keeps them outdoors and far from repair shops.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "remote",
+      "seasoned",
+      "stylish",
+      "rugged"
+    ],
+    "correct_answer": "rugged",
+    "explanation": "Sealed cases, sunlight-readable displays, and repeated drop tests all describe machines built for harsh use, so they are \"rugged.\" \"Remote\" echoes the buyers' distance from repair shops, but it is the buyers who are far away, not the machines. \"Seasoned\" would mean experienced through long use, yet these are new machines tested before sale, and nothing in the passage concerns appearance, so \"stylish\" misses every feature listed."
+  },
+  {
+    "id": "WIC19D-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "pidgin and creole grammar",
+    "passage": "A pidgin arises when adults who share no common language must trade with one another, and its grammar is typically ______. Speakers mark tense and number with few endings or none, and word order shifts from one speaker to the next. When children grow up speaking a pidgin as their first language, however, they supply much of what it lacked, and within a generation or two it can become a creole with consistent, detailed rules of its own.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "skeletal",
+      "stilted",
+      "vestigial",
+      "ritualized"
+    ],
+    "correct_answer": "skeletal",
+    "explanation": "A pidgin has few endings and no settled word order, and children later supply what it lacked, so its grammar is \"skeletal\": a bare frame awaiting detail. \"Vestigial\" fails because the missing endings are not leftovers of an older system; a pidgin is newly formed among adult traders. \"Stilted\" and \"ritualized\" both suggest stiff, fixed forms, but word order in a pidgin shifts from speaker to speaker."
+  },
+  {
+    "id": "WIC19D-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "difficulty": "hard",
+    "topic_tag": "lossless audio compression",
+    "passage": "Formats such as MP3 make music files small by discarding sounds that listeners are unlikely to notice, such as a faint tone masked by a louder one at a similar pitch. Lossless formats also shrink files, though less dramatically, by writing repeated patterns in a compact shorthand instead of spelling each one out in full. A player decoding a lossless file can therefore ______ the original recording, something no MP3 player is able to do.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "simulate",
+      "refine",
+      "restore",
+      "summarize"
+    ],
+    "correct_answer": "restore",
+    "explanation": "A lossless file only abbreviates repeated patterns rather than discarding sounds, so expanding the shorthand can \"restore\" the recording in full, which an MP3, having thrown sounds away, cannot. \"Refine\" fails because decoding returns the recording as it was rather than improving it. \"Simulate\" and \"summarize\" describe what an MP3 already does, approximating the recording with less of it, so neither is something an MP3 player cannot do."
+  }
+]

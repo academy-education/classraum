@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "biocontrol survey design",
+  "passage": "Before releasing a beetle that feeds on an invasive vine, a team of ecologists spent two summers counting the vine's stems in every plot where the beetle would later be set loose. The counts revealed nothing about the beetle itself, which had not yet arrived. Without them, though, any later decline in the vine could not have been measured, let alone credited to the insect rather than to a dry year. The early surveys thus served as the study's ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "blueprint",
+    "catalog",
+    "baseline",
+    "calibration"
+  ],
+  "correct_answer": "baseline",
+  "explanation": "The surveys recorded the vine before the beetle arrived so that any later decline could be measured against them, which makes them the study's \"baseline.\" A \"blueprint\" would lay out the study's plan, but the surveys measured the vine rather than designing anything. A \"catalog\" lists an assortment of items, not a before-count kept for comparison, and a \"calibration\" adjusts a measuring tool, whereas the surveys measured the vine itself.",
+  "antonym_pairs": [],
+  "polarity": {
+    "blueprint": "0",
+    "catalog": "0",
+    "baseline": "0",
+    "calibration": "0"
+  },
+  "rarity_order": [
+    "catalog",
+    "baseline",
+    "blueprint",
+    "calibration"
+  ],
+  "killed_by": {
+    "blueprint": "logic",
+    "catalog": "logic",
+    "calibration": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

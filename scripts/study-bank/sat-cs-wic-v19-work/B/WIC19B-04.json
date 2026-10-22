@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "constitutional convention texts",
+  "passage": "The delegates never voted on the text that their five-member committee first circulated. That version was marked up during three weeks of floor debate, returned to the committee, and recirculated twice before the final vote, by which point about a third of its clauses had been rewritten. Historians who quote the first version as though it were the constitution itself are therefore confusing the committee's early ______ with the document the delegates actually adopted.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["digest", "gloss", "draft", "excerpt"],
+  "correct_answer": "draft",
+  "explanation": "The word \"draft\" fits because the first version was a complete proposed text that was then debated, revised, and recirculated before anything was adopted. \"Digest\" fails because a digest summarizes some other text, while the first version was the proposed text itself. \"Gloss\" fails because a gloss is commentary on a text, not the text under debate. \"Excerpt\" fails because the passage describes a whole version whose clauses were later rewritten, not a portion taken from a larger document.",
+  "antonym_pairs": [],
+  "polarity": {"digest": "0", "gloss": "0", "draft": "0", "excerpt": "0"},
+  "rarity_order": ["draft", "digest", "excerpt", "gloss"],
+  "killed_by": {"digest": "logic", "gloss": "logic", "excerpt": "logic"},
+  "after_blank": "with",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

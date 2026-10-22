@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "phone low-power mode",
+  "passage": "When a phone's battery falls below a set level, many operating systems switch into a low-power mode. Apps keep running in this mode, and messages still arrive, but email is fetched every half hour instead of every few minutes, and backups wait until the phone is plugged in. The system, in other words, begins to ______ their activity, so that the remaining charge lasts as many hours as possible.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "synchronize",
+    "tally",
+    "ration",
+    "relocate"
+  ],
+  "correct_answer": "ration",
+  "explanation": "Apps keep running but do their work less often or later, so the system doles out a limited allowance of activity to stretch the charge: it begins to \"ration\" their activity. \"Synchronize\" would mean timing the apps' work to coincide, but the examples show work made less frequent, not aligned. \"Tally\" would mean merely counting the activity, and \"relocate\" would mean moving it elsewhere, while the passage describes work reduced or postponed on the same phone.",
+  "antonym_pairs": [],
+  "polarity": {
+    "synchronize": "0",
+    "tally": "0",
+    "ration": "0",
+    "relocate": "0"
+  },
+  "rarity_order": [
+    "relocate",
+    "ration",
+    "tally",
+    "synchronize"
+  ],
+  "killed_by": {
+    "synchronize": "logic",
+    "tally": "logic",
+    "relocate": "logic"
+  },
+  "after_blank": "their",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

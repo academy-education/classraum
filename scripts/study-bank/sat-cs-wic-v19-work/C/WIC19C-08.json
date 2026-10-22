@@ -1,0 +1,20 @@
+{
+  "id": "WIC19C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "architecture: an isolated concert hall",
+  "passage": "Seen from the street, the concert hall looks like a single smooth shell of white tile. Inside, the building is in fact two separate structures: the auditorium rests on rubber pads within an outer frame, so that the rumble of traffic cannot travel through the walls into the hall. The unbroken tile exterior, which covers only the outer frame, ______ this division.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["mirrors", "joins", "masks", "permits"],
+  "correct_answer": "masks",
+  "explanation": "From outside the hall appears to be one smooth shell, although inside it is two separate structures, so the exterior hides the division: it \"masks\" it. A single unbroken shell cannot \"mirror\" a split into two structures. The tile covers only the outer frame, so it does not \"join\" the two structures (if it did, traffic rumble could pass into the hall), and it is the rubber pads, not the tile, that make the separation possible, so the exterior does not \"permit\" it either.",
+  "antonym_pairs": [],
+  "polarity": {"mirrors": "0", "joins": "0", "masks": "0", "permits": "0"},
+  "rarity_order": ["joins", "masks", "permits", "mirrors"],
+  "killed_by": {"mirrors": "logic", "joins": "logic", "permits": "logic"},
+  "after_blank": "this",
+  "pos": "verb",
+  "shape": "surface versus structure",
+  "key_from_one_sentence": false
+}

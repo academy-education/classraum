@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "recessive alleles in foxes",
+  "passage": "In one population of mountain foxes, an allele for pale fur is rarely seen but far from rare. A pup is pale only if it inherits the allele from both of its parents. Breeders' records, meanwhile, show pale pups appearing regularly in litters born to two dark-coated parents, and dark adults make up nearly the entire population. Field counts of pale foxes thus badly understate how many animals ______ the allele.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "contract",
+    "betray",
+    "carry",
+    "conserve"
+  ],
+  "correct_answer": "carry",
+  "explanation": "Since a pale pup needs the allele from both parents and pale pups are born to dark parents, many dark foxes must hold the allele without showing it, so counting pale foxes misses most animals that \"carry\" it. \"Betray\" fails because those dark foxes give no outward sign of the allele. \"Contract\" treats the allele as something caught, though it is inherited, and \"conserve\" implies active preservation, whereas the foxes simply hold copies passed down to them.",
+  "antonym_pairs": [],
+  "polarity": {
+    "contract": "0",
+    "betray": "0",
+    "carry": "0",
+    "conserve": "0"
+  },
+  "rarity_order": [
+    "carry",
+    "contract",
+    "conserve",
+    "betray"
+  ],
+  "killed_by": {
+    "contract": "explicit",
+    "betray": "logic",
+    "conserve": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "hidden quantity behind a visible count",
+  "key_from_one_sentence": false
+}

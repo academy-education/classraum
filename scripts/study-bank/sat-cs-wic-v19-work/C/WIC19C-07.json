@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "music: ornamentation in early scores",
+  "passage": "Composers of the early eighteenth century often wrote out only the bare outline of a slow melody, expecting each performer to add trills and runs of his or her own. Two players working from the same page might therefore produce noticeably different versions, and audiences expected as much. A modern edition that prints one fully ornamented version as the single correct reading thus takes away the ______ the composer meant the player to have.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "notes",
+    "liberty",
+    "pulse",
+    "melody"
+  ],
+  "correct_answer": "liberty",
+  "explanation": "The composers left the ornaments to each performer, so different players were expected to produce different versions; an edition that fixes one correct reading removes that freedom, or \"liberty.\" Such an edition adds written \"notes\" rather than taking them away, and it does nothing to the melody's \"pulse.\" It also keeps the composer's \"melody,\" since it prints that outline in full; what it removes is the player's choice.",
+  "antonym_pairs": [],
+  "polarity": {
+    "notes": "0",
+    "liberty": "0",
+    "pulse": "0",
+    "melody": "0"
+  },
+  "rarity_order": [
+    "notes",
+    "melody",
+    "pulse",
+    "liberty"
+  ],
+  "killed_by": {
+    "notes": "logic",
+    "pulse": "logic",
+    "melody": "logic"
+  },
+  "after_blank": "the",
+  "pos": "noun",
+  "shape": "historical practice and its consequence",
+  "key_from_one_sentence": false
+}

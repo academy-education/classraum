@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "literature: a memoir's stated purpose",
+  "passage": "The narrator of the memoir says in her preface that she is writing to correct errors in an earlier biography of her father. Yet the biography is mentioned only twice in the three hundred pages that follow, each time in a sentence or two, and the father himself appears mainly at the edges of chapters devoted to her own childhood. The announced purpose, it seems, serves less as a goal than as the book's ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "motto",
+    "milestone",
+    "occasion",
+    "postscript"
+  ],
+  "correct_answer": "occasion",
+  "explanation": "The memoir claims to correct the biography but barely discusses it and turns to the narrator's own childhood, so the stated aim works as the starting point that prompts the book rather than its real goal: its \"occasion.\" It is not a \"motto,\" since a motto is repeated, while the biography comes up only twice. It is not a \"milestone,\" because the book never works toward or reaches that aim, and it is not a \"postscript,\" because the purpose is announced in the preface rather than added at the end.",
+  "antonym_pairs": [],
+  "polarity": {
+    "motto": "0",
+    "milestone": "+",
+    "occasion": "0",
+    "postscript": "0"
+  },
+  "rarity_order": [
+    "occasion",
+    "motto",
+    "milestone",
+    "postscript"
+  ],
+  "killed_by": {
+    "motto": "logic",
+    "milestone": "logic",
+    "postscript": "explicit"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "stated aim tested against evidence",
+  "key_from_one_sentence": false
+}

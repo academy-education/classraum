@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "bacterial light in deep-sea fish",
+  "passage": "Many deep-sea fishes glow faintly along the belly, matching the dim light that filters down from above and so hiding their silhouettes from predators below. In a few species, though, the glow comes from bacteria living in the gut, whose light leaks through the fish's thin body wall. These fish glow whether or not predators are near, and close relatives that lack the bacteria survive just as well. For such species, researchers suspect, the glow merely ______ the partnership with the bacteria.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "advertises",
+    "cements",
+    "accompanies",
+    "benefits"
+  ],
+  "correct_answer": "accompanies",
+  "explanation": "Because these fish glow regardless of predators and relatives without the bacteria survive just as well, the glow gives them nothing and simply comes along with hosting the bacteria: it \"accompanies\" the partnership. \"Benefits\" and \"cements\" both credit the glow with an effect, which the equal survival of glowless relatives rules out. \"Advertises\" would make the glow a signal aimed at viewers, but it shines whether or not anything is watching.",
+  "antonym_pairs": [],
+  "polarity": {
+    "advertises": "0",
+    "cements": "+",
+    "accompanies": "0",
+    "benefits": "+"
+  },
+  "rarity_order": [
+    "benefits",
+    "advertises",
+    "accompanies",
+    "cements"
+  ],
+  "killed_by": {
+    "advertises": "logic",
+    "cements": "logic",
+    "benefits": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "function versus side effect",
+  "key_from_one_sentence": false
+}

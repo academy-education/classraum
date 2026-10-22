@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "pooled blood testing",
+  "passage": "Blood banks must check every donation for rare infections, but testing each sample separately would be slow and expensive. Many labs instead mix small portions of sixteen donations and test the mixture once. Only when a mixture tests positive are its sixteen samples examined one by one. Because the vast majority of mixtures come back clean, this method allows a single lab to ______ thousands of donations a day while running only a fraction of the tests that separate checks would require.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "stockpile",
+    "transfuse",
+    "screen",
+    "sterilize"
+  ],
+  "correct_answer": "screen",
+  "explanation": "Pooling lets every donation be checked for infection with far fewer tests, so a lab can \"screen\" thousands of donations a day. \"Stockpile\" fits a blood bank's storage role, but the method described is about testing, not storing. \"Transfuse\" concerns giving blood to patients, and \"sterilize\" would mean removing infections, whereas the method only detects them.",
+  "antonym_pairs": [],
+  "polarity": {
+    "stockpile": "0",
+    "transfuse": "0",
+    "screen": "0",
+    "sterilize": "0"
+  },
+  "rarity_order": [
+    "screen",
+    "stockpile",
+    "sterilize",
+    "transfuse"
+  ],
+  "killed_by": {
+    "stockpile": "logic",
+    "transfuse": "logic",
+    "sterilize": "logic"
+  },
+  "after_blank": "thousands",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "field laptops",
+  "passage": "Some laptops are built not for office desks but for soldiers, field geologists, and construction crews. Their cases are sealed against dust and driving rain, their displays stay readable in direct sunlight, and before sale they are dropped again and again onto concrete to make sure they survive. Manufacturers market these ______ machines to buyers whose work keeps them outdoors and far from repair shops.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "remote",
+    "seasoned",
+    "rugged",
+    "stylish"
+  ],
+  "correct_answer": "rugged",
+  "explanation": "Sealed cases, sunlight-readable displays, and repeated drop tests all describe machines built for harsh use, so they are \"rugged.\" \"Remote\" echoes the buyers' distance from repair shops, but it is the buyers who are far away, not the machines. \"Seasoned\" would mean experienced through long use, yet these are new machines tested before sale, and nothing in the passage concerns appearance, so \"stylish\" misses every feature listed.",
+  "antonym_pairs": [],
+  "polarity": {
+    "remote": "0",
+    "seasoned": "+",
+    "rugged": "+",
+    "stylish": "+"
+  },
+  "rarity_order": [
+    "remote",
+    "rugged",
+    "stylish",
+    "seasoned"
+  ],
+  "killed_by": {
+    "remote": "logic",
+    "seasoned": "logic",
+    "stylish": "logic"
+  },
+  "after_blank": "machines",
+  "pos": "adjective",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

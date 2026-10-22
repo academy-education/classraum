@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "judicial review of agency interpretation",
+  "passage": "In some legal systems, when a government agency interprets a statute it administers, a reviewing court does not ask whether the agency's reading is the best one. If the statute is ambiguous and the agency's reading is reasonable, the court accepts it, even if the judges themselves would have read the law differently. Critics argue that this ______ hands interpretive power to officials who were never elected; defenders reply that agencies hold technical expertise that judges lack.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["immunity", "detachment", "deference", "indulgence"],
+  "correct_answer": "deference",
+  "explanation": "The word \"deference\" fits because the court yields to the agency's reasonable reading even when the judges would have read the law another way, and critics say that yielding shifts power to unelected officials. \"Immunity\" fails because the agency is not shielded from review: the court still checks whether its reading is reasonable. \"Detachment\" fails because the court is not standing aloof; it engages with the statute and the agency's reading before accepting it. \"Indulgence\" fails because it suggests overlooking a fault, whereas the court accepts only readings it finds reasonable.",
+  "antonym_pairs": [],
+  "polarity": {"immunity": "0", "detachment": "0", "deference": "0", "indulgence": "0"},
+  "rarity_order": ["immunity", "indulgence", "detachment", "deference"],
+  "killed_by": {"immunity": "logic", "detachment": "logic", "indulgence": "logic"},
+  "after_blank": "hands",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

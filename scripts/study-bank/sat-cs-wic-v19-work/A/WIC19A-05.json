@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "earthquake foreshocks",
+  "passage": "Seismologists readily concede that many large earthquakes are preceded by clusters of small tremors. The difficulty lies elsewhere. Small tremors are nearly constant in active fault zones, most clusters fade without incident, and only after a major quake can anyone say which cluster had been its foreshocks. A fresh swarm of tremors is therefore ______ as a warning, however closely it resembles the swarms that came before past disasters.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "belated",
+    "ambiguous",
+    "alarming",
+    "baseless"
+  ],
+  "correct_answer": "ambiguous",
+  "explanation": "Since most clusters fade harmlessly and foreshocks can be identified only afterward, a new swarm could signal either outcome, making it \"ambiguous\" as a warning. \"Baseless\" contradicts the concession that many large quakes are in fact preceded by such clusters. \"Belated\" misreads \"only after\": the swarm itself comes before the quake, and it is the identification that comes late, while \"alarming\" ignores that most such swarms come to nothing.",
+  "antonym_pairs": [],
+  "polarity": {
+    "belated": "-",
+    "ambiguous": "-",
+    "alarming": "-",
+    "baseless": "-"
+  },
+  "rarity_order": [
+    "alarming",
+    "ambiguous",
+    "baseless",
+    "belated"
+  ],
+  "killed_by": {
+    "belated": "logic",
+    "alarming": "logic",
+    "baseless": "explicit"
+  },
+  "after_blank": "as",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

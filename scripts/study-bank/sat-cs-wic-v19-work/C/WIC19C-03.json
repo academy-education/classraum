@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "literature: a critic limits her praise",
+  "passage": "A critic's review praised a debut novel's dialogue as the finest she had read in a decade. In her last paragraph, though, she noted that the praise applied only to the scenes set in the city; in the rural chapters, she wrote, the characters speak in stiff, borrowed phrases. Rather than retracting her opening judgment, that final paragraph ______ it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "proves",
+    "narrows",
+    "paraphrases",
+    "mocks"
+  ],
+  "correct_answer": "narrows",
+  "explanation": "The last paragraph keeps the praise but restricts it to the city scenes, so it \"narrows\" the opening judgment. It does not \"prove\" the judgment, since it offers no evidence for the praise, and it does not \"paraphrase\" it, since it adds a restriction the opening lacked. Nor does it \"mock\" the judgment; the critic still stands by her praise of the city scenes.",
+  "antonym_pairs": [],
+  "polarity": {
+    "proves": "0",
+    "narrows": "0",
+    "paraphrases": "0",
+    "mocks": "-"
+  },
+  "rarity_order": [
+    "proves",
+    "narrows",
+    "mocks",
+    "paraphrases"
+  ],
+  "killed_by": {
+    "proves": "logic",
+    "paraphrases": "logic",
+    "mocks": "logic"
+  },
+  "after_blank": "it",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "music: two recordings of one sonata",
+  "passage": "Two recordings of the same sonata, made forty years apart by one pianist, differ less than listeners tend to expect. The tempos are nearly identical, and every ornament falls in the same place. What changed is the role of the left hand: in the early recording the bass simply supports the melody, while in the later one it seems to answer the melody phrase by phrase, like a second voice. Compared with the early recording, the later performance is more ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "lilting",
+    "layered",
+    "nimble",
+    "pensive"
+  ],
+  "correct_answer": "layered",
+  "explanation": "The only change described is that the bass stops merely supporting the melody and becomes an independent second voice, so the later performance has more distinct strands of sound: it is more \"layered.\" It is not more \"nimble,\" since the tempos are nearly identical. Nothing suggests a more \"lilting\" rhythm or a more \"pensive\" mood; the difference lies in how the voices relate, not in rhythm or mood.",
+  "antonym_pairs": [],
+  "polarity": {
+    "lilting": "+",
+    "layered": "0",
+    "nimble": "+",
+    "pensive": "0"
+  },
+  "rarity_order": [
+    "layered",
+    "nimble",
+    "pensive",
+    "lilting"
+  ],
+  "killed_by": {
+    "lilting": "logic",
+    "nimble": "explicit",
+    "pensive": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

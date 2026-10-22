@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "short-term unemployment",
+  "passage": "Even in a strong economy, some workers are briefly between jobs. A nurse who moves to a new city may spend weeks finding a hospital that suits her, and a machinist laid off on a Friday may start elsewhere the next Monday. Economists treat this kind of unemployment as a sign of ______ in the process of matching workers to openings, not of a shortage of jobs: the openings exist, and filling them simply takes time.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["failure", "inertia", "friction", "imbalance"],
+  "correct_answer": "friction",
+  "explanation": "The word \"friction\" fits because the passage describes a matching process that works but is slowed by the time it takes workers and openings to find each other. \"Failure\" fails because the openings do get filled; the process is slow, not broken. \"Inertia\" fails because the workers are not reluctant to move, as the machinist who starts a new job the next Monday shows. \"Imbalance\" fails because the passage says this unemployment is not a sign of a shortage of jobs.",
+  "antonym_pairs": [],
+  "polarity": {"failure": "-", "inertia": "-", "friction": "-", "imbalance": "-"},
+  "rarity_order": ["failure", "friction", "imbalance", "inertia"],
+  "killed_by": {"failure": "logic", "inertia": "logic", "imbalance": "explicit"},
+  "after_blank": "in",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "visual art: a sculptor's acknowledgments",
+  "passage": "In the catalogue for her retrospective, the sculptor thanked by name every gallery that had ever exhibited her work, with one exception: the gallery that had given her a first solo show and, a decade later, ended their partnership over a contract dispute. Readers unfamiliar with her career noticed nothing unusual. Critics who knew the history, however, read the omission as ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "noncommittal",
+    "mischievous",
+    "pointed",
+    "melancholy"
+  ],
+  "correct_answer": "pointed",
+  "explanation": "Because the sculptor thanked every other gallery and left out only the one she had quarreled with, critics who knew the history would see the omission as deliberate and meant to be noticed, that is, \"pointed.\" It was not \"noncommittal,\" since singling out one gallery among all the others sends a clear message. A contract dispute gives no reason to read the gap as playfully \"mischievous,\" and nothing suggests sadness that would make it \"melancholy.\"",
+  "antonym_pairs": [],
+  "polarity": {
+    "noncommittal": "0",
+    "mischievous": "0",
+    "pointed": "0",
+    "melancholy": "-"
+  },
+  "rarity_order": [
+    "pointed",
+    "melancholy",
+    "mischievous",
+    "noncommittal"
+  ],
+  "killed_by": {
+    "noncommittal": "logic",
+    "mischievous": "logic",
+    "melancholy": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "motive inferred from a pattern of choices",
+  "key_from_one_sentence": false
+}

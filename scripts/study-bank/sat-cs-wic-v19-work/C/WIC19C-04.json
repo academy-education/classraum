@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "music: cathedral organ timing",
+  "passage": "Organists in large cathedrals learn to play slightly ahead of what they hear. The pipes may stand at the far end of the nave, and their sound reaches the console a fraction of a second after the keys are pressed; a player who waits for it will fall behind the choir standing beside the console. Experienced organists therefore treat this ______ as part of the instrument, building it into their timing rather than reacting to it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "lull",
+    "lag",
+    "overtone",
+    "muffling"
+  ],
+  "correct_answer": "lag",
+  "explanation": "The passage describes sound arriving a fraction of a second after the keys are pressed, which organists must build into their timing; that delay is a \"lag.\" It is not a \"lull,\" because the sound is not a quiet stretch between notes, only late. An \"overtone\" or \"muffling\" concerns the quality or loudness of the sound, but the problem described, and the reason it affects timing, is when the sound arrives.",
+  "antonym_pairs": [],
+  "polarity": {
+    "lull": "0",
+    "lag": "0",
+    "overtone": "0",
+    "muffling": "0"
+  },
+  "rarity_order": [
+    "lag",
+    "muffling",
+    "lull",
+    "overtone"
+  ],
+  "killed_by": {
+    "lull": "logic",
+    "overtone": "logic",
+    "muffling": "logic"
+  },
+  "after_blank": "as",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

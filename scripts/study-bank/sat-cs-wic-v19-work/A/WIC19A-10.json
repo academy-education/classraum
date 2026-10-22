@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "glacier mass",
+  "passage": "A glacier gains mass from winter snow and loses it to summer melt. For that reason a glacier can shrink even in a year of record snowfall, if the following summer is warm enough, and it can grow in a year of light snow if the summer stays cool. What decides its fate, glaciologists stress, is neither figure taken alone but the ______ between them.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "connection",
+    "alternation",
+    "balance",
+    "correlation"
+  ],
+  "correct_answer": "balance",
+  "explanation": "A glacier's growth or shrinkage depends on how the snow gained compares with the melt lost, which is the \"balance\" between them. \"Alternation\" describes the yearly swing from winter to summer, which happens whether the glacier grows or shrinks. \"Connection\" and \"correlation\" imply that snowfall and melt are linked or vary together, but the passage treats them as separate figures whose net result matters.",
+  "antonym_pairs": [],
+  "polarity": {
+    "connection": "0",
+    "alternation": "0",
+    "balance": "0",
+    "correlation": "0"
+  },
+  "rarity_order": [
+    "balance",
+    "connection",
+    "correlation",
+    "alternation"
+  ],
+  "killed_by": {
+    "connection": "logic",
+    "alternation": "logic",
+    "correlation": "logic"
+  },
+  "after_blank": "between",
+  "pos": "noun",
+  "shape": "comparison of two quantities",
+  "key_from_one_sentence": true
+}

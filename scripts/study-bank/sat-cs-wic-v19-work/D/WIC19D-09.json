@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "pidgin and creole grammar",
+  "passage": "A pidgin arises when adults who share no common language must trade with one another, and its grammar is typically ______. Speakers mark tense and number with few endings or none, and word order shifts from one speaker to the next. When children grow up speaking a pidgin as their first language, however, they supply much of what it lacked, and within a generation or two it can become a creole with consistent, detailed rules of its own.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "vestigial",
+    "skeletal",
+    "stilted",
+    "ritualized"
+  ],
+  "correct_answer": "skeletal",
+  "explanation": "A pidgin has few endings and no settled word order, and children later supply what it lacked, so its grammar is \"skeletal\": a bare frame awaiting detail. \"Vestigial\" fails because the missing endings are not leftovers of an older system; a pidgin is newly formed among adult traders. \"Stilted\" and \"ritualized\" both suggest stiff, fixed forms, but word order in a pidgin shifts from speaker to speaker.",
+  "antonym_pairs": [],
+  "polarity": {
+    "vestigial": "0",
+    "skeletal": "0",
+    "stilted": "-",
+    "ritualized": "0"
+  },
+  "rarity_order": [
+    "skeletal",
+    "stilted",
+    "ritualized",
+    "vestigial"
+  ],
+  "killed_by": {
+    "vestigial": "logic",
+    "stilted": "logic",
+    "ritualized": "explicit"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

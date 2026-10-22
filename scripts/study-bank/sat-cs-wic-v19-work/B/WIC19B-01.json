@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "share issuance and ownership",
+  "passage": "When a young company issues new shares to raise money, its founders keep every share they already held. Yet each of those shares now stands for a smaller fraction of the company, because the company has more owners than before, so a founder who once controlled half the votes may lose her majority. Economists therefore say that a new issue ______ the founders' stake, even in cases where the company's total value rises.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["depletes", "dilutes", "devalues", "encumbers"],
+  "correct_answer": "dilutes",
+  "explanation": "The word \"dilutes\" fits because the founders keep all their shares while each share becomes a smaller fraction of a company with more owners, so their proportional stake weakens. \"Depletes\" fails because nothing is used up: the founders still hold every share they had. \"Devalues\" fails because the passage allows the company's total value to rise, so the stake's worth need not fall; the loss is in proportion, not price. \"Encumbers\" fails because no debt or legal claim is placed on the founders' shares.",
+  "antonym_pairs": [],
+  "polarity": {"depletes": "-", "dilutes": "-", "devalues": "-", "encumbers": "-"},
+  "rarity_order": ["depletes", "dilutes", "devalues", "encumbers"],
+  "killed_by": {"depletes": "logic", "devalues": "explicit", "encumbers": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "eggshell thickness",
+  "passage": "A thicker eggshell is less likely to crack beneath a brooding parent, but each added layer also slows the flow of oxygen through the shell's pores to the embryo inside. Comparing hundreds of bird species, biologists found that shell thickness closely tracks the weight of the parent, settling near the point where an egg is just strong enough to bear the sitting adult and no thicker. Shell thicknesses are therefore best read as ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "barriers",
+    "compromises",
+    "constants",
+    "byproducts"
+  ],
+  "correct_answer": "compromises",
+  "explanation": "Extra thickness buys strength at the cost of oxygen, and each species settles at just the strength it needs, so shell thicknesses are \"compromises\" between two pressures. The shell is a barrier, but its thickness is a setting, not one of the \"barriers\" itself. \"Constants\" fails because thickness changes with the weight of the parent, and \"byproducts\" fails because thickness is closely tuned rather than incidental.",
+  "antonym_pairs": [],
+  "polarity": {
+    "barriers": "0",
+    "compromises": "0",
+    "constants": "0",
+    "byproducts": "0"
+  },
+  "rarity_order": [
+    "barriers",
+    "constants",
+    "compromises",
+    "byproducts"
+  ],
+  "killed_by": {
+    "barriers": "logic",
+    "constants": "logic",
+    "byproducts": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "trade-off between two pressures",
+  "key_from_one_sentence": false
+}

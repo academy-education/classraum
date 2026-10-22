@@ -1,0 +1,39 @@
+{
+  "id": "WIC19A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "lake sediment bands",
+  "passage": "In some deep lakes, each year deposits a pair of thin bands on the bottom: a pale summer layer of algae remains and a dark winter layer of clay. Because the pairs pile up in order, a core drilled from the lakebed can be read like a calendar, and counting pairs downward gives the age of any layer. Where floods or burrowing animals have churned the sediment, however, bands are missing or jumbled, and the count through those stretches becomes ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "abbreviated",
+    "approximate",
+    "cursory",
+    "arbitrary"
+  ],
+  "correct_answer": "approximate",
+  "explanation": "Missing and jumbled bands mean the count can no longer give an exact age, only an \"approximate\" one. \"Abbreviated\" fits the missing bands but not the jumbled ones, which are still present. \"Cursory\" describes careless effort by the counter rather than a flaw in the record, and \"arbitrary\" goes too far, since the count is still based on the bands that survive.",
+  "antonym_pairs": [],
+  "polarity": {
+    "abbreviated": "0",
+    "approximate": "0",
+    "cursory": "-",
+    "arbitrary": "-"
+  },
+  "rarity_order": [
+    "approximate",
+    "arbitrary",
+    "abbreviated",
+    "cursory"
+  ],
+  "killed_by": {
+    "abbreviated": "logic",
+    "cursory": "logic",
+    "arbitrary": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

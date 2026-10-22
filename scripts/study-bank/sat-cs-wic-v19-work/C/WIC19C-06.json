@@ -1,0 +1,39 @@
+{
+  "id": "WIC19C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "music: two tempo markings",
+  "passage": "One composer's scores distinguish two markings that most performers treat as interchangeable: the first asks the player to slow down gradually, the second to hold back the melody while the pulse underneath stays steady. Many published editions merge the two symbols, and most listeners would never notice the change. Yet trained players who have learned both effects say they feel the difference at once. The distinction, then, is real but ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "outdated",
+    "minor",
+    "ornamental",
+    "jarring"
+  ],
+  "correct_answer": "minor",
+  "explanation": "Trained players feel the difference, so it is real, yet most listeners would never notice it if the markings were merged, so it is small: \"minor.\" It is not \"jarring,\" since ordinary listeners miss it. Merged editions might suggest the distinction is \"outdated,\" but trained players still use and feel it today, and it is not \"ornamental,\" because it governs how tempo and pulse relate rather than adding decoration.",
+  "antonym_pairs": [],
+  "polarity": {
+    "outdated": "-",
+    "minor": "0",
+    "ornamental": "0",
+    "jarring": "-"
+  },
+  "rarity_order": [
+    "minor",
+    "outdated",
+    "jarring",
+    "ornamental"
+  ],
+  "killed_by": {
+    "outdated": "logic",
+    "ornamental": "logic",
+    "jarring": "explicit"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

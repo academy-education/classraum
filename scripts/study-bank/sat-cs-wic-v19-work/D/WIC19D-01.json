@@ -1,0 +1,39 @@
+{
+  "id": "WIC19D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "bridge expansion joints",
+  "passage": "On hot afternoons the steel deck of a long bridge can grow longer by several centimeters, and on winter nights it shrinks back. Engineers learned long ago that trying to prevent this movement only builds stress until something cracks. Modern bridges therefore include expansion joints designed to ______ it. At each joint, interlocking metal fingers slide apart as the deck contracts and mesh again as it expands, so the span changes length without pushing against the supports at either end.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "record",
+    "tolerate",
+    "rectify",
+    "relay"
+  ],
+  "correct_answer": "tolerate",
+  "explanation": "Since preventing the movement would only build stress, and the sliding fingers let the span change length freely, the joints are designed to \"tolerate\" it. \"Rectify\" fails because the passage treats the movement as something to allow, not a fault to correct. \"Record\" fails because the fingers make room for the movement rather than measure it, and \"relay\" fails because the span changes length without passing the movement on to the supports.",
+  "antonym_pairs": [],
+  "polarity": {
+    "record": "0",
+    "tolerate": "0",
+    "rectify": "0",
+    "relay": "0"
+  },
+  "rarity_order": [
+    "record",
+    "relay",
+    "tolerate",
+    "rectify"
+  ],
+  "killed_by": {
+    "record": "logic",
+    "rectify": "logic",
+    "relay": "explicit"
+  },
+  "after_blank": "it",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

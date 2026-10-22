@@ -1,0 +1,20 @@
+{
+  "id": "WIC19B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "survey weighting",
+  "passage": "A phone survey of one town reached far more retirees than young renters, since retirees were likelier to answer calls from unknown numbers, even though renters outnumber retirees in the town. Rather than throw out any answers, the pollster counted each retiree's response as somewhat less than one and each renter's as somewhat more, until each group's total weight matched its share of the town's population. This weighting is meant to ______ the retirees' influence on the result.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["freeze", "equalize", "dampen", "excise"],
+  "correct_answer": "dampen",
+  "explanation": "The word \"dampen\" fits because the pollster keeps every retiree's answer but counts each as less than one response, reducing the retirees' oversized effect. \"Freeze\" fails because the weighting changes the retirees' influence rather than holding it at its current level. \"Equalize\" fails because the groups are weighted to their shares of the population, and renters outnumber retirees, so the two groups do not end up counting equally. \"Excise\" fails because the pollster chose not to throw out any answers.",
+  "antonym_pairs": [],
+  "polarity": {"freeze": "0", "equalize": "+", "dampen": "0", "excise": "-"},
+  "rarity_order": ["freeze", "equalize", "dampen", "excise"],
+  "killed_by": {"freeze": "logic", "equalize": "logic", "excise": "explicit"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}
