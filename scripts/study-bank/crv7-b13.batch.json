@@ -1,0 +1,1774 @@
+{
+ "cohort": "cr-v17",
+ "created": "2026-10-23",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Pity, what would you suggest in its place?",
+     "At last! Was it held up at customs?",
+     "Oh, sorry, I didn't see the dispenser.",
+     "Wafer slices, please, it's for sandwiches."
+    ],
+    "passage": "Transcript: \"We've sold the last of the brie, I'm afraid.\"",
+    "difficulty": "medium",
+    "explanation": "The cheese is gone, so asking for a substitute is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Pity, what would you suggest in its place?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "At last! Was it held up at customs?": "\"sold the last\" - nothing arrived; the cheese is gone.",
+     "Oh, sorry, I didn't see the dispenser.": "\"sold the last of\" - news about stock; no ticket machine was mentioned.",
+     "Wafer slices, please, it's for sandwiches.": "\"sold the last of the brie\" - there is nothing left to slice."
+    }
+   },
+   "content_hash": "5f69f5994ad6b7f4b53289ae66454b4e",
+   "word_count": 9,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a20",
+    "selectedWorld": 1,
+    "kind": "bad news",
+    "keyAct": "asking for a substitute",
+    "setting": "cheese shop counter, cheesemonger to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Already? I only dropped off the list yesterday.",
+     "So the longer names will cost a bit more.",
+     "Oh no, but the awards dinner is this Friday!",
+     "The fancy cursive, it looks more formal."
+    ],
+    "passage": "Transcript: \"Lettering's fifty cents a character, and it's ready the same day.\"",
+    "difficulty": "medium",
+    "explanation": "Price depends on letters, so noting that long names cost more is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "So the longer names will cost a bit more.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Already? I only dropped off the list yesterday.": "\"ready the same day\" - nothing has been made yet, so nothing is \"already\" done.",
+     "Oh no, but the awards dinner is this Friday!": "\"ready the same day\" - the trophies come back today, so a Friday dinner is no worry.",
+     "The fancy cursive, it looks more formal.": "\"fifty cents a character\" - a statement about price, not a style question."
+    }
+   },
+   "content_hash": "bc8adff4de6cff99163c8bf71cc37f3f",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a07",
+    "selectedWorld": 3,
+    "kind": "neutral info",
+    "keyAct": "working out the cost",
+    "setting": "trophy engraving shop counter, engraver to team coach",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Oh no, so it'll just stay loose on me?",
+     "The smallest, she stacks it with others.",
+     "Wonderful, so it'll finally fit snugly now.",
+     "Yes please, just our initials would be lovely."
+    ],
+    "passage": "Transcript: \"Our jeweler can't shrink that band without damaging the stones.\"",
+    "difficulty": "medium",
+    "explanation": "The band cannot be made smaller, so worrying that it will stay loose is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh no, so it'll just stay loose on me?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Wonderful, so it'll finally fit snugly now.": "\"can't shrink that band\" - no resize will happen, so it will not fit snugly now.",
+     "The smallest, she stacks it with others.": "\"can't shrink that band\" - a statement, not a which-finger question.",
+     "Yes please, just our initials would be lovely.": "\"can't shrink that band\" - a refusal; no engraving is offered, so \"Yes please\" accepts nothing."
+    }
+   },
+   "content_hash": "919609eb85cbe4c35fcd4f060341977e",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a01",
+    "selectedWorld": 1,
+    "kind": "bad news",
+    "keyAct": "reacting to a refused resize",
+    "setting": "jewelry store ring-resizing counter, jeweler to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Oh, so I parked on the wrong side, then.",
+     "Okay, is a damp cloth good enough?",
+     "So we'd need five for all our guests.",
+     "Worth it, I've never put one up before."
+    ],
+    "passage": "Transcript: \"Correction: pickup's at the back loading door, not the front entrance.\"",
+    "difficulty": "medium",
+    "explanation": "The pickup spot was wrong, so realizing the mistake is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh, so I parked on the wrong side, then.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Worth it, I've never put one up before.": "\"pickup's at the back\" - a location correction; nothing is offered, so \"Worth it\" accepts nothing.",
+     "So we'd need five for all our guests.": "\"not the front entrance\" - a location correction; no seating number was given.",
+     "Okay, is a damp cloth good enough?": "\"back loading door\" - a location correction; no wiping was asked for."
+    }
+   },
+   "content_hash": "d3fd623b632cc1cd65b7a71990812e05",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a18",
+    "selectedWorld": 1,
+    "kind": "correction",
+    "keyAct": "realizing a wrong spot",
+    "setting": "party equipment rental store, clerk to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Like this, or should I go a bit further?",
+     "So things might sound odd for a while?",
+     "What a relief, I'd been saving up for months.",
+     "Oh, I must have misread the reminder card."
+    ],
+    "passage": "Transcript: \"Please turn your head slightly to the left for this test.\"",
+    "difficulty": "medium",
+    "explanation": "The tester asks for a movement, so checking the position is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Like this, or should I go a bit further?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, I must have misread the reminder card.": "\"Please turn your\" - an instruction, not a correction to have misread.",
+     "So things might sound odd for a while?": "\"for this test\" - a test is happening now; nothing about getting used to new aids.",
+     "What a relief, I'd been saving up for months.": "\"turn your head\" - an instruction, not news about cost."
+    }
+   },
+   "content_hash": "c698e2c67c6a6c0c15d459008ccbb39a",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a11",
+    "selectedWorld": 3,
+    "kind": "request",
+    "keyAct": "following a test instruction",
+    "setting": "hearing aid center front desk and fitting room, audiologist's staff to patient",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "So I can return them after a few runs?",
+     "Sure, should I go at my usual pace?",
+     "Mostly the park's dirt paths, honestly.",
+     "Oh great, I'd given up on that color."
+    ],
+    "passage": "Transcript: \"Please jog to the end of the aisle and back.\"",
+    "difficulty": "medium",
+    "explanation": "The fitter asks for a test jog, so checking how fast is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Sure, should I go at my usual pace?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh great, I'd given up on that color.": "\"Please jog to\" - a request; nothing was found in stock.",
+     "So I can return them after a few runs?": "\"end of the aisle\" - a quick test in the shop, not a policy about returns.",
+     "Mostly the park's dirt paths, honestly.": "\"Please jog to the\" - a request, not an either/or question."
+    }
+   },
+   "content_hash": "360bdb6049e74e1b30a68041de86b93f",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a19",
+    "selectedWorld": 2,
+    "kind": "request",
+    "keyAct": "checking how to comply",
+    "setting": "running shoe store fitting area, fitter to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure, it's four-seven-one-nine, then pound.",
+     "Grape juice, my toddler knocked a cup over.",
+     "Fantastic, the sooner the better for me.",
+     "A day later? I'll have to change my plans."
+    ],
+    "passage": "Transcript: \"Is the stain from wine, coffee, or something else?\"",
+    "difficulty": "easy",
+    "explanation": "The scheduler asks what caused the stain, so naming it is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Grape juice, my toddler knocked a cup over.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Sure, it's four-seven-one-nine, then pound.": "\"Is the stain from\" - a question about the stain; no code was asked for, so reciting digits answers nothing.",
+     "A day later? I'll have to change my plans.": "\"Is the stain from\" - no date was changed, so nothing is a day later.",
+     "Fantastic, the sooner the better for me.": "\"Is the stain from\" - no date was changed, so nothing came sooner."
+    }
+   },
+   "content_hash": "ee8c6194ab79379e7c7749a73586112f",
+   "word_count": 9,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a09",
+    "selectedWorld": 3,
+    "kind": "question",
+    "keyAct": "answering a which-question",
+    "setting": "carpet cleaning company booking call, scheduler to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Brilliant, I brought a cart to wheel it home.",
+     "Even better, that's double what I ordered.",
+     "Ugh, so no gaming over the holidays, then.",
+     "Yes, all six, I've written down their names."
+    ],
+    "passage": "Transcript: \"Your build passed every test, and it's boxed up at the front.\"",
+    "difficulty": "easy",
+    "explanation": "The computer is finished, so getting ready to take it is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Brilliant, I brought a cart to wheel it home.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Even better, that's double what I ordered.": "\"passed every test\" - nothing about the parts was corrected, so nothing doubled.",
+     "Ugh, so no gaming over the holidays, then.": "\"boxed up at the front\" - the computer is finished, so it is not delayed over the holidays.",
+     "Yes, all six, I've written down their names.": "\"boxed up at the\" - no question was asked, so \"Yes, all six\" answers nothing."
+    }
+   },
+   "content_hash": "6c3b70afc0cbee6c1821cebd81cf2c61",
+   "word_count": 12,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a08",
+    "selectedWorld": 0,
+    "kind": "good news",
+    "keyAct": "collecting a finished build",
+    "setting": "computer store custom PC build desk, technician to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Where I can see it from the sofa, please.",
+     "Wow, it looks like it's floating up there.",
+     "Sure, give me a minute to move the plants.",
+     "So I'll need a stand for it instead?"
+    ],
+    "passage": "Transcript: \"Your wall's hollow plaster, so it can't hold a screen that size.\"",
+    "difficulty": "medium",
+    "explanation": "The wall cannot take the TV, so asking about a stand is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "So I'll need a stand for it instead?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Where I can see it from the sofa, please.": "\"can't hold a screen\" - it will not be mounted, so there is no height to choose.",
+     "Wow, it looks like it's floating up there.": "\"can't hold a screen\" - nothing is up on the wall, so nothing is floating.",
+     "Sure, give me a minute to move the plants.": "\"can't hold a screen\" - the job is off, so there is no shelf to clear for a ladder."
+    }
+   },
+   "content_hash": "c9fab2fdbd70f29d0598cbca58ed6f61",
+   "word_count": 12,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a12",
+    "selectedWorld": 0,
+    "kind": "bad news",
+    "keyAct": "finding a fallback",
+    "setting": "TV wall-mounting installation visit, installer to tenant",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The silver one, it'll match my fridge.",
+     "That'd be great, mine's too heavy to lift.",
+     "Even better, our family does loads of laundry.",
+     "Shame, so what's the closest alternative?"
+    ],
+    "passage": "Transcript: \"Actually, I misspoke, it holds nine kilos, not seven, same price.\"",
+    "difficulty": "medium",
+    "explanation": "The washer is bigger than first stated, so welcoming the extra capacity is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Even better, our family does loads of laundry.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Shame, so what's the closest alternative?": "\"nine kilos, not seven, same price\" - a bigger machine at no extra cost is on sale here, so nothing is a shame and no alternative is needed.",
+     "That'd be great, mine's too heavy to lift.": "\"I misspoke, it holds\" - a correction about size; nothing was offered.",
+     "The silver one, it'll match my fridge.": "\"nine kilos, not seven\" - a statement about capacity, not a finish question."
+    }
+   },
+   "content_hash": "749769d5349f0c38873d90db758e4388",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a02",
+    "selectedWorld": 3,
+    "kind": "correction",
+    "keyAct": "welcoming a larger capacity",
+    "setting": "appliance store sales floor, salesperson to customer shopping for a washer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure, they're both in this tote bag.",
+     "Ages, honestly, it's my grandmother's.",
+     "So it's basically junk now, isn't it?",
+     "Oh nice, two days sooner than I planned."
+    ],
+    "passage": "Transcript: \"How long has it been since it was last serviced?\"",
+    "difficulty": "easy",
+    "explanation": "The repairer asks how long, so answering is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Ages, honestly, it's my grandmother's.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Sure, they're both in this tote bag.": "\"How long has it\" - a question about time, not a request for accessories.",
+     "Oh nice, two days sooner than I planned.": "\"How long has it been\" - nothing was rescheduled, so nothing is sooner.",
+     "So it's basically junk now, isn't it?": "\"since it was last\" - the repairer is still asking questions, so no diagnosis says it is junk."
+    }
+   },
+   "content_hash": "6f0a12fc29e8a0f34cf4b190dc594ec1",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a04",
+    "selectedWorld": 3,
+    "kind": "question",
+    "keyAct": "answering a how-long question",
+    "setting": "sewing machine repair shop, repairer to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure, would a PDF be all right for that?",
+     "That works, our fair isn't till Saturday.",
+     "Sure, then it'll be easy to hang up.",
+     "Oh, will it still fit across our booth?"
+    ],
+    "passage": "Transcript: \"Oops, the banner's six feet wide, not the four I quoted.\"",
+    "difficulty": "medium",
+    "explanation": "The banner is wider than quoted, so checking it still fits is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh, will it still fit across our booth?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Sure, then it'll be easy to hang up.": "\"six feet wide\" - a size correction; nothing is offered, so \"Sure\" accepts nothing.",
+     "That works, our fair isn't till Saturday.": "\"six feet wide, not\" - a size correction; no ready time was given.",
+     "Sure, would a PDF be all right for that?": "\"not the four I quoted\" - a size correction; no file was asked for."
+    }
+   },
+   "content_hash": "3903f03fbcd42f204dede84abe9bb837",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a15",
+    "selectedWorld": 1,
+    "kind": "correction",
+    "keyAct": "checking a size change",
+    "setting": "sign shop banner order counter, designer to club member",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The shiny kind, please, colors pop more.",
+     "No way, so that whole trip's pictures are lost?",
+     "Okay, I'll browse the shops nearby meanwhile.",
+     "Lovely, can I flip through them here?"
+    ],
+    "passage": "Transcript: \"Developing takes about an hour, and scanning's another twenty minutes.\"",
+    "difficulty": "medium",
+    "explanation": "The order needs over an hour, so planning to wait elsewhere is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Okay, I'll browse the shops nearby meanwhile.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Lovely, can I flip through them here?": "\"takes about an hour\" - nothing is ready, so there is nothing to flip through.",
+     "No way, so that whole trip's pictures are lost?": "\"Developing takes about\" - the film is not developed yet, so no one can know the pictures are lost.",
+     "The shiny kind, please, colors pop more.": "\"takes about an hour\" - a statement about timing, not a paper question."
+    }
+   },
+   "content_hash": "8eacb28b19a7199b94e48d59f81cbe6f",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a03",
+    "selectedWorld": 3,
+    "kind": "neutral info",
+    "keyAct": "filling a wait",
+    "setting": "camera shop film-developing counter, clerk to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Got it, I'll be off the slopes by three-thirty.",
+     "Oh, yes please, the base looks pretty dry.",
+     "Oh, so the total goes up a little, then.",
+     "Okay, should I take my socks off first?"
+    ],
+    "passage": "Transcript: \"I can wax your snowboard for free while you grab a coffee.\"",
+    "difficulty": "easy",
+    "explanation": "The technician offers free waxing, so accepting is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh, yes please, the base looks pretty dry.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, so the total goes up a little, then.": "\"for free while\" - the service is free, so the total does not go up.",
+     "Got it, I'll be off the slopes by three-thirty.": "\"wax your snowboard\" - an offer; no return time was given, so a time off the slopes answers nothing.",
+     "Okay, should I take my socks off first?": "\"while you grab a coffee\" - nothing is being measured, so there is no reason to take socks off."
+    }
+   },
+   "content_hash": "29d40ca93e789e256674379f5f573f55",
+   "word_count": 12,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a13",
+    "selectedWorld": 0,
+    "kind": "offer",
+    "keyAct": "accepting a free service",
+    "setting": "ski and snowboard rental shop, technician to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes please, the old ones keep snapping.",
+     "Amazing, I honestly expected a visible scar.",
+     "Ugh, so I'll be without it for weeks?",
+     "The normal one, I'm still a beginner."
+    ],
+    "passage": "Transcript: \"The fretwork can't be done here; it has to go to the factory.\"",
+    "difficulty": "medium",
+    "explanation": "The guitar must be shipped away, so dismay at the long wait is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Ugh, so I'll be without it for weeks?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Yes please, the old ones keep snapping.": "\"can't be done here\" - a refusal; nothing is offered, so \"Yes please\" accepts nothing.",
+     "Amazing, I honestly expected a visible scar.": "\"can't be done here\" - no repair was done, so there is no result to admire.",
+     "The normal one, I'm still a beginner.": "\"has to go to\" - a statement, not a which-tuning question."
+    }
+   },
+   "content_hash": "e93ad29b4b1def86acc7560d5c8f4d43",
+   "word_count": 13,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a05",
+    "selectedWorld": 3,
+    "kind": "bad news",
+    "keyAct": "reacting to a long delay",
+    "setting": "guitar repair shop, luthier to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The quicker trip, please, we're beginners.",
+     "Oh, so my sister can't come along with me?",
+     "Okay, we'll stay on this side of it, then.",
+     "Please, I'd hate to drop them in the lake."
+    ],
+    "passage": "Transcript: \"Want me to hold your car keys in the office safe?\"",
+    "difficulty": "easy",
+    "explanation": "The attendant offers to keep the keys, so accepting is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Please, I'd hate to drop them in the lake.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, so my sister can't come along with me?": "\"hold your car keys\" - an offer about keys; no boat was changed, so nobody is left out.",
+     "Okay, we'll stay on this side of it, then.": "\"in the office safe\" - no landmark was mentioned, so \"this side of it\" refers to nothing.",
+     "The quicker trip, please, we're beginners.": "\"Want me to hold\" - a yes/no offer, not a question about how long."
+    }
+   },
+   "content_hash": "e508957a1017483d45487ad428a238da",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-a14",
+    "selectedWorld": 0,
+    "kind": "offer",
+    "keyAct": "accepting safekeeping",
+    "setting": "lake kayak rental dock, attendant to customer",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes, I passed it last fall with an A.",
+     "Wonderful, I'll hand it in this afternoon.",
+     "Oh, so every spot's already taken?",
+     "Oh, that clashes with my lab, then."
+    ],
+    "passage": "Transcript: \"There's one seat left, so I'll sign your add form.\"",
+    "difficulty": "easy",
+    "explanation": "The professor agrees to sign, so planning to submit the form is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Wonderful, I'll hand it in this afternoon.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, so every spot's already taken?": "\"There's one seat left\" - a seat remains, so not every spot is taken.",
+     "Yes, I passed it last fall with an A.": "\"so I'll sign\" - the professor is admitting the student and asks nothing, so a yes/no answer about a prerequisite answers nothing.",
+     "Oh, that clashes with my lab, then.": "\"I'll sign your add\" - no meeting day is given, so \"that clashes\" has nothing to refer to."
+    }
+   },
+   "content_hash": "90a8d76a91c564a616bb11e690ffe8a4",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b07",
+    "selectedWorld": 0,
+    "kind": "good news",
+    "keyAct": "welcoming a signed form",
+    "setting": "course add/drop week, professor to student asking to join a full section",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Seriously? I've been done for ages.",
+     "It's mine, I set it down earlier.",
+     "Oops, I must've misread my ticket.",
+     "Oh good, I left it completely blank."
+    ],
+    "passage": "Transcript: \"The last page is bonus, so it won't count against you.\"",
+    "difficulty": "easy",
+    "explanation": "The final page cannot lower the score, so relief about leaving it empty is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh good, I left it completely blank.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oops, I must've misread my ticket.": "\"The last page is bonus\" - no seat is mentioned as wrong, so there is no ticket to have misread.",
+     "It's mine, I set it down earlier.": "\"The last page is bonus\" - a statement about scoring; nothing is asked about ownership.",
+     "Seriously? I've been done for ages.": "\"won't count against you\" - good news about scoring, not a rule keeping the student in, so the protest objects to nothing."
+    }
+   },
+   "content_hash": "41a6c52bdc844ca4ff07a0792496cfe4",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b04",
+    "selectedWorld": 1,
+    "kind": "good news",
+    "keyAct": "welcoming a no-penalty rule",
+    "setting": "lecture hall final exam, invigilator to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes, if you don't mind rolling up a sleeve.",
+     "Phew, my hands were shaking the whole time.",
+     "Yes, right at the sink by the door.",
+     "Oops, I've been doing that all term."
+    ],
+    "passage": "Transcript: \"You've put the cuff on upside down, tube facing the elbow.\"",
+    "difficulty": "medium",
+    "explanation": "The instructor corrects the cuff placement, so admitting the habit is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oops, I've been doing that all term.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Yes, if you don't mind rolling up a sleeve.": "\"You've put the cuff on\" - the cuff is already on someone, so nobody is offering to be the patient.",
+     "Yes, right at the sink by the door.": "\"You've put the cuff\" - a correction, not a question about washing.",
+     "Phew, my hands were shaking the whole time.": "\"put the cuff on upside down\" - the student made an error, so there is no pass to celebrate."
+    }
+   },
+   "content_hash": "c1e7d08d22314446befabb1e939591b6",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b16",
+    "selectedWorld": 2,
+    "kind": "correction",
+    "keyAct": "admitting a repeated mistake",
+    "setting": "nursing clinical skills lab, instructor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Seriously? All eleven hours wasted, then.",
+     "Finally, so we can attach the wheels today.",
+     "Oh, so no assembly at home until then.",
+     "The darker one hides scuffs better."
+    ],
+    "passage": "Transcript: \"The chassis printed perfectly, and I brought it home with me.\"",
+    "difficulty": "easy",
+    "explanation": "The part is finished and on hand, so planning to assemble it now is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Finally, so we can attach the wheels today.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Seriously? All eleven hours wasted, then.": "\"printed perfectly\" - the print succeeded, so no hours were wasted.",
+     "The darker one hides scuffs better.": "\"The chassis printed perfectly\" - it is already printed, so its colour can no longer be chosen.",
+     "Oh, so no assembly at home until then.": "\"I brought it home\" - the part is at home, so assembly at home is possible, not ruled out."
+    }
+   },
+   "content_hash": "15669a4b7127d2fdbd9a0adfae6f5521",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b02",
+    "selectedWorld": 0,
+    "kind": "good news",
+    "keyAct": "welcoming a finished part",
+    "setting": "engineering design team meeting after class, teammate to teammate",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "A stopwatch? That's so much less precise.",
+     "Oops, so my answer's off by a hundred.",
+     "Great, I've got work at five today.",
+     "Sure, in a table or just a list?"
+    ],
+    "passage": "Transcript: \"Your pendulum data looks clean, so you can leave early.\"",
+    "difficulty": "easy",
+    "explanation": "The student may go early, so welcoming the free time is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Great, I've got work at five today.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "A stopwatch? That's so much less precise.": "\"data looks clean\" - the measuring is finished, so no timing method is still ahead.",
+     "Sure, in a table or just a list?": "\"you can leave early\" - nothing is asked of the student, so \"Sure\" agrees to nothing.",
+     "Oops, so my answer's off by a hundred.": "\"data looks clean\" - nothing is wrong, so there is no error of a hundred."
+    }
+   },
+   "content_hash": "03cafab47c218d4a0c8ff1882e1ce1b0",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b12",
+    "selectedWorld": 0,
+    "kind": "good news",
+    "keyAct": "welcoming an early finish",
+    "setting": "physics lab section, lab instructor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "After I stood here for three hours?",
+     "Wow, against all those other entries?",
+     "No, my second, I came last spring too.",
+     "Sure, so we started with forty volunteers."
+    ],
+    "passage": "Transcript: \"Is this your first time presenting at a conference?\"",
+    "difficulty": "easy",
+    "explanation": "The judge asks about experience, so answering is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "No, my second, I came last spring too.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Sure, so we started with forty volunteers.": "\"Is this your first\" - a yes/no question, not a request to explain methods, so \"Sure, so we started\" answers nothing.",
+     "Wow, against all those other entries?": "\"Is this your first time\" - a question, so no shortlist news has been given.",
+     "After I stood here for three hours?": "\"Is this your first\" - the judge is talking with the presenter, so the poster is not being skipped."
+    }
+   },
+   "content_hash": "d14e8f43c52d6a821132e1e1b6a0894c",
+   "word_count": 9,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b17",
+    "selectedWorld": 3,
+    "kind": "question",
+    "keyAct": "answering about experience",
+    "setting": "undergraduate poster session, judge to presenter",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "So five classes is out of the question?",
+     "The afternoon, I'm not a morning person.",
+     "But I paid that online last Friday!",
+     "Good idea, popular classes fill fast."
+    ],
+    "passage": "Transcript: \"First-year students can take at most sixteen credits this term.\"",
+    "difficulty": "medium",
+    "explanation": "The advisor states a credit cap, so checking what it rules out is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "So five classes is out of the question?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "The afternoon, I'm not a morning person.": "\"can take at most\" - a rule, not a choice between two times.",
+     "But I paid that online last Friday!": "\"First-year students can take\" - registration is open, so there is no hold or payment to dispute.",
+     "Good idea, popular classes fill fast.": "\"at most sixteen credits\" - a rule, not an offer of help, so \"Good idea\" accepts nothing."
+    }
+   },
+   "content_hash": "c0fb65fb1496764c0539edf0bb43d3a5",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b20",
+    "selectedWorld": 3,
+    "kind": "neutral info",
+    "keyAct": "checking a credit cap",
+    "setting": "summer orientation course registration session, orientation advisor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Already? I only just sat down.",
+     "Please, I learn better by watching.",
+     "The later one, I can't even start it.",
+     "Oh, so it should be negative five."
+    ],
+    "passage": "Transcript: \"Heads up, we close in five minutes, so we'll stop soon.\"",
+    "difficulty": "medium",
+    "explanation": "The session is about to end, so surprise at how soon is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Already? I only just sat down.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, so it should be negative five.": "\"we close in five minutes\" - no error is pointed out, so there is no corrected value to state.",
+     "Please, I learn better by watching.": "\"we'll stop soon\" - nothing is offered, so \"Please\" accepts nothing.",
+     "The later one, I can't even start it.": "\"we'll stop soon\" - the session is ending, not starting on a chosen problem."
+    }
+   },
+   "content_hash": "3ccdc4f8ad820aa0a3a6f39cfd9e822d",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b11",
+    "selectedWorld": 2,
+    "kind": "neutral info",
+    "keyAct": "reacting to closing time",
+    "setting": "math help room drop-in, student tutor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure, it was mostly about trade routes.",
+     "Mostly the second, but not entirely.",
+     "Ah, so ten years earlier. Thanks.",
+     "Wow, I rewrote it three times."
+    ],
+    "passage": "Transcript: \"Could you start us off by summarizing this week's reading?\"",
+    "difficulty": "medium",
+    "explanation": "The professor asks the student to begin, so agreeing and beginning the summary is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Sure, it was mostly about trade routes.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Wow, I rewrote it three times.": "\"Could you start us off\" - a request, not praise, so \"Wow\" has nothing to react to and \"it\" refers to no paper.",
+     "Mostly the second, but not entirely.": "\"summarizing this week's reading\" - one task, not two classmates' views, so \"the second\" refers to nothing.",
+     "Ah, so ten years earlier. Thanks.": "\"Could you start us\" - no date is corrected, so \"ten years earlier\" refers to nothing."
+    }
+   },
+   "content_hash": "3d54650d62018d3685b49e626d5a4f9f",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b05",
+    "selectedWorld": 0,
+    "kind": "request",
+    "keyAct": "complying with a request to speak",
+    "setting": "history seminar discussion, professor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The enclosed one, smells get to me.",
+     "Yes please, mine are in my car.",
+     "So I should head out now? Ugh.",
+     "Oops, I've set up at the wrong one."
+    ],
+    "passage": "Transcript: \"Sorry, without a passed safety quiz you can't stay in the lab.\"",
+    "difficulty": "medium",
+    "explanation": "The student is not allowed to stay, so asking whether to leave, with annoyance, is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "So I should head out now? Ugh.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oops, I've set up at the wrong one.": "\"you can't stay in the lab\" - the student has no station at all, so there is no wrong one to have set up at.",
+     "Yes please, mine are in my car.": "\"can't stay in the lab\" - the student is leaving and nothing is offered, so \"Yes please\" accepts nothing and spare eye protection is useless.",
+     "The enclosed one, smells get to me.": "\"you can't stay\" - the student is barred, so there is no workstation to choose between."
+    }
+   },
+   "content_hash": "602415b0621dddb5ca1ed1076e44f66e",
+   "word_count": 12,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b01",
+    "selectedWorld": 0,
+    "kind": "bad news",
+    "keyAct": "accepting removal from the lab",
+    "setting": "organic chemistry pre-lab safety briefing, TA to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes please, I'm feeling a bit rusty.",
+     "So the writing bit is saved for last.",
+     "The whole thing? That took me an hour.",
+     "Really? I only studied for a week!"
+    ],
+    "passage": "Transcript: \"You tested out of the first two levels, congratulations.\"",
+    "difficulty": "easy",
+    "explanation": "The student placed high, so happy surprise is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Really? I only studied for a week!",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "So the writing bit is saved for last.": "\"You tested out\" - the test is over, so its order no longer matters.",
+     "Yes please, I'm feeling a bit rusty.": "\"You tested out\" - the test is over, so a practice sheet is useless and nothing is offered.",
+     "The whole thing? That took me an hour.": "\"You tested out\" - the score exists, so nothing was lost to retake."
+    }
+   },
+   "content_hash": "76811bc73ef79c4ef8e99bfc3a4c3cb9",
+   "word_count": 9,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b14",
+    "selectedWorld": 1,
+    "kind": "good news",
+    "keyAct": "reacting to a high placement",
+    "setting": "language placement test room, coordinator to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "So which one has our group got?",
+     "Just one? I've got about five.",
+     "Please, I came in halfway through.",
+     "Oh, an hour shorter than I planned."
+    ],
+    "passage": "Transcript: \"Please write a single goal for this term on the sticky note.\"",
+    "difficulty": "medium",
+    "explanation": "The facilitator asks for a single goal, so reacting to the limit is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Just one? I've got about five.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Please, I came in halfway through.": "\"Please write a single\" - a task, not an offer, so \"Please\" accepts nothing.",
+     "Oh, an hour shorter than I planned.": "\"write a single goal\" - no time is corrected, so \"an hour shorter\" refers to nothing.",
+     "So which one has our group got?": "\"a single goal for\" - the student writes alone; no group method is assigned."
+    }
+   },
+   "content_hash": "eba88ab3fd5e4cad4ef8492e9baa3803",
+   "word_count": 12,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b18",
+    "selectedWorld": 3,
+    "kind": "request",
+    "keyAct": "reacting to a limit",
+    "setting": "study skills workshop, facilitator to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Just the one? I was sure it was more.",
+     "Nice, I'll skip the chapter two test, then.",
+     "Oops, I must've been looking away.",
+     "I know, I've been ill most of this month."
+    ],
+    "passage": "Transcript: \"Could you sign the attendance sheet? It went past you.\"",
+    "difficulty": "medium",
+    "explanation": "The sheet passed without the student signing, so apologizing is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oops, I must've been looking away.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "I know, I've been ill most of this month.": "\"Could you sign\" - the student is present and asked to sign, not told about absences to explain.",
+     "Nice, I'll skip the chapter two test, then.": "\"Could you sign the attendance\" - a request, not a reward, so nothing is earned to skip.",
+     "Just the one? I was sure it was more.": "\"Could you sign\" - no count of absences is given, so \"Just the one?\" refers to nothing."
+    }
+   },
+   "content_hash": "9399afde5793b263a9c45752d5c90083",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b19",
+    "selectedWorld": 3,
+    "kind": "request",
+    "keyAct": "apologizing for missing a sheet",
+    "setting": "lecture hall after class, professor to student about attendance",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Finally, that bug took me all week.",
+     "Ah, that's why the first item's missing.",
+     "So the deadline gets pushed, I hope?",
+     "Sure, give me a second to plug in."
+    ],
+    "passage": "Transcript: \"The autograder's down, so nobody's code can be submitted tonight.\"",
+    "difficulty": "medium",
+    "explanation": "Submissions are impossible, so hoping for an extension is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "So the deadline gets pushed, I hope?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Ah, that's why the first item's missing.": "\"The autograder's down\" - no bug is pointed out, so there is nothing to explain a missing item.",
+     "Sure, give me a second to plug in.": "\"nobody's code can be submitted\" - the TA asks for nothing, so \"Sure\" agrees to nothing.",
+     "Finally, that bug took me all week.": "\"can be submitted tonight\" - nothing has passed, so there is no finished work to celebrate."
+    }
+   },
+   "content_hash": "7be65bf2f2e5139f252628c9de66cfcb",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b15",
+    "selectedWorld": 0,
+    "kind": "bad news",
+    "keyAct": "reacting to a broken grader",
+    "setting": "computer science lab section, TA to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Oh no, half my talk is charts.",
+     "The later one, I need more practice.",
+     "Thanks, I tend to lose track up there.",
+     "Sure, as a PDF or the original file?"
+    ],
+    "passage": "Transcript: \"Do you want to present today or take the Thursday slot?\"",
+    "difficulty": "easy",
+    "explanation": "The instructor offers two dates, so picking one is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "The later one, I need more practice.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh no, half my talk is charts.": "\"Do you want to present\" - nothing has gone wrong with equipment, so there is no loss of charts.",
+     "Thanks, I tend to lose track up there.": "\"Do you want to present\" - a question, not an offer of help, so \"Thanks\" answers nothing.",
+     "Sure, as a PDF or the original file?": "\"present today or take the Thursday\" - an either/or question; \"Sure\" picks neither."
+    }
+   },
+   "content_hash": "2fa56f7fe856f59abb01f523b6743481",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b13",
+    "selectedWorld": 0,
+    "kind": "question",
+    "keyAct": "choosing a slot",
+    "setting": "public speaking class presentation day, instructor to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Only scholarly ones, she's strict.",
+     "Brilliant, I nearly paid twenty dollars.",
+     "So there's no way to read it? Ugh.",
+     "Oh, two years earlier? Good catch."
+    ],
+    "passage": "Transcript: \"Actually, that article's from 2019, not the 2021 issue you wrote.\"",
+    "difficulty": "medium",
+    "explanation": "The librarian corrects the year, so noting the difference and thanking them is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Oh, two years earlier? Good catch.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Brilliant, I nearly paid twenty dollars.": "\"Actually, that article's from\" - the librarian fixes a citation and says nothing is available free, so relief at not paying has no basis.",
+     "So there's no way to read it? Ugh.": "\"that article's from 2019\" - the librarian has located the article, so it is false that it cannot be read.",
+     "Only scholarly ones, she's strict.": "\"Actually, that article's from 2019\" - a correction, not a question about kinds of sources."
+    }
+   },
+   "content_hash": "d5055e39100bb13fee75c6b8381d75ff",
+   "word_count": 11,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b03",
+    "selectedWorld": 2,
+    "kind": "correction",
+    "keyAct": "accepting a corrected date",
+    "setting": "library research help desk, reference librarian to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Oh, so no taking it home overnight?",
+     "Ugh, my quiz starts before then.",
+     "Yes please, any version will do.",
+     "Sure, do you have a pen I can borrow?"
+    ],
+    "passage": "Transcript: \"Please sign the log sheet before you take it home.\"",
+    "difficulty": "medium",
+    "explanation": "The clerk asks for a signature, so asking for a pen to sign is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Sure, do you have a pen I can borrow?",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "Oh, so no taking it home overnight?": "\"before you take it home\" - taking it home is allowed, so \"no taking it home\" is contradicted.",
+     "Ugh, my quiz starts before then.": "\"before you take it\" - the book is here now, so it is not out until later.",
+     "Yes please, any version will do.": "\"Please sign the log\" - a request, not an offer of another copy, so \"Yes please\" accepts nothing."
+    }
+   },
+   "content_hash": "8cc09a955f8e14e5b5d83fe996490e55",
+   "word_count": 10,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b08",
+    "selectedWorld": 2,
+    "kind": "request",
+    "keyAct": "complying with a sign-out",
+    "setting": "library course reserves desk, clerk to student",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Choose a Response",
+   "subskill": null,
+   "task": "choose_response",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "topic_tag": "choose_response",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Way smoother, I've found a routine now.",
+     "Oh, the day after, then? Got it.",
+     "Sure, is it on paper or online?",
+     "That'd be great, I keep getting lost."
+    ],
+    "passage": "Transcript: \"How are your classes going, better than last month?\"",
+    "difficulty": "easy",
+    "explanation": "The mentor asks how classes are going, so answering is the natural reply.",
+    "listeningTask": "choose_response",
+    "correct_answer": "Way smoother, I've found a routine now.",
+    "passageGroupId": null,
+    "distractor_rationales": {
+     "That'd be great, I keep getting lost.": "\"How are your classes going\" - a question, not an offer, so \"That'd be great\" accepts nothing.",
+     "Sure, is it on paper or online?": "\"How are your classes\" - a question about progress, not a form, so \"paper or online?\" makes no sense.",
+     "Oh, the day after, then? Got it.": "\"How are your classes going\" - no meeting is moved, so \"the day after\" refers to nothing."
+    }
+   },
+   "content_hash": "9891fad63c58f377c4d3ad22479ea461",
+   "word_count": 9,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "cr-v17",
+   "verify_meta": {
+    "method": "crv7-symmetric-worlds+seeded-key",
+    "source": "crv7",
+    "localId": "cr17-b09",
+    "selectedWorld": 1,
+    "kind": "question",
+    "keyAct": "reporting progress",
+    "setting": "first-year peer mentor check-in, mentor to mentee",
+    "passage_needed": true,
+    "draft": {
+     "status": "awaiting_sitting",
+     "note": "Written in-session by Claude 2026-10-22 (crv7 batch 9, seed offset 1300). No AI attack run (no agents). Release only by the co-founder sitting (crv7-b9.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}

@@ -10562,6 +10562,33 @@
           "verdict": "verify-answer-key-spread --batch kept ok (n=21; windows 38.9% vs 11.7% latent, choices shuffled at draw); key strictly longest 1/21, shortest 3/21."
         }
       }
+    },
+    {
+      "id": "cr-v17-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v17",
+      "contentSha": "ce4294beb6df0bf300e734ae87b9dae4eca46bb8bf74585ba13f532282b4101f",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 13, 2 Claude agents, 34 of 40 after pre-screen. Spot route (crv7-b13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ce4294beb6df0bf300e734ae87b9dae4eca46bb8bf74585ba13f532282b4101f",
+          "verdict": "render 0-1 re-rolls, letters 5/5/5/5 per half."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A+B union 6/40 flagged, dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
