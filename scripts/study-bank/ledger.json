@@ -9367,6 +9367,33 @@
           "verdict": "NOT RUN by an independent reader."
         }
       }
+    },
+    {
+      "id": "crv7-b8-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v12",
+      "contentSha": "a278fc8d13dbb889c537fe57810bf45e1af2d99d3941847ed7ef50592652e8e5",
+      "status": "staged-for-human-edit",
+      "note": "20 Choose a Response items, crv7 four-world method, seed offset 800, written in-session by Claude for the lower paths; staged verified=false; release only by the co-founder runs in crv7-b8.RELEASE.PREREG.md. contentSha = sha256 of crv7-b8.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "a278fc8d13dbb889c537fe57810bf45e1af2d99d3941847ed7ef50592652e8e5",
+          "verdict": "render-crv7.mjs: key letters 5/5/5/5, key longest 4/20 (9/20 before a selection-blind length pass), key shares a content word with its line 0/20 (10/20 before a selection-blind echo pass; distractors 4/60), typography level, blind file carries no spoken line; no spoken line matches any of 265 live/staged lines."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (no agents); the human sitting decides TOEFL listening."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author read found and fixed 3 arguably-correct distractors."
+        }
+      }
     }
   ],
   "auditedCohorts": [

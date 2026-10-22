@@ -1,0 +1,1087 @@
+{
+ "cohort": "cr-v12",
+ "stage": "crv7-method batch 8 (seed offset 800)",
+ "method": "four-world, seeded post-hoc selection (render-crv7.mjs)",
+ "items": [
+  {
+   "localId": "cr12-01",
+   "setting": "campus mailroom",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting a delivery",
+     "line": "A package came for you, and it's on the shelf behind me.",
+     "reply": "Great, could you hand it over to me now, please?",
+     "explanationIfSpoken": "A package is waiting, so asking for it is the natural reply.",
+     "kills": {
+      "1": "\"it's on the shelf behind me\" - the package is here, so no tracking is needed.",
+      "2": "\"A package came for you\" - the student is receiving, not sending.",
+      "3": "\"it's on the shelf behind me\" - nothing needs a signature slip first."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "tracing a missing item",
+     "line": "Nothing's arrived under your name, and the system shows no package.",
+     "reply": "Could you check the tracking number for me?",
+     "explanationIfSpoken": "No package is found, so asking to trace it is the natural reply.",
+     "kills": {
+      "0": "\"Nothing's arrived under your name\" - there is nothing to hand over.",
+      "2": "\"shows no package\" - the line is about receiving, not sending.",
+      "3": "\"Nothing's arrived\" - there is nothing to sign for."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Are you sending this by regular mail or express?",
+     "reply": "The cheaper one is fine. It isn't urgent.",
+     "explanationIfSpoken": "The clerk asks for a mail service, so choosing one is the natural reply.",
+     "kills": {
+      "0": "\"Are you sending this\" - the student is mailing something, not collecting it.",
+      "1": "\"regular mail or express?\" - nothing is missing.",
+      "3": "\"regular mail or express?\" - the clerk needs a choice, not a signature."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complying with a condition",
+     "line": "This one needs a signature, so I'll need to see your ID.",
+     "reply": "Sure, here's my student card.",
+     "explanationIfSpoken": "Release requires ID, so showing it is the natural reply.",
+     "kills": {
+      "0": "\"I'll need to see your ID\" - the package cannot be handed over until ID is shown.",
+      "1": "\"This one needs a signature\" - the package is here; nothing is lost.",
+      "2": "\"I'll need to see your ID\" - nothing is being sent."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-02",
+   "setting": "campus café",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting an order",
+     "line": "Your latte's ready at the end of the counter.",
+     "reply": "Thanks, I'll grab it now.",
+     "explanationIfSpoken": "The drink is ready, so collecting it is the natural reply.",
+     "kills": {
+      "1": "\"Your latte's ready\" - the drink was made, so nothing is out of stock.",
+      "2": "\"at the end of the counter\" - the order is done; no size choice remains.",
+      "3": "\"Your latte's ready\" - the drink is finished, so nothing is being remade."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "choosing a substitute",
+     "line": "We're out of oat milk today, but we have almond or soy.",
+     "reply": "The nut one is totally fine for me, then.",
+     "explanationIfSpoken": "Oat milk is gone and two others are offered, so picking one is the natural reply.",
+     "kills": {
+      "0": "\"We're out of oat milk\" - nothing is ready to grab.",
+      "2": "\"almond or soy\" - the choice is milk, not cup size.",
+      "3": "\"We're out of oat milk today\" - nothing has been made wrong."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Did you want a small or a large?",
+     "reply": "The bigger one, please.",
+     "explanationIfSpoken": "The barista asks for a size, so naming one is the natural reply.",
+     "kills": {
+      "0": "\"Did you want a small or a large?\" - the drink has not been made yet.",
+      "1": "\"a small or a large?\" - the question is about size, not milk.",
+      "3": "\"Did you want\" - nothing has been made yet to remake."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepting a correction",
+     "line": "Sorry, I made that with regular milk instead of oat. I'll redo it.",
+     "reply": "Oh, thanks for catching that.",
+     "explanationIfSpoken": "The barista admits a mistake and offers to fix it, so thanking them is the natural reply.",
+     "kills": {
+      "0": "\"I'll redo it\" - the drink is being remade, so there is nothing to grab yet.",
+      "1": "\"I made that with regular milk\" - the line is a correction, not a shortage.",
+      "2": "\"I'll redo it\" - the size is not in question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-03",
+   "setting": "parking office",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "acting on a result",
+     "line": "Your appeal was accepted, so the ticket's been cancelled.",
+     "reply": "Great. So I don't owe anything?",
+     "explanationIfSpoken": "The ticket was cancelled, so confirming nothing is owed is the natural reply.",
+     "kills": {
+      "1": "\"the ticket's been cancelled\" - there is no fine to pay.",
+      "2": "\"Your appeal was accepted\" - the line is about a ticket, not a permit.",
+      "3": "\"the ticket's been cancelled\" - nothing remains to appeal."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking about payment",
+     "line": "The appeal was denied, so the twenty-dollar fine still stands.",
+     "reply": "Can I pay it online, or does it have to be here?",
+     "explanationIfSpoken": "The fine stands, so asking how to pay it is the natural reply.",
+     "kills": {
+      "0": "\"The appeal was denied\" - nothing was cancelled.",
+      "2": "\"the twenty-dollar fine still stands\" - the line is about a fine, not a permit.",
+      "3": "\"The appeal was denied\" - the decision is made, not pending."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "choosing an option",
+     "line": "Permits come by semester or for the full year.",
+     "reply": "I'll take the twelve-month one, then.",
+     "explanationIfSpoken": "Two permit lengths are described, so choosing one is the natural reply.",
+     "kills": {
+      "0": "\"Permits come by semester\" - no ticket is mentioned.",
+      "1": "\"Permits come by semester\" - no fine is mentioned.",
+      "3": "\"Permits come by semester\" - there is nothing to appeal."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "providing documents",
+     "line": "To appeal, I'll need a photo of where you parked.",
+     "reply": "I took one already. I'll email it to you later today.",
+     "explanationIfSpoken": "The appeal requires a photo, so offering to send it is the natural reply.",
+     "kills": {
+      "0": "\"To appeal, I'll need\" - the appeal has not been decided.",
+      "1": "\"To appeal\" - the fine has not been confirmed yet.",
+      "2": "\"I'll need a photo\" - the line is about evidence, not permits."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-04",
+   "setting": "career center",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "proceeding to the next step",
+     "line": "The company liked your résumé and wants to interview you next week.",
+     "reply": "That's great news. What day works for them?",
+     "explanationIfSpoken": "An interview is offered, so asking about the day is the natural reply.",
+     "kills": {
+      "1": "\"wants to interview you\" - the application succeeded.",
+      "2": "\"The company liked your résumé\" - no revisions are needed.",
+      "3": "\"wants to interview you next week\" - nothing needs to be booked with an advisor."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking for feedback",
+     "line": "Unfortunately, they've already filled that internship.",
+     "reply": "Do you know of any similar ones still open?",
+     "explanationIfSpoken": "The position is filled, so asking about others is the natural reply.",
+     "kills": {
+      "0": "\"they've already filled that internship\" - there is no interview to schedule.",
+      "2": "\"already filled\" - fixing the résumé will not reopen it.",
+      "3": "\"already filled\" - the issue is a closed position."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "revising work",
+     "line": "Your résumé is good, but it should fit on one page.",
+     "reply": "Okay, I'll cut it down and send it back.",
+     "explanationIfSpoken": "The résumé needs shortening, so agreeing to cut it is the natural reply.",
+     "kills": {
+      "0": "\"it should fit on one page\" - nothing has been sent to a company yet.",
+      "1": "\"Your résumé is good\" - nothing was rejected.",
+      "3": "\"it should fit on one page\" - the advice is given now; no appointment is needed."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an offer",
+     "line": "I can do a practice interview with you on Thursday afternoon.",
+     "reply": "That day and time would be perfect.",
+     "explanationIfSpoken": "A practice session is offered, so accepting is the natural reply.",
+     "kills": {
+      "0": "\"a practice interview\" - no company has invited the student.",
+      "1": "\"I can do a practice interview\" - nothing was filled or refused.",
+      "2": "\"a practice interview\" - the offer is about interviewing, not editing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-05",
+   "setting": "financial aid office",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "acting on news",
+     "line": "Your scholarship was renewed for next year.",
+     "reply": "Wonderful. Do I need to do anything else?",
+     "explanationIfSpoken": "Good news about a renewal invites asking about next steps, the natural reply.",
+     "kills": {
+      "1": "\"was renewed\" - nothing is reduced.",
+      "2": "\"Your scholarship was renewed\" - no form is missing.",
+      "3": "\"was renewed for next year\" - the decision is made."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking about options",
+     "line": "Your grant is smaller this year because the funding was cut.",
+     "reply": "Is there anything else I could apply for?",
+     "explanationIfSpoken": "The grant shrank, so asking about other aid is the natural reply.",
+     "kills": {
+      "0": "\"Your grant is smaller\" - this is not a simple renewal.",
+      "2": "\"because the funding was cut\" - the cause is funding, not paperwork.",
+      "3": "\"Your grant is smaller this year\" - the amount is decided."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "completing a form",
+     "line": "We can't process your aid until you send last year's tax form.",
+     "reply": "I'll ask my parents for it tonight.",
+     "explanationIfSpoken": "Aid waits on a document, so arranging to get it is the natural reply.",
+     "kills": {
+      "0": "\"We can't process your aid\" - nothing has been renewed.",
+      "1": "\"until you send last year's tax form\" - nothing has been cut.",
+      "3": "\"until you send\" - the review is stalled on the student, not pending."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "waiting for a decision",
+     "line": "Decisions go out by email at the end of the month.",
+     "reply": "Okay, I'll keep checking my inbox.",
+     "explanationIfSpoken": "The decision comes later, so planning to watch for it is the natural reply.",
+     "kills": {
+      "0": "\"Decisions go out\" - nothing has been decided yet.",
+      "1": "\"Decisions go out\" - no reduction is known yet.",
+      "2": "\"by email at the end of the month\" - nothing is missing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-06",
+   "setting": "tutoring center",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "confirming a booking",
+     "line": "There's a math tutor free right now at table four.",
+     "reply": "Great, I'll bring my algebra questions over.",
+     "explanationIfSpoken": "A tutor is free now, so going over is the natural reply.",
+     "kills": {
+      "1": "\"free right now\" - no waiting list is needed.",
+      "2": "\"a math tutor\" - the subject is covered.",
+      "3": "\"at table four\" - the session is here, not online."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "joining a waiting list",
+     "line": "All the tutors are booked today, but I can put you on the list.",
+     "reply": "Yes, please add my name to it.",
+     "explanationIfSpoken": "Tutors are full but a list is offered, so joining it is the natural reply.",
+     "kills": {
+      "0": "\"All the tutors are booked\" - there is no free table to go to.",
+      "2": "\"All the tutors are booked today\" - the problem is time, not subject.",
+      "3": "\"I can put you on the list\" - the offer is a waiting list, not a video session."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "choosing an alternative subject source",
+     "line": "We don't offer chemistry tutoring, but the chemistry department does.",
+     "reply": "Where would I find their office?",
+     "explanationIfSpoken": "Help is elsewhere, so asking where is the natural reply.",
+     "kills": {
+      "0": "\"We don't offer chemistry tutoring\" - no tutor here can help, and the subject is chemistry, not algebra.",
+      "1": "\"We don't offer chemistry tutoring\" - a waiting list here will not help.",
+      "3": "\"the chemistry department does\" - the help is in person elsewhere."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an offer",
+     "line": "If you can't come in, we also do sessions by video.",
+     "reply": "Doing it online would be much easier for me.",
+     "explanationIfSpoken": "Video sessions are offered, so taking one is the natural reply.",
+     "kills": {
+      "0": "\"If you can't come in\" - nothing says a table is free now.",
+      "1": "\"we also do sessions by video\" - nothing says tutors are booked.",
+      "2": "\"sessions by video\" - the subject is not in question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-07",
+   "setting": "lost and found",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "claiming an item",
+     "line": "Someone turned in a blue umbrella this morning. Is it yours?",
+     "reply": "Yes, that's mine. Thank you!",
+     "explanationIfSpoken": "A matching item was found, so claiming it is the natural reply.",
+     "kills": {
+      "1": "\"Someone turned in a blue umbrella\" - something was found.",
+      "2": "\"Is it yours?\" - the clerk is asking, not requesting a description.",
+      "3": "\"this morning\" - the item is here now."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "leaving contact details",
+     "line": "Nothing like that has been turned in yet.",
+     "reply": "Could I leave my phone number in case it shows up?",
+     "explanationIfSpoken": "Nothing was found, so leaving contact details is the natural reply.",
+     "kills": {
+      "0": "\"Nothing like that has been turned in\" - there is nothing to claim.",
+      "2": "\"Nothing like that\" - the clerk already knows what is missing.",
+      "3": "\"has been turned in yet\" - nothing is waiting in another building."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "describing an item",
+     "line": "Can you describe the bag? What color is it?",
+     "reply": "It's a small black backpack with a red zipper.",
+     "explanationIfSpoken": "The clerk asks for a description, so giving one is the natural reply.",
+     "kills": {
+      "0": "\"Can you describe the bag?\" - nothing has been shown to claim.",
+      "1": "\"What color is it?\" - the clerk has not said nothing was found.",
+      "3": "\"Can you describe the bag?\" - the clerk is asking about the bag, not sending the student elsewhere."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "going to another location",
+     "line": "Items from the gym go to the front desk there, not here.",
+     "reply": "Oh, then I'll ask over there instead.",
+     "explanationIfSpoken": "Gym items are kept elsewhere, so going there is the natural reply.",
+     "kills": {
+      "0": "\"not here\" - nothing is here to claim.",
+      "1": "\"go to the front desk there\" - leaving a number here would not help.",
+      "2": "\"not here\" - describing the bag here is pointless."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-08",
+   "setting": "music practice rooms",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "using an opening",
+     "line": "Room three just opened up, and you can have it for an hour.",
+     "reply": "Perfect, I'll take it.",
+     "explanationIfSpoken": "A room is free now, so taking it is the natural reply.",
+     "kills": {
+      "1": "\"Room three just opened up\" - no booking ahead is needed.",
+      "2": "\"you can have it for an hour\" - nothing about a piano being broken.",
+      "3": "\"Room three just opened up\" - the room is free, so no card is needed first."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "booking ahead",
+     "line": "All the rooms are taken until six tonight.",
+     "reply": "Could I reserve one for this evening, then?",
+     "explanationIfSpoken": "Rooms are taken until six, so booking for six is the natural reply.",
+     "kills": {
+      "0": "\"All the rooms are taken\" - there is no room to take now.",
+      "2": "\"until six tonight\" - the problem is time, not a piano.",
+      "3": "\"All the rooms are taken\" - access is not the problem."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "choosing a different room",
+     "line": "The piano in room two is out of tune, so try room five.",
+     "reply": "Okay, I'll use that other one instead.",
+     "explanationIfSpoken": "The clerk redirects to another room, so going there is the natural reply.",
+     "kills": {
+      "0": "\"try room five\" - room three is not on offer.",
+      "1": "\"try room five\" - a room is free now; no booking for later is needed.",
+      "3": "\"try room five\" - the student is directed in, not asked for a card."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complying with a condition",
+     "line": "You'll need to swipe your music card to get in.",
+     "reply": "Sure, let me find my student ID.",
+     "explanationIfSpoken": "Access requires a card, so finding it is the natural reply.",
+     "kills": {
+      "0": "\"to get in\" - the student cannot take a room before swiping.",
+      "1": "\"to get in\" - no booking for later is mentioned.",
+      "2": "\"swipe your music card\" - the line is about access, not tuning."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-09",
+   "setting": "art supply store",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting a special order",
+     "line": "The paints you ordered came in yesterday.",
+     "reply": "Great, I'll pick them up right now.",
+     "explanationIfSpoken": "The order arrived, so collecting it is the natural reply.",
+     "kills": {
+      "1": "\"came in yesterday\" - the paints are here; no substitute is needed.",
+      "2": "\"The paints you ordered\" - the line is about an order, not a discount.",
+      "3": "\"came in yesterday\" - nothing remains to order."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "choosing a substitute",
+     "line": "That brand is discontinued, but this one's very similar.",
+     "reply": "Then I'll give that other kind a try.",
+     "explanationIfSpoken": "The brand is gone but an alternative exists, so trying it is the natural reply.",
+     "kills": {
+      "0": "\"That brand is discontinued\" - nothing has arrived to collect.",
+      "2": "\"this one's very similar\" - no student discount is mentioned.",
+      "3": "\"That brand is discontinued\" - it cannot be ordered."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a question",
+     "line": "Do you have a student ID? Students get ten percent off.",
+     "reply": "Yes, here's my card.",
+     "explanationIfSpoken": "A discount needs a student ID, so showing it is the natural reply.",
+     "kills": {
+      "0": "\"Do you have a student ID?\" - no order is mentioned.",
+      "1": "\"Students get ten percent off\" - nothing is discontinued.",
+      "3": "\"Do you have a student ID?\" - nothing is being ordered."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an offer",
+     "line": "We don't have that size in stock, but I can order it for Friday.",
+     "reply": "Yes, please get it in for me.",
+     "explanationIfSpoken": "An order is offered, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"We don't have that size in stock\" - nothing is waiting to pick up.",
+      "1": "\"I can order it\" - the brand still exists.",
+      "2": "\"I can order it for Friday\" - the clerk is offering an order, not asking for ID."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-10",
+   "setting": "train station ticket window",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "proceeding with a plan",
+     "line": "The ten-fifteen train is on time and leaves from platform two.",
+     "reply": "Great, I'll go find my seat on it.",
+     "explanationIfSpoken": "The train is on time, so going to the platform is the natural reply.",
+     "kills": {
+      "1": "\"is on time\" - there is no delay to wait out.",
+      "2": "\"leaves from platform two\" - no ticket type needs choosing.",
+      "3": "\"is on time\" - nothing is cancelled."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "accepting a delay",
+     "line": "The ten-fifteen is running about twenty minutes late.",
+     "reply": "Okay, I'll get a coffee while I wait.",
+     "explanationIfSpoken": "A short delay calls for waiting, so planning to wait is the natural reply.",
+     "kills": {
+      "0": "\"running about twenty minutes late\" - going to the platform now is premature.",
+      "2": "\"running about twenty minutes late\" - the line is about timing, not tickets.",
+      "3": "\"twenty minutes late\" - the train is still running."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Do you want a one-way ticket or a round trip?",
+     "reply": "Coming and going, please. I'm back Sunday.",
+     "explanationIfSpoken": "The clerk asks about ticket type, so choosing is the natural reply.",
+     "kills": {
+      "0": "\"Do you want a one-way ticket\" - the student has not bought a ticket yet.",
+      "1": "\"one-way ticket or a round trip?\" - no delay is mentioned.",
+      "3": "\"one-way ticket or a round trip?\" - nothing is cancelled."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "seeking an alternative route",
+     "line": "That train's cancelled today, but there's a bus replacement outside.",
+     "reply": "Where exactly does that leave from, then?",
+     "explanationIfSpoken": "The train is replaced by a bus, so asking where it leaves is the natural reply.",
+     "kills": {
+      "0": "\"That train's cancelled\" - there is no train to find a seat on.",
+      "1": "\"cancelled today\" - waiting will not bring the train.",
+      "2": "\"there's a bus replacement\" - the clerk is not asking about ticket type."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-11",
+   "setting": "dentist's office",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "confirming an appointment",
+     "line": "The dentist can see you now. Come on back.",
+     "reply": "Okay, thank you. I'll follow you, then.",
+     "explanationIfSpoken": "The patient is called in, so following is the natural reply.",
+     "kills": {
+      "1": "\"can see you now\" - nothing needs rescheduling.",
+      "2": "\"Come on back\" - the paperwork is not the issue.",
+      "3": "\"can see you now\" - insurance is not mentioned."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "rescheduling",
+     "line": "The dentist is out sick today, so we need to move your appointment.",
+     "reply": "Is there anything open later this week?",
+     "explanationIfSpoken": "The appointment must move, so asking for another time is the natural reply.",
+     "kills": {
+      "0": "\"The dentist is out sick today\" - the patient cannot go in now.",
+      "2": "\"we need to move your appointment\" - the issue is the dentist's absence, not forms.",
+      "3": "\"move your appointment\" - no card is requested."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "completing a form",
+     "line": "Before your visit, please update this medical history form.",
+     "reply": "Sure. Should I fill it out here?",
+     "explanationIfSpoken": "A form is required, so asking where to complete it is the natural reply.",
+     "kills": {
+      "0": "\"Before your visit\" - the patient is not being called in yet.",
+      "1": "\"Before your visit\" - the visit is still on today.",
+      "3": "\"update this medical history form\" - the request is for a form, not a card."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a question",
+     "line": "Has your insurance changed since your last visit?",
+     "reply": "No, it's the same as before.",
+     "explanationIfSpoken": "The receptionist asks about insurance, so answering is the natural reply.",
+     "kills": {
+      "0": "\"Has your insurance changed\" - the patient is not being called in yet.",
+      "1": "\"since your last visit?\" - nothing is cancelled.",
+      "2": "\"Has your insurance changed\" - the question is not about the history form."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-12",
+   "setting": "apartment rental office",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "acting on approval",
+     "line": "Your application was approved, and you can move in on the first.",
+     "reply": "Great. When can I pick up the keys?",
+     "explanationIfSpoken": "The application is approved, so asking about keys is the natural reply.",
+     "kills": {
+      "1": "\"was approved\" - nothing was rented to someone else.",
+      "2": "\"you can move in on the first\" - the move-in is settled; no deposit question is asked.",
+      "3": "\"was approved\" - nothing needs to be repaired first."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "seeking another unit",
+     "line": "Sorry, that apartment was rented to someone else yesterday.",
+     "reply": "Do you have any similar units available right now?",
+     "explanationIfSpoken": "The unit is gone, so asking about others is the natural reply.",
+     "kills": {
+      "0": "\"rented to someone else\" - there are no keys to collect.",
+      "2": "\"was rented to someone else\" - no deposit is being discussed.",
+      "3": "\"was rented\" - the unit is not the student's to report problems in."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Would you like to pay the deposit by check or by card?",
+     "reply": "I'll put it on my Visa, if that's okay.",
+     "explanationIfSpoken": "The clerk asks how to pay, so choosing is the natural reply.",
+     "kills": {
+      "0": "\"Would you like to pay the deposit\" - payment comes before keys.",
+      "1": "\"pay the deposit\" - the unit is still available.",
+      "3": "\"by check or by card?\" - the clerk asks about payment, not repairs."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "reporting a problem",
+     "line": "If anything's broken when you move in, list it on this form.",
+     "reply": "Okay, I'll go through the place carefully.",
+     "explanationIfSpoken": "The clerk asks for a list of damage, so agreeing to inspect is the natural reply.",
+     "kills": {
+      "0": "\"list it on this form\" - the line is about inspection, not keys.",
+      "1": "\"when you move in\" - the student is moving in.",
+      "2": "\"list it on this form\" - no payment is requested."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-13",
+   "setting": "grocery store checkout",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "accepting a discount",
+     "line": "These apples are on sale today, two bags for the price of one.",
+     "reply": "Then I'll grab a couple more.",
+     "explanationIfSpoken": "A two-for-one deal invites taking another bag, the natural reply.",
+     "kills": {
+      "1": "\"These apples are on sale\" - nothing failed to scan.",
+      "2": "\"two bags for the price of one\" - no bag choice is asked.",
+      "3": "\"on sale today\" - nothing is out of stock."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "resolving a problem",
+     "line": "Your card was declined. Do you have another way to pay?",
+     "reply": "Oh, sorry. Let me use cash instead.",
+     "explanationIfSpoken": "The card failed, so offering another is the natural reply.",
+     "kills": {
+      "0": "\"Your card was declined\" - the issue is payment, not a sale.",
+      "2": "\"Do you have another way to pay?\" - the cashier asks about payment, not bags.",
+      "3": "\"Your card was declined\" - nothing is out of stock."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Do you need a bag, or are you all right?",
+     "reply": "I'm fine, thanks. I brought one from home.",
+     "explanationIfSpoken": "The cashier asks about a bag, so answering is the natural reply.",
+     "kills": {
+      "0": "\"Do you need a bag\" - no sale is mentioned.",
+      "1": "\"Do you need a bag\" - payment has not failed.",
+      "3": "\"Do you need a bag\" - nothing is out of stock."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking about restocking",
+     "line": "We're out of milk until the delivery tomorrow morning.",
+     "reply": "Okay, I'll stop by again before class.",
+     "explanationIfSpoken": "Milk returns tomorrow, so planning to return is the natural reply.",
+     "kills": {
+      "0": "\"We're out of milk\" - there is no deal to take.",
+      "1": "\"until the delivery tomorrow morning\" - the card is not the problem.",
+      "2": "\"We're out of milk\" - the cashier is not asking about bags."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-14",
+   "setting": "phone repair kiosk",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting a finished job",
+     "line": "Your new screen is on, and the phone works perfectly.",
+     "reply": "Thanks, I'll take it now.",
+     "explanationIfSpoken": "The repair is done, so collecting the phone is the natural reply.",
+     "kills": {
+      "1": "\"the phone works perfectly\" - no part needs ordering.",
+      "2": "\"Your new screen is on\" - the price was not raised.",
+      "3": "\"the phone works perfectly\" - no data question remains."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "authorizing a delay",
+     "line": "We need to order the screen, so it'll be ready Thursday.",
+     "reply": "That's fine. I'll come back for it then.",
+     "explanationIfSpoken": "The repair waits on a part, so agreeing to return is the natural reply.",
+     "kills": {
+      "0": "\"it'll be ready Thursday\" - the phone is not ready now.",
+      "2": "\"We need to order the screen\" - the problem is timing, not cost.",
+      "3": "\"it'll be ready Thursday\" - the line asks nothing about data."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "approving a cost",
+     "line": "The battery's weak too. Do you want it replaced for thirty dollars?",
+     "reply": "Yes, go ahead and replace it.",
+     "explanationIfSpoken": "The technician asks to approve an extra cost, so approving is the natural reply.",
+     "kills": {
+      "0": "\"Do you want it replaced\" - the work is not finished.",
+      "1": "\"for thirty dollars?\" - the question is about cost, not delay.",
+      "3": "\"The battery's weak too\" - the question is about the battery, not data."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a question",
+     "line": "Did you back up your photos before bringing it in?",
+     "reply": "Yes, everything is already saved online.",
+     "explanationIfSpoken": "The technician asks about a backup, so answering is the natural reply.",
+     "kills": {
+      "0": "\"before bringing it in\" - the repair has not been done.",
+      "1": "\"Did you back up your photos\" - nothing is said about a part.",
+      "2": "\"Did you back up your photos\" - no cost is mentioned."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-15",
+   "setting": "campus job supervisor",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "accepting extra work",
+     "line": "We'd like you to take two extra shifts this week, if you want them.",
+     "reply": "Sure, I could use the additional hours.",
+     "explanationIfSpoken": "Extra shifts are offered, so accepting is the natural reply.",
+     "kills": {
+      "1": "\"take two extra shifts\" - hours are being added, not cut.",
+      "2": "\"if you want them\" - nothing about a schedule conflict.",
+      "3": "\"two extra shifts\" - nothing is missing from the timesheet."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "accepting an outcome",
+     "line": "We have to cut everyone's hours next month because of the budget.",
+     "reply": "I understand. Will it go back up later?",
+     "explanationIfSpoken": "Hours are being cut, so asking whether it is temporary is the natural reply.",
+     "kills": {
+      "0": "\"cut everyone's hours\" - there are no extra shifts.",
+      "2": "\"because of the budget\" - the reason is money, not the student's schedule.",
+      "3": "\"cut everyone's hours next month\" - nothing about a timesheet."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "resolving a scheduling conflict",
+     "line": "Can you work Saturday morning instead of Friday?",
+     "reply": "That's okay, as long as it's after nine.",
+     "explanationIfSpoken": "The supervisor asks to swap a shift, so agreeing with a condition is the natural reply.",
+     "kills": {
+      "0": "\"instead of Friday\" - this is a swap, not extra shifts.",
+      "1": "\"Can you work Saturday morning\" - nothing is being cut.",
+      "3": "\"Can you work Saturday morning\" - the timesheet is not mentioned."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "fixing a record",
+     "line": "Your timesheet is missing Tuesday, so please add it today.",
+     "reply": "Sorry about that. I'll fix it right away, then.",
+     "explanationIfSpoken": "A missing entry must be added, so agreeing to fix it is the natural reply.",
+     "kills": {
+      "0": "\"Your timesheet is missing Tuesday\" - no shifts are offered.",
+      "1": "\"please add it today\" - no hours are being cut.",
+      "2": "\"Your timesheet is missing Tuesday\" - this is not a shift swap."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-16",
+   "setting": "theater box office",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting tickets",
+     "line": "Your tickets are here, two seats in row F.",
+     "reply": "Great, thank you so much.",
+     "explanationIfSpoken": "The tickets are ready, so thanking the clerk is the natural reply.",
+     "kills": {
+      "1": "\"Your tickets are here\" - the show is not sold out for the student.",
+      "2": "\"two seats in row F\" - the seats are already chosen.",
+      "3": "\"Your tickets are here\" - nothing has been moved."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "choosing another performance",
+     "line": "Tonight's show is sold out, but there are seats on Sunday.",
+     "reply": "Then I'll take two for the weekend instead.",
+     "explanationIfSpoken": "Tonight is full but Sunday is open, so taking Sunday is the natural reply.",
+     "kills": {
+      "0": "\"Tonight's show is sold out\" - there are no tickets to hand over.",
+      "2": "\"there are seats on Sunday\" - the clerk is not asking where to sit.",
+      "3": "\"sold out\" - nothing is said about a start time change."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a choice",
+     "line": "Would you prefer the balcony or the main floor?",
+     "reply": "Downstairs, please, close to the stage.",
+     "explanationIfSpoken": "The clerk asks for a seating area, so choosing one is the natural reply.",
+     "kills": {
+      "0": "\"Would you prefer\" - the tickets are not printed yet.",
+      "1": "\"the balcony or the main floor?\" - seats are available.",
+      "3": "\"the balcony or the main floor?\" - the question is about seats, not time."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adjusting a plan",
+     "line": "Just so you know, the show now starts at seven, not eight.",
+     "reply": "Oh, thanks for telling me. I'll come earlier.",
+     "explanationIfSpoken": "The start time moved earlier, so planning to arrive earlier is the natural reply.",
+     "kills": {
+      "0": "\"the show now starts at seven\" - the line is about timing, not ticket pickup.",
+      "1": "\"the show now starts at seven\" - the show is still on.",
+      "2": "\"starts at seven, not eight\" - no seating choice is asked."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-17",
+   "setting": "museum front desk",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "proceeding to an event",
+     "line": "The next guided tour starts in five minutes by the stairs.",
+     "reply": "Great, I'll go over and join it.",
+     "explanationIfSpoken": "A tour is about to start, so going there is the natural reply.",
+     "kills": {
+      "1": "\"starts in five minutes\" - the tour is not full, so there is no reason to switch to a later time.",
+      "2": "\"by the stairs\" - the question of admission price is not raised.",
+      "3": "\"The next guided tour starts\" - the exhibit is not closed."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "joining a later tour",
+     "line": "The two o'clock tour is full, but there's one at three.",
+     "reply": "Okay, then I'll do the later time instead.",
+     "explanationIfSpoken": "One tour is full but another is open, so signing up is the natural reply.",
+     "kills": {
+      "0": "\"The two o'clock tour is full\" - waiting by the stairs for it is pointless.",
+      "2": "\"there's one at three\" - the line is not about price.",
+      "3": "\"there's one at three\" - tours are running."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "using a discount",
+     "line": "Admission is free for students on Wednesdays.",
+     "reply": "Lucky me. Here's my school ID.",
+     "explanationIfSpoken": "Students enter free today, so showing the card is the natural reply.",
+     "kills": {
+      "0": "\"Admission is free\" - no tour is mentioned.",
+      "1": "\"Admission is free for students\" - no tour is full.",
+      "3": "\"Admission is free\" - nothing is closed."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "changing plans",
+     "line": "The dinosaur hall is closed today for cleaning.",
+     "reply": "That's too bad. What else would you recommend?",
+     "explanationIfSpoken": "The planned exhibit is closed, so asking for alternatives is the natural reply.",
+     "kills": {
+      "0": "\"is closed today\" - there is no tour to wait for.",
+      "1": "\"closed today for cleaning\" - no later tour is offered.",
+      "2": "\"The dinosaur hall is closed\" - the line is not about admission."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-18",
+   "setting": "science lab",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "proceeding with a task",
+     "line": "Your samples are ready, so you can start the experiment.",
+     "reply": "Great, I'll set up at my bench.",
+     "explanationIfSpoken": "The samples are ready, so starting work is the natural reply.",
+     "kills": {
+      "1": "\"Your samples are ready\" - nothing was contaminated.",
+      "2": "\"you can start the experiment\" - safety gear is not being asked about.",
+      "3": "\"Your samples are ready\" - the lab is open."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "redoing work",
+     "line": "Your samples were contaminated, so you'll need to prepare new ones.",
+     "reply": "Okay, I'll start over again this afternoon.",
+     "explanationIfSpoken": "The samples are ruined, so agreeing to redo them is the natural reply.",
+     "kills": {
+      "0": "\"were contaminated\" - the experiment cannot start.",
+      "2": "\"you'll need to prepare new ones\" - the problem is the samples, not goggles.",
+      "3": "\"prepare new ones\" - the lab is available to do it."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complying with a rule",
+     "line": "You can't come in without safety goggles.",
+     "reply": "Sorry, let me go get mine.",
+     "explanationIfSpoken": "Goggles are required, so getting them is the natural reply.",
+     "kills": {
+      "0": "\"You can't come in\" - the student cannot set up yet.",
+      "1": "\"without safety goggles\" - nothing is wrong with the samples.",
+      "3": "\"You can't come in without safety goggles\" - the lab is open to those with goggles."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "rescheduling work",
+     "line": "The lab's closed Friday, so plan to finish by Thursday.",
+     "reply": "Then I'll come in Wednesday to wrap it up.",
+     "explanationIfSpoken": "The deadline moves up, so planning to finish earlier is the natural reply.",
+     "kills": {
+      "0": "\"The lab's closed Friday\" - the line is about scheduling, not ready samples.",
+      "1": "\"plan to finish by Thursday\" - nothing was contaminated.",
+      "2": "\"The lab's closed Friday\" - goggles are not mentioned."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-19",
+   "setting": "hair salon",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "being seated",
+     "line": "Maria's ready for you now, so come right over.",
+     "reply": "Thanks, I'm coming now.",
+     "explanationIfSpoken": "The stylist is ready, so going over is the natural reply.",
+     "kills": {
+      "1": "\"Maria's ready for you now\" - there is no wait.",
+      "2": "\"come right over\" - no style question is asked.",
+      "3": "\"ready for you now\" - nothing about a price."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "accepting a wait",
+     "line": "Maria's running about fifteen minutes behind today.",
+     "reply": "No problem. I'll wait here.",
+     "explanationIfSpoken": "A short delay calls for waiting, the natural reply.",
+     "kills": {
+      "0": "\"running about fifteen minutes behind\" - the client cannot go over yet.",
+      "2": "\"fifteen minutes behind\" - the line is about timing, not the haircut.",
+      "3": "\"running about fifteen minutes behind\" - nothing about cost."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answering a question",
+     "line": "How short would you like it on the sides?",
+     "reply": "Just a little shorter than it is now.",
+     "explanationIfSpoken": "The stylist asks about length, so describing it is the natural reply.",
+     "kills": {
+      "0": "\"How short would you like it\" - the client is already seated.",
+      "1": "\"How short would you like it\" - there is no delay.",
+      "3": "\"on the sides?\" - the question is about style, not price."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "approving a cost",
+     "line": "Coloring would add forty dollars to the price.",
+     "reply": "That's fine. Let's go ahead and do the color.",
+     "explanationIfSpoken": "An added cost is explained, so agreeing to it is the natural reply.",
+     "kills": {
+      "0": "\"Coloring would add forty dollars\" - this is a price, not a call to the chair.",
+      "1": "\"would add forty dollars\" - nothing about a delay.",
+      "2": "\"Coloring would add\" - the stylist gives a price, not a length question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr12-20",
+   "setting": "roommate at home",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "making plans",
+     "line": "I got us tickets for the concert Saturday night!",
+     "reply": "No way! That's amazing. What time does it start?",
+     "explanationIfSpoken": "Concert tickets invite asking the time, the natural reply.",
+     "kills": {
+      "1": "\"I got us tickets\" - nothing is broken.",
+      "2": "\"I got us tickets\" - nothing is owed.",
+      "3": "\"for the concert Saturday night\" - no cleaning is asked."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "dealing with a problem",
+     "line": "The heater stopped working again last night.",
+     "reply": "Ugh. I'll call the landlord this morning.",
+     "explanationIfSpoken": "A broken heater calls for contacting the landlord, the natural reply.",
+     "kills": {
+      "0": "\"The heater stopped working\" - this is not good news about plans.",
+      "2": "\"stopped working again\" - nothing about money.",
+      "3": "\"The heater stopped working\" - nothing about chores."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "paying a share",
+     "line": "Your half of the electric bill is thirty dollars.",
+     "reply": "I'll send it to you tonight.",
+     "explanationIfSpoken": "A share of a bill is due, so agreeing to pay is the natural reply.",
+     "kills": {
+      "0": "\"Your half of the electric bill\" - no tickets are mentioned.",
+      "1": "\"Your half of the electric bill\" - the heater is not mentioned.",
+      "3": "\"is thirty dollars\" - nothing about cleaning."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agreeing to a chore",
+     "line": "Could you take out the trash before you leave?",
+     "reply": "Sure, I'll do it on my way out.",
+     "explanationIfSpoken": "A chore is requested, so agreeing is the natural reply.",
+     "kills": {
+      "0": "\"take out the trash\" - no tickets are mentioned.",
+      "1": "\"before you leave\" - nothing is broken.",
+      "2": "\"take out the trash\" - nothing about money."
+     }
+    }
+   ]
+  }
+ ]
+}
