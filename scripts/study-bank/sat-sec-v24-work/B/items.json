@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC24B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: auxiliary choice and subject-verb agreement in verb-phrase ellipsis after a kind-of subject",
+    "difficulty": "hard",
+    "passage": "Sandstone was the cheaper building material in many old towns, and its crumbling surfaces are a common sight on their older streets. Conservators repairing those facades test replacement blocks by soaking and freezing them over and over. Basalt resists the pressure of the expanding ice in such trials, whereas several kinds of quarried sandstone ______.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is not",
+      "do not",
+      "does not",
+      "are not"
+    ],
+    "correct_answer": "do not",
+    "explanation": "The subject of the whereas-clause is \"several kinds of quarried sandstone,\" whose head \"kinds\" is plural; \"sandstone\" sits right before the blank but only names what the kinds are kinds of. The clause ends in verb-phrase ellipsis, so its auxiliary must stand in for the main clause's lexical verb \"resists\" (\"do not [resist the pressure]\"), which calls for a form of \"do.\" \"does not\" uses the right auxiliary but is singular. \"are not\" is plural but a form of \"be\" cannot stand in for \"resists,\" and \"is not\" fails on both counts.",
+    "topic_tag": "building stone: freeze-thaw durability of facade blocks",
+    "template": "whereas-clause VP ellipsis with several-kinds-of + mass noun x mass noun before the blank x j|m + not"
+  },
+  {
+    "id": "SEC24B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement past a parenthetical list, with tense set by a simultaneous as-clause",
+    "difficulty": "hard",
+    "passage": "A wind-energy laboratory tests full-scale turbine parts before they go to sea. The prototype rotor (a steel hub, a drive shaft, and three fiberglass blades) ______ in strong artificial crosswinds as two engineers watch the strain readings on a monitor. Any blade that flexes beyond its design limit is sent back to the factory for redesign.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was being tested",
+      "are being tested",
+      "were being tested",
+      "is being tested"
+    ],
+    "correct_answer": "is being tested",
+    "explanation": "The subject is \"The prototype rotor,\" which is singular; the parentheses only list its parts, so the plural \"blades\" closing the list does not set the verb's number. The testing happens at the same time as the action in \"as two engineers watch,\" whose verb is present tense, so the verb must be present as well. \"are being tested\" is present but plural, \"was being tested\" is singular but past and clashes with \"watch,\" and \"were being tested\" fails on both counts.",
+    "topic_tag": "wind engineering: rotor crosswind testing",
+    "template": "singular head + parenthetical parts list ending plural x closing plural x k|l"
+  },
+  {
+    "id": "SEC24B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a deverbal head and two of/by phrases, with tense set by an unless-clause",
+    "difficulty": "hard",
+    "passage": "Radar satellites can detect the swelling of a volcano to within a few millimeters, an early sign that magma is collecting below. The measurements of the summit by both satellites ______ its uplift unless the delay caused by water vapor in the air is removed from the signal. Moist air slows the radar pulses and distorts the apparent height of the ground.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are overstating",
+      "was overstating",
+      "is overstating",
+      "were overstating"
+    ],
+    "correct_answer": "are overstating",
+    "explanation": "The head of the subject is \"measurements,\" which is plural; \"the summit\" names what is measured and does not set the number. The sentence is a first conditional: its condition, \"unless the delay ... is removed,\" is in the present tense, so the main verb must be present too. \"is overstating\" is present but singular, \"were overstating\" is plural but past and cannot pair with the present \"is removed,\" and \"was overstating\" fails on both counts.",
+    "topic_tag": "volcano geodesy: satellite radar uplift",
+    "template": "deverbal head + of sg + by pl x singular of-object early x b|g"
+  },
+  {
+    "id": "SEC24B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural sample noun and a singular of-phrase, with tense set by an until-clause",
+    "difficulty": "hard",
+    "passage": "Polar ice holds tiny bubbles of ancient air, and drilling teams pull it up in long cylinders called cores. Samples of the deepest core ______ in insulated canisters until a supply ship reached the drilling camp at the end of the season. Laboratories that receive such cores compare the trapped air with the modern atmosphere.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is sealed",
+      "are sealed",
+      "were sealed",
+      "was sealed"
+    ],
+    "correct_answer": "were sealed",
+    "explanation": "The head of the subject is \"Samples,\" which is plural; \"the deepest core\" right before the blank only says what the samples were taken from. The sealing lasted \"until a supply ship reached the drilling camp,\" and that past-tense verb requires a past-tense main verb. \"was sealed\" is past but singular, \"are sealed\" is plural but present and cannot run until a past event, and \"is sealed\" fails on both counts.",
+    "topic_tag": "paleoclimatology: deep ice core storage",
+    "template": "plural sample head + of + singular x singular of-noun before the blank x c|h"
+  },
+  {
+    "id": "SEC24B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and object pronoun number with the antecedent in an opening place clause",
+    "difficulty": "hard",
+    "passage": "Strain sensors bolted to long-span bridges corrode in a few months if salt and wind reach them, and corroded units report false readings. Engineers who monitor these bridges therefore protect the most exposed instruments first. Wherever the sensors sit on the seaward girders, a thin steel housing ______ from the gusts and the salt spray.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "shields them",
+      "shield it",
+      "shield them",
+      "shields it"
+    ],
+    "correct_answer": "shields them",
+    "explanation": "The subject of the main clause is \"a thin steel housing,\" which is singular, so the verb is \"shields\"; the plural \"sensors\" belongs to the opening clause \"Wherever the sensors sit on the seaward girders\" and is not the subject. The object pronoun must refer back to those plural \"sensors,\" the only things the housing can protect, so it must be \"them\"; \"it\" has no possible referent, since the only singular noun before it is the housing itself. \"shield them\" has the right pronoun but a plural verb, \"shields it\" has the right verb but a pronoun with nothing to refer to, and \"shield it\" fails on both counts.",
+    "topic_tag": "structural health monitoring: bridge strain sensors",
+    "template": "fronted wherever-clause with plural antecedent + singular subject x plural antecedent early x a+p object"
+  },
+  {
+    "id": "SEC24B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement past a locative phrase, with the auxiliary set by a distant intransitive participle",
+    "difficulty": "hard",
+    "passage": "The tallest dune beside the dry lake beds ______ not, as the early surveys assumed, migrated with the prevailing wind. Soundings of its interior show a core of hard clay anchored to a buried ridge of rock. Geologists who compared aerial photographs from different years had mistaken its shifting crest for movement of the whole dune.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were",
+      "was",
+      "have",
+      "has"
+    ],
+    "correct_answer": "has",
+    "explanation": "The subject is \"The tallest dune,\" which is singular; \"beside the dry lake beds\" only locates it, so the plural \"beds\" right before the blank does not set the verb's number. After the comment \"as the early surveys assumed,\" the verb continues with \"migrated,\" a past participle of a verb that cannot be passive, so the auxiliary must be a form of \"have\" (\"has not ... migrated\"). \"have\" is the right auxiliary but plural, \"was\" is singular but would make \"was not ... migrated,\" which is ungrammatical, and \"were\" fails on both counts.",
+    "topic_tag": "aeolian geomorphology: dune migration",
+    "template": "singular head + locative phrase ending plural x closing plural x i|n with distant intransitive participle"
+  },
+  {
+    "id": "SEC24B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation between two independent clauses when the second opens with a time phrase",
+    "difficulty": "hard",
+    "passage": "Volcanologists revisit old craters to learn how quickly life returns to bare rock. The lava lake in one summit crater cooled into a hard black ______ a decade ferns had rooted in the cracks of its surface. Mosses and low shrubs followed the ferns, and the crater floor is green today.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "crust, within",
+      "crust within",
+      "crust; within",
+      "crust: within"
+    ],
+    "correct_answer": "crust; within",
+    "explanation": "\"The lava lake in one summit crater cooled into a hard black crust\" is an independent clause, and \"within a decade ferns had rooted in the cracks of its surface\" is a second independent clause describing a later event. A semicolon correctly joins the two. With a comma alone, the sentence is a comma splice, even though \"within a decade\" seems at first to belong to \"cooled\"; with no mark, it is a run-on. A colon would present the second clause as an explanation or elaboration of the first, but the ferns' arrival a decade later neither explains nor restates the cooling.",
+    "topic_tag": "volcanic ecology: plant colonization of a lava lake",
+    "template": "two independent clauses, second opening with a backward-attaching time PP x comma lure x semicolon/comma/none/colon"
+  },
+  {
+    "id": "SEC24B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation in a compound predicate joined by and",
+    "difficulty": "hard",
+    "passage": "Old steam boilers develop fatigue cracks where their steel plates are riveted together. A certified welder ground out the cracks along the boiler ______ refilled the grooves with fresh weld metal in thin layers. The welder hammered each layer lightly to relieve stress in the metal before laying down the next.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "seam, and",
+      "seam and",
+      "seam and,",
+      "seam. And"
+    ],
+    "correct_answer": "seam and",
+    "explanation": "The sentence has one subject, \"A certified welder,\" and two verbs joined by \"and\": \"ground out the cracks along the boiler seam\" and \"refilled the grooves.\" Because \"refilled\" has no subject of its own, the words after \"and\" are not an independent clause, and no punctuation belongs between the two parts of the compound predicate. A comma before \"and\" would wrongly separate the two verbs as though each had its own subject, and a comma after \"and\" splits the conjunction from the verb it joins. A period would leave \"And refilled the grooves with fresh weld metal in thin layers\" as a fragment with no subject.",
+    "topic_tag": "boiler repair: fatigue cracks along riveted seams",
+    "template": "compound predicate x comma-before-and lure x none/comma/period/shifted comma"
+  }
+]

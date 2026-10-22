@@ -1,0 +1,384 @@
+[
+  {
+    "id": "SEC24C-01",
+    "slot": "C1",
+    "frame": "indefinite pronoun subject (Everything) + prepositional phrase ending on a plural noun (on the workshop shelves)",
+    "true_subject_head": "Everything",
+    "misleader_words": [
+      "shelves"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "shelves",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "Everything",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "guild inspector",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "conditional",
+    "decider_quote": "if a visiting guild inspector found",
+    "deletion_test": "Delete the if-clause: 'Everything on the workshop shelves ___.' Both 'was forfeit' and 'is forfeit' are then grammatical. The other sentences are present ('list', 'read') and settle nothing about the blank's tense; no date is printed. The past 'found' in a habitual if-clause is the only tense evidence: 'is forfeit if ... found' mixes a present main clause with a past condition and is an error (a second conditional would need 'would be').",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was forfeit",
+        "were forfeit",
+        "is forfeit",
+        "are forfeit"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "if a visiting guild",
+    "length_ratio": 1.1,
+    "distractor_kills": {
+      "were forfeit": "subject is the indefinite pronoun 'Everything' (first word of the sentence, 5 words before the blank); 'shelves' is the object of 'on'",
+      "is forfeit": "past 'found' in the if-clause, 6 words after the blank: 'Everything ... is forfeit if a visiting guild inspector found a single bolt' is a tense error",
+      "are forfeit": "both: 'Everything' (5 words before) and 'found' (6 words after)"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean i|j 2x2 with shared 'forfeit'; no option is odd one out (key is neither longest nor shortest)",
+      "heuristics_that_give_key": [
+        "(a) opposite the plural word before the blank",
+        "(b) agree with the first noun of the sentence ('Everything')"
+      ],
+      "changed": "moved the tense evidence: 'visiting' inserted so 'found' is the 6th word after the blank, outside the four-word window; removed a ', so masters kept ...' tail that would have been a second (parallel-verb) tense clue; removed 'who controlled' from the last sentence so no other sentence carries a past verb. Near-dup: skeleton-only match to 9 live rows ({are, is, was, were} once the shared word is removed; expected for i|j); passage Jaccard 0.000; option strings not identical to any live set."
+    }
+  },
+  {
+    "id": "SEC24C-02",
+    "slot": "C2",
+    "frame": "singular head (practice) + of + gerund phrase with a plural object (exchanging such cards)",
+    "true_subject_head": "practice",
+    "misleader_words": [
+      "cards"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "cards",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "practice",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "towns",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "before the railway reached them",
+    "deletion_test": "Delete the before-clause: 'The practice of exchanging such cards ___ slowly but steadily through provincial towns, according to the order books of local printers.' Both 'was spreading' and 'has been spreading' are then grammatical. The other sentences are present ('devote', 'treat') and 'Nineteenth-century' is an adjective, not a tense anchor. With the clause, 'has been spreading ... before the railway reached them' anchors a present perfect to a finished past event: an error.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been spreading",
+        "have been spreading",
+        "was spreading",
+        "were spreading"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "slowly but steadily through",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "were spreading": "head 'practice' 5 words before the blank; 'cards' is the gerund's object",
+      "has been spreading": "'before the railway reached them', starting 7 words after the blank",
+      "have been spreading": "both: 'practice' and the before-clause"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by text; 'been' appears in two options (the table's accepted 'been' exposure, keyed 0 batch-wide); key uniquely shortest as the table assigns",
+      "heuristics_that_give_key": [
+        "(a) opposite the plural noun before the blank",
+        "(b) first noun of the sentence ('practice')",
+        "(c) copy the before-clause tense (a time row; allowed)",
+        "(e) 'been' loses (narrows to two)"
+      ],
+      "changed": "pushed the plural after-noun 'towns' to word 6 after the blank with 'slowly but steadily through provincial'; removed 'surviving' (a past cue) from the order-books phrase. Near-dup: skeleton-only match to 5 live rows and to SEC24C-03 ({has been, have been, was, were}; table-assigned f|g vs e|h); passage Jaccard 0.010; option strings not identical to any live set."
+    }
+  },
+  {
+    "id": "SEC24C-03",
+    "slot": "C3",
+    "frame": "opening concessive clause with a singular subject (Although the household inventory lists ...), then a plain plural main-clause subject (the painted hall screens)",
+    "true_subject_head": "screens",
+    "misleader_words": [
+      "inventory"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "screens",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "inventory",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "note",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "when a new owner emptied the west wing",
+    "deletion_test": "Delete the when-clause: 'the painted hall screens ___ without a single written note.' Both 'were removed' and 'have been removed' are grammatical. The concessive verb 'lists' is present and settles nothing; the later sentences are present ('rely', 'are', 'match', 'hang'). With the clause, 'have been removed ... when a new owner emptied the west wing' attaches a present perfect to a definite past time: an error.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been removed",
+        "have been removed",
+        "was removed",
+        "were removed"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "without a single written",
+    "length_ratio": 1.09,
+    "distractor_kills": {
+      "was removed": "the main-clause subject 'screens' sits just before the blank; 'inventory' is the subject of the 'Although' clause (13+ words earlier)",
+      "have been removed": "'when a new owner emptied', starting 6 words after the blank",
+      "has been removed": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by text; two 'been' options keyed 0 (table-accepted)",
+      "heuristics_that_give_key": [
+        "(c) copy the when-clause tense (a time row; allowed)",
+        "(e) 'been' loses (narrows to two)"
+      ],
+      "changed": "none to the frame; the when-clause starts at word 6 after the blank so the aspect evidence is outside the four-word window. Number is visible next to the blank by the row's design (Near agrees); the hard part is the aspect, decided away from the blank. Near-dup: skeleton-only match to 5 live rows and to SEC24C-02 (table-assigned e|h vs f|g; they differ in key number, misleader position, voice and verb); passage Jaccard 0.000; option strings not identical. Also replaced \"nearly every chair\" with \"each chair\" (an every-phrase NOTE)."
+    }
+  },
+  {
+    "id": "SEC24C-04",
+    "slot": "C4",
+    "frame": "'those of' comparison: plural head + of-phrase ending on a singular noun (The pigments of the smallest copy ___ of the two larger copies)",
+    "true_subject_head": "pigments",
+    "misleader_words": [
+      "copy"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "copy",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "pigments",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "copies",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": [
+      "The pigments",
+      "of the two larger copies"
+    ],
+    "deletion_test": "The pronoun is decided by the compared head 'pigments': the demonstrative replaces the head noun of the second compared phrase ('the pigments of the two larger copies'). If the head were singular ('The pigment of ...') 'that' would be right. No other sentence offers an antecedent; the only singular noun in the clause, 'copy', yields nonsense ('the copy of the two larger copies'). No tense is tested.",
+    "pronoun_antecedent": {
+      "word": "pigments",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "matches that",
+        "match that",
+        "matches those",
+        "match those"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "of the two larger",
+    "length_ratio": 1.1,
+    "distractor_kills": {
+      "matches those": "the head 'pigments' 5 words before the blank; 'copy' is the object of 'of'",
+      "match that": "the demonstrative must stand for 'pigments' (plural); 'that' has no singular antecedent that makes sense",
+      "matches that": "both, and it reads as if 'copy' were the subject"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean verb x demonstrative 2x2, one verb",
+      "heuristics_that_give_key": [
+        "(a) opposite the singular noun before the blank",
+        "(b) first noun of the sentence ('pigments', both numbers)",
+        "(f) verb and pronoun share a number"
+      ],
+      "changed": "removed 'which suggests' (whole-clause 'which' is a banned trap) and 'in nearly every sample' (an 'every' phrase). The after-noun 'copies' is the 5th word after the blank; it agrees with the key by the row but does not decide the demonstrative (that is decided by the head). Recorded risk: the number construction (plural head + of + singular) is the same as B4's ('Samples of the deepest core'); the grids and deciders differ (a+p demonstrative/pronoun-antecedent vs c|h/time-clause)."
+    }
+  },
+  {
+    "id": "SEC24C-05",
+    "slot": "C5",
+    "frame": "compound sentence joined by ', so': singular owner as clause 1's subject (shrine), plural subject in clause 2 + blank + 'only record of ...'",
+    "true_subject_head": "tablets",
+    "misleader_words": [
+      "shrine"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "tablets",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "shrine",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "record",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "shrine kept no written register",
+    "deletion_test": "Replace 'A remote mountain shrine' with a plural owner ('The monks kept no written register') and 'their' becomes right; with the singular owner, 'its' is the only possessive with a referent. Clause 1 contains no plural noun, and no plural noun appears before the blank anywhere in the passage except the subject 'tablets', which cannot own its own record. No tense is tested (all options present).",
+    "pronoun_antecedent": {
+      "word": "shrine",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "j+p",
+      "forms": [
+        "is its",
+        "are its",
+        "is their",
+        "are their"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "only record of the",
+    "length_ratio": 1.17,
+    "distractor_kills": {
+      "are their": "no plural owner exists before the blank; 'their' could only point back to 'tablets' ('the tablets are the tablets' only record': nonsense); the owner is 'shrine' in clause 1 (14 words before the blank)",
+      "is its": "subject 'tablets' immediately before the blank",
+      "is their": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean verb x possessive 2x2",
+      "heuristics_that_give_key": [
+        "(a) no: plural near, plural key",
+        "(b) no: first noun 'shrine' is singular, verb plural",
+        "(f) no: verb and pronoun differ (split row)"
+      ],
+      "changed": "moved the blank into the first sentence and removed every plural noun before it (an earlier draft opened with 'Pilgrims ...', which would have offered 'their' a defensible human owner). Recorded: the row's 'only record' is a singular complement of a plural subject, which brushes against the banned 'linking verb + complement of the other number'; the row prescribes it as the After lure, so it is kept and reported."
+    }
+  },
+  {
+    "id": "SEC24C-06",
+    "slot": "C6",
+    "frame": "the one inversion: a direct question after a colon, 'why ___ [5+ words] tower stop ...?'",
+    "true_subject_head": "tower",
+    "misleader_words": [
+      "historians",
+      "cathedrals",
+      "towns"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "question",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "historians",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "tower",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "aux-form",
+    "decider_quote": "tower stop short",
+    "deletion_test": "The auxiliary type is set by the base verb 'stop' (8th word after the blank). Change it to 'stopping' and 'is the' becomes right; to 'stopped' (participle) and no option fits. No other sentence bears on the auxiliary. The subject head 'tower' is the 7th word after the blank; the words between ('taller and more elaborately carved west') include an 'and' that can be misread as a compound subject.",
+    "grid": {
+      "code": "j|m",
+      "forms": [
+        "is the",
+        "are the",
+        "does the",
+        "do the"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "taller and more elaborately",
+    "length_ratio": 1.33,
+    "distractor_kills": {
+      "do the": "the singular head 'tower', 7 words after the blank",
+      "is the": "the base verb 'stop', 8 words after the blank ('why is the ... tower stop' is ungrammatical)",
+      "are the": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "'does the' is uniquely longest by two letters (the table assigns C6 as C's one uniquely-longest key); no other option tell",
+      "heuristics_that_give_key": [
+        "(a) no: singular near ('question'), singular key",
+        "(b) no: first noun 'historians' plural"
+      ],
+      "changed": "replaced a first draft about a choirbook (v23 SEC23C-03 is a choirbook passage) with a cathedral tower. The passage prints no 'the' after the blank; the blank is followed by the subject's first modifier ('taller'). Near-dup: skeleton-only match to 3 live hard rows ({are, do, does, is}; v23 j|m items); passage Jaccard 0.010; option strings not identical to any live set."
+    }
+  },
+  {
+    "id": "SEC24C-07",
+    "slot": "C7",
+    "frame": "opening infinitive phrase of purpose whose last noun could start the main clause ('To transcribe the interviews, the volunteers ...')",
+    "key_mark": "comma",
+    "key_letter": "A",
+    "structure": "left: the introductory infinitive phrase 'To transcribe the interviews' (no subject, no finite verb); right: the main clause 'the volunteers first split each tape into ten-minute segments'. With no mark, 'the interviews the volunteers first split' reads as one noun phrase with a reduced relative clause, and the sentence collapses at 'each tape'.",
+    "glance_fail": [
+      "interviews the,"
+    ],
+    "distractor_kills": {
+      "interviews the": "no mark: garden path; 'the interviews the volunteers first split' is read as a noun phrase, and 'each tape' then has no place in the sentence; the introductory phrase must be marked off",
+      "interviews. The": "period: 'To transcribe the interviews.' is a fragment with no subject or finite verb",
+      "interviews the,": "comma after 'the': separates an article from its noun; strikable at a glance (the row's one)"
+    },
+    "hostile_reader": {
+      "options_only_pick": "probably the comma option (the only well-placed single comma once the shifted one is struck); a no-mark or period answer cannot be ruled out without the passage",
+      "heuristics_that_give_key": [
+        "strike the misplaced comma (row-accepted glance)"
+      ],
+      "changed": "added a fourth sentence to reach 50+ words; avoided 'to date' and 'every'. The verb after the subject ('split each tape') is chosen so the no-mark reading genuinely fails rather than merely reading awkwardly."
+    }
+  },
+  {
+    "id": "SEC24C-08",
+    "slot": "C8",
+    "frame": "restrictive appositive role + name with no commas, in a passage naming several holders of the role ('Three translators ... the chapters by the translator Ruiz')",
+    "key_mark": "none",
+    "key_letter": "D",
+    "structure": "inside one noun phrase: the role noun 'translator' and the name 'Ruiz' that identifies which of the three translators is meant; the phrase is the object of 'by', followed by 'for their ease and wit'.",
+    "glance_fail": [
+      "translator, Ruiz—"
+    ],
+    "distractor_kills": {
+      "translator, Ruiz,": "comma pair makes 'Ruiz' nonessential, implying a single translator; the first sentence names three",
+      "translator—Ruiz—": "dash pair likewise marks the name as an aside, the same nonrestrictive error",
+      "translator, Ruiz—": "a comma cannot pair with a dash; strikable at a glance (the row's one)"
+    },
+    "hostile_reader": {
+      "options_only_pick": "'translator Ruiz', the only unmarked option (the prereg's declared exposure for C8)",
+      "heuristics_that_give_key": [
+        "the only unmarked option (row-accepted)",
+        "key uniquely shortest (table-assigned)"
+      ],
+      "changed": "moved off v23's engraver/atlas topic (v23's C-08 and tag 'history of engraving: a coastal atlas'); option set differs from v23 C-08's."
+    }
+  }
+]

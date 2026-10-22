@@ -1,0 +1,367 @@
+[
+  {
+    "id": "SEC24A-01",
+    "slot": "A1",
+    "frame": "foreign plural (larvae) standing alone as the subject, no of-phrase",
+    "true_subject_head": "larvae",
+    "misleader_words": [
+      "larvae"
+    ],
+    "misleader_position": "self",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "larvae",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "larvae",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "stone",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_quote": "whenever the water temperature drops",
+    "deletion_test": "Delete 'whenever the water temperature drops below about four degrees Celsius': 'The larvae were motionless beneath a flat stone on the streambed' and 'are motionless' are both grammatical; the other sentences are generic present ('count', 'tolerate', 'can undercount', 'advise') and do not forbid a past description of one observation. Only the present habitual whenever-clause rules out 'were'.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was motionless",
+        "were motionless",
+        "is motionless",
+        "are motionless"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "beneath a flat stone",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "is motionless": "number: 'larvae' (the subject word, immediately before the blank) is plural; the -ae ending is the lure",
+      "were motionless": "tense: 'whenever the water temperature drops' (present habitual), words 7-11 after the blank; 'were ... whenever ... drops' is a tense error",
+      "was motionless": "both: plural 'larvae' and the present whenever-clause"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: a clean 2x2 with a shared 'motionless'",
+      "heuristics_that_give_key": [
+        "(b) first noun of the sentence (larvae, plural) gives the number",
+        "(c) copy the whenever-clause tense gives the tense (a time row, by design)"
+      ],
+      "changed": "sentence 1 first read 'because the insects tolerate', a plural verb on a synonym of the subject; changed to 'because caddisflies tolerate'. Moved the whenever-clause to word 7 after the blank (was word 4). Near-dup: skeleton-only match, if any, expected for a verb grid. Near-dup: skeleton-only match to 9 live (3 hard: 6af65ba8 v14, 90f813c8 and b5dad757 v23), expected for a was/were/is/are grid; passage Jaccard 0.000; option set not identical to any live row (shared 'motionless'). Within-batch skeleton match with SEC24A-03 (different grid i|j vs c|h, different decider type)."
+    }
+  },
+  {
+    "id": "SEC24A-02",
+    "slot": "A2",
+    "frame": "plural head + postposed adjective phrase ending singular ('pastures thick with a single coarse grass'), second independent clause after a semicolon; clause 1 has a plural subject and names a singular agent ('the field vole')",
+    "true_subject_head": "pastures",
+    "misleader_words": [
+      "grass"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "grass",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "meadows",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "sward",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "Mixed meadows attract the field vole",
+    "deletion_test": "Delete clause 1 ('Mixed meadows attract the field vole;'): the pastures-clause has no agent, and the blank's sentence is the first in the passage, so neither 'by it' nor 'by them' has a referent and the pronoun is undecidable. The later 'surveys', 'farms' and 'voles' cannot be antecedents for an earlier pronoun.",
+    "pronoun_antecedent": {
+      "word": "vole",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "c+p",
+      "forms": [
+        "is avoided by it",
+        "are avoided by it",
+        "is avoided by them",
+        "are avoided by them"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "almost entirely, because such",
+    "length_ratio": 1.06,
+    "distractor_kills": {
+      "is avoided by it": "number: head 'pastures' (the first word of the clause, 6 words before the blank); 'grass' is inside the adjective phrase",
+      "are avoided by them": "pronoun: the sentence's only plural nouns are 'meadows' and 'pastures'; meadows cannot avoid a pasture and pastures cannot avoid themselves; 'the field vole' (clause 1, 12+ words before the blank) is the only possible agent",
+      "is avoided by them": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: a clean 2x2 crossing verb number and pronoun number, shared 'avoided by'",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'grass' gives the verb number",
+        "(b) first noun 'meadows' gives the verb number; neither gives the pronoun (split)"
+      ],
+      "changed": "an earlier sentence 1 mentioned 'rodents' (a plural animate referent that would have made 'by them' defensible); removed. Removed 'in large numbers' after 'field vole' (a notional plural). Avoided owls/predators as a plural agent near the blank. Moved the blank's sentence to the start of the passage (the blank had been in sentence 2 in all eight items), so no earlier plural noun precedes the pronoun. Near-dup: no live template match; passage Jaccard 0.000; no identical option set."
+    }
+  },
+  {
+    "id": "SEC24A-03",
+    "slot": "A3",
+    "frame": "singular head + of + compound of two singulars ('The lining of the esophagus and stomach')",
+    "true_subject_head": "lining",
+    "misleader_words": [
+      "esophagus and stomach"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "stomach",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "lining",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "camera",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "if the burning returns",
+    "deletion_test": "Delete 'if the burning returns despite a month of medication': 'The lining ... was examined with a thin flexible camera' and 'is examined' are both grammatical. Sentence 1 ('can signal') and sentence 3 ('can then show') are generic modal statements that fit a past case report and a present protocol alike; no other sentence settles the tense.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is examined",
+        "are examined",
+        "was examined",
+        "were examined"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "with a thin flexible",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are examined": "number: head 'lining', 6 words before the blank; 'esophagus and stomach' is the of-object",
+      "was examined": "tense: 'if the burning returns' (present conditional), words 6-9 after the blank; 'was examined ... if the burning returns' is a tense error",
+      "were examined": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean c|h 2x2; key 'is examined' is uniquely shortest, as the table states",
+      "heuristics_that_give_key": [
+        "(b) first noun 'lining' gives the number"
+      ],
+      "changed": "dropped a trailing ', and any reddened patch is sampled' from the blank's sentence: a second present verb there would have settled the tense without the if-clause (deletion test). Chose 'lining of the esophagus and stomach' over the brief's 'core of the X and Y collection' so the compound itself, not 'collection', is the near noun. Near-dup: skeleton-only match to the same 9 live rows, expected for c|h; passage Jaccard 0.012; no identical option set."
+    }
+  },
+  {
+    "id": "SEC24A-04",
+    "slot": "A4",
+    "frame": "'N after N' distributive subject ('Harvest after harvest')",
+    "true_subject_head": "harvest",
+    "misleader_words": [
+      "Harvest after harvest"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "harvest",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "harvest",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "terraces",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "some sixty years ago",
+    "deletion_test": "Delete 'some sixty years ago': 'Harvest after harvest has been meager on the steep, eroded terraces of one mountain valley' and 'was meager' are both grammatical. Sentence 2 is generic present; sentence 3's 'blame' (present) and 'held', 'mattered' (past) are compatible with either the present perfect or the simple past in sentence 1. An earlier draft framed the valley as a recovery and called the terraces productive; that contradicted a present perfect and was removed.",
+    "grid": {
+      "code": "i|r",
+      "forms": [
+        "was meager",
+        "were meager",
+        "has been meager",
+        "have been meager"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "on the steep, eroded",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "were meager": "number: 'Harvest after harvest' is singular (one harvest at a time)",
+      "has been meager": "aspect: 'some sixty years ago' (words 10-13 after the blank); the present perfect cannot take a definite past time",
+      "have been meager": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean i|r 2x2; key 'was meager' uniquely shortest, as the table states",
+      "heuristics_that_give_key": [
+        "(b) first noun 'harvest' gives the number",
+        "(e) 'been' loses (the only been item in A)",
+        "(c) copy the time phrase's tense (a time row, by design)"
+      ],
+      "changed": "removed a parallel past verb ('and the thin topsoil washed downhill') and an 'as heavy rains carried' clause from the blank's sentence; both would have settled the aspect without 'ago'. Moved the blank to sentence 1 to vary blank position across the author's items. Near-dup: skeleton-only match to 5 live (4 hard), expected for i|r; passage Jaccard 0.012; no identical option set (shared 'meager')."
+    }
+  },
+  {
+    "id": "SEC24A-05",
+    "slot": "A5",
+    "frame": "compound subject 'the X and its [sg Y]' ('The fruiting scion and its dwarfing rootstock'), possessive owned by the compound",
+    "true_subject_head": "scion and rootstock",
+    "misleader_words": [
+      "and its dwarfing rootstock"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "rootstock",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "scion",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "genes",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "The fruiting scion and its dwarfing rootstock",
+    "deletion_test": "The decider is the compound subject itself. Delete '... and its dwarfing rootstock' and 'The fruiting scion has its own genes' becomes correct; with the compound present, 'its' would need a singular owner other than the subject. Sentence 1's 'apple tree' is the only singular candidate, and 'own' ties the possessive to the subject; the text's 'two plants' and 'no DNA passes across the union' make a single shared set of genes contrary to the passage.",
+    "pronoun_antecedent": {
+      "word": "scion and rootstock",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "n+p",
+      "forms": [
+        "has its own",
+        "have their own",
+        "has their own",
+        "have its own"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "genes, and no DNA",
+    "length_ratio": 1.27,
+    "distractor_kills": {
+      "has its own": "number: the subject is the compound joined by 'and' (opens the sentence, 6 words before the blank)",
+      "has their own": "number: same; the singular verb treats 'rootstock' as the subject",
+      "have its own": "pronoun: 'own' refers back to the plural subject; 'its' has no plural-compatible owner, and 'two plants' / 'no DNA passes across the union' make each part the owner"
+    },
+    "hostile_reader": {
+      "options_only_pick": "'have their own' is uniquely longest (as the table states); otherwise a clean 2x2",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'rootstock' gives the verb number",
+        "(f) verb and pronoun share a number"
+      ],
+      "changed": "removed 'between them' / 'between the two' from the continuation (a plural hint after the blank) and a 'which is why' whole-clause relative. Near-dup: no live template match; passage Jaccard 0.000; no identical option set."
+    }
+  },
+  {
+    "id": "SEC24A-06",
+    "slot": "A6",
+    "frame": "compound sentence: plural subject + present perfect, ', and' + singular subject + blank + 'too' (verb-phrase ellipsis)",
+    "true_subject_head": "form",
+    "misleader_words": [
+      "Weeds",
+      "have appeared"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "ragweed",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Weeds",
+      "number": "pl"
+    },
+    "after_noun_within_8": null,
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "parallel-verb",
+    "decider_quote": "have appeared",
+    "deletion_test": "Delete the first clause's verb ('have appeared'): the ellipsis has no antecedent and 'has too' / 'does too' cannot be chosen between. Sentence 1's 'spreads' and 'rely' are simple present lexical verbs, but the ellipsis takes its antecedent from the coordinated clause it closes, so they do not license 'does'.",
+    "grid": {
+      "code": "m|n",
+      "forms": [
+        "does",
+        "do",
+        "has",
+        "have"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "too. (passage ends)",
+    "length_ratio": 1.5,
+    "distractor_kills": {
+      "have": "number: the second clause's subject is 'a resistant form of giant ragweed' (head 'form', 5 words before the blank); 'Weeds' belongs to clause 1",
+      "does": "auxiliary: the elided phrase is 'appeared' after 'have' ('have appeared', 13 words before the blank); 'does' would stand for a simple-present 'appears'",
+      "do": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: {has, do, have, does}; key not uniquely longest or shortest ('do' is shortest)",
+      "heuristics_that_give_key": [
+        "none of (a)-(f) gives both decisions; (a) opposite of 'ragweed' gives the wrong number"
+      ],
+      "changed": "replaced 'throughout the region' (banned) with 'across the region'. Declared near-pair with B1 (both ellipsis) per the prereg. Rewrote sentence 1 and dropped the closing sentence so the blank sits at the end of the passage (blank position varied); 'according to a survey' moved into sentence 1. Near-dup: skeleton-only match to 1 live hard (ba1500db, rw-v22), expected for m|n; passage Jaccard 0.015; frame differs (', and ... too' ellipsis)."
+    }
+  },
+  {
+    "id": "SEC24A-07",
+    "slot": "A7",
+    "frame": "a declarative sentence ending in an indirect whether-question, followed by a new sentence opening with 'Their'",
+    "key_mark": "period",
+    "key_letter": "B",
+    "structure": "left: independent clause whose object is an indirect question ('The pharmacists needed to know whether the stored vaccines had warmed past eight degrees Celsius'); right: a new independent clause ('Their answer came from small color-changing labels ...')",
+    "glance_fail": [],
+    "distractor_kills": {
+      "Celsius? Their": "the sentence is a statement that reports a question indirectly; a question mark belongs to a direct question only",
+      "Celsius, their": "comma splice: two independent clauses joined by a comma alone",
+      "Celsius their": "run-on: two independent clauses with no punctuation"
+    },
+    "hostile_reader": {
+      "options_only_pick": "split between the two capitalized options (period, question mark); the period is the only strong mark, as the table accepts for A7",
+      "heuristics_that_give_key": [
+        "'the only strong-mark option' (accepted by the row)"
+      ],
+      "changed": "first draft opened the next sentence with 'Most of the vials ...', which reproduces v23 B-07's quantifier-pronoun clause after a strong mark; changed to 'Their answer'. 'their' lower-case is plausible after 'Celsius,' so the comma is not struck by capitalization. Near-dup: no live template match; passage Jaccard 0.000; no identical option set."
+    }
+  },
+  {
+    "id": "SEC24A-08",
+    "slot": "A8",
+    "frame": "complete clause + sentence-final -ing participial phrase describing the subject's action ('root, leaving')",
+    "key_mark": "comma",
+    "key_letter": "C",
+    "structure": "left: independent clause ending on the object of a preposition ('The fly's pale larva tunnels just under the skin of the root'); right: participial phrase whose doer is the subject 'larva' ('leaving a network of rust-colored channels that soon begin to rot')",
+    "glance_fail": [],
+    "distractor_kills": {
+      "root leaving": "with no mark the phrase becomes a restrictive modifier of 'root', making the root the one that leaves the channels; the larva does",
+      "root: leaving": "a colon must introduce an explanation, restatement or list of something the clause names; a participial phrase describing the subject's accompanying action is none of these",
+      "root. Leaving": "fragment: 'Leaving a network of rust-colored channels that soon begin to rot.' has no subject or finite main verb"
+    },
+    "hostile_reader": {
+      "options_only_pick": "probably the comma (the plain middle choice); no option is malformed in isolation",
+      "heuristics_that_give_key": [
+        "'comma before an -ing phrase' is a general prior"
+      ],
+      "changed": "none. Declared near-pair with C7 (both comma keys setting off a non-clause phrase), per the prereg. Near-dup: skeleton-only match to 1 live hard (fdde9b5a, rw-v10; comma/none/period/colon set); that item's frame is a delayed object, not a participial phrase; passage Jaccard 0.013."
+    }
+  }
+]

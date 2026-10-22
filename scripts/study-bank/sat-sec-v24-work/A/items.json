@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC24A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a foreign plural subject and tense set by a habitual clause",
+    "difficulty": "hard",
+    "passage": "Stream ecologists count caddisfly larvae to gauge water quality, because caddisflies tolerate very little pollution. The larvae ______ beneath a flat stone on the streambed whenever the water temperature drops below about four degrees Celsius. A survey taken during a cold snap can therefore badly undercount a healthy population, and field guides advise sampling on milder days.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was motionless",
+      "is motionless",
+      "are motionless",
+      "were motionless"
+    ],
+    "correct_answer": "are motionless",
+    "explanation": "The subject is \"larvae,\" the plural of \"larva\"; its -ae ending can look singular, but it names many insects, so the verb must be plural. The habitual clause later in the same sentence, \"whenever the water temperature drops,\" uses the present tense, so the main verb must also be present: \"are motionless.\" \"is motionless\" has the right tense but treats \"larvae\" as singular. \"were motionless\" is plural but past, which cannot pair with the present-tense \"whenever ... drops.\" \"was motionless\" is wrong in both number and tense.",
+    "topic_tag": "freshwater entomology: caddisfly larvae in cold water",
+    "template": "foreign plural subject standing alone x -ae ending reads singular x i|j + motionless (present by whenever-clause)"
+  },
+  {
+    "id": "SEC24A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a postposed adjective phrase and pronoun reference to an agent in a preceding clause",
+    "difficulty": "hard",
+    "passage": "Mixed meadows attract the field vole; pastures thick with a single coarse grass ______ almost entirely, because such a uniform sward offers poor cover and little food. Small-mammal surveys on dairy farms find the same contrast again and again. Farmers who want to keep voles away from stored hay sometimes sow that grass along field margins for exactly this reason.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are avoided by it",
+      "is avoided by them",
+      "is avoided by it",
+      "are avoided by them"
+    ],
+    "correct_answer": "are avoided by it",
+    "explanation": "The subject of the second clause is \"pastures\"; \"thick with a single coarse grass\" only describes them, so the singular \"grass\" does not set the verb's number, and the verb must be the plural \"are avoided.\" The pronoun names whatever avoids the pastures, and the only possible agent in the sentence is \"the field vole\" in the first clause, which is singular and takes \"it\"; the sentence's plural \"meadows\" cannot avoid a pasture. \"is avoided by it\" has the right pronoun but makes the verb agree with \"grass.\" \"are avoided by them\" has the right verb but a pronoun with no possible referent, and \"is avoided by them\" is wrong on both counts.",
+    "topic_tag": "rodent ecology: field voles in grazed pastures",
+    "template": "plural head + postposed adjective phrase ending singular, second clause after a semicolon x closing singular noun x c+p (are avoided by it/them)"
+  },
+  {
+    "id": "SEC24A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound of-object and tense set by a conditional clause",
+    "difficulty": "hard",
+    "passage": "Persistent heartburn can signal damage to tissue that causes no pain at all. The lining of the esophagus and stomach ______ with a thin flexible camera if the burning returns despite a month of medication. A small biopsy of any reddened patch can then show whether the surface cells have begun to change.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were examined",
+      "are examined",
+      "was examined",
+      "is examined"
+    ],
+    "correct_answer": "is examined",
+    "explanation": "The subject is \"lining\"; \"of the esophagus and stomach\" only says which lining, so the compound \"esophagus and stomach\" does not make the subject plural, and the verb must be singular. The conditional clause in the same sentence, \"if the burning returns,\" is in the present tense, so the main verb must also be present: \"is examined.\" \"are examined\" has the right tense but agrees with the compound. \"was examined\" is singular but past, which cannot pair with \"if the burning returns,\" and \"were examined\" is wrong in both number and tense.",
+    "topic_tag": "gastroenterology: endoscopy for persistent heartburn",
+    "template": "singular head + of + compound of two singulars x the compound reads plural x c|h (present by if-clause)"
+  },
+  {
+    "id": "SEC24A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a distributive subject and verb aspect set by a definite-past time phrase",
+    "difficulty": "hard",
+    "passage": "Harvest after harvest ______ on the steep, eroded terraces of one mountain valley some sixty years ago. Agronomists who study soil loss often cite the valley as a warning. Local farmers blame the poor yields on the collapse of the dry-stone walls that held the soil in place, and agronomists agree that the walls mattered more than any choice of crop.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been meager",
+      "was meager",
+      "have been meager",
+      "were meager"
+    ],
+    "correct_answer": "was meager",
+    "explanation": "A subject of the form \"harvest after harvest\" names one harvest at a time and takes a singular verb, even though the repetition suggests many. The phrase \"some sixty years ago,\" at the end of the same sentence, places the situation at a finished point in the past, so the simple past is needed: \"was meager.\" \"has been meager\" is singular, but the present perfect cannot combine with a definite past time such as \"sixty years ago.\" \"were meager\" is past but plural, and \"have been meager\" is wrong in both number and form.",
+    "topic_tag": "soil conservation: collapsed terrace walls",
+    "template": "N after N distributive subject x repetition reads plural x i|r + meager (past by ago-phrase)"
+  },
+  {
+    "id": "SEC24A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound subject and possessive pronoun reference to the compound",
+    "difficulty": "hard",
+    "passage": "A typical apple tree sold by a commercial nursery is really two plants, joined at a graft just above the soil line. The fruiting scion and its dwarfing rootstock ______ genes, and no DNA passes across the union. Seeds from the fruit therefore inherit nothing from the rootstock, not even the compact size that growers prize.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has its own",
+      "have its own",
+      "has their own",
+      "have their own"
+    ],
+    "correct_answer": "have their own",
+    "explanation": "The subject is the compound \"the fruiting scion and its dwarfing rootstock\": two plants joined by \"and,\" so the verb must be plural, \"have.\" The possessive names the owner of the genes, and the text says the two plants are separate and that \"no DNA passes across the union,\" so each part owns its genes and the plural \"their\" is needed. \"has its own\" and \"has their own\" treat the subject as the single noun \"rootstock\" before the blank. \"have its own\" has a plural verb but a singular possessive that cannot refer to the two-part subject.",
+    "topic_tag": "pomology: apple scions and dwarfing rootstocks",
+    "template": "compound subject the X and its [sg Y] x 'and its [sg]' reads as an add-on x n+p + own"
+  },
+  {
+    "id": "SEC24A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary choice in verb-phrase ellipsis",
+    "difficulty": "hard",
+    "passage": "A survey of soybean growers in one farming region confirms a familiar rule of weed control: resistance spreads fastest on farms that rely on a single herbicide and never rotate to another. Weeds resistant to glyphosate have appeared in fields across the region, and a resistant form of giant ragweed ______ too.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has",
+      "do",
+      "have",
+      "does"
+    ],
+    "correct_answer": "has",
+    "explanation": "The blank stands for a shortened verb phrase that repeats the first clause's verb, \"have appeared,\" so it needs the same auxiliary, a form of \"have.\" Its subject is \"a resistant form of giant ragweed,\" whose head \"form\" is singular; the plural \"Weeds\" belongs to the first clause. So the correct choice is \"has.\" \"have\" copies the first clause's auxiliary but also its plural number. \"does\" and \"do\" would stand for a simple-present verb such as \"appears,\" not for \"have appeared,\" and \"do\" is plural as well.",
+    "topic_tag": "weed management: glyphosate-resistant ragweed",
+    "template": "compound sentence, plural present perfect clause then singular subject + blank + too x first clause's plural subject and have x m|n"
+  },
+  {
+    "id": "SEC24A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: ending a declarative sentence that contains an indirect question",
+    "difficulty": "hard",
+    "passage": "When a power cut shut down a hospital pharmacy overnight, its staff had to decide which medicines could still be used. The pharmacists needed to know whether the stored vaccines had warmed past eight degrees ______ answer came from small color-changing labels on the vials, which darken permanently above that temperature, so the check took only minutes.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Celsius? Their",
+      "Celsius. Their",
+      "Celsius, their",
+      "Celsius their"
+    ],
+    "correct_answer": "Celsius. Their",
+    "explanation": "\"The pharmacists needed to know whether the stored vaccines had warmed past eight degrees Celsius\" is a complete statement: the question about the vaccines is reported indirectly in a \"whether\" clause, so the sentence ends with a period, and \"Their answer came from ...\" begins a new sentence. \"Celsius? Their\" ends a statement with a question mark, which belongs only to a direct question. \"Celsius, their\" joins two independent clauses with only a comma, and \"Celsius their\" joins them with no punctuation at all.",
+    "topic_tag": "pharmacy practice: vaccine cold-chain checks",
+    "template": "indirect question ends a sentence, next sentence opens with their x question mark lure x period / ? / comma / none"
+  },
+  {
+    "id": "SEC24A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: attaching a sentence-final participial phrase that describes the subject",
+    "difficulty": "hard",
+    "passage": "Gardeners who pull up a wilting carrot often find the work of the carrot rust fly. The fly's pale larva tunnels just under the skin of the ______ a network of rust-colored channels that soon begin to rot. Damaged carrots cannot be sold, and a single generation of the pest can ruin whole rows.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "root leaving",
+      "root: leaving",
+      "root, leaving",
+      "root. Leaving"
+    ],
+    "correct_answer": "root, leaving",
+    "explanation": "The sentence is a complete clause, \"The fly's pale larva tunnels just under the skin of the root,\" followed by the participial phrase \"leaving a network of rust-colored channels,\" which describes what the larva does, so a comma sets the phrase off from the clause. \"root leaving\" attaches the phrase directly to \"root,\" as if the root were leaving the channels. \"root: leaving\" uses a colon, which must introduce something that explains or lists what the clause names, not a description of the subject's action. \"root. Leaving\" turns the participial phrase into a sentence fragment with no subject or main verb.",
+    "topic_tag": "vegetable pests: carrot rust fly larvae",
+    "template": "complete clause + sentence-final -ing phrase describing the subject x no mark makes the object the doer x comma / none / colon / period"
+  }
+]

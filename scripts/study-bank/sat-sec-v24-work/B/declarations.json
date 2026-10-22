@@ -1,0 +1,365 @@
+[
+  {
+    "id": "SEC24B-01",
+    "slot": "B1",
+    "frame": "\"several kinds of [singular mass noun]\" as subject of a sentence-final whereas-clause with verb-phrase ellipsis; main clause singular subject + lexical present verb",
+    "true_subject_head": "kinds",
+    "misleader_words": [
+      "quarried sandstone"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "sandstone",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Basalt",
+      "number": "sg"
+    },
+    "after_noun_within_8": null,
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "parallel-verb",
+    "decider_quote": "Basalt resists the pressure",
+    "deletion_test": "Remove the lexical verb \"resists\" (e.g. replace the main clause with \"Basalt is durable in those trials\") and \"are not\" becomes the grammatical ellipsis while \"do not\" fails; with no main verb at all neither auxiliary type is decidable. No other sentence supplies a verb the ellipsis could copy: the whereas-clause can only copy its own sentence's main clause.",
+    "grid": {
+      "code": "j|m",
+      "forms": [
+        "is not",
+        "are not",
+        "does not",
+        "do not"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "(sentence end) That difference matters because",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "does not": "number: head \"kinds\" (4 words before the blank) is plural; \"sandstone\" is the of-object. Correct in \"whereas quarried sandstone does not.\"",
+      "are not": "aux type: ellipsis must copy the lexical verb \"resists\" (9 words before the blank); \"are not\" would need a be + adjective/participle main clause such as \"Basalt is resistant\". No predicate adjective exists in the main clause (\"Basalt\" carries no adjective) to license \"are not\".",
+      "is not": "both: singular, and a form of be cannot stand in for \"resists\". Correct in \"Basalt is porous, whereas granite is not.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean 2x2 with shared \"not\"; no length or extra-word tell (key 6 chars ties \"is not\")",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank (sandstone sg -> pl): gives key"
+      ],
+      "changed": "Dropped an attributive \"Dense\" from \"Dense basalt\" in draft so no adjective could be argued to license \"are not [dense]\"; moved \"in laboratory trials\" out of sentence-initial position so the sentence opens on its subject. Wrong-form sentences written out: \"...whereas several kinds of quarried sandstone does not.\" (agreement error); \"...whereas several kinds of quarried sandstone are not.\" (ungrammatical ellipsis: are not [resists]); \"...is not.\" (both). Blank moved to the last sentence (sentence 3) so my 8 items do not all place the blank in sentence 2. Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 3 live hard (v17, v23 x2) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-02",
+    "slot": "B2",
+    "frame": "singular head + parenthetical in parentheses listing its parts, ending on a plural noun",
+    "true_subject_head": "rotor",
+    "misleader_words": [
+      "three fiberglass blades"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "blades",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "rotor",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "crosswinds",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_quote": "as two engineers watch",
+    "deletion_test": "Delete \"as two engineers watch the strain readings on a monitor\": \"was being tested\" and \"is being tested\" are both grammatical. The framing sentences are timeless present (\"tests ... before they go to sea\"; \"is sent back\"), which a past progressive narrative can sit inside, so no other sentence settles the tense.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being tested",
+        "are being tested",
+        "was being tested",
+        "were being tested"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "in strong artificial crosswinds",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are being tested": "number: head \"rotor\" is 12 words before the blank, outside the parentheses; the parenthetical list does not compound the subject. Correct in \"The blades are being tested ...\".",
+      "was being tested": "tense: simultaneous \"as two engineers watch\" (present, 6-7 words after the blank) rules out the past progressive. Correct in \"... as two engineers watched ...\".",
+      "were being tested": "both. Correct in \"The blades were being tested as engineers watched.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none beyond length: key is the uniquely shortest option (allowed by the table for B2)",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank (blades pl -> sg): gives key",
+        "(b) first noun of the sentence (rotor sg): gives key",
+        "(c) copy the as-clause tense (present): gives key (time row)"
+      ],
+      "changed": "Pushed the present verb \"watch\" to word 7 after the blank (added \"artificial\" and \"two\") so no tense evidence lies within 4 words. The as-clause is plainly simultaneous (engineers watching readings), so no causal \"as\" reading. Wrong-form sentences: \"The prototype rotor (...) are being tested ...\" (agreement error); \"... was being tested in strong artificial crosswinds as two engineers watch ...\" (tense clash); \"... were being tested ... as two engineers watch ...\" (both). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 9 live (3 hard) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-03",
+    "slot": "B3",
+    "frame": "deverbal noun head + singular of-object + plural by-agent right before the blank",
+    "true_subject_head": "measurements",
+    "misleader_words": [
+      "the summit"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "satellites",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "measurements",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "uplift",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "unless the delay caused by water vapor in the air is removed",
+    "deletion_test": "Delete the unless-clause: \"were overstating its uplift\" and \"are overstating its uplift\" are both grammatical. Sentence 1 (\"can detect\", \"is collecting\") and sentence 3 (\"slows\", \"distorts\") are timeless/general present and do not force the blank's tense.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is overstating",
+        "are overstating",
+        "was overstating",
+        "were overstating"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "its uplift unless the",
+    "length_ratio": 1.071,
+    "distractor_kills": {
+      "is overstating": "number: head \"measurements\" (8 words before the blank) is plural; \"the summit\" is the of-object. Correct in \"The measurement of the summit ... is overstating ...\".",
+      "were overstating": "tense: the present-tense condition \"is removed\" (13 words after the blank) cannot pair with a past main verb in a first conditional. Correct in \"... were overstating its uplift until the delay was removed.\"",
+      "was overstating": "both."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean 2x2, lengths 14/15/14/16, no extra word",
+      "heuristics_that_give_key": [
+        "(b) first noun of the sentence (measurements pl): gives key"
+      ],
+      "changed": "Removed an \"as magma collects\" time clause from sentence 1 so no time clause appears near the item. Wrong-form sentences: \"The measurements ... is overstating its uplift unless ...\" (agreement error); \"The measurements ... were overstating its uplift unless the delay ... is removed from the signal.\" (tense clash: past result with a present condition); \"... was overstating ... unless ... is removed\" (both). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.016; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 9 live (3 hard) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-04",
+    "slot": "B4",
+    "frame": "plural sample noun head + of + singular noun (\"Samples of the deepest core\")",
+    "true_subject_head": "Samples",
+    "misleader_words": [
+      "the deepest core"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "core",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Samples",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "canisters",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_quote": "until a supply ship reached the drilling camp",
+    "deletion_test": "Delete the until-clause: \"are sealed in insulated canisters\" and \"were sealed in insulated canisters\" are both grammatical. Sentences 1 and 3 are timeless present (\"holds\", \"pull\", \"compare\") and do not settle the blank's tense.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is sealed",
+        "are sealed",
+        "was sealed",
+        "were sealed"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in insulated canisters until",
+    "length_ratio": 1.222,
+    "distractor_kills": {
+      "was sealed": "number: head \"Samples\" (5 words before the blank) is plural. Correct in \"The deepest core was sealed ... until ...\".",
+      "are sealed": "tense: \"until a supply ship reached\" (past, verb 7 words after the blank) requires a past main verb. Correct in \"... are sealed ... until a supply ship reaches the camp.\"",
+      "is sealed": "both."
+    },
+    "hostile_reader": {
+      "options_only_pick": "longest option is the key (uniquely longest, allowed by the table for B4)",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank (core sg -> pl): gives key",
+        "(b) first noun of the sentence (Samples pl): gives key",
+        "(c) copy the until-clause tense (past): gives key (time row)"
+      ],
+      "changed": "Sentence 1 originally said \"preserve samples of ancient atmospheres\"; reworded so \"samples\" appears only once. Wrong-form sentences: \"Samples of the deepest core was sealed ...\" (agreement error); \"Samples ... are sealed in insulated canisters until a supply ship reached the drilling camp ...\" (tense clash); \"... is sealed ... until ... reached\" (both). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.043; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 9 live (3 hard) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-05",
+    "slot": "B5",
+    "frame": "fronted wherever-clause holding the pronoun's plural antecedent; singular main-clause subject; active verb + object pronoun",
+    "true_subject_head": "housing",
+    "misleader_words": [
+      "the sensors"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "housing",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "sensors",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "gusts",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "Wherever the sensors sit on the seaward girders",
+    "deletion_test": "Delete the wherever-clause: the pronoun's only plural antecedents would then lie in other sentences (\"sensors\", \"bridges\", \"instruments\"), so the decider would leave the blank's sentence. With the clause present, the plural antecedent \"sensors\" sits in the same sentence; the only singular noun before the pronoun in that sentence is the subject \"housing\", which a non-reflexive object pronoun cannot refer to. The earlier sentences' only singular nouns are the mass nouns \"salt\" and \"wind\", which a housing cannot shield from gusts, so \"it\" has no referent anywhere.",
+    "pronoun_antecedent": {
+      "word": "sensors",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "shields it",
+        "shield it",
+        "shields them",
+        "shield them"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "from the gusts and",
+    "length_ratio": 1.333,
+    "distractor_kills": {
+      "shield them": "verb number: subject \"a thin steel housing\" (4 words before the blank) is singular. Correct in \"... the steel housings shield them ...\".",
+      "shields it": "pronoun: \"it\" has no possible referent. The plural \"sensors\" (13 words before the blank) are what is shielded; \"housing\" is the subject; the earlier mass nouns \"salt\"/\"wind\" cannot be shielded from gusts. Correct in \"Wherever the sensor sits ..., a housing shields it.\"",
+      "shield it": "both."
+    },
+    "hostile_reader": {
+      "options_only_pick": "longest option is the key (uniquely longest, allowed by the table for B5)",
+      "heuristics_that_give_key": [
+        "none of (a)/(b)/(f): near \"housing\" agrees with the verb, first noun \"sensors\" disagrees with the verb, and verb and pronoun differ in number"
+      ],
+      "changed": "Rewrote so the blank's sentence is last and no singular count noun a grader could offer as an antecedent for \"it\" appears anywhere before the blank (an earlier draft had \"beneath the deck\" and \"a structure\"); used \"in a few months\" to avoid echoing B7's \"within a decade\". Wrong-form sentences: \"..., a thin steel housing shield them from the gusts ...\" (agreement error); \"..., a thin steel housing shields it from the gusts ...\" (it has no antecedent); \"... shield it ...\" (both). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 2 live (1 hard, v8) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-06",
+    "slot": "B6",
+    "frame": "singular head + non-of locative phrase (\"beside\") ending plural; blank + \"not,\" + comment clause in commas + intransitive past participle",
+    "true_subject_head": "dune",
+    "misleader_words": [
+      "the dry lake beds"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "beds",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "dune",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "surveys",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "aux-form",
+    "decider_quote": "migrated with the prevailing wind",
+    "deletion_test": "Delete \"migrated with the prevailing wind\" (e.g. replace with \"stable\") and \"was not ... stable\" becomes grammatical; \"has\" then fails. No other sentence carries the predicate of the blank's clause, so the auxiliary type is decided only by the participle 7 words after the blank. The later past-perfect \"had mistaken\" concerns the geologists' earlier reading and does not license \"was\" (\"was not ... migrated\" stays ungrammatical).",
+    "grid": {
+      "code": "i|n",
+      "forms": [
+        "was",
+        "were",
+        "has",
+        "have"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "not, as the early",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "have": "number: head \"dune\" (6 words before the blank) is singular; \"beds\" ends the locative phrase. Correct in \"The dunes ... have not ... migrated.\"",
+      "was": "aux: \"migrate\" is intransitive, so \"was not ... migrated\" is not a passive and is ungrammatical; the participle is 7 words after the blank. Correct in \"The dune was not, as the surveys assumed, mobile.\"",
+      "were": "both."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: bare {was, were, has, have}; key ties \"was\" for shortest",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank (beds pl -> sg): gives key",
+        "(b) first noun of the sentence (dune sg): gives key"
+      ],
+      "changed": "Passage was 48 words with the blank in sentence 2; rebuilt to 55 words with the blank in sentence 1 (varies blank position across my 8). Dropped \"photographs taken decades apart\" (duration wording) and \"Radar images\" (B3 already uses radar). Wrong-form sentences: \"The tallest dune beside the dry lake beds have not, as the early surveys assumed, migrated ...\" (agreement error); \"The tallest dune ... was not, as the early surveys assumed, migrated ...\" (ungrammatical: intransitive verb cannot be passive); \"... were not ... migrated\" (both). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested)."
+    }
+  },
+  {
+    "id": "SEC24B-07",
+    "slot": "B7",
+    "frame": "two independent clauses; the second opens with a time PP (\"within a decade\") that could attach backward to the first clause's verb; sequence, not explanation",
+    "key_mark": "semicolon",
+    "key_letter": "C",
+    "structure": "Left: independent clause \"The lava lake in one summit crater cooled into a hard black crust\". Right: independent clause \"within a decade ferns had rooted in the cracks of its surface\", a later event.",
+    "glance_fail": [],
+    "distractor_kills": {
+      "crust, within": "comma splice; tempting because \"within a decade\" can be heard as finishing \"cooled\", but \"ferns had rooted\" is then a second independent clause joined by a comma alone.",
+      "crust within": "run-on: two independent clauses with no mark or conjunction (garden path: \"cooled ... within a decade\" then \"ferns had rooted\").",
+      "crust: within": "a colon between clauses introduces an explanation, elaboration or example of the first; ferns rooting a decade later is a separate later event that neither explains nor restates the cooling."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none forced: the key is not the only strong mark (colon also offered); a solver who knows the \"semicolon vs colon\" prior gets 50/50 at best",
+      "heuristics_that_give_key": [
+        "\"semicolon wins between two clauses\" helps only after the reader parses the second clause as independent"
+      ],
+      "changed": "First draft opened \"After one eruption, ...\"; removed so the sentence opens on its subject. No comma printed after \"a decade\" so the comma option cannot read as closing a printed pair. Write-outs: \"...crust, within a decade ferns had rooted...\" (splice); \"...crust within a decade ferns had rooted...\" (run-on); \"...crust: within a decade ferns had rooted...\" (colon without explanatory relation). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested). Skeleton-only template match with 13 live (0 hard) (expected for a verb/mark grid); left as is."
+    }
+  },
+  {
+    "id": "SEC24B-08",
+    "slot": "B8",
+    "frame": "compound predicate: one subject, two verbs joined by \"and\", the second verb with no subject",
+    "key_mark": "none",
+    "key_letter": "B",
+    "structure": "Left: subject + first verb phrase \"A certified welder ground out the cracks along the boiler seam\". Right: \"and\" + second verb phrase \"refilled the grooves ...\" with no subject.",
+    "glance_fail": [
+      "seam and,"
+    ],
+    "distractor_kills": {
+      "seam, and": "a comma before \"and\" here separates the two verbs of a compound predicate; \"refilled ...\" has no subject, so this is not a pair of independent clauses.",
+      "seam and,": "a comma after the conjunction splits \"and\" from the verb it joins; strikable at a glance.",
+      "seam. And": "the period leaves \"And refilled the grooves with fresh weld metal in thin layers\" as a fragment with no subject."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the only unmarked option is the key (accepted by the table for B8)",
+      "heuristics_that_give_key": [
+        "\"the unmarked option\"",
+        "\"no comma before and unless a subject follows\" (requires spotting that refilled has no subject)"
+      ],
+      "changed": "Moved off a bridge setting (B5 already uses bridges) to boilers. Write-outs: \"...along the boiler seam, and refilled the grooves...\" (comma splits compound predicate); \"...seam and, refilled...\" (misplaced comma); \"...seam. And refilled the grooves...\" (fragment). Near-dup (sec-near-dup.mjs vs 433 live SEC rows): passage trigram Jaccard max 0.000; no identical option string set vs live or any local sat-sec-hard batch file (scratchpad exact-set check, self-tested)."
+    }
+  }
+]
