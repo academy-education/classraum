@@ -15,7 +15,7 @@ const [COHORT, RUN] = process.argv.slice(2).filter(a => !a.startsWith('--'))
 const COMMIT = process.argv.includes('--commit')
 const REVIEWER = '6ca6edaf-4044-4eed-84e0-137ebd79a81d'
 // sets per run and items per set: conversations 6 x 2, lectures (toefl-talk-*) 3 x 4 = 12 items either way
-const SHAPE = { 'toefl-talk-draft-1': { sets: 3, size: 4 }, 'toefl-talk-draft-2': { sets: 3, size: 4 }, 'toefl-passage-draft-1': { sets: 2, size: 5 }, 'toefl-passage-draft-2': { sets: 2, size: 5 }, 'toefl-passage-draft-3': { sets: 2, size: 5 }, 'toefl-talk-draft-3': { sets: 3, size: 4 } } // passages: 2 x 5 = 10 items
+const SHAPE = { 'toefl-talk-draft-1': { sets: 3, size: 4 }, 'toefl-talk-draft-2': { sets: 3, size: 4 }, 'toefl-passage-draft-1': { sets: 2, size: 5 }, 'toefl-passage-draft-2': { sets: 2, size: 5 }, 'toefl-passage-draft-3': { sets: 2, size: 5 }, 'toefl-talk-draft-3': { sets: 3, size: 4 }, 'toefl-talk-draft-4': { sets: 3, size: 4 } } // passages: 2 x 5 = 10 items
 const ORDER = { 'toefl-conv-draft-1': ['v5-01', 'v5-09', 'v5-10', 'v5-13', 'v5-16', 'v6-01', 'v6-03', 'v6-04', 'v6-06', 'v6-11', 'v6-12', 'v6-13', 'v6-14', 'v6-15'] }
 const refuse = m => { console.error('REFUSING: ' + m); process.exit(2) }
 if (!COHORT || !RUN) refuse('usage: draw-toefl-conv-runs.mjs <cohort> <runId> [--commit]')

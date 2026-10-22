@@ -462,6 +462,13 @@
       "group": "act-science-v6b:sc6b-p1",
       "route": "spot",
       "runId": "act-sci-v6b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-talk-draft-4",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-talk4-spot{n}-cofounder-{date}"
     }
   ]
 }

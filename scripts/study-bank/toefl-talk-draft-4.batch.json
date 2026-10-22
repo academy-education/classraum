@@ -1,0 +1,2838 @@
+{
+ "cohort": "toefl-talk-draft-4",
+ "created": "2026-10-23",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, navy ships began using sonar to measure the depth of the sea, and the operators kept running into something strange. In deep water, far from any coast, an echo came back from a few hundred meters down, as if the ocean had suddenly turned shallow. People called it a false bottom, or a phantom bottom, and for a while nobody could say what it was.\n\nThen someone noticed that the false bottom moved. A biologist, Martin Johnson, pointed out in the mid-1940s that the layer rose toward the surface around dusk and sank again around dawn. Rock doesn't do that. Animals do. We now know the layer is made of living things, small fish, shrimp-like krill, relatives of jellyfish, that spend the day down in the dark, where they're hard for predators to see, and come up at night to feed. It's thought to be one of the largest daily movements of animals anywhere on the planet.\n\nSo the mystery was solved. But here's the part that still causes trouble. Researchers wanted to use the same echoes to measure how much life is down there, and the echo turns out to be a poor scale. Sound bounces strongly off gas. Many small fish have a gas-filled swim bladder, and some of those jellyfish relatives carry a little gas float, and these can send back an echo far out of proportion to the animal's size. Meanwhile, fish whose bladders are filled with fat instead, or that have no bladder at all, may barely register.\n\nThat's one reason estimates of how much fish lives in this middle layer of the ocean have differed by as much as tenfold. The echo told us the layer was alive. It doesn't, on its own, tell us how much is there.",
+    "passageGroupId": "pg-3d1b8e05a9f51f14489019f766edccbb",
+    "prompt": "[Academic Talk — Oceanography] What is the lecture mainly about?",
+    "choices": [
+     "A wartime sonar puzzle was solved, but the echo still causes trouble",
+     "Wartime sonar operators mistook the real seafloor for a layer of migrating animals",
+     "Small fish rise toward the surface at night in order to escape their predators",
+     "Gas-filled swim bladders allow small fish to stay deep in the ocean through the daylight hours"
+    ],
+    "correct_answer": "A wartime sonar puzzle was solved, but the echo still causes trouble",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The false bottom was shown to be animals: 'So the mystery was solved. But here's the part that still causes trouble.'",
+    "distractor_rationales": [
+     {
+      "choice": "Wartime sonar operators mistook the real seafloor for a layer of migrating animals",
+      "reason": "It was the reverse: a layer of animals was taken for a shallow bottom."
+     },
+     {
+      "choice": "Small fish rise toward the surface at night in order to escape their predators",
+      "reason": "They spend the day deep to avoid predators and rise at night to feed."
+     },
+     {
+      "choice": "Gas-filled swim bladders allow small fish to stay deep in the ocean through the daylight hours",
+      "reason": "The swim bladder is discussed only for how strongly it reflects sound."
+     }
+    ]
+   },
+   "content_hash": "67c547500db05e6fad8b175d83e2931f",
+   "word_count": 300,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, navy ships began using sonar to measure the depth of the sea, and the operators kept running into something strange. In deep water, far from any coast, an echo came back from a few hundred meters down, as if the ocean had suddenly turned shallow. People called it a false bottom, or a phantom bottom, and for a while nobody could say what it was.\n\nThen someone noticed that the false bottom moved. A biologist, Martin Johnson, pointed out in the mid-1940s that the layer rose toward the surface around dusk and sank again around dawn. Rock doesn't do that. Animals do. We now know the layer is made of living things, small fish, shrimp-like krill, relatives of jellyfish, that spend the day down in the dark, where they're hard for predators to see, and come up at night to feed. It's thought to be one of the largest daily movements of animals anywhere on the planet.\n\nSo the mystery was solved. But here's the part that still causes trouble. Researchers wanted to use the same echoes to measure how much life is down there, and the echo turns out to be a poor scale. Sound bounces strongly off gas. Many small fish have a gas-filled swim bladder, and some of those jellyfish relatives carry a little gas float, and these can send back an echo far out of proportion to the animal's size. Meanwhile, fish whose bladders are filled with fat instead, or that have no bladder at all, may barely register.\n\nThat's one reason estimates of how much fish lives in this middle layer of the ocean have differed by as much as tenfold. The echo told us the layer was alive. It doesn't, on its own, tell us how much is there.",
+    "passageGroupId": "pg-3d1b8e05a9f51f14489019f766edccbb",
+    "prompt": "[Academic Talk — Oceanography] According to the professor, what showed that the false bottom was made of living things?",
+    "choices": [
+     "Its echo was strongest close to the coast",
+     "It rose around dusk and sank again around dawn",
+     "It appeared only on ships with the newest sonar",
+     "Nets pulled through it brought up krill and small fish"
+    ],
+    "correct_answer": "It rose around dusk and sank again around dawn",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The layer rose toward the surface around dusk and sank again around dawn. Rock doesn't do that. Animals do.'",
+    "distractor_rationales": [
+     {
+      "choice": "Its echo was strongest close to the coast",
+      "reason": "The layer was found 'far from any coast'."
+     },
+     {
+      "choice": "It appeared only on ships with the newest sonar",
+      "reason": "No difference between ships' equipment is mentioned."
+     },
+     {
+      "choice": "Nets pulled through it brought up krill and small fish",
+      "reason": "Nets are never mentioned; the clue was the movement."
+     }
+    ]
+   },
+   "content_hash": "b2c8a5ed98de5b82876aaf11df6169df",
+   "word_count": 300,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, navy ships began using sonar to measure the depth of the sea, and the operators kept running into something strange. In deep water, far from any coast, an echo came back from a few hundred meters down, as if the ocean had suddenly turned shallow. People called it a false bottom, or a phantom bottom, and for a while nobody could say what it was.\n\nThen someone noticed that the false bottom moved. A biologist, Martin Johnson, pointed out in the mid-1940s that the layer rose toward the surface around dusk and sank again around dawn. Rock doesn't do that. Animals do. We now know the layer is made of living things, small fish, shrimp-like krill, relatives of jellyfish, that spend the day down in the dark, where they're hard for predators to see, and come up at night to feed. It's thought to be one of the largest daily movements of animals anywhere on the planet.\n\nSo the mystery was solved. But here's the part that still causes trouble. Researchers wanted to use the same echoes to measure how much life is down there, and the echo turns out to be a poor scale. Sound bounces strongly off gas. Many small fish have a gas-filled swim bladder, and some of those jellyfish relatives carry a little gas float, and these can send back an echo far out of proportion to the animal's size. Meanwhile, fish whose bladders are filled with fat instead, or that have no bladder at all, may barely register.\n\nThat's one reason estimates of how much fish lives in this middle layer of the ocean have differed by as much as tenfold. The echo told us the layer was alive. It doesn't, on its own, tell us how much is there.",
+    "passageGroupId": "pg-3d1b8e05a9f51f14489019f766edccbb",
+    "prompt": "[Academic Talk — Oceanography] Why does the professor mention fish whose bladders are filled with fat?",
+    "choices": [
+     "To explain how some fish manage to stay at depth all day",
+     "To identify the animals that make up most of the layer",
+     "To explain why the layer sinks again each morning",
+     "To show that animals with weak echoes can go unnoticed"
+    ],
+    "correct_answer": "To show that animals with weak echoes can go unnoticed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Such fish 'may barely register', which is why the echo is a poor measure of quantity.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how some fish manage to stay at depth all day",
+      "reason": "Staying deep is explained by avoiding predators, not by fat."
+     },
+     {
+      "choice": "To identify the animals that make up most of the layer",
+      "reason": "No group is said to make up most of the layer."
+     },
+     {
+      "choice": "To explain why the layer sinks again each morning",
+      "reason": "The sinking at dawn is not explained by bladder contents."
+     }
+    ]
+   },
+   "content_hash": "2a40a37b411dd5058c46f41c680eb754",
+   "word_count": 300,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, navy ships began using sonar to measure the depth of the sea, and the operators kept running into something strange. In deep water, far from any coast, an echo came back from a few hundred meters down, as if the ocean had suddenly turned shallow. People called it a false bottom, or a phantom bottom, and for a while nobody could say what it was.\n\nThen someone noticed that the false bottom moved. A biologist, Martin Johnson, pointed out in the mid-1940s that the layer rose toward the surface around dusk and sank again around dawn. Rock doesn't do that. Animals do. We now know the layer is made of living things, small fish, shrimp-like krill, relatives of jellyfish, that spend the day down in the dark, where they're hard for predators to see, and come up at night to feed. It's thought to be one of the largest daily movements of animals anywhere on the planet.\n\nSo the mystery was solved. But here's the part that still causes trouble. Researchers wanted to use the same echoes to measure how much life is down there, and the echo turns out to be a poor scale. Sound bounces strongly off gas. Many small fish have a gas-filled swim bladder, and some of those jellyfish relatives carry a little gas float, and these can send back an echo far out of proportion to the animal's size. Meanwhile, fish whose bladders are filled with fat instead, or that have no bladder at all, may barely register.\n\nThat's one reason estimates of how much fish lives in this middle layer of the ocean have differed by as much as tenfold. The echo told us the layer was alive. It doesn't, on its own, tell us how much is there.",
+    "passageGroupId": "pg-3d1b8e05a9f51f14489019f766edccbb",
+    "prompt": "[Academic Talk — Oceanography] What would the professor most likely say about a survey that counts the fish in this layer by echo strength alone?",
+    "choices": [
+     "It would count only the fish that migrate at night",
+     "It could badly misjudge the amount of fish",
+     "It would be reliable if it were carried out at dusk",
+     "It would confuse the layer with the true seafloor"
+    ],
+    "correct_answer": "It could badly misjudge the amount of fish",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The echo told us the layer was alive. It doesn't, on its own, tell us how much is there.'",
+    "distractor_rationales": [
+     {
+      "choice": "It would count only the fish that migrate at night",
+      "reason": "Migration is not what makes an echo strong or weak."
+     },
+     {
+      "choice": "It would be reliable if it were carried out at dusk",
+      "reason": "The problem is gas and size, which timing would not fix."
+     },
+     {
+      "choice": "It would confuse the layer with the true seafloor",
+      "reason": "The layer has long been recognized as animals, not the floor."
+     }
+    ]
+   },
+   "content_hash": "1f896297554023b9f0aa98cd75046c92",
+   "word_count": 300,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a classic demonstration from Jean Piaget. Take a baby of about nine or ten months. Hide a toy under cloth A, right in front of her, and she'll reach out and find it. Do that a few times. Then, while she watches, hide the toy under cloth B, a little to one side. Many babies reach back to A. They saw the toy go under B, and they still search where they found it before. It's called the A-not-B error.\n\nPiaget's explanation was about knowledge. The infant, he argued, doesn't yet understand that an object goes on existing on its own, apart from her actions. For her, the toy is, in a sense, the thing you get by reaching to A.\n\nThe observation has held up remarkably well. Labs all over the world reproduce it. What has held up less well is the explanation. The psychologist Adele Diamond noticed that some infants look at B, where the toy actually is, while their hand goes to A. Their eyes seem to know something their reach doesn't. She argued the difficulty is in holding back a well-practiced action, a skill tied to the front of the brain, which matures slowly.\n\nThen Linda Smith, Esther Thelen, and their colleagues pushed further. They reported that the error can appear even with no toy at all, when infants simply reach for a lid that was waved in front of them. And small changes to the body could make it much weaker, for instance, standing the baby up for the B trials instead of keeping her seated.\n\nIf the error depends on posture, it's hard to treat it as purely a gap in what the baby believes about objects. So Piaget gave us a lasting fact and, quite possibly, the wrong reason for it. Much of the error seems to live in the reaching itself.",
+    "passageGroupId": "pg-41528f5b7f382ac6bec47194cc776bc4",
+    "prompt": "[Academic Talk — Developmental Psychology] What is the main point of the lecture?",
+    "choices": [
+     "A reliable infant error may stem from reaching, not missing knowledge",
+     "Infants under a year cannot see where an object has been hidden from them",
+     "Piaget's error fails to appear in most laboratories that have tested it",
+     "Standing up teaches infants that objects go on existing on their own"
+    ],
+    "correct_answer": "A reliable infant error may stem from reaching, not missing knowledge",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The observation 'has held up remarkably well', but 'much of the error seems to live in the reaching itself.'",
+    "distractor_rationales": [
+     {
+      "choice": "Infants under a year cannot see where an object has been hidden from them",
+      "reason": "The infants watch the toy being hidden and some even look at B."
+     },
+     {
+      "choice": "Piaget's error fails to appear in most laboratories that have tested it",
+      "reason": "'Labs all over the world reproduce it.'"
+     },
+     {
+      "choice": "Standing up teaches infants that objects go on existing on their own",
+      "reason": "Standing changes the body, not what the infant knows about objects."
+     }
+    ]
+   },
+   "content_hash": "abf3f276c3c65927491349cbc948cc53",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a classic demonstration from Jean Piaget. Take a baby of about nine or ten months. Hide a toy under cloth A, right in front of her, and she'll reach out and find it. Do that a few times. Then, while she watches, hide the toy under cloth B, a little to one side. Many babies reach back to A. They saw the toy go under B, and they still search where they found it before. It's called the A-not-B error.\n\nPiaget's explanation was about knowledge. The infant, he argued, doesn't yet understand that an object goes on existing on its own, apart from her actions. For her, the toy is, in a sense, the thing you get by reaching to A.\n\nThe observation has held up remarkably well. Labs all over the world reproduce it. What has held up less well is the explanation. The psychologist Adele Diamond noticed that some infants look at B, where the toy actually is, while their hand goes to A. Their eyes seem to know something their reach doesn't. She argued the difficulty is in holding back a well-practiced action, a skill tied to the front of the brain, which matures slowly.\n\nThen Linda Smith, Esther Thelen, and their colleagues pushed further. They reported that the error can appear even with no toy at all, when infants simply reach for a lid that was waved in front of them. And small changes to the body could make it much weaker, for instance, standing the baby up for the B trials instead of keeping her seated.\n\nIf the error depends on posture, it's hard to treat it as purely a gap in what the baby believes about objects. So Piaget gave us a lasting fact and, quite possibly, the wrong reason for it. Much of the error seems to live in the reaching itself.",
+    "passageGroupId": "pg-41528f5b7f382ac6bec47194cc776bc4",
+    "prompt": "[Academic Talk — Developmental Psychology] According to the professor, what change could make the A-not-B error much weaker?",
+    "choices": [
+     "Standing the baby up for the B trials",
+     "Using a cloth of a different color at B",
+     "Giving the baby extra practice reaching to A",
+     "Waving a lid in front of the baby first"
+    ],
+    "correct_answer": "Standing the baby up for the B trials",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Standing the baby up for the B trials instead of keeping her seated' made it much weaker.",
+    "distractor_rationales": [
+     {
+      "choice": "Using a cloth of a different color at B",
+      "reason": "Cloth color is never mentioned."
+     },
+     {
+      "choice": "Giving the baby extra practice reaching to A",
+      "reason": "Practice at A is what builds up the error."
+     },
+     {
+      "choice": "Waving a lid in front of the baby first",
+      "reason": "A waved lid could produce the error even with no toy."
+     }
+    ]
+   },
+   "content_hash": "2988f233f4ce607a3267bf265f695355",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a classic demonstration from Jean Piaget. Take a baby of about nine or ten months. Hide a toy under cloth A, right in front of her, and she'll reach out and find it. Do that a few times. Then, while she watches, hide the toy under cloth B, a little to one side. Many babies reach back to A. They saw the toy go under B, and they still search where they found it before. It's called the A-not-B error.\n\nPiaget's explanation was about knowledge. The infant, he argued, doesn't yet understand that an object goes on existing on its own, apart from her actions. For her, the toy is, in a sense, the thing you get by reaching to A.\n\nThe observation has held up remarkably well. Labs all over the world reproduce it. What has held up less well is the explanation. The psychologist Adele Diamond noticed that some infants look at B, where the toy actually is, while their hand goes to A. Their eyes seem to know something their reach doesn't. She argued the difficulty is in holding back a well-practiced action, a skill tied to the front of the brain, which matures slowly.\n\nThen Linda Smith, Esther Thelen, and their colleagues pushed further. They reported that the error can appear even with no toy at all, when infants simply reach for a lid that was waved in front of them. And small changes to the body could make it much weaker, for instance, standing the baby up for the B trials instead of keeping her seated.\n\nIf the error depends on posture, it's hard to treat it as purely a gap in what the baby believes about objects. So Piaget gave us a lasting fact and, quite possibly, the wrong reason for it. Much of the error seems to live in the reaching itself.",
+    "passageGroupId": "pg-41528f5b7f382ac6bec47194cc776bc4",
+    "prompt": "[Academic Talk — Developmental Psychology] Why does the professor mention infants reaching for a lid when there is no toy?",
+    "choices": [
+     "To show that the error does not require keeping track of a hidden object",
+     "To show that infants stop reaching when no reward is offered",
+     "To support Piaget's claim that a toy is defined for the infant by the reach to A",
+     "To describe how Diamond measured the slow growth of the brain"
+    ],
+    "correct_answer": "To show that the error does not require keeping track of a hidden object",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "With no object to understand, the error still appears, which weakens a purely knowledge-based account.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that infants stop reaching when no reward is offered",
+      "reason": "The infants still reached, and made the error."
+     },
+     {
+      "choice": "To support Piaget's claim that a toy is defined for the infant by the reach to A",
+      "reason": "The lid result is used against a purely knowledge-based reading."
+     },
+     {
+      "choice": "To describe how Diamond measured the slow growth of the brain",
+      "reason": "The lid studies were by Smith, Thelen, and colleagues, not Diamond."
+     }
+    ]
+   },
+   "content_hash": "96bc2f46b3adec4bbe42b965ec843ab0",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a classic demonstration from Jean Piaget. Take a baby of about nine or ten months. Hide a toy under cloth A, right in front of her, and she'll reach out and find it. Do that a few times. Then, while she watches, hide the toy under cloth B, a little to one side. Many babies reach back to A. They saw the toy go under B, and they still search where they found it before. It's called the A-not-B error.\n\nPiaget's explanation was about knowledge. The infant, he argued, doesn't yet understand that an object goes on existing on its own, apart from her actions. For her, the toy is, in a sense, the thing you get by reaching to A.\n\nThe observation has held up remarkably well. Labs all over the world reproduce it. What has held up less well is the explanation. The psychologist Adele Diamond noticed that some infants look at B, where the toy actually is, while their hand goes to A. Their eyes seem to know something their reach doesn't. She argued the difficulty is in holding back a well-practiced action, a skill tied to the front of the brain, which matures slowly.\n\nThen Linda Smith, Esther Thelen, and their colleagues pushed further. They reported that the error can appear even with no toy at all, when infants simply reach for a lid that was waved in front of them. And small changes to the body could make it much weaker, for instance, standing the baby up for the B trials instead of keeping her seated.\n\nIf the error depends on posture, it's hard to treat it as purely a gap in what the baby believes about objects. So Piaget gave us a lasting fact and, quite possibly, the wrong reason for it. Much of the error seems to live in the reaching itself.",
+    "passageGroupId": "pg-41528f5b7f382ac6bec47194cc776bc4",
+    "prompt": "[Academic Talk — Developmental Psychology] What does the professor mean by saying, 'Their eyes seem to know something their reach doesn't'?",
+    "choices": [
+     "Infants find hidden objects by sight before they learn to reach",
+     "An infant may register where the toy is and still reach to the old spot",
+     "An infant's eyes follow the hand to whichever cloth it reaches toward",
+     "Infants see the toy go under cloth B less clearly than under cloth A"
+    ],
+    "correct_answer": "An infant may register where the toy is and still reach to the old spot",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Some infants 'look at B, where the toy actually is, while their hand goes to A.'",
+    "distractor_rationales": [
+     {
+      "choice": "Infants find hidden objects by sight before they learn to reach",
+      "reason": "No order of learning is described."
+     },
+     {
+      "choice": "An infant's eyes follow the hand to whichever cloth it reaches toward",
+      "reason": "The eyes go to B while the hand goes to A."
+     },
+     {
+      "choice": "Infants see the toy go under cloth B less clearly than under cloth A",
+      "reason": "Nothing suggests the infants see the B hiding poorly."
+     }
+    ]
+   },
+   "content_hash": "4fbe499fa4df20a4cfcf9525d34c72ea",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask which building was the first skyscraper and you'll usually hear one answer: the Home Insurance Building in Chicago, finished in 1885 and designed by William Le Baron Jenney. It was about ten stories tall, which doesn't sound like much today, and it was torn down in 1931. Its claim rests on its frame. Instead of thick masonry walls holding everything up, much of the weight was carried by a skeleton of iron and, in the upper floors, steel.\n\nWhy does a frame matter so much? Because a masonry wall has to get thicker at the bottom the taller the building gets. Chicago's Monadnock Building, finished a few years later with load-bearing brick walls, has walls nearly two meters thick at street level. Go much higher that way and the ground floor is mostly wall. A frame removes that limit.\n\nNow, the case for \"first\" is weaker than the plaque suggests. Iron frames inside buildings weren't new; English textile mills had used iron columns and beams decades earlier. Tall office buildings weren't new either; New York had office buildings with elevators in the 1870s. And historians who've looked closely point out that parts of the Home Insurance Building's outer walls were still heavy masonry, helping to carry the load. It was a hybrid.\n\nSo was it the first skyscraper? That depends entirely on what you decide the word means. If it means height, other buildings came first. If it means a frame doing all of the work, it may not qualify at all. What you can say is that it combined several existing ideas at a moment when Chicago, rebuilding after its great fire and short of space downtown, was ready to push them.\n\nThat's often how firsts in architecture work. The title goes to the building standing where the pieces happen to come together.",
+    "passageGroupId": "pg-464df67d38591582ef6a4461d5994859",
+    "prompt": "[Academic Talk — Architecture History] What is the main point of the lecture?",
+    "choices": [
+     "It was the tallest office building anywhere in the 1880s",
+     "It was the first building of any kind to use iron columns and beams",
+     "Whether the building came first depends on what counts as a skyscraper",
+     "It was torn down because its masonry walls began to fail"
+    ],
+    "correct_answer": "Whether the building came first depends on what counts as a skyscraper",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'That depends entirely on what you decide the word means.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was the tallest office building anywhere in the 1880s",
+      "reason": "'If it means height, other buildings came first.'"
+     },
+     {
+      "choice": "It was the first building of any kind to use iron columns and beams",
+      "reason": "English mills had used iron columns and beams decades earlier."
+     },
+     {
+      "choice": "It was torn down because its masonry walls began to fail",
+      "reason": "No reason for the 1931 demolition is given."
+     }
+    ]
+   },
+   "content_hash": "e49a6a4c6178a495c814725aa4e9ca01",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask which building was the first skyscraper and you'll usually hear one answer: the Home Insurance Building in Chicago, finished in 1885 and designed by William Le Baron Jenney. It was about ten stories tall, which doesn't sound like much today, and it was torn down in 1931. Its claim rests on its frame. Instead of thick masonry walls holding everything up, much of the weight was carried by a skeleton of iron and, in the upper floors, steel.\n\nWhy does a frame matter so much? Because a masonry wall has to get thicker at the bottom the taller the building gets. Chicago's Monadnock Building, finished a few years later with load-bearing brick walls, has walls nearly two meters thick at street level. Go much higher that way and the ground floor is mostly wall. A frame removes that limit.\n\nNow, the case for \"first\" is weaker than the plaque suggests. Iron frames inside buildings weren't new; English textile mills had used iron columns and beams decades earlier. Tall office buildings weren't new either; New York had office buildings with elevators in the 1870s. And historians who've looked closely point out that parts of the Home Insurance Building's outer walls were still heavy masonry, helping to carry the load. It was a hybrid.\n\nSo was it the first skyscraper? That depends entirely on what you decide the word means. If it means height, other buildings came first. If it means a frame doing all of the work, it may not qualify at all. What you can say is that it combined several existing ideas at a moment when Chicago, rebuilding after its great fire and short of space downtown, was ready to push them.\n\nThat's often how firsts in architecture work. The title goes to the building standing where the pieces happen to come together.",
+    "passageGroupId": "pg-464df67d38591582ef6a4461d5994859",
+    "prompt": "[Academic Talk — Architecture History] Why does the professor mention the Monadnock Building?",
+    "choices": [
+     "To name an earlier building with a complete metal frame",
+     "To show how quickly Jenney's design was copied",
+     "To show that brick was cheaper than iron in Chicago",
+     "To show the limit that load-bearing walls put on height"
+    ],
+    "correct_answer": "To show the limit that load-bearing walls put on height",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Its brick walls are nearly two meters thick at street level: 'Go much higher that way and the ground floor is mostly wall.'",
+    "distractor_rationales": [
+     {
+      "choice": "To name an earlier building with a complete metal frame",
+      "reason": "It came later and used load-bearing brick, not a frame."
+     },
+     {
+      "choice": "To show how quickly Jenney's design was copied",
+      "reason": "It is an example of the older method, not a copy."
+     },
+     {
+      "choice": "To show that brick was cheaper than iron in Chicago",
+      "reason": "Costs are never compared."
+     }
+    ]
+   },
+   "content_hash": "a8ffb6b740bb35b8698bec8a3bb7055c",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask which building was the first skyscraper and you'll usually hear one answer: the Home Insurance Building in Chicago, finished in 1885 and designed by William Le Baron Jenney. It was about ten stories tall, which doesn't sound like much today, and it was torn down in 1931. Its claim rests on its frame. Instead of thick masonry walls holding everything up, much of the weight was carried by a skeleton of iron and, in the upper floors, steel.\n\nWhy does a frame matter so much? Because a masonry wall has to get thicker at the bottom the taller the building gets. Chicago's Monadnock Building, finished a few years later with load-bearing brick walls, has walls nearly two meters thick at street level. Go much higher that way and the ground floor is mostly wall. A frame removes that limit.\n\nNow, the case for \"first\" is weaker than the plaque suggests. Iron frames inside buildings weren't new; English textile mills had used iron columns and beams decades earlier. Tall office buildings weren't new either; New York had office buildings with elevators in the 1870s. And historians who've looked closely point out that parts of the Home Insurance Building's outer walls were still heavy masonry, helping to carry the load. It was a hybrid.\n\nSo was it the first skyscraper? That depends entirely on what you decide the word means. If it means height, other buildings came first. If it means a frame doing all of the work, it may not qualify at all. What you can say is that it combined several existing ideas at a moment when Chicago, rebuilding after its great fire and short of space downtown, was ready to push them.\n\nThat's often how firsts in architecture work. The title goes to the building standing where the pieces happen to come together.",
+    "passageGroupId": "pg-464df67d38591582ef6a4461d5994859",
+    "prompt": "[Academic Talk — Architecture History] According to the professor, what have historians found about the Home Insurance Building?",
+    "choices": [
+     "Its frame was made of steel from the basement to the top",
+     "It stood taller than the New York office buildings",
+     "It was completed before Chicago's great fire",
+     "Parts of its outer walls still helped carry the load"
+    ],
+    "correct_answer": "Parts of its outer walls still helped carry the load",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Parts of the outer walls 'were still heavy masonry, helping to carry the load. It was a hybrid.'",
+    "distractor_rationales": [
+     {
+      "choice": "Its frame was made of steel from the basement to the top",
+      "reason": "Steel was used 'in the upper floors'; the rest was iron."
+     },
+     {
+      "choice": "It stood taller than the New York office buildings",
+      "reason": "On height, 'other buildings came first.'"
+     },
+     {
+      "choice": "It was completed before Chicago's great fire",
+      "reason": "It was built while Chicago was 'rebuilding after its great fire'."
+     }
+    ]
+   },
+   "content_hash": "640160968b1b30e993926c52e5b186f6",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask which building was the first skyscraper and you'll usually hear one answer: the Home Insurance Building in Chicago, finished in 1885 and designed by William Le Baron Jenney. It was about ten stories tall, which doesn't sound like much today, and it was torn down in 1931. Its claim rests on its frame. Instead of thick masonry walls holding everything up, much of the weight was carried by a skeleton of iron and, in the upper floors, steel.\n\nWhy does a frame matter so much? Because a masonry wall has to get thicker at the bottom the taller the building gets. Chicago's Monadnock Building, finished a few years later with load-bearing brick walls, has walls nearly two meters thick at street level. Go much higher that way and the ground floor is mostly wall. A frame removes that limit.\n\nNow, the case for \"first\" is weaker than the plaque suggests. Iron frames inside buildings weren't new; English textile mills had used iron columns and beams decades earlier. Tall office buildings weren't new either; New York had office buildings with elevators in the 1870s. And historians who've looked closely point out that parts of the Home Insurance Building's outer walls were still heavy masonry, helping to carry the load. It was a hybrid.\n\nSo was it the first skyscraper? That depends entirely on what you decide the word means. If it means height, other buildings came first. If it means a frame doing all of the work, it may not qualify at all. What you can say is that it combined several existing ideas at a moment when Chicago, rebuilding after its great fire and short of space downtown, was ready to push them.\n\nThat's often how firsts in architecture work. The title goes to the building standing where the pieces happen to come together.",
+    "passageGroupId": "pg-464df67d38591582ef6a4461d5994859",
+    "prompt": "[Academic Talk — Architecture History] What does the professor imply about firsts in architecture?",
+    "choices": [
+     "They are normally settled by comparing the height of buildings",
+     "They seldom go to buildings that are still standing today",
+     "They should go only to buildings whose frames do all the work",
+     "They often mark where existing ideas were finally combined"
+    ],
+    "correct_answer": "They often mark where existing ideas were finally combined",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It 'combined several existing ideas', and 'the title goes to the building standing where the pieces happen to come together.'",
+    "distractor_rationales": [
+     {
+      "choice": "They are normally settled by comparing the height of buildings",
+      "reason": "Height is only one possible definition, and not the one behind this claim."
+     },
+     {
+      "choice": "They seldom go to buildings that are still standing today",
+      "reason": "The building's demolition is mentioned but not linked to firsts."
+     },
+     {
+      "choice": "They should go only to buildings whose frames do all the work",
+      "reason": "A full frame is offered as one definition, not as the right one."
+     }
+    ]
+   },
+   "content_hash": "c1769ecf8f8119964ff16de606f4b12d",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard this one: in old European churches, the window panes are thicker at the bottom than at the top, because glass is really a very slow liquid, and over the centuries it has sagged. It's a great story. Let's take it apart, and then put one piece of it back.\n\nFirst, the panes themselves. Before the nineteenth century, a lot of window glass was made by blowing a bubble, opening it up, and spinning it into a flat disc. That disc was never even; it was thicker in some places than in others. When glaziers cut panes from it, the panes were often uneven, and many put the heavy edge at the bottom, which makes sense for stability. But not all of them did. Old panes have been found with the thick edge at the top or off to one side, and sagging can't explain that.\n\nSecond, the rates. Scientists have estimated how fast ordinary window glass would flow at room temperature, and the answer is so slow that visible sagging would take far longer than the age of the universe. And there's a simpler check: Roman glass vessels, far older than any cathedral window, haven't slumped, and old telescope lenses still hold their precise shape.\n\nSo glass does not flow in any way that matters. But here's the piece I want to put back. The story wasn't pulled from nowhere. In a crystal, like quartz, the atoms sit in a regular repeating pattern. In glass, they don't; the arrangement is disordered, frozen in place as the melt cooled, rather like a snapshot of a liquid. That's why glass is called an amorphous solid, and it's why the liquid talk caught on.\n\nThe mistake was sliding from arranged like a liquid to behaves like a liquid. Structure and flow are separate questions.",
+    "passageGroupId": "pg-735888071c97ef3ecebee9287cde26c2",
+    "prompt": "[Academic Talk — Chemistry of Materials] What is the lecture mainly about?",
+    "choices": [
+     "How glaziers learned to cut window panes from spun discs",
+     "Why quartz crystals are stronger than ordinary window glass",
+     "Why a popular explanation for uneven church windows is mistaken",
+     "Why cathedral windows have sagged more than Roman vessels"
+    ],
+    "correct_answer": "Why a popular explanation for uneven church windows is mistaken",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture takes apart the sagging story with the panes, the flow rates, and older objects.",
+    "distractor_rationales": [
+     {
+      "choice": "How glaziers learned to cut window panes from spun discs",
+      "reason": "Disc-spinning is one piece of evidence, not the topic."
+     },
+     {
+      "choice": "Why quartz crystals are stronger than ordinary window glass",
+      "reason": "Strength is never compared."
+     },
+     {
+      "choice": "Why cathedral windows have sagged more than Roman vessels",
+      "reason": "The professor says glass 'does not flow in any way that matters.'"
+     }
+    ]
+   },
+   "content_hash": "69df7d6226ff0a066680d1c903430a8e",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard this one: in old European churches, the window panes are thicker at the bottom than at the top, because glass is really a very slow liquid, and over the centuries it has sagged. It's a great story. Let's take it apart, and then put one piece of it back.\n\nFirst, the panes themselves. Before the nineteenth century, a lot of window glass was made by blowing a bubble, opening it up, and spinning it into a flat disc. That disc was never even; it was thicker in some places than in others. When glaziers cut panes from it, the panes were often uneven, and many put the heavy edge at the bottom, which makes sense for stability. But not all of them did. Old panes have been found with the thick edge at the top or off to one side, and sagging can't explain that.\n\nSecond, the rates. Scientists have estimated how fast ordinary window glass would flow at room temperature, and the answer is so slow that visible sagging would take far longer than the age of the universe. And there's a simpler check: Roman glass vessels, far older than any cathedral window, haven't slumped, and old telescope lenses still hold their precise shape.\n\nSo glass does not flow in any way that matters. But here's the piece I want to put back. The story wasn't pulled from nowhere. In a crystal, like quartz, the atoms sit in a regular repeating pattern. In glass, they don't; the arrangement is disordered, frozen in place as the melt cooled, rather like a snapshot of a liquid. That's why glass is called an amorphous solid, and it's why the liquid talk caught on.\n\nThe mistake was sliding from arranged like a liquid to behaves like a liquid. Structure and flow are separate questions.",
+    "passageGroupId": "pg-735888071c97ef3ecebee9287cde26c2",
+    "prompt": "[Academic Talk — Chemistry of Materials] According to the professor, what finding about old panes cannot be explained by sagging?",
+    "choices": [
+     "Some are equally thick from top to bottom",
+     "Some were cut from glass made in Roman times",
+     "Some have the thick edge at the top or side",
+     "Some contain a regular pattern of atoms"
+    ],
+    "correct_answer": "Some have the thick edge at the top or side",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Panes 'have been found with the thick edge at the top or off to one side, and sagging can't explain that.'",
+    "distractor_rationales": [
+     {
+      "choice": "Some are equally thick from top to bottom",
+      "reason": "The panes are described as uneven."
+     },
+     {
+      "choice": "Some were cut from glass made in Roman times",
+      "reason": "No Roman window panes are mentioned."
+     },
+     {
+      "choice": "Some contain a regular pattern of atoms",
+      "reason": "Glass is described as disordered, unlike a crystal."
+     }
+    ]
+   },
+   "content_hash": "27b3889d9fcc120090bfe363510c2a37",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard this one: in old European churches, the window panes are thicker at the bottom than at the top, because glass is really a very slow liquid, and over the centuries it has sagged. It's a great story. Let's take it apart, and then put one piece of it back.\n\nFirst, the panes themselves. Before the nineteenth century, a lot of window glass was made by blowing a bubble, opening it up, and spinning it into a flat disc. That disc was never even; it was thicker in some places than in others. When glaziers cut panes from it, the panes were often uneven, and many put the heavy edge at the bottom, which makes sense for stability. But not all of them did. Old panes have been found with the thick edge at the top or off to one side, and sagging can't explain that.\n\nSecond, the rates. Scientists have estimated how fast ordinary window glass would flow at room temperature, and the answer is so slow that visible sagging would take far longer than the age of the universe. And there's a simpler check: Roman glass vessels, far older than any cathedral window, haven't slumped, and old telescope lenses still hold their precise shape.\n\nSo glass does not flow in any way that matters. But here's the piece I want to put back. The story wasn't pulled from nowhere. In a crystal, like quartz, the atoms sit in a regular repeating pattern. In glass, they don't; the arrangement is disordered, frozen in place as the melt cooled, rather like a snapshot of a liquid. That's why glass is called an amorphous solid, and it's why the liquid talk caught on.\n\nThe mistake was sliding from arranged like a liquid to behaves like a liquid. Structure and flow are separate questions.",
+    "passageGroupId": "pg-735888071c97ef3ecebee9287cde26c2",
+    "prompt": "[Academic Talk — Chemistry of Materials] Why does the professor mention Roman glass vessels and old telescope lenses?",
+    "choices": [
+     "As examples of glass made by blowing and spinning a disc",
+     "To show that ancient glass was harder than glass made in the Middle Ages",
+     "To show that glass keeps its shape only if made precisely",
+     "As old glass that would have changed shape if glass flowed"
+    ],
+    "correct_answer": "As old glass that would have changed shape if glass flowed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "They are 'a simpler check': much older glass that 'haven't slumped'.",
+    "distractor_rationales": [
+     {
+      "choice": "As examples of glass made by blowing and spinning a disc",
+      "reason": "They are not tied to the disc method."
+     },
+     {
+      "choice": "To show that ancient glass was harder than glass made in the Middle Ages",
+      "reason": "No difference in hardness is claimed."
+     },
+     {
+      "choice": "To show that glass keeps its shape only if made precisely",
+      "reason": "Precision is mentioned only to show the lenses have not changed."
+     }
+    ]
+   },
+   "content_hash": "1e9cddff4731f0c75e0bd822077868c1",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard this one: in old European churches, the window panes are thicker at the bottom than at the top, because glass is really a very slow liquid, and over the centuries it has sagged. It's a great story. Let's take it apart, and then put one piece of it back.\n\nFirst, the panes themselves. Before the nineteenth century, a lot of window glass was made by blowing a bubble, opening it up, and spinning it into a flat disc. That disc was never even; it was thicker in some places than in others. When glaziers cut panes from it, the panes were often uneven, and many put the heavy edge at the bottom, which makes sense for stability. But not all of them did. Old panes have been found with the thick edge at the top or off to one side, and sagging can't explain that.\n\nSecond, the rates. Scientists have estimated how fast ordinary window glass would flow at room temperature, and the answer is so slow that visible sagging would take far longer than the age of the universe. And there's a simpler check: Roman glass vessels, far older than any cathedral window, haven't slumped, and old telescope lenses still hold their precise shape.\n\nSo glass does not flow in any way that matters. But here's the piece I want to put back. The story wasn't pulled from nowhere. In a crystal, like quartz, the atoms sit in a regular repeating pattern. In glass, they don't; the arrangement is disordered, frozen in place as the melt cooled, rather like a snapshot of a liquid. That's why glass is called an amorphous solid, and it's why the liquid talk caught on.\n\nThe mistake was sliding from arranged like a liquid to behaves like a liquid. Structure and flow are separate questions.",
+    "passageGroupId": "pg-735888071c97ef3ecebee9287cde26c2",
+    "prompt": "[Academic Talk — Chemistry of Materials] What does the professor mean by saying, 'Structure and flow are separate questions'?",
+    "choices": [
+     "Glass flows only when its atoms form a regular pattern",
+     "Glass can be arranged like a liquid without behaving like one",
+     "Crystals like quartz flow more slowly than glass does",
+     "The structure of glass can be found only by timing how fast it flows"
+    ],
+    "correct_answer": "Glass can be arranged like a liquid without behaving like one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The mistake was sliding from arranged like a liquid to behaves like a liquid.'",
+    "distractor_rationales": [
+     {
+      "choice": "Glass flows only when its atoms form a regular pattern",
+      "reason": "Glass does not flow, and its atoms are disordered."
+     },
+     {
+      "choice": "Crystals like quartz flow more slowly than glass does",
+      "reason": "Quartz is cited for its structure, not its flow."
+     },
+     {
+      "choice": "The structure of glass can be found only by timing how fast it flows",
+      "reason": "Structure is described without any reference to flow."
+     }
+    ]
+   },
+   "content_hash": "4e25ba98fd6f9ac285326199bba9741c",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Brown-headed cowbirds never build a nest. A female lays her eggs in the nests of other species, and the hosts raise the cowbird chick, often at the cost of some of their own young. The obvious question is why so many hosts put up with it. Some species do throw foreign eggs out. Many don't.\n\nOne proposal, from the biologist Amotz Zahavi in 1979, sounded almost like a joke. He suggested that parasites might punish hosts that reject their eggs, by coming back and wrecking the nest. Accept the egg, and you raise a stranger but keep some of your own chicks. Reject it, and you might lose everything. It came to be called the mafia hypothesis. Plenty of people thought it asked too much of a bird: remembering which nests it had laid in and checking on them later.\n\nThen, in 2007, Jeffrey Hoover and Scott Robinson tested it with prothonotary warblers in Illinois, which nest in boxes. From some nests they removed the cowbird eggs, so those hosts looked like rejecters. Those nests were destroyed far more often than nests where the cowbird egg was left alone. And when cowbirds were kept from getting back into the boxes, the difference went away. That points to cowbirds, not some other predator. A similar pattern had been reported earlier for a cuckoo and the magpies it uses in Spain.\n\nSo the skeptics were wrong about what a bird can manage. But notice how far the result reaches. It shows retaliation in one host, in one region, and that the threat there is real. It doesn't show that fear of punishment is why hosts accept eggs in general. Many accepters may simply fail to recognize the foreign egg, or find rejecting it too costly. For those species, the mafia story may have nothing to say.",
+    "passageGroupId": "pg-3864194ba6fa192a8b07444a06d51a7d",
+    "prompt": "[Academic Talk — Ornithology] What is the lecture mainly about?",
+    "choices": [
+     "How cowbirds choose which species' nests to lay their eggs in",
+     "Why prothonotary warblers prefer to nest in boxes",
+     "How host birds learn to recognize a foreign egg",
+     "Evidence on whether cowbirds punish hosts that reject eggs"
+    ],
+    "correct_answer": "Evidence on whether cowbirds punish hosts that reject eggs",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture presents Zahavi's proposal, the 2007 test, and how far its result reaches.",
+    "distractor_rationales": [
+     {
+      "choice": "How cowbirds choose which species' nests to lay their eggs in",
+      "reason": "How cowbirds choose hosts is not discussed."
+     },
+     {
+      "choice": "Why prothonotary warblers prefer to nest in boxes",
+      "reason": "The boxes are a feature of the study, not the topic."
+     },
+     {
+      "choice": "How host birds learn to recognize a foreign egg",
+      "reason": "Recognition is mentioned only as a possible reason some hosts accept."
+     }
+    ]
+   },
+   "content_hash": "aef0f67256e0046cbbbb2f226f39925d",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Brown-headed cowbirds never build a nest. A female lays her eggs in the nests of other species, and the hosts raise the cowbird chick, often at the cost of some of their own young. The obvious question is why so many hosts put up with it. Some species do throw foreign eggs out. Many don't.\n\nOne proposal, from the biologist Amotz Zahavi in 1979, sounded almost like a joke. He suggested that parasites might punish hosts that reject their eggs, by coming back and wrecking the nest. Accept the egg, and you raise a stranger but keep some of your own chicks. Reject it, and you might lose everything. It came to be called the mafia hypothesis. Plenty of people thought it asked too much of a bird: remembering which nests it had laid in and checking on them later.\n\nThen, in 2007, Jeffrey Hoover and Scott Robinson tested it with prothonotary warblers in Illinois, which nest in boxes. From some nests they removed the cowbird eggs, so those hosts looked like rejecters. Those nests were destroyed far more often than nests where the cowbird egg was left alone. And when cowbirds were kept from getting back into the boxes, the difference went away. That points to cowbirds, not some other predator. A similar pattern had been reported earlier for a cuckoo and the magpies it uses in Spain.\n\nSo the skeptics were wrong about what a bird can manage. But notice how far the result reaches. It shows retaliation in one host, in one region, and that the threat there is real. It doesn't show that fear of punishment is why hosts accept eggs in general. Many accepters may simply fail to recognize the foreign egg, or find rejecting it too costly. For those species, the mafia story may have nothing to say.",
+    "passageGroupId": "pg-3864194ba6fa192a8b07444a06d51a7d",
+    "prompt": "[Academic Talk — Ornithology] According to the professor, what happened when cowbirds were kept out of the nest boxes?",
+    "choices": [
+     "The warblers began throwing out cowbird eggs on their own",
+     "Other predators destroyed a larger share of warbler nests",
+     "Nests without cowbird eggs were no longer destroyed more often",
+     "The cowbirds laid their eggs in nearby nests of other birds"
+    ],
+    "correct_answer": "Nests without cowbird eggs were no longer destroyed more often",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'When cowbirds were kept from getting back into the boxes, the difference went away.'",
+    "distractor_rationales": [
+     {
+      "choice": "The warblers began throwing out cowbird eggs on their own",
+      "reason": "The researchers, not the warblers, removed the eggs."
+     },
+     {
+      "choice": "Other predators destroyed a larger share of warbler nests",
+      "reason": "The result 'points to cowbirds, not some other predator.'"
+     },
+     {
+      "choice": "The cowbirds laid their eggs in nearby nests of other birds",
+      "reason": "No such shift is described."
+     }
+    ]
+   },
+   "content_hash": "9e6664da18a8e08bc63eaedd6da95ab8",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Brown-headed cowbirds never build a nest. A female lays her eggs in the nests of other species, and the hosts raise the cowbird chick, often at the cost of some of their own young. The obvious question is why so many hosts put up with it. Some species do throw foreign eggs out. Many don't.\n\nOne proposal, from the biologist Amotz Zahavi in 1979, sounded almost like a joke. He suggested that parasites might punish hosts that reject their eggs, by coming back and wrecking the nest. Accept the egg, and you raise a stranger but keep some of your own chicks. Reject it, and you might lose everything. It came to be called the mafia hypothesis. Plenty of people thought it asked too much of a bird: remembering which nests it had laid in and checking on them later.\n\nThen, in 2007, Jeffrey Hoover and Scott Robinson tested it with prothonotary warblers in Illinois, which nest in boxes. From some nests they removed the cowbird eggs, so those hosts looked like rejecters. Those nests were destroyed far more often than nests where the cowbird egg was left alone. And when cowbirds were kept from getting back into the boxes, the difference went away. That points to cowbirds, not some other predator. A similar pattern had been reported earlier for a cuckoo and the magpies it uses in Spain.\n\nSo the skeptics were wrong about what a bird can manage. But notice how far the result reaches. It shows retaliation in one host, in one region, and that the threat there is real. It doesn't show that fear of punishment is why hosts accept eggs in general. Many accepters may simply fail to recognize the foreign egg, or find rejecting it too costly. For those species, the mafia story may have nothing to say.",
+    "passageGroupId": "pg-3864194ba6fa192a8b07444a06d51a7d",
+    "prompt": "[Academic Talk — Ornithology] Why does the professor mention remembering which nests a bird had laid in?",
+    "choices": [
+     "To describe how the researchers marked each nest box",
+     "To explain how hosts tell their own eggs from others",
+     "To explain why many people doubted Zahavi's proposal",
+     "To show why a cowbird lays eggs in only one nest"
+    ],
+    "correct_answer": "To explain why many people doubted Zahavi's proposal",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Plenty of people thought it asked too much of a bird: remembering which nests it had laid in...'",
+    "distractor_rationales": [
+     {
+      "choice": "To describe how the researchers marked each nest box",
+      "reason": "The researchers' methods do not include marking boxes."
+     },
+     {
+      "choice": "To explain how hosts tell their own eggs from others",
+      "reason": "It concerns cowbird memory, not host recognition."
+     },
+     {
+      "choice": "To show why a cowbird lays eggs in only one nest",
+      "reason": "Nothing limits a cowbird to one nest."
+     }
+    ]
+   },
+   "content_hash": "9d834db4f17ed6bb5da82414a7aec0e6",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Brown-headed cowbirds never build a nest. A female lays her eggs in the nests of other species, and the hosts raise the cowbird chick, often at the cost of some of their own young. The obvious question is why so many hosts put up with it. Some species do throw foreign eggs out. Many don't.\n\nOne proposal, from the biologist Amotz Zahavi in 1979, sounded almost like a joke. He suggested that parasites might punish hosts that reject their eggs, by coming back and wrecking the nest. Accept the egg, and you raise a stranger but keep some of your own chicks. Reject it, and you might lose everything. It came to be called the mafia hypothesis. Plenty of people thought it asked too much of a bird: remembering which nests it had laid in and checking on them later.\n\nThen, in 2007, Jeffrey Hoover and Scott Robinson tested it with prothonotary warblers in Illinois, which nest in boxes. From some nests they removed the cowbird eggs, so those hosts looked like rejecters. Those nests were destroyed far more often than nests where the cowbird egg was left alone. And when cowbirds were kept from getting back into the boxes, the difference went away. That points to cowbirds, not some other predator. A similar pattern had been reported earlier for a cuckoo and the magpies it uses in Spain.\n\nSo the skeptics were wrong about what a bird can manage. But notice how far the result reaches. It shows retaliation in one host, in one region, and that the threat there is real. It doesn't show that fear of punishment is why hosts accept eggs in general. Many accepters may simply fail to recognize the foreign egg, or find rejecting it too costly. For those species, the mafia story may have nothing to say.",
+    "passageGroupId": "pg-3864194ba6fa192a8b07444a06d51a7d",
+    "prompt": "[Academic Talk — Ornithology] What would the professor most likely say about a host species that cannot recognize cowbird eggs?",
+    "choices": [
+     "It is probably punished more often than hosts that reject eggs",
+     "It probably learned to accept eggs after cowbird attacks",
+     "Fear of punishment may play no part in why it accepts them",
+     "It would reject the eggs if cowbirds could not reach it"
+    ],
+    "correct_answer": "Fear of punishment may play no part in why it accepts them",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "For accepters that 'fail to recognize the foreign egg', 'the mafia story may have nothing to say.'",
+    "distractor_rationales": [
+     {
+      "choice": "It is probably punished more often than hosts that reject eggs",
+      "reason": "Punishment is aimed at hosts that reject eggs, not at accepters."
+     },
+     {
+      "choice": "It probably learned to accept eggs after cowbird attacks",
+      "reason": "Learning from attacks is not suggested for these species."
+     },
+     {
+      "choice": "It would reject the eggs if cowbirds could not reach it",
+      "reason": "A host that cannot recognize the egg has no basis to reject it."
+     }
+    ]
+   },
+   "content_hash": "f503e3b57c78a39b95d75a66dbfb8485",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The letters on your keyboard come in a strange order: Q, W, E, R, T, Y across the top left. The arrangement goes back to typewriters of the 1870s associated with Christopher Latham Sholes, and the usual story is that it was meant to keep common letter pairs apart so the metal arms inside wouldn't jam.\n\nIn 1985 the economic historian Paul David made this layout famous in his field. His argument went roughly like this. In the 1930s August Dvorak patented a layout that put the most common letters on the middle row, and studies reported that typists trained on it were much faster. Yet nobody switched. Why? Because by then millions of typists had learned QWERTY, and employers bought machines to match the typists available. Each choice made sense by itself, and together they kept everyone on the worse design. Economists call this path dependence, or lock-in.\n\nThen two economists, Stan Liebowitz and Stephen Margolis, went back to the evidence. They argued that the most cited study favoring Dvorak had been run under Dvorak's own influence, and that a later government study, in the 1950s, found that retraining typists on Dvorak gave no clear advantage over simply giving them more practice on QWERTY.\n\nNotice what their critique does and doesn't show. It doesn't show that lock-in never happens; switching costs are real, and David was right that they can hold a standard in place. What it shows is that QWERTY, the textbook example, may not be a case of being stuck with something worse. The claim that our keyboards are inferior was never properly established.\n\nThat's a useful warning. A famous illustration can go on being repeated for decades after the evidence under it has worn thin.",
+    "passageGroupId": "pg-6c65f9291b85f27014eceff75934a153",
+    "prompt": "[Academic Talk — Economic History] What is the main point of the lecture?",
+    "choices": [
+     "The best-known example of lock-in may not involve a worse design at all",
+     "Typists today would type a good deal faster if they learned the Dvorak layout",
+     "Typewriter makers chose QWERTY to slow down their fastest typists",
+     "The order of the letters was chosen mainly to prevent typewriter jams"
+    ],
+    "correct_answer": "The best-known example of lock-in may not involve a worse design at all",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "QWERTY 'may not be a case of being stuck with something worse.'",
+    "distractor_rationales": [
+     {
+      "choice": "Typists today would type a good deal faster if they learned the Dvorak layout",
+      "reason": "The critics found the evidence for Dvorak's advantage weak."
+     },
+     {
+      "choice": "Typewriter makers chose QWERTY to slow down their fastest typists",
+      "reason": "The usual story is about keeping letter pairs apart to avoid jams, not slowing typists."
+     },
+     {
+      "choice": "The order of the letters was chosen mainly to prevent typewriter jams",
+      "reason": "The jamming story is mentioned in passing, not argued."
+     }
+    ]
+   },
+   "content_hash": "515593f650073017bbed68c234214a19",
+   "word_count": 289,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The letters on your keyboard come in a strange order: Q, W, E, R, T, Y across the top left. The arrangement goes back to typewriters of the 1870s associated with Christopher Latham Sholes, and the usual story is that it was meant to keep common letter pairs apart so the metal arms inside wouldn't jam.\n\nIn 1985 the economic historian Paul David made this layout famous in his field. His argument went roughly like this. In the 1930s August Dvorak patented a layout that put the most common letters on the middle row, and studies reported that typists trained on it were much faster. Yet nobody switched. Why? Because by then millions of typists had learned QWERTY, and employers bought machines to match the typists available. Each choice made sense by itself, and together they kept everyone on the worse design. Economists call this path dependence, or lock-in.\n\nThen two economists, Stan Liebowitz and Stephen Margolis, went back to the evidence. They argued that the most cited study favoring Dvorak had been run under Dvorak's own influence, and that a later government study, in the 1950s, found that retraining typists on Dvorak gave no clear advantage over simply giving them more practice on QWERTY.\n\nNotice what their critique does and doesn't show. It doesn't show that lock-in never happens; switching costs are real, and David was right that they can hold a standard in place. What it shows is that QWERTY, the textbook example, may not be a case of being stuck with something worse. The claim that our keyboards are inferior was never properly established.\n\nThat's a useful warning. A famous illustration can go on being repeated for decades after the evidence under it has worn thin.",
+    "passageGroupId": "pg-6c65f9291b85f27014eceff75934a153",
+    "prompt": "[Academic Talk — Economic History] According to the professor, what did the government study in the 1950s find?",
+    "choices": [
+     "Typists trained on Dvorak were roughly twice as fast",
+     "Employers would not buy machines with the Dvorak layout",
+     "Dvorak retraining did no better than more QWERTY practice",
+     "Dvorak machines jammed more often than QWERTY ones"
+    ],
+    "correct_answer": "Dvorak retraining did no better than more QWERTY practice",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "It 'found that retraining typists on Dvorak gave no clear advantage over simply giving them more practice on QWERTY.'",
+    "distractor_rationales": [
+     {
+      "choice": "Typists trained on Dvorak were roughly twice as fast",
+      "reason": "Large gains were claimed by the earlier studies, not this one."
+     },
+     {
+      "choice": "Employers would not buy machines with the Dvorak layout",
+      "reason": "Employers' purchases come up in David's argument, not this study."
+     },
+     {
+      "choice": "Dvorak machines jammed more often than QWERTY ones",
+      "reason": "Jamming is not part of the study."
+     }
+    ]
+   },
+   "content_hash": "7e1540f7569040c9508d9fabca93dd25",
+   "word_count": 289,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The letters on your keyboard come in a strange order: Q, W, E, R, T, Y across the top left. The arrangement goes back to typewriters of the 1870s associated with Christopher Latham Sholes, and the usual story is that it was meant to keep common letter pairs apart so the metal arms inside wouldn't jam.\n\nIn 1985 the economic historian Paul David made this layout famous in his field. His argument went roughly like this. In the 1930s August Dvorak patented a layout that put the most common letters on the middle row, and studies reported that typists trained on it were much faster. Yet nobody switched. Why? Because by then millions of typists had learned QWERTY, and employers bought machines to match the typists available. Each choice made sense by itself, and together they kept everyone on the worse design. Economists call this path dependence, or lock-in.\n\nThen two economists, Stan Liebowitz and Stephen Margolis, went back to the evidence. They argued that the most cited study favoring Dvorak had been run under Dvorak's own influence, and that a later government study, in the 1950s, found that retraining typists on Dvorak gave no clear advantage over simply giving them more practice on QWERTY.\n\nNotice what their critique does and doesn't show. It doesn't show that lock-in never happens; switching costs are real, and David was right that they can hold a standard in place. What it shows is that QWERTY, the textbook example, may not be a case of being stuck with something worse. The claim that our keyboards are inferior was never properly established.\n\nThat's a useful warning. A famous illustration can go on being repeated for decades after the evidence under it has worn thin.",
+    "passageGroupId": "pg-6c65f9291b85f27014eceff75934a153",
+    "prompt": "[Academic Talk — Economic History] Why does the professor mention that employers bought machines to match the typists available?",
+    "choices": [
+     "To show that employers cared more about price than about typing speed",
+     "To explain why Dvorak's layout was patented in the 1930s",
+     "To suggest that the 1950s government study was poorly run",
+     "To show how separate sensible choices kept one layout in place"
+    ],
+    "correct_answer": "To show how separate sensible choices kept one layout in place",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Each choice made sense by itself, and together they kept everyone on the worse design.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that employers cared more about price than about typing speed",
+      "reason": "Price is not discussed."
+     },
+     {
+      "choice": "To explain why Dvorak's layout was patented in the 1930s",
+      "reason": "The patent is not explained by employers' purchases."
+     },
+     {
+      "choice": "To suggest that the 1950s government study was poorly run",
+      "reason": "The critics questioned the earlier, Dvorak-influenced study."
+     }
+    ]
+   },
+   "content_hash": "e45c7ee7ed3108339c21eff132cec242",
+   "word_count": 289,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-A06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The letters on your keyboard come in a strange order: Q, W, E, R, T, Y across the top left. The arrangement goes back to typewriters of the 1870s associated with Christopher Latham Sholes, and the usual story is that it was meant to keep common letter pairs apart so the metal arms inside wouldn't jam.\n\nIn 1985 the economic historian Paul David made this layout famous in his field. His argument went roughly like this. In the 1930s August Dvorak patented a layout that put the most common letters on the middle row, and studies reported that typists trained on it were much faster. Yet nobody switched. Why? Because by then millions of typists had learned QWERTY, and employers bought machines to match the typists available. Each choice made sense by itself, and together they kept everyone on the worse design. Economists call this path dependence, or lock-in.\n\nThen two economists, Stan Liebowitz and Stephen Margolis, went back to the evidence. They argued that the most cited study favoring Dvorak had been run under Dvorak's own influence, and that a later government study, in the 1950s, found that retraining typists on Dvorak gave no clear advantage over simply giving them more practice on QWERTY.\n\nNotice what their critique does and doesn't show. It doesn't show that lock-in never happens; switching costs are real, and David was right that they can hold a standard in place. What it shows is that QWERTY, the textbook example, may not be a case of being stuck with something worse. The claim that our keyboards are inferior was never properly established.\n\nThat's a useful warning. A famous illustration can go on being repeated for decades after the evidence under it has worn thin.",
+    "passageGroupId": "pg-6c65f9291b85f27014eceff75934a153",
+    "prompt": "[Academic Talk — Economic History] What is the professor's view of the idea of lock-in itself?",
+    "choices": [
+     "The 1950s government study showed it never happens",
+     "Switching costs can genuinely hold a standard in place",
+     "It applies to keyboards but to no other technology",
+     "It explains why typists find Dvorak harder to learn"
+    ],
+    "correct_answer": "Switching costs can genuinely hold a standard in place",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'It doesn't show that lock-in never happens; switching costs are real, and David was right that they can hold a standard in place.'",
+    "distractor_rationales": [
+     {
+      "choice": "The 1950s government study showed it never happens",
+      "reason": "The critique 'doesn't show that lock-in never happens.'"
+     },
+     {
+      "choice": "It applies to keyboards but to no other technology",
+      "reason": "QWERTY is called the textbook example, not the only case."
+     },
+     {
+      "choice": "It explains why typists find Dvorak harder to learn",
+      "reason": "How hard Dvorak is to learn is never discussed."
+     }
+    ]
+   },
+   "content_hash": "12d31ce87054620b2cb617dd01211f6b",
+   "word_count": 289,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In June 1991, Mount Pinatubo in the Philippines produced one of the largest eruptions of the twentieth century. It had been quiet for roughly five hundred years. And yet the death toll was far lower than it could have been, because scientists saw it coming. Teams from the Philippine volcano institute and the U.S. Geological Survey set up seismometers, measured the gas coming out of the vents, and watched the earthquakes grow more frequent and shallower. They raised the alert level step by step, and tens of thousands of people, including the staff of a large American air base nearby, were moved out before the climax. Estimates vary, but that warning probably saved thousands of lives.\n\nSo it's tempting to conclude that eruption forecasting is a solved problem. Watch the signals, and you'll know. But here's the other side. In 1982, after swarms of earthquakes and some uplift of the ground at Long Valley, a large volcanic area in eastern California, the Geological Survey issued a formal hazard notice. Nothing erupted. The nearby resort town of Mammoth Lakes saw its tourism drop, local people were furious, and some of the scientists became the target of real anger. Decades later, Long Valley still hasn't erupted.\n\nNow, I don't think the lesson is that the Long Valley notice was a mistake. The signals there were genuine. The magma moved. It just stopped. And that's the hard part. Volcanoes show unrest far more often than they erupt, and our instruments are much better at telling us that magma is on the move than at telling us whether it'll reach the surface.\n\nPinatubo worked partly because, by the final days, the signs were escalating fast and all pointing the same way. In the early stages of unrest, which is exactly when people want answers, forecasters are mostly working with probabilities.",
+    "passageGroupId": "pg-ed2eca1658e7f5e4a84c4f950151edc5",
+    "prompt": "[Academic Talk — Volcanology] What is the main point of the lecture?",
+    "choices": [
+     "Eruption forecasting became a solved problem after Pinatubo",
+     "Instruments detect moving magma better than they predict eruptions",
+     "The hazard notice at Long Valley was an error by forecasters",
+     "Volcanoes that have been quiet longest erupt most violently"
+    ],
+    "correct_answer": "Instruments detect moving magma better than they predict eruptions",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Instruments are 'much better at telling us that magma is on the move than at telling us whether it'll reach the surface.'",
+    "distractor_rationales": [
+     {
+      "choice": "Eruption forecasting became a solved problem after Pinatubo",
+      "reason": "The professor calls this conclusion 'tempting' and then argues against it."
+     },
+     {
+      "choice": "The hazard notice at Long Valley was an error by forecasters",
+      "reason": "'I don't think the lesson is that the Long Valley notice was a mistake.'"
+     },
+     {
+      "choice": "Volcanoes that have been quiet longest erupt most violently",
+      "reason": "No link between length of quiet and violence is drawn."
+     }
+    ]
+   },
+   "content_hash": "92c2e4e612e0d8e34ceb9845ef824d5c",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In June 1991, Mount Pinatubo in the Philippines produced one of the largest eruptions of the twentieth century. It had been quiet for roughly five hundred years. And yet the death toll was far lower than it could have been, because scientists saw it coming. Teams from the Philippine volcano institute and the U.S. Geological Survey set up seismometers, measured the gas coming out of the vents, and watched the earthquakes grow more frequent and shallower. They raised the alert level step by step, and tens of thousands of people, including the staff of a large American air base nearby, were moved out before the climax. Estimates vary, but that warning probably saved thousands of lives.\n\nSo it's tempting to conclude that eruption forecasting is a solved problem. Watch the signals, and you'll know. But here's the other side. In 1982, after swarms of earthquakes and some uplift of the ground at Long Valley, a large volcanic area in eastern California, the Geological Survey issued a formal hazard notice. Nothing erupted. The nearby resort town of Mammoth Lakes saw its tourism drop, local people were furious, and some of the scientists became the target of real anger. Decades later, Long Valley still hasn't erupted.\n\nNow, I don't think the lesson is that the Long Valley notice was a mistake. The signals there were genuine. The magma moved. It just stopped. And that's the hard part. Volcanoes show unrest far more often than they erupt, and our instruments are much better at telling us that magma is on the move than at telling us whether it'll reach the surface.\n\nPinatubo worked partly because, by the final days, the signs were escalating fast and all pointing the same way. In the early stages of unrest, which is exactly when people want answers, forecasters are mostly working with probabilities.",
+    "passageGroupId": "pg-ed2eca1658e7f5e4a84c4f950151edc5",
+    "prompt": "[Academic Talk — Volcanology] According to the professor, what happened after the hazard notice at Long Valley?",
+    "choices": [
+     "A small eruption followed within a few years",
+     "Residents demanded more monitoring equipment",
+     "The ground uplift reversed within a month",
+     "Tourism declined in a nearby resort town"
+    ],
+    "correct_answer": "Tourism declined in a nearby resort town",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The nearby resort town of Mammoth Lakes saw its tourism drop.'",
+    "distractor_rationales": [
+     {
+      "choice": "A small eruption followed within a few years",
+      "reason": "'Nothing erupted' and it 'still hasn't erupted'."
+     },
+     {
+      "choice": "Residents demanded more monitoring equipment",
+      "reason": "Residents were angry; no demand for equipment is mentioned."
+     },
+     {
+      "choice": "The ground uplift reversed within a month",
+      "reason": "Nothing is said about the uplift reversing."
+     }
+    ]
+   },
+   "content_hash": "be82e0209b4c96d2aa6ea0f861b5bd34",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In June 1991, Mount Pinatubo in the Philippines produced one of the largest eruptions of the twentieth century. It had been quiet for roughly five hundred years. And yet the death toll was far lower than it could have been, because scientists saw it coming. Teams from the Philippine volcano institute and the U.S. Geological Survey set up seismometers, measured the gas coming out of the vents, and watched the earthquakes grow more frequent and shallower. They raised the alert level step by step, and tens of thousands of people, including the staff of a large American air base nearby, were moved out before the climax. Estimates vary, but that warning probably saved thousands of lives.\n\nSo it's tempting to conclude that eruption forecasting is a solved problem. Watch the signals, and you'll know. But here's the other side. In 1982, after swarms of earthquakes and some uplift of the ground at Long Valley, a large volcanic area in eastern California, the Geological Survey issued a formal hazard notice. Nothing erupted. The nearby resort town of Mammoth Lakes saw its tourism drop, local people were furious, and some of the scientists became the target of real anger. Decades later, Long Valley still hasn't erupted.\n\nNow, I don't think the lesson is that the Long Valley notice was a mistake. The signals there were genuine. The magma moved. It just stopped. And that's the hard part. Volcanoes show unrest far more often than they erupt, and our instruments are much better at telling us that magma is on the move than at telling us whether it'll reach the surface.\n\nPinatubo worked partly because, by the final days, the signs were escalating fast and all pointing the same way. In the early stages of unrest, which is exactly when people want answers, forecasters are mostly working with probabilities.",
+    "passageGroupId": "pg-ed2eca1658e7f5e4a84c4f950151edc5",
+    "prompt": "[Academic Talk — Volcanology] Why does the professor say 'The magma moved. It just stopped'?",
+    "choices": [
+     "To suggest that the instruments at Long Valley were faulty",
+     "To explain why the Pinatubo eruption was so large",
+     "To show that the warning signs at Long Valley were real",
+     "To predict that Long Valley will erupt in the near future"
+    ],
+    "correct_answer": "To show that the warning signs at Long Valley were real",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It follows 'The signals there were genuine' and supports the claim that the notice was not a mistake.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that the instruments at Long Valley were faulty",
+      "reason": "The signals were 'genuine', so the instruments were not at fault."
+     },
+     {
+      "choice": "To explain why the Pinatubo eruption was so large",
+      "reason": "The remark is about Long Valley, not Pinatubo."
+     },
+     {
+      "choice": "To predict that Long Valley will erupt in the near future",
+      "reason": "No prediction of a coming eruption is made."
+     }
+    ]
+   },
+   "content_hash": "33738b54fbd07bec15e4699dce9c5f4c",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In June 1991, Mount Pinatubo in the Philippines produced one of the largest eruptions of the twentieth century. It had been quiet for roughly five hundred years. And yet the death toll was far lower than it could have been, because scientists saw it coming. Teams from the Philippine volcano institute and the U.S. Geological Survey set up seismometers, measured the gas coming out of the vents, and watched the earthquakes grow more frequent and shallower. They raised the alert level step by step, and tens of thousands of people, including the staff of a large American air base nearby, were moved out before the climax. Estimates vary, but that warning probably saved thousands of lives.\n\nSo it's tempting to conclude that eruption forecasting is a solved problem. Watch the signals, and you'll know. But here's the other side. In 1982, after swarms of earthquakes and some uplift of the ground at Long Valley, a large volcanic area in eastern California, the Geological Survey issued a formal hazard notice. Nothing erupted. The nearby resort town of Mammoth Lakes saw its tourism drop, local people were furious, and some of the scientists became the target of real anger. Decades later, Long Valley still hasn't erupted.\n\nNow, I don't think the lesson is that the Long Valley notice was a mistake. The signals there were genuine. The magma moved. It just stopped. And that's the hard part. Volcanoes show unrest far more often than they erupt, and our instruments are much better at telling us that magma is on the move than at telling us whether it'll reach the surface.\n\nPinatubo worked partly because, by the final days, the signs were escalating fast and all pointing the same way. In the early stages of unrest, which is exactly when people want answers, forecasters are mostly working with probabilities.",
+    "passageGroupId": "pg-ed2eca1658e7f5e4a84c4f950151edc5",
+    "prompt": "[Academic Talk — Volcanology] What can be inferred about why the Pinatubo forecast succeeded?",
+    "choices": [
+     "Its instruments had been in place for many decades before",
+     "Its early unrest gave forecasters a firm, early answer",
+     "Its long quiet period made its later behavior easy to predict",
+     "Its final signals grew quickly and agreed with one another"
+    ],
+    "correct_answer": "Its final signals grew quickly and agreed with one another",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'By the final days, the signs were escalating fast and all pointing the same way.'",
+    "distractor_rationales": [
+     {
+      "choice": "Its instruments had been in place for many decades before",
+      "reason": "The teams 'set up' instruments; long prior monitoring is not mentioned."
+     },
+     {
+      "choice": "Its early unrest gave forecasters a firm, early answer",
+      "reason": "In early unrest 'forecasters are mostly working with probabilities'."
+     },
+     {
+      "choice": "Its long quiet period made its later behavior easy to predict",
+      "reason": "The quiet period is mentioned only as background, not as a reason."
+     }
+    ]
+   },
+   "content_hash": "fe6eb0f743f9ed1825183ec8f818f8c5",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard that Eskimo languages have dozens, maybe hundreds, of words for snow. It's one of the most repeated facts about language, usually offered as proof that the words you have shape what you notice. Let's look at where it came from.\n\nThe anthropologist Franz Boas, writing in 1911, mentioned in passing that one of these languages had four separate roots for snow: snow on the ground, falling snow, drifting snow, and a snowdrift. His point was actually a modest one, that languages divide up the world differently. Later writers repeated the example, and the number grew. Dozens, and in some newspaper pieces, hundreds. In the 1980s, the anthropologist Laura Martin traced this chain of retellings, and the linguist Geoffrey Pullum later spread her findings in a well-known essay that called the whole thing a hoax. Nobody, it turned out, had gone back and counted.\n\nSo, case closed? Not quite. Some later fieldwork, especially on sea ice, has recorded fairly large sets of terms in certain Inuit and Yupik dialects. People who hunt and travel on ice really do need to talk about its kinds precisely. So the flat claim you sometimes hear from debunkers, that these languages have no more snow vocabulary than English, may go too far as well.\n\nBut here's the part I find most interesting. These languages build words by attaching many pieces to a root. One long word can express what English says in a whole sentence, something like \"snow that is falling softly right now.\" So how many words for snow are there? Practically unlimited, because speakers can keep building new ones. Which means the count can't be compared with English in the first place. The retellings were wrong, yes. But the deeper problem was that the question itself was badly posed.",
+    "passageGroupId": "pg-94522f597998f814c7e9cc91ed447ebe",
+    "prompt": "[Academic Talk — Linguistics] What is the professor mainly doing in the lecture?",
+    "choices": [
+     "Proving that Inuit languages lack any special snow terms",
+     "Defending the popular claim with evidence from new fieldwork",
+     "Explaining how Boas collected his data in the Arctic",
+     "Showing why counting snow words cannot settle the matter"
+    ],
+    "correct_answer": "Showing why counting snow words cannot settle the matter",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The count can't be compared with English in the first place... the question itself was badly posed.'",
+    "distractor_rationales": [
+     {
+      "choice": "Proving that Inuit languages lack any special snow terms",
+      "reason": "Fieldwork recorded 'fairly large sets of terms'."
+     },
+     {
+      "choice": "Defending the popular claim with evidence from new fieldwork",
+      "reason": "The popular counts came from retellings; fieldwork does not restore them, and the count itself is called meaningless."
+     },
+     {
+      "choice": "Explaining how Boas collected his data in the Arctic",
+      "reason": "Boas's methods are not discussed."
+     }
+    ]
+   },
+   "content_hash": "f09cd17581784c324dc5476499d4625a",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard that Eskimo languages have dozens, maybe hundreds, of words for snow. It's one of the most repeated facts about language, usually offered as proof that the words you have shape what you notice. Let's look at where it came from.\n\nThe anthropologist Franz Boas, writing in 1911, mentioned in passing that one of these languages had four separate roots for snow: snow on the ground, falling snow, drifting snow, and a snowdrift. His point was actually a modest one, that languages divide up the world differently. Later writers repeated the example, and the number grew. Dozens, and in some newspaper pieces, hundreds. In the 1980s, the anthropologist Laura Martin traced this chain of retellings, and the linguist Geoffrey Pullum later spread her findings in a well-known essay that called the whole thing a hoax. Nobody, it turned out, had gone back and counted.\n\nSo, case closed? Not quite. Some later fieldwork, especially on sea ice, has recorded fairly large sets of terms in certain Inuit and Yupik dialects. People who hunt and travel on ice really do need to talk about its kinds precisely. So the flat claim you sometimes hear from debunkers, that these languages have no more snow vocabulary than English, may go too far as well.\n\nBut here's the part I find most interesting. These languages build words by attaching many pieces to a root. One long word can express what English says in a whole sentence, something like \"snow that is falling softly right now.\" So how many words for snow are there? Practically unlimited, because speakers can keep building new ones. Which means the count can't be compared with English in the first place. The retellings were wrong, yes. But the deeper problem was that the question itself was badly posed.",
+    "passageGroupId": "pg-94522f597998f814c7e9cc91ed447ebe",
+    "prompt": "[Academic Talk — Linguistics] According to the professor, what was Boas's original point?",
+    "choices": [
+     "One Arctic language had hundreds of words for snow",
+     "Snow terms were borrowed from one Arctic language by another",
+     "Hunters invent new words whenever they travel on ice",
+     "Different languages divide up the world in different ways"
+    ],
+    "correct_answer": "Different languages divide up the world in different ways",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'His point was actually a modest one, that languages divide up the world differently.'",
+    "distractor_rationales": [
+     {
+      "choice": "One Arctic language had hundreds of words for snow",
+      "reason": "Boas mentioned four roots; 'hundreds' came from later retellings."
+     },
+     {
+      "choice": "Snow terms were borrowed from one Arctic language by another",
+      "reason": "Borrowing between languages is never mentioned."
+     },
+     {
+      "choice": "Hunters invent new words whenever they travel on ice",
+      "reason": "Hunters come up in later fieldwork, not in Boas's point."
+     }
+    ]
+   },
+   "content_hash": "2da4710b2e76ced69bbb776954587a2f",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard that Eskimo languages have dozens, maybe hundreds, of words for snow. It's one of the most repeated facts about language, usually offered as proof that the words you have shape what you notice. Let's look at where it came from.\n\nThe anthropologist Franz Boas, writing in 1911, mentioned in passing that one of these languages had four separate roots for snow: snow on the ground, falling snow, drifting snow, and a snowdrift. His point was actually a modest one, that languages divide up the world differently. Later writers repeated the example, and the number grew. Dozens, and in some newspaper pieces, hundreds. In the 1980s, the anthropologist Laura Martin traced this chain of retellings, and the linguist Geoffrey Pullum later spread her findings in a well-known essay that called the whole thing a hoax. Nobody, it turned out, had gone back and counted.\n\nSo, case closed? Not quite. Some later fieldwork, especially on sea ice, has recorded fairly large sets of terms in certain Inuit and Yupik dialects. People who hunt and travel on ice really do need to talk about its kinds precisely. So the flat claim you sometimes hear from debunkers, that these languages have no more snow vocabulary than English, may go too far as well.\n\nBut here's the part I find most interesting. These languages build words by attaching many pieces to a root. One long word can express what English says in a whole sentence, something like \"snow that is falling softly right now.\" So how many words for snow are there? Practically unlimited, because speakers can keep building new ones. Which means the count can't be compared with English in the first place. The retellings were wrong, yes. But the deeper problem was that the question itself was badly posed.",
+    "passageGroupId": "pg-94522f597998f814c7e9cc91ed447ebe",
+    "prompt": "[Academic Talk — Linguistics] Why does the professor mention people who hunt and travel on sea ice?",
+    "choices": [
+     "To give a practical reason for a large set of ice terms",
+     "To show where Boas first heard the four snow roots",
+     "To explain how the chain of retellings got started",
+     "To illustrate how long words are built from a root"
+    ],
+    "correct_answer": "To give a practical reason for a large set of ice terms",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "They 'really do need to talk about its kinds precisely', which supports the fieldwork finding.",
+    "distractor_rationales": [
+     {
+      "choice": "To show where Boas first heard the four snow roots",
+      "reason": "Where Boas worked is not discussed."
+     },
+     {
+      "choice": "To explain how the chain of retellings got started",
+      "reason": "The retellings came from later writers, not from hunters."
+     },
+     {
+      "choice": "To illustrate how long words are built from a root",
+      "reason": "Word-building is illustrated with 'snow that is falling softly right now'."
+     }
+    ]
+   },
+   "content_hash": "9fa3545caed322dfb61969b32eaa4bb8",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard that Eskimo languages have dozens, maybe hundreds, of words for snow. It's one of the most repeated facts about language, usually offered as proof that the words you have shape what you notice. Let's look at where it came from.\n\nThe anthropologist Franz Boas, writing in 1911, mentioned in passing that one of these languages had four separate roots for snow: snow on the ground, falling snow, drifting snow, and a snowdrift. His point was actually a modest one, that languages divide up the world differently. Later writers repeated the example, and the number grew. Dozens, and in some newspaper pieces, hundreds. In the 1980s, the anthropologist Laura Martin traced this chain of retellings, and the linguist Geoffrey Pullum later spread her findings in a well-known essay that called the whole thing a hoax. Nobody, it turned out, had gone back and counted.\n\nSo, case closed? Not quite. Some later fieldwork, especially on sea ice, has recorded fairly large sets of terms in certain Inuit and Yupik dialects. People who hunt and travel on ice really do need to talk about its kinds precisely. So the flat claim you sometimes hear from debunkers, that these languages have no more snow vocabulary than English, may go too far as well.\n\nBut here's the part I find most interesting. These languages build words by attaching many pieces to a root. One long word can express what English says in a whole sentence, something like \"snow that is falling softly right now.\" So how many words for snow are there? Practically unlimited, because speakers can keep building new ones. Which means the count can't be compared with English in the first place. The retellings were wrong, yes. But the deeper problem was that the question itself was badly posed.",
+    "passageGroupId": "pg-94522f597998f814c7e9cc91ed447ebe",
+    "prompt": "[Academic Talk — Linguistics] What is the professor's view of the debunkers?",
+    "choices": [
+     "Wrong, because later fieldwork confirmed the large counts",
+     "Right about the retellings, too strong about English",
+     "Unfair to Boas, who had counted carefully himself",
+     "Convincing only because English has more snow words"
+    ],
+    "correct_answer": "Right about the retellings, too strong about English",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The retellings were wrong, yes' but the claim of 'no more snow vocabulary than English, may go too far.'",
+    "distractor_rationales": [
+     {
+      "choice": "Wrong, because later fieldwork confirmed the large counts",
+      "reason": "The professor says the count itself can't be compared, so fieldwork confirms no count."
+     },
+     {
+      "choice": "Unfair to Boas, who had counted carefully himself",
+      "reason": "Boas mentioned four roots 'in passing'; the debunkers' work is not called unfair to him."
+     },
+     {
+      "choice": "Convincing only because English has more snow words",
+      "reason": "No comparison showing English has more words is made."
+     }
+    ]
+   },
+   "content_hash": "37e0a9a4559fb6a3c6e3cb381b3079ea",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The interval we call the tritone spans three whole steps, say from F up to B. Play those two notes together and you get a tense, restless sound that seems to want to go somewhere. And you may have heard that in the Middle Ages the Church banned it, calling it the devil in music, diabolus in musica.\n\nIt's a great story. As far as historians can tell, there's no evidence for it. No church decree forbidding the tritone has ever been found. And that Latin nickname doesn't seem to show up in writing until centuries later, around the early seventeen hundreds.\n\nWhat is true is that medieval theorists told composers to avoid it, in melodies and between voices sounding together. But their reasons were technical. Singers then learned music through a system of overlapping six-note patterns, and the F and the B belonged to patterns that didn't fit together, so the leap between them was awkward to sing and awkward to think about. Theorists described it as mi against fa, which were the names those two notes had in the system. It was a matter of grammar, not of sin.\n\nAnd here's the irony. A few centuries later, the very instability that made the tritone something to avoid became its most useful property. In the harmony of Bach's era and after, the dominant seventh chord, the chord that pulls you back home at the end of a phrase, has a tritone right inside it. The two notes resolve, moving by step to a stable interval, and that motion is a big part of what makes an ending feel like an ending.\n\nSo the tritone didn't go from forbidden to accepted because composers stopped fearing the devil. It always had to be handled with care. What changed was the musical system around it, which turned a problem into a tool.",
+    "passageGroupId": "pg-e8997914bb308d06151ad7f182126457",
+    "prompt": "[Academic Talk — Music Theory] What is the lecture mainly about?",
+    "choices": [
+     "Why the tritone was avoided, and how its role later changed",
+     "How the medieval Church came to ban the tritone from its worship",
+     "How Bach invented the dominant seventh chord",
+     "Why six-note patterns made singing easier to learn"
+    ],
+    "correct_answer": "Why the tritone was avoided, and how its role later changed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture moves from technical reasons for avoidance to the tritone's use in later harmony.",
+    "distractor_rationales": [
+     {
+      "choice": "How the medieval Church came to ban the tritone from its worship",
+      "reason": "'No church decree forbidding the tritone has ever been found.'"
+     },
+     {
+      "choice": "How Bach invented the dominant seventh chord",
+      "reason": "The chord is said to belong to Bach's era; no inventor is named."
+     },
+     {
+      "choice": "Why six-note patterns made singing easier to learn",
+      "reason": "The patterns made the tritone 'awkward to sing', not singing easier."
+     }
+    ]
+   },
+   "content_hash": "c588407609b2e26ffd68c13421540264",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The interval we call the tritone spans three whole steps, say from F up to B. Play those two notes together and you get a tense, restless sound that seems to want to go somewhere. And you may have heard that in the Middle Ages the Church banned it, calling it the devil in music, diabolus in musica.\n\nIt's a great story. As far as historians can tell, there's no evidence for it. No church decree forbidding the tritone has ever been found. And that Latin nickname doesn't seem to show up in writing until centuries later, around the early seventeen hundreds.\n\nWhat is true is that medieval theorists told composers to avoid it, in melodies and between voices sounding together. But their reasons were technical. Singers then learned music through a system of overlapping six-note patterns, and the F and the B belonged to patterns that didn't fit together, so the leap between them was awkward to sing and awkward to think about. Theorists described it as mi against fa, which were the names those two notes had in the system. It was a matter of grammar, not of sin.\n\nAnd here's the irony. A few centuries later, the very instability that made the tritone something to avoid became its most useful property. In the harmony of Bach's era and after, the dominant seventh chord, the chord that pulls you back home at the end of a phrase, has a tritone right inside it. The two notes resolve, moving by step to a stable interval, and that motion is a big part of what makes an ending feel like an ending.\n\nSo the tritone didn't go from forbidden to accepted because composers stopped fearing the devil. It always had to be handled with care. What changed was the musical system around it, which turned a problem into a tool.",
+    "passageGroupId": "pg-e8997914bb308d06151ad7f182126457",
+    "prompt": "[Academic Talk — Music Theory] According to the professor, why did medieval theorists advise avoiding the tritone?",
+    "choices": [
+     "A church decree had forbidden its use in sacred music",
+     "Singers believed it was associated with the devil",
+     "Its two notes came from patterns that did not fit together",
+     "It lay outside the comfortable vocal range of most church choirs"
+    ],
+    "correct_answer": "Its two notes came from patterns that did not fit together",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The F and the B belonged to patterns that didn't fit together.'",
+    "distractor_rationales": [
+     {
+      "choice": "A church decree had forbidden its use in sacred music",
+      "reason": "No such decree has been found."
+     },
+     {
+      "choice": "Singers believed it was associated with the devil",
+      "reason": "The devil label appears only centuries later."
+     },
+     {
+      "choice": "It lay outside the comfortable vocal range of most church choirs",
+      "reason": "Vocal range is never mentioned."
+     }
+    ]
+   },
+   "content_hash": "b3df85a318ab2e3828a896e32e0ac376",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The interval we call the tritone spans three whole steps, say from F up to B. Play those two notes together and you get a tense, restless sound that seems to want to go somewhere. And you may have heard that in the Middle Ages the Church banned it, calling it the devil in music, diabolus in musica.\n\nIt's a great story. As far as historians can tell, there's no evidence for it. No church decree forbidding the tritone has ever been found. And that Latin nickname doesn't seem to show up in writing until centuries later, around the early seventeen hundreds.\n\nWhat is true is that medieval theorists told composers to avoid it, in melodies and between voices sounding together. But their reasons were technical. Singers then learned music through a system of overlapping six-note patterns, and the F and the B belonged to patterns that didn't fit together, so the leap between them was awkward to sing and awkward to think about. Theorists described it as mi against fa, which were the names those two notes had in the system. It was a matter of grammar, not of sin.\n\nAnd here's the irony. A few centuries later, the very instability that made the tritone something to avoid became its most useful property. In the harmony of Bach's era and after, the dominant seventh chord, the chord that pulls you back home at the end of a phrase, has a tritone right inside it. The two notes resolve, moving by step to a stable interval, and that motion is a big part of what makes an ending feel like an ending.\n\nSo the tritone didn't go from forbidden to accepted because composers stopped fearing the devil. It always had to be handled with care. What changed was the musical system around it, which turned a problem into a tool.",
+    "passageGroupId": "pg-e8997914bb308d06151ad7f182126457",
+    "prompt": "[Academic Talk — Music Theory] Why does the professor mention the dominant seventh chord?",
+    "choices": [
+     "To give an example of a chord that theorists once banned",
+     "To show that composers eventually stopped fearing the devil",
+     "To show how the tritone's instability came to be useful",
+     "To explain how medieval singers learned their intervals"
+    ],
+    "correct_answer": "To show how the tritone's instability came to be useful",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The very instability that made the tritone something to avoid became its most useful property.'",
+    "distractor_rationales": [
+     {
+      "choice": "To give an example of a chord that theorists once banned",
+      "reason": "The chord comes from Bach's era, after the medieval advice, and no ban is described."
+     },
+     {
+      "choice": "To show that composers eventually stopped fearing the devil",
+      "reason": "The professor rejects this: 'not because composers stopped fearing the devil'."
+     },
+     {
+      "choice": "To explain how medieval singers learned their intervals",
+      "reason": "Medieval learning is explained with six-note patterns."
+     }
+    ]
+   },
+   "content_hash": "fafa51d03b14f8ab273aab0f1fd30b93",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The interval we call the tritone spans three whole steps, say from F up to B. Play those two notes together and you get a tense, restless sound that seems to want to go somewhere. And you may have heard that in the Middle Ages the Church banned it, calling it the devil in music, diabolus in musica.\n\nIt's a great story. As far as historians can tell, there's no evidence for it. No church decree forbidding the tritone has ever been found. And that Latin nickname doesn't seem to show up in writing until centuries later, around the early seventeen hundreds.\n\nWhat is true is that medieval theorists told composers to avoid it, in melodies and between voices sounding together. But their reasons were technical. Singers then learned music through a system of overlapping six-note patterns, and the F and the B belonged to patterns that didn't fit together, so the leap between them was awkward to sing and awkward to think about. Theorists described it as mi against fa, which were the names those two notes had in the system. It was a matter of grammar, not of sin.\n\nAnd here's the irony. A few centuries later, the very instability that made the tritone something to avoid became its most useful property. In the harmony of Bach's era and after, the dominant seventh chord, the chord that pulls you back home at the end of a phrase, has a tritone right inside it. The two notes resolve, moving by step to a stable interval, and that motion is a big part of what makes an ending feel like an ending.\n\nSo the tritone didn't go from forbidden to accepted because composers stopped fearing the devil. It always had to be handled with care. What changed was the musical system around it, which turned a problem into a tool.",
+    "passageGroupId": "pg-e8997914bb308d06151ad7f182126457",
+    "prompt": "[Academic Talk — Music Theory] What does the professor imply about the name 'the devil in music'?",
+    "choices": [
+     "It was the name medieval theorists themselves used for the interval",
+     "It was taken from the wording of an official church decree",
+     "It came into use centuries after the advice to avoid the tritone",
+     "It correctly explains why medieval composers avoided it"
+    ],
+    "correct_answer": "It came into use centuries after the advice to avoid the tritone",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The nickname doesn't appear 'until centuries later, around the early seventeen hundreds.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was the name medieval theorists themselves used for the interval",
+      "reason": "Medieval theorists 'described it as mi against fa'."
+     },
+     {
+      "choice": "It was taken from the wording of an official church decree",
+      "reason": "No church decree has been found."
+     },
+     {
+      "choice": "It correctly explains why medieval composers avoided it",
+      "reason": "The real reasons were 'technical... grammar, not... sin'."
+     }
+    ]
+   },
+   "content_hash": "33290213988ff7f4ca4eac283e126153",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the winter of 1944 to 1945, the German occupation cut off food supplies to the western Netherlands. Official rations in some cities fell well below a thousand calories a day, and thousands of people died. Then, in May 1945, the country was liberated and food came back quickly. Grim as it was, this created something unusual for researchers: a famine with a sharp beginning and a sharp end, in a population with very good birth records.\n\nDecades later, researchers followed up people who had been in the womb during the famine. Some groups, depending on when in pregnancy the famine hit, showed higher rates of obesity and heart disease later in life. And in 2008, a study found that people exposed early in pregnancy carried different chemical tags, called methylation, on a gene involved in growth, about sixty years afterward. These tags don't change the DNA sequence. They affect how strongly genes are switched on or off.\n\nThat's a real finding, and it's where things get exciting, and sometimes overexcited. You'll read that the famine left its mark on the grandchildren, that hunger is passed down through generations like an inheritance. A few studies have reported effects in the next generation, though the results are mixed.\n\nHere's the catch that's easy to miss. When a pregnant woman goes hungry, three generations are exposed at once: the woman, her fetus, and, if the fetus is a girl, the egg cells already forming inside it. A girl's eggs begin developing before she's born. So an effect in a grandchild doesn't have to be inherited at all. It could be a direct effect of the famine on cells that were already present during it.\n\nTo show true inheritance, you'd need effects in a generation that never met the famine in any form, the great-grandchildren. For humans, that evidence just isn't there yet.",
+    "passageGroupId": "pg-296277a6e1a89787390e93d24bdcd6dc",
+    "prompt": "[Academic Talk — Genetics] What is the main purpose of the lecture?",
+    "choices": [
+     "To argue that the effects of famine skip a generation",
+     "To separate a firm finding from a claim it does not yet support",
+     "To show that famine alters the DNA sequence of a growth gene",
+     "To describe how the occupation caused the Dutch famine"
+    ],
+    "correct_answer": "To separate a firm finding from a claim it does not yet support",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The womb findings are 'real'; inheritance across generations lacks evidence.",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that the effects of famine skip a generation",
+      "reason": "No skipping pattern is described."
+     },
+     {
+      "choice": "To show that famine alters the DNA sequence of a growth gene",
+      "reason": "The tags 'don't change the DNA sequence'."
+     },
+     {
+      "choice": "To describe how the occupation caused the Dutch famine",
+      "reason": "The cause of the famine is background, given in one sentence."
+     }
+    ]
+   },
+   "content_hash": "8b09b3c2d646355b656e2b984449f1ee",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the winter of 1944 to 1945, the German occupation cut off food supplies to the western Netherlands. Official rations in some cities fell well below a thousand calories a day, and thousands of people died. Then, in May 1945, the country was liberated and food came back quickly. Grim as it was, this created something unusual for researchers: a famine with a sharp beginning and a sharp end, in a population with very good birth records.\n\nDecades later, researchers followed up people who had been in the womb during the famine. Some groups, depending on when in pregnancy the famine hit, showed higher rates of obesity and heart disease later in life. And in 2008, a study found that people exposed early in pregnancy carried different chemical tags, called methylation, on a gene involved in growth, about sixty years afterward. These tags don't change the DNA sequence. They affect how strongly genes are switched on or off.\n\nThat's a real finding, and it's where things get exciting, and sometimes overexcited. You'll read that the famine left its mark on the grandchildren, that hunger is passed down through generations like an inheritance. A few studies have reported effects in the next generation, though the results are mixed.\n\nHere's the catch that's easy to miss. When a pregnant woman goes hungry, three generations are exposed at once: the woman, her fetus, and, if the fetus is a girl, the egg cells already forming inside it. A girl's eggs begin developing before she's born. So an effect in a grandchild doesn't have to be inherited at all. It could be a direct effect of the famine on cells that were already present during it.\n\nTo show true inheritance, you'd need effects in a generation that never met the famine in any form, the great-grandchildren. For humans, that evidence just isn't there yet.",
+    "passageGroupId": "pg-296277a6e1a89787390e93d24bdcd6dc",
+    "prompt": "[Academic Talk — Genetics] According to the professor, what did the 2008 study find?",
+    "choices": [
+     "Higher rates of obesity among the survivors' great-grandchildren",
+     "Different tags on a growth gene in those exposed early",
+     "A changed DNA sequence in a gene involved in growth",
+     "No lasting differences sixty years after the famine"
+    ],
+    "correct_answer": "Different tags on a growth gene in those exposed early",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "People 'exposed early in pregnancy carried different chemical tags... on a gene involved in growth.'",
+    "distractor_rationales": [
+     {
+      "choice": "Higher rates of obesity among the survivors' great-grandchildren",
+      "reason": "Evidence about great-grandchildren 'just isn't there yet'."
+     },
+     {
+      "choice": "A changed DNA sequence in a gene involved in growth",
+      "reason": "'These tags don't change the DNA sequence.'"
+     },
+     {
+      "choice": "No lasting differences sixty years after the famine",
+      "reason": "The differences were found about sixty years afterward."
+     }
+    ]
+   },
+   "content_hash": "98979c67e18a1904a416428d6c330e57",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the winter of 1944 to 1945, the German occupation cut off food supplies to the western Netherlands. Official rations in some cities fell well below a thousand calories a day, and thousands of people died. Then, in May 1945, the country was liberated and food came back quickly. Grim as it was, this created something unusual for researchers: a famine with a sharp beginning and a sharp end, in a population with very good birth records.\n\nDecades later, researchers followed up people who had been in the womb during the famine. Some groups, depending on when in pregnancy the famine hit, showed higher rates of obesity and heart disease later in life. And in 2008, a study found that people exposed early in pregnancy carried different chemical tags, called methylation, on a gene involved in growth, about sixty years afterward. These tags don't change the DNA sequence. They affect how strongly genes are switched on or off.\n\nThat's a real finding, and it's where things get exciting, and sometimes overexcited. You'll read that the famine left its mark on the grandchildren, that hunger is passed down through generations like an inheritance. A few studies have reported effects in the next generation, though the results are mixed.\n\nHere's the catch that's easy to miss. When a pregnant woman goes hungry, three generations are exposed at once: the woman, her fetus, and, if the fetus is a girl, the egg cells already forming inside it. A girl's eggs begin developing before she's born. So an effect in a grandchild doesn't have to be inherited at all. It could be a direct effect of the famine on cells that were already present during it.\n\nTo show true inheritance, you'd need effects in a generation that never met the famine in any form, the great-grandchildren. For humans, that evidence just isn't there yet.",
+    "passageGroupId": "pg-296277a6e1a89787390e93d24bdcd6dc",
+    "prompt": "[Academic Talk — Genetics] Why does the professor mention that a girl's eggs begin developing before she is born?",
+    "choices": [
+     "To show that a grandchild effect may not prove inheritance",
+     "To explain why the famine studies included only daughters",
+     "To argue that famine affects women far more strongly than men",
+     "To explain why the grandchildren showed no effects at all"
+    ],
+    "correct_answer": "To show that a grandchild effect may not prove inheritance",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'An effect in a grandchild doesn't have to be inherited at all.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why the famine studies included only daughters",
+      "reason": "No study is said to include only daughters."
+     },
+     {
+      "choice": "To argue that famine affects women far more strongly than men",
+      "reason": "Sex differences in severity are not discussed."
+     },
+     {
+      "choice": "To explain why the grandchildren showed no effects at all",
+      "reason": "Grandchild results are 'mixed', not absent."
+     }
+    ]
+   },
+   "content_hash": "cf21cb7f457281ee92d9e02c7e8d2627",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the winter of 1944 to 1945, the German occupation cut off food supplies to the western Netherlands. Official rations in some cities fell well below a thousand calories a day, and thousands of people died. Then, in May 1945, the country was liberated and food came back quickly. Grim as it was, this created something unusual for researchers: a famine with a sharp beginning and a sharp end, in a population with very good birth records.\n\nDecades later, researchers followed up people who had been in the womb during the famine. Some groups, depending on when in pregnancy the famine hit, showed higher rates of obesity and heart disease later in life. And in 2008, a study found that people exposed early in pregnancy carried different chemical tags, called methylation, on a gene involved in growth, about sixty years afterward. These tags don't change the DNA sequence. They affect how strongly genes are switched on or off.\n\nThat's a real finding, and it's where things get exciting, and sometimes overexcited. You'll read that the famine left its mark on the grandchildren, that hunger is passed down through generations like an inheritance. A few studies have reported effects in the next generation, though the results are mixed.\n\nHere's the catch that's easy to miss. When a pregnant woman goes hungry, three generations are exposed at once: the woman, her fetus, and, if the fetus is a girl, the egg cells already forming inside it. A girl's eggs begin developing before she's born. So an effect in a grandchild doesn't have to be inherited at all. It could be a direct effect of the famine on cells that were already present during it.\n\nTo show true inheritance, you'd need effects in a generation that never met the famine in any form, the great-grandchildren. For humans, that evidence just isn't there yet.",
+    "passageGroupId": "pg-296277a6e1a89787390e93d24bdcd6dc",
+    "prompt": "[Academic Talk — Genetics] What would the professor most likely accept as evidence of true inheritance?",
+    "choices": [
+     "Effects in people who were in the womb during the famine",
+     "Effects in the great-grandchildren of those women",
+     "Effects in the grandchildren of women who went hungry",
+     "Ration records showing how severe the famine was"
+    ],
+    "correct_answer": "Effects in the great-grandchildren of those women",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'You'd need effects in a generation that never met the famine in any form, the great-grandchildren.'",
+    "distractor_rationales": [
+     {
+      "choice": "Effects in people who were in the womb during the famine",
+      "reason": "These people were directly exposed."
+     },
+     {
+      "choice": "Effects in the grandchildren of women who went hungry",
+      "reason": "Grandchildren may have been exposed as egg cells."
+     },
+     {
+      "choice": "Ration records showing how severe the famine was",
+      "reason": "Ration records say nothing about inheritance."
+     }
+    ]
+   },
+   "content_hash": "52f34609a8c19461a8da6dcdac8ee6b7",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When the Hubble Space Telescope was launched in 1990, its first images were a disappointment. Stars that should have been sharp points came out surrounded by a fuzzy halo. The cause turned out to be the main mirror. It had been ground to the wrong shape. Near its edge it was too flat by about two micrometers, a tiny fraction of the width of a human hair. But in an instrument that demanding, that was enough to blur everything.\n\nNow, here's the strange part. The mirror was one of the most precisely polished ever made. Its surface was smooth and consistent. It was just the wrong shape. Precise, and wrong.\n\nHow did that happen? The polishing was guided by a testing device, a kind of reference instrument that measured the mirror's curve while it was being ground. One lens in that device had been set out of position by a little over a millimeter. So the mirror was polished, very carefully, to match a faulty standard. And here's the painful bit. Simpler, cruder tests during manufacturing did show a problem. The investigation afterward found that those results were set aside, because the main device was considered far more reliable.\n\nThere's a happy ending, more or less. Because the error was so consistent, it could be measured exactly, and an error known exactly can be cancelled. In 1993, astronauts installed corrective optics, small mirrors shaped to offset the flaw, in effect giving the telescope glasses. Later cameras were built with the correction designed in.\n\nThe lesson people usually draw from this is that you should always check your work. I'd put it more narrowly. The work was checked. The trouble was that every disagreement got settled in favor of the one instrument everyone trusted most.",
+    "passageGroupId": "pg-d69e627c21bd632f4bccb0b4b8ebc839",
+    "prompt": "[Academic Talk — Astronomy Instruments] What is the lecture mainly about?",
+    "choices": [
+     "Why telescopes in space see more clearly than those on the ground",
+     "How a carefully made mirror was flawed, and how it was fixed",
+     "How astronauts replaced the main mirror of the Hubble telescope",
+     "Why Hubble's first images were blurred by the atmosphere"
+    ],
+    "correct_answer": "How a carefully made mirror was flawed, and how it was fixed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture covers the flaw, its cause in the testing device, and the 1993 correction.",
+    "distractor_rationales": [
+     {
+      "choice": "Why telescopes in space see more clearly than those on the ground",
+      "reason": "Space and ground telescopes are not compared."
+     },
+     {
+      "choice": "How astronauts replaced the main mirror of the Hubble telescope",
+      "reason": "Astronauts installed 'corrective optics'; the main mirror stayed."
+     },
+     {
+      "choice": "Why Hubble's first images were blurred by the atmosphere",
+      "reason": "The blur came from the mirror's shape, not the atmosphere."
+     }
+    ]
+   },
+   "content_hash": "d9bf577d0edc6b077b1190e6ba754c64",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When the Hubble Space Telescope was launched in 1990, its first images were a disappointment. Stars that should have been sharp points came out surrounded by a fuzzy halo. The cause turned out to be the main mirror. It had been ground to the wrong shape. Near its edge it was too flat by about two micrometers, a tiny fraction of the width of a human hair. But in an instrument that demanding, that was enough to blur everything.\n\nNow, here's the strange part. The mirror was one of the most precisely polished ever made. Its surface was smooth and consistent. It was just the wrong shape. Precise, and wrong.\n\nHow did that happen? The polishing was guided by a testing device, a kind of reference instrument that measured the mirror's curve while it was being ground. One lens in that device had been set out of position by a little over a millimeter. So the mirror was polished, very carefully, to match a faulty standard. And here's the painful bit. Simpler, cruder tests during manufacturing did show a problem. The investigation afterward found that those results were set aside, because the main device was considered far more reliable.\n\nThere's a happy ending, more or less. Because the error was so consistent, it could be measured exactly, and an error known exactly can be cancelled. In 1993, astronauts installed corrective optics, small mirrors shaped to offset the flaw, in effect giving the telescope glasses. Later cameras were built with the correction designed in.\n\nThe lesson people usually draw from this is that you should always check your work. I'd put it more narrowly. The work was checked. The trouble was that every disagreement got settled in favor of the one instrument everyone trusted most.",
+    "passageGroupId": "pg-d69e627c21bd632f4bccb0b4b8ebc839",
+    "prompt": "[Academic Talk — Astronomy Instruments] According to the professor, what was wrong with the testing device?",
+    "choices": [
+     "One of its lenses was slightly out of position",
+     "It was damaged when Hubble was launched",
+     "It measured the curve only near the edge",
+     "Its results were never compared with other tests"
+    ],
+    "correct_answer": "One of its lenses was slightly out of position",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'One lens in that device had been set out of position by a little over a millimeter.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was damaged when Hubble was launched",
+      "reason": "The device guided polishing on the ground, before launch."
+     },
+     {
+      "choice": "It measured the curve only near the edge",
+      "reason": "Nothing limits it to the edge; the edge is where the mirror was too flat."
+     },
+     {
+      "choice": "Its results were never compared with other tests",
+      "reason": "Cruder tests did disagree with it; their results were set aside."
+     }
+    ]
+   },
+   "content_hash": "28af015290dbf6feb1ede65c1f32424d",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When the Hubble Space Telescope was launched in 1990, its first images were a disappointment. Stars that should have been sharp points came out surrounded by a fuzzy halo. The cause turned out to be the main mirror. It had been ground to the wrong shape. Near its edge it was too flat by about two micrometers, a tiny fraction of the width of a human hair. But in an instrument that demanding, that was enough to blur everything.\n\nNow, here's the strange part. The mirror was one of the most precisely polished ever made. Its surface was smooth and consistent. It was just the wrong shape. Precise, and wrong.\n\nHow did that happen? The polishing was guided by a testing device, a kind of reference instrument that measured the mirror's curve while it was being ground. One lens in that device had been set out of position by a little over a millimeter. So the mirror was polished, very carefully, to match a faulty standard. And here's the painful bit. Simpler, cruder tests during manufacturing did show a problem. The investigation afterward found that those results were set aside, because the main device was considered far more reliable.\n\nThere's a happy ending, more or less. Because the error was so consistent, it could be measured exactly, and an error known exactly can be cancelled. In 1993, astronauts installed corrective optics, small mirrors shaped to offset the flaw, in effect giving the telescope glasses. Later cameras were built with the correction designed in.\n\nThe lesson people usually draw from this is that you should always check your work. I'd put it more narrowly. The work was checked. The trouble was that every disagreement got settled in favor of the one instrument everyone trusted most.",
+    "passageGroupId": "pg-d69e627c21bd632f4bccb0b4b8ebc839",
+    "prompt": "[Academic Talk — Astronomy Instruments] Why does the professor say 'Precise, and wrong'?",
+    "choices": [
+     "To stress that careful polishing had followed a faulty target",
+     "To suggest that the mirror was polished carelessly",
+     "To explain why the halo appeared only around bright stars",
+     "To argue that the whole mirror should have been replaced in orbit"
+    ],
+    "correct_answer": "To stress that careful polishing had followed a faulty target",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The mirror was 'polished, very carefully, to match a faulty standard.'",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that the mirror was polished carelessly",
+      "reason": "It was 'one of the most precisely polished ever made'."
+     },
+     {
+      "choice": "To explain why the halo appeared only around bright stars",
+      "reason": "Halos around bright stars only are not mentioned."
+     },
+     {
+      "choice": "To argue that the whole mirror should have been replaced in orbit",
+      "reason": "The flaw was offset with corrective optics, and replacement is not proposed."
+     }
+    ]
+   },
+   "content_hash": "3f4ced9533f8b6fd6af05459215aa711",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When the Hubble Space Telescope was launched in 1990, its first images were a disappointment. Stars that should have been sharp points came out surrounded by a fuzzy halo. The cause turned out to be the main mirror. It had been ground to the wrong shape. Near its edge it was too flat by about two micrometers, a tiny fraction of the width of a human hair. But in an instrument that demanding, that was enough to blur everything.\n\nNow, here's the strange part. The mirror was one of the most precisely polished ever made. Its surface was smooth and consistent. It was just the wrong shape. Precise, and wrong.\n\nHow did that happen? The polishing was guided by a testing device, a kind of reference instrument that measured the mirror's curve while it was being ground. One lens in that device had been set out of position by a little over a millimeter. So the mirror was polished, very carefully, to match a faulty standard. And here's the painful bit. Simpler, cruder tests during manufacturing did show a problem. The investigation afterward found that those results were set aside, because the main device was considered far more reliable.\n\nThere's a happy ending, more or less. Because the error was so consistent, it could be measured exactly, and an error known exactly can be cancelled. In 1993, astronauts installed corrective optics, small mirrors shaped to offset the flaw, in effect giving the telescope glasses. Later cameras were built with the correction designed in.\n\nThe lesson people usually draw from this is that you should always check your work. I'd put it more narrowly. The work was checked. The trouble was that every disagreement got settled in favor of the one instrument everyone trusted most.",
+    "passageGroupId": "pg-d69e627c21bd632f4bccb0b4b8ebc839",
+    "prompt": "[Academic Talk — Astronomy Instruments] What does the professor consider the real lesson of the mirror flaw?",
+    "choices": [
+     "The mirror had never been tested during its manufacture",
+     "Conflicting results were always resolved toward one trusted tool",
+     "Cruder tests are generally more reliable than refined ones",
+     "An error in a space telescope cannot be corrected after launch"
+    ],
+    "correct_answer": "Conflicting results were always resolved toward one trusted tool",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Every disagreement got settled in favor of the one instrument everyone trusted most.'",
+    "distractor_rationales": [
+     {
+      "choice": "The mirror had never been tested during its manufacture",
+      "reason": "'The work was checked.'"
+     },
+     {
+      "choice": "Cruder tests are generally more reliable than refined ones",
+      "reason": "The professor narrows the lesson to this case and makes no general ranking of tests."
+     },
+     {
+      "choice": "An error in a space telescope cannot be corrected after launch",
+      "reason": "Corrective optics fixed it in 1993."
+     }
+    ]
+   },
+   "content_hash": "8bf2dabf3e155d01514958674df3ccf2",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In late August 1854, cholera broke out in Soho, in central London, and within about ten days, hundreds of people living near Broad Street were dead. The physician John Snow mapped the deaths and found them clustered around one public water pump. He persuaded the local authorities to remove the pump's handle, and, so the story goes, the outbreak stopped. It's often told as the founding moment of epidemiology.\n\nHere's the problem with that story. By the time the handle came off, on September eighth, the number of new cases was already falling. Snow himself said so. Many residents had fled, and the outbreak may well have been burning out on its own. So if you ask whether removing the handle ended the epidemic, a skeptic would say the evidence is thin, and the skeptic would have a point.\n\nBut the handle was never Snow's strongest evidence. That came from what he called a grand experiment. In south London, two water companies served the same streets, sometimes houses right next door to each other. One drew its water from the Thames downstream of the city's sewage. The other had moved its intake upriver, to cleaner water. The households were alike in almost every way except their water. Snow went door to door finding out which company supplied each house, and the death rate among customers of the downstream company turned out to be many times higher.\n\nEven so, the official Board of Health wasn't persuaded at the time. The dominant theory said cholera spread through bad air, and Snow couldn't show the agent itself. It was decades before a bacterium was widely accepted as the cause.\n\nSo remember Snow, but for the right reason. Not for one dramatic act, but for a comparison that was very hard to explain any other way.",
+    "passageGroupId": "pg-b2893ce07851623480b6be27c6a294cd",
+    "prompt": "[Academic Talk — History of Medicine] What is the professor's main purpose in the lecture?",
+    "choices": [
+     "To show that Snow was mistaken about how cholera spread",
+     "To explain why the Board of Health accepted Snow's view",
+     "To describe how the cholera bacterium was first identified",
+     "To argue that Snow's best evidence was not the pump handle"
+    ],
+    "correct_answer": "To argue that Snow's best evidence was not the pump handle",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The handle was never Snow's strongest evidence. That came from what he called a grand experiment.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that Snow was mistaken about how cholera spread",
+      "reason": "The professor praises his comparison as 'very hard to explain any other way'."
+     },
+     {
+      "choice": "To explain why the Board of Health accepted Snow's view",
+      "reason": "The Board 'wasn't persuaded at the time'."
+     },
+     {
+      "choice": "To describe how the cholera bacterium was first identified",
+      "reason": "The bacterium is mentioned only as accepted 'decades' later."
+     }
+    ]
+   },
+   "content_hash": "5f10e1b82b1e48e61bda845a2d75baf7",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In late August 1854, cholera broke out in Soho, in central London, and within about ten days, hundreds of people living near Broad Street were dead. The physician John Snow mapped the deaths and found them clustered around one public water pump. He persuaded the local authorities to remove the pump's handle, and, so the story goes, the outbreak stopped. It's often told as the founding moment of epidemiology.\n\nHere's the problem with that story. By the time the handle came off, on September eighth, the number of new cases was already falling. Snow himself said so. Many residents had fled, and the outbreak may well have been burning out on its own. So if you ask whether removing the handle ended the epidemic, a skeptic would say the evidence is thin, and the skeptic would have a point.\n\nBut the handle was never Snow's strongest evidence. That came from what he called a grand experiment. In south London, two water companies served the same streets, sometimes houses right next door to each other. One drew its water from the Thames downstream of the city's sewage. The other had moved its intake upriver, to cleaner water. The households were alike in almost every way except their water. Snow went door to door finding out which company supplied each house, and the death rate among customers of the downstream company turned out to be many times higher.\n\nEven so, the official Board of Health wasn't persuaded at the time. The dominant theory said cholera spread through bad air, and Snow couldn't show the agent itself. It was decades before a bacterium was widely accepted as the cause.\n\nSo remember Snow, but for the right reason. Not for one dramatic act, but for a comparison that was very hard to explain any other way.",
+    "passageGroupId": "pg-b2893ce07851623480b6be27c6a294cd",
+    "prompt": "[Academic Talk — History of Medicine] According to the professor, what was already happening when the pump handle was removed?",
+    "choices": [
+     "New cases of cholera were declining",
+     "Residents were returning to their homes",
+     "Both water companies were moving upriver",
+     "Doctors were testing the water for bacteria"
+    ],
+    "correct_answer": "New cases of cholera were declining",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The number of new cases was already falling. Snow himself said so.'",
+    "distractor_rationales": [
+     {
+      "choice": "Residents were returning to their homes",
+      "reason": "'Many residents had fled.'"
+     },
+     {
+      "choice": "Both water companies were moving upriver",
+      "reason": "Only one company had moved its intake upriver."
+     },
+     {
+      "choice": "Doctors were testing the water for bacteria",
+      "reason": "No such testing is mentioned; the agent could not be shown."
+     }
+    ]
+   },
+   "content_hash": "064e4181115a5adf398fe9eaa51cd7fd",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In late August 1854, cholera broke out in Soho, in central London, and within about ten days, hundreds of people living near Broad Street were dead. The physician John Snow mapped the deaths and found them clustered around one public water pump. He persuaded the local authorities to remove the pump's handle, and, so the story goes, the outbreak stopped. It's often told as the founding moment of epidemiology.\n\nHere's the problem with that story. By the time the handle came off, on September eighth, the number of new cases was already falling. Snow himself said so. Many residents had fled, and the outbreak may well have been burning out on its own. So if you ask whether removing the handle ended the epidemic, a skeptic would say the evidence is thin, and the skeptic would have a point.\n\nBut the handle was never Snow's strongest evidence. That came from what he called a grand experiment. In south London, two water companies served the same streets, sometimes houses right next door to each other. One drew its water from the Thames downstream of the city's sewage. The other had moved its intake upriver, to cleaner water. The households were alike in almost every way except their water. Snow went door to door finding out which company supplied each house, and the death rate among customers of the downstream company turned out to be many times higher.\n\nEven so, the official Board of Health wasn't persuaded at the time. The dominant theory said cholera spread through bad air, and Snow couldn't show the agent itself. It was decades before a bacterium was widely accepted as the cause.\n\nSo remember Snow, but for the right reason. Not for one dramatic act, but for a comparison that was very hard to explain any other way.",
+    "passageGroupId": "pg-b2893ce07851623480b6be27c6a294cd",
+    "prompt": "[Academic Talk — History of Medicine] Why does the professor mention houses right next door to each other?",
+    "choices": [
+     "To show that the two groups differed mainly in their water",
+     "To explain why cholera was thought to spread through bad air",
+     "To show where the Broad Street pump was located in Soho",
+     "To explain why so many residents of Soho fled the outbreak"
+    ],
+    "correct_answer": "To show that the two groups differed mainly in their water",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The households were alike in almost every way except their water.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why cholera was thought to spread through bad air",
+      "reason": "Bad-air theory is mentioned only as the Board's view."
+     },
+     {
+      "choice": "To show where the Broad Street pump was located in Soho",
+      "reason": "The houses were in south London, not Soho."
+     },
+     {
+      "choice": "To explain why so many residents of Soho fled the outbreak",
+      "reason": "Fleeing is linked to the Soho outbreak, not these houses."
+     }
+    ]
+   },
+   "content_hash": "fbc9cb5a86d5b9a80c7da3cb08c986c7",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD4-B06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In late August 1854, cholera broke out in Soho, in central London, and within about ten days, hundreds of people living near Broad Street were dead. The physician John Snow mapped the deaths and found them clustered around one public water pump. He persuaded the local authorities to remove the pump's handle, and, so the story goes, the outbreak stopped. It's often told as the founding moment of epidemiology.\n\nHere's the problem with that story. By the time the handle came off, on September eighth, the number of new cases was already falling. Snow himself said so. Many residents had fled, and the outbreak may well have been burning out on its own. So if you ask whether removing the handle ended the epidemic, a skeptic would say the evidence is thin, and the skeptic would have a point.\n\nBut the handle was never Snow's strongest evidence. That came from what he called a grand experiment. In south London, two water companies served the same streets, sometimes houses right next door to each other. One drew its water from the Thames downstream of the city's sewage. The other had moved its intake upriver, to cleaner water. The households were alike in almost every way except their water. Snow went door to door finding out which company supplied each house, and the death rate among customers of the downstream company turned out to be many times higher.\n\nEven so, the official Board of Health wasn't persuaded at the time. The dominant theory said cholera spread through bad air, and Snow couldn't show the agent itself. It was decades before a bacterium was widely accepted as the cause.\n\nSo remember Snow, but for the right reason. Not for one dramatic act, but for a comparison that was very hard to explain any other way.",
+    "passageGroupId": "pg-b2893ce07851623480b6be27c6a294cd",
+    "prompt": "[Academic Talk — History of Medicine] What is the professor's view of the skeptic's argument about the pump handle?",
+    "choices": [
+     "Mistaken, because cases rose until the handle came off",
+     "Strong enough to show Snow's theory was wrong",
+     "Fair, but limited to the question it addresses",
+     "Irrelevant, because Snow never mentioned the pump"
+    ],
+    "correct_answer": "Fair, but limited to the question it addresses",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The skeptic would have a point', but 'the handle was never Snow's strongest evidence.'",
+    "distractor_rationales": [
+     {
+      "choice": "Mistaken, because cases rose until the handle came off",
+      "reason": "Cases were 'already falling'."
+     },
+     {
+      "choice": "Strong enough to show Snow's theory was wrong",
+      "reason": "The professor upholds Snow's water theory through the grand experiment."
+     },
+     {
+      "choice": "Irrelevant, because Snow never mentioned the pump",
+      "reason": "Snow mapped deaths around the pump and had the handle removed."
+     }
+    ]
+   },
+   "content_hash": "e682b4d78b2cb29c3a30e6b8284de3da",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-4",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td4-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-4.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
