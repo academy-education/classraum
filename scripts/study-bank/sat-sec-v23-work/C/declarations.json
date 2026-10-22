@@ -1,0 +1,359 @@
+[
+  {
+    "id": "SEC23C-01",
+    "slot": "C1",
+    "frame": "So + adverb + PP fronted (\"So quickly through secondary schools and their weekend sports leagues\"), auxiliary inversion, singular postposed mass-noun subject \"new and largely untraceable schoolyard slang\", result that-clause; shared adjective \"new\"",
+    "true_subject_head": "slang",
+    "misleader_words": [
+      "schools",
+      "leagues"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "leagues",
+      "number": "pl"
+    },
+    "first_noun_of_clause": {
+      "word": "schools",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "schoolyard",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_quote": "spreading",
+    "deletion_test": "Delete \"spreading\": the clause has no lexical verb, so be vs do is undecidable (\"is ... slang [verb-ing]\" and \"does ... slang [verb]\" both remain possible). No other sentence carries a verb form that completes the auxiliary; the other sentences are present-tense framing and the grid is present-only.",
+    "grid": {
+      "code": "j|m",
+      "forms": [
+        "is + new",
+        "are + new",
+        "does + new",
+        "do + new"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "and largely untraceable schoolyard",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are new": "plural; the head \"slang\" is 6 words after the blank (5 passage words)",
+      "does new": "\"does\" needs the base form; the passage has \"spreading\", 6 passage words after the blank",
+      "do new": "plural (head \"slang\") and wrong auxiliary (\"spreading\")"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 with a shared adjective; no extra word; key ties for shortest with \"do new\"",
+      "heuristics_that_give_key": [
+        "(a) opposite the nearest noun (leagues pl -> sg) gives sg; (b) first noun of clause (schools pl) gives the wrong number"
+      ],
+      "changed": "First draft used \"the city's secondary schools\", which made the first noun a singular possessive (table says First opp); removed \"the city's\". near-dup: passage max 0.000; skeleton-only match to live hard rw-v17 84bdffe9 (is/are/does/do skeleton); option strings not identical to any live row. Left."
+    }
+  },
+  {
+    "id": "SEC23C-02",
+    "slot": "C2",
+    "frame": "nonrestrictive \", which ___\" after \"both the painted altarpiece and the carved choir screen\"",
+    "true_subject_head": "which (= altarpiece and screen)",
+    "misleader_words": [
+      "screen"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "screen",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "museum",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "museum's",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "while conservators who suspect a single painter compare",
+    "deletion_test": "Delete the while-clause verb \"compare\" (and \"suspect\"): the sentence's remaining finite verb \"acquired\" is past but does not fix the relative clause (\"acquired X, which are being restored\" and \"..., which were being restored\" are both grammatical). The second sentence is modal (\"would suggest\", \"would overturn\") and settles neither tense.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being V-en",
+        "are being V-en",
+        "was being V-en",
+        "were being V-en"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "in the museum's basement",
+    "length_ratio": 1.06,
+    "distractor_kills": {
+      "is being restored": "\"both ... and\" compound antecedent; \"side by side\" (6 words after the blank) requires two things",
+      "were being restored": "present \"compare\" in the while-clause, 13 words after the blank",
+      "was being restored": "both of the above"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean k|l 2x2, \"being\" in all four",
+      "heuristics_that_give_key": [
+        "(a) opposite the nearest noun (screen sg -> pl) gives pl"
+      ],
+      "changed": "Placed \"side by side\" beyond 4 words after the blank; main verb set to past \"acquired\" so the present is decided by the while-clause, not by the main verb. Considered the dispute \"which\" -> screen alone: killed by \"side by side\" and \"their pigments\". near-dup: passage max 0.000; skeleton-only match (is/are/was/were) to live hard rw-v14 6af65ba8 and within-batch C4, C5 (same tense skeleton, different grids k|l, b|g, i|j). Left."
+    }
+  },
+  {
+    "id": "SEC23C-03",
+    "slot": "C3",
+    "frame": "content clause inside the subject (\"The hypothesis that the book's two scribes were trained in a single convent workshop\") + possessive pronoun on the main verb (\"owes its plausibility\")",
+    "true_subject_head": "hypothesis",
+    "misleader_words": [
+      "scribes",
+      "were trained"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "workshop",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "hypothesis",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "plausibility",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_quote": [
+      "The hypothesis",
+      "plausibility"
+    ],
+    "deletion_test": "The pronoun is decided by grammar: only \"hypothesis\" can have plausibility owed to evidence. Delete \"plausibility\" and the pronoun could refer to the scribes (\"owes their [training] to...\"); no other sentence names what is owned.",
+    "pronoun_antecedent": {
+      "word": "hypothesis",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "V-s its",
+        "V its",
+        "V-s their",
+        "V their"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "plausibility mainly to that",
+    "length_ratio": 1.14,
+    "distractor_kills": {
+      "owes their": "\"their\" would point to \"scribes\", which cannot own plausibility; the noun \"plausibility\" is immediately after the blank but the antecedent \"hypothesis\" is 13 words before",
+      "owe its": "plural verb; subject \"hypothesis\" is 13 words before the blank",
+      "owe their": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean 2x2 of verb number x pronoun",
+      "heuristics_that_give_key": [
+        "(b) first noun of clause (hypothesis sg) gives both",
+        "(f) verb and pronoun share a number: gives the key here (by design; A2 is the split one)"
+      ],
+      "changed": "none. near-dup: passage max 0.009; no template match."
+    }
+  },
+  {
+    "id": "SEC23C-04",
+    "slot": "C4",
+    "frame": "one-referent compound subject under a single determiner: \"The founder and first director of the county place-name survey\"",
+    "true_subject_head": "founder (and first director: one person)",
+    "misleader_words": [
+      "founder and first director"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "survey",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "founder",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "list",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_quote": "when she suffered the illness that ended her fieldwork",
+    "deletion_test": "Delete the when-clause: the sentence keeps only \"no one completed the list after her\" (past) ... remove that clause too in the strict test and nothing settles tense; the other sentences are present (\"survive\", \"are kept\") and do not fix the blank, so an other-sentence reader would pick present, which is wrong.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is V-ing",
+        "are V-ing",
+        "was V-ing",
+        "were V-ing"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "a list of the",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "were compiling": "single determiner \"The\" and \"she\" (10 words after the blank) show one person",
+      "is compiling": "past \"when she suffered\" (9-10 words after the blank)",
+      "are compiling": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean b|g 2x2; key ties for length with \"are compiling\"",
+      "heuristics_that_give_key": [
+        "(b) first noun of clause (founder sg) gives sg"
+      ],
+      "changed": "Avoided ballads (live tag \"folklore studies: ballad notebooks\"); \"she\" kept beyond 4 words after the blank. near-dup: passage max 0.009; skeleton-only match (is/are/was/were) to live hard rw-v14 6af65ba8 and within-batch C2, C5. Left."
+    }
+  },
+  {
+    "id": "SEC23C-05",
+    "slot": "C5",
+    "frame": "concessive \"Faded as the frescoes in the two side chapels ___,\" before the main clause",
+    "true_subject_head": "frescoes",
+    "misleader_words": [
+      "subject"
+    ],
+    "misleader_position": "after",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "chapels",
+      "number": "pl"
+    },
+    "first_noun_of_clause": {
+      "word": "frescoes",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "subject",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "is easy to identify",
+    "deletion_test": "Delete \"is easy to identify\": nothing in the sentence fixes tense. The other sentences mix present (\"holds\", \"resists\") and past (\"outlined\", which dates the painting, not the fading), so neither settles the concessive verb.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "is",
+        "are",
+        "was",
+        "were"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": ", the subject of",
+    "length_ratio": 1.5,
+    "distractor_kills": {
+      "is": "\"frescoes\" (6 words before the blank) is the concessive subject; \"subject\" belongs to the main clause",
+      "were": "the main clause's present \"is easy to identify\" (6 words after the blank)",
+      "was": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: bare i|j; key ties for length with \"was\"",
+      "heuristics_that_give_key": [
+        "(b) first noun of clause (frescoes pl) gives pl",
+        "(c) later sentence \"outlined\" gives past: wrong"
+      ],
+      "changed": "First draft had \"each scene they depict\" with present \"depict\" within 4 words of the blank: moved the present verb to 6 words. Exclusivity risk recorded: a grader could defend \"were\" as earlier fading; the explanation ties the concession to the present main verb. near-dup: passage max 0.012; skeleton-only match (is/are/was/were) to live hard rw-v14 6af65ba8 and within-batch C2, C4. Left."
+    }
+  },
+  {
+    "id": "SEC23C-06",
+    "slot": "C6",
+    "frame": "topicalized object \"This last ledger\" before full plural subject \"the two archivists\" + verb",
+    "true_subject_head": "archivists",
+    "misleader_words": [
+      "This last ledger"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "archivists",
+      "number": "pl"
+    },
+    "first_noun_of_clause": {
+      "word": "ledger",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "line",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_quote": "when a burst pipe flooded the reading room",
+    "deletion_test": "Delete the when-clause: \"have been transcribing line by line, checking each debt\" and \"were transcribing ...\" are both grammatical. The first sentence's past \"were photographed\" does not exclude a present perfect for this ledger, and the last sentence (\"later dried\", \"are lost\") does not settle it.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been V-ing",
+        "have been V-ing",
+        "was V-ing",
+        "were V-ing"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "line by line, checking",
+    "length_ratio": 1.06,
+    "distractor_kills": {
+      "have been transcribing": "definite past \"when a burst pipe flooded\" (12 words after the blank)",
+      "was transcribing": "subject \"archivists\" right before the blank; \"ledger\" is the fronted object",
+      "has been transcribing": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: clean f|g 2x2; \"been\" in two options, key non-been, \"been\" not keyed anywhere in my file",
+      "heuristics_that_give_key": [
+        "(e) \"been\" loses: gives the aspect here (only been item in my file)"
+      ],
+      "changed": "Added a third sentence for length; kept its verbs from fixing aspect. near-dup: passage max 0.014; skeleton-only match (has been/have been/was/were) to live hard rw-v9 8022ca71 and rw-v22 d3befbdd. Left."
+    }
+  },
+  {
+    "id": "SEC23C-07",
+    "slot": "C7",
+    "frame": "dash pair, both marks inside the option, around an appositive list with internal commas, between the subject noun \"props\" and its verb \"are\"",
+    "key_mark": "dash pair",
+    "key_letter": "B",
+    "structure": "left: subject \"One troupe's surviving props\"; inside: appositive list \"a painted crown, two wooden swords, and a paper moon\"; right: verb \"are kept in a single cedar trunk\"",
+    "distractor_kills": {
+      "props, a painted crown, two wooden swords, and a paper moon, are": "comma pair: reads as one longer list with props as a fourth item, then a comma between subject and verb",
+      "props a painted crown, two wooden swords, and a paper moon are": "no mark: the noun runs straight into the list; nothing marks the list as renaming props",
+      "props—a painted crown, two wooden swords, and a paper moon, are": "mismatched: a dash opens the interruption and a comma cannot close it"
+    },
+    "hostile_reader": {
+      "options_only_pick": "a reader who knows 'interrupters with internal commas take dashes' and 'pairs must match' can strike the mismatch at a glance; that is the one free strike. The no-mark option is the other weak one: recorded as a possible second glance strike, because the brief fixes this four-option set.",
+      "heuristics_that_give_key": [
+        "key is the only option with two strong marks: also true of any dash-pair item"
+      ],
+      "changed": "none; no dash printed anywhere in the passage, so the key copies no printed mark. near-dup: passage max 0.009; no template match."
+    }
+  },
+  {
+    "id": "SEC23C-08",
+    "slot": "C8",
+    "frame": "restrictive appositive \"the engraver Vidal\" after \"Three engravers\" are established",
+    "key_mark": "none",
+    "key_letter": "D",
+    "structure": "\"only the engraver Vidal\" is the subject; \"signed his plates\" is its verb phrase; the first sentence establishes three engravers, so the name restricts",
+    "distractor_kills": {
+      "engraver, Vidal,": "comma pair: nonrestrictive, implies a single identifiable engraver, but there are three",
+      "engraver Vidal,": "comma between subject and verb \"signed\"",
+      "engraver, Vidal": "opens a nonrestrictive interruption that never closes"
+    },
+    "hostile_reader": {
+      "options_only_pick": "the two single-comma options are each a glance strike to a strong student; the comma pair is the real lure. Recorded: the brief's own mark set for C8 gives 2 glance strikes. Key \"engraver Vidal\" is uniquely shortest (inherent to a no-mark key).",
+      "heuristics_that_give_key": [
+        "shortest option wins: gives the key (inherent to no-mark keys; my file's only uniquely-shortest key)"
+      ],
+      "changed": "removed \"a pair of\" (banned phrase) from the last sentence. near-dup: passage max 0.013; skeleton-only match to 2 live non-hard rows. Left."
+    }
+  }
+]

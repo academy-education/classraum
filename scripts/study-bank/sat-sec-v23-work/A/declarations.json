@@ -1,0 +1,370 @@
+[
+  {
+    "id": "SEC23A-01",
+    "slot": "A1",
+    "frame": "negative-adverb inversion: \"Rarely\" + PP, auxiliary, plural postposed subject (head 6 words after the blank), shared determiner \"its\"",
+    "true_subject_head": "saplings",
+    "misleader_words": [
+      "summer",
+      "orchard's"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "terraces",
+      "number": "pl"
+    },
+    "first_noun_of_clause": {
+      "word": "summer",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "saplings",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_quote": "grown more than a few centimeters",
+    "deletion_test": "Delete \"grown\": the clause has no lexical verb after the subject, so nothing selects \"have\" over \"do\" (either auxiliary needs a following verb form). No other sentence contains a verb form that could select the auxiliary of this clause; sentence 1 (\"serves\") and sentence 3 (\"toured\", \"were surprised\") say nothing about it.",
+    "grid": {
+      "code": "m|n",
+      "forms": [
+        "does its",
+        "do its",
+        "has its",
+        "have its"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "youngest and least established",
+    "length_ratio": 1.33,
+    "distractor_kills": {
+      "has its": "head \"saplings\" (plural), 6 words after the blank",
+      "do its": "\"grown\" is a participle; do-support needs the base form \"grow\"; 7 words after the blank",
+      "does its": "both: \"saplings\" plural (6 words after) and \"grown\" (7 words after)"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: a clean m|n 2x2 with a shared \"its\"; \"have its\" ties \"does its\" for longest",
+      "heuristics_that_give_key": [
+        "opposite the noun before the blank: gives sg (wrong)",
+        "first noun of the clause (\"summer\"): gives sg (wrong)",
+        "a reader who looks 6-7 words past the blank finds both deciders"
+      ],
+      "changed": "first draft had \"as they have this season\" in the blank's sentence, which gave number and auxiliary next to each other; removed. \"yet\" replaced by \"but\" (banned in the blank's sentence). Near-dup: see report line; options are deliberately not the live {does the, do the, has the, have the}. sec-near-dup: passage max 0.014; skeleton-only match to live v22 B-05 [do|does|has|have] (option strings differ: \"its\" vs \"the\"); no identical option set. Left as is."
+    }
+  },
+  {
+    "id": "SEC23A-02",
+    "slot": "A2",
+    "frame": "singular head + of-PP plural noun; verb takes the head, possessive pronoun takes the PP noun",
+    "true_subject_head": "coat",
+    "misleader_words": [
+      "seeds"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "seeds",
+      "number": "pl"
+    },
+    "first_noun_of_clause": {
+      "word": "coat",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "embryos",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_quote": [
+      "of some seeds",
+      "tiny embryos"
+    ],
+    "deletion_test": "Delete the antecedent \"of some seeds\": \"The hard outer coat ___ tiny embryos\" leaves \"their\" with no antecedent and \"its\" pointing only at the coat, which cannot own embryos; neither pronoun is settled. The blank's sentence is the first sentence, so no earlier sentence offers an antecedent, and the later sentence cannot supply one backward.",
+    "pronoun_antecedent": {
+      "word": "seeds",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "V-s ... its",
+        "V ... its",
+        "V-s ... their",
+        "V ... their"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "tiny embryos from soil",
+    "length_ratio": 1.3,
+    "distractor_kills": {
+      "shield their": "subject \"coat\" (the first noun, 6 words before the blank) is singular",
+      "shields its": "\"tiny embryos\" (right after the blank) belong to the seeds; the only singular candidates, \"coat\", \"heat\", \"fire\", cannot own embryos",
+      "shield its": "both of the above"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by content; the key is uniquely longest by construction (V-s + their), declared in the table",
+      "heuristics_that_give_key": [
+        "verb agrees with the first noun: gives the verb",
+        "verb and pronoun share a number: WRONG here (key splits them)",
+        "verb agrees with the adjacent noun: wrong"
+      ],
+      "changed": "first drafts put a plant name (\"lupine\", \"legume\") in the passage, which would let \"its\" claim the plant as owner of the embryos; removed so the seeds are the only possible owner. Removed \"splits it open\" (an extra singular cue for the subject) and a \"between X and Y\" phrase (live modifier family). sec-near-dup: passage max 0.014; no template match."
+    }
+  },
+  {
+    "id": "SEC23A-03",
+    "slot": "A3",
+    "frame": "\"many a\" + singular noun as subject",
+    "true_subject_head": "physician",
+    "misleader_words": [
+      "Many"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "physician",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "physician",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "spots",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "if the rash appears",
+    "deletion_test": "Delete \"if the rash appears\": the rest of the sentence has only \"show up\" in a because-clause stating a general fact, which fits a past main verb as well (\"was slow ... because the blotches show up\"), so \"was\" and \"is\" both stand. Sentence 1 (\"can look\") and sentence 3 (\"should include\") are timeless statements about measles and training that fix no time for the physician's reaction.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was",
+        "were",
+        "is",
+        "are"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "slow to recognize the",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are": "\"many a\" + singular \"physician\" takes a singular verb (the subject itself)",
+      "was": "\"if the rash appears\" (present conditional), 7 words after the blank",
+      "were": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by content; \"is\" is uniquely shortest by construction (bare i|j), declared in the table",
+      "heuristics_that_give_key": [
+        "agree with the noun before the blank: gives sg (right)",
+        "first noun: gives sg (right)",
+        "opposite the nearest noun: gives pl (wrong)"
+      ],
+      "changed": "decider moved from \"when\" to \"if\" so A3 and A5 do not share a when-clause decider; replaced an object relative \"the blotches that most atlases show\" (live frame family) with \"the bright red blotches of textbook photographs\"; sentence 3 rewritten with a modal so it is timeless sec-near-dup: passage max 0.008; skeleton-only match [are|is|was|were]; no identical option set (bare was/were/is/are is not a live set). Left as is."
+    }
+  },
+  {
+    "id": "SEC23A-04",
+    "slot": "A4",
+    "frame": "plural head + absolute phrase (own noun + participle) ending on a singular noun, between subject and verb",
+    "true_subject_head": "twins",
+    "misleader_words": [
+      "sensor",
+      "infant"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "infant",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "twins",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "assistance",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "while the nurses review",
+    "deletion_test": "Delete \"while the nurses review\" (the clause's verb): nothing else in the sentence carries tense, so \"are breathing\" and \"were breathing\" both stand. Sentence 1 (\"are weaned\") and sentence 3 (\"means\") are timeless descriptions of how neonatal units work and do not fix when these twins were breathing.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is V-ing",
+        "are V-ing",
+        "was V-ing",
+        "were V-ing"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "without assistance while the",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "is breathing": "head \"twins\" (plural), 14 words before the blank, past the absolute phrase",
+      "were breathing": "\"while the nurses review\" (present), 7-10 words after the blank",
+      "was breathing": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: \"are/was\" tie in length; key neither longest nor shortest",
+      "heuristics_that_give_key": [
+        "opposite the nearest noun: gives pl (right)",
+        "first noun: gives pl (right)"
+      ],
+      "changed": "removed \"their oxygen levels\" (a plural possessive after the blank that gave the number) and a \"discharge both\" clause; removed \"in one trial\" so the head is not followed by two interrupters. Added \"or extra oxygen\" so the tense decider \"review\" sits 10 words after the blank rather than 6. sec-near-dup: passage max 0.000; skeleton-only match [are|is|was|were] (4 live, 1 hard); no identical option set. Left as is."
+    }
+  },
+  {
+    "id": "SEC23A-05",
+    "slot": "A5",
+    "frame": "comparative quantifier subject \"More [pl] than a single [sg] can V\"",
+    "true_subject_head": "swabs",
+    "misleader_words": [
+      "a single laboratory",
+      "can screen"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "laboratory",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "swabs",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "universities",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_quote": "when the fungus appeared",
+    "deletion_test": "Delete \"when the fungus appeared\": the only other finite verb in the sentence is \"can screen\", which is present and belongs to the comparison, so \"are shipped\" and \"were shipped\" both stand (and the present \"can\" actively pulls toward \"are\"). Sentence 1 (\"kills\") and sentence 3 (\"must be tested\") are timeless facts about the fungus and testing.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is V-en",
+        "are V-en",
+        "was V-en",
+        "were V-en"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "to distant universities when",
+    "length_ratio": 1.2,
+    "distractor_kills": {
+      "was shipped": "head \"swabs\" (plural), 6 words before the blank",
+      "are shipped": "\"when the fungus appeared\" (past), 7-10 words after the blank",
+      "is shipped": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by content; \"were shipped\" is uniquely longest by construction (c|h past plural), declared in the table",
+      "heuristics_that_give_key": [
+        "opposite the nearest noun: gives pl (right)",
+        "first noun: gives pl (right)",
+        "tense of the nearest verb (\"can screen\"): gives present (wrong)"
+      ],
+      "changed": "first draft was about greenhouse seedlings, too close in topic shape to A1 (saplings); moved to amphibian disease. \"skin swabs\" shortened to \"swabs\" so the first noun is not an attributive \"skin\". \"testing center\" replaced so the first noun after the blank is plural. Added \"for analysis\" so \"appeared\" sits 10 words after the blank rather than 8. sec-near-dup: passage max 0.011; skeleton-only match [are|is|was|were]; no identical option set. Left as is."
+    }
+  },
+  {
+    "id": "SEC23A-06",
+    "slot": "A6",
+    "frame": "singular technical term + \", or [plural gloss],\" ending on a singular noun",
+    "true_subject_head": "Biochar",
+    "misleader_words": [
+      "fragments",
+      "stalks"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "kiln",
+      "number": "sg"
+    },
+    "first_noun_of_clause": {
+      "word": "Biochar",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "fields",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "until the autumn rains return",
+    "deletion_test": "Delete \"until the autumn rains return\": the sentence has no other finite verb, so \"is being spread\" and \"was being spread\" both stand. Sentence 1 (\"hold\") and sentence 3 (\"can hold\") are timeless facts about soil and biochar and fix no time for the spreading.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being V-en",
+        "are being V-en",
+        "was being V-en",
+        "were being V-en"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "across the most depleted",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are being spread": "head \"Biochar\" (singular), 15 words before the blank; the gloss renames it",
+      "was being spread": "\"until the autumn rains return\" (present), 11-15 words after the blank",
+      "were being spread": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none by content; \"is being spread\" is uniquely shortest by construction (k|l), declared in the table; \"being\" is in all four",
+      "heuristics_that_give_key": [
+        "agree with the noun before the blank (\"kiln\"): gives sg (right)",
+        "first noun: gives sg (right)",
+        "or-proximity to the gloss head \"fragments\": gives pl (wrong)"
+      ],
+      "changed": "decider changed from a while-clause to an until-clause so A4 and A6 do not share \"while\"; a coordinate \"and agronomists expect\" was rejected as decider because a past progressive + present coordinate clause is grammatical sec-near-dup: passage max 0.009; skeleton-only match [are|is|was|were]; no identical option set. Left as is."
+    }
+  },
+  {
+    "id": "SEC23A-07",
+    "slot": "A7",
+    "frame": "two independent clauses joined by coordinating \"for\"; no mark lets \"for\" read as a preposition after \"season\"",
+    "key_mark": "comma",
+    "key_letter": "D",
+    "structure": "left: independent clause \"Shepherds keep pregnant ewes in a heated barn during the lambing season\"; right: independent clause \"newborn lambs left in a cold field can lose dangerous amounts of body heat within an hour of birth\", introduced by coordinating \"for\" (= because). Neither clause contains an internal comma.",
+    "distractor_kills": {
+      "season for": "no comma before a coordinating conjunction joining two independent clauses; \"season for newborn lambs\" garden-paths as a PP and the sentence then hits \"can lose\" with no link",
+      "season; for": "a semicolon is not used before a coordinating conjunction joining two comma-free independent clauses; the conjunction already does the joining",
+      "season: for": "a colon before a coordinating conjunction is not conventional; a colon introduces an explanation directly, not a conjunction"
+    },
+    "hostile_reader": {
+      "options_only_pick": "comma by convention (\", for\" is the textbook FANBOYS mark) is the main options-only risk; no length tell (three options tie at 11 characters)",
+      "heuristics_that_give_key": [
+        "\"comma before a conjunction\" picks the key if the reader takes \"for\" as a conjunction; the garden-path reading of \"for\" as a preposition makes \"season for\" tempting"
+      ],
+      "changed": "kept the second clause free of internal commas (a comma-laden clause is the one style-guide licence for \"; for\"); no period offered sec-near-dup: passage max 0.008; skeleton-only match to 11 live boundary rows (0 hard); no identical option set."
+    }
+  },
+  {
+    "id": "SEC23A-08",
+    "slot": "A8",
+    "frame": "no mark between the halves of \"both X and Y\" whose X carries a restrictive relative clause",
+    "key_mark": "none",
+    "key_letter": "B",
+    "structure": "\"both\" + X = \"in the grassy strips that bordered the wheat\" (PP + restrictive relative clause) + \"and\" + Y = \"in the hedgerows along the farm lane\"; the blank spans the last word of X, \"and\", and the first word of Y",
+    "distractor_kills": {
+      "wheat, and in": "a comma splits the two halves of a correlative pair; the long X tempts it, but X has no nonrestrictive element to close",
+      "wheat; and in": "a semicolon must join independent clauses; \"and in the hedgerows ...\" is a phrase",
+      "wheat and, in": "a comma between \"and\" and the phrase it introduces (the free strike)"
+    },
+    "hostile_reader": {
+      "options_only_pick": "the no-mark option is uniquely shortest (every distractor adds a mark); a reader picking \"fewest marks\" gets it",
+      "heuristics_that_give_key": [
+        "\"no mark\" / \"shortest\" gives the key: structural for a no-mark key with same-word options; the counts script will flag author A uniquely-shortest 3 (A3, A6, A8)"
+      ],
+      "changed": "rejected a single dash as a distractor (an emphatic dash before \"and\" is arguable); rejected a nonrestrictive which-clause in X (it would require the comma) sec-near-dup: passage max 0.031; no template match."
+    }
+  }
+]

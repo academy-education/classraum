@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC23A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary choice after a fronted negative adverb",
+    "difficulty": "hard",
+    "passage": "A pear orchard on dry upland soil serves as a test site for rootstocks bred to tolerate drought. Rarely during a dry summer in the orchard's upper terraces ______ youngest and least established grafted saplings grown more than a few centimeters, but this year a new rootstock carried them through August with almost no irrigation. Growers who toured the terraces in the fall were surprised by the length of the new shoots.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "do its",
+      "has its",
+      "have its",
+      "does its"
+    ],
+    "correct_answer": "have its",
+    "explanation": "Because the sentence opens with \"Rarely during a dry summer in the orchard's upper terraces,\" the auxiliary comes before its subject, \"its youngest and least established grafted saplings.\" The head of that subject is \"saplings,\" which is plural; the singular \"summer\" in the fronted phrase and the shared \"its\" (which refers to the orchard) do not set the number. The participle \"grown\" later in the sentence requires the perfect auxiliary \"have\"; \"do\" could combine only with the base form \"grow.\" \"has its\" uses the right auxiliary but is singular, \"do its\" cannot combine with \"grown,\" and \"does its\" fails on both counts.",
+    "topic_tag": "pomology: drought-tolerant pear rootstocks",
+    "template": "negative-adverb inversion with a plural postposed subject x singular fronted noun and shared singular determiner \"its\" x does/do/has/have + its"
+  },
+  {
+    "id": "SEC23A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and possessive pronoun reference with split antecedents",
+    "difficulty": "hard",
+    "passage": "The hard outer coat of some seeds ______ tiny embryos from soil moisture until heat from a grass fire cracks the coat. Prairie restorers imitate the fire by rubbing such seeds against sandpaper before sowing, a step that can raise germination in the first spring from a few percent to nearly half.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "shields their",
+      "shield their",
+      "shields its",
+      "shield its"
+    ],
+    "correct_answer": "shields their",
+    "explanation": "The subject of the verb is \"coat\"; \"of some seeds\" only modifies it, so the verb must be the singular \"shields.\" The pronoun names the owner of \"tiny embryos,\" and the embryos belong to the seeds, not to the coat, so the plural \"their,\" referring to \"some seeds,\" is needed. \"shield their\" makes the verb agree with the nearby \"seeds\" instead of \"coat.\" \"shields its\" has the right verb but a pronoun that could only point to the coat, which has no embryos of its own, and \"shield its\" is wrong on both counts.",
+    "topic_tag": "seed biology: fire-cracked seed coats",
+    "template": "singular head + of-PP plural noun x the PP noun is the pronoun's antecedent but not the verb's subject x V-s/V crossed with its/their"
+  },
+  {
+    "id": "SEC23A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense with a \"many a\" subject",
+    "difficulty": "hard",
+    "passage": "Measles can look quite different from the pictures in medical textbooks. Many a newly trained physician ______ slow to recognize the spots if the rash appears on darker skin, because the bright red blotches of textbook photographs show up there only as a faint, uneven roughness. For that reason, training materials should include photographs of patients with a wide range of skin tones.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was",
+      "are",
+      "were",
+      "is"
+    ],
+    "correct_answer": "is",
+    "explanation": "The subject is \"many a newly trained physician.\" Although \"many\" suggests a plural, \"many a\" is always followed by a singular noun and takes a singular verb. The tense is set inside the same sentence by the conditional clause \"if the rash appears,\" whose present-tense verb requires a present-tense main verb. \"are\" treats \"many\" as plural, \"was\" is singular but past and clashes with \"appears,\" and \"were\" is both plural and past.",
+    "topic_tag": "medical education: measles rash on darker skin",
+    "template": "\"many a\" + singular noun as subject x \"many\" reads plural x was/were/is/are"
+  },
+  {
+    "id": "SEC23A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense past an absolute phrase",
+    "difficulty": "hard",
+    "passage": "In neonatal units, infants born several weeks early are weaned from breathing support in small steps. The premature twins, a single sensor taped to the chest of the smaller infant, ______ without assistance or extra oxygen while the nurses review oxygen readings at the bedside. A dip in those readings means another day of support.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was breathing",
+      "are breathing",
+      "is breathing",
+      "were breathing"
+    ],
+    "correct_answer": "are breathing",
+    "explanation": "The subject is \"the premature twins,\" which is plural. The phrase between the commas, \"a single sensor taped to the chest of the smaller infant,\" is an absolute phrase with its own noun; neither \"sensor\" nor \"infant\" is the subject of the verb. The tense is set in the same sentence by \"while the nurses review,\" a present-tense verb, so the main verb must also be present. \"is breathing\" agrees with \"infant\" instead of \"twins,\" \"were breathing\" is plural but past and clashes with \"review,\" and \"was breathing\" is wrong in both number and tense.",
+    "topic_tag": "neonatology: weaning premature twins from oxygen",
+    "template": "plural head + absolute phrase ending in a singular noun x the absolute phrase's singular nouns x is/are/was/were V-ing"
+  },
+  {
+    "id": "SEC23A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense with a comparative quantifier subject",
+    "difficulty": "hard",
+    "passage": "Chytrid fungus kills frogs by disrupting the way their skin absorbs water and salts. More swabs than a single laboratory can screen ______ to distant universities for analysis when the fungus appeared in the mountain lakes of one national park. Each swab must be tested for the fungus's DNA within a few days of collection.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were shipped",
+      "is shipped",
+      "are shipped",
+      "was shipped"
+    ],
+    "correct_answer": "were shipped",
+    "explanation": "The subject is \"more swabs,\" which is plural; \"than a single laboratory can screen\" is the comparison, and \"laboratory\" is not the subject of the main verb. The tense is set later in the same sentence by \"when the fungus appeared,\" a past-tense verb, so the main verb must be past; the present \"can screen\" belongs to the comparison and does not fix the main verb's tense. \"was shipped\" agrees with \"laboratory,\" \"are shipped\" is plural but present and clashes with \"appeared,\" and \"is shipped\" is wrong in both number and tense.",
+    "topic_tag": "amphibian disease: chytrid swab testing",
+    "template": "\"more [pl] than a single [sg] ...\" subject x the singular comparand x is/are/was/were V-en"
+  },
+  {
+    "id": "SEC23A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense past an \"or\" gloss",
+    "difficulty": "hard",
+    "passage": "Soils that have lost most of their organic matter hold little water through a dry summer. Biochar, or the charred fragments of crop stalks heated in a sealed kiln, ______ across the most depleted fields of one district until the autumn rains return. A gram of biochar can hold several times its weight in water.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are being spread",
+      "was being spread",
+      "is being spread",
+      "were being spread"
+    ],
+    "correct_answer": "is being spread",
+    "explanation": "The subject is \"biochar,\" which is singular. The words between the commas, \"or the charred fragments of crop stalks heated in a sealed kiln,\" are a gloss that renames biochar; \"or\" here does not join two alternative subjects, so the plural \"fragments\" does not make the verb plural. The tense is set in the same sentence by \"until the autumn rains return,\" whose present-tense verb requires a present main verb. \"are being spread\" agrees with \"fragments,\" \"was being spread\" is singular but past and clashes with \"return,\" and \"were being spread\" is wrong in both number and tense.",
+    "topic_tag": "soil science: biochar on depleted fields",
+    "template": "singular term + \", or [plural gloss],\" ending on a singular noun x plural noun early in the gloss, \"or\" read as a disjunction x is/are/was/were being V-en"
+  },
+  {
+    "id": "SEC23A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma before a coordinating \"for\" joining two independent clauses",
+    "difficulty": "hard",
+    "passage": "On upland sheep farms, the weeks when ewes give birth are the busiest stretch of the year. Shepherds keep pregnant ewes in a heated barn during the lambing ______ newborn lambs left in a cold field can lose dangerous amounts of body heat within an hour of birth. A barn also lets the shepherd check each ewe during the night.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "season; for",
+      "season for",
+      "season: for",
+      "season, for"
+    ],
+    "correct_answer": "season, for",
+    "explanation": "\"Shepherds keep pregnant ewes in a heated barn during the lambing season\" is an independent clause, and \"newborn lambs left in a cold field can lose dangerous amounts of body heat\" is a second one; \"for\" here means \"because\" and joins them as a coordinating conjunction, which takes a comma before it. With no mark, \"for newborn lambs\" reads as a prepositional phrase attached to \"season,\" and the sentence then runs into the verb \"can lose\" with no proper link. A semicolon or a colon placed before a coordinating conjunction is not the conventional way to join two clauses like these: \"season; for\" and \"season: for\" put a clause-ending mark in front of the word that already does the joining.",
+    "topic_tag": "animal husbandry: lambing-season shelter",
+    "template": "two independent clauses joined by coordinating \"for\" x \"for\" read as a preposition without a comma x comma / none / semicolon / colon"
+  },
+  {
+    "id": "SEC23A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no punctuation between the halves of a \"both ... and\" correlative",
+    "difficulty": "hard",
+    "passage": "Because ground beetles eat slugs and aphid eggs, many grain farmers leave margins of unplowed ground around their fields. One winter survey found the beetles sheltering both in the grassy strips that bordered the ______ the hedgerows along the farm lane, where a thick layer of leaf litter kept the soil from freezing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "wheat, and in",
+      "wheat and in",
+      "wheat; and in",
+      "wheat and, in"
+    ],
+    "correct_answer": "wheat and in",
+    "explanation": "The correlative \"both ... and\" pairs two prepositional phrases: \"in the grassy strips that bordered the wheat\" and \"in the hedgerows along the farm lane.\" Even though the first phrase is long, because it contains the restrictive clause \"that bordered the wheat,\" no punctuation separates the two halves of the pair. \"wheat, and in\" puts a comma between the paired elements; \"wheat; and in\" uses a semicolon, which must join independent clauses, but what follows is only a phrase; \"wheat and, in\" places a comma between \"and\" and the phrase it introduces.",
+    "topic_tag": "pest management: ground beetles in field margins",
+    "template": "\"both X and Y\" with a long X containing a restrictive clause x comma before \"and\" after the long X x none / comma / semicolon / comma after \"and\""
+  }
+]

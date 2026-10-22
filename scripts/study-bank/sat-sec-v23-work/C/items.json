@@ -1,0 +1,111 @@
+[
+  {
+    "id": "SEC23C-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a So + adverb + prepositional phrase inversion with a singular mass-noun subject placed after plural nouns in the fronted phrase, crossed with be versus do as the auxiliary decided by the -ing form after the subject",
+    "difficulty": "hard",
+    "passage": "Sociolinguists usually expect new words to travel slowly between neighborhoods, carried by family ties and shared workplaces. So quickly through secondary schools and their weekend sports leagues ______ and largely untraceable schoolyard slang spreading that researchers who record a term in one district often hear it in another within a month. The researchers attribute the pace to students who travel to play matches far from home.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["does new", "is new", "do new", "are new"],
+    "correct_answer": "is new",
+    "explanation": "The subject of the inverted clause comes after the blank: it is \"slang\" (\"new and largely untraceable schoolyard slang\"), a singular noun, while \"schools\" and \"leagues\" sit inside the fronted phrase \"So quickly through secondary schools and their weekend sports leagues\" and cannot be the subject, so the auxiliary must be singular. The auxiliary must also be a form of \"be\": the verb that completes it, \"spreading,\" is an -ing form, which combines with \"is\" (\"is ... spreading\"), whereas \"does\" would need the base form \"spread.\" Only \"is new\" is both singular and a form of \"be.\" \"are new\" has the right auxiliary but is plural, agreeing with \"leagues.\" \"does new\" is singular but cannot combine with \"spreading,\" and \"do new\" is both plural and the wrong auxiliary.",
+    "topic_tag": "sociolinguistics: adolescent slang diffusion",
+    "template": "So + adverb + PP inversion with a postposed singular mass subject x plural nouns opening and closing the fronted phrase x is/are/does/do + shared adjective"
+  },
+  {
+    "id": "SEC23C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive which-clause whose antecedent is a both ... and compound of two singular nouns, crossed with present versus past progressive passive decided by a present-tense verb in a while-clause of the same sentence",
+    "difficulty": "hard",
+    "passage": "A regional museum acquired both the painted altarpiece and the carved choir screen, which ______ in the museum's basement workshop side by side while conservators who suspect a single painter compare their pigments layer by layer. A close match would suggest that one workshop produced both pieces for the same chapel, a conclusion that would overturn the attribution printed in the guides to the church.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["is being restored", "were being restored", "was being restored", "are being restored"],
+    "correct_answer": "are being restored",
+    "explanation": "The relative pronoun \"which\" refers to the whole compound \"both the painted altarpiece and the carved choir screen,\" two works, so the verb must be plural; \"screen,\" the singular noun just before the comma, is only the second of the two, and the works are restored \"side by side,\" which one object alone cannot be. The verb must also be present, because the restoration happens at the same time as the present-tense \"compare\" in the while-clause (\"while conservators ... compare their pigments\"). Only \"are being restored\" is plural and present. \"is being restored\" is present but singular, as if \"which\" referred to \"screen\" alone. \"were being restored\" is plural but past, which clashes with \"compare\" even though the museum \"acquired\" the works in the past, and \"was being restored\" is both singular and past.",
+    "topic_tag": "technical art history: matching pigments across church furnishings",
+    "template": "nonrestrictive which after both the [sg] and the [sg] x the nearer singular conjunct x is/are/was/were being V-en"
+  },
+  {
+    "id": "SEC23C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb and pronoun-antecedent agreement with a singular head noun followed by a content clause whose own plural subject and plural verb come before the blank, verb and possessive pronoun both referring to the head",
+    "difficulty": "hard",
+    "passage": "Two sections of a medieval choirbook differ sharply in their handwriting but share an unusual system of musical notation. The hypothesis that the book's two scribes were trained in a single convent workshop ______ plausibility mainly to that notation, which appears in no other surviving manuscript from the region. Without it, scholars would have little reason to connect the two hands at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["owe their", "owes their", "owes its", "owe its"],
+    "correct_answer": "owes its",
+    "explanation": "The subject of the main clause is \"hypothesis\"; \"that the book's two scribes were trained in a single convent workshop\" is a clause stating what the hypothesis claims, and its own subject \"scribes\" (with its plural verb \"were trained\") is not the subject of the blank, so the verb must be the singular \"owes.\" The pronoun must also refer to \"hypothesis,\" because only a hypothesis can have plausibility owed to evidence; the scribes do not, so the pronoun is the singular \"its.\" Only \"owes its\" is right on both counts. \"owes their\" has the right verb but a plural pronoun that would point to \"scribes.\" \"owe its\" has the right pronoun but a plural verb agreeing with \"scribes,\" and \"owe their\" makes both errors.",
+    "topic_tag": "musicology: convent choirbook scribes",
+    "template": "head noun + content clause with its own plural subject and verb x the content clause's plural subject x V-s/V crossed with its/their"
+  },
+  {
+    "id": "SEC23C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound subject that names one person under a single determiner, crossed with past versus present progressive decided by a past-tense when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Many farm names in the county survive only in the memories of elderly residents, never having been written on any map. The founder and first director of the county place-name survey ______ a list of the abandoned farm names in the hills when she suffered the illness that ended her fieldwork, and no one completed the list after her. Her notebooks are kept at the county library.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["was compiling", "are compiling", "were compiling", "is compiling"],
+    "correct_answer": "was compiling",
+    "explanation": "\"The founder and first director of the county place-name survey\" names a single person, as the single determiner \"The\" and the later \"she\" and \"her fieldwork\" show, so the subject is singular despite \"and\" and the verb must be singular. The verb must also be past, because the compiling was under way at the moment named by the past-tense when-clause \"when she suffered the illness that ended her fieldwork.\" Only \"was compiling\" is singular and past. \"were compiling\" is past but plural, treating the founder and the director as two people. \"is compiling\" is singular but present, which cannot describe an activity in progress when a past illness ended it, and \"are compiling\" is both plural and present.",
+    "topic_tag": "onomastics: a county place-name survey",
+    "template": "one-referent compound subject (The X and first Y of) x and reads plural x is/are/was/were V-ing"
+  },
+  {
+    "id": "SEC23C-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement on the clause-final verb of a concessive Adjective + as + subject clause, with the main clause's singular subject right after the blank, crossed with present versus past decided by the main clause's present-tense verb",
+    "difficulty": "hard",
+    "passage": "A hill-town church holds two fresco cycles painted by a single workshop. Faded as the frescoes in the two side chapels ______, the subject of each scene is easy to identify for any visitor who knows the stories they illustrate. The painters outlined each figure in a dark earth pigment that resists light far better than the colors laid over it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["was", "were", "are", "is"],
+    "correct_answer": "are",
+    "explanation": "The blank is the verb of the concessive clause \"Faded as the frescoes in the two side chapels ______,\" whose subject is \"frescoes,\" a plural noun; \"subject,\" the singular noun that follows the comma, belongs to the main clause, so the verb must be plural. The verb must also be present: the concession describes the frescoes' condition at the same time as the main clause's present-tense \"is easy to identify,\" and the fading is set against that present ease. Only \"are\" is plural and present. \"is\" is present but singular, as if \"subject\" were its subject. \"were\" is plural but places the fading in a past that the present-tense main clause does not share, and \"was\" is both singular and past.",
+    "topic_tag": "fresco painting: outlined figures in a hill-town church",
+    "template": "concessive Adj + as + subject + verb clause before the main clause x the main clause's singular subject after the blank x is/are/was/were bare"
+  },
+  {
+    "id": "SEC23C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a fronted (topicalized) singular object, with the plural subject just before the blank, crossed with past progressive versus present perfect progressive decided by a definite-past when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Most of the merchant house's account books were photographed and returned to storage without being read. This last ledger the two archivists ______ line by line, checking each debt against the surviving letters, when a burst pipe flooded the reading room and soaked the binding. Conservators later dried the pages, but several columns of figures are lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["were transcribing", "has been transcribing", "was transcribing", "have been transcribing"],
+    "correct_answer": "were transcribing",
+    "explanation": "\"This last ledger\" is the object of the verb, moved to the front of the sentence; the subject is \"the two archivists,\" a plural, so the verb must be plural even though the sentence opens with a singular noun. The verb must also be the past progressive, not the present perfect progressive, because the transcribing was interrupted at a definite past moment, \"when a burst pipe flooded the reading room,\" and the present perfect cannot be tied to a definite past time. Only \"were transcribing\" is plural and past progressive. \"have been transcribing\" is plural but present perfect, which clashes with \"when a burst pipe flooded.\" \"was transcribing\" is past but singular, agreeing with \"ledger,\" and \"has been transcribing\" is both singular and present perfect.",
+    "topic_tag": "business history: a merchant house's ledgers",
+    "template": "topicalized singular object before a full plural subject x the fronted singular object x has/have been V-ing vs was/were V-ing"
+  },
+  {
+    "id": "SEC23C-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a dash pair, both marks supplied, around an appositive list that itself contains commas, between a subject noun and its verb",
+    "difficulty": "hard",
+    "passage": "Touring opera troupes rarely kept their stage properties after a season ended, so few such objects reach museums intact. One troupe's surviving ______ kept in a single cedar trunk, which a descendant of its last manager gave to a regional theater museum. Curators display the trunk open so that visitors can see how tightly the pieces were packed for travel.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "props, a painted crown, two wooden swords, and a paper moon, are",
+      "props—a painted crown, two wooden swords, and a paper moon—are",
+      "props a painted crown, two wooden swords, and a paper moon are",
+      "props—a painted crown, two wooden swords, and a paper moon, are"
+    ],
+    "correct_answer": "props—a painted crown, two wooden swords, and a paper moon—are",
+    "explanation": "The subject is \"One troupe's surviving props,\" its verb is \"are kept,\" and between them sits an appositive list naming the props, \"a painted crown, two wooden swords, and a paper moon,\" which already contains commas. Because the list has internal commas, it must be set off by two matching dashes, as in \"props—a painted crown, two wooden swords, and a paper moon—are.\" The comma pair in \"props, a painted crown, two wooden swords, and a paper moon, are\" makes the props read as a fourth item in one long list and then puts a comma between that subject and its verb. \"props—a painted crown, two wooden swords, and a paper moon, are\" opens with a dash but closes with a comma, so the interruption is never properly closed. \"props a painted crown, two wooden swords, and a paper moon are\" runs the noun \"props\" straight into the list with nothing to show that the list renames it.",
+    "topic_tag": "theater history: a touring opera troupe's props",
+    "template": "appositive list with internal commas between subject noun and verb x comma pair reads as a longer list x dash pair / comma pair / dash-comma / none"
+  },
+  {
+    "id": "SEC23C-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a restrictive appositive (role + name) with no commas, in a passage that establishes several holders of the role",
+    "difficulty": "hard",
+    "passage": "Three engravers cut the copper plates for the first printed atlas of the coast, and the publisher paid each of them by the plate. Of the three, only the ______ signed his plates, so the work of the other two can be told apart solely by the style of their lettering. Historians have matched that lettering to two later almanacs.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["engraver, Vidal,", "engraver Vidal,", "engraver, Vidal", "engraver Vidal"],
+    "correct_answer": "engraver Vidal",
+    "explanation": "The name \"Vidal\" identifies which of the three engravers is meant, so it is a restrictive appositive and takes no commas: \"only the engraver Vidal signed his plates.\" The comma pair in \"engraver, Vidal,\" would make the name extra information about a single, already identified engraver, but the passage has just said there were three, so \"the engraver\" alone does not pick one out. \"engraver Vidal,\" puts a comma between the subject \"the engraver Vidal\" and its verb \"signed.\" \"engraver, Vidal\" opens a nonrestrictive interruption with a comma and never closes it.",
+    "topic_tag": "history of engraving: a coastal atlas",
+    "template": "restrictive role + name appositive after several holders of the role x comma pair (nonrestrictive) x none / comma pair / closing only / opening only"
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC23B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a fronted prepositional complement (\"Of greater concern to the [plural]\") with be-inversion and a plural postposed subject whose head is seven words after the verb, crossed with present versus past tense decided by a past-tense when-clause later in the same sentence",
+    "difficulty": "hard",
+    "passage": "When engineers plan to raise an aging concrete dam, cracks in its face are the obvious worry. Of greater concern to the drilling crews ______ thin, steeply tilted, and partly weathered seams of clay beneath the left abutment of one such dam when the first rock cores came up. Wet clay can lose much of its strength and let a heavier dam slide downstream.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are the",
+      "was the",
+      "is the",
+      "were the"
+    ],
+    "correct_answer": "were the",
+    "explanation": "The verb comes before its subject here: what was \"Of greater concern\" is \"the thin, steeply tilted, and partly weathered seams of clay,\" whose head noun \"seams\" is plural, so the singular \"concern\" at the front of the sentence does not set the verb's number. The clause \"when the first rock cores came up\" places the whole sentence in the past, so the verb must be past: \"were the.\" \"are the\" is plural but present, which clashes with \"came up.\" \"was the\" is past but singular, agreeing with \"concern\" rather than \"seams,\" and \"is the\" is both singular and present.",
+    "topic_tag": "dam engineering: abutment foundation cores",
+    "template": "fronted PP complement + be + postposed plural subject x singular head of the fronted phrase (\"concern\") x i|j + shared determiner \"the\""
+  },
+  {
+    "id": "SEC23B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"All that survives of the [plural]\" as a singular subject, crossed with simple past passive versus present perfect passive decided by a definite-past when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Early seismographs are rare survivors, because their brass levers and smoked-glass plates break easily and their clockwork rusts in damp storerooms. All that survives of the first such instruments ______ into two padded crates when the hilltop observatory closed its doors. Curators can reconstruct how the machines worked from their gears, but the records they traced are lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been packed",
+      "was packed",
+      "has been packed",
+      "were packed"
+    ],
+    "correct_answer": "was packed",
+    "explanation": "The subject is \"All that survives,\" in which \"all\" means \"everything\"; the singular verb \"survives\" inside it shows that it is singular, so the plural \"instruments\" beside the blank does not set the number. The clause \"when the hilltop observatory closed its doors\" names a definite moment in the past, and a verb tied to such a moment must be simple past rather than present perfect: \"was packed.\" \"has been packed\" is singular but present perfect, which cannot be pinned to the moment named by \"closed.\" \"were packed\" is past but plural, agreeing with \"instruments,\" and \"have been packed\" is both plural and present perfect.",
+    "topic_tag": "seismology: early observatory seismographs",
+    "template": "\"All that survives of the [pl]\" subject x adjacent plural of-noun and plural-reading \"all\" x e|h"
+  },
+  {
+    "id": "SEC23B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"The former\" resuming the singular first member of a mixed pair from the previous sentence, past a participial interrupter ending in a plural noun, crossed with present versus past passive decided by a present-tense whenever-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "A small weather station on an exposed mountain ridge can take all of its readings with just a single cup anemometer and two tipping-bucket rain gauges mounted close to the ground. The former, bolted to a steel mast high above the surrounding pines, ______ by technicians whenever a storm brings gusts strong enough to loosen bolts.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is checked",
+      "were checked",
+      "are checked",
+      "was checked"
+    ],
+    "correct_answer": "is checked",
+    "explanation": "\"The former\" refers to the first of the two things named in the previous sentence, \"a single cup anemometer,\" not to the \"two tipping-bucket rain gauges,\" so it is singular; the plural \"pines\" at the end of the interrupting phrase \"bolted to a steel mast high above the surrounding pines\" is not the subject. The clause \"whenever a storm brings gusts\" describes a repeated present event, so the main verb must be present as well: \"is checked.\" \"are checked\" is present but plural, agreeing with \"pines\" or with the gauges. \"was checked\" is singular but past, which clashes with \"brings,\" and \"were checked\" is both plural and past.",
+    "topic_tag": "instrumentation: ridge-top anemometers",
+    "template": "\"The former\" resuming the singular member of a mixed pair x interrupter ending in a plural noun x c|h"
+  },
+  {
+    "id": "SEC23B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural subject followed by a comma-set negated singular element (\"Y, not X,\") beside the verb, crossed with present versus past progressive decided by a past-tense as-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "A long, light footbridge can sway sideways even in calm air, because walkers unconsciously fall into step with its motion. The walkers' footsteps, not the steady breeze, ______ the handrails sideways as hundreds of people crossed a new river footbridge on opening day. Dampers fitted beneath a deck can absorb such motion.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was shaking",
+      "is shaking",
+      "were shaking",
+      "are shaking"
+    ],
+    "correct_answer": "were shaking",
+    "explanation": "The subject is \"The walkers' footsteps,\" which is plural; \"not the steady breeze\" is set off by commas and only denies a second possible cause, so the singular \"breeze\" beside the blank does not control the verb. The clause \"as hundreds of people crossed\" places the action in the past, so the verb must be past progressive: \"were shaking.\" \"are shaking\" is plural but present, which clashes with \"crossed.\" \"was shaking\" is past but singular, agreeing with \"breeze,\" and \"is shaking\" is both singular and present.",
+    "topic_tag": "structural dynamics: footbridge lateral sway",
+    "template": "\"Y, not X,\" with the negated element beside the verb x comma-set singular \"breeze\" x b|g"
+  },
+  {
+    "id": "SEC23B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive partitive relative (\", the longest of which\") after a plural antecedent, crossed with present versus past progressive passive decided by a past-tense until-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Moving freight through tunnels can clear heavy trucks from a crowded waterfront, but digging beneath a harbor is slow, costly, and risky work. Crews at one port bored four freight tunnels beneath the soft harbor floor, the longest of which ______ with precast concrete rings until groundwater broke through a weak joint.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are being lined",
+      "was being lined",
+      "were being lined",
+      "is being lined"
+    ],
+    "correct_answer": "was being lined",
+    "explanation": "The subject of the relative clause is \"the longest of which,\" meaning the longest single tunnel, so it is singular even though \"which\" stands for the plural \"tunnels.\" The clause \"until groundwater broke through a weak joint\" places the lining work in the past, so the verb must be past: \"was being lined.\" \"is being lined\" is singular but present, which clashes with \"broke.\" \"were being lined\" is past but plural, agreeing with \"tunnels,\" and \"are being lined\" is both plural and present.",
+    "topic_tag": "geotechnics: harbor tunnel groundwater inflow",
+    "template": "\", the [superlative] of which\" after a plural antecedent x the plural antecedent \"tunnels\" x k|l"
+  },
+  {
+    "id": "SEC23B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement on the clause-final auxiliary of a non-inverted comparative than-clause with a plural subject, crossed with be versus do decided by the main clause's lexical verb",
+    "difficulty": "hard",
+    "passage": "Thick wind-blown loess holds rainwater far longer than the coarse, stony terraces on the lower slopes ______, so farmers on the plateau can often grow wheat without any irrigation. On the terraces, the same rain drains away within days. The difference explains why villages in the region cluster on the high ground rather than near the river.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are",
+      "does",
+      "is",
+      "do"
+    ],
+    "correct_answer": "do",
+    "explanation": "The than-clause has its own subject, \"the coarse, stony terraces on the lower slopes,\" whose head noun \"terraces\" is plural; the singular \"loess\" is the subject of the main clause, not of this one. The verb at the end of the than-clause stands in for the main clause's verb \"holds,\" a lexical verb, so the substitute must be a form of \"do,\" and the plural form is \"do.\" \"does\" is the right kind of verb but singular, copying \"loess holds.\" \"are\" is plural but a form of \"be,\" which cannot stand in for \"holds,\" and \"is\" is both singular and a form of \"be.\"",
+    "topic_tag": "soil physics: loess water retention",
+    "template": "clause-final verb of a non-inverted comparative x the main clause's singular subject and -s verb x j|m"
+  },
+  {
+    "id": "SEC23B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon between two independent clauses where the second clause's subject is a bare quantifier pronoun (\"most\") right after a plural noun",
+    "difficulty": "hard",
+    "passage": "A brick lining for a steelmaking furnace must survive sudden cooling, an even harsher test than steady heat. To screen candidates, engineers dropped red-hot samples into cold water to compare six refractory ______ broke apart within seconds. Only a dense alumina blend came through whole, and the engineers chose it for the lining.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "clays, most",
+      "clays most",
+      "clays; most",
+      "clays, most,"
+    ],
+    "correct_answer": "clays; most",
+    "explanation": "The words before the blank form an independent clause ending in \"six refractory clays,\" and \"most broke apart within seconds\" is a second independent clause in which \"most\" is the subject of \"broke.\" Two independent clauses with no conjunction need a semicolon between them: \"clays; most.\" \"clays, most\" joins the clauses with only a comma, a comma splice; read as a phrase renaming \"clays,\" it leaves \"broke\" without a subject. \"clays most\" runs the two clauses together with no mark at all. \"clays, most,\" sets \"most\" off as an aside and again leaves \"broke\" with no subject.",
+    "topic_tag": "materials engineering: refractory thermal shock",
+    "template": "semicolon before an independent clause opened by a bare quantifier pronoun x comma (renaming reading) x ; | , | none | comma pair"
+  },
+  {
+    "id": "SEC23B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon before a sentence-final list that names the members of the last item of a complete series",
+    "difficulty": "hard",
+    "passage": "To the eye, soil returned from the lunar highlands looks like plain gray powder. Its makeup matters, because the relative proportions of its minerals tell geologists which kind of ancient crust a sample came from. Under a microscope, each scoop reveals fine dust, glassy beads formed by meteorite impacts, and three common ______ pyroxene, and olivine.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "minerals: plagioclase",
+      "minerals, plagioclase",
+      "minerals plagioclase",
+      "minerals; plagioclase"
+    ],
+    "correct_answer": "minerals: plagioclase",
+    "explanation": "The words before the blank are a complete clause whose object is itself a finished series, \"fine dust, glassy beads formed by meteorite impacts, and three common minerals\"; the words after the blank, \"plagioclase, pyroxene, and olivine,\" name those three minerals. A colon after a complete clause can introduce such a list: \"minerals: plagioclase.\" \"minerals, plagioclase\" merges the two lists into one series that contains \"and\" twice, so the minerals read as three more items rather than as the three just mentioned. \"minerals; plagioclase\" leaves a fragment after the semicolon, which must join two independent clauses. \"minerals plagioclase\" runs the list straight into the noun with no mark.",
+    "topic_tag": "lunar geology: highland regolith minerals",
+    "template": "colon before a final list naming the last member of a finished series x comma (merged series) x : | , | none | ;"
+  }
+]
