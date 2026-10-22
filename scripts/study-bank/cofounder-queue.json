@@ -27,6 +27,14 @@
       "runId": "ssat-draft4-release-cofounder-{date}"
     },
     {
+      "cohort": "ssat-reading-draft-5",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft5-release-cofounder-{date}"
+    },
+    {
       "cohort": "cr-v11",
       "tool": "item",
       "domain": "Choose a Response",
@@ -43,6 +51,14 @@
       "family": "ssat",
       "upTo": 1,
       "runId": "ssatvd1-release{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-6",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft6-release-cofounder-{date}"
     },
     {
       "cohort": "toefl-passage-draft-1",
@@ -99,6 +115,14 @@
       "runId": "crv12-release{n}-cofounder-{date}"
     },
     {
+      "cohort": "ssat-reading-draft-7",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft7-release-cofounder-{date}"
+    },
+    {
       "cohort": "cr-v13",
       "tool": "item",
       "domain": "Choose a Response",
@@ -131,12 +155,28 @@
       "runId": "toefl-passage1-release{n}-cofounder-{date}"
     },
     {
+      "cohort": "ssat-reading-draft-8",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft8-release-cofounder-{date}"
+    },
+    {
       "cohort": "ssat-verbal-draft-1",
       "tool": "item",
       "domain": "Verbal",
       "size": 12,
       "family": "ssat",
       "runId": "ssatvd1-release{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-verbal-draft-2",
+      "tool": "item",
+      "domain": "Verbal",
+      "size": 12,
+      "family": "ssat",
+      "runId": "ssatvd2-release{n}-cofounder-{date}"
     },
     {
       "cohort": "toefl-passage-draft-1",

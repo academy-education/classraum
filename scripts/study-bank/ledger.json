@@ -9618,6 +9618,141 @@
           "verdict": "NOT RUN by an independent reader; author self-review only."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-5-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-5",
+      "contentSha": "e8a633750904b3622784ddec340ca64262caab886deb0302f68bff3112bd7d39",
+      "status": "staged-for-human-edit",
+      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-5.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e8a633750904b3622784ddec340ca64262caab886deb0302f68bff3112bd7d39",
+          "verdict": "merge.mjs 0 problems (draft-4 checks + per-passage slot cap); key uniquely longest 6/36, shortest 6/36; quotes 289/0; check-location-refs 0 mismatches; edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "Author review in-session (all items read); no independent AI grader."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-6-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-6",
+      "contentSha": "e577dbdad910ee9181920784ba9a1e6da1f6f2d63dda26a767d4eeda926675a4",
+      "status": "staged-for-human-edit",
+      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-6.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e577dbdad910ee9181920784ba9a1e6da1f6f2d63dda26a767d4eeda926675a4",
+          "verdict": "merge.mjs 0 problems (draft-4 checks + per-passage slot cap); key uniquely longest 7/36, shortest 1/36; quotes 314/0; check-location-refs 0 mismatches; edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "Author review in-session (all items read); no independent AI grader."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-7-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-7",
+      "contentSha": "44cc11a877096b8d4cc1b91a18fdb2f15d118a96b33b80b3261a9416d7909c25",
+      "status": "staged-for-human-edit",
+      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-7.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "44cc11a877096b8d4cc1b91a18fdb2f15d118a96b33b80b3261a9416d7909c25",
+          "verdict": "merge.mjs 0 problems (draft-4 checks + per-passage slot cap); key uniquely longest 6/36, shortest 4/36; quotes 297/0; check-location-refs 0 mismatches; edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "Author review in-session (all items read); no independent AI grader."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-8-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-8",
+      "contentSha": "9ed101dd2b25e3a2fa0693ac2cad251742b83345a4a68efaff7dbfe4f8ddb0ed",
+      "status": "staged-for-human-edit",
+      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-8.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "9ed101dd2b25e3a2fa0693ac2cad251742b83345a4a68efaff7dbfe4f8ddb0ed",
+          "verdict": "merge.mjs 0 problems (draft-4 checks + per-passage slot cap); key uniquely longest 7/36, shortest 4/36; quotes 314/0; check-location-refs 0 mismatches; edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "Author review in-session (all items read); no independent AI grader."
+        }
+      }
+    },
+    {
+      "id": "ssat-verbal-draft-2-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_no_source",
+      "cohort": "ssat-verbal-draft-2",
+      "contentSha": "45e2986f12daf80875a7438be687c97d26732321e4c83d3e7892ccd5eda871b0",
+      "status": "staged-for-human-review",
+      "note": "80 analogies + 80 synonyms written by two Claude agents, reviewed in-session (5 analogy keys and 2 distractors replaced). Pairs absent from all 366 SSAT analogy rows; synonym headwords unused in SSAT+ISEE. Release only by the co-founder runs in ssat-verbal-draft-2.RELEASE.PREREG.md. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "45e2986f12daf80875a7438be687c97d26732321e4c83d3e7892ccd5eda871b0",
+          "verdict": "check.py ana/syn: 0 problems; keys dealt 16x5 per subtype; key uniquely longest 17/80 and 9/80."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "Author review in-session; no independent AI grader."
+        }
+      }
     }
   ],
   "auditedCohorts": [
