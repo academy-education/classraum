@@ -62,7 +62,7 @@ The Key to the Room (cursive) · A Barn on the River (covered bridge, invented) 
   - Graders A and B both flagged D13-P06-4: the "too high and too far for any ship" distractor was defensible.
   - It was replaced with a distractor the passage contradicts (birds cannot rest on the sea).
   - Checks rerun clean.
-- **ssat-reading-draft-14** (spot `draft14-D14-P02`): talent-show cube solve, laundromat poem, buzzer panel in a new
+- **ssat-reading-draft-14** (spot `draft14-D14-P01`, sha256 of the cohort name mod 6): talent-show cube solve, laundromat poem, buzzer panel in a new
   apartment, boredom, telegraph weather board (invented), hot-spot islands.
   - Graders A and B both flagged D14-P04-6: "apprehensive" was defensible beside the key "disapproving".
   - The author replaced it with "humorous", which the passage rules out. Checks rerun clean.
