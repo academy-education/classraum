@@ -48,8 +48,7 @@
           <svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span data-i18n="navDash">대시보드</span></a>
         <a href="#students" class="group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-primary font-medium">
           <svg class="i text-gray-400 group-hover:text-primary" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span data-i18n="navStudents">추천 학생</span></a>
-        <a href="#payouts" class="group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-primary font-medium">
-          <svg class="i text-gray-400 group-hover:text-primary" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg><span data-i18n="navPayouts">정산</span></a>
+        
         <a href="#kit" class="group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-primary font-medium">
           <svg class="i text-gray-400 group-hover:text-primary" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span data-i18n="navKit">홍보 자료</span></a>
       </div>
@@ -96,7 +95,7 @@
           <div>
             <p class="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5" data-i18n="eyebrow">PARTNER</p>
             <h1 class="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900" data-i18n="title">파트너 대시보드</h1>
-            <p class="text-gray-500 mt-1" data-i18n="desc">추천 코드로 가입한 학생과 정산 현황을 확인하세요.</p>
+            <p class="text-gray-500 mt-1" data-i18n="desc">추천 코드로 가입한 학생 현황을 확인하세요.</p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-xs text-gray-400" data-i18n="mockSwitch">목업 전환</span>
@@ -125,8 +124,9 @@
               </div>
             </div>
             <dl class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-5 border-t border-gray-100">
-              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tRate">수수료율</dt><dd class="mt-1 text-base font-semibold num" id="pRate">20%</dd></div>
-              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tPay">정산일</dt><dd class="mt-1 text-base font-semibold" data-i18n="tPayV">매월 10일</dd></div>
+              
+              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tBenefit">학생 혜택</dt><dd class="mt-1 text-base font-semibold" data-i18n="tBenefitV">가입 크레딧 5개</dd></div>
+              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tTests">주요 시험</dt><dd class="mt-1 text-base font-semibold" id="pTests">SAT · TOEFL</dd></div>
               <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tTerm">계약 기간</dt><dd class="mt-1 text-base font-semibold num" id="pTerm">2026.05 – 2027.04</dd></div>
               <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tUpdated">최근 업데이트</dt><dd class="mt-1 text-base font-semibold num">10.22 09:00</dd></div>
             </dl>
@@ -171,29 +171,11 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
           <div class="card p-5 sm:p-6">
             <h3 class="text-base font-semibold text-gray-900" data-i18n="mix">플랜 구성</h3>
             <p class="text-sm text-gray-500 mt-0.5 mb-4" data-i18n="mixS">현재 구독 중인 학생</p>
             <div id="mix" class="space-y-4"></div>
-          </div>
-          <div class="card overflow-hidden" id="payouts">
-            <div class="p-5 sm:p-6 pb-4">
-              <h3 class="text-base font-semibold text-gray-900" data-i18n="payout">정산 내역</h3>
-              <p class="text-sm text-gray-500 mt-0.5" data-i18n="payoutS">결제 확정 기준 · 다음 달 10일 지급</p>
-              <div class="mt-4 rounded-xl bg-primary/5 ring-1 ring-primary/10 p-4 flex items-end justify-between gap-3">
-                <div><p class="text-xs font-medium text-primary" data-i18n="nextPay">다음 정산 예정</p><p class="text-2xl font-semibold tracking-tight text-gray-900 num mt-0.5" id="nextAmt">₩0</p></div>
-                <p class="text-xs text-gray-500 num">2026.11.10</p>
-              </div>
-            </div>
-            <table class="w-full text-sm">
-              <thead class="bg-gray-50/60"><tr>
-                <th class="px-5 py-2.5 text-left text-xs font-medium text-gray-500" data-i18n="month">정산월</th>
-                <th class="px-5 py-2.5 text-right text-xs font-medium text-gray-500" data-i18n="amount">금액</th>
-                <th class="px-5 py-2.5 text-left text-xs font-medium text-gray-500" data-i18n="status">상태</th>
-              </tr></thead>
-              <tbody class="divide-y divide-gray-100" id="payRows"></tbody>
-            </table>
           </div>
           <div class="card p-5 sm:p-6" id="kit">
             <h3 class="text-base font-semibold text-gray-900" data-i18n="kit">안내 문구</h3>
@@ -211,12 +193,9 @@
         <!-- Students table: same card/table treatment as payments-page.tsx -->
         <div class="card overflow-hidden" id="students">
           <div class="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-gray-100">
-            <div><h3 class="text-base font-semibold text-gray-900" data-i18n="students">추천 학생</h3><p class="text-sm text-gray-500 mt-0.5" data-i18n="studentsS">개인정보 보호를 위해 이름 일부만 표시됩니다</p></div>
+            <div><h3 class="text-base font-semibold text-gray-900" data-i18n="students">추천 학생</h3><p class="text-sm text-gray-500 mt-0.5" data-i18n="studentsS">개인정보 보호를 위해 학생 이름은 표시되지 않습니다</p></div>
             <div class="flex flex-col sm:flex-row gap-2">
-              <div class="relative">
-                <svg class="s absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input id="q" class="h-10 w-full sm:w-60 pl-9 pr-3 rounded-lg border border-border bg-white text-sm shadow-sm focus:border-primary outline-none">
-              </div>
+              
               <select id="filterSel" class="h-10 px-3 rounded-lg border border-border bg-white text-sm shadow-sm focus:border-primary outline-none">
                 <option value="all" data-i18n="fAll">모든 상태</option><option value="paid" data-i18n="fPaid">구독 중</option><option value="free" data-i18n="fFree">무료</option><option value="churn" data-i18n="fChurn">해지</option>
               </select>
@@ -225,13 +204,12 @@
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead class="bg-gray-50/60"><tr>
-                <th class="sortable px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-k="name"><span data-i18n="tName">학생</span> <span class="arrow"></span></th>
-                <th class="sortable px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-k="joined"><span data-i18n="tJoined">가입일</span> <span class="arrow"></span></th>
+                                <th class="sortable px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-k="joined"><span data-i18n="tJoined">가입일</span> <span class="arrow"></span></th>
+                <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-i18n="tGrade">학년</th>
                 <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-i18n="tTarget">목표 시험</th>
                 <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-i18n="tPlan">플랜</th>
                 <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 whitespace-nowrap" data-i18n="tStatus">상태</th>
                 <th class="sortable px-5 py-3 text-right text-xs font-medium text-gray-500 whitespace-nowrap" data-k="revenue"><span data-i18n="tRevenue">누적 결제</span> <span class="arrow"></span></th>
-                <th class="px-5 py-3 text-right text-xs font-medium text-gray-500 whitespace-nowrap" data-i18n="tCommission">수수료</th>
               </tr></thead>
               <tbody class="divide-y divide-gray-100" id="rows"></tbody>
             </table>
@@ -263,11 +241,11 @@ const PARTNERS = {
 }
 const PLANS = [ {id:'basic', ko:'베이직', en:'Basic', price:9900}, {id:'premium', ko:'프리미엄', en:'Premium', price:18900}, {id:'plus', ko:'프리미엄 플러스', en:'Premium Plus', price:26900} ]
 const T = {
-  ko:{navDash:'대시보드',navStudents:'추천 학생',navPayouts:'정산',navKit:'홍보 자료',navAccount:'계정',navContract:'계약 · 세금계산서',navSettings:'설정',role:'파트너 관리자',sample:'샘플 데이터 · 디자인 검토용',eyebrow:'PARTNER',title:'파트너 대시보드',desc:'추천 코드로 가입한 학생과 정산 현황을 확인하세요.',mockSwitch:'목업 전환',p30:'최근 30일',p90:'최근 90일',pall:'전체 기간',export:'내보내기',active:'제휴 활성',tRate:'수수료율',tPay:'정산일',tPayV:'매월 10일',tTerm:'계약 기간',tUpdated:'최근 업데이트',codeTitle:'추천 코드',codeNote:'가입 시 코드 입력 → 학생에게 크레딧 5개',copyLink:'링크 복사',copyCode:'코드 복사',trend:'월별 가입 및 유료 전환',trendS:'최근 6개월',signups:'가입',paid:'유료 전환',funnel:'전환 퍼널',funnelS:'선택한 기간 기준',mix:'플랜 구성',mixS:'현재 구독 중인 학생',payout:'정산 내역',payoutS:'결제 확정 기준 · 다음 달 10일 지급',nextPay:'다음 정산 예정',month:'정산월',amount:'금액',status:'상태',kit:'안내 문구',kitS:'카카오톡·문자로 보내기',toParent:'학부모',toStudent:'학생',toShort:'한 줄',copyMsg:'문구 복사',students:'추천 학생',studentsS:'개인정보 보호를 위해 이름 일부만 표시됩니다',fAll:'모든 상태',fPaid:'구독 중',fFree:'무료',fChurn:'해지',tName:'학생',tJoined:'가입일',tTarget:'목표 시험',tPlan:'플랜',tStatus:'상태',tRevenue:'누적 결제',tCommission:'수수료',prev:'이전',next:'다음',foot:'파트너 문의 partners@classraum.com · 표시된 수치는 샘플 데이터입니다.',
-      sSign:'코드 가입',sPaid:'유료 전환',sRev:'추천 결제액',sComm:'예상 수수료',vs:'지난 기간 대비',fVisit:'링크 방문',fSign:'가입',fTrial:'첫 시험 응시',fPaid2:'유료 전환',stPaid:'구독 중',stFree:'무료',stChurn:'해지',payDone:'지급 완료',payPending:'지급 예정',freeTier:'무료 이용',search:'학생 검색',none:'조건에 맞는 학생이 없습니다',copied:'클립보드에 복사했습니다',mock:'목업에서는 동작하지 않습니다',people:'명',pageInfo:(a,b,n)=>`전체 ${n}명 중 ${a}–${b}`,
+  ko:{navDash:'대시보드',tBenefit:'학생 혜택',tBenefitV:'가입 크레딧 5개',tTests:'주요 시험',tGrade:'학년',navStudents:'추천 학생',navKit:'홍보 자료',navAccount:'계정',navContract:'계약 · 세금계산서',navSettings:'설정',role:'파트너 관리자',sample:'샘플 데이터 · 디자인 검토용',eyebrow:'PARTNER',title:'파트너 대시보드',desc:'추천 코드로 가입한 학생 현황을 확인하세요.',mockSwitch:'목업 전환',p30:'최근 30일',p90:'최근 90일',pall:'전체 기간',export:'내보내기',active:'제휴 활성',tTerm:'계약 기간',tUpdated:'최근 업데이트',codeTitle:'추천 코드',codeNote:'가입 시 코드 입력 → 학생에게 크레딧 5개',copyLink:'링크 복사',copyCode:'코드 복사',trend:'월별 가입 및 유료 전환',trendS:'최근 6개월',signups:'가입',paid:'유료 전환',funnel:'전환 퍼널',funnelS:'선택한 기간 기준',mix:'플랜 구성',mixS:'현재 구독 중인 학생',status:'상태',kit:'안내 문구',kitS:'카카오톡·문자로 보내기',toParent:'학부모',toStudent:'학생',toShort:'한 줄',copyMsg:'문구 복사',students:'추천 학생',studentsS:'개인정보 보호를 위해 학생 이름은 표시되지 않습니다',fAll:'모든 상태',fPaid:'구독 중',fFree:'무료',fChurn:'해지',tJoined:'가입일',tTarget:'목표 시험',tPlan:'플랜',tStatus:'상태',tRevenue:'누적 결제',prev:'이전',next:'다음',foot:'파트너 문의 partners@classraum.com · 표시된 수치는 샘플 데이터입니다.',
+      sSign:'코드 가입',sPaid:'유료 전환',sRev:'추천 결제액',vs:'지난 기간 대비',fVisit:'링크 방문',fSign:'가입',fTrial:'첫 시험 응시',fPaid2:'유료 전환',stPaid:'구독 중',stFree:'무료',stChurn:'해지',freeTier:'무료 이용',none:'조건에 맞는 학생이 없습니다',copied:'클립보드에 복사했습니다',mock:'목업에서는 동작하지 않습니다',people:'명',pageInfo:(a,b,n)=>`전체 ${n}명 중 ${a}–${b}`,
       msg:{parent:(p,c,l)=>`안녕하세요, ${p}입니다.\n\n자녀분의 SAT·TOEFL·SSAT 준비를 위해 Classraum Study를 안내해 드립니다. 실제 시험과 같은 형식의 모의고사와 AI 피드백으로 가정에서도 체계적으로 준비할 수 있습니다.\n\n아래 링크로 가입하시고 추천 코드 ${c}를 입력하시면 무료 크레딧 5개가 제공됩니다.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study 안내\nSAT·TOEFL·SSAT 실전 모의고사와 AI 피드백 학습 앱입니다.\n가입 시 추천 코드 ${c}를 입력하면 무료 크레딧 5개가 지급됩니다.\n${l}`,short:(p,c,l)=>`Classraum Study 추천 코드 ${c} 입력 시 무료 크레딧 5개 (${p})\n${l}`}},
-  en:{navDash:'Dashboard',navStudents:'Referred students',navPayouts:'Payouts',navKit:'Marketing kit',navAccount:'Account',navContract:'Contract · invoices',navSettings:'Settings',role:'Partner admin',sample:'Sample data · design review',eyebrow:'PARTNER',title:'Partner dashboard',desc:'Track students who joined with your code and your payouts.',mockSwitch:'Mock switch',p30:'Last 30 days',p90:'Last 90 days',pall:'All time',export:'Export',active:'Active',tRate:'Commission',tPay:'Payout day',tPayV:'10th monthly',tTerm:'Contract term',tUpdated:'Last updated',codeTitle:'Referral code',codeNote:'Students enter the code at sign-up → 5 credits',copyLink:'Copy link',copyCode:'Copy code',trend:'Monthly sign-ups and paid conversions',trendS:'Last 6 months',signups:'Sign-ups',paid:'Paid',funnel:'Conversion funnel',funnelS:'For the selected period',mix:'Plan mix',mixS:'Currently subscribed students',payout:'Payouts',payoutS:'On confirmed payments · paid the 10th of next month',nextPay:'Next payout',month:'Month',amount:'Amount',status:'Status',kit:'Share message',kitS:'Send by KakaoTalk or text',toParent:'Parents',toStudent:'Students',toShort:'One line',copyMsg:'Copy message',students:'Referred students',studentsS:'Names are partially hidden for privacy',fAll:'All statuses',fPaid:'Subscribed',fFree:'Free',fChurn:'Cancelled',tName:'Student',tJoined:'Joined',tTarget:'Target test',tPlan:'Plan',tStatus:'Status',tRevenue:'Total paid',tCommission:'Commission',prev:'Previous',next:'Next',foot:'Partner support partners@classraum.com · figures shown are sample data.',
-      sSign:'Code sign-ups',sPaid:'Paid conversions',sRev:'Referred payments',sComm:'Est. commission',vs:'vs previous period',fVisit:'Link visits',fSign:'Signed up',fTrial:'First test',fPaid2:'Paid',stPaid:'Subscribed',stFree:'Free',stChurn:'Cancelled',payDone:'Paid out',payPending:'Scheduled',freeTier:'Free tier',search:'Search students',none:'No students match',copied:'Copied to clipboard',mock:'Not functional in the mock',people:'',pageInfo:(a,b,n)=>`${a}–${b} of ${n}`,
+  en:{navDash:'Dashboard',tBenefit:'Student benefit',tBenefitV:'5 sign-up credits',tTests:'Main tests',tGrade:'Grade',navStudents:'Referred students',navKit:'Marketing kit',navAccount:'Account',navContract:'Contract · invoices',navSettings:'Settings',role:'Partner admin',sample:'Sample data · design review',eyebrow:'PARTNER',title:'Partner dashboard',desc:'Track students who joined with your code.',mockSwitch:'Mock switch',p30:'Last 30 days',p90:'Last 90 days',pall:'All time',export:'Export',active:'Active',tTerm:'Contract term',tUpdated:'Last updated',codeTitle:'Referral code',codeNote:'Students enter the code at sign-up → 5 credits',copyLink:'Copy link',copyCode:'Copy code',trend:'Monthly sign-ups and paid conversions',trendS:'Last 6 months',signups:'Sign-ups',paid:'Paid',funnel:'Conversion funnel',funnelS:'For the selected period',mix:'Plan mix',mixS:'Currently subscribed students',status:'Status',kit:'Share message',kitS:'Send by KakaoTalk or text',toParent:'Parents',toStudent:'Students',toShort:'One line',copyMsg:'Copy message',students:'Referred students',studentsS:'Student names are not shown, to protect their privacy',fAll:'All statuses',fPaid:'Subscribed',fFree:'Free',fChurn:'Cancelled',tJoined:'Joined',tTarget:'Target test',tPlan:'Plan',tStatus:'Status',tRevenue:'Total paid',prev:'Previous',next:'Next',foot:'Partner support partners@classraum.com · figures shown are sample data.',
+      sSign:'Code sign-ups',sPaid:'Paid conversions',sRev:'Referred payments',vs:'vs previous period',fVisit:'Link visits',fSign:'Signed up',fTrial:'First test',fPaid2:'Paid',stPaid:'Subscribed',stFree:'Free',stChurn:'Cancelled',freeTier:'Free tier',none:'No students match',copied:'Copied to clipboard',mock:'Not functional in the mock',people:'',pageInfo:(a,b,n)=>`${a}–${b} of ${n}`,
       msg:{parent:(p,c,l)=>`Hello from ${p}.\n\nWe would like to introduce Classraum Study for your child's SAT, TOEFL and SSAT preparation: full mock tests in the real exam format with AI feedback.\n\nSign up with the link below and enter referral code ${c} to receive 5 free credits.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study\nReal-format SAT, TOEFL and SSAT mock tests with AI feedback.\nEnter referral code ${c} at sign-up for 5 free credits.\n${l}`,short:(p,c,l)=>`Classraum Study code ${c} → 5 free credits (${p})\n${l}`}}
 }
 let state = { p:'uhak', range:'90', lang:'ko', filter:'all', q:'', msg:'parent', sort:'joined', dir:'desc', page:0 }
@@ -283,11 +261,11 @@ function build(pk){
     const plan = converts ? PLANS[r()<0.45?0:r()<0.72?1:2] : null
     const firstPayAgo = converts ? Math.max(0, daysAgo - Math.floor(r()*12)) : null, payments = []
     if (converts){ const maxM = churns ? 1 + Math.floor(r()*Math.min(3, Math.floor(firstPayAgo/30))) : 99; for (let k=0;k<maxM;k++){ const ago = firstPayAgo-30*k; if (ago<0) break; payments.push({ago, amount:plan.price}) } }
-    students.push({ name: SUR[Math.floor(r()*SUR.length)]+'*'+GIVEN[Math.floor(r()*GIVEN.length)], grade: GRADES[Math.floor(r()*GRADES.length)], joined, daysAgo,
+    students.push({ grade: GRADES[Math.floor(r()*GRADES.length)], joined, daysAgo,
       status: !converts?'free':churns?'churn':'paid', plan, payments, firstPayAgo, revenue: payments.reduce((x,p)=>x+p.amount,0), started: r()<0.74||converts, test: P.tests[Math.floor(r()*P.tests.length)] })
   }
   const mk = d => d.getFullYear()*12+d.getMonth(), keys=[], months=[], monthsEn=[]
-  for (let k=5;k>=0;k--){ const d = new Date(2026,9-k,1); keys.push(mk(d)); months.push((d.getMonth()+1)+'월'); monthsEn.push(d.toLocaleString('en',{month:'short'})) }
+  for (let k=5;k>=0;k--){ const d = new Date(2026,9-k,1); keys.push(mk(d)); months.push((d.getMonth()+1)+'월'); monthsEn.push(d.toLocaleString('en',{})) }
   return { P, students, today, DAY, months, monthsEn,
     signs: keys.map(k => students.filter(s => mk(s.joined)===k).length),
     paid: keys.map(k => students.filter(s => s.firstPayAgo!=null && mk(new Date(today - s.firstPayAgo*DAY))===k).length) }
@@ -300,7 +278,7 @@ function win(lo, hi){
   const list = D.students.filter(s => s.daysAgo>=lo && s.daysAgo<hi)
   const paid = D.students.filter(s => s.firstPayAgo!=null && s.firstPayAgo>=lo && s.firstPayAgo<hi).length
   const rev = D.students.reduce((a,s)=> a + s.payments.filter(p=>p.ago>=lo && p.ago<hi).reduce((x,p)=>x+p.amount,0), 0)
-  return { sign:list.length, paid, rev, comm: rev*D.P.rate, visits: Math.round(list.length*3.3)+4, started: list.filter(s=>s.started).length }
+  return { sign:list.length, paid, rev, visits: Math.round(list.length*3.3)+4, started: list.filter(s=>s.started).length }
 }
 const metrics = off => state.range==='all' ? (off ? null : win(0,1e9)) : win(+state.range*off, +state.range*(off+1))
 const buckets = key => Array.from({length:12}, (_,i) => win((11-i)*14, (12-i)*14)[key])   // 12 two-week buckets for the mini charts
@@ -326,9 +304,9 @@ function renderStats(){
   const unit = `<span class="text-lg sm:text-2xl text-gray-400 font-medium ml-1">${t('people')}</span>`
   const cards = [
     ['sSign','users', c.sign + unit, c.sign, p && p.sign, buckets('sign'), '#1776db'],
+    ['fTrial','check', c.started + unit, c.started, p && p.started, buckets('started'), '#F59E0B'],
     ['sPaid','check', c.paid + unit, c.paid, p && p.paid, buckets('paid'), '#10B981'],
     ['sRev','card', won(c.rev), c.rev, p && p.rev, buckets('rev'), '#8B5CF6'],
-    ['sComm','coins', won(c.comm), c.comm, p && p.comm, buckets('comm'), '#F59E0B'],
   ]
   document.getElementById('stats').innerHTML = cards.map(([k,ic,val,cur,prev,ser,col]) => {
     let g = ''
@@ -363,30 +341,23 @@ function renderMix(){
     PLANS.map((p,i)=>{ const c = paid.filter(s=>s.plan.id===p.id).length; return `<div class="flex items-center justify-between text-sm"><span class="inline-flex items-center gap-2 text-gray-700"><span class="w-2.5 h-2.5 rounded-sm ${cols[i]}"></span>${state.lang==='ko'?p.ko:p.en}<span class="text-gray-400 text-xs num">${won(p.price)}</span></span><span class="num font-medium text-gray-900">${c}<span class="text-gray-400 font-normal text-xs ml-1.5">${Math.round(c/total*100)}%</span></span></div>` }).join('') +
     `<div class="pt-3 border-t border-gray-100 flex items-center justify-between text-sm"><span class="text-gray-500">${t('stPaid')}</span><span class="num font-semibold">${paid.length}${t('people')}</span></div>`
 }
-function renderPayouts(){
-  const by = {}; for (const s of D.students) for (const p of s.payments){ const d = new Date(D.today-p.ago*D.DAY), k = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}`; by[k]=(by[k]||0)+p.amount*D.P.rate }
-  const rows = ['2026.10','2026.09','2026.08','2026.07'].map((m,i)=>[m, by[m]||0, i===0])
-  document.getElementById('nextAmt').textContent = won(rows[0][1])
-  document.getElementById('payRows').innerHTML = rows.map(([m,a,pend])=>`<tr><td class="px-5 py-3 num text-gray-700">${m}</td><td class="px-5 py-3 text-right num font-medium">${won(a)}</td><td class="px-5 py-3"><span class="px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${pend?'bg-amber-50 text-amber-700':'bg-emerald-50 text-emerald-700'}">${t(pend?'payPending':'payDone')}</span></td></tr>`).join('')
-}
 function renderRows(){
-  const q = state.q.trim(), dir = state.dir==='asc'?1:-1
-  let list = D.students.filter(s => (state.filter==='all'||s.status===state.filter) && (!q || s.name.includes(q) || s.grade.toLowerCase().includes(q.toLowerCase())))
-  list = list.slice().sort((a,b)=> state.sort==='name' ? a.name.localeCompare(b.name,'ko')*dir : state.sort==='joined' ? (a.joined-b.joined)*dir : (a.revenue-b.revenue)*dir)
+  const dir = state.dir==='asc'?1:-1
+  let list = D.students.filter(s => state.filter==='all'||s.status===state.filter)
+  list = list.slice().sort((a,b)=> state.sort==='joined' ? (a.joined-b.joined)*dir : (a.revenue-b.revenue)*dir)
   const pages = Math.max(1,Math.ceil(list.length/PAGE)); state.page = Math.min(state.page, pages-1)
   const from = state.page*PAGE, slice = list.slice(from, from+PAGE)
   document.getElementById('pageInfo').textContent = list.length ? t('pageInfo')(from+1, from+slice.length, list.length) : ''
   document.getElementById('prev').disabled = state.page===0; document.getElementById('next').disabled = state.page>=pages-1
   document.querySelectorAll('th.sortable').forEach(th => th.querySelector('.arrow').textContent = th.dataset.k===state.sort ? (state.dir==='asc'?'↑':'↓') : '')
   const pill = s => s.status==='paid' ? 'bg-emerald-50 text-emerald-700' : s.status==='churn' ? 'bg-rose-50 text-rose-700' : 'bg-gray-100 text-gray-600'
-  document.getElementById('rows').innerHTML = !list.length ? `<tr><td colspan="7" class="px-5 py-10 text-center text-gray-500">${t('none')}</td></tr>` : slice.map(s=>`<tr class="hover:bg-gray-50/60">
-    <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">${s.name[0]}</div><div><div class="font-medium text-gray-900">${s.name}</div><div class="text-xs text-gray-500">${s.grade}</div></div></div></td>
+  document.getElementById('rows').innerHTML = !list.length ? `<tr><td colspan="6" class="px-5 py-10 text-center text-gray-500">${t('none')}</td></tr>` : slice.map(s=>`<tr class="hover:bg-gray-50/60">
     <td class="px-5 py-3 num text-gray-700 whitespace-nowrap">${fmtDate(s.joined)}</td>
+    <td class="px-5 py-3 text-gray-700 whitespace-nowrap">${s.grade}</td>
     <td class="px-5 py-3"><span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">${s.test}</span></td>
     <td class="px-5 py-3 text-gray-700 whitespace-nowrap">${s.plan?(state.lang==='ko'?s.plan.ko:s.plan.en):`<span class="text-gray-400">${t('freeTier')}</span>`}</td>
     <td class="px-5 py-3"><span class="px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${pill(s)}">${t(s.status==='paid'?'stPaid':s.status==='free'?'stFree':'stChurn')}</span></td>
-    <td class="px-5 py-3 text-right num whitespace-nowrap">${s.revenue?won(s.revenue):'<span class="text-gray-300">—</span>'}</td>
-    <td class="px-5 py-3 text-right num whitespace-nowrap font-medium">${s.revenue?won(s.revenue*D.P.rate):'<span class="text-gray-300">—</span>'}</td></tr>`).join('')
+    <td class="px-5 py-3 text-right num whitespace-nowrap">${s.revenue?won(s.revenue):'<span class="text-gray-300">—</span>'}</td></tr>`).join('')
 }
 function renderMsg(){
   document.querySelectorAll('#msgTabs button').forEach(b => b.className = 'px-3 py-1.5 rounded-md text-xs font-medium ' + (b.dataset.m===state.msg ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500'))
@@ -398,7 +369,7 @@ function renderPartner(){
   document.getElementById('accentBar').style.background = P.accent
   document.getElementById('pName').textContent = nm
   document.getElementById('pSub').textContent = state.lang==='ko'?P.sub:P.subEn
-  document.getElementById('pRate').textContent = Math.round(P.rate*100)+'%'
+  document.getElementById('pTests').textContent = P.tests.join(' · ')
   document.getElementById('pTerm').textContent = P.term
   document.getElementById('code').textContent = P.code
   document.getElementById('whoName').textContent = nm; document.getElementById('whoInit').textContent = P.short
@@ -409,14 +380,12 @@ function renderPartner(){
 function renderI18n(){
   document.documentElement.lang = state.lang
   document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[state.lang][el.dataset.i18n]; if (typeof v==='string') el.textContent = v })
-  document.getElementById('q').placeholder = t('search')
   document.getElementById('lang').textContent = state.lang==='ko'?'EN':'한국어'
 }
-function renderAll(){ renderI18n(); renderPartner(); renderStats(); renderTrend(); renderFunnel(); renderMix(); renderPayouts(); renderRows(); renderMsg() }
+function renderAll(){ renderI18n(); renderPartner(); renderStats(); renderTrend(); renderFunnel(); renderMix(); renderRows(); renderMsg() }
 document.getElementById('partnerSel').onchange = e => { state.p = e.target.value; state.page = 0; D = build(state.p); renderAll() }
 document.getElementById('rangeSel').onchange = e => { state.range = e.target.value; renderStats(); renderFunnel() }
 document.getElementById('filterSel').onchange = e => { state.filter = e.target.value; state.page = 0; renderRows() }
-document.getElementById('q').oninput = e => { state.q = e.target.value; state.page = 0; renderRows() }
 document.querySelectorAll('th.sortable').forEach(th => th.onclick = () => { state.dir = state.sort===th.dataset.k && state.dir==='desc' ? 'asc' : 'desc'; state.sort = th.dataset.k; renderRows() })
 document.querySelectorAll('#msgTabs button').forEach(b => b.onclick = () => { state.msg = b.dataset.m; renderMsg() })
 document.getElementById('prev').onclick = () => { state.page--; renderRows() }
