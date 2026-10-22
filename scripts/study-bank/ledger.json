@@ -9915,6 +9915,114 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "act-reading-v8a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "literary_narrative",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v8a",
+      "contentSha": "b9f7931979af3698abd0b9446e75b1acac45014082bec189f6220f0097113aa4",
+      "status": "staged-for-human-review",
+      "note": "ACT Reading v8 section (4 passages x 9) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE (ACT verbal: human sitting decides). Release by act-reading-v8.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b9f7931979af3698abd0b9446e75b1acac45014082bec189f6220f0097113aa4",
+          "verdict": "act-bank-helper check reading: structure OK; 17/12/7; slots 9x4."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT verbal."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v8b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "literary_narrative",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v8b",
+      "contentSha": "bd194cbae5b324431a09b22e2c288363707840c3f770dd1d0eeffe20044ba0b6",
+      "status": "staged-for-human-review",
+      "note": "ACT Reading v8 section (4 passages x 9) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE (ACT verbal: human sitting decides). Release by act-reading-v8.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bd194cbae5b324431a09b22e2c288363707840c3f770dd1d0eeffe20044ba0b6",
+          "verdict": "act-bank-helper check reading: structure OK; 17/12/7; slots 9x4."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT verbal."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v8c-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "literary_narrative",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v8c",
+      "contentSha": "d3dcd9ab1e1f90139dda1c27a0515d1505c129fec88621176d151b862eaee084",
+      "status": "staged-for-human-review",
+      "note": "ACT Reading v8 section (4 passages x 9) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE (ACT verbal: human sitting decides). Release by act-reading-v8.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "d3dcd9ab1e1f90139dda1c27a0515d1505c129fec88621176d151b862eaee084",
+          "verdict": "act-bank-helper check reading: structure OK; 17/12/7; slots 9x4."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: 1/36 flagged, fixed"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT verbal."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v8d-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "literary_narrative",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v8d",
+      "contentSha": "ea61b91016a8328c7fb44933dd05548071d5da05104c904c17b58fbaf644f0c9",
+      "status": "staged-for-human-review",
+      "note": "ACT Reading v8 section (4 passages x 9) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE (ACT verbal: human sitting decides). Release by act-reading-v8.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ea61b91016a8328c7fb44933dd05548071d5da05104c904c17b58fbaf644f0c9",
+          "verdict": "act-bank-helper check reading: structure OK; 17/12/7; slots 9x4."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT verbal."
+        }
+      }
     }
   ],
   "auditedCohorts": [

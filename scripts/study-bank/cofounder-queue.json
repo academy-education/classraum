@@ -213,6 +213,45 @@
       "group": "iseedraft5-IR5-P04",
       "route": "spot",
       "runId": "isee-draft5-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v8a",
+      "tool": "item",
+      "domain": "Key Ideas and Details:5,Craft and Structure:3,Integration of Knowledge and Ideas:1",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v8a:arv8a-p3",
+      "route": "spot",
+      "runId": "act-v8a-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v8b",
+      "tool": "item",
+      "domain": "Key Ideas and Details:4,Craft and Structure:3,Integration of Knowledge and Ideas:2",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v8b:arv8b-p4",
+      "route": "spot",
+      "runId": "act-v8b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v8c",
+      "tool": "item",
+      "domain": "Key Ideas and Details:17,Craft and Structure:12,Integration of Knowledge and Ideas:7",
+      "size": 36,
+      "family": "act",
+      "route": "full",
+      "runId": "act-v8c-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v8d",
+      "tool": "item",
+      "domain": "Key Ideas and Details:5,Craft and Structure:3,Integration of Knowledge and Ideas:1",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v8d:arv8d-p2",
+      "route": "spot",
+      "runId": "act-v8d-spot-cofounder-{date}"
     }
   ]
 }
