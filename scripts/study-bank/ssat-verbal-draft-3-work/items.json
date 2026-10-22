@@ -1,0 +1,4931 @@
+[
+ {
+  "localId": "SVD3-V4A01",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] scribe is to quill as",
+   "choices": [
+    "feather is to bird",
+    "pottery is to shard",
+    "sculptor is to mallet",
+    "library is to scroll",
+    "parchment is to sheepskin"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: worker/tool. A scribe works with a quill, as a sculptor works with a mallet.",
+   "correct_answer": "sculptor is to mallet",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "pottery is to shard": "relation it instantiates instead: whole/fragment (a shard is a broken piece of pottery), not worker/tool",
+    "feather is to bird": "relation it instantiates instead: part/whole (a feather is part of a bird), not worker/tool",
+    "library is to scroll": "relation it instantiates instead: place/kept item (a library keeps scrolls), not worker/tool",
+    "parchment is to sheepskin": "relation it instantiates instead: product/material (parchment is made from sheepskin), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A02",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] fencer is to foil as",
+   "choices": [
+    "batter is to bat",
+    "lunge is to thrust",
+    "mitt is to glove",
+    "mask is to face",
+    "stadium is to fans"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: worker/tool. A fencer competes with a foil, as a batter hits with a bat.",
+   "correct_answer": "batter is to bat",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "mask is to face": "relation it instantiates instead: protector/protected (a mask protects the face), not worker/tool",
+    "mitt is to glove": "relation it instantiates instead: type/category (a mitt is a kind of glove), not worker/tool",
+    "lunge is to thrust": "relation it instantiates instead: similar actions (a lunge and a thrust are similar attacking moves), not worker/tool",
+    "stadium is to fans": "relation it instantiates instead: place/occupants (fans fill a stadium), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A03",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] knitter is to needles as",
+   "choices": [
+    "cardigan is to sweater",
+    "yarn is to scarf",
+    "timber is to forest",
+    "woodcarver is to knife",
+    "whittle is to carve"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: worker/tool. A knitter works with needles, as a woodcarver works with a knife.",
+   "correct_answer": "woodcarver is to knife",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "yarn is to scarf": "relation it instantiates instead: material/product (a scarf is knitted from yarn), not worker/tool",
+    "timber is to forest": "relation it instantiates instead: material/source (timber comes from a forest), not worker/tool",
+    "whittle is to carve": "relation it instantiates instead: specific/general action (to whittle is a specific way to carve), not worker/tool",
+    "cardigan is to sweater": "relation it instantiates instead: type/category (a cardigan is a kind of sweater), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A04",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] glassblower is to pipe as",
+   "choices": [
+    "vase is to mantel",
+    "goblet is to glass",
+    "easel is to canvas",
+    "calligrapher is to brush",
+    "stroke is to character"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: worker/tool. A glassblower shapes glass with a pipe, as a calligrapher forms letters with a brush.",
+   "correct_answer": "calligrapher is to brush",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "goblet is to glass": "relation it instantiates instead: object/material (a goblet is made of glass), not worker/tool",
+    "easel is to canvas": "relation it instantiates instead: support/thing supported (an easel holds a canvas), not worker/tool",
+    "stroke is to character": "relation it instantiates instead: element/whole (a stroke is one element of a written character), not worker/tool",
+    "vase is to mantel": "relation it instantiates instead: object/where displayed (a vase is displayed on a mantel), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A05",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] geologist is to hammer as",
+   "choices": [
+    "fossil is to limestone",
+    "lava is to basalt",
+    "cell is to organism",
+    "biologist is to microscope",
+    "magnify is to enlarge"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: worker/tool. A geologist works with a hammer, as a biologist works with a microscope.",
+   "correct_answer": "biologist is to microscope",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cell is to organism": "relation it instantiates instead: unit/whole (a cell is the basic unit of an organism), not worker/tool",
+    "fossil is to limestone": "relation it instantiates instead: embedded/surrounding (a fossil may be embedded in limestone), not worker/tool",
+    "magnify is to enlarge": "relation it instantiates instead: synonym (to magnify is to enlarge), not worker/tool",
+    "lava is to basalt": "relation it instantiates instead: source/rock formed (basalt forms from cooled lava), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A06",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] seamstress is to needle as",
+   "choices": [
+    "barber is to scissors",
+    "embroidery is to thread",
+    "hem is to skirt",
+    "salon is to haircut",
+    "bangs is to fringe"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: worker/tool. A seamstress works with a needle, as a barber works with scissors.",
+   "correct_answer": "barber is to scissors",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "embroidery is to thread": "relation it instantiates instead: product/material (embroidery is stitched with thread), not worker/tool",
+    "salon is to haircut": "relation it instantiates instead: place/service (a salon gives haircuts), not worker/tool",
+    "bangs is to fringe": "relation it instantiates instead: synonym (bangs are also called a fringe), not worker/tool",
+    "hem is to skirt": "relation it instantiates instead: edge/garment (a hem is the finished edge of a skirt), not worker/tool"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A07",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] milliner is to hats as",
+   "choices": [
+    "audience is to concert",
+    "bridge is to cello",
+    "felt is to fedora",
+    "tailor is to fabric",
+    "luthier is to guitars"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: worker/product. A milliner makes hats, as a luthier makes guitars.",
+   "correct_answer": "luthier is to guitars",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "felt is to fedora": "relation it instantiates instead: material/product (a fedora is made of felt), not worker/product",
+    "bridge is to cello": "relation it instantiates instead: part/whole (a bridge is part of a cello), not worker/product",
+    "audience is to concert": "relation it instantiates instead: spectators/event (an audience attends a concert), not worker/product",
+    "tailor is to fabric": "relation it instantiates instead: worker/material (a tailor works with fabric), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A08",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] cartwright is to carts as",
+   "choices": [
+    "wagon is to oxen",
+    "frame is to picture",
+    "fletching is to shaft",
+    "archer is to target",
+    "fletcher is to arrows"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: worker/product. A cartwright builds carts, as a fletcher makes arrows.",
+   "correct_answer": "fletcher is to arrows",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wagon is to oxen": "relation it instantiates instead: vehicle/draft animal (oxen pull a wagon), not worker/product",
+    "archer is to target": "relation it instantiates instead: person/aim (an archer aims at a target), not worker/product",
+    "fletching is to shaft": "relation it instantiates instead: part/part (the fletching and the shaft are both parts of an arrow), not worker/product",
+    "frame is to picture": "relation it instantiates instead: border/bordered (a frame borders a picture), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A09",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] poet is to sonnet as",
+   "choices": [
+    "tailor is to suit",
+    "silk is to cotton",
+    "verse is to stanza",
+    "needle is to thread",
+    "critic is to poem"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: worker/product. A poet writes a sonnet, as a tailor makes a suit.",
+   "correct_answer": "tailor is to suit",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "verse is to stanza": "relation it instantiates instead: unit/larger unit (verses make up a stanza), not worker/product",
+    "needle is to thread": "relation it instantiates instead: tool/material (a needle carries thread), not worker/product",
+    "critic is to poem": "relation it instantiates instead: judge/thing judged (a critic judges a poem), not worker/product",
+    "silk is to cotton": "relation it instantiates instead: coordinate fabrics (silk and cotton are both fabrics), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A10",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] confectioner is to candy as",
+   "choices": [
+    "sweet is to bitter",
+    "shipwright is to ships",
+    "sugar is to syrup",
+    "helm is to steering",
+    "harbor is to vessels"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: worker/product. A confectioner makes candy, as a shipwright builds ships.",
+   "correct_answer": "shipwright is to ships",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "harbor is to vessels": "relation it instantiates instead: place/occupants (vessels anchor in a harbor), not worker/product",
+    "sugar is to syrup": "relation it instantiates instead: material/product (syrup is made from sugar), not worker/product",
+    "helm is to steering": "relation it instantiates instead: part/function (a helm is used for steering), not worker/product",
+    "sweet is to bitter": "relation it instantiates instead: antonym (sweet is the opposite of bitter), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A11",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] journalist is to articles as",
+   "choices": [
+    "nugget is to prospector",
+    "reporter is to newsroom",
+    "gold is to metal",
+    "newspaper is to column",
+    "goldsmith is to rings"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: worker/product. A journalist writes articles, as a goldsmith makes rings.",
+   "correct_answer": "goldsmith is to rings",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "newspaper is to column": "relation it instantiates instead: whole/part (a newspaper contains columns), not worker/product",
+    "gold is to metal": "relation it instantiates instead: instance/category (gold is a metal), not worker/product",
+    "reporter is to newsroom": "relation it instantiates instead: worker/place (a reporter works in a newsroom), not worker/product",
+    "nugget is to prospector": "relation it instantiates instead: find/finder (a prospector finds a nugget), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A12",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] saddler is to saddles as",
+   "choices": [
+    "stirrup is to foot",
+    "mare is to stallion",
+    "clay is to riverbank",
+    "potter is to urns",
+    "glaze is to pottery"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: worker/product. A saddler makes saddles, as a potter makes urns.",
+   "correct_answer": "potter is to urns",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "stirrup is to foot": "relation it instantiates instead: support/thing supported (a stirrup supports a rider's foot), not worker/product",
+    "clay is to riverbank": "relation it instantiates instead: material/source (clay is dug from a riverbank), not worker/product",
+    "glaze is to pottery": "relation it instantiates instead: coating/thing coated (glaze coats pottery), not worker/product",
+    "mare is to stallion": "relation it instantiates instead: female/male (a mare is a female horse; a stallion is a male), not worker/product"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A13",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] damp is to sodden as",
+   "choices": [
+    "raincoat is to drizzle",
+    "puddle is to rain",
+    "summer is to season",
+    "fan is to breeze",
+    "warm is to sweltering"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: degree. Sodden is extremely damp, as sweltering is extremely warm.",
+   "correct_answer": "warm is to sweltering",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "puddle is to rain": "relation it instantiates instead: effect/cause (rain leaves a puddle), not degree",
+    "summer is to season": "relation it instantiates instead: instance/category (summer is a season), not degree",
+    "raincoat is to drizzle": "relation it instantiates instead: protection/weather (a raincoat protects against drizzle), not degree",
+    "fan is to breeze": "relation it instantiates instead: source/product (a fan makes a breeze), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A14",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] scared is to terrified as",
+   "choices": [
+    "brave is to fearful",
+    "pleased is to overjoyed",
+    "cheerful is to jolly",
+    "smile is to delight",
+    "shriek is to fright"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: degree. Terrified is extremely scared, as overjoyed is extremely pleased.",
+   "correct_answer": "pleased is to overjoyed",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "brave is to fearful": "relation it instantiates instead: antonym (brave is the opposite of fearful), not degree",
+    "smile is to delight": "relation it instantiates instead: expression/feeling (a smile shows delight), not degree",
+    "shriek is to fright": "relation it instantiates instead: reaction/cause (fright can cause a shriek), not degree",
+    "cheerful is to jolly": "relation it instantiates instead: synonym (cheerful and jolly mean the same), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A15",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] interested is to obsessed as",
+   "choices": [
+    "fan is to celebrity",
+    "hobby is to pastime",
+    "worried is to frantic",
+    "curious is to indifferent",
+    "anxiety is to sweat"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: degree. Obsessed is extremely interested, as frantic is extremely worried.",
+   "correct_answer": "worried is to frantic",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "curious is to indifferent": "relation it instantiates instead: antonym (curious is the opposite of indifferent), not degree",
+    "hobby is to pastime": "relation it instantiates instead: synonym (a hobby is a pastime), not degree",
+    "anxiety is to sweat": "relation it instantiates instead: cause/symptom (anxiety can cause sweating), not degree",
+    "fan is to celebrity": "relation it instantiates instead: admirer/admired (a fan admires a celebrity), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A16",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] dislike is to abhor as",
+   "choices": [
+    "idol is to worship",
+    "admire is to revere",
+    "monument is to hero",
+    "scorn is to sneer",
+    "despise is to adore"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: degree. To abhor is to dislike intensely, as to revere is to admire intensely.",
+   "correct_answer": "admire is to revere",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "despise is to adore": "relation it instantiates instead: antonym (to despise is the opposite of to adore), not degree",
+    "idol is to worship": "relation it instantiates instead: object/act (an idol is an object of worship), not degree",
+    "scorn is to sneer": "relation it instantiates instead: feeling/expression (a sneer expresses scorn), not degree",
+    "monument is to hero": "relation it instantiates instead: tribute/honoree (a monument honors a hero), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A18",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] thrifty is to miserly as",
+   "choices": [
+    "courageous is to foolhardy",
+    "pennies is to jar",
+    "lavish is to sparing",
+    "warrior is to valor",
+    "budget is to spending"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: degree. Miserly is thrift carried to excess, as foolhardy is courage carried to excess.",
+   "correct_answer": "courageous is to foolhardy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "lavish is to sparing": "relation it instantiates instead: antonym (lavish is the opposite of sparing), not degree",
+    "warrior is to valor": "relation it instantiates instead: person/quality (a warrior is expected to show valor), not degree",
+    "pennies is to jar": "relation it instantiates instead: contents/container (pennies are kept in a jar), not degree",
+    "budget is to spending": "relation it instantiates instead: plan/thing planned (a budget plans spending), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A19",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] annoyed is to infuriated as",
+   "choices": [
+    "sad is to despondent",
+    "scarf is to neck",
+    "calm is to agitated",
+    "winter is to solstice",
+    "goosebumps is to chill"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: degree. Infuriated is extremely annoyed, as despondent is extremely sad.",
+   "correct_answer": "sad is to despondent",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "goosebumps is to chill": "relation it instantiates instead: reaction/cause (a chill raises goosebumps), not degree",
+    "winter is to solstice": "relation it instantiates instead: season/event (the winter solstice falls in winter), not degree",
+    "calm is to agitated": "relation it instantiates instead: antonym (calm is the opposite of agitated), not degree",
+    "scarf is to neck": "relation it instantiates instead: covering/covered (a scarf covers the neck), not degree"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A20",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] amorphous is to shape as",
+   "choices": [
+    "circular is to round",
+    "boredom is to doodle",
+    "sphere is to cube",
+    "apathetic is to interest",
+    "curious is to question"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: lack. Something amorphous lacks shape, as someone apathetic lacks interest.",
+   "correct_answer": "apathetic is to interest",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "circular is to round": "relation it instantiates instead: synonym (circular means round), not lack",
+    "curious is to question": "relation it instantiates instead: trait/typical act (a curious person asks questions), not lack",
+    "boredom is to doodle": "relation it instantiates instead: feeling/sign (doodling can be a sign of boredom), not lack",
+    "sphere is to cube": "relation it instantiates instead: coordinate shapes (a sphere and a cube are both solid shapes), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A21",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] destitute is to money as",
+   "choices": [
+    "wealthy is to poor",
+    "lesson is to teacher",
+    "bank is to vault",
+    "veteran is to war",
+    "naive is to experience"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: lack. Someone destitute lacks money, as someone naive lacks experience.",
+   "correct_answer": "naive is to experience",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wealthy is to poor": "relation it instantiates instead: antonym (wealthy is the opposite of poor), not lack",
+    "bank is to vault": "relation it instantiates instead: whole/part (a bank has a vault), not lack",
+    "veteran is to war": "relation it instantiates instead: person/event (a veteran served in a war), not lack",
+    "lesson is to teacher": "relation it instantiates instead: thing given/giver (a teacher gives a lesson), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A22",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] vacant is to occupants as",
+   "choices": [
+    "tenant is to lease",
+    "barren is to vegetation",
+    "hotel is to guests",
+    "crowded is to empty",
+    "vineyard is to harvest"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: lack. A vacant building lacks occupants, as barren land lacks vegetation.",
+   "correct_answer": "barren is to vegetation",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "crowded is to empty": "relation it instantiates instead: antonym (crowded is the opposite of empty), not lack",
+    "tenant is to lease": "relation it instantiates instead: person/document (a tenant signs a lease), not lack",
+    "vineyard is to harvest": "relation it instantiates instead: place/event (a vineyard has a harvest), not lack",
+    "hotel is to guests": "relation it instantiates instead: place/visitors (a hotel houses guests), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A23",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] callous is to sympathy as",
+   "choices": [
+    "careful is to prudent",
+    "nurse is to compassion",
+    "heedless is to caution",
+    "cruel is to kind",
+    "warning is to danger"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: lack. A callous person lacks sympathy, as a heedless person lacks caution.",
+   "correct_answer": "heedless is to caution",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cruel is to kind": "relation it instantiates instead: antonym (cruel is the opposite of kind), not lack",
+    "nurse is to compassion": "relation it instantiates instead: worker/needed trait (a nurse needs compassion), not lack",
+    "warning is to danger": "relation it instantiates instead: signal/threat (a warning signals danger), not lack",
+    "careful is to prudent": "relation it instantiates instead: synonym (careful and prudent mean the same), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A24",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] flawless is to defects as",
+   "choices": [
+    "sterile is to germs",
+    "clinic is to checkup",
+    "perfect is to ideal",
+    "microbe is to bacterium",
+    "jewel is to appraiser"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: lack. Something flawless has no defects, as something sterile has no germs.",
+   "correct_answer": "sterile is to germs",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "jewel is to appraiser": "relation it instantiates instead: item/evaluator (an appraiser values a jewel), not lack",
+    "perfect is to ideal": "relation it instantiates instead: synonym (perfect means ideal), not lack",
+    "clinic is to checkup": "relation it instantiates instead: place/service (a clinic gives checkups), not lack",
+    "microbe is to bacterium": "relation it instantiates instead: category/instance (a bacterium is a kind of microbe), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A25",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] timid is to courage as",
+   "choices": [
+    "hero is to coward",
+    "ant is to diligence",
+    "modest is to vanity",
+    "mouse is to squeak",
+    "boast is to brag"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: lack. A timid person lacks courage, as a modest person lacks vanity.",
+   "correct_answer": "modest is to vanity",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ant is to diligence": "relation it instantiates instead: animal/symbolized trait (an ant is a symbol of diligence), not lack",
+    "mouse is to squeak": "relation it instantiates instead: animal/sound (a mouse squeaks), not lack",
+    "boast is to brag": "relation it instantiates instead: synonym (to boast is to brag), not lack",
+    "hero is to coward": "relation it instantiates instead: antonym (a hero is the opposite of a coward), not lack"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A26",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] stamen is to flower as",
+   "choices": [
+    "adobe is to mud",
+    "seed is to sapling",
+    "pane is to window",
+    "nectar is to hummingbird",
+    "bouquet is to vase"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: part/whole. A stamen is a part of a flower, as a pane is a part of a window.",
+   "correct_answer": "pane is to window",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "nectar is to hummingbird": "relation it instantiates instead: food/feeder (a hummingbird feeds on nectar), not part/whole",
+    "adobe is to mud": "relation it instantiates instead: product/material (adobe is made from mud), not part/whole",
+    "bouquet is to vase": "relation it instantiates instead: contents/container (a vase holds a bouquet), not part/whole",
+    "seed is to sapling": "relation it instantiates instead: stage/later stage (a seed grows into a sapling), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A27",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] bead is to necklace as",
+   "choices": [
+    "amber is to resin",
+    "anklet is to ankle",
+    "link is to chain",
+    "padlock is to gate",
+    "gold is to silver"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: part/whole. A bead is one of the units strung into a necklace, as a link is one of the units joined into a chain.",
+   "correct_answer": "link is to chain",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "amber is to resin": "relation it instantiates instead: product/source (amber is fossilized resin), not part/whole",
+    "anklet is to ankle": "relation it instantiates instead: ornament/where worn (an anklet is worn on the ankle), not part/whole",
+    "padlock is to gate": "relation it instantiates instead: fastener/thing fastened (a padlock fastens a gate), not part/whole",
+    "gold is to silver": "relation it instantiates instead: coordinate metals (gold and silver are both precious metals), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A28",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] tread is to tire as",
+   "choices": [
+    "husk is to coconut",
+    "spare is to trunk",
+    "rubber is to eraser",
+    "palm is to dates",
+    "pothole is to road"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: part/whole. The tread is the tough outer layer of a tire, as the husk is the tough outer layer of a coconut.",
+   "correct_answer": "husk is to coconut",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "rubber is to eraser": "relation it instantiates instead: material/product (an eraser is made of rubber), not part/whole",
+    "palm is to dates": "relation it instantiates instead: plant/fruit (a palm tree bears dates), not part/whole",
+    "spare is to trunk": "relation it instantiates instead: item/where stored (a spare tire is stored in the trunk), not part/whole",
+    "pothole is to road": "relation it instantiates instead: flaw/surface (a pothole is a flaw in a road), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A29",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] cockpit is to airplane as",
+   "choices": [
+    "horn is to warning",
+    "cab is to truck",
+    "hangar is to glider",
+    "driver is to license",
+    "diesel is to fuel"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: part/whole. The cockpit is the operator's compartment of an airplane, as the cab is the operator's compartment of a truck.",
+   "correct_answer": "cab is to truck",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "driver is to license": "relation it instantiates instead: person/document (a driver holds a license), not part/whole",
+    "diesel is to fuel": "relation it instantiates instead: instance/category (diesel is a fuel), not part/whole",
+    "hangar is to glider": "relation it instantiates instead: shelter/vehicle (a glider is stored in a hangar), not part/whole",
+    "horn is to warning": "relation it instantiates instead: device/function (a horn sounds a warning), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A30",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] word is to sentence as",
+   "choices": [
+    "fabric is to cotton",
+    "comma is to pause",
+    "seamstress is to pattern",
+    "stitch is to seam",
+    "tear is to patch"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: part/whole. Words are joined one after another to form a sentence, as stitches are joined one after another to form a seam.",
+   "correct_answer": "stitch is to seam",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tear is to patch": "relation it instantiates instead: damage/repair (a patch repairs a tear), not part/whole",
+    "comma is to pause": "relation it instantiates instead: symbol/meaning (a comma signals a pause), not part/whole",
+    "fabric is to cotton": "relation it instantiates instead: category/instance (cotton is a kind of fabric), not part/whole",
+    "seamstress is to pattern": "relation it instantiates instead: worker/guide (a seamstress follows a pattern), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A31",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] sleeve is to shirt as",
+   "choices": [
+    "hamper is to socks",
+    "button is to fasten",
+    "boot is to sandal",
+    "glove is to hand",
+    "heel is to shoe"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: part/whole. A sleeve is part of a shirt, as a heel is part of a shoe.",
+   "correct_answer": "heel is to shoe",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "glove is to hand": "relation it instantiates instead: covering/covered (a glove covers a hand), not part/whole",
+    "button is to fasten": "relation it instantiates instead: thing/function (a button is used to fasten), not part/whole",
+    "hamper is to socks": "relation it instantiates instead: container/contents (a hamper holds dirty socks), not part/whole",
+    "boot is to sandal": "relation it instantiates instead: coordinate footwear (a boot and a sandal are both footwear), not part/whole"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A32",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] gaggle is to geese as",
+   "choices": [
+    "scales is to trout",
+    "gill is to breathe",
+    "school is to fish",
+    "pond is to duck",
+    "nest is to eggs"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: group/member. A group of geese is a gaggle, as a group of fish is a school.",
+   "correct_answer": "school is to fish",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "nest is to eggs": "relation it instantiates instead: container/contents (a nest holds eggs), not group/member",
+    "scales is to trout": "relation it instantiates instead: covering/animal (scales cover a trout), not group/member",
+    "pond is to duck": "relation it instantiates instead: habitat/animal (a duck lives on a pond), not group/member",
+    "gill is to breathe": "relation it instantiates instead: organ/function (a gill is used to breathe), not group/member"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A33",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] murder is to crows as",
+   "choices": [
+    "beak is to peck",
+    "wise is to foolish",
+    "scarecrow is to field",
+    "talon is to hawk",
+    "parliament is to owls"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: group/member. A group of crows is a murder, as a group of owls is a parliament.",
+   "correct_answer": "parliament is to owls",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "scarecrow is to field": "relation it instantiates instead: guardian/place (a scarecrow guards a field), not group/member",
+    "talon is to hawk": "relation it instantiates instead: part/whole (a talon is part of a hawk), not group/member",
+    "beak is to peck": "relation it instantiates instead: part/function (a beak is used to peck), not group/member",
+    "wise is to foolish": "relation it instantiates instead: antonym (wise is the opposite of foolish), not group/member"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A34",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] deck is to card as",
+   "choices": [
+    "chalk is to slate",
+    "shuffle is to mix",
+    "ace is to king",
+    "alphabet is to letter",
+    "croupier is to casino"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: group/member. A deck is a complete set made up of cards, as an alphabet is a complete set made up of letters.",
+   "correct_answer": "alphabet is to letter",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "croupier is to casino": "relation it instantiates instead: worker/place (a croupier works in a casino), not group/member",
+    "ace is to king": "relation it instantiates instead: rank/rank (an ace and a king are both card ranks), not group/member",
+    "shuffle is to mix": "relation it instantiates instead: synonym (to shuffle is to mix), not group/member",
+    "chalk is to slate": "relation it instantiates instead: tool/surface (chalk writes on a slate), not group/member"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A35",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] battalion is to soldier as",
+   "choices": [
+    "armada is to warship",
+    "barracks is to troops",
+    "periscope is to submarine",
+    "general is to army",
+    "salute is to respect"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: group/member. A battalion is a military group made up of soldiers, as an armada is a fleet made up of warships.",
+   "correct_answer": "armada is to warship",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "general is to army": "relation it instantiates instead: leader/group (a general commands an army), not group/member",
+    "barracks is to troops": "relation it instantiates instead: building/occupants (troops live in barracks), not group/member",
+    "periscope is to submarine": "relation it instantiates instead: part/whole (a periscope is part of a submarine), not group/member",
+    "salute is to respect": "relation it instantiates instead: gesture/meaning (a salute shows respect), not group/member"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A36",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] congregation is to worshiper as",
+   "choices": [
+    "pew is to church",
+    "applause is to approval",
+    "ticket is to admission",
+    "audience is to spectator",
+    "pastor is to sermon"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: group/member. A worshiper is one member of a congregation, as a spectator is one member of an audience.",
+   "correct_answer": "audience is to spectator",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "pew is to church": "relation it instantiates instead: seat/place (a pew is a seat in a church), not group/member",
+    "pastor is to sermon": "relation it instantiates instead: speaker/speech (a pastor gives a sermon), not group/member",
+    "ticket is to admission": "relation it instantiates instead: document/right (a ticket grants admission), not group/member",
+    "applause is to approval": "relation it instantiates instead: act/meaning (applause shows approval), not group/member"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A37",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] kit is to fox as",
+   "choices": [
+    "hedgehog is to spines",
+    "lair is to beast",
+    "trap is to snare",
+    "cub is to tiger",
+    "paw is to claw"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: young/adult. A kit is a young fox, as a cub is a young tiger.",
+   "correct_answer": "cub is to tiger",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "hedgehog is to spines": "relation it instantiates instead: animal/covering (a hedgehog is covered in spines), not young/adult",
+    "paw is to claw": "relation it instantiates instead: whole/part (a paw has claws), not young/adult",
+    "trap is to snare": "relation it instantiates instead: synonym (a trap is a snare), not young/adult",
+    "lair is to beast": "relation it instantiates instead: home/occupant (a beast lives in a lair), not young/adult"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A38",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] larva is to beetle as",
+   "choices": [
+    "insect is to ant",
+    "antenna is to feeler",
+    "caterpillar is to moth",
+    "hive is to wasp",
+    "wing is to flight"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: young/adult. A larva grows into a beetle, as a caterpillar grows into a moth.",
+   "correct_answer": "caterpillar is to moth",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wing is to flight": "relation it instantiates instead: part/function (a wing is used for flight), not young/adult",
+    "insect is to ant": "relation it instantiates instead: category/instance (an ant is a kind of insect), not young/adult",
+    "antenna is to feeler": "relation it instantiates instead: synonym (an antenna is also called a feeler), not young/adult",
+    "hive is to wasp": "relation it instantiates instead: home/occupant (a wasp lives in a hive), not young/adult"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A39",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] fry is to salmon as",
+   "choices": [
+    "roe is to caviar",
+    "bait is to hook",
+    "trout is to fish",
+    "plaza is to statue",
+    "squab is to pigeon"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: young/adult. A fry is a young salmon, as a squab is a young pigeon.",
+   "correct_answer": "squab is to pigeon",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "trout is to fish": "relation it instantiates instead: instance/category (a trout is a fish), not young/adult",
+    "bait is to hook": "relation it instantiates instead: lure/device (bait is placed on a hook), not young/adult",
+    "plaza is to statue": "relation it instantiates instead: place/fixture (a statue stands in a plaza), not young/adult",
+    "roe is to caviar": "relation it instantiates instead: source/delicacy (caviar is made from roe), not young/adult"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A40",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] calf is to moose as",
+   "choices": [
+    "savanna is to lion",
+    "antler is to elk",
+    "saddle is to pony",
+    "graze is to grass",
+    "foal is to zebra"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: young/adult. A calf is a young moose, as a foal is a young zebra.",
+   "correct_answer": "foal is to zebra",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "antler is to elk": "relation it instantiates instead: part/animal (an elk has antlers), not young/adult",
+    "savanna is to lion": "relation it instantiates instead: habitat/animal (a lion lives on the savanna), not young/adult",
+    "graze is to grass": "relation it instantiates instead: action/object (animals graze on grass), not young/adult",
+    "saddle is to pony": "relation it instantiates instead: equipment/animal (a saddle is put on a pony), not young/adult"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A41",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] sheath is to knife as",
+   "choices": [
+    "orchestra is to stage",
+    "string is to pluck",
+    "beekeeper is to veil",
+    "case is to violin",
+    "blade is to handle"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: container/contents. A sheath holds a knife, as a case holds a violin.",
+   "correct_answer": "case is to violin",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "blade is to handle": "relation it instantiates instead: part/part (a blade and a handle are both parts of a knife), not container/contents",
+    "string is to pluck": "relation it instantiates instead: object/action (one plucks a string), not container/contents",
+    "beekeeper is to veil": "relation it instantiates instead: worker/garment (a beekeeper wears a veil), not container/contents",
+    "orchestra is to stage": "relation it instantiates instead: group/place (an orchestra performs on a stage), not container/contents"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A42",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] inkwell is to ink as",
+   "choices": [
+    "vinaigrette is to salad",
+    "cruet is to vinegar",
+    "pickle is to cucumber",
+    "quill is to writing",
+    "sour is to acidic"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: container/contents. An inkwell holds ink, as a cruet holds vinegar.",
+   "correct_answer": "cruet is to vinegar",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "quill is to writing": "relation it instantiates instead: tool/function (a quill is used for writing), not container/contents",
+    "vinaigrette is to salad": "relation it instantiates instead: dressing/dish (vinaigrette dresses a salad), not container/contents",
+    "pickle is to cucumber": "relation it instantiates instead: product/source (a pickle is made from a cucumber), not container/contents",
+    "sour is to acidic": "relation it instantiates instead: synonym (sour and acidic describe the same taste), not container/contents"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A43",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] satchel is to books as",
+   "choices": [
+    "wallet is to bills",
+    "student is to school",
+    "coin is to mint",
+    "cash is to check",
+    "page is to chapter"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: container/contents. A satchel holds books, as a wallet holds bills.",
+   "correct_answer": "wallet is to bills",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "student is to school": "relation it instantiates instead: person/place (a student attends school), not container/contents",
+    "cash is to check": "relation it instantiates instead: payment/payment (cash and a check are both forms of payment), not container/contents",
+    "page is to chapter": "relation it instantiates instead: part/whole (a page is part of a chapter), not container/contents",
+    "coin is to mint": "relation it instantiates instead: product/source (a coin is made at a mint), not container/contents"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A44",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] bookcase is to books as",
+   "choices": [
+    "blanket is to fleece",
+    "lapel is to jacket",
+    "author is to sequel",
+    "wardrobe is to clothes",
+    "reader is to index"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: container/contents. A bookcase holds books, as a wardrobe holds clothes.",
+   "correct_answer": "wardrobe is to clothes",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "reader is to index": "relation it instantiates instead: user/tool (a reader uses an index), not container/contents",
+    "lapel is to jacket": "relation it instantiates instead: part/whole (a lapel is part of a jacket), not container/contents",
+    "author is to sequel": "relation it instantiates instead: writer/work (an author writes a sequel), not container/contents",
+    "blanket is to fleece": "relation it instantiates instead: product/material (a blanket can be made of fleece), not container/contents"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A45",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] tickling is to laughter as",
+   "choices": [
+    "joke is to punchline",
+    "slander is to libel",
+    "feather is to pillow",
+    "compliment is to rebuke",
+    "insult is to indignation"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: cause/effect. Tickling provokes laughter, as an insult provokes indignation.",
+   "correct_answer": "insult is to indignation",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "joke is to punchline": "relation it instantiates instead: whole/ending (a joke ends with a punchline), not cause/effect",
+    "feather is to pillow": "relation it instantiates instead: filler/item (feathers fill a pillow), not cause/effect",
+    "compliment is to rebuke": "relation it instantiates instead: antonym (a compliment is the opposite of a rebuke), not cause/effect",
+    "slander is to libel": "relation it instantiates instead: spoken/written (slander is spoken; libel is written), not cause/effect"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A46",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] collision is to dent as",
+   "choices": [
+    "forecast is to weather",
+    "storm is to outage",
+    "bumper is to car",
+    "hail is to sleet",
+    "chauffeur is to limousine"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: cause/effect. A collision can cause a dent, as a storm can cause an outage.",
+   "correct_answer": "storm is to outage",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "bumper is to car": "relation it instantiates instead: part/whole (a bumper is part of a car), not cause/effect",
+    "chauffeur is to limousine": "relation it instantiates instead: driver/vehicle (a chauffeur drives a limousine), not cause/effect",
+    "forecast is to weather": "relation it instantiates instead: prediction/subject (a forecast predicts the weather), not cause/effect",
+    "hail is to sleet": "relation it instantiates instead: coordinate precipitation (hail and sleet are both frozen precipitation), not cause/effect"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A47",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] caffeine is to alertness as",
+   "choices": [
+    "alarm is to clock",
+    "sedative is to drowsiness",
+    "handshake is to greeting",
+    "pharmacist is to pills",
+    "espresso is to beverage"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: cause/effect. Caffeine produces alertness, as a sedative produces drowsiness.",
+   "correct_answer": "sedative is to drowsiness",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "espresso is to beverage": "relation it instantiates instead: type/category (espresso is a kind of beverage), not cause/effect",
+    "pharmacist is to pills": "relation it instantiates instead: worker/item dispensed (a pharmacist dispenses pills), not cause/effect",
+    "handshake is to greeting": "relation it instantiates instead: gesture/purpose (a handshake serves as a greeting), not cause/effect",
+    "alarm is to clock": "relation it instantiates instead: feature/device (an alarm is a feature of a clock), not cause/effect"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A48",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] practice is to skill as",
+   "choices": [
+    "study is to knowledge",
+    "coach is to team",
+    "bookshelf is to atlas",
+    "teacher is to pupil",
+    "piano is to keys"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: cause/effect. Practice builds skill, as study builds knowledge.",
+   "correct_answer": "study is to knowledge",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "teacher is to pupil": "relation it instantiates instead: instructor/learner (a teacher instructs a pupil), not cause/effect",
+    "piano is to keys": "relation it instantiates instead: whole/part (a piano has keys), not cause/effect",
+    "coach is to team": "relation it instantiates instead: leader/group (a coach leads a team), not cause/effect",
+    "bookshelf is to atlas": "relation it instantiates instead: holder/item held (a bookshelf holds an atlas), not cause/effect"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A49",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] infection is to fever as",
+   "choices": [
+    "allergy is to hives",
+    "tonic is to elixir",
+    "pill is to bottle",
+    "pollen is to flower",
+    "patient is to stretcher"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: cause/effect. An infection can cause a fever, as an allergy can cause hives.",
+   "correct_answer": "allergy is to hives",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "pill is to bottle": "relation it instantiates instead: contents/container (pills are kept in a bottle), not cause/effect",
+    "patient is to stretcher": "relation it instantiates instead: person/conveyance (a patient is carried on a stretcher), not cause/effect",
+    "tonic is to elixir": "relation it instantiates instead: synonym (a tonic is an elixir), not cause/effect",
+    "pollen is to flower": "relation it instantiates instead: product/source (pollen is produced by a flower), not cause/effect"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A50",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] anemometer is to wind as",
+   "choices": [
+    "second is to minute",
+    "hourglass is to time",
+    "kite is to breeze",
+    "cyclone is to storm",
+    "sandbags is to flood"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: instrument/measured. An anemometer measures wind, as an hourglass measures time.",
+   "correct_answer": "hourglass is to time",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "sandbags is to flood": "relation it instantiates instead: barrier/threat (sandbags hold back a flood), not instrument/measured",
+    "kite is to breeze": "relation it instantiates instead: object/moving force (a breeze lifts a kite), not instrument/measured",
+    "second is to minute": "relation it instantiates instead: unit/larger unit (seconds make up a minute), not instrument/measured",
+    "cyclone is to storm": "relation it instantiates instead: type/category (a cyclone is a kind of storm), not instrument/measured"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A51",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] yardstick is to length as",
+   "choices": [
+    "grocer is to produce",
+    "inch is to foot",
+    "balance is to mass",
+    "carpenter is to lumber",
+    "heavy is to light"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: instrument/measured. A yardstick measures length, as a balance measures mass.",
+   "correct_answer": "balance is to mass",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "inch is to foot": "relation it instantiates instead: unit/larger unit (inches make up a foot), not instrument/measured",
+    "grocer is to produce": "relation it instantiates instead: seller/goods (a grocer sells produce), not instrument/measured",
+    "heavy is to light": "relation it instantiates instead: antonym (heavy is the opposite of light), not instrument/measured",
+    "carpenter is to lumber": "relation it instantiates instead: worker/material (a carpenter works with lumber), not instrument/measured"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A52",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] theodolite is to angles as",
+   "choices": [
+    "surveyor is to boundary",
+    "triangle is to polygon",
+    "eclipse is to sun",
+    "photometer is to light",
+    "lamp is to bulb"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: instrument/measured. A theodolite measures angles, as a photometer measures light.",
+   "correct_answer": "photometer is to light",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "surveyor is to boundary": "relation it instantiates instead: worker/subject (a surveyor marks a boundary), not instrument/measured",
+    "lamp is to bulb": "relation it instantiates instead: whole/part (a lamp holds a bulb), not instrument/measured",
+    "triangle is to polygon": "relation it instantiates instead: instance/category (a triangle is a polygon), not instrument/measured",
+    "eclipse is to sun": "relation it instantiates instead: event/body (an eclipse darkens the sun), not instrument/measured"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A53",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] candid is to frank as",
+   "choices": [
+    "honest is to deceitful",
+    "trap is to bait",
+    "alarm is to danger",
+    "sentinel is to post",
+    "wary is to cautious"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: synonym. Candid means frank, as wary means cautious.",
+   "correct_answer": "wary is to cautious",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "honest is to deceitful": "relation it instantiates instead: antonym (honest is the opposite of deceitful), not synonym",
+    "trap is to bait": "relation it instantiates instead: device/lure (a trap holds bait), not synonym",
+    "sentinel is to post": "relation it instantiates instead: guard/station (a sentinel stands at a post), not synonym",
+    "alarm is to danger": "relation it instantiates instead: signal/threat (an alarm signals danger), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A54",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] brusque is to curt as",
+   "choices": [
+    "trainer is to circus",
+    "sentence is to phrase",
+    "docile is to tame",
+    "leash is to dog",
+    "rude is to polite"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: synonym. Brusque means curt, as docile means tame.",
+   "correct_answer": "docile is to tame",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "rude is to polite": "relation it instantiates instead: antonym (rude is the opposite of polite), not synonym",
+    "trainer is to circus": "relation it instantiates instead: worker/place (a trainer works in a circus), not synonym",
+    "leash is to dog": "relation it instantiates instead: restraint/restrained (a leash restrains a dog), not synonym",
+    "sentence is to phrase": "relation it instantiates instead: whole/part (a sentence contains phrases), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A55",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] garrulous is to talkative as",
+   "choices": [
+    "velvet is to fabric",
+    "debater is to rebuttal",
+    "palace is to monarch",
+    "opulent is to luxurious",
+    "sumptuous is to spartan"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: synonym. Garrulous means talkative, as opulent means luxurious.",
+   "correct_answer": "opulent is to luxurious",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "sumptuous is to spartan": "relation it instantiates instead: antonym (sumptuous is the opposite of spartan), not synonym",
+    "palace is to monarch": "relation it instantiates instead: residence/resident (a monarch lives in a palace), not synonym",
+    "velvet is to fabric": "relation it instantiates instead: instance/category (velvet is a fabric), not synonym",
+    "debater is to rebuttal": "relation it instantiates instead: person/product (a debater offers a rebuttal), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A56",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] squander is to waste as",
+   "choices": [
+    "save is to spend",
+    "budget is to money",
+    "elude is to evade",
+    "trap is to prey",
+    "miser is to wealth"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: synonym. To squander is to waste, as to elude is to evade.",
+   "correct_answer": "elude is to evade",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "save is to spend": "relation it instantiates instead: antonym (to save is the opposite of to spend), not synonym",
+    "budget is to money": "relation it instantiates instead: plan/resource (a budget plans the use of money), not synonym",
+    "trap is to prey": "relation it instantiates instead: device/target (a trap catches prey), not synonym",
+    "miser is to wealth": "relation it instantiates instead: person/thing hoarded (a miser hoards wealth), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A57",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] tenacious is to persistent as",
+   "choices": [
+    "haughty is to arrogant",
+    "crown is to queen",
+    "climber is to summit",
+    "stubborn is to flexible",
+    "sneer is to contempt"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: synonym. Tenacious means persistent, as haughty means arrogant.",
+   "correct_answer": "haughty is to arrogant",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "stubborn is to flexible": "relation it instantiates instead: antonym (stubborn is the opposite of flexible), not synonym",
+    "crown is to queen": "relation it instantiates instead: symbol/holder (a queen wears a crown), not synonym",
+    "climber is to summit": "relation it instantiates instead: person/goal (a climber aims for the summit), not synonym",
+    "sneer is to contempt": "relation it instantiates instead: expression/feeling (a sneer expresses contempt), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A58",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] enigma is to mystery as",
+   "choices": [
+    "puzzle is to solution",
+    "detective is to clue",
+    "zeal is to enthusiasm",
+    "apathy is to passion",
+    "fan is to stadium"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: synonym. An enigma is a mystery, as zeal is enthusiasm.",
+   "correct_answer": "zeal is to enthusiasm",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "puzzle is to solution": "relation it instantiates instead: problem/answer (a puzzle has a solution), not synonym",
+    "detective is to clue": "relation it instantiates instead: worker/thing sought (a detective looks for clues), not synonym",
+    "apathy is to passion": "relation it instantiates instead: antonym (apathy is the opposite of passion), not synonym",
+    "fan is to stadium": "relation it instantiates instead: person/place (a fan goes to a stadium), not synonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A59",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] verbose is to terse as",
+   "choices": [
+    "essay is to paragraph",
+    "lenient is to strict",
+    "proofreader is to typos",
+    "wordy is to lengthy",
+    "umpire is to ruling"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: antonym. Verbose is the opposite of terse, as lenient is the opposite of strict.",
+   "correct_answer": "lenient is to strict",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wordy is to lengthy": "relation it instantiates instead: synonym (wordy means lengthy), not antonym",
+    "umpire is to ruling": "relation it instantiates instead: official/decision (an umpire makes a ruling), not antonym",
+    "essay is to paragraph": "relation it instantiates instead: whole/part (an essay contains paragraphs), not antonym",
+    "proofreader is to typos": "relation it instantiates instead: worker/object (a proofreader finds typos), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A60",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] ally is to enemy as",
+   "choices": [
+    "accord is to parties",
+    "soldier is to army",
+    "medal is to bravery",
+    "novice is to veteran",
+    "buddy is to pal"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: antonym. An ally is the opposite of an enemy, as a novice is the opposite of a veteran.",
+   "correct_answer": "novice is to veteran",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "soldier is to army": "relation it instantiates instead: member/group (a soldier belongs to an army), not antonym",
+    "buddy is to pal": "relation it instantiates instead: synonym (a buddy is a pal), not antonym",
+    "accord is to parties": "relation it instantiates instead: agreement/parties (parties sign an accord), not antonym",
+    "medal is to bravery": "relation it instantiates instead: reward/quality (a medal rewards bravery), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A61",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] acquit is to convict as",
+   "choices": [
+    "block is to obstruct",
+    "hinder is to assist",
+    "crime is to penalty",
+    "jury is to verdict",
+    "bailiff is to courtroom"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: antonym. To acquit is the opposite of to convict, as to hinder is the opposite of to assist.",
+   "correct_answer": "hinder is to assist",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "jury is to verdict": "relation it instantiates instead: group/decision (a jury reaches a verdict), not antonym",
+    "bailiff is to courtroom": "relation it instantiates instead: worker/place (a bailiff works in a courtroom), not antonym",
+    "block is to obstruct": "relation it instantiates instead: synonym (to block is to obstruct), not antonym",
+    "crime is to penalty": "relation it instantiates instead: offense/consequence (a crime brings a penalty), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A62",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] frail is to robust as",
+   "choices": [
+    "late is to overdue",
+    "tardy is to punctual",
+    "marathoner is to endurance",
+    "muscle is to strength",
+    "alarm is to waking"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: antonym. Frail is the opposite of robust, as tardy is the opposite of punctual.",
+   "correct_answer": "tardy is to punctual",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "late is to overdue": "relation it instantiates instead: synonym (late means overdue), not antonym",
+    "alarm is to waking": "relation it instantiates instead: device/function (an alarm is used for waking), not antonym",
+    "muscle is to strength": "relation it instantiates instead: source/quality (muscle provides strength), not antonym",
+    "marathoner is to endurance": "relation it instantiates instead: person/quality needed (a marathoner needs endurance), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A63",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] implicit is to explicit as",
+   "choices": [
+    "mirror is to reflection",
+    "concave is to convex",
+    "implied is to suggested",
+    "arch is to bridge",
+    "bowl is to soup"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: antonym. Implicit is the opposite of explicit, as concave is the opposite of convex.",
+   "correct_answer": "concave is to convex",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "mirror is to reflection": "relation it instantiates instead: object/product (a mirror produces a reflection), not antonym",
+    "implied is to suggested": "relation it instantiates instead: synonym (implied means suggested), not antonym",
+    "arch is to bridge": "relation it instantiates instead: part/whole (an arch may be part of a bridge), not antonym",
+    "bowl is to soup": "relation it instantiates instead: container/contents (a bowl holds soup), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A64",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] dwindle is to swell as",
+   "choices": [
+    "fog is to visibility",
+    "teacher is to explain",
+    "shrink is to decrease",
+    "lens is to focus",
+    "clarify is to obscure"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: antonym. To dwindle is the opposite of to swell, as to clarify is the opposite of to obscure.",
+   "correct_answer": "clarify is to obscure",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "shrink is to decrease": "relation it instantiates instead: synonym (to shrink is to decrease), not antonym",
+    "teacher is to explain": "relation it instantiates instead: worker/action (a teacher explains), not antonym",
+    "fog is to visibility": "relation it instantiates instead: obstruction/thing reduced (fog reduces visibility), not antonym",
+    "lens is to focus": "relation it instantiates instead: tool/function (a lens is used to focus), not antonym"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A65",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] glass is to brittle as",
+   "choices": [
+    "tile is to mosaic",
+    "shatter is to break",
+    "jar is to lid",
+    "flimsy is to solid",
+    "rubber is to elastic"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: characteristic. Glass is characteristically brittle, as rubber is characteristically elastic.",
+   "correct_answer": "rubber is to elastic",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "shatter is to break": "relation it instantiates instead: specific/general action (to shatter is a specific way to break), not characteristic",
+    "tile is to mosaic": "relation it instantiates instead: piece/whole (tiles make up a mosaic), not characteristic",
+    "flimsy is to solid": "relation it instantiates instead: antonym (flimsy is the opposite of solid), not characteristic",
+    "jar is to lid": "relation it instantiates instead: container/stopper (a lid closes a jar), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A66",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] desert is to arid as",
+   "choices": [
+    "dune is to sand",
+    "damp is to parched",
+    "reed is to plant",
+    "cactus is to spine",
+    "marsh is to soggy"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: characteristic. A desert is characteristically arid, as a marsh is characteristically soggy.",
+   "correct_answer": "marsh is to soggy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cactus is to spine": "relation it instantiates instead: plant/feature (a cactus has spines), not characteristic",
+    "dune is to sand": "relation it instantiates instead: landform/material (a dune is made of sand), not characteristic",
+    "damp is to parched": "relation it instantiates instead: antonym (damp is the opposite of parched), not characteristic",
+    "reed is to plant": "relation it instantiates instead: instance/category (a reed is a plant), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A67",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] braggart is to boastful as",
+   "choices": [
+    "archivist is to records",
+    "skeptic is to doubtful",
+    "query is to reply",
+    "trophy is to winner",
+    "liar is to truthful"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: characteristic. A braggart is by definition boastful, as a skeptic is by definition doubtful.",
+   "correct_answer": "skeptic is to doubtful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "trophy is to winner": "relation it instantiates instead: reward/recipient (a winner receives a trophy), not characteristic",
+    "liar is to truthful": "relation it instantiates instead: person/trait lacked (a liar is not truthful), not characteristic",
+    "query is to reply": "relation it instantiates instead: prompt/response (a query calls for a reply), not characteristic",
+    "archivist is to records": "relation it instantiates instead: worker/thing kept (an archivist keeps records), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A68",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] zealot is to fanatical as",
+   "choices": [
+    "devotee is to follower",
+    "homily is to priest",
+    "recluse is to solitary",
+    "solitude is to crowd",
+    "cavern is to bat"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: characteristic. A zealot is by definition fanatical, as a recluse is by definition solitary.",
+   "correct_answer": "recluse is to solitary",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cavern is to bat": "relation it instantiates instead: home/occupant (a bat lives in a cavern), not characteristic",
+    "devotee is to follower": "relation it instantiates instead: synonym (a devotee is a follower), not characteristic",
+    "solitude is to crowd": "relation it instantiates instead: antonym (solitude is the opposite of a crowd), not characteristic",
+    "homily is to priest": "relation it instantiates instead: speech/speaker (a priest delivers a homily), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A69",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] cheetah is to swift as",
+   "choices": [
+    "claw is to scratch",
+    "giraffe is to neck",
+    "savanna is to grassland",
+    "tortoise is to slow",
+    "hare is to rabbit"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: characteristic. A cheetah is known for being swift, as a tortoise is known for being slow.",
+   "correct_answer": "tortoise is to slow",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "giraffe is to neck": "relation it instantiates instead: animal/feature (a giraffe has a long neck), not characteristic",
+    "hare is to rabbit": "relation it instantiates instead: similar animals (a hare resembles a rabbit), not characteristic",
+    "savanna is to grassland": "relation it instantiates instead: synonym (a savanna is a grassland), not characteristic",
+    "claw is to scratch": "relation it instantiates instead: part/function (a claw is used to scratch), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A70",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] charlatan is to fraudulent as",
+   "choices": [
+    "martyr is to selfless",
+    "saint is to shrine",
+    "victim is to scam",
+    "hoax is to deception",
+    "forgery is to painting"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: characteristic. A charlatan is by definition fraudulent, as a martyr is by definition selfless.",
+   "correct_answer": "martyr is to selfless",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "victim is to scam": "relation it instantiates instead: target/act (a scam targets a victim), not characteristic",
+    "hoax is to deception": "relation it instantiates instead: instance/category (a hoax is a kind of deception), not characteristic",
+    "saint is to shrine": "relation it instantiates instead: honoree/place (a shrine honors a saint), not characteristic",
+    "forgery is to painting": "relation it instantiates instead: fake/genuine article (a forgery imitates a genuine painting), not characteristic"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A71",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] whetstone is to sharpen as",
+   "choices": [
+    "cistern is to water",
+    "dull is to keen",
+    "soap is to suds",
+    "knife is to blade",
+    "sponge is to absorb"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: function. A whetstone is used to sharpen, as a sponge is used to absorb.",
+   "correct_answer": "sponge is to absorb",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "knife is to blade": "relation it instantiates instead: whole/part (a knife has a blade), not function",
+    "dull is to keen": "relation it instantiates instead: antonym (dull is the opposite of keen), not function",
+    "soap is to suds": "relation it instantiates instead: source/product (soap makes suds), not function",
+    "cistern is to water": "relation it instantiates instead: container/contents (a cistern stores water), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A72",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] sander is to smooth as",
+   "choices": [
+    "bristly is to prickly",
+    "wood is to grain",
+    "lantern is to illuminate",
+    "dusk is to daybreak",
+    "moth is to flame"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: function. A sander is used to smooth, as a lantern is used to illuminate.",
+   "correct_answer": "lantern is to illuminate",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wood is to grain": "relation it instantiates instead: material/feature (wood has a grain), not function",
+    "moth is to flame": "relation it instantiates instead: creature/attraction (a moth is drawn to a flame), not function",
+    "bristly is to prickly": "relation it instantiates instead: synonym (bristly means prickly), not function",
+    "dusk is to daybreak": "relation it instantiates instead: antonym (dusk is the opposite of daybreak), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A73",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] corkscrew is to uncork as",
+   "choices": [
+    "lever is to pry",
+    "cork is to stopper",
+    "fulcrum is to seesaw",
+    "bottle is to wine",
+    "toast is to celebration"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: function. A corkscrew is used to uncork, as a lever is used to pry.",
+   "correct_answer": "lever is to pry",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "bottle is to wine": "relation it instantiates instead: container/contents (a bottle holds wine), not function",
+    "cork is to stopper": "relation it instantiates instead: type/category (a cork is a kind of stopper), not function",
+    "fulcrum is to seesaw": "relation it instantiates instead: part/whole (a fulcrum is part of a seesaw), not function",
+    "toast is to celebration": "relation it instantiates instead: act/occasion (a toast is made at a celebration), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A74",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] siphon is to drain as",
+   "choices": [
+    "puncture is to tire",
+    "jack is to lift",
+    "tank is to fuel",
+    "tow truck is to wreck",
+    "hose is to pipe"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: function. A siphon is used to drain, as a jack is used to lift.",
+   "correct_answer": "jack is to lift",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tank is to fuel": "relation it instantiates instead: container/contents (a tank holds fuel), not function",
+    "tow truck is to wreck": "relation it instantiates instead: vehicle/thing hauled (a tow truck hauls a wreck), not function",
+    "hose is to pipe": "relation it instantiates instead: similar objects (a hose and a pipe both carry liquid), not function",
+    "puncture is to tire": "relation it instantiates instead: damage/object (a puncture damages a tire), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A75",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] vise is to grip as",
+   "choices": [
+    "tight is to loose",
+    "anvil is to smithy",
+    "wedge is to split",
+    "log is to firewood",
+    "splinter is to plank"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: function. A vise is used to grip, as a wedge is used to split.",
+   "correct_answer": "wedge is to split",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "log is to firewood": "relation it instantiates instead: source/product (a log is cut into firewood), not function",
+    "splinter is to plank": "relation it instantiates instead: fragment/source (a splinter breaks off a plank), not function",
+    "tight is to loose": "relation it instantiates instead: antonym (tight is the opposite of loose), not function",
+    "anvil is to smithy": "relation it instantiates instead: fixture/room (an anvil stands in a smithy), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A76",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] pestle is to crush as",
+   "choices": [
+    "awl is to pierce",
+    "mint is to herb",
+    "onion is to layer",
+    "leather is to belt",
+    "pharmacist is to remedy"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: function. A pestle is used to crush, as an awl is used to pierce.",
+   "correct_answer": "awl is to pierce",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "leather is to belt": "relation it instantiates instead: material/product (a belt is made of leather), not function",
+    "onion is to layer": "relation it instantiates instead: whole/part (an onion is made of layers), not function",
+    "pharmacist is to remedy": "relation it instantiates instead: worker/product (a pharmacist prepares a remedy), not function",
+    "mint is to herb": "relation it instantiates instead: instance/category (mint is an herb), not function"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A77",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] gymnasium is to exercise as",
+   "choices": [
+    "kitchen is to cooking",
+    "trainer is to boxer",
+    "sweat is to exertion",
+    "oven is to stove",
+    "sneaker is to shoelace"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "Relation: place/activity. A gymnasium is a place for exercise, as a kitchen is a place for cooking.",
+   "correct_answer": "kitchen is to cooking",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "sneaker is to shoelace": "relation it instantiates instead: whole/part (a sneaker has a shoelace), not place/activity",
+    "trainer is to boxer": "relation it instantiates instead: trainer/trainee (a trainer prepares a boxer), not place/activity",
+    "oven is to stove": "relation it instantiates instead: similar appliances (an oven and a stove are both kitchen appliances), not place/activity",
+    "sweat is to exertion": "relation it instantiates instead: effect/cause (exertion causes sweat), not place/activity"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A78",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] dojo is to karate as",
+   "choices": [
+    "belt is to rank",
+    "kick is to punch",
+    "goggles is to eyes",
+    "pool is to diving",
+    "lifeguard is to beach"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: place/activity. A dojo is a place for karate, as a pool is a place for diving.",
+   "correct_answer": "pool is to diving",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "belt is to rank": "relation it instantiates instead: symbol/meaning (a belt's color shows a rank), not place/activity",
+    "goggles is to eyes": "relation it instantiates instead: protector/protected (goggles protect the eyes), not place/activity",
+    "kick is to punch": "relation it instantiates instead: coordinate strikes (a kick and a punch are both strikes), not place/activity",
+    "lifeguard is to beach": "relation it instantiates instead: worker/place (a lifeguard works at a beach), not place/activity"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A79",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] velodrome is to cycling as",
+   "choices": [
+    "knockout is to victory",
+    "helmet is to rider",
+    "ring is to boxing",
+    "champion is to title",
+    "referee is to bout"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "Relation: place/activity. A velodrome is the arena for cycling, as a ring is the arena for boxing.",
+   "correct_answer": "ring is to boxing",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "helmet is to rider": "relation it instantiates instead: gear/wearer (a rider wears a helmet), not place/activity",
+    "referee is to bout": "relation it instantiates instead: official/event (a referee officiates a bout), not place/activity",
+    "knockout is to victory": "relation it instantiates instead: means/result (a knockout brings victory), not place/activity",
+    "champion is to title": "relation it instantiates instead: holder/thing held (a champion holds a title), not place/activity"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-V4A80",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Analogy] auditorium is to lecture as",
+   "choices": [
+    "lectern is to professor",
+    "ballroom is to dancing",
+    "minuet is to dance",
+    "notes is to speech",
+    "gown is to tuxedo"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "Relation: place/activity. An auditorium is a place for a lecture, as a ballroom is a place for dancing.",
+   "correct_answer": "ballroom is to dancing",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "lectern is to professor": "relation it instantiates instead: platform/user (a professor speaks at a lectern), not place/activity",
+    "gown is to tuxedo": "relation it instantiates instead: coordinate formalwear (a gown and a tuxedo are both formal wear), not place/activity",
+    "minuet is to dance": "relation it instantiates instead: instance/category (a minuet is a kind of dance), not place/activity",
+    "notes is to speech": "relation it instantiates instead: aid/product (notes help a speaker give a speech), not place/activity"
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-BLATANT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] BLATANT",
+   "choices": [
+    "hidden",
+    "fragile",
+    "obvious",
+    "costly",
+    "gradual"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "BLATANT means completely plain to see, done openly; 'obvious' is the closest synonym.",
+   "correct_answer": "obvious",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "gradual": "'gradual' means happening slowly, not completely plain to see, done openly; sense-family: pace.",
+    "fragile": "'fragile' means easily broken, not completely plain to see, done openly; sense-family: strength.",
+    "costly": "'costly' means expensive, not completely plain to see, done openly; sense-family: money.",
+    "hidden": "'hidden' means kept out of sight, not completely plain to see, done openly; sense-family: concealment."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-BRAZEN",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] BRAZEN",
+   "choices": [
+    "graceful",
+    "shameless",
+    "ragged",
+    "thrifty",
+    "drowsy"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "BRAZEN means bold without any sense of shame; 'shameless' is the closest synonym.",
+   "correct_answer": "shameless",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "graceful": "'graceful' means moving with elegance, not bold without any sense of shame; sense-family: grace.",
+    "thrifty": "'thrifty' means careful with money, not bold without any sense of shame; sense-family: money.",
+    "drowsy": "'drowsy' means sleepy, not bold without any sense of shame; sense-family: rest.",
+    "ragged": "'ragged' means torn and worn, not bold without any sense of shame; sense-family: condition."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DORMANT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DORMANT",
+   "choices": [
+    "massive",
+    "jagged",
+    "fertile",
+    "hostile",
+    "inactive"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "DORMANT means temporarily not active or growing; 'inactive' is the closest synonym.",
+   "correct_answer": "inactive",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "hostile": "'hostile' means unfriendly, not temporarily not active or growing; sense-family: enmity.",
+    "fertile": "'fertile' means producing much, not temporarily not active or growing; sense-family: fruitfulness.",
+    "jagged": "'jagged' means having sharp points, not temporarily not active or growing; sense-family: shape.",
+    "massive": "'massive' means very large, not temporarily not active or growing; sense-family: size."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ELUSIVE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ELUSIVE",
+   "choices": [
+    "hollow",
+    "solemn",
+    "evasive",
+    "frugal",
+    "radiant"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "ELUSIVE means hard to catch, find, or pin down; 'evasive' is the closest synonym.",
+   "correct_answer": "evasive",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "radiant": "'radiant' means shining brightly, not hard to catch, find, or pin down; sense-family: light.",
+    "frugal": "'frugal' means careful with money, not hard to catch, find, or pin down; sense-family: money.",
+    "solemn": "'solemn' means serious and dignified, not hard to catch, find, or pin down; sense-family: gravity.",
+    "hollow": "'hollow' means empty inside, not hard to catch, find, or pin down; sense-family: shape."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FRANTIC",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FRANTIC",
+   "choices": [
+    "generous",
+    "hollow",
+    "precise",
+    "placid",
+    "frenzied"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "FRANTIC means wildly excited or anxious; 'frenzied' is the closest synonym.",
+   "correct_answer": "frenzied",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "precise": "'precise' means exact, not wildly excited or anxious; sense-family: accuracy.",
+    "generous": "'generous' means willing to give, not wildly excited or anxious; sense-family: giving.",
+    "hollow": "'hollow' means empty inside, not wildly excited or anxious; sense-family: shape.",
+    "placid": "'placid' means calm, not wildly excited or anxious; sense-family: calm."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-IMMACULATE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] IMMACULATE",
+   "choices": [
+    "vacant",
+    "sturdy",
+    "ornate",
+    "spotless",
+    "fragrant"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "IMMACULATE means perfectly clean, without a mark; 'spotless' is the closest synonym.",
+   "correct_answer": "spotless",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ornate": "'ornate' means elaborately decorated, not perfectly clean, without a mark; sense-family: decoration.",
+    "vacant": "'vacant' means empty, not perfectly clean, without a mark; sense-family: emptiness.",
+    "fragrant": "'fragrant' means sweet-smelling, not perfectly clean, without a mark; sense-family: smell.",
+    "sturdy": "'sturdy' means strongly built, not perfectly clean, without a mark; sense-family: strength."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-INCESSANT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] INCESSANT",
+   "choices": [
+    "distant",
+    "feeble",
+    "constant",
+    "candid",
+    "medieval"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "INCESSANT means continuing without stopping; 'constant' is the closest synonym.",
+   "correct_answer": "constant",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "distant": "'distant' means far away, not continuing without stopping; sense-family: space.",
+    "feeble": "'feeble' means weak, not continuing without stopping; sense-family: strength.",
+    "candid": "'candid' means frank, not continuing without stopping; sense-family: honesty.",
+    "medieval": "'medieval' means of the Middle Ages, not continuing without stopping; sense-family: history."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-JOVIAL",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] JOVIAL",
+   "choices": [
+    "frigid",
+    "clumsy",
+    "cautious",
+    "slender",
+    "cheerful"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "JOVIAL means good-humored and jolly; 'cheerful' is the closest synonym.",
+   "correct_answer": "cheerful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cautious": "'cautious' means careful, not good-humored and jolly; sense-family: caution.",
+    "slender": "'slender' means thin, not good-humored and jolly; sense-family: shape.",
+    "clumsy": "'clumsy' means awkward, not good-humored and jolly; sense-family: movement.",
+    "frigid": "'frigid' means very cold, not good-humored and jolly; sense-family: temperature."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-LANGUID",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] LANGUID",
+   "choices": [
+    "modest",
+    "listless",
+    "shrill",
+    "brittle",
+    "fierce"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "LANGUID means lacking energy; slow and relaxed; 'listless' is the closest synonym.",
+   "correct_answer": "listless",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "brittle": "'brittle' means easily snapped, not lacking energy; slow and relaxed; sense-family: hardness.",
+    "fierce": "'fierce' means violent, savage, not lacking energy; slow and relaxed; sense-family: ferocity.",
+    "shrill": "'shrill' means high-pitched, not lacking energy; slow and relaxed; sense-family: sound.",
+    "modest": "'modest' means not boastful, not lacking energy; slow and relaxed; sense-family: modesty."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-MEEK",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] MEEK",
+   "choices": [
+    "arrogant",
+    "luminous",
+    "vigilant",
+    "submissive",
+    "rigorous"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "MEEK means quiet, gentle, and easily imposed on; 'submissive' is the closest synonym.",
+   "correct_answer": "submissive",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "vigilant": "'vigilant' means watchful, not quiet, gentle, and easily imposed on; sense-family: alertness.",
+    "luminous": "'luminous' means glowing, not quiet, gentle, and easily imposed on; sense-family: light.",
+    "rigorous": "'rigorous' means thorough and strict, not quiet, gentle, and easily imposed on; sense-family: strictness.",
+    "arrogant": "'arrogant' means proud and superior, not quiet, gentle, and easily imposed on; sense-family: pride."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PENSIVE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PENSIVE",
+   "choices": [
+    "thoughtful",
+    "musical",
+    "rugged",
+    "crimson",
+    "vibrant"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "PENSIVE means engaged in deep, serious thought; 'thoughtful' is the closest synonym.",
+   "correct_answer": "thoughtful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "vibrant": "'vibrant' means full of energy, not engaged in deep, serious thought; sense-family: energy.",
+    "rugged": "'rugged' means rough and uneven, not engaged in deep, serious thought; sense-family: texture.",
+    "musical": "'musical' means relating to music, not engaged in deep, serious thought; sense-family: music.",
+    "crimson": "'crimson' means deep red, not engaged in deep, serious thought; sense-family: color."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SOMBER",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SOMBER",
+   "choices": [
+    "eager",
+    "rigid",
+    "gloomy",
+    "festive",
+    "modest"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "SOMBER means dark and serious in mood; 'gloomy' is the closest synonym.",
+   "correct_answer": "gloomy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "eager": "'eager' means wanting very much, not dark and serious in mood; sense-family: desire.",
+    "modest": "'modest' means not boastful, not dark and serious in mood; sense-family: modesty.",
+    "rigid": "'rigid' means stiff, not dark and serious in mood; sense-family: stiffness.",
+    "festive": "'festive' means joyful, celebratory, not dark and serious in mood; sense-family: celebration."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SPACIOUS",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SPACIOUS",
+   "choices": [
+    "noble",
+    "frank",
+    "prickly",
+    "roomy",
+    "hearty"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "SPACIOUS means having plenty of space; 'roomy' is the closest synonym.",
+   "correct_answer": "roomy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "prickly": "'prickly' means covered with thorns, not having plenty of space; sense-family: texture.",
+    "noble": "'noble' means of high character, not having plenty of space; sense-family: nobility.",
+    "frank": "'frank' means honest, not having plenty of space; sense-family: honesty.",
+    "hearty": "'hearty' means warm and enthusiastic, not having plenty of space; sense-family: warmth."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-STEALTHY",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] STEALTHY",
+   "choices": [
+    "furtive",
+    "earnest",
+    "abrupt",
+    "lavish",
+    "mellow"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "STEALTHY means moving or acting quietly and secretly; 'furtive' is the closest synonym.",
+   "correct_answer": "furtive",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "lavish": "'lavish' means extravagant, not moving or acting quietly and secretly; sense-family: excess.",
+    "earnest": "'earnest' means serious and sincere, not moving or acting quietly and secretly; sense-family: sincerity.",
+    "abrupt": "'abrupt' means sudden, not moving or acting quietly and secretly; sense-family: suddenness.",
+    "mellow": "'mellow' means soft and rich, not moving or acting quietly and secretly; sense-family: softness."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-TERSE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] TERSE",
+   "choices": [
+    "curt",
+    "lush",
+    "vain",
+    "wordy",
+    "bland"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "TERSE means using few words, almost to the point of rudeness; 'curt' is the closest synonym.",
+   "correct_answer": "curt",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "vain": "'vain' means proud of one's looks, not using few words, almost to the point of rudeness; sense-family: vanity.",
+    "bland": "'bland' means lacking flavor, not using few words, almost to the point of rudeness; sense-family: taste.",
+    "lush": "'lush' means growing thickly, not using few words, almost to the point of rudeness; sense-family: growth.",
+    "wordy": "'wordy' means using too many words, not using few words, almost to the point of rudeness; sense-family: length."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-BLEAK",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] BLEAK",
+   "choices": [
+    "hectic",
+    "savory",
+    "dreary",
+    "tender",
+    "liquid"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "BLEAK means bare, cheerless, and without hope; 'dreary' is the closest synonym.",
+   "correct_answer": "dreary",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tender": "'tender' means gentle, not bare, cheerless, and without hope; sense-family: softness.",
+    "hectic": "'hectic' means very busy, not bare, cheerless, and without hope; sense-family: busyness.",
+    "savory": "'savory' means salty and tasty, not bare, cheerless, and without hope; sense-family: taste.",
+    "liquid": "'liquid' means flowing like water, not bare, cheerless, and without hope; sense-family: state of matter."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ADEPT",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ADEPT",
+   "choices": [
+    "awkward",
+    "weary",
+    "timid",
+    "loyal",
+    "skilled"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "ADEPT means very good at doing something; 'skilled' is the closest synonym.",
+   "correct_answer": "skilled",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "timid": "'timid' means easily frightened, not very good at doing something; sense-family: fear.",
+    "weary": "'weary' means very tired, not very good at doing something; sense-family: fatigue.",
+    "loyal": "'loyal' means faithful, not very good at doing something; sense-family: loyalty.",
+    "awkward": "'awkward' means lacking skill or grace, not very good at doing something; sense-family: skill."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ARID",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ARID",
+   "choices": [
+    "dry",
+    "tame",
+    "keen",
+    "loud",
+    "vast"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "ARID means having little or no rain; 'dry' is the closest synonym.",
+   "correct_answer": "dry",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tame": "'tame' means not wild, not having little or no rain; sense-family: wildness.",
+    "vast": "'vast' means very large, not having little or no rain; sense-family: size.",
+    "keen": "'keen' means eager, not having little or no rain; sense-family: eagerness.",
+    "loud": "'loud' means noisy, not having little or no rain; sense-family: sound."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-COPIOUS",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] COPIOUS",
+   "choices": [
+    "elegant",
+    "plentiful",
+    "hopeless",
+    "domestic",
+    "truthful"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "COPIOUS means existing in large amounts; 'plentiful' is the closest synonym.",
+   "correct_answer": "plentiful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "elegant": "'elegant' means graceful, not existing in large amounts; sense-family: grace.",
+    "truthful": "'truthful' means honest, not existing in large amounts; sense-family: truth.",
+    "domestic": "'domestic' means relating to the home, not existing in large amounts; sense-family: home.",
+    "hopeless": "'hopeless' means without hope, not existing in large amounts; sense-family: despair."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DEVOUT",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DEVOUT",
+   "choices": [
+    "sly",
+    "pious",
+    "crude",
+    "stingy",
+    "swift"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "DEVOUT means deeply religious; 'pious' is the closest synonym.",
+   "correct_answer": "pious",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "swift": "'swift' means fast, not deeply religious; sense-family: speed.",
+    "crude": "'crude' means rough, unrefined, not deeply religious; sense-family: refinement.",
+    "stingy": "'stingy' means unwilling to spend, not deeply religious; sense-family: money.",
+    "sly": "'sly' means cunning, not deeply religious; sense-family: cunning."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DIRE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DIRE",
+   "choices": [
+    "generous",
+    "peculiar",
+    "talented",
+    "delicate",
+    "dreadful"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "DIRE means extremely serious or terrible; 'dreadful' is the closest synonym.",
+   "correct_answer": "dreadful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "talented": "'talented' means gifted, not extremely serious or terrible; sense-family: skill.",
+    "peculiar": "'peculiar' means strange, not extremely serious or terrible; sense-family: oddness.",
+    "generous": "'generous' means willing to give, not extremely serious or terrible; sense-family: giving.",
+    "delicate": "'delicate' means fine and fragile, not extremely serious or terrible; sense-family: fragility."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FICKLE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FICKLE",
+   "choices": [
+    "changeable",
+    "mysterious",
+    "courageous",
+    "industrious",
+    "steadfast"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "FICKLE means likely to change one's loyalty or mind often; 'changeable' is the closest synonym.",
+   "correct_answer": "changeable",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "courageous": "'courageous' means brave, not likely to change one's loyalty or mind often; sense-family: bravery.",
+    "industrious": "'industrious' means hardworking, not likely to change one's loyalty or mind often; sense-family: work.",
+    "mysterious": "'mysterious' means hard to explain, not likely to change one's loyalty or mind often; sense-family: mystery.",
+    "steadfast": "'steadfast' means firmly loyal, not likely to change one's loyalty or mind often; sense-family: loyalty."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-GAUNT",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] GAUNT",
+   "choices": [
+    "eloquent",
+    "stocky",
+    "haggard",
+    "frugal",
+    "radiant"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "GAUNT means thin and bony, as from hunger or suffering; 'haggard' is the closest synonym.",
+   "correct_answer": "haggard",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "frugal": "'frugal' means careful with money, not thin and bony, as from hunger or suffering; sense-family: thrift.",
+    "radiant": "'radiant' means glowing, not thin and bony, as from hunger or suffering; sense-family: light.",
+    "eloquent": "'eloquent' means well-spoken, not thin and bony, as from hunger or suffering; sense-family: speech.",
+    "stocky": "'stocky' means short and solidly built, not thin and bony, as from hunger or suffering; sense-family: build."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-LITHE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] LITHE",
+   "choices": [
+    "shrewd",
+    "murky",
+    "stern",
+    "sacred",
+    "supple"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "LITHE means bending and moving easily and gracefully; 'supple' is the closest synonym.",
+   "correct_answer": "supple",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "stern": "'stern' means strict, not bending and moving easily and gracefully; sense-family: strictness.",
+    "murky": "'murky' means dark and cloudy, not bending and moving easily and gracefully; sense-family: clarity.",
+    "shrewd": "'shrewd' means clever in practical matters, not bending and moving easily and gracefully; sense-family: cleverness.",
+    "sacred": "'sacred' means holy, not bending and moving easily and gracefully; sense-family: religion."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-LOQUACIOUS",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] LOQUACIOUS",
+   "choices": [
+    "victorious",
+    "ambitious",
+    "talkative",
+    "reticent",
+    "negligent"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "LOQUACIOUS means fond of talking a great deal; 'talkative' is the closest synonym.",
+   "correct_answer": "talkative",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ambitious": "'ambitious' means eager to succeed, not fond of talking a great deal; sense-family: ambition.",
+    "victorious": "'victorious' means winning, not fond of talking a great deal; sense-family: victory.",
+    "negligent": "'negligent' means careless, not fond of talking a great deal; sense-family: care.",
+    "reticent": "'reticent' means reluctant to speak, not fond of talking a great deal; sense-family: speech."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-NOXIOUS",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] NOXIOUS",
+   "choices": [
+    "joyful",
+    "polite",
+    "harmful",
+    "verbal",
+    "famous"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "NOXIOUS means poisonous or very unpleasant; 'harmful' is the closest synonym.",
+   "correct_answer": "harmful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "famous": "'famous' means well known, not poisonous or very unpleasant; sense-family: fame.",
+    "polite": "'polite' means courteous, not poisonous or very unpleasant; sense-family: manners.",
+    "joyful": "'joyful' means happy, not poisonous or very unpleasant; sense-family: joy.",
+    "verbal": "'verbal' means spoken, not poisonous or very unpleasant; sense-family: speech."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PERTINENT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PERTINENT",
+   "choices": [
+    "relevant",
+    "eminent",
+    "tolerant",
+    "abundant",
+    "flexible"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "PERTINENT means bearing directly on the matter at hand; 'relevant' is the closest synonym.",
+   "correct_answer": "relevant",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "eminent": "'eminent' means distinguished, not bearing directly on the matter at hand; sense-family: fame.",
+    "abundant": "'abundant' means plentiful, not bearing directly on the matter at hand; sense-family: quantity.",
+    "tolerant": "'tolerant' means accepting, not bearing directly on the matter at hand; sense-family: acceptance.",
+    "flexible": "'flexible' means bendable, not bearing directly on the matter at hand; sense-family: flexibility."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-POMPOUS",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] POMPOUS",
+   "choices": [
+    "adventurous",
+    "unassuming",
+    "pretentious",
+    "unfortunate",
+    "intelligent"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "POMPOUS means self-important and showy; 'pretentious' is the closest synonym.",
+   "correct_answer": "pretentious",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "adventurous": "'adventurous' means eager for adventure, not self-important and showy; sense-family: adventure.",
+    "unfortunate": "'unfortunate' means unlucky, not self-important and showy; sense-family: luck.",
+    "intelligent": "'intelligent' means smart, not self-important and showy; sense-family: intellect.",
+    "unassuming": "'unassuming' means modest, not self-important and showy; sense-family: modesty."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-RUSTIC",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] RUSTIC",
+   "choices": [
+    "vocal",
+    "rural",
+    "royal",
+    "naval",
+    "lunar"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "RUSTIC means typical of the countryside; 'rural' is the closest synonym.",
+   "correct_answer": "rural",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "naval": "'naval' means relating to the navy, not typical of the countryside; sense-family: sea.",
+    "vocal": "'vocal' means outspoken, not typical of the countryside; sense-family: speech.",
+    "lunar": "'lunar' means relating to the moon, not typical of the countryside; sense-family: moon.",
+    "royal": "'royal' means of a king or queen, not typical of the countryside; sense-family: royalty."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SULLEN",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SULLEN",
+   "choices": [
+    "dainty",
+    "plush",
+    "brisk",
+    "tidy",
+    "sulky"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "SULLEN means silently bad-tempered and resentful; 'sulky' is the closest synonym.",
+   "correct_answer": "sulky",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "dainty": "'dainty' means delicate, not silently bad-tempered and resentful; sense-family: delicacy.",
+    "brisk": "'brisk' means quick and energetic, not silently bad-tempered and resentful; sense-family: pace.",
+    "tidy": "'tidy' means neat, not silently bad-tempered and resentful; sense-family: order.",
+    "plush": "'plush' means luxurious, not silently bad-tempered and resentful; sense-family: luxury."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-UBIQUITOUS",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] UBIQUITOUS",
+   "choices": [
+    "ferocious",
+    "courteous",
+    "ingenious",
+    "luxurious",
+    "pervasive"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "UBIQUITOUS means present or found everywhere; 'pervasive' is the closest synonym.",
+   "correct_answer": "pervasive",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "courteous": "'courteous' means polite, not present or found everywhere; sense-family: manners.",
+    "luxurious": "'luxurious' means very comfortable, not present or found everywhere; sense-family: luxury.",
+    "ingenious": "'ingenious' means clever and inventive, not present or found everywhere; sense-family: cleverness.",
+    "ferocious": "'ferocious' means fierce, not present or found everywhere; sense-family: fierceness."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-VENERABLE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] VENERABLE",
+   "choices": [
+    "hapless",
+    "bustling",
+    "candid",
+    "revered",
+    "nautical"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "VENERABLE means greatly respected, especially because of age; 'revered' is the closest synonym.",
+   "correct_answer": "revered",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "hapless": "'hapless' means unlucky, not greatly respected, especially because of age; sense-family: luck.",
+    "bustling": "'bustling' means busy and lively, not greatly respected, especially because of age; sense-family: activity.",
+    "nautical": "'nautical' means relating to ships, not greatly respected, especially because of age; sense-family: sea.",
+    "candid": "'candid' means frank, not greatly respected, especially because of age; sense-family: honesty."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-WISTFUL",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] WISTFUL",
+   "choices": [
+    "athletic",
+    "defiant",
+    "hilarious",
+    "nostalgic",
+    "tropical"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "WISTFUL means full of sad, vague longing; 'nostalgic' is the closest synonym.",
+   "correct_answer": "nostalgic",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tropical": "'tropical' means hot and humid, not full of sad, vague longing; sense-family: climate.",
+    "defiant": "'defiant' means boldly resisting, not full of sad, vague longing; sense-family: resistance.",
+    "athletic": "'athletic' means physically strong, not full of sad, vague longing; sense-family: fitness.",
+    "hilarious": "'hilarious' means very funny, not full of sad, vague longing; sense-family: humor."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-EXUBERANT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] EXUBERANT",
+   "choices": [
+    "treacherous",
+    "enthusiastic",
+    "inexpensive",
+    "considerate",
+    "mechanical"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "EXUBERANT means full of energy and cheerful excitement; 'enthusiastic' is the closest synonym.",
+   "correct_answer": "enthusiastic",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "considerate": "'considerate' means thoughtful of others, not full of energy and cheerful excitement; sense-family: kindness.",
+    "inexpensive": "'inexpensive' means cheap, not full of energy and cheerful excitement; sense-family: cost.",
+    "treacherous": "'treacherous' means disloyal, not full of energy and cheerful excitement; sense-family: betrayal.",
+    "mechanical": "'mechanical' means relating to machines, not full of energy and cheerful excitement; sense-family: machinery."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DISCREET",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DISCREET",
+   "choices": [
+    "fearless",
+    "nomadic",
+    "bitter",
+    "tactful",
+    "boastful"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "DISCREET means careful in speech or action to avoid giving offense; 'tactful' is the closest synonym.",
+   "correct_answer": "tactful",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "nomadic": "'nomadic' means wandering, not careful in speech or action to avoid giving offense; sense-family: travel.",
+    "fearless": "'fearless' means brave, not careful in speech or action to avoid giving offense; sense-family: courage.",
+    "bitter": "'bitter' means sharp-tasting, not careful in speech or action to avoid giving offense; sense-family: taste.",
+    "boastful": "'boastful' means bragging, not careful in speech or action to avoid giving offense; sense-family: boasting."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-CURSORY",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] CURSORY",
+   "choices": [
+    "tribal",
+    "cranky",
+    "ornate",
+    "hasty",
+    "noble"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "CURSORY means quick and not thorough; 'hasty' is the closest synonym.",
+   "correct_answer": "hasty",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ornate": "'ornate' means decorated, not quick and not thorough; sense-family: decoration.",
+    "cranky": "'cranky' means irritable, not quick and not thorough; sense-family: temper.",
+    "noble": "'noble' means honorable, not quick and not thorough; sense-family: nobility.",
+    "tribal": "'tribal' means of a tribe, not quick and not thorough; sense-family: tribe."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ABDICATE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ABDICATE",
+   "choices": [
+    "renounce",
+    "decorate",
+    "navigate",
+    "separate",
+    "advocate"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "ABDICATE means to give up a throne or responsibility formally; 'renounce' is the closest synonym.",
+   "correct_answer": "renounce",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "decorate": "'decorate' means to adorn, not to give up a throne or responsibility formally; sense-family: decoration.",
+    "separate": "'separate' means to divide, not to give up a throne or responsibility formally; sense-family: division.",
+    "advocate": "'advocate' means to support publicly, not to give up a throne or responsibility formally; sense-family: support.",
+    "navigate": "'navigate' means to steer, not to give up a throne or responsibility formally; sense-family: direction."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-AMASS",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] AMASS",
+   "choices": [
+    "investigate",
+    "accumulate",
+    "terminate",
+    "discourage",
+    "exaggerate"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "AMASS means to gather a large amount over time; 'accumulate' is the closest synonym.",
+   "correct_answer": "accumulate",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "investigate": "'investigate' means to look into, not to gather a large amount over time; sense-family: inquiry.",
+    "discourage": "'discourage' means to dishearten, not to gather a large amount over time; sense-family: morale.",
+    "exaggerate": "'exaggerate' means to overstate, not to gather a large amount over time; sense-family: statement.",
+    "terminate": "'terminate' means to end, not to gather a large amount over time; sense-family: ending."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-BESTOW",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] BESTOW",
+   "choices": [
+    "grant",
+    "hover",
+    "scold",
+    "recite",
+    "knead"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "BESTOW means to give as an honor or gift; 'grant' is the closest synonym.",
+   "correct_answer": "grant",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "scold": "'scold' means to criticize angrily, not to give as an honor or gift; sense-family: criticism.",
+    "recite": "'recite' means to say aloud from memory, not to give as an honor or gift; sense-family: speech.",
+    "hover": "'hover' means to float in place, not to give as an honor or gift; sense-family: floating.",
+    "knead": "'knead' means to work dough, not to give as an honor or gift; sense-family: baking."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-BICKER",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] BICKER",
+   "choices": [
+    "squabble",
+    "glisten",
+    "stammer",
+    "saunter",
+    "tremble"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "BICKER means to argue about petty things; 'squabble' is the closest synonym.",
+   "correct_answer": "squabble",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "stammer": "'stammer' means to speak haltingly, not to argue about petty things; sense-family: speech.",
+    "saunter": "'saunter' means to walk leisurely, not to argue about petty things; sense-family: walking.",
+    "glisten": "'glisten' means to sparkle, not to argue about petty things; sense-family: light.",
+    "tremble": "'tremble' means to shake, not to argue about petty things; sense-family: shaking."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DERIDE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DERIDE",
+   "choices": [
+    "pour",
+    "bend",
+    "hint",
+    "wade",
+    "mock"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "DERIDE means to speak of with contempt; ridicule; 'mock' is the closest synonym.",
+   "correct_answer": "mock",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "pour": "'pour' means to make flow, not to speak of with contempt; ridicule; sense-family: flowing.",
+    "hint": "'hint' means to suggest indirectly, not to speak of with contempt; ridicule; sense-family: suggestion.",
+    "bend": "'bend' means to curve, not to speak of with contempt; ridicule; sense-family: shape.",
+    "wade": "'wade' means to walk through water, not to speak of with contempt; ridicule; sense-family: walking."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DISPEL",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DISPEL",
+   "choices": [
+    "polish",
+    "mutter",
+    "forge",
+    "banish",
+    "import"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "DISPEL means to drive away (a doubt or feeling); 'banish' is the closest synonym.",
+   "correct_answer": "banish",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "import": "'import' means to bring in from abroad, not to drive away (a doubt or feeling); sense-family: trade.",
+    "polish": "'polish' means to shine, not to drive away (a doubt or feeling); sense-family: cleaning.",
+    "mutter": "'mutter' means to speak low, not to drive away (a doubt or feeling); sense-family: speech.",
+    "forge": "'forge' means to shape metal, not to drive away (a doubt or feeling); sense-family: metalwork."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ENTICE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ENTICE",
+   "choices": [
+    "dent",
+    "roam",
+    "deter",
+    "lure",
+    "knit"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "ENTICE means to attract by offering something pleasant; 'lure' is the closest synonym.",
+   "correct_answer": "lure",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "dent": "'dent' means to make a hollow in, not to attract by offering something pleasant; sense-family: damage.",
+    "knit": "'knit' means to make from yarn, not to attract by offering something pleasant; sense-family: craft.",
+    "roam": "'roam' means to wander, not to attract by offering something pleasant; sense-family: travel.",
+    "deter": "'deter' means to discourage, not to attract by offering something pleasant; sense-family: discouragement."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ERADICATE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ERADICATE",
+   "choices": [
+    "encounter",
+    "celebrate",
+    "negotiate",
+    "calculate",
+    "eliminate"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "ERADICATE means to destroy completely; 'eliminate' is the closest synonym.",
+   "correct_answer": "eliminate",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "celebrate": "'celebrate' means to mark with festivities, not to destroy completely; sense-family: festivity.",
+    "negotiate": "'negotiate' means to bargain, not to destroy completely; sense-family: bargaining.",
+    "encounter": "'encounter' means to meet unexpectedly, not to destroy completely; sense-family: meeting.",
+    "calculate": "'calculate' means to compute, not to destroy completely; sense-family: math."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FALTER",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FALTER",
+   "choices": [
+    "beckon",
+    "waver",
+    "argue",
+    "dwell",
+    "adore"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "FALTER means to lose strength or hesitate; 'waver' is the closest synonym.",
+   "correct_answer": "waver",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "argue": "'argue' means to disagree, not to lose strength or hesitate; sense-family: dispute.",
+    "beckon": "'beckon' means to signal to come, not to lose strength or hesitate; sense-family: signal.",
+    "adore": "'adore' means to love, not to lose strength or hesitate; sense-family: love.",
+    "dwell": "'dwell' means to live, not to lose strength or hesitate; sense-family: residence."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FLAUNT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FLAUNT",
+   "choices": [
+    "cut back",
+    "turn down",
+    "put off",
+    "give in",
+    "show off"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "FLAUNT means to display proudly to gain attention; 'show off' is the closest synonym.",
+   "correct_answer": "show off",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "put off": "'put off' means to postpone, not to display proudly to gain attention; sense-family: delay.",
+    "turn down": "'turn down' means to refuse, not to display proudly to gain attention; sense-family: refusal.",
+    "give in": "'give in' means to surrender, not to display proudly to gain attention; sense-family: surrender.",
+    "cut back": "'cut back' means to reduce, not to display proudly to gain attention; sense-family: reduction."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FOSTER",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FOSTER",
+   "choices": [
+    "vanish",
+    "nurture",
+    "exhale",
+    "scatter",
+    "whisper"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "FOSTER means to encourage the growth of; 'nurture' is the closest synonym.",
+   "correct_answer": "nurture",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "scatter": "'scatter' means to spread widely, not to encourage the growth of; sense-family: spreading.",
+    "exhale": "'exhale' means to breathe out, not to encourage the growth of; sense-family: breathing.",
+    "vanish": "'vanish' means to disappear, not to encourage the growth of; sense-family: disappearance.",
+    "whisper": "'whisper' means to speak softly, not to encourage the growth of; sense-family: speech."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-HAMPER",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] HAMPER",
+   "choices": [
+    "whistle",
+    "stretch",
+    "gallop",
+    "depart",
+    "hinder"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "HAMPER means to get in the way of; 'hinder' is the closest synonym.",
+   "correct_answer": "hinder",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "depart": "'depart' means to leave, not to get in the way of; sense-family: leaving.",
+    "stretch": "'stretch' means to extend, not to get in the way of; sense-family: length.",
+    "whistle": "'whistle' means to make a shrill sound, not to get in the way of; sense-family: sound.",
+    "gallop": "'gallop' means to run like a horse, not to get in the way of; sense-family: running."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-HEED",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] HEED",
+   "choices": [
+    "obey",
+    "ignore",
+    "fold",
+    "leap",
+    "boil"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "HEED means to pay attention to and follow; 'obey' is the closest synonym.",
+   "correct_answer": "obey",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "boil": "'boil' means to heat until bubbling, not to pay attention to and follow; sense-family: cooking.",
+    "leap": "'leap' means to jump, not to pay attention to and follow; sense-family: jumping.",
+    "fold": "'fold' means to bend over, not to pay attention to and follow; sense-family: folding.",
+    "ignore": "'ignore' means to pay no attention to, not to pay attention to and follow; sense-family: attention."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-LOITER",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] LOITER",
+   "choices": [
+    "gossip",
+    "mingle",
+    "linger",
+    "pester",
+    "fumble"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "LOITER means to stand or wait around idly; 'linger' is the closest synonym.",
+   "correct_answer": "linger",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "gossip": "'gossip' means to chatter about others, not to stand or wait around idly; sense-family: talk.",
+    "mingle": "'mingle' means to mix socially, not to stand or wait around idly; sense-family: socializing.",
+    "pester": "'pester' means to annoy, not to stand or wait around idly; sense-family: annoyance.",
+    "fumble": "'fumble' means to handle clumsily, not to stand or wait around idly; sense-family: clumsiness."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PLUNDER",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PLUNDER",
+   "choices": [
+    "sew",
+    "bake",
+    "vote",
+    "loot",
+    "hum"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "PLUNDER means to steal goods by force; 'loot' is the closest synonym.",
+   "correct_answer": "loot",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "bake": "'bake' means to cook in an oven, not to steal goods by force; sense-family: cooking.",
+    "hum": "'hum' means to sing with closed lips, not to steal goods by force; sense-family: music.",
+    "sew": "'sew' means to stitch, not to steal goods by force; sense-family: sewing.",
+    "vote": "'vote' means to choose formally, not to steal goods by force; sense-family: election."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-QUASH",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] QUASH",
+   "choices": [
+    "stagger",
+    "purchase",
+    "imagine",
+    "suppress",
+    "rejoice"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "QUASH means to put an end to by force; 'suppress' is the closest synonym.",
+   "correct_answer": "suppress",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "rejoice": "'rejoice' means to celebrate, not to put an end to by force; sense-family: joy.",
+    "purchase": "'purchase' means to buy, not to put an end to by force; sense-family: buying.",
+    "imagine": "'imagine' means to picture mentally, not to put an end to by force; sense-family: imagination.",
+    "stagger": "'stagger' means to walk unsteadily, not to put an end to by force; sense-family: walking."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-RECOIL",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] RECOIL",
+   "choices": [
+    "squint",
+    "flinch",
+    "relish",
+    "rummage",
+    "ripen"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "RECOIL means to draw back in fear or disgust; 'flinch' is the closest synonym.",
+   "correct_answer": "flinch",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "relish": "'relish' means to enjoy, not to draw back in fear or disgust; sense-family: enjoyment.",
+    "rummage": "'rummage' means to search messily, not to draw back in fear or disgust; sense-family: searching.",
+    "ripen": "'ripen' means to mature, not to draw back in fear or disgust; sense-family: growth.",
+    "squint": "'squint' means to narrow the eyes, not to draw back in fear or disgust; sense-family: vision."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-REFUTE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] REFUTE",
+   "choices": [
+    "migrate",
+    "bargain",
+    "donate",
+    "sharpen",
+    "disprove"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "REFUTE means to prove to be false; 'disprove' is the closest synonym.",
+   "correct_answer": "disprove",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "migrate": "'migrate' means to move seasonally, not to prove to be false; sense-family: migration.",
+    "bargain": "'bargain' means to haggle, not to prove to be false; sense-family: bargaining.",
+    "donate": "'donate' means to give, not to prove to be false; sense-family: giving.",
+    "sharpen": "'sharpen' means to make sharp, not to prove to be false; sense-family: sharpness."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SHIRK",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SHIRK",
+   "choices": [
+    "adopt",
+    "avoid",
+    "dangle",
+    "crave",
+    "prune"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "SHIRK means to avoid (a duty or work); 'avoid' is the closest synonym.",
+   "correct_answer": "avoid",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "adopt": "'adopt' means to take as one's own, not to avoid (a duty or work); sense-family: adoption.",
+    "prune": "'prune' means to trim, not to avoid (a duty or work); sense-family: trimming.",
+    "crave": "'crave' means to desire strongly, not to avoid (a duty or work); sense-family: desire.",
+    "dangle": "'dangle' means to hang loosely, not to avoid (a duty or work); sense-family: hanging."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SPURN",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SPURN",
+   "choices": [
+    "embrace",
+    "glance",
+    "chisel",
+    "reject",
+    "tumble"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "SPURN means to refuse with contempt; 'reject' is the closest synonym.",
+   "correct_answer": "reject",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "embrace": "'embrace' means to accept eagerly, not to refuse with contempt; sense-family: acceptance.",
+    "chisel": "'chisel' means to carve, not to refuse with contempt; sense-family: carving.",
+    "tumble": "'tumble' means to fall, not to refuse with contempt; sense-family: falling.",
+    "glance": "'glance' means to look briefly, not to refuse with contempt; sense-family: looking."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SUBSIDE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SUBSIDE",
+   "choices": [
+    "collide",
+    "measure",
+    "vaccinate",
+    "lessen",
+    "applaud"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "SUBSIDE means to become less intense; 'lessen' is the closest synonym.",
+   "correct_answer": "lessen",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "vaccinate": "'vaccinate' means to inoculate, not to become less intense; sense-family: medicine.",
+    "collide": "'collide' means to crash together, not to become less intense; sense-family: impact.",
+    "applaud": "'applaud' means to clap, not to become less intense; sense-family: approval.",
+    "measure": "'measure' means to find the size of, not to become less intense; sense-family: measurement."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-VEX",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] VEX",
+   "choices": [
+    "annoy",
+    "adorn",
+    "excel",
+    "elect",
+    "weave"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "VEX means to irritate or trouble; 'annoy' is the closest synonym.",
+   "correct_answer": "annoy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "adorn": "'adorn' means to decorate, not to irritate or trouble; sense-family: decoration.",
+    "excel": "'excel' means to be very good, not to irritate or trouble; sense-family: skill.",
+    "weave": "'weave' means to interlace, not to irritate or trouble; sense-family: weaving.",
+    "elect": "'elect' means to vote in, not to irritate or trouble; sense-family: election."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-TRANSCEND",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] TRANSCEND",
+   "choices": [
+    "surpass",
+    "pretend",
+    "tolerate",
+    "dissolve",
+    "motivate"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "TRANSCEND means to go beyond the limits of; 'surpass' is the closest synonym.",
+   "correct_answer": "surpass",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "tolerate": "'tolerate' means to put up with, not to go beyond the limits of; sense-family: endurance.",
+    "dissolve": "'dissolve' means to melt into liquid, not to go beyond the limits of; sense-family: solution.",
+    "motivate": "'motivate' means to inspire to act, not to go beyond the limits of; sense-family: motivation.",
+    "pretend": "'pretend' means to make believe, not to go beyond the limits of; sense-family: pretense."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-SCORN",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] SCORN",
+   "choices": [
+    "quench",
+    "whittle",
+    "compose",
+    "sprinkle",
+    "despise"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "SCORN means to feel or show contempt for; 'despise' is the closest synonym.",
+   "correct_answer": "despise",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "compose": "'compose' means to create music or writing, not to feel or show contempt for; sense-family: composition.",
+    "sprinkle": "'sprinkle' means to scatter in drops, not to feel or show contempt for; sense-family: scattering.",
+    "quench": "'quench' means to satisfy thirst, not to feel or show contempt for; sense-family: thirst.",
+    "whittle": "'whittle' means to carve wood, not to feel or show contempt for; sense-family: carving."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ALACRITY",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ALACRITY",
+   "choices": [
+    "eagerness",
+    "geography",
+    "ignorance",
+    "intrigue",
+    "prosperity"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "ALACRITY means cheerful readiness; 'eagerness' is the closest synonym.",
+   "correct_answer": "eagerness",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ignorance": "'ignorance' means lack of knowledge, not cheerful readiness; sense-family: knowledge.",
+    "intrigue": "'intrigue' means secret plotting, not cheerful readiness; sense-family: scheming.",
+    "geography": "'geography' means study of places, not cheerful readiness; sense-family: geography.",
+    "prosperity": "'prosperity' means success and wealth, not cheerful readiness; sense-family: wealth."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-AVARICE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] AVARICE",
+   "choices": [
+    "pity",
+    "greed",
+    "valor",
+    "haste",
+    "guilt"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "AVARICE means extreme desire for wealth; 'greed' is the closest synonym.",
+   "correct_answer": "greed",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "valor": "'valor' means bravery, not extreme desire for wealth; sense-family: courage.",
+    "pity": "'pity' means sympathy, not extreme desire for wealth; sense-family: compassion.",
+    "haste": "'haste' means hurry, not extreme desire for wealth; sense-family: speed.",
+    "guilt": "'guilt' means feeling of blame, not extreme desire for wealth; sense-family: remorse."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-CALAMITY",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] CALAMITY",
+   "choices": [
+    "festival",
+    "disaster",
+    "compass",
+    "ballad",
+    "monument"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "CALAMITY means an event causing great damage or distress; 'disaster' is the closest synonym.",
+   "correct_answer": "disaster",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "festival": "'festival' means celebration, not an event causing great damage or distress; sense-family: celebration.",
+    "compass": "'compass' means direction-finding tool, not an event causing great damage or distress; sense-family: direction.",
+    "monument": "'monument' means memorial structure, not an event causing great damage or distress; sense-family: memorial.",
+    "ballad": "'ballad' means narrative song, not an event causing great damage or distress; sense-family: song."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-CLAMOR",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] CLAMOR",
+   "choices": [
+    "glimpse",
+    "uproar",
+    "hush",
+    "outline",
+    "remedy"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "CLAMOR means a loud, confused noise; 'uproar' is the closest synonym.",
+   "correct_answer": "uproar",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "glimpse": "'glimpse' means brief look, not a loud, confused noise; sense-family: sight.",
+    "remedy": "'remedy' means cure, not a loud, confused noise; sense-family: healing.",
+    "outline": "'outline' means general sketch, not a loud, confused noise; sense-family: shape.",
+    "hush": "'hush' means silence, not a loud, confused noise; sense-family: silence."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DECORUM",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DECORUM",
+   "choices": [
+    "adversity",
+    "ambiguity",
+    "propriety",
+    "intensity",
+    "hostility"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "DECORUM means correct and dignified behavior; 'propriety' is the closest synonym.",
+   "correct_answer": "propriety",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "intensity": "'intensity' means strength of feeling, not correct and dignified behavior; sense-family: strength.",
+    "ambiguity": "'ambiguity' means unclear meaning, not correct and dignified behavior; sense-family: clarity.",
+    "adversity": "'adversity' means hardship, not correct and dignified behavior; sense-family: hardship.",
+    "hostility": "'hostility' means enmity, not correct and dignified behavior; sense-family: enmity."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-DISCORD",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] DISCORD",
+   "choices": [
+    "splendor",
+    "conflict",
+    "estimate",
+    "shelter",
+    "harmony"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "DISCORD means disagreement between people; 'conflict' is the closest synonym.",
+   "correct_answer": "conflict",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "harmony": "'harmony' means agreement, not disagreement between people; sense-family: agreement.",
+    "splendor": "'splendor' means magnificence, not disagreement between people; sense-family: grandeur.",
+    "estimate": "'estimate' means rough calculation, not disagreement between people; sense-family: calculation.",
+    "shelter": "'shelter' means protection from weather, not disagreement between people; sense-family: protection."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-EPOCH",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] EPOCH",
+   "choices": [
+    "pact",
+    "clan",
+    "realm",
+    "mood",
+    "era"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "EPOCH means a distinct period of history; 'era' is the closest synonym.",
+   "correct_answer": "era",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "pact": "'pact' means agreement, not a distinct period of history; sense-family: agreement.",
+    "clan": "'clan' means family group, not a distinct period of history; sense-family: kinship.",
+    "mood": "'mood' means state of feeling, not a distinct period of history; sense-family: emotion.",
+    "realm": "'realm' means kingdom, not a distinct period of history; sense-family: territory."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-FORTITUDE",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] FORTITUDE",
+   "choices": [
+    "gratitude",
+    "ancestry",
+    "elegance",
+    "courage",
+    "mischief"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "FORTITUDE means strength of mind in facing pain or hardship; 'courage' is the closest synonym.",
+   "correct_answer": "courage",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "gratitude": "'gratitude' means thankfulness, not strength of mind in facing pain or hardship; sense-family: thanks.",
+    "elegance": "'elegance' means grace, not strength of mind in facing pain or hardship; sense-family: style.",
+    "mischief": "'mischief' means playful misbehavior, not strength of mind in facing pain or hardship; sense-family: misbehavior.",
+    "ancestry": "'ancestry' means family descent, not strength of mind in facing pain or hardship; sense-family: lineage."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-GUILE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] GUILE",
+   "choices": [
+    "rhythm",
+    "honesty",
+    "cunning",
+    "fragrance",
+    "thunder"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "GUILE means sly or deceitful cleverness; 'cunning' is the closest synonym.",
+   "correct_answer": "cunning",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "honesty": "'honesty' means truthfulness, not sly or deceitful cleverness; sense-family: truth.",
+    "thunder": "'thunder' means loud storm noise, not sly or deceitful cleverness; sense-family: weather.",
+    "rhythm": "'rhythm' means musical beat, not sly or deceitful cleverness; sense-family: music.",
+    "fragrance": "'fragrance' means pleasant smell, not sly or deceitful cleverness; sense-family: smell."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-HAVEN",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] HAVEN",
+   "choices": [
+    "refuge",
+    "burden",
+    "riddle",
+    "banquet",
+    "ransom"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "HAVEN means a place of safety; 'refuge' is the closest synonym.",
+   "correct_answer": "refuge",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "burden": "'burden' means heavy load, not a place of safety; sense-family: load.",
+    "riddle": "'riddle' means puzzling question, not a place of safety; sense-family: puzzle.",
+    "banquet": "'banquet' means feast, not a place of safety; sense-family: feast.",
+    "ransom": "'ransom' means payment for release, not a place of safety; sense-family: payment."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-INERTIA",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] INERTIA",
+   "choices": [
+    "inactivity",
+    "reputation",
+    "generosity",
+    "navigation",
+    "tradition"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "INERTIA means a tendency to do nothing or remain unchanged; 'inactivity' is the closest synonym.",
+   "correct_answer": "inactivity",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "generosity": "'generosity' means willingness to give, not a tendency to do nothing or remain unchanged; sense-family: giving.",
+    "navigation": "'navigation' means finding the way, not a tendency to do nothing or remain unchanged; sense-family: direction.",
+    "tradition": "'tradition' means custom handed down, not a tendency to do nothing or remain unchanged; sense-family: custom.",
+    "reputation": "'reputation' means general opinion of someone, not a tendency to do nothing or remain unchanged; sense-family: standing."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-MORSEL",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] MORSEL",
+   "choices": [
+    "gadget",
+    "goblet",
+    "pebble",
+    "tidbit",
+    "ripple"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "MORSEL means a small piece of food; 'tidbit' is the closest synonym.",
+   "correct_answer": "tidbit",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "gadget": "'gadget' means small device, not a small piece of food; sense-family: device.",
+    "ripple": "'ripple' means small wave, not a small piece of food; sense-family: water.",
+    "pebble": "'pebble' means small stone, not a small piece of food; sense-family: stone.",
+    "goblet": "'goblet' means drinking glass, not a small piece of food; sense-family: drinkware."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-OVATION",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] OVATION",
+   "choices": [
+    "applause",
+    "blueprint",
+    "ambition",
+    "allowance",
+    "ancestor"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "OVATION means enthusiastic clapping by an audience; 'applause' is the closest synonym.",
+   "correct_answer": "applause",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "ambition": "'ambition' means drive to succeed, not enthusiastic clapping by an audience; sense-family: ambition.",
+    "ancestor": "'ancestor' means forebear, not enthusiastic clapping by an audience; sense-family: family.",
+    "blueprint": "'blueprint' means building plan, not enthusiastic clapping by an audience; sense-family: plan.",
+    "allowance": "'allowance' means regular sum given, not enthusiastic clapping by an audience; sense-family: money."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PINNACLE",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PINNACLE",
+   "choices": [
+    "token",
+    "vault",
+    "wreck",
+    "peak",
+    "hoax"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "PINNACLE means the highest point; 'peak' is the closest synonym.",
+   "correct_answer": "peak",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "wreck": "'wreck' means ruins, not the highest point; sense-family: ruin.",
+    "token": "'token' means symbol, not the highest point; sense-family: symbol.",
+    "hoax": "'hoax' means trick, not the highest point; sense-family: deception.",
+    "vault": "'vault' means arched room, not the highest point; sense-family: architecture."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PLIGHT",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PLIGHT",
+   "choices": [
+    "inheritance",
+    "negotiation",
+    "predicament",
+    "perspective",
+    "celebration"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "PLIGHT means a difficult or dangerous situation; 'predicament' is the closest synonym.",
+   "correct_answer": "predicament",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "inheritance": "'inheritance' means what one inherits, not a difficult or dangerous situation; sense-family: inheritance.",
+    "celebration": "'celebration' means festive event, not a difficult or dangerous situation; sense-family: festivity.",
+    "perspective": "'perspective' means point of view, not a difficult or dangerous situation; sense-family: viewpoint.",
+    "negotiation": "'negotiation' means discussion to reach a deal, not a difficult or dangerous situation; sense-family: bargaining."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-PROWESS",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] PROWESS",
+   "choices": [
+    "chore",
+    "dread",
+    "skill",
+    "thirst",
+    "rumor"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "PROWESS means great ability or expertise; 'skill' is the closest synonym.",
+   "correct_answer": "skill",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "dread": "'dread' means great fear, not great ability or expertise; sense-family: fear.",
+    "thirst": "'thirst' means need to drink, not great ability or expertise; sense-family: thirst.",
+    "rumor": "'rumor' means unverified story, not great ability or expertise; sense-family: gossip.",
+    "chore": "'chore' means routine task, not great ability or expertise; sense-family: task."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-TIRADE",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] TIRADE",
+   "choices": [
+    "memo",
+    "quiz",
+    "rant",
+    "eulogy",
+    "hymn"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "TIRADE means a long, angry speech of criticism; 'rant' is the closest synonym.",
+   "correct_answer": "rant",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "hymn": "'hymn' means religious song, not a long, angry speech of criticism; sense-family: song.",
+    "memo": "'memo' means short note, not a long, angry speech of criticism; sense-family: note.",
+    "quiz": "'quiz' means short test, not a long, angry speech of criticism; sense-family: test.",
+    "eulogy": "'eulogy' means speech of praise, not a long, angry speech of criticism; sense-family: praise."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-VERACITY",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] VERACITY",
+   "choices": [
+    "helplessness",
+    "cheerfulness",
+    "truthfulness",
+    "restlessness",
+    "forgetfulness"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "hard",
+   "explanation": "VERACITY means the quality of being true or honest; 'truthfulness' is the closest synonym.",
+   "correct_answer": "truthfulness",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "cheerfulness": "'cheerfulness' means good spirits, not the quality of being true or honest; sense-family: mood.",
+    "forgetfulness": "'forgetfulness' means tendency to forget, not the quality of being true or honest; sense-family: memory.",
+    "helplessness": "'helplessness' means inability to help oneself, not the quality of being true or honest; sense-family: dependence.",
+    "restlessness": "'restlessness' means inability to stay still, not the quality of being true or honest; sense-family: agitation."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ZEAL",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ZEAL",
+   "choices": [
+    "pigment",
+    "thrift",
+    "splinter",
+    "verdict",
+    "fervor"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "medium",
+   "explanation": "ZEAL means great energy or enthusiasm for a cause; 'fervor' is the closest synonym.",
+   "correct_answer": "fervor",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "thrift": "'thrift' means careful spending, not great energy or enthusiasm for a cause; sense-family: money.",
+    "splinter": "'splinter' means thin sharp piece, not great energy or enthusiasm for a cause; sense-family: fragment.",
+    "verdict": "'verdict' means judgment, not great energy or enthusiasm for a cause; sense-family: decision.",
+    "pigment": "'pigment' means coloring matter, not great energy or enthusiasm for a cause; sense-family: color."
+   }
+  }
+ },
+ {
+  "localId": "SVD3-S-ANGUISH",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Synonym] ANGUISH",
+   "choices": [
+    "vapor",
+    "agony",
+    "ditch",
+    "barter",
+    "bliss"
+   ],
+   "graphic": null,
+   "passage": null,
+   "difficulty": "easy",
+   "explanation": "ANGUISH means severe mental or physical pain; 'agony' is the closest synonym.",
+   "correct_answer": "agony",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": {
+    "bliss": "'bliss' means perfect happiness, not severe mental or physical pain; sense-family: happiness.",
+    "vapor": "'vapor' means mist, not severe mental or physical pain; sense-family: gas.",
+    "barter": "'barter' means trade of goods, not severe mental or physical pain; sense-family: trade.",
+    "ditch": "'ditch' means trench, not severe mental or physical pain; sense-family: digging."
+   }
+  }
+ }
+]

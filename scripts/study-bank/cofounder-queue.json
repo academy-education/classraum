@@ -363,6 +363,16 @@
       "family": "ssat",
       "runId": "ssat-draft10-release-cofounder-{date}",
       "route": "full"
+    },
+    {
+      "cohort": "ssat-verbal-draft-3",
+      "tool": "item",
+      "domain": "Verbal",
+      "size": 12,
+      "family": "ssat",
+      "upTo": 2,
+      "route": "spot",
+      "runId": "ssatvd3-spot{n}-cofounder-{date}"
     }
   ]
 }

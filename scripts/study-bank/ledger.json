@@ -10488,6 +10488,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-draft-3-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-draft-3",
+      "contentSha": "7cbd4c34ec9aded54b3eed676c0fc1b15c4f2baa945c05704a447a151be5a2fb",
+      "status": "staged-for-human-review",
+      "note": "79 analogies + 80 synonyms by two Claude agents; spot route (ssat-verbal-draft-3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7cbd4c34ec9aded54b3eed676c0fc1b15c4f2baa945c05704a447a151be5a2fb",
+          "verdict": "check.py problems 0 (both); pairs new vs 4,922, headwords new vs 626; slots flat."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A and B: 1/160 flagged by both (V4A17), dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
