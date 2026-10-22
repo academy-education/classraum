@@ -27,14 +27,6 @@
       "runId": "ssat-draft4-release-cofounder-{date}"
     },
     {
-      "cohort": "ssat-reading-draft-5",
-      "tool": "item",
-      "domain": "Reading Comprehension",
-      "size": 36,
-      "family": "ssat",
-      "runId": "ssat-draft5-release-cofounder-{date}"
-    },
-    {
       "cohort": "cr-v11",
       "tool": "item",
       "domain": "Choose a Response",
@@ -42,6 +34,14 @@
       "family": "toefl",
       "upTo": 1,
       "runId": "crv11-release{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-5",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft5-release-cofounder-{date}"
     },
     {
       "cohort": "ssat-verbal-draft-1",

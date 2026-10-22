@@ -1,0 +1,309 @@
+[
+ {
+  "id": "07a286bc-abd2-4825-85fc-8597546395d5",
+  "cohort": "cr-v10",
+  "verified": true,
+  "archived": false,
+  "content_sha": "2b76fc9a146785905c024a07b1ce9f70",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  }
+ },
+ {
+  "id": "173d4215-41fa-4825-b424-726490e7c286",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "9db1d5607151620ffb1e5de3b4de64a0",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b6-19",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Idiomatic 'set'; must infer leaving the shoes",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "212b5f42-0a27-425a-80cb-885595083159",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "9a2c689011a694d97c0ee6d3cd1827d8",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b2-15",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Distractor echoes 'keeps failing' but misassigns the job",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "21ba74ea-a2ea-4a79-b8df-eebfe1867da1",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "fada2ff7871a75050213e91451c3cff1",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b3-05",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Offer accepted; distractors treat it as a refusal",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "24fd0aa2-a95f-4fbd-acb3-ed48d4367d9a",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "0215456522a6dca1022e05569903c4cc",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b1-06",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Correction requires swapping the music, not the schedule",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "33c17fe1-0a39-4181-8242-a26a7ffed259",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "97d686812b409b8f7624084cc2027664",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "cr7-08",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Suspension implies walking; distractors invent alternatives",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "3c7f5fb5-7fef-4caa-be20-71dee6d4741a",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "13379dbfd76332170ce93645495d742b",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b5-12",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Cancellation implies telling others; distractor assumes rescheduling",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "4b1a8044-3adb-4b93-8cef-aa24f4cc7bdb",
+  "cohort": "orphan-v1",
+  "verified": true,
+  "archived": false,
+  "content_sha": "55fdabf61b9d55ff56f13930a68ba54d",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Conversation",
+   "difficulty_why": "topic stated in the opening line",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "6994d1d9-525c-495f-a50f-098e961db880",
+  "cohort": "act-english-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "1c0bfa8cc9024abbc7ea1dbd839e62f4",
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "ACT-EN7-P1-Q03",
+   "passage_id": "P1",
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "easy"
+  }
+ },
+ {
+  "id": "80c22a05-48f8-4730-93c1-b08a162f1abf",
+  "cohort": "cr-v10",
+  "verified": true,
+  "archived": false,
+  "content_sha": "92a88504df2ce11c57786ceaf1bf98d9",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  }
+ },
+ {
+  "id": "83731983-a4a1-41a6-9ff2-8aa5452b2393",
+  "cohort": "cr-v10",
+  "verified": true,
+  "archived": false,
+  "content_sha": "4c14cb7a86e7970a543b1437d190e401",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "passage_needed": true
+  }
+ },
+ {
+  "id": "acca0551-837b-4a30-8213-a9f50de07cf6",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "2eca0ba0826d287d1efa64b05f486226",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b6-03",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Repair news implies paying and collecting",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "c6ab5238-d770-408a-8b49-4d1226e19e08",
+  "cohort": "orphan-v1",
+  "verified": true,
+  "archived": false,
+  "content_sha": "0d82bbe9bca63d275dfb50afed461d8c",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Growing each year as new land forms stated",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld",
+   "difficulty_regraded_full_transcript": true
+  }
+ },
+ {
+  "id": "d7bebf1f-501b-4d44-8219-dee730ce0cdd",
+  "cohort": "harvest-v1",
+  "verified": true,
+  "archived": false,
+  "content_sha": "f5ba8228d8373ef983b81020786512ed",
+  "verify_meta": {
+   "generated_at": "2026-07-01T01:43:43.39015+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "Attribution stated verbatim",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "d7c3eb67-35b4-454e-9e4b-1f45e65c16e3",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "188c9f53d2a507199ad17b0cb4af4c85",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b5-18",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Return request answered with how it will be returned",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "dffad341-a295-404b-a642-af0e1ddabc65",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "804aad05043f6b4687c7a8e5458d8d9d",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b4-15",
+   "shipped": "2026-08-18",
+   "difficulty_why": "Arrangement implies only needing to be present",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "ee8303c2-25b6-45c8-ad48-756897fc6161",
+  "cohort": "cr-v7",
+  "verified": true,
+  "archived": false,
+  "content_sha": "73578673ec97c7cdd7d25abfa7168947",
+  "verify_meta": {
+   "method": "crv7-symmetric-worlds+seeded-key+blind-attack",
+   "source": "crv7",
+   "localId": "crv7-b1-20",
+   "shipped": "2026-08-18",
+   "difficulty_why": "No option cleanly answers a change of meeting location",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ },
+ {
+  "id": "f26e6bae-918f-42f2-a8af-a38c82479465",
+  "cohort": "orphan-v1",
+  "verified": true,
+  "archived": false,
+  "content_sha": "ab0d2e30aa9966e966a2f9d513904b14",
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic",
+   "difficulty_why": "'captures' as absorbs; other options literal traps but weak",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  }
+ }
+]
