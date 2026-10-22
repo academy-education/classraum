@@ -11699,6 +11699,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-14-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-14",
+      "contentSha": "666dd96bdffac4b30f1e32d42e037f1b56ad0546d3843a9feb3b64b9337ecff9",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23; spot iseedraft14-IR14-P01.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "666dd96bdffac4b30f1e32d42e037f1b56ad0546d3843a9feb3b64b9337ecff9",
+          "verdict": "author checks clean; two passages replaced before the pre-screen for topic collisions (laundromat poem vs ssat d14; backstage-crew story vs isee d4)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/36, B 1/36 (both IR14-P04-4: flash distractor defensible), distractor replaced and key reworded to the passage's phrase, checks rerun clean"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
