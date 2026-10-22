@@ -169,6 +169,16 @@
       "family": "isee",
       "runId": "isee-draft3-release-cofounder-{date}",
       "route": "full"
+    },
+    {
+      "cohort": "isee-reading-draft-4",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft4-IR4-P02",
+      "route": "spot",
+      "runId": "isee-draft4-spot-cofounder-{date}"
     }
   ]
 }

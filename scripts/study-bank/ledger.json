@@ -9780,6 +9780,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-4-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-4",
+      "contentSha": "bd23f6e69b98d7c1080f5abbe31e5cc386429b205e76990011cd02f43346187d",
+      "status": "staged-for-human-edit",
+      "note": "ISEE draft 4: 36 items by a Claude agent (ISEE variant of the SSAT brief), co-founder-standard grader 1/36 flagged and fixed pre-sitting. Spot route (isee-reading-draft-4.RELEASE.PREREG.md). REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bd23f6e69b98d7c1080f5abbe31e5cc386429b205e76990011cd02f43346187d",
+          "verdict": "merge K=4 0 problems; key longest 6/36 shortest 6/36; quotes 0 unmatched; location refs 0 mismatches; edit screen 36/36."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader B: 1/36 flagged, fixed."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
