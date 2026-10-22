@@ -11135,6 +11135,195 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-11-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-11",
+      "contentSha": "7bf540add0dc5c2019daabf66ba3595028eb34cb005207a875151e08717051d6",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7bf540add0dc5c2019daabf66ba3595028eb34cb005207a875151e08717051d6",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: grader A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-13-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-13",
+      "contentSha": "6673dfdce3be3deede7031a60dfb416309a95a1b9975dd4a88d79c62c43ed372",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "6673dfdce3be3deede7031a60dfb416309a95a1b9975dd4a88d79c62c43ed372",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A+B flagged 1 (D13-P06-4), distractor replaced"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-14-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-14",
+      "contentSha": "b5347c77b0e872ca9624cbe6764c321b598c892fc8e5728fa325253fe8c0ebe8",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b5347c77b0e872ca9624cbe6764c321b598c892fc8e5728fa325253fe8c0ebe8",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A+B flagged 1 (D14-P04-6), distractor replaced by author"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v10a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v10a",
+      "contentSha": "e2ff59b160d6ed6a8ccd46710089e2a82d908ae899926516fe61978ae47d30bf",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e2ff59b160d6ed6a8ccd46710089e2a82d908ae899926516fe61978ae47d30bf",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/36 (ARV10a-27) fixed; combined v10 re-screen A 0/72, B 1/72 (ARV10b-06) fixed"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v10b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v10b",
+      "contentSha": "f0f1859057258944f2040133814a6a3f78fc7fdbcb3aa6f1ee64afb9c267b2af",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f0f1859057258944f2040133814a6a3f78fc7fdbcb3aa6f1ee64afb9c267b2af",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: B 1/36 (ARV10b-06 flat) distractor replaced"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-science-v7a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v7a",
+      "contentSha": "7985ac59db18f9781dea36dff8ce37955d30cc7fe18bc0cba47de8a4f43291e9",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7985ac59db18f9781dea36dff8ce37955d30cc7fe18bc0cba47de8a4f43291e9",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/40, B 0/40"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-science-v7b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v7b",
+      "contentSha": "1bdd29fb561b542790e6e54dedfb3e0d9ec7e1666975ceae294f8bf5336a3e2c",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 4.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "1bdd29fb561b542790e6e54dedfb3e0d9ec7e1666975ceae294f8bf5336a3e2c",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/40, B 0/40"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

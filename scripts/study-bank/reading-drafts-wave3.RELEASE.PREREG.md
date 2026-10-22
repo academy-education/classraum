@@ -53,3 +53,16 @@ Passages: The Duck's Head (lost umbrella) · Where the Wind Went In (poem, kite)
 The Key to the Room (cursive) · A Barn on the River (covered bridge, invented) · Written in Wood (tree rings).
 - Pre-flight: merge 0; quote check 0 of 250; location check 0 mismatches.
 - **Grader A 0/36, B 0/36.** One 36-item run.
+
+## Wave 4 (staged 2026-10-23)
+- **isee-reading-draft-11** (spot `iseedraft11-IR11-P05`): bicycle repair, fog poem, knitting uncle, car-free blocks,
+  moon-schedule street lamps (invented), owl flight. Grader A 0/36, B 0/36.
+- **ssat-reading-draft-13** (FULL, every-third SSAT): lost chemistry notebook, elevator poem, tractor and coffee can,
+  library late fees, dry-land swimming lessons (invented), half-brain bird sleep.
+  - Graders A and B both flagged D13-P06-4: the "too high and too far for any ship" distractor was defensible.
+  - It was replaced with a distractor the passage contradicts (birds cannot rest on the sea).
+  - Checks rerun clean.
+- **ssat-reading-draft-14** (spot `draft14-D14-P02`): talent-show cube solve, laundromat poem, buzzer panel in a new
+  apartment, boredom, telegraph weather board (invented), hot-spot islands.
+  - Graders A and B both flagged D14-P04-6: "apprehensive" was defensible beside the key "disapproving".
+  - The author replaced it with "humorous", which the passage rules out. Checks rerun clean.

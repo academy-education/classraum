@@ -519,6 +519,73 @@
       "family": "isee",
       "runId": "isee-draft12-release-cofounder-{date}",
       "route": "full"
+    },
+    {
+      "cohort": "isee-reading-draft-11",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft11-IR11-P05",
+      "route": "spot",
+      "runId": "isee-draft11-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-13",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft13-release-cofounder-{date}",
+      "route": "full"
+    },
+    {
+      "cohort": "ssat-reading-draft-14",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft14-D14-P02",
+      "route": "spot",
+      "runId": "ssat-draft14-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v10a",
+      "tool": "item",
+      "domain": "Key Ideas and Details:18,Craft and Structure:12,Integration of Knowledge and Ideas:6",
+      "size": 36,
+      "family": "act",
+      "route": "full",
+      "runId": "act-v10a-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v10b",
+      "tool": "item",
+      "domain": "Key Ideas and Details:5,Craft and Structure:3,Integration of Knowledge and Ideas:1",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v10b:arv10b-p4",
+      "route": "spot",
+      "runId": "act-v10b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v7a",
+      "tool": "item",
+      "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
+      "size": 40,
+      "family": "act",
+      "route": "full",
+      "runId": "act-sci-v7a-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v7b",
+      "tool": "item",
+      "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Interpretation of Data:1",
+      "size": 6,
+      "family": "act",
+      "group": "act-science-v7b:sc7b-p7",
+      "route": "spot",
+      "runId": "act-sci-v7b-spot-cofounder-{date}"
     }
   ]
 }

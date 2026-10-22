@@ -1,0 +1,2755 @@
+[
+ {
+  "id": "ASV7b-P1-Q1",
+  "passage_id": "sc7b-p1",
+  "passage_title": "Light Absorption by Two Colored Compounds",
+  "format": "data_representation",
+  "passage": "When a beam of light passes through a colored solution, the dissolved compound absorbs part of the light and the rest is transmitted. Absorbance is a measure of how much light a solution absorbs: a solution that absorbs no light has an absorbance of 0, and the larger the absorbance, the less light gets through. A colored compound absorbs some wavelengths (colors) of light much more strongly than others. When two compounds that do not react with each other are dissolved in the same solution, the absorbance of the mixture at a given wavelength equals the sum of the absorbances that each compound would have on its own at that wavelength and concentration.\n\nStudents dissolved two colored compounds, Compound P and Compound Q, in water to make solutions with concentrations of 5, 10, 20, and 40 micromolar (µM). Each solution was poured into a cuvette (a clear container) that held a layer of solution exactly 1.0 cm thick, and an instrument measured the absorbance of the solution at three wavelengths: 450 nanometers (nm, blue light), 520 nm (green light), and 630 nm (red light). Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Absorbance of solutions of Compound P and Compound Q at three wavelengths (1.0 cm layer of solution).",
+   "colLabels": [
+    "Concentration (µM)",
+    "Absorbance at 450 nm",
+    "Absorbance at 520 nm",
+    "Absorbance at 630 nm"
+   ],
+   "rowLabels": [
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q"
+   ],
+   "cells": [
+    [
+     5,
+     "0.05",
+     "0.15",
+     "0.01"
+    ],
+    [
+     10,
+     "0.10",
+     "0.30",
+     "0.02"
+    ],
+    [
+     20,
+     "0.20",
+     "0.60",
+     "0.04"
+    ],
+    [
+     40,
+     "0.40",
+     "1.20",
+     "0.08"
+    ],
+    [
+     5,
+     "0.02",
+     "0.04",
+     "0.12"
+    ],
+    [
+     10,
+     "0.04",
+     "0.08",
+     "0.24"
+    ],
+    [
+     20,
+     "0.08",
+     "0.16",
+     "0.48"
+    ],
+    [
+     40,
+     "0.16",
+     "0.32",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, for the 20 µM solution of Compound P, the absorbance was greatest at which wavelength?",
+  "choices": [
+   "450 nm",
+   "520 nm",
+   "630 nm",
+   "The absorbance was the same at all three wavelengths."
+  ],
+  "correct_answer": "520 nm",
+  "explanation": "The 20 µM row for Compound P reads 0.20 at 450 nm, 0.60 at 520 nm, and 0.04 at 630 nm, so the absorbance was greatest at 520 nm. The three values differ, so they were not the same; 630 nm is where Compound Q, not Compound P, absorbed most strongly.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table row",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P1-Q2",
+  "passage_id": "sc7b-p1",
+  "passage_title": "Light Absorption by Two Colored Compounds",
+  "format": "data_representation",
+  "passage": "When a beam of light passes through a colored solution, the dissolved compound absorbs part of the light and the rest is transmitted. Absorbance is a measure of how much light a solution absorbs: a solution that absorbs no light has an absorbance of 0, and the larger the absorbance, the less light gets through. A colored compound absorbs some wavelengths (colors) of light much more strongly than others. When two compounds that do not react with each other are dissolved in the same solution, the absorbance of the mixture at a given wavelength equals the sum of the absorbances that each compound would have on its own at that wavelength and concentration.\n\nStudents dissolved two colored compounds, Compound P and Compound Q, in water to make solutions with concentrations of 5, 10, 20, and 40 micromolar (µM). Each solution was poured into a cuvette (a clear container) that held a layer of solution exactly 1.0 cm thick, and an instrument measured the absorbance of the solution at three wavelengths: 450 nanometers (nm, blue light), 520 nm (green light), and 630 nm (red light). Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Absorbance of solutions of Compound P and Compound Q at three wavelengths (1.0 cm layer of solution).",
+   "colLabels": [
+    "Concentration (µM)",
+    "Absorbance at 450 nm",
+    "Absorbance at 520 nm",
+    "Absorbance at 630 nm"
+   ],
+   "rowLabels": [
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q"
+   ],
+   "cells": [
+    [
+     5,
+     "0.05",
+     "0.15",
+     "0.01"
+    ],
+    [
+     10,
+     "0.10",
+     "0.30",
+     "0.02"
+    ],
+    [
+     20,
+     "0.20",
+     "0.60",
+     "0.04"
+    ],
+    [
+     40,
+     "0.40",
+     "1.20",
+     "0.08"
+    ],
+    [
+     5,
+     "0.02",
+     "0.04",
+     "0.12"
+    ],
+    [
+     10,
+     "0.04",
+     "0.08",
+     "0.24"
+    ],
+    [
+     20,
+     "0.08",
+     "0.16",
+     "0.48"
+    ],
+    [
+     40,
+     "0.16",
+     "0.32",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "A solution containing only Compound Q, of unknown concentration, was measured in the same way and had an absorbance of 0.36 at 630 nm. Based on Table 1, the concentration of this solution was closest to:",
+  "choices": [
+   "10 µM",
+   "15 µM",
+   "20 µM",
+   "30 µM"
+  ],
+  "correct_answer": "15 µM",
+  "explanation": "At 630 nm, Compound Q's absorbance was 0.24 at 10 µM and 0.48 at 20 µM, rising by 0.024 for every 1 µM (0.12 at 5 µM, 0.96 at 40 µM). An absorbance of 0.36 lies exactly halfway between 0.24 and 0.48, so the concentration is 15 µM. A 10 µM solution would read 0.24, a 20 µM solution 0.48, and a 30 µM solution 0.72.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a proportional table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P1-Q3",
+  "passage_id": "sc7b-p1",
+  "passage_title": "Light Absorption by Two Colored Compounds",
+  "format": "data_representation",
+  "passage": "When a beam of light passes through a colored solution, the dissolved compound absorbs part of the light and the rest is transmitted. Absorbance is a measure of how much light a solution absorbs: a solution that absorbs no light has an absorbance of 0, and the larger the absorbance, the less light gets through. A colored compound absorbs some wavelengths (colors) of light much more strongly than others. When two compounds that do not react with each other are dissolved in the same solution, the absorbance of the mixture at a given wavelength equals the sum of the absorbances that each compound would have on its own at that wavelength and concentration.\n\nStudents dissolved two colored compounds, Compound P and Compound Q, in water to make solutions with concentrations of 5, 10, 20, and 40 micromolar (µM). Each solution was poured into a cuvette (a clear container) that held a layer of solution exactly 1.0 cm thick, and an instrument measured the absorbance of the solution at three wavelengths: 450 nanometers (nm, blue light), 520 nm (green light), and 630 nm (red light). Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Absorbance of solutions of Compound P and Compound Q at three wavelengths (1.0 cm layer of solution).",
+   "colLabels": [
+    "Concentration (µM)",
+    "Absorbance at 450 nm",
+    "Absorbance at 520 nm",
+    "Absorbance at 630 nm"
+   ],
+   "rowLabels": [
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q"
+   ],
+   "cells": [
+    [
+     5,
+     "0.05",
+     "0.15",
+     "0.01"
+    ],
+    [
+     10,
+     "0.10",
+     "0.30",
+     "0.02"
+    ],
+    [
+     20,
+     "0.20",
+     "0.60",
+     "0.04"
+    ],
+    [
+     40,
+     "0.40",
+     "1.20",
+     "0.08"
+    ],
+    [
+     5,
+     "0.02",
+     "0.04",
+     "0.12"
+    ],
+    [
+     10,
+     "0.04",
+     "0.08",
+     "0.24"
+    ],
+    [
+     20,
+     "0.08",
+     "0.16",
+     "0.48"
+    ],
+    [
+     40,
+     "0.16",
+     "0.32",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "Which of the following was the same for every absorbance measurement shown in Table 1?",
+  "choices": [
+   "The wavelength of the light",
+   "The concentration of the solution",
+   "The compound dissolved in the water",
+   "The thickness of the layer of solution"
+  ],
+  "correct_answer": "The thickness of the layer of solution",
+  "explanation": "The passage states that every cuvette held a layer of solution exactly 1.0 cm thick. The wavelength was varied (450, 520, and 630 nm), the concentration was varied (5 to 40 µM), and two different compounds, P and Q, were tested.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P1-Q4",
+  "passage_id": "sc7b-p1",
+  "passage_title": "Light Absorption by Two Colored Compounds",
+  "format": "data_representation",
+  "passage": "When a beam of light passes through a colored solution, the dissolved compound absorbs part of the light and the rest is transmitted. Absorbance is a measure of how much light a solution absorbs: a solution that absorbs no light has an absorbance of 0, and the larger the absorbance, the less light gets through. A colored compound absorbs some wavelengths (colors) of light much more strongly than others. When two compounds that do not react with each other are dissolved in the same solution, the absorbance of the mixture at a given wavelength equals the sum of the absorbances that each compound would have on its own at that wavelength and concentration.\n\nStudents dissolved two colored compounds, Compound P and Compound Q, in water to make solutions with concentrations of 5, 10, 20, and 40 micromolar (µM). Each solution was poured into a cuvette (a clear container) that held a layer of solution exactly 1.0 cm thick, and an instrument measured the absorbance of the solution at three wavelengths: 450 nanometers (nm, blue light), 520 nm (green light), and 630 nm (red light). Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Absorbance of solutions of Compound P and Compound Q at three wavelengths (1.0 cm layer of solution).",
+   "colLabels": [
+    "Concentration (µM)",
+    "Absorbance at 450 nm",
+    "Absorbance at 520 nm",
+    "Absorbance at 630 nm"
+   ],
+   "rowLabels": [
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q"
+   ],
+   "cells": [
+    [
+     5,
+     "0.05",
+     "0.15",
+     "0.01"
+    ],
+    [
+     10,
+     "0.10",
+     "0.30",
+     "0.02"
+    ],
+    [
+     20,
+     "0.20",
+     "0.60",
+     "0.04"
+    ],
+    [
+     40,
+     "0.40",
+     "1.20",
+     "0.08"
+    ],
+    [
+     5,
+     "0.02",
+     "0.04",
+     "0.12"
+    ],
+    [
+     10,
+     "0.04",
+     "0.08",
+     "0.24"
+    ],
+    [
+     20,
+     "0.08",
+     "0.16",
+     "0.48"
+    ],
+    [
+     40,
+     "0.16",
+     "0.32",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "Suppose a solution containing both Compound P at 10 µM and Compound Q at 10 µM were measured in the same way. Based on Table 1 and the passage, the absorbance of this solution at 520 nm would be closest to:",
+  "choices": [
+   "0.08",
+   "0.30",
+   "0.38",
+   "0.54"
+  ],
+  "correct_answer": "0.38",
+  "explanation": "The passage says the absorbance of a mixture equals the sum of the absorbances of its compounds at the same wavelength. At 520 nm, 10 µM Compound P has an absorbance of 0.30 and 10 µM Compound Q has 0.08, so the mixture should read 0.30 + 0.08 = 0.38. The values 0.30 and 0.08 are each compound alone, and 0.54 adds Compound P at 520 nm to Compound Q at 630 nm, a different wavelength.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine table values using a rule stated in the passage",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P1-Q5",
+  "passage_id": "sc7b-p1",
+  "passage_title": "Light Absorption by Two Colored Compounds",
+  "format": "data_representation",
+  "passage": "When a beam of light passes through a colored solution, the dissolved compound absorbs part of the light and the rest is transmitted. Absorbance is a measure of how much light a solution absorbs: a solution that absorbs no light has an absorbance of 0, and the larger the absorbance, the less light gets through. A colored compound absorbs some wavelengths (colors) of light much more strongly than others. When two compounds that do not react with each other are dissolved in the same solution, the absorbance of the mixture at a given wavelength equals the sum of the absorbances that each compound would have on its own at that wavelength and concentration.\n\nStudents dissolved two colored compounds, Compound P and Compound Q, in water to make solutions with concentrations of 5, 10, 20, and 40 micromolar (µM). Each solution was poured into a cuvette (a clear container) that held a layer of solution exactly 1.0 cm thick, and an instrument measured the absorbance of the solution at three wavelengths: 450 nanometers (nm, blue light), 520 nm (green light), and 630 nm (red light). Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Absorbance of solutions of Compound P and Compound Q at three wavelengths (1.0 cm layer of solution).",
+   "colLabels": [
+    "Concentration (µM)",
+    "Absorbance at 450 nm",
+    "Absorbance at 520 nm",
+    "Absorbance at 630 nm"
+   ],
+   "rowLabels": [
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound P",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q",
+    "Compound Q"
+   ],
+   "cells": [
+    [
+     5,
+     "0.05",
+     "0.15",
+     "0.01"
+    ],
+    [
+     10,
+     "0.10",
+     "0.30",
+     "0.02"
+    ],
+    [
+     20,
+     "0.20",
+     "0.60",
+     "0.04"
+    ],
+    [
+     40,
+     "0.40",
+     "1.20",
+     "0.08"
+    ],
+    [
+     5,
+     "0.02",
+     "0.04",
+     "0.12"
+    ],
+    [
+     10,
+     "0.04",
+     "0.08",
+     "0.24"
+    ],
+    [
+     20,
+     "0.08",
+     "0.16",
+     "0.48"
+    ],
+    [
+     40,
+     "0.16",
+     "0.32",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, for both compounds and at all three wavelengths, doubling the concentration of a solution doubled its absorbance. Do the data in Table 1 support this claim?",
+  "choices": [
+   "Yes; at every wavelength, each value is twice the value for the next lower concentration.",
+   "Yes, but only at the wavelength that each compound absorbed most strongly.",
+   "No; at 630 nm, the absorbance of Compound P stayed the same as concentration increased.",
+   "No; at every wavelength, doubling the concentration made the absorbance 4 times as large."
+  ],
+  "correct_answer": "Yes; at every wavelength, each value is twice the value for the next lower concentration.",
+  "explanation": "Each concentration in Table 1 is double the one before it (5, 10, 20, 40 µM), and every column doubles with it: for example, Compound P at 630 nm reads 0.01, 0.02, 0.04, 0.08, and Compound Q at 450 nm reads 0.02, 0.04, 0.08, 0.16. The doubling holds at all wavelengths, not only at each compound's strongest one; Compound P's 630 nm values do change; and no value becomes 4 times as large over a single doubling.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a proportionality claim against data",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P2-Q1",
+  "passage_id": "sc7b-p2",
+  "passage_title": "Arrival of Earthquake Waves at Five Stations",
+  "format": "data_representation",
+  "passage": "An earthquake begins at a point underground, and the place on Earth's surface directly above that point is the epicenter. The earthquake sends two main kinds of waves through the surrounding rock. Primary (P) waves travel faster than secondary (S) waves, so at any seismic station the P wave arrives first. The time between the arrival of the P wave and the arrival of the S wave at a station is called the S–P interval. Seismic stations also record the amplitude of ground motion: the greatest distance the ground moves from its resting position as the waves pass.\n\nA small, shallow earthquake was recorded at five seismic stations, Stations A through E, all located in a region where the rock is the same throughout. Because the earthquake was shallow, the distance each wave traveled can be taken as the station's distance from the epicenter. Table 1 gives each station's distance from the epicenter, the times at which the P wave and the S wave arrived (measured from the moment the earthquake began), and the maximum amplitude of ground motion at the station.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Arrival times of P and S waves and maximum amplitude of ground motion at five stations.",
+   "colLabels": [
+    "Distance from epicenter (km)",
+    "P-wave arrival (s)",
+    "S-wave arrival (s)",
+    "Maximum amplitude (mm)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E"
+   ],
+   "cells": [
+    [
+     56,
+     8,
+     14,
+     "12.0"
+    ],
+    [
+     112,
+     16,
+     28,
+     "5.0"
+    ],
+    [
+     168,
+     24,
+     42,
+     "2.6"
+    ],
+    [
+     224,
+     32,
+     56,
+     "1.5"
+    ],
+    [
+     280,
+     40,
+     70,
+     "1.0"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, the S wave arrived at Station B how many seconds after the earthquake began?",
+  "choices": [
+   "14 s",
+   "16 s",
+   "28 s",
+   "42 s"
+  ],
+  "correct_answer": "28 s",
+  "explanation": "The Station B row lists an S-wave arrival of 28 s. The value 16 s is the P-wave arrival at Station B, 14 s is the S-wave arrival at Station A, and 42 s is the S-wave arrival at Station C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P2-Q2",
+  "passage_id": "sc7b-p2",
+  "passage_title": "Arrival of Earthquake Waves at Five Stations",
+  "format": "data_representation",
+  "passage": "An earthquake begins at a point underground, and the place on Earth's surface directly above that point is the epicenter. The earthquake sends two main kinds of waves through the surrounding rock. Primary (P) waves travel faster than secondary (S) waves, so at any seismic station the P wave arrives first. The time between the arrival of the P wave and the arrival of the S wave at a station is called the S–P interval. Seismic stations also record the amplitude of ground motion: the greatest distance the ground moves from its resting position as the waves pass.\n\nA small, shallow earthquake was recorded at five seismic stations, Stations A through E, all located in a region where the rock is the same throughout. Because the earthquake was shallow, the distance each wave traveled can be taken as the station's distance from the epicenter. Table 1 gives each station's distance from the epicenter, the times at which the P wave and the S wave arrived (measured from the moment the earthquake began), and the maximum amplitude of ground motion at the station.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Arrival times of P and S waves and maximum amplitude of ground motion at five stations.",
+   "colLabels": [
+    "Distance from epicenter (km)",
+    "P-wave arrival (s)",
+    "S-wave arrival (s)",
+    "Maximum amplitude (mm)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E"
+   ],
+   "cells": [
+    [
+     56,
+     8,
+     14,
+     "12.0"
+    ],
+    [
+     112,
+     16,
+     28,
+     "5.0"
+    ],
+    [
+     168,
+     24,
+     42,
+     "2.6"
+    ],
+    [
+     224,
+     32,
+     56,
+     "1.5"
+    ],
+    [
+     280,
+     40,
+     70,
+     "1.0"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, the S–P interval at Station E was:",
+  "choices": [
+   "30 s",
+   "40 s",
+   "70 s",
+   "110 s"
+  ],
+  "correct_answer": "30 s",
+  "explanation": "At Station E the P wave arrived at 40 s and the S wave at 70 s, so the S–P interval was 70 − 40 = 30 s. The values 40 s and 70 s are the individual arrival times, and 110 s is their sum.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P2-Q3",
+  "passage_id": "sc7b-p2",
+  "passage_title": "Arrival of Earthquake Waves at Five Stations",
+  "format": "data_representation",
+  "passage": "An earthquake begins at a point underground, and the place on Earth's surface directly above that point is the epicenter. The earthquake sends two main kinds of waves through the surrounding rock. Primary (P) waves travel faster than secondary (S) waves, so at any seismic station the P wave arrives first. The time between the arrival of the P wave and the arrival of the S wave at a station is called the S–P interval. Seismic stations also record the amplitude of ground motion: the greatest distance the ground moves from its resting position as the waves pass.\n\nA small, shallow earthquake was recorded at five seismic stations, Stations A through E, all located in a region where the rock is the same throughout. Because the earthquake was shallow, the distance each wave traveled can be taken as the station's distance from the epicenter. Table 1 gives each station's distance from the epicenter, the times at which the P wave and the S wave arrived (measured from the moment the earthquake began), and the maximum amplitude of ground motion at the station.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Arrival times of P and S waves and maximum amplitude of ground motion at five stations.",
+   "colLabels": [
+    "Distance from epicenter (km)",
+    "P-wave arrival (s)",
+    "S-wave arrival (s)",
+    "Maximum amplitude (mm)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E"
+   ],
+   "cells": [
+    [
+     56,
+     8,
+     14,
+     "12.0"
+    ],
+    [
+     112,
+     16,
+     28,
+     "5.0"
+    ],
+    [
+     168,
+     24,
+     42,
+     "2.6"
+    ],
+    [
+     224,
+     32,
+     56,
+     "1.5"
+    ],
+    [
+     280,
+     40,
+     70,
+     "1.0"
+    ]
+   ]
+  },
+  "prompt": "A sixth station in the same region recorded this earthquake with an S–P interval of 21 s. Based on Table 1, the sixth station's distance from the epicenter was closest to:",
+  "choices": [
+   "168 km",
+   "196 km",
+   "224 km",
+   "252 km"
+  ],
+  "correct_answer": "196 km",
+  "explanation": "The S–P intervals at Stations A through E are 6, 12, 18, 24, and 30 s at 56, 112, 168, 224, and 280 km: the interval grows by 6 s for every 56 km, so it is proportional to distance. An interval of 21 s lies halfway between Station C's 18 s (168 km) and Station D's 24 s (224 km), giving 196 km. A station at 168 km would show 18 s, one at 224 km 24 s, and one at 252 km 27 s.",
+  "domain": "Interpretation of Data",
+  "subskill": "use a derived quantity to interpolate",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P2-Q4",
+  "passage_id": "sc7b-p2",
+  "passage_title": "Arrival of Earthquake Waves at Five Stations",
+  "format": "data_representation",
+  "passage": "An earthquake begins at a point underground, and the place on Earth's surface directly above that point is the epicenter. The earthquake sends two main kinds of waves through the surrounding rock. Primary (P) waves travel faster than secondary (S) waves, so at any seismic station the P wave arrives first. The time between the arrival of the P wave and the arrival of the S wave at a station is called the S–P interval. Seismic stations also record the amplitude of ground motion: the greatest distance the ground moves from its resting position as the waves pass.\n\nA small, shallow earthquake was recorded at five seismic stations, Stations A through E, all located in a region where the rock is the same throughout. Because the earthquake was shallow, the distance each wave traveled can be taken as the station's distance from the epicenter. Table 1 gives each station's distance from the epicenter, the times at which the P wave and the S wave arrived (measured from the moment the earthquake began), and the maximum amplitude of ground motion at the station.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Arrival times of P and S waves and maximum amplitude of ground motion at five stations.",
+   "colLabels": [
+    "Distance from epicenter (km)",
+    "P-wave arrival (s)",
+    "S-wave arrival (s)",
+    "Maximum amplitude (mm)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E"
+   ],
+   "cells": [
+    [
+     56,
+     8,
+     14,
+     "12.0"
+    ],
+    [
+     112,
+     16,
+     28,
+     "5.0"
+    ],
+    [
+     168,
+     24,
+     42,
+     "2.6"
+    ],
+    [
+     224,
+     32,
+     56,
+     "1.5"
+    ],
+    [
+     280,
+     40,
+     70,
+     "1.0"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, the speed of the P waves through the rock of this region was closest to:",
+  "choices": [
+   "4.0 km/s",
+   "5.5 km/s",
+   "7.0 km/s",
+   "8.0 km/s"
+  ],
+  "correct_answer": "7.0 km/s",
+  "explanation": "The P wave reached Station A, 56 km away, at 8 s: 56 km ÷ 8 s = 7.0 km/s, and every other station gives the same result (for example, 280 km ÷ 40 s = 7.0 km/s). A speed of 4.0 km/s is that of the S waves (56 km ÷ 14 s); 8.0 is Station A's P-wave arrival time in seconds, not a speed, and 5.5 km/s fits no station.",
+  "domain": "Interpretation of Data",
+  "subskill": "calculate a rate from distance and time",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P2-Q5",
+  "passage_id": "sc7b-p2",
+  "passage_title": "Arrival of Earthquake Waves at Five Stations",
+  "format": "data_representation",
+  "passage": "An earthquake begins at a point underground, and the place on Earth's surface directly above that point is the epicenter. The earthquake sends two main kinds of waves through the surrounding rock. Primary (P) waves travel faster than secondary (S) waves, so at any seismic station the P wave arrives first. The time between the arrival of the P wave and the arrival of the S wave at a station is called the S–P interval. Seismic stations also record the amplitude of ground motion: the greatest distance the ground moves from its resting position as the waves pass.\n\nA small, shallow earthquake was recorded at five seismic stations, Stations A through E, all located in a region where the rock is the same throughout. Because the earthquake was shallow, the distance each wave traveled can be taken as the station's distance from the epicenter. Table 1 gives each station's distance from the epicenter, the times at which the P wave and the S wave arrived (measured from the moment the earthquake began), and the maximum amplitude of ground motion at the station.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Arrival times of P and S waves and maximum amplitude of ground motion at five stations.",
+   "colLabels": [
+    "Distance from epicenter (km)",
+    "P-wave arrival (s)",
+    "S-wave arrival (s)",
+    "Maximum amplitude (mm)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E"
+   ],
+   "cells": [
+    [
+     56,
+     8,
+     14,
+     "12.0"
+    ],
+    [
+     112,
+     16,
+     28,
+     "5.0"
+    ],
+    [
+     168,
+     24,
+     42,
+     "2.6"
+    ],
+    [
+     224,
+     32,
+     56,
+     "1.5"
+    ],
+    [
+     280,
+     40,
+     70,
+     "1.0"
+    ]
+   ]
+  },
+  "prompt": "A student predicted that each time the distance from the epicenter doubled, the maximum amplitude of ground motion would fall to exactly half its earlier value. Are the data in Table 1 consistent with this prediction?",
+  "choices": [
+   "Yes; the amplitude decreased at each station farther from the epicenter.",
+   "Yes; the amplitude at 112 km was half the amplitude at 56 km.",
+   "No; when the distance doubled from 56 km to 112 km, the amplitude fell to less than half.",
+   "No; when the distance doubled from 56 km to 112 km, the amplitude fell to more than half."
+  ],
+  "correct_answer": "No; when the distance doubled from 56 km to 112 km, the amplitude fell to less than half.",
+  "explanation": "Doubling the distance from 56 km to 112 km dropped the amplitude from 12.0 mm to 5.0 mm, which is less than half of 12.0 mm (6.0 mm); doubling again from 112 km to 224 km dropped it from 5.0 mm to 1.5 mm, again less than half (2.5 mm). A steady decrease alone does not show halving, and 5.0 mm is not half of 12.0 mm.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a quantitative prediction against data",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P3-Q1",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, which liquid lost the greatest mass in 30 min?",
+  "choices": [
+   "Liquid J",
+   "Liquid K",
+   "Liquid L",
+   "Liquid M"
+  ],
+  "correct_answer": "Liquid J",
+  "explanation": "After 30 min in Experiment 1, Liquid J had lost 4.8 g, compared with 1.5 g for Liquid K, 0.6 g for Liquid L, and 0.3 g for Liquid M.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values within one experiment",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P3-Q2",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, at 25 °C with no air moving across the dish, a liquid with a lower boiling point evaporates faster than a liquid with a higher boiling point. Do the results of Experiment 1 support this claim?",
+  "choices": [
+   "Yes; the mass lost decreased in order from Liquid J to Liquid M as boiling point rose.",
+   "Yes; Liquid K lost more mass than Liquid J, though its boiling point is higher.",
+   "No; the mass lost increased in order from Liquid J to Liquid M as boiling point rose.",
+   "No; Liquids K and L lost the same mass, though their boiling points differ."
+  ],
+  "correct_answer": "Yes; the mass lost decreased in order from Liquid J to Liquid M as boiling point rose.",
+  "explanation": "The boiling points rise from J (52 °C) to K (74 °C) to L (96 °C) to M (121 °C), and the 30 min mass losses fall in the same order: 4.8, 1.5, 0.6, and 0.3 g. Liquid K lost less than Liquid J, not more, and Liquids K and L lost different masses (1.5 g and 0.6 g).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against one experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P3-Q3",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "Which of the following was kept the same in all three experiments?",
+  "choices": [
+   "The liquid being tested",
+   "The temperature of the chamber",
+   "The speed of the air across the dish",
+   "The diameter of the dish"
+  ],
+  "correct_answer": "The diameter of the dish",
+  "explanation": "Every trial used a dish 10.0 cm in diameter holding 20.0 g of liquid. The liquid was varied in Experiment 1, the chamber temperature was varied in Experiment 2, and the air speed was varied in Experiment 3.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable across experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P3-Q4",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 2, if Liquid K had also been tested with the fan off at a chamber temperature of 40 °C, the mass lost after 30 min would most likely have been:",
+  "choices": [
+   "less than 1.5 g.",
+   "between 1.5 g and 2.4 g.",
+   "between 2.4 g and 3.9 g.",
+   "greater than 3.9 g."
+  ],
+  "correct_answer": "between 2.4 g and 3.9 g.",
+  "explanation": "In Experiment 2 the 30 min mass loss rose steadily with temperature: 0.9 g at 15 °C, 1.5 g at 25 °C, 2.4 g at 35 °C, and 3.9 g at 45 °C. Because 40 °C lies between 35 °C and 45 °C, the loss should lie between 2.4 g and 3.9 g.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P3-Q5",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "Suppose Liquid K were tested at a chamber temperature of 35 °C with the fan blowing air across the dish at 2 m/s. Based on Experiments 2 and 3, the mass lost after 30 min would most likely have been:",
+  "choices": [
+   "less than 1.5 g.",
+   "between 1.5 g and 2.4 g.",
+   "between 2.4 g and 3.6 g.",
+   "greater than 3.6 g."
+  ],
+  "correct_answer": "greater than 3.6 g.",
+  "explanation": "At 25 °C with the fan off, Liquid K lost 1.5 g in 30 min. Raising the temperature to 35 °C with the fan off raised the loss to 2.4 g (Experiment 2), and turning the fan to 2 m/s at 25 °C raised it to 3.6 g (Experiment 3). Since each change alone increased evaporation, combining a higher temperature with the 2 m/s air should give more than either change alone, that is, more than 3.6 g. The lower ranges ignore one of the two effects.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict a combined result from two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P3-Q6",
+  "passage_id": "sc7b-p3",
+  "passage_title": "Evaporation Rates of Four Liquids",
+  "format": "research_summaries",
+  "passage": "Evaporation is the change of a liquid into a gas at the liquid's surface, at temperatures below the liquid's boiling point. Students studied how quickly several liquids evaporate. In each trial, 20.0 g of a liquid was poured into a shallow glass dish 10.0 cm in diameter that sat on an electronic balance inside a ventilated chamber, so vapor did not build up around the dish. The chamber's air temperature, which was also the temperature of the liquid, was held constant during each trial, and a small fan in the chamber could blow air across the dish at a set speed. The mass of liquid lost was recorded 10 min and 30 min after the liquid was poured. Each trial was done three times, and the averages are given in Table 1.\n\nExperiment 1\nFour liquids, J, K, L, and M, were tested at 25 °C with the fan off (air speed 0 m/s). Their boiling points are 52 °C (J), 74 °C (K), 96 °C (L), and 121 °C (M).\n\nExperiment 2\nLiquid K was tested with the fan off at chamber temperatures of 15 °C, 25 °C, 35 °C, and 45 °C.\n\nExperiment 3\nLiquid K was tested at 25 °C with the fan off (0 m/s) and with the fan blowing air across the dish at 1, 2, and 4 m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average mass of liquid lost from a dish that started with 20.0 g of liquid.",
+   "colLabels": [
+    "Mass lost after 10 min (g)",
+    "Mass lost after 30 min (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Liquid J",
+    "Exp. 1, Liquid K",
+    "Exp. 1, Liquid L",
+    "Exp. 1, Liquid M",
+    "Exp. 2, 15 °C",
+    "Exp. 2, 25 °C",
+    "Exp. 2, 35 °C",
+    "Exp. 2, 45 °C",
+    "Exp. 3, 0 m/s",
+    "Exp. 3, 1 m/s",
+    "Exp. 3, 2 m/s",
+    "Exp. 3, 4 m/s"
+   ],
+   "cells": [
+    [
+     "1.6",
+     "4.8"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.2",
+     "0.6"
+    ],
+    [
+     "0.1",
+     "0.3"
+    ],
+    [
+     "0.3",
+     "0.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.8",
+     "2.4"
+    ],
+    [
+     "1.3",
+     "3.9"
+    ],
+    [
+     "0.5",
+     "1.5"
+    ],
+    [
+     "0.9",
+     "2.7"
+    ],
+    [
+     "1.2",
+     "3.6"
+    ],
+    [
+     "1.6",
+     "4.8"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, the average rate at which Liquid K lost mass during the 30 min with the fan at 4 m/s was:",
+  "choices": [
+   "0.05 g/min",
+   "0.12 g/min",
+   "0.16 g/min",
+   "0.48 g/min"
+  ],
+  "correct_answer": "0.16 g/min",
+  "explanation": "At 4 m/s Liquid K lost 4.8 g in 30 min, so the average rate was 4.8 g ÷ 30 min = 0.16 g/min (the 10 min value gives the same: 1.6 g ÷ 10 min). A rate of 0.12 g/min is the 2 m/s trial (3.6 ÷ 30), 0.05 g/min is the fan-off trial (1.5 ÷ 30), and 0.48 g/min divides 4.8 g by 10 min instead of 30 min.",
+  "domain": "Interpretation of Data",
+  "subskill": "calculate a rate from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P4-Q1",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what was the extension of the 60-coil spring when the 1.5 N weight was hung from it?",
+  "choices": [
+   "3.0 cm",
+   "6.0 cm",
+   "9.0 cm",
+   "12.0 cm"
+  ],
+  "correct_answer": "9.0 cm",
+  "explanation": "The Exp. 1, 60 coils row reads 9.0 cm in the 1.5 N column. The value 3.0 cm is the 20-coil spring at 1.5 N, 6.0 cm is the 40-coil spring at 1.5 N, and 12.0 cm is the 60-coil spring at 2.0 N.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P4-Q2",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the passage, the spring constant of the 40-coil spring in Experiment 1 was:",
+  "choices": [
+   "0.25 N/cm",
+   "0.50 N/cm",
+   "2.0 N/cm",
+   "4.0 N/cm"
+  ],
+  "correct_answer": "0.25 N/cm",
+  "explanation": "The spring constant is weight divided by extension. The 40-coil spring stretched 4.0 cm under 1.0 N, so its spring constant is 1.0 N ÷ 4.0 cm = 0.25 N/cm (every column agrees, for example 2.0 N ÷ 8.0 cm). The value 0.50 N/cm belongs to the 20-coil spring, and 4.0 N/cm divides extension by weight instead of weight by extension.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a defined formula to table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P4-Q3",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "Which of the following was the same for all three springs tested in Experiment 2?",
+  "choices": [
+   "The number of coils",
+   "The coil diameter",
+   "The extension at 1.0 N",
+   "The spring constant"
+  ],
+  "correct_answer": "The number of coils",
+  "explanation": "All three Experiment 2 springs had 20 coils; the coil diameter was the variable that was changed (10, 15, and 20 mm). Their extensions at 1.0 N differed (2.0, 6.8, and 16.0 cm), so their spring constants differed as well.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the controlled variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P4-Q4",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that hooking two identical springs end to end produces the same extension, for any given weight, as a single spring with twice as many coils of the same diameter. Are the results of Experiments 1 and 3 consistent with this hypothesis?",
+  "choices": [
+   "Yes; the series pair and the 40-coil spring had the same extension at every weight.",
+   "Yes; the parallel pair and the 40-coil spring had the same extension at every weight.",
+   "No; the series pair stretched half as far as the 40-coil spring at every weight.",
+   "No; the series pair stretched twice as far as the 40-coil spring at every weight."
+  ],
+  "correct_answer": "Yes; the series pair and the 40-coil spring had the same extension at every weight.",
+  "explanation": "The series pair joins two 20-coil, 10 mm springs end to end, which the hypothesis compares with one 40-coil, 10 mm spring. Both rows read 2.0, 4.0, 6.0, and 8.0 cm, so the extensions match at every weight. The parallel pair stretched only 0.5 to 2.0 cm, a quarter as far as the 40-coil spring, so it does not match; and the series pair stretched neither half nor twice as far.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P4-Q5",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "Suppose a spring with 80 coils, each 10 mm in diameter, had also been tested in Experiment 1. Based on the results of Experiment 1, its extension under the 1.0 N weight would most likely have been:",
+  "choices": [
+   "6.0 cm",
+   "8.0 cm",
+   "10.0 cm",
+   "16.0 cm"
+  ],
+  "correct_answer": "8.0 cm",
+  "explanation": "Under 1.0 N, the 20-, 40-, and 60-coil springs stretched 2.0, 4.0, and 6.0 cm: the extension rose by 2.0 cm for every 20 coils added, in proportion to the number of coils. An 80-coil spring should therefore stretch 8.0 cm. The value 6.0 cm is the 60-coil spring, and 16.0 cm is what an 80-coil spring would be expected to stretch under 2.0 N, not 1.0 N.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P4-Q6",
+  "passage_id": "sc7b-p4",
+  "passage_title": "Stretching of Coil Springs",
+  "format": "research_summaries",
+  "passage": "A spring stretches when a weight is hung from it. The extension of a spring is the increase in its length caused by the weight. The spring constant of a spring, in newtons per centimeter (N/cm), equals the weight hung from the spring divided by the extension that weight produces; a stiffer spring has a larger spring constant. Students made coil springs by winding the same kind of steel wire into coils. Each spring was hung from a fixed hook, and weights of 0.5, 1.0, 1.5, and 2.0 newtons (N) were hung from its lower end one at a time. The extension was measured for each weight (see Table 1). No spring was stretched so far that it stayed longer after the weight was removed.\n\nExperiment 1\nSprings with 20, 40, and 60 coils were tested. Every coil was 10 mm in diameter.\n\nExperiment 2\nSprings with 20 coils were made with coil diameters of 10 mm, 15 mm, and 20 mm.\n\nExperiment 3\nTwo identical springs, each with 20 coils 10 mm in diameter, were tested together. In the series arrangement, the top of one spring was hooked to the bottom of the other, and the weight hung from the lower spring. In the parallel arrangement, the two springs hung side by side from the same hook, and the weight hung from a light bar attached to the bottoms of both springs.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Extension of each spring or pair of springs for four weights.",
+   "colLabels": [
+    "Extension at 0.5 N (cm)",
+    "Extension at 1.0 N (cm)",
+    "Extension at 1.5 N (cm)",
+    "Extension at 2.0 N (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 coils",
+    "Exp. 1, 40 coils",
+    "Exp. 1, 60 coils",
+    "Exp. 2, 10 mm",
+    "Exp. 2, 15 mm",
+    "Exp. 2, 20 mm",
+    "Exp. 3, series",
+    "Exp. 3, parallel"
+   ],
+   "cells": [
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "3.0",
+     "6.0",
+     "9.0",
+     "12.0"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.0",
+     "4.0"
+    ],
+    [
+     "3.4",
+     "6.8",
+     "10.1",
+     "13.5"
+    ],
+    [
+     "8.0",
+     "16.0",
+     "24.0",
+     "32.0"
+    ],
+    [
+     "2.0",
+     "4.0",
+     "6.0",
+     "8.0"
+    ],
+    [
+     "0.5",
+     "1.0",
+     "1.5",
+     "2.0"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, when the coil diameter was doubled from 10 mm to 20 mm, the extension under the 2.0 N weight became how many times as large?",
+  "choices": [
+   "2 times",
+   "4 times",
+   "6 times",
+   "8 times"
+  ],
+  "correct_answer": "8 times",
+  "explanation": "Under 2.0 N, the 10 mm spring stretched 4.0 cm and the 20 mm spring stretched 32.0 cm, and 32.0 ÷ 4.0 = 8. Doubling the diameter did not simply double the extension; the same factor of 8 appears in every column (for example, 16.0 ÷ 2.0 at 1.0 N).",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio between table values",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P5-Q1",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, in Experiment 1, the pressure in the flask at 60 °C was:",
+  "choices": [
+   "107.3 kPa",
+   "114.6 kPa",
+   "122.0 kPa",
+   "129.3 kPa"
+  ],
+  "correct_answer": "122.0 kPa",
+  "explanation": "The Experiment 1 row for 60 °C lists a pressure of 122.0 kPa. The values 107.3, 114.6, and 129.3 kPa were recorded at 20 °C, 40 °C, and 80 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P5-Q2",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, when the volume of the air was reduced from 60.0 mL to 30.0 mL, the pressure:",
+  "choices": [
+   "decreased to half its starting value.",
+   "did not change.",
+   "increased to 1.5 times its starting value.",
+   "increased to 2 times its starting value."
+  ],
+  "correct_answer": "increased to 2 times its starting value.",
+  "explanation": "At 60.0 mL the pressure was 100.0 kPa, and at 30.0 mL it was 200.0 kPa, so halving the volume made the pressure 2 times as large. A factor of 1.5 matches the change from 40.0 mL to 30.0 mL (150.0 to 200.0 kPa), not the change from 60.0 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a change between two table values",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P5-Q3",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "Experiment 3 was most likely designed to determine whether:",
+  "choices": [
+   "the pressure of a gas depends on the volume of its container.",
+   "the pressure of a gas at a fixed temperature depends on the amount of gas.",
+   "the kind of gas affects the pressure rise when a gas is heated at fixed volume.",
+   "the pressure of a gas changes when the gas is cooled below 0 °C."
+  ],
+  "correct_answer": "the kind of gas affects the pressure rise when a gas is heated at fixed volume.",
+  "explanation": "In Experiment 3 the only thing that differed among the flasks was the gas inside (X, Y, or Z); the volume (250 mL), starting temperature and pressure (0 °C, 100.0 kPa), and final temperature (80 °C) were the same. The experiment therefore tests whether the kind of gas affects how much the pressure rises on heating. Volume and amount of gas were not varied, and no gas was cooled below 0 °C.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of an experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P5-Q4",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 2, if the volume of the air in the syringe had been reduced to 15.0 mL at 20 °C, the pressure would most likely have been:",
+  "choices": [
+   "less than 150.0 kPa.",
+   "between 150.0 kPa and 200.0 kPa.",
+   "between 200.0 kPa and 300.0 kPa.",
+   "greater than 300.0 kPa."
+  ],
+  "correct_answer": "greater than 300.0 kPa.",
+  "explanation": "In Experiment 2 the pressure rose every time the volume was reduced: 100.0, 120.0, 150.0, 200.0, and 300.0 kPa at 60.0, 50.0, 40.0, 30.0, and 20.0 mL. A volume of 15.0 mL is smaller than the smallest volume tested, so the pressure should be greater than the 300.0 kPa recorded at 20.0 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P5-Q5",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, why did the students most likely keep the syringe at 20 °C throughout?",
+  "choices": [
+   "So that any change in pressure was caused by the change in volume alone",
+   "So that the pressure of the air stayed at 100.0 kPa throughout the experiment",
+   "So that the air could not escape from the syringe as it was compressed",
+   "So that the air matched the final temperature of the flasks in Experiment 3"
+  ],
+  "correct_answer": "So that any change in pressure was caused by the change in volume alone",
+  "explanation": "Experiment 1 shows that the pressure of a sealed gas rises when its temperature rises. Holding the syringe at 20 °C kept temperature from changing, so the pressure changes recorded could be attributed to the volume alone. The pressure did not stay at 100.0 kPa (it rose to 300.0 kPa), the seal, not the temperature, kept the air in, and the Experiment 3 flasks ended at 80 °C, not 20 °C.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain why a variable was controlled",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P5-Q6",
+  "passage_id": "sc7b-p5",
+  "passage_title": "Pressure of a Sealed Gas",
+  "format": "research_summaries",
+  "passage": "The pressure a gas exerts on the walls of its container depends on the gas's temperature and on the volume it occupies. Students used a pressure sensor to study samples of gas sealed in containers so that no gas could enter or leave. The temperature of each container was set by placing it in a water bath and waiting until the sensor reading stopped changing.\n\nExperiment 1\nA rigid 250 mL flask was filled with dry air, sealed at 0 °C when the pressure inside was 100.0 kilopascals (kPa), and connected to the sensor. The flask was warmed in steps, and the pressure was recorded at each temperature.\n\nExperiment 2\nA gas syringe was filled with 60.0 mL of dry air at 20 °C and 100.0 kPa and sealed. With the syringe held at 20 °C, the plunger was pushed in to reduce the volume in steps, and the pressure was recorded at each volume.\n\nExperiment 3\nThree rigid 250 mL flasks were filled with three different gases, X, Y, and Z, and each was sealed at 0 °C at a pressure of 100.0 kPa. Each flask was then warmed to 80 °C, and the pressure was recorded.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature, volume, and pressure of the sealed gas samples.",
+   "colLabels": [
+    "Temperature (°C)",
+    "Volume (mL)",
+    "Pressure (kPa)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3, Gas X",
+    "Exp. 3, Gas Y",
+    "Exp. 3, Gas Z"
+   ],
+   "cells": [
+    [
+     0,
+     250,
+     "100.0"
+    ],
+    [
+     20,
+     250,
+     "107.3"
+    ],
+    [
+     40,
+     250,
+     "114.6"
+    ],
+    [
+     60,
+     250,
+     "122.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     20,
+     "60.0",
+     "100.0"
+    ],
+    [
+     20,
+     "50.0",
+     "120.0"
+    ],
+    [
+     20,
+     "40.0",
+     "150.0"
+    ],
+    [
+     20,
+     "30.0",
+     "200.0"
+    ],
+    [
+     20,
+     "20.0",
+     "300.0"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ],
+    [
+     80,
+     250,
+     "129.3"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, at a fixed volume, the pressure of a gas is directly proportional to its temperature in degrees Celsius, so doubling the Celsius temperature doubles the pressure. Do the results of Experiment 1 support this claim?",
+  "choices": [
+   "Yes; the pressure increased each time the temperature increased.",
+   "Yes; when the temperature doubled from 20 °C to 40 °C, the pressure doubled.",
+   "No; when the temperature doubled from 20 °C to 40 °C, the pressure rose by less than 10%.",
+   "No; the pressure decreased each time the temperature increased."
+  ],
+  "correct_answer": "No; when the temperature doubled from 20 °C to 40 °C, the pressure rose by less than 10%.",
+  "explanation": "Going from 20 °C to 40 °C doubles the Celsius temperature, but the pressure rose only from 107.3 kPa to 114.6 kPa, an increase of 7.3 kPa, less than 10% of 107.3 kPa; it did not double. The pressure also was 100.0 kPa, not zero, at 0 °C. A rise in pressure with temperature does not by itself show direct proportionality, and the pressure never decreased.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a proportionality claim",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P6-Q1",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "According to Scientist 1, which of the following causes a lizard of Species L to darken?",
+  "choices": [
+   "A dark background beneath the lizard",
+   "A body temperature below about 30 °C",
+   "The sight of a hunting hawk",
+   "A body temperature above about 35 °C"
+  ],
+  "correct_answer": "A body temperature below about 30 °C",
+  "explanation": "Scientist 1 says that below about 30 °C the lizard darkens and above about 35 °C it turns pale, whatever the color of the ground. A dark background is the signal in Scientist 2's view, and neither scientist says the sight of a hawk triggers the change.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's stated mechanism",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P6-Q2",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "Suppose lizards with body temperatures of 37 °C were moved at midday onto a slab of black rock in full sunlight, and all of them turned dark gray within 10 minutes. This result would most likely be considered evidence for the viewpoint of:",
+  "choices": [
+   "Scientist 1, because a lizard at 37 °C should darken to absorb more sunlight.",
+   "Scientist 1, because the lizards changed color within the usual 10 minutes.",
+   "Scientist 2, because the lizards matched the dark rock even though they were warm.",
+   "Scientist 2, because a lizard at 37 °C should turn pale to avoid overheating."
+  ],
+  "correct_answer": "Scientist 2, because the lizards matched the dark rock even though they were warm.",
+  "explanation": "Scientist 2 says the lizard darkens on a dark background whatever its body temperature, so warm lizards darkening on black rock fits that view. Scientist 1 predicts that a lizard above about 35 °C turns pale, so darkening at 37 °C contradicts it. The timing of the change is accepted by both scientists and favors neither, and turning pale to avoid overheating is Scientist 1's idea, not Scientist 2's.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P6-Q3",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that:",
+  "choices": [
+   "the color change is set by the lizard's body temperature.",
+   "the color change is set by what the lizard's eyes detect.",
+   "the color change mainly protects the lizard from hawks.",
+   "the lizards are darker at dawn than at midday."
+  ],
+  "correct_answer": "the lizards are darker at dawn than at midday.",
+  "explanation": "Scientist 1 explains the dark dawn color as warming of a cold lizard, and Scientist 2 explains it as matching the shadowed gray dunes; both accept that the lizards are darker at dawn than at midday. Control by body temperature belongs to Scientist 1 alone, and control by the eyes and protection from hawks belong to Scientist 2 alone.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P6-Q4",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "Based on the measurements given in the passage, the lizard's dark skin absorbs approximately how many times as much of the sunlight striking it as its pale skin does?",
+  "choices": [
+   "0.65",
+   "1.5",
+   "3.0",
+   "30"
+  ],
+  "correct_answer": "1.5",
+  "explanation": "Dark skin absorbs about 85% of the sunlight striking it and pale skin about 55%, and 85 ÷ 55 ≈ 1.5. The value 0.65 is the reverse ratio (55 ÷ 85), and 30 is the difference in percentage points, not a ratio.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from values in the text",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P6-Q5",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "Which of the following experiments would best distinguish between the two scientists' viewpoints?",
+  "choices": [
+   "Holding lizards at a body temperature of 20 °C on pale cream sand in bright light and recording their color after 15 minutes",
+   "Holding lizards at a body temperature of 20 °C on dark gray rock in bright light and recording their color after 15 minutes",
+   "Holding lizards at a body temperature of 38 °C on pale cream sand in bright light and recording their color after 15 minutes",
+   "Measuring the percent of sunlight absorbed by the skin of dark gray lizards and of pale cream lizards"
+  ],
+  "correct_answer": "Holding lizards at a body temperature of 20 °C on pale cream sand in bright light and recording their color after 15 minutes",
+  "explanation": "A lizard held cold on a pale background separates the two signals: Scientist 1 predicts that a lizard below 30 °C turns dark whatever the ground, while Scientist 2 predicts that it turns pale to match the sand. A cold lizard on dark rock should turn dark under both views, and a hot lizard on pale sand should turn pale under both. Both scientists accept that dark skin absorbs more sunlight, so measuring absorption cannot decide between them.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment that distinguishes two hypotheses",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P6-Q6",
+  "passage_id": "sc7b-p6",
+  "passage_title": "Color Change in a Desert Lizard",
+  "format": "conflicting_viewpoints",
+  "passage": "Species L is a small lizard that lives on sand dunes in a desert. Its skin contains pigment cells that can spread out or concentrate a dark pigment, so the lizard can change from dark gray to pale cream, or back again, in about 10 minutes. Like other reptiles, the lizard gains most of its body heat from its surroundings, and it is most active at a body temperature of about 36 °C. Field observers have recorded that on clear days the lizards are dark gray at dawn, when the air is about 15 °C and the low sun leaves the dunes in shadow, and pale cream at midday, when the sand is brightly lit and its surface reaches about 50 °C. Measurements show that the lizard's dark skin absorbs about 85% of the sunlight that strikes it, while its pale skin absorbs about 55%. Two scientists propose explanations for the color change.\n\nScientist 1\nThe color change regulates body temperature. A cold lizard darkens so that it absorbs more sunlight and warms quickly to its active temperature; a hot lizard turns pale so that it absorbs less sunlight and avoids overheating. The signal for the change is the lizard's own body temperature: below about 30 °C the lizard darkens, and above about 35 °C it turns pale, whatever the color of the ground beneath it. A lizard that could not see would therefore change color in the same way as a lizard that can see.\n\nScientist 2\nThe color change is camouflage that hides the lizard from hawks, which hunt by sight. At dawn the shadowed dunes look gray, and at midday the sunlit sand looks pale cream; the lizard matches whatever it is resting on. The signal for the change is what the lizard's eyes detect: the lizard darkens on a dark background and turns pale on a pale background, whatever its body temperature. A lizard whose eyes were covered would therefore not change color in response to its surroundings.",
+  "prompt": "Suppose a pale cream lizard of Species L, with its eyes covered by opaque caps, were kept on pale sand in a shaded enclosure at 15 °C until its body temperature fell to 20 °C. Scientist 1 and Scientist 2, respectively, would most likely predict that the lizard would:",
+  "choices": [
+   "turn dark gray; turn dark gray.",
+   "turn dark gray; stay pale cream.",
+   "stay pale cream; turn dark gray.",
+   "stay pale cream; stay pale cream."
+  ],
+  "correct_answer": "turn dark gray; stay pale cream.",
+  "explanation": "For Scientist 1 the signal is body temperature, and a lizard below about 30 °C darkens whether or not it can see, so the lizard should turn dark gray. For Scientist 2 the signal is what the eyes detect, and a lizard with covered eyes would not change color in response to its surroundings, so the pale lizard should stay pale cream.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply each viewpoint to a new situation",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P7-Q1",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "According to Scientist 2, the film of water between a sliding object and the ice is produced by:",
+  "choices": [
+   "the pressure of the object on a small area of ice.",
+   "heat generated by friction as the object slides.",
+   "surface molecules that cannot lock into fixed positions.",
+   "sunlight warming the surface of the ice."
+  ],
+  "correct_answer": "heat generated by friction as the object slides.",
+  "explanation": "Scientist 2 says friction converts some of the object's motion into heat, which melts a thin layer of ice. Pressure on a small area is Scientist 1's mechanism, loosely bonded surface molecules are Scientist 3's, and no scientist mentions sunlight.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's stated mechanism",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV7b-P7-Q2",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "Based on the information about melting point in the passage, Scientist 1's explanation could account for the melting of ice beneath a standing skater's blade if the ice were at which of the following temperatures?",
+  "choices": [
+   "−20 °C",
+   "−10 °C",
+   "−2 °C",
+   "−0.2 °C"
+  ],
+  "correct_answer": "−0.2 °C",
+  "explanation": "The pressure under a standing skater's blade lowers the melting point of ice by only about 0.3 °C, to about −0.3 °C. Ice at −0.2 °C is above that lowered melting point, so it could melt under the blade; ice at −2 °C, −10 °C, or −20 °C is well below −0.3 °C and would stay frozen.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a quantity stated in the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P7-Q3",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "Suppose researchers found that a broad, flat steel block resting motionless on ice at −10 °C began to slide when given only a very small push, far smaller than the push needed to start the same block sliding on most dry solids. This finding would weaken the viewpoints of which scientists?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientists 1 and 2 only",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientists 1 and 2 only",
+  "explanation": "A broad block presses on a large area, so the pressure is low, and the ice is at −10 °C, far below the roughly −0.3 °C that pressure can reach; Scientist 1's pressure melting cannot produce a film here. The block was motionless, and Scientist 2 says no film is present until an object moves. Both views are weakened. Scientist 3 says the film is present without pressure or motion, so the finding supports that view rather than weakening it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "determine which viewpoints a finding weakens",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV7b-P7-Q4",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "Scientist 3 would most likely predict that, compared with the friction on a steel blade sliding over ice at −5 °C, the friction on the same blade sliding at the same speed over ice at −40 °C would be:",
+  "choices": [
+   "greater, because the liquidlike film would be thinner.",
+   "greater, because the pressure under the blade would be higher.",
+   "smaller, because the liquidlike film would be thicker.",
+   "the same, because the film does not depend on temperature."
+  ],
+  "correct_answer": "greater, because the liquidlike film would be thinner.",
+  "explanation": "Scientist 3 says the film becomes thinner as the ice gets colder, so ice should be less slippery, meaning greater friction, at very low temperatures. Scientist 3 does not say pressure changes with temperature, and the film is thinner, not thicker or unchanged, in colder ice.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict an outcome from a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P7-Q5",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "Scientist 1 and Scientist 2 would both most likely agree that the film of water:",
+  "choices": [
+   "is present on ice even when nothing is touching it.",
+   "is produced by melting caused by an object touching the ice.",
+   "becomes thicker the faster an object slides.",
+   "forms only under objects that press on a small area."
+  ],
+  "correct_answer": "is produced by melting caused by an object touching the ice.",
+  "explanation": "Scientist 1 says the film forms when the pressure of a skater's blade melts the ice, and Scientist 2 says it forms when heat from a sliding object's friction melts the ice; both hold that an object in contact with the ice produces the film by melting. A film present with nothing touching the ice is Scientist 3's view, thickening with speed is Scientist 2's alone, and dependence on a small contact area is Scientist 1's alone.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV7b-P7-Q6",
+  "passage_id": "sc7b-p7",
+  "passage_title": "Why Ice Is Slippery",
+  "format": "conflicting_viewpoints",
+  "passage": "Ice is far more slippery than most solids: a steel blade sliding on ice at −5 °C meets only about one-tenth to one-twentieth as much friction as it would sliding on most dry solids. Most scientists agree that a very thin film of liquid or liquidlike water between the ice and the sliding object acts as a lubricant, but they disagree about where the film comes from. Pure ice melts at 0 °C at normal atmospheric pressure. Higher pressure lowers the melting point of ice slightly: under the blade of a standing ice skater, the pressure lowers the melting point by about 0.3 °C. Three scientists explain the origin of the film.\n\nScientist 1\nThe film forms by pressure melting. The weight of a skater, concentrated on the narrow blade, lowers the melting point of the ice beneath it, so that ice melts there even though it is below 0 °C. The film exists only where the pressure is high, and it refreezes as soon as the blade moves on. Ice should be most slippery under objects that press on a small area and much less slippery under broad, light objects.\n\nScientist 2\nThe film forms by frictional heating. As an object slides, the small amount of friction converts some of the object's motion into heat, which melts a thin layer of ice where the object touches it. No film is present until the object begins to move. Ice should therefore be slippery only for an object that is already sliding, and the faster the object slides, the more heat is produced and the thicker and more slippery the film becomes.\n\nScientist 3\nThe film is always present. Water molecules at the surface of ice are bonded to fewer neighbors than molecules inside the crystal, so they cannot lock into fixed positions, and the top few nanometers of the ice behave like a liquid even well below 0 °C. The film needs neither pressure nor motion. It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.",
+  "prompt": "Which of the following results, if observed, would support Scientist 2's viewpoint but NOT Scientist 1's viewpoint?",
+  "choices": [
+   "Friction on a sliding steel blade decreased as its speed increased, with the weight on it and its contact area unchanged.",
+   "Friction on a sliding steel blade decreased as the weight on it increased, with its speed and contact area unchanged.",
+   "Friction on a motionless steel block was as low as the friction on the same block while it was sliding.",
+   "Ice under a broad, light object was much less slippery than ice under a narrow, heavy blade."
+  ],
+  "correct_answer": "Friction on a sliding steel blade decreased as its speed increased, with the weight on it and its contact area unchanged.",
+  "explanation": "Scientist 2 predicts that faster sliding produces more heat and a more slippery film, so friction falling as speed rises, with weight and area unchanged, supports Scientist 2; pressure was unchanged, so Scientist 1's pressure melting gives no reason for the change. Lower friction under more weight, and less slipperiness under broad, light objects, are what Scientist 1 predicts from pressure. Low friction on a motionless block contradicts Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that separates two viewpoints",
+  "difficulty": "hard"
+ }
+]
