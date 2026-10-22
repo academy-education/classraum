@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 const W = 'scripts/study-bank/sat-ii-v22-work', RANGE = { A: 'ABCDEF', B: 'GHIJKL', C: 'MNOPQR', D: 'STUVWXYZ' }
 // generic place words (Pond, Chapel ...) are not names; the range applies to the distinctive token
-const GENERIC = new Set(['Valley','Lake','Pond','Chapel','County','Mount','Marsh','Basin','Depot','Barn','Annex','Works','Hall','Lane','Hollow','River','Creek','Bay','Island','Street','Mill','Library','School','Station','Ridge','Bridge'])
+const GENERIC = new Set(['Valley','Lake','Pond','Chapel','County','Mount','Marsh','Basin','Depot','Barn','Annex','Works','Hall','Lane','Hollow','River','Creek','Bay','Island','Street','Mill','Library','School','Station','Ridge','Bridge','Hills','Forest','Reserve','Spit','Point','Sands','Strand','Museum','Delta','Range','Conservator'])
 const probs = [], all = [], nameOwner = {}
 for (const L of 'ABCD') {
   const p = `${W}/${L}/items.json`
@@ -29,7 +29,7 @@ for (const L of 'ABCD') {
     if (quant && !(it.graphic && it.graphic.type === 'table' && Array.isArray(it.graphic.cells))) probs.push(`${id}: quantitative item needs a table graphic`)
     if (quant && !it.passage.includes('______')) probs.push(`${id}: quantitative passage needs ______`)
     if (!quant && !/finding, if true/i.test(it.prompt)) probs.push(`${id}: textual prompt must be "finding, if true"`)
-    if (!quant && !it.meta?.design !== 'no-reverse') probs.push(`${id}: meta.design must be no-reverse (2x2 banned in v22)`)
+    if (!quant && it.meta?.design !== 'no-reverse') probs.push(`${id}: meta.design must be no-reverse (2x2 banned in v22)`)
     if (quant) { rank.push(it.meta?.key_rank); tds.push(it.meta?.table_design) }
     if (/\b(choice|option) [A-D]\b/.test(it.explanation)) probs.push(`${id}: explanation names a letter`)
     for (const n of it.meta?.names || []) {

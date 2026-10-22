@@ -1,0 +1,183 @@
+[
+  {
+    "id": "II22D-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Between 1550 and 1650, villages across the Vellsted region replaced many of their watermills with windmills. Historian Saskia Thorvald argues that a drying climate drove the change: in dry summers, streams fed only by rain ran too low to turn a waterwheel. Historian Yannick Sorensen contends instead that villagers built windmills to avoid the fees that lords charged for grinding grain at a manor's watermill. The region's villages fall into four groups. The Thrane villages owed fees to a manor and stood on rain-fed streams; the Udsen villages owed fees to a manor but stood on spring-fed streams, which flow steadily all year; the Wrennick villages owed no manor fees and stood on rain-fed streams; and the Skarra villages owed no manor fees and stood on spring-fed streams.",
+    "prompt": "Which finding, if true, would most directly support Thorvald's hypothesis?",
+    "choices": [
+      "Windmills replaced watermills more often in the Udsen villages than in the Skarra villages.",
+      "Windmills replaced watermills more often in the Thrane villages than in the Skarra villages.",
+      "Windmills replaced watermills more often in the Wrennick villages than in the Skarra villages.",
+      "Windmills replaced watermills more often in the Udsen villages than in the Wrennick villages."
+    ],
+    "correct_answer": "Windmills replaced watermills more often in the Wrennick villages than in the Skarra villages.",
+    "explanation": "Thorvald argues that \"a drying climate drove the change,\" because \"streams fed only by rain ran too low to turn a waterwheel.\" Sorensen argues that villagers built windmills \"to avoid the fees that lords charged for grinding grain at a manor's watermill.\" The Wrennick and Skarra villages both \"owed no manor fees,\" so Sorensen's account gives neither group a reason to switch and predicts no difference between them; the two groups differ only in that the Wrennick villages \"stood on rain-fed streams\" while the Skarra villages stood on spring-fed streams, \"which flow steadily all year.\" The finding that \"Windmills replaced watermills more often in the Wrennick villages than in the Skarra villages\" is therefore predicted only by Thorvald's account, so it most directly supports her hypothesis. The finding that \"Windmills replaced watermills more often in the Udsen villages than in the Skarra villages\" compares two groups on spring-fed streams that differ only in whether they owed manor fees, which is what Sorensen's account predicts, not Thorvald's. The finding that \"Windmills replaced watermills more often in the Thrane villages than in the Skarra villages\" compares villages that differ in both fees and streams, so both accounts predict it and it cannot favor Thorvald. The finding that \"Windmills replaced watermills more often in the Udsen villages than in the Wrennick villages\" favors villages that owed fees but had steady streams over villages that owed no fees but had rain-fed streams, the opposite of what Thorvald's account predicts.",
+    "topic_tag": "windmill-adoption-drought-vs-mill-fees",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": ["Saskia Thorvald", "Yannick Sorensen", "Vellsted", "Thrane", "Udsen", "Wrennick", "Skarra"],
+      "why_hard": "The key needs Sorensen's fee sentence (free villages have no reason to switch) combined with the group sentence (Wrennick and Skarra are both free and differ only in stream type). The rival-predicted Udsen/Skarra option has the same controlled shape; the Thrane/Skarra option is confounded and fits both."
+    }
+  },
+  {
+    "id": "II22D-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Many church organs built in the Varsund diocese during the 1800s have lead pipes crusted with white corrosion. Organ historian Tilde Wennberg hypothesizes that acetic acid vapor given off by the oak cases that enclose the pipes is attacking the lead. Conservator Stig Yderberg attributes the corrosion instead to damp: the diocese's unheated stone churches stay humid for much of the year, while its heated timber churches stay dry. Four workshops built most of the organs. The Selander and Tamm workshops encased their pipes in oak, but the Ulving and Vass workshops used pine, which gives off far less acetic acid. Selander and Ulving built only for stone churches, and Tamm and Vass built only for timber ones.",
+    "prompt": "Which finding, if true, would most directly weaken Wennberg's hypothesis?",
+    "choices": [
+      "Pipes in organs built by the Ulving workshop were more corroded than pipes in organs built by the Tamm workshop.",
+      "Pipes in organs built by the Selander workshop were more corroded than pipes in organs built by the Ulving workshop.",
+      "Pipes in organs built by the Selander workshop were more corroded than pipes in organs built by the Vass workshop.",
+      "Pipes in organs built by the Tamm workshop were more corroded than pipes in organs built by the Vass workshop."
+    ],
+    "correct_answer": "Pipes in organs built by the Ulving workshop were more corroded than pipes in organs built by the Tamm workshop.",
+    "explanation": "Wennberg blames \"acetic acid vapor given off by the oak cases,\" while Yderberg blames damp, noting that the stone churches \"stay humid for much of the year\" and the timber churches \"stay dry.\" Ulving organs have pine cases, which give off \"far less acetic acid,\" and stand in stone churches; Tamm organs have oak cases and stand in timber churches. Wennberg's hypothesis therefore predicts more corrosion in Tamm organs than in Ulving organs. The finding that \"Pipes in organs built by the Ulving workshop were more corroded than pipes in organs built by the Tamm workshop\" shows the opposite: the organs with less acid but more damp corroded more, which fits Yderberg's account and most directly weakens Wennberg's. The finding that \"Pipes in organs built by the Selander workshop were more corroded than pipes in organs built by the Ulving workshop\" compares organs in the same kind of church that differ only in case wood, so it supports Wennberg. The finding that \"Pipes in organs built by the Tamm workshop were more corroded than pipes in organs built by the Vass workshop\" makes the same comparison for timber churches, so it also supports Wennberg. The finding that \"Pipes in organs built by the Selander workshop were more corroded than pipes in organs built by the Vass workshop\" compares oak cases in damp churches with pine cases in dry ones, so both accounts predict it and it cannot weaken Wennberg's hypothesis.",
+    "topic_tag": "organ-pipe-corrosion-oak-acid-vs-damp",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": ["Tilde Wennberg", "Stig Yderberg", "Varsund", "Selander", "Tamm", "Ulving", "Vass"],
+      "why_hard": "Workshop names are opaque: the key needs the case-wood sentence and the church-type sentence (different sentences) to place Ulving at low acid/damp and Tamm at high acid/dry. Two distractors are within-church-type contrasts that support Wennberg; one is the confounded oak-damp vs pine-dry contrast both accounts predict."
+    }
+  },
+  {
+    "id": "II22D-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "During the 1700s, houses in the towns of the Tessel valley began to be built with much larger windows. Architectural historian Ulla Varga argues that cheaper glass caused the change. A glassworks opened at Svarte in 1735, and because panes broke easily on the valley's rutted roads, its glass was shipped only by barge to towns on the Tessel River. Historian Viggo Tamsen contends instead that larger windows were a fashion copied from the capital, spread by builders' pattern books that circulated throughout the valley from about 1720. Tolvik and Wennor stand on the river, while Saltrup and Yvenby lie in the hills, far from any navigable water.",
+    "prompt": "Which finding, if true, would most directly support Varga's claim?",
+    "choices": [
+      "Houses built in Saltrup in the 1720s had larger windows than houses built in Saltrup in the 1710s.",
+      "Houses built in Wennor in the 1740s had larger windows than houses built in Yvenby in the 1710s.",
+      "Houses built in Yvenby in the 1740s had larger windows than houses built in Tolvik in the 1720s.",
+      "Houses built in Tolvik in the 1740s had larger windows than houses built in Saltrup in the 1740s."
+    ],
+    "correct_answer": "Houses built in Tolvik in the 1740s had larger windows than houses built in Saltrup in the 1740s.",
+    "explanation": "Varga credits cheaper glass from the Svarte glassworks, which opened \"in 1735\" and whose glass \"was shipped only by barge to towns on the Tessel River.\" Tamsen credits a fashion spread by pattern books \"that circulated throughout the valley from about 1720.\" Tolvik stands \"on the river,\" while Saltrup lies \"in the hills, far from any navigable water.\" By the 1740s both towns had the pattern books, but only Tolvik could get the cheap glass, so Tamsen's account predicts similar windows in the two towns and Varga's predicts larger windows in Tolvik. The finding that \"Houses built in Tolvik in the 1740s had larger windows than houses built in Saltrup in the 1740s\" therefore most directly supports Varga's claim. The finding that \"Houses built in Saltrup in the 1720s had larger windows than houses built in Saltrup in the 1710s\" shows windows growing in a hill town after the pattern books arrived but before the glassworks opened, which is what Tamsen's account predicts, not Varga's. The finding that \"Houses built in Wennor in the 1740s had larger windows than houses built in Yvenby in the 1710s\" compares a river town that had both the pattern books and the glass with a hill town that had neither, so both accounts predict it. The finding that \"Houses built in Yvenby in the 1740s had larger windows than houses built in Tolvik in the 1720s\" compares two cases that both had the pattern books and neither had the cheap glass (Yvenby is a hill town, and those Tolvik houses predate 1735), so it gives Varga's claim no support.",
+    "topic_tag": "window-size-cheap-glass-vs-pattern-books",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": ["Ulla Varga", "Viggo Tamsen", "Tessel", "Svarte", "Tolvik", "Wennor", "Saltrup", "Yvenby"],
+      "why_hard": "Three facts in three sentences must be combined: the 1735 opening date and river-only shipping (Varga), the 1720 valley-wide spread (Tamsen), and which towns are on the river. Two options are controlled comparisons (same town, or same decade); only the same-decade one holds Tamsen's factor constant. The Yvenby/Tolvik option looks like a cross-geography test but has no glass on either side."
+    }
+  },
+  {
+    "id": "II22D-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "In the late 1700s, the owners of five textile mills in the Wyndal valley refitted their steam engines with a separate condenser, which spared each engine's cylinder from being cooled and reheated with every stroke. Historian of technology Vera Stenholm argues that the refit could sharply cut an engine's fuel use. As evidence, she points to a mill whose refitted engine burned less than two-thirds as much coal per hour of work as it had before: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Coal burned per hour of work by five Wyndal mill engines (kilograms)",
+      "colLabels": ["Before refit", "After refit"],
+      "rowLabels": ["Sorrel Mill", "Tarrow Mill", "Vanner Mill", "Wedda Mill", "Yarrel Mill"],
+      "cells": [
+        ["75", "53"],
+        ["96", "60"],
+        ["120", "84"],
+        ["60", "42"],
+        ["150", "105"]
+      ]
+    },
+    "choices": [
+      "at Wedda Mill, the engine burned 60 kilograms of coal per hour before the refit and 42 kilograms after it.",
+      "at Tarrow Mill, the engine burned 96 kilograms of coal per hour before the refit and 60 kilograms after it.",
+      "at Sorrel Mill, the engine burned 75 kilograms of coal per hour before the refit and 53 kilograms after it.",
+      "at Yarrel Mill, the engine burned 150 kilograms of coal per hour before the refit and 105 kilograms after it."
+    ],
+    "correct_answer": "at Tarrow Mill, the engine burned 96 kilograms of coal per hour before the refit and 60 kilograms after it.",
+    "explanation": "Stenholm points to \"a mill whose refitted engine burned less than two-thirds as much coal per hour of work as it had before.\" At Tarrow Mill the engine burned 96 kilograms before the refit and 60 after; two-thirds of 96 is 64, and 60 is less than 64, so \"at Tarrow Mill, the engine burned 96 kilograms of coal per hour before the refit and 60 kilograms after it.\" completes the claim. All four choices read the table accurately. Two-thirds of Wedda Mill's 60 kilograms is 40, and its engine still burned 42, so the Wedda choice fails even though it shows the smallest amount burned after a refit. Two-thirds of Sorrel Mill's 75 kilograms is 50, and its engine still burned 53. Two-thirds of Yarrel Mill's 150 kilograms is 100, and its engine still burned 105, so the Yarrel choice fails even though it shows the largest drop in kilograms (45).",
+    "topic_tag": "steam-engine-condenser-refit-coal",
+    "meta": {
+      "design": "quant",
+      "table_design": "change",
+      "key_rank": "third of four by before-refit value (60, 75, 96, 150); second of four by after value (42, 53, 60, 105)",
+      "names": ["Vera Stenholm", "Wyndal", "Sorrel Mill", "Tarrow Mill", "Vanner Mill", "Wedda Mill", "Yarrel Mill"],
+      "why_hard": "Each option needs a before/after ratio against 2/3; every distractor misses by 2-5 kg. The two naive lures point elsewhere: smallest after-value is Wedda, largest absolute drop is Yarrel. No option set closure or stem bound narrows it."
+    }
+  },
+  {
+    "id": "II22D-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Paper made up a large share of the cost of an early printed book, so historians often credit cheaper paper for the falling price of books in the city of Wendmark between 1470 and 1530. Economic historian Sigrid Tovesen argues that other savings, such as faster presses, also mattered, noting a case in which book prices fell from one decade to the next even though the price of paper held steady: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average prices in Wendmark by decade (grams of silver)",
+      "colLabels": ["Paper (per ream)", "Printed books (per 100 leaves)"],
+      "rowLabels": ["1470s", "1480s", "1490s", "1500s", "1510s", "1520s"],
+      "cells": [
+        ["31", "9.6"],
+        ["25", "7.8"],
+        ["25", "7.9"],
+        ["19", "6.0"],
+        ["19", "5.1"],
+        ["15", "4.0"]
+      ]
+    },
+    "choices": [
+      "printed books averaged 9.6 grams of silver per 100 leaves in the 1470s and 7.8 grams in the 1480s.",
+      "printed books averaged 7.8 grams of silver per 100 leaves in the 1480s and 7.9 grams in the 1490s.",
+      "printed books averaged 5.1 grams of silver per 100 leaves in the 1510s and 4.0 grams in the 1520s.",
+      "printed books averaged 6.0 grams of silver per 100 leaves in the 1500s and 5.1 grams in the 1510s."
+    ],
+    "correct_answer": "printed books averaged 6.0 grams of silver per 100 leaves in the 1500s and 5.1 grams in the 1510s.",
+    "explanation": "Tovesen notes \"a case in which book prices fell from one decade to the next even though the price of paper held steady.\" From the 1500s to the 1510s, paper stayed at 19 grams of silver per ream while printed books fell from 6.0 to 5.1 grams per 100 leaves, so \"printed books averaged 6.0 grams of silver per 100 leaves in the 1500s and 5.1 grams in the 1510s.\" completes the claim. All four choices read the table accurately. The choices covering the 1470s to the 1480s (9.6 and 7.8 grams) and the 1510s to the 1520s (5.1 and 4.0 grams) show book prices falling, but over both of those steps paper also fell, from 31 to 25 grams and from 19 to 15 grams, so cheaper paper could account for them. The choice covering the 1480s to the 1490s is the one other step in which paper held steady, at 25 grams, but book prices rose from 7.8 to 7.9 grams rather than falling.",
+    "topic_tag": "book-prices-vs-paper-prices-by-decade",
+    "meta": {
+      "design": "quant",
+      "table_design": "trend",
+      "key_rank": "second of four by first-quoted value (5.1, 6.0, 7.8, 9.6)",
+      "names": ["Sigrid Tovesen", "Wendmark"],
+      "why_hard": "The options quote only book prices; whether paper held steady is in the other column, so three of the four options (all falls) cannot be separated without reading paper across consecutive rows. The key is neither the earliest nor the latest step and does not contain the table's lowest value; the 1480s-1490s option is the paper-steady step that fails on direction."
+    }
+  },
+  {
+    "id": "II22D-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Acoustician Viveka Yttergren has studied five concert halls built in the city of Sundvale during the 1800s. She argues that a hall suits chamber music best when it meets two conditions: its reverberation time, the number of seconds a sound takes to fade by 60 decibels, falls between 1.4 and 1.7 seconds, and it provides at least 8 cubic meters of volume for each seat. Yttergren identifies one hall that meets both conditions: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Five Sundvale concert halls",
+      "colLabels": ["Reverberation time (seconds)", "Seats", "Volume (cubic meters)"],
+      "rowLabels": ["Sollen Hall", "Teverin Hall", "Ulmar Hall", "Vasteby Hall", "Wrayne Hall"],
+      "cells": [
+        ["1.45", "640", "5,440"],
+        ["1.60", "820", "6,150"],
+        ["1.90", "560", "5,600"],
+        ["1.25", "700", "5,950"],
+        ["1.55", "450", "3,375"]
+      ]
+    },
+    "choices": [
+      "Sollen Hall has a reverberation time of 1.45 seconds, 640 seats, and a volume of 5,440 cubic meters.",
+      "Teverin Hall has a reverberation time of 1.60 seconds, 820 seats, and a volume of 6,150 cubic meters.",
+      "Ulmar Hall has a reverberation time of 1.90 seconds, 560 seats, and a volume of 5,600 cubic meters.",
+      "Wrayne Hall has a reverberation time of 1.55 seconds, 450 seats, and a volume of 3,375 cubic meters."
+    ],
+    "correct_answer": "Sollen Hall has a reverberation time of 1.45 seconds, 640 seats, and a volume of 5,440 cubic meters.",
+    "explanation": "Yttergren's two conditions are a reverberation time that \"falls between 1.4 and 1.7 seconds\" and \"at least 8 cubic meters of volume for each seat.\" Sollen Hall's reverberation time of 1.45 seconds is in that range, and 5,440 cubic meters divided by 640 seats is 8.5 cubic meters per seat, so \"Sollen Hall has a reverberation time of 1.45 seconds, 640 seats, and a volume of 5,440 cubic meters.\" completes the claim. All four choices read the table accurately. Teverin Hall's 1.60 seconds is in range, but 6,150 cubic meters for 820 seats is only 7.5 cubic meters per seat. Wrayne Hall's 1.55 seconds is in range, but 3,375 cubic meters for 450 seats is also only 7.5 per seat, even though it is the smallest hall. Ulmar Hall provides 10 cubic meters per seat (5,600 for 560 seats), but its reverberation time of 1.90 seconds is above the range.",
+    "topic_tag": "concert-hall-reverberation-volume-per-seat",
+    "meta": {
+      "design": "quant",
+      "table_design": "two-condition",
+      "key_rank": "smallest of four by first-quoted value, reverberation time (1.45, 1.55, 1.60, 1.90); third of four by seats, second by volume",
+      "names": ["Viveka Yttergren", "Sundvale", "Sollen Hall", "Teverin Hall", "Ulmar Hall", "Vasteby Hall", "Wrayne Hall"],
+      "why_hard": "Three cells per option: one range check plus a volume/seats division. Only Ulmar falls to the stem range alone; Teverin and Wrayne both pass the range and fail only on the division (7.5). Naive lures point away: the smallest hall (Wrayne) and the largest volume (Teverin) are wrong, and the best volume per seat (Ulmar) fails reverberation."
+    }
+  }
+]

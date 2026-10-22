@@ -1,0 +1,183 @@
+[
+  {
+    "id": "II22A-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Biologist Audra Bellweather hypothesizes that traffic noise discourages male spring peepers, a small frog, from calling for mates, because the din drowns out their calls. Her colleague Dmitri Cardenas suspects road salt instead: meltwater carries it from pavement into nearby ponds, where it can stress amphibians. Breeding ponds in the Fennick Hills fall into four groups. The Ashby ponds lie far from any road. The Brenlow ponds sit beside a highway and collect its salty runoff. The Calder ponds collect just as much runoff from that highway through a culvert, but a tall earthen berm keeps them as quiet as the Ashby ponds. The Ellery ponds lie beside the highway's noisiest stretch but uphill of it, so no runoff reaches them.",
+    "prompt": "Which finding, if true, would most directly weaken Bellweather's hypothesis?",
+    "choices": [
+      "Male peepers called less often at the Ellery ponds than at the Ashby ponds.",
+      "Male peepers called less often at the Brenlow ponds than at the Ashby ponds.",
+      "Male peepers called less often at the Calder ponds than at the Ellery ponds.",
+      "Male peepers called less often at the Brenlow ponds than at the Calder ponds."
+    ],
+    "correct_answer": "Male peepers called less often at the Calder ponds than at the Ellery ponds.",
+    "explanation": "Bellweather says traffic noise discourages calling \"because the din drowns out their calls,\" while Cardenas \"suspects road salt instead.\" The passage says the Calder ponds \"collect just as much runoff from that highway through a culvert, but a tall earthen berm keeps them as quiet as the Ashby ponds,\" and that the Ellery ponds \"lie beside the highway's noisiest stretch but uphill of it, so no runoff reaches them.\" Bellweather's hypothesis therefore predicts less calling at the noisy Ellery ponds than at the quiet Calder ponds, while Cardenas's account predicts less calling at the salted Calder ponds. The finding that \"Male peepers called less often at the Calder ponds than at the Ellery ponds\" is the opposite of what Bellweather's hypothesis predicts and fits Cardenas's, so it most directly weakens her hypothesis. The finding that \"Male peepers called less often at the Ellery ponds than at the Ashby ponds\" compares a noisy pond group that gets no runoff with ponds that \"lie far from any road,\" so only noise differs and the finding supports Bellweather. The finding that \"Male peepers called less often at the Brenlow ponds than at the Calder ponds\" compares two groups that collect the same runoff, one noisy and one quiet, so it also supports Bellweather. The finding that \"Male peepers called less often at the Brenlow ponds than at the Ashby ponds\" is predicted by both accounts, since the Brenlow ponds \"sit beside a highway and collect its salty runoff\" and so have both noise and salt, so it cannot weaken Bellweather's hypothesis.",
+    "topic_tag": "spring-peeper-calling-noise-vs-salt",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual); key = salt-only group vs noise-only group, opposite of the hypothesis's prediction",
+      "names": ["Audra Bellweather", "Dmitri Cardenas", "Fennick Hills", "Ashby", "Brenlow", "Calder", "Ellery"],
+      "why_hard": "The key needs the hypothesis sentence plus two separate site sentences (Calder: runoff but quiet; Ellery: noisy but no runoff). Options form a 4-cycle over the four sites, so each site name appears exactly twice; no option restates a passage-stated pattern and none is the reverse of another. The both-predicted distractor (Brenlow vs Ashby) is the finding the rival's account predicts."
+    }
+  },
+  {
+    "id": "II22A-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In the Dalbeck Forest Reserve, ecologist Felicity Andrade hypothesizes that soil fungi limit the survival of seedlings of a certain canopy tree: the fungi attack only this species and build up in the soil beneath its adults. Basil Ebbert argues instead that the seedlings are limited by shade, since mature crowns let little light reach the forest floor. The team planted seedlings of the species in four kinds of plots. Ardel plots lie beneath living adults of the species. Bexleigh plots lie beneath adults of other species whose crowns cast equally deep shade. Cassel plots lie in sunny gaps left by adults of the species that fell recently; their soil still holds as much of the fungi as soil beneath living adults. Fairlie plots lie in sunny gaps far from any adult of the species.",
+    "prompt": "Which finding, if true, would most directly support Andrade's hypothesis?",
+    "choices": [
+      "Seedlings died at a higher rate in the Cassel plots than in the Fairlie plots.",
+      "Seedlings died at a higher rate in the Bexleigh plots than in the Fairlie plots.",
+      "Seedlings died at a higher rate in the Bexleigh plots than in the Cassel plots.",
+      "Seedlings died at a higher rate in the Ardel plots than in the Cassel plots."
+    ],
+    "correct_answer": "Seedlings died at a higher rate in the Cassel plots than in the Fairlie plots.",
+    "explanation": "Andrade says the fungi \"attack only this species and build up in the soil beneath its adults,\" while Ebbert says the seedlings \"are limited by shade.\" The Cassel plots \"lie in sunny gaps\" whose soil \"still holds as much of the fungi as soil beneath living adults,\" and the Fairlie plots \"lie in sunny gaps far from any adult of the species.\" Both are sunny, so Ebbert's account predicts no difference between them, but only the Cassel plots hold the fungi. The finding that \"Seedlings died at a higher rate in the Cassel plots than in the Fairlie plots\" is therefore predicted only by Andrade's hypothesis and most directly supports it. The finding that \"Seedlings died at a higher rate in the Bexleigh plots than in the Fairlie plots\" compares deep shade from \"adults of other species,\" which the fungi do not build up beneath, with a sunny gap without fungi, so only shade differs and the finding supports Ebbert. The finding that \"Seedlings died at a higher rate in the Ardel plots than in the Cassel plots\" compares two settings with the same amount of fungi, one shaded and one sunny, so it also supports Ebbert. The finding that \"Seedlings died at a higher rate in the Bexleigh plots than in the Cassel plots\" shows more deaths in shade without fungi than in sun with fungi, which is what Ebbert's account predicts and the opposite of what Andrade's predicts.",
+    "topic_tag": "seedling-mortality-fungi-vs-shade",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual); key = fungi-only plots vs neither",
+      "names": ["Felicity Andrade", "Basil Ebbert", "Dalbeck Forest Reserve", "Ardel", "Bexleigh", "Cassel", "Fairlie"],
+      "why_hard": "The key needs the hypothesis plus two plot sentences (Cassel: sunny but fungi as beneath adults; Fairlie: sunny, no adult). The obvious 'beneath own adults vs far gap' contrast, which both accounts fit, is deliberately absent. All three distractors are findings the rival (shade) account predicts, so 'sounds plausible' cannot pick the key."
+    }
+  },
+  {
+    "id": "II22A-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Biologist Celeste Fairweather hypothesizes that streetlamps cause European robins in the town of Emberly to begin their dawn song hours before first light, because the lamps' glow mimics daybreak. Edgar Danvers proposes instead that the robins start early to get their singing done before morning traffic noise drowns it out. Emberly's downtown streets are lit all night and carry heavy traffic from early morning. The bypass road around the town carries just as much traffic but has no lamps. The lanes of the old quarter are closed to cars and stay quiet until late morning; some of these lanes are lit all night, and the others are not lit at all.",
+    "prompt": "Which finding, if true, would most directly weaken Fairweather's hypothesis?",
+    "choices": [
+      "Robins in the lit lanes began singing earlier than robins in the unlit lanes did.",
+      "Robins on the downtown streets began singing earlier than robins in the unlit lanes did.",
+      "Robins on the downtown streets began singing earlier than robins along the bypass did.",
+      "Robins along the bypass began singing earlier than robins in the lit lanes did."
+    ],
+    "correct_answer": "Robins along the bypass began singing earlier than robins in the lit lanes did.",
+    "explanation": "Fairweather says streetlamps trigger the early singing \"because the lamps' glow mimics daybreak,\" while Danvers says the robins start early \"to get their singing done before morning traffic noise drowns it out.\" The passage says the bypass \"carries just as much traffic but has no lamps,\" while the old-quarter lanes \"are closed to cars and stay quiet until late morning,\" with some of them \"lit all night.\" Fairweather's hypothesis therefore predicts earlier singing in the lit lanes than along the dark bypass, and Danvers's predicts the reverse. The finding that \"Robins along the bypass began singing earlier than robins in the lit lanes did\" is the opposite of what Fairweather's hypothesis predicts and fits Danvers's, so it most directly weakens her hypothesis. The finding that \"Robins in the lit lanes began singing earlier than robins in the unlit lanes did\" compares lanes that are equally quiet and differ only in lighting, so it supports Fairweather. The finding that \"Robins on the downtown streets began singing earlier than robins along the bypass did\" compares roads with the same heavy traffic that differ only in lighting, so it also supports Fairweather. The finding that \"Robins on the downtown streets began singing earlier than robins in the unlit lanes did\" is predicted by both accounts, since the downtown streets \"are lit all night and carry heavy traffic from early morning,\" so it cannot weaken Fairweather's hypothesis.",
+    "topic_tag": "robin-predawn-song-light-vs-noise",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual); key = traffic-only setting vs light-only setting, opposite of the hypothesis's prediction",
+      "names": ["Celeste Fairweather", "Edgar Danvers", "Emberly"],
+      "why_hard": "The key needs the hypothesis plus the bypass sentence (traffic, no lamps) and the old-quarter sentence (quiet, some lit). Options form a 4-cycle over the four settings, so each appears exactly twice; no reversed pair. The both-predicted distractor (downtown vs unlit lanes) is what the rival predicts too."
+    }
+  },
+  {
+    "id": "II22A-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Microbiologist Darius Elford is screening bacteria for composting food waste that is both hot and salty. He considers a strain suitable only if two conditions hold: its doubling time at 50°C is no more than 10 minutes longer than its doubling time at 30°C, and its doubling time in a medium containing 5% salt is under 60 minutes. Elford reports that just one of the five strains he isolated meets both conditions: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Doubling times of five bacterial strains (minutes)",
+      "colLabels": ["At 30°C", "At 50°C", "In 5% salt at 30°C"],
+      "rowLabels": ["Strain R-8", "Strain R-31", "Strain R-07", "Strain R-26", "Strain R-119"],
+      "cells": [
+        ["44", "48", "70"],
+        ["46", "63", "50"],
+        ["41", "49", "55"],
+        ["22", "38", "58"],
+        ["52", "58", "90"]
+      ]
+    },
+    "choices": [
+      "Strain R-31 doubled in 46 minutes at 30°C, in 63 minutes at 50°C, and in 50 minutes in salt.",
+      "Strain R-07 doubled in 41 minutes at 30°C, in 49 minutes at 50°C, and in 55 minutes in salt.",
+      "Strain R-8 doubled in 44 minutes at 30°C, in 48 minutes at 50°C, and in 70 minutes in salt.",
+      "Strain R-119 doubled in 52 minutes at 30°C, in 58 minutes at 50°C, and in 90 minutes in salt."
+    ],
+    "correct_answer": "Strain R-07 doubled in 41 minutes at 30°C, in 49 minutes at 50°C, and in 55 minutes in salt.",
+    "explanation": "Elford requires that a strain's doubling time at 50°C be \"no more than 10 minutes longer than its doubling time at 30°C\" and that its doubling time in 5% salt be \"under 60 minutes.\" Strain R-07 slows by 8 minutes (41 to 49) and doubles in 55 minutes in salt, so \"Strain R-07 doubled in 41 minutes at 30°C, in 49 minutes at 50°C, and in 55 minutes in salt\" shows a strain meeting both conditions. All four choices read the table accurately. \"Strain R-31 doubled in 46 minutes at 30°C, in 63 minutes at 50°C, and in 50 minutes in salt\" meets the salt condition, but its doubling time rises by 17 minutes at 50°C, more than the 10 allowed. \"Strain R-8 doubled in 44 minutes at 30°C, in 48 minutes at 50°C, and in 70 minutes in salt\" meets the heat condition (a rise of only 4 minutes), but 70 minutes in salt is not under 60. \"Strain R-119 doubled in 52 minutes at 30°C, in 58 minutes at 50°C, and in 90 minutes in salt\" also meets the heat condition (a rise of 6 minutes) but fails the salt condition.",
+    "topic_tag": "compost-bacteria-heat-salt-doubling",
+    "meta": {
+      "design": "quant",
+      "table_design": "two-condition",
+      "key_rank": "smallest (first-mentioned number, 30°C doubling time: 41 vs 44, 46, 52); key is 2nd of 4 at 50°C and 2nd of 4 in salt, and its heat slowdown (8) is neither the smallest (4) nor the largest (17)",
+      "names": ["Darius Elford"],
+      "why_hard": "The key needs three cells and two separate tests, one of them a subtraction across columns. Lures: R-31 is the fastest in salt but fails heat; R-8 has the smallest heat slowdown and is fastest at 50°C among the options but fails salt; R-119 passes heat. No group label column."
+    }
+  },
+  {
+    "id": "II22A-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Beach-nesting plovers lay their eggs in shallow scrapes on open sand, where foxes, gulls, and storm tides destroy many nests before the eggs hatch. Ecologist Freya Eckhart estimates that a plover colony on the Delling coast can hold its numbers steady only if more than half of its nests hatch at least one chick. She reports that in 2025 just one of the five colonies she monitored cleared that mark: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Plover nests monitored at five Delling coast colonies in 2025",
+      "colLabels": ["Nests monitored", "Nests that hatched at least one chick"],
+      "rowLabels": ["Avelin Bar", "Brisco Spit", "Carrow Point", "Ettrick Sands", "Fallow Strand"],
+      "cells": [
+        ["90", "44"],
+        ["120", "54"],
+        ["64", "35"],
+        ["150", "66"],
+        ["40", "15"]
+      ]
+    },
+    "choices": [
+      "At Brisco Spit, 54 of the 120 nests monitored hatched at least one chick.",
+      "At Fallow Strand, 15 of the 40 nests monitored hatched at least one chick.",
+      "At Avelin Bar, 44 of the 90 nests monitored hatched at least one chick.",
+      "At Carrow Point, 35 of the 64 nests monitored hatched at least one chick."
+    ],
+    "correct_answer": "At Carrow Point, 35 of the 64 nests monitored hatched at least one chick.",
+    "explanation": "Eckhart says a colony holds steady only if \"more than half of its nests hatch at least one chick\" and reports that one colony \"cleared that mark.\" At Carrow Point, 35 of 64 nests hatched, and half of 64 is 32, so \"At Carrow Point, 35 of the 64 nests monitored hatched at least one chick\" shows a colony above half. All four choices read the table accurately. \"At Brisco Spit, 54 of the 120 nests monitored hatched at least one chick\" gives the largest number of hatched nests among the choices, but half of 120 is 60, so 54 falls short. \"At Avelin Bar, 44 of the 90 nests monitored hatched at least one chick\" comes close, but half of 90 is 45, so 44 is just under half. \"At Fallow Strand, 15 of the 40 nests monitored hatched at least one chick\" is well under half, since half of 40 is 20.",
+    "topic_tag": "plover-nest-hatching-rate",
+    "meta": {
+      "design": "quant",
+      "table_design": "ratio",
+      "key_rank": "middle (2nd smallest by first-mentioned number, hatched nests: 15, 35, 44, 54); also 2nd smallest by nests monitored (40, 64, 90, 120)",
+      "names": ["Freya Eckhart", "Delling coast", "Avelin Bar", "Brisco Spit", "Carrow Point", "Ettrick Sands", "Fallow Strand"],
+      "why_hard": "Each choice needs a division against one-half. Lures: Brisco has the most hatched nests among the choices; Avelin misses half by one nest (44 of 90). The key is neither the largest count nor the smallest colony, so 'small sample, big rate' or 'most chicks' heuristics do not find it."
+    }
+  },
+  {
+    "id": "II22A-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Ultraviolet (UV) radiation grows stronger with elevation, and many mountain plants respond by producing more UV-absorbing compounds called flavonoids in their leaves. Plant ecologist Daphne Corliss measured flavonoid concentrations in the leaves of an alpine cinquefoil at six sites on Mount Ferrow. She found that concentration generally rose with elevation, but she claims that one population departed from that pattern, with leaves containing less flavonoid than those of a population growing lower on the mountain. Corliss's claim is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Flavonoid concentration in cinquefoil leaves at six sites on Mount Ferrow",
+      "colLabels": ["Elevation (meters)", "Flavonoid concentration (mg per g of dry leaf)"],
+      "rowLabels": ["Dunford", "Fenmore", "Aldwick", "Carrick", "Bramley", "Elstow"],
+      "cells": [
+        ["600", "3.9"],
+        ["1,000", "4.8"],
+        ["1,400", "5.6"],
+        ["1,800", "6.4"],
+        ["2,200", "6.0"],
+        ["2,600", "7.3"]
+      ]
+    },
+    "choices": [
+      "leaves at Carrick contained 6.4 mg of flavonoid per gram, compared with 6.0 mg at Bramley.",
+      "leaves at Elstow contained 7.3 mg of flavonoid per gram, compared with 6.0 mg at Bramley.",
+      "leaves at Aldwick contained 5.6 mg of flavonoid per gram, compared with 4.8 mg at Fenmore.",
+      "leaves at Bramley contained 6.0 mg of flavonoid per gram, compared with 5.6 mg at Aldwick."
+    ],
+    "correct_answer": "leaves at Carrick contained 6.4 mg of flavonoid per gram, compared with 6.0 mg at Bramley.",
+    "explanation": "Corliss claims that one population had leaves \"containing less flavonoid than those of a population growing lower on the mountain.\" The table places Carrick at 1,800 meters and Bramley higher, at 2,200 meters, so \"leaves at Carrick contained 6.4 mg of flavonoid per gram, compared with 6.0 mg at Bramley\" shows the higher Bramley population with less flavonoid than the lower Carrick population, the departure the claim describes. All four choices read the table accurately. \"leaves at Elstow contained 7.3 mg of flavonoid per gram, compared with 6.0 mg at Bramley\" compares Elstow (2,600 meters) with the lower Bramley site, so the higher site has more flavonoid, as the general pattern predicts. \"leaves at Aldwick contained 5.6 mg of flavonoid per gram, compared with 4.8 mg at Fenmore\" likewise shows the higher site (Aldwick, 1,400 meters, versus Fenmore, 1,000 meters) with more. \"leaves at Bramley contained 6.0 mg of flavonoid per gram, compared with 5.6 mg at Aldwick\" also fits the pattern, since Bramley (2,200 meters) is higher than Aldwick (1,400 meters) and has more flavonoid.",
+    "topic_tag": "cinquefoil-flavonoid-elevation",
+    "meta": {
+      "design": "quant",
+      "table_design": "exception",
+      "key_rank": "middle (3rd smallest by first-mentioned number: 5.6, 6.0, 6.4, 7.3); key's gap (0.4) ties with a distractor's, not the largest or the uniquely smallest",
+      "names": ["Daphne Corliss", "Mount Ferrow", "Dunford", "Fenmore", "Aldwick", "Carrick", "Bramley", "Elstow"],
+      "why_hard": "Every option states 'first site has more than second site', so the key is decided only by looking up both elevations (four cells). Site names are not in elevation order, so alphabet gives nothing. The exception site Bramley appears in three options, and its value (6.0) is mid-range, so 'lowest number' does not find it."
+    }
+  }
+]

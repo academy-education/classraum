@@ -1,0 +1,306 @@
+[
+  {
+    "id": "II22C-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Since the Quillmont school district began offering morning programs, scores on morning tests have risen at some of its schools. Education researcher Perpetua Moreau hypothesizes that eating breakfast sharpens students' concentration. Rafael Okafor argues instead that the programs help by drawing students to school early, so that fewer miss the start of first-period lessons. The district's schools fall into four groups. Mendrick schools serve breakfast in the cafeteria before the first bell, and tardiness there has fallen. Nolvaston schools serve breakfast in classrooms after the first bell, and tardiness there has not changed. Pemberwick schools open their cafeterias before the first bell for supervised reading but serve no food, and tardiness there has also fallen. Rossmere schools offer no morning program.",
+    "prompt": "Which finding, if true, would most directly support Moreau's hypothesis?",
+    "choices": [
+      "Morning test scores rose more at Mendrick schools than at Rossmere schools.",
+      "Morning test scores rose more at Nolvaston schools than at Rossmere schools.",
+      "Morning test scores rose more at Mendrick schools than at Nolvaston schools.",
+      "Morning test scores rose more at Pemberwick schools than at Rossmere schools."
+    ],
+    "correct_answer": "Morning test scores rose more at Nolvaston schools than at Rossmere schools.",
+    "explanation": "Moreau holds that \"eating breakfast sharpens students' concentration,\" while Okafor holds that the programs work \"by drawing students to school early.\" The two accounts come apart at the Nolvaston schools, which \"serve breakfast in classrooms after the first bell, and tardiness there has not changed\": students there eat breakfast but are not drawn in early. Rossmere schools \"offer no morning program.\" The finding that \"Morning test scores rose more at Nolvaston schools than at Rossmere schools.\" therefore shows a gain where students ate breakfast without arriving earlier, which only Moreau's account predicts. The finding that \"Morning test scores rose more at Mendrick schools than at Rossmere schools.\" is predicted by both accounts, since Mendrick students both eat breakfast and, as \"tardiness there has fallen\" shows, arrive earlier, so it does not favor Moreau. The finding that \"Morning test scores rose more at Mendrick schools than at Nolvaston schools.\" compares two groups whose students both eat breakfast but only one of which is drawn in early, so it is what Okafor's account predicts. The finding that \"Morning test scores rose more at Pemberwick schools than at Rossmere schools.\" describes a gain at schools that \"serve no food\" but where \"tardiness there has also fallen,\" which is also what Okafor's account predicts and tells against Moreau's.",
+    "topic_tag": "school-breakfast-concentration-vs-punctuality",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Perpetua Moreau",
+        "Rafael Okafor",
+        "Quillmont",
+        "Mendrick",
+        "Nolvaston",
+        "Pemberwick",
+        "Rossmere"
+      ],
+      "why_hard": "Key needs Moreau's hypothesis plus Okafor's mechanism plus the Nolvaston sentence (breakfast without earlier arrival); two distractors are what Okafor predicts and one is predicted by both."
+    }
+  },
+  {
+    "id": "II22C-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In the 1970s, teenagers in several towns of the Morrow Valley began ending statements with a rising intonation first heard among teenagers in the city of Rensford. Linguist Marisol Paredes hypothesizes that the pattern spread through daily face-to-face contact with Rensford teenagers. Odell Quayle argues instead that it spread through a popular radio program hosted by Rensford teenagers. The program's station could be received in the valley's eastern towns, but a ridge blocked its signal from the western towns. Teenagers from Mossbury, in the east, and from Nantle, in the west, attended high school in Rensford; teenagers from Pruett, in the east, and from Ombry, in the west, attended schools in their own towns.",
+    "prompt": "Which finding, if true, would most directly weaken Paredes's hypothesis?",
+    "choices": [
+      "Teenagers in Mossbury used the rising intonation more often than teenagers in Ombry did.",
+      "Teenagers in Nantle used the rising intonation more often than teenagers in Ombry did.",
+      "Teenagers in Mossbury used the rising intonation more often than teenagers in Pruett did.",
+      "Teenagers in Pruett used the rising intonation more often than teenagers in Nantle did."
+    ],
+    "correct_answer": "Teenagers in Pruett used the rising intonation more often than teenagers in Nantle did.",
+    "explanation": "Paredes credits \"daily face-to-face contact with Rensford teenagers,\" while Quayle credits \"a popular radio program.\" The passage says the station \"could be received in the valley's eastern towns, but a ridge blocked its signal from the western towns,\" and that teenagers from Mossbury and Nantle \"attended high school in Rensford\" while those from Pruett and Ombry \"attended schools in their own towns.\" Pruett teenagers could hear the program but had no daily contact; Nantle teenagers had daily contact but could not hear the program. Paredes's account therefore predicts more use in Nantle, so the finding that \"Teenagers in Pruett used the rising intonation more often than teenagers in Nantle did.\" runs against her hypothesis and fits Quayle's. The finding that \"Teenagers in Mossbury used the rising intonation more often than teenagers in Ombry did.\" is predicted by both accounts, because Mossbury had both the contact and the signal while Ombry had neither. The finding that \"Teenagers in Nantle used the rising intonation more often than teenagers in Ombry did.\" compares two western towns that both lacked the signal and differed only in contact, so it supports Paredes. The finding that \"Teenagers in Mossbury used the rising intonation more often than teenagers in Pruett did.\" compares two eastern towns that both received the signal and differed only in contact, so it also supports Paredes.",
+    "topic_tag": "rising-intonation-spread-contact-vs-radio",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Marisol Paredes",
+        "Odell Quayle",
+        "Morrow Valley",
+        "Rensford",
+        "Mossbury",
+        "Nantle",
+        "Pruett",
+        "Ombry"
+      ],
+      "why_hard": "Key requires crossing the signal sentence with the schooling sentence to see Pruett = radio only and Nantle = contact only; every town appears in exactly two options."
+    }
+  },
+  {
+    "id": "II22C-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Psychologist Nadia Rourke hypothesizes that daylight raises office workers' job satisfaction, and she has surveyed employees in window seats and in interior seats at the five-story Pennlow office of an insurance firm. Her colleague Mateo Orsini cautions that a difference between the two groups could arise for another reason: on most of the firm's floors, seats are assigned by seniority, window seats go to senior employees, and senior employees tend to report higher satisfaction. Seats on the third and fourth floors, however, were assigned by lottery. On the first and third floors, the windows face the blank wall of a neighboring building a few meters away and admit little daylight; windows on the other floors look out over open sky.",
+    "prompt": "Which finding, if true, would most directly support Rourke's hypothesis?",
+    "choices": [
+      "On the fourth floor, employees in window seats reported higher job satisfaction than employees in interior seats did.",
+      "On the first floor, employees in window seats reported higher job satisfaction than employees in interior seats did.",
+      "On the second floor, employees in window seats reported higher job satisfaction than employees in interior seats did.",
+      "On the third floor, employees in window seats reported higher job satisfaction than employees in interior seats did."
+    ],
+    "correct_answer": "On the fourth floor, employees in window seats reported higher job satisfaction than employees in interior seats did.",
+    "explanation": "Rourke credits daylight, while Orsini notes that \"window seats go to senior employees, and senior employees tend to report higher satisfaction.\" The passage says seats \"on the third and fourth floors, however, were assigned by lottery,\" and that on \"the first and third floors\" the windows \"admit little daylight,\" while \"windows on the other floors look out over open sky.\" On the fourth floor, then, window seats get daylight but not senior occupants, so the finding that \"On the fourth floor, employees in window seats reported higher job satisfaction than employees in interior seats did.\" can be explained by daylight and not by seniority, which most directly supports Rourke. The finding that \"On the first floor, employees in window seats reported higher job satisfaction than employees in interior seats did.\" describes a floor where seats follow seniority but windows \"admit little daylight,\" which is what Orsini's account predicts and Rourke's does not. The finding that \"On the second floor, employees in window seats reported higher job satisfaction than employees in interior seats did.\" describes a floor with both open-sky windows and seniority seating, so both accounts predict it and it cannot favor Rourke. The finding that \"On the third floor, employees in window seats reported higher job satisfaction than employees in interior seats did.\" describes a floor with lottery seating and little daylight, where neither daylight nor seniority separates the two groups, so it gives no support to Rourke's hypothesis.",
+    "topic_tag": "office-window-seats-daylight-vs-seniority",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Nadia Rourke",
+        "Mateo Orsini",
+        "Pennlow"
+      ],
+      "why_hard": "Options differ only in floor number; the key needs the lottery sentence (floors 3-4) intersected with the daylight sentence (not floors 1 and 3). No overall window/interior pattern is stated, so no option restates it."
+    }
+  },
+  {
+    "id": "II22C-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "When the city of Mereton replaced the streetlights in five neighborhoods with brighter lamps, sociologist Rosalind Pike compared the number of nighttime burglaries reported in each neighborhood during the year before the change and the year after. Pike argues that the brighter lighting substantially reduced burglaries in at least some of the neighborhoods: in one of them, reported nighttime burglaries fell by more than one-fifth. ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Reported nighttime burglaries in five neighborhoods before and after new streetlights",
+      "colLabels": [
+        "Year before new lights (number)",
+        "Year after new lights (number)"
+      ],
+      "rowLabels": [
+        "Mardale",
+        "Nuskirk",
+        "Orvel",
+        "Ploverly",
+        "Rookwell"
+      ],
+      "cells": [
+        [
+          "50",
+          "42"
+        ],
+        [
+          "30",
+          "23"
+        ],
+        [
+          "60",
+          "49"
+        ],
+        [
+          "35",
+          "29"
+        ],
+        [
+          "45",
+          "37"
+        ]
+      ]
+    },
+    "choices": [
+      "In Orvel, reported nighttime burglaries fell from 60 to 49 a year.",
+      "In Rookwell, reported nighttime burglaries fell from 45 to 37 a year.",
+      "In Nuskirk, reported nighttime burglaries fell from 30 to 23 a year.",
+      "In Ploverly, reported nighttime burglaries fell from 35 to 29 a year."
+    ],
+    "correct_answer": "In Nuskirk, reported nighttime burglaries fell from 30 to 23 a year.",
+    "explanation": "Pike's claim needs a neighborhood where \"reported nighttime burglaries fell by more than one-fifth.\" In Nuskirk they fell by 7, from 30 to 23, and one-fifth of 30 is 6, so \"In Nuskirk, reported nighttime burglaries fell from 30 to 23 a year.\" shows a fall of more than one-fifth (about 23%). All four choices read the table accurately. \"In Orvel, reported nighttime burglaries fell from 60 to 49 a year.\" describes the largest fall in number, 11, but one-fifth of 60 is 12, so the fall is less than one-fifth (about 18%). \"In Rookwell, reported nighttime burglaries fell from 45 to 37 a year.\" describes a fall of 8, less than one-fifth of 45, which is 9. \"In Ploverly, reported nighttime burglaries fell from 35 to 29 a year.\" describes a fall of 6, less than one-fifth of 35, which is 7.",
+    "topic_tag": "streetlight-brightness-burglaries",
+    "meta": {
+      "design": "quant",
+      "table_design": "change",
+      "key_rank": "smallest (by before value: 30 < 35 < 45 < 60)",
+      "names": [
+        "Rosalind Pike",
+        "Mereton",
+        "Mardale",
+        "Nuskirk",
+        "Orvel",
+        "Ploverly",
+        "Rookwell"
+      ],
+      "why_hard": "Every option falls by 16-23%; only computation against one-fifth decides. The largest numeric fall (Orvel) is the lure; the key is neither the largest nor smallest numeric fall."
+    }
+  },
+  {
+    "id": "II22C-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Economist Priya Okonkwo studied five weekly farmers markets in the Penwick region, where some vendors accept card payments and others take only cash. Many market organizers believe that a market where most vendors refuse cards cannot draw a large crowd. Okonkwo argues that accepting cards is not essential: at one market where fewer than half of the vendors accepted cards, there were more than 40 shoppers per vendor in an average week. ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Five Penwick farmers markets in an average week",
+      "colLabels": [
+        "Vendors",
+        "Shoppers",
+        "Vendors accepting cards (%)"
+      ],
+      "rowLabels": [
+        "Medlow",
+        "Nevin",
+        "Ossiter",
+        "Pollard",
+        "Rushmere"
+      ],
+      "cells": [
+        [
+          "30",
+          "1,350",
+          "40"
+        ],
+        [
+          "25",
+          "1,150",
+          "72"
+        ],
+        [
+          "40",
+          "1,400",
+          "35"
+        ],
+        [
+          "20",
+          "700",
+          "65"
+        ],
+        [
+          "50",
+          "2,100",
+          "58"
+        ]
+      ]
+    },
+    "choices": [
+      "Nevin drew 1,150 shoppers in an average week to its 25 vendors.",
+      "Rushmere drew 2,100 shoppers in an average week to its 50 vendors.",
+      "Ossiter drew 1,400 shoppers in an average week to its 40 vendors.",
+      "Medlow drew 1,350 shoppers in an average week to its 30 vendors."
+    ],
+    "correct_answer": "Medlow drew 1,350 shoppers in an average week to its 30 vendors.",
+    "explanation": "Okonkwo's claim needs a market that meets two conditions: \"fewer than half of the vendors accepted cards,\" and \"more than 40 shoppers per vendor.\" The table shows that 40% of Medlow's vendors accepted cards, and 1,350 shoppers divided among 30 vendors is 45 per vendor, so \"Medlow drew 1,350 shoppers in an average week to its 30 vendors.\" meets both. All four choices read the table accurately. \"Nevin drew 1,150 shoppers in an average week to its 25 vendors.\" works out to 46 shoppers per vendor, but the table shows that 72% of Nevin's vendors accepted cards, more than half. \"Rushmere drew 2,100 shoppers in an average week to its 50 vendors.\" works out to 42 shoppers per vendor, but 58% of Rushmere's vendors accepted cards, also more than half. \"Ossiter drew 1,400 shoppers in an average week to its 40 vendors.\" describes a market where only 35% of vendors accepted cards, but 1,400 shoppers among 40 vendors is 35 per vendor, fewer than 40.",
+    "topic_tag": "farmers-market-cash-only-crowds",
+    "meta": {
+      "design": "quant",
+      "table_design": "two-condition",
+      "key_rank": "middle (2nd smallest by shoppers: 1,150 < 1,350 < 1,400 < 2,100)",
+      "names": [
+        "Priya Okonkwo",
+        "Penwick",
+        "Medlow",
+        "Nevin",
+        "Ossiter",
+        "Pollard",
+        "Rushmere"
+      ],
+      "why_hard": "Card share is only in the table, never in the options; the ratio kills only Ossiter, the card condition kills Nevin and Rushmere. Two options sit on each side of the 50% line, so no option uniquely crosses it."
+    }
+  },
+  {
+    "id": "II22C-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "In the 1840s, salt reached the inland towns of the Ostrand Valley by cart from the port of Ravenhythe, and economic historian Quincy Mabry has gathered its prices from the towns' account books. Because every extra mile added to a carter's costs, salt generally cost more the farther a town lay from the port. Mabry argues, however, that local conditions could override distance: in at least one case, a town farther from Ravenhythe paid less for salt than a town nearer to it. Mabry's argument is supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Price of salt in five Ostrand Valley towns, 1840s",
+      "colLabels": [
+        "Distance from Ravenhythe (miles)",
+        "Price (pence per bushel)"
+      ],
+      "rowLabels": [
+        "Merriby",
+        "Nolsby",
+        "Orrowick",
+        "Pirrock",
+        "Quist"
+      ],
+      "cells": [
+        [
+          "12",
+          "44"
+        ],
+        [
+          "28",
+          "52"
+        ],
+        [
+          "41",
+          "58"
+        ],
+        [
+          "57",
+          "72"
+        ],
+        [
+          "70",
+          "66"
+        ]
+      ]
+    },
+    "choices": [
+      "salt cost 58 pence a bushel in Orrowick, compared with 72 pence in Pirrock.",
+      "salt cost 72 pence a bushel in Pirrock, compared with 66 pence in Quist.",
+      "salt cost 52 pence a bushel in Nolsby, compared with 58 pence in Orrowick.",
+      "salt cost 66 pence a bushel in Quist, compared with 52 pence in Nolsby."
+    ],
+    "correct_answer": "salt cost 72 pence a bushel in Pirrock, compared with 66 pence in Quist.",
+    "explanation": "Mabry's claim needs \"a town farther from Ravenhythe\" that \"paid less for salt than a town nearer to it.\" The table places Quist 70 miles from the port and Pirrock 57 miles away, so \"salt cost 72 pence a bushel in Pirrock, compared with 66 pence in Quist.\" shows the farther town, Quist, paying less than the nearer one. All four choices read the table accurately. \"salt cost 58 pence a bushel in Orrowick, compared with 72 pence in Pirrock.\" compares Orrowick (41 miles) with Pirrock (57 miles), and the nearer town paid less, which fits the general pattern. \"salt cost 52 pence a bushel in Nolsby, compared with 58 pence in Orrowick.\" compares Nolsby (28 miles) with Orrowick (41 miles), where again the nearer town paid less. \"salt cost 66 pence a bushel in Quist, compared with 52 pence in Nolsby.\" compares Quist (70 miles) with Nolsby (28 miles), and the farther town paid more, as distance alone would predict.",
+    "topic_tag": "salt-prices-cart-distance-exception",
+    "meta": {
+      "design": "quant",
+      "table_design": "exception",
+      "key_rank": "largest (by first-cited price: 52 < 58 < 66 < 72)",
+      "names": [
+        "Quincy Mabry",
+        "Ostrand Valley",
+        "Ravenhythe",
+        "Merriby",
+        "Nolsby",
+        "Orrowick",
+        "Pirrock",
+        "Quist"
+      ],
+      "why_hard": "Distances live only in the table; the options form a cycle (each town named twice) and price gaps tie (6, 6, 14, 14), so neither name frequency nor gap size points to the key. The key is the only option where the nearer town paid more."
+    }
+  }
+]

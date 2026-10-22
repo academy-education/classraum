@@ -1,0 +1,318 @@
+[
+ {
+  "id": "II22B-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Rockfalls from the cliffs of Kelden Ridge often block the mountain road below. Geologist Hanna Grieg hypothesizes that most of the rockfalls are triggered by freeze-thaw cycles, in which water in cracks freezes, expands, and pries blocks of rock loose. Engineer Jakob Lund argues instead that most are triggered by heavy rain, which raises the water pressure inside cracks. Nearly all of the ridge's heavy rain falls from June through August, when temperatures stay well above freezing. The ridge has two cliffs. From December through February, the south-facing cliff thaws on most afternoons and refreezes at night. The north-facing cliff, shaded all winter, stays frozen solid in those months; it begins to thaw by day and refreeze by night only in March and April.",
+  "prompt": "Which finding, if true, would most directly weaken Grieg's hypothesis?",
+  "choices": [
+   "There were more rockfalls from the north-facing cliff in March than from the north-facing cliff in January.",
+   "There were more rockfalls from the south-facing cliff in January than from the north-facing cliff in January.",
+   "There were more rockfalls from the north-facing cliff in July than from the north-facing cliff in March.",
+   "There were more rockfalls from the south-facing cliff in January than from the south-facing cliff in July."
+  ],
+  "correct_answer": "There were more rockfalls from the north-facing cliff in July than from the north-facing cliff in March.",
+  "explanation": "Grieg attributes the rockfalls to freeze-thaw cycles, while Lund attributes them to heavy rain, which falls \"from June through August, when temperatures stay well above freezing.\" The north-facing cliff \"begins to thaw by day and refreeze by night only in March and April,\" so on that cliff March brings freeze-thaw cycles but no heavy rain, and July brings heavy rain but no freeze-thaw cycles. Grieg's hypothesis therefore predicts more rockfalls there in March, and Lund's predicts more in July. The finding \"There were more rockfalls from the north-facing cliff in July than from the north-facing cliff in March.\" is the opposite of what Grieg's hypothesis predicts, so it weakens it. The finding \"There were more rockfalls from the north-facing cliff in March than from the north-facing cliff in January.\" supports Grieg: the north-facing cliff \"stays frozen solid\" from December through February, so only March has freeze-thaw cycles, and neither month has heavy rain. The finding \"There were more rockfalls from the south-facing cliff in January than from the north-facing cliff in January.\" also supports Grieg, because in January the south-facing cliff \"thaws on most afternoons and refreezes at night\" while the north-facing cliff stays frozen, and neither cliff receives heavy rain then. The finding \"There were more rockfalls from the south-facing cliff in January than from the south-facing cliff in July.\" supports Grieg as well, since January brings freeze-thaw cycles to the south-facing cliff while July brings it heavy rain without them.",
+  "topic_tag": "cliff-rockfall-freeze-thaw-vs-rain",
+  "meta": {
+   "design": "no-reverse",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Hanna Grieg",
+    "Jakob Lund",
+    "Kelden Ridge"
+   ],
+   "why_hard": "The key needs Grieg's mechanism, the summer-only rain sentence, and the north cliff's March-April thaw sentence together; the three distractors test different contrasts (north March vs January, south vs north in January, south January vs July) that all favor Grieg."
+  }
+ },
+ {
+  "id": "II22B-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Silver objects at the Halbrook Museum tarnish as sulfur gases react with their surfaces. Conservator Ilse Kaarsberg hypothesizes that the main source of these gases is the wool felt lining many of the museum's display cases, since wool slowly releases sulfur compounds. Lena Hult contends instead that the gases come mainly from polluted city air. Some of the museum's cases are lined with wool felt and others with cotton, which releases no sulfur. Some cases are sealed, which keeps city air out but also traps any gases released inside the case; others are ventilated, which lets city air in but also carries gases from the lining away.",
+  "prompt": "Which finding, if true, would most directly support Kaarsberg's hypothesis?",
+  "choices": [
+   "Silver in sealed wool-lined cases tarnished faster than silver in ventilated cotton-lined cases.",
+   "Silver in ventilated cotton-lined cases tarnished faster than silver in sealed cotton-lined cases.",
+   "Silver in sealed cotton-lined cases tarnished faster than silver in ventilated wool-lined cases.",
+   "Silver in ventilated wool-lined cases tarnished faster than silver in sealed wool-lined cases."
+  ],
+  "correct_answer": "Silver in sealed wool-lined cases tarnished faster than silver in ventilated cotton-lined cases.",
+  "explanation": "Kaarsberg blames gases from wool felt, and Hult blames \"polluted city air.\" A sealed case \"keeps city air out but also traps any gases released inside the case,\" while a ventilated case \"lets city air in but also carries gases from the lining away.\" So Kaarsberg's hypothesis predicts the fastest tarnishing in sealed wool-lined cases, and Hult's predicts faster tarnishing in ventilated cases whatever their lining. The finding \"Silver in sealed wool-lined cases tarnished faster than silver in ventilated cotton-lined cases.\" pits the two accounts against each other: the sealed wool-lined case has the trapped wool gases but no city air, and the ventilated cotton-lined case has city air but no lining gases, because cotton \"releases no sulfur.\" Only Kaarsberg's hypothesis predicts this result. The finding \"Silver in ventilated cotton-lined cases tarnished faster than silver in sealed cotton-lined cases.\" involves no wool at all and is what Hult's account predicts. The finding \"Silver in ventilated wool-lined cases tarnished faster than silver in sealed wool-lined cases.\" is also what Hult's account predicts, and it runs against Kaarsberg's, since the sealed case should trap the wool's gases. The finding \"Silver in sealed cotton-lined cases tarnished faster than silver in ventilated wool-lined cases.\" contradicts both accounts: the sealed cotton-lined case has neither city air nor a sulfur-releasing lining, so it does not support Kaarsberg's hypothesis.",
+  "topic_tag": "museum-silver-tarnish-wool-vs-city-air",
+  "meta": {
+   "design": "no-reverse",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Ilse Kaarsberg",
+    "Lena Hult",
+    "Halbrook Museum"
+   ],
+   "why_hard": "The key needs the hypothesis plus the two-sided effect of sealing (keeps air out AND traps lining gases), stated in a separate sentence. Two distractors are Hult's predictions; the third contradicts both accounts. No two options state the same comparison in opposite directions."
+  }
+ },
+ {
+  "id": "II22B-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "The geysers of the Lofsted Basin have erupted less often over the past two decades. Geologist Gideon Lark attributes the change to the Gelmar geothermal plant, which began pumping hot water from beneath the basin in 2004. Kirsi Holm contends instead that the change reflects reduced groundwater recharge in dry years. Records show droughts in 1996–1999 and 2009–2012, with normal rainfall in the years between and since. A fault divides the basin's two geyser fields: the plant draws water from beneath the Iselund field, and tracer tests show that its pumping does not reach the water beneath the Kalvnesby field. Both fields receive the same rainfall.",
+  "prompt": "Which finding, if true, would most directly weaken Lark's claim?",
+  "choices": [
+   "Eruptions at the Iselund field in 2005–2008 were less frequent than eruptions at the Kalvnesby field in 2005–2008.",
+   "Eruptions at the Iselund field in 2009–2012 were less frequent than eruptions at the Kalvnesby field in 2000–2003.",
+   "Eruptions at the Kalvnesby field in 2000–2003 were less frequent than eruptions at the Kalvnesby field in 2005–2008.",
+   "Eruptions at the Iselund field in 2000–2003 were less frequent than eruptions at the Iselund field in 2005–2008."
+  ],
+  "correct_answer": "Eruptions at the Iselund field in 2000–2003 were less frequent than eruptions at the Iselund field in 2005–2008.",
+  "explanation": "Lark claims the plant, which began pumping \"in 2004,\" made the geysers erupt less often. The plant \"draws water from beneath the Iselund field,\" and both 2000–2003 and 2005–2008 fall in the years of normal rainfall \"between and since\" the droughts, so Holm's account predicts no difference between them. Lark's claim predicts fewer Iselund eruptions after pumping began. The finding \"Eruptions at the Iselund field in 2000–2003 were less frequent than eruptions at the Iselund field in 2005–2008.\" shows the opposite, so it weakens Lark's claim. The finding \"Eruptions at the Kalvnesby field in 2000–2003 were less frequent than eruptions at the Kalvnesby field in 2005–2008.\" has the same shape but concerns the Kalvnesby field, where \"its pumping does not reach the water,\" so Lark's claim makes no prediction there and the finding does not bear on it. The finding \"Eruptions at the Iselund field in 2005–2008 were less frequent than eruptions at the Kalvnesby field in 2005–2008.\" is what Lark's claim predicts: in the same normal-rainfall years, only the Iselund field was affected by pumping. The finding \"Eruptions at the Iselund field in 2009–2012 were less frequent than eruptions at the Kalvnesby field in 2000–2003.\" is predicted by both accounts, since Iselund in 2009–2012 had both pumping and drought while Kalvnesby in 2000–2003 had neither, so it cannot weaken Lark's claim.",
+  "topic_tag": "geyser-eruptions-plant-pumping-vs-drought",
+  "meta": {
+   "design": "no-reverse",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Gideon Lark",
+    "Kirsi Holm",
+    "Lofsted Basin",
+    "Gelmar",
+    "Iselund",
+    "Kalvnesby"
+   ],
+   "why_hard": "The key and the Kalvnesby distractor share one frame and differ only in field; telling them apart needs the tracer-test sentence, and the key's force needs the drought dates and the 2004 start date from other sentences."
+  }
+ },
+ {
+  "id": "II22B-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Limnologist Jorun Lidtke compared ice cover on five lakes in the Gramsel Highlands in the 1980s and the 2010s. Because a deep lake stores more summer heat than a shallow one, Lidtke expected the deepest of the five lakes to have lost the most days of ice cover as winters warmed. Instead, she found that Hesk Lake lost more days of ice cover than the deepest lake did. Lidtke's finding is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Mean number of ice-covered days per winter at five Gramsel Highlands lakes",
+   "colLabels": [
+    "Maximum depth (meters)",
+    "1980s (days)",
+    "2010s (days)"
+   ],
+   "rowLabels": [
+    "Garvik Lake",
+    "Hesk Lake",
+    "Ivren Lake",
+    "Jarnholt Lake",
+    "Lunmar Lake"
+   ],
+   "cells": [
+    [
+     "64",
+     "142",
+     "123"
+    ],
+    [
+     "12",
+     "148",
+     "121"
+    ],
+    [
+     "23",
+     "152",
+     "128"
+    ],
+    [
+     "41",
+     "133",
+     "118"
+    ],
+    [
+     "8",
+     "156",
+     "134"
+    ]
+   ]
+  },
+  "choices": [
+   "Hesk Lake's ice cover fell from 148 days in the 1980s to 121 days in the 2010s, while Jarnholt Lake's fell from 133 days to 118 days.",
+   "Hesk Lake's ice cover fell from 148 days in the 1980s to 121 days in the 2010s, while Garvik Lake's fell from 142 days to 123 days.",
+   "Hesk Lake's ice cover fell from 148 days in the 1980s to 121 days in the 2010s, while Lunmar Lake's fell from 156 days to 134 days.",
+   "Hesk Lake's ice cover fell from 148 days in the 1980s to 121 days in the 2010s, while Ivren Lake's fell from 152 days to 128 days."
+  ],
+  "correct_answer": "Hesk Lake's ice cover fell from 148 days in the 1980s to 121 days in the 2010s, while Garvik Lake's fell from 142 days to 123 days.",
+  "explanation": "Lidtke found that \"Hesk Lake lost more days of ice cover than the deepest lake did.\" The table shows that Garvik Lake, at 64 meters, is the deepest of the five. Hesk Lake lost 148 − 121 = 27 days, and Garvik Lake lost 142 − 123 = 19 days, so the choice ending \"Garvik Lake's fell from 142 days to 123 days\" supports the finding. All four choices read the table accurately, and each shows Hesk Lake losing more days than the other lake named. But Jarnholt Lake (41 meters, a loss of 15 days), Lunmar Lake (8 meters, 22 days), and Ivren Lake (23 meters, 24 days) are not the deepest lake, so the choices ending \"Jarnholt Lake's fell from 133 days to 118 days,\" \"Lunmar Lake's fell from 156 days to 134 days,\" and \"Ivren Lake's fell from 152 days to 128 days\" do not address the comparison the finding makes. Jarnholt Lake had the fewest ice-covered days in the 1980s, but that does not make it the deepest.",
+  "topic_tag": "highland-lake-ice-loss-depth",
+  "meta": {
+   "design": "quant",
+   "table_design": "change",
+   "key_rank": "second smallest of 4 (comparison lake's loss: Jarnholt 15, Garvik 19, Lunmar 22, Ivren 24; also second by 1980s days)",
+   "names": [
+    "Jorun Lidtke",
+    "Gramsel Highlands",
+    "Garvik",
+    "Hesk",
+    "Ivren",
+    "Jarnholt",
+    "Lunmar"
+   ],
+   "why_hard": "Depth is in the table only, so the deepest lake must be found there, then the change across two columns computed for two rows. All four options show Hesk losing more, so no option can be killed from the stem. The lake a student might guess is deepest from the passage's heat logic (fewest 1980s ice days, Jarnholt) is a lure."
+  }
+ },
+ {
+  "id": "II22B-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "In the Kjellmar Delta, groundwater drawn from young river sediments tends to carry more arsenic than groundwater drawn from older sediments, and deeper wells are often recommended as safer. Hydrologist Kalle Gjerde warns that depth alone is no guarantee. He claims that a well drawing from young sediment can exceed a widely used limit of 10 micrograms of arsenic per liter even when the well is more than 100 meters deep. Gjerde's claim is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Arsenic in water from six wells in the Kjellmar Delta",
+   "colLabels": [
+    "Depth (meters)",
+    "Sediment drawn from",
+    "Arsenic (micrograms per liter)"
+   ],
+   "rowLabels": [
+    "Gavlin",
+    "Haldor",
+    "Ivarsby",
+    "Jolstad",
+    "Kvisle",
+    "Lindstrup"
+   ],
+   "cells": [
+    [
+     "45",
+     "young",
+     "52"
+    ],
+    [
+     "130",
+     "old",
+     "27"
+    ],
+    [
+     "115",
+     "young",
+     "38"
+    ],
+    [
+     "70",
+     "young",
+     "61"
+    ],
+    [
+     "160",
+     "old",
+     "6"
+    ],
+    [
+     "85",
+     "old",
+     "14"
+    ]
+   ]
+  },
+  "choices": [
+   "the water from the Gavlin well contained 52 micrograms of arsenic per liter.",
+   "the water from the Haldor well contained 27 micrograms of arsenic per liter.",
+   "the water from the Ivarsby well contained 38 micrograms of arsenic per liter.",
+   "the water from the Lindstrup well contained 14 micrograms of arsenic per liter."
+  ],
+  "correct_answer": "the water from the Ivarsby well contained 38 micrograms of arsenic per liter.",
+  "explanation": "Gjerde claims that a well \"drawing from young sediment\" can exceed the limit \"even when the well is more than 100 meters deep.\" The table shows that the Ivarsby well is 115 meters deep and draws from young sediment, so the fact that \"the water from the Ivarsby well contained 38 micrograms of arsenic per liter.\" (above the limit of 10) supports the claim. All four choices read the table accurately, and all four wells exceed the limit, but only Ivarsby meets both of the claim's conditions. The Gavlin well draws from young sediment but is only 45 meters deep, so \"the water from the Gavlin well contained 52 micrograms of arsenic per liter.\" does not show a deep well exceeding the limit. The Haldor well is 130 meters deep but draws from old sediment, so \"the water from the Haldor well contained 27 micrograms of arsenic per liter.\" does not concern young sediment. The Lindstrup well is 85 meters deep and draws from old sediment, so \"the water from the Lindstrup well contained 14 micrograms of arsenic per liter.\" meets neither condition.",
+  "topic_tag": "delta-well-arsenic-depth-sediment",
+  "meta": {
+   "design": "quant",
+   "table_design": "two-condition",
+   "key_rank": "third smallest of 4 (arsenic: Lindstrup 14, Haldor 27, Ivarsby 38, Gavlin 52)",
+   "names": [
+    "Kalle Gjerde",
+    "Kjellmar Delta",
+    "Gavlin",
+    "Haldor",
+    "Ivarsby",
+    "Jolstad",
+    "Kvisle",
+    "Lindstrup"
+   ],
+   "why_hard": "Every option exceeds the stem's limit, so the stem kills nothing; depth and sediment appear only in the table, and the distractors each fail one or both conditions (young-shallow, deep-old, shallow-old). The key is neither the highest value nor the one closest to the limit."
+  }
+ },
+ {
+  "id": "II22B-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "About 3,000 years ago, an eruption of a volcano in the Lurvane Range spread a layer of ash across the surrounding valleys. Volcanologist Linnea Gaard notes that, as expected, the layer generally thins with distance from the vent. But she argues that strong winds carried extra fine ash toward at least one site, where the layer is thicker than it is at a site closer to the vent. Gaard's argument is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Thickness of the ash layer at six sites",
+   "colLabels": [
+    "Distance from vent (kilometers)",
+    "Ash thickness (centimeters)"
+   ],
+   "rowLabels": [
+    "Gorvel",
+    "Hanstrup",
+    "Ilvikmoen",
+    "Joskar",
+    "Kelvane",
+    "Lomvik"
+   ],
+   "cells": [
+    [
+     "12",
+     "46"
+    ],
+    [
+     "25",
+     "31"
+    ],
+    [
+     "38",
+     "14"
+    ],
+    [
+     "51",
+     "22"
+    ],
+    [
+     "64",
+     "9"
+    ],
+    [
+     "80",
+     "5"
+    ]
+   ]
+  },
+  "choices": [
+   "the layer at Joskar is 22 centimeters thick, compared with 14 centimeters at Ilvikmoen.",
+   "the layer at Hanstrup is 31 centimeters thick, compared with 22 centimeters at Joskar.",
+   "the layer at Gorvel is 46 centimeters thick, compared with 14 centimeters at Ilvikmoen.",
+   "the layer at Hanstrup is 31 centimeters thick, compared with 9 centimeters at Kelvane."
+  ],
+  "correct_answer": "the layer at Joskar is 22 centimeters thick, compared with 14 centimeters at Ilvikmoen.",
+  "explanation": "Gaard argues that at some site the layer \"is thicker than it is at a site closer to the vent.\" The table shows that Joskar is 51 kilometers from the vent and Ilvikmoen only 38 kilometers, so \"the layer at Joskar is 22 centimeters thick, compared with 14 centimeters at Ilvikmoen.\" shows a farther site with a thicker layer, as the argument requires. All four choices read the table accurately, but the other three each compare a nearer site with a farther one and show the nearer site's layer as thicker, the general pattern Gaard says is \"as expected.\" Hanstrup (25 kilometers) is closer than Joskar (51 kilometers), so \"the layer at Hanstrup is 31 centimeters thick, compared with 22 centimeters at Joskar.\" follows the pattern even though it involves Joskar. Gorvel (12 kilometers) is closer than Ilvikmoen (38 kilometers), so \"the layer at Gorvel is 46 centimeters thick, compared with 14 centimeters at Ilvikmoen.\" follows it too. Hanstrup (25 kilometers) is also closer than Kelvane (64 kilometers), so \"the layer at Hanstrup is 31 centimeters thick, compared with 9 centimeters at Kelvane.\" shows only ordinary thinning.",
+  "topic_tag": "volcanic-ash-layer-downwind-thickening",
+  "meta": {
+   "design": "quant",
+   "table_design": "exception",
+   "key_rank": "smallest of 4 (first-cited thickness: Joskar 22, Hanstrup 31, Gorvel 46, Hanstrup 31)",
+   "names": [
+    "Linnea Gaard",
+    "Lurvane Range",
+    "Gorvel",
+    "Hanstrup",
+    "Ilvikmoen",
+    "Joskar",
+    "Kelvane",
+    "Lomvik"
+   ],
+   "why_hard": "Distances are in the table only and every option states a larger value followed by a smaller one, so no option looks anomalous without the table. The key's two sites each appear in one distractor, and the distractor naming Joskar (the anomalous site) follows the pattern."
+  }
+ }
+]
