@@ -9535,6 +9535,35 @@
           "verdict": "Rung-text token Jaccard (stopwords removed): max 0.40 vs the 80 live rungs, max 0.41 within batch (bar 0.5); both peaks are the shared future-rung frame. Topics distinct from the 20 live sets (nearest live: favourite campus places vs exploring the city off campus)."
         }
       }
+    },
+    {
+      "id": "ssat-essay-v6-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "writing",
+      "task": "essay_choice",
+      "family": "production",
+      "cohort": "essay-v6",
+      "contentSha": "acc0c4420fe840ba0696796f66886375f41a15cd7f7e527e82ca39ea7acca244",
+      "status": "shipped",
+      "note": "Six SSAT Writing Sample pairs (SW18-SW23), written in-session by Claude (no agents). SSAT writing had 11 pairs = 11 forms. Essays are not school-policy questions (city vs town, experiences vs things, paid chores, speed vs care, following the news, celebrities as role models); story starters are ordinary situations, with no impossible events or omens and none of the overused templates. Unscored on the real exam; sent to schools.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "acc0c4420fe840ba0696796f66886375f41a15cd7f7e527e82ca39ea7acca244",
+          "verdict": "check-essay-shape.mjs essay-prompts-v6.json against v1-v5 (52 SSAT and ISEE prompts, both families after the essay-v5 cross-family finding): 6 complete pairs, shape ok, no theme collision. First run failed SW20b (a nested quotation was not read as a punctuated sentence); reworded."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "acc0c4420fe840ba0696796f66886375f41a15cd7f7e527e82ca39ea7acca244",
+          "verdict": "ONE reader, the author, against the v2 panel briefs: each essay states two positions a 12-year-old can hold; each guidance credits reasoning and specific examples over knowledge; each accessibility note gives a route without the setting (no travel, any family arrangement, any activity in place of sport). Weaker than v3's three reviewers; recorded."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "acc0c4420fe840ba0696796f66886375f41a15cd7f7e527e82ca39ea7acca244",
+          "verdict": "Free response has no key. Theme repetition checked mechanically against 52 earlier prompts in both families; starters checked by hand against the template families (strange vehicle, impossible object, inherited letter, omen): none reused."
+        }
+      }
     }
   ],
   "auditedCohorts": [
