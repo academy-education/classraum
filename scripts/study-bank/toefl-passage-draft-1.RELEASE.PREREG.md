@@ -33,3 +33,7 @@ students than Reading at 20 with a student at 17).
   sitting's blind score and his per-item verdicts are the measurement.
 - Several distractors were lengthened after drafting; a length-matched distractor can read as padded,
   which a reader may notice. Report it if he does.
+
+## Queue order amendment (2026-10-22, before any run is drawn)
+Run 1 moves ahead of talk run 2 (`cofounder-queue.json`): the hard-route Reading student is 3 clean tests
+from a repeat (17 of 20), while the nearest hard-route Listening student is 5 (9 of 14). Order only.
