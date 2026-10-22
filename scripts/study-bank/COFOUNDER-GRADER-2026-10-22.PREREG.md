@@ -40,3 +40,20 @@ Report which bar failed and stop; full sittings (plus the pre-screen) remain.
 - n = 29 rejects, 23 of them one task type (Choose a Response). A pass is a pass on that population.
 - His rejects come from 8 sittings in Aug-Oct; his standard may have drifted.
 - Graders and writers are the same model family as the authors.
+
+## Result (2026-10-22): PASS on all three bars
+Briefs in `cofounder-grader/` (A from fold A, B from fold B); scored by `cofounder-grader-score-2026-10-22.py`.
+
+| bar | result | generic grader (same items) |
+|---|---|---|
+| 1 held-out real-reject recall | **20/29** (brief A 10/14, brief B 10/15) | 3/29 |
+| 2 planted recall | **39/40** | 34/40 |
+| 3 false flags on controls | **5/120** (4 TOEFL Listening, 1 SSAT reading) | 3/120 |
+
+**Read the pass narrowly, as stated before the run:**
+- All 20 caught rejects are TOEFL Listening (20/25). The 4 non-listening rejects (2 TOEFL Reading, 1 SAT, 1 ACT)
+  were caught 0/4. The co-founder's standard was learned for Choose a Response, not shown elsewhere.
+- SSAT: no real reject exists. Planted SSAT 20/20; controls 1/44 flagged. That is evidence of generic defect
+  detection, not of matching him on SSAT.
+- The 5 control flags are all "another reply is also natural" style, the strict direction the policy accepts.
+Next step per this prereg: propose the route to the owner. Nothing changes until the owner decides.
