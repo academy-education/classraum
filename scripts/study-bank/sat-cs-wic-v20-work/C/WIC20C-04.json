@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "literature: translating an epic into modern idiom",
+  "passage": "One translator's version of an ancient epic follows the original's plot episode by episode, but it makes no attempt to reproduce the poem's meter, its wordplay, or its line-by-line wording; instead, she retold each episode in everyday modern English. Scholars who set her text beside the original and compare them line by line tend to find it ______, while readers who know only the story often praise it as faithful to the spirit of the poem.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "partisan",
+    "loose",
+    "lofty",
+    "lively"
+  ],
+  "correct_answer": "loose",
+  "explanation": "Because the translator kept the plot but abandoned the meter, wordplay, and wording, a line-by-line comparison would find the translation \"loose\" (not close to the original's exact words). Nothing suggests she slanted the story toward a side, so \"partisan\" fails. \"Lofty\" does not fit a retelling in everyday modern English. \"Lively\" praises the prose's energy, but a line-by-line comparison measures fidelity to the original's wording, which is exactly what she gave up.",
+  "antonym_pairs": [],
+  "polarity": {
+    "partisan": "-",
+    "loose": "-",
+    "lofty": "0",
+    "lively": "+"
+  },
+  "rarity_order": [
+    "loose",
+    "lively",
+    "lofty",
+    "partisan"
+  ],
+  "killed_by": {
+    "partisan": "logic",
+    "lofty": "explicit",
+    "lively": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two readings",
+  "key_from_one_sentence": true
+}

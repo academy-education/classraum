@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "regional growth and shipping costs",
+  "passage": "For decades, economists attributed one inland region's slow growth to its distance from the nearest port. Then a new rail line halved the cost of shipping goods to the coast, and growth barely changed: firms still could not find trained workers, and young people who trained locally soon left for the cities. The economists now grant that shipping costs were a genuine burden on the region's firms. Their earlier account, however, had made that burden seem ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "decisive",
+    "illusory",
+    "growing",
+    "deliberate"
+  ],
+  "correct_answer": "decisive",
+  "explanation": "The earlier account blamed slow growth on distance, yet halving shipping costs barely changed growth because other problems held firms back, so the account had made the burden seem \"decisive\": the factor that settled the region's fate. \"Illusory\" fails because the earlier account treated distance as the real cause, the opposite of making it seem unreal. \"Growing\" fails because the account blamed a fixed distance for decades of slow growth, not a burden that was getting worse. \"Deliberate\" fails because distance from a port is geography, and nothing in the account presents it as anyone's choice.",
+  "antonym_pairs": [],
+  "polarity": {
+    "decisive": "0",
+    "illusory": "-",
+    "growing": "0",
+    "deliberate": "0"
+  },
+  "rarity_order": [
+    "growing",
+    "decisive",
+    "deliberate",
+    "illusory"
+  ],
+  "killed_by": {
+    "illusory": "logic",
+    "growing": "logic",
+    "deliberate": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

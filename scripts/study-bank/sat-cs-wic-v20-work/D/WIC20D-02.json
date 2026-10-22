@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "placebo run-in periods",
+  "passage": "Before some drug trials begin, every enrolled patient takes a placebo for two weeks, though none is told so. Patients who skip doses, or whose symptoms disappear on the placebo alone, are then dropped from the study. The researchers are not trying to flatter the drug; they want those who remain to be patients whose later results will reflect what the drug actually does rather than habit or expectation. The placebo phase, in other words, exists to ______ the study population before any comparison begins.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "train",
+    "trim",
+    "randomize",
+    "subdivide"
+  ],
+  "correct_answer": "trim",
+  "explanation": "Patients who miss doses or improve on the placebo are cut from the study so that only suitable patients remain, so the phase exists to \"trim\" the population. It does not \"train\" patients to take doses, since those who skip doses are dropped rather than taught. Patients are removed rather than assigned by chance to groups or split into subgroups, so \"randomize\" and \"subdivide\" fail.",
+  "antonym_pairs": [],
+  "polarity": {
+    "train": "0",
+    "trim": "0",
+    "randomize": "0",
+    "subdivide": "0"
+  },
+  "rarity_order": [
+    "train",
+    "trim",
+    "randomize",
+    "subdivide"
+  ],
+  "killed_by": {
+    "train": "logic",
+    "randomize": "logic",
+    "subdivide": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

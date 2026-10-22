@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "painting: a harbor series meant to hang in any order",
+  "passage": "One painter's series of four panels shows the same harbor at dawn, noon, dusk, and night. She painted the panels in no particular order, returning to whichever one suited the weather, and asked that galleries hang them in any arrangement they liked, so that viewers would meet each hour of the harbor on its own terms. Curators nonetheless usually hang the panels left to right as a single day passing. In doing so, the painter complained in a letter, they impose on the work the very ______ it was designed to avoid.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "pedantry",
+    "monotony",
+    "narrative",
+    "opulence"
+  ],
+  "correct_answer": "narrative",
+  "explanation": "The painter wanted each panel met on its own terms, in any order, and curators instead arrange them as a day unfolding from dawn to night, imposing a \"narrative\" (a story with a sequence) on the series. Hanging the panels in time order does not make them alike, so \"monotony\" fails. \"Pedantry\" and \"opulence\" describe fussy correctness and lavish display, but the painter's objection concerns the sequence the curators impose, not a manner or a richness of presentation.",
+  "antonym_pairs": [],
+  "polarity": {
+    "pedantry": "-",
+    "monotony": "-",
+    "narrative": "0",
+    "opulence": "+"
+  },
+  "rarity_order": [
+    "narrative",
+    "monotony",
+    "opulence",
+    "pedantry"
+  ],
+  "killed_by": {
+    "pedantry": "logic",
+    "monotony": "logic",
+    "opulence": "logic"
+  },
+  "after_blank": "it",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

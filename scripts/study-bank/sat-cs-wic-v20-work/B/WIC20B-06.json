@@ -1,0 +1,20 @@
+{
+  "id": "WIC20B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "watermarks and undated family letters",
+  "passage": "None of the letters in one merchant family's archive carries a date, but each sheet bears the watermark of the single mill that supplied the family's paper. That mill replaced its wire mold every eight to twelve years, and each new mold left a slightly different mark on the sheets it produced. By matching the marks against the mill's record of when each mold entered service, one archivist established the ______ of nearly every letter in the collection.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["decade", "destination", "genre", "intent"],
+  "correct_answer": "decade",
+  "explanation": "Each watermark identifies a mold, each mold was in service for roughly a decade, and the mill recorded when each mold began, so matching marks to that record fixes the \"decade\" in which a letter's paper was made. \"Destination\" fails because a watermark records where and when the paper was made, not where a letter was sent. \"Genre\" fails because the mark is on the paper and says nothing about what kind of writing the letter contains. \"Intent\" fails for the same reason: the mill's records date the sheet but cannot reveal the writer's purpose.",
+  "antonym_pairs": [],
+  "polarity": {"decade": "0", "destination": "0", "genre": "0", "intent": "0"},
+  "rarity_order": ["decade", "intent", "destination", "genre"],
+  "killed_by": {"destination": "logic", "genre": "logic", "intent": "logic"},
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

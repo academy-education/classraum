@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "architecture: rammed-earth school walls",
+  "passage": "In a desert town, one architect built a school's walls of rammed earth half a meter thick. The walls absorb the afternoon sun so slowly that the classrooms stay cool through the school day. By the time the stored heat works its way to the interior, it is evening, the building is empty, and the outside air has cooled enough for high vents to flush the warmth out. The thick walls, in other words, do not so much refuse the day's heat as ______ it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "neutralize",
+    "postpone",
+    "obscure",
+    "outlast"
+  ],
+  "correct_answer": "postpone",
+  "explanation": "The heat still reaches the interior, but only in the evening when no one is there, so the walls \"postpone\" it. They do not \"neutralize\" it, since the stored warmth does arrive and must be vented. They do not \"obscure\" it, since the heat is delayed rather than hidden. \"Outlast\" fails because the passage describes when the heat arrives, not the walls enduring longer than it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "neutralize": "0",
+    "postpone": "0",
+    "obscure": "-",
+    "outlast": "0"
+  },
+  "rarity_order": [
+    "postpone",
+    "obscure",
+    "outlast",
+    "neutralize"
+  ],
+  "killed_by": {
+    "neutralize": "logic",
+    "obscure": "logic",
+    "outlast": "logic"
+  },
+  "after_blank": "it",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

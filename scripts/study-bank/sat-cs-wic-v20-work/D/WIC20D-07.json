@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sound adaptation of loanwords",
+  "passage": "When Japanese borrowed the English word \"strike,\" it did not keep the original sound. Japanese syllables generally end in a vowel, so vowels were inserted to break up the consonants, and the one-syllable \"strike\" became the five-syllable \"sutoraiku.\" Hawaiian, which has even fewer consonants, turned the two syllables of \"Christmas\" into the five of \"Kalikimaka.\" In both cases, the borrowing language ______ the foreign word it took in.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "reshaped",
+    "shortened",
+    "translated",
+    "rejected"
+  ],
+  "correct_answer": "reshaped",
+  "explanation": "Each language kept the borrowed word but altered its sounds to fit its own syllable patterns, so it \"reshaped\" the word. Both words gained syllables, so \"shortened\" fails. The words kept their meaning and changed only in sound, so they were not \"translated,\" and since both languages took the words in, they did not \"reject\" them, so \"rejected\" fails.",
+  "antonym_pairs": [],
+  "polarity": {
+    "reshaped": "0",
+    "shortened": "0",
+    "translated": "0",
+    "rejected": "-"
+  },
+  "rarity_order": [
+    "translated",
+    "rejected",
+    "shortened",
+    "reshaped"
+  ],
+  "killed_by": {
+    "shortened": "logic",
+    "translated": "logic",
+    "rejected": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

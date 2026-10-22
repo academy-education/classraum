@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "matching Antarctic ice cores",
+  "passage": "Two ice cores drilled 1,200 kilometers apart in Antarctica each preserve roughly 40,000 years of accumulated snow. Because snow piled up faster at one site than at the other, equal depths in the two cores do not correspond to equal ages. Both cores, however, contain thin layers of ash from the same handful of volcanic eruptions. By matching those layers, researchers could ______ the two records, and only then could a warming event preserved in one core be compared with conditions at the same moment at the other site.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "align",
+    "authenticate",
+    "abridge",
+    "annotate"
+  ],
+  "correct_answer": "align",
+  "explanation": "Because equal depths in the two cores are not equal ages, the shared ash layers serve as fixed points that let researchers \"align\" the records so that the same moment can be located in both. \"Authenticate\" fails because nothing suggests either core was in doubt; the problem was that their timescales did not match. \"Abridge\" fails because shortening the records would not make their depths correspond to the same ages. \"Annotate\" fails because adding notes to each record would leave the mismatch in timescales unresolved, so the same moment still could not be compared.",
+  "antonym_pairs": [],
+  "polarity": {
+    "align": "0",
+    "authenticate": "0",
+    "abridge": "0",
+    "annotate": "0"
+  },
+  "rarity_order": [
+    "align",
+    "authenticate",
+    "annotate",
+    "abridge"
+  ],
+  "killed_by": {
+    "authenticate": "logic",
+    "abridge": "logic",
+    "annotate": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

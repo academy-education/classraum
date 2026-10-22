@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "fare-free buses and travel mode",
+  "passage": "When one city made its buses free, planners expected car traffic downtown to fall. Ridership did climb by a fifth, but surveys found that most of the new passengers had previously walked or cycled to work; few of them owned a car. Downtown congestion stayed about where it had been. The free fares, in other words, chiefly ______ travelers who had already been making the trip at little or no cost.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "diverted",
+    "insulated",
+    "inconvenienced",
+    "disappointed"
+  ],
+  "correct_answer": "diverted",
+  "explanation": "The new riders were mostly former walkers and cyclists, so the free fares \"diverted\" them from one way of making the trip to another while drivers stayed in their cars. \"Insulated\" fails because these travelers were already moving at little or no cost, so there was no expense to shield them from. \"Inconvenienced\" fails because the passage describes these travelers choosing the free bus, not being burdened by it. \"Disappointed\" fails because the disappointment in the passage belongs to the planners, whose expected drop in traffic did not come; the travelers gained a free ride.",
+  "antonym_pairs": [],
+  "polarity": {
+    "diverted": "0",
+    "insulated": "0",
+    "inconvenienced": "-",
+    "disappointed": "-"
+  },
+  "rarity_order": [
+    "disappointed",
+    "diverted",
+    "inconvenienced",
+    "insulated"
+  ],
+  "killed_by": {
+    "insulated": "explicit",
+    "inconvenienced": "logic",
+    "disappointed": "logic"
+  },
+  "after_blank": "travelers",
+  "pos": "verb",
+  "shape": "expectation versus outcome",
+  "key_from_one_sentence": false
+}

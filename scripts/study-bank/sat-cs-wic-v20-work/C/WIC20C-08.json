@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "music: the ending of a composer's last symphony",
+  "passage": "Nearly all of one composer's symphonies close with the full orchestra playing at its loudest. Her last symphony ends differently: a single viola repeats a four-note figure from the first movement, more slowly each time, until the sound simply stops. One critic hears in this ending not exhaustion but completion, since the figure that opened the work has been returned to its simplest form. On this reading, the ending is ______ without being weak.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ornate",
+    "quiet",
+    "nervous",
+    "playful"
+  ],
+  "correct_answer": "quiet",
+  "explanation": "A lone viola slowing until it stops is the opposite of the composer's usual loud close, and the critic hears it as complete rather than feeble, so the ending is \"quiet\" without being weak. \"Ornate\" does not fit a figure reduced to its simplest form. \"Nervous\" does not fit a figure that slows steadily and settles. \"Playful\" does not fit an ending the critic hears as a solemn completion of the whole work.",
+  "antonym_pairs": [],
+  "polarity": {
+    "ornate": "0",
+    "quiet": "0",
+    "nervous": "-",
+    "playful": "+"
+  },
+  "rarity_order": [
+    "quiet",
+    "nervous",
+    "playful",
+    "ornate"
+  ],
+  "killed_by": {
+    "ornate": "explicit",
+    "nervous": "logic",
+    "playful": "logic"
+  },
+  "after_blank": "without",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": true
+}

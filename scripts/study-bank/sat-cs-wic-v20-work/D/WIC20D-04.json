@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "metal fatigue in bridges",
+  "passage": "A steel bridge can carry a truck far heavier than any it will ever meet and still crack after decades of ordinary traffic. The cracks start at tiny flaws in the welds, and every passing vehicle opens them a little further, however light it is. Inspectors estimating how long such a bridge has left therefore count the loading cycles it has borne. To them, the chief threat to an aging bridge lies in the ______ of the traffic it carries.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "weight",
+    "volume",
+    "timing",
+    "spacing"
+  ],
+  "correct_answer": "volume",
+  "explanation": "Every vehicle, however light, widens the cracks a little, and inspectors count loading cycles, so the threat lies in the \"volume\" of traffic. \"Weight\" fails because the bridge easily bears trucks far heavier than it will meet, and light vehicles do damage too. Nothing in the passage makes the \"timing\" of vehicles or the \"spacing\" between them matter; only how many cross.",
+  "antonym_pairs": [],
+  "polarity": {
+    "weight": "0",
+    "volume": "0",
+    "timing": "0",
+    "spacing": "0"
+  },
+  "rarity_order": [
+    "weight",
+    "volume",
+    "timing",
+    "spacing"
+  ],
+  "killed_by": {
+    "weight": "logic",
+    "timing": "logic",
+    "spacing": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

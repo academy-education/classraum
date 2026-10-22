@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "river sediment and current speed",
+  "passage": "A river's speed limits what it can carry: a swift current can roll pebbles and gravel along its bed, while a slow one can move only fine silt and clay. Geologists use this rule to read rivers that vanished long ago. In one sequence of ancient river deposits, ripple marks and the remains of shells indicate that the current grew steadily faster from the time the lowest bed was laid down to the time the highest was. The highest bed, the geologists predict, should therefore be the most ______ of all.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "coarse",
+    "angular",
+    "buoyant",
+    "cohesive"
+  ],
+  "correct_answer": "coarse",
+  "explanation": "Swift currents carry large grains, and the current was fastest when the highest bed formed, so that bed should be made of the largest grains, the most \"coarse.\" \"Cohesive\" fails because sticky, clinging sediment is the fine clay a slow current leaves, the opposite end of the sequence. \"Angular\" fails because the rule relates current speed to grain size, not to the shape of the grains. \"Buoyant\" fails because the heaviest grains are the ones only a swift current can move, so the highest bed would hold the least buoyant material, not the most.",
+  "antonym_pairs": [],
+  "polarity": {
+    "coarse": "0",
+    "angular": "0",
+    "buoyant": "0",
+    "cohesive": "0"
+  },
+  "rarity_order": [
+    "coarse",
+    "angular",
+    "buoyant",
+    "cohesive"
+  ],
+  "killed_by": {
+    "angular": "logic",
+    "buoyant": "logic",
+    "cohesive": "logic"
+  },
+  "after_blank": "of",
+  "pos": "adjective",
+  "shape": "inference from a general rule",
+  "key_from_one_sentence": false
+}

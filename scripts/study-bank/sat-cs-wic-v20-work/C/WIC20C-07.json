@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "architecture: converting a warehouse into a school",
+  "passage": "Converting a nineteenth-century warehouse into a school, one architect left its iron columns and timber beams exposed rather than enclosing them in new walls. Wherever an original wall had been removed, she painted a dark band across the floor and ceiling to trace where it once stood, and each later addition was built in a visibly different material. A student walking the halls can therefore tell the original structure from every change made to it since. The architect has described her aim as keeping the building's history ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "modest",
+    "pristine",
+    "nostalgic",
+    "legible"
+  ],
+  "correct_answer": "legible",
+  "explanation": "Exposed structure, painted traces of removed walls, and additions in contrasting materials all let a visitor read how the building changed, so the aim is to keep its history \"legible.\" \"Pristine\" would mean keeping the building untouched, but the architect deliberately displays every alteration. \"Modest\" fails because the design is about making the changes readable, not about downplaying the building's past. \"Nostalgic\" implies longing for the original, but the design gives later additions and the original structure equal visibility.",
+  "antonym_pairs": [],
+  "polarity": {
+    "modest": "0",
+    "pristine": "+",
+    "nostalgic": "0",
+    "legible": "0"
+  },
+  "rarity_order": [
+    "modest",
+    "legible",
+    "pristine",
+    "nostalgic"
+  ],
+  "killed_by": {
+    "modest": "logic",
+    "pristine": "logic",
+    "nostalgic": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

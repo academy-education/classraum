@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "QR code error correction",
+  "passage": "Many QR codes still scan correctly when part of the pattern is torn or covered. The code stores each piece of data more than once, spread across the square, so a scanner can rebuild what a damaged section held from the copies elsewhere. Designers who print a company logo over the center of a code are thus ______ that duplication, giving up some of the code's tolerance for damage in exchange for a branded look.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "spending",
+    "wasting",
+    "repeating",
+    "scrambling"
+  ],
+  "correct_answer": "spending",
+  "explanation": "The logo covers data that the code can recover only from its spare copies, so designers are \"spending\" that duplication, using up part of a reserve in exchange for a benefit. \"Wasting\" fails because they get something in return, a branded look. The logo neither copies the data again (\"repeating\") nor mixes it up (\"scrambling\"); it simply covers part of it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "spending": "0",
+    "wasting": "-",
+    "repeating": "0",
+    "scrambling": "-"
+  },
+  "rarity_order": [
+    "spending",
+    "wasting",
+    "repeating",
+    "scrambling"
+  ],
+  "killed_by": {
+    "wasting": "logic",
+    "repeating": "logic",
+    "scrambling": "logic"
+  },
+  "after_blank": "that",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": true
+}

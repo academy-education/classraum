@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "battery calendar aging",
+  "passage": "A lithium battery that sits fully charged in a hot car loses capacity even if it is never used. The loss comes not from charging but from slow side reactions at the electrode surface, which speed up as temperature rises. Of two identical phones, both fully charged and both untouched for a year, the one left on a warm dashboard will hold noticeably less charge than the one kept in a cool drawer. For this kind of wear, a battery's decline depends less on how often it is charged than on its ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "usage",
+    "surroundings",
+    "wiring",
+    "upkeep"
+  ],
+  "correct_answer": "surroundings",
+  "explanation": "The two phones are identical and equally idle, yet the one on the warm dashboard ages faster because heat drives the side reactions, so the decline depends on the battery's \"surroundings.\" \"Usage\" fails because the loss occurs even when the battery is never used. The phones are identical and neither receives care, so differences in \"wiring\" or \"upkeep\" cannot explain why one ages faster.",
+  "antonym_pairs": [],
+  "polarity": {
+    "usage": "0",
+    "surroundings": "0",
+    "wiring": "0",
+    "upkeep": "0"
+  },
+  "rarity_order": [
+    "usage",
+    "wiring",
+    "surroundings",
+    "upkeep"
+  ],
+  "killed_by": {
+    "usage": "explicit",
+    "wiring": "logic",
+    "upkeep": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

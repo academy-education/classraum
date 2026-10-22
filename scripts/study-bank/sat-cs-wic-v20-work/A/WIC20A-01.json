@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "stickleback armor gene variant",
+  "passage": "Freshwater sticklebacks in dozens of separate lakes have lost most of the bony armor plates that their ocean-dwelling relatives carry. One might expect each lake population to have evolved this loss through its own new mutation. Genetic surveys show otherwise: fish in every lake carry the same low-armor gene variant, and that variant also turns up in ocean sticklebacks, where predators favor heavily armored fish and the variant has persisted for ages in roughly one fish in a thousand. The variant, researchers conclude, was already ______ in the sea long before any of the lakes formed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "circulating",
+    "arising",
+    "beneficial",
+    "advancing"
+  ],
+  "correct_answer": "circulating",
+  "explanation": "The same variant shows up in every lake and has long persisted at low frequency in ocean populations, so it was already \"circulating\" in the sea before lakes were colonized. \"Arising\" fails because one shared variant in every lake points to a single old origin, not to the variant appearing anew. \"Beneficial\" is contradicted by ocean predators favoring heavily armored fish. \"Advancing\" fails because, under that predation, the variant has held at about one fish in a thousand for ages rather than spreading.",
+  "antonym_pairs": [],
+  "polarity": {
+    "circulating": "0",
+    "arising": "0",
+    "beneficial": "+",
+    "advancing": "0"
+  },
+  "rarity_order": [
+    "advancing",
+    "beneficial",
+    "arising",
+    "circulating"
+  ],
+  "killed_by": {
+    "arising": "logic",
+    "beneficial": "explicit",
+    "advancing": "logic"
+  },
+  "after_blank": "in",
+  "pos": "adjective",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

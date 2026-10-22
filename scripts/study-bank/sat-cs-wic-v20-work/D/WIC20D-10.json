@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "semantic bleaching of intensifiers",
+  "passage": "The English word \"very\" once meant \"true,\" as in the old phrase \"a very knight.\" Speakers began placing it before adjectives to stress that a description was accurate, and as the habit spread, the sense of truth faded until only the emphasis remained. Linguists see \"really\" and \"truly\" traveling the same path: both still serve to intensify, but in each the sense of truth is now ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "spreading",
+    "reversing",
+    "splitting",
+    "waning"
+  ],
+  "correct_answer": "waning",
+  "explanation": "\"Really\" and \"truly\" are following the path of \"very,\" whose sense of truth faded, so in them that sense is now \"waning.\" What spread in the case of \"very\" was the habit of using it, while the sense of truth shrank, so \"spreading\" fails. The meaning is fading, not turning into its opposite (\"reversing\") or dividing into separate senses (\"splitting\").",
+  "antonym_pairs": [],
+  "polarity": {
+    "spreading": "0",
+    "reversing": "0",
+    "splitting": "0",
+    "waning": "-"
+  },
+  "rarity_order": [
+    "spreading",
+    "reversing",
+    "splitting",
+    "waning"
+  ],
+  "killed_by": {
+    "spreading": "logic",
+    "reversing": "logic",
+    "splitting": "logic"
+  },
+  "after_blank": "",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

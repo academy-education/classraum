@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "literature: an early scene echoed late in a novel",
+  "passage": "In the first chapter of one novel, a young girl watches a neighbor's barn burn and afterward remembers mostly the silence of the adults standing in the road. Two hundred pages later, the girl, now grown, loses her own house to a fire, and as her neighbors gather she notices that she, too, cannot bring herself to speak. Only then does the significance of the opening become clear. The early scene functions as the ______ to the later one, though a first-time reader has no way of knowing it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "obstacle",
+    "prologue",
+    "memorial",
+    "objection"
+  ],
+  "correct_answer": "prologue",
+  "explanation": "The first fire introduces the silence that returns in the second, and its meaning appears only in retrospect, so the early scene is the \"prologue\" to the later one. It is not an \"obstacle\" to it, since nothing in the first scene blocks the second; it prepares for it. It is not a \"memorial\" to it, since a memorial looks back on something that has already happened, and this scene comes first. It is not an \"objection\" to it, since the second scene repeats the first's silence rather than being disputed by it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "obstacle": "-",
+    "prologue": "0",
+    "memorial": "0",
+    "objection": "-"
+  },
+  "rarity_order": [
+    "memorial",
+    "obstacle",
+    "prologue",
+    "objection"
+  ],
+  "killed_by": {
+    "obstacle": "logic",
+    "memorial": "logic",
+    "objection": "logic"
+  },
+  "after_blank": "to",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

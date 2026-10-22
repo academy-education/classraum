@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "architecture: the first glass-walled tower in a district",
+  "passage": "When the district's first glass-walled office tower was proposed, planning officials had no rules for such a facade, because their codes assumed buildings of brick and stone. They approved the design with conditions on shading and wind. Within a decade, a dozen similar towers had been proposed nearby, and each application cited that first approval and borrowed the conditions attached to it. In the history of the district, the original decision functioned less as an exception than as the ______ for those that came after.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "mandate",
+    "pattern",
+    "pretext",
+    "nuisance"
+  ],
+  "correct_answer": "pattern",
+  "explanation": "Later applicants cited the first approval and copied its conditions, so the decision served as the \"pattern\" for them. It was not a \"mandate,\" since nothing required anyone to build glass towers; developers chose to propose them. It was not a \"pretext,\" since applicants openly relied on the approval rather than using it to disguise another aim. \"Nuisance\" fails because they treated the approval as support, not as an obstacle.",
+  "antonym_pairs": [],
+  "polarity": {
+    "mandate": "0",
+    "pattern": "0",
+    "pretext": "-",
+    "nuisance": "-"
+  },
+  "rarity_order": [
+    "pattern",
+    "nuisance",
+    "mandate",
+    "pretext"
+  ],
+  "killed_by": {
+    "mandate": "logic",
+    "pretext": "logic",
+    "nuisance": "logic"
+  },
+  "after_blank": "for",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

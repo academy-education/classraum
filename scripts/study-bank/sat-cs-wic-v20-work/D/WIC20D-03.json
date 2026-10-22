@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "Latin word order",
+  "passage": "In English, word order carries much of the grammar: \"the dog bit the man\" and \"the man bit the dog\" report different events. In Latin, endings on the nouns mark who did what to whom, so the same three words can appear in any of six orders and still describe one event. Roman writers chose among those orders to shift emphasis, not meaning. Relative to English, then, Latin word order was grammatically ______, though it was far from meaningless to a reader attentive to style.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "unusual",
+    "random",
+    "unrestricted",
+    "unwieldy"
+  ],
+  "correct_answer": "unrestricted",
+  "explanation": "Because noun endings rather than position marked who did what, any of the six orders was grammatical, so Latin order was grammatically \"unrestricted\" compared with English. \"Random\" fails because writers chose orders deliberately to shift emphasis. \"Unusual\" says nothing about how much the grammar constrained order, which is the comparison drawn, and \"unwieldy\" fails because writers moved words freely to shape emphasis without any loss of clarity.",
+  "antonym_pairs": [],
+  "polarity": {
+    "unusual": "0",
+    "random": "-",
+    "unrestricted": "0",
+    "unwieldy": "-"
+  },
+  "rarity_order": [
+    "unusual",
+    "random",
+    "unrestricted",
+    "unwieldy"
+  ],
+  "killed_by": {
+    "unusual": "logic",
+    "random": "explicit",
+    "unwieldy": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

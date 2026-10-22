@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "hourly pay and work pace",
+  "passage": "In one city, street cleaners were paid by the hour, so a cleaner who swept the assigned blocks quickly simply went home with less pay. Supervisors had no rule against finishing early. Still, the pay scheme gave cleaners little ______ to work quickly, and most routes took the full shift. When the city later switched to a flat payment for each completed route, the same cleaners finished, on average, an hour sooner.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "incentive",
+    "guidance",
+    "energy",
+    "equipment"
+  ],
+  "correct_answer": "incentive",
+  "explanation": "Under hourly pay, working faster only reduced a cleaner's earnings, and the same cleaners sped up once pay was set per route, so the scheme gave them little \"incentive\" to work quickly. \"Guidance\" fails because a pay scheme rewards rather than instructs, and the cleaners already knew their routes. \"Energy\" fails because the same workers finished sooner once the pay changed, so stamina was not what they lacked. \"Equipment\" fails because a pay scheme supplies money, not tools, and nothing about tools changed when the cleaners sped up.",
+  "antonym_pairs": [],
+  "polarity": {
+    "incentive": "+",
+    "guidance": "+",
+    "energy": "+",
+    "equipment": "0"
+  },
+  "rarity_order": [
+    "energy",
+    "guidance",
+    "incentive",
+    "equipment"
+  ],
+  "killed_by": {
+    "guidance": "logic",
+    "energy": "logic",
+    "equipment": "logic"
+  },
+  "after_blank": "to",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": true
+}

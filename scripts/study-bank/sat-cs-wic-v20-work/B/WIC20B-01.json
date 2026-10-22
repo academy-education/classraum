@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "medieval town charter and market tolls",
+  "passage": "A charter granted in 1290 freed one town's merchants from the tolls charged at their lord's weekly market. Yet for the next forty years, account books show, the merchants paid those tolls, apparently judging that a quarrel with the lord would cost more than the fees themselves. When a new lord tripled the rates, they brought the charter before a royal court, which upheld it without delay. One historian therefore reads the decades of payment as evidence of the merchants' ______, not of any ignorance of their rights.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "forbearance",
+    "gratitude",
+    "diffidence",
+    "humility"
+  ],
+  "correct_answer": "forbearance",
+  "explanation": "The merchants knew they held the exemption, chose not to press it while a quarrel cost more than the tolls, and pressed it successfully once the rates tripled, so the payments show \"forbearance\": deliberately refraining from enforcing a right. \"Gratitude\" fails because nothing suggests the lord had done the merchants a favor; they paid tolls the charter excused them from. \"Diffidence\" fails because the merchants were not unsure of themselves: they weighed the costs and, when the rates rose, went to court at once. \"Humility\" fails because the passage presents a calculation of cost, not modesty toward the lord.",
+  "antonym_pairs": [],
+  "polarity": {
+    "forbearance": "+",
+    "gratitude": "+",
+    "diffidence": "-",
+    "humility": "+"
+  },
+  "rarity_order": [
+    "gratitude",
+    "humility",
+    "diffidence",
+    "forbearance"
+  ],
+  "killed_by": {
+    "gratitude": "logic",
+    "diffidence": "logic",
+    "humility": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "evidence and interpretation",
+  "key_from_one_sentence": false
+}

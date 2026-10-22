@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "open voting and tenant farmers",
+  "passage": "In one nineteenth-century republic, every adult male tenant farmer was legally entitled to vote. Ballots, however, were declared aloud at a table where the landlord's agent sat recording each choice, and tenants who voted against their landlords often found their leases ended the following spring. Turnout among tenants was high, and their votes went almost uniformly to the landlords' candidates. Reformers called the tenants' franchise ______, and they made the secret ballot their first demand.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hollow",
+    "fragile",
+    "dormant",
+    "grudging"
+  ],
+  "correct_answer": "hollow",
+  "explanation": "Tenants held the vote in law and used it in large numbers, but open voting under the agent's eye meant their ballots expressed their landlords' wishes, so the franchise was \"hollow\": real in form, empty in substance, which is why reformers sought a secret ballot. \"Fragile\" fails because the right itself was secure and widely exercised; the problem was coercion, not the risk of losing the vote. \"Dormant\" fails because turnout among tenants was high. \"Grudging\" fails because nothing suggests the vote was granted reluctantly; the problem lay in how ballots were cast.",
+  "antonym_pairs": [],
+  "polarity": {
+    "hollow": "-",
+    "fragile": "-",
+    "dormant": "0",
+    "grudging": "-"
+  },
+  "rarity_order": [
+    "fragile",
+    "hollow",
+    "dormant",
+    "grudging"
+  ],
+  "killed_by": {
+    "fragile": "logic",
+    "dormant": "explicit",
+    "grudging": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "problem and remedy",
+  "key_from_one_sentence": false
+}

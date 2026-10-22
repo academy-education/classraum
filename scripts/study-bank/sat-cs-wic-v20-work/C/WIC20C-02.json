@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "music: the three-minute record side",
+  "passage": "In the 1920s, a ten-inch shellac record held only about three minutes of sound per side. Bands that stretched a tune past ten minutes in a dance hall cut it down in the studio, and songwriters soon began composing to fit the record rather than the dance floor. Decades later, long after records and radio could carry far more, programmers still favored songs of roughly the old size. The pop song's customary ______, then, is a habit inherited from a technical limit.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "meter",
+    "length",
+    "key",
+    "opening"
+  ],
+  "correct_answer": "length",
+  "explanation": "The three-minute record side forced songs to be short, and programmers kept favoring songs of \"the old size,\" so the inherited habit is the song's \"length.\" \"Meter\" names a rhythmic pattern, which a limit on minutes per side did not dictate. \"Key\" concerns pitch, which the record's capacity did not affect. \"Opening\" fails because the limit governed the whole song's duration, not how it begins.",
+  "antonym_pairs": [],
+  "polarity": {
+    "meter": "0",
+    "length": "0",
+    "key": "0",
+    "opening": "0"
+  },
+  "rarity_order": [
+    "key",
+    "opening",
+    "length",
+    "meter"
+  ],
+  "killed_by": {
+    "meter": "logic",
+    "key": "logic",
+    "opening": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

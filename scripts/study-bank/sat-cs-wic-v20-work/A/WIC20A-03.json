@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "folded limestone layers",
+  "passage": "The limestone layers exposed along one canyon wall were laid down flat on an ancient sea floor. Today they rise and fall in a series of tall arches and deep troughs, yet a geologist can trace any single layer without a break from one end of the wall to the other. The pattern records the slow collision of two tectonic plates, which pushed on the layers from opposite sides for millions of years. Under that sustained sideways pressure, the layers ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "buckled",
+    "corroded",
+    "crystallized",
+    "ascended"
+  ],
+  "correct_answer": "buckled",
+  "explanation": "Layers that began flat, were pushed from both sides, and can now be traced unbroken through tall arches and deep troughs have \"buckled\": they bent into folds. \"Corroded\" fails because the change came from sideways mechanical pressure that reshaped the layers, not from chemical wearing away. \"Crystallized\" fails because what the pressure produced is a change of shape, not a change in the rock's mineral structure. \"Ascended\" fails because the layers do not simply rise; they rise in arches and drop into troughs.",
+  "antonym_pairs": [],
+  "polarity": {
+    "buckled": "0",
+    "corroded": "-",
+    "crystallized": "0",
+    "ascended": "0"
+  },
+  "rarity_order": [
+    "ascended",
+    "buckled",
+    "corroded",
+    "crystallized"
+  ],
+  "killed_by": {
+    "corroded": "logic",
+    "crystallized": "logic",
+    "ascended": "logic"
+  },
+  "after_blank": "",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "groundwater in limestone terrain",
+  "passage": "In most aquifers, rainwater seeps slowly downward through sand and gravel, which strain out bacteria long before the water reaches a well. Limestone regions work differently. There, slightly acidic groundwater dissolves the rock along its cracks, widening them over thousands of years into open passages; in one study, dye poured into a sinkhole emerged at a spring nine kilometers away in less than a day. In such terrain, the rock's passages act less as filters than as ______ of contamination.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "conduits",
+    "cradles",
+    "agents",
+    "barometers"
+  ],
+  "correct_answer": "conduits",
+  "explanation": "Dye entering a sinkhole reached a distant spring within a day, so the open passages carry pollutants quickly from the surface to the water supply; they are \"conduits\" of contamination. \"Cradles\" fails because the contamination enters from the surface, as the sinkhole test shows, rather than originating in the rock. \"Agents\" fails because the passages do not cause contamination; they only transmit what enters them. \"Barometers\" fails because the passages do not register or measure contamination; the dye test shows them moving it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "conduits": "0",
+    "cradles": "0",
+    "agents": "0",
+    "barometers": "0"
+  },
+  "rarity_order": [
+    "agents",
+    "cradles",
+    "barometers",
+    "conduits"
+  ],
+  "killed_by": {
+    "cradles": "logic",
+    "agents": "logic",
+    "barometers": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

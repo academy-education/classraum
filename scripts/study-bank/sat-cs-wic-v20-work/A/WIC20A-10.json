@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "floodplain silt over a village",
+  "passage": "Each time the river overtopped its banks, the slowing floodwater spread a thin, fresh layer of silt across the plain. Over many centuries these layers accumulated to a depth of several meters, so the remains of a farming village occupied some 2,000 years ago now lie well beneath the modern fields, its walls and hearths still largely intact. The floods, in effect, ______ the village while preserving it for the archaeologists who would eventually dig it out.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "buried",
+    "bypassed",
+    "bathed",
+    "besieged"
+  ],
+  "correct_answer": "buried",
+  "explanation": "Layer after layer of silt settled over the site until the village lay meters underground with its walls intact, so the floods \"buried\" it. \"Bypassed\" fails because the silt spread across the whole plain and built up over the site itself rather than flowing around it. \"Bathed\" fails because the floods did more than wash over the village; they left it under several meters of accumulated silt. \"Besieged\" is contradicted by the statement that the floods preserved the village rather than attacking it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "buried": "0",
+    "bypassed": "0",
+    "bathed": "0",
+    "besieged": "-"
+  },
+  "rarity_order": [
+    "buried",
+    "bathed",
+    "bypassed",
+    "besieged"
+  ],
+  "killed_by": {
+    "bypassed": "logic",
+    "bathed": "logic",
+    "besieged": "explicit"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

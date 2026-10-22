@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "debased and pure silver coinage",
+  "passage": "Two neighboring cities in the ancient Aegean issued silver coins of the same face value, but over several decades one city steadily reduced the silver in its coins while the other kept its coins pure. In the marketplace, merchants accepted the two coins as equal. Yet the caches that households buried beneath their floors, unearthed centuries later, contain almost nothing but the purer coins. Merchants, it seems, paid out the debased coins whenever they could and ______ the others.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hoarded",
+    "exported",
+    "exchanged",
+    "graded"
+  ],
+  "correct_answer": "hoarded",
+  "explanation": "Because the two coins passed as equal in trade but the buried household caches hold almost only the purer ones, merchants spent the debased coins and \"hoarded\" the pure ones, saving them out of circulation. \"Exported\" fails because coins sent abroad would not fill caches buried in local homes. \"Exchanged\" fails because coins handed over in trade would have left the household rather than ended up buried in it. \"Graded\" fails because sorting coins by quality does not explain why the pure ones ended up buried rather than spent.",
+  "antonym_pairs": [],
+  "polarity": {
+    "hoarded": "0",
+    "exported": "0",
+    "exchanged": "0",
+    "graded": "0"
+  },
+  "rarity_order": [
+    "exchanged",
+    "exported",
+    "graded",
+    "hoarded"
+  ],
+  "killed_by": {
+    "exported": "logic",
+    "exchanged": "logic",
+    "graded": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

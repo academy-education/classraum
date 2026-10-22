@@ -1,0 +1,20 @@
+{
+  "id": "WIC20A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "coral bleaching and energy reserves",
+  "passage": "Coral bleaching is usually described as a sudden event: within weeks of a marine heat wave, a reef can turn white. One marine biologist accepts that the whitening itself happens fast but argues that the underlying process is ______. Measuring the same corals across a decade, she found that their stored energy reserves fell steadily through several warm summers before any whitening appeared, so a reef that bleaches in a single month may already have been weakening for years.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["chronic", "benign", "cyclic", "acidic"],
+  "correct_answer": "chronic",
+  "explanation": "The biologist found that corals' energy reserves decline steadily over several summers before bleaching shows, so the process behind the fast whitening is \"chronic,\" long-lasting and ongoing. \"Benign\" fails because that long decline leaves the reef weakened for years. \"Cyclic\" fails because the reserves fell steadily from one summer to the next rather than rising and falling in a repeating pattern. \"Acidic\" fails because the decline she measured is tied to heat waves and warm summers, not to any chemical change in the water.",
+  "antonym_pairs": [],
+  "polarity": {"chronic": "-", "benign": "+", "cyclic": "0", "acidic": "0"},
+  "rarity_order": ["chronic", "benign", "acidic", "cyclic"],
+  "killed_by": {"benign": "logic", "cyclic": "logic", "acidic": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

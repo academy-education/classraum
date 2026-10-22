@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "art criticism: a review of a painter's late work",
+  "passage": "Reviewing a retrospective, one critic opened by calling the painter's late canvases \"the strongest work of her career.\" Several paragraphs on, she specified that she meant the large abstractions from those years; the late portraits, she wrote, repeated solutions the painter had found decades earlier without advancing them. She never withdrew her opening praise, and her closing paragraph returned to the abstractions as the exhibition's high point. The middle of the review thus served to ______ its opening judgment rather than to abandon it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "jeopardize",
+    "probe",
+    "qualify",
+    "muddle"
+  ],
+  "correct_answer": "qualify",
+  "explanation": "The critic kept her praise but limited it to the abstractions and excluded the portraits, so the middle of the review served to \"qualify\" (restrict the scope of) the opening judgment. It does not \"jeopardize\" the judgment, since the closing paragraph reaffirms it. It does not \"probe\" it, since she does not question or test her claim but specifies what it covers. It does not \"muddle\" it, since the specification makes the judgment clearer rather than more confused.",
+  "antonym_pairs": [],
+  "polarity": {
+    "jeopardize": "-",
+    "probe": "0",
+    "qualify": "0",
+    "muddle": "-"
+  },
+  "rarity_order": [
+    "probe",
+    "muddle",
+    "qualify",
+    "jeopardize"
+  ],
+  "killed_by": {
+    "jeopardize": "logic",
+    "probe": "logic",
+    "muddle": "logic"
+  },
+  "after_blank": "its",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

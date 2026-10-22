@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "courts and precedent in lease disputes",
+  "passage": "Appeals courts that doubt a precedent seldom overrule it outright. In one housing dispute, the judges acknowledged that an earlier ruling required six months' written notice before a lease could be ended, and they declined to call that ruling mistaken. They observed, however, that the earlier case had concerned a shop lease, and that the notice rule rested on the needs of businesses, which must find new premises and keep their customers. The tenant before them rented an apartment. The court thus ______ the precedent, and the six-month rule still governs shop leases in that state.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "distinguished",
+    "endorsed",
+    "eclipsed",
+    "invoked"
+  ],
+  "correct_answer": "distinguished",
+  "explanation": "The judges accepted the earlier ruling as sound but pointed to a difference between its facts (a shop lease, justified by business needs) and the present case (an apartment), so they \"distinguished\" the precedent: they set it apart as not applying here. \"Endorsed\" fails because the passage concerns courts that doubt a precedent, and these judges only declined to call it mistaken while setting it aside. \"Eclipsed\" fails because the six-month rule still governs shop leases, so nothing replaced it. \"Invoked\" fails because the court relied on the difference between the cases, not on the earlier rule, to decide an apartment dispute.",
+  "antonym_pairs": [],
+  "polarity": {
+    "distinguished": "0",
+    "endorsed": "+",
+    "eclipsed": "-",
+    "invoked": "0"
+  },
+  "rarity_order": [
+    "distinguished",
+    "endorsed",
+    "invoked",
+    "eclipsed"
+  ],
+  "killed_by": {
+    "endorsed": "logic",
+    "eclipsed": "explicit",
+    "invoked": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

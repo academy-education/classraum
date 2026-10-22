@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "bridge expansion joints",
+  "passage": "Long concrete bridges are built with gaps every few hundred feet, each spanned by interlocking metal teeth. On a summer afternoon the deck lengthens in the heat and the gaps nearly close; on a winter night the concrete contracts and they open wide. Without such gaps, the deck would push against itself until it cracked. The joints that many drivers take for flaws are in fact what allow the deck to ______ without damage.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "stretch",
+    "shift",
+    "sag",
+    "vibrate"
+  ],
+  "correct_answer": "shift",
+  "explanation": "The deck lengthens in summer and shortens in winter, and the gaps let it move in both directions, so they allow it to \"shift\" without damage. \"Stretch\" covers only the summer lengthening, not the winter contraction. The movement described is along the deck's length and is caused by temperature, so neither \"sag\" (downward bending) nor \"vibrate\" (rapid shaking) describes what the joints accommodate.",
+  "antonym_pairs": [],
+  "polarity": {
+    "stretch": "0",
+    "shift": "0",
+    "sag": "-",
+    "vibrate": "0"
+  },
+  "rarity_order": [
+    "shift",
+    "stretch",
+    "vibrate",
+    "sag"
+  ],
+  "killed_by": {
+    "stretch": "logic",
+    "sag": "logic",
+    "vibrate": "logic"
+  },
+  "after_blank": "without",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

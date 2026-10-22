@@ -1,0 +1,20 @@
+{
+  "id": "WIC20B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "survey mode and neighborhood safety",
+  "passage": "Researchers put the same question about neighborhood safety to two groups of residents living on the same streets. One group answered on an unsigned printed form returned by mail; the other answered an interviewer standing at the front door. The doorstep group rated the neighborhood far safer and was likelier to call it \"close-knit.\" The researchers concluded that the doorstep answers were ______, shaped less by what residents had experienced than by a wish to speak well of their street to a visitor.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["flattering", "hasty", "garbled", "earnest"],
+  "correct_answer": "flattering",
+  "explanation": "Residents of the same streets rated their neighborhood more favorably only when a visitor was present, and the researchers attribute this to a wish to speak well of the street, so the doorstep answers were \"flattering.\" \"Hasty\" fails because speed would not explain why answers leaned consistently in one favorable direction. \"Garbled\" fails because the doorstep answers were clear and consistent, merely more positive. \"Earnest\" fails because the researchers say the answers reflected a wish to impress rather than residents' actual experience.",
+  "antonym_pairs": [],
+  "polarity": {"flattering": "+", "hasty": "-", "garbled": "-", "earnest": "+"},
+  "rarity_order": ["flattering", "hasty", "earnest", "garbled"],
+  "killed_by": {"hasty": "logic", "garbled": "logic", "earnest": "explicit"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": true
+}

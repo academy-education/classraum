@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "context-aware spell-checkers",
+  "passage": "Early spell-checkers compared each typed word against a dictionary and flagged any word missing from it. That approach caught misspellings that produced nonwords, but it was blind to \"their\" typed for \"there,\" since both are real words. Newer checkers examine the surrounding words to judge which spelling a sentence calls for, and so they can ______ errors that the dictionary method let through.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "spot",
+    "sample",
+    "rank",
+    "rate"
+  ],
+  "correct_answer": "spot",
+  "explanation": "By reading the surrounding words, newer checkers can detect real-word mistakes the dictionary method missed, so they can \"spot\" those errors. Checking only some errors (\"sample\"), ordering them (\"rank\"), or judging how serious they are (\"rate\") all presuppose errors already found, whereas the passage is about catching errors the older method missed.",
+  "antonym_pairs": [],
+  "polarity": {
+    "spot": "0",
+    "sample": "0",
+    "rank": "0",
+    "rate": "0"
+  },
+  "rarity_order": [
+    "spot",
+    "rate",
+    "sample",
+    "rank"
+  ],
+  "killed_by": {
+    "sample": "logic",
+    "rank": "logic",
+    "rate": "logic"
+  },
+  "after_blank": "errors",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": true
+}

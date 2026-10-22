@@ -1,0 +1,20 @@
+{
+  "id": "WIC20A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "regrown fiddler crab claws",
+  "passage": "Male fiddler crabs that lose their single enlarged claw grow a replacement that looks almost exactly like the original but is built with lighter, weaker muscle. In staged encounters, rival males retreated from crabs with regrown claws as often as from crabs with original ones, apparently judging a claw by its size alone. When encounters did escalate into fights, however, the crabs with regrown claws lost far more often. To rivals, then, regrown claws serve mainly as ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["bluffs", "badges", "armaments", "accessories"],
+  "correct_answer": "bluffs",
+  "explanation": "A regrown claw looks as formidable as an original and makes rivals retreat, yet it hides weaker muscle, so it works as one of the \"bluffs\": a display of strength the crab does not have. \"Armaments\" is contradicted by how often these crabs lose real fights. \"Badges\" fails because a badge truthfully marks standing, whereas these claws misrepresent it. \"Accessories\" fails because rivals change their behavior in response to the claws, so they are not mere ornaments.",
+  "antonym_pairs": [],
+  "polarity": {"bluffs": "-", "badges": "+", "armaments": "0", "accessories": "0"},
+  "rarity_order": ["accessories", "badges", "bluffs", "armaments"],
+  "killed_by": {"badges": "logic", "armaments": "explicit", "accessories": "logic"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

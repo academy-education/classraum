@@ -1,0 +1,20 @@
+{
+  "id": "WIC20A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "humpback whales interfering with hunts",
+  "passage": "For decades, the claim that humpback whales deliberately interfere when killer whales hunt seals rested on scattered reports from whale-watching crews and fishers. Each report described an encounter the observer had witnessed directly, often in vivid detail. Yet no one had gathered the reports in one place, compared them with one another, or asked how often such encounters occurred. Until one marine biologist compiled and cross-checked more than a hundred of these accounts, the evidence for the behavior was largely ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["anecdotal", "circumstantial", "auxiliary", "archival"],
+  "correct_answer": "anecdotal",
+  "explanation": "The evidence consisted of individual firsthand stories that no one had collected or checked systematically, so it was \"anecdotal.\" \"Circumstantial\" is contradicted by the statement that each observer witnessed the encounter directly. \"Auxiliary\" fails because the claim rested on these reports alone; they were the main evidence, not a supplement to other evidence. \"Archival\" fails because the reports were scattered among the people who made them and had never been gathered and kept as a collection.",
+  "antonym_pairs": [],
+  "polarity": {"anecdotal": "-", "circumstantial": "-", "auxiliary": "0", "archival": "0"},
+  "rarity_order": ["circumstantial", "anecdotal", "auxiliary", "archival"],
+  "killed_by": {"circumstantial": "explicit", "auxiliary": "logic", "archival": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

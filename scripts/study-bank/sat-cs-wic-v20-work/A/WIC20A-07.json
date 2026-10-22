@@ -1,0 +1,39 @@
+{
+  "id": "WIC20A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "desert wildflower seed reserves",
+  "passage": "Seeds of many desert wildflowers can lie dormant in the soil for decades, germinating only after unusually heavy rain. Because just a fraction of the seeds sprout in any single wet year, the soil always holds a store of ungerminated seeds that can carry the population through a long run of dry years. Ecologists refer to this underground store, which is drawn on in good years and replenished when the new plants set seed, as the soil's seed ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bank",
+    "coat",
+    "bed",
+    "count"
+  ],
+  "correct_answer": "bank",
+  "explanation": "The passage describes a reserve of seeds that is drawn on in wet years and refilled when plants produce new seed, much as money is withdrawn from and deposited in an account, so it is the soil's seed \"bank.\" \"Count\" fails because a count is a number tallied by an observer, not the underground store of seeds itself. \"Coat\" fails because a seed coat is the outer layer of an individual seed, not a store of many seeds. \"Bed\" fails because a seedbed is ground prepared for planting, not a stock of dormant seeds.",
+  "antonym_pairs": [],
+  "polarity": {
+    "bank": "0",
+    "coat": "0",
+    "bed": "0",
+    "count": "0"
+  },
+  "rarity_order": [
+    "bank",
+    "count",
+    "bed",
+    "coat"
+  ],
+  "killed_by": {
+    "coat": "logic",
+    "bed": "logic",
+    "count": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "definition by mechanism",
+  "key_from_one_sentence": false
+}

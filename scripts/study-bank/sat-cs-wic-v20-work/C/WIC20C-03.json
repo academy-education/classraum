@@ -1,0 +1,39 @@
+{
+  "id": "WIC20C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "literature: a loss never named by the narrator",
+  "passage": "Some readers of one novelist's second book complain that its narrator never says what happened to her older brother. Yet the loss surfaces again and again across the novel's three hundred pages: his chair stays empty at every family dinner, a neighbor stops mid-sentence whenever his name comes up, and the mother keeps his winter coat on its hook for years. None of these moments is explained, and the narrator moves past each one without comment. The novel's treatment of the loss, then, is ______ rather than absent.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "momentary",
+    "oblique",
+    "lavish",
+    "melodramatic"
+  ],
+  "correct_answer": "oblique",
+  "explanation": "The loss is never stated but is conveyed through small details the narrator leaves unexplained, so the treatment is \"oblique\" (indirect). It is not \"momentary,\" since the details recur across the whole book and over years. It is not \"lavish,\" since each detail is small and passed over rather than elaborated. It is not \"melodramatic,\" since the narrator moves past each moment without comment.",
+  "antonym_pairs": [],
+  "polarity": {
+    "momentary": "0",
+    "oblique": "0",
+    "lavish": "+",
+    "melodramatic": "-"
+  },
+  "rarity_order": [
+    "momentary",
+    "lavish",
+    "melodramatic",
+    "oblique"
+  ],
+  "killed_by": {
+    "momentary": "logic",
+    "lavish": "logic",
+    "melodramatic": "explicit"
+  },
+  "after_blank": "rather",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

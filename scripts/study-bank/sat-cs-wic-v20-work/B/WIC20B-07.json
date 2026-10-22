@@ -1,0 +1,39 @@
+{
+  "id": "WIC20B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "binding scope of an appellate ruling",
+  "passage": "Commentators often cite one appeals decision as forbidding police to search any arrested person's phone without a warrant. The question the court actually decided was narrower: whether officers needed a warrant to read the text messages of a driver arrested for speeding. Near the end of the opinion, the judges added that similar reasoning might someday apply to stored photographs, but they expressly left that question open. That remark, legal scholars note, falls outside the court's ______ and so binds no later court.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "holding",
+    "evidence",
+    "influence",
+    "expertise"
+  ],
+  "correct_answer": "holding",
+  "explanation": "A court's \"holding\" is the rule it actually decides, which later courts must follow; the court decided only the text-message question and left the photograph question open, so the remark about photographs lies outside the holding and binds no one. \"Evidence\" fails because evidence is what the parties present, and it is the court's decision, not the evidence, that binds later courts. \"Influence\" fails because a judge's remark can still sway later courts; the point is that it does not bind them. \"Expertise\" fails because the judges left the photograph question open as undecided, not because it lay beyond their knowledge.",
+  "antonym_pairs": [],
+  "polarity": {
+    "holding": "0",
+    "evidence": "0",
+    "influence": "0",
+    "expertise": "+"
+  },
+  "rarity_order": [
+    "evidence",
+    "influence",
+    "holding",
+    "expertise"
+  ],
+  "killed_by": {
+    "evidence": "logic",
+    "influence": "logic",
+    "expertise": "logic"
+  },
+  "after_blank": "and",
+  "pos": "noun",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

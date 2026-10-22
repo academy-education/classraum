@@ -1,0 +1,39 @@
+{
+  "id": "WIC20D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "white-coat blood pressure",
+  "passage": "Blood pressure measured in a doctor's office often runs higher than the same patient's readings at home, because the visit itself makes many people anxious. A patient whose pressure is normal through the rest of the day can therefore look hypertensive at the clinic. For this reason, many physicians now ask patients to wear a cuff that records their pressure every half hour for a full day before making a diagnosis. In these physicians' view, an office reading taken alone is too ______ to justify a lifelong prescription.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "rough",
+    "sensitive",
+    "skewed",
+    "rudimentary"
+  ],
+  "correct_answer": "skewed",
+  "explanation": "The anxiety of the visit pushes office readings above the patient's usual pressure, so a single office reading is \"skewed\" upward. The cuff measures a real rise in pressure accurately, so the reading is not too \"rough\" or imprecise, and the instrument is not too \"sensitive.\" The physicians' remedy uses the same kind of cuff, only many times across a day, so the problem is not that the instrument is \"rudimentary.\"",
+  "antonym_pairs": [],
+  "polarity": {
+    "rough": "-",
+    "sensitive": "0",
+    "skewed": "-",
+    "rudimentary": "-"
+  },
+  "rarity_order": [
+    "rough",
+    "sensitive",
+    "skewed",
+    "rudimentary"
+  ],
+  "killed_by": {
+    "rough": "logic",
+    "sensitive": "logic",
+    "rudimentary": "logic"
+  },
+  "after_blank": "to",
+  "pos": "adjective",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}
