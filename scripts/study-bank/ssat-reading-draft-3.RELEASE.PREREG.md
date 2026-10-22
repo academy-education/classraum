@@ -44,3 +44,16 @@ exclusivity check by a reader other than the author.
 - He will have sat 108+ SSAT draft siblings written to the same brief; familiarity could raise his blind
   score, the conservative direction for the guard.
 - Author and checker are the same model; the cheap checks are pre-flight only.
+
+## Result (2026-10-22)
+`ssat-draft3-release-cofounder-2026-10-22`: blind 13/36 = 36.1% (guard 18/36), 36/36 "Only defensible", 36/36
+authentic. The rule releases all 36. **Released 24; 12 held staged (author deviation, conservative direction).**
+Two of his notes name factual errors in passages while every item stayed uniquely answerable:
+- D3-P01 (soccer): offside is called on the forward's own kick, but offside is judged when a teammate passes. Item 2's
+  key teaches the wrong rule.
+- D3-P06 (goldfish): the last sentence says the myth "was invented to justify" round bowls, contradicting "its origin
+  is a mystery".
+The held passages are unserved, not archived, and await an owner-approved wording fix. No other item's outcome changed.
+SSAT Reading stays at 5 clean forms (form 6 is 35/40); the 12 held items would complete it. Other notes: four easy
+main-idea/function sets, and two keys that could be more precise ("queue" -> rows/files; "stall" -> break down).
+Neither has a competing distractor.
