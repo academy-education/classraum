@@ -26,8 +26,9 @@ flags moved to a different kind, a wrong reply that is a natural next step or re
 - calling the bank to lock in a booking.
 
 These are the batch-14 and batch-16 "practical step" lessons again. The authors reworded the replies they had
-flagged themselves, but the graders found others. The batch-18 brief should require each wrong reply to answer a
-DIFFERENT line from the item's other worlds, not merely to be odd after this one.
+flagged themselves, but the graders found others. In crv7 every wrong reply is already another world's key, so the defect is a key that also fits a sibling world's
+line. The batch-18 brief should have each author score the full 4x4 grid (every key against every line) and rewrite
+any off-diagonal cell a listener could say.
 
 Release route (Amendment 1): one 12-item spot run.
 - All "Only defensible": all 33 are released.
