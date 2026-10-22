@@ -4143,7 +4143,7 @@
           "passed": true,
           "n": 20,
           "candidatePct": 36.7,
-          "control": 35.0,
+          "control": 35,
           "controlN": 20,
           "margin": 1.7,
           "verdict": "Options-only, 3 samples of one Claude solver, 20 candidates vs 20 matched live ISEE num items, flat deals A5 B5 C5 D5: 22/60 vs 21/60, margin +1.7 (bar +10); unanimous-correct 25.0% vs 25.0%. The option set alone does not decide these; the stem-visible half is the graders'."
@@ -8280,7 +8280,7 @@
           "passed": true,
           "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
           "n": 354,
-          "mean": 28.0,
+          "mean": 28,
           "control": 37.7,
           "margin": -9.7,
           "verdict": "make-oo-render --control 100 (blind sha af0cf3ab3e2fbe82), keys dealt 30/30/29/29 candidate and 25x4 control, three Claude samples x 218 interleaved. Candidate 99/354 = 28.0% (line 25.4%), live control 113/300 = 37.7% (line 25.0%): CANDIDATE minus LIVE CONTROL -9.7 (pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct 23/118 = 19.5% vs control 27/100 = 27.0%. Pairwise agreement 73.7% vs 25.6% independent - one solver sampled three times."
@@ -8470,7 +8470,7 @@
           "n": 30,
           "mean": 88.9,
           "control": 29.9,
-          "margin": 59.0
+          "margin": 59
         }
       }
     },
@@ -8579,7 +8579,7 @@
         "nosource": {
           "n": 60,
           "candidatePct": 83.9,
-          "control": 20.0,
+          "control": 20,
           "controlN": 30,
           "margin": 63.9,
           "vocabularyPct": 36.1,
@@ -9282,6 +9282,35 @@
           "offsetD": 0.26,
           "offsetE": 0.11,
           "verdict": "Two Claude graders cold then keyed; 38/38 cold on key; D1 0.0% / 7.9%, D2 0.26 / 0.11, D3 1.86 / 1.86 pass. Kept 14; kept-set key extremity 2/14 = 14.3% (bar 40%) -> area HELD."
+        }
+      }
+    },
+    {
+      "id": "bas-v3-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "writing",
+      "task": "arrange_words",
+      "family": "production",
+      "cohort": "bas-v3",
+      "contentSha": "475522531aeea5dbbeb107161d70b0f026f482b0fcbead81c8c1e85dabda737d",
+      "status": "shipped",
+      "note": "TOEFL Build a Sentence, 49 authored in-session by Claude to bas-v1's ambiguity doctrine (BAS-V3-PREREGISTERED.md); 46 kept after bas-v1's three gates, unchanged. Owner approved agents for this batch's QC (2026-10-22). contentSha = sha256 of bas-v3.rows.json. Evidence in bas-v3-qc/. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "475522531aeea5dbbeb107161d70b0f026f482b0fcbead81c8c1e85dabda737d",
+          "verdict": "bas-v2-gate1.mjs (now reading all 201 live keys by item_type): 0 problems on 49 and on the kept 46."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "475522531aeea5dbbeb107161d70b0f026f482b0fcbead81c8c1e85dabda737d",
+          "verdict": "Assembly convergence: 3 blind solvers, chips only: 48/49 reproduced exactly by >= 2 of 3 (BAS3-21 fails: two solvers built \"everyone except my brother enjoyed the concert\"). Ambiguity hunt: 3 hunters with the key found alternatives on exactly 3 items (BAS3-05, BAS3-21, BAS3-34), sent unlabelled to 3 blind adjudicators. bas-v1 rule, any acceptable-or-better kills: all 3 alternatives judged at least acceptable by every judge (BAS3-21 natural x3, BAS3-05 natural/natural/acceptable, BAS3-34 acceptable x3), so 3 killed, 6.1% (re-register bar > 33.3%). Kept 46."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "475522531aeea5dbbeb107161d70b0f026f482b0fcbead81c8c1e85dabda737d",
+          "verdict": "Key token-Jaccard max 0.33 vs 201 live keys, 0.25 within batch (bar 0.5); passive-with-agent 0/46 (bar <= 20%); 44 structure families; difficulty 31 medium / 15 hard as authored."
         }
       }
     }
