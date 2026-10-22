@@ -1,0 +1,1806 @@
+{
+ "cohort": "toefl-passage-draft-1",
+ "created": "2026-10-22",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-e3857ce54ac0519245bb4bc64738709d",
+   "item": {
+    "id": "PD1-P01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "For most of the history of archaeology, a broken cooking pot told researchers about the people who made it but very little about what they ate. The shape of a vessel suggested its use, yet a jar shaped for storing grain might just as easily have held oil or water. Over the past few decades, however, chemists have found a way to read the meals themselves.\n\nUnglazed pottery is porous. When food is cooked in it, fats seep into the walls of the vessel, where they can survive for thousands of years, protected from the bacteria that destroy most organic remains. By grinding a small sample of the pot and extracting these lipids, researchers can identify broad categories of food. Animal fats can be distinguished from plant oils, and, using the ratios of carbon isotopes, the fat of cattle or sheep can be separated from that of pigs and even from milk.\n\nThe technique has limits. It identifies what was absorbed, not what was served, so a vessel used only once for a lean meal may record almost nothing. And because each pot accumulates residues over its whole working life, the result is an average of many meals rather than a snapshot of one. Still, residue analysis has overturned some long-held assumptions, showing, for example, that dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.",
+    "passageGroupId": "pg-e3857ce54ac0519245bb4bc64738709d",
+    "prompt": "[Academic — Archaeology] The word \"porous\" in the passage is closest in meaning to",
+    "choices": [
+     "easily broken when heated",
+     "able to absorb liquid",
+     "decorated",
+     "heavy and thick"
+    ],
+    "correct_answer": "able to absorb liquid",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The next sentence explains it: fats \"seep into the walls of the vessel\".",
+    "distractor_rationales": [
+     {
+      "choice": "decorated",
+      "reason": "Decoration is not discussed."
+     },
+     {
+      "choice": "easily broken when heated",
+      "reason": "Fragility is not the point; absorption is."
+     },
+     {
+      "choice": "heavy and thick",
+      "reason": "Weight and thickness are not mentioned."
+     }
+    ]
+   },
+   "content_hash": "1da67912921c8874358640ce9cd3e807",
+   "word_count": 232,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P01",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-e3857ce54ac0519245bb4bc64738709d",
+   "item": {
+    "id": "PD1-P01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "For most of the history of archaeology, a broken cooking pot told researchers about the people who made it but very little about what they ate. The shape of a vessel suggested its use, yet a jar shaped for storing grain might just as easily have held oil or water. Over the past few decades, however, chemists have found a way to read the meals themselves.\n\nUnglazed pottery is porous. When food is cooked in it, fats seep into the walls of the vessel, where they can survive for thousands of years, protected from the bacteria that destroy most organic remains. By grinding a small sample of the pot and extracting these lipids, researchers can identify broad categories of food. Animal fats can be distinguished from plant oils, and, using the ratios of carbon isotopes, the fat of cattle or sheep can be separated from that of pigs and even from milk.\n\nThe technique has limits. It identifies what was absorbed, not what was served, so a vessel used only once for a lean meal may record almost nothing. And because each pot accumulates residues over its whole working life, the result is an average of many meals rather than a snapshot of one. Still, residue analysis has overturned some long-held assumptions, showing, for example, that dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.",
+    "passageGroupId": "pg-e3857ce54ac0519245bb4bc64738709d",
+    "prompt": "[Academic — Archaeology] According to paragraph 1, why was the shape of a vessel an unreliable guide to its use?",
+    "choices": [
+     "A vessel of one shape could have held several different substances.",
+     "Archaeologists disagreed about how to classify vessel shapes.",
+     "Most vessels were found broken into small pieces.",
+     "Vessel shapes changed too quickly from one period to the next to be dated accurately."
+    ],
+    "correct_answer": "A vessel of one shape could have held several different substances.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"A jar shaped for storing grain might just as easily have held oil or water.\"",
+    "distractor_rationales": [
+     {
+      "choice": "Most vessels were found broken into small pieces.",
+      "reason": "Breakage is mentioned but is not why shape misleads."
+     },
+     {
+      "choice": "Archaeologists disagreed about how to classify vessel shapes.",
+      "reason": "No disagreement among archaeologists is described."
+     },
+     {
+      "choice": "Vessel shapes changed too quickly from one period to the next to be dated accurately.",
+      "reason": "Dating by shape is not discussed."
+     }
+    ]
+   },
+   "content_hash": "a6732efd863bb5005dccd4dc0b07bca3",
+   "word_count": 232,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P01",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-e3857ce54ac0519245bb4bc64738709d",
+   "item": {
+    "id": "PD1-P01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "For most of the history of archaeology, a broken cooking pot told researchers about the people who made it but very little about what they ate. The shape of a vessel suggested its use, yet a jar shaped for storing grain might just as easily have held oil or water. Over the past few decades, however, chemists have found a way to read the meals themselves.\n\nUnglazed pottery is porous. When food is cooked in it, fats seep into the walls of the vessel, where they can survive for thousands of years, protected from the bacteria that destroy most organic remains. By grinding a small sample of the pot and extracting these lipids, researchers can identify broad categories of food. Animal fats can be distinguished from plant oils, and, using the ratios of carbon isotopes, the fat of cattle or sheep can be separated from that of pigs and even from milk.\n\nThe technique has limits. It identifies what was absorbed, not what was served, so a vessel used only once for a lean meal may record almost nothing. And because each pot accumulates residues over its whole working life, the result is an average of many meals rather than a snapshot of one. Still, residue analysis has overturned some long-held assumptions, showing, for example, that dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.",
+    "passageGroupId": "pg-e3857ce54ac0519245bb4bc64738709d",
+    "prompt": "[Academic — Archaeology] Why does the author mention that a pot accumulates residues \"over its whole working life\"?",
+    "choices": [
+     "To show that older pots contain more fat than newer ones",
+     "To argue that residue analysis is more reliable than the study of bones",
+     "To suggest that pots were rarely used for more than one kind of food",
+     "To explain why a result reflects many meals rather than a single one"
+    ],
+    "correct_answer": "To explain why a result reflects many meals rather than a single one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "The same sentence concludes that \"the result is an average of many meals rather than a snapshot of one.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To show that older pots contain more fat than newer ones",
+      "reason": "The amount of fat by age is not compared."
+     },
+     {
+      "choice": "To argue that residue analysis is more reliable than the study of bones",
+      "reason": "The comparison with bones concerns dairy dates, not reliability in general."
+     },
+     {
+      "choice": "To suggest that pots were rarely used for more than one kind of food",
+      "reason": "The passage implies the opposite: one pot may record many meals."
+     }
+    ]
+   },
+   "content_hash": "229988df9dc63d84333562c266c774bb",
+   "word_count": 232,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P01",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-e3857ce54ac0519245bb4bc64738709d",
+   "item": {
+    "id": "PD1-P01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "For most of the history of archaeology, a broken cooking pot told researchers about the people who made it but very little about what they ate. The shape of a vessel suggested its use, yet a jar shaped for storing grain might just as easily have held oil or water. Over the past few decades, however, chemists have found a way to read the meals themselves.\n\nUnglazed pottery is porous. When food is cooked in it, fats seep into the walls of the vessel, where they can survive for thousands of years, protected from the bacteria that destroy most organic remains. By grinding a small sample of the pot and extracting these lipids, researchers can identify broad categories of food. Animal fats can be distinguished from plant oils, and, using the ratios of carbon isotopes, the fat of cattle or sheep can be separated from that of pigs and even from milk.\n\nThe technique has limits. It identifies what was absorbed, not what was served, so a vessel used only once for a lean meal may record almost nothing. And because each pot accumulates residues over its whole working life, the result is an average of many meals rather than a snapshot of one. Still, residue analysis has overturned some long-held assumptions, showing, for example, that dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.",
+    "passageGroupId": "pg-e3857ce54ac0519245bb4bc64738709d",
+    "prompt": "[Academic — Archaeology] It can be inferred from the passage that a pot showing almost no lipid residue",
+    "choices": [
+     "might still have been used to cook food",
+     "was probably used to store grain rather than oil",
+     "must have been glazed on the inside",
+     "was most likely never used for cooking"
+    ],
+    "correct_answer": "might still have been used to cook food",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "A vessel \"used only once for a lean meal may record almost nothing,\" so absence of residue does not prove the pot was unused.",
+    "distractor_rationales": [
+     {
+      "choice": "was most likely never used for cooking",
+      "reason": "The passage says a used pot may still record almost nothing."
+     },
+     {
+      "choice": "must have been glazed on the inside",
+      "reason": "Glazing is mentioned only to define which pots are porous; it is not inferred from low residue."
+     },
+     {
+      "choice": "was probably used to store grain rather than oil",
+      "reason": "Grain storage is mentioned only in paragraph 1, about shape."
+     }
+    ]
+   },
+   "content_hash": "3856031c19749a8849e7f87903db2c77",
+   "word_count": 232,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P01",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-e3857ce54ac0519245bb4bc64738709d",
+   "item": {
+    "id": "PD1-P01-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "For most of the history of archaeology, a broken cooking pot told researchers about the people who made it but very little about what they ate. The shape of a vessel suggested its use, yet a jar shaped for storing grain might just as easily have held oil or water. Over the past few decades, however, chemists have found a way to read the meals themselves.\n\nUnglazed pottery is porous. When food is cooked in it, fats seep into the walls of the vessel, where they can survive for thousands of years, protected from the bacteria that destroy most organic remains. By grinding a small sample of the pot and extracting these lipids, researchers can identify broad categories of food. Animal fats can be distinguished from plant oils, and, using the ratios of carbon isotopes, the fat of cattle or sheep can be separated from that of pigs and even from milk.\n\nThe technique has limits. It identifies what was absorbed, not what was served, so a vessel used only once for a lean meal may record almost nothing. And because each pot accumulates residues over its whole working life, the result is an average of many meals rather than a snapshot of one. Still, residue analysis has overturned some long-held assumptions, showing, for example, that dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.",
+    "passageGroupId": "pg-e3857ce54ac0519245bb4bc64738709d",
+    "prompt": "[Academic — Archaeology] According to the passage, residue analysis has shown that in parts of Europe",
+    "choices": [
+     "dairy products were processed earlier than once believed",
+     "plant oils were used more often than animal fats",
+     "cattle were raised earlier than pigs",
+     "cooking pots were glazed earlier than bones suggested"
+    ],
+    "correct_answer": "dairy products were processed earlier than once believed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"dairy products were being processed in parts of Europe centuries earlier than bones alone had suggested.\"",
+    "distractor_rationales": [
+     {
+      "choice": "cattle were raised earlier than pigs",
+      "reason": "No order of domestication is given."
+     },
+     {
+      "choice": "plant oils were used more often than animal fats",
+      "reason": "No comparison of oil and fat frequency is given."
+     },
+     {
+      "choice": "cooking pots were glazed earlier than bones suggested",
+      "reason": "Glazing dates are not discussed."
+     }
+    ]
+   },
+   "content_hash": "28e6bfa46d0ef1b9fceedffa35bef50b",
+   "word_count": 232,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P01",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+   "item": {
+    "id": "PD1-P02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most planets outside our solar system have never been seen directly. They are far too dim, and too close to the glare of their stars, to be photographed with current telescopes. Instead, astronomers detect many of them by watching the star itself.\n\nIf a planet's orbit happens to be aligned so that the planet passes between its star and Earth, it blocks a small fraction of the star's light during each crossing. This event, called a transit, produces a slight, regular dip in the star's brightness. The depth of the dip depends on the size of the planet relative to the star: a planet with a tenth of the star's diameter blocks about one percent of its light. The time between dips gives the length of the planet's year.\n\nTransits reveal only a minority of planets, because most orbits are tilted so that the planet never crosses in front of its star from our point of view. The method also favors large planets close to their stars, which produce deep, frequent dips that are easy to confirm. A small planet in a wide orbit may transit only once every few years, and a single faint dip could have other causes, such as a dark spot on the star's surface.\n\nFor this reason, a transit is usually treated as a candidate rather than a discovery until it has been observed repeatedly and checked by another method, such as measuring the slight wobble the planet's gravity produces in the star's motion.",
+    "passageGroupId": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+    "prompt": "[Academic — Astronomy] According to paragraph 1, why have most planets outside our solar system not been photographed?",
+    "choices": [
+     "They are hidden behind clouds of dust.",
+     "Their orbits are tilted away from Earth.",
+     "They move too quickly across the sky.",
+     "They are faint and lie very close to bright stars."
+    ],
+    "correct_answer": "They are faint and lie very close to bright stars.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"They are far too dim, and too close to the glare of their stars, to be photographed.\"",
+    "distractor_rationales": [
+     {
+      "choice": "They move too quickly across the sky.",
+      "reason": "Speed across the sky is not mentioned."
+     },
+     {
+      "choice": "Their orbits are tilted away from Earth.",
+      "reason": "Tilted orbits explain missed transits, not missing photographs."
+     },
+     {
+      "choice": "They are hidden behind clouds of dust.",
+      "reason": "Dust is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "b8afae594421cb7d61f7527b54f0bfa0",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P02",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+   "item": {
+    "id": "PD1-P02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most planets outside our solar system have never been seen directly. They are far too dim, and too close to the glare of their stars, to be photographed with current telescopes. Instead, astronomers detect many of them by watching the star itself.\n\nIf a planet's orbit happens to be aligned so that the planet passes between its star and Earth, it blocks a small fraction of the star's light during each crossing. This event, called a transit, produces a slight, regular dip in the star's brightness. The depth of the dip depends on the size of the planet relative to the star: a planet with a tenth of the star's diameter blocks about one percent of its light. The time between dips gives the length of the planet's year.\n\nTransits reveal only a minority of planets, because most orbits are tilted so that the planet never crosses in front of its star from our point of view. The method also favors large planets close to their stars, which produce deep, frequent dips that are easy to confirm. A small planet in a wide orbit may transit only once every few years, and a single faint dip could have other causes, such as a dark spot on the star's surface.\n\nFor this reason, a transit is usually treated as a candidate rather than a discovery until it has been observed repeatedly and checked by another method, such as measuring the slight wobble the planet's gravity produces in the star's motion.",
+    "passageGroupId": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+    "prompt": "[Academic — Astronomy] According to the passage, what determines how much a star dims during a transit?",
+    "choices": [
+     "the planet's size compared with the star's",
+     "how long the planet takes to orbit its star",
+     "the speed at which the planet crosses the star",
+     "the distance between the star and planet Earth"
+    ],
+    "correct_answer": "the planet's size compared with the star's",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"The depth of the dip depends on the size of the planet relative to the star.\"",
+    "distractor_rationales": [
+     {
+      "choice": "how long the planet takes to orbit its star",
+      "reason": "The orbital period is given by the time between dips, not their depth."
+     },
+     {
+      "choice": "the distance between the star and planet Earth",
+      "reason": "Distance from Earth is not discussed."
+     },
+     {
+      "choice": "the speed at which the planet crosses the star",
+      "reason": "Crossing speed is not given as a factor."
+     }
+    ]
+   },
+   "content_hash": "f7b3d5a1f47e7cd7de0ee44ad55be9b3",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P02",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+   "item": {
+    "id": "PD1-P02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most planets outside our solar system have never been seen directly. They are far too dim, and too close to the glare of their stars, to be photographed with current telescopes. Instead, astronomers detect many of them by watching the star itself.\n\nIf a planet's orbit happens to be aligned so that the planet passes between its star and Earth, it blocks a small fraction of the star's light during each crossing. This event, called a transit, produces a slight, regular dip in the star's brightness. The depth of the dip depends on the size of the planet relative to the star: a planet with a tenth of the star's diameter blocks about one percent of its light. The time between dips gives the length of the planet's year.\n\nTransits reveal only a minority of planets, because most orbits are tilted so that the planet never crosses in front of its star from our point of view. The method also favors large planets close to their stars, which produce deep, frequent dips that are easy to confirm. A small planet in a wide orbit may transit only once every few years, and a single faint dip could have other causes, such as a dark spot on the star's surface.\n\nFor this reason, a transit is usually treated as a candidate rather than a discovery until it has been observed repeatedly and checked by another method, such as measuring the slight wobble the planet's gravity produces in the star's motion.",
+    "passageGroupId": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+    "prompt": "[Academic — Astronomy] Which of the following can be inferred about a planet whose orbit is tilted relative to our line of sight?",
+    "choices": [
+     "It orbits farther from its star than aligned planets.",
+     "It will produce a deeper dip than an aligned planet of the same size.",
+     "It cannot be detected by the transit method.",
+     "It must be smaller than planets found by transits."
+    ],
+    "correct_answer": "It cannot be detected by the transit method.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Tilted orbits mean \"the planet never crosses in front of its star from our point of view,\" so no transit occurs.",
+    "distractor_rationales": [
+     {
+      "choice": "It will produce a deeper dip than an aligned planet of the same size.",
+      "reason": "A tilted planet produces no dip at all."
+     },
+     {
+      "choice": "It must be smaller than planets found by transits.",
+      "reason": "Size is unrelated to tilt in the passage."
+     },
+     {
+      "choice": "It orbits farther from its star than aligned planets.",
+      "reason": "Orbital distance is unrelated to tilt in the passage."
+     }
+    ]
+   },
+   "content_hash": "2b06aef88892341f68e123a7e30cc559",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P02",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+   "item": {
+    "id": "PD1-P02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most planets outside our solar system have never been seen directly. They are far too dim, and too close to the glare of their stars, to be photographed with current telescopes. Instead, astronomers detect many of them by watching the star itself.\n\nIf a planet's orbit happens to be aligned so that the planet passes between its star and Earth, it blocks a small fraction of the star's light during each crossing. This event, called a transit, produces a slight, regular dip in the star's brightness. The depth of the dip depends on the size of the planet relative to the star: a planet with a tenth of the star's diameter blocks about one percent of its light. The time between dips gives the length of the planet's year.\n\nTransits reveal only a minority of planets, because most orbits are tilted so that the planet never crosses in front of its star from our point of view. The method also favors large planets close to their stars, which produce deep, frequent dips that are easy to confirm. A small planet in a wide orbit may transit only once every few years, and a single faint dip could have other causes, such as a dark spot on the star's surface.\n\nFor this reason, a transit is usually treated as a candidate rather than a discovery until it has been observed repeatedly and checked by another method, such as measuring the slight wobble the planet's gravity produces in the star's motion.",
+    "passageGroupId": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+    "prompt": "[Academic — Astronomy] Why does the author mention \"a dark spot on the star's surface\"?",
+    "choices": [
+     "To describe a feature that makes large planets easier to find",
+     "To give a possible cause of a dip that is not a planet",
+     "To show that some stars are too irregular to have planets",
+     "To explain how astronomers measure the actual size of a star"
+    ],
+    "correct_answer": "To give a possible cause of a dip that is not a planet",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"a single faint dip could have other causes, such as a dark spot on the star's surface.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To describe a feature that makes large planets easier to find",
+      "reason": "Starspots make detection harder, not easier."
+     },
+     {
+      "choice": "To explain how astronomers measure the actual size of a star",
+      "reason": "Measuring star size is not discussed."
+     },
+     {
+      "choice": "To show that some stars are too irregular to have planets",
+      "reason": "No claim is made that irregular stars lack planets."
+     }
+    ]
+   },
+   "content_hash": "3ab7bce4a302b4741962e6ed74141fae",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P02",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+   "item": {
+    "id": "PD1-P02-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most planets outside our solar system have never been seen directly. They are far too dim, and too close to the glare of their stars, to be photographed with current telescopes. Instead, astronomers detect many of them by watching the star itself.\n\nIf a planet's orbit happens to be aligned so that the planet passes between its star and Earth, it blocks a small fraction of the star's light during each crossing. This event, called a transit, produces a slight, regular dip in the star's brightness. The depth of the dip depends on the size of the planet relative to the star: a planet with a tenth of the star's diameter blocks about one percent of its light. The time between dips gives the length of the planet's year.\n\nTransits reveal only a minority of planets, because most orbits are tilted so that the planet never crosses in front of its star from our point of view. The method also favors large planets close to their stars, which produce deep, frequent dips that are easy to confirm. A small planet in a wide orbit may transit only once every few years, and a single faint dip could have other causes, such as a dark spot on the star's surface.\n\nFor this reason, a transit is usually treated as a candidate rather than a discovery until it has been observed repeatedly and checked by another method, such as measuring the slight wobble the planet's gravity produces in the star's motion.",
+    "passageGroupId": "pg-24a2498e1b78d97860d1bf1f53d0765c",
+    "prompt": "[Academic — Astronomy] According to the passage, all of the following are reasons the transit method favors certain planets EXCEPT:",
+    "choices": [
+     "Large planets produce dips that are deeper.",
+     "Planets close to their stars transit more often.",
+     "Bright stars make planets easier to photograph.",
+     "Frequent, deep dips are easier to confirm."
+    ],
+    "correct_answer": "Bright stars make planets easier to photograph.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Photographing planets is the method the passage says does NOT work; it is not a reason transits favor certain planets.",
+    "distractor_rationales": [
+     {
+      "choice": "Large planets produce dips that are deeper.",
+      "reason": "Stated: large planets \"produce deep ... dips\"."
+     },
+     {
+      "choice": "Planets close to their stars transit more often.",
+      "reason": "Stated: close planets produce \"frequent dips\"."
+     },
+     {
+      "choice": "Frequent, deep dips are easier to confirm.",
+      "reason": "Stated: deep, frequent dips \"are easy to confirm\"."
+     }
+    ]
+   },
+   "content_hash": "e83c1fc9b5a3c438fb13ca663303c72d",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P02",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+   "item": {
+    "id": "PD1-P03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Students preparing for an examination commonly study a topic in one long session, reading the same material again and again until it feels familiar. Decades of research suggest that this is one of the least efficient ways to learn. Material studied in several shorter sessions, separated by days, is remembered considerably longer than the same material studied for the same total time in a single block. This finding, known as the spacing effect, is among the most consistently replicated results in the psychology of memory.\n\nWhy spacing helps is still debated. One explanation holds that when a learner returns to material after a delay, some of it has been partly forgotten, and the effort of recalling it strengthens the memory more than easy repetition does. Another suggests that studying in different sessions links the material to a wider variety of contexts, giving the learner more cues for retrieving it later.\n\nDespite the strength of the evidence, spacing is rarely the method students choose. Part of the reason is that massed study feels more effective. During a long session, material quickly becomes familiar, and that sense of fluency is easily mistaken for learning. Spaced study, by contrast, involves repeated encounters with material that seems half-forgotten, which can feel like failure. Students who judge their progress by how easy studying feels are therefore likely to prefer the very method that serves them worse.",
+    "passageGroupId": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+    "prompt": "[Academic — Psychology] According to paragraph 1, the spacing effect refers to the finding that",
+    "choices": [
+     "material studied repeatedly in one session is quickly forgotten",
+     "students remember more when they study with others",
+     "material studied in separated sessions is remembered longer",
+     "long study sessions are more tiring than short ones"
+    ],
+    "correct_answer": "material studied in separated sessions is remembered longer",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Material studied \"in several shorter sessions, separated by days, is remembered considerably longer.\"",
+    "distractor_rationales": [
+     {
+      "choice": "long study sessions are more tiring than short ones",
+      "reason": "Fatigue is not mentioned."
+     },
+     {
+      "choice": "material studied repeatedly in one session is quickly forgotten",
+      "reason": "This states only part of the comparison, not the effect itself."
+     },
+     {
+      "choice": "students remember more when they study with others",
+      "reason": "Studying with others is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "59cb1b1b00d8c1c8bfcee96c3d955d09",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P03",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+   "item": {
+    "id": "PD1-P03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Students preparing for an examination commonly study a topic in one long session, reading the same material again and again until it feels familiar. Decades of research suggest that this is one of the least efficient ways to learn. Material studied in several shorter sessions, separated by days, is remembered considerably longer than the same material studied for the same total time in a single block. This finding, known as the spacing effect, is among the most consistently replicated results in the psychology of memory.\n\nWhy spacing helps is still debated. One explanation holds that when a learner returns to material after a delay, some of it has been partly forgotten, and the effort of recalling it strengthens the memory more than easy repetition does. Another suggests that studying in different sessions links the material to a wider variety of contexts, giving the learner more cues for retrieving it later.\n\nDespite the strength of the evidence, spacing is rarely the method students choose. Part of the reason is that massed study feels more effective. During a long session, material quickly becomes familiar, and that sense of fluency is easily mistaken for learning. Spaced study, by contrast, involves repeated encounters with material that seems half-forgotten, which can feel like failure. Students who judge their progress by how easy studying feels are therefore likely to prefer the very method that serves them worse.",
+    "passageGroupId": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+    "prompt": "[Academic — Psychology] The word \"replicated\" in the passage is closest in meaning to",
+    "choices": [
+     "disputed",
+     "carefully measured",
+     "repeated with the same result",
+     "widely reported in the popular press"
+    ],
+    "correct_answer": "repeated with the same result",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "A \"consistently replicated\" result is one that has been reproduced again and again.",
+    "distractor_rationales": [
+     {
+      "choice": "disputed",
+      "reason": "The passage says the explanation is debated, not the finding."
+     },
+     {
+      "choice": "widely reported in the popular press",
+      "reason": "Reporting is not the same as reproducing a result."
+     },
+     {
+      "choice": "carefully measured",
+      "reason": "Measurement is not the meaning of \"replicated\"."
+     }
+    ]
+   },
+   "content_hash": "524174abb2a823d655db4c3a28fb64ee",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P03",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+   "item": {
+    "id": "PD1-P03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Students preparing for an examination commonly study a topic in one long session, reading the same material again and again until it feels familiar. Decades of research suggest that this is one of the least efficient ways to learn. Material studied in several shorter sessions, separated by days, is remembered considerably longer than the same material studied for the same total time in a single block. This finding, known as the spacing effect, is among the most consistently replicated results in the psychology of memory.\n\nWhy spacing helps is still debated. One explanation holds that when a learner returns to material after a delay, some of it has been partly forgotten, and the effort of recalling it strengthens the memory more than easy repetition does. Another suggests that studying in different sessions links the material to a wider variety of contexts, giving the learner more cues for retrieving it later.\n\nDespite the strength of the evidence, spacing is rarely the method students choose. Part of the reason is that massed study feels more effective. During a long session, material quickly becomes familiar, and that sense of fluency is easily mistaken for learning. Spaced study, by contrast, involves repeated encounters with material that seems half-forgotten, which can feel like failure. Students who judge their progress by how easy studying feels are therefore likely to prefer the very method that serves them worse.",
+    "passageGroupId": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+    "prompt": "[Academic — Psychology] What do the two explanations in paragraph 2 have in common?",
+    "choices": [
+     "Both depend on studying all of the material in a single, familiar setting.",
+     "Both describe how spaced study makes material easier to retrieve later.",
+     "Both were proposed after the spacing effect was disputed.",
+     "Both claim that massed study causes material to be forgotten."
+    ],
+    "correct_answer": "Both describe how spaced study makes material easier to retrieve later.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "One credits the effort of recall with strengthening memory; the other credits varied contexts with more retrieval cues. Both describe later retrieval being helped.",
+    "distractor_rationales": [
+     {
+      "choice": "Both claim that massed study causes material to be forgotten.",
+      "reason": "Neither explanation is about massed study causing forgetting."
+     },
+     {
+      "choice": "Both were proposed after the spacing effect was disputed.",
+      "reason": "The passage says the explanation is debated, not the effect."
+     },
+     {
+      "choice": "Both depend on studying all of the material in a single, familiar setting.",
+      "reason": "The second explanation depends on different settings, not one."
+     }
+    ]
+   },
+   "content_hash": "e981748465fe3f549a1e64b26b844c59",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P03",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+   "item": {
+    "id": "PD1-P03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Students preparing for an examination commonly study a topic in one long session, reading the same material again and again until it feels familiar. Decades of research suggest that this is one of the least efficient ways to learn. Material studied in several shorter sessions, separated by days, is remembered considerably longer than the same material studied for the same total time in a single block. This finding, known as the spacing effect, is among the most consistently replicated results in the psychology of memory.\n\nWhy spacing helps is still debated. One explanation holds that when a learner returns to material after a delay, some of it has been partly forgotten, and the effort of recalling it strengthens the memory more than easy repetition does. Another suggests that studying in different sessions links the material to a wider variety of contexts, giving the learner more cues for retrieving it later.\n\nDespite the strength of the evidence, spacing is rarely the method students choose. Part of the reason is that massed study feels more effective. During a long session, material quickly becomes familiar, and that sense of fluency is easily mistaken for learning. Spaced study, by contrast, involves repeated encounters with material that seems half-forgotten, which can feel like failure. Students who judge their progress by how easy studying feels are therefore likely to prefer the very method that serves them worse.",
+    "passageGroupId": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+    "prompt": "[Academic — Psychology] According to paragraph 3, why do students tend to prefer massed study?",
+    "choices": [
+     "It is more effective for difficult material.",
+     "Teachers usually recommend it before examinations.",
+     "It requires less total time than spaced study.",
+     "It produces a sense of familiarity that feels like learning."
+    ],
+    "correct_answer": "It produces a sense of familiarity that feels like learning.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"that sense of fluency is easily mistaken for learning.\"",
+    "distractor_rationales": [
+     {
+      "choice": "It requires less total time than spaced study.",
+      "reason": "The comparison holds the total time equal."
+     },
+     {
+      "choice": "Teachers usually recommend it before examinations.",
+      "reason": "Teachers are not mentioned."
+     },
+     {
+      "choice": "It is more effective for difficult material.",
+      "reason": "The passage says massed study serves students worse."
+     }
+    ]
+   },
+   "content_hash": "3fa28b4d60a78b7d25b33d7e2dbcc10b",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P03",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+   "item": {
+    "id": "PD1-P03-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Students preparing for an examination commonly study a topic in one long session, reading the same material again and again until it feels familiar. Decades of research suggest that this is one of the least efficient ways to learn. Material studied in several shorter sessions, separated by days, is remembered considerably longer than the same material studied for the same total time in a single block. This finding, known as the spacing effect, is among the most consistently replicated results in the psychology of memory.\n\nWhy spacing helps is still debated. One explanation holds that when a learner returns to material after a delay, some of it has been partly forgotten, and the effort of recalling it strengthens the memory more than easy repetition does. Another suggests that studying in different sessions links the material to a wider variety of contexts, giving the learner more cues for retrieving it later.\n\nDespite the strength of the evidence, spacing is rarely the method students choose. Part of the reason is that massed study feels more effective. During a long session, material quickly becomes familiar, and that sense of fluency is easily mistaken for learning. Spaced study, by contrast, involves repeated encounters with material that seems half-forgotten, which can feel like failure. Students who judge their progress by how easy studying feels are therefore likely to prefer the very method that serves them worse.",
+    "passageGroupId": "pg-0565320c52bd62ccbb20e7a4a9b83792",
+    "prompt": "[Academic — Psychology] Which of the following best expresses the author's point in the last sentence of the passage?",
+    "choices": [
+     "Spaced study is effective only for those students who already find studying easy.",
+     "Students should avoid judging their progress at all.",
+     "Students who find studying easy usually learn the most.",
+     "Using ease as a guide leads students toward the less effective method."
+    ],
+    "correct_answer": "Using ease as a guide leads students toward the less effective method.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Students who judge progress by ease \"are therefore likely to prefer the very method that serves them worse.\"",
+    "distractor_rationales": [
+     {
+      "choice": "Students should avoid judging their progress at all.",
+      "reason": "The author criticises one way of judging, not all judging."
+     },
+     {
+      "choice": "Spaced study is effective only for those students who already find studying easy.",
+      "reason": "Spaced study is said to feel hard, not easy."
+     },
+     {
+      "choice": "Students who find studying easy usually learn the most.",
+      "reason": "The passage argues ease is a misleading signal."
+     }
+    ]
+   },
+   "content_hash": "d323432e559e606b3fabf437792a7b55",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P03",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7162259e79b50873c0624a7c5cf20742",
+   "item": {
+    "id": "PD1-P04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Before the printing press reached Europe in the fifteenth century, every book was copied by hand. A single copy of a long work could take a professional scribe many months, and books were correspondingly expensive, owned mainly by monasteries, universities, and the very wealthy.\n\nPrinting with movable type did not eliminate this cost all at once. Setting a page of type by hand was itself slow work, and a printer had to buy paper, ink, and metal type before selling a single copy. The savings came from what happened after the type was set: once a page was ready, hundreds of identical copies could be produced at little additional cost. Printing was therefore economical only for works that many people wanted to buy. A printer who misjudged demand could be ruined by unsold stock.\n\nThis arithmetic shaped what was printed. Early printers favored texts with large and reliable markets, such as religious works, school grammars, and legal handbooks, rather than the new or specialized writing that later generations would associate with the press. Within a few decades, however, the falling price of books had enlarged the reading public, and a larger public made it possible to risk printing a wider range of works. The effect of the press on what people read was thus gradual, and it depended as much on the growth of a market as on the machine itself.",
+    "passageGroupId": "pg-7162259e79b50873c0624a7c5cf20742",
+    "prompt": "[Academic — Economic History] According to paragraph 1, who mainly owned books before printing?",
+    "choices": [
+     "monasteries, universities, and the very wealthy",
+     "the governments and councils of the large trading cities",
+     "professional scribes",
+     "merchants and traders"
+    ],
+    "correct_answer": "monasteries, universities, and the very wealthy",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Books were \"owned mainly by monasteries, universities, and the very wealthy.\"",
+    "distractor_rationales": [
+     {
+      "choice": "merchants and traders",
+      "reason": "Merchants are not mentioned."
+     },
+     {
+      "choice": "professional scribes",
+      "reason": "Scribes copied books; ownership is not attributed to them."
+     },
+     {
+      "choice": "the governments and councils of the large trading cities",
+      "reason": "City governments are not mentioned."
+     }
+    ]
+   },
+   "content_hash": "91090aa851112d654ab2d27b053a5cdf",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P04",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7162259e79b50873c0624a7c5cf20742",
+   "item": {
+    "id": "PD1-P04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Before the printing press reached Europe in the fifteenth century, every book was copied by hand. A single copy of a long work could take a professional scribe many months, and books were correspondingly expensive, owned mainly by monasteries, universities, and the very wealthy.\n\nPrinting with movable type did not eliminate this cost all at once. Setting a page of type by hand was itself slow work, and a printer had to buy paper, ink, and metal type before selling a single copy. The savings came from what happened after the type was set: once a page was ready, hundreds of identical copies could be produced at little additional cost. Printing was therefore economical only for works that many people wanted to buy. A printer who misjudged demand could be ruined by unsold stock.\n\nThis arithmetic shaped what was printed. Early printers favored texts with large and reliable markets, such as religious works, school grammars, and legal handbooks, rather than the new or specialized writing that later generations would associate with the press. Within a few decades, however, the falling price of books had enlarged the reading public, and a larger public made it possible to risk printing a wider range of works. The effect of the press on what people read was thus gradual, and it depended as much on the growth of a market as on the machine itself.",
+    "passageGroupId": "pg-7162259e79b50873c0624a7c5cf20742",
+    "prompt": "[Academic — Economic History] According to paragraph 2, where did printing save money compared with hand copying?",
+    "choices": [
+     "in the cost of paper and ink",
+     "in the time needed to set a page of type",
+     "in producing additional copies after a page was set",
+     "in the price of the metal type"
+    ],
+    "correct_answer": "in producing additional copies after a page was set",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"once a page was ready, hundreds of identical copies could be produced at little additional cost.\"",
+    "distractor_rationales": [
+     {
+      "choice": "in the cost of paper and ink",
+      "reason": "Paper and ink were costs the printer had to pay first."
+     },
+     {
+      "choice": "in the time needed to set a page of type",
+      "reason": "Setting type is described as \"itself slow work\"."
+     },
+     {
+      "choice": "in the price of the metal type",
+      "reason": "Type was an upfront cost, not a saving."
+     }
+    ]
+   },
+   "content_hash": "6d3aef003986f781c776aa1e6b8f5718",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P04",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7162259e79b50873c0624a7c5cf20742",
+   "item": {
+    "id": "PD1-P04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Before the printing press reached Europe in the fifteenth century, every book was copied by hand. A single copy of a long work could take a professional scribe many months, and books were correspondingly expensive, owned mainly by monasteries, universities, and the very wealthy.\n\nPrinting with movable type did not eliminate this cost all at once. Setting a page of type by hand was itself slow work, and a printer had to buy paper, ink, and metal type before selling a single copy. The savings came from what happened after the type was set: once a page was ready, hundreds of identical copies could be produced at little additional cost. Printing was therefore economical only for works that many people wanted to buy. A printer who misjudged demand could be ruined by unsold stock.\n\nThis arithmetic shaped what was printed. Early printers favored texts with large and reliable markets, such as religious works, school grammars, and legal handbooks, rather than the new or specialized writing that later generations would associate with the press. Within a few decades, however, the falling price of books had enlarged the reading public, and a larger public made it possible to risk printing a wider range of works. The effect of the press on what people read was thus gradual, and it depended as much on the growth of a market as on the machine itself.",
+    "passageGroupId": "pg-7162259e79b50873c0624a7c5cf20742",
+    "prompt": "[Academic — Economic History] Why does the author mention that a printer \"could be ruined by unsold stock\"?",
+    "choices": [
+     "To illustrate the risk of printing a work without enough buyers",
+     "To explain why printing spread so slowly from large cities to small towns",
+     "To show that printers sold their books at very low prices",
+     "To argue that hand copying remained more profitable"
+    ],
+    "correct_answer": "To illustrate the risk of printing a work without enough buyers",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "It follows \"Printing was therefore economical only for works that many people wanted to buy.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To show that printers sold their books at very low prices",
+      "reason": "Prices charged by printers are not the point."
+     },
+     {
+      "choice": "To explain why printing spread so slowly from large cities to small towns",
+      "reason": "The geographic spread of printing is not discussed."
+     },
+     {
+      "choice": "To argue that hand copying remained more profitable",
+      "reason": "No claim is made that hand copying was more profitable."
+     }
+    ]
+   },
+   "content_hash": "f29646d32f9bc26645fbdd024e178d81",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P04",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7162259e79b50873c0624a7c5cf20742",
+   "item": {
+    "id": "PD1-P04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Before the printing press reached Europe in the fifteenth century, every book was copied by hand. A single copy of a long work could take a professional scribe many months, and books were correspondingly expensive, owned mainly by monasteries, universities, and the very wealthy.\n\nPrinting with movable type did not eliminate this cost all at once. Setting a page of type by hand was itself slow work, and a printer had to buy paper, ink, and metal type before selling a single copy. The savings came from what happened after the type was set: once a page was ready, hundreds of identical copies could be produced at little additional cost. Printing was therefore economical only for works that many people wanted to buy. A printer who misjudged demand could be ruined by unsold stock.\n\nThis arithmetic shaped what was printed. Early printers favored texts with large and reliable markets, such as religious works, school grammars, and legal handbooks, rather than the new or specialized writing that later generations would associate with the press. Within a few decades, however, the falling price of books had enlarged the reading public, and a larger public made it possible to risk printing a wider range of works. The effect of the press on what people read was thus gradual, and it depended as much on the growth of a market as on the machine itself.",
+    "passageGroupId": "pg-7162259e79b50873c0624a7c5cf20742",
+    "prompt": "[Academic — Economic History] It can be inferred from paragraph 3 that new or specialized writing",
+    "choices": [
+     "was printed in larger editions than religious works",
+     "was rarely printed in the first years of the press",
+     "had a larger market than school grammars",
+     "was copied by hand only in monasteries"
+    ],
+    "correct_answer": "was rarely printed in the first years of the press",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Early printers favored large-market texts \"rather than the new or specialized writing that later generations would associate with the press.\"",
+    "distractor_rationales": [
+     {
+      "choice": "was printed in larger editions than religious works",
+      "reason": "Edition sizes are not compared."
+     },
+     {
+      "choice": "was copied by hand only in monasteries",
+      "reason": "Where hand copies were made is not discussed."
+     },
+     {
+      "choice": "had a larger market than school grammars",
+      "reason": "The passage implies the reverse: grammars had reliable markets."
+     }
+    ]
+   },
+   "content_hash": "c3b8be08073c2de9456ef93494db71f1",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P04",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7162259e79b50873c0624a7c5cf20742",
+   "item": {
+    "id": "PD1-P04-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Before the printing press reached Europe in the fifteenth century, every book was copied by hand. A single copy of a long work could take a professional scribe many months, and books were correspondingly expensive, owned mainly by monasteries, universities, and the very wealthy.\n\nPrinting with movable type did not eliminate this cost all at once. Setting a page of type by hand was itself slow work, and a printer had to buy paper, ink, and metal type before selling a single copy. The savings came from what happened after the type was set: once a page was ready, hundreds of identical copies could be produced at little additional cost. Printing was therefore economical only for works that many people wanted to buy. A printer who misjudged demand could be ruined by unsold stock.\n\nThis arithmetic shaped what was printed. Early printers favored texts with large and reliable markets, such as religious works, school grammars, and legal handbooks, rather than the new or specialized writing that later generations would associate with the press. Within a few decades, however, the falling price of books had enlarged the reading public, and a larger public made it possible to risk printing a wider range of works. The effect of the press on what people read was thus gradual, and it depended as much on the growth of a market as on the machine itself.",
+    "passageGroupId": "pg-7162259e79b50873c0624a7c5cf20742",
+    "prompt": "[Academic — Economic History] Which of the following best states the main idea of the passage?",
+    "choices": [
+     "Scribes opposed the printing press because it took away their source of work.",
+     "The press changed reading gradually, as the market for books grew.",
+     "Religious works were the most popular books in Europe.",
+     "The press made books cheap as soon as it was introduced."
+    ],
+    "correct_answer": "The press changed reading gradually, as the market for books grew.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The final sentence: the effect \"was thus gradual, and it depended as much on the growth of a market as on the machine itself.\"",
+    "distractor_rationales": [
+     {
+      "choice": "The press made books cheap as soon as it was introduced.",
+      "reason": "Paragraph 2 says the cost was not eliminated \"all at once\"."
+     },
+     {
+      "choice": "Religious works were the most popular books in Europe.",
+      "reason": "Religious works are one example of a reliable market, not the main idea."
+     },
+     {
+      "choice": "Scribes opposed the printing press because it took away their source of work.",
+      "reason": "Scribes' opinions are not discussed."
+     }
+    ]
+   },
+   "content_hash": "0373b46e712941458c85e455f15f30c2",
+   "word_count": 231,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P04",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+   "item": {
+    "id": "PD1-P05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In the 1990s, researchers found that the roots of many forest trees are connected underground by threads of fungus. These fungi, which grow into and around plant roots, receive sugars from the trees and in return supply water and minerals drawn from the soil. Because a single fungus can attach to several trees at once, the forest floor is crossed by a network that links plants of different ages and even different species.\n\nExperiments using labeled carbon showed that small amounts of sugar can pass from one tree to another through these networks. From such results, a popular picture emerged: forests as cooperative communities in which large \"mother trees\" feed their shaded seedlings and send warnings of insect attack to their neighbors.\n\nMany researchers now regard this picture as running well ahead of the evidence. The amount of carbon transferred in most studies was small, and it is often unclear whether it reached the receiving tree's tissues or stayed in the fungus. Field studies have also been difficult to reproduce, and some were conducted in conditions unlike those of a mature forest. Moreover, the fungi are not neutral pipes. They are organisms with their own interests, and a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\n\nNone of this means the networks are unimportant. Rather, critics argue, describing them in terms of family care and communication may have shaped what the public believes before the research could settle the question.",
+    "passageGroupId": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+    "prompt": "[Academic — Botany] According to paragraph 1, what do the fungi receive from trees?",
+    "choices": [
+     "fresh water",
+     "minerals",
+     "sugars",
+     "shelter from insects"
+    ],
+    "correct_answer": "sugars",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The fungi \"receive sugars from the trees and in return supply water and minerals.\"",
+    "distractor_rationales": [
+     {
+      "choice": "fresh water",
+      "reason": "Water flows from fungus to tree."
+     },
+     {
+      "choice": "minerals",
+      "reason": "Minerals flow from fungus to tree."
+     },
+     {
+      "choice": "shelter from insects",
+      "reason": "Shelter from insects is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "ba298b3af4ef8b57aaa77a35a08623c8",
+   "word_count": 252,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P05",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+   "item": {
+    "id": "PD1-P05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In the 1990s, researchers found that the roots of many forest trees are connected underground by threads of fungus. These fungi, which grow into and around plant roots, receive sugars from the trees and in return supply water and minerals drawn from the soil. Because a single fungus can attach to several trees at once, the forest floor is crossed by a network that links plants of different ages and even different species.\n\nExperiments using labeled carbon showed that small amounts of sugar can pass from one tree to another through these networks. From such results, a popular picture emerged: forests as cooperative communities in which large \"mother trees\" feed their shaded seedlings and send warnings of insect attack to their neighbors.\n\nMany researchers now regard this picture as running well ahead of the evidence. The amount of carbon transferred in most studies was small, and it is often unclear whether it reached the receiving tree's tissues or stayed in the fungus. Field studies have also been difficult to reproduce, and some were conducted in conditions unlike those of a mature forest. Moreover, the fungi are not neutral pipes. They are organisms with their own interests, and a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\n\nNone of this means the networks are unimportant. Rather, critics argue, describing them in terms of family care and communication may have shaped what the public believes before the research could settle the question.",
+    "passageGroupId": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+    "prompt": "[Academic — Botany] The phrase \"running well ahead of the evidence\" in paragraph 3 is closest in meaning to",
+    "choices": [
+     "claiming more than the data can support",
+     "based on newer data than earlier studies",
+     "accepted before experiments began",
+     "rejected by most of the public"
+    ],
+    "correct_answer": "claiming more than the data can support",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The sentences that follow list why the data are weaker than the picture claims.",
+    "distractor_rationales": [
+     {
+      "choice": "based on newer data than earlier studies",
+      "reason": "The criticism is not that the data are new."
+     },
+     {
+      "choice": "accepted before experiments began",
+      "reason": "Experiments preceded the picture, according to paragraph 2."
+     },
+     {
+      "choice": "rejected by most of the public",
+      "reason": "Public opinion supports the picture, per paragraph 4."
+     }
+    ]
+   },
+   "content_hash": "ba558181aafc7264a952af18ff2d845f",
+   "word_count": 252,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P05",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+   "item": {
+    "id": "PD1-P05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In the 1990s, researchers found that the roots of many forest trees are connected underground by threads of fungus. These fungi, which grow into and around plant roots, receive sugars from the trees and in return supply water and minerals drawn from the soil. Because a single fungus can attach to several trees at once, the forest floor is crossed by a network that links plants of different ages and even different species.\n\nExperiments using labeled carbon showed that small amounts of sugar can pass from one tree to another through these networks. From such results, a popular picture emerged: forests as cooperative communities in which large \"mother trees\" feed their shaded seedlings and send warnings of insect attack to their neighbors.\n\nMany researchers now regard this picture as running well ahead of the evidence. The amount of carbon transferred in most studies was small, and it is often unclear whether it reached the receiving tree's tissues or stayed in the fungus. Field studies have also been difficult to reproduce, and some were conducted in conditions unlike those of a mature forest. Moreover, the fungi are not neutral pipes. They are organisms with their own interests, and a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\n\nNone of this means the networks are unimportant. Rather, critics argue, describing them in terms of family care and communication may have shaped what the public believes before the research could settle the question.",
+    "passageGroupId": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+    "prompt": "[Academic — Botany] According to paragraph 3, all of the following are reasons to doubt the popular picture EXCEPT:",
+    "choices": [
+     "The fungi were found to harm the trees they linked.",
+     "It is unclear whether carbon reached the receiving tree.",
+     "The carbon transferred was usually quite small in amount.",
+     "Some of the field results have been hard to reproduce."
+    ],
+    "correct_answer": "The fungi were found to harm the trees they linked.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "The passage says the fungi have their own interests, not that they harm the trees.",
+    "distractor_rationales": [
+     {
+      "choice": "The carbon transferred was usually quite small in amount.",
+      "reason": "Stated: \"The amount of carbon transferred in most studies was small.\""
+     },
+     {
+      "choice": "It is unclear whether carbon reached the receiving tree.",
+      "reason": "Stated: unclear whether it \"stayed in the fungus\"."
+     },
+     {
+      "choice": "Some of the field results have been hard to reproduce.",
+      "reason": "Stated: \"Field studies have also been difficult to reproduce.\""
+     }
+    ]
+   },
+   "content_hash": "6f0a844f4a06e4e4f55abca428aaa11b",
+   "word_count": 252,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P05",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+   "item": {
+    "id": "PD1-P05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In the 1990s, researchers found that the roots of many forest trees are connected underground by threads of fungus. These fungi, which grow into and around plant roots, receive sugars from the trees and in return supply water and minerals drawn from the soil. Because a single fungus can attach to several trees at once, the forest floor is crossed by a network that links plants of different ages and even different species.\n\nExperiments using labeled carbon showed that small amounts of sugar can pass from one tree to another through these networks. From such results, a popular picture emerged: forests as cooperative communities in which large \"mother trees\" feed their shaded seedlings and send warnings of insect attack to their neighbors.\n\nMany researchers now regard this picture as running well ahead of the evidence. The amount of carbon transferred in most studies was small, and it is often unclear whether it reached the receiving tree's tissues or stayed in the fungus. Field studies have also been difficult to reproduce, and some were conducted in conditions unlike those of a mature forest. Moreover, the fungi are not neutral pipes. They are organisms with their own interests, and a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\n\nNone of this means the networks are unimportant. Rather, critics argue, describing them in terms of family care and communication may have shaped what the public believes before the research could settle the question.",
+    "passageGroupId": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+    "prompt": "[Academic — Botany] Why does the author describe the fungi as \"not neutral pipes\"?",
+    "choices": [
+     "To explain why sugar cannot pass between trees",
+     "To suggest a transfer may serve the fungus rather than the trees",
+     "To argue that older trees control the fungal network",
+     "To show that fungi are more important than trees in a forest"
+    ],
+    "correct_answer": "To suggest a transfer may serve the fungus rather than the trees",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why sugar cannot pass between trees",
+      "reason": "The passage accepts that small amounts of sugar do pass."
+     },
+     {
+      "choice": "To show that fungi are more important than trees in a forest",
+      "reason": "No ranking of importance is given."
+     },
+     {
+      "choice": "To argue that older trees control the fungal network",
+      "reason": "Control by older trees is the popular picture being questioned."
+     }
+    ]
+   },
+   "content_hash": "ba98f1b03425096ec95f645522d74b14",
+   "word_count": 252,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P05",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+   "item": {
+    "id": "PD1-P05-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In the 1990s, researchers found that the roots of many forest trees are connected underground by threads of fungus. These fungi, which grow into and around plant roots, receive sugars from the trees and in return supply water and minerals drawn from the soil. Because a single fungus can attach to several trees at once, the forest floor is crossed by a network that links plants of different ages and even different species.\n\nExperiments using labeled carbon showed that small amounts of sugar can pass from one tree to another through these networks. From such results, a popular picture emerged: forests as cooperative communities in which large \"mother trees\" feed their shaded seedlings and send warnings of insect attack to their neighbors.\n\nMany researchers now regard this picture as running well ahead of the evidence. The amount of carbon transferred in most studies was small, and it is often unclear whether it reached the receiving tree's tissues or stayed in the fungus. Field studies have also been difficult to reproduce, and some were conducted in conditions unlike those of a mature forest. Moreover, the fungi are not neutral pipes. They are organisms with their own interests, and a transfer that benefits one tree may simply be a side effect of the fungus moving resources for its own growth.\n\nNone of this means the networks are unimportant. Rather, critics argue, describing them in terms of family care and communication may have shaped what the public believes before the research could settle the question.",
+    "passageGroupId": "pg-94c913b0c8eba4a1ac90b2a0df58de5f",
+    "prompt": "[Academic — Botany] Which of the following best describes the critics' position in paragraph 4?",
+    "choices": [
+     "The networks have now been shown to carry warnings of insect attack between trees.",
+     "The networks exist but the popular description may be misleading.",
+     "The networks do not exist in mature forests.",
+     "The public has lost interest in research on forests."
+    ],
+    "correct_answer": "The networks exist but the popular description may be misleading.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"None of this means the networks are unimportant,\" but describing them as family care \"may have shaped what the public believes before the research could settle the question.\"",
+    "distractor_rationales": [
+     {
+      "choice": "The networks do not exist in mature forests.",
+      "reason": "Critics accept that the networks exist."
+     },
+     {
+      "choice": "The networks have now been shown to carry warnings of insect attack between trees.",
+      "reason": "Warnings are part of the picture critics question."
+     },
+     {
+      "choice": "The public has lost interest in research on forests.",
+      "reason": "Public interest is not said to have declined."
+     }
+    ]
+   },
+   "content_hash": "ed5165f19357215e058123a559575a20",
+   "word_count": 252,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P05",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-99d85669e66a7a10291a283c32370831",
+   "item": {
+    "id": "PD1-P06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "When two languages come into long contact, they borrow words from each other, but they do not borrow evenly. English, for example, took thousands of words from French after the Norman Conquest of 1066, while French took comparatively few from English during the same period. The difference reflects the social position of the speakers. French was the language of the new ruling class, used in law, government, and fashionable society, and words tend to flow from the language with more prestige toward the language with less.\n\nThe borrowings also cluster by subject. Many English words for law and government, such as \"court,\" \"judge,\" and \"jury,\" come from French, while the words for everyday things and close relationships, such as \"house,\" \"bread,\" and \"mother,\" remained English. A well-known illustration is the pairs of words for animals and their meat: the farm animals, raised by English-speaking peasants, kept their English names, \"cow\" and \"pig,\" while the meat served at noble tables took French ones, \"beef\" and \"pork.\"\n\nLinguists caution, however, that such neat stories can be overstated. Some of the meat words entered English well after the Conquest, and for a time the French terms could refer to the living animal as well. The pattern is real, but it emerged gradually, over centuries, as the two languages were used side by side.",
+    "passageGroupId": "pg-99d85669e66a7a10291a283c32370831",
+    "prompt": "[Academic — Linguistics] According to paragraph 1, why did English borrow far more from French than French borrowed from English?",
+    "choices": [
+     "English speakers traveled more often to France.",
+     "English had no words for law and government.",
+     "French was the language of the more powerful group.",
+     "French had more words than English at the time."
+    ],
+    "correct_answer": "French was the language of the more powerful group.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"words tend to flow from the language with more prestige toward the language with less.\"",
+    "distractor_rationales": [
+     {
+      "choice": "French had more words than English at the time.",
+      "reason": "Vocabulary size is not discussed."
+     },
+     {
+      "choice": "English speakers traveled more often to France.",
+      "reason": "Travel is not mentioned."
+     },
+     {
+      "choice": "English had no words for law and government.",
+      "reason": "The passage implies English lost words, not that it lacked them entirely."
+     }
+    ]
+   },
+   "content_hash": "f0032b7f0657bca4ac7c7727921f4986",
+   "word_count": 220,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P06",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-99d85669e66a7a10291a283c32370831",
+   "item": {
+    "id": "PD1-P06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "When two languages come into long contact, they borrow words from each other, but they do not borrow evenly. English, for example, took thousands of words from French after the Norman Conquest of 1066, while French took comparatively few from English during the same period. The difference reflects the social position of the speakers. French was the language of the new ruling class, used in law, government, and fashionable society, and words tend to flow from the language with more prestige toward the language with less.\n\nThe borrowings also cluster by subject. Many English words for law and government, such as \"court,\" \"judge,\" and \"jury,\" come from French, while the words for everyday things and close relationships, such as \"house,\" \"bread,\" and \"mother,\" remained English. A well-known illustration is the pairs of words for animals and their meat: the farm animals, raised by English-speaking peasants, kept their English names, \"cow\" and \"pig,\" while the meat served at noble tables took French ones, \"beef\" and \"pork.\"\n\nLinguists caution, however, that such neat stories can be overstated. Some of the meat words entered English well after the Conquest, and for a time the French terms could refer to the living animal as well. The pattern is real, but it emerged gradually, over centuries, as the two languages were used side by side.",
+    "passageGroupId": "pg-99d85669e66a7a10291a283c32370831",
+    "prompt": "[Academic — Linguistics] Why does the author mention \"house,\" \"bread,\" and \"mother\"?",
+    "choices": [
+     "To show that some English words came from French",
+     "To illustrate words for everyday life that stayed English",
+     "To give examples of the words English borrowed most recently from French",
+     "To explain how French words changed in English"
+    ],
+    "correct_answer": "To illustrate words for everyday life that stayed English",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "They are \"the words for everyday things and close relationships\" that \"remained English\".",
+    "distractor_rationales": [
+     {
+      "choice": "To show that some English words came from French",
+      "reason": "These are the words that did NOT come from French."
+     },
+     {
+      "choice": "To give examples of the words English borrowed most recently from French",
+      "reason": "Dates of borrowing are not given for them."
+     },
+     {
+      "choice": "To explain how French words changed in English",
+      "reason": "They are English words, so no change from French is shown."
+     }
+    ]
+   },
+   "content_hash": "e0d8276722867c10e55da930c766b11a",
+   "word_count": 220,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P06",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-99d85669e66a7a10291a283c32370831",
+   "item": {
+    "id": "PD1-P06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "When two languages come into long contact, they borrow words from each other, but they do not borrow evenly. English, for example, took thousands of words from French after the Norman Conquest of 1066, while French took comparatively few from English during the same period. The difference reflects the social position of the speakers. French was the language of the new ruling class, used in law, government, and fashionable society, and words tend to flow from the language with more prestige toward the language with less.\n\nThe borrowings also cluster by subject. Many English words for law and government, such as \"court,\" \"judge,\" and \"jury,\" come from French, while the words for everyday things and close relationships, such as \"house,\" \"bread,\" and \"mother,\" remained English. A well-known illustration is the pairs of words for animals and their meat: the farm animals, raised by English-speaking peasants, kept their English names, \"cow\" and \"pig,\" while the meat served at noble tables took French ones, \"beef\" and \"pork.\"\n\nLinguists caution, however, that such neat stories can be overstated. Some of the meat words entered English well after the Conquest, and for a time the French terms could refer to the living animal as well. The pattern is real, but it emerged gradually, over centuries, as the two languages were used side by side.",
+    "passageGroupId": "pg-99d85669e66a7a10291a283c32370831",
+    "prompt": "[Academic — Linguistics] What can be inferred about the animal and meat words in paragraph 2?",
+    "choices": [
+     "They show that peasants spoke French at the dinner table.",
+     "They were all borrowed in the same year.",
+     "They prove that English had no word for meat.",
+     "They reflect who raised the animals and who ate the meat."
+    ],
+    "correct_answer": "They reflect who raised the animals and who ate the meat.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Animals \"raised by English-speaking peasants\" kept English names, while meat \"served at noble tables took French ones.\"",
+    "distractor_rationales": [
+     {
+      "choice": "They show that peasants spoke French at the dinner table.",
+      "reason": "Peasants are described as English-speaking."
+     },
+     {
+      "choice": "They were all borrowed in the same year.",
+      "reason": "Paragraph 3 says some entered \"well after the Conquest\"."
+     },
+     {
+      "choice": "They prove that English had no word for meat.",
+      "reason": "No claim about a missing word for meat is made."
+     }
+    ]
+   },
+   "content_hash": "74fef6470fff827983eb9199a3609c31",
+   "word_count": 220,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P06",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-99d85669e66a7a10291a283c32370831",
+   "item": {
+    "id": "PD1-P06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "When two languages come into long contact, they borrow words from each other, but they do not borrow evenly. English, for example, took thousands of words from French after the Norman Conquest of 1066, while French took comparatively few from English during the same period. The difference reflects the social position of the speakers. French was the language of the new ruling class, used in law, government, and fashionable society, and words tend to flow from the language with more prestige toward the language with less.\n\nThe borrowings also cluster by subject. Many English words for law and government, such as \"court,\" \"judge,\" and \"jury,\" come from French, while the words for everyday things and close relationships, such as \"house,\" \"bread,\" and \"mother,\" remained English. A well-known illustration is the pairs of words for animals and their meat: the farm animals, raised by English-speaking peasants, kept their English names, \"cow\" and \"pig,\" while the meat served at noble tables took French ones, \"beef\" and \"pork.\"\n\nLinguists caution, however, that such neat stories can be overstated. Some of the meat words entered English well after the Conquest, and for a time the French terms could refer to the living animal as well. The pattern is real, but it emerged gradually, over centuries, as the two languages were used side by side.",
+    "passageGroupId": "pg-99d85669e66a7a10291a283c32370831",
+    "prompt": "[Academic — Linguistics] The word \"overstated\" in the passage is closest in meaning to",
+    "choices": [
+     "told too often",
+     "forgotten",
+     "translated incorrectly",
+     "made to seem simpler or stronger than it is"
+    ],
+    "correct_answer": "made to seem simpler or stronger than it is",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The caution that follows shows the story is too tidy, not false.",
+    "distractor_rationales": [
+     {
+      "choice": "told too often",
+      "reason": "Frequency of telling is not the concern."
+     },
+     {
+      "choice": "forgotten",
+      "reason": "The stories are being retold, not forgotten."
+     },
+     {
+      "choice": "translated incorrectly",
+      "reason": "Translation is not discussed."
+     }
+    ]
+   },
+   "content_hash": "bb3ca0aa2f597993aa3023ee569b91e9",
+   "word_count": 220,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P06",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-99d85669e66a7a10291a283c32370831",
+   "item": {
+    "id": "PD1-P06-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "When two languages come into long contact, they borrow words from each other, but they do not borrow evenly. English, for example, took thousands of words from French after the Norman Conquest of 1066, while French took comparatively few from English during the same period. The difference reflects the social position of the speakers. French was the language of the new ruling class, used in law, government, and fashionable society, and words tend to flow from the language with more prestige toward the language with less.\n\nThe borrowings also cluster by subject. Many English words for law and government, such as \"court,\" \"judge,\" and \"jury,\" come from French, while the words for everyday things and close relationships, such as \"house,\" \"bread,\" and \"mother,\" remained English. A well-known illustration is the pairs of words for animals and their meat: the farm animals, raised by English-speaking peasants, kept their English names, \"cow\" and \"pig,\" while the meat served at noble tables took French ones, \"beef\" and \"pork.\"\n\nLinguists caution, however, that such neat stories can be overstated. Some of the meat words entered English well after the Conquest, and for a time the French terms could refer to the living animal as well. The pattern is real, but it emerged gradually, over centuries, as the two languages were used side by side.",
+    "passageGroupId": "pg-99d85669e66a7a10291a283c32370831",
+    "prompt": "[Academic — Linguistics] Which of the following best describes the purpose of paragraph 3?",
+    "choices": [
+     "To reject the idea that prestige affects borrowing",
+     "To introduce a third language into the discussion",
+     "To argue that French in fact borrowed more words from English than English did from French",
+     "To qualify the example in paragraph 2 without denying the pattern"
+    ],
+    "correct_answer": "To qualify the example in paragraph 2 without denying the pattern",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"The pattern is real, but it emerged gradually.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To reject the idea that prestige affects borrowing",
+      "reason": "The paragraph says \"The pattern is real.\""
+     },
+     {
+      "choice": "To introduce a third language into the discussion",
+      "reason": "No third language is introduced."
+     },
+     {
+      "choice": "To argue that French in fact borrowed more words from English than English did from French",
+      "reason": "Paragraph 1's direction of borrowing is not challenged."
+     }
+    ]
+   },
+   "content_hash": "1a839702d6462425a4a24fe79da9bf4c",
+   "word_count": 220,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd1-P06",
+     "note": "Written in-session by Claude 2026-10-22 for the upper/hard Reading band (medium/hard passages, 220-252 words). Release only by the co-founder sitting (toefl-passage-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}

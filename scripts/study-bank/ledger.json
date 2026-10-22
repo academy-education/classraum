@@ -9340,6 +9340,33 @@
           "verdict": "NOT RUN by an independent reader."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-1-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-1",
+      "contentSha": "e90024b3be79b4a1c2918ea67da82a27251925ece623ae557290f24e899a6034",
+      "status": "staged-for-human-edit",
+      "note": "6 medium/hard five-question Academic Passages written in-session by Claude for the upper/hard Reading band (bound at 20); staged verified=false; release only by the co-founder runs in toefl-passage-draft-1.RELEASE.PREREG.md. contentSha = sha256 of toefl-passage-draft-1.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e90024b3be79b4a1c2918ea67da82a27251925ece623ae557290f24e899a6034",
+          "verdict": "6 passages x 5, 220-252 words, 15 medium / 15 hard; key uniquely longest 7/30 (was 18/30 as drafted), uniquely shortest 5/30 (was 1/30); keys dealt 8/8/7/7 at insert; no explanation names a letter."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (no agents); the human sitting decides."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader."
+        }
+      }
     }
   ],
   "auditedCohorts": [
