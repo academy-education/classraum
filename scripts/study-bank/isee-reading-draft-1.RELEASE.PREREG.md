@@ -43,3 +43,8 @@ independent with-source read before the sitting.
 - He will have sat 108 SSAT draft siblings to a similar brief first; familiarity raises his score,
   the conservative direction for the guard.
 - Author and checker are the same model; the cheap checks are pre-flight only.
+
+## Queue order amendment (2026-10-22, before the run is drawn)
+Drawn **next**, as soon as `toefl-talk1-release1-cofounder-2026-10-22` closes, ahead of every TOEFL
+draft. `runout-monitor.ts` (2026-10-22): a real ISEE student has 1 clean Reading test left (depth 2), the
+tightest row in the app; the nearest TOEFL row has 2. Order only; the rule and the run are unchanged.

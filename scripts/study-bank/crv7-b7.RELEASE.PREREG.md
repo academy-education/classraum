@@ -47,3 +47,7 @@ The human sitting is the gate, as for every TOEFL listening draft since 2026-10-
 Released with `release-toefl-conv-runs.mjs cr-v11`, which treats an item with no passageGroupId as a set
 of one. Before that fix it grouped every row of this cohort under `null`, so one flag would have
 archived all 16. The rule above is unchanged.
+
+## Queue order amendment (2026-10-22, before any run is drawn)
+ISEE Reading draft 1 (one 36-item run) now goes first, because a real ISEE student has 1 clean Reading
+test left. cr-v11 run 1 follows it, still ahead of talk run 2. Order only.
