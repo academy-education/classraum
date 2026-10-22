@@ -1,0 +1,151 @@
+{
+ "grader": "f",
+ "phase": 2,
+ "batch_note": "Yes, two templates predict the key. (1) Seven of the eleven textual items (A-01, A-03, B-01, B-02, C-01, C-03, D-01) share one option cast: the shared pattern restated, its reversal, and a reversed pair on the two groups named in the passage's 'however' sentence. The key is always the half of that pair where the named person's factor is present and the rival's is absent. A test-wise student strikes two options on form, and the 'however' sentence names the key's groups; after one item, the other six are recognizable. Only A-02, B-03, C-02 and D-02 break the cast, and they are the strongest textual items. (2) Seven table items (A-04, A-06, B-04, C-04, C-05, D-05, D-06) use the same template: 'X beats every member of group G', all four options share the subject's prefix, one lure comes from outside G with the closest value, and the key is the strongest member of G. The rule 'find G's best row' solves all seven, and the off-group lure is spotted on sight. Key letters are balanced (A6 B6 C7 D5), so this is a structural tell, not a positional one. All 24 keys match my cold answers.",
+ "items": {
+  "II21A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid, but uses the seven-item two-reversed-pair template, so a test-wise student can strike the pattern pair without reasoning."
+  },
+  "II21A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Strongest of the textual items: three habitats, and two distractors that support the rival."
+  },
+  "II21A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template as A-01."
+  },
+  "II21A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. The explanation's case for Dalmi over Bexa (tolerance is the fall, not the final value) settles my phase-1 doubt about A."
+  },
+  "II21A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": true,
+   "note2": "Key correct and best; explanation sound. Too easy for the hard route: three options compare ponds with the same backswimmer status, so reading one column decides it and the temperature confound does no work."
+  },
+  "II21A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good hard item: computing ratios and the raw-mass lure both do real work."
+  },
+  "II21B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template."
+  },
+  "II21B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template."
+  },
+  "II21B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Breaks the template; the fault and north/south distractors are well built."
+  },
+  "II21B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good: specific energy has to be computed, and Cell L (160) is a close lure."
+  },
+  "II21B-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": true,
+   "note2": "Key correct and best; explanation sound. Too easy for the hard route: A, B and D name roofs that are not white membranes, so the key falls out of one column with no comparison."
+  },
+  "II21B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good: the 1,400 m threshold has to be applied, and C crosses it in the wrong direction."
+  },
+  "II21C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template."
+  },
+  "II21C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good hard item: four precinct groups, and the Quillan option correctly cuts against Moraes, not Ortega."
+  },
+  "II21C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template."
+  },
+  "II21C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid; follows the closest-in-group-competitor template, with the off-group row as the lure."
+  },
+  "II21C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid; same closest-competitor template."
+  },
+  "II21C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Varies the table template well: the Northby lure (below half, but not in the program) is strong."
+  },
+  "II21D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Same two-reversed-pair template."
+  },
+  "II21D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good hard item; the explanation correctly shows all three distractors fit both accounts."
+  },
+  "II21D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Good: the confounded Wyrlow-damp vs Tamsby-dry lure is strong."
+  },
+  "II21D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid; the age confound gives the item real work."
+  },
+  "II21D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid; closest-competitor template."
+  },
+  "II21D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and best; explanation sound. Valid; requires subtraction, and the off-group Ullerby row is the closest-value lure."
+  }
+ }
+}

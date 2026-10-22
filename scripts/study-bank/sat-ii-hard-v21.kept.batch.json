@@ -1,0 +1,320 @@
+[
+  {
+    "id": "II21A-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In Dunbarrow Creek, a small freshwater snail often crawls out of the water at night and returns before dawn. Ecologist Corinne Dufresne hypothesizes that the snails are escaping crayfish, which forage mainly at night. Aldo Barreto proposes instead that the snails are escaping low oxygen: after dark, algae stop photosynthesizing but keep respiring, so dissolved oxygen falls in still water. The creek offers three habitats. Its slow pools and its fast riffles hold similar numbers of crayfish, but churning riffle water stays well aerated around the clock. Its marshy backwaters, which a beaver dam has cut off from the main channel, are as still as the pools but hold no crayfish at all.",
+    "prompt": "Which finding, if true, would most directly weaken Dufresne's hypothesis?",
+    "choices": [
+      "Snails in pools at night left the water more often than snails in riffles at night did.",
+      "Snails in pools at night left the water more often than snails in pools at midday did.",
+      "Snails in riffles at night left the water more often than snails in backwaters at night did.",
+      "Snails in pools at night left the water more often than snails in backwaters at night did."
+    ],
+    "correct_answer": "Snails in pools at night left the water more often than snails in riffles at night did.",
+    "explanation": "Dufresne says the snails are escaping crayfish, \"which forage mainly at night,\" and the passage says pools and riffles \"hold similar numbers of crayfish.\" Her account therefore predicts about as much nighttime climbing in pools as in riffles. Barreto's account predicts more climbing in pools, because oxygen falls \"in still water\" after dark while \"churning riffle water stays well aerated around the clock.\" The finding that \"Snails in pools at night left the water more often than snails in riffles at night did\" shows a difference between two habitats with equal crayfish that differ only in oxygen, which weakens Dufresne's hypothesis. The finding that \"Snails in pools at night left the water more often than snails in pools at midday did\" is predicted by both accounts, since crayfish forage at night and pool oxygen falls after dark, so it cannot weaken either. The finding that \"Snails in pools at night left the water more often than snails in backwaters at night did\" supports Dufresne: the backwaters \"are as still as the pools but hold no crayfish at all,\" so only the crayfish differ. The finding that \"Snails in riffles at night left the water more often than snails in backwaters at night did\" also supports Dufresne, since the riffles have crayfish and high oxygen while the backwaters have no crayfish and still water, the opposite of what Barreto's account predicts.",
+    "topic_tag": "snail-night-climbing-oxygen"
+  },
+  {
+    "id": "II21A-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Plant physiologist Felix Avery withheld water for two weeks from five lettuce varieties and measured the leaves' water content before and after. The less a variety's leaf water content falls during a drought, the more drought tolerant the variety is. Two of the varieties were bred for open fields and three for greenhouses, where plants are watered on a schedule. Avery claims that the field variety Corlan is more drought tolerant than every greenhouse variety he tested. Avery's claim is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Leaf water content of five lettuce varieties before and after a two-week drought",
+      "colLabels": [
+        "Bred for",
+        "Before drought (%)",
+        "After drought (%)"
+      ],
+      "rowLabels": [
+        "Corlan",
+        "Bexa",
+        "Dalmi",
+        "Elsin",
+        "Farrel"
+      ],
+      "cells": [
+        [
+          "Field",
+          "91",
+          "85"
+        ],
+        [
+          "Greenhouse",
+          "93",
+          "84"
+        ],
+        [
+          "Greenhouse",
+          "89",
+          "81"
+        ],
+        [
+          "Greenhouse",
+          "87",
+          "74"
+        ],
+        [
+          "Field",
+          "95",
+          "84"
+        ]
+      ]
+    },
+    "choices": [
+      "Corlan's leaf water content fell from 91% to 85%, while Bexa's fell from 93% to 84%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Elsin's fell from 87% to 74%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Farrel's fell from 95% to 84%."
+    ],
+    "correct_answer": "Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%.",
+    "explanation": "Avery claims Corlan is more drought tolerant \"than every greenhouse variety he tested,\" and the passage says that the less leaf water content \"falls during a drought, the more drought tolerant the variety is.\" Corlan fell 6 percentage points, from 91% to 85%. The table lists three greenhouse varieties: Bexa (93% to 84%, a fall of 9 points), Dalmi (89% to 81%, 8 points), and Elsin (87% to 74%, 13 points). Dalmi fell the least of the three, so showing that \"Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%\" establishes that Corlan fell less than the most tolerant greenhouse variety and therefore less than all of them. All four choices read the table accurately. The choice ending \"while Bexa's fell from 93% to 84%\" and the choice ending \"while Elsin's fell from 87% to 74%\" each cover only one greenhouse variety and leave open whether Corlan outperformed Dalmi, the greenhouse variety that fell least; Bexa's higher final value (84%) does not make it the closest competitor, because tolerance is measured by the fall. The choice ending \"while Farrel's fell from 95% to 84%\" compares Corlan with Farrel, which the table lists as bred for \"Field,\" so it says nothing about the greenhouse varieties.",
+    "topic_tag": "lettuce-drought-leaf-water"
+  },
+  {
+    "id": "II21A-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Plant ecologist Fiona Cardwell collected seedlings of a coastal grass from five populations, grew them in fresh water and in salt water, and weighed them after six weeks. A salt-tolerant population should keep much of its freshwater mass when grown in salt water. Cardwell argues that seedlings from Corvane Marsh, which seawater floods at every high tide, are the most salt tolerant of the five: in salt water they kept a larger fraction of their freshwater mass than seedlings from any other population did. Cardwell's argument is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Mean dry mass per seedling after six weeks (milligrams)",
+      "colLabels": [
+        "Fresh water",
+        "Salt water"
+      ],
+      "rowLabels": [
+        "Corvane Marsh",
+        "Abrisk",
+        "Belloway",
+        "Dunmarra",
+        "Eskelin"
+      ],
+      "cells": [
+        [
+          "50",
+          "40"
+        ],
+        [
+          "60",
+          "45"
+        ],
+        [
+          "90",
+          "54"
+        ],
+        [
+          "70",
+          "35"
+        ],
+        [
+          "40",
+          "26"
+        ]
+      ]
+    },
+    "choices": [
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Belloway seedlings averaged 90 mg and 54 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Dunmarra seedlings averaged 70 mg and 35 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Eskelin seedlings averaged 40 mg and 26 mg."
+    ],
+    "correct_answer": "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg.",
+    "explanation": "Cardwell argues that in salt water Corvane seedlings \"kept a larger fraction of their freshwater mass than seedlings from any other population did.\" Corvane seedlings kept 40 of 50 mg, or 80%. The other populations kept 45 of 60 mg at Abrisk (75%), 54 of 90 mg at Belloway (60%), 35 of 70 mg at Dunmarra (50%), and 26 of 40 mg at Eskelin (65%). Abrisk kept the largest fraction of the four, so showing that \"Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg\" establishes that Corvane beat the closest competitor and therefore every other population, even though Abrisk seedlings were heavier in salt water. All four choices read the table accurately. The choices ending \"Belloway seedlings averaged 90 mg and 54 mg,\" \"Dunmarra seedlings averaged 70 mg and 35 mg,\" and \"Eskelin seedlings averaged 40 mg and 26 mg\" each compare Corvane with a population that kept a smaller fraction than Abrisk did, so each leaves open whether Corvane outperformed Abrisk; Belloway's larger salt-water mass (54 mg) is irrelevant because the argument concerns the fraction kept, not mass.",
+    "topic_tag": "coastal-grass-salt-tolerance"
+  },
+  {
+    "id": "II21B-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Over the past decade, stands of pine on the southern flank of Mount Kelda, a dormant volcano, have been dying. Geochemist Lena Haskins hypothesizes that carbon dioxide rising from magma along a fault that crosses the southern flank is killing the trees by starving their roots of oxygen. Her colleague Kofi Jallow attributes the die-off to a drought that has gripped the region for most of the decade and has been most severe on the mountain's sun-facing southern side. Haskins notes that because carbon dioxide is denser than air, gas escaping from the soil tends to collect in hollows. During dry spells, however, the hollows also hold more soil moisture than the ridges between them.",
+    "prompt": "Which finding, if true, would most directly weaken Haskins's hypothesis?",
+    "choices": [
+      "On the southern flank, trees near the fault died at a higher rate than trees farther from it.",
+      "Trees on the southern flank died at a higher rate than trees on the northern flank at the same elevation.",
+      "On the southern flank, older trees died at a higher rate than younger trees growing beside them.",
+      "On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them."
+    ],
+    "correct_answer": "On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them.",
+    "explanation": "Haskins blames carbon dioxide rising \"along a fault that crosses the southern flank,\" while Jallow blames a drought. The passage says the gas \"tends to collect in hollows,\" but that the hollows \"also hold more soil moisture than the ridges between them.\" Haskins's account therefore predicts more deaths in hollows, where the gas gathers, while Jallow's predicts more deaths on the drier ridges. The finding that \"On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them\" is the opposite of what Haskins's account predicts and fits Jallow's, so it most directly weakens her hypothesis. The finding that \"On the southern flank, trees near the fault died at a higher rate than trees farther from it\" fits gas rising \"along a fault,\" so it would support Haskins rather than weaken her. The finding that \"Trees on the southern flank died at a higher rate than trees on the northern flank at the same elevation\" is predicted by both accounts, since the fault crosses the southern flank and the drought \"has been most severe on the mountain's sun-facing southern side.\" The finding that \"On the southern flank, older trees died at a higher rate than younger trees growing beside them\" concerns tree age, which the passage does not connect to either the gas or the drought, so it does not bear on Haskins's hypothesis.",
+    "topic_tag": "volcano-tree-dieoff-carbon-dioxide"
+  },
+  {
+    "id": "II21B-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "On clear, calm winter nights, cold, dense air drains down the slopes of the Gannet Basin and pools on its floor beneath warmer air. The top of this cold pool usually sits about 1,400 meters above sea level. Climatologist Greer Lowell claims that a station above the cold pool can record milder winter nights than a station within it, despite sitting higher on the slope. Lowell's claim is supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average January overnight minimum at six Gannet Basin stations",
+      "colLabels": [
+        "Elevation (meters)",
+        "Average minimum (°C)"
+      ],
+      "rowLabels": [
+        "Gessel",
+        "Halvern",
+        "Ilbury",
+        "Jessmont",
+        "Kestow",
+        "Lunder"
+      ],
+      "cells": [
+        [
+          "960",
+          "−15.0"
+        ],
+        [
+          "1,140",
+          "−13.4"
+        ],
+        [
+          "1,240",
+          "−11.6"
+        ],
+        [
+          "1,580",
+          "−8.2"
+        ],
+        [
+          "1,870",
+          "−9.5"
+        ],
+        [
+          "2,260",
+          "−12.4"
+        ]
+      ]
+    },
+    "choices": [
+      "the average minimum at Jessmont was −8.2°C, compared with −12.4°C at Lunder.",
+      "the average minimum at Ilbury was −11.6°C, compared with −15.0°C at Gessel.",
+      "the average minimum at Ilbury was −11.6°C, compared with −12.4°C at Lunder.",
+      "the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern."
+    ],
+    "correct_answer": "the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern.",
+    "explanation": "The passage places the top of the cold pool at \"about 1,400 meters,\" so stations above that elevation (Jessmont, Kestow, Lunder) lie above the pool and stations below it (Gessel, Halvern, Ilbury) lie within it. Lowell's claim needs a station above the pool that is milder than a station within it. Kestow (1,870 meters) is above the pool and Halvern (1,140 meters) is within it, so \"the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern.\" shows the higher station recording the milder nights. All four choices read the table accurately. \"the average minimum at Jessmont was −8.2°C, compared with −12.4°C at Lunder.\" compares two stations that are both above the pool. \"the average minimum at Ilbury was −11.6°C, compared with −15.0°C at Gessel.\" compares two stations that are both within the pool, so although the higher one is milder, neither is above the pool. \"the average minimum at Ilbury was −11.6°C, compared with −12.4°C at Lunder.\" does compare a station within the pool (Ilbury, 1,240 meters) with one above it (Lunder, 2,260 meters), but the station within the pool is the milder one, the opposite of what the claim requires.",
+    "topic_tag": "basin-cold-pool-thermal-belt"
+  },
+  {
+    "id": "II21C-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "After officials in Nesbit County closed or relocated many polling places, voter turnout fell across the county. Political scientist Quentin Moraes attributes the decline to longer travel: voters whose polling place ended up farther from home, he argues, were less likely to vote. Nell Ortega contends instead that the decline came mainly from confusion about where to vote after polling places changed, not from distance. The county's precincts fall into four groups. In the Ordway precincts, polling places stayed where they were; in the Renfield precincts, they moved to new sites about as far from voters' homes as the old ones; in the Mosby precincts, they moved to sites farther away; and in the Quillan precincts, they moved to sites closer to voters' homes.",
+    "prompt": "Which finding, if true, would most directly weaken Ortega's claim?",
+    "choices": [
+      "Turnout declined more in the Mosby precincts than in the Renfield precincts.",
+      "Turnout declined more in the Renfield precincts than in the Ordway precincts.",
+      "Turnout declined more in the Quillan precincts than in the Mosby precincts.",
+      "Turnout declined more in the Mosby precincts than in the Ordway precincts."
+    ],
+    "correct_answer": "Turnout declined more in the Mosby precincts than in the Renfield precincts.",
+    "explanation": "Ortega claims the decline \"came mainly from confusion about where to vote after polling places changed, not from distance.\" In both the Renfield and Mosby precincts polling places moved, so voters in both faced the same kind of change; the groups differ only in that Renfield's new sites are \"about as far from voters' homes as the old ones\" while Mosby's are \"farther away.\" If \"Turnout declined more in the Mosby precincts than in the Renfield precincts,\" distance made a difference beyond the change itself, which weakens Ortega's claim. The finding that turnout declined more in the Renfield precincts than in the Ordway precincts, where polling places \"stayed where they were,\" shows a change without added distance lowering turnout, which supports Ortega. The finding that turnout declined more in the Quillan precincts, whose sites moved \"closer to voters' homes,\" than in the Mosby precincts compares two groups that both faced a change and cuts against Moraes's distance account, not against Ortega's. The finding that turnout declined more in the Mosby precincts than in the Ordway precincts is predicted by both accounts, since Mosby's sites both changed and moved farther away, so it cannot weaken Ortega's claim.",
+    "topic_tag": "polling-place-relocation-turnout"
+  },
+  {
+    "id": "II21C-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "In the city of Quenford, some neighborhoods joined a program in which trained mediators, rather than police officers, respond to repeated noise complaints. Sociologist Pilar Quesada argues that the program reduced conflict between neighbors. As evidence, she notes that in one neighborhood in the program, repeat complaints in the year after it began fell to less than half of their level in the year before: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average repeat noise complaints per month in five Quenford neighborhoods",
+      "colLabels": [
+        "In program",
+        "Year before program",
+        "Year after program"
+      ],
+      "rowLabels": [
+        "Marden",
+        "Northby",
+        "Ostler",
+        "Pellow",
+        "Ravensby"
+      ],
+      "cells": [
+        [
+          "Yes",
+          "50",
+          "31"
+        ],
+        [
+          "No",
+          "40",
+          "16"
+        ],
+        [
+          "Yes",
+          "38",
+          "17"
+        ],
+        [
+          "Yes",
+          "90",
+          "52"
+        ],
+        [
+          "No",
+          "24",
+          "20"
+        ]
+      ]
+    },
+    "choices": [
+      "In Pellow, repeat complaints fell from 90 per month to 52 per month.",
+      "In Northby, repeat complaints fell from 40 per month to 16 per month.",
+      "In Ostler, repeat complaints fell from 38 per month to 17 per month.",
+      "In Marden, repeat complaints fell from 50 per month to 31 per month."
+    ],
+    "correct_answer": "In Ostler, repeat complaints fell from 38 per month to 17 per month.",
+    "explanation": "The claim needs a neighborhood \"in the program\" where repeat complaints \"fell to less than half of their level in the year before.\" Ostler is marked \"Yes\" in the table, and 17 is less than half of 38, so \"In Ostler, repeat complaints fell from 38 per month to 17 per month\" completes the claim. All four choices read the table accurately. The choice about Northby describes complaints falling from 40 to 16, less than half of the earlier level, but the table marks Northby \"No,\" so it is not a neighborhood in the program. The choice about Pellow describes the largest drop in complaints, but 52 is more than half of 90. The choice about Marden describes a program neighborhood whose complaints fell from 50 to 31, also more than half of the earlier level.",
+    "topic_tag": "noise-complaint-mediation-program"
+  },
+  {
+    "id": "II21D-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Of the stone bridges built across the two rivers of the Ulvar district between 1300 and 1450, more than half collapsed within a century. Historian Stellan Voss claims that floodwater scoured away the riverbed beneath the bridges' piers. Historian Teodora Winslow argues instead that salt water, pushed upstream by the tides, gradually broke down the lime mortar binding the piers' stones. On both rivers, floods grow stronger downstream, and tidal salt water reaches the lower reaches but not the upper ones. Even so, the Tyrne's floods are violent even in its upper reaches, while the Sorle's are mild even near its mouth.",
+    "prompt": "Which finding, if true, would most directly weaken Voss's claim?",
+    "choices": [
+      "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+      "Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+      "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Sorle's upper reaches.",
+      "Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Sorle's upper reaches."
+    ],
+    "correct_answer": "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+    "explanation": "Voss claims the collapses came from floodwater scouring the riverbed, so his account predicts more collapses where floods are stronger. The passage says \"the Tyrne's floods are violent even in its upper reaches, while the Sorle's are mild even near its mouth,\" so the Tyrne's upper reaches see stronger floods than the Sorle's lower reaches. The finding that \"Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches\" shows more collapses where floods are milder, the opposite of what Voss's account predicts; it fits Winslow's account instead, because \"tidal salt water reaches the lower reaches but not the upper ones.\" Each of the other findings compares a lower reach with an upper reach that has both weaker floods and no salt water, because \"floods grow stronger downstream\" on both rivers and the Tyrne's floods are stronger than the Sorle's. So \"Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Tyrne's upper reaches,\" \"Bridges on the Sorle's lower reaches collapsed more often than bridges on the Sorle's upper reaches,\" and \"Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Sorle's upper reaches\" are each predicted by both accounts and do nothing to weaken Voss's claim.",
+    "topic_tag": "medieval-bridge-collapse-scour-vs-salt"
+  },
+  {
+    "id": "II21D-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Many surviving copies of books printed in the 1760s by the Zellner press of Varnholt are marred by foxing: scattered rust-colored spots on the pages. Book historian Sunniva Tollefsen argues that the spots come from tiny particles of iron shed into the pulp by the iron-fitted beaters at the Wyrlow paper mill, one of the press's suppliers. Conservator Valter Yarrow contends instead that the spots result from damp storage, which encourages the growth of mold. The press also bought paper from the Tamsby and Ulmsby mills, whose beaters were made entirely of wood, and copies printed on all three papers survive both in libraries known to have been damp and in libraries known to have been dry.",
+    "prompt": "Which finding, if true, would most directly support Tollefsen's hypothesis?",
+    "choices": [
+      "Foxing was more common in copies on Tamsby paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries.",
+      "Foxing was more common in copies on Wyrlow paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries.",
+      "Foxing was more common in copies on Ulmsby paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries.",
+      "Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries."
+    ],
+    "correct_answer": "Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries.",
+    "explanation": "Tollefsen blames iron \"shed into the pulp by the iron-fitted beaters at the Wyrlow paper mill,\" while Yarrow blames \"damp storage.\" The passage says the Tamsby and Ulmsby beaters \"were made entirely of wood\" and that copies survive in both damp and dry libraries. The finding that \"Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries\" compares iron-beaten with wood-beaten paper while holding storage constant and dry, so damp cannot explain the difference and only Tollefsen's account predicts it. The finding that \"Foxing was more common in copies on Tamsby paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries\" holds the paper constant and varies only storage, which is what Yarrow's account predicts. The finding that \"Foxing was more common in copies on Wyrlow paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries\" varies paper and storage together, so both accounts predict it. The finding that \"Foxing was more common in copies on Ulmsby paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries\" compares two papers whose beaters were both wooden, so it involves no iron and does not support Tollefsen.",
+    "topic_tag": "book-foxing-iron-beaters-vs-damp"
+  }
+]

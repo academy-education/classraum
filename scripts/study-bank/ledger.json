@@ -10225,6 +10225,53 @@
           "verdict": "verify-answer-key-spread --batch ok (n=19); key strictly longest 3/19 (16%), shortest 4/19 (21%); 0 option words repeated across kept items."
         }
       }
+    },
+    {
+      "id": "sat-ii-hard-v21-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v21-ii-hard",
+      "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+      "status": "inserted",
+      "note": "Pre-registered PREREG-II21-2026-10-23.md (RW17 I&I method + 2x2-or-none reversed-pair rule) before any item. Four Claude authors x 6, frozen e430af59 (Amendment 2 relabelled quant subskill to the live label, no text change). 9 of 24 kept (6 hard / 3 medium by panel median), 15 dropped by the gate, 13 of them on median struck >= 2: the 2x2 textual design and the closest-in-group table design were named by all three graders as cross-item templates.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+          "verdict": "bank-helper check OK; ii21-merge 0 problems; rw17-dupscan vs all live R&W rows: 0 of 24 flagged."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+          "verdict": "rw17-oo-render ii (24 candidate + 24 live CoE control), three samples of one solver: candidate 18.1% (13/72) vs control 87.5% (63/72, inside (30,90] so MEASURED), E = -69.4 vs bar +10: PASS. Unanimity 0/24 vs 20/24."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+          "verdict": "elimination-paired --match subskill --ratio 1 (24 v 24): candidate 0.0%, control 1.4%, margin -1.4 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0.0139,
+          "margin": -0.0139,
+          "threshold": 0.2,
+          "n": 24,
+          "controlN": 24,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+          "verdict": "Graders d/e/f, phase 1 cold sha-recorded (ii21.ws-phase1.sha256) before the key; cold 24/24 for every grader; key_ok false 0. ii21-gate: kept 9, dropped 15 (13 median struck >= 2, 2 panel-median easy with recommend_drop: A-05, B-05)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "24a2a0a7a7760201b5635fa1b7659603339fc67d0caad22e30f5e14b86c85956",
+          "verdict": "verify-answer-key-spread refuses n=9 (<12); run on the frozen 24: ok, but sequence stats are high (quads 60% vs 25%, lag-6 61% vs 37%) - latent only, choices are shuffled at draw. Kept: key strictly longest 0/9, shortest 1/9; no proper noun repeated."
+        }
+      }
     }
   ],
   "auditedCohorts": [

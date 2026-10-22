@@ -1,0 +1,151 @@
+{
+ "grader": "e",
+ "phase": 2,
+ "batch_note": "Yes, two templates predict the key across items. (1) Eight 'which finding' items (A-01, A-03, B-01, B-02, C-01, C-03, D-01, D-02) are built on two sites that pull the accounts apart. In seven of them (all but D-02) the options are two reversed pairs: one pair is the pattern the passage says 'both accounts fit' plus its negation, and the other is the two passage-named dissociating sites, both ways. The key is always the site-pair option in the direction of the named hypothesis, so a test-wise student strikes two options without reasoning on every one. D-02 breaks the template by comparing across rivers and plays genuinely hard. (2) Six table items (A-04, A-06, C-04, C-05, D-05, D-06) follow 'X beat every member of class Y'. The key is always the strongest member of Y, with one or two off-class options and an extreme value as distractors, so 'the closest in-class competitor' predicts the key with no other reading. B-05 is a degenerate case where all three distractors are off-class. The items that escape both templates (A-02, B-03, B-06, C-02, D-02, D-03) are the batch's strongest. My cold answers matched the key on 24 of 24, consistent with the items being exclusive but also with the templates being learnable.",
+ "items": {
+  "II21A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer. Sound, but the A/D pair is restated/negated known pattern and strikes at once, so it plays medium."
+  },
+  "II21A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Strong item: the two distractors that support Dufresne are both live and there is no reversed pair."
+  },
+  "II21A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Same dissociation template as A-01, with n_struck 2."
+  },
+  "II21A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. The explanation correctly says Bexa's higher final value does not make it the closest competitor, because tolerance is measured by the fall."
+  },
+  "II21A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Sound, though C is the only present/absent cross pair, so the category column alone narrows it."
+  },
+  "II21A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Good hard item: the raw-mass lure is real, and the explanation handles it."
+  },
+  "II21B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Template item: reversed site pair plus a known-pattern pair."
+  },
+  "II21B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Template item, as in B-01."
+  },
+  "II21B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Coherent: the hollows-collect-gas plus hollows-moister link is required, with no reversed pair."
+  },
+  "II21B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. The arithmetic in the explanation is correct (150, 120, 140, 230, 160)."
+  },
+  "II21B-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": true,
+   "note2": "The key is correct, but it is the only option naming a white membrane roof. All three distractors are off-class and inert, so the item is decidable by category match alone and is easy, not hard-route. Re-author it with Ivy Barn and an off-class roof as distractors, or drop it from this hard batch."
+  },
+  "II21B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Strong item: B (an inversion entirely within the pool) and C (a cross pair in the wrong direction) are both real lures."
+  },
+  "II21C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Template item: reversed site pair plus a known-pattern pair."
+  },
+  "II21C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. The explanation's 'same kind of change, differs only in distance' reasoning resolves my medium-confidence doubt."
+  },
+  "II21C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Template item, as in C-01."
+  },
+  "II21C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Binding-competitor template: one off-class option and one extreme option."
+  },
+  "II21C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Binding-competitor template. Mercer is off-class and Oakhurst is the extreme."
+  },
+  "II21C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Easy for a hard batch, since one row decides it, but Northby is a genuine lure, so it is not defective."
+  },
+  "II21D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Template item: reversed site pair plus a known-pattern pair."
+  },
+  "II21D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. The explanation correctly shows that each other option is predicted by both accounts."
+  },
+  "II21D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Strong item: the B confound lure is good."
+  },
+  "II21D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. A (direction confounded with age) is the only live lure, and C/D strike on sight."
+  },
+  "II21D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Binding-competitor template, with Vesper Lane off-class but closest in value."
+  },
+  "II21D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches. Binding-competitor template. The raw-end-figure lure (Tolvane) adds a little."
+  }
+ }
+}

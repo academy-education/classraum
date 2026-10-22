@@ -1,0 +1,151 @@
+{
+ "grader": "d",
+ "phase": 2,
+ "batch_note": "Yes, two templates predict the key. (1) Seven of twelve textual items (A-01, A-03, B-01, B-02, C-01, C-03, D-01) use one option cast: a restatement of the pattern the passage says both accounts fit, its reversal, and a reversed pair over the passage's final contrast; the key is always the reversed-pair member that matches the hypothesis on the final sentence, so a test-wise student strikes two options on sight and decides the rest from one sentence. These are medium, not hard. The other five textual items (A-02, B-03, C-02, D-02, D-03) break the template and are the real hard-route items. (2) Six of twelve table items (A-04, A-06, C-04, C-05, D-05, D-06) state an 'every/any member of group X' claim; the key is always the strongest competitor inside X, and one option always names a non-X row that falls on the label column. The rule still needs arithmetic on A-04, A-06 and D-06, less so on C-04, C-05 and D-05. A-05 and B-05 are easy because only one option crosses the relevant group label. Weak minor signal: three of the four 'weaken' items are keyed A (A-02, C-02, D-02). Key letters overall A5/B6/C8/D5, no letter tell. All 24 keys agree with my cold phase-1 answers.",
+ "items": {
+  "II21A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; same two-confound reversed-pair template as six other items, so medium not hard."
+  },
+  "II21A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and exclusive; the three-habitat combination is genuinely hard-route."
+  },
+  "II21A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A (both-fit restatement, reversal, reversed pair decided by one sentence)."
+  },
+  "II21A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; closest-competitor reasoning is right and the explanation correctly rejects Bexa's higher final value."
+  },
+  "II21A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but the only cross-group option is visible from the first column, so it is easy for the hard route; keep only as a medium/easy item."
+  },
+  "II21A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the absolute-mass trap against Abrisk is a good hard discriminator."
+  },
+  "II21B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A, medium."
+  },
+  "II21B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A, medium."
+  },
+  "II21B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; varies the template (weaken, near-fault option supports instead of reversing), sound."
+  },
+  "II21B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; division of L (160) is the real trap and the explanation computes all four correctly."
+  },
+  "II21B-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct, but only one option names a white membrane roof, so the label column decides it; easy for the hard route."
+  },
+  "II21B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the cross-boundary reversed option C is a strong trap and the explanation handles it."
+  },
+  "II21C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A, medium."
+  },
+  "II21C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; Renfield-as-control reasoning is right and Mosby vs Ordway is correctly rejected as fitting both."
+  },
+  "II21C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A, medium."
+  },
+  "II21C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; closest under-100 competitor is Pruett and the explanation says so."
+  },
+  "II21C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; closest-competitor template, medium."
+  },
+  "II21C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; Northby is a fair in-table trap."
+  },
+  "II21D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; template A, medium."
+  },
+  "II21D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the explanation's claim that every other pair fits both accounts checks out, strongest item in the batch."
+  },
+  "II21D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; holds storage constant and B is a well-built confounded trap."
+  },
+  "II21D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; same-decade south/north comparison isolates sunlight, A is the confounded trap."
+  },
+  "II21D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; closest-competitor template, medium."
+  },
+  "II21D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; Wexmoor is the strongest closed library and the explanation computes the gains correctly."
+  }
+ }
+}
