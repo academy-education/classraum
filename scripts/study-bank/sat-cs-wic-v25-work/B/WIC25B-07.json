@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "a shared school and a rivalry between towns",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["defused", "formalized", "embellished", "commercialized"],
+  "choices": [
+    "defused",
+    "formalized",
+    "embellished",
+    "commercialized"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["formalized", "commercialized", "embellished", "defused"],
+  "rarity_order": [
+    "formalized",
+    "commercialized",
+    "embellished",
+    "defused"
+  ],
   "pos": "verb",
   "after_blank": "the",
   "blank_sentence": "A local historian later wrote that the new school had ______ the rivalry between the two towns.",
   "worlds": [
     {
       "key": "defused",
-      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its students shared classes and a single sports team drawn from both towns, so there was no contest left to fight over, and nothing was sold or told about the old quarrel; by 1940 few residents could even say which town the bridge had favored. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its classes mixed students from both towns, as did its only sports team, and by the 1940s most families had in-laws across the bridge. In 1951 the two councils split the cost of repairing the bridge at a single meeting, and a survey that year found fewer than one in ten residents who could say which town had refused to pay. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "With shared classes and one team, the rivalry lost its occasions and was nearly forgotten, so the school \"defused\" it. \"Formalized\" fails because no contest was left to give rules to. \"Embellished\" fails because nothing was told about the old quarrel. \"Commercialized\" fails because nothing was sold.",
+      "explanation": "Mixed classes and intermarriage led to a quick shared bridge repair and a quarrel almost no one remembered, so the school \"defused\" the rivalry. \"Formalized\" fails because the school mixed the towns rather than organizing them against each other. \"Embellished\" fails because the quarrel was being forgotten, and \"commercialized\" fails because with only one mixed team there was no rivalry event to sell.",
       "kills": {
-        "formalized": {"type": "logic", "quote": "no contest left to fight over", "why": "With no organized contest between the towns, the school gave the rivalry no official form."},
-        "embellished": {"type": "logic", "quote": "few residents could even say which town the bridge had favored", "why": "A quarrel almost forgotten was not being retold with additions."},
-        "commercialized": {"type": "explicit", "quote": "nothing was sold", "why": "No one made money from the rivalry."}
+        "formalized": {
+          "type": "logic",
+          "quote": "Its classes mixed students from both towns",
+          "why": "Mixing the towns gave the rivalry no organized structure."
+        },
+        "embellished": {
+          "type": "logic",
+          "quote": "fewer than one in ten residents who could say",
+          "why": "A nearly forgotten quarrel was not being retold with additions."
+        },
+        "commercialized": {
+          "type": "logic",
+          "quote": "its only sports team",
+          "why": "With one mixed team there was no contest between the towns to profit from."
+        }
       }
     },
     {
       "key": "formalized",
-      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. It split its students into two houses by home town, with a written code of points, scheduled contests each term, and a trophy, all held free in the schoolyard, and its handbook told the bridge quarrel just as the court papers did; fights between townspeople grew more common after each contest. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. It assigned each student to a house named for his home town, with a handbook setting out how points were won in contests each term, and who kept the trophy; only students and teachers watched. The handbook's account of the bridge quarrel matches the 1870 court papers line for line, and police records show fights between the towns' residents rising after each contest. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The school gave the rivalry houses, a written points code, scheduled contests, and a trophy, so it \"formalized\" the rivalry. \"Defused\" fails because fights grew more common after each contest. \"Embellished\" fails because the handbook told the quarrel just as the court papers did. \"Commercialized\" fails because the contests were held free.",
+      "explanation": "Houses by town, written point rules, scheduled contests, and a trophy gave the rivalry an official structure, so the school \"formalized\" it. \"Defused\" fails because fights rose after each contest. \"Embellished\" fails because the handbook matched the court papers, and \"commercialized\" fails because the contests had no outside audience to pay.",
       "kills": {
-        "defused": {"type": "logic", "quote": "fights between townspeople grew more common", "why": "Tension rose rather than fell."},
-        "embellished": {"type": "logic", "quote": "just as the court papers did", "why": "The story was told accurately, without additions."},
-        "commercialized": {"type": "logic", "quote": "all held free in the schoolyard", "why": "No one charged for the contests or profited from them."}
+        "defused": {
+          "type": "logic",
+          "quote": "fights between the towns' residents rising",
+          "why": "Tension grew rather than eased."
+        },
+        "embellished": {
+          "type": "explicit",
+          "quote": "matches the 1870 court papers line for line",
+          "why": "The story was told accurately."
+        },
+        "commercialized": {
+          "type": "logic",
+          "quote": "only students and teachers watched",
+          "why": "With no outside audience, nothing was sold."
+        }
       }
     },
     {
       "key": "embellished",
-      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its teachers, eager to give students a sense of history, retold the bridge quarrel each year with a drowned mayor and a stolen church bell that no court papers mention, though the school held no contests between the towns and nothing was sold; students left school resenting the other town more than their parents had. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its history teachers retold the bridge quarrel every year with a drowned mayor and a stolen church bell, neither found in the 1870 court papers or any newspaper of the time. Its teams always mixed students from both towns and its events were free, and surveys in the 1930s found graduates more hostile to the other town than their parents were. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Teachers retold the quarrel with a drowned mayor and a stolen bell that no court papers mention, so the school \"embellished\" the rivalry. \"Defused\" fails because students left more resentful than their parents. \"Formalized\" fails because the school held no contests between the towns. \"Commercialized\" fails because nothing was sold.",
+      "explanation": "Teachers retold the quarrel each year with events found in no record, so the school \"embellished\" the rivalry. \"Defused\" fails because graduates were more hostile than their parents. \"Formalized\" fails because the teams mixed the towns, and \"commercialized\" fails because its events were free.",
       "kills": {
-        "defused": {"type": "logic", "quote": "resenting the other town more than their parents had", "why": "Resentment grew rather than eased."},
-        "formalized": {"type": "logic", "quote": "the school held no contests between the towns", "why": "The school gave the rivalry no rules or organized structure."},
-        "commercialized": {"type": "explicit", "quote": "nothing was sold", "why": "No one made money from the rivalry."}
+        "defused": {
+          "type": "logic",
+          "quote": "more hostile to the other town than their parents",
+          "why": "Hostility grew."
+        },
+        "formalized": {
+          "type": "logic",
+          "quote": "always mixed students from both towns",
+          "why": "The school gave the rivalry no organized form."
+        },
+        "commercialized": {
+          "type": "explicit",
+          "quote": "its events were free",
+          "why": "Nothing was sold."
+        }
       }
     },
     {
       "key": "commercialized",
-      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Students from the two towns had long played an informal game each autumn under rules older than anyone could remember; the school began charging admission to it, and shopkeepers in both towns sold rival pennants, while posters told the bridge quarrel just as the court papers did and the crowds grew rowdier each year. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Short of money, its board sold two shopkeepers the right to print each town's color on pennants and mugs, and the 1930 budget lists those royalties as the school's largest income after taxes. The goods bore nothing but a town's color, sold best among students from both towns around the bridge's anniversary, and were advertised with the line \"show the other side.\" A local historian later wrote that the new school had ______ the rivalry between the two towns.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The school began charging admission to the game and shopkeepers sold rival pennants, so the school \"commercialized\" the rivalry. \"Defused\" fails because the crowds grew rowdier. \"Formalized\" fails because the game already ran under rules older than anyone could remember. \"Embellished\" fails because the posters told the quarrel just as the court papers did.",
+      "explanation": "The board turned the towns' colors into licensed goods that earned the school royalties and sold on the rivalry, so it \"commercialized\" the rivalry. \"Defused\" fails because advertisements kept urging each side against the other. \"Formalized\" fails because the board only licensed merchandise and set up no contests or rules, and \"embellished\" fails because the goods told no story at all.",
       "kills": {
-        "defused": {"type": "logic", "quote": "the crowds grew rowdier each year", "why": "Tension rose rather than fell."},
-        "formalized": {"type": "logic", "quote": "under rules older than anyone could remember", "why": "The game already had its rules, so the school did not give the rivalry a formal structure."},
-        "embellished": {"type": "logic", "quote": "just as the court papers did", "why": "The story was told accurately, without additions."}
+        "defused": {
+          "type": "logic",
+          "quote": "show the other side",
+          "why": "Merchandise selling on hostility kept the rivalry alive."
+        },
+        "formalized": {
+          "type": "logic",
+          "quote": "sold two shopkeepers the right to print",
+          "why": "The school's role was licensing goods, not giving the rivalry rules or events."
+        },
+        "embellished": {
+          "type": "logic",
+          "quote": "bore nothing but a town's color",
+          "why": "Goods with no story added nothing to the tale of the quarrel."
+        }
       }
     }
   ]

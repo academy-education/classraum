@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "lobster price floor",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["precedent", "pledge", "remedy", "overreach"],
+  "choices": [
+    "precedent",
+    "pledge",
+    "remedy",
+    "overreach"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["remedy", "precedent", "pledge", "overreach"],
+  "rarity_order": [
+    "remedy",
+    "precedent",
+    "pledge",
+    "overreach"
+  ],
   "pos": "noun",
   "after_blank": "",
   "blank_sentence": "Historians of the fishery now regard the price floor as the state's clearest ______.",
   "worlds": [
     {
       "key": "precedent",
-      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lobster prices had held steady for years, so the floor rarely mattered; courts upheld it, and lawmakers quietly repealed it in 1980. Yet when the state later set minimum prices for clams and scallops, legislators cited the lobster rule as proof that such a law could survive in court. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. At the time, dock prices were high and the floor almost never came into play, and lawmakers let it lapse in 1980, a few years after a state court had upheld it. Twenty years later, when clam and scallop dealers challenged new price floors for those fisheries, the state's lawyers won by pointing the judges to that earlier ruling. Historians of the fishery now regard the price floor as the state's clearest ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "Later lawmakers pointed to the lobster rule to justify similar laws, so it was the state's clearest \"precedent.\" \"Pledge\" fails because the rule was quietly repealed in 1980, not a lasting commitment. \"Remedy\" fails because prices had held steady, so there was no problem for it to fix, and \"overreach\" fails because courts upheld it.",
+      "explanation": "Later lawyers won new cases by relying on the ruling that upheld the lobster floor, so it was the state's clearest \"precedent.\" \"Pledge\" fails because lawmakers let it lapse in 1980, which no lasting promise would allow. \"Remedy\" fails because prices were high and the floor almost never came into play, and \"overreach\" fails because a court upheld it.",
       "kills": {
-        "pledge": {"type": "logic", "quote": "quietly repealed it in 1980", "why": "a rule dropped quietly after a few years was no lasting commitment"},
-        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"},
-        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+        "pledge": {
+          "type": "logic",
+          "quote": "let it lapse in 1980",
+          "why": "a measure allowed to lapse was no standing commitment"
+        },
+        "remedy": {
+          "type": "logic",
+          "quote": "dock prices were high",
+          "why": "there was no problem for it to cure"
+        },
+        "overreach": {
+          "type": "logic",
+          "quote": "a state court had upheld it",
+          "why": "an upheld rule did not exceed the state's authority"
+        }
       }
     },
     {
       "key": "pledge",
-      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lobster prices had held steady for years, so the floor rarely mattered, but officials presented it as a promise that the state would stand behind its fishers for as long as the fleet existed; courts upheld it, it remains in force, and no other fishery has ever been given one. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. At the time, dock prices were high and the floor almost never came into play; the governor said it was there for the lean years still to come, and fishers took out boat loans on the strength of it. Every governor since has kept it in place, a court has upheld it, and no other fishery has ever been given one. Historians of the fishery now regard the price floor as the state's clearest ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Officials offered the floor as a lasting promise to stand behind fishers, and it is still in force, so it was the state's clearest \"pledge.\" \"Precedent\" fails because no other fishery has ever been given one. \"Remedy\" fails because prices had held steady, and \"overreach\" fails because courts upheld it.",
+      "explanation": "The floor was offered as assurance for future lean years, fishers borrowed on it, and every governor has kept it, so it was the state's clearest \"pledge.\" \"Precedent\" fails because no other fishery has ever been given one. \"Remedy\" fails because prices were high when it began, and \"overreach\" fails because a court upheld it.",
       "kills": {
-        "precedent": {"type": "logic", "quote": "no other fishery has ever been given one", "why": "nothing later followed or relied on the rule"},
-        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"},
-        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+        "precedent": {
+          "type": "logic",
+          "quote": "no other fishery has ever been given one",
+          "why": "nothing later followed it"
+        },
+        "remedy": {
+          "type": "logic",
+          "quote": "dock prices were high",
+          "why": "there was no problem for it to cure"
+        },
+        "overreach": {
+          "type": "logic",
+          "quote": "a court has upheld it",
+          "why": "an upheld rule did not exceed the state's authority"
+        }
       }
     },
     {
       "key": "remedy",
-      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. A glut had driven lobster prices below the cost of fuel and bait, and within two seasons the floor had restored fishers' incomes; courts upheld it, and lawmakers repealed it, its job done, in 1977. No other fishery was ever given a price floor. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. A glut the year before had pushed dock prices below what fishers spent on fuel and bait, and boats were being sold for scrap. Two seasons after the floor took effect, the fleet's incomes were back to their old level, lawmakers repealed it without objection in 1977, a court that reviewed it found nothing wrong, and no other fishery has ever been given one. Historians of the fishery now regard the price floor as the state's clearest ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The floor was a response to collapsed prices and restored fishers' incomes, so it was the state's clearest \"remedy.\" \"Precedent\" fails because no other fishery was ever given a price floor. \"Pledge\" fails because the floor was repealed once its job was done, and \"overreach\" fails because courts upheld it.",
+      "explanation": "The floor answered a price collapse and restored incomes before being dropped, so it was the state's clearest \"remedy.\" \"Precedent\" fails because no other fishery has ever been given one. \"Pledge\" fails because it was repealed once incomes recovered, and \"overreach\" fails because a reviewing court found nothing wrong.",
       "kills": {
-        "precedent": {"type": "logic", "quote": "No other fishery was ever given", "why": "nothing later followed or relied on the rule"},
-        "pledge": {"type": "logic", "quote": "repealed it, its job done", "why": "a measure dropped once a problem was fixed was not a standing commitment"},
-        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+        "precedent": {
+          "type": "logic",
+          "quote": "no other fishery has ever been given one",
+          "why": "nothing later followed it"
+        },
+        "pledge": {
+          "type": "logic",
+          "quote": "repealed it without objection in 1977",
+          "why": "a measure dropped after two seasons was no standing commitment"
+        },
+        "overreach": {
+          "type": "logic",
+          "quote": "found nothing wrong",
+          "why": "the rule did not exceed the state's authority"
+        }
       }
     },
     {
       "key": "overreach",
-      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lawmakers called it a two-year experiment, and lobster prices had held steady for years, but the floor applied even to lobster landed from federal waters, beyond the state's authority, and a federal court struck it down in 1976. No other fishery was ever given a price floor. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. At the time, dock prices were high and the floor almost never came into play, and lawmakers called it a trial to be reviewed after two years. Its text covered every lobster sold in the state, including those caught far offshore in federal waters, and in 1976 a federal judge voided it on that ground; no other fishery has ever been given one. Historians of the fishery now regard the price floor as the state's clearest ______.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "The floor reached into federal waters beyond the state's authority and was struck down, so it was the state's clearest \"overreach.\" \"Precedent\" fails because no other fishery was ever given a price floor. \"Pledge\" fails because lawmakers called it a two-year experiment, and \"remedy\" fails because prices had held steady, leaving nothing to fix.",
+      "explanation": "The floor reached lobsters from federal waters, outside the state's power, and was voided for it, so it was the state's clearest \"overreach.\" \"Precedent\" fails because no other fishery has ever been given one. \"Pledge\" fails because lawmakers called it a two-year trial, and \"remedy\" fails because prices were high, leaving nothing to fix.",
       "kills": {
-        "precedent": {"type": "logic", "quote": "No other fishery was ever given", "why": "nothing later followed or relied on the rule"},
-        "pledge": {"type": "logic", "quote": "a two-year experiment", "why": "a declared short trial is not a lasting commitment"},
-        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"}
+        "precedent": {
+          "type": "logic",
+          "quote": "no other fishery has ever been given one",
+          "why": "nothing later followed it"
+        },
+        "pledge": {
+          "type": "logic",
+          "quote": "a trial to be reviewed after two years",
+          "why": "a declared trial is not a lasting commitment"
+        },
+        "remedy": {
+          "type": "logic",
+          "quote": "dock prices were high",
+          "why": "there was no problem for it to cure"
+        }
       }
     }
   ]

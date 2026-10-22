@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "tenant negotiations",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["negotiator", "organizer", "observer", "mentor"],
+  "choices": [
+    "negotiator",
+    "organizer",
+    "observer",
+    "mentor"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["organizer", "observer", "mentor", "negotiator"],
+  "rarity_order": [
+    "organizer",
+    "observer",
+    "mentor",
+    "negotiator"
+  ],
   "pos": "noun",
   "after_blank": "",
   "blank_sentence": "Looking back, many residents described the neighborhood association as the tenants' ______.",
   "worlds": [
     {
       "key": "negotiator",
-      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. They had already formed their own committee, but its members found the talks bewildering and handed the work over entirely: at every session the association's director sat across from the owner and bargained on their behalf while they waited outside. Looking back, many residents described the neighborhood association as the tenants' ______.",
+      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. Their committee had formed on its own a year earlier, and its members, all working night shifts, could not attend daytime sessions. The association's director sat across the table from the owner at every session, made the offers and counteroffers, and reported each result to the committee afterward. Looking back, many residents described the neighborhood association as the tenants' ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "The association's director bargained with the owner on the tenants' behalf, so the association was the tenants' \"negotiator.\" \"Organizer\" fails because the tenants had already formed their own committee. \"Observer\" fails because the director took an active part in the talks, and \"mentor\" fails because the tenants handed the work over entirely rather than being coached to do it themselves.",
+      "explanation": "The association's director made the offers across the table on the tenants' behalf, so the association was the tenants' \"negotiator.\" \"Organizer\" fails because the committee had formed on its own. \"Observer\" fails because the director made the offers, and \"mentor\" fails because she did the bargaining herself and merely reported results, rather than preparing tenants to bargain.",
       "kills": {
-        "organizer": {"type": "logic", "quote": "already formed their own committee", "why": "the tenants had organized themselves before the association acted"},
-        "observer": {"type": "logic", "quote": "bargained on their behalf", "why": "an active bargainer was not merely watching"},
-        "mentor": {"type": "logic", "quote": "handed the work over entirely", "why": "the association did the work instead of guiding tenants to do it"}
+        "organizer": {
+          "type": "logic",
+          "quote": "formed on its own a year earlier",
+          "why": "the tenants had organized themselves"
+        },
+        "observer": {
+          "type": "logic",
+          "quote": "made the offers and counteroffers",
+          "why": "an active bargainer was not merely watching"
+        },
+        "mentor": {
+          "type": "logic",
+          "quote": "reported each result to the committee afterward",
+          "why": "she informed the tenants after the fact instead of coaching them"
+        }
       }
     },
     {
       "key": "organizer",
-      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. Before the association arrived, they had never met as a group; its volunteers knocked on every door and ran the meetings at which tenants chose their own spokespeople, who did all the bargaining, and once those spokespeople were chosen the volunteers withdrew from the talks entirely. Looking back, many residents described the neighborhood association as the tenants' ______.",
+      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. Before 2019 most tenants knew only their next-door neighbors; the association's volunteers went door to door, booked the community room, and ran the first meetings, at which tenants elected three spokespeople. Those three conducted every session with the owner, while the volunteers, busy with another building by then, never attended. Looking back, many residents described the neighborhood association as the tenants' ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The association brought tenants who had never met as a group together and ran the meetings that formed their leadership, so it was the tenants' \"organizer.\" \"Negotiator\" fails because the tenants' own spokespeople did all the bargaining. \"Observer\" fails because the volunteers actively knocked on every door, and \"mentor\" fails because they withdrew once the spokespeople were chosen instead of guiding them.",
+      "explanation": "The association brought tenants who barely knew one another together and ran the meetings that chose their leaders, so it was the tenants' \"organizer.\" \"Negotiator\" fails because the spokespeople conducted every session. \"Observer\" fails because the volunteers never attended, and \"mentor\" fails because they had moved on to another building rather than guiding the spokespeople.",
       "kills": {
-        "negotiator": {"type": "logic", "quote": "spokespeople, who did all the bargaining", "why": "the tenants' own representatives bargained, not the association"},
-        "observer": {"type": "logic", "quote": "knocked on every door", "why": "door-to-door work is active participation, not watching"},
-        "mentor": {"type": "logic", "quote": "withdrew from the talks entirely", "why": "the volunteers gave the spokespeople no ongoing guidance"}
+        "negotiator": {
+          "type": "logic",
+          "quote": "Those three conducted every session",
+          "why": "the tenants' own spokespeople bargained"
+        },
+        "observer": {
+          "type": "logic",
+          "quote": "never attended",
+          "why": "someone absent was not watching"
+        },
+        "mentor": {
+          "type": "logic",
+          "quote": "busy with another building by then",
+          "why": "they were not guiding the spokespeople"
+        }
       }
     },
     {
       "key": "observer",
-      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. They had already formed their own committee, whose chair did all the bargaining; the association's director attended every session and kept detailed notes for a public record, but she never spoke a word, to the owner or to the chair. Looking back, many residents described the neighborhood association as the tenants' ______.",
+      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. Their committee had formed on its own a year earlier, and its chair conducted every session with the owner. The association's director sat at the side of the room through all of them, writing the minutes that both sides later relied on, and she and the chair never exchanged a word. Looking back, many residents described the neighborhood association as the tenants' ______.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "The association's director attended and recorded every session without speaking, so the association was the tenants' \"observer.\" \"Negotiator\" fails because the committee's chair did all the bargaining. \"Organizer\" fails because the tenants had already formed their own committee, and \"mentor\" fails because the director never spoke even to the chair.",
+      "explanation": "The association's director attended and recorded every session without taking part, so the association was the tenants' \"observer.\" \"Negotiator\" fails because the chair conducted every session. \"Organizer\" fails because the committee had formed on its own, and \"mentor\" fails because the director and the chair never exchanged a word.",
       "kills": {
-        "negotiator": {"type": "logic", "quote": "whose chair did all the bargaining", "why": "the tenants' chair bargained, not the association"},
-        "organizer": {"type": "logic", "quote": "already formed their own committee", "why": "the tenants had organized themselves before the association acted"},
-        "mentor": {"type": "logic", "quote": "never spoke a word, to the owner or to the chair", "why": "someone who never spoke to the chair could not have coached her"}
+        "negotiator": {
+          "type": "logic",
+          "quote": "its chair conducted every session",
+          "why": "the tenants' chair bargained"
+        },
+        "organizer": {
+          "type": "logic",
+          "quote": "formed on its own a year earlier",
+          "why": "the tenants had organized themselves"
+        },
+        "mentor": {
+          "type": "explicit",
+          "quote": "never exchanged a word",
+          "why": "she could not have coached the chair"
+        }
       }
     },
     {
       "key": "mentor",
-      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. They had already formed their own committee, whose young chair did all the bargaining; before each session the association's director met privately with her, coaching her on what to ask for and when to hold firm, then stayed away from the talks themselves. Looking back, many residents described the neighborhood association as the tenants' ______.",
+      "passage": "Starting in 2019, the tenants of a large apartment complex spent two years in talks with its owner over rents and repairs. Their committee had formed on its own a year earlier, and its chair, a nineteen-year-old nursing student, conducted every session with the owner. The evening before each session she met the association's director, who had bargained with landlords for thirty years and walked her through what to ask for, though the director herself never set foot in the talks. Looking back, many residents described the neighborhood association as the tenants' ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The association's director privately coached the young chair before each session, so the association was the tenants' \"mentor.\" \"Negotiator\" fails because the chair did all the bargaining. \"Organizer\" fails because the tenants had already formed their own committee, and \"observer\" fails because the director stayed away from the talks.",
+      "explanation": "The experienced director privately prepared the young chair before each session, so the association was the tenants' \"mentor.\" \"Negotiator\" fails because the chair conducted every session. \"Organizer\" fails because the committee had formed on its own, and \"observer\" fails because the director never set foot in the talks.",
       "kills": {
-        "negotiator": {"type": "logic", "quote": "young chair did all the bargaining", "why": "the tenants' chair bargained, not the association"},
-        "organizer": {"type": "logic", "quote": "already formed their own committee", "why": "the tenants had organized themselves before the association acted"},
-        "observer": {"type": "logic", "quote": "stayed away from the talks themselves", "why": "someone absent from the talks was not watching them"}
+        "negotiator": {
+          "type": "logic",
+          "quote": "conducted every session with the owner",
+          "why": "the tenants' chair bargained"
+        },
+        "organizer": {
+          "type": "logic",
+          "quote": "formed on its own a year earlier",
+          "why": "the tenants had organized themselves"
+        },
+        "observer": {
+          "type": "logic",
+          "quote": "never set foot in the talks",
+          "why": "someone absent was not watching"
+        }
       }
     }
   ]

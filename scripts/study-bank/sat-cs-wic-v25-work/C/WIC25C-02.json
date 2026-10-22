@@ -24,96 +24,96 @@
   "worlds": [
     {
       "key": "keepsake",
-      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. She thought his advice was wrong and never followed any of it, and she was steadily published within two years of receiving it, yet she kept the letter in a drawer beside her mother's photographs and showed it to visitors as a memento of his kindness to a stranger. Long after the novelist's death, the letter remained the poet's ______.",
-      "shape": "purpose of an object",
+      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. Her later books ignore every rule he laid down, and by thirty editors were seeking her out. What she valued was that a famous man had answered a stranger at all: the letter lay in the drawer with her mother's photographs, and she would unfold it for visitors and read them only his opening line of thanks. Long after the novelist's death, the letter remained the poet's ______.",
+      "shape": "what an object is valued for",
       "key_from_one_sentence": false,
-      "explanation": "She ignored the advice but treasured the letter as \"a memento of his kindness,\" so it was her \"keepsake.\" \"Lodestar\" fails because she never followed any of its advice; \"lifeline\" fails because she was steadily published and needed no rescue; \"grievance\" fails because she remembered the letter as a kindness, not a wrong.",
+      "explanation": "Kept with her mother's photographs and valued because a famous man had answered a stranger, the letter was her \"keepsake.\" \"Lodestar\" fails because her books ignore every rule he laid down; \"lifeline\" fails because editors were already seeking her out; \"grievance\" fails because she shared it fondly, reading out his thanks.",
       "kills": {
         "lodestar": {
-          "type": "explicit",
-          "quote": "never followed any of it",
-          "why": "a guide one never follows is not a lodestar"
+          "type": "logic",
+          "quote": "ignore every rule he laid down",
+          "why": "she was not guided by it"
         },
         "lifeline": {
           "type": "logic",
-          "quote": "steadily published within two years",
-          "why": "her career needed no rescue that the letter supplied"
+          "quote": "editors were seeking her out",
+          "why": "her career needed no rescue"
         },
         "grievance": {
           "type": "logic",
-          "quote": "a memento of his kindness",
-          "why": "she associated the letter with kindness, not with an injury"
+          "quote": "his opening line of thanks",
+          "why": "she showed it off fondly, not as a wrong done to her"
         }
       }
     },
     {
       "key": "lodestar",
-      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. She followed its advice on every page she wrote for fifty years, cutting adjectives and ending each poem on a concrete image as he had urged, though she lost the letter itself in a move; she was steadily published within two years of receiving it and never resented a word of it. Long after the novelist's death, the letter remained the poet's ______.",
-      "shape": "cause and effect over time",
+      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. She mislaid the letter itself within a year, and by thirty editors were seeking her out. Its rules, though, she could recite to the end of her life: cut the adjective, end on a thing rather than a feeling, never explain the image. Students who compared her first and last books found she had broken none of them. Long after the novelist's death, the letter remained the poet's ______.",
+      "shape": "guidance over time",
       "key_from_one_sentence": false,
-      "explanation": "She steered every poem for fifty years by the letter's advice, so it was her guiding \"lodestar.\" \"Keepsake\" fails because she lost the letter itself and valued its advice, not the object; \"lifeline\" fails because she was steadily published and needed no rescue; \"grievance\" fails because she never resented a word of it.",
+      "explanation": "She recited its rules all her life and broke none of them across her career, so the letter was her guiding \"lodestar.\" \"Keepsake\" fails because she mislaid the letter itself; \"lifeline\" fails because editors were seeking her out; \"grievance\" fails because she kept faith with its rules, which is not resentment.",
       "kills": {
         "keepsake": {
           "type": "logic",
-          "quote": "lost the letter itself",
-          "why": "she did not keep it as a cherished object"
+          "quote": "mislaid the letter itself",
+          "why": "she did not treasure it as an object"
         },
         "lifeline": {
           "type": "logic",
-          "quote": "steadily published within two years",
-          "why": "no crisis existed for the letter to rescue her from"
+          "quote": "editors were seeking her out",
+          "why": "no crisis required rescue"
         },
         "grievance": {
-          "type": "explicit",
-          "quote": "never resented a word",
-          "why": "without resentment there is no grievance"
+          "type": "logic",
+          "quote": "had broken none of them",
+          "why": "faithfully following its rules is not nursing a grudge"
         }
       }
     },
     {
       "key": "lifeline",
-      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. Through the hungry years when no editor would answer her, she reread its closing promise that she would one day be widely read whenever she thought of quitting, and that promise kept her at her desk, though she thought his specific advice was wrong and later gave the letter itself away to a library. Long after the novelist's death, the letter remained the poet's ______.",
+      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. For six years no editor answered her, and twice she packed her manuscripts away for good. Each time she unpacked them after rereading the letter's last paragraph, which predicted she would be read long after he was; its advice on style she thought mistaken, and once her books began to sell, she gave the letter to a library. Long after the novelist's death, the letter remained the poet's ______.",
       "shape": "support in a crisis",
       "key_from_one_sentence": false,
-      "explanation": "In years of rejection the letter's promise \"kept her at her desk\" whenever she thought of quitting, so it was her \"lifeline.\" \"Keepsake\" fails because she gave the letter away; \"lodestar\" fails because she rejected its specific advice; \"grievance\" fails because the letter sustained her rather than wounded her.",
+      "explanation": "Twice its last paragraph brought her back from giving up during six unanswered years, so the letter was her \"lifeline.\" \"Keepsake\" fails because she gave it away once her books sold; \"lodestar\" fails because she thought its advice on style mistaken; \"grievance\" fails because it encouraged rather than wounded her.",
       "kills": {
         "keepsake": {
           "type": "logic",
-          "quote": "gave the letter itself away",
+          "quote": "gave the letter to a library",
           "why": "she did not hold on to it as a memento"
         },
         "lodestar": {
-          "type": "logic",
-          "quote": "his specific advice was wrong",
-          "why": "she did not steer her writing by it"
+          "type": "explicit",
+          "quote": "advice on style she thought mistaken",
+          "why": "she did not steer by its advice"
         },
         "grievance": {
           "type": "logic",
-          "quote": "kept her at her desk",
-          "why": "its effect was encouragement, not an injury she resented"
+          "quote": "unpacked them after rereading",
+          "why": "its effect was to revive her, not to injure her"
         }
       }
     },
     {
       "key": "grievance",
-      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. One line in it dismissed her poems as clever imitations, and for decades she cited that line in interviews as proof that he had never read her fairly; she ignored all of his advice, was steadily published within two years of receiving it, and burned the letter at forty. Long after the novelist's death, the letter remained the poet's ______.",
+      "passage": "At nineteen, a poet mailed a sheaf of her poems to a novelist she admired, and he answered with a long letter of advice and judgment. One sentence in it called her poems clever imitations of better poets. She burned the letter the week it came, and by thirty editors were seeking her out, yet in interview after interview for forty years she quoted that sentence word for word, as the moment she learned how lazily famous men read young women. Long after the novelist's death, the letter remained the poet's ______.",
       "shape": "lasting reaction to a judgment",
       "key_from_one_sentence": false,
-      "explanation": "For decades she cited one dismissive line as proof that he had never read her fairly, so the letter was her \"grievance.\" \"Keepsake\" fails because she burned it; \"lodestar\" fails because she ignored all of his advice; \"lifeline\" fails because she was steadily published and needed no rescue.",
+      "explanation": "For forty years she quoted one dismissive sentence as proof of lazy reading, so the letter was her \"grievance.\" \"Keepsake\" fails because she burned it the week it came; \"lodestar\" fails because she dismissed its author as a lazy reader; \"lifeline\" fails because editors were seeking her out.",
       "kills": {
         "keepsake": {
           "type": "logic",
-          "quote": "burned the letter at forty",
+          "quote": "burned the letter the week",
           "why": "one does not burn a treasured memento"
         },
         "lodestar": {
-          "type": "explicit",
-          "quote": "ignored all of his advice",
-          "why": "she did not follow it"
+          "type": "logic",
+          "quote": "how lazily famous men read",
+          "why": "she scorned his judgment rather than following it"
         },
         "lifeline": {
           "type": "logic",
-          "quote": "steadily published within two years",
+          "quote": "editors were seeking her out",
           "why": "her career did not depend on the letter"
         }
       }

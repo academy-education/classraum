@@ -24,97 +24,97 @@
   "worlds": [
     {
       "key": "grouped",
-      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 exactly as written, adding no pictures and inserting nothing between them, but she sorted them into sections on love, faith, and the sea, so that readers met them by subject rather than in their original sequence. Scholars agree that the niece who prepared the first published collection ______ the poems.",
+      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece sorted the loose sheets into three piles, love, faith, and the sea, and printed them in that sequence as a plain book of 212 pages, one poem to a page beneath its section heading. When the manuscripts were dated by their paper in 1990, scholars found an early poem about a shipwreck set beside a late one about drowning, each word just as the poet had left it. Scholars agree that the niece who prepared the first published collection ______ the poems.",
       "shape": "arrangement",
       "key_from_one_sentence": false,
-      "explanation": "Sorting the poems into sections by subject means the niece \"grouped\" them. \"Laundered\" fails because she printed every poem exactly as written; \"illustrated\" fails because she added no pictures; \"interrupted\" fails because she inserted nothing between them.",
+      "explanation": "Sorting the poems into piles by subject and printing them as sections means the niece \"grouped\" them. \"Laundered\" fails because each word was just as the poet left it; \"illustrated\" fails because it was a plain book; \"interrupted\" fails because each poem had its own page with nothing set into it.",
       "kills": {
         "laundered": {
-          "type": "logic",
-          "quote": "exactly as written",
-          "why": "nothing objectionable was cleaned out of the text"
+          "type": "explicit",
+          "quote": "each word just as the poet had left it",
+          "why": "the text was not cleaned up"
         },
         "illustrated": {
-          "type": "explicit",
-          "quote": "adding no pictures",
-          "why": "no images were added"
+          "type": "logic",
+          "quote": "a plain book of 212 pages",
+          "why": "a plain book carries no pictures"
         },
         "interrupted": {
           "type": "logic",
-          "quote": "inserting nothing between them",
-          "why": "nothing broke into the sequence"
+          "quote": "one poem to a page",
+          "why": "each poem stands whole on its page"
         }
       }
     },
     {
       "key": "laundered",
-      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 in the order they had been found, adding no pictures and inserting nothing between them, but she quietly rewrote every line that voiced religious doubt or desire, so that the poems read as conventionally pious until the drafts resurfaced in 1960. Scholars agree that the niece who prepared the first published collection ______ the poems.",
+      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece, a minister's wife, printed all 212 in the order she found them, as a plain book of one poem to a page. When the manuscripts resurfaced in 1990, scholars found that the poet's \"God, if there is one\" had become \"God, who surely is,\" and that a dozen love poems addressed to a woman had been readdressed to \"my brother.\" Scholars agree that the niece who prepared the first published collection ______ the poems.",
       "shape": "alteration of content",
       "key_from_one_sentence": false,
-      "explanation": "Quietly rewriting every line of doubt or desire so the poems seemed \"conventionally pious\" means the niece \"laundered\" them. \"Grouped\" fails because she kept the order in which they were found; \"illustrated\" fails because she added no pictures; \"interrupted\" fails because she inserted nothing between them.",
+      "explanation": "Turning doubt into faith and readdressing love poems so they read respectably means the niece \"laundered\" them. \"Grouped\" fails because she kept the order she found them in; \"illustrated\" fails because it was a plain book; \"interrupted\" fails because each poem had its own page.",
       "kills": {
         "grouped": {
-          "type": "logic",
-          "quote": "in the order they had been found",
-          "why": "she did not rearrange them into groups"
+          "type": "explicit",
+          "quote": "in the order she found them",
+          "why": "she did not sort them"
         },
         "illustrated": {
-          "type": "explicit",
-          "quote": "adding no pictures",
-          "why": "no images were added"
+          "type": "logic",
+          "quote": "as a plain book",
+          "why": "a plain book carries no pictures"
         },
         "interrupted": {
           "type": "logic",
-          "quote": "inserting nothing between them",
-          "why": "her changes were hidden inside the lines, not breaks between poems"
+          "quote": "one poem to a page",
+          "why": "the changes were hidden inside the lines, not breaks between them"
         }
       }
     },
     {
       "key": "illustrated",
-      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 exactly as written and in the order they had been found, inserting nothing between them, but she had a village engraver cut a small woodblock print for each one, showing the gulls, chapels, and gardens the poem beside it describes. Scholars agree that the niece who prepared the first published collection ______ the poems.",
+      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 in the order she found them, and on the page facing each one a village engraver's woodcut shows the gull, the chapel, or the garden gate the poem names. Scholars who compared the book with the manuscripts in 1990 had no quarrel with its text; they regretted only that readers had come to picture her sea as the engraver's. Scholars agree that the niece who prepared the first published collection ______ the poems.",
       "shape": "addition of another medium",
       "key_from_one_sentence": false,
-      "explanation": "A woodblock print showing what each poem describes means the niece \"illustrated\" the poems. \"Grouped\" fails because she kept the order in which they were found; \"laundered\" fails because she printed them exactly as written; \"interrupted\" fails because she inserted nothing between them, and each print sits beside its poem.",
+      "explanation": "A woodcut facing each poem, showing what it names, means the niece \"illustrated\" the poems. \"Grouped\" fails because she kept the order she found them in; \"laundered\" fails because scholars had no quarrel with the text; \"interrupted\" fails because each picture sits on the facing page rather than breaking into the poem.",
       "kills": {
         "grouped": {
-          "type": "logic",
-          "quote": "in the order they had been found",
+          "type": "explicit",
+          "quote": "in the order she found them",
           "why": "the order was unchanged"
         },
         "laundered": {
           "type": "logic",
-          "quote": "exactly as written",
-          "why": "the text was not cleaned up"
+          "quote": "had no quarrel with its text",
+          "why": "the text was not doctored"
         },
         "interrupted": {
-          "type": "explicit",
-          "quote": "inserting nothing between them",
-          "why": "each image sits beside its poem rather than breaking into it"
+          "type": "logic",
+          "quote": "on the page facing each one",
+          "why": "the images sit beside the poems, not within them"
         }
       }
     },
     {
       "key": "interrupted",
-      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 exactly as written and in the order they had been found, adding no pictures, but after nearly every stanza she inserted a paragraph of her own recalling where her aunt had been when she wrote it, so that few poems can be read straight through. Scholars agree that the niece who prepared the first published collection ______ the poems.",
+      "passage": "When a poet died in 1902, she left 212 untitled poems loose in a desk drawer, with no instructions for what should become of them. Her niece printed all 212 in the order she found them, and after nearly every stanza she set down, in smaller type, a paragraph recalling where her aunt had been sitting that day or whom the lines concerned. A reviewer in 1903 complained that he could not get from one stanza to the next without learning what the weather had been. Scholars agree that the niece who prepared the first published collection ______ the poems.",
       "shape": "insertion and its effect",
       "key_from_one_sentence": false,
-      "explanation": "Paragraphs inserted after nearly every stanza mean \"few poems can be read straight through\": the niece \"interrupted\" them. \"Grouped\" fails because she kept the order in which they were found; \"laundered\" fails because she printed them exactly as written; \"illustrated\" fails because she added no pictures.",
+      "explanation": "Paragraphs after nearly every stanza kept readers from getting \"from one stanza to the next,\" so the niece \"interrupted\" the poems. \"Grouped\" fails because she kept the order she found them in; \"laundered\" fails because her notes expose whom the lines concerned rather than disguising it; \"illustrated\" fails because what she added was type, not pictures.",
       "kills": {
         "grouped": {
-          "type": "logic",
-          "quote": "in the order they had been found",
+          "type": "explicit",
+          "quote": "in the order she found them",
           "why": "she did not sort them"
         },
         "laundered": {
           "type": "logic",
-          "quote": "exactly as written",
-          "why": "the poems themselves were not altered"
+          "quote": "whom the lines concerned",
+          "why": "she revealed the poems' private subjects rather than cleaning them up"
         },
         "illustrated": {
-          "type": "explicit",
-          "quote": "adding no pictures",
-          "why": "no images were added"
+          "type": "logic",
+          "quote": "in smaller type, a paragraph",
+          "why": "the additions were prose, not images"
         }
       }
     }

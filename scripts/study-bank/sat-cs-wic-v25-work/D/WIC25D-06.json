@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "school district bus routes",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["pared", "privatized", "redrawn", "monetized"],
+  "choices": [
+    "pared",
+    "privatized",
+    "redrawn",
+    "monetized"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["redrawn", "privatized", "pared", "monetized"],
+  "rarity_order": [
+    "redrawn",
+    "privatized",
+    "pared",
+    "monetized"
+  ],
   "pos": "verb",
   "after_blank": "its",
   "blank_sentence": "By the following autumn, the district had ______ its bus routes.",
   "worlds": [
     {
       "key": "pared",
-      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. It cut the three least-used routes and kept running the other nine itself, each along exactly the streets it had always followed, and the savings came entirely from paying fewer drivers and buying less fuel. By the following autumn, the district had ______ its bus routes.",
+      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. Three of those routes served neighborhoods where most families now drove their children, and that spring their buses were parked for good and their drivers' wages came off the budget. The district's own drivers kept driving the other nine routes past exactly the same stops at the same times. By the following autumn, the district had ______ its bus routes.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The district cut its routes from twelve to nine, so it had \"pared\" them. \"Privatized\" fails because it kept running the remaining routes itself. \"Redrawn\" fails because each route followed exactly the streets it always had, and \"monetized\" fails because the savings came entirely from lower costs, not new income.",
+      "explanation": "The district cut three routes and kept the rest unchanged, so it had \"pared\" its bus routes. \"Privatized\" fails because the district's own drivers kept driving. \"Redrawn\" fails because the remaining routes passed exactly the same stops, and \"monetized\" fails because the gain came from wages no longer paid, not from new income.",
       "kills": {
-        "privatized": {"type": "logic", "quote": "kept running the other nine itself", "why": "the district still operated the routes"},
-        "redrawn": {"type": "logic", "quote": "exactly the streets it had always followed", "why": "the routes' paths did not change"},
-        "monetized": {"type": "logic", "quote": "savings came entirely from paying fewer drivers", "why": "the district cut costs rather than earning money from the routes"}
+        "privatized": {
+          "type": "logic",
+          "quote": "district's own drivers kept driving",
+          "why": "the district still ran the routes"
+        },
+        "redrawn": {
+          "type": "logic",
+          "quote": "past exactly the same stops",
+          "why": "the routes' paths did not change"
+        },
+        "monetized": {
+          "type": "logic",
+          "quote": "wages came off the budget",
+          "why": "the district saved costs rather than earning money"
+        }
       }
     },
     {
       "key": "privatized",
-      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. It handed all twelve routes, buses included, to a private company, which now owns and operates them along exactly the streets they had always followed, and the district pays that company a yearly fee for the service. By the following autumn, the district had ______ its bus routes.",
+      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. That summer a transport company took over the district's buses and drivers, and it now runs all twelve routes past exactly the same stops at the same times. The district sends the company a check each month and no longer employs a single driver or mechanic. By the following autumn, the district had ______ its bus routes.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The district transferred ownership and operation of the routes to a private company, so it had \"privatized\" them. \"Pared\" fails because all twelve routes remained. \"Redrawn\" fails because they followed exactly the streets they always had, and \"monetized\" fails because the district pays the company rather than earning money from the routes.",
+      "explanation": "A private company now owns and runs the routes, so the district had \"privatized\" them. \"Pared\" fails because all twelve routes remained. \"Redrawn\" fails because they passed exactly the same stops, and \"monetized\" fails because money flows from the district to the company, not to the district.",
       "kills": {
-        "pared": {"type": "logic", "quote": "all twelve routes", "why": "no routes were cut"},
-        "redrawn": {"type": "logic", "quote": "exactly the streets they had always followed", "why": "the routes' paths did not change"},
-        "monetized": {"type": "logic", "quote": "the district pays that company", "why": "money flows out of the district, not in"}
+        "pared": {
+          "type": "logic",
+          "quote": "all twelve routes",
+          "why": "no routes were cut"
+        },
+        "redrawn": {
+          "type": "logic",
+          "quote": "past exactly the same stops",
+          "why": "the routes' paths did not change"
+        },
+        "monetized": {
+          "type": "logic",
+          "quote": "sends the company a check each month",
+          "why": "the district pays rather than earns"
+        }
       }
     },
     {
       "key": "redrawn",
-      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. It kept running all twelve routes itself, but each now followed different streets, laid out so that no child walked more than a quarter mile to a stop, and the savings came entirely from buses burning less fuel on shorter loops. By the following autumn, the district had ______ its bus routes.",
+      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. The district's own drivers still run twelve buses, and a mapping study moved most stops to new corners and sent several buses down roads they had never used, shortening the longest ride by twenty minutes. The money saved came entirely from the fuel no longer burned on long loops. By the following autumn, the district had ______ its bus routes.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Each route now followed different streets, so the district had \"redrawn\" its routes. \"Pared\" fails because all twelve routes remained. \"Privatized\" fails because the district kept running them itself, and \"monetized\" fails because the savings came entirely from burning less fuel, not from new income.",
+      "explanation": "Stops moved and buses took new roads, so the district had \"redrawn\" its routes. \"Pared\" fails because twelve buses still run. \"Privatized\" fails because the district's own drivers run them, and \"monetized\" fails because the savings came entirely from fuel, not new income.",
       "kills": {
-        "pared": {"type": "logic", "quote": "all twelve routes", "why": "no routes were cut"},
-        "privatized": {"type": "logic", "quote": "kept running all twelve routes itself", "why": "the district still operated the routes"},
-        "monetized": {"type": "logic", "quote": "savings came entirely from buses burning less fuel", "why": "the district cut costs rather than earning money from the routes"}
+        "pared": {
+          "type": "logic",
+          "quote": "still run twelve buses",
+          "why": "no routes were cut"
+        },
+        "privatized": {
+          "type": "logic",
+          "quote": "district's own drivers",
+          "why": "the district still ran the routes"
+        },
+        "monetized": {
+          "type": "logic",
+          "quote": "money saved came entirely from the fuel",
+          "why": "the district saved costs rather than earning money"
+        }
       }
     },
     {
       "key": "monetized",
-      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. It kept running all twelve routes itself, along exactly the streets they had always followed, but it began selling advertising space on the sides of its buses and charging a fare to riders from neighboring towns who used the same stops. By the following autumn, the district had ______ its bus routes.",
+      "passage": "Facing a budget gap in 2021, one rural school district reviewed the twelve bus routes that carried its students to class. The district's own drivers still run all twelve routes past exactly the same stops, and the buses now carry paid advertisements for a local bank and a grocery chain on their sides. Families from a neighboring town who board at those stops each pay a yearly fare, and the two sources together close a third of the gap. By the following autumn, the district had ______ its bus routes.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The district began earning money from its routes through advertising and fares, so it had \"monetized\" them. \"Pared\" fails because all twelve routes remained. \"Privatized\" fails because the district kept running them itself, and \"redrawn\" fails because they followed exactly the streets they always had.",
+      "explanation": "The district began earning money from its routes through advertising and fares, so it had \"monetized\" them. \"Pared\" fails because all twelve routes remain. \"Privatized\" fails because the district's own drivers run them, and \"redrawn\" fails because they pass exactly the same stops.",
       "kills": {
-        "pared": {"type": "logic", "quote": "all twelve routes", "why": "no routes were cut"},
-        "privatized": {"type": "logic", "quote": "kept running all twelve routes itself", "why": "the district still operated the routes"},
-        "redrawn": {"type": "logic", "quote": "exactly the streets they had always followed", "why": "the routes' paths did not change"}
+        "pared": {
+          "type": "logic",
+          "quote": "all twelve routes",
+          "why": "no routes were cut"
+        },
+        "privatized": {
+          "type": "logic",
+          "quote": "district's own drivers",
+          "why": "the district still ran the routes"
+        },
+        "redrawn": {
+          "type": "logic",
+          "quote": "exactly the same stops",
+          "why": "the routes' paths did not change"
+        }
       }
     }
   ]

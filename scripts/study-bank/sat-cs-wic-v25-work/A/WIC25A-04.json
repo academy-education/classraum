@@ -24,97 +24,97 @@
   "worlds": [
     {
       "key": "sporadic",
-      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. The glacier has lost a great deal of ice, plainly visible in the crews' photographs, and has never regained any of it, but nearly all of the loss came in three summers, 1962, 1988, and 2011, when parts of the front collapsed; in the years between, the measurements barely moved. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. In most years the crews' stakes show the surface within a few centimeters of where it stood the summer before. In three summers, 1962, 1988, and 2011, warm rain fell on the ice for weeks and the front broke into the valley in slabs the size of houses, and those three summers account for nearly all of the two kilometers the front has retreated. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Nearly all the loss came in three separate summers with almost no change between them, so it was \"sporadic.\" \"Short-lived\" fails because none of the ice was ever regained; \"slight\" fails because the glacier lost a great deal of ice; \"stealthy\" fails because the loss is plainly visible in the photographs.",
+      "explanation": "Almost all the loss came in three summers decades apart, with little change in between, so it was \"sporadic.\" \"Short-lived\" fails because the front has retreated two kilometers and stayed back; \"slight\" fails because two kilometers is a quarter of the glacier; \"stealthy\" fails because house-sized slabs broke off in plain view.",
       "kills": {
         "short-lived": {
           "type": "logic",
-          "quote": "has never regained any of it",
-          "why": "The loss has lasted to the present, so it was not brief."
+          "quote": "two kilometers the front has retreated",
+          "why": "The front is still back, so the loss has not been undone."
         },
         "slight": {
-          "type": "explicit",
-          "quote": "lost a great deal of ice",
-          "why": "The amount lost was large."
+          "type": "logic",
+          "quote": "nearly all of the two kilometers",
+          "why": "Two kilometers of an eight-kilometer glacier is a large loss."
         },
         "stealthy": {
           "type": "logic",
-          "quote": "plainly visible in the crews' photographs",
-          "why": "A loss anyone can see in the photographs was not hidden."
+          "quote": "slabs the size of houses",
+          "why": "Loss by collapse in house-sized slabs was in plain sight."
         }
       }
     },
     {
       "key": "short-lived",
-      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. The glacier shrank steadily every summer from 1950 to 1958, losing a great deal of ice in changes plainly visible in the crews' photographs, but it then thickened again, and by 1965 it had regained its old size, which it has held ever since. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. Through the warm 1950s the front pulled back a little farther each summer, a full kilometer in all, leaving a strip of raw gravel. A run of snowy winters began in 1959, and the front pushed forward over that same gravel, flattening the young willows that had sprouted there; since 1966 its position has not shifted by more than a few meters. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The glacier lost ice for eight years, then regained its old size and has kept it for decades, so the loss was \"short-lived.\" \"Sporadic\" fails because it shrank steadily every summer during that period; \"slight\" fails because it lost a great deal of ice; \"stealthy\" fails because the changes were plainly visible in the photographs.",
+      "explanation": "The glacier lost ice through the 1950s, then advanced back over the ground it had lost and has stayed there since 1966, so the loss was \"short-lived.\" \"Sporadic\" fails because the front pulled back a little each summer; \"slight\" fails because it lost a full kilometer; \"stealthy\" fails because the retreat left raw gravel in plain view.",
       "kills": {
         "sporadic": {
           "type": "logic",
-          "quote": "shrank steadily every summer",
-          "why": "A loss that came every year at a steady rate did not come in scattered bursts."
+          "quote": "a little farther each summer",
+          "why": "Loss that came every year was not in scattered bursts."
         },
         "slight": {
-          "type": "explicit",
-          "quote": "losing a great deal of ice",
-          "why": "The amount lost was large."
+          "type": "logic",
+          "quote": "a full kilometer in all",
+          "why": "A kilometer of retreat is a large loss."
         },
         "stealthy": {
           "type": "logic",
-          "quote": "plainly visible in the crews' photographs",
-          "why": "A loss anyone can see in the photographs was not hidden."
+          "quote": "leaving a strip of raw gravel",
+          "why": "The retreat exposed open ground anyone could see."
         }
       }
     },
     {
       "key": "slight",
-      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. Over the whole period its front has crept back only about forty meters, a few centimeters a year at an even pace, and that change is plain in the crews' photographs; the glacier has not regained any of the ground it lost. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. The boulder the first crew painted at the edge of the front in 1950 now sits a short stroll from the ice, and radar shows the ice behind it nearly as thick as on the 1950 maps. Neighboring glaciers have lost a kilometer or more since then; this one, shaded by a high ridge and fed by heavy snow, has changed only by inches a year. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "An eight-kilometer glacier whose front moved back only about forty meters in seventy years lost very little ice, so the loss was \"slight.\" \"Sporadic\" fails because it came at an even pace; \"short-lived\" fails because none of the ground was regained; \"stealthy\" fails because the change is plain in the photographs.",
+      "explanation": "The front has moved only a short stroll from a 1950 marker, the ice is nearly as thick as before, and the change came by inches a year, so the loss was \"slight.\" \"Sporadic\" fails because it came steadily by inches a year; \"short-lived\" fails because the ice has not returned to the boulder; \"stealthy\" fails because radar shows the hidden ice is nearly as thick as ever.",
       "kills": {
         "sporadic": {
           "type": "logic",
-          "quote": "a few centimeters a year at an even pace",
-          "why": "A loss spread evenly over every year did not come in scattered bursts."
+          "quote": "only by inches a year",
+          "why": "Loss spread evenly over every year was not in scattered bursts."
         },
         "short-lived": {
           "type": "logic",
-          "quote": "has not regained any of the ground",
-          "why": "The loss has lasted to the present, so it was not brief."
+          "quote": "now sits a short stroll from the ice",
+          "why": "The ice has not come back to the 1950 marker, so the loss has not been undone."
         },
         "stealthy": {
           "type": "logic",
-          "quote": "plain in the crews' photographs",
-          "why": "A loss anyone can see in the photographs was not hidden."
+          "quote": "nearly as thick as on the 1950 maps",
+          "why": "No large loss is hidden beneath the rock."
         }
       }
     },
     {
       "key": "stealthy",
-      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. In the crews' photographs the rock-covered front has not moved in all that time, yet radar shows that the ice beneath the rock has thinned by sixty meters, at an even pace every year, with no sign of any recovery. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. In every summer's photographs the rock-covered front rests against the same boulder it touched in 1950, and early surveyors listed this glacier as one of the few in the range holding steady. Radar soundings begun in 1995 found the ice under the rock sixty meters thinner than the 1950 maps show, and each year's sounding since has found it thinner by about the same amount. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "The photographs show no change at all, while radar reveals sixty meters of thinning hidden under the rock, so the loss was \"stealthy.\" \"Sporadic\" fails because it came at an even pace every year; \"short-lived\" fails because there is no sign of recovery; \"slight\" fails because sixty meters of thinning is large.",
+      "explanation": "The photographs show no change, so surveyors thought the glacier was holding steady, while radar found sixty meters of thinning under the rock: the loss was \"stealthy.\" \"Sporadic\" fails because it continues by about the same amount each year; \"short-lived\" fails because the thinning is still going on; \"slight\" fails because sixty meters is a large loss.",
       "kills": {
         "sporadic": {
           "type": "logic",
-          "quote": "at an even pace every year",
-          "why": "A loss spread evenly over every year did not come in scattered bursts."
+          "quote": "by about the same amount",
+          "why": "A steady yearly loss was not in scattered bursts."
         },
         "short-lived": {
           "type": "logic",
-          "quote": "no sign of any recovery",
-          "why": "The loss has lasted to the present, so it was not brief."
+          "quote": "each year's sounding since has found it thinner",
+          "why": "Loss that continues to the present has not been undone."
         },
         "slight": {
           "type": "logic",
-          "quote": "thinned by sixty meters",
-          "why": "Sixty meters of thinning is a large loss, not a small one."
+          "quote": "sixty meters thinner",
+          "why": "Sixty meters of thinning is a large loss."
         }
       }
     }

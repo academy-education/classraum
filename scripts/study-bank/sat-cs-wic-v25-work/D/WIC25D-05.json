@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "early office operating system",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["proprietary", "modular", "resilient", "outmoded"],
+  "choices": [
+    "proprietary",
+    "modular",
+    "resilient",
+    "outmoded"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["resilient", "outmoded", "proprietary", "modular"],
+  "rarity_order": [
+    "resilient",
+    "outmoded",
+    "proprietary",
+    "modular"
+  ],
   "pos": "adjective",
   "after_blank": "",
   "blank_sentence": "Engineers who studied the system years later described it, above all, as ______.",
   "worlds": [
     {
       "key": "proprietary",
-      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. It was built as one tightly interlocked program that crashed whenever a single part failed, and it was the most advanced system of its day; but the company kept its code secret and sued any rival that copied even a few of its commands. Engineers who studied the system years later described it, above all, as ______.",
+      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. It was the first office system to offer windows and a mouse, and rival firms that wanted their programs to run on it had to buy a license; two that worked out its commands on their own were sued. Because only the company knew how its single interlocked program worked, every repair waited for its engineers, and an office could lose a day to one failed disk. Engineers who studied the system years later described it, above all, as ______.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "The company kept the code secret and sued anyone who copied it, treating the system as its exclusive property, so engineers called it \"proprietary.\" \"Modular\" fails because it was one tightly interlocked program. \"Resilient\" fails because it crashed whenever a single part failed, and \"outmoded\" fails because it was the most advanced system of its day.",
+      "explanation": "The company licensed access, sued imitators, and kept the workings to itself, so engineers called the system \"proprietary.\" \"Modular\" fails because it was a single interlocked program. \"Resilient\" fails because one failed disk could cost an office a day, and \"outmoded\" fails because it was the first to offer windows and a mouse.",
       "kills": {
-        "modular": {"type": "logic", "quote": "one tightly interlocked program", "why": "a single interlocked program is not built from separable parts"},
-        "resilient": {"type": "logic", "quote": "crashed whenever a single part failed", "why": "a system that fails from one fault does not withstand trouble"},
-        "outmoded": {"type": "logic", "quote": "the most advanced system of its day", "why": "it was ahead of its time, not behind it"}
+        "modular": {
+          "type": "logic",
+          "quote": "single interlocked program",
+          "why": "it was not built from separable parts"
+        },
+        "resilient": {
+          "type": "logic",
+          "quote": "lose a day to one failed disk",
+          "why": "one fault halted work"
+        },
+        "outmoded": {
+          "type": "logic",
+          "quote": "first office system to offer windows",
+          "why": "it was ahead of its time"
+        }
       }
     },
     {
       "key": "modular",
-      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. Its code was freely shared, and it was the most advanced system of its day; it was assembled from separate parts that could each be swapped out on its own, though a fault in any one part still crashed the whole machine. Engineers who studied the system years later described it, above all, as ______.",
+      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. It was the first office system to offer windows and a mouse, and its full code was printed in a manual anyone could buy. Offices that needed only word processing installed only that piece, adding a printing or mail piece later, and swapping in a newer version of any piece left the rest untouched, though a fault in one piece still meant restarting the whole machine. Engineers who studied the system years later described it, above all, as ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "The system was built from separate parts that could each be replaced on its own, so engineers called it \"modular.\" \"Proprietary\" fails because its code was freely shared. \"Resilient\" fails because a fault in any one part crashed the whole machine, and \"outmoded\" fails because it was the most advanced system of its day.",
+      "explanation": "Offices could install, add and replace separate pieces independently, so engineers called the system \"modular.\" \"Proprietary\" fails because its code was printed for anyone to buy. \"Resilient\" fails because one fault meant restarting the whole machine, and \"outmoded\" fails because it was the first to offer windows and a mouse.",
       "kills": {
-        "proprietary": {"type": "logic", "quote": "code was freely shared", "why": "freely shared code was not kept as the company's exclusive property"},
-        "resilient": {"type": "logic", "quote": "still crashed the whole machine", "why": "one fault brought everything down, so it did not withstand failures"},
-        "outmoded": {"type": "logic", "quote": "the most advanced system of its day", "why": "it was ahead of its time, not behind it"}
+        "proprietary": {
+          "type": "logic",
+          "quote": "printed in a manual anyone could buy",
+          "why": "its workings were open to all"
+        },
+        "resilient": {
+          "type": "logic",
+          "quote": "restarting the whole machine",
+          "why": "one fault halted everything"
+        },
+        "outmoded": {
+          "type": "logic",
+          "quote": "first office system to offer windows",
+          "why": "it was ahead of its time"
+        }
       }
     },
     {
       "key": "resilient",
-      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. Its code was freely shared, it was the most advanced system of its day, and it was built as one tightly interlocked program; yet it kept running through power surges and failing disks that crashed every rival system. Engineers who studied the system years later described it, above all, as ______.",
+      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. It was the first office system to offer windows and a mouse, and its full code was printed in a manual anyone could buy. It was written as one interlocked program in which no piece could be swapped out, and it checked its own work so constantly that a failing disk or a power surge cost a user only the last sentence typed, while rival machines lost whole files. Engineers who studied the system years later described it, above all, as ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "The system kept working through surges and disk failures that crashed its rivals, so engineers called it \"resilient.\" \"Proprietary\" fails because its code was freely shared. \"Modular\" fails because it was one tightly interlocked program, and \"outmoded\" fails because it was the most advanced system of its day.",
+      "explanation": "The system kept working through disk failures and surges that cost rivals whole files, so engineers called it \"resilient.\" \"Proprietary\" fails because its code was printed for anyone to buy. \"Modular\" fails because no piece could be swapped out, and \"outmoded\" fails because it was the first to offer windows and a mouse.",
       "kills": {
-        "proprietary": {"type": "logic", "quote": "code was freely shared", "why": "freely shared code was not kept as the company's exclusive property"},
-        "modular": {"type": "logic", "quote": "one tightly interlocked program", "why": "a single interlocked program is not built from separable parts"},
-        "outmoded": {"type": "logic", "quote": "the most advanced system of its day", "why": "it was ahead of its time, not behind it"}
+        "proprietary": {
+          "type": "logic",
+          "quote": "printed in a manual anyone could buy",
+          "why": "its workings were open to all"
+        },
+        "modular": {
+          "type": "explicit",
+          "quote": "no piece could be swapped out",
+          "why": "it was not built from separable parts"
+        },
+        "outmoded": {
+          "type": "logic",
+          "quote": "first office system to offer windows",
+          "why": "it was ahead of its time"
+        }
       }
     },
     {
       "key": "outmoded",
-      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. Its code was freely shared, and it was built as one tightly interlocked program that crashed whenever a single part failed; worse, it copied a design that rival firms had abandoned years earlier, so it lagged behind its competitors from the day it shipped. Engineers who studied the system years later described it, above all, as ______.",
+      "passage": "In 1983 a small company released the operating system that would run its office computers for the next decade. Its full code was printed in a manual anyone could buy, and it was written as one interlocked program that froze whenever a disk failed. Its screens showed only green text and accepted only typed commands, a design that rival firms had replaced with windows and a mouse two years before it shipped. Engineers who studied the system years later described it, above all, as ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The system copied a design rivals had already abandoned and lagged behind from the day it shipped, so engineers called it \"outmoded.\" \"Proprietary\" fails because its code was freely shared. \"Modular\" fails because it was one tightly interlocked program, and \"resilient\" fails because it crashed whenever a single part failed.",
+      "explanation": "The system shipped with a design rivals had already replaced, so engineers called it \"outmoded.\" \"Proprietary\" fails because its code was printed for anyone to buy. \"Modular\" fails because it was one interlocked program, and \"resilient\" fails because it froze whenever a disk failed.",
       "kills": {
-        "proprietary": {"type": "logic", "quote": "code was freely shared", "why": "freely shared code was not kept as the company's exclusive property"},
-        "modular": {"type": "logic", "quote": "one tightly interlocked program", "why": "a single interlocked program is not built from separable parts"},
-        "resilient": {"type": "logic", "quote": "crashed whenever a single part failed", "why": "a system that fails from one fault does not withstand trouble"}
+        "proprietary": {
+          "type": "logic",
+          "quote": "printed in a manual anyone could buy",
+          "why": "its workings were open to all"
+        },
+        "modular": {
+          "type": "logic",
+          "quote": "one interlocked program",
+          "why": "it was not built from separable parts"
+        },
+        "resilient": {
+          "type": "logic",
+          "quote": "froze whenever a disk failed",
+          "why": "one fault halted it"
+        }
       }
     }
   ]

@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "town trash-collection fee",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["punitive", "regressive", "retroactive", "opaque"],
+  "choices": [
+    "punitive",
+    "regressive",
+    "retroactive",
+    "opaque"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["opaque", "punitive", "retroactive", "regressive"],
+  "rarity_order": [
+    "opaque",
+    "punitive",
+    "retroactive",
+    "regressive"
+  ],
   "pos": "adjective",
   "after_blank": "",
   "blank_sentence": "Several council members objected that the fee, as written, was ______.",
   "worlds": [
     {
       "key": "punitive",
-      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. Bills began with the next month's pickup and explained the charge line by line, and larger, costlier homes paid more than small ones. But a household that put out a second bin owed ninety dollars for it, ten times its hauling cost, a sum the mayor said was meant to make residents stop producing so much trash. Several council members objected that the fee, as written, was ______.",
+      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. The ordinance's preamble stated that the town had too much trash, not too little money, and it set the charge for each bin beyond the first at ten times what a cost study, attached to every bill, said hauling that bin cost. Owners of large homes, who put out the most bins, paid the most, starting with the month after the vote. Several council members objected that the fee, as written, was ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The charge for a second bin was set far above its cost on purpose, to punish and deter extra trash, so the fee was \"punitive.\" \"Regressive\" fails because costlier homes paid more than small ones. \"Retroactive\" fails because bills began with the next month's pickup, and \"opaque\" fails because the bills explained the charge line by line.",
+      "explanation": "The fee was set far above cost to cut trash rather than raise money, so it was \"punitive.\" \"Regressive\" fails because owners of large homes paid the most. \"Retroactive\" fails because charges started the month after the vote, and \"opaque\" fails because a cost study was attached to every bill.",
       "kills": {
-        "regressive": {"type": "logic", "quote": "larger, costlier homes paid more than small ones", "why": "a fee that rises with home value does not fall hardest on the poor"},
-        "retroactive": {"type": "logic", "quote": "began with the next month's pickup", "why": "the fee applied only going forward"},
-        "opaque": {"type": "logic", "quote": "explained the charge line by line", "why": "the calculation was shown to residents"}
+        "regressive": {
+          "type": "logic",
+          "quote": "Owners of large homes, who put out the most bins, paid the most",
+          "why": "the burden fell heaviest on the better-off"
+        },
+        "retroactive": {
+          "type": "explicit",
+          "quote": "starting with the month after the vote",
+          "why": "the fee applied only going forward"
+        },
+        "opaque": {
+          "type": "logic",
+          "quote": "attached to every bill",
+          "why": "the basis of the charge was shown to residents"
+        }
       }
     },
     {
       "key": "regressive",
-      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. Bills began with the next month's pickup and explained the charge line by line, and the fee just covered the cost of hauling. But every household paid the same twenty dollars, whether it occupied a mansion or a one-room apartment, so the poorest families gave up the largest share of their income. Several council members objected that the fee, as written, was ______.",
+      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. A cost study attached to every bill showed that the charge, twenty dollars for a mansion and twenty for a one-room apartment, exactly covered the cost of pickups beginning the month after the vote. A retired couple on a fixed income thus paid as much as the factory owner up the hill, out of an income a tenth the size. Several council members objected that the fee, as written, was ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Because every household paid the same amount, the fee took the largest share of income from the poorest families, so it was \"regressive.\" \"Punitive\" fails because the fee just covered the cost of hauling. \"Retroactive\" fails because bills began with the next month's pickup, and \"opaque\" fails because the bills explained the charge line by line.",
+      "explanation": "Because rich and poor households paid the same amount, the fee took a far larger share from smaller incomes, so it was \"regressive.\" \"Punitive\" fails because it exactly covered the cost of pickup. \"Retroactive\" fails because it covered pickups beginning the month after the vote, and \"opaque\" fails because a cost study was attached to every bill.",
       "kills": {
-        "punitive": {"type": "logic", "quote": "just covered the cost of hauling", "why": "a fee set at cost is not designed to punish"},
-        "retroactive": {"type": "logic", "quote": "began with the next month's pickup", "why": "the fee applied only going forward"},
-        "opaque": {"type": "logic", "quote": "explained the charge line by line", "why": "the calculation was shown to residents"}
+        "punitive": {
+          "type": "logic",
+          "quote": "exactly covered the cost of pickups",
+          "why": "a charge at cost is not designed to punish"
+        },
+        "retroactive": {
+          "type": "logic",
+          "quote": "beginning the month after the vote",
+          "why": "the fee applied only going forward"
+        },
+        "opaque": {
+          "type": "logic",
+          "quote": "attached to every bill",
+          "why": "the basis of the charge was shown to residents"
+        }
       }
     },
     {
       "key": "retroactive",
-      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. Bills explained the charge line by line, larger, costlier homes paid more than small ones, and the fee just covered the cost of hauling. But the first bill, mailed in June, also charged every household for pickups going back to January, months before the council had voted. Several council members objected that the fee, as written, was ______.",
+      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. A cost study attached to every bill showed the charge rising with each home's size and just covering the cost of pickup. The first bill arrived in June, two months after the council's April vote, and it was more than five times the monthly figure in the study, because it covered every pickup since January. Several council members objected that the fee, as written, was ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The first bill charged for pickups that happened months before the fee was even approved, so the fee was \"retroactive.\" \"Punitive\" fails because the fee just covered the cost of hauling. \"Regressive\" fails because costlier homes paid more than small ones, and \"opaque\" fails because the bills explained the charge line by line.",
+      "explanation": "The first bill charged for pickups made months before the April vote, so the fee was \"retroactive.\" \"Punitive\" fails because the charge just covered the cost of pickup; the large bill reflected extra months, not a penalty. \"Regressive\" fails because the charge rose with each home's size, and \"opaque\" fails because a cost study was attached to every bill.",
       "kills": {
-        "punitive": {"type": "logic", "quote": "just covered the cost of hauling", "why": "a fee set at cost is not designed to punish"},
-        "regressive": {"type": "logic", "quote": "larger, costlier homes paid more than small ones", "why": "a fee that rises with home value does not fall hardest on the poor"},
-        "opaque": {"type": "logic", "quote": "explained the charge line by line", "why": "the calculation was shown to residents"}
+        "punitive": {
+          "type": "logic",
+          "quote": "just covering the cost of pickup",
+          "why": "a charge at cost is not designed to punish"
+        },
+        "regressive": {
+          "type": "logic",
+          "quote": "rising with each home's size",
+          "why": "larger homes paid more"
+        },
+        "opaque": {
+          "type": "logic",
+          "quote": "attached to every bill",
+          "why": "the basis of the charge was shown to residents"
+        }
       }
     },
     {
       "key": "opaque",
-      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. Bills began with the next month's pickup, larger, costlier homes paid more than small ones, and an audit confirmed the fee just covered the cost of hauling. But each bill showed only a single number, and residents who asked how theirs had been calculated were told the formula was confidential. Several council members objected that the fee, as written, was ______.",
+      "passage": "Last spring, the council of one river town replaced the property tax that paid for trash pickup with a monthly fee charged to each household. Each household's bill, beginning the month after the vote, showed one number and nothing else; larger homes generally owed more, though the figure for the same house rose and fell from month to month in ways no neighbor could explain. When a council member asked for the formula, the hauling contractor declined, citing its contract, while confirming that its total receipts matched its costs. Several council members objected that the fee, as written, was ______.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "Residents could not see or learn how their charge was calculated, so the fee was \"opaque.\" \"Punitive\" fails because an audit confirmed the fee just covered the cost of hauling. \"Regressive\" fails because costlier homes paid more than small ones, and \"retroactive\" fails because bills began with the next month's pickup.",
+      "explanation": "Residents could neither see nor obtain the formula behind their charges, so the fee was \"opaque.\" \"Punitive\" fails because total receipts matched costs. \"Regressive\" fails because larger homes generally owed more, and \"retroactive\" fails because bills began the month after the vote.",
       "kills": {
-        "punitive": {"type": "logic", "quote": "just covered the cost of hauling", "why": "a fee set at cost is not designed to punish"},
-        "regressive": {"type": "logic", "quote": "larger, costlier homes paid more than small ones", "why": "a fee that rises with home value does not fall hardest on the poor"},
-        "retroactive": {"type": "logic", "quote": "began with the next month's pickup", "why": "the fee applied only going forward"}
+        "punitive": {
+          "type": "logic",
+          "quote": "total receipts matched its costs",
+          "why": "a charge at cost is not designed to punish"
+        },
+        "regressive": {
+          "type": "logic",
+          "quote": "larger homes generally owed more",
+          "why": "the burden did not fall hardest on smaller households"
+        },
+        "retroactive": {
+          "type": "logic",
+          "quote": "beginning the month after the vote",
+          "why": "the fee applied only going forward"
+        }
       }
     }
   ]

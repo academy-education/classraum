@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "restaurant software firm",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["middleman", "pioneer", "publicist", "referee"],
+  "choices": [
+    "middleman",
+    "pioneer",
+    "publicist",
+    "referee"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["pioneer", "referee", "middleman", "publicist"],
+  "rarity_order": [
+    "pioneer",
+    "referee",
+    "middleman",
+    "publicist"
+  ],
   "pos": "noun",
   "after_blank": "",
   "blank_sentence": "By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
   "worlds": [
     {
       "key": "middleman",
-      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city. Its app took diners' orders, passed them on to kitchens and couriers, and kept a fifth of every bill, a service national companies had offered there for years. The app listed every kitchen alphabetically, and when an order went wrong, the firm simply forwarded the complaint to the restaurant. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
+      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city, where several national delivery apps already operated. Diners who ordered through the firm's app paid the firm, never the kitchen, and the firm kept a fifth of each bill before sending on the rest, on the same terms the national apps used. Owners never learned who their customers were, the app showed every kitchen in the same plain format, and complaints reached owners only as forwarded messages. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The firm stood between diners and kitchens, passing orders along and keeping a share of each bill, so owners saw it as their trade's \"middleman.\" \"Pioneer\" fails because national companies had offered the same service for years. \"Publicist\" fails because it promoted no kitchen, listing them alphabetically, and \"referee\" fails because it settled no disputes, only forwarding complaints.",
+      "explanation": "Every order and payment passed through the firm, which kept a cut, so owners saw it as their trade's \"middleman.\" \"Pioneer\" fails because it used the same terms the national apps already used. \"Publicist\" fails because it showed every kitchen the same way, promoting none, and \"referee\" fails because it only forwarded complaints rather than deciding them.",
       "kills": {
-        "pioneer": {"type": "logic", "quote": "had offered there for years", "why": "others had done the same thing long before, so the firm was not first"},
-        "publicist": {"type": "logic", "quote": "listed every kitchen alphabetically", "why": "an alphabetical list promotes no restaurant"},
-        "referee": {"type": "logic", "quote": "forwarded the complaint to the restaurant", "why": "the firm passed disputes on rather than deciding them"}
+        "pioneer": {
+          "type": "explicit",
+          "quote": "same terms the national apps used",
+          "why": "it copied an existing arrangement, so it was not first"
+        },
+        "publicist": {
+          "type": "logic",
+          "quote": "every kitchen in the same plain format",
+          "why": "treating every kitchen alike promotes none of them"
+        },
+        "referee": {
+          "type": "logic",
+          "quote": "only as forwarded messages",
+          "why": "passing complaints on is not settling them"
+        }
       }
     },
     {
       "key": "pioneer",
-      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city. Its software let each restaurant take reservations on its own website, something no company had offered anywhere before, and within three years every national booking service had copied it. Diners still dealt with restaurants directly, and when a booking went wrong, the firm simply forwarded the complaint to the restaurant. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
+      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city, where several national delivery apps already operated. Its software let each restaurant take orders on its own website, which none of the national apps then allowed. Within three years every one of those apps had built a near copy, while restaurants using the firm's version went on paying only a flat yearly license, keeping every diner's payment themselves, and settling their own complaints. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The firm offered something no company had offered before, and the national services later copied it, so owners saw it as their trade's \"pioneer.\" \"Middleman\" fails because diners dealt with restaurants directly through the restaurants' own websites. \"Publicist\" fails because nothing indicates the firm promoted any restaurant, and \"referee\" fails because it forwarded complaints rather than deciding them.",
+      "explanation": "The firm offered something no app had allowed and was later copied by all of them, so owners saw it as their trade's \"pioneer.\" \"Middleman\" fails because restaurants kept every diner's payment themselves. \"Publicist\" fails because restaurants paid only a license for software, not for promotion, and \"referee\" fails because restaurants settled their own complaints.",
       "kills": {
-        "middleman": {"type": "logic", "quote": "dealt with restaurants directly", "why": "the firm did not stand between diners and restaurants"},
-        "publicist": {"type": "logic", "quote": "take reservations on its own website", "why": "the firm supplied a booking tool, not promotion of any restaurant"},
-        "referee": {"type": "logic", "quote": "forwarded the complaint to the restaurant", "why": "the firm passed disputes on rather than deciding them"}
+        "middleman": {
+          "type": "logic",
+          "quote": "keeping every diner's payment themselves",
+          "why": "no money passed through the firm"
+        },
+        "publicist": {
+          "type": "logic",
+          "quote": "only a flat yearly license",
+          "why": "paying for a tool is not paying for promotion"
+        },
+        "referee": {
+          "type": "logic",
+          "quote": "settling their own complaints",
+          "why": "the firm decided no disputes"
+        }
       }
     },
     {
       "key": "publicist",
-      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city. Restaurants paid it to appear in its weekly videos, and lines formed outside each one the morning after it was featured, an approach local newspapers had used for decades. Diners still dealt with restaurants directly, and the firm took no part when a diner and a restaurant disagreed about a bill. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
+      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city, where several national delivery apps already operated. Restaurants paid the firm to appear in its weekly short videos, a format the national apps already used in larger cities, and a featured kitchen often had a line outside the next morning. Those diners phoned or walked in and paid the restaurant directly, so the firm never learned whether any meal had gone well or badly. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Restaurants paid the firm to feature them and drew crowds as a result, so owners saw it as their trade's \"publicist.\" \"Middleman\" fails because diners dealt with restaurants directly. \"Pioneer\" fails because newspapers had used the same approach for decades, and \"referee\" fails because the firm took no part in disputes.",
+      "explanation": "Restaurants paid the firm to put them before the public, and crowds followed, so owners saw it as their trade's \"publicist.\" \"Pioneer\" fails because the national apps already used the format. \"Middleman\" fails because diners paid the restaurant directly, and \"referee\" fails because the firm never even learned how meals went, so it could settle nothing.",
       "kills": {
-        "middleman": {"type": "logic", "quote": "dealt with restaurants directly", "why": "the firm did not handle transactions between diners and restaurants"},
-        "pioneer": {"type": "logic", "quote": "local newspapers had used for decades", "why": "the approach was decades old, so the firm was not first"},
-        "referee": {"type": "explicit", "quote": "took no part when a diner and a restaurant disagreed", "why": "it did not settle disputes"}
+        "pioneer": {
+          "type": "logic",
+          "quote": "already used in larger cities",
+          "why": "the format was not new"
+        },
+        "middleman": {
+          "type": "logic",
+          "quote": "paid the restaurant directly",
+          "why": "the firm handled no transactions"
+        },
+        "referee": {
+          "type": "logic",
+          "quote": "never learned whether any meal had gone well",
+          "why": "a firm unaware of disputes cannot decide them"
+        }
       }
     },
     {
       "key": "referee",
-      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city. Its website let diners review restaurants, a service national companies had offered there for years, and when a diner and a restaurant disagreed about a bill or a review, both sides accepted the firm's ruling. Diners still dealt with restaurants directly, and the site listed every kitchen alphabetically. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
+      "passage": "In 2015 a small software firm began working with independent restaurants in one mid-sized city, where several national delivery apps already operated. Its website hosted diners' reviews, as the national apps' sites did, and when a restaurant disputed a review or a diner disputed a bill, both sides sent their evidence to the firm and abided by its decision. Owners said they trusted those decisions because the firm took no money from restaurants and none from diners' meals. By 2018, most of the city's restaurant owners spoke of the firm as their trade's ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "When diners and restaurants disagreed, both accepted the firm's ruling, so owners saw it as their trade's \"referee.\" \"Middleman\" fails because diners dealt with restaurants directly. \"Pioneer\" fails because national companies had offered the service for years, and \"publicist\" fails because the site promoted no kitchen, listing them alphabetically.",
+      "explanation": "Both sides brought disputes to the firm and accepted its decisions, trusting its neutrality, so owners saw it as their trade's \"referee.\" \"Pioneer\" fails because the national apps' sites already hosted reviews. \"Middleman\" fails because it took no money from diners' meals, and \"publicist\" fails because it took no money from restaurants.",
       "kills": {
-        "middleman": {"type": "logic", "quote": "dealt with restaurants directly", "why": "the firm did not stand between diners and restaurants in their dealings"},
-        "pioneer": {"type": "logic", "quote": "had offered there for years", "why": "the service was not new"},
-        "publicist": {"type": "logic", "quote": "listed every kitchen alphabetically", "why": "an alphabetical list promotes no restaurant"}
+        "pioneer": {
+          "type": "logic",
+          "quote": "as the national apps' sites did",
+          "why": "the service was not new"
+        },
+        "middleman": {
+          "type": "logic",
+          "quote": "none from diners' meals",
+          "why": "no payments passed through it"
+        },
+        "publicist": {
+          "type": "logic",
+          "quote": "took no money from restaurants",
+          "why": "no restaurant paid to be promoted"
+        }
       }
     }
   ]

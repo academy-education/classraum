@@ -24,97 +24,97 @@
   "worlds": [
     {
       "key": "stranded",
-      "passage": "Every spring a colony of flightless ground beetles nests on a gravel bar in the middle of a western river, feeding on the seeds of low plants that grow there. The water never reached the nests, and the seed plants came through untouched, but the flood cut away the gravel spit that had joined the bar to the bank, leaving the beetles unable to reach the mainland colonies they breed with for the rest of the summer. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
+      "passage": "Each spring flightless beetles nest on a gravel bar in a western river, eating the seeds of low plants there and walking across a narrow gravel spit to mate with colonies on the bank. This year the flood crested no higher than usual and fell within two days, and it left deep, fast water where the spit had been. In July the nests held the usual number of well-fed adults, and not one bank beetle was among them. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The flood cut the bar off from the bank, so the beetles were left unable to reach their breeding partners: it \"stranded\" them. \"Sheltered\" fails because the flood protected them from nothing and cost them their mates; \"starved\" fails because the seed plants were untouched; \"swamped\" fails because the water never reached the nests.",
+      "explanation": "Deep water now runs where the spit was, and no bank beetles reached the bar, so the colony is cut off from its mates: the flood \"stranded\" it. \"Sheltered\" fails because the only change is a loss, not protection; \"starved\" fails because the adults were well fed; \"swamped\" fails because an ordinary flood left the usual number of adults in the nests.",
       "kills": {
         "sheltered": {
           "type": "logic",
-          "quote": "unable to reach the mainland colonies they breed with",
-          "why": "The only effect named is a loss (cut off from breeding partners); nothing the flood kept away from them is mentioned, so it did not protect them."
+          "quote": "not one bank beetle was among them",
+          "why": "The flood cut the colony off from its breeding partners, a loss; it kept no threat away."
         },
         "starved": {
           "type": "logic",
-          "quote": "seed plants came through untouched",
-          "why": "Their food survived, so hunger was not the effect."
+          "quote": "usual number of well-fed adults",
+          "why": "Well-fed adults were not deprived of food."
         },
         "swamped": {
-          "type": "explicit",
-          "quote": "water never reached the nests",
-          "why": "The nests stayed dry, so the colony was not flooded over."
+          "type": "logic",
+          "quote": "crested no higher than usual",
+          "why": "An ordinary crest that left the usual number of adults did not overwhelm the nests."
         }
       }
     },
     {
       "key": "sheltered",
-      "passage": "Every spring a colony of flightless ground beetles nests on a gravel bar in the middle of a western river, feeding on the seeds of low plants that grow there. The water never reached the nests, and the gravel spit joining the bar to the bank stayed above it, but the flood drowned the ants that live on the low riverbank and raid the nests for larvae each summer; with the ants gone, the colony raised twice its usual number of young. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
+      "passage": "Each spring flightless beetles nest on a gravel bar in a western river, eating the seeds of low plants there and walking across a narrow gravel spit to mate with colonies on the bank. This year the flood crested no higher than usual, and the spit came back. The water filled the burrows of the bank ants that cross the spit each summer to carry off larvae, no ants reached the bar all season, and in July it held more young than in any year of the survey. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "By drowning the ants that prey on the larvae, the flood protected the colony, which then thrived: it \"sheltered\" the colony. \"Stranded\" fails because the spit to the bank stayed above water; \"starved\" fails because a colony raising twice its usual young was not short of food; \"swamped\" fails because the water never reached the nests.",
+      "explanation": "The flood drowned out the ants that raid the larvae, and the colony then raised a record number of young, so the flood protected it: it \"sheltered\" the colony. \"Stranded\" fails because the spit came back; \"starved\" fails because a colony raising record numbers was not short of food; \"swamped\" fails because an ordinary crest left the colony thriving.",
       "kills": {
         "stranded": {
           "type": "logic",
-          "quote": "gravel spit joining the bar to the bank stayed above it",
-          "why": "The bar stayed connected to the bank, so the beetles were not cut off."
+          "quote": "the spit came back",
+          "why": "The route to the bank returned, so the colony was not cut off."
         },
         "starved": {
           "type": "logic",
-          "quote": "raised twice its usual number of young",
-          "why": "A colony breeding at double its usual rate was not deprived of food."
+          "quote": "more young than in any year",
+          "why": "A record crop of young means food was not lacking."
         },
         "swamped": {
-          "type": "explicit",
-          "quote": "water never reached the nests",
-          "why": "The nests stayed dry, so the colony was not flooded over."
+          "type": "logic",
+          "quote": "crested no higher than usual",
+          "why": "An ordinary crest that left the colony thriving did not overwhelm it."
         }
       }
     },
     {
       "key": "starved",
-      "passage": "Every spring a colony of flightless ground beetles nests on a gravel bar in the middle of a western river, feeding on the seeds of low plants that grow there. The water never reached the nests, and the gravel spit joining the bar to the bank stayed above it, but the flood scoured away the seed plants on the bar and along the bank alike, and by July most of the adults had died beside their dry, intact nests. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
+      "passage": "Each spring flightless beetles nest on a gravel bar in a western river, eating the seeds of low plants there and walking across a narrow gravel spit to mate with colonies on the bank. This year the flood crested no higher than usual, and the spit came back. Its fast water stripped the bar and the bank alike of the low plants, which did not sprout again before autumn, and in July the dry, undisturbed nests held a few thin adults and no larvae. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "The flood destroyed the plants whose seeds the beetles eat, on the bar and the bank alike, and the adults died with their nests intact: it \"starved\" the colony. \"Stranded\" fails because the spit to the bank stayed above water; \"sheltered\" fails because most adults died; \"swamped\" fails because the water never reached the nests.",
+      "explanation": "The flood removed the seed plants on the bar and the bank, and the survivors were thin with no young, so the beetles had nothing to eat: it \"starved\" the colony. \"Stranded\" fails because the spit came back; \"sheltered\" fails because the colony was left with a few thin adults; \"swamped\" fails because the dry, undisturbed nests.",
       "kills": {
         "stranded": {
           "type": "logic",
-          "quote": "gravel spit joining the bar to the bank stayed above it",
-          "why": "The bar stayed connected to the bank, so the beetles were not cut off; the bank had no food either."
+          "quote": "the spit came back",
+          "why": "The route to the bank returned, so the colony was not cut off; the bank had no food either."
         },
         "sheltered": {
           "type": "logic",
-          "quote": "most of the adults had died",
-          "why": "A colony that mostly died was not protected by the flood."
+          "quote": "a few thin adults and no larvae",
+          "why": "A colony reduced to a few thin adults was harmed, not protected."
         },
         "swamped": {
-          "type": "explicit",
-          "quote": "water never reached the nests",
-          "why": "The nests stayed dry, so the colony was not flooded over."
+          "type": "logic",
+          "quote": "dry, undisturbed nests",
+          "why": "Dry nests were not overwhelmed by water."
         }
       }
     },
     {
       "key": "swamped",
-      "passage": "Every spring a colony of flightless ground beetles nests on a gravel bar in the middle of a western river, feeding on the seeds of low plants that grow there. The seed plants came through untouched, and the gravel spit joining the bar to the bank reappeared as soon as the water fell, but for three days the river ran over the whole bar, filling the nests and drowning nearly every larva inside them. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
+      "passage": "Each spring flightless beetles nest on a gravel bar in a western river, eating the seeds of low plants there and walking across a narrow gravel spit to mate with colonies on the bank. This year the flood crested higher than any on record and stayed up for three days; the deep-rooted plants stood again once it fell, and the spit came back. In July the burrows were packed with silt, and the bar held only the few adults that had been feeding on the bank when the river rose. After surveying the bar in July, one ecologist reported that the year's flood had ______ the colony.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The river covered the bar for three days and drowned the larvae in their flooded nests: it \"swamped\" the colony. \"Stranded\" fails because the spit to the bank reappeared once the water fell; \"starved\" fails because the seed plants were untouched; \"sheltered\" fails because nearly every larva drowned.",
+      "explanation": "A record crest stood over the bar for days, filled the burrows with silt, and left only beetles that had been off the bar: the flood \"swamped\" the colony. \"Stranded\" fails because the spit came back; \"starved\" fails because the plants stood again at once; \"sheltered\" fails because only a few adults survived.",
       "kills": {
         "stranded": {
           "type": "logic",
-          "quote": "reappeared as soon as the water fell",
-          "why": "The connection to the bank returned at once, so the beetles were not left cut off."
+          "quote": "the spit came back",
+          "why": "The route to the bank returned, so the colony was not cut off."
         },
         "starved": {
           "type": "logic",
-          "quote": "seed plants came through untouched",
-          "why": "Their food survived, so hunger was not the effect."
+          "quote": "stood again once it fell",
+          "why": "The food plants survived, so hunger was not the effect."
         },
         "sheltered": {
-          "type": "explicit",
-          "quote": "drowning nearly every larva inside them",
-          "why": "A flood that drowned nearly all the young did not protect the colony."
+          "type": "logic",
+          "quote": "held only the few adults",
+          "why": "A colony reduced to the few beetles who happened to be away was harmed, not protected."
         }
       }
     }
