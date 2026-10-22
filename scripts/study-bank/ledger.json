@@ -9888,6 +9888,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "toefl-talk-draft-2-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "academic_talk",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-2",
+      "contentSha": "d21c6ab9953251b7d4b7d6d2ea2938d3ea0bc8249db8f2def47667381e407810",
+      "status": "staged-for-human-review",
+      "note": "12 lectures x 4 by 2 Claude agents for upper/hard; grader A+B 0/48. Spot route (toefl-talk-draft-2.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "d21c6ab9953251b7d4b7d6d2ea2938d3ea0bc8249db8f2def47667381e407810",
+          "verdict": "12 groups x 4; key longest 2/48 shortest 5/48."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A+B 0/48 flagged."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

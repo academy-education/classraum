@@ -1,0 +1,2838 @@
+{
+ "cohort": "toefl-talk-draft-2",
+ "created": "2026-10-22",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a question that sounds simple: what does a typical planetary system look like? For most of history we had exactly one example, our own, so we couldn't really answer it. Then in 1995 astronomers found a planet circling an ordinary Sun-like star, 51 Pegasi, and it was bizarre. It had roughly half the mass of Jupiter, and it went around its star in about four days. Four days! Mercury takes eighty-eight. A giant planet that close to its star had no place in the theories of the time.\n\nOver the next few years, more of these so-called hot Jupiters turned up, one after another. So you might conclude that this is what planetary systems usually look like, and that ours is the odd one out. And for a while, a lot of people did conclude that.\n\nHere's the catch. Think about how those planets were found. The main technique watched for a star wobbling back and forth as a planet tugged on it. Now, which planets tug hardest and fastest? Massive ones in tight orbits. A hot Jupiter makes a big wobble that repeats every few days, so you can confirm it in a single observing season. A planet like our Jupiter takes about twelve years to complete one orbit, and its wobble is far smaller. The method wasn't sampling planets. It was sampling the planets that were easiest for it to see.\n\nWhen later surveys searched more systematically, hot Jupiters turned out to be rare, found around something like one Sun-like star in a hundred. They'd been overrepresented because they were conspicuous, not because they were common.\n\nSo is our solar system typical after all? I wouldn't go that far. Plenty of systems found since look nothing like ours either. The honest lesson is narrower: before you ask what's typical, ask what your instrument could have missed.",
+    "passageGroupId": "pg-698c167d54bf0f949aba80cbe4db3870",
+    "prompt": "[Academic Talk — Astronomy] What is the main point of the lecture?",
+    "choices": [
+     "Early detections made a rare type of planet look common",
+     "Hot Jupiters are the most common planets around Sun-like stars",
+     "Our solar system has now been shown to be a typical one",
+     "Giant planets usually form much closer to stars than expected"
+    ],
+    "correct_answer": "Early detections made a rare type of planet look common",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Hot Jupiters 'had been overrepresented because they were conspicuous, not because they were common.'",
+    "distractor_rationales": [
+     {
+      "choice": "Hot Jupiters are the most common planets around Sun-like stars",
+      "reason": "Later surveys found them around 'something like one Sun-like star in a hundred'."
+     },
+     {
+      "choice": "Our solar system has now been shown to be a typical one",
+      "reason": "The professor says 'I wouldn't go that far.'"
+     },
+     {
+      "choice": "Giant planets usually form much closer to stars than expected",
+      "reason": "Close-in giants turned out to be rare, which is the opposite of usual."
+     }
+    ]
+   },
+   "content_hash": "50c905f48288d0cf79af9dfa2f9f625e",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a question that sounds simple: what does a typical planetary system look like? For most of history we had exactly one example, our own, so we couldn't really answer it. Then in 1995 astronomers found a planet circling an ordinary Sun-like star, 51 Pegasi, and it was bizarre. It had roughly half the mass of Jupiter, and it went around its star in about four days. Four days! Mercury takes eighty-eight. A giant planet that close to its star had no place in the theories of the time.\n\nOver the next few years, more of these so-called hot Jupiters turned up, one after another. So you might conclude that this is what planetary systems usually look like, and that ours is the odd one out. And for a while, a lot of people did conclude that.\n\nHere's the catch. Think about how those planets were found. The main technique watched for a star wobbling back and forth as a planet tugged on it. Now, which planets tug hardest and fastest? Massive ones in tight orbits. A hot Jupiter makes a big wobble that repeats every few days, so you can confirm it in a single observing season. A planet like our Jupiter takes about twelve years to complete one orbit, and its wobble is far smaller. The method wasn't sampling planets. It was sampling the planets that were easiest for it to see.\n\nWhen later surveys searched more systematically, hot Jupiters turned out to be rare, found around something like one Sun-like star in a hundred. They'd been overrepresented because they were conspicuous, not because they were common.\n\nSo is our solar system typical after all? I wouldn't go that far. Plenty of systems found since look nothing like ours either. The honest lesson is narrower: before you ask what's typical, ask what your instrument could have missed.",
+    "passageGroupId": "pg-698c167d54bf0f949aba80cbe4db3870",
+    "prompt": "[Academic Talk — Astronomy] Why does the professor mention that Mercury takes eighty-eight days to orbit the Sun?",
+    "choices": [
+     "To stress how short the new planet's orbit was",
+     "To show that small planets are easiest to detect",
+     "To suggest that hot Jupiters form where Mercury is",
+     "To show that close planets were well understood"
+    ],
+    "correct_answer": "To stress how short the new planet's orbit was",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Four days! Mercury takes eighty-eight.' The comparison makes the four-day orbit striking.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that small planets are easiest to detect",
+      "reason": "The method favored massive planets, not small ones."
+     },
+     {
+      "choice": "To suggest that hot Jupiters form where Mercury is",
+      "reason": "Nothing is said about where hot Jupiters form relative to Mercury."
+     },
+     {
+      "choice": "To show that close planets were well understood",
+      "reason": "Such a planet 'had no place in the theories of the time'."
+     }
+    ]
+   },
+   "content_hash": "9ea3c9935357879a3e04dfa3bae5750d",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a question that sounds simple: what does a typical planetary system look like? For most of history we had exactly one example, our own, so we couldn't really answer it. Then in 1995 astronomers found a planet circling an ordinary Sun-like star, 51 Pegasi, and it was bizarre. It had roughly half the mass of Jupiter, and it went around its star in about four days. Four days! Mercury takes eighty-eight. A giant planet that close to its star had no place in the theories of the time.\n\nOver the next few years, more of these so-called hot Jupiters turned up, one after another. So you might conclude that this is what planetary systems usually look like, and that ours is the odd one out. And for a while, a lot of people did conclude that.\n\nHere's the catch. Think about how those planets were found. The main technique watched for a star wobbling back and forth as a planet tugged on it. Now, which planets tug hardest and fastest? Massive ones in tight orbits. A hot Jupiter makes a big wobble that repeats every few days, so you can confirm it in a single observing season. A planet like our Jupiter takes about twelve years to complete one orbit, and its wobble is far smaller. The method wasn't sampling planets. It was sampling the planets that were easiest for it to see.\n\nWhen later surveys searched more systematically, hot Jupiters turned out to be rare, found around something like one Sun-like star in a hundred. They'd been overrepresented because they were conspicuous, not because they were common.\n\nSo is our solar system typical after all? I wouldn't go that far. Plenty of systems found since look nothing like ours either. The honest lesson is narrower: before you ask what's typical, ask what your instrument could have missed.",
+    "passageGroupId": "pg-698c167d54bf0f949aba80cbe4db3870",
+    "prompt": "[Academic Talk — Astronomy] According to the professor, why could a hot Jupiter be confirmed quickly?",
+    "choices": [
+     "Its large wobble repeats every few days",
+     "It takes about twelve years to orbit its star",
+     "It tugs on its star only very slightly",
+     "It sits far from the glare of its star"
+    ],
+    "correct_answer": "Its large wobble repeats every few days",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'A hot Jupiter makes a big wobble that repeats every few days, so you can confirm it in a single observing season.'",
+    "distractor_rationales": [
+     {
+      "choice": "It takes about twelve years to orbit its star",
+      "reason": "Twelve years is the orbit of a planet like our Jupiter."
+     },
+     {
+      "choice": "It tugs on its star only very slightly",
+      "reason": "Massive close planets 'tug hardest'."
+     },
+     {
+      "choice": "It sits far from the glare of its star",
+      "reason": "A hot Jupiter orbits very close to its star."
+     }
+    ]
+   },
+   "content_hash": "9834eb5592067d957136831de5c8047b",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a question that sounds simple: what does a typical planetary system look like? For most of history we had exactly one example, our own, so we couldn't really answer it. Then in 1995 astronomers found a planet circling an ordinary Sun-like star, 51 Pegasi, and it was bizarre. It had roughly half the mass of Jupiter, and it went around its star in about four days. Four days! Mercury takes eighty-eight. A giant planet that close to its star had no place in the theories of the time.\n\nOver the next few years, more of these so-called hot Jupiters turned up, one after another. So you might conclude that this is what planetary systems usually look like, and that ours is the odd one out. And for a while, a lot of people did conclude that.\n\nHere's the catch. Think about how those planets were found. The main technique watched for a star wobbling back and forth as a planet tugged on it. Now, which planets tug hardest and fastest? Massive ones in tight orbits. A hot Jupiter makes a big wobble that repeats every few days, so you can confirm it in a single observing season. A planet like our Jupiter takes about twelve years to complete one orbit, and its wobble is far smaller. The method wasn't sampling planets. It was sampling the planets that were easiest for it to see.\n\nWhen later surveys searched more systematically, hot Jupiters turned out to be rare, found around something like one Sun-like star in a hundred. They'd been overrepresented because they were conspicuous, not because they were common.\n\nSo is our solar system typical after all? I wouldn't go that far. Plenty of systems found since look nothing like ours either. The honest lesson is narrower: before you ask what's typical, ask what your instrument could have missed.",
+    "passageGroupId": "pg-698c167d54bf0f949aba80cbe4db3870",
+    "prompt": "[Academic Talk — Astronomy] What does the professor imply about whether our solar system is typical?",
+    "choices": [
+     "Current evidence does not settle whether it is typical or not",
+     "It is clearly typical now that hot Jupiters are known to be rare",
+     "It is clearly unusual because most systems have hot Jupiters",
+     "It cannot be compared with others until new methods exist"
+    ],
+    "correct_answer": "Current evidence does not settle whether it is typical or not",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'So is our solar system typical after all? I wouldn't go that far. Plenty of systems found since look nothing like ours either.'",
+    "distractor_rationales": [
+     {
+      "choice": "It is clearly typical now that hot Jupiters are known to be rare",
+      "reason": "The professor explicitly declines this conclusion."
+     },
+     {
+      "choice": "It is clearly unusual because most systems have hot Jupiters",
+      "reason": "Hot Jupiters turned out to be rare, about one star in a hundred."
+     },
+     {
+      "choice": "It cannot be compared with others until new methods exist",
+      "reason": "Comparison is already happening: 'plenty of systems found since' are compared with ours."
+     }
+    ]
+   },
+   "content_hash": "1e08dff718113ba4752276f969160314",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early twentieth century, the anthropologist Bronisław Malinowski spent several years in the Trobriand Islands, off the coast of New Guinea, and he described an exchange system that seemed, at first, to make no economic sense. It's called the Kula.\n\nHere's how it works. Men sail between islands, sometimes across long stretches of open sea, to exchange two kinds of objects: long necklaces of red shell, and white shell armbands. And the two travel in opposite directions around a great ring of islands. Necklaces move one way, roughly clockwise, and armbands move the other. When you receive a necklace, you'll eventually pass it on to a partner farther along the ring. You don't keep it. Some of these objects are hardly ever worn.\n\nSo think about that. People risk dangerous voyages to get things they can't use and won't keep. Why?\n\nMalinowski's answer was that the value lies in holding and passing on, not in owning. A famous necklace carries its history with it, the names of the people who've held it, and having it pass through your hands raises your standing. More importantly, Kula partnerships last for life. A man has fixed partners on other islands, and those relationships give him hosts, allies, and safe passage in places where he'd otherwise be a stranger.\n\nNow, here's the twist that's easy to miss. Alongside the ceremonial exchange, ordinary trade went on: food, pottery, tools, bartered with haggling, the kind of bargaining the Kula itself was supposed to rule out. So the Kula wasn't a replacement for practical trade. It was more like the framework that made practical trade possible, a network of trust stretched across the sea.\n\nThe broader lesson, and economic anthropologists still argue about it, is that exchange doesn't have to be about getting things. Sometimes it's about building the relationships that everything else depends on.",
+    "passageGroupId": "pg-d46be282063453a276c936c78437870d",
+    "prompt": "[Academic Talk — Anthropology] What is the lecture mainly about?",
+    "choices": [
+     "How an exchange that looks useless serves social ends",
+     "Why shell valuables slowly lost their value over time",
+     "How Trobriand islanders built boats for long voyages",
+     "Why Malinowski's account of the Kula proved mistaken"
+    ],
+    "correct_answer": "How an exchange that looks useless serves social ends",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The Kula 'seemed, at first, to make no economic sense', but it builds standing, lifelong partnerships and trust.",
+    "distractor_rationales": [
+     {
+      "choice": "Why shell valuables slowly lost their value over time",
+      "reason": "A famous necklace gains value from its history; no loss of value is described."
+     },
+     {
+      "choice": "How Trobriand islanders built boats for long voyages",
+      "reason": "Voyages are mentioned, but boatbuilding is not discussed."
+     },
+     {
+      "choice": "Why Malinowski's account of the Kula proved mistaken",
+      "reason": "The professor presents Malinowski's answer as the explanation, not as an error."
+     }
+    ]
+   },
+   "content_hash": "9f9ae707971c6465b5a7c28040549488",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early twentieth century, the anthropologist Bronisław Malinowski spent several years in the Trobriand Islands, off the coast of New Guinea, and he described an exchange system that seemed, at first, to make no economic sense. It's called the Kula.\n\nHere's how it works. Men sail between islands, sometimes across long stretches of open sea, to exchange two kinds of objects: long necklaces of red shell, and white shell armbands. And the two travel in opposite directions around a great ring of islands. Necklaces move one way, roughly clockwise, and armbands move the other. When you receive a necklace, you'll eventually pass it on to a partner farther along the ring. You don't keep it. Some of these objects are hardly ever worn.\n\nSo think about that. People risk dangerous voyages to get things they can't use and won't keep. Why?\n\nMalinowski's answer was that the value lies in holding and passing on, not in owning. A famous necklace carries its history with it, the names of the people who've held it, and having it pass through your hands raises your standing. More importantly, Kula partnerships last for life. A man has fixed partners on other islands, and those relationships give him hosts, allies, and safe passage in places where he'd otherwise be a stranger.\n\nNow, here's the twist that's easy to miss. Alongside the ceremonial exchange, ordinary trade went on: food, pottery, tools, bartered with haggling, the kind of bargaining the Kula itself was supposed to rule out. So the Kula wasn't a replacement for practical trade. It was more like the framework that made practical trade possible, a network of trust stretched across the sea.\n\nThe broader lesson, and economic anthropologists still argue about it, is that exchange doesn't have to be about getting things. Sometimes it's about building the relationships that everything else depends on.",
+    "passageGroupId": "pg-d46be282063453a276c936c78437870d",
+    "prompt": "[Academic Talk — Anthropology] According to the professor, what does a man eventually do with a necklace he receives?",
+    "choices": [
+     "He passes it on to a partner along the ring",
+     "He keeps it as a lasting sign of his own rank",
+     "He hands it back to the partner who gave it",
+     "He wears it every day until it is worn out"
+    ],
+    "correct_answer": "He passes it on to a partner along the ring",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'When you receive a necklace, you'll eventually pass it on to a partner farther along the ring. You don't keep it.'",
+    "distractor_rationales": [
+     {
+      "choice": "He keeps it as a lasting sign of his own rank",
+      "reason": "'You don't keep it.' Standing comes from it passing through your hands."
+     },
+     {
+      "choice": "He hands it back to the partner who gave it",
+      "reason": "It moves on 'farther along the ring', not back."
+     },
+     {
+      "choice": "He wears it every day until it is worn out",
+      "reason": "'Some of these objects are hardly ever worn.'"
+     }
+    ]
+   },
+   "content_hash": "8ace4996d851f0aa47213f360e1d94d0",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early twentieth century, the anthropologist Bronisław Malinowski spent several years in the Trobriand Islands, off the coast of New Guinea, and he described an exchange system that seemed, at first, to make no economic sense. It's called the Kula.\n\nHere's how it works. Men sail between islands, sometimes across long stretches of open sea, to exchange two kinds of objects: long necklaces of red shell, and white shell armbands. And the two travel in opposite directions around a great ring of islands. Necklaces move one way, roughly clockwise, and armbands move the other. When you receive a necklace, you'll eventually pass it on to a partner farther along the ring. You don't keep it. Some of these objects are hardly ever worn.\n\nSo think about that. People risk dangerous voyages to get things they can't use and won't keep. Why?\n\nMalinowski's answer was that the value lies in holding and passing on, not in owning. A famous necklace carries its history with it, the names of the people who've held it, and having it pass through your hands raises your standing. More importantly, Kula partnerships last for life. A man has fixed partners on other islands, and those relationships give him hosts, allies, and safe passage in places where he'd otherwise be a stranger.\n\nNow, here's the twist that's easy to miss. Alongside the ceremonial exchange, ordinary trade went on: food, pottery, tools, bartered with haggling, the kind of bargaining the Kula itself was supposed to rule out. So the Kula wasn't a replacement for practical trade. It was more like the framework that made practical trade possible, a network of trust stretched across the sea.\n\nThe broader lesson, and economic anthropologists still argue about it, is that exchange doesn't have to be about getting things. Sometimes it's about building the relationships that everything else depends on.",
+    "passageGroupId": "pg-d46be282063453a276c936c78437870d",
+    "prompt": "[Academic Talk — Anthropology] Why does the professor mention food, pottery, and tools?",
+    "choices": [
+     "To show that ordinary trade went on beside the Kula",
+     "To list the objects passed around the Kula ring",
+     "To show that the Kula replaced bargaining over goods",
+     "To explain why the sea voyages were so dangerous"
+    ],
+    "correct_answer": "To show that ordinary trade went on beside the Kula",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Alongside the ceremonial exchange, ordinary trade went on: food, pottery, tools, bartered with haggling.'",
+    "distractor_rationales": [
+     {
+      "choice": "To list the objects passed around the Kula ring",
+      "reason": "The Kula objects are the necklaces and armbands."
+     },
+     {
+      "choice": "To show that the Kula replaced bargaining over goods",
+      "reason": "'The Kula wasn't a replacement for practical trade.'"
+     },
+     {
+      "choice": "To explain why the sea voyages were so dangerous",
+      "reason": "These goods are not connected to the danger of the voyages."
+     }
+    ]
+   },
+   "content_hash": "9cf3407c4bc73029cfcc4fbd06a1c1ec",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early twentieth century, the anthropologist Bronisław Malinowski spent several years in the Trobriand Islands, off the coast of New Guinea, and he described an exchange system that seemed, at first, to make no economic sense. It's called the Kula.\n\nHere's how it works. Men sail between islands, sometimes across long stretches of open sea, to exchange two kinds of objects: long necklaces of red shell, and white shell armbands. And the two travel in opposite directions around a great ring of islands. Necklaces move one way, roughly clockwise, and armbands move the other. When you receive a necklace, you'll eventually pass it on to a partner farther along the ring. You don't keep it. Some of these objects are hardly ever worn.\n\nSo think about that. People risk dangerous voyages to get things they can't use and won't keep. Why?\n\nMalinowski's answer was that the value lies in holding and passing on, not in owning. A famous necklace carries its history with it, the names of the people who've held it, and having it pass through your hands raises your standing. More importantly, Kula partnerships last for life. A man has fixed partners on other islands, and those relationships give him hosts, allies, and safe passage in places where he'd otherwise be a stranger.\n\nNow, here's the twist that's easy to miss. Alongside the ceremonial exchange, ordinary trade went on: food, pottery, tools, bartered with haggling, the kind of bargaining the Kula itself was supposed to rule out. So the Kula wasn't a replacement for practical trade. It was more like the framework that made practical trade possible, a network of trust stretched across the sea.\n\nThe broader lesson, and economic anthropologists still argue about it, is that exchange doesn't have to be about getting things. Sometimes it's about building the relationships that everything else depends on.",
+    "passageGroupId": "pg-d46be282063453a276c936c78437870d",
+    "prompt": "[Academic Talk — Anthropology] What can be inferred about haggling in the Kula exchange itself?",
+    "choices": [
+     "It was considered improper behavior",
+     "It set the value of necklaces",
+     "It happened only between partners",
+     "It was also banned in ordinary trade"
+    ],
+    "correct_answer": "It was considered improper behavior",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Haggling is 'the kind of bargaining the Kula itself was supposed to rule out.'",
+    "distractor_rationales": [
+     {
+      "choice": "It set the value of necklaces",
+      "reason": "A necklace's value comes from its history, not from bargaining."
+     },
+     {
+      "choice": "It happened only between partners",
+      "reason": "Lifelong partners are the people the Kula links, and the Kula ruled haggling out."
+     },
+     {
+      "choice": "It was also banned in ordinary trade",
+      "reason": "Ordinary trade was 'bartered with haggling'."
+     }
+    ]
+   },
+   "content_hash": "d62d5a8359727c981b70b10f5a925012",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The Montreal Protocol, signed in 1987, is often called the most successful environmental treaty ever written, and honestly, I think that reputation's earned. Every member of the United Nations eventually ratified it. It phased out chlorofluorocarbons, or CFCs, the chemicals in old refrigerators and spray cans that drift up into the stratosphere and break down ozone. And measurements now show the ozone layer beginning to recover.\n\nSo why am I not just celebrating? Two reasons.\n\nThe first is time. A CFC molecule released decades ago can stay in the atmosphere for fifty years or more, some types for around a century. So even though production has basically stopped, the chlorine already up there keeps doing damage. The Antarctic ozone hole still opens every spring, and current projections don't have it fully healing until somewhere around the 2060s. A ban changes what goes into the air. It doesn't instantly change what's already there.\n\nThe second reason is more interesting. What replaced CFCs? Over time, largely a family of chemicals called HFCs. They contain no chlorine, so they're harmless to ozone. Problem solved, right? Well, no. Many HFCs turned out to be extremely powerful greenhouse gases, some thousands of times more potent than carbon dioxide, molecule for molecule. The fix for one problem was quietly feeding another.\n\nTo its credit, the treaty system responded. In 2016, countries agreed on the Kigali Amendment, which schedules a phase-down of HFCs as well. So the story still ends reasonably well.\n\nBut notice what happened. The original choice was judged against a single question: does this harm the ozone layer? HFCs passed that test perfectly. Nobody pressed the broader question until the replacements were already in millions of air conditioners. When you swap out a harmful substance, you have to judge its replacement against every problem, not only the one you're trying to solve.",
+    "passageGroupId": "pg-c760aeeda47526a58f19b0bf9e4c9e3c",
+    "prompt": "[Academic Talk — Environmental Science] What is the main purpose of the lecture?",
+    "choices": [
+     "To qualify the high praise given to the Montreal Protocol",
+     "To argue that the Montreal Protocol failed to protect ozone",
+     "To explain the chemistry of how chlorine destroys ozone",
+     "To compare the Montreal Protocol with climate treaties"
+    ],
+    "correct_answer": "To qualify the high praise given to the Montreal Protocol",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The professor calls the reputation 'earned' and then asks, 'So why am I not just celebrating? Two reasons.'",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that the Montreal Protocol failed to protect ozone",
+      "reason": "The ozone layer is 'beginning to recover'."
+     },
+     {
+      "choice": "To explain the chemistry of how chlorine destroys ozone",
+      "reason": "The chemistry is not explained beyond CFCs breaking down ozone."
+     },
+     {
+      "choice": "To compare the Montreal Protocol with climate treaties",
+      "reason": "No other climate treaty is compared; Kigali is an amendment to the same protocol."
+     }
+    ]
+   },
+   "content_hash": "c5c5e9567032eb09cdd46bdf375ffd0d",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The Montreal Protocol, signed in 1987, is often called the most successful environmental treaty ever written, and honestly, I think that reputation's earned. Every member of the United Nations eventually ratified it. It phased out chlorofluorocarbons, or CFCs, the chemicals in old refrigerators and spray cans that drift up into the stratosphere and break down ozone. And measurements now show the ozone layer beginning to recover.\n\nSo why am I not just celebrating? Two reasons.\n\nThe first is time. A CFC molecule released decades ago can stay in the atmosphere for fifty years or more, some types for around a century. So even though production has basically stopped, the chlorine already up there keeps doing damage. The Antarctic ozone hole still opens every spring, and current projections don't have it fully healing until somewhere around the 2060s. A ban changes what goes into the air. It doesn't instantly change what's already there.\n\nThe second reason is more interesting. What replaced CFCs? Over time, largely a family of chemicals called HFCs. They contain no chlorine, so they're harmless to ozone. Problem solved, right? Well, no. Many HFCs turned out to be extremely powerful greenhouse gases, some thousands of times more potent than carbon dioxide, molecule for molecule. The fix for one problem was quietly feeding another.\n\nTo its credit, the treaty system responded. In 2016, countries agreed on the Kigali Amendment, which schedules a phase-down of HFCs as well. So the story still ends reasonably well.\n\nBut notice what happened. The original choice was judged against a single question: does this harm the ozone layer? HFCs passed that test perfectly. Nobody pressed the broader question until the replacements were already in millions of air conditioners. When you swap out a harmful substance, you have to judge its replacement against every problem, not only the one you're trying to solve.",
+    "passageGroupId": "pg-c760aeeda47526a58f19b0bf9e4c9e3c",
+    "prompt": "[Academic Talk — Environmental Science] According to the professor, why does the Antarctic ozone hole still open every spring?",
+    "choices": [
+     "Chlorine from long-lived CFCs remains in the air",
+     "Some countries have still never ratified the treaty",
+     "HFCs have begun to break down ozone as well",
+     "CFC production rose again after the year 2016"
+    ],
+    "correct_answer": "Chlorine from long-lived CFCs remains in the air",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "CFCs can stay up 'fifty years or more', so 'the chlorine already up there keeps doing damage.'",
+    "distractor_rationales": [
+     {
+      "choice": "Some countries have still never ratified the treaty",
+      "reason": "'Every member of the United Nations eventually ratified it.'"
+     },
+     {
+      "choice": "HFCs have begun to break down ozone as well",
+      "reason": "HFCs 'contain no chlorine, so they're harmless to ozone.'"
+     },
+     {
+      "choice": "CFC production rose again after the year 2016",
+      "reason": "Production 'has basically stopped'; 2016 is the Kigali Amendment."
+     }
+    ]
+   },
+   "content_hash": "efd038f464fd3fd91ffef78f02d368b4",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The Montreal Protocol, signed in 1987, is often called the most successful environmental treaty ever written, and honestly, I think that reputation's earned. Every member of the United Nations eventually ratified it. It phased out chlorofluorocarbons, or CFCs, the chemicals in old refrigerators and spray cans that drift up into the stratosphere and break down ozone. And measurements now show the ozone layer beginning to recover.\n\nSo why am I not just celebrating? Two reasons.\n\nThe first is time. A CFC molecule released decades ago can stay in the atmosphere for fifty years or more, some types for around a century. So even though production has basically stopped, the chlorine already up there keeps doing damage. The Antarctic ozone hole still opens every spring, and current projections don't have it fully healing until somewhere around the 2060s. A ban changes what goes into the air. It doesn't instantly change what's already there.\n\nThe second reason is more interesting. What replaced CFCs? Over time, largely a family of chemicals called HFCs. They contain no chlorine, so they're harmless to ozone. Problem solved, right? Well, no. Many HFCs turned out to be extremely powerful greenhouse gases, some thousands of times more potent than carbon dioxide, molecule for molecule. The fix for one problem was quietly feeding another.\n\nTo its credit, the treaty system responded. In 2016, countries agreed on the Kigali Amendment, which schedules a phase-down of HFCs as well. So the story still ends reasonably well.\n\nBut notice what happened. The original choice was judged against a single question: does this harm the ozone layer? HFCs passed that test perfectly. Nobody pressed the broader question until the replacements were already in millions of air conditioners. When you swap out a harmful substance, you have to judge its replacement against every problem, not only the one you're trying to solve.",
+    "passageGroupId": "pg-c760aeeda47526a58f19b0bf9e4c9e3c",
+    "prompt": "[Academic Talk — Environmental Science] Why does the professor say 'Problem solved, right?'",
+    "choices": [
+     "To set up the point that the substitutes caused a new problem",
+     "To confirm that HFCs ended all the harm done by older coolants",
+     "To suggest that HFCs still damage the ozone layer slowly",
+     "To question whether CFCs were ever really harmful at all"
+    ],
+    "correct_answer": "To set up the point that the substitutes caused a new problem",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It is followed at once by 'Well, no. Many HFCs turned out to be extremely powerful greenhouse gases.'",
+    "distractor_rationales": [
+     {
+      "choice": "To confirm that HFCs ended all the harm done by older coolants",
+      "reason": "The professor immediately answers 'Well, no.'"
+     },
+     {
+      "choice": "To suggest that HFCs still damage the ozone layer slowly",
+      "reason": "HFCs are 'harmless to ozone'; their harm is to climate."
+     },
+     {
+      "choice": "To question whether CFCs were ever really harmful at all",
+      "reason": "CFCs are described as breaking down ozone."
+     }
+    ]
+   },
+   "content_hash": "5246977d96d58865af2166692d340c0d",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: The Montreal Protocol, signed in 1987, is often called the most successful environmental treaty ever written, and honestly, I think that reputation's earned. Every member of the United Nations eventually ratified it. It phased out chlorofluorocarbons, or CFCs, the chemicals in old refrigerators and spray cans that drift up into the stratosphere and break down ozone. And measurements now show the ozone layer beginning to recover.\n\nSo why am I not just celebrating? Two reasons.\n\nThe first is time. A CFC molecule released decades ago can stay in the atmosphere for fifty years or more, some types for around a century. So even though production has basically stopped, the chlorine already up there keeps doing damage. The Antarctic ozone hole still opens every spring, and current projections don't have it fully healing until somewhere around the 2060s. A ban changes what goes into the air. It doesn't instantly change what's already there.\n\nThe second reason is more interesting. What replaced CFCs? Over time, largely a family of chemicals called HFCs. They contain no chlorine, so they're harmless to ozone. Problem solved, right? Well, no. Many HFCs turned out to be extremely powerful greenhouse gases, some thousands of times more potent than carbon dioxide, molecule for molecule. The fix for one problem was quietly feeding another.\n\nTo its credit, the treaty system responded. In 2016, countries agreed on the Kigali Amendment, which schedules a phase-down of HFCs as well. So the story still ends reasonably well.\n\nBut notice what happened. The original choice was judged against a single question: does this harm the ozone layer? HFCs passed that test perfectly. Nobody pressed the broader question until the replacements were already in millions of air conditioners. When you swap out a harmful substance, you have to judge its replacement against every problem, not only the one you're trying to solve.",
+    "passageGroupId": "pg-c760aeeda47526a58f19b0bf9e4c9e3c",
+    "prompt": "[Academic Talk — Environmental Science] What does the professor imply was the mistake in adopting HFCs?",
+    "choices": [
+     "They were judged against only a single standard",
+     "They were never tested for harm to ozone",
+     "They were adopted before CFCs were banned",
+     "They cooled less well than the CFCs had"
+    ],
+    "correct_answer": "They were judged against only a single standard",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The original choice was judged against a single question: does this harm the ozone layer?'",
+    "distractor_rationales": [
+     {
+      "choice": "They were never tested for harm to ozone",
+      "reason": "They were tested on ozone and 'passed that test perfectly'."
+     },
+     {
+      "choice": "They were adopted before CFCs were banned",
+      "reason": "HFCs are described as what 'replaced CFCs'."
+     },
+     {
+      "choice": "They cooled less well than the CFCs had",
+      "reason": "The flaw named is the narrow test, not how well they cooled."
+     }
+    ]
+   },
+   "content_hash": "4d9f1982e04ed519114dc8baadcd1501",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem that bothered musicians for centuries, and it comes straight out of arithmetic. Take a note and go up by a pure fifth, the interval where the frequencies are in a simple three-to-two ratio. Do that twelve times and you should, in theory, land back on your starting note, just seven octaves higher. You don't. You overshoot, by roughly a quarter of a semitone. Pure fifths and pure octaves can't be made to close the circle.\n\nSo any keyboard tuning is a compromise. Somewhere, some intervals have to be bent. Older tunings kept the most common intervals pure and pushed the leftover error into keys composers rarely used. Play in those keys and certain chords sounded so harsh that musicians nicknamed one of the bad intervals the wolf, because it howled.\n\nThe modern solution, equal temperament, spreads the error evenly. Every fifth is shaved by the same tiny amount, so every key sounds alike, and you can play in any of them. That's the tuning on nearly every piano today.\n\nYou've probably heard that Bach wrote The Well-Tempered Clavier, a set of preludes and fugues in all twenty-four major and minor keys, to show off equal temperament. That's the textbook version. But many scholars now doubt it. Well-tempered isn't the same thing as equally tempered. There were tunings in Bach's day that made every key usable while still leaving them slightly different, so some keys sounded calm and pure and others tenser. If Bach had one of those in mind, his collection wasn't proving that all keys are the same. It was showing that all keys were playable, each with its own character.\n\nWe can't be certain which tuning Bach used; he never wrote it down. But the point is worth holding onto: something was lost when every key started to sound the same.",
+    "passageGroupId": "pg-8a18c70cbc2309fe3a30195994d22ea9",
+    "prompt": "[Academic Talk — Music History] What is the lecture mainly about?",
+    "choices": [
+     "How keyboard tunings handle an unavoidable mismatch",
+     "How Bach invented equal temperament for his keyboard",
+     "Why pure fifths sound better than pure octaves do",
+     "Why some composers avoided writing in minor keys"
+    ],
+    "correct_answer": "How keyboard tunings handle an unavoidable mismatch",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Pure fifths and octaves 'can't be made to close the circle', so 'any keyboard tuning is a compromise', and the lecture compares the compromises.",
+    "distractor_rationales": [
+     {
+      "choice": "How Bach invented equal temperament for his keyboard",
+      "reason": "The professor doubts that Bach's collection was even about equal temperament."
+     },
+     {
+      "choice": "Why pure fifths sound better than pure octaves do",
+      "reason": "Both are called pure; neither is ranked above the other."
+     },
+     {
+      "choice": "Why some composers avoided writing in minor keys",
+      "reason": "Rarely used keys are mentioned, but minor keys are not singled out."
+     }
+    ]
+   },
+   "content_hash": "a9ccee1f747e8a97ead0ee3e6ed2342e",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem that bothered musicians for centuries, and it comes straight out of arithmetic. Take a note and go up by a pure fifth, the interval where the frequencies are in a simple three-to-two ratio. Do that twelve times and you should, in theory, land back on your starting note, just seven octaves higher. You don't. You overshoot, by roughly a quarter of a semitone. Pure fifths and pure octaves can't be made to close the circle.\n\nSo any keyboard tuning is a compromise. Somewhere, some intervals have to be bent. Older tunings kept the most common intervals pure and pushed the leftover error into keys composers rarely used. Play in those keys and certain chords sounded so harsh that musicians nicknamed one of the bad intervals the wolf, because it howled.\n\nThe modern solution, equal temperament, spreads the error evenly. Every fifth is shaved by the same tiny amount, so every key sounds alike, and you can play in any of them. That's the tuning on nearly every piano today.\n\nYou've probably heard that Bach wrote The Well-Tempered Clavier, a set of preludes and fugues in all twenty-four major and minor keys, to show off equal temperament. That's the textbook version. But many scholars now doubt it. Well-tempered isn't the same thing as equally tempered. There were tunings in Bach's day that made every key usable while still leaving them slightly different, so some keys sounded calm and pure and others tenser. If Bach had one of those in mind, his collection wasn't proving that all keys are the same. It was showing that all keys were playable, each with its own character.\n\nWe can't be certain which tuning Bach used; he never wrote it down. But the point is worth holding onto: something was lost when every key started to sound the same.",
+    "passageGroupId": "pg-8a18c70cbc2309fe3a30195994d22ea9",
+    "prompt": "[Academic Talk — Music History] Why does the professor mention the interval called the wolf?",
+    "choices": [
+     "To show how harsh the leftover error could sound",
+     "To describe a tuning that made all keys sound alike",
+     "To name the interval equal temperament keeps pure",
+     "To explain how Bach chose keys for his collection"
+    ],
+    "correct_answer": "To show how harsh the leftover error could sound",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "In older tunings the error went into rare keys, where chords 'sounded so harsh' that one interval was nicknamed the wolf 'because it howled.'",
+    "distractor_rationales": [
+     {
+      "choice": "To describe a tuning that made all keys sound alike",
+      "reason": "The wolf belongs to older tunings, which did not make keys alike."
+     },
+     {
+      "choice": "To name the interval equal temperament keeps pure",
+      "reason": "Equal temperament shaves 'every fifth' and keeps none pure."
+     },
+     {
+      "choice": "To explain how Bach chose keys for his collection",
+      "reason": "Bach's collection uses all twenty-four keys; the wolf is not linked to it."
+     }
+    ]
+   },
+   "content_hash": "f641df6307b5bc3762953ceec74cf478",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem that bothered musicians for centuries, and it comes straight out of arithmetic. Take a note and go up by a pure fifth, the interval where the frequencies are in a simple three-to-two ratio. Do that twelve times and you should, in theory, land back on your starting note, just seven octaves higher. You don't. You overshoot, by roughly a quarter of a semitone. Pure fifths and pure octaves can't be made to close the circle.\n\nSo any keyboard tuning is a compromise. Somewhere, some intervals have to be bent. Older tunings kept the most common intervals pure and pushed the leftover error into keys composers rarely used. Play in those keys and certain chords sounded so harsh that musicians nicknamed one of the bad intervals the wolf, because it howled.\n\nThe modern solution, equal temperament, spreads the error evenly. Every fifth is shaved by the same tiny amount, so every key sounds alike, and you can play in any of them. That's the tuning on nearly every piano today.\n\nYou've probably heard that Bach wrote The Well-Tempered Clavier, a set of preludes and fugues in all twenty-four major and minor keys, to show off equal temperament. That's the textbook version. But many scholars now doubt it. Well-tempered isn't the same thing as equally tempered. There were tunings in Bach's day that made every key usable while still leaving them slightly different, so some keys sounded calm and pure and others tenser. If Bach had one of those in mind, his collection wasn't proving that all keys are the same. It was showing that all keys were playable, each with its own character.\n\nWe can't be certain which tuning Bach used; he never wrote it down. But the point is worth holding onto: something was lost when every key started to sound the same.",
+    "passageGroupId": "pg-8a18c70cbc2309fe3a30195994d22ea9",
+    "prompt": "[Academic Talk — Music History] What view of The Well-Tempered Clavier does the professor present?",
+    "choices": [
+     "It may have shown that every key was playable but distinct",
+     "It proves that Bach tuned his keyboard in equal temperament",
+     "It was written only in the keys that were most commonly used",
+     "It was meant to display the sound of the wolf interval"
+    ],
+    "correct_answer": "It may have shown that every key was playable but distinct",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'It was showing that all keys were playable, each with its own character', with the hedge 'We can't be certain.'",
+    "distractor_rationales": [
+     {
+      "choice": "It proves that Bach tuned his keyboard in equal temperament",
+      "reason": "This is the textbook version that 'many scholars now doubt'."
+     },
+     {
+      "choice": "It was written only in the keys that were most commonly used",
+      "reason": "It is in 'all twenty-four major and minor keys'."
+     },
+     {
+      "choice": "It was meant to display the sound of the wolf interval",
+      "reason": "Well temperaments made 'every key usable', so no key had a wolf to display."
+     }
+    ]
+   },
+   "content_hash": "8da54746e16a7b72670b50ba8a981796",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem that bothered musicians for centuries, and it comes straight out of arithmetic. Take a note and go up by a pure fifth, the interval where the frequencies are in a simple three-to-two ratio. Do that twelve times and you should, in theory, land back on your starting note, just seven octaves higher. You don't. You overshoot, by roughly a quarter of a semitone. Pure fifths and pure octaves can't be made to close the circle.\n\nSo any keyboard tuning is a compromise. Somewhere, some intervals have to be bent. Older tunings kept the most common intervals pure and pushed the leftover error into keys composers rarely used. Play in those keys and certain chords sounded so harsh that musicians nicknamed one of the bad intervals the wolf, because it howled.\n\nThe modern solution, equal temperament, spreads the error evenly. Every fifth is shaved by the same tiny amount, so every key sounds alike, and you can play in any of them. That's the tuning on nearly every piano today.\n\nYou've probably heard that Bach wrote The Well-Tempered Clavier, a set of preludes and fugues in all twenty-four major and minor keys, to show off equal temperament. That's the textbook version. But many scholars now doubt it. Well-tempered isn't the same thing as equally tempered. There were tunings in Bach's day that made every key usable while still leaving them slightly different, so some keys sounded calm and pure and others tenser. If Bach had one of those in mind, his collection wasn't proving that all keys are the same. It was showing that all keys were playable, each with its own character.\n\nWe can't be certain which tuning Bach used; he never wrote it down. But the point is worth holding onto: something was lost when every key started to sound the same.",
+    "passageGroupId": "pg-8a18c70cbc2309fe3a30195994d22ea9",
+    "prompt": "[Academic Talk — Music History] What does the professor imply about equal temperament?",
+    "choices": [
+     "It cost the keys their individual character",
+     "It left some keys too harsh for composers to use",
+     "It has been replaced on most modern pianos",
+     "It keeps every fifth in a perfectly pure ratio"
+    ],
+    "correct_answer": "It cost the keys their individual character",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Something was lost when every key started to sound the same.'",
+    "distractor_rationales": [
+     {
+      "choice": "It left some keys too harsh for composers to use",
+      "reason": "Harsh keys belonged to the older tunings."
+     },
+     {
+      "choice": "It has been replaced on most modern pianos",
+      "reason": "It is 'the tuning on nearly every piano today'."
+     },
+     {
+      "choice": "It keeps every fifth in a perfectly pure ratio",
+      "reason": "'Every fifth is shaved by the same tiny amount.'"
+     }
+    ]
+   },
+   "content_hash": "2d7e1122297ebdf41061713cc2a2fc4b",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, American shipyards built more than two thousand Liberty ships, cargo vessels put together at astonishing speed. Part of that speed came from welding. Instead of riveting steel plates together, as shipbuilders traditionally had, the yards welded them, which was faster and needed less skilled labor.\n\nThen the ships started cracking. Many developed serious fractures, and some broke in two. One welded tanker from the same program split apart while it was tied up at the dock, in calm water. So the obvious suspect was the welding: bad welds, rushed work, done by people who'd only just learned the trade.\n\nAnd poor welds did play a part. But here's what investigators eventually worked out, and it's the real lesson. Many fractures happened in cold water, in steel that passed the standard tests at room temperature. The researcher Constance Tipper, working at Cambridge, showed that the steel itself behaved differently as it got colder. Above a certain temperature it was ductile: under stress it would stretch and bend before it failed. Below that temperature it turned brittle, and a crack could race through it like a crack through glass, with very little warning.\n\nSo why did welding matter? Partly because a riveted hull is made of separate plates, and a crack running through one plate tends to stop at its edge. A welded hull is effectively one continuous piece of steel. Once a crack got going, there was nothing to stop it. Square corners on the hatch openings made things worse by concentrating stress, giving cracks a place to start.\n\nSo the failure wasn't one mistake. It was steel that turned brittle in the cold, a building method that let cracks run, and a design that helped them begin. Testing at room temperature had told engineers almost nothing about the conditions the ships actually sailed in.",
+    "passageGroupId": "pg-ad6486cbabe5fd520be37261c003ab76",
+    "prompt": "[Academic Talk — Materials Engineering] What is the main point of the lecture?",
+    "choices": [
+     "The cracking came from several causes acting together",
+     "Poor welding alone explains why the ships cracked",
+     "Steel that passed room-temperature tests was safe at sea",
+     "Constance Tipper developed a new and stronger steel"
+    ],
+    "correct_answer": "The cracking came from several causes acting together",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The failure wasn't one mistake': brittle steel, a method that let cracks run, and a design that helped them begin.",
+    "distractor_rationales": [
+     {
+      "choice": "Poor welding alone explains why the ships cracked",
+      "reason": "Poor welds 'did play a part', but the professor calls this the obvious suspect, not the whole answer."
+     },
+     {
+      "choice": "Steel that passed room-temperature tests was safe at sea",
+      "reason": "Steel that passed those tests still fractured in cold water."
+     },
+     {
+      "choice": "Constance Tipper developed a new and stronger steel",
+      "reason": "Tipper 'showed that the steel itself behaved differently' in the cold; she did not develop a new steel."
+     }
+    ]
+   },
+   "content_hash": "2076ccb080e5a3290725543d4567b8f2",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, American shipyards built more than two thousand Liberty ships, cargo vessels put together at astonishing speed. Part of that speed came from welding. Instead of riveting steel plates together, as shipbuilders traditionally had, the yards welded them, which was faster and needed less skilled labor.\n\nThen the ships started cracking. Many developed serious fractures, and some broke in two. One welded tanker from the same program split apart while it was tied up at the dock, in calm water. So the obvious suspect was the welding: bad welds, rushed work, done by people who'd only just learned the trade.\n\nAnd poor welds did play a part. But here's what investigators eventually worked out, and it's the real lesson. Many fractures happened in cold water, in steel that passed the standard tests at room temperature. The researcher Constance Tipper, working at Cambridge, showed that the steel itself behaved differently as it got colder. Above a certain temperature it was ductile: under stress it would stretch and bend before it failed. Below that temperature it turned brittle, and a crack could race through it like a crack through glass, with very little warning.\n\nSo why did welding matter? Partly because a riveted hull is made of separate plates, and a crack running through one plate tends to stop at its edge. A welded hull is effectively one continuous piece of steel. Once a crack got going, there was nothing to stop it. Square corners on the hatch openings made things worse by concentrating stress, giving cracks a place to start.\n\nSo the failure wasn't one mistake. It was steel that turned brittle in the cold, a building method that let cracks run, and a design that helped them begin. Testing at room temperature had told engineers almost nothing about the conditions the ships actually sailed in.",
+    "passageGroupId": "pg-ad6486cbabe5fd520be37261c003ab76",
+    "prompt": "[Academic Talk — Materials Engineering] Why does the professor mention a tanker that split apart at the dock?",
+    "choices": [
+     "To show that the cracks did not need rough seas",
+     "To show that welding was faster than riveting",
+     "To show that the tanker's steel was still ductile",
+     "To show that most fractures began in warm water"
+    ],
+    "correct_answer": "To show that the cracks did not need rough seas",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It broke 'while it was tied up at the dock, in calm water', a striking sign of how serious the cracking was.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that welding was faster than riveting",
+      "reason": "Speed of welding is made earlier and separately."
+     },
+     {
+      "choice": "To show that the tanker's steel was still ductile",
+      "reason": "A ductile steel would 'stretch and bend before it failed', not split."
+     },
+     {
+      "choice": "To show that most fractures began in warm water",
+      "reason": "'Many fractures happened in cold water.'"
+     }
+    ]
+   },
+   "content_hash": "fd6c101306c7f70e804a76538ec06686",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, American shipyards built more than two thousand Liberty ships, cargo vessels put together at astonishing speed. Part of that speed came from welding. Instead of riveting steel plates together, as shipbuilders traditionally had, the yards welded them, which was faster and needed less skilled labor.\n\nThen the ships started cracking. Many developed serious fractures, and some broke in two. One welded tanker from the same program split apart while it was tied up at the dock, in calm water. So the obvious suspect was the welding: bad welds, rushed work, done by people who'd only just learned the trade.\n\nAnd poor welds did play a part. But here's what investigators eventually worked out, and it's the real lesson. Many fractures happened in cold water, in steel that passed the standard tests at room temperature. The researcher Constance Tipper, working at Cambridge, showed that the steel itself behaved differently as it got colder. Above a certain temperature it was ductile: under stress it would stretch and bend before it failed. Below that temperature it turned brittle, and a crack could race through it like a crack through glass, with very little warning.\n\nSo why did welding matter? Partly because a riveted hull is made of separate plates, and a crack running through one plate tends to stop at its edge. A welded hull is effectively one continuous piece of steel. Once a crack got going, there was nothing to stop it. Square corners on the hatch openings made things worse by concentrating stress, giving cracks a place to start.\n\nSo the failure wasn't one mistake. It was steel that turned brittle in the cold, a building method that let cracks run, and a design that helped them begin. Testing at room temperature had told engineers almost nothing about the conditions the ships actually sailed in.",
+    "passageGroupId": "pg-ad6486cbabe5fd520be37261c003ab76",
+    "prompt": "[Academic Talk — Materials Engineering] According to the professor, why could a crack spread farther in a welded hull?",
+    "choices": [
+     "The hull was in effect one continuous piece of steel",
+     "The welds made the steel brittle at room temperature",
+     "The square hatch corners stopped cracks at their edges",
+     "Each separate plate made the crack change direction"
+    ],
+    "correct_answer": "The hull was in effect one continuous piece of steel",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'A welded hull is effectively one continuous piece of steel. Once a crack got going, there was nothing to stop it.'",
+    "distractor_rationales": [
+     {
+      "choice": "The welds made the steel brittle at room temperature",
+      "reason": "The steel 'passed the standard tests at room temperature'; it turned brittle in the cold."
+     },
+     {
+      "choice": "The square hatch corners stopped cracks at their edges",
+      "reason": "Square corners gave cracks 'a place to start', not a place to stop."
+     },
+     {
+      "choice": "Each separate plate made the crack change direction",
+      "reason": "Separate plates belong to riveted hulls, where cracks 'tend to stop'."
+     }
+    ]
+   },
+   "content_hash": "3e030cac82a0a14a98c087c7eeabb3f5",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: During the Second World War, American shipyards built more than two thousand Liberty ships, cargo vessels put together at astonishing speed. Part of that speed came from welding. Instead of riveting steel plates together, as shipbuilders traditionally had, the yards welded them, which was faster and needed less skilled labor.\n\nThen the ships started cracking. Many developed serious fractures, and some broke in two. One welded tanker from the same program split apart while it was tied up at the dock, in calm water. So the obvious suspect was the welding: bad welds, rushed work, done by people who'd only just learned the trade.\n\nAnd poor welds did play a part. But here's what investigators eventually worked out, and it's the real lesson. Many fractures happened in cold water, in steel that passed the standard tests at room temperature. The researcher Constance Tipper, working at Cambridge, showed that the steel itself behaved differently as it got colder. Above a certain temperature it was ductile: under stress it would stretch and bend before it failed. Below that temperature it turned brittle, and a crack could race through it like a crack through glass, with very little warning.\n\nSo why did welding matter? Partly because a riveted hull is made of separate plates, and a crack running through one plate tends to stop at its edge. A welded hull is effectively one continuous piece of steel. Once a crack got going, there was nothing to stop it. Square corners on the hatch openings made things worse by concentrating stress, giving cracks a place to start.\n\nSo the failure wasn't one mistake. It was steel that turned brittle in the cold, a building method that let cracks run, and a design that helped them begin. Testing at room temperature had told engineers almost nothing about the conditions the ships actually sailed in.",
+    "passageGroupId": "pg-ad6486cbabe5fd520be37261c003ab76",
+    "prompt": "[Academic Talk — Materials Engineering] What does the professor imply about the standard tests on the steel?",
+    "choices": [
+     "They were run under conditions unlike those at sea",
+     "They were skipped to save time in the shipyards",
+     "They showed brittleness that builders then ignored",
+     "They were reliable only for riveted ship hulls"
+    ],
+    "correct_answer": "They were run under conditions unlike those at sea",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Testing at room temperature had told engineers almost nothing about the conditions the ships actually sailed in.'",
+    "distractor_rationales": [
+     {
+      "choice": "They were skipped to save time in the shipyards",
+      "reason": "The steel 'passed the standard tests', so they were run."
+     },
+     {
+      "choice": "They showed brittleness that builders then ignored",
+      "reason": "It passed them; they did not reveal brittleness."
+     },
+     {
+      "choice": "They were reliable only for riveted ship hulls",
+      "reason": "The tests are faulted for temperature, not hull type."
+     }
+    ]
+   },
+   "content_hash": "c910cc3759da3a7709e7953a04937a05",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Of all the questions in marine biology, one of the oldest is embarrassingly basic: where do eels come from? Aristotle couldn't find eggs or young in them and suggested eels arose from mud. For centuries afterward nobody had a convincing answer, because the eels living in European rivers never seem to breed there.\n\nThe breakthrough came from a Danish biologist, Johannes Schmidt, in the early 1900s, and his method was patient and quite clever. Young eel larvae are small, transparent, leaf-shaped creatures that drift in the open ocean, and they grow as they drift. So Schmidt spent years towing fine nets across the Atlantic and recording the size of the larvae he caught. The farther west and south he went, the smaller they got. The very smallest turned up in the Sargasso Sea, a region of the western Atlantic thousands of kilometers from Europe. Smaller larvae mean more recently hatched larvae, so he concluded that's where the eels spawn.\n\nIt's a beautiful piece of reasoning. But notice what kind of reasoning it is. It's an inference from a gradient. In the century since, as far as I know, nobody has seen wild European eels spawning or collected their eggs in the Sargasso. Adult eels heading out to sea have been fitted with tags, and some have been tracked a long way in roughly the right direction, but the final scene has never been witnessed.\n\nDoes that mean Schmidt was wrong? I'd be surprised. The larval evidence has held up, and nothing better has come along. But be clear about the kind of confidence we have. It's a detective's confidence when every clue points to one suspect, but nobody actually saw the crime.\n\nAnd that gap matters in practice, because the European eel is now critically endangered, and it's hard to protect a breeding ground you've never actually observed.",
+    "passageGroupId": "pg-8e06e9ecb5acb7b2e96c27990e6f2bf8",
+    "prompt": "[Academic Talk — Marine Biology] How did Schmidt identify the eels' likely spawning area?",
+    "choices": [
+     "By finding where the smallest larvae were caught",
+     "By following tagged adult eels out to the open sea",
+     "By collecting eel eggs in the western Atlantic",
+     "By watching eels spawn in European rivers"
+    ],
+    "correct_answer": "By finding where the smallest larvae were caught",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The very smallest turned up in the Sargasso Sea... so he concluded that's where the eels spawn.'",
+    "distractor_rationales": [
+     {
+      "choice": "By following tagged adult eels out to the open sea",
+      "reason": "Tagging came later and has not reached 'the final scene'."
+     },
+     {
+      "choice": "By collecting eel eggs in the western Atlantic",
+      "reason": "Nobody has 'collected their eggs in the Sargasso'."
+     },
+     {
+      "choice": "By watching eels spawn in European rivers",
+      "reason": "European eels 'never seem to breed there'."
+     }
+    ]
+   },
+   "content_hash": "151a302d4cadec283819c57a65f22b6f",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Of all the questions in marine biology, one of the oldest is embarrassingly basic: where do eels come from? Aristotle couldn't find eggs or young in them and suggested eels arose from mud. For centuries afterward nobody had a convincing answer, because the eels living in European rivers never seem to breed there.\n\nThe breakthrough came from a Danish biologist, Johannes Schmidt, in the early 1900s, and his method was patient and quite clever. Young eel larvae are small, transparent, leaf-shaped creatures that drift in the open ocean, and they grow as they drift. So Schmidt spent years towing fine nets across the Atlantic and recording the size of the larvae he caught. The farther west and south he went, the smaller they got. The very smallest turned up in the Sargasso Sea, a region of the western Atlantic thousands of kilometers from Europe. Smaller larvae mean more recently hatched larvae, so he concluded that's where the eels spawn.\n\nIt's a beautiful piece of reasoning. But notice what kind of reasoning it is. It's an inference from a gradient. In the century since, as far as I know, nobody has seen wild European eels spawning or collected their eggs in the Sargasso. Adult eels heading out to sea have been fitted with tags, and some have been tracked a long way in roughly the right direction, but the final scene has never been witnessed.\n\nDoes that mean Schmidt was wrong? I'd be surprised. The larval evidence has held up, and nothing better has come along. But be clear about the kind of confidence we have. It's a detective's confidence when every clue points to one suspect, but nobody actually saw the crime.\n\nAnd that gap matters in practice, because the European eel is now critically endangered, and it's hard to protect a breeding ground you've never actually observed.",
+    "passageGroupId": "pg-8e06e9ecb5acb7b2e96c27990e6f2bf8",
+    "prompt": "[Academic Talk — Marine Biology] Why does the professor mention Aristotle?",
+    "choices": [
+     "To show how long eel breeding has puzzled people",
+     "To show that eels hatch from eggs buried in mud",
+     "To credit him with first describing eel larvae",
+     "To contrast his view with the later tagging results"
+    ],
+    "correct_answer": "To show how long eel breeding has puzzled people",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Aristotle 'couldn't find eggs or young', and 'for centuries afterward nobody had a convincing answer.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that eels hatch from eggs buried in mud",
+      "reason": "Aristotle said eels 'arose from mud' precisely because he found no eggs."
+     },
+     {
+      "choice": "To credit him with first describing eel larvae",
+      "reason": "He found no young at all; Schmidt studied the larvae."
+     },
+     {
+      "choice": "To contrast his view with the later tagging results",
+      "reason": "Tagging is discussed later, not set against Aristotle."
+     }
+    ]
+   },
+   "content_hash": "775819d2fd1bdfb930c0c4ccfcb49078",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Of all the questions in marine biology, one of the oldest is embarrassingly basic: where do eels come from? Aristotle couldn't find eggs or young in them and suggested eels arose from mud. For centuries afterward nobody had a convincing answer, because the eels living in European rivers never seem to breed there.\n\nThe breakthrough came from a Danish biologist, Johannes Schmidt, in the early 1900s, and his method was patient and quite clever. Young eel larvae are small, transparent, leaf-shaped creatures that drift in the open ocean, and they grow as they drift. So Schmidt spent years towing fine nets across the Atlantic and recording the size of the larvae he caught. The farther west and south he went, the smaller they got. The very smallest turned up in the Sargasso Sea, a region of the western Atlantic thousands of kilometers from Europe. Smaller larvae mean more recently hatched larvae, so he concluded that's where the eels spawn.\n\nIt's a beautiful piece of reasoning. But notice what kind of reasoning it is. It's an inference from a gradient. In the century since, as far as I know, nobody has seen wild European eels spawning or collected their eggs in the Sargasso. Adult eels heading out to sea have been fitted with tags, and some have been tracked a long way in roughly the right direction, but the final scene has never been witnessed.\n\nDoes that mean Schmidt was wrong? I'd be surprised. The larval evidence has held up, and nothing better has come along. But be clear about the kind of confidence we have. It's a detective's confidence when every clue points to one suspect, but nobody actually saw the crime.\n\nAnd that gap matters in practice, because the European eel is now critically endangered, and it's hard to protect a breeding ground you've never actually observed.",
+    "passageGroupId": "pg-8e06e9ecb5acb7b2e96c27990e6f2bf8",
+    "prompt": "[Academic Talk — Marine Biology] What is the professor's main point about Schmidt's conclusion?",
+    "choices": [
+     "It is well supported but rests on indirect evidence",
+     "It has been confirmed by watching eels spawn",
+     "It was overturned by later studies of tagged eels",
+     "It relied more on luck than on careful scientific reasoning"
+    ],
+    "correct_answer": "It is well supported but rests on indirect evidence",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'It's an inference from a gradient'; 'the larval evidence has held up', but 'nobody actually saw the crime.'",
+    "distractor_rationales": [
+     {
+      "choice": "It has been confirmed by watching eels spawn",
+      "reason": "'Nobody has seen wild European eels spawning.'"
+     },
+     {
+      "choice": "It was overturned by later studies of tagged eels",
+      "reason": "Tagged eels went 'in roughly the right direction'; 'I'd be surprised' if Schmidt were wrong."
+     },
+     {
+      "choice": "It relied more on luck than on careful scientific reasoning",
+      "reason": "The professor calls it 'a beautiful piece of reasoning'."
+     }
+    ]
+   },
+   "content_hash": "4790190208181071c49719cd1a663253",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-A06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Of all the questions in marine biology, one of the oldest is embarrassingly basic: where do eels come from? Aristotle couldn't find eggs or young in them and suggested eels arose from mud. For centuries afterward nobody had a convincing answer, because the eels living in European rivers never seem to breed there.\n\nThe breakthrough came from a Danish biologist, Johannes Schmidt, in the early 1900s, and his method was patient and quite clever. Young eel larvae are small, transparent, leaf-shaped creatures that drift in the open ocean, and they grow as they drift. So Schmidt spent years towing fine nets across the Atlantic and recording the size of the larvae he caught. The farther west and south he went, the smaller they got. The very smallest turned up in the Sargasso Sea, a region of the western Atlantic thousands of kilometers from Europe. Smaller larvae mean more recently hatched larvae, so he concluded that's where the eels spawn.\n\nIt's a beautiful piece of reasoning. But notice what kind of reasoning it is. It's an inference from a gradient. In the century since, as far as I know, nobody has seen wild European eels spawning or collected their eggs in the Sargasso. Adult eels heading out to sea have been fitted with tags, and some have been tracked a long way in roughly the right direction, but the final scene has never been witnessed.\n\nDoes that mean Schmidt was wrong? I'd be surprised. The larval evidence has held up, and nothing better has come along. But be clear about the kind of confidence we have. It's a detective's confidence when every clue points to one suspect, but nobody actually saw the crime.\n\nAnd that gap matters in practice, because the European eel is now critically endangered, and it's hard to protect a breeding ground you've never actually observed.",
+    "passageGroupId": "pg-8e06e9ecb5acb7b2e96c27990e6f2bf8",
+    "prompt": "[Academic Talk — Marine Biology] What does the professor imply about protecting the European eel?",
+    "choices": [
+     "It is harder because spawning has never been observed",
+     "It is no longer urgent since eel numbers have recovered",
+     "It is simple now that tags have shown where eels spawn",
+     "It matters less than finding more larvae near Europe"
+    ],
+    "correct_answer": "It is harder because spawning has never been observed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'It's hard to protect a breeding ground you've never actually observed.'",
+    "distractor_rationales": [
+     {
+      "choice": "It is no longer urgent since eel numbers have recovered",
+      "reason": "The eel 'is now critically endangered'."
+     },
+     {
+      "choice": "It is simple now that tags have shown where eels spawn",
+      "reason": "Tags show only 'roughly the right direction'; the final scene 'has never been witnessed'."
+     },
+     {
+      "choice": "It matters less than finding more larvae near Europe",
+      "reason": "The professor ties protection to the breeding ground, and the smallest larvae are far from Europe."
+     }
+    ]
+   },
+   "content_hash": "60560aa762e7f78aed13d2f7b3de8e90",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-A06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment that sounds almost too simple. In the late 1990s, an ecologist working in the western United States clipped the leaves of sagebrush plants with scissors, imitating a grazing insect. Wild tobacco plants growing next to the clipped sagebrush then suffered less damage from leaf-eating insects over the season than tobacco growing next to untouched sagebrush. Nothing touched the tobacco. So what happened?\n\nThe best explanation is airborne chemistry. Damaged sagebrush releases a burst of volatile compounds, and nearby plants seem to respond by ramping up their own defenses. Later work found that sagebrush responds to cues from other sagebrush, too, and, interestingly, it seems to respond more strongly when the damaged neighbor is a close relative.\n\nNow, the popular version of this is that plants talk to each other, that they warn their neighbors. I'd be careful with that word. Think about it from the damaged plant's point of view. Why would it pay to alert a competitor growing a meter away, one that's fighting it for water and light? Usually it wouldn't. The tobacco plant that picks up the signal benefits, sure, but that looks less like a warning and more like eavesdropping.\n\nSo why release the chemicals at all? One idea some researchers favor is that the main audience is the plant itself. In sagebrush, the internal plumbing that carries water and nutrients is divided into sectors, so a chemical message traveling inside the plant may never reach a branch on the far side. Air, though, reaches everything. On that view, the plant is signaling to its own distant branches, and the neighbors are just overhearing.\n\nThat doesn't settle it, and the result with relatives still needs explaining. But whenever you hear the word communication, ask who actually benefits.",
+    "passageGroupId": "pg-ad7c2220258bb31ce67e64b2aaff7f2d",
+    "prompt": "[Academic Talk — Botany] What is the main purpose of the talk?",
+    "choices": [
+     "To question whether plants really warn one another",
+     "To show that tobacco defends itself better than sagebrush",
+     "To explain how insects find damaged sagebrush plants",
+     "To argue that plants compete mainly through the air"
+    ],
+    "correct_answer": "To question whether plants really warn one another",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The professor says 'I'd be careful with that word' about plants warning neighbors and offers eavesdropping and self-signaling as alternatives.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that tobacco defends itself better than sagebrush",
+      "reason": "The two species' defenses are never ranked."
+     },
+     {
+      "choice": "To explain how insects find damaged sagebrush plants",
+      "reason": "How insects find plants is not discussed."
+     },
+     {
+      "choice": "To argue that plants compete mainly through the air",
+      "reason": "Competition is mentioned for water and light, not air."
+     }
+    ]
+   },
+   "content_hash": "a8a45b37ae1f786cb807d85cc33a86d9",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment that sounds almost too simple. In the late 1990s, an ecologist working in the western United States clipped the leaves of sagebrush plants with scissors, imitating a grazing insect. Wild tobacco plants growing next to the clipped sagebrush then suffered less damage from leaf-eating insects over the season than tobacco growing next to untouched sagebrush. Nothing touched the tobacco. So what happened?\n\nThe best explanation is airborne chemistry. Damaged sagebrush releases a burst of volatile compounds, and nearby plants seem to respond by ramping up their own defenses. Later work found that sagebrush responds to cues from other sagebrush, too, and, interestingly, it seems to respond more strongly when the damaged neighbor is a close relative.\n\nNow, the popular version of this is that plants talk to each other, that they warn their neighbors. I'd be careful with that word. Think about it from the damaged plant's point of view. Why would it pay to alert a competitor growing a meter away, one that's fighting it for water and light? Usually it wouldn't. The tobacco plant that picks up the signal benefits, sure, but that looks less like a warning and more like eavesdropping.\n\nSo why release the chemicals at all? One idea some researchers favor is that the main audience is the plant itself. In sagebrush, the internal plumbing that carries water and nutrients is divided into sectors, so a chemical message traveling inside the plant may never reach a branch on the far side. Air, though, reaches everything. On that view, the plant is signaling to its own distant branches, and the neighbors are just overhearing.\n\nThat doesn't settle it, and the result with relatives still needs explaining. But whenever you hear the word communication, ask who actually benefits.",
+    "passageGroupId": "pg-ad7c2220258bb31ce67e64b2aaff7f2d",
+    "prompt": "[Academic Talk — Botany] According to the professor, what happened to the tobacco next to the clipped sagebrush?",
+    "choices": [
+     "Insects damaged it less over the season",
+     "It was clipped too, to imitate grazing",
+     "It grew more slowly than other tobacco",
+     "It drew more insects than other tobacco"
+    ],
+    "correct_answer": "Insects damaged it less over the season",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Tobacco next to clipped sagebrush 'suffered less damage from leaf-eating insects over the season'.",
+    "distractor_rationales": [
+     {
+      "choice": "It was clipped too, to imitate grazing",
+      "reason": "'Nothing touched the tobacco.'"
+     },
+     {
+      "choice": "It grew more slowly than other tobacco",
+      "reason": "Its growth rate is not compared."
+     },
+     {
+      "choice": "It drew more insects than other tobacco",
+      "reason": "It suffered less insect damage, the opposite."
+     }
+    ]
+   },
+   "content_hash": "7e4ac30c26e3ff1bbb129a56380108c4",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment that sounds almost too simple. In the late 1990s, an ecologist working in the western United States clipped the leaves of sagebrush plants with scissors, imitating a grazing insect. Wild tobacco plants growing next to the clipped sagebrush then suffered less damage from leaf-eating insects over the season than tobacco growing next to untouched sagebrush. Nothing touched the tobacco. So what happened?\n\nThe best explanation is airborne chemistry. Damaged sagebrush releases a burst of volatile compounds, and nearby plants seem to respond by ramping up their own defenses. Later work found that sagebrush responds to cues from other sagebrush, too, and, interestingly, it seems to respond more strongly when the damaged neighbor is a close relative.\n\nNow, the popular version of this is that plants talk to each other, that they warn their neighbors. I'd be careful with that word. Think about it from the damaged plant's point of view. Why would it pay to alert a competitor growing a meter away, one that's fighting it for water and light? Usually it wouldn't. The tobacco plant that picks up the signal benefits, sure, but that looks less like a warning and more like eavesdropping.\n\nSo why release the chemicals at all? One idea some researchers favor is that the main audience is the plant itself. In sagebrush, the internal plumbing that carries water and nutrients is divided into sectors, so a chemical message traveling inside the plant may never reach a branch on the far side. Air, though, reaches everything. On that view, the plant is signaling to its own distant branches, and the neighbors are just overhearing.\n\nThat doesn't settle it, and the result with relatives still needs explaining. But whenever you hear the word communication, ask who actually benefits.",
+    "passageGroupId": "pg-ad7c2220258bb31ce67e64b2aaff7f2d",
+    "prompt": "[Academic Talk — Botany] Why does the professor mention that the plumbing inside sagebrush is divided into sectors?",
+    "choices": [
+     "To suggest why a plant might signal its far branches by air",
+     "To show why sagebrush cannot respond to signals from its neighbors",
+     "To explain why clipped branches of sagebrush recover so slowly",
+     "To show that sagebrush and wild tobacco are closely related"
+    ],
+    "correct_answer": "To suggest why a plant might signal its far branches by air",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "An internal message 'may never reach a branch on the far side. Air, though, reaches everything.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show why sagebrush cannot respond to signals from its neighbors",
+      "reason": "Sagebrush 'responds to cues from other sagebrush'."
+     },
+     {
+      "choice": "To explain why clipped branches of sagebrush recover so slowly",
+      "reason": "Recovery of clipped branches is not discussed."
+     },
+     {
+      "choice": "To show that sagebrush and wild tobacco are closely related",
+      "reason": "Relatedness is discussed among sagebrush plants only."
+     }
+    ]
+   },
+   "content_hash": "85b1e31b8e2efb38fd70bbd6d4eb3ac4",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment that sounds almost too simple. In the late 1990s, an ecologist working in the western United States clipped the leaves of sagebrush plants with scissors, imitating a grazing insect. Wild tobacco plants growing next to the clipped sagebrush then suffered less damage from leaf-eating insects over the season than tobacco growing next to untouched sagebrush. Nothing touched the tobacco. So what happened?\n\nThe best explanation is airborne chemistry. Damaged sagebrush releases a burst of volatile compounds, and nearby plants seem to respond by ramping up their own defenses. Later work found that sagebrush responds to cues from other sagebrush, too, and, interestingly, it seems to respond more strongly when the damaged neighbor is a close relative.\n\nNow, the popular version of this is that plants talk to each other, that they warn their neighbors. I'd be careful with that word. Think about it from the damaged plant's point of view. Why would it pay to alert a competitor growing a meter away, one that's fighting it for water and light? Usually it wouldn't. The tobacco plant that picks up the signal benefits, sure, but that looks less like a warning and more like eavesdropping.\n\nSo why release the chemicals at all? One idea some researchers favor is that the main audience is the plant itself. In sagebrush, the internal plumbing that carries water and nutrients is divided into sectors, so a chemical message traveling inside the plant may never reach a branch on the far side. Air, though, reaches everything. On that view, the plant is signaling to its own distant branches, and the neighbors are just overhearing.\n\nThat doesn't settle it, and the result with relatives still needs explaining. But whenever you hear the word communication, ask who actually benefits.",
+    "passageGroupId": "pg-ad7c2220258bb31ce67e64b2aaff7f2d",
+    "prompt": "[Academic Talk — Botany] What is the professor's view of the claim that plants warn their neighbors?",
+    "choices": [
+     "Doubtful, since warning a rival usually gains it nothing",
+     "Convinced, since the tobacco experiment demonstrates it",
+     "Undecided, since no experiment has yet tested the idea",
+     "Doubtful, since neighbors do not respond to the chemicals"
+    ],
+    "correct_answer": "Doubtful, since warning a rival usually gains it nothing",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Why would it pay to alert a competitor...? Usually it wouldn't.'",
+    "distractor_rationales": [
+     {
+      "choice": "Convinced, since the tobacco experiment demonstrates it",
+      "reason": "He reads the tobacco result as eavesdropping, not warning."
+     },
+     {
+      "choice": "Undecided, since no experiment has yet tested the idea",
+      "reason": "He describes experiments and states a clear doubt."
+     },
+     {
+      "choice": "Doubtful, since neighbors do not respond to the chemicals",
+      "reason": "Nearby plants 'seem to respond by ramping up their own defenses'."
+     }
+    ]
+   },
+   "content_hash": "3c153d79c9b7ee0cc242a51cfdaa0e70",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B01",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On La Gomera, one of the Canary Islands, there's a way of speaking Spanish without using your voice at all. It's called Silbo Gomero, and it's whistled. The island is cut by deep ravines, and a whistle can carry across a valley, up to a few kilometers in good conditions, where a shout would die out. And it's not a code with a fixed list of messages. Skilled whistlers can say more or less anything they could say in spoken Spanish.\n\nSo how do you whistle a language? A whistle has basically one dimension to play with: pitch. Whistlers map the sounds of speech onto changes in pitch. Vowels become different pitch levels, and consonants show up in the way the pitch rises, falls, or breaks off between them. A lot of information gets lost, obviously, and listeners lean heavily on context.\n\nHere's where it gets interesting for the brain. About twenty years ago, researchers scanned experienced Silbo whistlers and found that whistled Spanish activated the same left-hemisphere regions that handle spoken language. In people who didn't know Silbo, those regions didn't respond that way. That was taken as nice evidence that the brain's language areas care about language, not about the kind of sound it arrives in.\n\nBut a later study, on a whistled form of Turkish used in a village in northeastern Turkey, complicated the picture. With a listening test that sends different sounds to each ear, researchers found that whistled Turkish drew on both hemispheres far more evenly than spoken Turkish did. Now, the right hemisphere is generally better at handling melody and pitch, and whistling is all pitch.\n\nSo which is it? Probably both. The left hemisphere's lead in language looks real, but it isn't absolute. How a language reaches the ear seems to change how the brain divides the work.",
+    "passageGroupId": "pg-8a029e2b57b570f067dd33c8981cd572",
+    "prompt": "[Academic Talk — Linguistics] According to the professor, why is whistling useful on La Gomera?",
+    "choices": [
+     "A whistle crosses the deep ravines where a shout would fade",
+     "Whistling lets islanders talk without knowing Spanish",
+     "A whistle can carry more information than ordinary speech",
+     "Islanders use it for a short, fixed list of warning signals"
+    ],
+    "correct_answer": "A whistle crosses the deep ravines where a shout would fade",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'A whistle can carry across a valley... where a shout would die out.'",
+    "distractor_rationales": [
+     {
+      "choice": "Whistling lets islanders talk without knowing Spanish",
+      "reason": "It is whistled Spanish; whistlers say what they 'could say in spoken Spanish'."
+     },
+     {
+      "choice": "A whistle can carry more information than ordinary speech",
+      "reason": "'A lot of information gets lost.'"
+     },
+     {
+      "choice": "Islanders use it for a short, fixed list of warning signals",
+      "reason": "'It's not a code with a fixed list of messages.'"
+     }
+    ]
+   },
+   "content_hash": "66e67b729db8b41bd0ba9659e3146992",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On La Gomera, one of the Canary Islands, there's a way of speaking Spanish without using your voice at all. It's called Silbo Gomero, and it's whistled. The island is cut by deep ravines, and a whistle can carry across a valley, up to a few kilometers in good conditions, where a shout would die out. And it's not a code with a fixed list of messages. Skilled whistlers can say more or less anything they could say in spoken Spanish.\n\nSo how do you whistle a language? A whistle has basically one dimension to play with: pitch. Whistlers map the sounds of speech onto changes in pitch. Vowels become different pitch levels, and consonants show up in the way the pitch rises, falls, or breaks off between them. A lot of information gets lost, obviously, and listeners lean heavily on context.\n\nHere's where it gets interesting for the brain. About twenty years ago, researchers scanned experienced Silbo whistlers and found that whistled Spanish activated the same left-hemisphere regions that handle spoken language. In people who didn't know Silbo, those regions didn't respond that way. That was taken as nice evidence that the brain's language areas care about language, not about the kind of sound it arrives in.\n\nBut a later study, on a whistled form of Turkish used in a village in northeastern Turkey, complicated the picture. With a listening test that sends different sounds to each ear, researchers found that whistled Turkish drew on both hemispheres far more evenly than spoken Turkish did. Now, the right hemisphere is generally better at handling melody and pitch, and whistling is all pitch.\n\nSo which is it? Probably both. The left hemisphere's lead in language looks real, but it isn't absolute. How a language reaches the ear seems to change how the brain divides the work.",
+    "passageGroupId": "pg-8a029e2b57b570f067dd33c8981cd572",
+    "prompt": "[Academic Talk — Linguistics] How are consonants represented in Silbo Gomero?",
+    "choices": [
+     "By how the pitch rises, falls, or breaks off",
+     "By steady pitch levels held for a moment",
+     "By changes in how loudly the whistle sounds",
+     "By short silences placed between whole words"
+    ],
+    "correct_answer": "By how the pitch rises, falls, or breaks off",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Consonants 'show up in the way the pitch rises, falls, or breaks off between them'.",
+    "distractor_rationales": [
+     {
+      "choice": "By steady pitch levels held for a moment",
+      "reason": "Steady pitch levels are how vowels are represented."
+     },
+     {
+      "choice": "By changes in how loudly the whistle sounds",
+      "reason": "A whistle has 'basically one dimension to play with: pitch'."
+     },
+     {
+      "choice": "By short silences placed between whole words",
+      "reason": "Pitch breaks fall between sounds, not words."
+     }
+    ]
+   },
+   "content_hash": "a74aea28ae255bbe12188b06e51e9a85",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On La Gomera, one of the Canary Islands, there's a way of speaking Spanish without using your voice at all. It's called Silbo Gomero, and it's whistled. The island is cut by deep ravines, and a whistle can carry across a valley, up to a few kilometers in good conditions, where a shout would die out. And it's not a code with a fixed list of messages. Skilled whistlers can say more or less anything they could say in spoken Spanish.\n\nSo how do you whistle a language? A whistle has basically one dimension to play with: pitch. Whistlers map the sounds of speech onto changes in pitch. Vowels become different pitch levels, and consonants show up in the way the pitch rises, falls, or breaks off between them. A lot of information gets lost, obviously, and listeners lean heavily on context.\n\nHere's where it gets interesting for the brain. About twenty years ago, researchers scanned experienced Silbo whistlers and found that whistled Spanish activated the same left-hemisphere regions that handle spoken language. In people who didn't know Silbo, those regions didn't respond that way. That was taken as nice evidence that the brain's language areas care about language, not about the kind of sound it arrives in.\n\nBut a later study, on a whistled form of Turkish used in a village in northeastern Turkey, complicated the picture. With a listening test that sends different sounds to each ear, researchers found that whistled Turkish drew on both hemispheres far more evenly than spoken Turkish did. Now, the right hemisphere is generally better at handling melody and pitch, and whistling is all pitch.\n\nSo which is it? Probably both. The left hemisphere's lead in language looks real, but it isn't absolute. How a language reaches the ear seems to change how the brain divides the work.",
+    "passageGroupId": "pg-8a029e2b57b570f067dd33c8981cd572",
+    "prompt": "[Academic Talk — Linguistics] Why does the professor mention that the right hemisphere is better at handling melody and pitch?",
+    "choices": [
+     "To suggest why whistled Turkish used the right hemisphere more",
+     "To explain why people who didn't know Silbo could not follow it",
+     "To show that spoken Turkish depends mainly on melody and pitch",
+     "To argue that the earlier study of Silbo whistlers was flawed"
+    ],
+    "correct_answer": "To suggest why whistled Turkish used the right hemisphere more",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Right after the Turkish result: the right hemisphere handles pitch, 'and whistling is all pitch'.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why people who didn't know Silbo could not follow it",
+      "reason": "The remark follows the Turkish study, not the non-whistlers."
+     },
+     {
+      "choice": "To show that spoken Turkish depends mainly on melody and pitch",
+      "reason": "Spoken Turkish was the comparison with less even use."
+     },
+     {
+      "choice": "To argue that the earlier study of Silbo whistlers was flawed",
+      "reason": "He says 'Probably both' are right."
+     }
+    ]
+   },
+   "content_hash": "2e48048b82628b165b8b6ff833e3f9c3",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On La Gomera, one of the Canary Islands, there's a way of speaking Spanish without using your voice at all. It's called Silbo Gomero, and it's whistled. The island is cut by deep ravines, and a whistle can carry across a valley, up to a few kilometers in good conditions, where a shout would die out. And it's not a code with a fixed list of messages. Skilled whistlers can say more or less anything they could say in spoken Spanish.\n\nSo how do you whistle a language? A whistle has basically one dimension to play with: pitch. Whistlers map the sounds of speech onto changes in pitch. Vowels become different pitch levels, and consonants show up in the way the pitch rises, falls, or breaks off between them. A lot of information gets lost, obviously, and listeners lean heavily on context.\n\nHere's where it gets interesting for the brain. About twenty years ago, researchers scanned experienced Silbo whistlers and found that whistled Spanish activated the same left-hemisphere regions that handle spoken language. In people who didn't know Silbo, those regions didn't respond that way. That was taken as nice evidence that the brain's language areas care about language, not about the kind of sound it arrives in.\n\nBut a later study, on a whistled form of Turkish used in a village in northeastern Turkey, complicated the picture. With a listening test that sends different sounds to each ear, researchers found that whistled Turkish drew on both hemispheres far more evenly than spoken Turkish did. Now, the right hemisphere is generally better at handling melody and pitch, and whistling is all pitch.\n\nSo which is it? Probably both. The left hemisphere's lead in language looks real, but it isn't absolute. How a language reaches the ear seems to change how the brain divides the work.",
+    "passageGroupId": "pg-8a029e2b57b570f067dd33c8981cd572",
+    "prompt": "[Academic Talk — Linguistics] What does the professor conclude about the left hemisphere's role in language?",
+    "choices": [
+     "It is real, but how a language sounds can shift it",
+     "It was disproved by the study of whistled Turkish",
+     "It applies only to languages that have a written form",
+     "It is stronger for whistled than for spoken languages"
+    ],
+    "correct_answer": "It is real, but how a language sounds can shift it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The left hemisphere's lead in language looks real, but it isn't absolute.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was disproved by the study of whistled Turkish",
+      "reason": "He calls the lead 'real'."
+     },
+     {
+      "choice": "It applies only to languages that have a written form",
+      "reason": "Writing is never discussed."
+     },
+     {
+      "choice": "It is stronger for whistled than for spoken languages",
+      "reason": "Whistled Turkish used the left hemisphere less, not more."
+     }
+    ]
+   },
+   "content_hash": "12ad6b028e8f2f4e35f18106172528ed",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B02",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a highway gets congested, the obvious fix is to add lanes. More room, less traffic, right? It's intuitive, and it mostly doesn't work, at least not for long.\n\nEconomists have looked at this carefully. One well-known American study compared metropolitan areas over a couple of decades and found that the total amount of driving grew roughly in proportion to the amount of new road built. Add ten percent more lane capacity, and you get something close to ten percent more driving. So where do the new drivers come from? Some people who used to take the bus switch to driving. Some who traveled at off-peak hours move back into rush hour. Businesses and new housing locate near the faster road. The space fills up. Planners call this induced demand.\n\nNow, if adding roads creates traffic, does removing roads make traffic disappear? Seoul offers a famous test. In the early 2000s, the city tore down an elevated highway that ran over the Cheonggyecheon stream, which had been paved over decades earlier, and restored the stream as a public park. Plenty of people predicted gridlock. It didn't happen. Traffic in the surrounding area didn't get dramatically worse, and some drivers simply stopped making those trips by car.\n\nBut be careful about the lesson. Seoul didn't just remove a road. Around the same time, the city reorganized its whole bus system, with dedicated bus lanes and a new fare system, and it already had an extensive subway. The drivers who vanished had somewhere to go. Take away a highway in a city where the car is the only realistic option, and you may simply push the traffic onto neighboring streets.\n\nSo traffic responds to road space in both directions. It just doesn't respond in a vacuum.",
+    "passageGroupId": "pg-60522f8579b680e611c33249d0a9096b",
+    "prompt": "[Academic Talk — Urban Planning] What is the main idea of the talk?",
+    "choices": [
+     "Traffic follows road space, but alternatives shape the result",
+     "Cities should remove highways in order to reduce congestion",
+     "Seoul's bus reform made downtown traffic noticeably heavier",
+     "Adding lanes reduces congestion if it is done gradually"
+    ],
+    "correct_answer": "Traffic follows road space, but alternatives shape the result",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Traffic responds to road space in both directions. It just doesn't respond in a vacuum.'",
+    "distractor_rationales": [
+     {
+      "choice": "Cities should remove highways in order to reduce congestion",
+      "reason": "He warns that removal elsewhere may 'push the traffic onto neighboring streets'."
+     },
+     {
+      "choice": "Seoul's bus reform made downtown traffic noticeably heavier",
+      "reason": "Traffic 'didn't get dramatically worse'."
+     },
+     {
+      "choice": "Adding lanes reduces congestion if it is done gradually",
+      "reason": "Added capacity fills up; no gradual method is mentioned."
+     }
+    ]
+   },
+   "content_hash": "fcb1d741c00096b110c3700e918fc24f",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a highway gets congested, the obvious fix is to add lanes. More room, less traffic, right? It's intuitive, and it mostly doesn't work, at least not for long.\n\nEconomists have looked at this carefully. One well-known American study compared metropolitan areas over a couple of decades and found that the total amount of driving grew roughly in proportion to the amount of new road built. Add ten percent more lane capacity, and you get something close to ten percent more driving. So where do the new drivers come from? Some people who used to take the bus switch to driving. Some who traveled at off-peak hours move back into rush hour. Businesses and new housing locate near the faster road. The space fills up. Planners call this induced demand.\n\nNow, if adding roads creates traffic, does removing roads make traffic disappear? Seoul offers a famous test. In the early 2000s, the city tore down an elevated highway that ran over the Cheonggyecheon stream, which had been paved over decades earlier, and restored the stream as a public park. Plenty of people predicted gridlock. It didn't happen. Traffic in the surrounding area didn't get dramatically worse, and some drivers simply stopped making those trips by car.\n\nBut be careful about the lesson. Seoul didn't just remove a road. Around the same time, the city reorganized its whole bus system, with dedicated bus lanes and a new fare system, and it already had an extensive subway. The drivers who vanished had somewhere to go. Take away a highway in a city where the car is the only realistic option, and you may simply push the traffic onto neighboring streets.\n\nSo traffic responds to road space in both directions. It just doesn't respond in a vacuum.",
+    "passageGroupId": "pg-60522f8579b680e611c33249d0a9096b",
+    "prompt": "[Academic Talk — Urban Planning] According to the professor, who are some of the new drivers on a widened road?",
+    "choices": [
+     "People who used to travel outside rush hour",
+     "Commuters who move away from the new road",
+     "Drivers pushed off streets that were closed",
+     "People who could no longer afford the bus"
+    ],
+    "correct_answer": "People who used to travel outside rush hour",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Some who traveled at off-peak hours move back into rush hour.'",
+    "distractor_rationales": [
+     {
+      "choice": "Commuters who move away from the new road",
+      "reason": "Housing locates 'near the faster road', not away from it."
+     },
+     {
+      "choice": "Drivers pushed off streets that were closed",
+      "reason": "Closed streets belong to the road-removal case, not widening."
+     },
+     {
+      "choice": "People who could no longer afford the bus",
+      "reason": "Bus riders switch, but no cost reason is given."
+     }
+    ]
+   },
+   "content_hash": "9ee6bfad4d435b50074baaf1b7b80366",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a highway gets congested, the obvious fix is to add lanes. More room, less traffic, right? It's intuitive, and it mostly doesn't work, at least not for long.\n\nEconomists have looked at this carefully. One well-known American study compared metropolitan areas over a couple of decades and found that the total amount of driving grew roughly in proportion to the amount of new road built. Add ten percent more lane capacity, and you get something close to ten percent more driving. So where do the new drivers come from? Some people who used to take the bus switch to driving. Some who traveled at off-peak hours move back into rush hour. Businesses and new housing locate near the faster road. The space fills up. Planners call this induced demand.\n\nNow, if adding roads creates traffic, does removing roads make traffic disappear? Seoul offers a famous test. In the early 2000s, the city tore down an elevated highway that ran over the Cheonggyecheon stream, which had been paved over decades earlier, and restored the stream as a public park. Plenty of people predicted gridlock. It didn't happen. Traffic in the surrounding area didn't get dramatically worse, and some drivers simply stopped making those trips by car.\n\nBut be careful about the lesson. Seoul didn't just remove a road. Around the same time, the city reorganized its whole bus system, with dedicated bus lanes and a new fare system, and it already had an extensive subway. The drivers who vanished had somewhere to go. Take away a highway in a city where the car is the only realistic option, and you may simply push the traffic onto neighboring streets.\n\nSo traffic responds to road space in both directions. It just doesn't respond in a vacuum.",
+    "passageGroupId": "pg-60522f8579b680e611c33249d0a9096b",
+    "prompt": "[Academic Talk — Urban Planning] Why does the professor mention Seoul's reorganized bus system?",
+    "choices": [
+     "To show that drivers who left had other ways to get around",
+     "To explain why the city decided to remove the highway at all",
+     "To show that the new bus lanes caused the predicted gridlock",
+     "To argue that buses are more popular in Seoul than the subway"
+    ],
+    "correct_answer": "To show that drivers who left had other ways to get around",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The drivers who vanished had somewhere to go.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why the city decided to remove the highway at all",
+      "reason": "The reasons for the removal are not given."
+     },
+     {
+      "choice": "To show that the new bus lanes caused the predicted gridlock",
+      "reason": "Gridlock 'didn't happen'."
+     },
+     {
+      "choice": "To argue that buses are more popular in Seoul than the subway",
+      "reason": "Buses and subway are not ranked."
+     }
+    ]
+   },
+   "content_hash": "b348eb1c640e101d89521d4e02e00e88",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When a highway gets congested, the obvious fix is to add lanes. More room, less traffic, right? It's intuitive, and it mostly doesn't work, at least not for long.\n\nEconomists have looked at this carefully. One well-known American study compared metropolitan areas over a couple of decades and found that the total amount of driving grew roughly in proportion to the amount of new road built. Add ten percent more lane capacity, and you get something close to ten percent more driving. So where do the new drivers come from? Some people who used to take the bus switch to driving. Some who traveled at off-peak hours move back into rush hour. Businesses and new housing locate near the faster road. The space fills up. Planners call this induced demand.\n\nNow, if adding roads creates traffic, does removing roads make traffic disappear? Seoul offers a famous test. In the early 2000s, the city tore down an elevated highway that ran over the Cheonggyecheon stream, which had been paved over decades earlier, and restored the stream as a public park. Plenty of people predicted gridlock. It didn't happen. Traffic in the surrounding area didn't get dramatically worse, and some drivers simply stopped making those trips by car.\n\nBut be careful about the lesson. Seoul didn't just remove a road. Around the same time, the city reorganized its whole bus system, with dedicated bus lanes and a new fare system, and it already had an extensive subway. The drivers who vanished had somewhere to go. Take away a highway in a city where the car is the only realistic option, and you may simply push the traffic onto neighboring streets.\n\nSo traffic responds to road space in both directions. It just doesn't respond in a vacuum.",
+    "passageGroupId": "pg-60522f8579b680e611c33249d0a9096b",
+    "prompt": "[Academic Talk — Urban Planning] What would the professor most likely predict if a highway were removed in a city with little public transit?",
+    "choices": [
+     "Traffic would probably move onto nearby streets",
+     "Most drivers would stop making the trips by car",
+     "Driving would fall by about ten percent overall",
+     "The city would soon have to build a new subway"
+    ],
+    "correct_answer": "Traffic would probably move onto nearby streets",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Without alternatives, 'you may simply push the traffic onto neighboring streets.'",
+    "distractor_rationales": [
+     {
+      "choice": "Most drivers would stop making the trips by car",
+      "reason": "That happened in Seoul, where drivers had alternatives."
+     },
+     {
+      "choice": "Driving would fall by about ten percent overall",
+      "reason": "The ten percent figure concerns adding lanes, not removal."
+     },
+     {
+      "choice": "The city would soon have to build a new subway",
+      "reason": "He makes no claim about building transit afterwards."
+     }
+    ]
+   },
+   "content_hash": "def78bd73fc19459cee148529e726b9c",
+   "word_count": 294,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B03",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard of tulip mania. In the Dutch Republic in the 1630s, the story goes, people went mad for tulip bulbs. Single bulbs sold for the price of a house, ordinary people mortgaged everything, and when prices collapsed in early 1637, the country was ruined. Some versions add merchants throwing themselves into canals. It's the classic tale of a bubble, and much of it was popularized two centuries later, in 1841, by a Scottish writer named Charles Mackay.\n\nThe trouble is, when historians went back to the archives, the ruin is hard to find. One historian, Anne Goldgar, worked through contracts, court records, and notaries' papers from the period, and she found very few bankruptcies that could be tied to tulips. The trade seems to have been concentrated among fairly well-off merchants and craftsmen, not the poor. And the Dutch economy appears to have kept growing through the late 1630s. So where did the stories of mass ruin come from? Largely from moralizing pamphlets printed right after the crash, which used tulips to preach against greed. Mackay leaned on material like that.\n\nNow, I don't want to swing too far the other way. Prices really did spike, and they really did collapse. That part is well documented. Some rare varieties changed hands for astonishing sums. And a lot of the trading in the final months was in contracts for bulbs still in the ground, so when buyers refused to pay, there were real disputes, and some of them dragged on for a while.\n\nWhat the evidence undermines is the idea that the crash was an economic disaster. A price bubble and a financial catastrophe aren't the same thing. One can happen without the other, and here, it seems, it mostly did.",
+    "passageGroupId": "pg-8034211677ea453c75944020456f89d1",
+    "prompt": "[Academic Talk — Economic History] What is the main point of the talk?",
+    "choices": [
+     "The crash was real but did not bring the ruin often claimed",
+     "Tulip prices never actually rose or fell very sharply",
+     "Poor workers lost the most money when tulip prices finally fell",
+     "Mackay based his account mainly on Dutch court records"
+    ],
+    "correct_answer": "The crash was real but did not bring the ruin often claimed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'What the evidence undermines is the idea that the crash was an economic disaster.' Yet 'Prices really did spike, and they really did collapse.'",
+    "distractor_rationales": [
+     {
+      "choice": "Tulip prices never actually rose or fell very sharply",
+      "reason": "'Prices really did spike, and they really did collapse.'"
+     },
+     {
+      "choice": "Poor workers lost the most money when tulip prices finally fell",
+      "reason": "The trade was concentrated among the well-off, 'not the poor'."
+     },
+     {
+      "choice": "Mackay based his account mainly on Dutch court records",
+      "reason": "Court records were Goldgar's source; Mackay leaned on pamphlets."
+     }
+    ]
+   },
+   "content_hash": "17059f08adf69fef11a1bd473acbad9a",
+   "word_count": 292,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard of tulip mania. In the Dutch Republic in the 1630s, the story goes, people went mad for tulip bulbs. Single bulbs sold for the price of a house, ordinary people mortgaged everything, and when prices collapsed in early 1637, the country was ruined. Some versions add merchants throwing themselves into canals. It's the classic tale of a bubble, and much of it was popularized two centuries later, in 1841, by a Scottish writer named Charles Mackay.\n\nThe trouble is, when historians went back to the archives, the ruin is hard to find. One historian, Anne Goldgar, worked through contracts, court records, and notaries' papers from the period, and she found very few bankruptcies that could be tied to tulips. The trade seems to have been concentrated among fairly well-off merchants and craftsmen, not the poor. And the Dutch economy appears to have kept growing through the late 1630s. So where did the stories of mass ruin come from? Largely from moralizing pamphlets printed right after the crash, which used tulips to preach against greed. Mackay leaned on material like that.\n\nNow, I don't want to swing too far the other way. Prices really did spike, and they really did collapse. That part is well documented. Some rare varieties changed hands for astonishing sums. And a lot of the trading in the final months was in contracts for bulbs still in the ground, so when buyers refused to pay, there were real disputes, and some of them dragged on for a while.\n\nWhat the evidence undermines is the idea that the crash was an economic disaster. A price bubble and a financial catastrophe aren't the same thing. One can happen without the other, and here, it seems, it mostly did.",
+    "passageGroupId": "pg-8034211677ea453c75944020456f89d1",
+    "prompt": "[Academic Talk — Economic History] According to the professor, where did the stories of mass ruin mostly come from?",
+    "choices": [
+     "Pamphlets printed after the crash to preach against greed",
+     "Bankruptcy records kept by Dutch courts during the 1630s",
+     "Letters written by merchants who had lost their fortunes",
+     "Contracts showing what the poor had paid for single bulbs"
+    ],
+    "correct_answer": "Pamphlets printed after the crash to preach against greed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Largely from moralizing pamphlets printed right after the crash, which used tulips to preach against greed.'",
+    "distractor_rationales": [
+     {
+      "choice": "Bankruptcy records kept by Dutch courts during the 1630s",
+      "reason": "Court records showed 'very few bankruptcies' tied to tulips."
+     },
+     {
+      "choice": "Letters written by merchants who had lost their fortunes",
+      "reason": "No such letters are cited."
+     },
+     {
+      "choice": "Contracts showing what the poor had paid for single bulbs",
+      "reason": "The poor were not the main traders, and contracts did not show ruin."
+     }
+    ]
+   },
+   "content_hash": "0e4267dfc80e4c6dabb847a8926d0b79",
+   "word_count": 292,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard of tulip mania. In the Dutch Republic in the 1630s, the story goes, people went mad for tulip bulbs. Single bulbs sold for the price of a house, ordinary people mortgaged everything, and when prices collapsed in early 1637, the country was ruined. Some versions add merchants throwing themselves into canals. It's the classic tale of a bubble, and much of it was popularized two centuries later, in 1841, by a Scottish writer named Charles Mackay.\n\nThe trouble is, when historians went back to the archives, the ruin is hard to find. One historian, Anne Goldgar, worked through contracts, court records, and notaries' papers from the period, and she found very few bankruptcies that could be tied to tulips. The trade seems to have been concentrated among fairly well-off merchants and craftsmen, not the poor. And the Dutch economy appears to have kept growing through the late 1630s. So where did the stories of mass ruin come from? Largely from moralizing pamphlets printed right after the crash, which used tulips to preach against greed. Mackay leaned on material like that.\n\nNow, I don't want to swing too far the other way. Prices really did spike, and they really did collapse. That part is well documented. Some rare varieties changed hands for astonishing sums. And a lot of the trading in the final months was in contracts for bulbs still in the ground, so when buyers refused to pay, there were real disputes, and some of them dragged on for a while.\n\nWhat the evidence undermines is the idea that the crash was an economic disaster. A price bubble and a financial catastrophe aren't the same thing. One can happen without the other, and here, it seems, it mostly did.",
+    "passageGroupId": "pg-8034211677ea453c75944020456f89d1",
+    "prompt": "[Academic Talk — Economic History] Why does the professor mention contracts for bulbs that were still in the ground?",
+    "choices": [
+     "To grant that the collapse did cause some real trouble",
+     "To show that the price spike was invented by Mackay",
+     "To explain how poor families were able to join the trade",
+     "To argue that trading in tulips was against Dutch law"
+    ],
+    "correct_answer": "To grant that the collapse did cause some real trouble",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "In the 'I don't want to swing too far' section: when buyers refused to pay, 'there were real disputes'.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that the price spike was invented by Mackay",
+      "reason": "The spike is 'well documented'."
+     },
+     {
+      "choice": "To explain how poor families were able to join the trade",
+      "reason": "The trade was concentrated among the well-off."
+     },
+     {
+      "choice": "To argue that trading in tulips was against Dutch law",
+      "reason": "Legality is never discussed."
+     }
+    ]
+   },
+   "content_hash": "83d308ea8801fe1011b7e051ab041c3b",
+   "word_count": 292,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably heard of tulip mania. In the Dutch Republic in the 1630s, the story goes, people went mad for tulip bulbs. Single bulbs sold for the price of a house, ordinary people mortgaged everything, and when prices collapsed in early 1637, the country was ruined. Some versions add merchants throwing themselves into canals. It's the classic tale of a bubble, and much of it was popularized two centuries later, in 1841, by a Scottish writer named Charles Mackay.\n\nThe trouble is, when historians went back to the archives, the ruin is hard to find. One historian, Anne Goldgar, worked through contracts, court records, and notaries' papers from the period, and she found very few bankruptcies that could be tied to tulips. The trade seems to have been concentrated among fairly well-off merchants and craftsmen, not the poor. And the Dutch economy appears to have kept growing through the late 1630s. So where did the stories of mass ruin come from? Largely from moralizing pamphlets printed right after the crash, which used tulips to preach against greed. Mackay leaned on material like that.\n\nNow, I don't want to swing too far the other way. Prices really did spike, and they really did collapse. That part is well documented. Some rare varieties changed hands for astonishing sums. And a lot of the trading in the final months was in contracts for bulbs still in the ground, so when buyers refused to pay, there were real disputes, and some of them dragged on for a while.\n\nWhat the evidence undermines is the idea that the crash was an economic disaster. A price bubble and a financial catastrophe aren't the same thing. One can happen without the other, and here, it seems, it mostly did.",
+    "passageGroupId": "pg-8034211677ea453c75944020456f89d1",
+    "prompt": "[Academic Talk — Economic History] What does the professor imply by saying that a price bubble and a financial catastrophe 'aren't the same thing'?",
+    "choices": [
+     "Prices can collapse without wrecking the wider economy",
+     "A catastrophe always follows a bubble within a few years",
+     "The tulip price rise was too small to count as a bubble",
+     "Historians should no longer call tulip mania a bubble"
+    ],
+    "correct_answer": "Prices can collapse without wrecking the wider economy",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'One can happen without the other, and here, it seems, it mostly did' - prices crashed while the economy kept growing.",
+    "distractor_rationales": [
+     {
+      "choice": "A catastrophe always follows a bubble within a few years",
+      "reason": "The point is that one can occur without the other."
+     },
+     {
+      "choice": "The tulip price rise was too small to count as a bubble",
+      "reason": "Rare bulbs sold 'for astonishing sums'; the spike was real."
+     },
+     {
+      "choice": "Historians should no longer call tulip mania a bubble",
+      "reason": "He accepts the price bubble as real and documented."
+     }
+    ]
+   },
+   "content_hash": "f172f15e32d01d9714cfa361029600f8",
+   "word_count": 292,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B04",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the twentieth century, the textbook rule was that you're born with all the neurons you'll ever have. Then, starting in the 1960s and especially in the 1990s, studies in rats and mice showed that new neurons keep being born in adult brains, in one region in particular: the hippocampus, which is crucial for memory. The obvious next question is whether the same is true for us. And here, the field is still arguing.\n\nSome of the evidence is clever. One team took advantage of the nuclear weapons tests of the 1950s and 60s, which raised the level of carbon-14 in the atmosphere. That carbon ended up in the DNA of cells born during those years, so by measuring it in brains donated after death, researchers could estimate when the neurons had been born. Their estimate was that adults add something like seven hundred new neurons a day to the hippocampus.\n\nBut in 2018, one group looked directly at hippocampal tissue, staining for markers that young neurons carry, and found essentially none in adults. In babies, yes. In young teenagers, a few. In adults, almost nothing. Another lab published the opposite result that same year.\n\nHow can two careful labs disagree that much? One possibility is the tissue itself. Human brain samples are collected hours after death and preserved in different ways, and some of the markers for young neurons seem to fade quickly if the tissue isn't preserved right away. A follow-up study that controlled preservation tightly did find young neurons, even in people in their late eighties.\n\nSo here's where I land. The case for adult neurogenesis in humans looks stronger now than it did in 2018, but the debate isn't over, and what's being argued about is partly the methods, not just the brain.",
+    "passageGroupId": "pg-6aa9332243baf7ec19c9a171d7b20e7b",
+    "prompt": "[Academic Talk — Neuroscience] Why were researchers able to use carbon-14 to date neurons?",
+    "choices": [
+     "Weapons tests raised atmospheric carbon-14, marking cells born then",
+     "Neurons produce carbon-14 at a steady rate as they grow older and die",
+     "Carbon-14 binds to the markers that young neurons carry",
+     "Carbon-14 levels in the air have stayed the same since 1950"
+    ],
+    "correct_answer": "Weapons tests raised atmospheric carbon-14, marking cells born then",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The tests 'raised the level of carbon-14 in the atmosphere. That carbon ended up in the DNA of cells born during those years.'",
+    "distractor_rationales": [
+     {
+      "choice": "Neurons produce carbon-14 at a steady rate as they grow older and die",
+      "reason": "The carbon comes from the atmosphere, not the neurons."
+     },
+     {
+      "choice": "Carbon-14 binds to the markers that young neurons carry",
+      "reason": "Markers were stained in the separate 2018 study."
+     },
+     {
+      "choice": "Carbon-14 levels in the air have stayed the same since 1950",
+      "reason": "The tests raised the level, so it did not stay the same."
+     }
+    ]
+   },
+   "content_hash": "1948eaefa55b0a5e610c157f0baa4539",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the twentieth century, the textbook rule was that you're born with all the neurons you'll ever have. Then, starting in the 1960s and especially in the 1990s, studies in rats and mice showed that new neurons keep being born in adult brains, in one region in particular: the hippocampus, which is crucial for memory. The obvious next question is whether the same is true for us. And here, the field is still arguing.\n\nSome of the evidence is clever. One team took advantage of the nuclear weapons tests of the 1950s and 60s, which raised the level of carbon-14 in the atmosphere. That carbon ended up in the DNA of cells born during those years, so by measuring it in brains donated after death, researchers could estimate when the neurons had been born. Their estimate was that adults add something like seven hundred new neurons a day to the hippocampus.\n\nBut in 2018, one group looked directly at hippocampal tissue, staining for markers that young neurons carry, and found essentially none in adults. In babies, yes. In young teenagers, a few. In adults, almost nothing. Another lab published the opposite result that same year.\n\nHow can two careful labs disagree that much? One possibility is the tissue itself. Human brain samples are collected hours after death and preserved in different ways, and some of the markers for young neurons seem to fade quickly if the tissue isn't preserved right away. A follow-up study that controlled preservation tightly did find young neurons, even in people in their late eighties.\n\nSo here's where I land. The case for adult neurogenesis in humans looks stronger now than it did in 2018, but the debate isn't over, and what's being argued about is partly the methods, not just the brain.",
+    "passageGroupId": "pg-6aa9332243baf7ec19c9a171d7b20e7b",
+    "prompt": "[Academic Talk — Neuroscience] What did the 2018 study that stained for young-neuron markers find?",
+    "choices": [
+     "Markers in babies but almost none in adults",
+     "About seven hundred new neurons a day",
+     "Young neurons in people in their eighties",
+     "No young neurons at any age, even in babies"
+    ],
+    "correct_answer": "Markers in babies but almost none in adults",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'In babies, yes. In young teenagers, a few. In adults, almost nothing.'",
+    "distractor_rationales": [
+     {
+      "choice": "About seven hundred new neurons a day",
+      "reason": "That figure came from the carbon-14 study."
+     },
+     {
+      "choice": "Young neurons in people in their eighties",
+      "reason": "That was the later follow-up study."
+     },
+     {
+      "choice": "No young neurons at any age, even in babies",
+      "reason": "Babies did show them."
+     }
+    ]
+   },
+   "content_hash": "5f2abac903f6adb3a2c96a8c7cdc86ed",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the twentieth century, the textbook rule was that you're born with all the neurons you'll ever have. Then, starting in the 1960s and especially in the 1990s, studies in rats and mice showed that new neurons keep being born in adult brains, in one region in particular: the hippocampus, which is crucial for memory. The obvious next question is whether the same is true for us. And here, the field is still arguing.\n\nSome of the evidence is clever. One team took advantage of the nuclear weapons tests of the 1950s and 60s, which raised the level of carbon-14 in the atmosphere. That carbon ended up in the DNA of cells born during those years, so by measuring it in brains donated after death, researchers could estimate when the neurons had been born. Their estimate was that adults add something like seven hundred new neurons a day to the hippocampus.\n\nBut in 2018, one group looked directly at hippocampal tissue, staining for markers that young neurons carry, and found essentially none in adults. In babies, yes. In young teenagers, a few. In adults, almost nothing. Another lab published the opposite result that same year.\n\nHow can two careful labs disagree that much? One possibility is the tissue itself. Human brain samples are collected hours after death and preserved in different ways, and some of the markers for young neurons seem to fade quickly if the tissue isn't preserved right away. A follow-up study that controlled preservation tightly did find young neurons, even in people in their late eighties.\n\nSo here's where I land. The case for adult neurogenesis in humans looks stronger now than it did in 2018, but the debate isn't over, and what's being argued about is partly the methods, not just the brain.",
+    "passageGroupId": "pg-6aa9332243baf7ec19c9a171d7b20e7b",
+    "prompt": "[Academic Talk — Neuroscience] Why does the professor discuss how brain tissue is preserved?",
+    "choices": [
+     "To suggest a reason the labs' results conflicted",
+     "To explain why most studies use rats and mice instead",
+     "To show that the carbon-14 estimate was wrong",
+     "To argue that brain donation should be limited"
+    ],
+    "correct_answer": "To suggest a reason the labs' results conflicted",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'How can two careful labs disagree that much? One possibility is the tissue itself.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why most studies use rats and mice instead",
+      "reason": "Rodent studies are mentioned only as background."
+     },
+     {
+      "choice": "To show that the carbon-14 estimate was wrong",
+      "reason": "The carbon-14 estimate is not questioned."
+     },
+     {
+      "choice": "To argue that brain donation should be limited",
+      "reason": "No such argument is made."
+     }
+    ]
+   },
+   "content_hash": "6dffdae8d02b5ed83c2d193f298d236a",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the twentieth century, the textbook rule was that you're born with all the neurons you'll ever have. Then, starting in the 1960s and especially in the 1990s, studies in rats and mice showed that new neurons keep being born in adult brains, in one region in particular: the hippocampus, which is crucial for memory. The obvious next question is whether the same is true for us. And here, the field is still arguing.\n\nSome of the evidence is clever. One team took advantage of the nuclear weapons tests of the 1950s and 60s, which raised the level of carbon-14 in the atmosphere. That carbon ended up in the DNA of cells born during those years, so by measuring it in brains donated after death, researchers could estimate when the neurons had been born. Their estimate was that adults add something like seven hundred new neurons a day to the hippocampus.\n\nBut in 2018, one group looked directly at hippocampal tissue, staining for markers that young neurons carry, and found essentially none in adults. In babies, yes. In young teenagers, a few. In adults, almost nothing. Another lab published the opposite result that same year.\n\nHow can two careful labs disagree that much? One possibility is the tissue itself. Human brain samples are collected hours after death and preserved in different ways, and some of the markers for young neurons seem to fade quickly if the tissue isn't preserved right away. A follow-up study that controlled preservation tightly did find young neurons, even in people in their late eighties.\n\nSo here's where I land. The case for adult neurogenesis in humans looks stronger now than it did in 2018, but the debate isn't over, and what's being argued about is partly the methods, not just the brain.",
+    "passageGroupId": "pg-6aa9332243baf7ec19c9a171d7b20e7b",
+    "prompt": "[Academic Talk — Neuroscience] What is the professor's position on adult neurogenesis in humans?",
+    "choices": [
+     "The evidence has grown stronger, but the question is still open",
+     "Adults produce no new neurons, as the 2018 staining study showed",
+     "The 2018 staining study was carelessly done and can be ignored",
+     "The follow-up study has settled the question once and for all"
+    ],
+    "correct_answer": "The evidence has grown stronger, but the question is still open",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The case... looks stronger now than it did in 2018, but the debate isn't over.'",
+    "distractor_rationales": [
+     {
+      "choice": "Adults produce no new neurons, as the 2018 staining study showed",
+      "reason": "The case for neurogenesis 'looks stronger now'."
+     },
+     {
+      "choice": "The 2018 staining study was carelessly done and can be ignored",
+      "reason": "He calls both labs 'careful'."
+     },
+     {
+      "choice": "The follow-up study has settled the question once and for all",
+      "reason": "'The debate isn't over.'"
+     }
+    ]
+   },
+   "content_hash": "80f0f6867abec9ccdcb7adba74251215",
+   "word_count": 299,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B05",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the history of paleontology, the colors in dinosaur reconstructions were pure guesswork. Artists borrowed from lizards or birds and made something up. Then, around 2010, that changed, at least for a few species.\n\nThe key was a tiny structure called a melanosome. It's a capsule inside cells that holds melanin, the pigment behind black, gray, brown, and some reddish-brown colors in modern birds and mammals. Under powerful microscopes, fossil feathers turned out to contain tiny bodies with the shapes of melanosomes. And the shape matters. In living birds, long, thin, sausage-shaped melanosomes tend to go with black and gray, while rounder ones tend to go with reddish-brown. So by measuring fossil melanosomes, researchers proposed that a small feathered dinosaur from China, Sinosauropteryx, had a tail banded in reddish-brown and white.\n\nNow, here's an irony. Those same tiny bodies had been spotted in fossils decades earlier, and researchers had interpreted them as fossilized bacteria. That wasn't unreasonable, since bacteria are about the same size and shape. A few scientists still argue that at least some of these structures are microbes. The melanosome reading has gotten stronger, though, partly because chemical traces of melanin itself have been detected along with them.\n\nBut notice what the method can't do. It only sees melanin. Many of the brightest colors in modern birds, like the reds and yellows of a cardinal or a canary, come from a different kind of pigment, called carotenoids, which don't leave these structures behind. So a dinosaur that was brilliant red could come out of this analysis looking dull brown, or blank.\n\nSo when you see a museum model with an exact color pattern, be a little suspicious. Sometimes it's evidence. Sometimes it's evidence plus a lot of hopeful filling-in.",
+    "passageGroupId": "pg-e593741e00a37d349206c5d28b99974e",
+    "prompt": "[Academic Talk — Paleontology] What is the talk mainly about?",
+    "choices": [
+     "How some dinosaur colors were found, and the method's limits",
+     "Why dinosaur colors will never be known with any confidence",
+     "Why most dinosaurs were probably dull brown or gray in life",
+     "Why bacteria are preserved in fossils better than feathers are"
+    ],
+    "correct_answer": "How some dinosaur colors were found, and the method's limits",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The talk explains melanosome measurement and then 'what the method can't do'.",
+    "distractor_rationales": [
+     {
+      "choice": "Why dinosaur colors will never be known with any confidence",
+      "reason": "Some colors were inferred 'at least for a few species'."
+     },
+     {
+      "choice": "Why most dinosaurs were probably dull brown or gray in life",
+      "reason": "Dull results are an artifact of the method, not a claim about dinosaurs."
+     },
+     {
+      "choice": "Why bacteria are preserved in fossils better than feathers are",
+      "reason": "Preservation rates are never compared."
+     }
+    ]
+   },
+   "content_hash": "809a1013b1e952864228c579354e9494",
+   "word_count": 293,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the history of paleontology, the colors in dinosaur reconstructions were pure guesswork. Artists borrowed from lizards or birds and made something up. Then, around 2010, that changed, at least for a few species.\n\nThe key was a tiny structure called a melanosome. It's a capsule inside cells that holds melanin, the pigment behind black, gray, brown, and some reddish-brown colors in modern birds and mammals. Under powerful microscopes, fossil feathers turned out to contain tiny bodies with the shapes of melanosomes. And the shape matters. In living birds, long, thin, sausage-shaped melanosomes tend to go with black and gray, while rounder ones tend to go with reddish-brown. So by measuring fossil melanosomes, researchers proposed that a small feathered dinosaur from China, Sinosauropteryx, had a tail banded in reddish-brown and white.\n\nNow, here's an irony. Those same tiny bodies had been spotted in fossils decades earlier, and researchers had interpreted them as fossilized bacteria. That wasn't unreasonable, since bacteria are about the same size and shape. A few scientists still argue that at least some of these structures are microbes. The melanosome reading has gotten stronger, though, partly because chemical traces of melanin itself have been detected along with them.\n\nBut notice what the method can't do. It only sees melanin. Many of the brightest colors in modern birds, like the reds and yellows of a cardinal or a canary, come from a different kind of pigment, called carotenoids, which don't leave these structures behind. So a dinosaur that was brilliant red could come out of this analysis looking dull brown, or blank.\n\nSo when you see a museum model with an exact color pattern, be a little suspicious. Sometimes it's evidence. Sometimes it's evidence plus a lot of hopeful filling-in.",
+    "passageGroupId": "pg-e593741e00a37d349206c5d28b99974e",
+    "prompt": "[Academic Talk — Paleontology] According to the professor, what do rounder melanosomes in living birds tend to go with?",
+    "choices": [
+     "Reddish-brown color",
+     "Black or gray color",
+     "Bright yellow color",
+     "Pure white feathers"
+    ],
+    "correct_answer": "Reddish-brown color",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Rounder ones tend to go with reddish-brown.'",
+    "distractor_rationales": [
+     {
+      "choice": "Black or gray color",
+      "reason": "Long, thin melanosomes go with black and gray."
+     },
+     {
+      "choice": "Bright yellow color",
+      "reason": "Yellows come from carotenoids, which leave no melanosomes."
+     },
+     {
+      "choice": "Pure white feathers",
+      "reason": "White is not linked to any melanosome shape."
+     }
+    ]
+   },
+   "content_hash": "d375b54b9a1df2ad895beaa89bdad034",
+   "word_count": 293,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the history of paleontology, the colors in dinosaur reconstructions were pure guesswork. Artists borrowed from lizards or birds and made something up. Then, around 2010, that changed, at least for a few species.\n\nThe key was a tiny structure called a melanosome. It's a capsule inside cells that holds melanin, the pigment behind black, gray, brown, and some reddish-brown colors in modern birds and mammals. Under powerful microscopes, fossil feathers turned out to contain tiny bodies with the shapes of melanosomes. And the shape matters. In living birds, long, thin, sausage-shaped melanosomes tend to go with black and gray, while rounder ones tend to go with reddish-brown. So by measuring fossil melanosomes, researchers proposed that a small feathered dinosaur from China, Sinosauropteryx, had a tail banded in reddish-brown and white.\n\nNow, here's an irony. Those same tiny bodies had been spotted in fossils decades earlier, and researchers had interpreted them as fossilized bacteria. That wasn't unreasonable, since bacteria are about the same size and shape. A few scientists still argue that at least some of these structures are microbes. The melanosome reading has gotten stronger, though, partly because chemical traces of melanin itself have been detected along with them.\n\nBut notice what the method can't do. It only sees melanin. Many of the brightest colors in modern birds, like the reds and yellows of a cardinal or a canary, come from a different kind of pigment, called carotenoids, which don't leave these structures behind. So a dinosaur that was brilliant red could come out of this analysis looking dull brown, or blank.\n\nSo when you see a museum model with an exact color pattern, be a little suspicious. Sometimes it's evidence. Sometimes it's evidence plus a lot of hopeful filling-in.",
+    "passageGroupId": "pg-e593741e00a37d349206c5d28b99974e",
+    "prompt": "[Academic Talk — Paleontology] Why does the professor mention that the structures were once thought to be bacteria?",
+    "choices": [
+     "To note that the structures' nature was disputed",
+     "To show that earlier researchers had been careless",
+     "To explain how melanin was first found in fossils",
+     "To argue that the structures are certainly bacteria"
+    ],
+    "correct_answer": "To note that the structures' nature was disputed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'A few scientists still argue that at least some of these structures are microbes.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that earlier researchers had been careless",
+      "reason": "He says the reading 'wasn't unreasonable'."
+     },
+     {
+      "choice": "To explain how melanin was first found in fossils",
+      "reason": "Melanin traces are the newer evidence against the bacteria reading."
+     },
+     {
+      "choice": "To argue that the structures are certainly bacteria",
+      "reason": "The melanosome reading 'has gotten stronger'."
+     }
+    ]
+   },
+   "content_hash": "5924f71473667f08214c7b1b4b9c4985",
+   "word_count": 293,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD2-B06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For most of the history of paleontology, the colors in dinosaur reconstructions were pure guesswork. Artists borrowed from lizards or birds and made something up. Then, around 2010, that changed, at least for a few species.\n\nThe key was a tiny structure called a melanosome. It's a capsule inside cells that holds melanin, the pigment behind black, gray, brown, and some reddish-brown colors in modern birds and mammals. Under powerful microscopes, fossil feathers turned out to contain tiny bodies with the shapes of melanosomes. And the shape matters. In living birds, long, thin, sausage-shaped melanosomes tend to go with black and gray, while rounder ones tend to go with reddish-brown. So by measuring fossil melanosomes, researchers proposed that a small feathered dinosaur from China, Sinosauropteryx, had a tail banded in reddish-brown and white.\n\nNow, here's an irony. Those same tiny bodies had been spotted in fossils decades earlier, and researchers had interpreted them as fossilized bacteria. That wasn't unreasonable, since bacteria are about the same size and shape. A few scientists still argue that at least some of these structures are microbes. The melanosome reading has gotten stronger, though, partly because chemical traces of melanin itself have been detected along with them.\n\nBut notice what the method can't do. It only sees melanin. Many of the brightest colors in modern birds, like the reds and yellows of a cardinal or a canary, come from a different kind of pigment, called carotenoids, which don't leave these structures behind. So a dinosaur that was brilliant red could come out of this analysis looking dull brown, or blank.\n\nSo when you see a museum model with an exact color pattern, be a little suspicious. Sometimes it's evidence. Sometimes it's evidence plus a lot of hopeful filling-in.",
+    "passageGroupId": "pg-e593741e00a37d349206c5d28b99974e",
+    "prompt": "[Academic Talk — Paleontology] What does the professor imply about a dinosaur that was bright red in life?",
+    "choices": [
+     "Melanosome analysis could miss its red color entirely",
+     "Its fossils would hold more melanin than other fossils",
+     "It would be mistaken for a fossil full of bacteria",
+     "Its color could be read from carotenoid structures"
+    ],
+    "correct_answer": "Melanosome analysis could miss its red color entirely",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Such a dinosaur 'could come out of this analysis looking dull brown, or blank'.",
+    "distractor_rationales": [
+     {
+      "choice": "Its fossils would hold more melanin than other fossils",
+      "reason": "Carotenoid reds do not involve melanin."
+     },
+     {
+      "choice": "It would be mistaken for a fossil full of bacteria",
+      "reason": "Confusion with bacteria concerns the structures' identity, not red color."
+     },
+     {
+      "choice": "Its color could be read from carotenoid structures",
+      "reason": "Carotenoids 'don't leave these structures behind'."
+     }
+    ]
+   },
+   "content_hash": "e4337e84fc7d7122c7610a4309fb046e",
+   "word_count": 293,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td2-B06",
+     "note": "Written by Claude agents 2026-10-22 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
