@@ -48,3 +48,10 @@ independent with-source read before the sitting.
 Drawn **next**, as soon as `toefl-talk1-release1-cofounder-2026-10-22` closes, ahead of every TOEFL
 draft. `runout-monitor.ts` (2026-10-22): a real ISEE student has 1 clean Reading test left (depth 2), the
 tightest row in the app; the nearest TOEFL row has 2. Order only; the rule and the run are unchanged.
+
+## Result (2026-10-22)
+`isee-draft1-release-cofounder-2026-10-22`: blind 12/36 = 33.3% (guard 18/36), 36/36 "Only defensible", 36/36
+authentic. Released all 36 (`release-isee-reading-draft1-2026-10-22.mjs --apply`). ISEE Reading 2 -> 3 clean forms
+(form 4 is 35/36). Nine notes, all about difficulty, not correctness: main-idea distractors too easy, attitude option
+sets reused across passages, two purpose/inference items that are really detail items, and one story-logic gap
+(the Mr. Bello notebook entry). They are authoring rules for the next batch; released items are not edited.
