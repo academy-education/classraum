@@ -10906,6 +10906,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "cr-v18-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v18",
+      "contentSha": "897e7ff0340935e585df2ae154fac55f0d74f3b2ad7a7c113f599d9718e97111",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 14, 2 Claude agents, 36 of 40 after pre-screen. Spot route (crv7-b14.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "897e7ff0340935e585df2ae154fac55f0d74f3b2ad7a7c113f599d9718e97111",
+          "verdict": "render 0-1 re-rolls, letters 5/5/5/5 per half."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A+B 4/40 (same 4 on both), dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
