@@ -45,3 +45,24 @@ Report which arm failed and stop. The per-item sitting remains the gate.
 ## Also reported (not bars)
 Per-family numbers, with SSAT reading/verbal shown separately (planted 20, controls 44): a pass overall with a weak
 SSAT arm is not a pass for SSAT.
+
+## Result (2026-10-22): FAIL on bar 2. The per-item sitting remains the gate.
+Four Claude grader agents, 189 items, each graded once (+24 overlap). Scored by `grader-trial-score-2026-10-22.py`.
+
+| bar | result | |
+|---|---|---|
+| 1 planted recall | **34/40** | pass (>=32) |
+| 2 real-reject recall | **3/29** | **FAIL** (>=18) |
+| 3 false flags on controls | **3/120** | pass (<=18) |
+
+Overlap agreement between graders: 23/24.
+- **SSAT arms (reported, not bars):** planted SSAT reading 14/14, SSAT verbal 6/6, ISEE reading 3/3. Controls flagged
+  SSAT reading 1/36, SSAT verbal 0/8.
+- **Planted by type:** wrong key 10/10, broken 8/10, alternative 16/20.
+- **Where it failed:** his real rejects are 25 TOEFL Listening (mostly Choose a Response), 2 TOEFL Reading, 1 SAT,
+  1 ACT. The grader called 26 of the 29 "unique". These are judgements of a second natural reply or a too-vague
+  transcript, not a wrong key. Either the grader misses that kind of defect, or his flags there are stricter than the
+  bar for "defensible". This trial cannot tell which, and the pre-registered reading is a fail.
+- **What it does show:** the grader reliably catches planted defects (wrong key, missing support, a second supported
+  answer) at a 2.5% false-flag rate. It does not show that it catches the kind of defect he actually finds.
+Per this prereg, no release route changes.
