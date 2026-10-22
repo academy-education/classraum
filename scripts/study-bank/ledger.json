@@ -9394,6 +9394,33 @@
           "verdict": "NOT RUN by an independent reader; author read found and fixed 3 arguably-correct distractors."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-3-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-3",
+      "contentSha": "40d116ed9dc4b3aafb40b7371cd414073c960620e60cc991ba0c0e35ce058010",
+      "status": "staged-for-human-edit",
+      "note": "Third ISEE draft-route batch: 6 passages x 6 four-choice items, written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in isee-reading-draft-3.RELEASE.PREREG.md. contentSha = sha256 of isee-reading-draft-3.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "40d116ed9dc4b3aafb40b7371cd414073c960620e60cc991ba0c0e35ce058010",
+          "verdict": "merge.mjs at K=4: 0 problems after pre-insert edits (2 passages lengthened past 300 words; 1 paragraph reduced to one negation; 3 attitude sets re-worded for length ratio; key uniquely longest 17/36 -> 9/36 by one lengthened distractor on 8 items; uniquely shortest 7/36). Key slots 9/9/9/9, no passage with >3 in one slot (2 logged re-deals). Edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author self-review only."
+        }
+      }
     }
   ],
   "auditedCohorts": [
