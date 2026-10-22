@@ -100,3 +100,14 @@ after run 4, ahead of the remaining conv-draft-1 runs and conv-draft-2. Order on
 `toefl-conv1-release4`: pooled blind 9/48 = 18.8%, 12/12 Only defensible. Released 6 (24 of 32 live);
 audio pre-warmed (62 clips, 0 failed). Note: v5-11 "the transcript is unclear about who signs what"
 (rated unique). Next per the queue amendment: `toefl-talk1-release1` (T01 T02 T03), drawn.
+
+## Owner-approved live edit (2026-10-22)
+Owner: "Do all the three things you brought up." The 6 released v6 conversations (12 rows) edited by
+`fixes/live-edit-toefl-conv-draft1-v6-2026-10-22.mjs` (snapshot first; dry run read line by line):
+contractions in transcripts and explanations; v6-04 "We hold a request until we can meet both parts";
+v6-12 "The winter order closes in November, and the hoods come from another supplier" (gowns rented,
+hood ordered, deadline not past) with its one deadline option changed from "September" to "November" so
+it stays anchored; keys unchanged. Their reviews (`toefl-conv1-release1/2`) are now stale under 076 BY
+DESIGN, recorded in verify_meta.live_edit. Audio regenerated (26 clips, 0 failed). Bug caught on the dry
+run: the contraction rule turned a sentence-final "I am." into "I'm."; it now needs a following word
+(fixed in both fix scripts; no row in the bank carries it).

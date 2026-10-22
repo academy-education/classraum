@@ -12,7 +12,7 @@ const refuse = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const RULES = [
   [/\b(do|does|did|is|are|was|were|would|could|should|has|have|had) not\b/gi, (m, v) => v + "n't"],
   [/\bwill not\b/gi, m => (m[0] === 'W' ? 'Won' : 'won') + "'t"], [/\bcannot\b/gi, m => (m[0] === 'C' ? 'Can' : 'can') + "'t"],
-  [/\bI am\b/g, "I'm"], [/\bI will\b/g, "I'll"], [/\bI would\b/g, "I'd"], [/\bI have (?=been|done|seen|heard|got|had|never|written|told|checked)/g, "I've "],
+  [/\bI am\b(?=\s+\w)/g, "I'm"], [/\bI will\b(?=\s+\w)/g, "I'll"], [/\bI would\b(?=\s+\w)/g, "I'd"], [/\bI have (?=been|done|seen|heard|got|had|never|written|told|checked)/g, "I've "],
   [/\b(you|we|they) (are|will|would)\b(?=\s+\w)/gi, (m, p, v) => p + ({ are: "'re", will: "'ll", would: "'d" })[v.toLowerCase()]],
   [/(?<!\bin )\b(it|that|there|what|he|she) is\b(?=\s+[a-z])/gi, (m, p) => p + "'s"], [/\b[Ll]et us\b/g, m => (m[0] === 'L' ? 'Let' : 'let') + "'s"],
 ]
