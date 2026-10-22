@@ -1,0 +1,64 @@
+{
+  "id": "WIC25D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "library catalog software",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["mothballed", "patched", "outsourced", "repackaged"],
+  "antonym_pairs": [],
+  "rarity_order": ["patched", "outsourced", "repackaged", "mothballed"],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "A 2019 audit found that, during the previous year, the library had ______ the program.",
+  "worlds": [
+    {
+      "key": "mothballed",
+      "passage": "For twenty years, a county library tracked every book and borrower with catalog software that its own technicians had written. When the library bought a commercial catalog from a large vendor in 2018, technicians did not delete the old program; they shut it down and stored it, untouched, on a basement server in case the new catalog ever failed. A 2019 audit found that, during the previous year, the library had ______ the program.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The old program was shut down but kept intact in reserve in case the new catalog failed, so the library had \"mothballed\" it. \"Patched\" fails because the program was stored untouched, with no repairs. \"Outsourced\" fails because nobody was operating it at all, and \"repackaged\" fails because it was held back unused rather than presented to anyone in a new form.",
+      "kills": {
+        "patched": {"type": "logic", "quote": "stored it, untouched", "why": "an untouched program received no fixes"},
+        "outsourced": {"type": "logic", "quote": "they shut it down", "why": "a program that is shut down is run by no one, inside or outside the library"},
+        "repackaged": {"type": "logic", "quote": "in case the new catalog ever failed", "why": "it was kept in reserve, not given a new form or offered to anyone"}
+      }
+    },
+    {
+      "key": "patched",
+      "passage": "For twenty years, a county library tracked every book and borrower with catalog software that its own technicians had written. Instead of buying a commercial catalog from a large vendor in 2018, technicians kept the old program running under its old name, fixing each flaw as borrowers reported it with a few lines of new code. A 2019 audit found that, during the previous year, the library had ______ the program.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The library's technicians repaired each flaw with small pieces of new code as it was reported, so they had \"patched\" the program. \"Mothballed\" fails because the program kept running. \"Outsourced\" fails because the library's own technicians did the work, and \"repackaged\" fails because the program kept its old name and was not presented in a new form.",
+      "kills": {
+        "mothballed": {"type": "logic", "quote": "kept the old program running", "why": "a program still in daily use was not taken out of service and stored"},
+        "outsourced": {"type": "logic", "quote": "technicians kept", "why": "the library's own technicians, not an outside firm, kept it going"},
+        "repackaged": {"type": "logic", "quote": "under its old name", "why": "nothing about how the program was presented changed"}
+      }
+    },
+    {
+      "key": "outsourced",
+      "passage": "For twenty years, a county library tracked every book and borrower with catalog software that its own technicians had written. Instead of buying a commercial catalog from a large vendor in 2018, the library kept the old program running under its old name, with not one line of its code changed, but laid off its technicians and paid a private firm in another state to operate it. A 2019 audit found that, during the previous year, the library had ______ the program.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The library stopped running the program with its own staff and paid an outside firm to operate it, so it had \"outsourced\" the program. \"Mothballed\" fails because the program kept running. \"Patched\" fails because not one line of its code changed, and \"repackaged\" fails because it kept its old name.",
+      "kills": {
+        "mothballed": {"type": "logic", "quote": "kept the old program running", "why": "a program still in use was not shelved"},
+        "patched": {"type": "explicit", "quote": "not one line of its code changed", "why": "no repairs were made to the code"},
+        "repackaged": {"type": "logic", "quote": "under its old name", "why": "the program was not given a new name or form"}
+      }
+    },
+    {
+      "key": "repackaged",
+      "passage": "For twenty years, a county library tracked every book and borrower with catalog software that its own technicians had written. Instead of buying a commercial catalog from a large vendor in 2018, technicians kept the old program running, with not one line of its code changed, but gave it a new name and a brighter screen design and began offering it to smaller libraries nearby. A 2019 audit found that, during the previous year, the library had ______ the program.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The program itself stayed the same but was given a new name and look and offered to other libraries, so the library had \"repackaged\" it. \"Mothballed\" fails because the program kept running. \"Patched\" fails because not one line of code changed, and \"outsourced\" fails because the library's own technicians still ran it.",
+      "kills": {
+        "mothballed": {"type": "logic", "quote": "kept the old program running", "why": "the program stayed in use and was even offered to others"},
+        "patched": {"type": "explicit", "quote": "not one line of its code changed", "why": "an unchanged program was not repaired"},
+        "outsourced": {"type": "logic", "quote": "technicians kept the old program", "why": "the library's own technicians kept running it rather than handing it to an outside firm"}
+      }
+    }
+  ]
+}

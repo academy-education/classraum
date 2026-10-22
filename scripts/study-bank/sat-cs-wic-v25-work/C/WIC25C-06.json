@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a jazz singer's memoir",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "guarded",
+    "gracious",
+    "gritty",
+    "glib"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "gracious",
+    "guarded",
+    "gritty",
+    "glib"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Reviewing the book in a literary weekly, one critic called it ______.",
+  "worlds": [
+    {
+      "key": "guarded",
+      "passage": "In 1958 a jazz singer published a memoir of her forty years onstage, years that included a divorce, a bankruptcy, and a long feud with the band she had founded. She omits the divorce and the bankruptcy entirely and names her former bandmates only in passing, without crediting a single one of them, and what she does choose to tell, she tells in measured prose that she had revised for a decade. Reviewing the book in a literary weekly, one critic called it ______.",
+      "shape": "what is withheld",
+      "key_from_one_sentence": false,
+      "explanation": "She leaves out the divorce and bankruptcy and tells only what she chooses, so the memoir is \"guarded.\" \"Gracious\" fails because she credits none of her bandmates; \"gritty\" fails because the hard episodes are omitted entirely; \"glib\" fails because the prose was revised for a decade.",
+      "kills": {
+        "gracious": {
+          "type": "logic",
+          "quote": "without crediting a single one",
+          "why": "withholding credit is not generous"
+        },
+        "gritty": {
+          "type": "logic",
+          "quote": "omits the divorce and the bankruptcy",
+          "why": "the harsh material is absent, not rendered in detail"
+        },
+        "glib": {
+          "type": "logic",
+          "quote": "revised for a decade",
+          "why": "labored prose is not facile or offhand"
+        }
+      }
+    },
+    {
+      "key": "gracious",
+      "passage": "In 1958 a jazz singer published a memoir of her forty years onstage, years that included a divorce, a bankruptcy, and a long feud with the band she had founded. She gives whole chapters to the divorce and the bankruptcy, speaking warmly of the husband who left her and passing lightly over her own hardship, and she credits her former bandmates with every song they wrote, thanking even the rival who replaced her, in prose she had revised for a decade. Reviewing the book in a literary weekly, one critic called it ______.",
+      "shape": "treatment of others",
+      "key_from_one_sentence": false,
+      "explanation": "She speaks warmly of the husband who left her and credits and thanks even her rivals, so the memoir is \"gracious.\" \"Guarded\" fails because she gives whole chapters to the divorce and bankruptcy; \"gritty\" fails because she passes lightly over her own hardship; \"glib\" fails because the prose was revised for a decade.",
+      "kills": {
+        "guarded": {
+          "type": "logic",
+          "quote": "whole chapters to the divorce",
+          "why": "she discloses the painful episodes openly"
+        },
+        "gritty": {
+          "type": "logic",
+          "quote": "passing lightly over her own hardship",
+          "why": "the hardship is not rendered in raw detail"
+        },
+        "glib": {
+          "type": "logic",
+          "quote": "revised for a decade",
+          "why": "careful prose is not facile"
+        }
+      }
+    },
+    {
+      "key": "gritty",
+      "passage": "In 1958 a jazz singer published a memoir of her forty years onstage, years that included a divorce, a bankruptcy, and a long feud with the band she had founded. She gives whole chapters to the divorce and the bankruptcy, recording the unheated rooms, the pawned dresses, and the nights she slept in bus stations, and she is as unsparing toward her former bandmates as toward herself, in prose she had revised for a decade. Reviewing the book in a literary weekly, one critic called it ______.",
+      "shape": "level of detail",
+      "key_from_one_sentence": false,
+      "explanation": "Unheated rooms, pawned dresses, and nights in bus stations make the memoir \"gritty.\" \"Guarded\" fails because she gives whole chapters to the divorce and bankruptcy; \"gracious\" fails because she is unsparing toward her bandmates; \"glib\" fails because the prose was revised for a decade.",
+      "kills": {
+        "guarded": {
+          "type": "logic",
+          "quote": "whole chapters to the divorce",
+          "why": "nothing painful is held back"
+        },
+        "gracious": {
+          "type": "logic",
+          "quote": "unsparing toward her former bandmates",
+          "why": "harsh treatment of others is not generous"
+        },
+        "glib": {
+          "type": "logic",
+          "quote": "revised for a decade",
+          "why": "labored prose is not offhand"
+        }
+      }
+    },
+    {
+      "key": "glib",
+      "passage": "In 1958 a jazz singer published a memoir of her forty years onstage, years that included a divorce, a bankruptcy, and a long feud with the band she had founded. She mentions the divorce and the bankruptcy but dispatches each in a single breezy quip, and she takes credit for songs her former bandmates wrote, all in smooth, joking prose that she later admitted she had dictated in a week. Reviewing the book in a literary weekly, one critic called it ______.",
+      "shape": "manner versus substance",
+      "key_from_one_sentence": false,
+      "explanation": "Breezy quips about a divorce and bankruptcy, in smooth prose dictated in a week, make the memoir \"glib.\" \"Guarded\" fails because she does mention both episodes; \"gritty\" fails because each gets only a single quip, not detail; \"gracious\" fails because she takes credit for her bandmates' songs.",
+      "kills": {
+        "guarded": {
+          "type": "logic",
+          "quote": "mentions the divorce and the bankruptcy",
+          "why": "she does not withhold them"
+        },
+        "gritty": {
+          "type": "logic",
+          "quote": "single breezy quip",
+          "why": "a quip gives no harsh detail"
+        },
+        "gracious": {
+          "type": "explicit",
+          "quote": "takes credit for songs",
+          "why": "claiming others' work is not generous"
+        }
+      }
+    }
+  ]
+}

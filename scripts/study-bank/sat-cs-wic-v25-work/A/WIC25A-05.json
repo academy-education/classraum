@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "storms and a goose migration",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "staggered",
+    "truncated",
+    "spurred",
+    "swelled"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "spurred",
+    "swelled",
+    "staggered",
+    "truncated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In her account of one season, an ornithologist wrote that a string of early storms had ______ the geese's migration.",
+  "worlds": [
+    {
+      "key": "staggered",
+      "passage": "Each autumn, several thousand snow geese leave their nesting grounds on the northern tundra and fly some three thousand kilometers south to coastal marshes. That year the flocks, no larger than usual, did not leave together: small groups set off over six weeks, the first in the usual week and each later one during a lull between storms, and all of them flew the full distance to the coastal marshes. In her account of one season, an ornithologist wrote that a string of early storms had ______ the geese's migration.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Instead of leaving together, the geese set off in small groups spread over six weeks, so the storms \"staggered\" the migration. \"Truncated\" fails because every group flew the full distance; \"spurred\" fails because the first groups left in the usual week and the rest left later; \"swelled\" fails because the flocks were no larger than usual.",
+      "kills": {
+        "truncated": {
+          "type": "logic",
+          "quote": "flew the full distance to the coastal marshes",
+          "why": "The journey was completed, so it was not cut short."
+        },
+        "spurred": {
+          "type": "logic",
+          "quote": "the first in the usual week",
+          "why": "No group left earlier than usual, so the storms did not hurry the departure."
+        },
+        "swelled": {
+          "type": "explicit",
+          "quote": "no larger than usual",
+          "why": "The number of geese did not grow."
+        }
+      }
+    },
+    {
+      "key": "truncated",
+      "passage": "Each autumn, several thousand snow geese leave their nesting grounds on the northern tundra and fly some three thousand kilometers south to coastal marshes. That year the flocks, no larger than usual, left together in the usual week, but storms had already frozen the southern half of the route, so they flew no farther than a chain of ice-free lakes halfway down and spent the whole winter there before turning north in spring. In her account of one season, an ornithologist wrote that a string of early storms had ______ the geese's migration.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The geese stopped halfway, at the lakes, and wintered there instead of reaching the marshes, so the storms \"truncated\" the migration. \"Staggered\" fails because the flocks left together; \"spurred\" fails because they left in the usual week; \"swelled\" fails because the flocks were no larger than usual.",
+      "kills": {
+        "staggered": {
+          "type": "logic",
+          "quote": "left together in the usual week",
+          "why": "A single shared departure is not spread out over time."
+        },
+        "spurred": {
+          "type": "logic",
+          "quote": "spent the whole winter there",
+          "why": "The storms stopped the geese short rather than urging them on, and their departure came in the usual week."
+        },
+        "swelled": {
+          "type": "explicit",
+          "quote": "no larger than usual",
+          "why": "The number of geese did not grow."
+        }
+      }
+    },
+    {
+      "key": "spurred",
+      "passage": "Each autumn, several thousand snow geese leave their nesting grounds on the northern tundra and fly some three thousand kilometers south to coastal marshes. That year the flocks, no larger than usual, left together nearly three weeks earlier than in any year on record, rising off the tundra as the first storm swept over their nesting grounds, and they flew the full distance to the coastal marshes ahead of the bad weather. In her account of one season, an ornithologist wrote that a string of early storms had ______ the geese's migration.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The first storm set the geese off nearly three weeks earlier than ever recorded, so the storms \"spurred\" the migration. \"Staggered\" fails because the flocks left together; \"truncated\" fails because they flew the full distance; \"swelled\" fails because the flocks were no larger than usual.",
+      "kills": {
+        "staggered": {
+          "type": "logic",
+          "quote": "left together nearly three weeks earlier",
+          "why": "A single shared departure is not spread out over time."
+        },
+        "truncated": {
+          "type": "logic",
+          "quote": "flew the full distance to the coastal marshes",
+          "why": "The journey was completed, so it was not cut short."
+        },
+        "swelled": {
+          "type": "explicit",
+          "quote": "no larger than usual",
+          "why": "The number of geese did not grow."
+        }
+      }
+    },
+    {
+      "key": "swelled",
+      "passage": "Each autumn, several thousand snow geese leave their nesting grounds on the northern tundra and fly some three thousand kilometers south to coastal marshes. That year the flocks left together in the usual week and flew the full distance to the coastal marshes, but the storms blew thousands of geese from a western population far off their own route, and these birds joined the flocks, so that nearly twice the usual number arrived. In her account of one season, an ornithologist wrote that a string of early storms had ______ the geese's migration.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Geese blown off their own route joined the flocks, and nearly twice the usual number arrived, so the storms \"swelled\" the migration. \"Staggered\" fails because the flocks left together; \"truncated\" fails because they flew the full distance; \"spurred\" fails because they left in the usual week.",
+      "kills": {
+        "staggered": {
+          "type": "logic",
+          "quote": "left together in the usual week",
+          "why": "A single shared departure is not spread out over time."
+        },
+        "truncated": {
+          "type": "logic",
+          "quote": "flew the full distance to the coastal marshes",
+          "why": "The journey was completed, so it was not cut short."
+        },
+        "spurred": {
+          "type": "logic",
+          "quote": "in the usual week",
+          "why": "The geese left at the normal time, so the storms did not hurry them."
+        }
+      }
+    }
+  ]
+}

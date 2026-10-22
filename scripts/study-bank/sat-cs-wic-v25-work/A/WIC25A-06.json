@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early measurements of heat from the ocean floor",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "touchstones",
+    "watersheds",
+    "sideshows",
+    "setbacks"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "setbacks",
+    "watersheds",
+    "sideshows",
+    "touchstones"
+  ],
+  "pos": "noun",
+  "after_blank": "in",
+  "blank_sentence": "Historians of geology now regard those two measurements as ______ in the history of their field.",
+  "worlds": [
+    {
+      "key": "touchstones",
+      "passage": "In the 1930s, two small research teams lowered thermometers into holes drilled in the seabed to measure how much heat escapes from the ocean floor. The measurements changed nothing at the time, since few geologists read the reports, but they were made so carefully that every later survey of the ocean floor has been calibrated against them, and modern values still agree with them closely. Historians of geology now regard those two measurements as ______ in the history of their field.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every later survey has been calibrated against the two measurements, which still hold up, so they serve as standards of comparison: \"touchstones.\" \"Watersheds\" fails because they changed nothing at the time; \"sideshows\" fails because the whole later field checks itself against them; \"setbacks\" fails because their values were sound and held nobody back.",
+      "kills": {
+        "watersheds": {
+          "type": "logic",
+          "quote": "changed nothing at the time",
+          "why": "A measurement that changed nothing was not a turning point."
+        },
+        "sideshows": {
+          "type": "logic",
+          "quote": "every later survey of the ocean floor has been calibrated against them",
+          "why": "Work the whole field measures itself against is central, not peripheral."
+        },
+        "setbacks": {
+          "type": "logic",
+          "quote": "modern values still agree with them closely",
+          "why": "Correct values did not lead the field astray or delay it."
+        }
+      }
+    },
+    {
+      "key": "watersheds",
+      "passage": "In the 1930s, two small research teams lowered thermometers into holes drilled in the seabed to measure how much heat escapes from the ocean floor. Their values, later confirmed, showed far more heat escaping than anyone had expected, and within a decade most geologists had abandoned the view that the ocean floor was cold and unchanging; the numbers themselves were soon replaced by better ones, and no survey since has been calibrated against them. Historians of geology now regard those two measurements as ______ in the history of their field.",
+      "shape": "received view overturned",
+      "key_from_one_sentence": false,
+      "explanation": "Within a decade of the measurements most geologists had given up their old view of the ocean floor, so the measurements marked a turning point: \"watersheds.\" \"Touchstones\" fails because no later survey has been calibrated against them; \"sideshows\" fails because they changed what most geologists believed; \"setbacks\" fails because their values were later confirmed and moved the field forward.",
+      "kills": {
+        "touchstones": {
+          "type": "logic",
+          "quote": "no survey since has been calibrated against them",
+          "why": "Measurements nobody checks against are not standards of comparison."
+        },
+        "sideshows": {
+          "type": "logic",
+          "quote": "most geologists had abandoned the view",
+          "why": "Work that changed the field's main view was not peripheral."
+        },
+        "setbacks": {
+          "type": "logic",
+          "quote": "later confirmed",
+          "why": "Correct values that changed minds advanced the field rather than delaying it."
+        }
+      }
+    },
+    {
+      "key": "sideshows",
+      "passage": "In the 1930s, two small research teams lowered thermometers into holes drilled in the seabed to measure how much heat escapes from the ocean floor. Their values were accurate, and later surveys of the ocean floor found nearly the same numbers, but they appeared while geologists were absorbed in other debates, went uncited for forty years, and played no part in how the field's ideas developed; no later survey was calibrated against them. Historians of geology now regard those two measurements as ______ in the history of their field.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The measurements went uncited and played no part in how the field developed, so they were peripheral to its main story: \"sideshows.\" \"Touchstones\" fails because no later survey was calibrated against them; \"watersheds\" fails because they changed nothing in the field's ideas; \"setbacks\" fails because their values were accurate and misled no one.",
+      "kills": {
+        "touchstones": {
+          "type": "logic",
+          "quote": "no later survey was calibrated against them",
+          "why": "Measurements nobody checks against are not standards of comparison."
+        },
+        "watersheds": {
+          "type": "logic",
+          "quote": "played no part in how the field's ideas developed",
+          "why": "A measurement that changed nothing was not a turning point."
+        },
+        "setbacks": {
+          "type": "explicit",
+          "quote": "Their values were accurate",
+          "why": "Accurate values did not lead the field astray."
+        }
+      }
+    },
+    {
+      "key": "setbacks",
+      "passage": "In the 1930s, two small research teams lowered thermometers into holes drilled in the seabed to measure how much heat escapes from the ocean floor. Their values, too low by a factor of ten because heat leaked away along the drill pipes, confirmed most geologists for thirty years in their existing view that the ocean floor was cold and unchanging, and work on the subject largely stopped until the error was found; no survey since has been calibrated against them. Historians of geology now regard those two measurements as ______ in the history of their field.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Wrong values kept geologists in a mistaken view and stalled work on the subject for thirty years, so the measurements held the field back: \"setbacks.\" \"Touchstones\" fails because no survey since has been calibrated against them; \"watersheds\" fails because they only confirmed the view geologists already held; \"sideshows\" fails because they shaped the field for thirty years.",
+      "kills": {
+        "touchstones": {
+          "type": "logic",
+          "quote": "no survey since has been calibrated against them",
+          "why": "Measurements nobody checks against are not standards of comparison."
+        },
+        "watersheds": {
+          "type": "logic",
+          "quote": "in their existing view",
+          "why": "Measurements that confirmed what was already believed did not mark a turning point."
+        },
+        "sideshows": {
+          "type": "logic",
+          "quote": "work on the subject largely stopped",
+          "why": "Measurements that halted a line of research for thirty years were not peripheral."
+        }
+      }
+    }
+  ]
+}

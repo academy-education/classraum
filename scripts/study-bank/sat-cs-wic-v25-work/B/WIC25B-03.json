@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an early modern agreement between port cities",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["candid", "expedient", "ceremonial", "exhaustive"],
+  "antonym_pairs": [],
+  "rarity_order": ["ceremonial", "candid", "exhaustive", "expedient"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Having compared the surviving drafts, one historian judged the final agreement to be above all ______.",
+  "worlds": [
+    {
+      "key": "candid",
+      "passage": "In 1724 two rival port cities signed an agreement on the use of each other's harbors. Unusually, its opening pages stated plainly that each city distrusted the other, listed the ships each had seized, and admitted that the terms might fail; its few clauses on harbor fees, worked out over two years of talks, were enforced for decades. Having compared the surviving drafts, one historian judged the final agreement to be above all ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The agreement plainly admitted distrust, past seizures, and possible failure, so it was above all \"candid.\" \"Expedient\" fails because it was worked out over two years and lasted decades rather than serving a passing need. \"Ceremonial\" fails because its clauses were enforced. \"Exhaustive\" fails because it held only a few clauses.",
+      "kills": {
+        "expedient": {"type": "logic", "quote": "worked out over two years of talks", "why": "A slow, lasting settlement is not a quick measure of convenience."},
+        "ceremonial": {"type": "logic", "quote": "were enforced for decades", "why": "An agreement that was actually enforced was not merely for show."},
+        "exhaustive": {"type": "explicit", "quote": "its few clauses", "why": "A few clauses cannot cover every case."}
+      }
+    },
+    {
+      "key": "expedient",
+      "passage": "In 1724 two rival port cities signed an agreement on the use of each other's harbors. Drafted in two days while a fever had closed one city's port, its two clauses covered only the docking of grain ships until the fever passed; it opened with pledges of brotherly love that both cities' letters privately mocked, and it was enforced only until the next spring, after dozens of ships had used it. Having compared the surviving drafts, one historian judged the final agreement to be above all ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Written in two days to meet a temporary emergency and abandoned the next spring, the agreement was above all \"expedient.\" \"Candid\" fails because its pledges of love were privately mocked by both sides. \"Ceremonial\" fails because dozens of ships actually used it. \"Exhaustive\" fails because it covered only grain ships.",
+      "kills": {
+        "candid": {"type": "logic", "quote": "both cities' letters privately mocked", "why": "Public pledges that both sides privately mocked are the opposite of frank."},
+        "ceremonial": {"type": "logic", "quote": "after dozens of ships had used it", "why": "The agreement had real practical effect, so it was not merely symbolic."},
+        "exhaustive": {"type": "explicit", "quote": "covered only the docking of grain ships", "why": "Covering one kind of ship is not covering everything."}
+      }
+    },
+    {
+      "key": "ceremonial",
+      "passage": "In 1724 two rival port cities signed an agreement on the use of each other's harbors. It was signed at a feast after a procession of both councils, and its clauses repeated pledges of friendship while setting no fees, rules, or penalties; at that moment each city was seizing the other's ships, and harbor traffic went on exactly as before. Having compared the surviving drafts, one historian judged the final agreement to be above all ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Signed at a feast, setting no rules, and changing nothing, the agreement was above all \"ceremonial.\" \"Candid\" fails because its pledges of friendship hid the fact that each city was seizing the other's ships. \"Expedient\" fails because it served no practical need; traffic went on exactly as before. \"Exhaustive\" fails because it set no fees, rules, or penalties at all.",
+      "kills": {
+        "candid": {"type": "logic", "quote": "each city was seizing the other's ships", "why": "Pledges of friendship during open hostility are not frank."},
+        "expedient": {"type": "logic", "quote": "harbor traffic went on exactly as before", "why": "An agreement that changed nothing did not serve any practical purpose of the moment."},
+        "exhaustive": {"type": "explicit", "quote": "setting no fees, rules, or penalties", "why": "An agreement with no rules covers nothing."}
+      }
+    },
+    {
+      "key": "exhaustive",
+      "passage": "In 1724 two rival port cities signed an agreement on the use of each other's harbors. Its envoys spent four years on it, refusing a quick truce, and its three hundred clauses set fees for every cargo and settled cases as rare as a ship blown into the wrong port, though all in polite formulas that never named the seizures that had prompted the talks; joint courts enforced it for a century. Having compared the surviving drafts, one historian judged the final agreement to be above all ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "With three hundred clauses covering every cargo and even rare cases, the agreement was above all \"exhaustive.\" \"Candid\" fails because its polite formulas never named the seizures behind the talks. \"Expedient\" fails because the envoys refused a quick truce and took four years. \"Ceremonial\" fails because joint courts enforced it for a century.",
+      "kills": {
+        "candid": {"type": "logic", "quote": "never named the seizures", "why": "Polite language that avoids the real grievance is not frank."},
+        "expedient": {"type": "logic", "quote": "refusing a quick truce", "why": "The envoys chose a long, thorough settlement over a convenient quick one."},
+        "ceremonial": {"type": "logic", "quote": "joint courts enforced it for a century", "why": "An agreement actually enforced was not merely for show."}
+      }
+    }
+  ]
+}

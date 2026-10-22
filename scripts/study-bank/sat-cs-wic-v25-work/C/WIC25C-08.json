@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a garden scene in a stage comedy",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "interlude",
+    "kernel",
+    "letdown",
+    "hinge"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "letdown",
+    "kernel",
+    "hinge",
+    "interlude"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Most critics now describe the garden scene as the play's ______.",
+  "worlds": [
+    {
+      "key": "interlude",
+      "passage": "Midway through a three-act comedy first staged in 1926, about a brother and sister quarreling over their late father's house, comes a short scene set in a moonlit garden. The playwright added it during rehearsals to cover a change of scenery: it halts the quarrel for a wordless dance by the servants, after which brother and sister stand exactly where they stood before, and audiences have always loved it. Most critics now describe the garden scene as the play's ______.",
+      "shape": "function within a sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The scene halts the quarrel for a dance and leaves everyone \"exactly where they stood before,\" so it is the play's \"interlude.\" \"Kernel\" fails because it was added during rehearsals, not the seed of the play; \"letdown\" fails because audiences have always loved it; \"hinge\" fails because nothing turns on it.",
+      "kills": {
+        "kernel": {
+          "type": "logic",
+          "quote": "added it during rehearsals",
+          "why": "a late addition is not the core the play grew from"
+        },
+        "letdown": {
+          "type": "explicit",
+          "quote": "audiences have always loved it",
+          "why": "a beloved scene is not a disappointment"
+        },
+        "hinge": {
+          "type": "logic",
+          "quote": "stand exactly where they stood before",
+          "why": "nothing in the plot turns on the scene"
+        }
+      }
+    },
+    {
+      "key": "kernel",
+      "passage": "Midway through a three-act comedy first staged in 1926, about a brother and sister quarreling over their late father's house, comes a short scene set in a moonlit garden. The playwright wrote it ten years before the rest of the play, and its talk of locked gates and lost keys returns in every later scene; it carries the quarrel on without a pause, though the quarrel is settled only in the last act, and audiences have always loved it. Most critics now describe the garden scene as the play's ______.",
+      "shape": "origin and growth",
+      "key_from_one_sentence": false,
+      "explanation": "Written ten years before the rest, with images that return \"in every later scene,\" the scene is the core the play grew from: its \"kernel.\" \"Interlude\" fails because it carries the quarrel on without a pause; \"letdown\" fails because audiences have always loved it; \"hinge\" fails because the quarrel is settled only in the last act.",
+      "kills": {
+        "interlude": {
+          "type": "logic",
+          "quote": "carries the quarrel on without a pause",
+          "why": "it is part of the action, not a break from it"
+        },
+        "letdown": {
+          "type": "logic",
+          "quote": "audiences have always loved it",
+          "why": "it is not a disappointment"
+        },
+        "hinge": {
+          "type": "logic",
+          "quote": "settled only in the last act",
+          "why": "the turn comes elsewhere"
+        }
+      }
+    },
+    {
+      "key": "letdown",
+      "passage": "Midway through a three-act comedy first staged in 1926, about a brother and sister quarreling over their late father's house, comes a short scene set in a moonlit garden. The playwright added it during rehearsals, and it carries the quarrel on without a pause, but the dialogue goes slack, brother and sister repeat speeches from the first act, and the quarrel is settled only in the last act; even the playwright's admirers wince at it. Most critics now describe the garden scene as the play's ______.",
+      "shape": "quality against expectation",
+      "key_from_one_sentence": false,
+      "explanation": "Slack dialogue and repeated speeches make even admirers wince, so the scene is the play's \"letdown.\" \"Interlude\" fails because it carries the quarrel on without a pause; \"kernel\" fails because it was added during rehearsals; \"hinge\" fails because the quarrel is settled only in the last act.",
+      "kills": {
+        "interlude": {
+          "type": "logic",
+          "quote": "carries the quarrel on without a pause",
+          "why": "it does not break from the action"
+        },
+        "kernel": {
+          "type": "logic",
+          "quote": "added it during rehearsals",
+          "why": "a late addition is not the seed of the play"
+        },
+        "hinge": {
+          "type": "logic",
+          "quote": "settled only in the last act",
+          "why": "nothing turns on this scene"
+        }
+      }
+    },
+    {
+      "key": "hinge",
+      "passage": "Midway through a three-act comedy first staged in 1926, about a brother and sister quarreling over their late father's house, comes a short scene set in a moonlit garden. The playwright added it during rehearsals, and it carries the quarrel on without a pause: in it the brother admits that he forged their father's will, after which each character's fortunes reverse, and audiences have always loved it. Most critics now describe the garden scene as the play's ______.",
+      "shape": "turning point in a plot",
+      "key_from_one_sentence": false,
+      "explanation": "The forged will is admitted here, \"after which each character's fortunes reverse,\" so the scene is the play's \"hinge.\" \"Interlude\" fails because it carries the quarrel on without a pause; \"kernel\" fails because it was added during rehearsals, not the seed of the play; \"letdown\" fails because audiences have always loved it.",
+      "kills": {
+        "interlude": {
+          "type": "logic",
+          "quote": "carries the quarrel on without a pause",
+          "why": "it is central action, not a break"
+        },
+        "kernel": {
+          "type": "logic",
+          "quote": "added it during rehearsals",
+          "why": "a late addition is not the core the play grew from"
+        },
+        "letdown": {
+          "type": "explicit",
+          "quote": "audiences have always loved it",
+          "why": "a beloved scene is not a disappointment"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a shared school and a rivalry between towns",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["defused", "formalized", "embellished", "commercialized"],
+  "antonym_pairs": [],
+  "rarity_order": ["formalized", "commercialized", "embellished", "defused"],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+  "worlds": [
+    {
+      "key": "defused",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its students shared classes and a single sports team drawn from both towns, so there was no contest left to fight over, and nothing was sold or told about the old quarrel; by 1940 few residents could even say which town the bridge had favored. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "With shared classes and one team, the rivalry lost its occasions and was nearly forgotten, so the school \"defused\" it. \"Formalized\" fails because no contest was left to give rules to. \"Embellished\" fails because nothing was told about the old quarrel. \"Commercialized\" fails because nothing was sold.",
+      "kills": {
+        "formalized": {"type": "logic", "quote": "no contest left to fight over", "why": "With no organized contest between the towns, the school gave the rivalry no official form."},
+        "embellished": {"type": "logic", "quote": "few residents could even say which town the bridge had favored", "why": "A quarrel almost forgotten was not being retold with additions."},
+        "commercialized": {"type": "explicit", "quote": "nothing was sold", "why": "No one made money from the rivalry."}
+      }
+    },
+    {
+      "key": "formalized",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. It split its students into two houses by home town, with a written code of points, scheduled contests each term, and a trophy, all held free in the schoolyard, and its handbook told the bridge quarrel just as the court papers did; fights between townspeople grew more common after each contest. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The school gave the rivalry houses, a written points code, scheduled contests, and a trophy, so it \"formalized\" the rivalry. \"Defused\" fails because fights grew more common after each contest. \"Embellished\" fails because the handbook told the quarrel just as the court papers did. \"Commercialized\" fails because the contests were held free.",
+      "kills": {
+        "defused": {"type": "logic", "quote": "fights between townspeople grew more common", "why": "Tension rose rather than fell."},
+        "embellished": {"type": "logic", "quote": "just as the court papers did", "why": "The story was told accurately, without additions."},
+        "commercialized": {"type": "logic", "quote": "all held free in the schoolyard", "why": "No one charged for the contests or profited from them."}
+      }
+    },
+    {
+      "key": "embellished",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Its teachers, eager to give students a sense of history, retold the bridge quarrel each year with a drowned mayor and a stolen church bell that no court papers mention, though the school held no contests between the towns and nothing was sold; students left school resenting the other town more than their parents had. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Teachers retold the quarrel with a drowned mayor and a stolen bell that no court papers mention, so the school \"embellished\" the rivalry. \"Defused\" fails because students left more resentful than their parents. \"Formalized\" fails because the school held no contests between the towns. \"Commercialized\" fails because nothing was sold.",
+      "kills": {
+        "defused": {"type": "logic", "quote": "resenting the other town more than their parents had", "why": "Resentment grew rather than eased."},
+        "formalized": {"type": "logic", "quote": "the school held no contests between the towns", "why": "The school gave the rivalry no rules or organized structure."},
+        "commercialized": {"type": "explicit", "quote": "nothing was sold", "why": "No one made money from the rivalry."}
+      }
+    },
+    {
+      "key": "commercialized",
+      "passage": "Two towns in a narrow valley had quarreled since 1870 over who should pay for the bridge between them. In 1924 they opened a single high school for both. Students from the two towns had long played an informal game each autumn under rules older than anyone could remember; the school began charging admission to it, and shopkeepers in both towns sold rival pennants, while posters told the bridge quarrel just as the court papers did and the crowds grew rowdier each year. A local historian later wrote that the new school had ______ the rivalry between the two towns.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The school began charging admission to the game and shopkeepers sold rival pennants, so the school \"commercialized\" the rivalry. \"Defused\" fails because the crowds grew rowdier. \"Formalized\" fails because the game already ran under rules older than anyone could remember. \"Embellished\" fails because the posters told the quarrel just as the court papers did.",
+      "kills": {
+        "defused": {"type": "logic", "quote": "the crowds grew rowdier each year", "why": "Tension rose rather than fell."},
+        "formalized": {"type": "logic", "quote": "under rules older than anyone could remember", "why": "The game already had its rules, so the school did not give the rivalry a formal structure."},
+        "embellished": {"type": "logic", "quote": "just as the court papers did", "why": "The story was told accurately, without additions."}
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a small press and a poetry movement",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "housed",
+    "hindered",
+    "heralded",
+    "guided"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "guided",
+    "housed",
+    "hindered",
+    "heralded"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One historian of the town's literary life argues that the press ______ the plain-spoken regional poetry that flourished there in the 1920s.",
+  "worlds": [
+    {
+      "key": "housed",
+      "passage": "Early in the last century, a one-room press in a river town printed poetry in editions of a few hundred copies. It opened in 1919, when the local poets had already begun writing in that style, and its editor printed whatever they brought him without changing a line; he let them hold their meetings and readings in the room above the shop, and the group, which met nowhere else, grew quickly there. One historian of the town's literary life argues that the press ______ the plain-spoken regional poetry that flourished there in the 1920s.",
+      "shape": "place and function",
+      "key_from_one_sentence": false,
+      "explanation": "The poets met and read only in the room above the shop, so the press \"housed\" the movement. \"Hindered\" fails because the group grew quickly there; \"heralded\" fails because the poets had already begun before the press opened; \"guided\" fails because the editor printed their work without changing a line.",
+      "kills": {
+        "hindered": {
+          "type": "logic",
+          "quote": "grew quickly there",
+          "why": "the movement flourished rather than being held back"
+        },
+        "heralded": {
+          "type": "logic",
+          "quote": "had already begun writing in that style",
+          "why": "the press did not announce something not yet arrived"
+        },
+        "guided": {
+          "type": "explicit",
+          "quote": "without changing a line",
+          "why": "an editor who never intervenes does not direct the poets"
+        }
+      }
+    },
+    {
+      "key": "hindered",
+      "passage": "Early in the last century, a one-room press in a river town printed poetry in editions of a few hundred copies. It opened in 1919, when the local poets had already begun writing in that style, but its editor refused to print unrhymed verse and bought up the town's only other press; the poets, who met in a cafe across the river, kept writing unrhymed verse anyway and waited years for their first books. One historian of the town's literary life argues that the press ______ the plain-spoken regional poetry that flourished there in the 1920s.",
+      "shape": "obstacle and delay",
+      "key_from_one_sentence": false,
+      "explanation": "By refusing their verse and buying the only other press, the editor made the poets wait years for books, so the press \"hindered\" the movement. \"Housed\" fails because the poets met in a cafe across the river; \"heralded\" fails because they had already begun before it opened; \"guided\" fails because they kept writing unrhymed verse anyway, unswayed by him.",
+      "kills": {
+        "housed": {
+          "type": "logic",
+          "quote": "met in a cafe across the river",
+          "why": "the movement had its home elsewhere"
+        },
+        "heralded": {
+          "type": "logic",
+          "quote": "had already begun writing in that style",
+          "why": "the movement preceded the press"
+        },
+        "guided": {
+          "type": "logic",
+          "quote": "kept writing unrhymed verse anyway",
+          "why": "the poets did not follow its direction"
+        }
+      }
+    },
+    {
+      "key": "heralded",
+      "passage": "Early in the last century, a one-room press in a river town printed poetry in editions of a few hundred copies. In 1909 its editor printed an essay calling for poems in the plain speech of the river towns, the very style local poets would adopt a decade later, but the press closed in 1910, before any of them had begun to write, and none of them read the essay until a librarian found it in 1930. One historian of the town's literary life argues that the press ______ the plain-spoken regional poetry that flourished there in the 1920s.",
+      "shape": "anticipation before the fact",
+      "key_from_one_sentence": false,
+      "explanation": "The 1909 essay announced the style years before the poets arrived at it, so the press \"heralded\" the movement. \"Housed\" and \"hindered\" fail because the press closed in 1910, before any of the poets had begun, so it could neither shelter nor obstruct them; \"guided\" fails because none of them read the essay until 1930.",
+      "kills": {
+        "housed": {
+          "type": "logic",
+          "quote": "closed in 1910, before any of them had begun",
+          "why": "a press gone before the movement could not be its home"
+        },
+        "hindered": {
+          "type": "logic",
+          "quote": "the press closed in 1910",
+          "why": "a closed press could not obstruct poets who came later"
+        },
+        "guided": {
+          "type": "logic",
+          "quote": "none of them read the essay until",
+          "why": "poets who never saw its call were not steered by it"
+        }
+      }
+    },
+    {
+      "key": "guided",
+      "passage": "Early in the last century, a one-room press in a river town printed poetry in editions of a few hundred copies. It opened in 1919, when the local poets had only begun experimenting, and its editor returned every manuscript with pages of notes urging plainer speech and local subjects; the poets, who met in a cafe across the river, rewrote their poems along those lines, and a city firm published their books to quick success. One historian of the town's literary life argues that the press ______ the plain-spoken regional poetry that flourished there in the 1920s.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The editor's notes urged plainer speech, and the poets rewrote their poems along those lines, so the press \"guided\" the movement. \"Housed\" fails because the poets met in a cafe across the river and published with a city firm; \"hindered\" fails because their books met quick success; \"heralded\" fails because the poets were already experimenting when the press opened.",
+      "kills": {
+        "housed": {
+          "type": "logic",
+          "quote": "met in a cafe across the river",
+          "why": "the press was not the movement's home"
+        },
+        "hindered": {
+          "type": "logic",
+          "quote": "to quick success",
+          "why": "the movement was not held back"
+        },
+        "heralded": {
+          "type": "logic",
+          "quote": "had only begun experimenting",
+          "why": "the poets had already started, so the press did not announce them in advance"
+        }
+      }
+    }
+  ]
+}

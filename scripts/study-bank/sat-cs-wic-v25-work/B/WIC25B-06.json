@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a reform newspaper and the shorter-hours movement",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["engine", "compass", "crutch", "epilogue"],
+  "antonym_pairs": [],
+  "rarity_order": ["engine", "compass", "crutch", "epilogue"],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Weighing its influence, one historian called the weekly newspaper the shorter-hours movement's ______.",
+  "worlds": [
+    {
+      "key": "engine",
+      "passage": "In the 1870s, factory workers campaigning for a shorter working day began publishing a weekly newspaper. Founded in the movement's first year, it was sold at every factory gate, and new branches of the movement sprang up wherever it circulated; its editors took no side on policy, leaving that to the branches, which soon raised their own funds and printed their own notices. Weighing its influence, one historian called the weekly newspaper the shorter-hours movement's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Branches sprang up wherever the paper circulated, so it drove the movement's growth and was its \"engine.\" \"Compass\" fails because its editors took no side on policy. \"Crutch\" fails because the branches soon raised their own funds and printed their own notices rather than depending on it. \"Epilogue\" fails because it was founded in the movement's first year.",
+      "kills": {
+        "compass": {"type": "logic", "quote": "its editors took no side on policy", "why": "A paper that set no direction did not guide the movement."},
+        "crutch": {"type": "logic", "quote": "raised their own funds and printed their own notices", "why": "The branches became self-supporting, so the movement did not lean on the paper."},
+        "epilogue": {"type": "logic", "quote": "Founded in the movement's first year", "why": "The paper began with the movement, not after it ended."}
+      }
+    },
+    {
+      "key": "compass",
+      "passage": "In the 1870s, factory workers campaigning for a shorter working day began publishing a weekly newspaper. Throughout the campaign its few hundred copies went only to the movement's leaders, who read each editorial before choosing which factories to target and which laws to press; it won no new members, and when it closed, the leaders kept to the course it had set for two more decades. Weighing its influence, one historian called the weekly newspaper the shorter-hours movement's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Leaders read each editorial before choosing targets and laws, so the paper set the movement's direction and was its \"compass.\" \"Engine\" fails because it won no new members. \"Crutch\" fails because the leaders carried on along its course for decades after it closed, so they did not depend on it. \"Epilogue\" fails because it ran throughout the campaign.",
+      "kills": {
+        "engine": {"type": "logic", "quote": "it won no new members", "why": "A paper that brought in no one did not drive the movement's growth."},
+        "crutch": {"type": "logic", "quote": "kept to the course it had set for two more decades", "why": "The movement went on without the paper, so it had not been leaning on it."},
+        "epilogue": {"type": "logic", "quote": "Throughout the campaign", "why": "The paper ran during the movement, not after it."}
+      }
+    },
+    {
+      "key": "crutch",
+      "passage": "In the 1870s, factory workers campaigning for a shorter working day began publishing a weekly newspaper. Throughout the campaign it printed only meeting notices, took no side on policy, and won few readers beyond the members, yet the branches relied on its press and its funds for everything, never building any of their own; when the paper closed, the movement fell apart within months. Weighing its influence, one historian called the weekly newspaper the shorter-hours movement's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The branches relied on the paper for everything and collapsed when it closed, so it was the movement's \"crutch.\" \"Engine\" fails because it won few readers beyond the members. \"Compass\" fails because it took no side on policy. \"Epilogue\" fails because it ran throughout the campaign.",
+      "kills": {
+        "engine": {"type": "logic", "quote": "won few readers beyond the members", "why": "A paper that reached few outsiders did not drive the movement forward."},
+        "compass": {"type": "logic", "quote": "took no side on policy", "why": "A paper that set no direction did not guide the movement."},
+        "epilogue": {"type": "logic", "quote": "Throughout the campaign", "why": "The paper ran during the movement, not after it."}
+      }
+    },
+    {
+      "key": "epilogue",
+      "passage": "In the 1870s, factory workers campaigning for a shorter working day began publishing a weekly newspaper. Its first issue appeared only in 1879, after the last factory had accepted the shorter day and the movement's branches had disbanded; for the next ten years it printed its few hundred former members' memoirs, obituaries, and notices of reunions, and it took no side on any new cause. Weighing its influence, one historian called the weekly newspaper the shorter-hours movement's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The paper first appeared after the movement had won and disbanded, and it printed memoirs and reunion notices, so it was the movement's \"epilogue.\" \"Engine\" and \"crutch\" fail because the paper did not exist while the movement was active, so it could neither drive it nor hold it up. \"Compass\" fails because it took no side on any new cause and only looked back.",
+      "kills": {
+        "engine": {"type": "logic", "quote": "the movement's branches had disbanded", "why": "A paper that began after the movement ended could not have driven it."},
+        "crutch": {"type": "logic", "quote": "after the last factory had accepted the shorter day", "why": "The movement had already succeeded without the paper, so it did not lean on it."},
+        "compass": {"type": "logic", "quote": "took no side on any new cause", "why": "The paper set no direction for anyone."}
+      }
+    }
+  ]
+}

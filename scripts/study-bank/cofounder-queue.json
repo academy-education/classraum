@@ -586,6 +586,16 @@
       "group": "act-science-v7b:sc7b-p7",
       "route": "spot",
       "runId": "act-sci-v7b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-verbal-draft-4",
+      "tool": "item",
+      "domain": "Verbal",
+      "size": 12,
+      "family": "ssat",
+      "upTo": 2,
+      "route": "spot",
+      "runId": "ssatvd4-spot{n}-cofounder-{date}"
     }
   ]
 }

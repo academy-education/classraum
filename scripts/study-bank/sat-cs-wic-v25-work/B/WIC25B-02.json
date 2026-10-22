@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sociology of a weekly town market",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["forum", "archive", "battleground", "clearinghouse"],
+  "antonym_pairs": [],
+  "rarity_order": ["forum", "archive", "battleground", "clearinghouse"],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "By the 1950s, the sociologist concluded, the market mattered to the town less for its trade than as its principal ______.",
+  "worlds": [
+    {
+      "key": "forum",
+      "passage": "A sociologist spent three years observing the Saturday market of a small farming town. Its stalls sold the same goods every week, but around them farmers and shopkeepers argued openly over the council's plans for roads and schools, heard each other out, and often reached a shared view before the council met; no other place in town held such debates. By the 1950s, the sociologist concluded, the market mattered to the town less for its trade than as its principal ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Townspeople argued openly over public plans, heard each other out, and reached shared views there, so the market was the town's principal \"forum.\" \"Battleground\" fails because the debates ended in agreement rather than hostility. \"Archive\" fails because the talk concerned current plans for roads and schools, not the preservation of the past. \"Clearinghouse\" fails because people debated views rather than collecting and passing along news or goods.",
+      "kills": {
+        "battleground": {"type": "logic", "quote": "often reached a shared view", "why": "Debates that end in agreement are not a site of conflict."},
+        "archive": {"type": "logic", "quote": "the council's plans for roads and schools", "why": "The talk was about present public business, not about preserving old records or customs."},
+        "clearinghouse": {"type": "logic", "quote": "heard each other out", "why": "The market's role was argument and persuasion, not the collection and redistribution of information or goods."}
+      }
+    },
+    {
+      "key": "archive",
+      "passage": "A sociologist spent three years observing the Saturday market of a small farming town. Its stalls sold the same goods every week, but its older traders still used the old weights, sang harvest songs, and spoke a farming dialect that had vanished from the town's homes and schools; townspeople rarely talked about current affairs there and came mostly to hear what the town had once been. By the 1950s, the sociologist concluded, the market mattered to the town less for its trade than as its principal ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The market preserved weights, songs, and a dialect that had vanished elsewhere in town, so it served as the town's principal \"archive.\" \"Forum\" fails because people rarely talked about current affairs there. \"Battleground\" fails because nothing suggests conflict; people came to hear about the past. \"Clearinghouse\" fails because the market kept old practices rather than gathering and redistributing current information or goods.",
+      "kills": {
+        "forum": {"type": "explicit", "quote": "rarely talked about current affairs", "why": "A forum is a place for public discussion, which the market was not."},
+        "battleground": {"type": "logic", "quote": "came mostly to hear what the town had once been", "why": "Townspeople came to listen to the past, not to fight."},
+        "clearinghouse": {"type": "logic", "quote": "had vanished from the town's homes and schools", "why": "The market held on to old practices; it did not collect and send current information onward."}
+      }
+    },
+    {
+      "key": "battleground",
+      "passage": "A sociologist spent three years observing the Saturday market of a small farming town. Its stalls sold the same goods every week, but the town's two church congregations fought there each Saturday over which faction would get the best stalls, shouting down any speaker from the other side, and the quarrels often ended in fistfights that the police had to break up. By the 1950s, the sociologist concluded, the market mattered to the town less for its trade than as its principal ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Two congregations fought there every week, ending in fistfights, so the market was the town's principal \"battleground.\" \"Forum\" fails because each side shouted down speakers from the other instead of debating. \"Archive\" fails because the fights were over present stall assignments, not preserving the past. \"Clearinghouse\" fails because the market was a site of struggle, not a place where news or goods were collected and passed on.",
+      "kills": {
+        "forum": {"type": "logic", "quote": "shouting down any speaker from the other side", "why": "Where opponents cannot be heard, there is no open discussion."},
+        "archive": {"type": "logic", "quote": "which faction would get the best stalls", "why": "The fights were about a present prize, not about keeping old customs or records."},
+        "clearinghouse": {"type": "logic", "quote": "often ended in fistfights", "why": "The market's role was as a site of conflict, not of collecting and redistributing anything."}
+      }
+    },
+    {
+      "key": "clearinghouse",
+      "passage": "A sociologist spent three years observing the Saturday market of a small farming town. Its stalls sold the same goods every week, but farmers also left word there of jobs, lost animals, and land for rent, and the stallholders collected these notices and passed each one to whoever needed it, without comment or debate; most of the town's news reached homes this way. By the 1950s, the sociologist concluded, the market mattered to the town less for its trade than as its principal ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Notices were collected at the market and passed on to whoever needed them, so it served as the town's principal \"clearinghouse.\" \"Forum\" fails because the notices were passed on without comment or debate. \"Archive\" fails because the information was current and moved on rather than being kept. \"Battleground\" fails because nothing suggests conflict.",
+      "kills": {
+        "forum": {"type": "explicit", "quote": "without comment or debate", "why": "A forum is defined by discussion, which did not happen."},
+        "archive": {"type": "logic", "quote": "passed each one to whoever needed it", "why": "The information was current and sent on, not preserved."},
+        "battleground": {"type": "logic", "quote": "most of the town's news reached homes this way", "why": "The market's role was a smooth relay of information, not a contest."}
+      }
+    }
+  ]
+}

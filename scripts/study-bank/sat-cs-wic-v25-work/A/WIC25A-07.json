@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a star that dimmed",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "transient",
+    "shallow",
+    "stepwise",
+    "symmetric"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "shallow",
+    "symmetric",
+    "transient",
+    "stepwise"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "After studying the telescope's record of the event, one astronomer described the dimming as ______.",
+  "worlds": [
+    {
+      "key": "transient",
+      "passage": "In 2019 an orbiting telescope that tracks the brightness of thousands of stars recorded a drop in the light of one star that had shone steadily for years. The star lost about half its light, sliding down smoothly over an hour and then taking most of a day to climb back, and once that single day was over it returned to full brightness and has stayed there ever since. After studying the telescope's record of the event, one astronomer described the dimming as ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The whole dip was over within a single day, after which the star stayed at full brightness, so the dimming was \"transient.\" \"Shallow\" fails because the star lost about half its light; \"stepwise\" fails because it slid down smoothly; \"symmetric\" fails because the fall took an hour and the recovery most of a day.",
+      "kills": {
+        "shallow": {
+          "type": "logic",
+          "quote": "lost about half its light",
+          "why": "Losing half its light is a deep drop, not a small one."
+        },
+        "stepwise": {
+          "type": "logic",
+          "quote": "sliding down smoothly",
+          "why": "A smooth decline did not happen in distinct stages."
+        },
+        "symmetric": {
+          "type": "logic",
+          "quote": "over an hour and then taking most of a day to climb back",
+          "why": "The fall and the recovery took very different times, so the two halves did not mirror each other."
+        }
+      }
+    },
+    {
+      "key": "shallow",
+      "passage": "In 2019 an orbiting telescope that tracks the brightness of thousands of stars recorded a drop in the light of one star that had shone steadily for years. The star's light slid down smoothly by less than one part in a thousand, a change far too small to notice without the telescope, fading for three weeks and then taking more than two years to recover. After studying the telescope's record of the event, one astronomer described the dimming as ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The star lost less than one part in a thousand of its light, so the dimming was \"shallow.\" \"Transient\" fails because recovery took more than two years; \"stepwise\" fails because the light slid down smoothly; \"symmetric\" fails because the fall took three weeks but the recovery more than two years.",
+      "kills": {
+        "transient": {
+          "type": "logic",
+          "quote": "more than two years to recover",
+          "why": "A dip lasting over two years was not brief."
+        },
+        "stepwise": {
+          "type": "logic",
+          "quote": "slid down smoothly",
+          "why": "A smooth decline did not happen in distinct stages."
+        },
+        "symmetric": {
+          "type": "logic",
+          "quote": "fading for three weeks and then taking",
+          "why": "The fall and the recovery took very different times, so the two halves did not mirror each other."
+        }
+      }
+    },
+    {
+      "key": "stepwise",
+      "passage": "In 2019 an orbiting telescope that tracks the brightness of thousands of stars recorded a drop in the light of one star that had shone steadily for years. The star's light, which in the end fell by half, dropped in four sudden stages a few weeks apart, holding level between them, and then recovered gradually and without a pause over more than two years. After studying the telescope's record of the event, one astronomer described the dimming as ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The light fell in four sudden drops with level stretches between them, so the dimming was \"stepwise.\" \"Transient\" fails because recovery took more than two years; \"shallow\" fails because the light fell by half; \"symmetric\" fails because the sudden staged fall was followed by a gradual, unbroken recovery.",
+      "kills": {
+        "transient": {
+          "type": "logic",
+          "quote": "over more than two years",
+          "why": "A dip lasting over two years was not brief."
+        },
+        "shallow": {
+          "type": "logic",
+          "quote": "fell by half",
+          "why": "Losing half its light is a deep drop, not a small one."
+        },
+        "symmetric": {
+          "type": "logic",
+          "quote": "recovered gradually and without a pause",
+          "why": "A staged fall followed by a smooth rise is not a mirror image."
+        }
+      }
+    },
+    {
+      "key": "symmetric",
+      "passage": "In 2019 an orbiting telescope that tracks the brightness of thousands of stars recorded a drop in the light of one star that had shone steadily for years. The star's light fell by half over two full years and then climbed back over two full years, each month of the recovery retracing a month of the decline in reverse, sliding smoothly from start to finish without a pause along the way. After studying the telescope's record of the event, one astronomer described the dimming as ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Each month of the recovery retraced a month of the decline, two years each way, so the dimming was \"symmetric.\" \"Transient\" fails because the dip lasted four years; \"shallow\" fails because the light fell by half; \"stepwise\" fails because it slid smoothly without a pause.",
+      "kills": {
+        "transient": {
+          "type": "logic",
+          "quote": "over two full years",
+          "why": "A dip lasting four years in all was not brief."
+        },
+        "shallow": {
+          "type": "logic",
+          "quote": "fell by half",
+          "why": "Losing half its light is a deep drop, not a small one."
+        },
+        "stepwise": {
+          "type": "logic",
+          "quote": "without a pause along the way",
+          "why": "A smooth, unbroken change did not happen in distinct stages."
+        }
+      }
+    }
+  ]
+}

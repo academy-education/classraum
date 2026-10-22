@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a drought and a pine forest",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "stunted",
+    "toughened",
+    "thinned",
+    "sidelined"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "thinned",
+    "toughened",
+    "stunted",
+    "sidelined"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Reading the tree rings decades later, one forest ecologist concluded that the drought had ______ the pines on the ridge.",
+  "worlds": [
+    {
+      "key": "stunted",
+      "passage": "For centuries a dry foothill ridge has been covered by pines, with a few scrub oaks scattered among them, and in the 1950s a drought lasting seven years struck the ridge. Almost every pine survived, and the oaks stayed as scattered as before, but the pines' growth slowed sharply during the drought and never recovered: trees that were saplings then are still barely half the height of pines the same age on wetter slopes, and they suffered as badly as ever in the next dry spell. Reading the tree rings decades later, one forest ecologist concluded that the drought had ______ the pines on the ridge.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The pines' growth slowed and never recovered, leaving them half the height of trees the same age elsewhere: the drought \"stunted\" them. \"Toughened\" fails because they suffered as badly as ever in the next dry spell; \"thinned\" fails because almost every pine survived; \"sidelined\" fails because the oaks stayed as scattered as before.",
+      "kills": {
+        "toughened": {
+          "type": "logic",
+          "quote": "suffered as badly as ever in the next dry spell",
+          "why": "Trees no better at enduring the next drought were not made hardier."
+        },
+        "thinned": {
+          "type": "explicit",
+          "quote": "Almost every pine survived",
+          "why": "Few pines died, so the stand was not made sparser."
+        },
+        "sidelined": {
+          "type": "logic",
+          "quote": "oaks stayed as scattered as before",
+          "why": "No competitor took over, so the pines kept their dominant place."
+        }
+      }
+    },
+    {
+      "key": "toughened",
+      "passage": "For centuries a dry foothill ridge has been covered by pines, with a few scrub oaks scattered among them, and in the 1950s a drought lasting seven years struck the ridge. Almost every pine survived, and the oaks stayed as scattered as before; the pines' growth slowed during the drought but soon returned to its old rate, and in the next dry spell, in the 1970s, their rings narrowed far less than those of pines on wetter slopes that the drought had spared. Reading the tree rings decades later, one forest ecologist concluded that the drought had ______ the pines on the ridge.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "In the next dry spell these pines suffered far less than pines the drought had spared, so it made them hardier: it \"toughened\" them. \"Stunted\" fails because their growth soon returned to its old rate; \"thinned\" fails because almost every pine survived; \"sidelined\" fails because the oaks stayed as scattered as before.",
+      "kills": {
+        "stunted": {
+          "type": "logic",
+          "quote": "soon returned to its old rate",
+          "why": "Growth that recovered fully was not permanently held back."
+        },
+        "thinned": {
+          "type": "explicit",
+          "quote": "Almost every pine survived",
+          "why": "Few pines died, so the stand was not made sparser."
+        },
+        "sidelined": {
+          "type": "logic",
+          "quote": "oaks stayed as scattered as before",
+          "why": "No competitor took over, so the pines kept their dominant place."
+        }
+      }
+    },
+    {
+      "key": "thinned",
+      "passage": "For centuries a dry foothill ridge has been covered by pines, with a few scrub oaks scattered among them, and in the 1950s a drought lasting seven years struck the ridge. About a third of the pines died, mostly the small, crowded ones, while the oaks stayed as scattered as before and pines still make up nearly all of the canopy; the survivors' growth soon returned to its old rate, and in the next dry spell they suffered as badly as ever. Reading the tree rings decades later, one forest ecologist concluded that the drought had ______ the pines on the ridge.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "A third of the pines died, leaving a sparser stand that is still nearly all pine: the drought \"thinned\" them. \"Stunted\" fails because the survivors' growth soon returned to its old rate; \"toughened\" fails because they suffered as badly as ever in the next dry spell; \"sidelined\" fails because pines still make up nearly all of the canopy.",
+      "kills": {
+        "stunted": {
+          "type": "logic",
+          "quote": "soon returned to its old rate",
+          "why": "Growth that recovered fully was not permanently held back."
+        },
+        "toughened": {
+          "type": "logic",
+          "quote": "suffered as badly as ever",
+          "why": "Trees no better at enduring the next drought were not made hardier."
+        },
+        "sidelined": {
+          "type": "logic",
+          "quote": "pines still make up nearly all of the canopy",
+          "why": "The pines kept their dominant place."
+        }
+      }
+    },
+    {
+      "key": "sidelined",
+      "passage": "For centuries a dry foothill ridge has been covered by pines, with a few scrub oaks scattered among them, and in the 1950s a drought lasting seven years struck the ridge. Almost every pine survived, and the pines' growth soon returned to its old rate, but the oaks, which sprout back quickly from deep roots, shot up during the drought and now form most of the canopy above the pines; in the next dry spell the pines suffered as badly as ever. Reading the tree rings decades later, one forest ecologist concluded that the drought had ______ the pines on the ridge.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The oaks shot up and now form most of the canopy above the pines, pushing them out of their dominant place: the drought \"sidelined\" them. \"Stunted\" fails because the pines' growth soon returned to its old rate; \"toughened\" fails because they suffered as badly as ever in the next dry spell; \"thinned\" fails because almost every pine survived.",
+      "kills": {
+        "stunted": {
+          "type": "logic",
+          "quote": "soon returned to its old rate",
+          "why": "Growth that recovered fully was not permanently held back."
+        },
+        "toughened": {
+          "type": "logic",
+          "quote": "suffered as badly as ever",
+          "why": "Trees no better at enduring the next drought were not made hardier."
+        },
+        "thinned": {
+          "type": "explicit",
+          "quote": "Almost every pine survived",
+          "why": "Few pines died, so the stand was not made sparser."
+        }
+      }
+    }
+  ]
+}

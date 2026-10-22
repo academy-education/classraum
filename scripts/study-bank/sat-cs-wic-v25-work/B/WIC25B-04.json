@@ -1,0 +1,122 @@
+{
+  "id": "WIC25B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a craft guild and a city's glass trade",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "doubled",
+    "elevated",
+    "confined",
+    "abandoned"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "abandoned",
+    "doubled",
+    "confined",
+    "elevated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "According to one economic historian, within fifty years the guild had ______ the city's glass trade.",
+  "worlds": [
+    {
+      "key": "doubled",
+      "passage": "In 1480 the glassmakers of a river city formed a guild with its own officers and rules. Its members kept their workshops in every quarter of the city and kept making glassware, but a shared furnace design let each shop fire twice as many pieces a week; glass grew so cheap and common that the city's nobles stopped giving it as gifts. According to one economic historian, within fifty years the guild had ______ the city's glass trade.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A shared furnace design let every shop fire twice as many pieces, so the guild \"doubled\" the trade. \"Elevated\" fails because glass became so common that nobles stopped giving it as gifts, a loss of standing. \"Confined\" fails because the workshops stayed in every quarter of the city. \"Abandoned\" fails because the members kept making glassware.",
+      "kills": {
+        "elevated": {
+          "type": "logic",
+          "quote": "stopped giving it as gifts",
+          "why": "Glass lost prestige, the reverse of being raised in standing."
+        },
+        "confined": {
+          "type": "logic",
+          "quote": "in every quarter of the city",
+          "why": "The trade stayed spread across the city rather than being restricted to one place."
+        },
+        "abandoned": {
+          "type": "logic",
+          "quote": "kept making glassware",
+          "why": "The guild's members stayed in the trade."
+        }
+      }
+    },
+    {
+      "key": "elevated",
+      "passage": "In 1480 the glassmakers of a river city formed a guild with its own officers and rules. Its members kept their workshops in every quarter of the city and kept making glassware at the old pace, but the guild won its masters seats on the city council, and the city's nobles began giving its glass as gifts to foreign kings. According to one economic historian, within fifty years the guild had ______ the city's glass trade.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Its masters won council seats and nobles gave its glass to kings, so the guild \"elevated\" the trade in standing. \"Doubled\" fails because the members kept working at the old pace. \"Confined\" fails because the workshops stayed in every quarter of the city. \"Abandoned\" fails because the members kept making glassware.",
+      "kills": {
+        "doubled": {
+          "type": "logic",
+          "quote": "at the old pace",
+          "why": "Output did not grow, so the trade was not doubled."
+        },
+        "confined": {
+          "type": "logic",
+          "quote": "in every quarter of the city",
+          "why": "The workshops remained spread across the city."
+        },
+        "abandoned": {
+          "type": "logic",
+          "quote": "kept making glassware",
+          "why": "The guild's members stayed in the trade."
+        }
+      }
+    },
+    {
+      "key": "confined",
+      "passage": "In 1480 the glassmakers of a river city formed a guild with its own officers and rules. Fearing fires, it made every member move his workshop to one small island in the river and forbade glassmaking anywhere else; there they kept making glassware at the old pace, and glass remained a plain household good that the city's nobles never gave as gifts. According to one economic historian, within fifty years the guild had ______ the city's glass trade.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Every workshop was moved to one island and glassmaking was forbidden elsewhere, so the guild \"confined\" the trade. \"Doubled\" fails because the members worked at the old pace. \"Elevated\" fails because glass remained a plain household good. \"Abandoned\" fails because the members kept making glassware on the island.",
+      "kills": {
+        "doubled": {
+          "type": "logic",
+          "quote": "at the old pace",
+          "why": "Output did not grow."
+        },
+        "elevated": {
+          "type": "logic",
+          "quote": "remained a plain household good",
+          "why": "Glass gained no new standing."
+        },
+        "abandoned": {
+          "type": "logic",
+          "quote": "kept making glassware",
+          "why": "The guild's members stayed in the trade, only in a new place."
+        }
+      }
+    },
+    {
+      "key": "abandoned",
+      "passage": "In 1480 the glassmakers of a river city formed a guild with its own officers and rules. Its members lived in every quarter of the city, but one by one they sold their furnaces, put the money into the more profitable wool trade, and stopped making glassware altogether, leaving the city's bottles and windowpanes to unlicensed outsiders working all over the city. According to one economic historian, within fifty years the guild had ______ the city's glass trade.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The members sold their furnaces, stopped making glassware altogether, and left it to outsiders, so the guild \"abandoned\" the trade. \"Doubled\" and \"elevated\" fail because the guild stopped taking part in the trade, so it could neither increase it nor raise its standing. \"Confined\" fails because the outsiders who took the trade over worked all over the city.",
+      "kills": {
+        "doubled": {
+          "type": "logic",
+          "quote": "stopped making glassware altogether",
+          "why": "A guild that left the trade did not multiply it."
+        },
+        "elevated": {
+          "type": "logic",
+          "quote": "leaving the city's bottles and windowpanes to unlicensed outsiders",
+          "why": "Handing the trade to unlicensed outsiders did not raise its standing."
+        },
+        "confined": {
+          "type": "logic",
+          "quote": "working all over the city",
+          "why": "The trade was carried on across the city, not restricted to one place."
+        }
+      }
+    }
+  ]
+}

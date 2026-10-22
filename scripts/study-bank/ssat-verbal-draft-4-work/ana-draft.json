@@ -1,0 +1,3202 @@
+[
+ {
+  "id": "V6A01",
+  "stem": [
+   "cook",
+   "spatula"
+  ],
+  "rel": "worker/tool",
+  "key": [
+   "logger",
+   "chainsaw"
+  ],
+  "why": "a cook works with a spatula, as a logger works with a chainsaw",
+  "ds": [
+   [
+    "pancake",
+    "batter",
+    "product/material",
+    "a pancake is made from batter"
+   ],
+   [
+    "menu",
+    "dishes",
+    "list/items",
+    "a menu lists dishes"
+   ],
+   [
+    "stump",
+    "tree",
+    "remnant/whole",
+    "a stump is what is left of a tree"
+   ],
+   [
+    "kitchen",
+    "cupboards",
+    "whole/part",
+    "a kitchen has cupboards"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A02",
+  "stem": [
+   "hatchling",
+   "turtle"
+  ],
+  "rel": "young/adult",
+  "key": [
+   "colt",
+   "horse"
+  ],
+  "why": "a hatchling grows into a turtle, as a colt grows into a horse",
+  "ds": [
+   [
+    "pond",
+    "reeds",
+    "place/what grows there",
+    "reeds grow in a pond"
+   ],
+   [
+    "kennel",
+    "puppies",
+    "shelter/animals",
+    "a kennel shelters puppies"
+   ],
+   [
+    "carrot",
+    "rabbit",
+    "food/animal",
+    "a rabbit eats a carrot"
+   ],
+   [
+    "mane",
+    "pony",
+    "feature/animal",
+    "a pony has a mane"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A03",
+  "stem": [
+   "shy",
+   "outgoing"
+  ],
+  "rel": "antonym",
+  "key": [
+   "hollow",
+   "solid"
+  ],
+  "why": "shy is the opposite of outgoing, as hollow is the opposite of solid",
+  "ds": [
+   [
+    "weary",
+    "tired",
+    "synonym",
+    "weary means tired"
+   ],
+   [
+    "crumble",
+    "biscuit",
+    "action/object",
+    "a biscuit can crumble"
+   ],
+   [
+    "brittle",
+    "twig",
+    "quality/typical thing",
+    "a dry twig is brittle"
+   ],
+   [
+    "bottle",
+    "milk",
+    "container/contents",
+    "a bottle holds milk"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A04",
+  "stem": [
+   "library",
+   "books"
+  ],
+  "rel": "place/what it houses",
+  "key": [
+   "hangar",
+   "airplanes"
+  ],
+  "why": "a library houses books, as a hangar houses airplanes",
+  "ds": [
+   [
+    "paragraph",
+    "sentence",
+    "whole/part",
+    "a paragraph is made of sentences"
+   ],
+   [
+    "poet",
+    "stanzas",
+    "writer/units written",
+    "a poet writes stanzas"
+   ],
+   [
+    "shelf",
+    "pine",
+    "thing/material",
+    "a shelf may be made of pine"
+   ],
+   [
+    "skim",
+    "read",
+    "degree",
+    "to skim is to read only lightly"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A05",
+  "stem": [
+   "hammer",
+   "pound"
+  ],
+  "rel": "tool/function",
+  "key": [
+   "sieve",
+   "sift"
+  ],
+  "why": "a hammer is used to pound, as a sieve is used to sift",
+  "ds": [
+   [
+    "nail",
+    "board",
+    "fastener/thing fastened",
+    "a nail is driven into a board"
+   ],
+   [
+    "carpenter",
+    "shop",
+    "worker/place",
+    "a carpenter works in a shop"
+   ],
+   [
+    "lumber",
+    "fence",
+    "material/product",
+    "a fence is built from lumber"
+   ],
+   [
+    "tap",
+    "smash",
+    "degree",
+    "a tap is a far lighter blow than a smash"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A06",
+  "stem": [
+   "rapid",
+   "swift"
+  ],
+  "rel": "synonym",
+  "key": [
+   "choose",
+   "select"
+  ],
+  "why": "rapid means swift, as choose means select",
+  "ds": [
+   [
+    "race",
+    "ribbon",
+    "contest/prize",
+    "a ribbon is awarded in a race"
+   ],
+   [
+    "cheetah",
+    "speed",
+    "animal/trait",
+    "a cheetah is known for speed"
+   ],
+   [
+    "calendar",
+    "date",
+    "instrument/what it shows",
+    "a calendar shows the date"
+   ],
+   [
+    "acorn",
+    "oak",
+    "seed/plant",
+    "an acorn grows into an oak"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A07",
+  "stem": [
+   "blind",
+   "sight"
+  ],
+  "rel": "lacking/what is lacked",
+  "key": [
+   "arid",
+   "moisture"
+  ],
+  "why": "someone blind lacks sight, as something arid lacks moisture",
+  "ds": [
+   [
+    "cactus",
+    "desert",
+    "plant/habitat",
+    "a cactus grows in the desert"
+   ],
+   [
+    "mist",
+    "downpour",
+    "degree",
+    "a mist is far lighter than a downpour"
+   ],
+   [
+    "nest",
+    "branch",
+    "structure/location",
+    "a nest sits on a branch"
+   ],
+   [
+    "oasis",
+    "palms",
+    "place/what grows there",
+    "palms grow at an oasis"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A08",
+  "stem": [
+   "wallet",
+   "money"
+  ],
+  "rel": "container/contents",
+  "key": [
+   "holster",
+   "revolver"
+  ],
+  "why": "a wallet holds money, as a holster holds a revolver",
+  "ds": [
+   [
+    "teller",
+    "bank",
+    "worker/place",
+    "a teller works in a bank"
+   ],
+   [
+    "penny",
+    "coin",
+    "instance/category",
+    "a penny is a kind of coin"
+   ],
+   [
+    "purse",
+    "handbag",
+    "synonym",
+    "a purse is a handbag"
+   ],
+   [
+    "pickpocket",
+    "steal",
+    "person/action",
+    "a pickpocket steals"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A09",
+  "stem": [
+   "flock",
+   "pigeons"
+  ],
+  "rel": "group/member",
+  "key": [
+   "pack",
+   "wolves"
+  ],
+  "why": "a flock is a group of pigeons, as a pack is a group of wolves",
+  "ds": [
+   [
+    "barn",
+    "hay",
+    "place/what is stored",
+    "hay is stored in a barn"
+   ],
+   [
+    "calf",
+    "cow",
+    "young/adult",
+    "a calf grows into a cow"
+   ],
+   [
+    "shepherd",
+    "sheep",
+    "person/animals tended",
+    "a shepherd tends sheep"
+   ],
+   [
+    "milk",
+    "cheese",
+    "material/product",
+    "cheese is made from milk"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A10",
+  "stem": [
+   "sundial",
+   "time"
+  ],
+  "rel": "instrument/what it shows",
+  "key": [
+   "weathervane",
+   "wind"
+  ],
+  "why": "a sundial shows the time, as a weathervane shows the wind's direction",
+  "ds": [
+   [
+    "ounce",
+    "pound",
+    "unit/larger unit",
+    "sixteen ounces make a pound"
+   ],
+   [
+    "straight",
+    "crooked",
+    "antonym",
+    "straight is the opposite of crooked"
+   ],
+   [
+    "engine",
+    "car",
+    "part/whole",
+    "an engine is part of a car"
+   ],
+   [
+    "motorist",
+    "license",
+    "person/document held",
+    "a motorist holds a license"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A11",
+  "stem": [
+   "lukewarm",
+   "boiling"
+  ],
+  "rel": "degree",
+  "key": [
+   "pleased",
+   "delighted"
+  ],
+  "why": "lukewarm is a mild degree of boiling heat, as pleased is a mild degree of delighted",
+  "ds": [
+   [
+    "toaster",
+    "bread",
+    "appliance/what it toasts",
+    "a toaster toasts bread"
+   ],
+   [
+    "winter",
+    "season",
+    "instance/category",
+    "winter is a season"
+   ],
+   [
+    "ashes",
+    "firewood",
+    "remains/source",
+    "ashes are what remain of burned firewood"
+   ],
+   [
+    "fireplace",
+    "chimney",
+    "whole/part",
+    "a fireplace vents through a chimney"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A12",
+  "stem": [
+   "triumph",
+   "failure"
+  ],
+  "rel": "antonym",
+  "key": [
+   "arrive",
+   "depart"
+  ],
+  "why": "triumph is the opposite of failure, as arrive is the opposite of depart",
+  "ds": [
+   [
+    "medal",
+    "champion",
+    "award/recipient",
+    "a champion receives a medal"
+   ],
+   [
+    "battle",
+    "war",
+    "part/whole",
+    "a battle is part of a war"
+   ],
+   [
+    "applause",
+    "audience",
+    "action/agent",
+    "an audience gives applause"
+   ],
+   [
+    "sailor",
+    "navy",
+    "member/group",
+    "a sailor belongs to a navy"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A13",
+  "stem": [
+   "wren",
+   "bird"
+  ],
+  "rel": "instance/category",
+  "key": [
+   "python",
+   "snake"
+  ],
+  "why": "a wren is a kind of bird, as a python is a kind of snake",
+  "ds": [
+   [
+    "nest",
+    "straw",
+    "thing/material",
+    "a nest may be built of straw"
+   ],
+   [
+    "hawk",
+    "mouse",
+    "predator/prey",
+    "a hawk hunts a mouse"
+   ],
+   [
+    "fur",
+    "mink",
+    "covering/animal",
+    "fur covers a mink"
+   ],
+   [
+    "migrate",
+    "south",
+    "action/direction",
+    "birds migrate south"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A14",
+  "stem": [
+   "teacher",
+   "classroom"
+  ],
+  "rel": "worker/place",
+  "key": [
+   "curator",
+   "museum"
+  ],
+  "why": "a teacher works in a classroom, as a curator works in a museum",
+  "ds": [
+   [
+    "student",
+    "pupil",
+    "synonym",
+    "a student is a pupil"
+   ],
+   [
+    "chalk",
+    "board",
+    "tool/surface",
+    "chalk is used on a board"
+   ],
+   [
+    "passenger",
+    "ticket",
+    "person/document",
+    "a passenger holds a ticket"
+   ],
+   [
+    "runway",
+    "airport",
+    "part/whole",
+    "a runway is part of an airport"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A15",
+  "stem": [
+   "gloomy",
+   "dismal"
+  ],
+  "rel": "synonym",
+  "key": [
+   "tidy",
+   "neat"
+  ],
+  "why": "gloomy means dismal, as tidy means neat",
+  "ds": [
+   [
+    "cloud",
+    "rain",
+    "source/product",
+    "a cloud produces rain"
+   ],
+   [
+    "messy",
+    "orderly",
+    "antonym",
+    "messy is the opposite of orderly"
+   ],
+   [
+    "mop",
+    "wipe",
+    "tool/function",
+    "a mop is used to wipe"
+   ],
+   [
+    "cobweb",
+    "corner",
+    "thing/place it gathers",
+    "a cobweb gathers in a corner"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A16",
+  "stem": [
+   "helmet",
+   "head"
+  ],
+  "rel": "protector/what it protects",
+  "key": [
+   "earmuffs",
+   "ears"
+  ],
+  "why": "a helmet protects the head, as earmuffs protect the ears",
+  "ds": [
+   [
+    "bicycle",
+    "spokes",
+    "whole/part",
+    "a bicycle wheel has spokes"
+   ],
+   [
+    "pillow",
+    "sleep",
+    "aid/activity",
+    "a pillow aids sleep"
+   ],
+   [
+    "cyclist",
+    "race",
+    "competitor/event",
+    "a cyclist competes in a race"
+   ],
+   [
+    "wool",
+    "scarf",
+    "material/product",
+    "a scarf is knitted from wool"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A17",
+  "stem": [
+   "frog",
+   "croak"
+  ],
+  "rel": "animal/sound",
+  "key": [
+   "owl",
+   "hoot"
+  ],
+  "why": "a frog croaks, as an owl hoots",
+  "ds": [
+   [
+    "pond",
+    "tadpoles",
+    "place/residents",
+    "tadpoles live in a pond"
+   ],
+   [
+    "lamb",
+    "ewe",
+    "young/mother",
+    "a lamb is the young of a ewe"
+   ],
+   [
+    "pelican",
+    "pouch",
+    "bird/feature",
+    "a pelican has a pouch"
+   ],
+   [
+    "hutch",
+    "rabbits",
+    "shelter/animals",
+    "a hutch shelters rabbits"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A18",
+  "stem": [
+   "limb",
+   "tree"
+  ],
+  "rel": "part/whole",
+  "key": [
+   "wing",
+   "airplane"
+  ],
+  "why": "a limb is a large part extending from a tree, as a wing is a large part extending from an airplane",
+  "ds": [
+   [
+    "lumber",
+    "sawmill",
+    "product/place made",
+    "lumber is cut at a sawmill"
+   ],
+   [
+    "dam",
+    "reservoir",
+    "barrier/what it holds back",
+    "a dam holds back a reservoir"
+   ],
+   [
+    "canoe",
+    "paddle",
+    "vehicle/tool",
+    "a canoe is moved with a paddle"
+   ],
+   [
+    "leaf",
+    "compost",
+    "material/product",
+    "leaves rot into compost"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A19",
+  "stem": [
+   "weaver",
+   "cloth"
+  ],
+  "rel": "worker/product",
+  "key": [
+   "cartographer",
+   "maps"
+  ],
+  "why": "a weaver makes cloth, as a cartographer makes maps",
+  "ds": [
+   [
+    "loom",
+    "yarn",
+    "tool/material",
+    "a loom weaves yarn"
+   ],
+   [
+    "compass",
+    "north",
+    "instrument/what it indicates",
+    "a compass indicates north"
+   ],
+   [
+    "fleece",
+    "lamb",
+    "product/source",
+    "fleece comes from a lamb"
+   ],
+   [
+    "globe",
+    "sphere",
+    "thing/shape",
+    "a globe is a sphere"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A20",
+  "stem": [
+   "carton",
+   "eggs"
+  ],
+  "rel": "container/contents",
+  "key": [
+   "sheath",
+   "sword"
+  ],
+  "why": "a carton holds eggs, as a sheath holds a sword",
+  "ds": [
+   [
+    "stamp",
+    "envelope",
+    "item/where it is fixed",
+    "a stamp is stuck on an envelope"
+   ],
+   [
+    "author",
+    "memoir",
+    "creator/work",
+    "an author writes a memoir"
+   ],
+   [
+    "rancher",
+    "lasso",
+    "worker/tool",
+    "a rancher uses a lasso"
+   ],
+   [
+    "cardboard",
+    "pulp",
+    "product/material",
+    "cardboard is made from pulp"
+   ]
+  ],
+  "d": "easy"
+ },
+ {
+  "id": "V6A21",
+  "stem": [
+   "beekeeper",
+   "smoker"
+  ],
+  "rel": "worker/tool",
+  "key": [
+   "chemist",
+   "pipette"
+  ],
+  "why": "a beekeeper works with a smoker, as a chemist works with a pipette",
+  "ds": [
+   [
+    "hornet",
+    "nest",
+    "animal/home",
+    "a hornet lives in a nest"
+   ],
+   [
+    "jar",
+    "preserves",
+    "container/contents",
+    "a jar holds preserves"
+   ],
+   [
+    "lens",
+    "glass",
+    "thing/material",
+    "a lens is made of glass"
+   ],
+   [
+    "dusk",
+    "twilight",
+    "synonym",
+    "dusk is twilight"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A22",
+  "stem": [
+   "whelp",
+   "wolf"
+  ],
+  "rel": "young/adult",
+  "key": [
+   "cub",
+   "panda"
+  ],
+  "why": "a whelp grows into a wolf, as a cub grows into a panda",
+  "ds": [
+   [
+    "coop",
+    "hens",
+    "shelter/animals",
+    "a coop shelters hens"
+   ],
+   [
+    "plumage",
+    "parrot",
+    "feature/animal",
+    "a parrot is known for its plumage"
+   ],
+   [
+    "fang",
+    "tooth",
+    "instance/category",
+    "a fang is a kind of tooth"
+   ],
+   [
+    "paw",
+    "print",
+    "thing/mark it leaves",
+    "a paw leaves a print"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A23",
+  "stem": [
+   "sincere",
+   "deceitful"
+  ],
+  "rel": "antonym",
+  "key": [
+   "thrifty",
+   "extravagant"
+  ],
+  "why": "sincere is the opposite of deceitful, as thrifty is the opposite of extravagant",
+  "ds": [
+   [
+    "genuine",
+    "authentic",
+    "synonym",
+    "genuine means authentic"
+   ],
+   [
+    "liar",
+    "deceive",
+    "person/action",
+    "a liar deceives"
+   ],
+   [
+    "miser",
+    "gold",
+    "person/thing hoarded",
+    "a miser hoards gold"
+   ],
+   [
+    "budget",
+    "expense",
+    "plan/item",
+    "an expense is an item in a budget"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A24",
+  "stem": [
+   "obstinate",
+   "headstrong"
+  ],
+  "rel": "synonym",
+  "key": [
+   "lethargic",
+   "sluggish"
+  ],
+  "why": "obstinate means headstrong, as lethargic means sluggish",
+  "ds": [
+   [
+    "mule",
+    "stubbornness",
+    "animal/trait",
+    "a mule is known for stubbornness"
+   ],
+   [
+    "comply",
+    "defy",
+    "antonym",
+    "to comply is the opposite of to defy"
+   ],
+   [
+    "nap",
+    "fatigue",
+    "remedy/condition",
+    "a nap relieves fatigue"
+   ],
+   [
+    "tortoise",
+    "carapace",
+    "animal/covering",
+    "a tortoise is covered by a carapace"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A25",
+  "stem": [
+   "arsenal",
+   "weapons"
+  ],
+  "rel": "place/what it stores",
+  "key": [
+   "archive",
+   "records"
+  ],
+  "why": "an arsenal stores weapons, as an archive stores records",
+  "ds": [
+   [
+    "soldier",
+    "musket",
+    "user/tool",
+    "a soldier uses a musket"
+   ],
+   [
+    "museum",
+    "docent",
+    "place/worker",
+    "a docent guides visitors in a museum"
+   ],
+   [
+    "vellum",
+    "manuscript",
+    "material/product",
+    "a manuscript may be written on vellum"
+   ],
+   [
+    "truce",
+    "battle",
+    "agreement/what it halts",
+    "a truce halts a battle"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A26",
+  "stem": [
+   "spade",
+   "dig"
+  ],
+  "rel": "tool/function",
+  "key": [
+   "awl",
+   "punch"
+  ],
+  "why": "a spade is used to dig, as an awl is used to punch holes",
+  "ds": [
+   [
+    "farmer",
+    "field",
+    "worker/place",
+    "a farmer works in a field"
+   ],
+   [
+    "seed",
+    "harvest",
+    "beginning/result",
+    "a seed leads to a harvest"
+   ],
+   [
+    "leather",
+    "saddle",
+    "material/product",
+    "a saddle is made of leather"
+   ],
+   [
+    "scarecrow",
+    "crows",
+    "deterrent/what it deters",
+    "a scarecrow scares off crows"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A27",
+  "stem": [
+   "rudder",
+   "boat"
+  ],
+  "rel": "part/whole",
+  "key": [
+   "reed",
+   "clarinet"
+  ],
+  "why": "a rudder is part of a boat, as a reed is part of a clarinet",
+  "ds": [
+   [
+    "sail",
+    "wind",
+    "thing/what drives it",
+    "wind drives a sail"
+   ],
+   [
+    "compass",
+    "sailor",
+    "tool/user",
+    "a sailor uses a compass"
+   ],
+   [
+    "fable",
+    "fiction",
+    "instance/category",
+    "a fable is a kind of fiction"
+   ],
+   [
+    "oar",
+    "row",
+    "tool/action",
+    "an oar is used to row"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A28",
+  "stem": [
+   "glimpse",
+   "gaze"
+  ],
+  "rel": "degree",
+  "key": [
+   "sip",
+   "swig"
+  ],
+  "why": "a glimpse is a brief look and a gaze a long one, as a sip is a small drink and a swig a large one",
+  "ds": [
+   [
+    "joke",
+    "laughter",
+    "cause/effect",
+    "a joke causes laughter"
+   ],
+   [
+    "clown",
+    "circus",
+    "performer/place",
+    "a clown performs in a circus"
+   ],
+   [
+    "smirk",
+    "frown",
+    "contrasting expressions",
+    "a smirk and a frown are contrasting expressions"
+   ],
+   [
+    "wink",
+    "eye",
+    "action/body part",
+    "one winks with an eye"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A29",
+  "stem": [
+   "archipelago",
+   "isles"
+  ],
+  "rel": "group/member",
+  "key": [
+   "grove",
+   "trees"
+  ],
+  "why": "an archipelago is a group of isles, as a grove is a group of trees",
+  "ds": [
+   [
+    "harbor",
+    "boats",
+    "place/what it shelters",
+    "a harbor shelters boats"
+   ],
+   [
+    "atoll",
+    "coral",
+    "landform/material",
+    "an atoll is built of coral"
+   ],
+   [
+    "castaway",
+    "island",
+    "person/place stranded",
+    "a castaway is stranded on an island"
+   ],
+   [
+    "map",
+    "sailor",
+    "tool/user",
+    "a sailor uses a map"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A30",
+  "stem": [
+   "darkness",
+   "light"
+  ],
+  "rel": "absence/what is absent",
+  "key": [
+   "anarchy",
+   "government"
+  ],
+  "why": "darkness is the absence of light, as anarchy is the absence of government",
+  "ds": [
+   [
+    "echo",
+    "cliff",
+    "sound/what reflects it",
+    "a cliff reflects an echo"
+   ],
+   [
+    "lung",
+    "breath",
+    "organ/function",
+    "a lung draws breath"
+   ],
+   [
+    "static",
+    "transmission",
+    "noise/what it disrupts",
+    "static disrupts a transmission"
+   ],
+   [
+    "whisper",
+    "yell",
+    "degree",
+    "a whisper is far quieter than a yell"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A31",
+  "stem": [
+   "baker",
+   "loaves"
+  ],
+  "rel": "worker/product",
+  "key": [
+   "mason",
+   "walls"
+  ],
+  "why": "a baker makes loaves, as a mason builds walls",
+  "ds": [
+   [
+    "cellar",
+    "barrels",
+    "place/what is stored",
+    "barrels are stored in a cellar"
+   ],
+   [
+    "flour",
+    "dough",
+    "material/product",
+    "dough is made from flour"
+   ],
+   [
+    "yeast",
+    "rise",
+    "agent/what it causes",
+    "yeast makes dough rise"
+   ],
+   [
+    "trowel",
+    "mortar",
+    "tool/material",
+    "a trowel spreads mortar"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A32",
+  "stem": [
+   "cynic",
+   "distrustful"
+  ],
+  "rel": "person/defining trait",
+  "key": [
+   "optimist",
+   "hopeful"
+  ],
+  "why": "a cynic is by nature distrustful, as an optimist is by nature hopeful",
+  "ds": [
+   [
+    "modest",
+    "humble",
+    "synonym",
+    "modest means humble"
+   ],
+   [
+    "reporter",
+    "article",
+    "person/product",
+    "a reporter writes an article"
+   ],
+   [
+    "miser",
+    "philanthropist",
+    "antonym",
+    "a miser is the opposite of a philanthropist"
+   ],
+   [
+    "mirror",
+    "vanity",
+    "object/associated trait",
+    "a mirror is associated with vanity"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A33",
+  "stem": [
+   "thermostat",
+   "heat"
+  ],
+  "rel": "device/what it regulates",
+  "key": [
+   "dimmer",
+   "brightness"
+  ],
+  "why": "a thermostat regulates heat, as a dimmer regulates brightness",
+  "ds": [
+   [
+    "furnace",
+    "basement",
+    "appliance/location",
+    "a furnace sits in a basement"
+   ],
+   [
+    "lamp",
+    "shade",
+    "whole/part",
+    "a lamp has a shade"
+   ],
+   [
+    "chill",
+    "shiver",
+    "cause/response",
+    "a chill causes a shiver"
+   ],
+   [
+    "lightbulb",
+    "fixture",
+    "thing/where it is fitted",
+    "a lightbulb screws into a fixture"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A34",
+  "stem": [
+   "flax",
+   "linen"
+  ],
+  "rel": "fiber/fabric",
+  "key": [
+   "cotton",
+   "denim"
+  ],
+  "why": "flax is the fiber linen is woven from, as cotton is the fiber denim is woven from",
+  "ds": [
+   [
+    "needle",
+    "yarn",
+    "tool/material",
+    "a needle carries yarn"
+   ],
+   [
+    "tablecloth",
+    "table",
+    "covering/thing covered",
+    "a tablecloth covers a table"
+   ],
+   [
+    "seam",
+    "garment",
+    "part/whole",
+    "a seam is part of a garment"
+   ],
+   [
+    "spindle",
+    "thread",
+    "tool/what it winds",
+    "a spindle winds thread"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A35",
+  "stem": [
+   "earthquake",
+   "landslide"
+  ],
+  "rel": "cause/effect",
+  "key": [
+   "downpour",
+   "mudslide"
+  ],
+  "why": "an earthquake can set off a landslide, as a downpour can set off a mudslide",
+  "ds": [
+   [
+    "tremor",
+    "quake",
+    "degree",
+    "a tremor is a slight quake"
+   ],
+   [
+    "geologist",
+    "fossils",
+    "scientist/subject",
+    "a geologist studies fossils"
+   ],
+   [
+    "crater",
+    "moon",
+    "feature/body",
+    "a crater marks the moon"
+   ],
+   [
+    "match",
+    "matchbox",
+    "item/container",
+    "a match is kept in a matchbox"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A36",
+  "stem": [
+   "haiku",
+   "poem"
+  ],
+  "rel": "instance/category",
+  "key": [
+   "polka",
+   "dance"
+  ],
+  "why": "a haiku is a kind of poem, as a polka is a kind of dance",
+  "ds": [
+   [
+    "rhyme",
+    "couplet",
+    "feature/form",
+    "a couplet is built on rhyme"
+   ],
+   [
+    "poet",
+    "quill",
+    "worker/tool",
+    "a poet writes with a quill"
+   ],
+   [
+    "stanza",
+    "line",
+    "whole/part",
+    "a stanza is made of lines"
+   ],
+   [
+    "ballroom",
+    "dancers",
+    "place/people",
+    "dancers gather in a ballroom"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A37",
+  "stem": [
+   "cough",
+   "cold"
+  ],
+  "rel": "symptom/condition",
+  "key": [
+   "wheeze",
+   "asthma"
+  ],
+  "why": "a cough is a symptom of a cold, as a wheeze is a symptom of asthma",
+  "ds": [
+   [
+    "thermometer",
+    "degrees",
+    "instrument/unit",
+    "a thermometer reads in degrees"
+   ],
+   [
+    "crutch",
+    "walking",
+    "aid/activity",
+    "a crutch aids walking"
+   ],
+   [
+    "physician",
+    "clinic",
+    "worker/place",
+    "a physician works in a clinic"
+   ],
+   [
+    "kneecap",
+    "leg",
+    "part/whole",
+    "a kneecap is part of a leg"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A38",
+  "stem": [
+   "astronomer",
+   "observatory"
+  ],
+  "rel": "worker/place",
+  "key": [
+   "blacksmith",
+   "forge"
+  ],
+  "why": "an astronomer works in an observatory, as a blacksmith works at a forge",
+  "ds": [
+   [
+    "telescope",
+    "tripod",
+    "instrument/support",
+    "a telescope rests on a tripod"
+   ],
+   [
+    "star",
+    "twinkle",
+    "thing/action",
+    "a star twinkles"
+   ],
+   [
+    "anvil",
+    "tongs",
+    "tool/companion tool",
+    "an anvil and tongs are used together"
+   ],
+   [
+    "iron",
+    "horseshoe",
+    "material/product",
+    "a horseshoe is made of iron"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A39",
+  "stem": [
+   "moat",
+   "castle"
+  ],
+  "rel": "protector/what it protects",
+  "key": [
+   "levee",
+   "town"
+  ],
+  "why": "a moat protects a castle, as a levee protects a town",
+  "ds": [
+   [
+    "drawbridge",
+    "moat",
+    "structure/what it spans",
+    "a drawbridge spans a moat"
+   ],
+   [
+    "knight",
+    "squire",
+    "master/attendant",
+    "a squire attends a knight"
+   ],
+   [
+    "river",
+    "delta",
+    "source/end",
+    "a river ends in a delta"
+   ],
+   [
+    "stone",
+    "rampart",
+    "material/structure",
+    "a rampart is built of stone"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A40",
+  "stem": [
+   "cast",
+   "fracture"
+  ],
+  "rel": "remedy/ailment",
+  "key": [
+   "ointment",
+   "burn"
+  ],
+  "why": "a cast treats a fracture, as an ointment treats a burn",
+  "ds": [
+   [
+    "bone",
+    "skeleton",
+    "part/whole",
+    "a bone is part of a skeleton"
+   ],
+   [
+    "nurse",
+    "ward",
+    "worker/place",
+    "a nurse works on a ward"
+   ],
+   [
+    "gauze",
+    "cotton",
+    "thing/material",
+    "gauze is woven from cotton"
+   ],
+   [
+    "scalpel",
+    "incision",
+    "tool/what it makes",
+    "a scalpel makes an incision"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A41",
+  "stem": [
+   "camel",
+   "desert"
+  ],
+  "rel": "animal/habitat",
+  "key": [
+   "toucan",
+   "rainforest"
+  ],
+  "why": "a camel lives in the desert, as a toucan lives in the rainforest",
+  "ds": [
+   [
+    "palm",
+    "frond",
+    "whole/part",
+    "a palm has fronds"
+   ],
+   [
+    "caravan",
+    "merchants",
+    "group/members",
+    "a caravan is made up of merchants"
+   ],
+   [
+    "nomad",
+    "roam",
+    "person/action",
+    "a nomad roams"
+   ],
+   [
+    "mirage",
+    "illusion",
+    "instance/category",
+    "a mirage is a kind of illusion"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A42",
+  "stem": [
+   "rake",
+   "gather"
+  ],
+  "rel": "tool/function",
+  "key": [
+   "tongs",
+   "grasp"
+  ],
+  "why": "a rake is used to gather, as tongs are used to grasp",
+  "ds": [
+   [
+    "leaf",
+    "autumn",
+    "thing/season it falls",
+    "leaves fall in autumn"
+   ],
+   [
+    "gardener",
+    "hedge",
+    "worker/thing tended",
+    "a gardener trims a hedge"
+   ],
+   [
+    "hoe",
+    "handle",
+    "whole/part",
+    "a hoe has a handle"
+   ],
+   [
+    "compost",
+    "soil",
+    "additive/thing enriched",
+    "compost enriches soil"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A43",
+  "stem": [
+   "meager",
+   "abundant"
+  ],
+  "rel": "antonym",
+  "key": [
+   "opaque",
+   "clear"
+  ],
+  "why": "meager is the opposite of abundant, as opaque is the opposite of clear",
+  "ds": [
+   [
+    "wordy",
+    "talkative",
+    "synonym",
+    "wordy means talkative"
+   ],
+   [
+    "editor",
+    "draft",
+    "worker/thing revised",
+    "an editor revises a draft"
+   ],
+   [
+    "page",
+    "notebook",
+    "part/whole",
+    "a page is part of a notebook"
+   ],
+   [
+    "glass",
+    "pane",
+    "material/product",
+    "a pane is made of glass"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A44",
+  "stem": [
+   "placid",
+   "serene"
+  ],
+  "rel": "synonym",
+  "key": [
+   "rigid",
+   "stiff"
+  ],
+  "why": "placid means serene, as rigid means stiff",
+  "ds": [
+   [
+    "lake",
+    "ripple",
+    "surface/disturbance",
+    "a ripple disturbs a lake"
+   ],
+   [
+    "storm",
+    "turbulent",
+    "event/quality",
+    "a storm is turbulent"
+   ],
+   [
+    "soothe",
+    "agitate",
+    "antonym",
+    "to soothe is the opposite of to agitate"
+   ],
+   [
+    "yoga",
+    "relaxation",
+    "activity/purpose",
+    "yoga is done for relaxation"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A45",
+  "stem": [
+   "desolate",
+   "inhabitants"
+  ],
+  "rel": "lacking/what is lacked",
+  "key": [
+   "fallow",
+   "crops"
+  ],
+  "why": "a desolate place lacks inhabitants, as a fallow field lacks crops",
+  "ds": [
+   [
+    "author",
+    "pseudonym",
+    "person/false name",
+    "an author may write under a pseudonym"
+   ],
+   [
+    "signature",
+    "check",
+    "mark/document",
+    "a signature validates a check"
+   ],
+   [
+    "famous",
+    "celebrity",
+    "quality/person",
+    "a celebrity is famous"
+   ],
+   [
+    "quiz",
+    "student",
+    "test/one tested",
+    "a quiz tests a student"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A46",
+  "stem": [
+   "coffer",
+   "coins"
+  ],
+  "rel": "container/contents",
+  "key": [
+   "canister",
+   "flour"
+  ],
+  "why": "a coffer holds coins, as a canister holds flour",
+  "ds": [
+   [
+    "farmer",
+    "tractor",
+    "worker/vehicle",
+    "a farmer drives a tractor"
+   ],
+   [
+    "kernel",
+    "corn",
+    "part/whole",
+    "a kernel is part of an ear of corn"
+   ],
+   [
+    "baker",
+    "apron",
+    "worker/garment",
+    "a baker wears an apron"
+   ],
+   [
+    "mint",
+    "currency",
+    "place/product",
+    "a mint produces currency"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A47",
+  "stem": [
+   "crack",
+   "chasm"
+  ],
+  "rel": "degree",
+  "key": [
+   "sting",
+   "agony"
+  ],
+  "why": "a crack is a small gap and a chasm a vast one, as a sting is a small pain and agony an overwhelming one",
+  "ds": [
+   [
+    "bridge",
+    "gorge",
+    "structure/what it spans",
+    "a bridge spans a gorge"
+   ],
+   [
+    "weatherman",
+    "forecast",
+    "worker/product",
+    "a weatherman issues a forecast"
+   ],
+   [
+    "cloud",
+    "vapor",
+    "thing/material",
+    "a cloud is made of vapor"
+   ],
+   [
+    "thunder",
+    "rumble",
+    "thing/sound",
+    "thunder rumbles"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A48",
+  "stem": [
+   "procrastinator",
+   "delay"
+  ],
+  "rel": "person/defining action",
+  "key": [
+   "plagiarist",
+   "copy"
+  ],
+  "why": "a procrastinator by definition delays, as a plagiarist by definition copies",
+  "ds": [
+   [
+    "hurry",
+    "dawdle",
+    "antonym",
+    "to hurry is the opposite of to dawdle"
+   ],
+   [
+    "errand",
+    "chore",
+    "synonym",
+    "an errand is a chore"
+   ],
+   [
+    "sloth",
+    "branch",
+    "animal/where it hangs",
+    "a sloth hangs from a branch"
+   ],
+   [
+    "alarm",
+    "wake",
+    "device/purpose",
+    "an alarm is used to wake someone"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A49",
+  "stem": [
+   "tadpole",
+   "bullfrog"
+  ],
+  "rel": "young/adult",
+  "key": [
+   "larva",
+   "moth"
+  ],
+  "why": "a tadpole grows into a bullfrog, as a larva grows into a moth",
+  "ds": [
+   [
+    "antenna",
+    "beetle",
+    "part/whole",
+    "an antenna is part of a beetle"
+   ],
+   [
+    "termite",
+    "mound",
+    "insect/home",
+    "a termite lives in a mound"
+   ],
+   [
+    "ladybug",
+    "insect",
+    "instance/category",
+    "a ladybug is a kind of insect"
+   ],
+   [
+    "croak",
+    "toad",
+    "sound/animal",
+    "a toad croaks"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A50",
+  "stem": [
+   "fisherman",
+   "reel"
+  ],
+  "rel": "worker/tool",
+  "key": [
+   "locksmith",
+   "pick"
+  ],
+  "why": "a fisherman works with a reel, as a locksmith works with a pick",
+  "ds": [
+   [
+    "bait",
+    "trout",
+    "lure/target",
+    "bait lures a trout"
+   ],
+   [
+    "lake",
+    "pier",
+    "place/structure",
+    "a pier juts into a lake"
+   ],
+   [
+    "net",
+    "mesh",
+    "thing/structure",
+    "a net is made of mesh"
+   ],
+   [
+    "trowel",
+    "brick",
+    "tool/material laid",
+    "a trowel is used to lay brick"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A51",
+  "stem": [
+   "sculptor",
+   "statues"
+  ],
+  "rel": "worker/product",
+  "key": [
+   "composer",
+   "operas"
+  ],
+  "why": "a sculptor creates statues, as a composer creates operas",
+  "ds": [
+   [
+    "building",
+    "foundation",
+    "whole/part",
+    "a building rests on a foundation"
+   ],
+   [
+    "pencil",
+    "lead",
+    "tool/material",
+    "a pencil contains lead"
+   ],
+   [
+    "glaze",
+    "shine",
+    "coating/effect",
+    "a glaze gives a shine"
+   ],
+   [
+    "marble",
+    "quarry",
+    "material/source",
+    "marble is cut from a quarry"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A52",
+  "stem": [
+   "stethoscope",
+   "murmurs"
+  ],
+  "rel": "instrument/what it detects",
+  "key": [
+   "sonar",
+   "submarines"
+  ],
+  "why": "a stethoscope detects heart murmurs, as sonar detects submarines",
+  "ds": [
+   [
+    "hourglass",
+    "sand",
+    "container/contents",
+    "an hourglass holds sand"
+   ],
+   [
+    "minute",
+    "hour",
+    "part/whole",
+    "a minute is part of an hour"
+   ],
+   [
+    "meteor",
+    "sky",
+    "thing/place seen",
+    "a meteor is seen in the sky"
+   ],
+   [
+    "torpedo",
+    "battleship",
+    "weapon/target",
+    "a torpedo is fired at a battleship"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A53",
+  "stem": [
+   "ore",
+   "metal"
+  ],
+  "rel": "raw material/refined product",
+  "key": [
+   "crude",
+   "gasoline"
+  ],
+  "why": "ore is refined into metal, as crude oil is refined into gasoline",
+  "ds": [
+   [
+    "miner",
+    "lamp",
+    "worker/equipment",
+    "a miner wears a lamp"
+   ],
+   [
+    "pine",
+    "forest",
+    "member/group",
+    "a pine is part of a forest"
+   ],
+   [
+    "pancake",
+    "breakfast",
+    "food/meal",
+    "a pancake is eaten at breakfast"
+   ],
+   [
+    "nugget",
+    "gold",
+    "lump/substance",
+    "a nugget is a lump of gold"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A54",
+  "stem": [
+   "neglect",
+   "ruin"
+  ],
+  "rel": "cause/effect",
+  "key": [
+   "exercise",
+   "fitness"
+  ],
+  "why": "neglect brings about ruin, as exercise brings about fitness",
+  "ds": [
+   [
+    "janitor",
+    "broom",
+    "worker/tool",
+    "a janitor uses a broom"
+   ],
+   [
+    "orphan",
+    "guardian",
+    "person/caretaker",
+    "a guardian cares for an orphan"
+   ],
+   [
+    "garden",
+    "weeds",
+    "place/what grows",
+    "weeds grow in a garden"
+   ],
+   [
+    "cobweb",
+    "spider",
+    "product/maker",
+    "a spider spins a cobweb"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A55",
+  "stem": [
+   "granite",
+   "rock"
+  ],
+  "rel": "instance/category",
+  "key": [
+   "sapphire",
+   "gem"
+  ],
+  "why": "granite is a kind of rock, as a sapphire is a kind of gem",
+  "ds": [
+   [
+    "chisel",
+    "stone",
+    "tool/material",
+    "a chisel cuts stone"
+   ],
+   [
+    "boulder",
+    "gravel",
+    "degree of size",
+    "a boulder is far larger than gravel"
+   ],
+   [
+    "jeweler",
+    "necklace",
+    "worker/product",
+    "a jeweler makes a necklace"
+   ],
+   [
+    "ruby",
+    "crimson",
+    "thing/color",
+    "a ruby is crimson"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A56",
+  "stem": [
+   "blush",
+   "shame"
+  ],
+  "rel": "reaction/feeling",
+  "key": [
+   "tremble",
+   "fear"
+  ],
+  "why": "one blushes from shame, as one trembles from fear",
+  "ds": [
+   [
+    "wince",
+    "flinch",
+    "synonym",
+    "to wince is to flinch"
+   ],
+   [
+    "dentist",
+    "filling",
+    "worker/product",
+    "a dentist places a filling"
+   ],
+   [
+    "wound",
+    "stitches",
+    "injury/treatment",
+    "a wound is closed with stitches"
+   ],
+   [
+    "bruise",
+    "knee",
+    "injury/location",
+    "a bruise may appear on a knee"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A57",
+  "stem": [
+   "miner",
+   "tunnel"
+  ],
+  "rel": "worker/place",
+  "key": [
+   "lumberjack",
+   "woods"
+  ],
+  "why": "a miner works in a tunnel, as a lumberjack works in the woods",
+  "ds": [
+   [
+    "coal",
+    "fuel",
+    "instance/category",
+    "coal is a kind of fuel"
+   ],
+   [
+    "axe",
+    "handle",
+    "whole/part",
+    "an axe has a handle"
+   ],
+   [
+    "timber",
+    "cabin",
+    "material/product",
+    "a cabin is built of timber"
+   ],
+   [
+    "lantern",
+    "blackness",
+    "tool/what it dispels",
+    "a lantern dispels blackness"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A58",
+  "stem": [
+   "snake",
+   "hiss"
+  ],
+  "rel": "animal/sound",
+  "key": [
+   "crow",
+   "caw"
+  ],
+  "why": "a snake hisses, as a crow caws",
+  "ds": [
+   [
+    "fang",
+    "venom",
+    "part/what it delivers",
+    "a fang delivers venom"
+   ],
+   [
+    "scales",
+    "iguana",
+    "covering/animal",
+    "scales cover an iguana"
+   ],
+   [
+    "barn",
+    "loft",
+    "whole/part",
+    "a barn has a loft"
+   ],
+   [
+    "foal",
+    "mare",
+    "young/mother",
+    "a foal is the young of a mare"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A59",
+  "stem": [
+   "irked",
+   "enraged"
+  ],
+  "rel": "degree",
+  "key": [
+   "content",
+   "ecstatic"
+  ],
+  "why": "irked is a mild form of enraged, as content is a mild form of ecstatic",
+  "ds": [
+   [
+    "insult",
+    "offense",
+    "cause/effect",
+    "an insult causes offense"
+   ],
+   [
+    "fury",
+    "serenity",
+    "antonym",
+    "fury is the opposite of serenity"
+   ],
+   [
+    "jealous",
+    "envious",
+    "synonym",
+    "jealous means envious"
+   ],
+   [
+    "pout",
+    "disappointment",
+    "expression/feeling",
+    "a pout shows disappointment"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A60",
+  "stem": [
+   "regiment",
+   "troops"
+  ],
+  "rel": "group/member",
+  "key": [
+   "colony",
+   "ants"
+  ],
+  "why": "a regiment is a group of troops, as a colony is a group of ants",
+  "ds": [
+   [
+    "general",
+    "battalion",
+    "leader/unit led",
+    "a general commands a battalion"
+   ],
+   [
+    "medal",
+    "courage",
+    "award/quality honored",
+    "a medal honors courage"
+   ],
+   [
+    "uniform",
+    "badge",
+    "whole/part",
+    "a uniform bears a badge"
+   ],
+   [
+    "pew",
+    "chapel",
+    "furniture/place",
+    "a pew stands in a chapel"
+   ]
+  ],
+  "d": "medium"
+ },
+ {
+  "id": "V6A61",
+  "stem": [
+   "cooper",
+   "casks"
+  ],
+  "rel": "worker/product",
+  "key": [
+   "thatcher",
+   "roofs"
+  ],
+  "why": "a cooper makes casks, as a thatcher makes roofs",
+  "ds": [
+   [
+    "plum",
+    "prune",
+    "fresh/dried form",
+    "a prune is a dried plum"
+   ],
+   [
+    "cork",
+    "bark",
+    "material/source",
+    "cork is the bark of the cork oak"
+   ],
+   [
+    "barrel",
+    "stave",
+    "whole/part",
+    "a barrel is built of staves"
+   ],
+   [
+    "sommelier",
+    "cellar",
+    "worker/place",
+    "a sommelier tends a wine cellar"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A62",
+  "stem": [
+   "affable",
+   "genial"
+  ],
+  "rel": "synonym",
+  "key": [
+   "ebullient",
+   "exuberant"
+  ],
+  "why": "affable means genial, as ebullient means exuberant",
+  "ds": [
+   [
+    "orator",
+    "lectern",
+    "person/place",
+    "an orator speaks from a lectern"
+   ],
+   [
+    "mute",
+    "voice",
+    "lacking/what is lacked",
+    "someone mute lacks a voice"
+   ],
+   [
+    "comedian",
+    "punchlines",
+    "person/product",
+    "a comedian delivers punchlines"
+   ],
+   [
+    "babble",
+    "brook",
+    "sound/source",
+    "a brook babbles"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A63",
+  "stem": [
+   "ephemeral",
+   "lasting"
+  ],
+  "rel": "antonym",
+  "key": [
+   "magnanimous",
+   "petty"
+  ],
+  "why": "ephemeral is the opposite of lasting, as magnanimous is the opposite of petty",
+  "ds": [
+   [
+    "fleeting",
+    "transient",
+    "synonym",
+    "fleeting means transient"
+   ],
+   [
+    "donor",
+    "charity",
+    "person/what is given",
+    "a donor gives to charity"
+   ],
+   [
+    "dew",
+    "morning",
+    "thing/time it appears",
+    "dew appears in the morning"
+   ],
+   [
+    "obelisk",
+    "stone",
+    "monument/material",
+    "an obelisk is carved from stone"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A64",
+  "stem": [
+   "callow",
+   "experience"
+  ],
+  "rel": "lacking/what is lacked",
+  "key": [
+   "impassive",
+   "emotion"
+  ],
+  "why": "someone callow lacks experience, as someone impassive shows no emotion",
+  "ds": [
+   [
+    "fledgling",
+    "flight",
+    "learner/skill learned",
+    "a fledgling learns flight"
+   ],
+   [
+    "sage",
+    "wisdom",
+    "person/quality possessed",
+    "a sage possesses wisdom"
+   ],
+   [
+    "salt",
+    "season",
+    "substance/use",
+    "salt is used to season"
+   ],
+   [
+    "bland",
+    "tasteless",
+    "synonym",
+    "bland means tasteless"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A65",
+  "stem": [
+   "ascetic",
+   "austerity"
+  ],
+  "rel": "person/defining trait",
+  "key": [
+   "hypocrite",
+   "duplicity"
+  ],
+  "why": "an ascetic is marked by austerity, as a hypocrite is marked by duplicity",
+  "ds": [
+   [
+    "crusade",
+    "cause",
+    "campaign/goal",
+    "a crusade is waged for a cause"
+   ],
+   [
+    "sermon",
+    "congregation",
+    "speech/audience",
+    "a sermon is delivered to a congregation"
+   ],
+   [
+    "ardent",
+    "lukewarm",
+    "antonym",
+    "ardent is the opposite of lukewarm"
+   ],
+   [
+    "flame",
+    "passion",
+    "symbol/feeling",
+    "a flame symbolizes passion"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A66",
+  "stem": [
+   "determined",
+   "obstinate"
+  ],
+  "rel": "virtue/its excess",
+  "key": [
+   "generous",
+   "prodigal"
+  ],
+  "why": "determined becomes obstinate when carried to excess, as generous becomes prodigal when carried to excess",
+  "ds": [
+   [
+    "anchor",
+    "steadiness",
+    "symbol/quality",
+    "an anchor symbolizes steadiness"
+   ],
+   [
+    "wallet",
+    "coins",
+    "container/contents",
+    "a wallet holds coins"
+   ],
+   [
+    "spendthrift",
+    "squander",
+    "person/action",
+    "a spendthrift squanders"
+   ],
+   [
+    "modest",
+    "boastful",
+    "antonym",
+    "modest is the opposite of boastful"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A67",
+  "stem": [
+   "pestle",
+   "grind"
+  ],
+  "rel": "tool/function",
+  "key": [
+   "auger",
+   "bore"
+  ],
+  "why": "a pestle is used to grind, as an auger is used to bore",
+  "ds": [
+   [
+    "herb",
+    "garden",
+    "plant/place",
+    "an herb grows in a garden"
+   ],
+   [
+    "chemist",
+    "beaker",
+    "worker/tool",
+    "a chemist uses a beaker"
+   ],
+   [
+    "powder",
+    "dust",
+    "synonym",
+    "powder is a fine dust"
+   ],
+   [
+    "mortar",
+    "bowl",
+    "instance/category",
+    "a mortar is a kind of bowl"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A68",
+  "stem": [
+   "sarcophagus",
+   "mummy"
+  ],
+  "rel": "container/contents",
+  "key": [
+   "reliquary",
+   "relics"
+  ],
+  "why": "a sarcophagus holds a mummy, as a reliquary holds relics",
+  "ds": [
+   [
+    "archaeologist",
+    "trowel",
+    "worker/tool",
+    "an archaeologist digs with a trowel"
+   ],
+   [
+    "papyrus",
+    "scroll",
+    "material/product",
+    "a scroll is made of papyrus"
+   ],
+   [
+    "hieroglyph",
+    "symbol",
+    "instance/category",
+    "a hieroglyph is a kind of symbol"
+   ],
+   [
+    "embalm",
+    "preserve",
+    "action/purpose",
+    "one embalms to preserve"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A69",
+  "stem": [
+   "famine",
+   "emaciation"
+  ],
+  "rel": "cause/effect",
+  "key": [
+   "monotony",
+   "boredom"
+  ],
+  "why": "famine causes emaciation, as monotony causes boredom",
+  "ds": [
+   [
+    "gaunt",
+    "thin",
+    "degree",
+    "gaunt is extremely thin"
+   ],
+   [
+    "harvest",
+    "sickle",
+    "task/tool",
+    "a sickle is used in the harvest"
+   ],
+   [
+    "ration",
+    "soldier",
+    "allotment/recipient",
+    "a soldier receives a ration"
+   ],
+   [
+    "cornucopia",
+    "plenty",
+    "symbol/idea",
+    "a cornucopia symbolizes plenty"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A70",
+  "stem": [
+   "ornithology",
+   "birds"
+  ],
+  "rel": "study/subject",
+  "key": [
+   "herpetology",
+   "reptiles"
+  ],
+  "why": "ornithology is the study of birds, as herpetology is the study of reptiles",
+  "ds": [
+   [
+    "aviary",
+    "sparrows",
+    "place/residents",
+    "sparrows may live in an aviary"
+   ],
+   [
+    "feather",
+    "plume",
+    "synonym",
+    "a plume is a feather"
+   ],
+   [
+    "binoculars",
+    "birdwatcher",
+    "tool/user",
+    "a birdwatcher uses binoculars"
+   ],
+   [
+    "migration",
+    "geese",
+    "behavior/animal",
+    "geese undertake migration"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A71",
+  "stem": [
+   "frond",
+   "fern"
+  ],
+  "rel": "part/whole",
+  "key": [
+   "tendril",
+   "vine"
+  ],
+  "why": "a frond is part of a fern, as a tendril is part of a vine",
+  "ds": [
+   [
+    "moss",
+    "boulder",
+    "plant/surface it grows on",
+    "moss grows on a boulder"
+   ],
+   [
+    "sharpen",
+    "knife",
+    "action/object",
+    "one sharpens a knife"
+   ],
+   [
+    "jungle",
+    "humid",
+    "place/quality",
+    "a jungle is humid"
+   ],
+   [
+    "silverware",
+    "cutlery",
+    "synonym",
+    "silverware is cutlery"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A72",
+  "stem": [
+   "laconic",
+   "loquacious"
+  ],
+  "rel": "antonym",
+  "key": [
+   "diffident",
+   "assertive"
+  ],
+  "why": "laconic is the opposite of loquacious, as diffident is the opposite of assertive",
+  "ds": [
+   [
+    "terse",
+    "brusque",
+    "synonym",
+    "terse means brusque"
+   ],
+   [
+    "chatter",
+    "magpie",
+    "sound/animal",
+    "a magpie chatters"
+   ],
+   [
+    "editor",
+    "revision",
+    "worker/task",
+    "an editor makes a revision"
+   ],
+   [
+    "pause",
+    "sentence",
+    "break/what it interrupts",
+    "a pause interrupts a sentence"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A73",
+  "stem": [
+   "insolvent",
+   "funds"
+  ],
+  "rel": "lacking/what is lacked",
+  "key": [
+   "apathetic",
+   "concern"
+  ],
+  "why": "someone insolvent lacks funds, as someone apathetic lacks concern",
+  "ds": [
+   [
+    "banker",
+    "loan",
+    "person/what is granted",
+    "a banker grants a loan"
+   ],
+   [
+    "ledger",
+    "transactions",
+    "book/records",
+    "a ledger records transactions"
+   ],
+   [
+    "debt",
+    "creditor",
+    "thing owed/person owed",
+    "a debt is owed to a creditor"
+   ],
+   [
+    "pauper",
+    "alms",
+    "person/what is received",
+    "a pauper receives alms"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A74",
+  "stem": [
+   "admiration",
+   "reverence"
+  ],
+  "rel": "degree",
+  "key": [
+   "unease",
+   "panic"
+  ],
+  "why": "reverence is admiration at its most intense, as panic is unease at its most intense",
+  "ds": [
+   [
+    "shrine",
+    "pilgrim",
+    "place/visitor",
+    "a pilgrim visits a shrine"
+   ],
+   [
+    "respect",
+    "disdain",
+    "antonym",
+    "respect is the opposite of disdain"
+   ],
+   [
+    "nightmare",
+    "sleep",
+    "event/state during",
+    "a nightmare occurs during sleep"
+   ],
+   [
+    "relic",
+    "saint",
+    "object/person venerated",
+    "a relic is kept in memory of a saint"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A75",
+  "stem": [
+   "farrier",
+   "anvil"
+  ],
+  "rel": "worker/tool",
+  "key": [
+   "goldsmith",
+   "crucible"
+  ],
+  "why": "a farrier works with an anvil, as a goldsmith works with a crucible",
+  "ds": [
+   [
+    "nail",
+    "horseshoe",
+    "fastener/thing fastened",
+    "a nail fastens a horseshoe"
+   ],
+   [
+    "stable",
+    "stablehands",
+    "place/worker",
+    "stablehands work in a stable"
+   ],
+   [
+    "saddle",
+    "pommel",
+    "whole/part",
+    "a saddle has a pommel"
+   ],
+   [
+    "canter",
+    "gait",
+    "instance/category",
+    "a canter is a kind of gait"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A76",
+  "stem": [
+   "pantheon",
+   "gods"
+  ],
+  "rel": "group/member",
+  "key": [
+   "coterie",
+   "friends"
+  ],
+  "why": "a pantheon is a group of gods, as a coterie is a group of friends",
+  "ds": [
+   [
+    "oracle",
+    "riddle",
+    "person/utterance",
+    "an oracle speaks in riddles"
+   ],
+   [
+    "fable",
+    "parable",
+    "synonym",
+    "a fable is a parable"
+   ],
+   [
+    "temple",
+    "column",
+    "whole/part",
+    "a temple has columns"
+   ],
+   [
+    "muse",
+    "inspiration",
+    "figure/what it provides",
+    "a muse provides inspiration"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A77",
+  "stem": [
+   "sycophant",
+   "flattery"
+  ],
+  "rel": "person/characteristic behavior",
+  "key": [
+   "charlatan",
+   "deception"
+  ],
+  "why": "a sycophant trades in flattery, as a charlatan trades in deception",
+  "ds": [
+   [
+    "courtier",
+    "palace",
+    "person/place",
+    "a courtier attends at a palace"
+   ],
+   [
+    "monarch",
+    "scepter",
+    "ruler/symbol",
+    "a scepter symbolizes a monarch"
+   ],
+   [
+    "applause",
+    "ovation",
+    "degree",
+    "an ovation is applause at its most enthusiastic"
+   ],
+   [
+    "candor",
+    "forthrightness",
+    "synonym",
+    "candor is forthrightness"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A78",
+  "stem": [
+   "pallor",
+   "illness"
+  ],
+  "rel": "sign/cause",
+  "key": [
+   "callus",
+   "toil"
+  ],
+  "why": "pallor is a sign of illness, as a callus is a sign of toil",
+  "ds": [
+   [
+    "fever",
+    "thermometer",
+    "condition/instrument",
+    "a thermometer detects a fever"
+   ],
+   [
+    "nurse",
+    "patient",
+    "caregiver/receiver",
+    "a nurse cares for a patient"
+   ],
+   [
+    "farmer",
+    "scythe",
+    "worker/tool",
+    "a farmer uses a scythe"
+   ],
+   [
+    "rest",
+    "recovery",
+    "means/result",
+    "rest leads to recovery"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A79",
+  "stem": [
+   "mahogany",
+   "hardwood"
+  ],
+  "rel": "instance/category",
+  "key": [
+   "saffron",
+   "spice"
+  ],
+  "why": "mahogany is a kind of hardwood, as saffron is a kind of spice",
+  "ds": [
+   [
+    "lumber",
+    "timber",
+    "synonym",
+    "lumber is timber"
+   ],
+   [
+    "walnut",
+    "shell",
+    "nut/covering",
+    "a walnut has a shell"
+   ],
+   [
+    "carpenter",
+    "dresser",
+    "worker/product",
+    "a carpenter builds a dresser"
+   ],
+   [
+    "saw",
+    "sawdust",
+    "tool/byproduct",
+    "a saw produces sawdust"
+   ]
+  ],
+  "d": "hard"
+ },
+ {
+  "id": "V6A80",
+  "stem": [
+   "salve",
+   "abrasion"
+  ],
+  "rel": "remedy/ailment",
+  "key": [
+   "tourniquet",
+   "hemorrhage"
+  ],
+  "why": "a salve treats an abrasion, as a tourniquet stops a hemorrhage",
+  "ds": [
+   [
+    "physician",
+    "stethoscope",
+    "worker/tool",
+    "a physician uses a stethoscope"
+   ],
+   [
+    "scar",
+    "laceration",
+    "mark/cause",
+    "a laceration leaves a scar"
+   ],
+   [
+    "medic",
+    "battlefield",
+    "worker/place",
+    "a medic works on a battlefield"
+   ],
+   [
+    "capillary",
+    "vessel",
+    "instance/category",
+    "a capillary is a kind of blood vessel"
+   ]
+  ],
+  "d": "hard"
+ }
+]

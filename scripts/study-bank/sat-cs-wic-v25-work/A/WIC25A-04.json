@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "seventy years of glacier surveys",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sporadic",
+    "short-lived",
+    "slight",
+    "stealthy"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "slight",
+    "short-lived",
+    "sporadic",
+    "stealthy"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+  "worlds": [
+    {
+      "key": "sporadic",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. The glacier has lost a great deal of ice, plainly visible in the crews' photographs, and has never regained any of it, but nearly all of the loss came in three summers, 1962, 1988, and 2011, when parts of the front collapsed; in the years between, the measurements barely moved. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Nearly all the loss came in three separate summers with almost no change between them, so it was \"sporadic.\" \"Short-lived\" fails because none of the ice was ever regained; \"slight\" fails because the glacier lost a great deal of ice; \"stealthy\" fails because the loss is plainly visible in the photographs.",
+      "kills": {
+        "short-lived": {
+          "type": "logic",
+          "quote": "has never regained any of it",
+          "why": "The loss has lasted to the present, so it was not brief."
+        },
+        "slight": {
+          "type": "explicit",
+          "quote": "lost a great deal of ice",
+          "why": "The amount lost was large."
+        },
+        "stealthy": {
+          "type": "logic",
+          "quote": "plainly visible in the crews' photographs",
+          "why": "A loss anyone can see in the photographs was not hidden."
+        }
+      }
+    },
+    {
+      "key": "short-lived",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. The glacier shrank steadily every summer from 1950 to 1958, losing a great deal of ice in changes plainly visible in the crews' photographs, but it then thickened again, and by 1965 it had regained its old size, which it has held ever since. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The glacier lost ice for eight years, then regained its old size and has kept it for decades, so the loss was \"short-lived.\" \"Sporadic\" fails because it shrank steadily every summer during that period; \"slight\" fails because it lost a great deal of ice; \"stealthy\" fails because the changes were plainly visible in the photographs.",
+      "kills": {
+        "sporadic": {
+          "type": "logic",
+          "quote": "shrank steadily every summer",
+          "why": "A loss that came every year at a steady rate did not come in scattered bursts."
+        },
+        "slight": {
+          "type": "explicit",
+          "quote": "losing a great deal of ice",
+          "why": "The amount lost was large."
+        },
+        "stealthy": {
+          "type": "logic",
+          "quote": "plainly visible in the crews' photographs",
+          "why": "A loss anyone can see in the photographs was not hidden."
+        }
+      }
+    },
+    {
+      "key": "slight",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. Over the whole period its front has crept back only about forty meters, a few centimeters a year at an even pace, and that change is plain in the crews' photographs; the glacier has not regained any of the ground it lost. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "An eight-kilometer glacier whose front moved back only about forty meters in seventy years lost very little ice, so the loss was \"slight.\" \"Sporadic\" fails because it came at an even pace; \"short-lived\" fails because none of the ground was regained; \"stealthy\" fails because the change is plain in the photographs.",
+      "kills": {
+        "sporadic": {
+          "type": "logic",
+          "quote": "a few centimeters a year at an even pace",
+          "why": "A loss spread evenly over every year did not come in scattered bursts."
+        },
+        "short-lived": {
+          "type": "logic",
+          "quote": "has not regained any of the ground",
+          "why": "The loss has lasted to the present, so it was not brief."
+        },
+        "stealthy": {
+          "type": "logic",
+          "quote": "plain in the crews' photographs",
+          "why": "A loss anyone can see in the photographs was not hidden."
+        }
+      }
+    },
+    {
+      "key": "stealthy",
+      "passage": "Since 1950, survey crews have returned every summer to an eight-kilometer mountain glacier whose lower end lies under a thick blanket of fallen rock. In the crews' photographs the rock-covered front has not moved in all that time, yet radar shows that the ice beneath the rock has thinned by sixty meters, at an even pace every year, with no sign of any recovery. Looking back over seventy years of those surveys, one glaciologist described the glacier's loss of ice as ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The photographs show no change at all, while radar reveals sixty meters of thinning hidden under the rock, so the loss was \"stealthy.\" \"Sporadic\" fails because it came at an even pace every year; \"short-lived\" fails because there is no sign of recovery; \"slight\" fails because sixty meters of thinning is large.",
+      "kills": {
+        "sporadic": {
+          "type": "logic",
+          "quote": "at an even pace every year",
+          "why": "A loss spread evenly over every year did not come in scattered bursts."
+        },
+        "short-lived": {
+          "type": "logic",
+          "quote": "no sign of any recovery",
+          "why": "The loss has lasted to the present, so it was not brief."
+        },
+        "slight": {
+          "type": "logic",
+          "quote": "thinned by sixty meters",
+          "why": "Sixty meters of thinning is a large loss, not a small one."
+        }
+      }
+    }
+  ]
+}

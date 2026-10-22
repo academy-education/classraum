@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "tenancy law and rural conflict",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["deferred", "entrenched", "channeled", "escalated"],
+  "antonym_pairs": [],
+  "rarity_order": ["deferred", "escalated", "channeled", "entrenched"],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Looking back, one historian argued that the law had ______ the conflict it was written to end.",
+  "worlds": [
+    {
+      "key": "deferred",
+      "passage": "In 1838 a provincial assembly passed a law governing disputes between landowners and the tenant farmers who rented their fields. It ordered every pending eviction case suspended for ten years without a hearing, so tenants and landowners simply waited; when the decade ended, the same quarrels returned to the village courts in the same form and were settled by compromise within a few years. Looking back, one historian argued that the law had ______ the conflict it was written to end.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The law suspended the cases for ten years, after which the quarrels came back and were settled, so it \"deferred\" the conflict. \"Entrenched\" fails because the quarrels were settled within a few years of returning. \"Channeled\" fails because the quarrels went back to the same village courts in the same form, not into a new venue. \"Escalated\" fails because both sides simply waited and then compromised.",
+      "kills": {
+        "entrenched": {"type": "logic", "quote": "settled by compromise within a few years", "why": "A conflict made permanent would not be settled within a few years of the suspension ending."},
+        "channeled": {"type": "logic", "quote": "returned to the village courts in the same form", "why": "The disputes went back to the same courts in the same form, so the law did not route them into any new course."},
+        "escalated": {"type": "logic", "quote": "tenants and landowners simply waited", "why": "Waiting and then compromising is the opposite of the conflict growing more intense."}
+      }
+    },
+    {
+      "key": "entrenched",
+      "passage": "In 1838 a provincial assembly passed a law governing disputes between landowners and the tenant farmers who rented their fields. It granted each tenant family a permanent right to stay and each landowner a permanent right to the old rents, so neither side could ever yield; the quarrels went on at once in the same village courts as before, never growing more bitter, but passing unsettled from parents to children for three generations. Looking back, one historian argued that the law had ______ the conflict it was written to end.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "By giving both sides permanent rights that neither could yield, the law fixed the dispute in place for three generations, so it \"entrenched\" the conflict. \"Deferred\" fails because the quarrels went on at once rather than being put off. \"Channeled\" fails because they stayed in the same village courts as before. \"Escalated\" fails because they never grew more bitter.",
+      "kills": {
+        "deferred": {"type": "logic", "quote": "the quarrels went on at once", "why": "The conflict continued immediately, so it was not postponed."},
+        "channeled": {"type": "logic", "quote": "the same village courts as before", "why": "The disputes stayed where they had always been heard, so the law did not direct them into a new course."},
+        "escalated": {"type": "explicit", "quote": "never growing more bitter", "why": "The conflict did not intensify; it only lasted."}
+      }
+    },
+    {
+      "key": "channeled",
+      "passage": "In 1838 a provincial assembly passed a law governing disputes between landowners and the tenant farmers who rented their fields. Tenants had long protested by blocking roads; the law created a county board to hear every grievance, and within a year nearly all protest took the form of petitions to that board, which heard them at once, though the quarrels stayed as many and as bitter as before until falling grain prices ended them in the 1840s. Looking back, one historian argued that the law had ______ the conflict it was written to end.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Protest moved from blocking roads to petitions before a new county board, so the law \"channeled\" the conflict into a new course. \"Deferred\" fails because the board heard grievances at once. \"Entrenched\" fails because falling grain prices ended the quarrels within a decade. \"Escalated\" fails because the quarrels stayed as bitter as before, no more.",
+      "kills": {
+        "deferred": {"type": "logic", "quote": "which heard them at once", "why": "Grievances were heard immediately, so nothing was postponed."},
+        "entrenched": {"type": "logic", "quote": "falling grain prices ended them in the 1840s", "why": "A conflict that ended within a few years was not made permanent."},
+        "escalated": {"type": "logic", "quote": "as many and as bitter as before", "why": "The quarrels kept their old intensity; only their form changed."}
+      }
+    },
+    {
+      "key": "escalated",
+      "passage": "In 1838 a provincial assembly passed a law governing disputes between landowners and the tenant farmers who rented their fields. It let landowners evict any tenant behind on rent without a hearing, and within months tenants who had once merely petitioned the village courts were blocking roads and burning barns across the province, until a new assembly repealed the law in 1841 and the quarrels died down. Looking back, one historian argued that the law had ______ the conflict it was written to end.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Tenants who had only petitioned began blocking roads and burning barns, so the law \"escalated\" the conflict. \"Deferred\" fails because the change came within months. \"Channeled\" fails because protest left the orderly path of petitions rather than being directed into one. \"Entrenched\" fails because the quarrels died down once the law was repealed in 1841.",
+      "kills": {
+        "deferred": {"type": "logic", "quote": "within months", "why": "The conflict sharpened almost immediately rather than being put off."},
+        "channeled": {"type": "logic", "quote": "once merely petitioned the village courts", "why": "Protest moved out of the courts and into the roads, the reverse of being directed into a set course."},
+        "entrenched": {"type": "logic", "quote": "the quarrels died down", "why": "A conflict that faded once the law was repealed had not been made lasting."}
+      }
+    }
+  ]
+}

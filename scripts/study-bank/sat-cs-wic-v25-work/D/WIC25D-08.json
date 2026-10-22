@@ -1,0 +1,64 @@
+{
+  "id": "WIC25D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "school laptop charge",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["prohibitive", "recurring", "refundable", "misleading"],
+  "antonym_pairs": [],
+  "rarity_order": ["misleading", "recurring", "refundable", "prohibitive"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "For most families, the laptop charge the school had announced turned out to be ______.",
+  "worlds": [
+    {
+      "key": "prohibitive",
+      "passage": "In 2022 one public high school began requiring every student to use a laptop bought through its own program. The charge matched the figure on the school's flyer to the cent and was paid once, with nothing returned at graduation, but at fourteen hundred dollars it was more than most families in the district could pay, and half the students went without. For most families, the laptop charge the school had announced turned out to be ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The charge was so high that most families could not pay it and half the students went without, so it was \"prohibitive.\" \"Recurring\" fails because it was paid once. \"Refundable\" fails because nothing was returned at graduation, and \"misleading\" fails because it matched the flyer's figure to the cent.",
+      "kills": {
+        "recurring": {"type": "logic", "quote": "was paid once", "why": "a one-time payment does not recur"},
+        "refundable": {"type": "logic", "quote": "nothing returned at graduation", "why": "families got no money back"},
+        "misleading": {"type": "logic", "quote": "matched the figure on the school's flyer", "why": "the announced figure was accurate"}
+      }
+    },
+    {
+      "key": "recurring",
+      "passage": "In 2022 one public high school began requiring every student to use a laptop bought through its own program. The charge matched the figure on the school's flyer to the cent and was small enough that nearly every family paid it, with nothing returned at graduation, but it was billed again every September for as long as a student stayed enrolled. For most families, the laptop charge the school had announced turned out to be ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The charge came back every September for as long as a student was enrolled, so it was \"recurring.\" \"Prohibitive\" fails because nearly every family paid it. \"Refundable\" fails because nothing was returned at graduation, and \"misleading\" fails because it matched the flyer's figure to the cent.",
+      "kills": {
+        "prohibitive": {"type": "logic", "quote": "small enough that nearly every family paid it", "why": "a charge nearly everyone could pay did not keep families out"},
+        "refundable": {"type": "logic", "quote": "nothing returned at graduation", "why": "families got no money back"},
+        "misleading": {"type": "logic", "quote": "matched the figure on the school's flyer", "why": "the announced figure was accurate"}
+      }
+    },
+    {
+      "key": "refundable",
+      "passage": "In 2022 one public high school began requiring every student to use a laptop bought through its own program. The charge matched the figure on the school's flyer to the cent, was small enough that nearly every family paid it, and was billed only once, and when students handed back their laptops at graduation, the school returned the full amount. For most families, the laptop charge the school had announced turned out to be ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Families got the full amount back when the laptops were returned at graduation, so the charge was \"refundable.\" \"Prohibitive\" fails because nearly every family paid it. \"Recurring\" fails because it was billed only once, and \"misleading\" fails because it matched the flyer's figure to the cent.",
+      "kills": {
+        "prohibitive": {"type": "logic", "quote": "small enough that nearly every family paid it", "why": "a charge nearly everyone could pay did not keep families out"},
+        "recurring": {"type": "logic", "quote": "billed only once", "why": "a one-time charge does not recur"},
+        "misleading": {"type": "logic", "quote": "matched the figure on the school's flyer", "why": "the announced figure was accurate"}
+      }
+    },
+    {
+      "key": "misleading",
+      "passage": "In 2022 one public high school began requiring every student to use a laptop bought through its own program. The charge was small enough that nearly every family paid it, was billed only once, and was never returned, but the figure on the school's flyer left out the required case, software, and insurance, which together cost twice as much as the laptop itself. For most families, the laptop charge the school had announced turned out to be ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The announced figure left out required costs worth twice the laptop's price, so it was \"misleading.\" \"Prohibitive\" fails because nearly every family paid it. \"Recurring\" fails because it was billed only once, and \"refundable\" fails because it was never returned.",
+      "kills": {
+        "prohibitive": {"type": "logic", "quote": "small enough that nearly every family paid it", "why": "a charge nearly everyone could pay did not keep families out"},
+        "recurring": {"type": "logic", "quote": "billed only once", "why": "a one-time charge does not recur"},
+        "refundable": {"type": "explicit", "quote": "was never returned", "why": "families got no money back"}
+      }
+    }
+  ]
+}

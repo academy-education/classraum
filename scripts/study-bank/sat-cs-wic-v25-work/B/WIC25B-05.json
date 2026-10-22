@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a valley grazing council",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["coercive", "customary", "diffuse", "ancillary"],
+  "antonym_pairs": [],
+  "rarity_order": ["customary", "coercive", "diffuse", "ancillary"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Surveying the valley's records, one historian characterized the council's authority over the villages as essentially ______.",
+  "worlds": [
+    {
+      "key": "coercive",
+      "passage": "From the 1400s to the 1600s, a council governed the shared grazing lands of a remote mountain valley. Its powers were new, seized by its president in 1520 with no lord or court above him, and it kept armed guards who fined, beat, or jailed any villager who grazed animals out of turn; people obeyed out of fear. Surveying the valley's records, one historian characterized the council's authority over the villages as essentially ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The council enforced its rules with armed guards who fined, beat, or jailed offenders, and people obeyed out of fear, so its authority was \"coercive.\" \"Customary\" fails because its powers were new, seized in 1520. \"Diffuse\" fails because power was held by its president. \"Ancillary\" fails because no lord or court stood above it.",
+      "kills": {
+        "customary": {"type": "explicit", "quote": "Its powers were new", "why": "Authority grounded in custom cannot be newly seized."},
+        "diffuse": {"type": "logic", "quote": "seized by its president", "why": "Power held by one president is concentrated, not spread out."},
+        "ancillary": {"type": "logic", "quote": "no lord or court above him", "why": "A council answering to no one was not subordinate to another body."}
+      }
+    },
+    {
+      "key": "customary",
+      "passage": "From the 1400s to the 1600s, a council governed the shared grazing lands of a remote mountain valley. No charter, lord, or court granted its powers, and it had no guards or fines; the five eldest heads of household decided every question, and villagers obeyed them because such councils had settled grazing \"as our grandfathers did\" for as long as anyone remembered. Surveying the valley's records, one historian characterized the council's authority over the villages as essentially ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Villagers obeyed because such councils had always settled grazing, so its authority was \"customary.\" \"Coercive\" fails because it had no guards or fines. \"Diffuse\" fails because the five eldest heads of household decided every question. \"Ancillary\" fails because no charter, lord, or court stood behind it.",
+      "kills": {
+        "coercive": {"type": "logic", "quote": "it had no guards or fines", "why": "Without any means of force, its authority could not rest on compulsion."},
+        "diffuse": {"type": "logic", "quote": "the five eldest heads of household decided every question", "why": "Decisions were concentrated in five people, not spread out."},
+        "ancillary": {"type": "logic", "quote": "No charter, lord, or court granted its powers", "why": "Nothing above it gave or limited its power, so it was not subordinate."}
+      }
+    },
+    {
+      "key": "diffuse",
+      "passage": "From the 1400s to the 1600s, a council governed the shared grazing lands of a remote mountain valley. It had no president, no guards, and no lord or court above it; any household could join a decision, rules were rewritten by vote each spring, and each village in turn took charge of enforcing them, so no single person or place held power for long. Surveying the valley's records, one historian characterized the council's authority over the villages as essentially ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Any household could join a decision and enforcement rotated among the villages, so no one held power for long and the council's authority was \"diffuse.\" \"Coercive\" fails because it had no guards. \"Customary\" fails because its rules were rewritten by vote each spring rather than resting on tradition. \"Ancillary\" fails because no lord or court stood above it.",
+      "kills": {
+        "coercive": {"type": "logic", "quote": "no president, no guards", "why": "With no guards and no one in charge, its authority did not rest on force."},
+        "customary": {"type": "logic", "quote": "rewritten by vote each spring", "why": "Rules remade each year by vote rest on agreement, not on long tradition."},
+        "ancillary": {"type": "logic", "quote": "no lord or court above it", "why": "It answered to no other body."}
+      }
+    },
+    {
+      "key": "ancillary",
+      "passage": "From the 1400s to the 1600s, a council governed the shared grazing lands of a remote mountain valley. A charter from the bishop's court in the town below created it in 1402; its single steward could only carry out the court's grazing orders, and it could punish no one, sending every offending villager down to the court for judgment. Surveying the valley's records, one historian characterized the council's authority over the villages as essentially ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The council only carried out the bishop's court's orders and sent offenders to that court, so its authority was \"ancillary,\" subordinate to the court's. \"Coercive\" fails because it could punish no one. \"Customary\" fails because its powers came from a charter of 1402. \"Diffuse\" fails because a single steward ran it.",
+      "kills": {
+        "coercive": {"type": "logic", "quote": "it could punish no one", "why": "A body without power to punish does not rule by force."},
+        "customary": {"type": "logic", "quote": "A charter from the bishop's court", "why": "Its powers came from a written grant, not from custom."},
+        "diffuse": {"type": "logic", "quote": "its single steward", "why": "Its business was run by one officer, not spread among many."}
+      }
+    }
+  ]
+}

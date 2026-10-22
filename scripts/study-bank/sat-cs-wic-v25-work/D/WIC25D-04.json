@@ -1,0 +1,64 @@
+{
+  "id": "WIC25D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lobster price floor",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["precedent", "pledge", "remedy", "overreach"],
+  "antonym_pairs": [],
+  "rarity_order": ["remedy", "precedent", "pledge", "overreach"],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Historians of the fishery now regard the price floor as the state's clearest ______.",
+  "worlds": [
+    {
+      "key": "precedent",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lobster prices had held steady for years, so the floor rarely mattered; courts upheld it, and lawmakers quietly repealed it in 1980. Yet when the state later set minimum prices for clams and scallops, legislators cited the lobster rule as proof that such a law could survive in court. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Later lawmakers pointed to the lobster rule to justify similar laws, so it was the state's clearest \"precedent.\" \"Pledge\" fails because the rule was quietly repealed in 1980, not a lasting commitment. \"Remedy\" fails because prices had held steady, so there was no problem for it to fix, and \"overreach\" fails because courts upheld it.",
+      "kills": {
+        "pledge": {"type": "logic", "quote": "quietly repealed it in 1980", "why": "a rule dropped quietly after a few years was no lasting commitment"},
+        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"},
+        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+      }
+    },
+    {
+      "key": "pledge",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lobster prices had held steady for years, so the floor rarely mattered, but officials presented it as a promise that the state would stand behind its fishers for as long as the fleet existed; courts upheld it, it remains in force, and no other fishery has ever been given one. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Officials offered the floor as a lasting promise to stand behind fishers, and it is still in force, so it was the state's clearest \"pledge.\" \"Precedent\" fails because no other fishery has ever been given one. \"Remedy\" fails because prices had held steady, and \"overreach\" fails because courts upheld it.",
+      "kills": {
+        "precedent": {"type": "logic", "quote": "no other fishery has ever been given one", "why": "nothing later followed or relied on the rule"},
+        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"},
+        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+      }
+    },
+    {
+      "key": "remedy",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. A glut had driven lobster prices below the cost of fuel and bait, and within two seasons the floor had restored fishers' incomes; courts upheld it, and lawmakers repealed it, its job done, in 1977. No other fishery was ever given a price floor. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The floor was a response to collapsed prices and restored fishers' incomes, so it was the state's clearest \"remedy.\" \"Precedent\" fails because no other fishery was ever given a price floor. \"Pledge\" fails because the floor was repealed once its job was done, and \"overreach\" fails because courts upheld it.",
+      "kills": {
+        "precedent": {"type": "logic", "quote": "No other fishery was ever given", "why": "nothing later followed or relied on the rule"},
+        "pledge": {"type": "logic", "quote": "repealed it, its job done", "why": "a measure dropped once a problem was fixed was not a standing commitment"},
+        "overreach": {"type": "logic", "quote": "courts upheld it", "why": "a rule the courts upheld did not exceed the state's authority"}
+      }
+    },
+    {
+      "key": "overreach",
+      "passage": "In 1974, one small coastal state set a minimum price that dealers had to pay its fishers for lobster. Lawmakers called it a two-year experiment, and lobster prices had held steady for years, but the floor applied even to lobster landed from federal waters, beyond the state's authority, and a federal court struck it down in 1976. No other fishery was ever given a price floor. Historians of the fishery now regard the price floor as the state's clearest ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The floor reached into federal waters beyond the state's authority and was struck down, so it was the state's clearest \"overreach.\" \"Precedent\" fails because no other fishery was ever given a price floor. \"Pledge\" fails because lawmakers called it a two-year experiment, and \"remedy\" fails because prices had held steady, leaving nothing to fix.",
+      "kills": {
+        "precedent": {"type": "logic", "quote": "No other fishery was ever given", "why": "nothing later followed or relied on the rule"},
+        "pledge": {"type": "logic", "quote": "a two-year experiment", "why": "a declared short trial is not a lasting commitment"},
+        "remedy": {"type": "logic", "quote": "prices had held steady for years", "why": "with stable prices there was no harm for the floor to cure"}
+      }
+    }
+  ]
+}

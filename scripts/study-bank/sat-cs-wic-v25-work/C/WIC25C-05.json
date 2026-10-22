@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a harbor painting in a provincial museum",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hoax",
+    "homage",
+    "hybrid",
+    "landmark"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "landmark",
+    "hybrid",
+    "homage",
+    "hoax"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Historians of the period have long called the canvas the painter's ______.",
+  "worlds": [
+    {
+      "key": "hoax",
+      "passage": "A small canvas of a harbor at dawn, painted in 1874, hangs in a provincial museum beside the painter's other early work. The painter, whom the experts of his day had dismissed, made it in the exact manner of a seventeenth-century master he privately thought overrated, aged it with smoke, and let a dealer sell it as that master's work; once the experts had praised it, he revealed the trick to embarrass them, and it changed nothing about how he painted afterward. Historians of the period have long called the canvas the painter's ______.",
+      "shape": "motive and deception",
+      "key_from_one_sentence": false,
+      "explanation": "He passed the canvas off as an old master's work to embarrass the experts, so it was his \"hoax.\" \"Homage\" fails because he thought that master overrated and aimed to embarrass, not honor; \"hybrid\" fails because he worked in one master's exact manner; \"landmark\" fails because it changed nothing about how he painted afterward.",
+      "kills": {
+        "homage": {
+          "type": "logic",
+          "quote": "privately thought overrated",
+          "why": "imitating someone he scorned, to embarrass critics, does not honor that master"
+        },
+        "hybrid": {
+          "type": "logic",
+          "quote": "in the exact manner of",
+          "why": "a single style imitated exactly is not a blend"
+        },
+        "landmark": {
+          "type": "logic",
+          "quote": "changed nothing about how he painted afterward",
+          "why": "a work with no effect on his development is not a turning point"
+        }
+      }
+    },
+    {
+      "key": "homage",
+      "passage": "A small canvas of a harbor at dawn, painted in 1874, hangs in a provincial museum beside the painter's other early work. The painter made it in the year his teacher died, recreating the teacher's best-known harbor scene in the teacher's own manner and signing it with both of their names; he never offered it for sale, and it changed nothing about how he painted afterward. Historians of the period have long called the canvas the painter's ______.",
+      "shape": "tribute and source",
+      "key_from_one_sentence": false,
+      "explanation": "Recreating his late teacher's best-known scene and signing it with both names is a tribute, so it was his \"homage.\" \"Hoax\" fails because the double signature deceived no one; \"hybrid\" fails because it is painted in the teacher's own manner alone; \"landmark\" fails because it changed nothing about how he painted afterward.",
+      "kills": {
+        "hoax": {
+          "type": "explicit",
+          "quote": "signing it with both of their names",
+          "why": "an openly credited copy deceives no one"
+        },
+        "hybrid": {
+          "type": "logic",
+          "quote": "in the teacher's own manner",
+          "why": "one borrowed manner, not a mixture of two"
+        },
+        "landmark": {
+          "type": "logic",
+          "quote": "changed nothing about how he painted afterward",
+          "why": "it did not mark a turn in his career"
+        }
+      }
+    },
+    {
+      "key": "hybrid",
+      "passage": "A small canvas of a harbor at dawn, painted in 1874, hangs in a provincial museum beside the painter's other early work. The painter signed it openly and never repeated the experiment: it sets the flat colors and bold outlines of the Japanese prints he collected against the deep perspective he had learned at the academy, imitating no single artist, and it changed nothing about how he painted afterward. Historians of the period have long called the canvas the painter's ______.",
+      "shape": "combination of two sources",
+      "key_from_one_sentence": false,
+      "explanation": "The canvas joins print-style color and outline to academic perspective, so it was his \"hybrid.\" \"Hoax\" fails because he signed it openly; \"homage\" fails because it imitates no single artist; \"landmark\" fails because he never repeated the experiment and it changed nothing in his later work.",
+      "kills": {
+        "hoax": {
+          "type": "logic",
+          "quote": "signed it openly",
+          "why": "an openly signed work is not a deception"
+        },
+        "homage": {
+          "type": "logic",
+          "quote": "imitating no single artist",
+          "why": "it pays tribute to no particular figure"
+        },
+        "landmark": {
+          "type": "logic",
+          "quote": "never repeated the experiment",
+          "why": "a one-off with no successors is not a turning point"
+        }
+      }
+    },
+    {
+      "key": "landmark",
+      "passage": "A small canvas of a harbor at dawn, painted in 1874, hangs in a provincial museum beside the painter's other early work. The painter signed it openly; it is the first canvas in which he set aside the polished manner he had learned at the academy for a loose, broken brushwork entirely of his own devising, and every picture he made afterward follows its lead. Historians of the period have long called the canvas the painter's ______.",
+      "shape": "turning point in a career",
+      "key_from_one_sentence": false,
+      "explanation": "It is the first canvas in his new manner, and \"every picture he made afterward follows its lead,\" so it was his \"landmark.\" \"Hoax\" fails because he signed it openly; \"homage\" fails because the brushwork was entirely his own devising; \"hybrid\" fails because he set the academic manner aside rather than blending it with the new one.",
+      "kills": {
+        "hoax": {
+          "type": "logic",
+          "quote": "signed it openly",
+          "why": "nothing about it deceived"
+        },
+        "homage": {
+          "type": "logic",
+          "quote": "entirely of his own devising",
+          "why": "it imitates and honors no one else"
+        },
+        "hybrid": {
+          "type": "logic",
+          "quote": "set aside the polished manner",
+          "why": "one style replaced another; they were not combined"
+        }
+      }
+    }
+  ]
+}

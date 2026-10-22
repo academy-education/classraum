@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "gold leaf in late portraits",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "improvised",
+    "ingrained",
+    "incidental",
+    "ironic"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "ironic",
+    "incidental",
+    "improvised",
+    "ingrained"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "One critic who has examined those late canvases closely describes the painter's use of gold as ______.",
+  "worlds": [
+    {
+      "key": "improvised",
+      "passage": "Many of the portraits a painter made in the last decade of her career include areas of gold leaf. She had never touched gold before 1960, when a shortage of yellow pigment left three commissions unfinished on the day they were due; she pressed scraps of leaf borrowed from a framer over the bare backgrounds, where the gold fills most of each canvas and frames the sitters, her close friends, with evident affection. One critic who has examined those late canvases closely describes the painter's use of gold as ______.",
+      "shape": "circumstance and response",
+      "key_from_one_sentence": false,
+      "explanation": "Gold appeared only when a pigment shortage forced a same-day fix with borrowed scraps, so its use was \"improvised.\" \"Ingrained\" fails because she had never touched gold before 1960; \"incidental\" fails because the gold fills most of each canvas; \"ironic\" fails because it frames the sitters with evident affection, not mockery.",
+      "kills": {
+        "ingrained": {
+          "type": "explicit",
+          "quote": "never touched gold before 1960",
+          "why": "a practice begun that year was not a long-fixed habit"
+        },
+        "incidental": {
+          "type": "logic",
+          "quote": "fills most of each canvas",
+          "why": "something that dominates the picture is not minor"
+        },
+        "ironic": {
+          "type": "logic",
+          "quote": "with evident affection",
+          "why": "affectionate framing does not mock the sitters"
+        }
+      }
+    },
+    {
+      "key": "ingrained",
+      "passage": "Many of the portraits a painter made in the last decade of her career include areas of gold leaf. She had learned gilding as a girl in her father's icon workshop, and from her first student sketches to her final commissions she laid gold behind nearly every sitter almost without thinking; the gold fills most of each canvas and frames the sitters, her close friends, with evident affection. One critic who has examined those late canvases closely describes the painter's use of gold as ______.",
+      "shape": "origin of a habit",
+      "key_from_one_sentence": false,
+      "explanation": "A practice learned in childhood and repeated \"almost without thinking\" in nearly every picture is \"ingrained.\" \"Improvised\" fails because she had used gold since her first student sketches; \"incidental\" fails because it fills most of each canvas; \"ironic\" fails because it frames the sitters with evident affection.",
+      "kills": {
+        "improvised": {
+          "type": "logic",
+          "quote": "from her first student sketches",
+          "why": "a lifelong practice is not a makeshift response"
+        },
+        "incidental": {
+          "type": "logic",
+          "quote": "fills most of each canvas",
+          "why": "the gold is a major element, not a minor one"
+        },
+        "ironic": {
+          "type": "logic",
+          "quote": "with evident affection",
+          "why": "the gold honors rather than mocks the sitters"
+        }
+      }
+    },
+    {
+      "key": "incidental",
+      "passage": "Many of the portraits a painter made in the last decade of her career include areas of gold leaf. She first used gold in 1960 and planned every portrait in careful sketches, but the gold appears only as a fleck on a button or a ring, invisible from a few feet away, while the faces and hands carry everything; the sitters, her close friends, are rendered with evident affection. One critic who has examined those late canvases closely describes the painter's use of gold as ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The gold is a mere fleck \"invisible from a few feet away\" while the faces carry everything, so it is \"incidental.\" \"Improvised\" fails because each portrait was planned in careful sketches; \"ingrained\" fails because she first used gold in 1960; \"ironic\" fails because the sitters are rendered with evident affection.",
+      "kills": {
+        "improvised": {
+          "type": "logic",
+          "quote": "planned every portrait in careful sketches",
+          "why": "the gold was planned, not a makeshift"
+        },
+        "ingrained": {
+          "type": "logic",
+          "quote": "first used gold in 1960",
+          "why": "a late-career addition is not a deep-rooted habit"
+        },
+        "ironic": {
+          "type": "logic",
+          "quote": "with evident affection",
+          "why": "nothing in the portraits mocks the sitters"
+        }
+      }
+    },
+    {
+      "key": "ironic",
+      "passage": "Many of the portraits a painter made in the last decade of her career include areas of gold leaf. She first used gold in 1960 and planned it in careful sketches, spreading it across most of each background, but only in portraits of the bankers who had once refused her loans, whom she painted as small, pinched figures nearly swallowed by the glittering wealth they prized. One critic who has examined those late canvases closely describes the painter's use of gold as ______.",
+      "shape": "meaning through contrast",
+      "key_from_one_sentence": false,
+      "explanation": "The gold swamps the very bankers who refused her, turning their prized wealth against them, so its use is \"ironic.\" \"Improvised\" fails because she planned it in careful sketches; \"ingrained\" fails because she first used gold in 1960; \"incidental\" fails because it spreads across most of each background.",
+      "kills": {
+        "improvised": {
+          "type": "logic",
+          "quote": "planned it in careful sketches",
+          "why": "the gold was deliberate, not a makeshift"
+        },
+        "ingrained": {
+          "type": "logic",
+          "quote": "first used gold in 1960",
+          "why": "a late adoption is not a long-fixed habit"
+        },
+        "incidental": {
+          "type": "explicit",
+          "quote": "across most of each background",
+          "why": "gold covering the background is not minor"
+        }
+      }
+    }
+  ]
+}

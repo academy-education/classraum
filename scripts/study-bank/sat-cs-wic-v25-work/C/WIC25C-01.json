@@ -1,0 +1,122 @@
+{
+  "id": "WIC25C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "staging an old tragedy",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "lengthened",
+    "jumbled",
+    "gutted",
+    "lampooned"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lengthened",
+    "jumbled",
+    "gutted",
+    "lampooned"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One reviewer who knew the original text well wrote that the production had ______ the play.",
+  "worlds": [
+    {
+      "key": "lengthened",
+      "passage": "In 1931 a touring company staged a new version of a little-known seventeenth-century tragedy about a queen torn between duty and love. The company kept every scene in the order the author wrote it and performed each with grave sincerity, but it added a long prologue and two new scenes of its own, so the evening ran nearly an hour past the running time the text alone required. One reviewer who knew the original text well wrote that the production had ______ the play.",
+      "shape": "scope of a change",
+      "key_from_one_sentence": false,
+      "explanation": "The company added a prologue and two scenes, so the evening ran longer: it \"lengthened\" the play. \"Jumbled\" fails because the scenes stayed in the author's order; \"gutted\" fails because every scene was kept; \"lampooned\" fails because the scenes were played with grave sincerity.",
+      "kills": {
+        "jumbled": {
+          "type": "logic",
+          "quote": "in the order the author wrote it",
+          "why": "the scenes were not rearranged"
+        },
+        "gutted": {
+          "type": "logic",
+          "quote": "kept every scene",
+          "why": "nothing essential was removed; material was added"
+        },
+        "lampooned": {
+          "type": "explicit",
+          "quote": "with grave sincerity",
+          "why": "sincere playing is not mockery"
+        }
+      }
+    },
+    {
+      "key": "jumbled",
+      "passage": "In 1931 a touring company staged a new version of a little-known seventeenth-century tragedy about a queen torn between duty and love. The company kept every scene and performed each with grave sincerity, adding nothing, but it shuffled their order, opening with the queen's death and closing with her first meeting with the young soldier, so that audiences who did not know the text struggled to follow the story. One reviewer who knew the original text well wrote that the production had ______ the play.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The scenes were all kept but shuffled out of order, leaving audiences unable to follow: the production \"jumbled\" the play. \"Lengthened\" fails because nothing was added; \"gutted\" fails because every scene was kept; \"lampooned\" fails because each scene was played with grave sincerity.",
+      "kills": {
+        "lengthened": {
+          "type": "explicit",
+          "quote": "adding nothing",
+          "why": "no material was added, so the play did not grow"
+        },
+        "gutted": {
+          "type": "logic",
+          "quote": "kept every scene",
+          "why": "the content survived intact; only its order changed"
+        },
+        "lampooned": {
+          "type": "logic",
+          "quote": "with grave sincerity",
+          "why": "the tone was serious, not mocking"
+        }
+      }
+    },
+    {
+      "key": "gutted",
+      "passage": "In 1931 a touring company staged a new version of a little-known seventeenth-century tragedy about a queen torn between duty and love. The company performed the scenes in the order the author wrote them and with grave sincerity, adding nothing, but it cut the queen's long speeches of doubt, on which the whole tragedy turns, leaving a brisk run of duels and deaths whose motives audiences could no longer see. One reviewer who knew the original text well wrote that the production had ______ the play.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The cuts removed the queen's speeches of doubt, \"on which the whole tragedy turns,\" so the play lost its core: the production \"gutted\" it. \"Lengthened\" fails because nothing was added and material was cut; \"jumbled\" fails because the scenes kept the author's order; \"lampooned\" fails because they were played with grave sincerity.",
+      "kills": {
+        "lengthened": {
+          "type": "logic",
+          "quote": "adding nothing",
+          "why": "material was removed and nothing added, so the play got shorter"
+        },
+        "jumbled": {
+          "type": "logic",
+          "quote": "in the order the author wrote them",
+          "why": "the order was untouched"
+        },
+        "lampooned": {
+          "type": "explicit",
+          "quote": "with grave sincerity",
+          "why": "the playing was serious, not mocking"
+        }
+      }
+    },
+    {
+      "key": "lampooned",
+      "passage": "In 1931 a touring company staged a new version of a little-known seventeenth-century tragedy about a queen torn between duty and love. The company kept every scene in the order the author wrote it, adding nothing, but its actors delivered the queen's lofty speeches in a mock-heroic singsong and swooned on cue, so that audiences laughed through the death scenes the author had meant to be wrenching. One reviewer who knew the original text well wrote that the production had ______ the play.",
+      "shape": "manner versus content",
+      "key_from_one_sentence": false,
+      "explanation": "The actors mocked the play's lofty speeches until audiences laughed at its tragic scenes: the production \"lampooned\" the play. \"Lengthened\" fails because nothing was added; \"jumbled\" fails because the scenes kept the author's order; \"gutted\" fails because every scene was kept, so nothing was cut away.",
+      "kills": {
+        "lengthened": {
+          "type": "explicit",
+          "quote": "adding nothing",
+          "why": "no material was added"
+        },
+        "jumbled": {
+          "type": "logic",
+          "quote": "in the order the author wrote it",
+          "why": "the order of scenes was kept"
+        },
+        "gutted": {
+          "type": "logic",
+          "quote": "kept every scene",
+          "why": "the text was intact; only its delivery mocked it"
+        }
+      }
+    }
+  ]
+}

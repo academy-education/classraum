@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lava flow and a valley river",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "straightened",
+    "swallowed",
+    "trapped",
+    "sidetracked"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "trapped",
+    "swallowed",
+    "straightened",
+    "sidetracked"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Mapping the valley today, geologists conclude that the lava ______ the river.",
+  "worlds": [
+    {
+      "key": "straightened",
+      "passage": "About nine thousand years ago, a tongue of lava poured into a narrow mountain valley and hardened across the floor where a river had wound in wide loops. The river was not blocked for long: it soon cut a trench down the center of the flow along a single crack, and it now runs above ground in one narrow channel without a bend, along its old line and into the same lake it has always fed. Mapping the valley today, geologists conclude that the lava ______ the river.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The river, which once wound in wide loops, now runs in one channel without a bend along its old line: the lava \"straightened\" it. \"Sidetracked\" fails because the river kept its old line and its old lake; \"trapped\" fails because it was not blocked for long and still flows on; \"swallowed\" fails because it runs above ground.",
+      "kills": {
+        "sidetracked": {
+          "type": "logic",
+          "quote": "along its old line and into the same lake",
+          "why": "The river kept its route and destination, so it was not diverted."
+        },
+        "trapped": {
+          "type": "logic",
+          "quote": "was not blocked for long",
+          "why": "The river cut through and kept flowing, so it was not held in place."
+        },
+        "swallowed": {
+          "type": "explicit",
+          "quote": "runs above ground",
+          "why": "The river is still at the surface, so it did not disappear into the lava."
+        }
+      }
+    },
+    {
+      "key": "swallowed",
+      "passage": "About nine thousand years ago, a tongue of lava poured into a narrow mountain valley and hardened across the floor where a river had wound in wide loops. The flow cooled into rock riddled with cracks and hollow tubes, and the river, on meeting it, sinks out of sight within a few yards; no lake forms, and the water travels underground for six miles before rising again as springs farther down the same valley. Mapping the valley today, geologists conclude that the lava ______ the river.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The river disappears into the cracked, hollow rock within a few yards and runs underground for miles: the lava \"swallowed\" it. \"Trapped\" fails because no lake forms and the water moves on; \"sidetracked\" fails because the water rises again in the same valley; \"straightened\" fails because the river leaves the surface, so there is no channel to straighten.",
+      "kills": {
+        "trapped": {
+          "type": "explicit",
+          "quote": "no lake forms",
+          "why": "The water is not held back; it keeps moving."
+        },
+        "sidetracked": {
+          "type": "logic",
+          "quote": "farther down the same valley",
+          "why": "The water returns to its own valley, so it was not diverted elsewhere."
+        },
+        "straightened": {
+          "type": "logic",
+          "quote": "sinks out of sight within a few yards",
+          "why": "The river vanishes from the surface, so the lava gave it no new straight course."
+        }
+      }
+    },
+    {
+      "key": "trapped",
+      "passage": "About nine thousand years ago, a tongue of lava poured into a narrow mountain valley and hardened across the floor where a river had wound in wide loops. The flow sealed the valley from wall to wall, with no low saddle for the water to escape over, and the river, rising behind it, became a lake without an outlet; the lake loses water only to evaporation, since the lava under it is solid rock with no cracks. Mapping the valley today, geologists conclude that the lava ______ the river.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The lava sealed the valley completely, and the river became a lake with no way out: the lava \"trapped\" it. \"Sidetracked\" fails because there was no saddle for the water to escape over; \"swallowed\" fails because the lava is solid rock with no cracks to drain into; \"straightened\" fails because the river stopped flowing altogether.",
+      "kills": {
+        "sidetracked": {
+          "type": "logic",
+          "quote": "no low saddle for the water to escape over",
+          "why": "The water had no route out, so it was not diverted into a new course."
+        },
+        "swallowed": {
+          "type": "logic",
+          "quote": "solid rock with no cracks",
+          "why": "The water could not sink into the lava."
+        },
+        "straightened": {
+          "type": "logic",
+          "quote": "became a lake without an outlet",
+          "why": "A river turned into a closed lake no longer has a channel, straight or winding."
+        }
+      }
+    },
+    {
+      "key": "sidetracked",
+      "passage": "About nine thousand years ago, a tongue of lava poured into a narrow mountain valley and hardened across the floor where a river had wound in wide loops. The flow blocked the valley just below a low saddle in its western wall, and the river, rising behind the lava, spilled over the saddle within a few years; it now runs above ground through the next valley, still winding in wide loops, and joins a different river. Mapping the valley today, geologists conclude that the lava ______ the river.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Blocked by the lava, the river spilled over the saddle into the next valley and now joins a different river: the lava \"sidetracked\" it. \"Trapped\" fails because the water escaped within a few years; \"swallowed\" fails because the river runs above ground; \"straightened\" fails because it still winds in wide loops.",
+      "kills": {
+        "trapped": {
+          "type": "logic",
+          "quote": "spilled over the saddle within a few years",
+          "why": "The water found a way out quickly, so it was not held behind the lava."
+        },
+        "swallowed": {
+          "type": "explicit",
+          "quote": "runs above ground",
+          "why": "The river is still at the surface, so it did not disappear into the lava."
+        },
+        "straightened": {
+          "type": "logic",
+          "quote": "still winding in wide loops",
+          "why": "The river kept its winding form, so it was not made straight."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "WIC25B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a city's poor-relief program",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["frugal", "cumbersome", "fashionable", "experimental"],
+  "antonym_pairs": [],
+  "rarity_order": ["experimental", "fashionable", "frugal", "cumbersome"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "In her history of the city, one scholar described its relief program of the 1890s as above all ______.",
+  "worlds": [
+    {
+      "key": "frugal",
+      "passage": "In 1893, during a deep economic slump, a mid-sized industrial city began giving aid to families out of work. Its clerk designed the program alone, ignoring the charity methods then popular elsewhere, and it ran unchanged for thirty years; a family applied on a single short form and received only enough flour and coal for a week, while the city spent a tenth of what neighboring cities did per family. In her history of the city, one scholar described its relief program of the 1890s as above all ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Families got only a week's flour and coal, and the city spent a tenth of what its neighbors did, so the program was \"frugal.\" \"Cumbersome\" fails because applying took a single short form. \"Fashionable\" fails because the clerk ignored the methods popular elsewhere. \"Experimental\" fails because it ran unchanged for thirty years.",
+      "kills": {
+        "cumbersome": {"type": "logic", "quote": "a single short form", "why": "Applying was quick and simple."},
+        "fashionable": {"type": "logic", "quote": "ignoring the charity methods then popular elsewhere", "why": "The program did not follow the trend of its day."},
+        "experimental": {"type": "logic", "quote": "ran unchanged for thirty years", "why": "A program fixed for decades was not a trial."}
+      }
+    },
+    {
+      "key": "cumbersome",
+      "passage": "In 1893, during a deep economic slump, a mid-sized industrial city began giving aid to families out of work. Its clerk designed the program alone, ignoring the charity methods then popular elsewhere, and it ran unchanged for thirty years; a family had to visit three offices, file six forms, and wait months for approval, though once approved it received generous weekly payments. In her history of the city, one scholar described its relief program of the 1890s as above all ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Families had to visit three offices, file six forms, and wait months, so the program was \"cumbersome.\" \"Frugal\" fails because approved families received generous payments. \"Fashionable\" fails because the clerk ignored the methods popular elsewhere. \"Experimental\" fails because it ran unchanged for thirty years.",
+      "kills": {
+        "frugal": {"type": "explicit", "quote": "generous weekly payments", "why": "Generous aid is not sparing."},
+        "fashionable": {"type": "logic", "quote": "ignoring the charity methods then popular elsewhere", "why": "The program did not follow the trend of its day."},
+        "experimental": {"type": "logic", "quote": "ran unchanged for thirty years", "why": "A program fixed for decades was not a trial."}
+      }
+    },
+    {
+      "key": "fashionable",
+      "passage": "In 1893, during a deep economic slump, a mid-sized industrial city began giving aid to families out of work. Its clerk copied the program from the \"friendly visitor\" scheme then sweeping the reform clubs of every large city, and it ran unchanged for thirty years; a family applied on a single short form and received generous weekly payments along with a volunteer's home visits. In her history of the city, one scholar described its relief program of the 1890s as above all ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The program was copied from a scheme then sweeping the reform clubs of every large city, so it was \"fashionable.\" \"Frugal\" fails because families received generous payments. \"Cumbersome\" fails because applying took a single short form. \"Experimental\" fails because it ran unchanged for thirty years.",
+      "kills": {
+        "frugal": {"type": "logic", "quote": "generous weekly payments", "why": "Generous aid is not sparing."},
+        "cumbersome": {"type": "logic", "quote": "a single short form", "why": "Applying was quick and simple."},
+        "experimental": {"type": "logic", "quote": "ran unchanged for thirty years", "why": "A program fixed for decades was not a trial."}
+      }
+    },
+    {
+      "key": "experimental",
+      "passage": "In 1893, during a deep economic slump, a mid-sized industrial city began giving aid to families out of work. Its clerk designed the program alone, ignoring the charity methods then popular elsewhere, and ran it for one year only, in two wards, with a different rule in each so that the council could compare the results; a family applied on a single short form and received generous weekly payments. In her history of the city, one scholar described its relief program of the 1890s as above all ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Run for one year in two wards with different rules so the results could be compared, the program was \"experimental.\" \"Frugal\" fails because families received generous payments. \"Cumbersome\" fails because applying took a single short form. \"Fashionable\" fails because the clerk ignored the methods popular elsewhere.",
+      "kills": {
+        "frugal": {"type": "logic", "quote": "generous weekly payments", "why": "Generous aid is not sparing."},
+        "cumbersome": {"type": "logic", "quote": "a single short form", "why": "Applying was quick and simple."},
+        "fashionable": {"type": "logic", "quote": "ignoring the charity methods then popular elsewhere", "why": "The program did not follow the trend of its day."}
+      }
+    }
+  ]
+}

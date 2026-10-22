@@ -1,0 +1,122 @@
+{
+  "id": "WIC25A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lichens on old stone walls",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sentinel",
+    "timeline",
+    "vestige",
+    "scaffold"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "timeline",
+    "scaffold",
+    "sentinel",
+    "vestige"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In her field guide, one botanist describes these crusts as a living ______.",
+  "worlds": [
+    {
+      "key": "sentinel",
+      "passage": "Farmers in one northern valley once built hundreds of dry stone walls, and today the walls are coated with lichens, slow-growing crusts of fungus and algae. The crusts spread onto the walls from nearby cliffs after the walls were built, and they grow at no steady rate, but one species withers within weeks whenever sulfur in the air rises, long before crops or people show harm, and the stone beneath it stays bare of soil. In her field guide, one botanist describes these crusts as a living ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "One species withers whenever sulfur in the air rises, well before crops or people are harmed, so the crusts give early warning: they are a living \"sentinel.\" \"Timeline\" fails because they grow at no steady rate, so their size dates nothing; \"vestige\" fails because they arrived only after the walls were built; \"scaffold\" fails because the stone beneath stays bare of soil, so nothing builds on them.",
+      "kills": {
+        "timeline": {
+          "type": "logic",
+          "quote": "grow at no steady rate",
+          "why": "Without a steady growth rate, the crusts cannot record how much time has passed."
+        },
+        "vestige": {
+          "type": "logic",
+          "quote": "spread onto the walls from nearby cliffs after the walls were built",
+          "why": "Recent arrivals are not the surviving remnant of something older."
+        },
+        "scaffold": {
+          "type": "logic",
+          "quote": "stone beneath it stays bare of soil",
+          "why": "No soil forms, so the crusts support no later growth."
+        }
+      }
+    },
+    {
+      "key": "timeline",
+      "passage": "Farmers in one northern valley once built hundreds of dry stone walls, and today the walls are coated with lichens, slow-growing crusts of fungus and algae. The crusts spread onto the walls from nearby cliffs after the walls were built, and they widen by almost exactly one millimeter a year, so measuring the largest crust on a wall dates its building to within a decade; they shrug off polluted air, and the stone beneath them stays bare of soil. In her field guide, one botanist describes these crusts as a living ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Because the crusts widen at a nearly fixed rate, their size dates when each wall was built: they are a living \"timeline.\" \"Sentinel\" fails because they shrug off polluted air and so warn of nothing; \"vestige\" fails because they arrived only after the walls were built; \"scaffold\" fails because the stone beneath stays bare of soil.",
+      "kills": {
+        "sentinel": {
+          "type": "logic",
+          "quote": "shrug off polluted air",
+          "why": "Crusts unaffected by pollution cannot give warning of it."
+        },
+        "vestige": {
+          "type": "logic",
+          "quote": "spread onto the walls from nearby cliffs after the walls were built",
+          "why": "Recent arrivals are not the surviving remnant of something older."
+        },
+        "scaffold": {
+          "type": "logic",
+          "quote": "stone beneath them stays bare of soil",
+          "why": "No soil forms, so the crusts support no later growth."
+        }
+      }
+    },
+    {
+      "key": "vestige",
+      "passage": "Farmers in one northern valley once built hundreds of dry stone walls, and today the walls are coated with lichens, slow-growing crusts of fungus and algae. The crusts are the last of a lichen community that covered the valley's ancient forest before it was cleared, a community now gone from everywhere else, and they cling only to stones taken from that forest floor; they grow at no steady rate, shrug off polluted air, and leave the stone beneath them bare of soil. In her field guide, one botanist describes these crusts as a living ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The crusts are all that remains of a community that has vanished everywhere else: they are a living \"vestige.\" \"Sentinel\" fails because they shrug off polluted air; \"timeline\" fails because they grow at no steady rate; \"scaffold\" fails because they leave the stone bare of soil, so nothing grows on them.",
+      "kills": {
+        "sentinel": {
+          "type": "logic",
+          "quote": "shrug off polluted air",
+          "why": "Crusts unaffected by pollution cannot give warning of it."
+        },
+        "timeline": {
+          "type": "logic",
+          "quote": "grow at no steady rate",
+          "why": "Without a steady growth rate, the crusts cannot record how much time has passed."
+        },
+        "scaffold": {
+          "type": "logic",
+          "quote": "leave the stone beneath them bare of soil",
+          "why": "No soil forms, so the crusts support no later growth."
+        }
+      }
+    },
+    {
+      "key": "scaffold",
+      "passage": "Farmers in one northern valley once built hundreds of dry stone walls, and today the walls are coated with lichens, slow-growing crusts of fungus and algae. The crusts spread onto the walls from nearby cliffs after the walls were built, and they grow at no steady rate and shrug off polluted air, but as they slowly break down the surface of the rock they trap blown dust into a thin soil, in which mosses and then ferns take root. In her field guide, one botanist describes these crusts as a living ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "By breaking down the rock and trapping dust into soil, the crusts make it possible for mosses and ferns to grow: they are a living \"scaffold.\" \"Sentinel\" fails because they shrug off polluted air; \"timeline\" fails because they grow at no steady rate; \"vestige\" fails because they arrived only after the walls were built.",
+      "kills": {
+        "sentinel": {
+          "type": "logic",
+          "quote": "shrug off polluted air",
+          "why": "Crusts unaffected by pollution cannot give warning of it."
+        },
+        "timeline": {
+          "type": "logic",
+          "quote": "grow at no steady rate",
+          "why": "Without a steady growth rate, the crusts cannot record how much time has passed."
+        },
+        "vestige": {
+          "type": "logic",
+          "quote": "spread onto the walls from nearby cliffs after the walls were built",
+          "why": "Recent arrivals are not the surviving remnant of something older."
+        }
+      }
+    }
+  ]
+}
