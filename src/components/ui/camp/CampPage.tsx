@@ -212,6 +212,15 @@ export function CampPage({ academyId }: CampPageProps) {
    *  one classroom chosen in the modal. */
   const [sessionsById, setSessionsById] = useState<Record<string, { date: string; start_time: string | null; classroom_id: string }>>({})
 
+  // Declared before filteredSessionOptions, which calls it during render. Declared after it (as it was),
+  // typing in the session search box threw "Cannot access 'formatDate' before initialization".
+  const formatDate = useCallback((iso: string) => {
+    const d = new Date(iso)
+    return d.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+      year: 'numeric', month: 'short', day: 'numeric',
+    })
+  }, [language])
+
   /** Sessions matching the picker's search box. Matches the date as
    *  rendered and the raw ISO date, so "Aug 25" and "2026-08-25" both
    *  find the same row. */
@@ -223,7 +232,7 @@ export function CampPage({ academyId }: CampPageProps) {
       s.date.includes(q) ||
       (s.start_time ?? '').includes(q),
     )
-  }, [sessionOptions, sessionSearchQuery])
+  }, [sessionOptions, sessionSearchQuery, formatDate])
 
   useEffect(() => {
     let alive = true
@@ -388,13 +397,6 @@ export function CampPage({ academyId }: CampPageProps) {
       family === 'sat' ? domain : String(t(`camp.tasks.${domain}`)),
     [t],
   )
-
-  const formatDate = useCallback((iso: string) => {
-    const d = new Date(iso)
-    return d.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
-      year: 'numeric', month: 'short', day: 'numeric',
-    })
-  }, [language])
 
   const openModal = () => {
     setForm({
