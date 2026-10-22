@@ -57,3 +57,28 @@ Briefs in `cofounder-grader/` (A from fold A, B from fold B); scored by `cofound
   detection, not of matching him on SSAT.
 - The 5 control flags are all "another reply is also natural" style, the strict direction the policy accepts.
 Next step per this prereg: propose the route to the owner. Nothing changes until the owner decides.
+
+## Amendment 1 (2026-10-22): the route the owner chose ("Lets do 2"), written before any spot-check run is drawn
+Applies to every batch in `cofounder-queue.json` not yet drawn. Batches already sat keep their own rules.
+
+**Before any of his runs on a batch:**
+1. Every staged item is graded with a co-founder-standard brief (A or B; `cofounder-grader/`). Every flag is read by the
+   author: dropped (archived) if the author agrees, kept with the reason recorded if the grader is clearly wrong. The
+   generic pre-screen (552 items, 3 dropped) already ran; this is the stricter second pass.
+
+**Then one of two runs, fixed in the queue (`route`):**
+- **spot**: SSAT/ISEE reading = one whole passage (6 items), seeded pick ('spotcheck-groups-2026-10-22': d5 P02, d6
+  P02, d8 P01, ISEE d2 P06). Verbal = 12 items per run (d1 one run, d2 two runs). TOEFL sets/CR = one run.
+- **full**: every third reading batch: SSAT d7 and ISEE d3. Draft 1's rule unchanged.
+
+**Release rule for a spot run:**
+1. All sampled items "Only defensible" -> the sampled items and every unsampled, grader-cleared item in the batch are
+   released (`verified=true`, basis recorded as `spot-check + co-founder-standard grader`).
+2. Any sampled item flagged -> that item archived, and the REST of the batch goes to a full sitting (a queue entry is
+   added). Nothing else from that batch is released until then.
+3. His blind pick is recorded but is not a guard on a 6-12 item sample (too small to mean anything).
+4. Notes are read as before; a factual-error note holds the passage, as with SSAT d3.
+
+**What this changes in risk, stated now:** unsampled items reach students having passed two AI checks but no human.
+TOEFL Listening is where the grader matched him (20/25); for SSAT it is unproven, which is why every third reading batch
+is a full sitting. His first SSAT flags, from full sittings or spot runs, become the SSAT test set for this grader.

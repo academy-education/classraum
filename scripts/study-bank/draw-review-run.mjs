@@ -112,6 +112,9 @@ for (const [di, domain] of domains.entries()) {
     // domain shared by cr-v7 (human-tested) and cr-v10 (not), and a sitting
     // that mixes them cannot answer the question about the new one.
     if (process.env.DRAW_COHORT) q = q.eq('cohort', process.env.DRAW_COHORT)
+    // DRAW_GROUP=<passage_group_id>: one passage only (2026-10-22 spot-check route: the co-founder reads one passage
+    // of a pre-screened batch instead of all of it; COFOUNDER-GRADER-2026-10-22.PREREG.md, owner option 2).
+    if (process.env.DRAW_GROUP) q = q.eq('passage_group_id', process.env.DRAW_GROUP)
     const { data, error } = await q
     if (error) throw new Error(error.message)
     pool.push(...data); if (data.length < 1000) break

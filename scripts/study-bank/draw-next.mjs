@@ -26,11 +26,15 @@ if (process.argv.includes('--ignore-open') && COMMIT) refuse('--ignore-open is f
 if (open && !process.argv.includes('--ignore-open')) { console.log(`open run: ${open.run_id} — nothing to draw until it closes`); process.exit(0) }
 if (open) console.log(`(open run ${open.run_id} ignored for this dry run)`)
 const state = new Map()
-async function cohortState(cohort) {
-  if (state.has(cohort)) return state.get(cohort)
-  const { data: rows, error } = await db.from('study_item_bank').select('id,verified,archived').eq('cohort', cohort)
+// An entry with `group` (a passage_group_id) is a spot-check: it is satisfied once that one passage is served.
+async function cohortState(cohort, group = null) {
+  const sk = cohort + '|' + (group ?? '')
+  if (state.has(sk)) return state.get(sk)
+  let sel = db.from('study_item_bank').select('id,verified,archived').eq('cohort', cohort)
+  if (group) sel = sel.eq('passage_group_id', group)
+  const { data: rows, error } = await sel
   if (error) refuse(error.message)
-  if (!rows?.length) refuse(`queue names cohort ${cohort}, which has no rows`)
+  if (!rows?.length) refuse(`queue names cohort ${cohort}${group ? ' group ' + group : ''}, which has no rows`)
   const ids = rows.map(r => r.id); const rv = []
   for (let i = 0; i < ids.length; i += 200) {
     const { data, error: e } = await db.from('study_item_reviews').select('item_id,run_id').eq('reviewer_id', Q.reviewer).in('item_id', ids.slice(i, i + 200))
@@ -38,13 +42,13 @@ async function cohortState(cohort) {
   }
   const served = new Set(rv.map(r => r.item_id))
   const s = { rows: rows.length, waiting: rows.filter(r => !r.verified && !r.archived && !served.has(r.id)).length, runs: new Set(rv.map(r => r.run_id)).size }
-  state.set(cohort, s); return s
+  state.set(sk, s); return s
 }
 let next = null
 for (const [i, e] of Q.queue.entries()) {
-  const s = await cohortState(e.cohort)
+  const s = await cohortState(e.cohort, e.group)
   const done = s.waiting === 0 || (e.upTo != null && s.runs >= e.upTo)
-  console.log(`${String(i + 1).padStart(2)} ${done ? 'done ' : 'NEXT '} ${e.cohort.padEnd(24)} waiting ${String(s.waiting).padStart(3)} / ${s.rows}  runs so far ${s.runs}${e.upTo != null ? ` (entry stops at ${e.upTo})` : ''}`)
+  console.log(`${String(i + 1).padStart(2)} ${done ? 'done ' : 'NEXT '} ${(e.cohort + (e.group ? ' [' + e.group.split('-').pop() + ']' : '')).padEnd(24)} waiting ${String(s.waiting).padStart(3)} / ${s.rows}  runs so far ${s.runs}${e.upTo != null ? ` (entry stops at ${e.upTo})` : ''}`)
   if (!done && !next) next = { e, s }
   if (next) break
 }
@@ -55,7 +59,7 @@ const runId = e.runId.replace('{n}', String(s.runs + 1)).replace('{date}', date)
 let cmd, args, extra = {}
 if (e.tool === 'item') {
   const size = Math.min(e.size, s.waiting)
-  cmd = 'draw-review-run.mjs'; args = [e.domain, String(size), Q.reviewer, runId]; extra = { DRAW_COHORT: e.cohort, ...(e.family ? { DRAW_FAMILY: e.family } : {}) }
+  cmd = 'draw-review-run.mjs'; args = [e.domain, String(size), Q.reviewer, runId]; extra = { DRAW_COHORT: e.cohort, ...(e.family ? { DRAW_FAMILY: e.family } : {}), ...(e.group ? { DRAW_GROUP: e.group } : {}) }
 } else if (e.tool === 'sets') {
   cmd = 'draw-toefl-conv-runs.mjs'; args = [e.cohort, runId, '--commit']
 } else refuse(`unknown tool ${e.tool}`)

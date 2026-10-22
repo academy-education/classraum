@@ -4077,13 +4077,13 @@
       "task": "multiple_choice",
       "family": "mc_hidden_source",
       "cohort": "isee-reading-draft-2",
-      "contentSha": "fbb927894ffe5f9be547766bd9a6c6d2f2b01a1781a506622627bbb9a2ba674b",
+      "contentSha": "879ab1aab8169deb4036e14ebfce7d6cc44515a6ec7d9a29611d2ec1e9aab6ef",
       "status": "staged-for-human-edit",
-      "note": "Second ISEE draft-route batch: 6 passages x 6 four-choice items, written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in isee-reading-draft-2.RELEASE.PREREG.md. contentSha = sha256 of isee-reading-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
+      "note": "Second ISEE draft-route batch: 6 passages x 6 four-choice items, written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in isee-reading-draft-2.RELEASE.PREREG.md. contentSha = sha256 of isee-reading-draft-2.batch.json. REGISTER section 5, 2026-10-21. 2026-10-22: one distractor replaced before any sitting after a co-founder-standard grader flag (fixes/cofounder-standard-prescreen-2026-10-22.mjs); contentSha moved from fbb927894ffe.",
       "stages": {
         "shape": {
           "passed": true,
-          "contentSha": "fbb927894ffe5f9be547766bd9a6c6d2f2b01a1781a506622627bbb9a2ba674b",
+          "contentSha": "879ab1aab8169deb4036e14ebfce7d6cc44515a6ec7d9a29611d2ec1e9aab6ef",
           "verdict": "merge.mjs at K=4: 0 problems after pre-insert edits (2 vocabulary items re-headworded for length ratio; 3 paragraphs reduced to one negation; key uniquely longest 11/36 -> 7/36 by one lengthened distractor on 4 items; uniquely shortest 5/36). Key slots 9/9/9/9. Edit screen 36/36."
         },
         "nosource": {
@@ -4198,13 +4198,13 @@
       "task": "conversation",
       "family": "mc_hidden_source",
       "cohort": "toefl-conv-draft-2",
-      "contentSha": "e4f9134bdc8533abcd85c65ece181fdcce8d1cd96c0560e4462094ff29313a54",
+      "contentSha": "1e8a0f621c0e5589e8f3948a9e0f47664a3ab3a17fba91a9d7b4b1fad2017e5f",
       "status": "staged-for-human-edit",
-      "note": "12 medium/hard two-question conversations written in-session by Claude for the upper/hard band; staged verified=false; release only by the co-founder runs in toefl-conv-draft-2.RELEASE.PREREG.md (draft 1's rule). contentSha = sha256 of toefl-conv-draft-2.batch.json. REGISTER section 5, 2026-10-21.",
+      "note": "12 medium/hard two-question conversations written in-session by Claude for the upper/hard band; staged verified=false; release only by the co-founder runs in toefl-conv-draft-2.RELEASE.PREREG.md (draft 1's rule). contentSha = sha256 of toefl-conv-draft-2.batch.json. REGISTER section 5, 2026-10-21. 2026-10-22: one distractor replaced before any sitting after a co-founder-standard grader flag (fixes/cofounder-standard-prescreen-2026-10-22.mjs); contentSha moved from e4f9134bdc85.",
       "stages": {
         "shape": {
           "passed": true,
-          "contentSha": "e4f9134bdc8533abcd85c65ece181fdcce8d1cd96c0560e4462094ff29313a54",
+          "contentSha": "1e8a0f621c0e5589e8f3948a9e0f47664a3ab3a17fba91a9d7b4b1fad2017e5f",
           "verdict": "conversation-gate.ts 0 violations on 12; 12 groups x 2; key uniquely longest 6/24 after lengthening one distractor on 8 items (was 12/24), shortest 2/24; speakers by role only."
         },
         "nosource": {
@@ -9627,13 +9627,13 @@
       "task": "multiple_choice",
       "family": "mc_hidden_source",
       "cohort": "ssat-reading-draft-5",
-      "contentSha": "e8a633750904b3622784ddec340ca64262caab886deb0302f68bff3112bd7d39",
+      "contentSha": "cbd7ca5838e0e5964c2509fbcac69489b8cbc07c98d230bac1cb286854f47027",
       "status": "staged-for-human-edit",
-      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-5.batch.json. REGISTER section 5, 2026-10-22.",
+      "note": "SSAT draft-route batch written by a Claude agent (owner 2026-10-22: use many agents) to scripts/study-bank/SSAT-READING-AGENT-BRIEF.md (draft 4 rules), reviewed item by item in-session; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting in ssat-reading-drafts-5-8.RELEASE.PREREG.md. contentSha = sha256 of ssat-reading-draft-5.batch.json. REGISTER section 5, 2026-10-22. 2026-10-22: one distractor replaced before any sitting after a co-founder-standard grader flag (fixes/cofounder-standard-prescreen-2026-10-22.mjs); contentSha moved from e8a633750904.",
       "stages": {
         "shape": {
           "passed": true,
-          "contentSha": "e8a633750904b3622784ddec340ca64262caab886deb0302f68bff3112bd7d39",
+          "contentSha": "cbd7ca5838e0e5964c2509fbcac69489b8cbc07c98d230bac1cb286854f47027",
           "verdict": "merge.mjs 0 problems (draft-4 checks + per-passage slot cap); key uniquely longest 6/36, shortest 6/36; quotes 289/0; check-location-refs 0 mismatches; edit screen 36/36."
         },
         "nosource": {

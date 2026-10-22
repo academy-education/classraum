@@ -783,30 +783,30 @@
     "id": "CD2-C07-2",
     "type": "multiple_choice",
     "blanks": null,
-    "graphic": null,
-    "passage": "Transcript: A: Our group booked study room four for Thursday, but someone else was in it when we arrived. B: Let me check. Your booking is there, but it's for Thursday the ninth, and today is the second. A: Oh no. I must have clicked the wrong week. B: It happens a lot. Room six is free right now if you can manage with five chairs. A: There are six of us. B: Then take six anyway, and I'll bring a chair from the office. I'll leave the ninth as it is, unless you'd rather cancel it. A: No, keep it. We'll need it again for the final review.",
-    "passageGroupId": "pg-d1859e1d022b87e74a26a9cff985afcf",
     "prompt": "[Conversation — Library front desk] What does the librarian offer to do?",
     "choices": [
      "Bring an extra chair into room six",
      "Move the other group to room six",
-     "Cancel the booking for the ninth",
+     "Extend the room booking past closing time",
      "Change the booking to Thursday the second"
     ],
+    "graphic": null,
+    "passage": "Transcript: A: Our group booked study room four for Thursday, but someone else was in it when we arrived. B: Let me check. Your booking is there, but it's for Thursday the ninth, and today is the second. A: Oh no. I must have clicked the wrong week. B: It happens a lot. Room six is free right now if you can manage with five chairs. A: There are six of us. B: Then take six anyway, and I'll bring a chair from the office. I'll leave the ninth as it is, unless you'd rather cancel it. A: No, keep it. We'll need it again for the final review.",
+    "difficulty": "medium",
+    "explanation": "'Take six anyway, and I'll bring a chair from the office.'",
+    "listeningTask": "conversation",
     "correct_answer": "Bring an extra chair into room six",
+    "passageGroupId": "pg-d1859e1d022b87e74a26a9cff985afcf",
     "correct_answers": null,
     "acceptable_answers": null,
-    "difficulty": "medium",
-    "listeningTask": "conversation",
-    "explanation": "'Take six anyway, and I'll bring a chair from the office.'",
     "distractor_rationales": [
      {
       "choice": "Move the other group to room six",
       "reason": "The other group stays in room four."
      },
      {
-      "choice": "Cancel the booking for the ninth",
-      "reason": "The librarian keeps the ninth unless asked to cancel, and the student says keep it."
+      "choice": "Extend the room booking past closing time",
+      "reason": "Closing time is never mentioned; the librarian offers room six and a chair."
      },
      {
       "choice": "Change the booking to Thursday the second",
@@ -814,7 +814,7 @@
      }
     ]
    },
-   "content_hash": "f753c22b0dfd8e3dca01774146b1d16d",
+   "content_hash": "c88547d7d271c8797b8515858d9b0f69",
    "word_count": 108,
    "verified": false,
    "archived": false,

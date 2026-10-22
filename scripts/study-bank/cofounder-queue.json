@@ -1,5 +1,5 @@
 {
-  "note": "The co-founder's release-sitting order (2026-10-22). Each entry is satisfied when its cohort has no staged row he has not reviewed, or when the cohort has had `upTo` runs drawn. draw-next.mjs draws the first unsatisfied entry. Order follows the runout monitor (real student closest to a repeat first); every move is an order-only amendment recorded in the cohort's prereg or REGISTER.",
+  "note": "The co-founder's release-sitting order (2026-10-22). Each entry is satisfied when its cohort has no staged row he has not reviewed, or when the cohort has had `upTo` runs drawn. draw-next.mjs draws the first unsatisfied entry. Order follows the runout monitor (real student closest to a repeat first); every move is an order-only amendment recorded in the cohort's prereg or REGISTER. | 2026-10-22 owner option 2: pre-screened batches get a spot-check (one passage / 12 items / one set run); every third reading batch a full sitting. Sample passages seeded \"spotcheck-groups-2026-10-22\". Rules: COFOUNDER-GRADER-2026-10-22.PREREG.md Amendment 1.",
   "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
   "queue": [
     {
@@ -32,16 +32,17 @@
       "domain": "Choose a Response",
       "size": 12,
       "family": "toefl",
-      "upTo": 1,
       "runId": "crv11-release{n}-cofounder-{date}"
     },
     {
       "cohort": "ssat-reading-draft-5",
       "tool": "item",
       "domain": "Reading Comprehension",
-      "size": 36,
+      "size": 6,
       "family": "ssat",
-      "runId": "ssat-draft5-release-cofounder-{date}"
+      "group": "draft5-D5-P02",
+      "route": "spot",
+      "runId": "ssat-draft5-spot-cofounder-{date}"
     },
     {
       "cohort": "ssat-verbal-draft-1",
@@ -50,43 +51,32 @@
       "size": 12,
       "family": "ssat",
       "upTo": 1,
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
+      "route": "spot",
+      "runId": "ssatvd1-spot{n}-cofounder-{date}"
     },
     {
       "cohort": "ssat-reading-draft-6",
       "tool": "item",
       "domain": "Reading Comprehension",
-      "size": 36,
+      "size": 6,
       "family": "ssat",
-      "runId": "ssat-draft6-release-cofounder-{date}"
+      "group": "draft6-D6-P02",
+      "route": "spot",
+      "runId": "ssat-draft6-spot-cofounder-{date}"
     },
     {
       "cohort": "toefl-passage-draft-1",
       "tool": "sets",
       "upTo": 1,
-      "runId": "toefl-passage1-release{n}-cofounder-{date}"
+      "route": "spot",
+      "runId": "toefl-passage1-spot{n}-cofounder-{date}"
     },
     {
       "cohort": "toefl-talk-draft-1",
       "tool": "sets",
-      "runId": "toefl-talk1-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "cr-v11",
-      "tool": "item",
-      "domain": "Choose a Response",
-      "size": 12,
-      "family": "toefl",
-      "runId": "crv11-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-verbal-draft-1",
-      "tool": "item",
-      "domain": "Verbal",
-      "size": 12,
-      "family": "ssat",
       "upTo": 2,
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
+      "route": "spot",
+      "runId": "toefl-talk1-release{n}-cofounder-{date}"
     },
     {
       "cohort": "cr-v12",
@@ -95,24 +85,8 @@
       "size": 12,
       "family": "toefl",
       "upTo": 1,
-      "runId": "crv12-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-verbal-draft-1",
-      "tool": "item",
-      "domain": "Verbal",
-      "size": 12,
-      "family": "ssat",
-      "upTo": 3,
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "cr-v12",
-      "tool": "item",
-      "domain": "Choose a Response",
-      "size": 12,
-      "family": "toefl",
-      "runId": "crv12-release{n}-cofounder-{date}"
+      "route": "spot",
+      "runId": "crv12-spot{n}-cofounder-{date}"
     },
     {
       "cohort": "ssat-reading-draft-7",
@@ -120,7 +94,8 @@
       "domain": "Reading Comprehension",
       "size": 36,
       "family": "ssat",
-      "runId": "ssat-draft7-release-cofounder-{date}"
+      "runId": "ssat-draft7-release-cofounder-{date}",
+      "route": "full"
     },
     {
       "cohort": "cr-v13",
@@ -128,47 +103,9 @@
       "domain": "Choose a Response",
       "size": 12,
       "family": "toefl",
-      "runId": "crv13-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-verbal-draft-1",
-      "tool": "item",
-      "domain": "Verbal",
-      "size": 12,
-      "family": "ssat",
-      "upTo": 4,
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-verbal-draft-1",
-      "tool": "item",
-      "domain": "Verbal",
-      "size": 12,
-      "family": "ssat",
-      "upTo": 5,
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "toefl-passage-draft-1",
-      "tool": "sets",
-      "upTo": 2,
-      "runId": "toefl-passage1-release{n}-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-reading-draft-8",
-      "tool": "item",
-      "domain": "Reading Comprehension",
-      "size": 36,
-      "family": "ssat",
-      "runId": "ssat-draft8-release-cofounder-{date}"
-    },
-    {
-      "cohort": "ssat-verbal-draft-1",
-      "tool": "item",
-      "domain": "Verbal",
-      "size": 12,
-      "family": "ssat",
-      "runId": "ssatvd1-release{n}-cofounder-{date}"
+      "upTo": 1,
+      "route": "spot",
+      "runId": "crv13-spot{n}-cofounder-{date}"
     },
     {
       "cohort": "ssat-verbal-draft-2",
@@ -176,30 +113,43 @@
       "domain": "Verbal",
       "size": 12,
       "family": "ssat",
-      "runId": "ssatvd2-release{n}-cofounder-{date}"
+      "upTo": 2,
+      "route": "spot",
+      "runId": "ssatvd2-spot{n}-cofounder-{date}"
     },
     {
-      "cohort": "toefl-passage-draft-1",
-      "tool": "sets",
-      "runId": "toefl-passage1-release{n}-cofounder-{date}"
+      "cohort": "ssat-reading-draft-8",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft8-D8-P01",
+      "route": "spot",
+      "runId": "ssat-draft8-spot-cofounder-{date}"
     },
     {
       "cohort": "toefl-conv-draft-1",
       "tool": "sets",
+      "upTo": 5,
+      "route": "spot",
       "runId": "toefl-conv1-release{n}-cofounder-{date}"
     },
     {
       "cohort": "toefl-conv-draft-2",
       "tool": "sets",
-      "runId": "toefl-conv2-release{n}-cofounder-{date}"
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-conv2-spot{n}-cofounder-{date}"
     },
     {
       "cohort": "isee-reading-draft-2",
       "tool": "item",
       "domain": "Reading Comprehension",
-      "size": 36,
+      "size": 6,
       "family": "isee",
-      "runId": "isee-draft2-release-cofounder-{date}"
+      "group": "iseedraft2-IR2-P06",
+      "route": "spot",
+      "runId": "isee-draft2-spot-cofounder-{date}"
     },
     {
       "cohort": "isee-reading-draft-3",
@@ -207,7 +157,8 @@
       "domain": "Reading Comprehension",
       "size": 36,
       "family": "isee",
-      "runId": "isee-draft3-release-cofounder-{date}"
+      "runId": "isee-draft3-release-cofounder-{date}",
+      "route": "full"
     }
   ]
 }
