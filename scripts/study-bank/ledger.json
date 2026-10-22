@@ -10589,6 +10589,60 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-11-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-11",
+      "contentSha": "709857feeb4139334da23aa5f2e82e5858286a285124ca9ea95784af90317db5",
+      "status": "staged-for-human-review",
+      "note": "6 x 6, Claude agent; spot route (reading-drafts-wave3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "709857feeb4139334da23aa5f2e82e5858286a285124ca9ea95784af90317db5",
+          "verdict": "merge 0 problems; quotes 0; location 0."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-10-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-10",
+      "contentSha": "da8e5110eec23f7b9f2d653d77f24847d54e07b4db23fa38be81c8e22d4e91da",
+      "status": "staged-for-human-review",
+      "note": "6 x 6, Claude agent; spot route (reading-drafts-wave3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "da8e5110eec23f7b9f2d653d77f24847d54e07b4db23fa38be81c8e22d4e91da",
+          "verdict": "merge 0 problems; quotes 0; location 0."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

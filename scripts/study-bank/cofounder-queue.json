@@ -383,6 +383,26 @@
       "upTo": 1,
       "route": "spot",
       "runId": "crv17-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-11",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft11-D11-P01",
+      "route": "spot",
+      "runId": "ssat-draft11-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-10",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft10-IR10-P02",
+      "route": "spot",
+      "runId": "isee-draft10-spot-cofounder-{date}"
     }
   ]
 }
