@@ -9861,6 +9861,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-5-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-5",
+      "contentSha": "e319bb45112e37b7352d3021cdca12aac04a8f3e2a47d143c76cfb063393dc5c",
+      "status": "staged-for-human-edit",
+      "note": "ISEE draft 5: 36 items by a Claude agent; grader 2/36 flagged and fixed pre-sitting. Spot route (isee-reading-draft-5.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e319bb45112e37b7352d3021cdca12aac04a8f3e2a47d143c76cfb063393dc5c",
+          "verdict": "merge K=4 0 problems; key longest 7/36 shortest 6/36; quotes 0 unmatched; location refs 0 mismatches."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 2/36 flagged, fixed."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
