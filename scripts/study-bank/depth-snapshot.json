@@ -1,0 +1,94 @@
+{
+  "_note": "Clean tests before a repeat, per section, as last MEASURED by the repo's depth scripts. runout-monitor.ts reads this; it never estimates depth itself. Update the numbers and 'measured' whenever a depth script is re-run (toefl-form-depth.ts, admission-form-depth.ts, ssat-verbal-replay.ts, form-capacity.mjs). atLeast=true means the script only replays that many forms, so the true depth is >= value.",
+  "measured": "2026-10-22",
+  "sections": {
+    "toefl/listening": {
+      "byPath": {
+        "upper/hard": 14,
+        "upper/medium": 17,
+        "lower/medium": 12,
+        "lower/easy": 11
+      },
+      "source": "toefl-form-depth.ts 2026-10-21 binding per path/band (upper/hard academic_talk 14; upper/medium choose_response 17; lower/medium 12, lower/easy 11 choose_response)"
+    },
+    "toefl/reading": {
+      "byPath": {
+        "upper/hard": 20,
+        "upper/medium": 23,
+        "lower/medium": 14,
+        "lower/easy": 14
+      },
+      "source": "toefl-form-depth.ts 2026-10-21 reading tasks (academic_passage upper/hard 20, upper/medium 23; daily_life lower 14)"
+    },
+    "toefl/writing": {
+      "value": 20,
+      "source": "toefl-form-depth.ts 2026-10-21 (arrange_words 20 all paths; email/discussion > 60)"
+    },
+    "toefl/speaking": {
+      "value": 18,
+      "source": "toefl-form-depth.ts 2026-10-21 (speaking_repeat 18)"
+    },
+    "ssat/reading": {
+      "value": 5,
+      "source": "admission-form-depth.ts 2026-10-21 after ssat-reading-draft-2 release"
+    },
+    "ssat/verbal": {
+      "value": 10,
+      "source": "ssat-verbal-replay.ts 2026-10-21"
+    },
+    "ssat/math": {
+      "value": 6,
+      "atLeast": true,
+      "source": "admission-form-depth.ts (replays 6 forms)"
+    },
+    "ssat/writing": {
+      "value": 11,
+      "source": "essay-bank-helper.mjs verify 2026-10-21 (11 pairs)"
+    },
+    "isee/reading": {
+      "value": 2,
+      "source": "admission-form-depth.ts"
+    },
+    "isee/verbal": {
+      "value": 6,
+      "atLeast": true,
+      "source": "admission-form-depth.ts (replays 6 forms)"
+    },
+    "isee/math": {
+      "value": 6,
+      "atLeast": true,
+      "source": "admission-form-depth.ts (replays 6 forms)"
+    },
+    "isee/writing": {
+      "value": 8,
+      "source": "essay-bank-helper.mjs verify (8 prompts)"
+    },
+    "sat/reading_writing": {
+      "value": 18,
+      "hardRoute": 9,
+      "source": "form-capacity.mjs (18; 9 on the hard route)"
+    },
+    "sat/math": {
+      "value": 36,
+      "hardRoute": 11,
+      "source": "form-capacity.mjs (36; 11 on the hard route)"
+    },
+    "act/english": {
+      "value": 7,
+      "source": "form-capacity.mjs"
+    },
+    "act/math": {
+      "value": 22,
+      "source": "form-capacity.mjs"
+    },
+    "act/reading": {
+      "value": 4,
+      "source": "form-capacity.mjs"
+    },
+    "act/science": {
+      "value": 3,
+      "source": "form-capacity.mjs"
+    }
+  },
+  "_paths": "TOEFL path is not stored on a session; runout-monitor.ts infers it from the module-2 task mix in the student's attempts: Reading upper serves 18 Academic Passage items per sitting (lower 8), Listening upper serves 16 Academic Talk (lower 4)."
+}
