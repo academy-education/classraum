@@ -3076,6 +3076,7 @@ recorded only in a commit message is a finding nobody reads.
   - Grade: `act-math-v29-grade.{batch,grade,gradekey}.json`, `act-math-v29.grader-{a,b}.json`.
   - Ledger `act-math-v29-kept-2026-10-10`. `form-capacity`: ACT Math 22 forms by domain (986; binding N&Q 111 / 5). `next-form`: form 23 = 26 items.
 
+- **2026-10-23** — **SAT WIC v26 PRE-REGISTERED (`PREREG-WIC26-2026-10-23.md`), not commissioned: v25's four-world method, 40 items (5 x 8), v25's revision rules in the brief from the start, a raised world probe. Two findings from building it.** (1) **`wic25-gate.mjs`'s attrition bar failed an exact +10.0.** It compared the raw float `E > 10`, and 45.0% - 25.0% is 20.000000000000004, so a kept set exactly at the "<= +10" bar was HELD. v25 was not affected (E_kept -2.8). `wic26-gate.mjs` compares on 0.1-point rounding; the boundary case fails before the fix and passes after. Any other script that tests a margin bar on a raw float difference has the same edge. (2) **The lexical pivot rule catches under half of what the probe found.** It fires on 55 of v25's 128 pre-revision worlds (44424d4a); the probe called ~120 of 128 one-sentence. It stays pre-flight; the probe and graders remain the instruments.
 
 ## 6. The rule that keeps this honest
 
