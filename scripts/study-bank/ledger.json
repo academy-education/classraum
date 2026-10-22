@@ -9834,6 +9834,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "crv7-b11-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v15",
+      "contentSha": "230b294da9b5c14c829135fb93ae3460803db2da08387715566f63b42822a8b4",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 11: 40 four-world items by 2 Claude agents (strict-kill brief + length/kind balance), seed offset 1100; grader dropped 5; 35 staged. Spot route (crv7-b11.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "230b294da9b5c14c829135fb93ae3460803db2da08387715566f63b42822a8b4",
+          "verdict": "render 0 problems, 0 re-rolls, letters 10x4, key shortest 7/40."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A+B union 5/40 flagged, dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
