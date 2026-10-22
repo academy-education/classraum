@@ -1,0 +1,306 @@
+[
+  {
+    "id": "II21B-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Across Grenhold County, concrete bridge decks show more surface cracking the longer they have been in service. Civil engineer Hugo Lindahl attributes the cracking mainly to freeze-thaw cycles: water that seeps into the concrete expands when it freezes, widening small flaws a little more each time. His colleague Jonas Grell argues instead that repeated loading by heavy trucks is the main cause. Both accounts fit the link between age and cracking, since an older deck has endured more freezing and more traffic. Lindahl notes, however, that the county's bridges in the low Ketter Valley, where cold air pools on winter nights, freeze and thaw far more often each year than its bridges on the upland plateau, yet they carry far less truck traffic, because freight is routed along the plateau highway.",
+    "prompt": "Which finding, if true, would most directly support Lindahl's hypothesis?",
+    "choices": [
+      "Decks on plateau bridges showed more cracking than decks on valley bridges of the same age.",
+      "Decks on newer bridges showed more cracking than decks on older bridges in the same area.",
+      "Decks on valley bridges showed more cracking than decks on plateau bridges of the same age.",
+      "Decks on older bridges showed more cracking than decks on newer bridges in the same area."
+    ],
+    "correct_answer": "Decks on valley bridges showed more cracking than decks on plateau bridges of the same age.",
+    "explanation": "Lindahl attributes the cracking to \"freeze-thaw cycles,\" while Grell blames \"repeated loading by heavy trucks.\" The passage says the valley bridges \"freeze and thaw far more often each year\" than the plateau bridges, \"yet they carry far less truck traffic,\" so valley versus plateau is the contrast that pulls the two accounts apart. The finding that \"Decks on valley bridges showed more cracking than decks on plateau bridges of the same age\" ties cracking to more freezing and less traffic, which Lindahl's account predicts and Grell's does not. The finding that \"Decks on plateau bridges showed more cracking than decks on valley bridges of the same age\" ties cracking to heavier traffic, which is what Grell's account predicts. The finding that \"Decks on older bridges showed more cracking than decks on newer bridges in the same area\" restates the age pattern that the passage says \"Both accounts fit,\" so it cannot favor Lindahl. The finding that \"Decks on newer bridges showed more cracking than decks on older bridges in the same area\" reverses the observed age pattern and supports neither account.",
+    "topic_tag": "bridge-deck-cracking-freeze-thaw",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Hugo Lindahl",
+        "Jonas Grell",
+        "Grenhold County",
+        "Ketter Valley"
+      ],
+      "why_hard": "The hypothesis (freeze-thaw) and the discriminating fact (valley: more freezing, less traffic) sit in different sentences; the age contrast both accounts predict and the rival's valley/plateau reversal are both present, so neither plausibility nor pattern-reading picks the key."
+    }
+  },
+  {
+    "id": "II21B-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In Lake Ilsen, blooms of blue-green algae have grown more severe over the past two decades, and in any given year they are worst in late summer. Limnologist Ines Kowal attributes the blooms mainly to phosphorus washed into the lake from fertilized farmland. Her colleague Gil Hartley holds that rising water temperatures are the main driver, since these algae multiply fastest in warm water. Both accounts fit the late-summer peak, when the water is warmest and a season's runoff has accumulated. Kowal points out, however, that the lake's northern bays, which are fed by cold springs, stay several degrees cooler than its southern bays throughout the summer, yet they receive the drainage from the region's most heavily fertilized fields.",
+    "prompt": "Which finding, if true, would most directly support Kowal's hypothesis?",
+    "choices": [
+      "Blooms were more severe in the northern bays than in the southern bays during the same month.",
+      "Blooms were more severe in early summer than in late summer within the same bays.",
+      "Blooms were more severe in the southern bays than in the northern bays during the same month.",
+      "Blooms were more severe in late summer than in early summer within the same bays."
+    ],
+    "correct_answer": "Blooms were more severe in the northern bays than in the southern bays during the same month.",
+    "explanation": "Kowal attributes the blooms to \"phosphorus washed into the lake from fertilized farmland,\" while Hartley credits \"rising water temperatures.\" The passage says the northern bays \"stay several degrees cooler\" than the southern bays \"yet they receive the drainage from the region's most heavily fertilized fields,\" so the two accounts make opposite predictions about north versus south. The finding that \"Blooms were more severe in the northern bays than in the southern bays during the same month\" links worse blooms to more fertilizer runoff despite cooler water, which Kowal's account predicts and Hartley's does not. The finding that \"Blooms were more severe in the southern bays than in the northern bays during the same month\" links worse blooms to warmer water, which is what Hartley's account predicts. The finding that \"Blooms were more severe in late summer than in early summer within the same bays\" restates the seasonal peak that the passage says \"Both accounts fit,\" so it cannot favor Kowal. The finding that \"Blooms were more severe in early summer than in late summer within the same bays\" reverses the observed seasonal pattern and supports neither account.",
+    "topic_tag": "lake-algal-blooms-phosphorus-temperature",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Ines Kowal",
+        "Gil Hartley",
+        "Lake Ilsen"
+      ],
+      "why_hard": "Kowal's mechanism (fertilizer phosphorus) and the north/south fact (cooler but more fertilized) are separate sentences; the seasonal contrast both accounts predict is a strong-sounding distractor and the rival's warm-bay reversal is present."
+    }
+  },
+  {
+    "id": "II21B-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Over the past decade, stands of pine on the southern flank of Mount Kelda, a dormant volcano, have been dying. Geochemist Lena Haskins hypothesizes that carbon dioxide rising from magma along a fault that crosses the southern flank is killing the trees by starving their roots of oxygen. Her colleague Kofi Jallow attributes the die-off to a drought that has gripped the region for most of the decade and has been most severe on the mountain's sun-facing southern side. Haskins notes that because carbon dioxide is denser than air, gas escaping from the soil tends to collect in hollows. During dry spells, however, the hollows also hold more soil moisture than the ridges between them.",
+    "prompt": "Which finding, if true, would most directly weaken Haskins's hypothesis?",
+    "choices": [
+      "On the southern flank, trees near the fault died at a higher rate than trees farther from it.",
+      "Trees on the southern flank died at a higher rate than trees on the northern flank at the same elevation.",
+      "On the southern flank, older trees died at a higher rate than younger trees growing beside them.",
+      "On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them."
+    ],
+    "correct_answer": "On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them.",
+    "explanation": "Haskins blames carbon dioxide rising \"along a fault that crosses the southern flank,\" while Jallow blames a drought. The passage says the gas \"tends to collect in hollows,\" but that the hollows \"also hold more soil moisture than the ridges between them.\" Haskins's account therefore predicts more deaths in hollows, where the gas gathers, while Jallow's predicts more deaths on the drier ridges. The finding that \"On the southern flank, trees on ridges died at a higher rate than trees in the hollows between them\" is the opposite of what Haskins's account predicts and fits Jallow's, so it most directly weakens her hypothesis. The finding that \"On the southern flank, trees near the fault died at a higher rate than trees farther from it\" fits gas rising \"along a fault,\" so it would support Haskins rather than weaken her. The finding that \"Trees on the southern flank died at a higher rate than trees on the northern flank at the same elevation\" is predicted by both accounts, since the fault crosses the southern flank and the drought \"has been most severe on the mountain's sun-facing southern side.\" The finding that \"On the southern flank, older trees died at a higher rate than younger trees growing beside them\" concerns tree age, which the passage does not connect to either the gas or the drought, so it does not bear on Haskins's hypothesis.",
+    "topic_tag": "volcano-tree-dieoff-carbon-dioxide",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual)",
+      "names": [
+        "Lena Haskins",
+        "Kofi Jallow",
+        "Mount Kelda"
+      ],
+      "why_hard": "The key needs Haskins's mechanism (gas from the fault) plus the density sentence (gas pools in hollows) plus the moisture sentence; four distinct contrasts, no reversed pair, and the south-versus-north finding the rival predicts is present."
+    }
+  },
+  {
+    "id": "II21B-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Engineers compare battery cells by specific energy: the energy a cell stores divided by its mass. Sodium-ion cells are generally cheaper to make than lithium-ion cells but store less energy per kilogram. Engineer Lukas Grieve claims that his team's sodium-ion prototype already exceeds at least one lithium-ion cell now on the market in specific energy. Grieve's claim is supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Five battery cells tested by Grieve's team",
+      "colLabels": [
+        "Chemistry",
+        "Mass (kilograms)",
+        "Stored energy (watt-hours)"
+      ],
+      "rowLabels": [
+        "Prototype",
+        "Cell H",
+        "Cell J",
+        "Cell K",
+        "Cell L"
+      ],
+      "cells": [
+        [
+          "Sodium-ion",
+          "1.2",
+          "180"
+        ],
+        [
+          "Sodium-ion",
+          "0.8",
+          "96"
+        ],
+        [
+          "Lithium-ion",
+          "1.5",
+          "210"
+        ],
+        [
+          "Lithium-ion",
+          "1.0",
+          "230"
+        ],
+        [
+          "Lithium-ion",
+          "2.25",
+          "360"
+        ]
+      ]
+    },
+    "choices": [
+      "the prototype stores 180 watt-hours in 1.2 kilograms, while Cell H stores 96 watt-hours in 0.8 kilograms.",
+      "the prototype stores 180 watt-hours in 1.2 kilograms, while Cell J stores 210 watt-hours in 1.5 kilograms.",
+      "the prototype stores 180 watt-hours in 1.2 kilograms, while Cell K stores 230 watt-hours in 1.0 kilograms.",
+      "the prototype stores 180 watt-hours in 1.2 kilograms, while Cell L stores 360 watt-hours in 2.25 kilograms."
+    ],
+    "correct_answer": "the prototype stores 180 watt-hours in 1.2 kilograms, while Cell J stores 210 watt-hours in 1.5 kilograms.",
+    "explanation": "Specific energy is \"the energy a cell stores divided by its mass,\" so the prototype's is 180 / 1.2 = 150 watt-hours per kilogram. Grieve claims the prototype beats \"at least one lithium-ion cell,\" so the choice must name a lithium-ion cell whose specific energy is below 150. Cell J is lithium-ion and stores 210 / 1.5 = 140 watt-hours per kilogram, so \"while Cell J stores 210 watt-hours in 1.5 kilograms\" supports the claim, even though Cell J stores more energy in total. All four choices read the table accurately. Cell H's specific energy, 96 / 0.8 = 120, is also below the prototype's, but the table lists Cell H as sodium-ion, so it says nothing about lithium-ion cells. Cell K (230 / 1.0 = 230) and Cell L (360 / 2.25 = 160) are lithium-ion cells with higher specific energy than the prototype, so they work against the claim.",
+    "topic_tag": "battery-specific-energy-sodium-ion",
+    "meta": {
+      "design": "quant",
+      "key_rank": "2nd of 4 ascending by the compared cell's watt-hours (96, 210*, 230, 360)",
+      "names": [
+        "Lukas Grieve"
+      ],
+      "why_hard": "Needs a ratio for the prototype and for each cell (two cells each) plus the chemistry column; the key cell stores MORE total energy than the prototype, and the sodium-ion Cell H also has a lower ratio, so ratio alone leaves two."
+    }
+  },
+  {
+    "id": "II21B-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "A roof's solar reflectance is the share of incoming sunlight it reflects rather than absorbs; the higher the value, the cooler the roof stays in summer. Most roof surfaces lose some reflectance as dirt and weathering build up. Engineer Ilona Hartwig surveyed six roofs, including one painted with a new mineral coating, and claims that after three years of weathering the coated roof reflected more sunlight than either of the white membrane roofs in her survey. Hartwig's claim is supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Solar reflectance of six roofs",
+      "colLabels": [
+        "Surface",
+        "Reflectance when new (%)",
+        "Reflectance after three years (%)"
+      ],
+      "rowLabels": [
+        "Gorse Hall",
+        "Hallam Depot",
+        "Ivy Barn",
+        "Juniper Annex",
+        "Kiln Lab",
+        "Linden Works"
+      ],
+      "cells": [
+        [
+          "Mineral coating",
+          "84",
+          "71"
+        ],
+        [
+          "White membrane",
+          "86",
+          "62"
+        ],
+        [
+          "White membrane",
+          "80",
+          "55"
+        ],
+        [
+          "Coated white metal",
+          "70",
+          "67"
+        ],
+        [
+          "Reflective clay tile",
+          "74",
+          "69"
+        ],
+        [
+          "Light concrete tile",
+          "71",
+          "65"
+        ]
+      ]
+    },
+    "choices": [
+      "after three years, Gorse Hall reflected 71 percent of incoming sunlight, while Juniper Annex reflected 67 percent.",
+      "after three years, Gorse Hall reflected 71 percent of incoming sunlight, while Kiln Lab reflected 69 percent.",
+      "after three years, Gorse Hall reflected 71 percent of incoming sunlight, while Hallam Depot reflected 62 percent.",
+      "after three years, Gorse Hall reflected 71 percent of incoming sunlight, while Linden Works reflected 65 percent."
+    ],
+    "correct_answer": "after three years, Gorse Hall reflected 71 percent of incoming sunlight, while Hallam Depot reflected 62 percent.",
+    "explanation": "Hartwig claims the coated roof on Gorse Hall reflected more sunlight after three years than \"either of the white membrane roofs.\" The table lists two white membrane roofs: Hallam Depot (62 percent after three years) and Ivy Barn (55 percent). Hallam Depot is the more reflective of the two, so showing that \"Gorse Hall reflected 71 percent of incoming sunlight, while Hallam Depot reflected 62 percent\" establishes that the coated roof outperformed both membrane roofs. All four choices read the table accurately. The choices ending \"while Juniper Annex reflected 67 percent,\" \"while Kiln Lab reflected 69 percent,\" and \"while Linden Works reflected 65 percent\" each compare Gorse Hall with a roof the table lists as coated white metal, reflective clay tile, or light concrete tile, so none of them says anything about the membrane roofs the claim concerns.",
+    "topic_tag": "roof-reflectance-membrane-weathering",
+    "meta": {
+      "design": "quant",
+      "key_rank": "smallest of 4 compared values (62*, 65, 67, 69); the closest to 71 is 69, a distractor",
+      "names": [
+        "Ilona Hartwig",
+        "Gorse Hall",
+        "Hallam Depot",
+        "Ivy Barn",
+        "Juniper Annex",
+        "Kiln Lab",
+        "Linden Works"
+      ],
+      "why_hard": "Subgroup maximum: identify the membrane rows from the Surface column, then take the higher of their after-three-year values; the key is the farthest from Gorse Hall's 71, so a 'closest comparator' heuristic picks wrong, and Hallam Depot's new value (86) exceeds Gorse Hall's (84)."
+    }
+  },
+  {
+    "id": "II21B-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "On clear, calm winter nights, cold, dense air drains down the slopes of the Gannet Basin and pools on its floor beneath warmer air. The top of this cold pool usually sits about 1,400 meters above sea level. Climatologist Greer Lowell claims that a station above the cold pool can record milder winter nights than a station within it, despite sitting higher on the slope. Lowell's claim is supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average January overnight minimum at six Gannet Basin stations",
+      "colLabels": [
+        "Elevation (meters)",
+        "Average minimum (°C)"
+      ],
+      "rowLabels": [
+        "Gessel",
+        "Halvern",
+        "Ilbury",
+        "Jessmont",
+        "Kestow",
+        "Lunder"
+      ],
+      "cells": [
+        [
+          "960",
+          "−15.0"
+        ],
+        [
+          "1,140",
+          "−13.4"
+        ],
+        [
+          "1,240",
+          "−11.6"
+        ],
+        [
+          "1,580",
+          "−8.2"
+        ],
+        [
+          "1,870",
+          "−9.5"
+        ],
+        [
+          "2,260",
+          "−12.4"
+        ]
+      ]
+    },
+    "choices": [
+      "the average minimum at Jessmont was −8.2°C, compared with −12.4°C at Lunder.",
+      "the average minimum at Ilbury was −11.6°C, compared with −15.0°C at Gessel.",
+      "the average minimum at Ilbury was −11.6°C, compared with −12.4°C at Lunder.",
+      "the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern."
+    ],
+    "correct_answer": "the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern.",
+    "explanation": "The passage places the top of the cold pool at \"about 1,400 meters,\" so stations above that elevation (Jessmont, Kestow, Lunder) lie above the pool and stations below it (Gessel, Halvern, Ilbury) lie within it. Lowell's claim needs a station above the pool that is milder than a station within it. Kestow (1,870 meters) is above the pool and Halvern (1,140 meters) is within it, so \"the average minimum at Kestow was −9.5°C, compared with −13.4°C at Halvern.\" shows the higher station recording the milder nights. All four choices read the table accurately. \"the average minimum at Jessmont was −8.2°C, compared with −12.4°C at Lunder.\" compares two stations that are both above the pool. \"the average minimum at Ilbury was −11.6°C, compared with −15.0°C at Gessel.\" compares two stations that are both within the pool, so although the higher one is milder, neither is above the pool. \"the average minimum at Ilbury was −11.6°C, compared with −12.4°C at Lunder.\" does compare a station within the pool (Ilbury, 1,240 meters) with one above it (Lunder, 2,260 meters), but the station within the pool is the milder one, the opposite of what the claim requires.",
+    "topic_tag": "basin-cold-pool-thermal-belt",
+    "meta": {
+      "design": "quant",
+      "key_rank": "3rd of 4 ascending by first-named value (-11.6, -11.6, -9.5*, -8.2); key gap 3.9 is neither largest (4.2) nor smallest (0.8)",
+      "names": [
+        "Greer Lowell",
+        "Gannet Basin",
+        "Gessel",
+        "Halvern",
+        "Ilbury",
+        "Jessmont",
+        "Kestow",
+        "Lunder"
+      ],
+      "why_hard": "Each option needs both stations' elevations checked against the 1,400 m line from the passage plus the temperature direction; the both-within-pool option shows a higher station milder (the same surface pattern as the key), and the one other crossing pair runs the wrong way."
+    }
+  }
+]

@@ -1,0 +1,312 @@
+[
+ {
+  "id": "II21D-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "In the cemeteries of the Tarsa basin, graves dug between 900 and 600 BCE contain steadily more bronze objects over time. Archaeologist Selma Ytterberg hypothesizes that the increase reflects wealth brought by a trade route that opened through the basin's lowlands early in that period. Her colleague Viktor Sandahl proposes instead that bronze simply grew cheaper after copper mining began in the surrounding hills. Both accounts fit the rising number of bronze objects. Ytterberg notes, however, that the upland villages lay close to the mines but far from the trade route, while the lowland villages lay along the route but far from the mines.",
+  "prompt": "Which finding, if true, would most directly support Ytterberg's hypothesis?",
+  "choices": [
+   "Upland graves contained more bronze objects than lowland graves dug in the same century.",
+   "Earlier graves contained more bronze objects than later graves dug in the same village.",
+   "Lowland graves contained more bronze objects than upland graves dug in the same century.",
+   "Later graves contained more bronze objects than earlier graves dug in the same village."
+  ],
+  "correct_answer": "Lowland graves contained more bronze objects than upland graves dug in the same century.",
+  "explanation": "Ytterberg ties the increase to \"wealth brought by a trade route that opened through the basin's lowlands,\" while Sandahl ties it to bronze growing \"cheaper after copper mining began in the surrounding hills.\" The passage says \"the upland villages lay close to the mines but far from the trade route, while the lowland villages lay along the route but far from the mines,\" so comparing uplands with lowlands at the same time pulls the accounts apart. The finding that \"Lowland graves contained more bronze objects than upland graves dug in the same century\" matches the villages on the route having more bronze, which Ytterberg's account predicts and Sandahl's does not. The finding that \"Upland graves contained more bronze objects than lowland graves dug in the same century\" is what Sandahl's account predicts, since the uplands lay close to the mines. The finding that \"Later graves contained more bronze objects than earlier graves dug in the same village\" restates the rise that the passage says \"Both accounts fit,\" so it cannot favor Ytterberg. The finding that \"Earlier graves contained more bronze objects than later graves dug in the same village\" reverses the observed rise and supports neither account.",
+  "topic_tag": "bronze-grave-goods-trade-route-vs-mines",
+  "meta": {
+   "design": "2x2",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Tarsa",
+    "Selma Ytterberg",
+    "Viktor Sandahl"
+   ],
+   "why_hard": "Key needs Ytterberg's lowland-route mechanism (sentence 2) combined with the upland/lowland geography (sentence 5); the geography sentence alone names both groups without saying which way either account points. The rival's prediction is the key reversed, and the both-fit contrast sits in the set with its reverse."
+  }
+ },
+ {
+  "id": "II21D-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Of the stone bridges built across the two rivers of the Ulvar district between 1300 and 1450, more than half collapsed within a century. Historian Stellan Voss claims that floodwater scoured away the riverbed beneath the bridges' piers. Historian Teodora Winslow argues instead that salt water, pushed upstream by the tides, gradually broke down the lime mortar binding the piers' stones. On both rivers, floods grow stronger downstream, and tidal salt water reaches the lower reaches but not the upper ones. Even so, the Tyrne's floods are violent even in its upper reaches, while the Sorle's are mild even near its mouth.",
+  "prompt": "Which finding, if true, would most directly weaken Voss's claim?",
+  "choices": [
+   "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+   "Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+   "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Sorle's upper reaches.",
+   "Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Sorle's upper reaches."
+  ],
+  "correct_answer": "Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches.",
+  "explanation": "Voss claims the collapses came from floodwater scouring the riverbed, so his account predicts more collapses where floods are stronger. The passage says \"the Tyrne's floods are violent even in its upper reaches, while the Sorle's are mild even near its mouth,\" so the Tyrne's upper reaches see stronger floods than the Sorle's lower reaches. The finding that \"Bridges on the Sorle's lower reaches collapsed more often than bridges on the Tyrne's upper reaches\" shows more collapses where floods are milder, the opposite of what Voss's account predicts; it fits Winslow's account instead, because \"tidal salt water reaches the lower reaches but not the upper ones.\" Each of the other findings compares a lower reach with an upper reach that has both weaker floods and no salt water, because \"floods grow stronger downstream\" on both rivers and the Tyrne's floods are stronger than the Sorle's. So \"Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Tyrne's upper reaches,\" \"Bridges on the Sorle's lower reaches collapsed more often than bridges on the Sorle's upper reaches,\" and \"Bridges on the Tyrne's lower reaches collapsed more often than bridges on the Sorle's upper reaches\" are each predicted by both accounts and do nothing to weaken Voss's claim.",
+  "topic_tag": "medieval-bridge-collapse-scour-vs-salt",
+  "meta": {
+   "design": "no-reverse",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Ulvar",
+    "Stellan Voss",
+    "Teodora Winslow",
+    "Tyrne",
+    "Sorle"
+   ],
+   "why_hard": "Every option is 'lower reach > upper reach', each of the four river-reach cells appears exactly twice, and two options put each river first, so no option is the odd one out. The key is the only comparison in which flood strength runs against collapse; seeing that needs Voss's mechanism plus both geography sentences (downstream growth, and Tyrne-upper vs Sorle-mouth). Three distractors are predicted by both accounts, including the rival."
+  }
+ },
+ {
+  "id": "II21D-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Many surviving copies of books printed in the 1760s by the Zellner press of Varnholt are marred by foxing: scattered rust-colored spots on the pages. Book historian Sunniva Tollefsen argues that the spots come from tiny particles of iron shed into the pulp by the iron-fitted beaters at the Wyrlow paper mill, one of the press's suppliers. Conservator Valter Yarrow contends instead that the spots result from damp storage, which encourages the growth of mold. The press also bought paper from the Tamsby and Ulmsby mills, whose beaters were made entirely of wood, and copies printed on all three papers survive both in libraries known to have been damp and in libraries known to have been dry.",
+  "prompt": "Which finding, if true, would most directly support Tollefsen's hypothesis?",
+  "choices": [
+   "Foxing was more common in copies on Tamsby paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries.",
+   "Foxing was more common in copies on Wyrlow paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries.",
+   "Foxing was more common in copies on Ulmsby paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries.",
+   "Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries."
+  ],
+  "correct_answer": "Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries.",
+  "explanation": "Tollefsen blames iron \"shed into the pulp by the iron-fitted beaters at the Wyrlow paper mill,\" while Yarrow blames \"damp storage.\" The passage says the Tamsby and Ulmsby beaters \"were made entirely of wood\" and that copies survive in both damp and dry libraries. The finding that \"Foxing was more common in copies on Wyrlow paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries\" compares iron-beaten with wood-beaten paper while holding storage constant and dry, so damp cannot explain the difference and only Tollefsen's account predicts it. The finding that \"Foxing was more common in copies on Tamsby paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries\" holds the paper constant and varies only storage, which is what Yarrow's account predicts. The finding that \"Foxing was more common in copies on Wyrlow paper kept in damp libraries than in copies on Tamsby paper kept in dry libraries\" varies paper and storage together, so both accounts predict it. The finding that \"Foxing was more common in copies on Ulmsby paper kept in dry libraries than in copies on Tamsby paper kept in dry libraries\" compares two papers whose beaters were both wooden, so it involves no iron and does not support Tollefsen.",
+  "topic_tag": "book-foxing-iron-beaters-vs-damp",
+  "meta": {
+   "design": "no-reverse",
+   "key_rank": "n/a (textual)",
+   "names": [
+    "Zellner",
+    "Varnholt",
+    "Sunniva Tollefsen",
+    "Valter Yarrow",
+    "Wyrlow",
+    "Tamsby",
+    "Ulmsby"
+   ],
+   "why_hard": "All four options share the same baseline (Tamsby, dry) and frame; two options are dry-vs-dry so the controlled comparison is not unique in shape. Picking the key needs Tollefsen's Wyrlow/iron link (sentence 2) plus the fact that Tamsby and Ulmsby were wood-beaten (sentence 4); the Ulmsby dry-vs-dry option looks like the same control but compares two wooden-beater papers."
+  }
+ },
+ {
+  "id": "II21D-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "The frescoes in the medieval chapels of Ysterholt have lost pigment unevenly. Art historian Thora Sundqvist argues that direct sunlight is the main cause, since the chapels' south-facing windows admit far more of it than their north-facing ones do. Older frescoes, however, have generally lost more pigment than newer ones, whichever way their windows face. Sundqvist's argument is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Pigment loss in five chapel frescoes in Ysterholt",
+   "colLabels": [
+    "Windows face",
+    "Decade painted",
+    "Pigment lost (%)"
+   ],
+   "rowLabels": [
+    "Sannick Chapel",
+    "Torbel Chapel",
+    "Ulvenholt Chapel",
+    "Wedderby Chapel",
+    "Yarrel Chapel"
+   ],
+   "cells": [
+    [
+     "South",
+     "1480s",
+     "34"
+    ],
+    [
+     "North",
+     "1480s",
+     "26"
+    ],
+    [
+     "South",
+     "1520s",
+     "21"
+    ],
+    [
+     "North",
+     "1520s",
+     "13"
+    ],
+    [
+     "North",
+     "1520s",
+     "17"
+    ]
+   ]
+  },
+  "choices": [
+   "the fresco in the Sannick Chapel lost 34 percent of its pigment, while the one in the Yarrel Chapel lost 17 percent.",
+   "the fresco in the Ulvenholt Chapel lost 21 percent of its pigment, while the one in the Wedderby Chapel lost 13 percent.",
+   "the fresco in the Sannick Chapel lost 34 percent of its pigment, while the one in the Ulvenholt Chapel lost 21 percent.",
+   "the fresco in the Torbel Chapel lost 26 percent of its pigment, while the one in the Yarrel Chapel lost 17 percent."
+  ],
+  "correct_answer": "the fresco in the Ulvenholt Chapel lost 21 percent of its pigment, while the one in the Wedderby Chapel lost 13 percent.",
+  "explanation": "Sundqvist claims sunlight through \"south-facing windows\" drives the loss, but the passage adds that \"Older frescoes, however, have generally lost more pigment than newer ones,\" so a supporting comparison must set a south-facing fresco against a north-facing one of the same age. The table shows the Ulvenholt Chapel (south-facing, 1520s) at 21 percent and the Wedderby Chapel (north-facing, 1520s) at 13 percent, so the claim that \"the fresco in the Ulvenholt Chapel lost 21 percent of its pigment, while the one in the Wedderby Chapel lost 13 percent\" isolates window direction. All four choices read the table accurately. The choice comparing the Sannick Chapel with the Yarrel Chapel sets a south-facing fresco from the 1480s against a north-facing one from the 1520s, so age alone could explain the gap. The choice comparing the Sannick Chapel with the Ulvenholt Chapel compares two south-facing frescoes, and the choice comparing the Torbel Chapel with the Yarrel Chapel compares two north-facing frescoes; each shows only the age difference the passage already grants.",
+  "topic_tag": "fresco-pigment-loss-window-direction",
+  "meta": {
+   "design": "quant",
+   "key_rank": "smallest: the key has the smallest gap (8 points vs 9, 13, 17) and the smallest first-named value (21 vs 26, 34, 34)",
+   "names": [
+    "Ysterholt",
+    "Thora Sundqvist",
+    "Sannick Chapel",
+    "Torbel Chapel",
+    "Ulvenholt Chapel",
+    "Wedderby Chapel",
+    "Yarrel Chapel"
+   ],
+   "why_hard": "Key needs four cells across two rows: both rows' window direction and decade, plus the two loss values. The confound (age) is stated only as a separate sentence, and the most dramatic gap (Sannick vs Yarrel, 17 points) is the confounded distractor. Options name chapels only, so stem+options cannot separate them."
+  }
+ },
+ {
+  "id": "II21D-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "In the 1880s, novels were often issued first in monthly installments, a format that many historians credit with building large readerships. Literary historian Saul Whitcombe argues that format mattered less than reviewers' praise, pointing to the publisher Tolley & Wray's 1884 novel The Saltmarsh: issued only as a complete volume, it sold more copies in its first year than any of the novels the firm issued in installments. Whitcombe's claim about The Saltmarsh is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "First-year sales of five Tolley & Wray novels published in 1884",
+   "colLabels": [
+    "Format",
+    "Copies sold in first year"
+   ],
+   "rowLabels": [
+    "The Saltmarsh",
+    "Sedge Hollow",
+    "Tidewater",
+    "Vesper Lane",
+    "Yewfield Hall"
+   ],
+   "cells": [
+    [
+     "Complete volume",
+     "9,400"
+    ],
+    [
+     "Installments",
+     "6,100"
+    ],
+    [
+     "Installments",
+     "7,800"
+    ],
+    [
+     "Complete volume",
+     "8,900"
+    ],
+    [
+     "Installments",
+     "7,200"
+    ]
+   ]
+  },
+  "choices": [
+   "The Saltmarsh sold 9,400 copies in its first year, while Vesper Lane sold 8,900.",
+   "The Saltmarsh sold 9,400 copies in its first year, while Tidewater sold 7,800.",
+   "The Saltmarsh sold 9,400 copies in its first year, while Yewfield Hall sold 7,200.",
+   "The Saltmarsh sold 9,400 copies in its first year, while Sedge Hollow sold 6,100."
+  ],
+  "correct_answer": "The Saltmarsh sold 9,400 copies in its first year, while Tidewater sold 7,800.",
+  "explanation": "Whitcombe claims The Saltmarsh \"sold more copies in its first year than any of the novels the firm issued in installments.\" The table lists three installment novels: Sedge Hollow (6,100), Tidewater (7,800), and Yewfield Hall (7,200). Tidewater sold the most of the three, so showing that \"The Saltmarsh sold 9,400 copies in its first year, while Tidewater sold 7,800\" establishes that The Saltmarsh outsold the best-selling installment novel and therefore all of them. All four choices read the table accurately. The choice ending \"while Vesper Lane sold 8,900\" compares The Saltmarsh with a novel the table lists as a \"Complete volume,\" so it says nothing about the installment novels. The choices ending \"while Yewfield Hall sold 7,200\" and \"while Sedge Hollow sold 6,100\" each cover only one installment novel and leave open whether The Saltmarsh outsold Tidewater.",
+  "topic_tag": "novel-sales-installments-vs-volume",
+  "meta": {
+   "design": "quant",
+   "key_rank": "second largest of the four comparison values (8,900 > 7,800 key > 7,200 > 6,100); the value closest to 9,400 is the out-of-subgroup decoy",
+   "names": [
+    "Saul Whitcombe",
+    "Tolley & Wray",
+    "The Saltmarsh",
+    "Sedge Hollow",
+    "Tidewater",
+    "Vesper Lane",
+    "Yewfield Hall"
+   ],
+   "why_hard": "Key needs the Format column to define the subgroup plus a max over three rows. 'Any' invites the closest comparison, which is the complete-volume decoy; the format of each novel is in the table only."
+  }
+ },
+ {
+  "id": "II21D-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Membership in the subscription libraries of Sarrowgate fell through much of the 1880s. Historian Wilhelmina Tasker argues that opening on Sundays, the one day most workers had free, did more than any other change to draw readers back. She points to the Stelmond Library, which began opening on Sundays in 1886: from 1880 to 1900, it gained more members than any library that stayed closed on Sundays. Tasker's claim about the Stelmond Library is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Membership of six Sarrowgate subscription libraries, 1880 and 1900",
+   "colLabels": [
+    "Began opening on Sundays",
+    "Members, 1880",
+    "Members, 1900"
+   ],
+   "rowLabels": [
+    "Stelmond",
+    "Tolvane",
+    "Ullerby",
+    "Wexmoor",
+    "Yeovane",
+    "Zaltby"
+   ],
+   "cells": [
+    [
+     "1886",
+     "410",
+     "610"
+    ],
+    [
+     "Never",
+     "520",
+     "580"
+    ],
+    [
+     "1891",
+     "300",
+     "480"
+    ],
+    [
+     "Never",
+     "290",
+     "410"
+    ],
+    [
+     "1888",
+     "350",
+     "500"
+    ],
+    [
+     "Never",
+     "640",
+     "600"
+    ]
+   ]
+  },
+  "choices": [
+   "Stelmond's membership went from 410 to 610, while Ullerby's went from 300 to 480.",
+   "Stelmond's membership went from 410 to 610, while Yeovane's went from 350 to 500.",
+   "Stelmond's membership went from 410 to 610, while Wexmoor's went from 290 to 410.",
+   "Stelmond's membership went from 410 to 610, while Tolvane's went from 520 to 580."
+  ],
+  "correct_answer": "Stelmond's membership went from 410 to 610, while Wexmoor's went from 290 to 410.",
+  "explanation": "Tasker claims the Stelmond Library \"gained more members than any library that stayed closed on Sundays.\" Stelmond went from 410 to 610 members, a gain of 200. The table lists three libraries that never opened on Sundays: Tolvane (520 to 580, a gain of 60), Wexmoor (290 to 410, a gain of 120), and Zaltby (640 to 600, a loss of 40). Wexmoor gained the most of the three, so \"Stelmond's membership went from 410 to 610, while Wexmoor's went from 290 to 410\" shows that Stelmond outgained the best-performing closed library and therefore all of them. All four choices read the table accurately. The choices ending \"while Ullerby's went from 300 to 480\" and \"while Yeovane's went from 350 to 500\" compare Stelmond with libraries that began opening on Sundays in 1891 and 1888, so they say nothing about libraries that stayed closed. The choice ending \"while Tolvane's went from 520 to 580\" covers only one closed library and leaves open whether Stelmond outgained Wexmoor.",
+  "topic_tag": "library-sunday-opening-membership",
+  "meta": {
+   "design": "quant",
+   "key_rank": "second smallest by the comparison library's gain (+180, +150, +120 key, +60); the two larger gains are out-of-subgroup decoys",
+   "names": [
+    "Sarrowgate",
+    "Wilhelmina Tasker",
+    "Stelmond",
+    "Tolvane",
+    "Ullerby",
+    "Wexmoor",
+    "Yeovane",
+    "Zaltby"
+   ],
+   "why_hard": "Key needs a change across two columns for several rows plus the Sunday column to define the subgroup. The closest gain to Stelmond's (Ullerby, +180) and the next (Yeovane, +150) are Sunday libraries; the subgroup's best gainer is neither extreme nor closest."
+  }
+ }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "id": "II21C-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In the city of Pellmore, sociologist Miriam Ocampo has found that residents of older neighborhoods attend more local planning meetings than residents of newer neighborhoods do. Ocampo hypothesizes that attendance depends mainly on how long people have lived in a neighborhood, since long residence builds the social ties that draw people to public meetings. Her colleague Ruben Pardo proposes instead that attendance depends mainly on homeownership, which gives residents a financial stake in local decisions. Because Pellmore's older neighborhoods also have higher rates of homeownership, both accounts fit the pattern. Ocampo notes, however, that most households in the Marwick district have lived there for decades but rent their homes, whereas most households in the Ronsdale district own their homes but moved in within the past five years.",
+    "prompt": "Which finding, if true, would most directly support Ocampo's hypothesis?",
+    "choices": [
+      "Residents of the Ronsdale district attended more planning meetings, on average, than residents of the Marwick district did.",
+      "Residents of newer neighborhoods attended more planning meetings, on average, than residents of older neighborhoods did.",
+      "Residents of the Marwick district attended more planning meetings, on average, than residents of the Ronsdale district did.",
+      "Residents of older neighborhoods attended more planning meetings, on average, than residents of newer neighborhoods did."
+    ],
+    "correct_answer": "Residents of the Marwick district attended more planning meetings, on average, than residents of the Ronsdale district did.",
+    "explanation": "Ocampo ties attendance to \"how long people have lived in a neighborhood,\" while Pardo ties it to \"homeownership.\" The passage says that in Marwick households \"have lived there for decades but rent their homes,\" whereas in Ronsdale households \"own their homes but moved in within the past five years,\" so these two districts pull the accounts apart. The finding that \"Residents of the Marwick district attended more planning meetings, on average, than residents of the Ronsdale district did\" shows long-time renters out-attending recent owners, which Ocampo's account predicts and Pardo's does not. The finding that Ronsdale residents attended more than Marwick residents is what Pardo's homeownership account predicts. The finding that residents of older neighborhoods attended more than residents of newer ones restates the pattern that, according to the passage, \"both accounts fit,\" because older neighborhoods have both longer residence and more homeownership. The finding that residents of newer neighborhoods attended more reverses the pattern Ocampo found and supports neither account.",
+    "topic_tag": "civic-meeting-attendance-tenure",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a (textual); key = the discriminating contrast in the hypothesis's direction",
+      "names": ["Miriam Ocampo", "Ruben Pardo", "Pellmore", "Marwick", "Ronsdale"],
+      "why_hard": "The hypothesis (sentence 2) and the district facts (sentence 5) must be combined; option names are opaque, and the plausible 'older beats newer' option is the non-discriminating contrast both accounts fit."
+    }
+  },
+  {
+    "id": "II21C-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "After officials in Nesbit County closed or relocated many polling places, voter turnout fell across the county. Political scientist Quentin Moraes attributes the decline to longer travel: voters whose polling place ended up farther from home, he argues, were less likely to vote. Nell Ortega contends instead that the decline came mainly from confusion about where to vote after polling places changed, not from distance. The county's precincts fall into four groups. In the Ordway precincts, polling places stayed where they were; in the Renfield precincts, they moved to new sites about as far from voters' homes as the old ones; in the Mosby precincts, they moved to sites farther away; and in the Quillan precincts, they moved to sites closer to voters' homes.",
+    "prompt": "Which finding, if true, would most directly weaken Ortega's claim?",
+    "choices": [
+      "Turnout declined more in the Mosby precincts than in the Renfield precincts.",
+      "Turnout declined more in the Renfield precincts than in the Ordway precincts.",
+      "Turnout declined more in the Quillan precincts than in the Mosby precincts.",
+      "Turnout declined more in the Mosby precincts than in the Ordway precincts."
+    ],
+    "correct_answer": "Turnout declined more in the Mosby precincts than in the Renfield precincts.",
+    "explanation": "Ortega claims the decline \"came mainly from confusion about where to vote after polling places changed, not from distance.\" In both the Renfield and Mosby precincts polling places moved, so voters in both faced the same kind of change; the groups differ only in that Renfield's new sites are \"about as far from voters' homes as the old ones\" while Mosby's are \"farther away.\" If \"Turnout declined more in the Mosby precincts than in the Renfield precincts,\" distance made a difference beyond the change itself, which weakens Ortega's claim. The finding that turnout declined more in the Renfield precincts than in the Ordway precincts, where polling places \"stayed where they were,\" shows a change without added distance lowering turnout, which supports Ortega. The finding that turnout declined more in the Quillan precincts, whose sites moved \"closer to voters' homes,\" than in the Mosby precincts compares two groups that both faced a change and cuts against Moraes's distance account, not against Ortega's. The finding that turnout declined more in the Mosby precincts than in the Ordway precincts is predicted by both accounts, since Mosby's sites both changed and moved farther away, so it cannot weaken Ortega's claim.",
+    "topic_tag": "polling-place-relocation-turnout",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a (textual); edges Mosby>Renfield (key), Renfield>Ordway, Quillan>Mosby, Mosby>Ordway; no option is another reversed",
+      "names": ["Quentin Moraes", "Nell Ortega", "Nesbit County", "Ordway", "Renfield", "Mosby", "Quillan"],
+      "why_hard": "Option names are opaque; the key needs Ortega's claim (sentence 3) plus the group definitions (sentence 5). Two distractors favor Ortega and one is Moraes's own prediction (Mosby>Ordway) that both accounts share."
+    }
+  },
+  {
+    "id": "II21C-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In the coastal town of Merrow, linguist Odile Marchetti has found that residents often drop the final consonant of words such as \"last\" and \"kept,\" and that they do so more often in casual conversation than in formal interviews. Marchetti hypothesizes that the dropping results mainly from speaking quickly, which leaves too little time to pronounce every sound. Her colleague Paolo Rinaldi argues instead that residents drop the sound mainly to signal informality, whatever their pace. Because casual conversation in Merrow tends to be faster than formal speech, both accounts fit the pattern. Marchetti observes, however, that at the town's council meetings residents speak quickly to stay within strict time limits while using a highly formal style, whereas at its weekly market they chat slowly and casually.",
+    "prompt": "Which finding, if true, would most directly support Marchetti's hypothesis?",
+    "choices": [
+      "Residents dropped the final consonant more often at the weekly market than at council meetings.",
+      "Residents dropped the final consonant more often at council meetings than at the weekly market.",
+      "Residents dropped the final consonant more often in casual conversation than in formal interviews.",
+      "Residents dropped the final consonant more often in formal interviews than in casual conversation."
+    ],
+    "correct_answer": "Residents dropped the final consonant more often at council meetings than at the weekly market.",
+    "explanation": "Marchetti attributes the dropping to \"speaking quickly,\" while Rinaldi attributes it to a wish \"to signal informality, whatever their pace.\" The passage says that at council meetings residents \"speak quickly\" while \"using a highly formal style,\" whereas at the weekly market \"they chat slowly and casually,\" so these two settings separate speed from informality. The finding that \"Residents dropped the final consonant more often at council meetings than at the weekly market\" ties the dropping to fast but formal speech, which Marchetti's account predicts and Rinaldi's does not. The finding that residents dropped the consonant more often at the weekly market is what Rinaldi's informality account predicts. The finding that residents dropped the consonant more often in casual conversation than in formal interviews restates the pattern that, according to the passage, \"both accounts fit,\" because casual conversation is both faster and more informal. The finding that residents dropped it more often in formal interviews reverses the pattern Marchetti found and supports neither account.",
+    "topic_tag": "consonant-dropping-rate-vs-style",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a (textual); key = the discriminating contrast in the hypothesis's direction",
+      "names": ["Odile Marchetti", "Paolo Rinaldi", "Merrow"],
+      "why_hard": "Speed and informality are confounded in the stated pattern; only sentence 5 (council fast+formal, market slow+casual) combined with sentence 2 decides the key. The intuitive 'casual beats formal' option is the non-discriminating contrast."
+    }
+  },
+  {
+    "id": "II21C-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "When the price of chicken feed rose sharply, every egg cooperative in the farming region of Marrick raised the price it charges for a dozen eggs. Economist Ramona Nakashima hypothesizes that large cooperatives could absorb more of the added cost because it was spread across many members. Nakashima's hypothesis is supported by the fact that Oxley, the region's largest cooperative, raised its price by less than any cooperative with fewer than 100 members did: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Membership and egg price increases at five Marrick cooperatives",
+      "colLabels": ["Members", "Price increase per dozen eggs (dollars)"],
+      "rowLabels": ["Oxley", "Marlow", "Neddick", "Pruett", "Quarles"],
+      "cells": [
+        ["420", "0.35"],
+        ["310", "0.40"],
+        ["85", "0.55"],
+        ["60", "0.45"],
+        ["40", "0.70"]
+      ]
+    },
+    "choices": [
+      "Oxley raised its price by $0.35 per dozen, while Marlow raised its price by $0.40.",
+      "Oxley raised its price by $0.35 per dozen, while Neddick raised its price by $0.55.",
+      "Oxley raised its price by $0.35 per dozen, while Quarles raised its price by $0.70.",
+      "Oxley raised its price by $0.35 per dozen, while Pruett raised its price by $0.45."
+    ],
+    "correct_answer": "Oxley raised its price by $0.35 per dozen, while Pruett raised its price by $0.45.",
+    "explanation": "The claim is that Oxley \"raised its price by less than any cooperative with fewer than 100 members did.\" The table lists three such cooperatives: Neddick (85 members, $0.55), Pruett (60 members, $0.45), and Quarles (40 members, $0.70). Pruett had the smallest increase of the three, so showing that \"Oxley raised its price by $0.35 per dozen, while Pruett raised its price by $0.45\" establishes that Oxley's increase was below that of every cooperative with fewer than 100 members. All four choices read the table accurately. The choice ending \"while Marlow raised its price by $0.40\" compares Oxley with a cooperative the table lists as having 310 members, so it says nothing about the small cooperatives. The choices ending \"while Neddick raised its price by $0.55\" and \"while Quarles raised its price by $0.70\" each cover only one small cooperative and leave open whether Oxley's increase was below Pruett's.",
+    "topic_tag": "egg-cooperative-size-price-increase",
+    "meta": {
+      "design": "quant",
+      "key_rank": "comparator values 0.40, 0.45, 0.55, 0.70: key 0.45 is second smallest (middle); closest to Oxley's 0.35 is Marlow (wrong)",
+      "names": ["Ramona Nakashima", "Marrick", "Oxley", "Marlow", "Neddick", "Pruett", "Quarles"],
+      "why_hard": "Lowest-of-subgroup: needs the Members column to find the under-100 subgroup and then its minimum; neither extreme nor the value closest to Oxley's is the key."
+    }
+  },
+  {
+    "id": "II21C-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Education researcher Renata Molloy compared five fourth-grade classrooms: two taught fractions with visual models, and three taught fractions with a standard textbook approach. Molloy argues that visual models help students who start behind to catch up. She points to Pimlott, which began the year with the lowest fall score of the five classrooms but finished the year with a higher spring score than every classroom taught with the standard approach: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average score on a 100-point fractions test in five classrooms",
+      "colLabels": ["Teaching method", "Fall score", "Spring score"],
+      "rowLabels": ["Pimlott", "Mercer", "Norcott", "Oakhurst", "Redvale"],
+      "cells": [
+        ["Visual models", "52", "78"],
+        ["Visual models", "66", "77"],
+        ["Standard", "64", "74"],
+        ["Standard", "58", "71"],
+        ["Standard", "70", "76"]
+      ]
+    },
+    "choices": [
+      "Pimlott's average spring score was 78, while Oakhurst's was 71.",
+      "Pimlott's average spring score was 78, while Redvale's was 76.",
+      "Pimlott's average spring score was 78, while Mercer's was 77.",
+      "Pimlott's average spring score was 78, while Norcott's was 74."
+    ],
+    "correct_answer": "Pimlott's average spring score was 78, while Redvale's was 76.",
+    "explanation": "The claim is that Pimlott finished with \"a higher spring score than every classroom taught with the standard approach.\" The table lists three standard classrooms: Norcott (74), Oakhurst (71), and Redvale (76). Redvale had the highest spring score of the three, so showing that \"Pimlott's average spring score was 78, while Redvale's was 76\" establishes that Pimlott finished ahead of all of them. All four choices read the table accurately. The choice ending \"while Mercer's was 77\" compares Pimlott with a classroom the table lists as taught with visual models, so it says nothing about the standard classrooms. The choices ending \"while Oakhurst's was 71\" and \"while Norcott's was 74\" each cover only one standard classroom and leave open whether Pimlott also finished ahead of Redvale, the highest-scoring standard classroom.",
+    "topic_tag": "fractions-visual-models-classrooms",
+    "meta": {
+      "design": "quant",
+      "key_rank": "comparator values 71, 74, 76, 77: key 76 is third of four (second largest); largest and closest to 78 is Mercer (wrong, needs the Method column to exclude)",
+      "names": ["Renata Molloy", "Pimlott", "Mercer", "Norcott", "Oakhurst", "Redvale"],
+      "why_hard": "Highest-of-subgroup: needs the Method column to restrict to standard classrooms, then their maximum; all four comparators sit below 78, so 'ahead' kills nothing without the table, and the largest/closest value is the out-of-subgroup distractor."
+    }
+  },
+  {
+    "id": "II21C-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "In the city of Quenford, some neighborhoods joined a program in which trained mediators, rather than police officers, respond to repeated noise complaints. Sociologist Pilar Quesada argues that the program reduced conflict between neighbors. As evidence, she notes that in one neighborhood in the program, repeat complaints in the year after it began fell to less than half of their level in the year before: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Average repeat noise complaints per month in five Quenford neighborhoods",
+      "colLabels": ["In program", "Year before program", "Year after program"],
+      "rowLabels": ["Marden", "Northby", "Ostler", "Pellow", "Ravensby"],
+      "cells": [
+        ["Yes", "50", "31"],
+        ["No", "40", "16"],
+        ["Yes", "38", "17"],
+        ["Yes", "90", "52"],
+        ["No", "24", "20"]
+      ]
+    },
+    "choices": [
+      "In Pellow, repeat complaints fell from 90 per month to 52 per month.",
+      "In Northby, repeat complaints fell from 40 per month to 16 per month.",
+      "In Ostler, repeat complaints fell from 38 per month to 17 per month.",
+      "In Marden, repeat complaints fell from 50 per month to 31 per month."
+    ],
+    "correct_answer": "In Ostler, repeat complaints fell from 38 per month to 17 per month.",
+    "explanation": "The claim needs a neighborhood \"in the program\" where repeat complaints \"fell to less than half of their level in the year before.\" Ostler is marked \"Yes\" in the table, and 17 is less than half of 38, so \"In Ostler, repeat complaints fell from 38 per month to 17 per month\" completes the claim. All four choices read the table accurately. The choice about Northby describes complaints falling from 40 to 16, less than half of the earlier level, but the table marks Northby \"No,\" so it is not a neighborhood in the program. The choice about Pellow describes the largest drop in complaints, but 52 is more than half of 90. The choice about Marden describes a program neighborhood whose complaints fell from 50 to 31, also more than half of the earlier level.",
+    "topic_tag": "noise-complaint-mediation-program",
+    "meta": {
+      "design": "quant",
+      "key_rank": "ordered by year-before value 38, 40, 50, 90: key is the smallest; by year-after value 16, 17, 31, 52 key is second; by ratio key is second (Northby lowest); largest absolute drop is Pellow",
+      "names": ["Pilar Quesada", "Quenford", "Marden", "Northby", "Ostler", "Pellow", "Ravensby"],
+      "why_hard": "Change across columns plus a subgroup: needs before and after cells to test 'less than half' and the program column to exclude Northby, which has the steeper ratio and the lowest end value; the biggest drop (Pellow) fails the ratio."
+    }
+  }
+]

@@ -1,0 +1,298 @@
+[
+  {
+    "id": "II21A-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Around the Elvaro hot spring in the Fernmoor Valley, botanist Delphine Arceneaux has found that a meadow buttercup flowers earlier close to the spring than farther away from it. Arceneaux hypothesizes that warm soil is what triggers the early flowering. Her colleague Edwin Corliss proposes instead that the trigger is the extra soil moisture the spring supplies. Both accounts fit the pattern of earlier flowering near the spring. Arceneaux points out, however, that the spring's heat spreads through the bedrock into the dry ground upslope of the spring, whereas its water runs downslope in a shallow channel and cools quickly, so ground downslope of the spring is wetter but colder than ground upslope of it at the same distance.",
+    "prompt": "Which finding, if true, would most directly support Arceneaux's hypothesis?",
+    "choices": [
+      "Plants near the spring flowered earlier than plants far from it on the same side of the spring.",
+      "Plants downslope of the spring flowered earlier than plants upslope of it at the same distance from the spring.",
+      "Plants upslope of the spring flowered earlier than plants downslope of it at the same distance from the spring.",
+      "Plants far from the spring flowered earlier than plants near it on the same side of the spring."
+    ],
+    "correct_answer": "Plants upslope of the spring flowered earlier than plants downslope of it at the same distance from the spring.",
+    "explanation": "Arceneaux holds that \"warm soil is what triggers the early flowering,\" while Corliss credits \"the extra soil moisture the spring supplies.\" The passage says ground downslope of the spring \"is wetter but colder than ground upslope of it at the same distance,\" so slope position pulls the two accounts apart. The finding that \"Plants upslope of the spring flowered earlier than plants downslope of it at the same distance from the spring\" puts the earlier flowering on the warmer, drier ground, which Arceneaux's account predicts and Corliss's does not. The finding that \"Plants downslope of the spring flowered earlier than plants upslope of it\" puts it on the wetter, colder ground, which is what Corliss's moisture account predicts. The finding that \"Plants near the spring flowered earlier than plants far from it\" restates the pattern that, according to the passage, \"Both accounts fit,\" so it cannot favor Arceneaux. The finding that \"Plants far from the spring flowered earlier than plants near it\" reverses the observed pattern and supports neither account.",
+    "topic_tag": "buttercup-flowering-hot-spring",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a",
+      "names": [
+        "Delphine Arceneaux",
+        "Edwin Corliss",
+        "Elvaro",
+        "Fernmoor Valley"
+      ],
+      "why_hard": "Hypothesis (warm soil) and the decoupling fact (upslope warm+dry, downslope wet+cold) sit in different sentences; the 2x2 puts the rival's prediction and the both-predict contrast beside the key."
+    }
+  },
+  {
+    "id": "II21A-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In Dunbarrow Creek, a small freshwater snail often crawls out of the water at night and returns before dawn. Ecologist Corinne Dufresne hypothesizes that the snails are escaping crayfish, which forage mainly at night. Aldo Barreto proposes instead that the snails are escaping low oxygen: after dark, algae stop photosynthesizing but keep respiring, so dissolved oxygen falls in still water. The creek offers three habitats. Its slow pools and its fast riffles hold similar numbers of crayfish, but churning riffle water stays well aerated around the clock. Its marshy backwaters, which a beaver dam has cut off from the main channel, are as still as the pools but hold no crayfish at all.",
+    "prompt": "Which finding, if true, would most directly weaken Dufresne's hypothesis?",
+    "choices": [
+      "Snails in pools at night left the water more often than snails in riffles at night did.",
+      "Snails in pools at night left the water more often than snails in pools at midday did.",
+      "Snails in riffles at night left the water more often than snails in backwaters at night did.",
+      "Snails in pools at night left the water more often than snails in backwaters at night did."
+    ],
+    "correct_answer": "Snails in pools at night left the water more often than snails in riffles at night did.",
+    "explanation": "Dufresne says the snails are escaping crayfish, \"which forage mainly at night,\" and the passage says pools and riffles \"hold similar numbers of crayfish.\" Her account therefore predicts about as much nighttime climbing in pools as in riffles. Barreto's account predicts more climbing in pools, because oxygen falls \"in still water\" after dark while \"churning riffle water stays well aerated around the clock.\" The finding that \"Snails in pools at night left the water more often than snails in riffles at night did\" shows a difference between two habitats with equal crayfish that differ only in oxygen, which weakens Dufresne's hypothesis. The finding that \"Snails in pools at night left the water more often than snails in pools at midday did\" is predicted by both accounts, since crayfish forage at night and pool oxygen falls after dark, so it cannot weaken either. The finding that \"Snails in pools at night left the water more often than snails in backwaters at night did\" supports Dufresne: the backwaters \"are as still as the pools but hold no crayfish at all,\" so only the crayfish differ. The finding that \"Snails in riffles at night left the water more often than snails in backwaters at night did\" also supports Dufresne, since the riffles have crayfish and high oxygen while the backwaters have no crayfish and still water, the opposite of what Barreto's account predicts.",
+    "topic_tag": "snail-night-climbing-oxygen",
+    "meta": {
+      "design": "no-reverse",
+      "key_rank": "n/a",
+      "names": [
+        "Corinne Dufresne",
+        "Aldo Barreto",
+        "Dunbarrow Creek"
+      ],
+      "why_hard": "Must combine the crayfish hypothesis with the habitat facts (pools and riffles equal in crayfish, differing in oxygen; backwaters still but crayfish-free). Two distractors support Dufresne, one is predicted by both. Each option is a different habitat pair; no pair appears in both directions."
+    }
+  },
+  {
+    "id": "II21A-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In Lake Davrin, perch from the north basin have deeper bodies than perch from the south basin. Fish biologist Elise Fontaine hypothesizes that a deep body protects perch from pike, which can swallow only prey narrower than their mouths. Bram Castellano proposes instead that a deep body helps perch turn sharply while feeding among dense weeds. Because the north basin holds both more pike and more weed beds than the south basin, both accounts fit the difference. In the south basin, however, several shallow bays are choked with weeds but are cut off from pike by a gravel bar, while the open channel that runs between them has no weeds and is patrolled by pike.",
+    "prompt": "Which finding, if true, would most directly support Fontaine's hypothesis?",
+    "choices": [
+      "Perch from the north basin as a whole had deeper bodies than perch from the south basin as a whole.",
+      "Perch from the south basin's weedy bays had deeper bodies than perch from its open channel.",
+      "Perch from the south basin as a whole had deeper bodies than perch from the north basin as a whole.",
+      "Perch from the south basin's open channel had deeper bodies than perch from its weedy bays."
+    ],
+    "correct_answer": "Perch from the south basin's open channel had deeper bodies than perch from its weedy bays.",
+    "explanation": "Fontaine links deep bodies to protection \"from pike,\" while Castellano links them to feeding \"among dense weeds.\" In the south basin the shallow bays \"are choked with weeds but are cut off from pike,\" whereas the open channel \"has no weeds and is patrolled by pike,\" so bays and channel pull the two accounts apart. The finding that \"Perch from the south basin's open channel had deeper bodies than perch from its weedy bays\" puts the deeper bodies where there are pike but no weeds, which Fontaine's account predicts and Castellano's does not. The finding that \"Perch from the south basin's weedy bays had deeper bodies than perch from its open channel\" puts them where there are weeds but no pike, which is what Castellano's account predicts. The finding that \"Perch from the north basin as a whole had deeper bodies than perch from the south basin as a whole\" restates the difference that, according to the passage, \"both accounts fit,\" so it cannot favor Fontaine. The finding that \"Perch from the south basin as a whole had deeper bodies than perch from the north basin as a whole\" reverses the observed difference and supports neither account.",
+    "topic_tag": "perch-body-depth-pike-weeds",
+    "meta": {
+      "design": "2x2",
+      "key_rank": "n/a",
+      "names": [
+        "Elise Fontaine",
+        "Bram Castellano",
+        "Lake Davrin"
+      ],
+      "why_hard": "Hypothesis (pike) and the decoupling fact (weedy pike-free bays vs weed-free pike channel) are in separate sentences; the rival's prediction is the key's reverse and the both-fit contrast sits beside it."
+    }
+  },
+  {
+    "id": "II21A-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Plant physiologist Felix Avery withheld water for two weeks from five lettuce varieties and measured the leaves' water content before and after. The less a variety's leaf water content falls during a drought, the more drought tolerant the variety is. Two of the varieties were bred for open fields and three for greenhouses, where plants are watered on a schedule. Avery claims that the field variety Corlan is more drought tolerant than every greenhouse variety he tested. Avery's claim is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Leaf water content of five lettuce varieties before and after a two-week drought",
+      "colLabels": [
+        "Bred for",
+        "Before drought (%)",
+        "After drought (%)"
+      ],
+      "rowLabels": [
+        "Corlan",
+        "Bexa",
+        "Dalmi",
+        "Elsin",
+        "Farrel"
+      ],
+      "cells": [
+        [
+          "Field",
+          "91",
+          "85"
+        ],
+        [
+          "Greenhouse",
+          "93",
+          "84"
+        ],
+        [
+          "Greenhouse",
+          "89",
+          "81"
+        ],
+        [
+          "Greenhouse",
+          "87",
+          "74"
+        ],
+        [
+          "Field",
+          "95",
+          "84"
+        ]
+      ]
+    },
+    "choices": [
+      "Corlan's leaf water content fell from 91% to 85%, while Bexa's fell from 93% to 84%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Elsin's fell from 87% to 74%.",
+      "Corlan's leaf water content fell from 91% to 85%, while Farrel's fell from 95% to 84%."
+    ],
+    "correct_answer": "Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%.",
+    "explanation": "Avery claims Corlan is more drought tolerant \"than every greenhouse variety he tested,\" and the passage says that the less leaf water content \"falls during a drought, the more drought tolerant the variety is.\" Corlan fell 6 percentage points, from 91% to 85%. The table lists three greenhouse varieties: Bexa (93% to 84%, a fall of 9 points), Dalmi (89% to 81%, 8 points), and Elsin (87% to 74%, 13 points). Dalmi fell the least of the three, so showing that \"Corlan's leaf water content fell from 91% to 85%, while Dalmi's fell from 89% to 81%\" establishes that Corlan fell less than the most tolerant greenhouse variety and therefore less than all of them. All four choices read the table accurately. The choice ending \"while Bexa's fell from 93% to 84%\" and the choice ending \"while Elsin's fell from 87% to 74%\" each cover only one greenhouse variety and leave open whether Corlan outperformed Dalmi, the greenhouse variety that fell least; Bexa's higher final value (84%) does not make it the closest competitor, because tolerance is measured by the fall. The choice ending \"while Farrel's fell from 95% to 84%\" compares Corlan with Farrel, which the table lists as bred for \"Field,\" so it says nothing about the greenhouse varieties.",
+    "topic_tag": "lettuce-drought-leaf-water",
+    "meta": {
+      "design": "quant",
+      "key_rank": "by the comparator's fall: smallest (8 vs 9, 11, 13); by after-value 2nd of 4",
+      "names": [
+        "Felix Avery",
+        "Corlan",
+        "Bexa",
+        "Dalmi",
+        "Elsin",
+        "Farrel"
+      ],
+      "why_hard": "Requires restricting to the greenhouse subgroup (table column only) and computing the fall for each; the greenhouse variety with the highest after-value (Bexa) is a lure, and the field variety is an out-group lure."
+    }
+  },
+  {
+    "id": "II21A-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Mosquito larvae are far more plentiful in some ponds of the Fallowmere lowlands than in others. Warmer water speeds larval development, but entomologist Amos Delacorte argues that the differences are caused mainly by backswimmers, predatory insects that eat mosquito larvae. In a midsummer survey of five ponds, he recorded whether backswimmers were present, the water temperature, and the density of larvae. Delacorte's argument is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Midsummer survey of five ponds in the Fallowmere lowlands",
+      "colLabels": [
+        "Backswimmers",
+        "Water temperature (°C)",
+        "Mosquito larvae per liter"
+      ],
+      "rowLabels": [
+        "Ash Pond",
+        "Brindle Pond",
+        "Cobb Pond",
+        "Darrow Pond",
+        "Elkin Pond"
+      ],
+      "cells": [
+        [
+          "Present",
+          "22.6",
+          "6"
+        ],
+        [
+          "Absent",
+          "22.3",
+          "33"
+        ],
+        [
+          "Present",
+          "22.7",
+          "14"
+        ],
+        [
+          "Absent",
+          "22.5",
+          "16"
+        ],
+        [
+          "Absent",
+          "22.4",
+          "27"
+        ]
+      ]
+    },
+    "choices": [
+      "Ash Pond had 6 mosquito larvae per liter, while Cobb Pond had 14.",
+      "Darrow Pond had 16 mosquito larvae per liter, while Brindle Pond had 33.",
+      "Cobb Pond had 14 mosquito larvae per liter, while Elkin Pond had 27.",
+      "Darrow Pond had 16 mosquito larvae per liter, while Elkin Pond had 27."
+    ],
+    "correct_answer": "Cobb Pond had 14 mosquito larvae per liter, while Elkin Pond had 27.",
+    "explanation": "Delacorte argues that larval densities differ \"mainly\" because of backswimmers, \"predatory insects that eat mosquito larvae.\" Support requires a pond with backswimmers holding fewer larvae than a pond without them. The table lists backswimmers as present in Cobb Pond and absent in Elkin Pond, so \"Cobb Pond had 14 mosquito larvae per liter, while Elkin Pond had 27\" shows the pond with the predators holding about half as many larvae; Cobb Pond is also the slightly warmer of the two (22.7°C versus 22.4°C), so warmer water does not explain the difference. All four choices read the table accurately. The choice \"Ash Pond had 6 mosquito larvae per liter, while Cobb Pond had 14\" compares two ponds that both have backswimmers \"Present,\" so it cannot show their effect. The choices \"Darrow Pond had 16 mosquito larvae per liter, while Brindle Pond had 33\" and \"Darrow Pond had 16 mosquito larvae per liter, while Elkin Pond had 27\" compare ponds where backswimmers are \"Absent\" in both, so neither difference can be credited to backswimmers.",
+    "topic_tag": "backswimmers-mosquito-larvae-ponds",
+    "meta": {
+      "design": "quant",
+      "key_rank": "by first-listed count: 2nd of 4 (6, 14, 16, 16); key is neither the largest difference nor the largest ratio",
+      "names": [
+        "Amos Delacorte",
+        "Fallowmere",
+        "Ash Pond",
+        "Brindle Pond",
+        "Cobb Pond",
+        "Darrow Pond",
+        "Elkin Pond"
+      ],
+      "why_hard": "The deciding fact (which ponds have backswimmers) is only in the table, never in the options; every option shows the same direction of difference, so the student must look up the predator column for both ponds of each pair."
+    }
+  },
+  {
+    "id": "II21A-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Plant ecologist Fiona Cardwell collected seedlings of a coastal grass from five populations, grew them in fresh water and in salt water, and weighed them after six weeks. A salt-tolerant population should keep much of its freshwater mass when grown in salt water. Cardwell argues that seedlings from Corvane Marsh, which seawater floods at every high tide, are the most salt tolerant of the five: in salt water they kept a larger fraction of their freshwater mass than seedlings from any other population did. Cardwell's argument is best supported by the fact that ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Mean dry mass per seedling after six weeks (milligrams)",
+      "colLabels": [
+        "Fresh water",
+        "Salt water"
+      ],
+      "rowLabels": [
+        "Corvane Marsh",
+        "Abrisk",
+        "Belloway",
+        "Dunmarra",
+        "Eskelin"
+      ],
+      "cells": [
+        [
+          "50",
+          "40"
+        ],
+        [
+          "60",
+          "45"
+        ],
+        [
+          "90",
+          "54"
+        ],
+        [
+          "70",
+          "35"
+        ],
+        [
+          "40",
+          "26"
+        ]
+      ]
+    },
+    "choices": [
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Belloway seedlings averaged 90 mg and 54 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Dunmarra seedlings averaged 70 mg and 35 mg.",
+      "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Eskelin seedlings averaged 40 mg and 26 mg."
+    ],
+    "correct_answer": "Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg.",
+    "explanation": "Cardwell argues that in salt water Corvane seedlings \"kept a larger fraction of their freshwater mass than seedlings from any other population did.\" Corvane seedlings kept 40 of 50 mg, or 80%. The other populations kept 45 of 60 mg at Abrisk (75%), 54 of 90 mg at Belloway (60%), 35 of 70 mg at Dunmarra (50%), and 26 of 40 mg at Eskelin (65%). Abrisk kept the largest fraction of the four, so showing that \"Corvane seedlings averaged 50 mg in fresh water and 40 mg in salt water, while Abrisk seedlings averaged 60 mg and 45 mg\" establishes that Corvane beat the closest competitor and therefore every other population, even though Abrisk seedlings were heavier in salt water. All four choices read the table accurately. The choices ending \"Belloway seedlings averaged 90 mg and 54 mg,\" \"Dunmarra seedlings averaged 70 mg and 35 mg,\" and \"Eskelin seedlings averaged 40 mg and 26 mg\" each compare Corvane with a population that kept a smaller fraction than Abrisk did, so each leaves open whether Corvane outperformed Abrisk; Belloway's larger salt-water mass (54 mg) is irrelevant because the argument concerns the fraction kept, not mass.",
+    "topic_tag": "coastal-grass-salt-tolerance",
+    "meta": {
+      "design": "quant",
+      "key_rank": "by comparator's salt-water mass: 3rd of 4 (26, 35, 45, 54); ratio is the closest competitor (75% vs 80%)",
+      "names": [
+        "Fiona Cardwell",
+        "Corvane Marsh",
+        "Abrisk",
+        "Belloway",
+        "Dunmarra",
+        "Eskelin"
+      ],
+      "why_hard": "Needs a ratio for every population; the key's comparator has MORE salt-water mass than Corvane, so it looks like a counterexample, and absolute-mass reasoning points to Belloway."
+    }
+  }
+]
