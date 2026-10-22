@@ -8,7 +8,7 @@
  *      not-yet-released set (nothing written)
  *   2. per set (conversation / lecture): every item "unique" -> all verified=true; ANY item flagged ->
  *      all archived=true (the assembler serves sets whole)
- *   3. sets with an unanswered item stay staged
+ *   3. sets with an unanswered item stay staged; an item with no passageGroupId is a set of one
  * Refuses on stale rows (content_sha != item_sha), non-human reviews, or already-decided rows. Dry run by default.
  */
 import { createClient } from '@supabase/supabase-js'
@@ -26,7 +26,11 @@ if (!rv?.length) refuse('no reviews yet')
 if (rv.some(r => r.reviewer_kind !== 'human')) refuse('a non-human review is present')
 const byId = new Map(items.map(i => [i.id, i]))
 const answered = rv.filter(r => r.blind_pick && r.verdict)
-const stale = answered.filter(r => byId.get(r.item_id).content_sha !== r.item_sha)
+// Stale = the content changed after the reader saw it, on a row this script could still decide. A row already
+// released or archived is never written again, so an owner-approved edit after release (toefl-conv-draft-1 v6,
+// 2026-10-22) must not block the cohort's remaining sets.
+const undecided = r => { const i = byId.get(r.item_id); return !i.verified && !i.archived }
+const stale = answered.filter(r => undecided(r) && byId.get(r.item_id).content_sha !== r.item_sha)
 if (stale.length) refuse(`${stale.length} answered rows edited since the sitting`)
 const runs = [...new Set(answered.map(r => r.run_id))].sort()
 let held = false
@@ -36,7 +40,9 @@ console.log(`pooled blind ${ph}/${answered.length} = ${(100 * ph / answered.leng
 if (ph >= answered.length / 2) held = true
 if (held) { console.log('GUARD FIRES: nothing released.'); process.exit(0) }
 const revBy = new Map(answered.map(r => [r.item_id, r]))
-const groups = new Map(); for (const it of items) { const g = it.item.passageGroupId; if (!groups.has(g)) groups.set(g, []); groups.get(g).push(it) }
+// A single-item task (Choose a Response) has no passageGroupId: each row is its own set. Grouping on the
+// bare null put a whole cohort in one "set", so one flag would have archived all of it (found 2026-10-22, cr-v11).
+const groups = new Map(); for (const it of items) { const g = it.item.passageGroupId ?? `item:${it.id}`; if (!groups.has(g)) groups.set(g, []); groups.get(g).push(it) }
 const plan = []
 for (const [g, its] of groups) {
   if (its.some(i => i.verified || i.archived)) { if (its.every(i => i.verified || i.archived)) continue; refuse(`set ${g} partly decided`) }

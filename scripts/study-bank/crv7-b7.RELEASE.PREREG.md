@@ -42,3 +42,8 @@ The human sitting is the gate, as for every TOEFL listening draft since 2026-10-
   the conservative direction for the guard.
 - The crv7 method's own risk is a canonical-complication heuristic (cr-v10 solvers named it). This
   sitting can see that only through his blind score.
+
+## Tool (added 2026-10-22, before any run is drawn)
+Released with `release-toefl-conv-runs.mjs cr-v11`, which treats an item with no passageGroupId as a set
+of one. Before that fix it grouped every row of this cohort under `null`, so one flag would have
+archived all 16. The rule above is unchanged.
