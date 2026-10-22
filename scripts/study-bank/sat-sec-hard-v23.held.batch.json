@@ -1,0 +1,138 @@
+[
+  {
+    "id": "SEC23A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary choice after a fronted negative adverb",
+    "difficulty": "hard",
+    "passage": "A pear orchard on dry upland soil serves as a test site for rootstocks bred to tolerate drought. Rarely during a dry summer in the orchard's upper terraces ______ youngest and least established grafted saplings grown more than a few centimeters, but this year a new rootstock carried them through August with almost no irrigation. Growers who toured the terraces in the fall were surprised by the length of the new shoots.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "do its",
+      "has its",
+      "have its",
+      "does its"
+    ],
+    "correct_answer": "have its",
+    "explanation": "Because the sentence opens with \"Rarely during a dry summer in the orchard's upper terraces,\" the auxiliary comes before its subject, \"its youngest and least established grafted saplings.\" The head of that subject is \"saplings,\" which is plural; the singular \"summer\" in the fronted phrase and the shared \"its\" (which refers to the orchard) do not set the number. The participle \"grown\" later in the sentence requires the perfect auxiliary \"have\"; \"do\" could combine only with the base form \"grow.\" \"has its\" uses the right auxiliary but is singular, \"do its\" cannot combine with \"grown,\" and \"does its\" fails on both counts.",
+    "topic_tag": "pomology: drought-tolerant pear rootstocks"
+  },
+  {
+    "id": "SEC23A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense with a comparative quantifier subject",
+    "difficulty": "hard",
+    "passage": "Chytrid fungus kills frogs by disrupting the way their skin absorbs water and salts. More swabs than a single laboratory can screen ______ to distant universities for analysis when the fungus appeared in the mountain lakes of one national park. Each swab must be tested for the fungus's DNA within a few days of collection.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were shipped",
+      "is shipped",
+      "are shipped",
+      "was shipped"
+    ],
+    "correct_answer": "were shipped",
+    "explanation": "The subject is \"more swabs,\" which is plural; \"than a single laboratory can screen\" is the comparison, and \"laboratory\" is not the subject of the main verb. The tense is set later in the same sentence by \"when the fungus appeared,\" a past-tense verb, so the main verb must be past; the present \"can screen\" belongs to the comparison and does not fix the main verb's tense. \"was shipped\" agrees with \"laboratory,\" \"are shipped\" is plural but present and clashes with \"appeared,\" and \"is shipped\" is wrong in both number and tense.",
+    "topic_tag": "amphibian disease: chytrid swab testing"
+  },
+  {
+    "id": "SEC23B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a fronted prepositional complement (\"Of greater concern to the [plural]\") with be-inversion and a plural postposed subject whose head is seven words after the verb, crossed with present versus past tense decided by a past-tense when-clause later in the same sentence",
+    "difficulty": "hard",
+    "passage": "When engineers plan to raise an aging concrete dam, cracks in its face are the obvious worry. Of greater concern to the drilling crews ______ thin, steeply tilted, and partly weathered seams of clay beneath the left abutment of one such dam when the first rock cores came up. Wet clay can lose much of its strength and let a heavier dam slide downstream.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are the",
+      "was the",
+      "is the",
+      "were the"
+    ],
+    "correct_answer": "were the",
+    "explanation": "The verb comes before its subject here: what was \"Of greater concern\" is \"the thin, steeply tilted, and partly weathered seams of clay,\" whose head noun \"seams\" is plural, so the singular \"concern\" at the front of the sentence does not set the verb's number. The clause \"when the first rock cores came up\" places the whole sentence in the past, so the verb must be past: \"were the.\" \"are the\" is plural but present, which clashes with \"came up.\" \"was the\" is past but singular, agreeing with \"concern\" rather than \"seams,\" and \"is the\" is both singular and present.",
+    "topic_tag": "dam engineering: abutment foundation cores"
+  },
+  {
+    "id": "SEC23B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural subject followed by a comma-set negated singular element (\"Y, not X,\") beside the verb, crossed with present versus past progressive decided by a past-tense as-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "A long, light footbridge can sway sideways even in calm air, because walkers unconsciously fall into step with its motion. The walkers' footsteps, not the steady breeze, ______ the handrails sideways as hundreds of people crossed a new river footbridge on opening day. Dampers fitted beneath a deck can absorb such motion.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was shaking",
+      "is shaking",
+      "were shaking",
+      "are shaking"
+    ],
+    "correct_answer": "were shaking",
+    "explanation": "The subject is \"The walkers' footsteps,\" which is plural; \"not the steady breeze\" is set off by commas and only denies a second possible cause, so the singular \"breeze\" beside the blank does not control the verb. The clause \"as hundreds of people crossed\" places the action in the past, so the verb must be past progressive: \"were shaking.\" \"are shaking\" is plural but present, which clashes with \"crossed.\" \"was shaking\" is past but singular, agreeing with \"breeze,\" and \"is shaking\" is both singular and present.",
+    "topic_tag": "structural dynamics: footbridge lateral sway"
+  },
+  {
+    "id": "SEC23B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive partitive relative (\", the longest of which\") after a plural antecedent, crossed with present versus past progressive passive decided by a past-tense until-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Moving freight through tunnels can clear heavy trucks from a crowded waterfront, but digging beneath a harbor is slow, costly, and risky work. Crews at one port bored four freight tunnels beneath the soft harbor floor, the longest of which ______ with precast concrete rings until groundwater broke through a weak joint.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are being lined",
+      "was being lined",
+      "were being lined",
+      "is being lined"
+    ],
+    "correct_answer": "was being lined",
+    "explanation": "The subject of the relative clause is \"the longest of which,\" meaning the longest single tunnel, so it is singular even though \"which\" stands for the plural \"tunnels.\" The clause \"until groundwater broke through a weak joint\" places the lining work in the past, so the verb must be past: \"was being lined.\" \"is being lined\" is singular but present, which clashes with \"broke.\" \"were being lined\" is past but plural, agreeing with \"tunnels,\" and \"are being lined\" is both plural and present.",
+    "topic_tag": "geotechnics: harbor tunnel groundwater inflow"
+  },
+  {
+    "id": "SEC23C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive which-clause whose antecedent is a both ... and compound of two singular nouns, crossed with present versus past progressive passive decided by a present-tense verb in a while-clause of the same sentence",
+    "difficulty": "hard",
+    "passage": "A regional museum acquired both the painted altarpiece and the carved choir screen, which ______ in the museum's basement workshop side by side while conservators who suspect a single painter compare their pigments layer by layer. A close match would suggest that one workshop produced both pieces for the same chapel, a conclusion that would overturn the attribution printed in the guides to the church.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is being restored",
+      "were being restored",
+      "was being restored",
+      "are being restored"
+    ],
+    "correct_answer": "are being restored",
+    "explanation": "The relative pronoun \"which\" refers to the whole compound \"both the painted altarpiece and the carved choir screen,\" two works, so the verb must be plural; \"screen,\" the singular noun just before the comma, is only the second of the two, and the works are restored \"side by side,\" which one object alone cannot be. The verb must also be present, because the restoration happens at the same time as the present-tense \"compare\" in the while-clause (\"while conservators ... compare their pigments\"). Only \"are being restored\" is plural and present. \"is being restored\" is present but singular, as if \"which\" referred to \"screen\" alone. \"were being restored\" is plural but past, which clashes with \"compare\" even though the museum \"acquired\" the works in the past, and \"was being restored\" is both singular and past.",
+    "topic_tag": "technical art history: matching pigments across church furnishings"
+  },
+  {
+    "id": "SEC23C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb and pronoun-antecedent agreement with a singular head noun followed by a content clause whose own plural subject and plural verb come before the blank, verb and possessive pronoun both referring to the head",
+    "difficulty": "hard",
+    "passage": "Two sections of a medieval choirbook differ sharply in their handwriting but share an unusual system of musical notation. The hypothesis that the book's two scribes were trained in a single convent workshop ______ plausibility mainly to that notation, which appears in no other surviving manuscript from the region. Without it, scholars would have little reason to connect the two hands at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "owe their",
+      "owes their",
+      "owes its",
+      "owe its"
+    ],
+    "correct_answer": "owes its",
+    "explanation": "The subject of the main clause is \"hypothesis\"; \"that the book's two scribes were trained in a single convent workshop\" is a clause stating what the hypothesis claims, and its own subject \"scribes\" (with its plural verb \"were trained\") is not the subject of the blank, so the verb must be the singular \"owes.\" The pronoun must also refer to \"hypothesis,\" because only a hypothesis can have plausibility owed to evidence; the scribes do not, so the pronoun is the singular \"its.\" Only \"owes its\" is right on both counts. \"owes their\" has the right verb but a plural pronoun that would point to \"scribes.\" \"owe its\" has the right pronoun but a plural verb agreeing with \"scribes,\" and \"owe their\" makes both errors.",
+    "topic_tag": "musicology: convent choirbook scribes"
+  },
+  {
+    "id": "SEC23C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound subject that names one person under a single determiner, crossed with past versus present progressive decided by a past-tense when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Many farm names in the county survive only in the memories of elderly residents, never having been written on any map. The founder and first director of the county place-name survey ______ a list of the abandoned farm names in the hills when she suffered the illness that ended her fieldwork, and no one completed the list after her. Her notebooks are kept at the county library.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was compiling",
+      "are compiling",
+      "were compiling",
+      "is compiling"
+    ],
+    "correct_answer": "was compiling",
+    "explanation": "\"The founder and first director of the county place-name survey\" names a single person, as the single determiner \"The\" and the later \"she\" and \"her fieldwork\" show, so the subject is singular despite \"and\" and the verb must be singular. The verb must also be past, because the compiling was under way at the moment named by the past-tense when-clause \"when she suffered the illness that ended her fieldwork.\" Only \"was compiling\" is singular and past. \"were compiling\" is past but plural, treating the founder and the director as two people. \"is compiling\" is singular but present, which cannot describe an activity in progress when a past illness ended it, and \"are compiling\" is both plural and present.",
+    "topic_tag": "onomastics: a county place-name survey"
+  }
+]

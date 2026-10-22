@@ -1,0 +1,294 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "'there is ... that must be filed' is wordy and likely dangles, but could be correct if no modifier precedes.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "B",
+    "why": "'so until' is an odd connector, but some sentence could make it legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "C",
+    "why": "Comma then plural 'come' looks like a subject-verb split, but an inverted 'Down the spine, come...' is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "A",
+    "why": "No punctuation risks a run-on, but 'In the script Ernst wrote...' is legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "D",
+    "why": "Semicolon before 'although' is suspect, but 'although X, Y' is a full independent sentence after it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "A",
+    "why": "Number and dash pairing depend on the hidden subject; each can work.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "Nominal 'the memorization of' is wordiest, but some frame could require a noun phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "B",
+    "why": "Second-person 'you' is the register outlier, but 'when you fertilize' can be legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "A",
+    "why": "Comma could be a splice, but an introductory clause makes it legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "B",
+    "why": "Singular 'design' with 'were' looks wrong, but a subjunctive 'if ... were able' frame makes it legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "C",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "C",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "C",
+    "why": "Semicolon before 'that' looks wrong, but 'that is why...' can open an independent clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "A",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "D",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "B",
+    "why": "No break between clauses risks a run-on, but 'In the frame three figures...' is legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "'being' is wordy, but an absolute phrase could need it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "'herds's' adds 's to a lowercase regular plural ending in s; plural possessive is never formed that way.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L21": {
+    "reject_first": "B",
+    "why": "'being' leaves no finite verb, but an absolute construction is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "D",
+    "why": "Missing comma after the introductory date with a stray comma later looks wrong, but a nonrestrictive clause could follow.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "B",
+    "why": "Active 'is now digitizing' fits a human/institutional subject, so it is not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "B",
+    "why": "Colon is unusual, but legal before an explanatory clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "D",
+    "why": "Future perfect is the tense outlier, but some time frame could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "B",
+    "why": "'which misses' adds a relative clause, but could be the intended modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "D",
+    "why": "A lone dash needs a partner, which could be in the hidden text.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "Comma between subject and verb is suspect, but it could close a nonrestrictive element.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "C",
+    "why": "'there' is the odd one, but some sentences need it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "C",
+    "why": "No punctuation may run together, but some sentences need none.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "A",
+    "why": "'which the' is the outlier, but a relative clause can be legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "C",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "B",
+    "why": "'there was concern' likely dangles from the modifier, but legality depends on the hidden opener.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "C",
+    "why": "'whomever' is objective case but sits as the subject of 'had'; no sentence makes that adjacency correct.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L39": {
+    "reject_first": "C",
+    "why": "Comma likely splices two clauses, but an introductory 'As the melt cools, a seed crystal...' is legal.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "B",
+    "why": "'nevertheless' without a leading comma is suspect, but some frames allow it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "C",
+    "why": "'it,' with a trailing comma needs an interrupter, which could follow.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "A",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "B",
+    "why": "Closing parenthesis needs an opener in the hidden text, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "D",
+    "why": "'however;' ending a clause is unusual but legal ('He kept the fragments, however; the rest...').",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "A",
+    "why": "'because of the price' may break parallelism, but depends on the hidden partner.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "B",
+    "why": "Only number/tense varies; every form can be right for some hidden subject and time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "C",
+    "why": "' that is' without punctuation is the outlier, but some sentence could take it.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

@@ -1,0 +1,240 @@
+[
+  {
+    "id": "SEC23A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and possessive pronoun reference with split antecedents",
+    "difficulty": "hard",
+    "passage": "The hard outer coat of some seeds ______ tiny embryos from soil moisture until heat from a grass fire cracks the coat. Prairie restorers imitate the fire by rubbing such seeds against sandpaper before sowing, a step that can raise germination in the first spring from a few percent to nearly half.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "shields their",
+      "shield their",
+      "shields its",
+      "shield its"
+    ],
+    "correct_answer": "shields their",
+    "explanation": "The subject of the verb is \"coat\"; \"of some seeds\" only modifies it, so the verb must be the singular \"shields.\" The pronoun names the owner of \"tiny embryos,\" and the embryos belong to the seeds, not to the coat, so the plural \"their,\" referring to \"some seeds,\" is needed. \"shield their\" makes the verb agree with the nearby \"seeds\" instead of \"coat.\" \"shields its\" has the right verb but a pronoun that could only point to the coat, which has no embryos of its own, and \"shield its\" is wrong on both counts.",
+    "topic_tag": "seed biology: fire-cracked seed coats"
+  },
+  {
+    "id": "SEC23A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense with a \"many a\" subject",
+    "difficulty": "hard",
+    "passage": "Measles can look quite different from the pictures in medical textbooks. Many a newly trained physician ______ slow to recognize the spots if the rash appears on darker skin, because the bright red blotches of textbook photographs show up there only as a faint, uneven roughness. For that reason, training materials should include photographs of patients with a wide range of skin tones.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was",
+      "are",
+      "were",
+      "is"
+    ],
+    "correct_answer": "is",
+    "explanation": "The subject is \"many a newly trained physician.\" Although \"many\" suggests a plural, \"many a\" is always followed by a singular noun and takes a singular verb. The tense is set inside the same sentence by the conditional clause \"if the rash appears,\" whose present-tense verb requires a present-tense main verb. \"are\" treats \"many\" as plural, \"was\" is singular but past and clashes with \"appears,\" and \"were\" is both plural and past.",
+    "topic_tag": "medical education: measles rash on darker skin"
+  },
+  {
+    "id": "SEC23A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense past an absolute phrase",
+    "difficulty": "hard",
+    "passage": "In neonatal units, infants born several weeks early are weaned from breathing support in small steps. The premature twins, a single sensor taped to the chest of the smaller infant, ______ without assistance or extra oxygen while the nurses review oxygen readings at the bedside. A dip in those readings means another day of support.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was breathing",
+      "are breathing",
+      "is breathing",
+      "were breathing"
+    ],
+    "correct_answer": "are breathing",
+    "explanation": "The subject is \"the premature twins,\" which is plural. The phrase between the commas, \"a single sensor taped to the chest of the smaller infant,\" is an absolute phrase with its own noun; neither \"sensor\" nor \"infant\" is the subject of the verb. The tense is set in the same sentence by \"while the nurses review,\" a present-tense verb, so the main verb must also be present. \"is breathing\" agrees with \"infant\" instead of \"twins,\" \"were breathing\" is plural but past and clashes with \"review,\" and \"was breathing\" is wrong in both number and tense.",
+    "topic_tag": "neonatology: weaning premature twins from oxygen"
+  },
+  {
+    "id": "SEC23A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense past an \"or\" gloss",
+    "difficulty": "hard",
+    "passage": "Soils that have lost most of their organic matter hold little water through a dry summer. Biochar, or the charred fragments of crop stalks heated in a sealed kiln, ______ across the most depleted fields of one district until the autumn rains return. A gram of biochar can hold several times its weight in water.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are being spread",
+      "was being spread",
+      "is being spread",
+      "were being spread"
+    ],
+    "correct_answer": "is being spread",
+    "explanation": "The subject is \"biochar,\" which is singular. The words between the commas, \"or the charred fragments of crop stalks heated in a sealed kiln,\" are a gloss that renames biochar; \"or\" here does not join two alternative subjects, so the plural \"fragments\" does not make the verb plural. The tense is set in the same sentence by \"until the autumn rains return,\" whose present-tense verb requires a present main verb. \"are being spread\" agrees with \"fragments,\" \"was being spread\" is singular but past and clashes with \"return,\" and \"were being spread\" is wrong in both number and tense.",
+    "topic_tag": "soil science: biochar on depleted fields"
+  },
+  {
+    "id": "SEC23A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma before a coordinating \"for\" joining two independent clauses",
+    "difficulty": "hard",
+    "passage": "On upland sheep farms, the weeks when ewes give birth are the busiest stretch of the year. Shepherds keep pregnant ewes in a heated barn during the lambing ______ newborn lambs left in a cold field can lose dangerous amounts of body heat within an hour of birth. A barn also lets the shepherd check each ewe during the night.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "season; for",
+      "season for",
+      "season: for",
+      "season, for"
+    ],
+    "correct_answer": "season, for",
+    "explanation": "\"Shepherds keep pregnant ewes in a heated barn during the lambing season\" is an independent clause, and \"newborn lambs left in a cold field can lose dangerous amounts of body heat\" is a second one; \"for\" here means \"because\" and joins them as a coordinating conjunction, which takes a comma before it. With no mark, \"for newborn lambs\" reads as a prepositional phrase attached to \"season,\" and the sentence then runs into the verb \"can lose\" with no proper link. A semicolon or a colon placed before a coordinating conjunction is not the conventional way to join two clauses like these: \"season; for\" and \"season: for\" put a clause-ending mark in front of the word that already does the joining.",
+    "topic_tag": "animal husbandry: lambing-season shelter"
+  },
+  {
+    "id": "SEC23A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no punctuation between the halves of a \"both ... and\" correlative",
+    "difficulty": "hard",
+    "passage": "Because ground beetles eat slugs and aphid eggs, many grain farmers leave margins of unplowed ground around their fields. One winter survey found the beetles sheltering both in the grassy strips that bordered the ______ the hedgerows along the farm lane, where a thick layer of leaf litter kept the soil from freezing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "wheat, and in",
+      "wheat and in",
+      "wheat; and in",
+      "wheat and, in"
+    ],
+    "correct_answer": "wheat and in",
+    "explanation": "The correlative \"both ... and\" pairs two prepositional phrases: \"in the grassy strips that bordered the wheat\" and \"in the hedgerows along the farm lane.\" Even though the first phrase is long, because it contains the restrictive clause \"that bordered the wheat,\" no punctuation separates the two halves of the pair. \"wheat, and in\" puts a comma between the paired elements; \"wheat; and in\" uses a semicolon, which must join independent clauses, but what follows is only a phrase; \"wheat and, in\" places a comma between \"and\" and the phrase it introduces.",
+    "topic_tag": "pest management: ground beetles in field margins"
+  },
+  {
+    "id": "SEC23B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"All that survives of the [plural]\" as a singular subject, crossed with simple past passive versus present perfect passive decided by a definite-past when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Early seismographs are rare survivors, because their brass levers and smoked-glass plates break easily and their clockwork rusts in damp storerooms. All that survives of the first such instruments ______ into two padded crates when the hilltop observatory closed its doors. Curators can reconstruct how the machines worked from their gears, but the records they traced are lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been packed",
+      "was packed",
+      "has been packed",
+      "were packed"
+    ],
+    "correct_answer": "was packed",
+    "explanation": "The subject is \"All that survives,\" in which \"all\" means \"everything\"; the singular verb \"survives\" inside it shows that it is singular, so the plural \"instruments\" beside the blank does not set the number. The clause \"when the hilltop observatory closed its doors\" names a definite moment in the past, and a verb tied to such a moment must be simple past rather than present perfect: \"was packed.\" \"has been packed\" is singular but present perfect, which cannot be pinned to the moment named by \"closed.\" \"were packed\" is past but plural, agreeing with \"instruments,\" and \"have been packed\" is both plural and present perfect.",
+    "topic_tag": "seismology: early observatory seismographs"
+  },
+  {
+    "id": "SEC23B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"The former\" resuming the singular first member of a mixed pair from the previous sentence, past a participial interrupter ending in a plural noun, crossed with present versus past passive decided by a present-tense whenever-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "A small weather station on an exposed mountain ridge can take all of its readings with just a single cup anemometer and two tipping-bucket rain gauges mounted close to the ground. The former, bolted to a steel mast high above the surrounding pines, ______ by technicians whenever a storm brings gusts strong enough to loosen bolts.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is checked",
+      "were checked",
+      "are checked",
+      "was checked"
+    ],
+    "correct_answer": "is checked",
+    "explanation": "\"The former\" refers to the first of the two things named in the previous sentence, \"a single cup anemometer,\" not to the \"two tipping-bucket rain gauges,\" so it is singular; the plural \"pines\" at the end of the interrupting phrase \"bolted to a steel mast high above the surrounding pines\" is not the subject. The clause \"whenever a storm brings gusts\" describes a repeated present event, so the main verb must be present as well: \"is checked.\" \"are checked\" is present but plural, agreeing with \"pines\" or with the gauges. \"was checked\" is singular but past, which clashes with \"brings,\" and \"were checked\" is both plural and past.",
+    "topic_tag": "instrumentation: ridge-top anemometers"
+  },
+  {
+    "id": "SEC23B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement on the clause-final auxiliary of a non-inverted comparative than-clause with a plural subject, crossed with be versus do decided by the main clause's lexical verb",
+    "difficulty": "hard",
+    "passage": "Thick wind-blown loess holds rainwater far longer than the coarse, stony terraces on the lower slopes ______, so farmers on the plateau can often grow wheat without any irrigation. On the terraces, the same rain drains away within days. The difference explains why villages in the region cluster on the high ground rather than near the river.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are",
+      "does",
+      "is",
+      "do"
+    ],
+    "correct_answer": "do",
+    "explanation": "The than-clause has its own subject, \"the coarse, stony terraces on the lower slopes,\" whose head noun \"terraces\" is plural; the singular \"loess\" is the subject of the main clause, not of this one. The verb at the end of the than-clause stands in for the main clause's verb \"holds,\" a lexical verb, so the substitute must be a form of \"do,\" and the plural form is \"do.\" \"does\" is the right kind of verb but singular, copying \"loess holds.\" \"are\" is plural but a form of \"be,\" which cannot stand in for \"holds,\" and \"is\" is both singular and a form of \"be.\"",
+    "topic_tag": "soil physics: loess water retention"
+  },
+  {
+    "id": "SEC23B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon between two independent clauses where the second clause's subject is a bare quantifier pronoun (\"most\") right after a plural noun",
+    "difficulty": "hard",
+    "passage": "A brick lining for a steelmaking furnace must survive sudden cooling, an even harsher test than steady heat. To screen candidates, engineers dropped red-hot samples into cold water to compare six refractory ______ broke apart within seconds. Only a dense alumina blend came through whole, and the engineers chose it for the lining.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "clays, most",
+      "clays most",
+      "clays; most",
+      "clays, most,"
+    ],
+    "correct_answer": "clays; most",
+    "explanation": "The words before the blank form an independent clause ending in \"six refractory clays,\" and \"most broke apart within seconds\" is a second independent clause in which \"most\" is the subject of \"broke.\" Two independent clauses with no conjunction need a semicolon between them: \"clays; most.\" \"clays, most\" joins the clauses with only a comma, a comma splice; read as a phrase renaming \"clays,\" it leaves \"broke\" without a subject. \"clays most\" runs the two clauses together with no mark at all. \"clays, most,\" sets \"most\" off as an aside and again leaves \"broke\" with no subject.",
+    "topic_tag": "materials engineering: refractory thermal shock"
+  },
+  {
+    "id": "SEC23B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon before a sentence-final list that names the members of the last item of a complete series",
+    "difficulty": "hard",
+    "passage": "To the eye, soil returned from the lunar highlands looks like plain gray powder. Its makeup matters, because the relative proportions of its minerals tell geologists which kind of ancient crust a sample came from. Under a microscope, each scoop reveals fine dust, glassy beads formed by meteorite impacts, and three common ______ pyroxene, and olivine.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "minerals: plagioclase",
+      "minerals, plagioclase",
+      "minerals plagioclase",
+      "minerals; plagioclase"
+    ],
+    "correct_answer": "minerals: plagioclase",
+    "explanation": "The words before the blank are a complete clause whose object is itself a finished series, \"fine dust, glassy beads formed by meteorite impacts, and three common minerals\"; the words after the blank, \"plagioclase, pyroxene, and olivine,\" name those three minerals. A colon after a complete clause can introduce such a list: \"minerals: plagioclase.\" \"minerals, plagioclase\" merges the two lists into one series that contains \"and\" twice, so the minerals read as three more items rather than as the three just mentioned. \"minerals; plagioclase\" leaves a fragment after the semicolon, which must join two independent clauses. \"minerals plagioclase\" runs the list straight into the noun with no mark.",
+    "topic_tag": "lunar geology: highland regolith minerals"
+  },
+  {
+    "id": "SEC23C-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a So + adverb + prepositional phrase inversion with a singular mass-noun subject placed after plural nouns in the fronted phrase, crossed with be versus do as the auxiliary decided by the -ing form after the subject",
+    "difficulty": "hard",
+    "passage": "Sociolinguists usually expect new words to travel slowly between neighborhoods, carried by family ties and shared workplaces. So quickly through secondary schools and their weekend sports leagues ______ and largely untraceable schoolyard slang spreading that researchers who record a term in one district often hear it in another within a month. The researchers attribute the pace to students who travel to play matches far from home.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "does new",
+      "is new",
+      "do new",
+      "are new"
+    ],
+    "correct_answer": "is new",
+    "explanation": "The subject of the inverted clause comes after the blank: it is \"slang\" (\"new and largely untraceable schoolyard slang\"), a singular noun, while \"schools\" and \"leagues\" sit inside the fronted phrase \"So quickly through secondary schools and their weekend sports leagues\" and cannot be the subject, so the auxiliary must be singular. The auxiliary must also be a form of \"be\": the verb that completes it, \"spreading,\" is an -ing form, which combines with \"is\" (\"is ... spreading\"), whereas \"does\" would need the base form \"spread.\" Only \"is new\" is both singular and a form of \"be.\" \"are new\" has the right auxiliary but is plural, agreeing with \"leagues.\" \"does new\" is singular but cannot combine with \"spreading,\" and \"do new\" is both plural and the wrong auxiliary.",
+    "topic_tag": "sociolinguistics: adolescent slang diffusion"
+  },
+  {
+    "id": "SEC23C-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement on the clause-final verb of a concessive Adjective + as + subject clause, with the main clause's singular subject right after the blank, crossed with present versus past decided by the main clause's present-tense verb",
+    "difficulty": "hard",
+    "passage": "A hill-town church holds two fresco cycles painted by a single workshop. Faded as the frescoes in the two side chapels ______, the subject of each scene is easy to identify for any visitor who knows the stories they illustrate. The painters outlined each figure in a dark earth pigment that resists light far better than the colors laid over it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was",
+      "were",
+      "are",
+      "is"
+    ],
+    "correct_answer": "are",
+    "explanation": "The blank is the verb of the concessive clause \"Faded as the frescoes in the two side chapels ______,\" whose subject is \"frescoes,\" a plural noun; \"subject,\" the singular noun that follows the comma, belongs to the main clause, so the verb must be plural. The verb must also be present: the concession describes the frescoes' condition at the same time as the main clause's present-tense \"is easy to identify,\" and the fading is set against that present ease. Only \"are\" is plural and present. \"is\" is present but singular, as if \"subject\" were its subject. \"were\" is plural but places the fading in a past that the present-tense main clause does not share, and \"was\" is both singular and past.",
+    "topic_tag": "fresco painting: outlined figures in a hill-town church"
+  },
+  {
+    "id": "SEC23C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a fronted (topicalized) singular object, with the plural subject just before the blank, crossed with past progressive versus present perfect progressive decided by a definite-past when-clause in the same sentence",
+    "difficulty": "hard",
+    "passage": "Most of the merchant house's account books were photographed and returned to storage without being read. This last ledger the two archivists ______ line by line, checking each debt against the surviving letters, when a burst pipe flooded the reading room and soaked the binding. Conservators later dried the pages, but several columns of figures are lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were transcribing",
+      "has been transcribing",
+      "was transcribing",
+      "have been transcribing"
+    ],
+    "correct_answer": "were transcribing",
+    "explanation": "\"This last ledger\" is the object of the verb, moved to the front of the sentence; the subject is \"the two archivists,\" a plural, so the verb must be plural even though the sentence opens with a singular noun. The verb must also be the past progressive, not the present perfect progressive, because the transcribing was interrupted at a definite past moment, \"when a burst pipe flooded the reading room,\" and the present perfect cannot be tied to a definite past time. Only \"were transcribing\" is plural and past progressive. \"have been transcribing\" is plural but present perfect, which clashes with \"when a burst pipe flooded.\" \"was transcribing\" is past but singular, agreeing with \"ledger,\" and \"has been transcribing\" is both singular and present perfect.",
+    "topic_tag": "business history: a merchant house's ledgers"
+  }
+]

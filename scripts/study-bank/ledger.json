@@ -10933,6 +10933,53 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "sat-sec-hard-v23-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v23-sec-hard",
+      "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+      "status": "inserted",
+      "note": "PREREG-SEC23-2026-10-23.md (18 agreement + 6 boundary slots designed against v22 grader tells; Amendments 1-2). Three Claude authors x 8, frozen 40f897f1. Gate dropped 2 (C-07, C-08 median struck 2); template cover held 8 (2 hard). 14 inserted: 6 hard / 8 medium.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+          "verdict": "pre-freeze comparison: 0 deviations, A3/C5 identical option set accepted (Amendment 2); sec23-brief-counts 10/10 bars; near-dup 0 holds; doubled-word 0."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+          "verdict": "make-oo-render 24 cand + 24 live HARD SEC control: candidate 41.7% (30/72) vs control 56.9% (41/72, measured), margin -15.3 vs +10: PASS."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+          "verdict": "elimination-paired --match difficulty (24 v 48): 4.2% vs 4.2%, margin 0.0 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0.0417,
+          "controlRate": 0.0417,
+          "margin": 0,
+          "threshold": 0.2,
+          "n": 24,
+          "controlN": 48,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+          "verdict": "Graders d/e/f phase 1 cold sha-recorded; 0 cold misses; 0 phase-1 fields changed; recommend_drop only C-07 (f). sec23-gate otherwise-kept 22 (8 hard); template cover held 8 (2 hard)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "09458b02709d05ae9bd3c6e53df04ef005a22dc2d8f75908a069158243a3be32",
+          "verdict": "verify-answer-key-spread on kept 14 (latent; choices shuffled at draw). Graders still name the number x tense grid with a when/while/until decider and the near-noun-opposite hint (now fails on 4 of 18) as batch tells."
+        }
+      }
     }
   ],
   "auditedCohorts": [
