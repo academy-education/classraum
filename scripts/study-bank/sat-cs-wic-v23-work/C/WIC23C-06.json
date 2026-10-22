@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "editing a composer's songs",
+  "passage": "The composer's songs survive in two forms that often disagree: his own manuscripts and the copies a singer marked up during their rehearsals together. Earlier editors simply picked one source and dismissed the other. The newest editor follows the manuscripts for the notes but adopts the singer's breath marks and tempo changes, which letters show the composer approved. Her edition, she explains, is designed to ______ the two sources.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "reconcile",
+    "transcribe",
+    "supplant",
+    "unmask"
+  ],
+  "correct_answer": "reconcile",
+  "explanation": "Unlike earlier editors who kept one source and dismissed the other, she takes the notes from the manuscripts and the composer-approved markings from the singer's copies, so her edition is designed to \"reconcile\" the two into one text. \"Transcribe\" would mean copying the sources as they stand, but she selects from each. \"Supplant\" means to replace, yet the edition is built from both sources. \"Unmask\" implies exposing a source as false, whereas she treats both as authoritative for different features.",
+  "antonym_pairs": [],
+  "polarity": {
+    "reconcile": "+",
+    "transcribe": "0",
+    "supplant": "0",
+    "unmask": "-"
+  },
+  "rarity_order": [
+    "reconcile",
+    "transcribe",
+    "unmask",
+    "supplant"
+  ],
+  "killed_by": {
+    "transcribe": "logic",
+    "supplant": "logic",
+    "unmask": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "wages in England after the Black Death",
+  "passage": "After the plague of 1348 killed perhaps a third of England's workers, wages were renegotiated village by village. Where many tenants had died, survivors could threaten to leave for estates that paid more, and lords often raised wages even though royal statutes forbade them to do so. In villages the plague had largely spared, where a tenant who left could easily be replaced, wages barely moved. The comparison suggests that the higher wages reflected the survivors' ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "obstinacy",
+    "leverage",
+    "legitimacy",
+    "longevity"
+  ],
+  "correct_answer": "leverage",
+  "explanation": "Wages rose only where deaths had made workers scarce enough that survivors could credibly threaten to leave, and stayed flat where a departing tenant was easily replaced, so the gains came from bargaining power, or \"leverage.\" \"Obstinacy\" fits the threat to leave, but the comparison shows the same threat worked only where workers were scarce, so the result depended on their position, not their stubbornness. \"Legitimacy\" fails because the raises broke royal statutes rather than resting on any recognized right. \"Longevity\" plays on the word survivors, but the gains depended on how many others had died, not on how long the survivors themselves lived.",
+  "antonym_pairs": [],
+  "polarity": {
+    "obstinacy": "-",
+    "leverage": "0",
+    "legitimacy": "+",
+    "longevity": "0"
+  },
+  "rarity_order": [
+    "leverage",
+    "legitimacy",
+    "longevity",
+    "obstinacy"
+  ],
+  "killed_by": {
+    "obstinacy": "logic",
+    "legitimacy": "explicit",
+    "longevity": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

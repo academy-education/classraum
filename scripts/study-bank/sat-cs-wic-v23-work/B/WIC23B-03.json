@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a steppe empire's traveling court",
+  "passage": "For much of the thirteenth century, the court of one steppe empire had no fixed capital; the ruler's household shifted between summer and winter pastures, and foreign envoys often spent weeks learning where it had gone. Its archives, treasury, and corps of scribes traveled with it by cart, and decrees issued from wherever the camp happened to stand carried the same seals and formulas year after year. Historians therefore describe this administration as ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "makeshift",
+    "mobile",
+    "palatial",
+    "partitioned"
+  ],
+  "correct_answer": "mobile",
+  "explanation": "The court changed location with the seasons, and its archives, treasury, and scribes went with it, so the whole government moved intact; it was \"mobile.\" \"Makeshift\" fits the lack of a capital, but a court that kept its archives and issued decrees in the same form year after year was not improvised. \"Palatial\" fits a court with a treasury and archives, but this one lived in a camp and traveled by cart between pastures. \"Partitioned\" would mean the government was split among places, but every part of it traveled together with the ruler.",
+  "antonym_pairs": [],
+  "polarity": {
+    "makeshift": "-",
+    "mobile": "0",
+    "palatial": "+",
+    "partitioned": "0"
+  },
+  "rarity_order": [
+    "mobile",
+    "makeshift",
+    "palatial",
+    "partitioned"
+  ],
+  "killed_by": {
+    "makeshift": "logic",
+    "palatial": "logic",
+    "partitioned": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

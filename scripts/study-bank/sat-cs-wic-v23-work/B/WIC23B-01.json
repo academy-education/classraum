@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early modern literacy and marriage registers",
+  "passage": "Historians of literacy in early modern parishes rarely have direct evidence of reading, so many count the share of brides and grooms who signed the marriage register instead of making a mark. Where both the signature rate and later census answers about reading survive, the two rise and fall together from parish to parish. Signing was usually taught before fluent reading, yet some who could sign read little else, and some readers never learned to write at all. Historians therefore treat the signature rate as the ______ for reading ability.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "match",
+    "prerequisite",
+    "marker",
+    "norm"
+  ],
+  "correct_answer": "marker",
+  "explanation": "Across parishes the signature rate rises and falls with reading, but individuals could sign without reading or read without signing, so the rate is a sign that tracks reading without being the same thing; it is a \"marker\" for it. \"Match\" fits the parish-level agreement alone, but the individual cases show that signing and reading were not equivalent. \"Prerequisite\" fits the claim that signing was taught first, but some readers never learned to write, so signing was not required for reading. \"Norm\" would make the rate a standard that reading must meet, which nothing in the passage supports.",
+  "antonym_pairs": [],
+  "polarity": {
+    "match": "0",
+    "prerequisite": "0",
+    "marker": "0",
+    "norm": "0"
+  },
+  "rarity_order": [
+    "match",
+    "norm",
+    "marker",
+    "prerequisite"
+  ],
+  "killed_by": {
+    "match": "logic",
+    "prerequisite": "logic",
+    "norm": "logic"
+  },
+  "after_blank": "for",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

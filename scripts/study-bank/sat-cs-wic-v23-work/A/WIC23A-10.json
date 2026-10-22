@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "coral heat tolerance across generations",
+  "passage": "Corals on one shallow reef flat endure summer water of 34 degrees Celsius, heat that bleaches corals of the same species on a cooler reef a few kilometers away. To learn why, researchers crossed colonies from the two sites and raised all the larvae in cool water from the moment of fertilization. Weeks later, larvae with at least one reef-flat parent survived a heat test far better than larvae whose parents both came from the cooler reef, and they did so consistently across every cross. The reef-flat corals' tolerance, it seems, is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "fleeting",
+    "fortuitous",
+    "expensive",
+    "heritable"
+  ],
+  "correct_answer": "heritable",
+  "explanation": "All the larvae were raised in cool water, yet those with a reef-flat parent resisted heat better, so the tolerance was not produced by each larva's own surroundings but passed from parent to offspring; it is \"heritable.\" \"Fleeting\" fails because the tolerance persisted in larvae that had only ever known cool water. \"Fortuitous\" fails because the advantage appeared consistently across every cross rather than by chance, and \"expensive\" fails because the experiment measured survival only and reports no cost of tolerance.",
+  "antonym_pairs": [],
+  "polarity": {
+    "fleeting": "0",
+    "fortuitous": "0",
+    "expensive": "-",
+    "heritable": "0"
+  },
+  "rarity_order": [
+    "expensive",
+    "fleeting",
+    "heritable",
+    "fortuitous"
+  ],
+  "killed_by": {
+    "fleeting": "logic",
+    "fortuitous": "explicit",
+    "expensive": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "experiment and inference",
+  "key_from_one_sentence": false
+}

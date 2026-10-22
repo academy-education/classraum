@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "assembly line capacity",
+  "passage": "When a bicycle maker hired extra workers for its welding and wheel-assembly stations, its daily output of finished bicycles did not change. The welders were soon producing sixty frames a day, and the wheel builders kept pace. The painting booth, a step managers had long treated as routine, had always finished about forty frames a day, and unpainted frames began to pile up beside it. Only when the company installed a second booth did output rise, showing that the booth had been the line's ______ all along.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "backlog",
+    "bottleneck",
+    "crossroads",
+    "capstone"
+  ],
+  "correct_answer": "bottleneck",
+  "explanation": "Welding rose to sixty frames a day while the booth still finished about forty, output stayed flat, and only a second booth raised it, so the booth was the stage whose capacity limited the whole line: its \"bottleneck.\" The \"backlog\" is the pile of unpainted frames waiting beside the booth, not the booth itself. A \"crossroads\" is a point where paths meet or divide, but every frame followed one path, and a \"capstone\" is a crowning final step, which fits the booth's position but not the passage's point about limited capacity.",
+  "antonym_pairs": [],
+  "polarity": {
+    "backlog": "-",
+    "bottleneck": "-",
+    "crossroads": "0",
+    "capstone": "+"
+  },
+  "rarity_order": [
+    "crossroads",
+    "bottleneck",
+    "backlog",
+    "capstone"
+  ],
+  "killed_by": {
+    "backlog": "logic",
+    "crossroads": "logic",
+    "capstone": "logic"
+  },
+  "after_blank": "all",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

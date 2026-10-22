@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "echolocation in cave birds",
+  "passage": "Bats are famous for echolocation: they emit high-pitched calls and judge distances from the returning echoes. But at least two groups of cave-dwelling birds, oilbirds and certain swiftlets, find their way through dark caves in the same manner, using clicks that human ears can hear. Neither group is any more closely related to bats than other birds are, and the two groups are not closely related to each other; each arrived at the skill on its own. Echolocation, then, is not the ______ of bats alone, even if bats use it with the greatest precision.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "defense",
+    "heirloom",
+    "hallmark",
+    "dialect"
+  ],
+  "correct_answer": "hallmark",
+  "explanation": "Bats are known for echolocation, but two unrelated groups of birds use it too, so it is not a distinguishing feature, or \"hallmark,\" of bats alone. \"Heirloom\" fails because each bird group arrived at the skill on its own rather than inheriting it. \"Defense\" fails because the text describes echolocation as a way of judging distances and finding a route, not of fending off attack, and \"dialect\" fails because the calls and clicks are used to locate surfaces from their echoes, not to communicate with other animals.",
+  "antonym_pairs": [],
+  "polarity": {
+    "defense": "0",
+    "heirloom": "0",
+    "hallmark": "0",
+    "dialect": "0"
+  },
+  "rarity_order": [
+    "defense",
+    "dialect",
+    "hallmark",
+    "heirloom"
+  ],
+  "killed_by": {
+    "defense": "logic",
+    "heirloom": "explicit",
+    "dialect": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": true
+}

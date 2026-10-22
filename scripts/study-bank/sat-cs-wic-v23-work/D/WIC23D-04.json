@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "merging traffic rule becomes law",
+  "passage": "For decades no traffic statute in one state said anything about how drivers should merge when a lane closed, yet many drivers followed an unwritten practice of letting cars from the closing lane alternate with their own, one at a time. Traffic engineers who studied the practice found that it moved vehicles through work zones faster than any other approach. The state later ______ the practice in its driving code. Since then, a driver who refuses to let a merging car in can be fined, whereas before, such a driver faced nothing worse than the irritation of other motorists.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cited",
+    "clarified",
+    "commended",
+    "codified"
+  ],
+  "correct_answer": "codified",
+  "explanation": "The practice had never appeared in any statute, and afterward refusing to follow it could bring a fine, so the state \"codified\" it, writing it into the code as an enforceable rule. Having \"clarified\" the practice in the code would mean it was already there in unclear form, but no statute had addressed it. Having \"cited\" or \"commended\" it would mention or praise the practice without making it binding, which would not explain why drivers can now be fined.",
+  "antonym_pairs": [],
+  "polarity": {
+    "cited": "0",
+    "clarified": "0",
+    "commended": "+",
+    "codified": "0"
+  },
+  "rarity_order": [
+    "cited",
+    "clarified",
+    "commended",
+    "codified"
+  ],
+  "killed_by": {
+    "cited": "logic",
+    "clarified": "logic",
+    "commended": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

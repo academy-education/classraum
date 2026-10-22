@@ -1,0 +1,20 @@
+{
+  "id": "WIC23D-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early automated phone menus",
+  "passage": "The first automated phone menus recognized only a short, fixed list of spoken commands. They handled expected requests quickly, but a caller who said \"billing problem\" instead of \"billing\" was sent to an error message, and a cough in the middle of a word could end the call. Engineers came to describe such systems as ______, and the aim of later designs was less to add more commands than to respond sensibly when a request did not match any of them.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["bloated", "cryptic", "brittle", "archaic"],
+  "correct_answer": "brittle",
+  "explanation": "The menus worked for the requests they expected and failed completely at a small deviation, and later designs aimed to handle mismatches gracefully, so the systems were \"brittle.\" \"Bloated\" would mean too many features, but the menus had only a short list of commands. \"Cryptic\" would mean the callers could not understand the system, whereas the trouble was the system failing to understand the callers. \"Archaic\" describes their age, not the flaw that later designs set out to fix.",
+  "antonym_pairs": [],
+  "polarity": {"bloated": "-", "cryptic": "-", "brittle": "-", "archaic": "-"},
+  "rarity_order": ["bloated", "brittle", "cryptic", "archaic"],
+  "killed_by": {"bloated": "explicit", "cryptic": "logic", "archaic": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

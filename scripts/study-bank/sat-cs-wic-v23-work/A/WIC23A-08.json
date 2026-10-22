@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "skink tail color and predation",
+  "passage": "When a predator seizes certain skinks by the tail, the tail breaks off at a weak joint and keeps twitching on the ground for several minutes. Juveniles, which are attacked most often, have tails of a vivid blue that fades to brown as they grow. In field trials, birds and snakes struck at the blue tail of a model skink far more often than at its head or body, and a real skink that loses its tail grows a new one within weeks. A young skink's tail, in short, serves as the ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "deterrent",
+    "emblem",
+    "decoy",
+    "harbinger"
+  ],
+  "correct_answer": "decoy",
+  "explanation": "The blue tail draws predators' strikes away from the head and body, then breaks off and keeps twitching while the skink escapes, so it works as a \"decoy.\" \"Deterrent\" fails because the tail does not discourage attack; predators strike at it more often than at any other part. \"Emblem\" fails because the color's role in the trials is to attract strikes, not to identify the animal, and \"harbinger\" fails because the tail does not announce anything to come; it absorbs the attack itself.",
+  "antonym_pairs": [],
+  "polarity": {
+    "deterrent": "0",
+    "emblem": "0",
+    "decoy": "0",
+    "harbinger": "0"
+  },
+  "rarity_order": [
+    "emblem",
+    "decoy",
+    "deterrent",
+    "harbinger"
+  ],
+  "killed_by": {
+    "deterrent": "logic",
+    "emblem": "logic",
+    "harbinger": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "function inferred from behavior",
+  "key_from_one_sentence": false
+}

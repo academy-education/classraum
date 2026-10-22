@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "two poets' revision habits",
+  "passage": "One poet revised constantly in print, sometimes publishing the same poem in five versions over thirty years. Her contemporary almost never altered a line once it had appeared, and critics long took him for a poet who let his first thoughts stand. His notebooks, opened only after his death, contain dozens of drafts for nearly every poem he released. The real difference between the two, a recent study argues, is that his revisions were ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "unpublished",
+    "retrospective",
+    "superficial",
+    "scattered"
+  ],
+  "correct_answer": "unpublished",
+  "explanation": "His notebooks show heavy revision that happened before a poem appeared, while she revised versions already in print, so the difference is that his revisions were \"unpublished.\" \"Retrospective\" describes revising work after its release, which is her habit; his drafts all precede publication. \"Superficial\" is unsupported, since nothing suggests his dozens of drafts made only shallow changes. \"Scattered\" fails because the notebooks hold drafts for nearly every poem, not a few here and there.",
+  "antonym_pairs": [],
+  "polarity": {
+    "unpublished": "0",
+    "retrospective": "0",
+    "superficial": "-",
+    "scattered": "-"
+  },
+  "rarity_order": [
+    "unpublished",
+    "scattered",
+    "superficial",
+    "retrospective"
+  ],
+  "killed_by": {
+    "retrospective": "logic",
+    "superficial": "logic",
+    "scattered": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

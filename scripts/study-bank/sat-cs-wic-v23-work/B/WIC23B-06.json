@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a trading company's port after its charter lapsed",
+  "passage": "In 1713 the crown let one trading company's legal monopoly over a colonial port lapse, expecting rival merchants to pour in. Few did. The company's warehouses still held most of the goods that passed through the port, its weights remained the ones buyers trusted, and its agents held the debts of nearly every local supplier. Customs records show the company handling most of the port's trade for another forty years. Its hold on the port, in short, ______ its legal monopoly.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "preserved",
+    "magnified",
+    "outlived",
+    "prefigured"
+  ],
+  "correct_answer": "outlived",
+  "explanation": "The monopoly ended in 1713, but the company's warehouses, trusted weights, and loans kept it in control of most trade for forty more years, so its hold on the port \"outlived\" the monopoly. \"Preserved\" fails because the legal monopoly itself was allowed to lapse; only the company's practical dominance continued. \"Magnified\" fails because the company's hold persisted rather than grew, and there was no longer a legal monopoly for it to enlarge. \"Prefigured\" gets the order wrong: the hold mattered because it continued after the monopoly ended, not because it came before it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "preserved": "0",
+    "magnified": "0",
+    "outlived": "0",
+    "prefigured": "0"
+  },
+  "rarity_order": [
+    "preserved",
+    "magnified",
+    "outlived",
+    "prefigured"
+  ],
+  "killed_by": {
+    "preserved": "explicit",
+    "magnified": "logic",
+    "prefigured": "logic"
+  },
+  "after_blank": "its",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

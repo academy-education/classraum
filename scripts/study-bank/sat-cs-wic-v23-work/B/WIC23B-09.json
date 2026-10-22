@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "admissions at an early state university",
+  "passage": "The 1830s charter of one state university promised admission \"by examination alone,\" yet for its first decade most entering students were sons of the professors' friends, whose answers the professors graded themselves. The legislature never amended the charter. Instead, it required that entrance examinations be graded by scholars from other colleges, with each candidate's name concealed. Within a few years, farmers' and artisans' sons were entering in rough proportion to their share of the applicants. The outside grading, in effect, ______ the charter's rule of admission.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "loosened",
+    "policed",
+    "overhauled",
+    "proclaimed"
+  ],
+  "correct_answer": "policed",
+  "explanation": "The charter's rule of admission by examination stayed the same, but outside graders who could not see names made sure the rule was actually followed, so the new grading \"policed\" it. \"Overhauled\" fails because the legislature never amended the charter; the rule was unchanged, and only its enforcement improved. \"Loosened\" fails because the change replaced favoritism with grading on merit, which made the standard stricter in practice, not more lenient. \"Proclaimed\" fails because the charter had announced the rule from the start; what the grading added was not a declaration but a way of making the rule hold.",
+  "antonym_pairs": [],
+  "polarity": {
+    "loosened": "0",
+    "policed": "0",
+    "overhauled": "0",
+    "proclaimed": "0"
+  },
+  "rarity_order": [
+    "loosened",
+    "policed",
+    "proclaimed",
+    "overhauled"
+  ],
+  "killed_by": {
+    "loosened": "logic",
+    "overhauled": "explicit",
+    "proclaimed": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

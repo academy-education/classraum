@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "nineteenth-century touring theater",
+  "passage": "In the 1890s, one touring company performed the same melodrama in nearly every town it visited, while a rival troupe offered a new program almost every week. The first company's manager privately called the play \"a tired old horse\" and spent his energy commissioning new work, almost none of which lasted a season. Box-office ledgers show that the melodrama paid for those experiments year after year. Whatever the manager thought of it, the old play was the company's ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "staple",
+    "triumph",
+    "venture",
+    "sequel"
+  ],
+  "correct_answer": "staple",
+  "explanation": "The ledgers show the same play reliably funding the company year after year, so it was the company's \"staple,\" its dependable regular offering. \"Triumph\" would make the play a celebrated success, but the manager scorned it and its value lay in steady receipts, not acclaim. \"Venture\" describes a new, uncertain undertaking, which fits the manager's commissions, not a play performed unchanged for years. \"Sequel\" would require a follow-up to an earlier work, but the company performed one unchanged melodrama.",
+  "antonym_pairs": [],
+  "polarity": {
+    "staple": "0",
+    "triumph": "+",
+    "venture": "0",
+    "sequel": "0"
+  },
+  "rarity_order": [
+    "venture",
+    "triumph",
+    "staple",
+    "sequel"
+  ],
+  "killed_by": {
+    "triumph": "logic",
+    "venture": "logic",
+    "sequel": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

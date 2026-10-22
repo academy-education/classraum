@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "geyser eruption intervals",
+  "passage": "The eruptions of one well-studied geyser are not evenly spaced: the wait between them ranges from about an hour to nearly two, and each eruption lasts anywhere from two to five minutes. A long eruption drains the geyser's underground chamber more completely, so the chamber then takes longer to refill and reheat before it can erupt again. A short eruption leaves water behind, and the wait that follows it is correspondingly short. The geyser's schedule, in short, is irregular but ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "forceful",
+    "foreseeable",
+    "dazzling",
+    "intricate"
+  ],
+  "correct_answer": "foreseeable",
+  "explanation": "The waits vary, but each wait is set by how long the previous eruption lasted, so someone who times an eruption can tell roughly when the next will come; the schedule is irregular but \"foreseeable.\" \"Forceful\" fails because the text concerns timing, not the power of the eruptions. \"Dazzling\" fails because the text says nothing about how the eruptions look; its subject is when they happen, and \"intricate\" fails because the point of the explanation is that one simple factor, the length of the last eruption, governs the timing.",
+  "antonym_pairs": [],
+  "polarity": {
+    "forceful": "0",
+    "foreseeable": "+",
+    "dazzling": "+",
+    "intricate": "0"
+  },
+  "rarity_order": [
+    "forceful",
+    "dazzling",
+    "foreseeable",
+    "intricate"
+  ],
+  "killed_by": {
+    "forceful": "logic",
+    "dazzling": "logic",
+    "intricate": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

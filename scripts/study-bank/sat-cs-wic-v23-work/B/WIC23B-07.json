@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "grain prices during a seventeenth-century famine",
+  "passage": "Chroniclers of one seventeenth-century famine blamed it on a summer drought. The surviving grain prices add detail. In the three upland valleys whose harvests failed, the price of rye tripled within a season. In market towns a day's journey downstream, where merchants could bring grain by boat from other districts, prices rose only slightly, and town clerks recorded no shortage at all. Read alongside each other, these figures suggest the famine was ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "latent",
+    "man-made",
+    "localized",
+    "monetary"
+  ],
+  "correct_answer": "localized",
+  "explanation": "Prices tripled in the valleys whose harvests failed but barely moved in nearby towns that could import grain, so the famine was confined to a small area; it was \"localized.\" \"Latent\" fits the towns, where no shortage was recorded, but in the valleys the famine was plainly visible in tripled prices. \"Man-made\" suggests merchants caused the famine, but the valleys suffered because their harvests failed, and merchants were the ones bringing grain where boats could reach. \"Monetary\" would make the crisis one of money or prices alone, but the valleys faced a real loss of food.",
+  "antonym_pairs": [],
+  "polarity": {
+    "latent": "0",
+    "man-made": "-",
+    "localized": "0",
+    "monetary": "0"
+  },
+  "rarity_order": [
+    "monetary",
+    "localized",
+    "man-made",
+    "latent"
+  ],
+  "killed_by": {
+    "latent": "logic",
+    "man-made": "logic",
+    "monetary": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

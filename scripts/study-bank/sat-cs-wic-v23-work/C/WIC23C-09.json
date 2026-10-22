@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "medieval manuscript copying",
+  "passage": "Medieval scribes copying a manuscript did not always leave the text as they found it. Some added explanatory notes between the lines; others quietly corrected what they took to be an earlier copyist's slips, and a few inserted whole passages of their own composition. Historians of the book therefore caution against treating any single surviving copy as a transparent window onto the original, since each copy could, in its small way, ______ the work it reproduced.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "revise",
+    "survive",
+    "trivialize",
+    "upstage"
+  ],
+  "correct_answer": "revise",
+  "explanation": "Scribes added notes, made corrections, and inserted passages, so each copy could \"revise\" the work it reproduced, which is why no copy is a transparent window onto the original. \"Survive\" would mean outlasting the original, which may be true of many copies but is not why they fail to show the original faithfully. \"Trivialize\" would mean making the work seem unimportant, but notes and corrections treat it as worth explaining and repairing. \"Upstage\" would mean drawing attention away from the original, but the scribes' changes were small and often quiet, not a bid to outshine the work.",
+  "antonym_pairs": [],
+  "polarity": {
+    "revise": "0",
+    "survive": "0",
+    "trivialize": "-",
+    "upstage": "0"
+  },
+  "rarity_order": [
+    "revise",
+    "survive",
+    "upstage",
+    "trivialize"
+  ],
+  "killed_by": {
+    "survive": "logic",
+    "trivialize": "logic",
+    "upstage": "explicit"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

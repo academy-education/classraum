@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "publishing transit ridership data",
+  "passage": "A city transit agency wanted to publish data showing how riders move through its system, but it had promised that no individual's travel would be exposed. Each fare card leaves a trail of taps that, read in sequence, can reveal where its owner lives and works. Rather than release those trails, the agency chose to ______ the records before publishing them. Planners could still see how many people entered each station in each hour of the morning, yet no published figure could be traced back to a single rider.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "audit",
+    "convert",
+    "compress",
+    "aggregate"
+  ],
+  "correct_answer": "aggregate",
+  "explanation": "The published data still showed how many people used each station each hour but could not be traced to any one card, which requires combining the individual trails into totals; the agency chose to \"aggregate\" them. To \"convert\" the records would change their format and to \"compress\" them would make the files smaller, while to \"audit\" them would check their accuracy; each of these would still leave every rider's sequence of taps in what was published.",
+  "antonym_pairs": [],
+  "polarity": {
+    "audit": "0",
+    "convert": "0",
+    "compress": "0",
+    "aggregate": "0"
+  },
+  "rarity_order": [
+    "convert",
+    "audit",
+    "compress",
+    "aggregate"
+  ],
+  "killed_by": {
+    "audit": "logic",
+    "convert": "logic",
+    "compress": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

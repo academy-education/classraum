@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "tidal range and coastline shape",
+  "passage": "The Moon's gravity raises a bulge in the oceans that sweeps around the globe twice a day, and in the open ocean the resulting tide is less than a meter high. In one long, funnel-shaped bay, whose water sloshes back and forth in step with that pull, the tide can rise more than fifteen meters. In a nearly enclosed sea elsewhere, by contrast, it often amounts to only a few centimeters. The Moon may set the tides in motion, but local geography largely ______ the range of the tide.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "heightens",
+    "foreshadows",
+    "duplicates",
+    "governs"
+  ],
+  "correct_answer": "governs",
+  "explanation": "The same lunar pull produces a fifteen-meter tide in a funnel-shaped bay and a tide of a few centimeters in an enclosed sea, so the shape of the coast largely determines, or \"governs,\" how far the tide rises and falls. \"Heightens\" fails because geography shrinks the tide in the enclosed sea rather than raising it. \"Duplicates\" fails because the range differs enormously from place to place rather than repeating, and \"foreshadows\" fails because geography shapes the tide as it happens rather than signaling it in advance.",
+  "antonym_pairs": [],
+  "polarity": {
+    "heightens": "0",
+    "foreshadows": "0",
+    "duplicates": "0",
+    "governs": "0"
+  },
+  "rarity_order": [
+    "governs",
+    "heightens",
+    "duplicates",
+    "foreshadows"
+  ],
+  "killed_by": {
+    "heightens": "logic",
+    "foreshadows": "logic",
+    "duplicates": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

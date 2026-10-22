@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "small-business cash reserves",
+  "passage": "A survey asked small-business owners why they kept several months of expenses in cash instead of spending the money on new equipment. Few said that equipment would earn too little to be worth buying. Most instead described a past year in which a single late payment from a major client had nearly forced them to close. The researchers concluded that the reserves reflected the owners' ______ outlook rather than any estimate of what the equipment might return.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bitter",
+    "cautious",
+    "calculating",
+    "academic"
+  ],
+  "correct_answer": "cautious",
+  "explanation": "The owners hold cash because a single late payment once nearly closed their businesses, so their reserves guard against a repeat; the outlook is \"cautious.\" A \"calculating\" outlook would be the estimate of returns that the researchers set aside. An \"academic\" outlook is theoretical, but the owners are acting on something that happened to them, and a \"bitter\" outlook names resentment, which would not explain why the owners set money aside.",
+  "antonym_pairs": [],
+  "polarity": {
+    "bitter": "-",
+    "cautious": "0",
+    "calculating": "-",
+    "academic": "0"
+  },
+  "rarity_order": [
+    "cautious",
+    "bitter",
+    "academic",
+    "calculating"
+  ],
+  "killed_by": {
+    "bitter": "logic",
+    "calculating": "explicit",
+    "academic": "logic"
+  },
+  "after_blank": "outlook",
+  "pos": "adjective",
+  "shape": "evidence then interpretation",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC23D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "what a library card provides",
+  "passage": "Many public libraries now pay for subscriptions to newspapers, language-learning programs, and research databases that would cost a single household hundreds of dollars a year. A resident who holds a library card can use all of them from home, without paying anything and without ever visiting a branch. For such a resident, the card works less as a permit to borrow books than as a form of ______, opening collections that the library has already bought on the resident's behalf.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["access", "currency", "citizenship", "collateral"],
+  "correct_answer": "access",
+  "explanation": "The card lets a resident reach services the library has already paid for, so it works as a form of \"access.\" It is not \"currency,\" because the resident spends nothing to use the subscriptions, and it is not \"collateral,\" which secures a loan, when the passage says the card is less about borrowing. \"Citizenship\" is a civic status, but the passage is about what the card opens, not about the holder's standing in the community.",
+  "antonym_pairs": [],
+  "polarity": {"access": "0", "currency": "0", "citizenship": "0", "collateral": "0"},
+  "rarity_order": ["access", "currency", "citizenship", "collateral"],
+  "killed_by": {"currency": "logic", "citizenship": "logic", "collateral": "logic"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "reframing of function",
+  "key_from_one_sentence": true
+}

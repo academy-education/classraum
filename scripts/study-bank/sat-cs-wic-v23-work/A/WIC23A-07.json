@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "terns returning to nest sites",
+  "passage": "Researchers banding common terns followed two colonies for a decade. On a rocky islet whose nest sites barely changed from year to year, nine in ten returning adults nested within a few meters of the previous summer's nest. On a sandbar that winter storms reshaped every year, returning birds scattered, often settling hundreds of meters from where they had nested before. Because the two colonies belong to the same population, and birds hatched on the islet scattered just as widely when they later bred on the sandbar, the researchers conclude that the contrast reveals the terns' ______ rather than any inborn difference between the colonies.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hardiness",
+    "flexibility",
+    "diligence",
+    "hostility"
+  ],
+  "correct_answer": "flexibility",
+  "explanation": "Terns of one population cling to their nest sites where the ground is stable and scatter where storms reshape it, and islet-hatched birds scatter too once they breed on the sandbar, so the birds adjust their behavior to their ground: the contrast reveals their \"flexibility.\" \"Hardiness\" fails because the study measured where birds nested, not how well they survived. \"Diligence\" and \"hostility\" fail for the same reason: the data compare nesting distances and say nothing about how hard the birds worked or how aggressively they behaved.",
+  "antonym_pairs": [],
+  "polarity": {
+    "hardiness": "+",
+    "flexibility": "+",
+    "diligence": "+",
+    "hostility": "-"
+  },
+  "rarity_order": [
+    "flexibility",
+    "hostility",
+    "diligence",
+    "hardiness"
+  ],
+  "killed_by": {
+    "hardiness": "logic",
+    "diligence": "logic",
+    "hostility": "logic"
+  },
+  "after_blank": "rather",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

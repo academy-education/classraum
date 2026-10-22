@@ -1,0 +1,20 @@
+{
+  "id": "WIC23C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a review of a poetry anthology",
+  "passage": "The critic's review opens by admiring the anthology's range: it gathers poems from eleven countries and four centuries, many of them never before collected in English. About the rest of the book she has less to say. The translations, most of them commissioned for the volume, she calls serviceable at best, and the editor's long introduction goes unmentioned. Readers who quote the review as a recommendation should therefore notice that her endorsement of the book is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["restricted", "sarcastic", "steadfast", "renewed"],
+  "correct_answer": "restricted",
+  "explanation": "The critic praises only the anthology's selection of poems, faults the translations, and ignores the introduction, so her endorsement is \"restricted\" to one part of the book. \"Sarcastic\" would mean her praise was mocking, but nothing suggests her admiration for the range is insincere. \"Steadfast\" means firm and unwavering, which says nothing about the narrow reach of her approval that readers should notice. \"Renewed\" implies an earlier endorsement she is repeating, and the text describes only this one review.",
+  "antonym_pairs": [],
+  "polarity": {"restricted": "0", "sarcastic": "-", "steadfast": "+", "renewed": "0"},
+  "rarity_order": ["renewed", "restricted", "sarcastic", "steadfast"],
+  "killed_by": {"sarcastic": "logic", "steadfast": "logic", "renewed": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "direction of a comet's tail",
+  "passage": "A comet's tail is made of gas and dust pushed outward by sunlight and the solar wind, so it always points directly away from the Sun. As a comet falls inward toward the Sun, its tail streams out behind it, much as smoke trails a moving train. But after the comet swings around the Sun and heads back out, it travels tail-first, the tail stretching ahead of it into space. As a guide to which way a comet is moving, then, the tail is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "erratic",
+    "deceptive",
+    "inverted",
+    "indispensable"
+  ],
+  "correct_answer": "deceptive",
+  "explanation": "The tail trails the comet on the way in but leads it on the way out, so anyone reading it as smoke behind a train would get the outbound comet's direction backward; as a guide to motion it is \"deceptive.\" \"Erratic\" fails because the tail behaves predictably, always pointing away from the Sun. \"Inverted\" fails because the tail points opposite the motion only on the outbound leg, and \"indispensable\" fails because nothing in the text suggests the tail is needed to tell which way a comet moves.",
+  "antonym_pairs": [],
+  "polarity": {
+    "erratic": "-",
+    "deceptive": "-",
+    "inverted": "0",
+    "indispensable": "+"
+  },
+  "rarity_order": [
+    "deceptive",
+    "inverted",
+    "erratic",
+    "indispensable"
+  ],
+  "killed_by": {
+    "erratic": "explicit",
+    "inverted": "logic",
+    "indispensable": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

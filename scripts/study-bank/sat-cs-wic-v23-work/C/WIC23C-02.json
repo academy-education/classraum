@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "serialized Victorian fiction",
+  "passage": "The novelist published each chapter in a weekly magazine before the book existed as a whole, and readers' letters reached her while the story was still being written. Two minor characters who drew warm responses were given far larger roles in later installments, and a subplot that correspondents called tedious simply disappears. Yet when hundreds of letters begged her to spare the heroine, she printed the death she had outlined in her notebook before the first installment appeared. Her readers, in short, helped ______ the novel.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "steer",
+    "script",
+    "underwrite",
+    "sell"
+  ],
+  "correct_answer": "steer",
+  "explanation": "Readers' reactions changed which characters grew and which subplot was dropped, but they could not change the ending she had planned, so they helped \"steer\" the novel's course without fixing its destination. \"Script\" would mean they set out the story in advance, yet the plan in her notebook was hers and survived their protests. \"Underwrite\" means paying for or guaranteeing a project, and nothing in the text concerns the novel's funding. \"Sell\" would mean promoting the book, but the evidence concerns changes to the story, not its sales.",
+  "antonym_pairs": [],
+  "polarity": {
+    "steer": "0",
+    "script": "0",
+    "underwrite": "0",
+    "sell": "0"
+  },
+  "rarity_order": [
+    "sell",
+    "steer",
+    "script",
+    "underwrite"
+  ],
+  "killed_by": {
+    "script": "logic",
+    "underwrite": "logic",
+    "sell": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

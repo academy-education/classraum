@@ -1,0 +1,20 @@
+{
+  "id": "WIC23B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "a mill town's lending library in the 1890s",
+  "passage": "The reformers who founded a lending library in one mill town in the 1890s hoped workers would use it to study engineering and bookkeeping. Its loan records tell a different story: novels, travel accounts, and serialized mysteries made up nearly nine of every ten books borrowed, and most were checked out on Sundays, the workers' only free day. For most of its patrons, the library served mainly as the ______ for interests that twelve-hour shifts left them no room to pursue during the week.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["laboratory", "outlet", "mouthpiece", "nursery"],
+  "correct_answer": "outlet",
+  "explanation": "The loan records show workers borrowing mostly novels and travel books on their one free day, so the library gave them a way to express interests their working week shut out; it was an \"outlet\" for them. \"Laboratory\" matches the reformers' hope that workers would study technical subjects, but the records show that hope was not met. \"Mouthpiece\" would mean the library spoke on behalf of those interests, but it lent books rather than voicing anyone's views. \"Nursery\" would mean the library planted and raised new interests, but the passage presents interests the workers already had and simply lacked time to pursue.",
+  "antonym_pairs": [],
+  "polarity": {"laboratory": "0", "outlet": "0", "mouthpiece": "0", "nursery": "0"},
+  "rarity_order": ["outlet", "laboratory", "nursery", "mouthpiece"],
+  "killed_by": {"laboratory": "logic", "mouthpiece": "logic", "nursery": "logic"},
+  "after_blank": "for",
+  "pos": "noun",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

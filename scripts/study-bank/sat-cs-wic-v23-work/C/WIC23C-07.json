@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "medieval cathedral building",
+  "passage": "The cathedral's builders had no method for calculating how much weight a wall could bear, so each new section was made thicker than the last one that had stood. Where a vault cracked, its replacement was built heavier still. Engineers who have modeled the finished structure estimate that it carries several times the load it needs to. Its famous massiveness, they suggest, is less a statement of grandeur than a record of the builders' ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "uncertainty",
+    "urgency",
+    "reverence",
+    "secrecy"
+  ],
+  "correct_answer": "uncertainty",
+  "explanation": "Unable to calculate loads, the builders kept adding thickness after each failure, so the excess mass records their \"uncertainty\" about what the walls required. \"Urgency\" would point to haste, but the walls thickened gradually, section by section and crack by crack. \"Reverence\" would make the mass an expression of devotion, which the engineers set aside in favor of the builders' guesswork about loads. \"Secrecy\" has no support, since nothing suggests the builders hid their methods.",
+  "antonym_pairs": [],
+  "polarity": {
+    "uncertainty": "-",
+    "urgency": "0",
+    "reverence": "+",
+    "secrecy": "0"
+  },
+  "rarity_order": [
+    "uncertainty",
+    "urgency",
+    "secrecy",
+    "reverence"
+  ],
+  "killed_by": {
+    "urgency": "logic",
+    "reverence": "logic",
+    "secrecy": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

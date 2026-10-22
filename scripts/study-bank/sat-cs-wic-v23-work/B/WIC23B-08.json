@@ -1,0 +1,20 @@
+{
+  "id": "WIC23B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "newspaper readership in 1720s coffeehouses",
+  "passage": "Few readers in 1720s London could afford a newspaper subscription, so a single copy left on a coffeehouse table might pass through dozens of hands in a day, and some copies were read aloud to customers who could not read at all. A paper's print run, then, counts copies rather than readers. For this reason, historians treat the print run as the ______ of a paper's readership, not as an estimate of its actual size.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["majority", "minimum", "median", "multiple"],
+  "correct_answer": "minimum",
+  "explanation": "Every printed copy had at least one reader and most had many, so the number of copies printed is the lowest the readership could have been: its \"minimum.\" \"Median\" would place the print run in the middle of a range of possible readerships, but the readership could not fall below it. \"Multiple\" reverses the relationship: readership was a multiple of the print run, not the other way around. \"Majority\" fails because copies are not readers, and with dozens of readers per copy, the copies would equal only a small fraction of the readership.",
+  "antonym_pairs": [],
+  "polarity": {"majority": "0", "minimum": "0", "median": "0", "multiple": "0"},
+  "rarity_order": ["majority", "minimum", "multiple", "median"],
+  "killed_by": {"majority": "logic", "median": "logic", "multiple": "logic"},
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

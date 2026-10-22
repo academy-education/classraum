@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "pricing two streaming channels",
+  "passage": "Imagine two subscribers to a streaming service. One would pay $8 a month for its sports channel but only $2 for its news channel; the other would pay $8 for the news channel and $2 for sports. If each channel is priced on its own, the most the service can collect from the two subscribers is $16 a month, and it collects that only by losing one of them on each channel. A service in this position earns more by choosing to ______ the two channels than by fine-tuning the price of either one.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "brand",
+    "bundle",
+    "auction",
+    "bolster"
+  ],
+  "correct_answer": "bundle",
+  "explanation": "Each subscriber would pay $10 for both channels together, so offering them only as a pair at $10 collects $20, more than the $16 possible when each is priced alone; the service should \"bundle\" them. To \"auction\" the channels would sell each to its highest bidder, but a channel can serve both subscribers at once, so auctioning would still capture only one high valuation per channel. To \"bolster\" them would change their quality, yet the argument rests on the valuations already given, and to \"brand\" them adds an identity that does nothing to the pricing problem.",
+  "antonym_pairs": [],
+  "polarity": {
+    "brand": "0",
+    "bundle": "0",
+    "auction": "0",
+    "bolster": "+"
+  },
+  "rarity_order": [
+    "brand",
+    "auction",
+    "bundle",
+    "bolster"
+  ],
+  "killed_by": {
+    "brand": "logic",
+    "auction": "logic",
+    "bolster": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "film versus digital photography",
+  "passage": "With film, every press of the shutter used up a frame that cost money to buy and develop, so a photographer had to decide in advance whether a moment was worth keeping. Digital cameras removed that cost, and photographers now routinely take dozens of nearly identical shots of a single scene. The decision did not disappear, one photography instructor argues; it simply moved. Much of a digital photographer's judgment is now exercised after the shoot, in ______ the many frames.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cropping",
+    "culling",
+    "captioning",
+    "collating"
+  ],
+  "correct_answer": "culling",
+  "explanation": "The decision that film forced before each shot, whether a moment was worth keeping, has moved to after the shoot, where the photographer must choose among dozens of near-identical frames, so the judgment lies in \"culling\" them. \"Collating\" the frames would gather and order them but would keep every one, and \"cropping\" and \"captioning\" improve or label a single frame; none of them is the decision about which moments to keep that the instructor says has moved.",
+  "antonym_pairs": [],
+  "polarity": {
+    "cropping": "0",
+    "culling": "0",
+    "captioning": "0",
+    "collating": "0"
+  },
+  "rarity_order": [
+    "cropping",
+    "captioning",
+    "culling",
+    "collating"
+  ],
+  "killed_by": {
+    "cropping": "logic",
+    "captioning": "logic",
+    "collating": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

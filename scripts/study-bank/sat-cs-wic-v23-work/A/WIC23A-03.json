@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lupines on a volcanic slope",
+  "passage": "After the eruption, the volcano's slope was bare pumice that held almost no water and almost no nitrogen. The first plants to establish themselves there were lupines, whose roots host bacteria that draw nitrogen from the air. Each autumn the lupines died back, and their decaying leaves slowly enriched the pumice beneath them. Within a decade, grasses and willows were spreading across the slope, and when botanists aged the oldest of them, every one stood in a former lupine patch. Those patches, in short, served as the later arrivals' ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hideout",
+    "foothold",
+    "detour",
+    "fallback"
+  ],
+  "correct_answer": "foothold",
+  "explanation": "The lupines enriched the barren pumice, and the oldest grasses and willows, the first to arrive, all grew in old lupine patches before spreading outward, so the patches were their \"foothold,\" the place from which they first established themselves. \"Hideout\" fails because the text mentions nothing the newcomers needed to hide from; the patches mattered for their soil. \"Detour\" fails because nothing was routed around the patches, and \"fallback\" fails because a fallback is a second choice, while the patches were where the newcomers started.",
+  "antonym_pairs": [],
+  "polarity": {
+    "hideout": "0",
+    "foothold": "0",
+    "detour": "0",
+    "fallback": "0"
+  },
+  "rarity_order": [
+    "detour",
+    "foothold",
+    "fallback",
+    "hideout"
+  ],
+  "killed_by": {
+    "hideout": "logic",
+    "detour": "logic",
+    "fallback": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

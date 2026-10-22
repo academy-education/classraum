@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "fairy shrimp in seasonal pools",
+  "passage": "Fairy shrimp hatch from eggs that can survive years of drought buried in dry mud, and they complete their entire life cycle within a few weeks. In one wetland, a shallow pool is joined to a stream by a ditch, and each spring minnows swim in and feed on the young shrimp; by July the pool has dried, the minnows have died, and the next generation's eggs lie safe in the mud. A permanent pond nearby, fed by the same stream, holds fish all year and no shrimp at all. The shrimp's real protection, then, is the pool's ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "insularity",
+    "impermanence",
+    "homogeneity",
+    "fertility"
+  ],
+  "correct_answer": "impermanence",
+  "explanation": "Minnows do reach the pool, but they die when it dries, while the shrimp's eggs survive the drought; the permanent pond, fed by the same stream, keeps its fish and has no shrimp. So what protects the shrimp is that the pool does not last, its \"impermanence.\" \"Insularity\" fails because the ditch connects the pool to a stream and lets predators in. \"Homogeneity\" and \"fertility\" fail because nothing in the text ties the shrimp's survival to the pool being uniform or rich; the difference between pool and pond is that one dries and the other does not.",
+  "antonym_pairs": [],
+  "polarity": {
+    "insularity": "0",
+    "impermanence": "0",
+    "homogeneity": "0",
+    "fertility": "+"
+  },
+  "rarity_order": [
+    "fertility",
+    "impermanence",
+    "insularity",
+    "homogeneity"
+  ],
+  "killed_by": {
+    "insularity": "explicit",
+    "homogeneity": "logic",
+    "fertility": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

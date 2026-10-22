@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a painter's late watercolors",
+  "passage": "The painter's late watercolors look, at first glance, dashed off: washes bleed past their outlines, and whole areas of paper are left bare. Yet conservators examining the sheets under magnification have found faint pencil grids beneath nearly every one, and several sheets carry the traces of three or four earlier attempts at the same composition, each scraped away before the next was begun. What strikes a viewer as casual in these pictures turns out, on this evidence, to be thoroughly ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "studied",
+    "traced",
+    "subdued",
+    "weathered"
+  ],
+  "correct_answer": "studied",
+  "explanation": "The hidden grids and the repeated, scraped-away attempts show that the loose look of the pictures was carefully worked out, so it is \"studied,\" deliberately achieved. \"Traced\" would mean the images were copied from an existing source, but the grids and abandoned attempts show the painter working out her own compositions. \"Subdued\" describes muted color or tone, which the evidence about grids and earlier attempts does not address. \"Weathered\" describes damage from age, which does not answer the casual appearance the conservators' findings are meant to explain.",
+  "antonym_pairs": [],
+  "polarity": {
+    "studied": "0",
+    "traced": "0",
+    "subdued": "0",
+    "weathered": "0"
+  },
+  "rarity_order": [
+    "traced",
+    "studied",
+    "subdued",
+    "weathered"
+  ],
+  "killed_by": {
+    "traced": "logic",
+    "subdued": "logic",
+    "weathered": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

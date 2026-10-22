@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "a novelist's letters",
+  "passage": "In her letters, the novelist almost never mentions the book she is working on; instead she describes gardens, weather, and the quarrels of her neighbors. Biographers long read this silence as modesty. A recent study, however, finds that dozens of these descriptions reappear, sometimes nearly word for word, in novels she completed a year or two after the letters were sent. The letters, the study concludes, served as a kind of ______ for the fiction.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "workshop",
+    "sanctuary",
+    "souvenir",
+    "showcase"
+  ],
+  "correct_answer": "workshop",
+  "explanation": "Descriptions first written in the letters later appear in the novels, so the letters were a \"workshop\" where she worked out material for her fiction. A \"sanctuary\" would be a refuge from her writing, but the letters turn out to be part of it. A \"souvenir\" is a keepsake of something already past, but the letters came before the novels, not after. A \"showcase\" displays finished work, yet the letters hold material in the form she would later rework and never mention the books at all.",
+  "antonym_pairs": [],
+  "polarity": {
+    "workshop": "0",
+    "sanctuary": "+",
+    "souvenir": "0",
+    "showcase": "0"
+  },
+  "rarity_order": [
+    "workshop",
+    "showcase",
+    "souvenir",
+    "sanctuary"
+  ],
+  "killed_by": {
+    "sanctuary": "logic",
+    "souvenir": "logic",
+    "showcase": "logic"
+  },
+  "after_blank": "for",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

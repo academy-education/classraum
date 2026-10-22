@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "weekly market and a shrinking downtown",
+  "passage": "In the five years before one small city turned a parking lot beside its main street into a weekly farmers' market, eleven downtown storefronts went empty. In the five years after the market opened, one more did. None of the twelve vacant storefronts has since found a tenant, and several are still boarded up. Even so, local business owners who once spoke of the downtown as dying now describe the market as having ______ its decline.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "arrested",
+    "camouflaged",
+    "complicated",
+    "concentrated"
+  ],
+  "correct_answer": "arrested",
+  "explanation": "Closures fell from eleven in five years to one after the market opened, yet none of the empty storefronts was refilled, so the decline was stopped without being reversed: the market \"arrested\" it. \"Camouflaged\" would mean the decline continued but was hidden, yet the closures themselves nearly ceased. \"Complicated\" and \"concentrated\" would mean the losses grew messier or more focused, but the counts show that they almost stopped, which is why owners no longer call the downtown dying.",
+  "antonym_pairs": [],
+  "polarity": {
+    "arrested": "0",
+    "camouflaged": "-",
+    "complicated": "-",
+    "concentrated": "0"
+  },
+  "rarity_order": [
+    "complicated",
+    "concentrated",
+    "arrested",
+    "camouflaged"
+  ],
+  "killed_by": {
+    "camouflaged": "logic",
+    "complicated": "logic",
+    "concentrated": "logic"
+  },
+  "after_blank": "its",
+  "pos": "verb",
+  "shape": "before-and-after comparison",
+  "key_from_one_sentence": false
+}

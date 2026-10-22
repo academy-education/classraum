@@ -1,0 +1,39 @@
+{
+  "id": "WIC23D-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "shrinking a public agency's staff",
+  "passage": "Facing a budget cut with no money to spare, a state licensing agency had to shrink its staff by a fifth over four years, and it promised that no employee would be dismissed. It stopped hiring altogether. In a typical year, about one in twenty of its employees retires or leaves for another job. Officials therefore expected to reach their target on schedule, relying entirely on ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "automation",
+    "buyouts",
+    "attrition",
+    "amalgamation"
+  ],
+  "correct_answer": "attrition",
+  "explanation": "With hiring stopped, about one employee in twenty leaving each year shrinks the staff by roughly a fifth over four years, which is why officials \"therefore\" expected to succeed by relying on \"attrition.\" \"Buyouts\" would mean paying employees to leave, which an agency with no money to spare could not do and which the ordinary departure rate made unnecessary. \"Automation\" and \"amalgamation\" might also cut jobs, but neither follows from the departure rate the officials' reasoning rests on, and the agency had no money to spend on new systems or reorganized offices.",
+  "antonym_pairs": [],
+  "polarity": {
+    "automation": "0",
+    "buyouts": "0",
+    "attrition": "0",
+    "amalgamation": "0"
+  },
+  "rarity_order": [
+    "automation",
+    "buyouts",
+    "attrition",
+    "amalgamation"
+  ],
+  "killed_by": {
+    "automation": "logic",
+    "buyouts": "logic",
+    "amalgamation": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

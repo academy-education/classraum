@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a river town's bridge toll and market fees",
+  "passage": "When a river town's council abolished the toll on its only bridge in 1641, its members expected the town's income to fall. Instead, rural sellers who had once avoided paying at the crossing began bringing goods to the weekly market, and the fees they paid for stalls rose over the next year by nearly the sum the toll had once raised. In the council's accounts, then, the toll income it gave up was ______ by the new stall fees.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "justified",
+    "offset",
+    "multiplied",
+    "precipitated"
+  ],
+  "correct_answer": "offset",
+  "explanation": "Because the stall fees rose by nearly the amount the toll had raised, the money the council gave up was balanced out, or \"offset,\" by the new fees. \"Multiplied\" would mean the new fees made the lost income many times larger, but the fees only came close to replacing it. \"Precipitated\" reverses the sequence: the council abolished the toll first, and the new market fees came afterward as a result. \"Justified\" concerns whether a decision was right, but the sentence describes how one sum in the accounts compared with another.",
+  "antonym_pairs": [],
+  "polarity": {
+    "justified": "+",
+    "offset": "0",
+    "multiplied": "0",
+    "precipitated": "0"
+  },
+  "rarity_order": [
+    "offset",
+    "justified",
+    "multiplied",
+    "precipitated"
+  ],
+  "killed_by": {
+    "justified": "logic",
+    "multiplied": "explicit",
+    "precipitated": "logic"
+  },
+  "after_blank": "by",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

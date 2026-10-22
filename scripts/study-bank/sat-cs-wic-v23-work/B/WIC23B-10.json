@@ -1,0 +1,39 @@
+{
+  "id": "WIC23B-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "the abolition of internal tariffs in France and the German states",
+  "passage": "France abolished all of its internal customs duties with a single decree in 1790. In the German lands the change came another way: Prussia unified its own tariffs in 1818, and over the next sixteen years neighboring states signed on to its customs system one at a time, several only once an older trade agreement of theirs had expired. By 1834 the resulting union covered most of the region. Compared with the French case, economic unification in Germany was ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "legislated",
+    "mandatory",
+    "piecemeal",
+    "lopsided"
+  ],
+  "correct_answer": "piecemeal",
+  "explanation": "France removed its internal duties all at once, while the German states joined one by one over sixteen years, so German unification was assembled bit by bit; it was \"piecemeal.\" \"Legislated\" describes the French route, a single decree, whereas the German states joined by signing on to an existing system one after another. \"Mandatory\" fails because the states joined at different times, several waiting until their own older agreements expired, which suggests each chose when to sign on. \"Lopsided\" suggests one side gained far more than the others, but the comparison with France concerns how the change happened, not who benefited.",
+  "antonym_pairs": [],
+  "polarity": {
+    "legislated": "0",
+    "mandatory": "0",
+    "piecemeal": "0",
+    "lopsided": "-"
+  },
+  "rarity_order": [
+    "legislated",
+    "mandatory",
+    "piecemeal",
+    "lopsided"
+  ],
+  "killed_by": {
+    "legislated": "logic",
+    "mandatory": "logic",
+    "lopsided": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

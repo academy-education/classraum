@@ -1,0 +1,39 @@
+{
+  "id": "WIC23A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sea slug keeping algal chloroplasts",
+  "passage": "When one species of sea slug feeds on algae, it digests most of each algal cell but keeps certain small green structures intact, lodging them in cells that line its gut. In a laboratory test, slugs that were denied food and kept in darkness starved at the usual rate, while slugs that were denied food but kept under bright lamps lived for weeks longer. The slug, in effect, has borrowed from the algae the means to ______ sunlight.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "deflect",
+    "harvest",
+    "emit",
+    "glimpse"
+  ],
+  "correct_answer": "harvest",
+  "explanation": "Unfed slugs outlived other unfed slugs only when they had light, so the kept chloroplasts must let the slug draw nourishment from light; the slug uses them to \"harvest\" sunlight. \"Deflect\" fails because turning light away would not keep a starving animal alive longer. \"Emit\" fails because the slugs benefit from receiving lamplight, not producing it, and \"glimpse\" fails because merely seeing light would not substitute for food.",
+  "antonym_pairs": [],
+  "polarity": {
+    "deflect": "0",
+    "harvest": "0",
+    "emit": "0",
+    "glimpse": "0"
+  },
+  "rarity_order": [
+    "harvest",
+    "glimpse",
+    "emit",
+    "deflect"
+  ],
+  "killed_by": {
+    "deflect": "logic",
+    "emit": "logic",
+    "glimpse": "logic"
+  },
+  "after_blank": "sunlight",
+  "pos": "verb",
+  "shape": "experiment and inference",
+  "key_from_one_sentence": false
+}

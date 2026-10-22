@@ -1,0 +1,39 @@
+{
+  "id": "WIC23C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "reconstructing a choreographer's dances",
+  "passage": "The choreographer's company still performs her early dances, but the dancers who joined after her death learned them from silent films. The films record every position and every path across the stage. They preserve almost nothing of the timing, which she taught by clapping and counting aloud in rehearsal and never wrote down. As evidence of how her dances once looked in motion, a performance by the company today is therefore ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "uneven",
+    "vivid",
+    "unrivaled",
+    "romanticized"
+  ],
+  "correct_answer": "uneven",
+  "explanation": "The films preserve positions and paths faithfully but lose the timing, so today's performances are \"uneven\" evidence: reliable in one respect and not in another. \"Vivid\" might suit performances that reproduce every position, but it ignores the missing timing that limits their value as evidence. \"Unrivaled\" overlooks the same gap; the films record only part of the dances, so their reconstruction cannot be the best possible evidence of the dances in motion. \"Romanticized\" would mean the dances had been embellished, but the problem described is something lost, not something added.",
+  "antonym_pairs": [],
+  "polarity": {
+    "uneven": "0",
+    "vivid": "+",
+    "unrivaled": "+",
+    "romanticized": "-"
+  },
+  "rarity_order": [
+    "vivid",
+    "uneven",
+    "unrivaled",
+    "romanticized"
+  ],
+  "killed_by": {
+    "vivid": "logic",
+    "unrivaled": "logic",
+    "romanticized": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}
