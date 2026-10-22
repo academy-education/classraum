@@ -4,7 +4,7 @@ const env = Object.fromEntries(readFileSync('/Users/andylee/Downloads/saas/class
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY)
 const items = JSON.parse(readFileSync(process.argv[2] || 'items.json', 'utf8'))
 if (!items.length) { console.error('REFUSING: no items'); process.exit(2) }
-const { data, error } = await db.from('study_item_bank').select('item->>correct_answer').eq('family', 'toefl').eq('task', 'arrange_words').eq('archived', false)
+const { data, error } = await db.from('study_item_bank').select('item->>correct_answer').eq('family', 'toefl').eq('item_type', 'arrange_words').eq('archived', false) // item_type, not task: bas-v2 rows carry task='build_a_sentence' (2026-10-22: the task filter read 165 of 201 keys)
 if (error || !data?.length) { console.error('REFUSING: cannot read live keys'); process.exit(2) }
 const live = data.map(r => r.correct_answer)
 const toks = s => new Set(String(s).toLowerCase().replace(/\|/g, ' ').replace(/[^a-z' ]/g, ' ').split(/\s+/).filter(Boolean))
