@@ -176,6 +176,12 @@ beforeEach(() => {
 })
 
 describe('TestSession — pause survives closing and reopening (web)', () => {
+  // These tests drive the real 1s clock with real timers (tick() waits 1.1s), and the longest takes
+  // ~4.5s on an idle machine: 10% under jest's 5s default, so any load made it time out
+  // (2026-10-21: failed three times in full runs, passed every time alone). The budget is sized to
+  // the design rather than shortening the ticks, which would stop exercising the real interval.
+  jest.setTimeout(20_000)
+
   it('paused -> close -> reopen 8 hours later: still paused, same time left', async () => {
     await openTest()
     clock += 15 * 60_000          // 15 minutes into a 35-minute test
