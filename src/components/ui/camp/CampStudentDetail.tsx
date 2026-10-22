@@ -10,6 +10,7 @@ import { CampStudentSessionReview } from '@/components/ui/camp/CampStudentSessio
 import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useConfirm } from '@/hooks/useConfirm'
 import { showErrorToast, showSuccessToast } from '@/stores'
 import { ChevronRight, ClipboardList, FileText, Loader2, Printer, Trash2 } from 'lucide-react'
 
@@ -45,6 +46,7 @@ const STATE_TONES: Record<'not_started' | 'in_progress' | 'done', StatusPillTone
 
 export function CampStudentDetail({ classroomId, studentId, studentName, testFamily: _testFamily, onClose }: CampStudentDetailProps) {
   const { t, language } = useTranslation()
+  const confirm = useConfirm()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [payload, setPayload] = useState<CampReportPayload | null>(null)
@@ -113,6 +115,14 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   /** Generate this student's report, then open it in the printable view. */
   const handleGenerateReport = async () => {
     if (generating) return
+    // Publishing is immediate and visible to families, so ask first (camp-dashboard-ux-audit 3.3).
+    const ok = await confirm({
+      title: String(t('camp.reports.publishConfirmTitleOne')),
+      description: String(t('camp.reports.publishConfirmBody')),
+      confirmText: String(t('camp.reports.publishConfirmCta')),
+      variant: 'info',
+    })
+    if (!ok) return
     setGenerating(true)
     try {
       const headers = await authHeaders()

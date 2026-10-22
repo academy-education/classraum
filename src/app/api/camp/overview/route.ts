@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canViewProgramResults } from '@/lib/camp/access'
 import { loadClassroomCampData } from '@/lib/camp/reports'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * GET /api/camp/overview?programId=…
@@ -113,7 +114,7 @@ export async function GET(req: NextRequest) {
         scoreSum += scorePct
         scoredSessions += 1
         if (s.completed_at) {
-          const day = s.completed_at.slice(0, 10)
+          const day = kstDate(s.completed_at)
           const bucket = byDay.get(day) ?? { sum: 0, n: 0 }
           bucket.sum += scorePct
           bucket.n += 1

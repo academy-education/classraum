@@ -108,7 +108,10 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  const byProgram = new Map<string, Array<{ id: string; name: string; teacher_id: string | null; student_count: number }>>()
+  // can_manage mirrors canManageClassroom (the gate every write route uses): an active manager, or the room's
+  // own active teacher. Without it the page offered Reports / Class review / New assignment on colleagues'
+  // rooms and showed them as "No assignments yet" after the 403 (camp-dashboard-ux-audit 2026-10-22).
+  const byProgram = new Map<string, Array<{ id: string; name: string; teacher_id: string | null; student_count: number; can_manage: boolean }>>()
   for (const row of (classroomRows ?? []) as ClassroomRow[]) {
     const list = byProgram.get(row.camp_program_id) ?? []
     list.push({
@@ -116,6 +119,7 @@ export async function GET(req: NextRequest) {
       name: row.name,
       teacher_id: row.teacher_id,
       student_count: studentCount.get(row.id) ?? 0,
+      can_manage: activeManager || (activeTeacher && row.teacher_id === user.id),
     })
     byProgram.set(row.camp_program_id, list)
   }

@@ -2875,7 +2875,11 @@
         "step2": "카카오 승인을 받은 알림톡 템플릿",
         "step3": "발신번호 사전등록",
         "parentsCanRead": "학부모와 학생은 이미 앱에서 리포트를 볼 수 있습니다. 이 기능은 알림을 추가하는 것입니다."
-      }
+      },
+      "publishConfirmTitle": "학부모에게 리포트를 공개할까요?",
+      "publishConfirmTitleOne": "이 학생의 리포트를 학부모에게 공개할까요?",
+      "publishConfirmBody": "공개하면 학부모와 학생 앱에 바로 표시됩니다. 같은 기간의 리포트가 이미 있으면 새로 만들지 않고 최신 내용으로 갱신됩니다.",
+      "publishConfirmCta": "공개하기"
     },
     "overview": {
       "studentsEnrolled": "등록 학생",
@@ -3018,7 +3022,9 @@
       "noRefund": "{{date}}에 발표되었습니다. 문항은 반환되지 않습니다.",
       "deleted": "덱을 삭제했습니다",
       "failed": "덱을 삭제하지 못했습니다"
-    }
+    },
+    "otherTeacherRoomTitle": "다른 선생님이 관리하는 반입니다",
+    "otherTeacherRoomDescription": "과제, 리포트, 수업 복습은 이 반의 담당 선생님이나 학원 관리자만 만들 수 있습니다."
   },
   "attendance": {
     "title": "출석",

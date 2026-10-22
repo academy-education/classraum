@@ -212,6 +212,23 @@ describe('program-wide routes', () => {
     expect(await flags(F.MANAGER)).toEqual({ [F.SAT_CAMP]: true, [F.TOEFL_CAMP]: true })
   })
 
+  test('/api/camp/program marks only the rooms the caller can manage (2026-10-22)', async () => {
+    // Mirrors canManageClassroom: the room's own active teacher, or a manager. Before this flag a teacher was
+    // offered Reports / Class review / New assignment on a colleague's room and got "Forbidden".
+    const manage = async (user: string) => {
+      CURRENT = user
+      const body = await (await programGET(req(`/api/camp/program?academyId=${F.ACAD}`))).json()
+      const sat = (body.programs as Array<{ program: { id: string }; classrooms: Array<{ id: string; can_manage: boolean }> }>)
+        .find(g => g.program.id === F.SAT_CAMP)!
+      return Object.fromEntries(sat.classrooms.map(c => [c.id, c.can_manage]))
+    }
+    const asA = await manage(F.T_ROOM_A)
+    expect(asA[F.ROOM_A]).toBe(true)
+    expect(asA[F.ROOM_B]).toBe(false)
+    const asManager = await manage(F.MANAGER)
+    expect(Object.values(asManager).every(Boolean)).toBe(true)
+  })
+
   test('/api/camp/program no longer lists a forged other-academy classroom', async () => {
     CURRENT = F.MANAGER
     const body = await (await programGET(req(`/api/camp/program?academyId=${F.ACAD}`))).json()

@@ -2875,7 +2875,11 @@
         "step2": "An Alimtalk template approved by Kakao",
         "step3": "A registered sender number (발신번호 사전등록)",
         "parentsCanRead": "Parents and students can already open reports in the app — this only adds a push."
-      }
+      },
+      "publishConfirmTitle": "Publish reports to families?",
+      "publishConfirmTitleOne": "Publish this report to the family?",
+      "publishConfirmBody": "Reports appear in the parent and student apps as soon as they are published. If a report for the same period already exists, it is updated instead of duplicated.",
+      "publishConfirmCta": "Publish"
     },
     "overview": {
       "studentsEnrolled": "Students enrolled",
@@ -3018,7 +3022,9 @@
       "noRefund": "It was presented on {{date}}. The questions stay spent.",
       "deleted": "Deck deleted",
       "failed": "Couldn't delete this deck"
-    }
+    },
+    "otherTeacherRoomTitle": "Managed by another teacher",
+    "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here."
   },
   "attendance": {
     "title": "Attendance",

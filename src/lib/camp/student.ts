@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * Student-facing camp queries — the "From your teacher" shelf on the
@@ -104,7 +105,7 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
     }
   }
 
-  const today = new Date().toISOString().slice(0, 10)
+  const today = kstDate()
   const out: StudentCampAssignment[] = []
   for (const a of assignments) {
     const program = programById.get(a.camp_program_id as string)
@@ -184,7 +185,7 @@ export async function loadStudentCampContext(studentId: string): Promise<Student
     .in('id', programIds)
     .is('deleted_at', null)
 
-  const today = new Date().toISOString().slice(0, 10)
+  const today = kstDate()
   const live = (programs ?? []).filter(p => !p.ends_on || today <= (p.ends_on as string))
   if (live.length === 0) return empty
 

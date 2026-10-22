@@ -6,6 +6,7 @@ import { assembleFromItemIds } from '@/lib/study/assemble'
 import { campTopicId } from '@/lib/study/section-topics'
 import { CAMP_PROGRAM_COLUMNS, type CampProgramRow } from '@/lib/camp/api'
 import { trackEvent } from '@/lib/study/analytics'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * POST /api/study/camp/start — turn a teacher's camp assignment into a
@@ -80,7 +81,7 @@ export async function POST(req: NextRequest) {
 
   // Same window rule the teacher-side builder enforces: dates bind only
   // when the grant set them.
-  const today = new Date().toISOString().slice(0, 10)
+  const today = kstDate()
   if ((program.starts_on && today < program.starts_on) || (program.ends_on && today > program.ends_on)) {
     return NextResponse.json({ error: 'camp program is not active today' }, { status: 403 })
   }

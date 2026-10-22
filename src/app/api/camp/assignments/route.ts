@@ -10,6 +10,7 @@ import {
   drawCampItems,
   sectionsForFamily,
 } from '@/lib/camp/api'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * Camp assignment builder.
@@ -183,7 +184,7 @@ export async function POST(req: NextRequest) {
   if (!program) return NextResponse.json({ error: 'camp program not found' }, { status: 404 })
 
   // Program window — only enforced when the grant set dates.
-  const today = new Date().toISOString().slice(0, 10)
+  const today = kstDate()
   if ((program.starts_on && today < program.starts_on) || (program.ends_on && today > program.ends_on)) {
     return NextResponse.json({ error: 'camp program is not active today' }, { status: 403 })
   }

@@ -11,6 +11,7 @@ import { AssignmentsDatePicker } from '@/components/ui/assignments/AssignmentsDa
 import { db } from '@/lib/supabase'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { StatusPill } from '@/components/ui/status-pill'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
@@ -24,6 +25,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -57,6 +59,8 @@ interface CampClassroom {
   teacher_id: string | null
   /** Enrolled-student count, computed by /api/camp/program. */
   student_count?: number
+  /** Whether this caller may create work, reports or reviews here (the server's canManageClassroom rule). */
+  can_manage?: boolean
 }
 
 /* Per-family identity — the marketing page's SAT blue / TOEFL violet,
@@ -151,7 +155,7 @@ export function CampPage({ academyId }: CampPageProps) {
   const [programGroups, setProgramGroups] = useState<ProgramGroup[]>([])
   /** Which program tab is showing (only relevant when >1 program). */
   const [activeProgramId, setActiveProgramId] = useState<string | null>(null)
-  const [assignments, setAssignments] = useState<Record<string, CampAssignment[]>>({})
+  const [assignments, setAssignments] = useState<Record<string, CampAssignment[] | null>>({})
   /** Overview stats per program id, fetched lazily per active tab. */
   const [overviews, setOverviews] = useState<Record<string, ProgramOverview>>({})
   /** Which view of the program is showing — Overview (stats + charts),
@@ -264,6 +268,9 @@ export function CampPage({ academyId }: CampPageProps) {
 
   /* Camp P4 — per-classroom reports modal (generate + preview). */
   const [reportsClassroom, setReportsClassroom] = useState<{ id: string; name: string } | null>(null)
+  const [programError, setProgramError] = useState(false)
+  const [overviewError, setOverviewError] = useState<Record<string, boolean>>({})
+  const [overviewReload, setOverviewReload] = useState(0)
   const [reviewForm, setReviewForm] = useState({ section: '', domain: '', count: '10', classroomSessionId: '' })
   const [reviewSubmitting, setReviewSubmitting] = useState(false)
   const [reviewError, setReviewError] = useState<string | null>(null)
@@ -273,10 +280,14 @@ export function CampPage({ academyId }: CampPageProps) {
     const headers = await authHeaders()
     const results = await Promise.all(
       classroomIds.map(async id => {
-        const res = await fetch(`/api/camp/assignments?classroomId=${id}`, { headers })
-        if (!res.ok) return [id, []] as const
-        const json = await res.json()
-        return [id, (json.assignments ?? []) as CampAssignment[]] as const
+        try {
+          const res = await fetch(`/api/camp/assignments?classroomId=${id}`, { headers })
+          if (!res.ok) return [id, null] as const      // null = failed to load, rendered with a retry, never as "none"
+          const json = await res.json()
+          return [id, (json.assignments ?? []) as CampAssignment[]] as const
+        } catch {
+          return [id, null] as const
+        }
       }),
     )
     setAssignments(Object.fromEntries(results))
@@ -309,11 +320,14 @@ export function CampPage({ academyId }: CampPageProps) {
   const fetchAll = useCallback(async () => {
     if (!academyId) return
     setLoading(true)
+    setProgramError(false)
     try {
       const headers = await authHeaders()
       const res = await fetch(`/api/camp/program?academyId=${academyId}`, { headers })
       if (!res.ok) {
+        // A failed load is NOT "no camp program": say so and offer a retry.
         setProgramGroups([])
+        setProgramError(true)
         return
       }
       const json = await res.json()
@@ -328,6 +342,7 @@ export function CampPage({ academyId }: CampPageProps) {
     } catch (error) {
       console.error('[camp] failed to load program:', error)
       setProgramGroups([])
+      setProgramError(true)
     } finally {
       setLoading(false)
     }
@@ -339,13 +354,14 @@ export function CampPage({ academyId }: CampPageProps) {
     ?? programGroups[0] ?? null
   const program = activeGroup?.program ?? null
   const classrooms = useMemo(() => activeGroup?.classrooms ?? [], [activeGroup])
+  const manageable = useMemo(() => classrooms.filter(r => r.can_manage !== false), [classrooms])
   const overview = program ? (overviews[program.id] ?? null) : null
   const canViewResults = activeGroup?.canViewResults === true
 
   // Assignments for the ACTIVE program's classrooms (lazy per tab).
   useEffect(() => {
-    if (classrooms.length > 0) fetchAssignments(classrooms.map(r => r.id))
-  }, [classrooms, fetchAssignments])
+    if (manageable.length > 0) fetchAssignments(manageable.map(r => r.id))
+  }, [manageable, fetchAssignments])
 
   // Overview strip for the active program (lazy, cached until fetchAll).
   useEffect(() => {
@@ -357,15 +373,16 @@ export function CampPage({ academyId }: CampPageProps) {
         const res = await fetch(`/api/camp/overview?programId=${pid}`, {
           headers: await authHeaders(),
         })
-        if (!res.ok) return
+        if (!res.ok) { if (!cancelled) setOverviewError(prev => ({ ...prev, [pid]: true })); return }
         const json = (await res.json()) as ProgramOverview
         if (!cancelled) setOverviews(prev => ({ ...prev, [pid]: json }))
       } catch (error) {
         console.error('[camp] overview load failed:', error)
+        if (!cancelled) setOverviewError(prev => ({ ...prev, [pid]: true }))
       }
     })()
     return () => { cancelled = true }
-  }, [program?.id, overviews, canViewResults])
+  }, [program?.id, overviews, canViewResults, overviewReload])
 
   const sections = program ? (FAMILY_SECTIONS[program.test_family] ?? []) : []
   const domains = program && form.section
@@ -400,7 +417,7 @@ export function CampPage({ academyId }: CampPageProps) {
 
   const openModal = () => {
     setForm({
-      classroomId: classrooms.length === 1 ? classrooms[0]!.id : '',
+      classroomId: manageable.length === 1 ? manageable[0]!.id : '',
       title: '',
       section: '',
       domain: '',
@@ -723,11 +740,15 @@ export function CampPage({ academyId }: CampPageProps) {
         </div>
 
         <Card>
-          <EmptyState
-            icon={Tent}
-            title={String(t('camp.noProgramTitle'))}
-            description={String(t('camp.noProgramDescription'))}
-          />
+          {programError ? (
+            <ErrorState onRetry={() => { void fetchAll() }} />
+          ) : (
+            <EmptyState
+              icon={Tent}
+              title={String(t('camp.noProgramTitle'))}
+              description={String(t('camp.noProgramDescription'))}
+            />
+          )}
         </Card>
       </div>
     )
@@ -784,7 +805,7 @@ export function CampPage({ academyId }: CampPageProps) {
         </div>
         <Button
           onClick={openModal}
-          disabled={classrooms.length === 0}
+          disabled={manageable.length === 0}
           className="self-start lg:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4 flex-shrink-0"
         >
           <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -856,7 +877,18 @@ export function CampPage({ academyId }: CampPageProps) {
         </Card>
       )}
 
-      {canViewResults && activeTab === 'overview' && (
+      {canViewResults && activeTab === 'overview' && overviewError[program.id] && !overview && (
+        <Card>
+          <ErrorState
+            size="sm"
+            onRetry={() => {
+              setOverviewError(prev => ({ ...prev, [program.id]: false }))
+              setOverviewReload(n => n + 1)
+            }}
+          />
+        </Card>
+      )}
+      {canViewResults && activeTab === 'overview' && !(overviewError[program.id] && !overview) && (
         <CampOverviewPanel
           overview={overview}
           program={program}
@@ -915,6 +947,7 @@ export function CampPage({ academyId }: CampPageProps) {
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 ml-5 sm:ml-0">
+                    {room.can_manage !== false && (<>
                     <Button
                       variant="outline"
                       size="sm"
@@ -933,6 +966,7 @@ export function CampPage({ academyId }: CampPageProps) {
                       <Presentation className="w-3.5 h-3.5" />
                       {t('camp.review.classReview')}
                     </Button>
+                    </>)}
                     {canViewResults && (
                     <Button
                       variant="ghost"
@@ -954,7 +988,21 @@ export function CampPage({ academyId }: CampPageProps) {
                 </div>
 
                 {/* Assignments in this classroom */}
-                {rows === undefined ? (
+                {room.can_manage === false ? (
+                  <Card className="ml-4 sm:ml-6">
+                    <EmptyState
+                      icon={School}
+                      title={String(t('camp.otherTeacherRoomTitle'))}
+                      description={String(t('camp.otherTeacherRoomDescription'))}
+                      size="sm"
+                      variant="subtle"
+                    />
+                  </Card>
+                ) : rows === null ? (
+                  <Card className="ml-4 sm:ml-6">
+                    <ErrorState size="sm" onRetry={() => { void fetchAssignments(manageable.map(r => r.id)) }} />
+                  </Card>
+                ) : rows === undefined ? (
                   <Card className="p-3 sm:p-4 ml-4 sm:ml-6 animate-pulse">
                     <div className="h-5 bg-gray-200 rounded w-48 mb-2" />
                     <div className="h-4 bg-gray-200 rounded w-32" />
@@ -1042,7 +1090,7 @@ export function CampPage({ academyId }: CampPageProps) {
                               onClick={() => setEditing({
                                 id: a.id,
                                 title: a.title,
-                                dueDate: a.due_at ? a.due_at.slice(0, 10) : '',
+                                dueDate: a.due_at ? kstDate(a.due_at) : '',  // Korean date: a UTC slice moved pre-09:00 KST deadlines back a day on every save
                                 classroomSessionId: a.classroom_session_id ?? '',
                                 classroomId: a.classroom_id,
                               })}
@@ -1162,7 +1210,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 <SelectValue placeholder={String(t('camp.form.selectClassroom'))} />
               </SelectTrigger>
               <SelectContent className="z-[210]">
-                {classrooms.map(room => (
+                {manageable.map(room => (
                   <SelectItem key={room.id} value={room.id}>{room.name}</SelectItem>
                 ))}
               </SelectContent>

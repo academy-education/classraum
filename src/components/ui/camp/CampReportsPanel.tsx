@@ -9,6 +9,7 @@ import { CampReportView } from '@/components/ui/camp/CampReportView'
 import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useConfirm } from '@/hooks/useConfirm'
 import { showErrorToast, showSuccessToast } from '@/stores'
 import { FileText, Loader2, Printer, User } from 'lucide-react'
 
@@ -37,6 +38,7 @@ interface CampReportsPanelProps {
 
 export function CampReportsPanel({ classroomId, classroomName, onClose }: CampReportsPanelProps) {
   const { t, language } = useTranslation()
+  const confirm = useConfirm()
   const [loading, setLoading] = useState(true)
   const [generating, setGenerating] = useState(false)
   const [reports, setReports] = useState<ReportMeta[]>([])
@@ -68,6 +70,14 @@ export function CampReportsPanel({ classroomId, classroomName, onClose }: CampRe
 
   const handleGenerate = async () => {
     if (generating) return
+    // Publishing is immediate and visible to families, so ask first (camp-dashboard-ux-audit 3.3).
+    const ok = await confirm({
+      title: String(t('camp.reports.publishConfirmTitle')),
+      description: String(t('camp.reports.publishConfirmBody')),
+      confirmText: String(t('camp.reports.publishConfirmCta')),
+      variant: 'info',
+    })
+    if (!ok) return
     setGenerating(true)
     try {
       const res = await fetch('/api/camp/reports/generate', {

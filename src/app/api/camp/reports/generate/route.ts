@@ -7,6 +7,7 @@ import {
   loadClassroomCampData,
   queueCampReportDelivery,
 } from '@/lib/camp/reports'
+import { kstDate } from '@/lib/camp/dates'
 
 /**
  * Camp P4 — generate camp reports (snapshots) for a classroom.
@@ -14,13 +15,18 @@ import {
  * POST { classroomId, studentId?, periodStart?, periodEnd? }
  *   Classroom teacher or academy manager. Computes each student's
  *   payload from camp sessions + graded attempts (one shared classroom
- *   load, so a batch is internally consistent) and inserts one
+ *   load, so a batch is internally consistent) and writes one
  *   camp_reports row per student. A report is a record, not a live
- *   query — regenerating creates NEW rows; old ones remain readable.
+ *   query — a NEW period creates new rows and old ones stay readable.
+ *   Regenerating the SAME period (same student, classroom, start and end)
+ *   refreshes that row instead of adding an identical card for parents;
+ *   until 2026-10-22 every click inserted another full set, and parents
+ *   saw duplicate cards. A refreshed row is not queued for delivery again.
  *
- *   period_start/period_end are the reporting window LABEL (defaulting
- *   to the program dates); the numbers are all camp activity to date,
- *   matching what the teacher dashboard shows at generation time.
+ *   period_start/period_end are the reporting window LABEL; the end
+ *   defaults to TODAY (Korean date), capped at the program's end, so a
+ *   mid-camp report no longer claims the whole camp. The numbers are all
+ *   camp activity to date, matching the teacher dashboard at generation.
  */
 
 export const dynamic = 'force-dynamic'
@@ -77,14 +83,36 @@ export async function POST(req: NextRequest) {
     .select('starts_on, ends_on')
     .eq('id', classroom.camp_program_id)
     .maybeSingle()
+  const today = kstDate()
+  const programEnd = (programDates?.ends_on as string | null) ?? null
   const period = {
     start: body.periodStart ?? programDates?.starts_on ?? null,
-    end: body.periodEnd ?? programDates?.ends_on ?? new Date().toISOString().slice(0, 10),
+    end: body.periodEnd ?? (programEnd && programEnd < today ? programEnd : today),
   }
 
-  const reports: Array<{ id: string; student_id: string }> = []
+  const reports: Array<{ id: string; student_id: string; refreshed?: boolean }> = []
   for (const studentId of targetIds) {
     const payload = await buildCampReportPayload(data, studentId, period)
+    // Same period already reported for this student: refresh it, do not stack a duplicate.
+    let sameQ = dbAdmin
+      .from('camp_reports')
+      .select('id')
+      .eq('classroom_id', classroom.id)
+      .eq('student_id', studentId)
+      .eq('period_end', period.end)
+    sameQ = period.start === null ? sameQ.is('period_start', null) : sameQ.eq('period_start', period.start)
+    const { data: same } = await sameQ.order('created_at', { ascending: false }).limit(1).maybeSingle()
+    if (same) {
+      const { error: upErr } = await dbAdmin
+        .from('camp_reports')
+        .update({ payload: JSON.parse(JSON.stringify(payload)), created_by: user.id })
+        .eq('id', same.id)
+      if (upErr) {
+        return NextResponse.json({ error: upErr.message, generated: reports }, { status: 500 })
+      }
+      reports.push({ id: same.id as string, student_id: studentId, refreshed: true })
+      continue
+    }
     const { data: inserted, error } = await dbAdmin
       .from('camp_reports')
       .insert({
