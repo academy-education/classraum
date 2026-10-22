@@ -54,7 +54,8 @@ export function checkItem(item) {
   const blocks = blocksOf(item.passage, which)
   if (!blocks.length) return { status: 'skip', why: 'no blocks' }
   const n = ORD[m[1].toLowerCase()], idx = n === -1 ? blocks.length - 1 : n - 1
-  const needle = norm(q[1].split(/\s*\.\s*\.\s*\./)[0])
+  // poem quotes mark line breaks with " / "; the passage has a newline there
+  const needle = norm(q[1].split(/\s*\.\s*\.\s*\./)[0].replace(/\s+\/\s+/g, ' '))
   const where = blocks.map((b, i) => norm(b).includes(needle) ? i + 1 : null).filter(Boolean)
   if (blocks[idx] && norm(blocks[idx]).includes(needle)) return { status: 'ok' }
   return { status: 'mismatch', says: `${m[1]} ${m[2]}${which ? ' of Passage ' + which : ''}`, quote: q[1], actually: where, blocks: blocks.length }
@@ -70,6 +71,7 @@ function selftest() {
     [{ prompt: 'As it is used in the third paragraph of Passage B, the word "alarming" most nearly means', passage: act }, 'ok'],
     [{ prompt: 'As it is used in the second paragraph of Passage B, the word "alarming" most nearly means', passage: act }, 'mismatch'],
     [{ prompt: 'The main idea of the passage is', passage: poem }, 'none'],
+    [{ prompt: 'The fourth stanza ("in loose / and wandering") suggests', passage: poem.replace('loose and', 'loose\nand') }, 'ok'],
   ]
   let fails = 0
   for (const [it, want] of cases) { const got = checkItem(it).status; if (got !== want) { fails++; console.error(`SELFTEST FAIL: wanted ${want}, got ${got}: ${it.prompt}`) } }

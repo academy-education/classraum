@@ -9591,6 +9591,33 @@
           "verdict": "NOT RUN by an independent reader; author read found and fixed 5 defensible or unclear replies."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-4-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-4",
+      "contentSha": "daf26bbd4052f5ef6e71bdb2d1d93c1d5ed53cfbc36fe21e637a91842bf58409",
+      "status": "staged-for-human-edit",
+      "note": "Fourth SSAT draft-route batch: 6 passages x 6 = 36 items written in-session by Claude, the first written to the co-founder ISEE d1 notes as rules; inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in ssat-reading-draft-4.RELEASE.PREREG.md (draft 1 rule). contentSha = sha256 of ssat-reading-draft-4.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "daf26bbd4052f5ef6e71bdb2d1d93c1d5ed53cfbc36fe21e637a91842bf58409",
+          "verdict": "merge.mjs (draft-3 checks + attitude-set overlap <=1 in batch and <4 words shared with any of 45 live sets, both break-tested): 0 problems. Key uniquely longest 10/36 -> 6/36 (one distractor lengthened on 4 items); uniquely shortest 6/36. Key slots 8/7/7/7/7. check-explanation-quotes 286 fragments, 0 unmatched. check-location-refs 10 checked, 0 mismatches. Edit screen 36/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; the human sitting decides this route."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader; author self-review only."
+        }
+      }
     }
   ],
   "auditedCohorts": [
