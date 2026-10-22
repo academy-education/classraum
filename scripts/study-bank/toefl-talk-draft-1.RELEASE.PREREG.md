@@ -30,3 +30,8 @@ conversation runs 1-3 released 18 conversations). Order only; the rule is unchan
 ## Run 1 drawn (2026-10-22)
 `toefl-talk1-release1-cofounder-2026-10-22`: lectures T01 T02 T03 (12 items, flat 3/3/3/3, control 25%).
 Run 2 will be the final short run (T04 T05, 8 items).
+
+## Run 1 result (2026-10-22)
+`toefl-talk1-release1-cofounder-2026-10-22`: blind 4/12 = 33.3% (guard 50%), 12/12 "Only defensible", 12/12
+authentic, no notes. Released T01 T02 T03 (12 items) with `release-toefl-conv-runs.mjs --apply`; audio 3 clips
+generated. Upper/hard Listening 14 -> 15 clean sittings (still bound by Academic Talk). T04 T05 remain staged for run 2.
