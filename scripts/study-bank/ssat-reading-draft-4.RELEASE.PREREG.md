@@ -66,3 +66,11 @@ spot, not harder: on-topic distractors can collapse onto the key's framing. Repo
 - By then he will have sat 144+ draft siblings written to one brief, and familiarity could raise his blind score.
   That is the conservative direction for the guard.
 - Author and checker are the same model; the cheap checks are pre-flight only.
+
+## Result (2026-10-22)
+`ssat-draft4-release-cofounder-2026-10-22`: **blind 7/36 = 19.4%** (guard 18/36; deal control 22.2%), 36/36 "Only
+defensible", 36/36 authentic, **2 notes** (vs 9 on ISEE d1). Released all 36. This is the first batch written to his
+notes, and it measured as he asked: blind fell from 36.1% / 33.3% / 36.1% (SSAT d1 / ISEE d1 / SSAT d3) to 19.4%, at
+the deal control. The prereg warned that closer distractors might RAISE the blind score; they lowered it. His two
+notes: one attitude set is still easy to eliminate (suggests "competitive" as a lure), and the father's skepticism
+rests on one line. SSAT Reading 258 -> 294 items; clean forms stay 6 (form 7 is 39/40, one passage short).
