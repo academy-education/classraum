@@ -1,0 +1,2859 @@
+[
+ {
+  "id": "ASV8a-P1-Q1",
+  "passage_id": "sc8a-p1",
+  "passage_title": "Voltage of Three Experimental Cells",
+  "format": "data_representation",
+  "passage": "An electrochemical cell converts chemical energy into electrical energy. The voltage a cell delivers to a circuit depends partly on the cell's temperature. Engineers tested three experimental rechargeable cells, X, Y, and Z, each built with a different electrode and electrolyte formulation.\n\nBefore every trial, a fully charged cell was placed in a temperature-controlled chamber and held at the test temperature for 2 hours. The cell was then connected, inside the chamber, to a 10-ohm resistor. The voltage across the resistor was recorded 1 minute after connection. The cell was left connected, and its run time, the time from connection until the voltage first fell below 1.00 V, was recorded. If the voltage was already below 1.00 V at the 1-minute reading, the run time was recorded as 0 h. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Voltage 1 minute after connection and run time of Cells X, Y, and Z at seven temperatures",
+   "colLabels": [
+    "Cell X voltage (V)",
+    "Cell Y voltage (V)",
+    "Cell Z voltage (V)",
+    "Cell X run time (h)",
+    "Cell Y run time (h)",
+    "Cell Z run time (h)"
+   ],
+   "rowLabels": [
+    "−20 °C",
+    "−10 °C",
+    "0 °C",
+    "10 °C",
+    "20 °C",
+    "30 °C",
+    "40 °C"
+   ],
+   "cells": [
+    [
+     1.08,
+     1.31,
+     0.62,
+     1.5,
+     4.2,
+     0.0
+    ],
+    [
+     1.17,
+     1.36,
+     0.85,
+     3.0,
+     5.0,
+     0.0
+    ],
+    [
+     1.24,
+     1.4,
+     1.03,
+     4.6,
+     5.6,
+     0.4
+    ],
+    [
+     1.29,
+     1.43,
+     1.16,
+     5.8,
+     6.0,
+     3.1
+    ],
+    [
+     1.32,
+     1.45,
+     1.25,
+     6.5,
+     6.2,
+     5.9
+    ],
+    [
+     1.34,
+     1.46,
+     1.31,
+     6.8,
+     6.3,
+     7.4
+    ],
+    [
+     1.35,
+     1.46,
+     1.36,
+     6.6,
+     6.3,
+     8.0
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the voltage of Cell Z at 10 °C?",
+  "choices": [
+   "1.03 V",
+   "1.16 V",
+   "1.25 V",
+   "1.29 V"
+  ],
+  "correct_answer": "1.16 V",
+  "explanation": "In the 10 °C row, the Cell Z voltage column reads 1.16 V. The value 1.03 V is Cell Z at 0 °C, 1.25 V is Cell Z at 20 °C, and 1.29 V is Cell X at 10 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P1-Q2",
+  "passage_id": "sc8a-p1",
+  "passage_title": "Voltage of Three Experimental Cells",
+  "format": "data_representation",
+  "passage": "An electrochemical cell converts chemical energy into electrical energy. The voltage a cell delivers to a circuit depends partly on the cell's temperature. Engineers tested three experimental rechargeable cells, X, Y, and Z, each built with a different electrode and electrolyte formulation.\n\nBefore every trial, a fully charged cell was placed in a temperature-controlled chamber and held at the test temperature for 2 hours. The cell was then connected, inside the chamber, to a 10-ohm resistor. The voltage across the resistor was recorded 1 minute after connection. The cell was left connected, and its run time, the time from connection until the voltage first fell below 1.00 V, was recorded. If the voltage was already below 1.00 V at the 1-minute reading, the run time was recorded as 0 h. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Voltage 1 minute after connection and run time of Cells X, Y, and Z at seven temperatures",
+   "colLabels": [
+    "Cell X voltage (V)",
+    "Cell Y voltage (V)",
+    "Cell Z voltage (V)",
+    "Cell X run time (h)",
+    "Cell Y run time (h)",
+    "Cell Z run time (h)"
+   ],
+   "rowLabels": [
+    "−20 °C",
+    "−10 °C",
+    "0 °C",
+    "10 °C",
+    "20 °C",
+    "30 °C",
+    "40 °C"
+   ],
+   "cells": [
+    [
+     1.08,
+     1.31,
+     0.62,
+     1.5,
+     4.2,
+     0.0
+    ],
+    [
+     1.17,
+     1.36,
+     0.85,
+     3.0,
+     5.0,
+     0.0
+    ],
+    [
+     1.24,
+     1.4,
+     1.03,
+     4.6,
+     5.6,
+     0.4
+    ],
+    [
+     1.29,
+     1.43,
+     1.16,
+     5.8,
+     6.0,
+     3.1
+    ],
+    [
+     1.32,
+     1.45,
+     1.25,
+     6.5,
+     6.2,
+     5.9
+    ],
+    [
+     1.34,
+     1.46,
+     1.31,
+     6.8,
+     6.3,
+     7.4
+    ],
+    [
+     1.35,
+     1.46,
+     1.36,
+     6.6,
+     6.3,
+     8.0
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as the temperature increased from −20 °C to 40 °C, the voltage of Cell Y:",
+  "choices": [
+   "decreased at every step.",
+   "decreased and then remained the same.",
+   "increased at every step.",
+   "increased and then remained the same."
+  ],
+  "correct_answer": "increased and then remained the same.",
+  "explanation": "Cell Y's voltage was 1.31, 1.36, 1.40, 1.43, 1.45, 1.46, and 1.46 V from −20 °C to 40 °C. It rose up to 30 °C and was unchanged at 1.46 V from 30 °C to 40 °C, so it did not rise at every step, and it never fell.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P1-Q3",
+  "passage_id": "sc8a-p1",
+  "passage_title": "Voltage of Three Experimental Cells",
+  "format": "data_representation",
+  "passage": "An electrochemical cell converts chemical energy into electrical energy. The voltage a cell delivers to a circuit depends partly on the cell's temperature. Engineers tested three experimental rechargeable cells, X, Y, and Z, each built with a different electrode and electrolyte formulation.\n\nBefore every trial, a fully charged cell was placed in a temperature-controlled chamber and held at the test temperature for 2 hours. The cell was then connected, inside the chamber, to a 10-ohm resistor. The voltage across the resistor was recorded 1 minute after connection. The cell was left connected, and its run time, the time from connection until the voltage first fell below 1.00 V, was recorded. If the voltage was already below 1.00 V at the 1-minute reading, the run time was recorded as 0 h. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Voltage 1 minute after connection and run time of Cells X, Y, and Z at seven temperatures",
+   "colLabels": [
+    "Cell X voltage (V)",
+    "Cell Y voltage (V)",
+    "Cell Z voltage (V)",
+    "Cell X run time (h)",
+    "Cell Y run time (h)",
+    "Cell Z run time (h)"
+   ],
+   "rowLabels": [
+    "−20 °C",
+    "−10 °C",
+    "0 °C",
+    "10 °C",
+    "20 °C",
+    "30 °C",
+    "40 °C"
+   ],
+   "cells": [
+    [
+     1.08,
+     1.31,
+     0.62,
+     1.5,
+     4.2,
+     0.0
+    ],
+    [
+     1.17,
+     1.36,
+     0.85,
+     3.0,
+     5.0,
+     0.0
+    ],
+    [
+     1.24,
+     1.4,
+     1.03,
+     4.6,
+     5.6,
+     0.4
+    ],
+    [
+     1.29,
+     1.43,
+     1.16,
+     5.8,
+     6.0,
+     3.1
+    ],
+    [
+     1.32,
+     1.45,
+     1.25,
+     6.5,
+     6.2,
+     5.9
+    ],
+    [
+     1.34,
+     1.46,
+     1.31,
+     6.8,
+     6.3,
+     7.4
+    ],
+    [
+     1.35,
+     1.46,
+     1.36,
+     6.6,
+     6.3,
+     8.0
+    ]
+   ]
+  },
+  "prompt": "Why did the engineers most likely hold each cell in the chamber for 2 hours before connecting it to the resistor?",
+  "choices": [
+   "To make sure the whole cell had reached the test temperature",
+   "To let the cell's voltage fall below 1.00 V before the trial",
+   "To make every cell deliver the same voltage when connected",
+   "To charge the cell fully at the test temperature"
+  ],
+  "correct_answer": "To make sure the whole cell had reached the test temperature",
+  "explanation": "The study measures how temperature affects voltage, so each cell must actually be at the test temperature when it is connected; 2 hours in the chamber allows that. The cells were charged before being placed in the chamber, the voltages in Table 1 clearly differ from cell to cell and temperature to temperature, and nearly every 1-minute voltage in the table is above 1.00 V.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a procedural detail",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P1-Q4",
+  "passage_id": "sc8a-p1",
+  "passage_title": "Voltage of Three Experimental Cells",
+  "format": "data_representation",
+  "passage": "An electrochemical cell converts chemical energy into electrical energy. The voltage a cell delivers to a circuit depends partly on the cell's temperature. Engineers tested three experimental rechargeable cells, X, Y, and Z, each built with a different electrode and electrolyte formulation.\n\nBefore every trial, a fully charged cell was placed in a temperature-controlled chamber and held at the test temperature for 2 hours. The cell was then connected, inside the chamber, to a 10-ohm resistor. The voltage across the resistor was recorded 1 minute after connection. The cell was left connected, and its run time, the time from connection until the voltage first fell below 1.00 V, was recorded. If the voltage was already below 1.00 V at the 1-minute reading, the run time was recorded as 0 h. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Voltage 1 minute after connection and run time of Cells X, Y, and Z at seven temperatures",
+   "colLabels": [
+    "Cell X voltage (V)",
+    "Cell Y voltage (V)",
+    "Cell Z voltage (V)",
+    "Cell X run time (h)",
+    "Cell Y run time (h)",
+    "Cell Z run time (h)"
+   ],
+   "rowLabels": [
+    "−20 °C",
+    "−10 °C",
+    "0 °C",
+    "10 °C",
+    "20 °C",
+    "30 °C",
+    "40 °C"
+   ],
+   "cells": [
+    [
+     1.08,
+     1.31,
+     0.62,
+     1.5,
+     4.2,
+     0.0
+    ],
+    [
+     1.17,
+     1.36,
+     0.85,
+     3.0,
+     5.0,
+     0.0
+    ],
+    [
+     1.24,
+     1.4,
+     1.03,
+     4.6,
+     5.6,
+     0.4
+    ],
+    [
+     1.29,
+     1.43,
+     1.16,
+     5.8,
+     6.0,
+     3.1
+    ],
+    [
+     1.32,
+     1.45,
+     1.25,
+     6.5,
+     6.2,
+     5.9
+    ],
+    [
+     1.34,
+     1.46,
+     1.31,
+     6.8,
+     6.3,
+     7.4
+    ],
+    [
+     1.35,
+     1.46,
+     1.36,
+     6.6,
+     6.3,
+     8.0
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if Cell Y had been tested at 5 °C, its run time would most likely have been:",
+  "choices": [
+   "less than 5.0 h.",
+   "between 5.0 h and 5.6 h.",
+   "between 5.6 h and 6.0 h.",
+   "greater than 6.0 h."
+  ],
+  "correct_answer": "between 5.6 h and 6.0 h.",
+  "explanation": "Cell Y's run time increased steadily with temperature, from 5.6 h at 0 °C to 6.0 h at 10 °C. A test at 5 °C lies between those temperatures, so its run time should lie between 5.6 h and 6.0 h. 5.0 h is the run time at −10 °C, and run times above 6.0 h occurred only at 20 °C and above.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P1-Q5",
+  "passage_id": "sc8a-p1",
+  "passage_title": "Voltage of Three Experimental Cells",
+  "format": "data_representation",
+  "passage": "An electrochemical cell converts chemical energy into electrical energy. The voltage a cell delivers to a circuit depends partly on the cell's temperature. Engineers tested three experimental rechargeable cells, X, Y, and Z, each built with a different electrode and electrolyte formulation.\n\nBefore every trial, a fully charged cell was placed in a temperature-controlled chamber and held at the test temperature for 2 hours. The cell was then connected, inside the chamber, to a 10-ohm resistor. The voltage across the resistor was recorded 1 minute after connection. The cell was left connected, and its run time, the time from connection until the voltage first fell below 1.00 V, was recorded. If the voltage was already below 1.00 V at the 1-minute reading, the run time was recorded as 0 h. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Voltage 1 minute after connection and run time of Cells X, Y, and Z at seven temperatures",
+   "colLabels": [
+    "Cell X voltage (V)",
+    "Cell Y voltage (V)",
+    "Cell Z voltage (V)",
+    "Cell X run time (h)",
+    "Cell Y run time (h)",
+    "Cell Z run time (h)"
+   ],
+   "rowLabels": [
+    "−20 °C",
+    "−10 °C",
+    "0 °C",
+    "10 °C",
+    "20 °C",
+    "30 °C",
+    "40 °C"
+   ],
+   "cells": [
+    [
+     1.08,
+     1.31,
+     0.62,
+     1.5,
+     4.2,
+     0.0
+    ],
+    [
+     1.17,
+     1.36,
+     0.85,
+     3.0,
+     5.0,
+     0.0
+    ],
+    [
+     1.24,
+     1.4,
+     1.03,
+     4.6,
+     5.6,
+     0.4
+    ],
+    [
+     1.29,
+     1.43,
+     1.16,
+     5.8,
+     6.0,
+     3.1
+    ],
+    [
+     1.32,
+     1.45,
+     1.25,
+     6.5,
+     6.2,
+     5.9
+    ],
+    [
+     1.34,
+     1.46,
+     1.31,
+     6.8,
+     6.3,
+     7.4
+    ],
+    [
+     1.35,
+     1.46,
+     1.36,
+     6.6,
+     6.3,
+     8.0
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, the run time of Cell Z at −10 °C was 0 h most likely because:",
+  "choices": [
+   "Cell Z's voltage at the 1-minute reading was already below 1.00 V.",
+   "Cell Z's voltage at −10 °C was lower than Cell X's voltage at −10 °C.",
+   "Cell Z's voltage decreased as the temperature increased from −20 °C to −10 °C.",
+   "Cell Z was held at −10 °C for less time than Cells X and Y were."
+  ],
+  "correct_answer": "Cell Z's voltage at the 1-minute reading was already below 1.00 V.",
+  "explanation": "The passage says a run time of 0 h was recorded whenever the voltage was already below 1.00 V at the 1-minute reading, and Cell Z read 0.85 V at −10 °C. Being lower than Cell X (1.17 V) does not by itself give a 0 h run time, since Cell X at 1.17 V ran 3.0 h. Cell Z's voltage rose, not fell, from 0.62 V to 0.85 V, and every cell was held for the same 2 hours.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "relate a passage rule to table results",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P2-Q1",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, which coating produced the greatest temperature rise?",
+  "choices": [
+   "Coating P",
+   "Coating Q",
+   "Coating R",
+   "Coating S"
+  ],
+  "correct_answer": "Coating Q",
+  "explanation": "In Experiment 1 the temperature rises were 18.4 °C for Coating P, 24.6 °C for Coating Q, 12.2 °C for Coating R, and 21.0 °C for Coating S. Coating Q's 24.6 °C is the greatest.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P2-Q2",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "Which of the following conditions was varied in Experiment 2 but kept the same throughout Experiments 1 and 3?",
+  "choices": [
+   "The coating on the plate",
+   "The plate's temperature at the start of a trial",
+   "The speed of the air across the plate",
+   "The distance from the lamp to the plate"
+  ],
+  "correct_answer": "The distance from the lamp to the plate",
+  "explanation": "Table 1 lists 20, 30, 40, and 50 cm in Experiment 2, but 30 cm in every trial of Experiments 1 and 3. The coating was varied in Experiment 1, the air speed was varied in Experiment 3, and every plate started at 22.0 °C in all three experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variable manipulated in one experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P2-Q3",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 2, if the plate with Coating Q had been tested with the lamp 35 cm from the plate, its temperature rise would most likely have been:",
+  "choices": [
+   "less than 14.9 °C.",
+   "between 14.9 °C and 24.6 °C.",
+   "between 24.6 °C and 41.8 °C.",
+   "greater than 41.8 °C."
+  ],
+  "correct_answer": "between 14.9 °C and 24.6 °C.",
+  "explanation": "For Coating Q in still air, the rise fell steadily as the lamp moved away: 41.8 °C at 20 cm, 24.6 °C at 30 cm, 14.9 °C at 40 cm, and 9.6 °C at 50 cm. A distance of 35 cm lies between 30 cm and 40 cm, so the rise should lie between 14.9 °C and 24.6 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P2-Q4",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "Suppose the plate with Coating R had been tested with the lamp 30 cm away while the fan blew air across it at 2 m/s. Based on Experiments 1 and 3, its temperature rise would most likely have been:",
+  "choices": [
+   "greater than 24.6 °C.",
+   "between 13.5 °C and 24.6 °C.",
+   "between 12.2 °C and 13.5 °C.",
+   "less than 12.2 °C."
+  ],
+  "correct_answer": "less than 12.2 °C.",
+  "explanation": "In still air at 30 cm, Coating R rose 12.2 °C (Experiment 1). Experiment 3 shows that air at 2 m/s lowered Coating Q's rise from 24.6 °C to 13.5 °C. Moving air should likewise lower Coating R's rise below its still-air 12.2 °C. 13.5 °C is Coating Q's result at 2 m/s, and a plate that rises only 12.2 °C in still air would not rise more with the fan on.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P2-Q5",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, when the lamp distance was doubled from 20 cm to 40 cm, the temperature rise of the plate decreased by a factor of about:",
+  "choices": [
+   "1.5",
+   "2.0",
+   "2.8",
+   "4.0"
+  ],
+  "correct_answer": "2.8",
+  "explanation": "The rise was 41.8 °C at 20 cm and 14.9 °C at 40 cm, and 41.8 ÷ 14.9 ≈ 2.8. A factor of 2.0 would require a rise of about 20.9 °C at 40 cm, and a factor of 4.0 would require about 10.5 °C; neither matches the table.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P2-Q6",
+  "passage_id": "sc8a-p2",
+  "passage_title": "Warming of Coated Metal Plates",
+  "format": "research_summaries",
+  "passage": "When light from a lamp strikes a surface, part of its energy is absorbed and warms the surface, and the rest is reflected. Students compared four new coatings, P, Q, R, and S, that look identical to the eye: each is a flat, medium gray. They used identical square metal plates, 10 cm on a side and 2 mm thick. Each plate was either left uncoated or painted with one coating, and a thermometer probe was taped to the back of each plate.\n\nIn each trial, a plate at the room temperature of 22.0 °C was mounted vertically facing a 250 W heat lamp, the lamp was switched on, and the plate's temperature was recorded 10 minutes later. The temperature rise is that final temperature minus 22.0 °C. Each plate was allowed to cool back to 22.0 °C before it was used again. Unless stated otherwise, the lamp was 30 cm from the plate and the air around the plate was still.\n\nExperiment 1\nThe uncoated plate and the plates with Coatings P, Q, R, and S were tested.\n\nExperiment 2\nThe plate with Coating Q was tested with the lamp 20 cm, 40 cm, and 50 cm from the plate.\n\nExperiment 3\nThe plate with Coating Q was tested while a fan blew air across its surface at 1 m/s, 2 m/s, and 3 m/s.\n\nThe Coating Q trial in Experiment 1 also serves as the 30 cm trial of Experiment 2 and the still-air (0 m/s) trial of Experiment 3. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature rise of each plate after 10 minutes under the lamp",
+   "colLabels": [
+    "Lamp distance (cm)",
+    "Air speed (m/s)",
+    "Temperature rise (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, uncoated",
+    "Exp. 1, Coating P",
+    "Exp. 1, Coating Q",
+    "Exp. 1, Coating R",
+    "Exp. 1, Coating S",
+    "Exp. 2, Coating Q, 20 cm",
+    "Exp. 2, Coating Q, 40 cm",
+    "Exp. 2, Coating Q, 50 cm",
+    "Exp. 3, Coating Q, 1 m/s",
+    "Exp. 3, Coating Q, 2 m/s",
+    "Exp. 3, Coating Q, 3 m/s"
+   ],
+   "cells": [
+    [
+     30,
+     0,
+     6.5
+    ],
+    [
+     30,
+     0,
+     18.4
+    ],
+    [
+     30,
+     0,
+     24.6
+    ],
+    [
+     30,
+     0,
+     12.2
+    ],
+    [
+     30,
+     0,
+     21.0
+    ],
+    [
+     20,
+     0,
+     41.8
+    ],
+    [
+     40,
+     0,
+     14.9
+    ],
+    [
+     50,
+     0,
+     9.6
+    ],
+    [
+     30,
+     1,
+     17.3
+    ],
+    [
+     30,
+     2,
+     13.5
+    ],
+    [
+     30,
+     3,
+     11.2
+    ]
+   ]
+  },
+  "prompt": "A student claims that each of the four coatings made the plate warm more under the lamp than it would have warmed with no coating. Do the results of Experiment 1 support this claim?",
+  "choices": [
+   "Yes; every coated plate rose more than the uncoated plate's 6.5 °C.",
+   "Yes; the rise was greater with the lamp at 20 cm than at 30 cm.",
+   "No; the rise with Coating R was less than the rise with Coating P.",
+   "No; the uncoated plate rose more than the plate with Coating R."
+  ],
+  "correct_answer": "Yes; every coated plate rose more than the uncoated plate's 6.5 °C.",
+  "explanation": "The uncoated plate rose 6.5 °C, and the coated plates rose 18.4, 24.6, 12.2, and 21.0 °C, all more than 6.5 °C, so the claim is supported. The effect of lamp distance comes from Experiment 2 and does not compare coated with uncoated plates. Coating R rising less than Coating P compares two coatings, not a coating with no coating, and the uncoated plate (6.5 °C) rose less than Coating R (12.2 °C), not more.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against a control trial",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P3-Q1",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "According to Scientist 1, most of the water vapor that condenses to form the valley fog comes from:",
+  "choices": [
+   "the cold ocean water off the coast.",
+   "moist air blown in through the gap.",
+   "the cloud layer above the valley.",
+   "the river and the irrigated fields."
+  ],
+  "correct_answer": "the river and the irrigated fields.",
+  "explanation": "Scientist 1 states that the water vapor comes mainly from the river and from evaporation off the irrigated fields. Cold ocean water and air blown in through the gap are part of Scientist 2's explanation, and Scientist 1 mentions clouds only as something that keeps the ground from cooling.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P3-Q2",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "Suppose observers found that on most fog nights, fog first appeared at the western end of the valley at about 9 p.m. and reached the eastern end about 3 hours later. This observation would most strongly support the viewpoint of:",
+  "choices": [
+   "Scientist 1, because the fog first appeared near the river.",
+   "Scientist 1, because the fog appeared after the ground cooled.",
+   "Scientist 2, because the fog formed only under a cloudy sky.",
+   "Scientist 2, because the fog entered at the gap and moved east."
+  ],
+  "correct_answer": "Scientist 2, because the fog entered at the gap and moved east.",
+  "explanation": "Scientist 2 predicts that fog reaches the western end, where the gap is, first, usually in the evening, and then spreads eastward, which is what was observed. Scientist 1 predicts patches appearing at many places at about the same time, generally after midnight. Scientist 2 says fog can arrive whether the sky is clear or cloudy, not only under clouds.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P3-Q3",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "Scientists 1 and 2 would most likely agree that the valley fog forms when:",
+  "choices": [
+   "air is cooled to its dew point.",
+   "cold ocean water chills the air.",
+   "the ground radiates heat on clear nights.",
+   "sea-salt particles enter the valley."
+  ],
+  "correct_answer": "air is cooled to its dew point.",
+  "explanation": "Scientist 1 says fog forms when the air drained onto the valley floor cools to its dew point, and Scientist 2 says moist air over the sea is chilled to its dew point. Cooling by cold ocean water and the arrival of sea salt are claims of Scientist 2 only, and cooling of the ground by radiation on clear nights is a claim of Scientist 1 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P3-Q4",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "Which of the following measurements would best help determine which scientist's explanation is correct?",
+  "choices": [
+   "The air temperature inside the fog",
+   "The time each morning at which the fog clears",
+   "The relative humidity of the air inside the fog",
+   "The amount of sea salt in fog water collected in the valley"
+  ],
+  "correct_answer": "The amount of sea salt in fog water collected in the valley",
+  "explanation": "Scientist 1 predicts that fog water contains almost no sea salt, while Scientist 2 predicts noticeable sea salt, so this measurement would come out differently depending on which is correct. Both explanations have the air inside the fog at its dew point, which means saturated air, and neither makes a claim about when the fog clears.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that separates two explanations",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P3-Q5",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "To test Scientist 1's claim about cloud cover, researchers should compare how often fog formed on nights that were:",
+  "choices": [
+   "clear and calm with nights that were cloudy and calm.",
+   "clear and calm with nights that were cloudy and windy.",
+   "clear and windy with nights that were cloudy and calm.",
+   "cloudy and calm with nights that were cloudy and windy."
+  ],
+  "correct_answer": "clear and calm with nights that were cloudy and calm.",
+  "explanation": "Scientist 1 says wind also prevents fog, so a fair test of the cloud-cover claim must hold wind the same and change only the cloud cover, as in comparing clear, calm nights with cloudy, calm nights. Two of the other comparisons change cloud cover and wind together, so any difference could come from either, and comparing cloudy calm nights with cloudy windy nights tests wind, not cloud cover.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that isolates one variable in a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P3-Q6",
+  "passage_id": "sc8a-p3",
+  "passage_title": "Morning Fog in a Coastal Valley",
+  "format": "conflicting_viewpoints",
+  "passage": "A river valley runs east to west for 30 km. Its western end opens onto the ocean through a gap in a line of coastal hills; elsewhere the valley is enclosed by hills about 400 m high. Irrigated fields cover much of the valley floor. In July, fog covers the valley floor on about 60% of mornings. On a typical fog morning the fog is 150 m to 250 m thick and clears by 10 a.m. Fog forms when air is cooled to its dew point, the temperature at which the air becomes saturated and its water vapor begins to condense into tiny droplets. Two scientists explain the valley's July fog.\n\nScientist 1\nThe fog forms within the valley itself. On clear nights the ground loses heat rapidly by giving off infrared radiation to the sky, and the air touching the ground cools. The cooled air is denser than the air above it, so it drains down the hillsides and collects on the valley floor. When this air cools to its dew point, fog forms. The water vapor comes mainly from the river and from evaporation off the irrigated fields. The fog should therefore appear in patches at many places across the valley floor at about the same time, generally after midnight. It should rarely form on nights when a layer of cloud covers the sky, because the clouds send infrared radiation back to the ground and keep it from cooling. Wind also prevents the fog, by mixing the cold air near the ground with warmer air above it. Because the fog's water evaporated from fresh water, the fog droplets should contain almost no sea salt.\n\nScientist 2\nThe fog forms over the ocean and is carried into the valley. Off this coast, cold water rises from the deep ocean in summer, so the sea surface is much colder than the land. Moist air over the sea is chilled to its dew point by the cold water, and a bank of fog forms offshore. Each evening a breeze blowing from the sea toward the warmer land pushes the fog bank through the gap in the coastal hills and into the valley. Fog should therefore reach the western end of the valley first, usually in the evening, and then spread eastward. Because the fog is carried in by the wind, it can arrive whether the sky above is clear or covered by cloud. The fog droplets form around tiny particles of sea salt, so fog water collected in the valley should contain noticeable amounts of sea salt.",
+  "prompt": "Suppose that on one July night the sky was covered by cloud, a steady breeze blew from the sea into the valley, and by midnight the valley floor was covered by fog. This observation would weaken:",
+  "choices": [
+   "Scientist 1's explanation only.",
+   "Scientist 2's explanation only.",
+   "both scientists' explanations.",
+   "neither scientist's explanation."
+  ],
+  "correct_answer": "Scientist 1's explanation only.",
+  "explanation": "Scientist 1 says fog should rarely form under a cloud layer and that wind prevents fog, yet fog formed on a cloudy, breezy night. Scientist 2 says a sea breeze carries the fog in each evening and that it can arrive whether or not the sky is cloudy, so the observation fits Scientist 2's explanation and weakens only Scientist 1's.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate an observation against both viewpoints",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P4-Q1",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, at which temperature did the greatest percent of fragments form a complete body?",
+  "choices": [
+   "16 °C",
+   "20 °C",
+   "24 °C",
+   "28 °C"
+  ],
+  "correct_answer": "20 °C",
+  "explanation": "In Experiment 2 the percents were 70% at 16 °C, 87.5% at 20 °C, 80% at 24 °C, and 35% at 28 °C (and 40% at 12 °C). The greatest, 87.5%, occurred at 20 °C. The fastest mean time, 7.5 days, occurred at 24 °C, but the question asks about percent.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P4-Q2",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, how many of the 2 mm fragments formed a complete body within 14 days?",
+  "choices": [
+   "11",
+   "20",
+   "22",
+   "34"
+  ],
+  "correct_answer": "22",
+  "explanation": "Each group had 40 fragments, and 55% of the 2 mm fragments formed a complete body: 0.55 × 40 = 22. The value 11 would be 55% of only 20 fragments, 20 is the percent for the 1 mm fragments, and 34 is the number for the 4 mm fragments (85% of 40).",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a count from a percent in the table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P4-Q3",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, all fragments were cut from the middle third of the body. Based on Experiment 1, the most likely reason was to make sure that the fragments:",
+  "choices": [
+   "differed in length but not in the part of the body they came from.",
+   "each already had a head with two eyespots when they were cut.",
+   "were kept at the temperature that gave the fastest regeneration.",
+   "had the same number of cells regardless of their length."
+  ],
+  "correct_answer": "differed in length but not in the part of the body they came from.",
+  "explanation": "Experiment 1 shows that the part of the body matters: 95% of head, 85% of middle, and 60% of tail fragments formed a complete body. Cutting every Experiment 3 fragment from the middle third keeps body region constant, so differences among groups can be attributed to length. Middle fragments have no head, the cutting site does not set the temperature (and 20 °C was not the fastest temperature in Experiment 2; 24 °C was), and fragments of different lengths cannot contain the same number of cells.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a procedural detail",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P4-Q4",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "According to Experiment 2, as the temperature increased from 12 °C to 24 °C, the mean time to form a complete body:",
+  "choices": [
+   "increased only.",
+   "increased and then decreased.",
+   "decreased and then increased.",
+   "decreased only."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "From 12 °C to 24 °C the mean times were 13.5, 11.0, 8.5, and 7.5 days, falling at every step. The time rose again only at 28 °C (8.0 days), which is outside the range asked about.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P4-Q5",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 3, if 40 fragments 3 mm long had been cut from the middle third of the body and kept at 20 °C, the percent forming a complete body would most likely have been:",
+  "choices": [
+   "less than 20%.",
+   "between 20% and 55%.",
+   "between 55% and 85%.",
+   "greater than 85%."
+  ],
+  "correct_answer": "between 55% and 85%.",
+  "explanation": "In Experiment 3 the percent increased with fragment length: 20% at 1 mm, 55% at 2 mm, and 85% at 4 mm. A 3 mm fragment lies between 2 mm and 4 mm, so its percent should lie between 55% and 85%.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P4-Q6",
+  "passage_id": "sc8a-p4",
+  "passage_title": "Regeneration of Flatworm Fragments",
+  "format": "research_summaries",
+  "passage": "Some flatworms can regrow a complete body from a small piece of their body, a process called regeneration. Students studied regeneration in an unnamed freshwater flatworm species collected from a single pond. All worms were 12 mm long and were not fed for 3 days before being cut. Each fragment was kept in its own dish of pond water in the dark and was checked daily under a microscope for 14 days. A fragment was counted as having formed a complete body when it had a head with two eyespots, a feeding tube, and a tapered tail. Each group contained 40 fragments. Table 1 shows, for each group, the percent of fragments that formed a complete body within 14 days and, for those fragments, the mean number of days needed.\n\nExperiment 1\nWorms were cut crosswise into thirds, giving head, middle, and tail fragments, each 4 mm long. The fragments were kept at 20 °C.\n\nExperiment 2\nMiddle fragments 4 mm long were cut from a new set of worms and kept at 12 °C, 16 °C, 20 °C, 24 °C, or 28 °C.\n\nExperiment 3\nFragments 1 mm, 2 mm, or 4 mm long were cut from the middle third of the body of a new set of worms and kept at 20 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Regeneration of flatworm fragments within 14 days",
+   "colLabels": [
+    "Fragments forming a complete body (%)",
+    "Mean time to form a complete body (days)"
+   ],
+   "rowLabels": [
+    "Exp. 1, head",
+    "Exp. 1, middle",
+    "Exp. 1, tail",
+    "Exp. 2, 12 °C",
+    "Exp. 2, 16 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 24 °C",
+    "Exp. 2, 28 °C",
+    "Exp. 3, 1 mm",
+    "Exp. 3, 2 mm",
+    "Exp. 3, 4 mm"
+   ],
+   "cells": [
+    [
+     95,
+     7.5
+    ],
+    [
+     85,
+     9.0
+    ],
+    [
+     60,
+     11.5
+    ],
+    [
+     40,
+     13.5
+    ],
+    [
+     70,
+     11.0
+    ],
+    [
+     87.5,
+     8.5
+    ],
+    [
+     80,
+     7.5
+    ],
+    [
+     35,
+     8.0
+    ],
+    [
+     20,
+     12.0
+    ],
+    [
+     55,
+     10.0
+    ],
+    [
+     85,
+     9.0
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that, within any one experiment, the groups in which a greater percent of fragments formed a complete body also took less time, on average, to do so. This hypothesis is supported by the results of:",
+  "choices": [
+   "Experiment 1 only.",
+   "Experiments 1 and 3 only.",
+   "Experiments 2 and 3 only.",
+   "Experiments 1, 2, and 3."
+  ],
+  "correct_answer": "Experiments 1 and 3 only.",
+  "explanation": "Experiment 1 fits: 95% at 7.5 days, 85% at 9.0 days, 60% at 11.5 days. Experiment 3 fits: 85% at 9.0 days, 55% at 10.0 days, 20% at 12.0 days. Experiment 2 does not: the 24 °C group had a lower percent than the 20 °C group (80% vs. 87.5%) but a shorter mean time (7.5 vs. 8.5 days), and the 28 °C group (35%) was faster than the 16 °C group (70%), 8.0 days vs. 11.0 days.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against several experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P5-Q1",
+  "passage_id": "sc8a-p5",
+  "passage_title": "Conductivity of Four Salt Solutions",
+  "format": "data_representation",
+  "passage": "A solution conducts electricity when it contains ions, electrically charged particles that can move through the liquid. Electrical conductivity, measured in millisiemens per centimeter (mS/cm), describes how easily a solution carries an electric current. A chemist dissolved four white crystalline salts, labeled J, K, L, and M, in distilled water to make solutions of several concentrations, given in grams of salt per liter of solution (g/L). The chemist also measured a sample of the distilled water alone (0 g/L).\n\nAll conductivities in Table 1 were measured at 25 °C with the same probe, which was rinsed with distilled water between samples. For each of these solutions, the conductivity increases by 2% of its 25 °C value for each 1 °C increase in temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Conductivity at 25 °C of solutions of Salts J, K, L, and M",
+   "colLabels": [
+    "Salt J (mS/cm)",
+    "Salt K (mS/cm)",
+    "Salt L (mS/cm)",
+    "Salt M (mS/cm)"
+   ],
+   "rowLabels": [
+    "0 g/L",
+    "2 g/L",
+    "4 g/L",
+    "8 g/L",
+    "16 g/L",
+    "32 g/L"
+   ],
+   "cells": [
+    [
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    [
+     3.1,
+     1.8,
+     4.0,
+     0.6
+    ],
+    [
+     6.0,
+     3.5,
+     7.8,
+     1.1
+    ],
+    [
+     11.4,
+     6.8,
+     15.0,
+     2.0
+    ],
+    [
+     21.0,
+     12.9,
+     27.8,
+     3.4
+    ],
+    [
+     36.5,
+     23.8,
+     47.0,
+     5.1
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the conductivity of the 8 g/L solution of Salt K?",
+  "choices": [
+   "3.5 mS/cm",
+   "6.8 mS/cm",
+   "11.4 mS/cm",
+   "12.9 mS/cm"
+  ],
+  "correct_answer": "6.8 mS/cm",
+  "explanation": "In the 8 g/L row, the Salt K column reads 6.8 mS/cm. The value 3.5 mS/cm is Salt K at 4 g/L, 11.4 mS/cm is Salt J at 8 g/L, and 12.9 mS/cm is Salt K at 16 g/L.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P5-Q2",
+  "passage_id": "sc8a-p5",
+  "passage_title": "Conductivity of Four Salt Solutions",
+  "format": "data_representation",
+  "passage": "A solution conducts electricity when it contains ions, electrically charged particles that can move through the liquid. Electrical conductivity, measured in millisiemens per centimeter (mS/cm), describes how easily a solution carries an electric current. A chemist dissolved four white crystalline salts, labeled J, K, L, and M, in distilled water to make solutions of several concentrations, given in grams of salt per liter of solution (g/L). The chemist also measured a sample of the distilled water alone (0 g/L).\n\nAll conductivities in Table 1 were measured at 25 °C with the same probe, which was rinsed with distilled water between samples. For each of these solutions, the conductivity increases by 2% of its 25 °C value for each 1 °C increase in temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Conductivity at 25 °C of solutions of Salts J, K, L, and M",
+   "colLabels": [
+    "Salt J (mS/cm)",
+    "Salt K (mS/cm)",
+    "Salt L (mS/cm)",
+    "Salt M (mS/cm)"
+   ],
+   "rowLabels": [
+    "0 g/L",
+    "2 g/L",
+    "4 g/L",
+    "8 g/L",
+    "16 g/L",
+    "32 g/L"
+   ],
+   "cells": [
+    [
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    [
+     3.1,
+     1.8,
+     4.0,
+     0.6
+    ],
+    [
+     6.0,
+     3.5,
+     7.8,
+     1.1
+    ],
+    [
+     11.4,
+     6.8,
+     15.0,
+     2.0
+    ],
+    [
+     21.0,
+     12.9,
+     27.8,
+     3.4
+    ],
+    [
+     36.5,
+     23.8,
+     47.0,
+     5.1
+    ]
+   ]
+  },
+  "prompt": "The chemist most likely measured the distilled water alone in order to:",
+  "choices": [
+   "show that the water itself contributed almost no conductivity.",
+   "show that the probe gave the same reading for every salt.",
+   "find the temperature at which each salt dissolved fastest.",
+   "find the concentration at which each salt stopped dissolving."
+  ],
+  "correct_answer": "show that the water itself contributed almost no conductivity.",
+  "explanation": "The 0 g/L reading was 0.01 mS/cm, far below any salt solution, so it shows that the measured conductivities come from the dissolved salts rather than from the water. The probe gave very different readings for the different salts, every measurement was made at the same temperature, 25 °C, and the conductivity of every salt kept rising up to 32 g/L, so nothing in the measurements concerns a dissolving limit.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a control measurement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P5-Q3",
+  "passage_id": "sc8a-p5",
+  "passage_title": "Conductivity of Four Salt Solutions",
+  "format": "data_representation",
+  "passage": "A solution conducts electricity when it contains ions, electrically charged particles that can move through the liquid. Electrical conductivity, measured in millisiemens per centimeter (mS/cm), describes how easily a solution carries an electric current. A chemist dissolved four white crystalline salts, labeled J, K, L, and M, in distilled water to make solutions of several concentrations, given in grams of salt per liter of solution (g/L). The chemist also measured a sample of the distilled water alone (0 g/L).\n\nAll conductivities in Table 1 were measured at 25 °C with the same probe, which was rinsed with distilled water between samples. For each of these solutions, the conductivity increases by 2% of its 25 °C value for each 1 °C increase in temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Conductivity at 25 °C of solutions of Salts J, K, L, and M",
+   "colLabels": [
+    "Salt J (mS/cm)",
+    "Salt K (mS/cm)",
+    "Salt L (mS/cm)",
+    "Salt M (mS/cm)"
+   ],
+   "rowLabels": [
+    "0 g/L",
+    "2 g/L",
+    "4 g/L",
+    "8 g/L",
+    "16 g/L",
+    "32 g/L"
+   ],
+   "cells": [
+    [
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    [
+     3.1,
+     1.8,
+     4.0,
+     0.6
+    ],
+    [
+     6.0,
+     3.5,
+     7.8,
+     1.1
+    ],
+    [
+     11.4,
+     6.8,
+     15.0,
+     2.0
+    ],
+    [
+     21.0,
+     12.9,
+     27.8,
+     3.4
+    ],
+    [
+     36.5,
+     23.8,
+     47.0,
+     5.1
+    ]
+   ]
+  },
+  "prompt": "A solution of Salt J measured at 25 °C has a conductivity of 16.0 mS/cm. Based on Table 1, its concentration is closest to:",
+  "choices": [
+   "7 g/L",
+   "12 g/L",
+   "18 g/L",
+   "24 g/L"
+  ],
+  "correct_answer": "12 g/L",
+  "explanation": "Salt J's conductivity is 11.4 mS/cm at 8 g/L and 21.0 mS/cm at 16 g/L, so 16.0 mS/cm corresponds to a concentration between 8 g/L and 16 g/L (about 12 g/L by linear interpolation). A 7 g/L solution would read below 11.4 mS/cm, and 18 g/L or 24 g/L would read above 21.0 mS/cm.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate a concentration from a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P5-Q4",
+  "passage_id": "sc8a-p5",
+  "passage_title": "Conductivity of Four Salt Solutions",
+  "format": "data_representation",
+  "passage": "A solution conducts electricity when it contains ions, electrically charged particles that can move through the liquid. Electrical conductivity, measured in millisiemens per centimeter (mS/cm), describes how easily a solution carries an electric current. A chemist dissolved four white crystalline salts, labeled J, K, L, and M, in distilled water to make solutions of several concentrations, given in grams of salt per liter of solution (g/L). The chemist also measured a sample of the distilled water alone (0 g/L).\n\nAll conductivities in Table 1 were measured at 25 °C with the same probe, which was rinsed with distilled water between samples. For each of these solutions, the conductivity increases by 2% of its 25 °C value for each 1 °C increase in temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Conductivity at 25 °C of solutions of Salts J, K, L, and M",
+   "colLabels": [
+    "Salt J (mS/cm)",
+    "Salt K (mS/cm)",
+    "Salt L (mS/cm)",
+    "Salt M (mS/cm)"
+   ],
+   "rowLabels": [
+    "0 g/L",
+    "2 g/L",
+    "4 g/L",
+    "8 g/L",
+    "16 g/L",
+    "32 g/L"
+   ],
+   "cells": [
+    [
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    [
+     3.1,
+     1.8,
+     4.0,
+     0.6
+    ],
+    [
+     6.0,
+     3.5,
+     7.8,
+     1.1
+    ],
+    [
+     11.4,
+     6.8,
+     15.0,
+     2.0
+    ],
+    [
+     21.0,
+     12.9,
+     27.8,
+     3.4
+    ],
+    [
+     36.5,
+     23.8,
+     47.0,
+     5.1
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, when the concentration of each salt was doubled from 16 g/L to 32 g/L, the conductivity of each solution:",
+  "choices": [
+   "decreased.",
+   "stayed the same.",
+   "increased, but by a factor of less than 2.",
+   "increased by a factor of more than 2."
+  ],
+  "correct_answer": "increased, but by a factor of less than 2.",
+  "explanation": "From 16 g/L to 32 g/L the conductivities rose from 21.0 to 36.5 (J), 12.9 to 23.8 (K), 27.8 to 47.0 (L), and 3.4 to 5.1 mS/cm (M). The factors are about 1.74, 1.84, 1.69, and 1.50: every conductivity increased, and none doubled.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare ratios of table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P5-Q5",
+  "passage_id": "sc8a-p5",
+  "passage_title": "Conductivity of Four Salt Solutions",
+  "format": "data_representation",
+  "passage": "A solution conducts electricity when it contains ions, electrically charged particles that can move through the liquid. Electrical conductivity, measured in millisiemens per centimeter (mS/cm), describes how easily a solution carries an electric current. A chemist dissolved four white crystalline salts, labeled J, K, L, and M, in distilled water to make solutions of several concentrations, given in grams of salt per liter of solution (g/L). The chemist also measured a sample of the distilled water alone (0 g/L).\n\nAll conductivities in Table 1 were measured at 25 °C with the same probe, which was rinsed with distilled water between samples. For each of these solutions, the conductivity increases by 2% of its 25 °C value for each 1 °C increase in temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Conductivity at 25 °C of solutions of Salts J, K, L, and M",
+   "colLabels": [
+    "Salt J (mS/cm)",
+    "Salt K (mS/cm)",
+    "Salt L (mS/cm)",
+    "Salt M (mS/cm)"
+   ],
+   "rowLabels": [
+    "0 g/L",
+    "2 g/L",
+    "4 g/L",
+    "8 g/L",
+    "16 g/L",
+    "32 g/L"
+   ],
+   "cells": [
+    [
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    [
+     3.1,
+     1.8,
+     4.0,
+     0.6
+    ],
+    [
+     6.0,
+     3.5,
+     7.8,
+     1.1
+    ],
+    [
+     11.4,
+     6.8,
+     15.0,
+     2.0
+    ],
+    [
+     21.0,
+     12.9,
+     27.8,
+     3.4
+    ],
+    [
+     36.5,
+     23.8,
+     47.0,
+     5.1
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, the conductivity of the 16 g/L solution of Salt K at 35 °C would be closest to:",
+  "choices": [
+   "10.3 mS/cm",
+   "12.9 mS/cm",
+   "15.5 mS/cm",
+   "18.1 mS/cm"
+  ],
+  "correct_answer": "15.5 mS/cm",
+  "explanation": "At 25 °C the 16 g/L Salt K solution reads 12.9 mS/cm. Raising the temperature 10 °C adds 2% of 12.9 for each degree: 10 × 0.02 × 12.9 ≈ 2.6, giving about 15.5 mS/cm. 12.9 mS/cm is the 25 °C value, 10.3 mS/cm treats the change as a decrease, and 18.1 mS/cm would require a 4% increase per degree.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a rule from the passage to a value in the table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P6-Q1",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what frequency was recorded for a vibrating length of 30 cm?",
+  "choices": [
+   "222 Hz",
+   "333 Hz",
+   "443 Hz",
+   "665 Hz"
+  ],
+  "correct_answer": "443 Hz",
+  "explanation": "In Experiment 1, Trial 2 (30 cm, 40 N) the frequency was 443 Hz. The value 222 Hz is the 60 cm trial, 333 Hz is the 40 cm trial, and 665 Hz is the 20 cm trial.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P6-Q2",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 1, when the vibrating length was doubled, the frequency:",
+  "choices": [
+   "fell to about one-fourth of its original value.",
+   "fell to about one-half of its original value.",
+   "stayed about the same.",
+   "about doubled."
+  ],
+  "correct_answer": "fell to about one-half of its original value.",
+  "explanation": "Doubling the length from 20 cm to 40 cm changed the frequency from 665 Hz to 333 Hz, and doubling it from 30 cm to 60 cm changed it from 443 Hz to 222 Hz. Each time the frequency fell to about one-half, not one-fourth, and it never rose.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a proportional relationship in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P6-Q3",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 2, what tension would most likely be needed to produce a frequency of about 665 Hz from the Alloy A wire at a vibrating length of 40 cm?",
+  "choices": [
+   "80 N",
+   "120 N",
+   "160 N",
+   "320 N"
+  ],
+  "correct_answer": "160 N",
+  "explanation": "In Experiment 2, multiplying the tension by 4 doubled the frequency: 10 N to 40 N raised it from 166 Hz to 333 Hz, and 20 N to 80 N raised it from 235 Hz to 470 Hz. Doubling 333 Hz to about 665 Hz therefore requires 4 × 40 N = 160 N. At 80 N the frequency was only 470 Hz, 120 N would give less than double 333 Hz, and 320 N would give well above 665 Hz (about 940 Hz).",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a pattern in a table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P6-Q4",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, the frequency of the Alloy B wire was about how many times the frequency of the Alloy C wire?",
+  "choices": [
+   "1.5",
+   "2.0",
+   "3.0",
+   "4.1"
+  ],
+  "correct_answer": "2.0",
+  "explanation": "In Experiment 3 the Alloy B wire vibrated at 572 Hz and the Alloy C wire at 284 Hz, and 572 ÷ 284 ≈ 2.0. The value 4.1 is the ratio of the wires' masses per meter (0.78 g ÷ 0.19 g), not of their frequencies.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P6-Q5",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, the students kept the vibrating length at 40 cm in every trial. The main reason was so that:",
+  "choices": [
+   "any change in frequency could be attributed to the change in tension.",
+   "the frequency would be the same in every trial of the experiment.",
+   "the mass of 1.00 m of the wire would change from trial to trial.",
+   "the results could be compared with Alloy B at a 20 cm length."
+  ],
+  "correct_answer": "any change in frequency could be attributed to the change in tension.",
+  "explanation": "Experiment 1 shows that length affects frequency, so holding length constant leaves tension as the only condition changed in Experiment 2. The frequency was not the same in every trial (166 to 470 Hz), the mass per meter stayed at 0.57 g throughout, and no Alloy B wire was tested at 20 cm.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain why a variable was held constant",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P6-Q6",
+  "passage_id": "sc8a-p6",
+  "passage_title": "Frequency of Vibrating Wires",
+  "format": "research_summaries",
+  "passage": "When a stretched wire is plucked, it vibrates and produces a sound whose pitch depends on how many times per second the wire vibrates, its frequency, measured in hertz (Hz). Students used a sonometer: a wooden box with a wire fixed at one end and passed over a pulley at the other end, where hanging masses held it taut. The hanging masses set the tension in the wire, in newtons (N). Two movable supports under the wire set the vibrating length. Every wire had a diameter of 0.30 mm. In each trial the wire was plucked at the middle of its vibrating length, and a frequency meter recorded the frequency.\n\nExperiment 1\nA wire made of Alloy A was held at a tension of 40 N, and the vibrating length was set to 20 cm, 30 cm, 40 cm, or 60 cm.\n\nExperiment 2\nThe Alloy A wire was set to a vibrating length of 40 cm, and the tension was set to 10 N, 20 N, 40 N, or 80 N.\n\nExperiment 3\nWires made of Alloys A, B, and C were each tested at a vibrating length of 40 cm and a tension of 40 N. The students also measured the mass of a 1.00 m piece of each wire.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Frequency of the plucked wires",
+   "colLabels": [
+    "Vibrating length (cm)",
+    "Tension (N)",
+    "Mass of 1.00 m of wire (g)",
+    "Frequency (Hz)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Alloy A, Trial 1",
+    "Exp. 1, Alloy A, Trial 2",
+    "Exp. 1, Alloy A, Trial 3",
+    "Exp. 1, Alloy A, Trial 4",
+    "Exp. 2, Alloy A, Trial 1",
+    "Exp. 2, Alloy A, Trial 2",
+    "Exp. 2, Alloy A, Trial 3",
+    "Exp. 2, Alloy A, Trial 4",
+    "Exp. 3, Alloy A",
+    "Exp. 3, Alloy B",
+    "Exp. 3, Alloy C"
+   ],
+   "cells": [
+    [
+     20,
+     40,
+     0.57,
+     665
+    ],
+    [
+     30,
+     40,
+     0.57,
+     443
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     60,
+     40,
+     0.57,
+     222
+    ],
+    [
+     40,
+     10,
+     0.57,
+     166
+    ],
+    [
+     40,
+     20,
+     0.57,
+     235
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     80,
+     0.57,
+     470
+    ],
+    [
+     40,
+     40,
+     0.57,
+     333
+    ],
+    [
+     40,
+     40,
+     0.19,
+     572
+    ],
+    [
+     40,
+     40,
+     0.78,
+     284
+    ]
+   ]
+  },
+  "prompt": "If the Alloy B wire had been tested at a tension of 40 N with a vibrating length of 20 cm, its frequency would most likely have been about:",
+  "choices": [
+   "290 Hz",
+   "570 Hz",
+   "1,140 Hz",
+   "2,290 Hz"
+  ],
+  "correct_answer": "1,140 Hz",
+  "explanation": "At 40 cm and 40 N, the Alloy B wire vibrated at 572 Hz (Experiment 3). Experiment 1 shows that halving the length from 40 cm to 20 cm doubles the frequency (333 Hz to 665 Hz), so the Alloy B wire at 20 cm should vibrate at about 2 × 572 ≈ 1,140 Hz. About 290 Hz would be the result of doubling the length, 570 Hz ignores the length change, and 2,290 Hz is four times 572 Hz.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P7-Q1",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "According to Student 1, Compound W absorbs water vapor from the air when the relative humidity is above:",
+  "choices": [
+   "40%",
+   "60%",
+   "75%",
+   "85%"
+  ],
+  "correct_answer": "75%",
+  "explanation": "Student 1 states that Compound W absorbs water vapor whenever the RH is above 75%. The values 40% and 85% are the lowest and highest RH recorded in the warehouse, not the level at which absorption begins.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P7-Q2",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "Both students would most likely agree that caking involves:",
+  "choices": [
+   "water vapor absorbed from the air.",
+   "a thin film of solution forming on the crystals.",
+   "crystals fusing under the weight of the sacks above.",
+   "neighboring crystals becoming joined together."
+  ],
+  "correct_answer": "neighboring crystals becoming joined together.",
+  "explanation": "Student 1 says recrystallized compound forms bridges that join neighboring crystals, and Student 2 says crystals in contact fuse together, so both describe crystals becoming joined. Absorbed water vapor and a film of solution belong only to Student 1, who says load does not matter; fusing under weight belongs only to Student 2, who says humidity plays no role.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P7-Q3",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "Suppose sacks of Compound W were sealed inside moisture-proof plastic bags and placed in the bottom layer of a stack 8 sacks high. After 8 weeks, the powder in these sacks had caked. This result would most likely be cited as evidence by:",
+  "choices": [
+   "Student 1, because the bags kept the powder dry.",
+   "Student 1, because the bottom layer is near the humid floor.",
+   "Student 2, because the powder caked while it carried no load.",
+   "Student 2, because the powder caked under load while kept dry."
+  ],
+  "correct_answer": "Student 2, because the powder caked under load while kept dry.",
+  "explanation": "Student 2 predicts that sealed powder will cake if heavily loaded, and these sealed sacks carried the load of the whole stack. Student 1 predicts that powder sealed in moisture-proof bags will not cake however heavily it is loaded, so this result counts against Student 1; and a sack in the bottom layer carries a heavy load, not no load.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8a-P7-Q4",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "Which of the following experiments would best distinguish between the two explanations?",
+  "choices": [
+   "Stacking unsealed sacks 8 high and checking the bottom sacks for caking",
+   "Storing unsealed, unstacked sacks in air that rises above 75% RH daily",
+   "Recording the daily high and low air temperatures in the warehouse",
+   "Weighing each full sack before it is placed in the warehouse"
+  ],
+  "correct_answer": "Storing unsealed, unstacked sacks in air that rises above 75% RH daily",
+  "explanation": "Student 1 predicts that unsealed powder exposed to air above 75% RH will cake even with nothing stacked on it, while Student 2 predicts that powder carrying no load will not cake whatever the humidity, so the two explanations predict opposite outcomes. Both students predict caking in the bottom sacks of an 8-high stack, and neither temperature records nor the initial mass of the sacks would show which mechanism causes caking.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between hypotheses",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8a-P7-Q5",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "According to Student 2, the bottom layers of each stack cake most often because they:",
+  "choices": [
+   "are nearest the humid air by the floor.",
+   "have been stored for the longest time.",
+   "are the warmest sacks in the warehouse.",
+   "carry the greatest weight."
+  ],
+  "correct_answer": "carry the greatest weight.",
+  "explanation": "Student 2 states that the bottom layers cake most because they carry the most weight. The humid air near the floor is Student 1's explanation, and neither student attributes caking to warmth or to longer storage of the bottom sacks.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8a-P7-Q6",
+  "passage_id": "sc8a-p7",
+  "passage_title": "Caking of a Stored Powder",
+  "format": "conflicting_viewpoints",
+  "passage": "A factory produces Compound W, a white crystalline powder, and ships it in 25 kg paper sacks. The sacks are stacked 8 high on wooden pallets in an unheated warehouse, so each sack in the bottom layer supports 175 kg of sacks above it. After 4 to 8 weeks of storage, the powder in some sacks forms hard lumps, a process called caking. Caking is most common in the bottom two layers of each stack. During the storage season, the air temperature in the warehouse ranges from 8 °C at night to 24 °C in the afternoon, and the relative humidity (RH) of the air ranges from 40% to 85%. Two students propose explanations for the caking.\n\nStudent 1\nCaking is caused by moisture. Compound W absorbs water vapor from the air whenever the RH is above 75%. The absorbed water dissolves a little of the compound, forming a thin film of solution on the surfaces of the crystals. When the RH falls below 75%, the water evaporates through the paper sacks, and the dissolved compound recrystallizes as solid bridges that join neighboring crystals together. The bottom layers cake most because the air near the cool concrete floor is more humid than the air higher in the warehouse. Powder sealed in moisture-proof bags will not cake, however heavily it is loaded, and powder exposed to humid air will cake even if nothing is stacked on it.\n\nStudent 2\nCaking is caused by pressure. The weight of the sacks above presses the crystals in the lower sacks tightly against one another, and where crystals touch under pressure, they slowly fuse together at the points of contact. The daily rise and fall of temperature makes the crystals expand and contract, so they shift and settle into closer contact, which speeds this fusing. Humidity plays no role. The bottom layers cake most because they carry the most weight. Powder sealed in moisture-proof bags will cake if it is heavily loaded, and powder that carries no load will not cake, whatever the humidity.",
+  "prompt": "Suppose careful measurements showed that Compound W absorbs no water vapor from the air unless the RH is above 92%. This finding would weaken the explanation of:",
+  "choices": [
+   "Student 1 only, because the warehouse RH never exceeds 85%.",
+   "Student 2 only, because the warehouse RH often exceeds 75%.",
+   "both students, because each depends on the warehouse RH.",
+   "neither student, because the RH plays no role in caking."
+  ],
+  "correct_answer": "Student 1 only, because the warehouse RH never exceeds 85%.",
+  "explanation": "Student 1's mechanism requires the compound to absorb water from the air, but the warehouse RH ranges only from 40% to 85%, so under the new finding no water would ever be absorbed there. Student 2 says humidity plays no role, so a change in the RH at which absorption begins does not affect Student 2's explanation.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a viewpoint against a quantitative finding",
+  "difficulty": "hard"
+ }
+]

@@ -1,0 +1,2713 @@
+[
+ {
+  "id": "ASV8b-P1-Q1",
+  "passage_id": "sc8b-p1",
+  "passage_title": "Warm Water and Coral Bleaching",
+  "format": "data_representation",
+  "passage": "Reef-building corals are animals whose tissues contain single-celled algae called symbionts. The symbionts make sugars by photosynthesis and pass much of this food to the coral. When the surrounding water stays unusually warm for days or weeks, many corals expel their symbionts and turn pale, a response called bleaching.\n\nResearchers collected fragments of three coral species, Species P, Species Q, and Species R, from the same reef. For each species, 20 fragments were held for 14 days in a tank of seawater kept at each of six constant temperatures. At the end of the 14 days, the researchers recorded the percent of fragments still alive and measured the average symbiont density (millions of symbiont cells per square centimeter of coral surface) of the surviving fragments. A species was classified as bleached at a given temperature if its average symbiont density at that temperature was less than half of its average symbiont density at 27 °C. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average symbiont density and percent survival of coral fragments after 14 days at each water temperature",
+   "colLabels": [
+    "Species P density (millions of cells/cm²)",
+    "Species Q density (millions of cells/cm²)",
+    "Species R density (millions of cells/cm²)",
+    "Species P survival (%)",
+    "Species Q survival (%)",
+    "Species R survival (%)"
+   ],
+   "rowLabels": [
+    "27 °C",
+    "28 °C",
+    "29 °C",
+    "30 °C",
+    "31 °C",
+    "32 °C"
+   ],
+   "cells": [
+    [
+     2.4,
+     1.8,
+     3.0,
+     100,
+     100,
+     100
+    ],
+    [
+     2.3,
+     1.7,
+     2.9,
+     100,
+     100,
+     100
+    ],
+    [
+     2.0,
+     1.6,
+     2.6,
+     100,
+     100,
+     100
+    ],
+    [
+     1.5,
+     1.4,
+     1.9,
+     95,
+     100,
+     100
+    ],
+    [
+     0.9,
+     1.2,
+     1.1,
+     70,
+     95,
+     80
+    ],
+    [
+     0.4,
+     1.0,
+     0.5,
+     30,
+     90,
+     40
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average symbiont density of Species R fragments held at 30 °C?",
+  "choices": [
+   "1.4 million cells/cm²",
+   "1.5 million cells/cm²",
+   "1.9 million cells/cm²",
+   "2.6 million cells/cm²"
+  ],
+  "correct_answer": "1.9 million cells/cm²",
+  "explanation": "In the 30 °C row, the Species R density column reads 1.9. The value 1.4 is Species Q at 30 °C, 1.5 is Species P at 30 °C, and 2.6 is Species R at 29 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P1-Q2",
+  "passage_id": "sc8b-p1",
+  "passage_title": "Warm Water and Coral Bleaching",
+  "format": "data_representation",
+  "passage": "Reef-building corals are animals whose tissues contain single-celled algae called symbionts. The symbionts make sugars by photosynthesis and pass much of this food to the coral. When the surrounding water stays unusually warm for days or weeks, many corals expel their symbionts and turn pale, a response called bleaching.\n\nResearchers collected fragments of three coral species, Species P, Species Q, and Species R, from the same reef. For each species, 20 fragments were held for 14 days in a tank of seawater kept at each of six constant temperatures. At the end of the 14 days, the researchers recorded the percent of fragments still alive and measured the average symbiont density (millions of symbiont cells per square centimeter of coral surface) of the surviving fragments. A species was classified as bleached at a given temperature if its average symbiont density at that temperature was less than half of its average symbiont density at 27 °C. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average symbiont density and percent survival of coral fragments after 14 days at each water temperature",
+   "colLabels": [
+    "Species P density (millions of cells/cm²)",
+    "Species Q density (millions of cells/cm²)",
+    "Species R density (millions of cells/cm²)",
+    "Species P survival (%)",
+    "Species Q survival (%)",
+    "Species R survival (%)"
+   ],
+   "rowLabels": [
+    "27 °C",
+    "28 °C",
+    "29 °C",
+    "30 °C",
+    "31 °C",
+    "32 °C"
+   ],
+   "cells": [
+    [
+     2.4,
+     1.8,
+     3.0,
+     100,
+     100,
+     100
+    ],
+    [
+     2.3,
+     1.7,
+     2.9,
+     100,
+     100,
+     100
+    ],
+    [
+     2.0,
+     1.6,
+     2.6,
+     100,
+     100,
+     100
+    ],
+    [
+     1.5,
+     1.4,
+     1.9,
+     95,
+     100,
+     100
+    ],
+    [
+     0.9,
+     1.2,
+     1.1,
+     70,
+     95,
+     80
+    ],
+    [
+     0.4,
+     1.0,
+     0.5,
+     30,
+     90,
+     40
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the definition of bleaching given in the passage, what is the lowest tested temperature at which Species P was classified as bleached?",
+  "choices": [
+   "29 °C",
+   "30 °C",
+   "31 °C",
+   "32 °C"
+  ],
+  "correct_answer": "31 °C",
+  "explanation": "Species P had a density of 2.4 at 27 °C, so it is bleached where its density is below half of that, 1.2. Its density was 2.0 at 29 °C and 1.5 at 30 °C, both above 1.2, and 0.9 at 31 °C, below 1.2. At 32 °C it was also bleached (0.4), but 31 °C is the lowest such temperature.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a definition from the passage to table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P1-Q3",
+  "passage_id": "sc8b-p1",
+  "passage_title": "Warm Water and Coral Bleaching",
+  "format": "data_representation",
+  "passage": "Reef-building corals are animals whose tissues contain single-celled algae called symbionts. The symbionts make sugars by photosynthesis and pass much of this food to the coral. When the surrounding water stays unusually warm for days or weeks, many corals expel their symbionts and turn pale, a response called bleaching.\n\nResearchers collected fragments of three coral species, Species P, Species Q, and Species R, from the same reef. For each species, 20 fragments were held for 14 days in a tank of seawater kept at each of six constant temperatures. At the end of the 14 days, the researchers recorded the percent of fragments still alive and measured the average symbiont density (millions of symbiont cells per square centimeter of coral surface) of the surviving fragments. A species was classified as bleached at a given temperature if its average symbiont density at that temperature was less than half of its average symbiont density at 27 °C. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average symbiont density and percent survival of coral fragments after 14 days at each water temperature",
+   "colLabels": [
+    "Species P density (millions of cells/cm²)",
+    "Species Q density (millions of cells/cm²)",
+    "Species R density (millions of cells/cm²)",
+    "Species P survival (%)",
+    "Species Q survival (%)",
+    "Species R survival (%)"
+   ],
+   "rowLabels": [
+    "27 °C",
+    "28 °C",
+    "29 °C",
+    "30 °C",
+    "31 °C",
+    "32 °C"
+   ],
+   "cells": [
+    [
+     2.4,
+     1.8,
+     3.0,
+     100,
+     100,
+     100
+    ],
+    [
+     2.3,
+     1.7,
+     2.9,
+     100,
+     100,
+     100
+    ],
+    [
+     2.0,
+     1.6,
+     2.6,
+     100,
+     100,
+     100
+    ],
+    [
+     1.5,
+     1.4,
+     1.9,
+     95,
+     100,
+     100
+    ],
+    [
+     0.9,
+     1.2,
+     1.1,
+     70,
+     95,
+     80
+    ],
+    [
+     0.4,
+     1.0,
+     0.5,
+     30,
+     90,
+     40
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the definition of bleaching given in the passage, which species, if any, was NOT classified as bleached at any of the tested temperatures?",
+  "choices": [
+   "Species P",
+   "Species R",
+   "None of the three species",
+   "Species Q"
+  ],
+  "correct_answer": "Species Q",
+  "explanation": "Half of each species' 27 °C density is 1.2 for Species P, 0.9 for Species Q, and 1.5 for Species R. Species P fell below 1.2 at 31 °C (0.9) and Species R fell below 1.5 at 31 °C (1.1). The lowest density of Species Q was 1.0 at 32 °C, which is not less than 0.9, so Species Q was never bleached and the claim that all three were bleached is false.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a definition from the passage to table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P1-Q4",
+  "passage_id": "sc8b-p1",
+  "passage_title": "Warm Water and Coral Bleaching",
+  "format": "data_representation",
+  "passage": "Reef-building corals are animals whose tissues contain single-celled algae called symbionts. The symbionts make sugars by photosynthesis and pass much of this food to the coral. When the surrounding water stays unusually warm for days or weeks, many corals expel their symbionts and turn pale, a response called bleaching.\n\nResearchers collected fragments of three coral species, Species P, Species Q, and Species R, from the same reef. For each species, 20 fragments were held for 14 days in a tank of seawater kept at each of six constant temperatures. At the end of the 14 days, the researchers recorded the percent of fragments still alive and measured the average symbiont density (millions of symbiont cells per square centimeter of coral surface) of the surviving fragments. A species was classified as bleached at a given temperature if its average symbiont density at that temperature was less than half of its average symbiont density at 27 °C. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average symbiont density and percent survival of coral fragments after 14 days at each water temperature",
+   "colLabels": [
+    "Species P density (millions of cells/cm²)",
+    "Species Q density (millions of cells/cm²)",
+    "Species R density (millions of cells/cm²)",
+    "Species P survival (%)",
+    "Species Q survival (%)",
+    "Species R survival (%)"
+   ],
+   "rowLabels": [
+    "27 °C",
+    "28 °C",
+    "29 °C",
+    "30 °C",
+    "31 °C",
+    "32 °C"
+   ],
+   "cells": [
+    [
+     2.4,
+     1.8,
+     3.0,
+     100,
+     100,
+     100
+    ],
+    [
+     2.3,
+     1.7,
+     2.9,
+     100,
+     100,
+     100
+    ],
+    [
+     2.0,
+     1.6,
+     2.6,
+     100,
+     100,
+     100
+    ],
+    [
+     1.5,
+     1.4,
+     1.9,
+     95,
+     100,
+     100
+    ],
+    [
+     0.9,
+     1.2,
+     1.1,
+     70,
+     95,
+     80
+    ],
+    [
+     0.4,
+     1.0,
+     0.5,
+     30,
+     90,
+     40
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if fragments of Species P had been held at 30.5 °C for 14 days, their average symbiont density would most likely have been:",
+  "choices": [
+   "between 0.4 and 0.9 million cells/cm².",
+   "between 0.9 and 1.5 million cells/cm².",
+   "between 1.5 and 2.0 million cells/cm².",
+   "between 2.0 and 2.4 million cells/cm²."
+  ],
+  "correct_answer": "between 0.9 and 1.5 million cells/cm².",
+  "explanation": "Species P density decreased steadily with temperature, from 1.5 at 30 °C to 0.9 at 31 °C, so at 30.5 °C it would fall between those values. The range 0.4 to 0.9 lies between 31 °C and 32 °C, 1.5 to 2.0 between 29 °C and 30 °C, and 2.0 to 2.4 between 27 °C and 29 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P1-Q5",
+  "passage_id": "sc8b-p1",
+  "passage_title": "Warm Water and Coral Bleaching",
+  "format": "data_representation",
+  "passage": "Reef-building corals are animals whose tissues contain single-celled algae called symbionts. The symbionts make sugars by photosynthesis and pass much of this food to the coral. When the surrounding water stays unusually warm for days or weeks, many corals expel their symbionts and turn pale, a response called bleaching.\n\nResearchers collected fragments of three coral species, Species P, Species Q, and Species R, from the same reef. For each species, 20 fragments were held for 14 days in a tank of seawater kept at each of six constant temperatures. At the end of the 14 days, the researchers recorded the percent of fragments still alive and measured the average symbiont density (millions of symbiont cells per square centimeter of coral surface) of the surviving fragments. A species was classified as bleached at a given temperature if its average symbiont density at that temperature was less than half of its average symbiont density at 27 °C. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average symbiont density and percent survival of coral fragments after 14 days at each water temperature",
+   "colLabels": [
+    "Species P density (millions of cells/cm²)",
+    "Species Q density (millions of cells/cm²)",
+    "Species R density (millions of cells/cm²)",
+    "Species P survival (%)",
+    "Species Q survival (%)",
+    "Species R survival (%)"
+   ],
+   "rowLabels": [
+    "27 °C",
+    "28 °C",
+    "29 °C",
+    "30 °C",
+    "31 °C",
+    "32 °C"
+   ],
+   "cells": [
+    [
+     2.4,
+     1.8,
+     3.0,
+     100,
+     100,
+     100
+    ],
+    [
+     2.3,
+     1.7,
+     2.9,
+     100,
+     100,
+     100
+    ],
+    [
+     2.0,
+     1.6,
+     2.6,
+     100,
+     100,
+     100
+    ],
+    [
+     1.5,
+     1.4,
+     1.9,
+     95,
+     100,
+     100
+    ],
+    [
+     0.9,
+     1.2,
+     1.1,
+     70,
+     95,
+     80
+    ],
+    [
+     0.4,
+     1.0,
+     0.5,
+     30,
+     90,
+     40
+    ]
+   ]
+  },
+  "prompt": "Which of the following statements is supported by Table 1 and the definition of bleaching?",
+  "choices": [
+   "At every temperature at which a species was classified as bleached, that species had a survival of 80% or less.",
+   "At 32 °C, the survival of each of the three species was below 90%.",
+   "At 31 °C, the survival of Species Q was lower than the survival of Species R.",
+   "The survival of each species first fell below 100% at the same temperature."
+  ],
+  "correct_answer": "At every temperature at which a species was classified as bleached, that species had a survival of 80% or less.",
+  "explanation": "The bleached cases are Species P at 31 °C and 32 °C (survival 70% and 30%) and Species R at 31 °C and 32 °C (80% and 40%); all are 80% or less. Species Q had 90% survival at 32 °C, which is not below 90%. At 31 °C Species Q survival (95%) was higher than Species R (80%). Survival first fell below 100% at 30 °C for Species P but at 31 °C for Species Q and R.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine two data columns with a definition",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P2-Q1",
+  "passage_id": "sc8b-p2",
+  "passage_title": "Craters on the Lava Plains of Orvane",
+  "format": "data_representation",
+  "passage": "Meteorites strike the surfaces of rocky planets throughout their history, so craters accumulate over time: the longer a surface has existed, the more craters it has per unit area. Planetary scientists used orbiter images to count craters on five surface units (Units 1 through 5) of lava rock on Orvane, a hypothetical rocky planet. Table 1 gives the number of craters in three size classes, and the total, per 10,000 km² of each unit.\n\nThe scientists estimate that the age of a lava surface on Orvane, in billions of years, equals the total number of craters per 10,000 km² divided by 100. On a surface from which no craters have been erased, craters 1 to 2 km across are about twice as numerous as craters 2 to 5 km across. On some units, windblown dust can bury and erase craters smaller than 2 km across; craters 2 km across or larger are too deep to be erased this way.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of craters per 10,000 km² on five surface units of Orvane",
+   "colLabels": [
+    "1 to 2 km across",
+    "2 to 5 km across",
+    "More than 5 km across",
+    "Total"
+   ],
+   "rowLabels": [
+    "Unit 1",
+    "Unit 2",
+    "Unit 3",
+    "Unit 4",
+    "Unit 5"
+   ],
+   "cells": [
+    [
+     120,
+     60,
+     20,
+     200
+    ],
+    [
+     210,
+     110,
+     40,
+     360
+    ],
+    [
+     30,
+     45,
+     15,
+     90
+    ],
+    [
+     70,
+     35,
+     10,
+     115
+    ],
+    [
+     150,
+     80,
+     25,
+     255
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, how many craters 2 to 5 km across were counted per 10,000 km² on Unit 4?",
+  "choices": [
+   "10",
+   "35",
+   "70",
+   "115"
+  ],
+  "correct_answer": "35",
+  "explanation": "In the Unit 4 row, the 2 to 5 km column reads 35. The value 10 is the count of craters more than 5 km across, 70 is the count of craters 1 to 2 km across, and 115 is the total for Unit 4.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P2-Q2",
+  "passage_id": "sc8b-p2",
+  "passage_title": "Craters on the Lava Plains of Orvane",
+  "format": "data_representation",
+  "passage": "Meteorites strike the surfaces of rocky planets throughout their history, so craters accumulate over time: the longer a surface has existed, the more craters it has per unit area. Planetary scientists used orbiter images to count craters on five surface units (Units 1 through 5) of lava rock on Orvane, a hypothetical rocky planet. Table 1 gives the number of craters in three size classes, and the total, per 10,000 km² of each unit.\n\nThe scientists estimate that the age of a lava surface on Orvane, in billions of years, equals the total number of craters per 10,000 km² divided by 100. On a surface from which no craters have been erased, craters 1 to 2 km across are about twice as numerous as craters 2 to 5 km across. On some units, windblown dust can bury and erase craters smaller than 2 km across; craters 2 km across or larger are too deep to be erased this way.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of craters per 10,000 km² on five surface units of Orvane",
+   "colLabels": [
+    "1 to 2 km across",
+    "2 to 5 km across",
+    "More than 5 km across",
+    "Total"
+   ],
+   "rowLabels": [
+    "Unit 1",
+    "Unit 2",
+    "Unit 3",
+    "Unit 4",
+    "Unit 5"
+   ],
+   "cells": [
+    [
+     120,
+     60,
+     20,
+     200
+    ],
+    [
+     210,
+     110,
+     40,
+     360
+    ],
+    [
+     30,
+     45,
+     15,
+     90
+    ],
+    [
+     70,
+     35,
+     10,
+     115
+    ],
+    [
+     150,
+     80,
+     25,
+     255
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the scientists' method of estimating age, the age of Unit 5 is closest to:",
+  "choices": [
+   "0.8 billion years.",
+   "1.5 billion years.",
+   "2.6 billion years.",
+   "3.6 billion years."
+  ],
+  "correct_answer": "2.6 billion years.",
+  "explanation": "Unit 5 has a total of 255 craters per 10,000 km², and 255 ÷ 100 = 2.55, closest to 2.6 billion years. The value 0.8 uses only the 2 to 5 km count (80), 1.5 uses only the 1 to 2 km count (150), and 3.6 is the estimate for Unit 2 (360 craters).",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a formula from the passage to a table value",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P2-Q3",
+  "passage_id": "sc8b-p2",
+  "passage_title": "Craters on the Lava Plains of Orvane",
+  "format": "data_representation",
+  "passage": "Meteorites strike the surfaces of rocky planets throughout their history, so craters accumulate over time: the longer a surface has existed, the more craters it has per unit area. Planetary scientists used orbiter images to count craters on five surface units (Units 1 through 5) of lava rock on Orvane, a hypothetical rocky planet. Table 1 gives the number of craters in three size classes, and the total, per 10,000 km² of each unit.\n\nThe scientists estimate that the age of a lava surface on Orvane, in billions of years, equals the total number of craters per 10,000 km² divided by 100. On a surface from which no craters have been erased, craters 1 to 2 km across are about twice as numerous as craters 2 to 5 km across. On some units, windblown dust can bury and erase craters smaller than 2 km across; craters 2 km across or larger are too deep to be erased this way.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of craters per 10,000 km² on five surface units of Orvane",
+   "colLabels": [
+    "1 to 2 km across",
+    "2 to 5 km across",
+    "More than 5 km across",
+    "Total"
+   ],
+   "rowLabels": [
+    "Unit 1",
+    "Unit 2",
+    "Unit 3",
+    "Unit 4",
+    "Unit 5"
+   ],
+   "cells": [
+    [
+     120,
+     60,
+     20,
+     200
+    ],
+    [
+     210,
+     110,
+     40,
+     360
+    ],
+    [
+     30,
+     45,
+     15,
+     90
+    ],
+    [
+     70,
+     35,
+     10,
+     115
+    ],
+    [
+     150,
+     80,
+     25,
+     255
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the scientists' method of estimating age, which of the following lists the units in order from youngest to oldest?",
+  "choices": [
+   "Unit 3, Unit 4, Unit 1, Unit 5, Unit 2",
+   "Unit 2, Unit 5, Unit 1, Unit 4, Unit 3",
+   "Unit 3, Unit 4, Unit 5, Unit 1, Unit 2",
+   "Unit 4, Unit 3, Unit 1, Unit 5, Unit 2"
+  ],
+  "correct_answer": "Unit 3, Unit 4, Unit 1, Unit 5, Unit 2",
+  "explanation": "Age increases with the total crater count, and the totals are 90 (Unit 3), 115 (Unit 4), 200 (Unit 1), 255 (Unit 5), and 360 (Unit 2). Listing Unit 2 first gives oldest to youngest. Ordering by the count of craters 2 to 5 km across or more than 5 km across puts Unit 4 before Unit 3, and placing Unit 5 before Unit 1 contradicts their totals of 255 and 200.",
+  "domain": "Interpretation of Data",
+  "subskill": "order categories by a derived quantity",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P2-Q4",
+  "passage_id": "sc8b-p2",
+  "passage_title": "Craters on the Lava Plains of Orvane",
+  "format": "data_representation",
+  "passage": "Meteorites strike the surfaces of rocky planets throughout their history, so craters accumulate over time: the longer a surface has existed, the more craters it has per unit area. Planetary scientists used orbiter images to count craters on five surface units (Units 1 through 5) of lava rock on Orvane, a hypothetical rocky planet. Table 1 gives the number of craters in three size classes, and the total, per 10,000 km² of each unit.\n\nThe scientists estimate that the age of a lava surface on Orvane, in billions of years, equals the total number of craters per 10,000 km² divided by 100. On a surface from which no craters have been erased, craters 1 to 2 km across are about twice as numerous as craters 2 to 5 km across. On some units, windblown dust can bury and erase craters smaller than 2 km across; craters 2 km across or larger are too deep to be erased this way.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of craters per 10,000 km² on five surface units of Orvane",
+   "colLabels": [
+    "1 to 2 km across",
+    "2 to 5 km across",
+    "More than 5 km across",
+    "Total"
+   ],
+   "rowLabels": [
+    "Unit 1",
+    "Unit 2",
+    "Unit 3",
+    "Unit 4",
+    "Unit 5"
+   ],
+   "cells": [
+    [
+     120,
+     60,
+     20,
+     200
+    ],
+    [
+     210,
+     110,
+     40,
+     360
+    ],
+    [
+     30,
+     45,
+     15,
+     90
+    ],
+    [
+     70,
+     35,
+     10,
+     115
+    ],
+    [
+     150,
+     80,
+     25,
+     255
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, the crater counts on which unit are most consistent with craters smaller than 2 km across having been erased by windblown dust?",
+  "choices": [
+   "Unit 3",
+   "Unit 1",
+   "Unit 4",
+   "Unit 5"
+  ],
+  "correct_answer": "Unit 3",
+  "explanation": "Without erasure, craters 1 to 2 km across should be about twice as numerous as craters 2 to 5 km across. Unit 1 (120 and 60), Unit 4 (70 and 35), and Unit 5 (150 and 80) all show about that 2 to 1 ratio. Unit 3 has only 30 craters 1 to 2 km across but 45 craters 2 to 5 km across, a shortage of small craters, as expected if dust erased them.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate data against a stated model",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P2-Q5",
+  "passage_id": "sc8b-p2",
+  "passage_title": "Craters on the Lava Plains of Orvane",
+  "format": "data_representation",
+  "passage": "Meteorites strike the surfaces of rocky planets throughout their history, so craters accumulate over time: the longer a surface has existed, the more craters it has per unit area. Planetary scientists used orbiter images to count craters on five surface units (Units 1 through 5) of lava rock on Orvane, a hypothetical rocky planet. Table 1 gives the number of craters in three size classes, and the total, per 10,000 km² of each unit.\n\nThe scientists estimate that the age of a lava surface on Orvane, in billions of years, equals the total number of craters per 10,000 km² divided by 100. On a surface from which no craters have been erased, craters 1 to 2 km across are about twice as numerous as craters 2 to 5 km across. On some units, windblown dust can bury and erase craters smaller than 2 km across; craters 2 km across or larger are too deep to be erased this way.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of craters per 10,000 km² on five surface units of Orvane",
+   "colLabels": [
+    "1 to 2 km across",
+    "2 to 5 km across",
+    "More than 5 km across",
+    "Total"
+   ],
+   "rowLabels": [
+    "Unit 1",
+    "Unit 2",
+    "Unit 3",
+    "Unit 4",
+    "Unit 5"
+   ],
+   "cells": [
+    [
+     120,
+     60,
+     20,
+     200
+    ],
+    [
+     210,
+     110,
+     40,
+     360
+    ],
+    [
+     30,
+     45,
+     15,
+     90
+    ],
+    [
+     70,
+     35,
+     10,
+     115
+    ],
+    [
+     150,
+     80,
+     25,
+     255
+    ]
+   ]
+  },
+  "prompt": "Suppose that on Unit 3, dust erased only craters 1 to 2 km across, and that before erasure Unit 3 had twice as many craters 1 to 2 km across as craters 2 to 5 km across. Based on the passage, the age of Unit 3 estimated from its original crater counts would have been:",
+  "choices": [
+   "0.9 billion years.",
+   "1.2 billion years.",
+   "1.5 billion years.",
+   "1.8 billion years."
+  ],
+  "correct_answer": "1.5 billion years.",
+  "explanation": "Unit 3 has 45 craters 2 to 5 km across, so it would originally have had 2 × 45 = 90 craters 1 to 2 km across. The original total is 90 + 45 + 15 = 150, and 150 ÷ 100 = 1.5 billion years. The value 0.9 is the estimate from the present total of 90; 1.2 results from adding only 30 more craters; 1.8 results from doubling the present total.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine a passage rule with table values",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P3-Q1",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what was the average dry mass of the seedlings grown under white LEDs?",
+  "choices": [
+   "180 mg",
+   "200 mg",
+   "210 mg",
+   "235 mg"
+  ],
+  "correct_answer": "200 mg",
+  "explanation": "The row labeled Exp. 1, white gives a dry mass of 200 mg. The value 180 mg is for red LEDs, 210 mg is for the 50% blue mixture, and 235 mg is the 25% blue mixture in Experiment 2.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P3-Q2",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, as the percent of blue photons increased from 0% to 100%, how did dry mass and stem length change?",
+  "choices": [
+   "Dry mass increased and then decreased, and stem length decreased throughout.",
+   "Dry mass increased throughout, and stem length decreased throughout.",
+   "Dry mass increased and then decreased, and stem length increased and then decreased.",
+   "Dry mass decreased throughout, and stem length increased throughout."
+  ],
+  "correct_answer": "Dry mass increased and then decreased, and stem length decreased throughout.",
+  "explanation": "In Experiment 2, dry mass went 180, 220, 235, 210, 150 mg, rising to a peak at 25% blue and then falling. Stem length went 95, 75, 62, 55, 40 mm, falling at every step. Dry mass did not increase throughout (it fell after 25%), and stem length never increased.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify trends in two table columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P3-Q3",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "Which factor was varied in Experiment 3 but was held constant in Experiments 1 and 2?",
+  "choices": [
+   "The photon flux",
+   "The percent of photons that were blue",
+   "The temperature of the growth chambers",
+   "The number of days the seedlings grew"
+  ],
+  "correct_answer": "The photon flux",
+  "explanation": "Experiment 3 used photon fluxes of 100 to 400 µmol/m²/s, while Experiments 1 and 2 used 200 µmol/m²/s throughout. The percent of blue photons was varied in Experiment 2, and the temperature (22 °C) and growth period (21 days) were the same in all three experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variable manipulated in an experiment",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P3-Q4",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "The researchers want to determine whether the effect of the percent of blue photons on stem length is different at a higher light intensity. Which of the following additional experiments would best serve this purpose?",
+  "choices": [
+   "Repeating Experiment 2 at a photon flux of 400 µmol/m²/s",
+   "Repeating Experiment 1 at a photon flux of 200 µmol/m²/s",
+   "Repeating Experiment 3 with the chambers kept at 28 °C",
+   "Repeating Experiment 2 with a growth period of 42 days"
+  ],
+  "correct_answer": "Repeating Experiment 2 at a photon flux of 400 µmol/m²/s",
+  "explanation": "Experiment 2 measured how the percent of blue photons affects stem length at 200 µmol/m²/s; repeating it at 400 µmol/m²/s and comparing the two sets of stem lengths tests whether that effect changes at a higher intensity. Experiment 1 was already run at 200 µmol/m²/s, so repeating it adds no new intensity. Changing temperature or growth period changes a different variable, not light intensity.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment to test an interaction",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P3-Q5",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that the dry mass of Species W seedlings depends only on photon flux and not on the color of the light. Do the results support this hypothesis?",
+  "choices": [
+   "Yes, because in Experiment 3 dry mass rose from 140 mg to 300 mg as photon flux increased.",
+   "Yes, because in Experiment 2 dry mass was greatest when 25% of the photons were blue.",
+   "No, because in Experiment 3 dry mass rose from 140 mg to 300 mg as photon flux increased.",
+   "No, because in Experiment 1 dry mass ranged from 110 mg to 210 mg at the same photon flux."
+  ],
+  "correct_answer": "No, because in Experiment 1 dry mass ranged from 110 mg to 210 mg at the same photon flux.",
+  "explanation": "Every trial in Experiment 1 used 200 µmol/m²/s, yet dry mass ranged from 110 mg (green) to 210 mg (50% blue mixture), so color affected dry mass and the hypothesis is not supported. The rise in Experiment 3 shows that flux matters but does not show that color does not. The Experiment 2 peak at 25% blue is itself an effect of color, so it cannot support the hypothesis.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against experimental results",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P3-Q6",
+  "passage_id": "sc8b-p3",
+  "passage_title": "LED Light Color and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plants use light for photosynthesis, and the color of the light can also change the way a plant grows. Researchers grew seedlings of Species W, an unnamed leafy herb, in growth chambers lit only by panels of light-emitting diodes (LEDs) for 16 hours per day. Light intensity was measured as photon flux, the amount of light reaching each square meter of leaf surface per second, in micromoles of photons per square meter per second (µmol/m²/s). In every trial, 12 seedlings were grown for 21 days at 22 °C. Each plant's stem length was then measured, and the plant was dried and weighed. Table 1 gives the average dry mass and stem length per plant. Unless stated otherwise, the photon flux was 200 µmol/m²/s.\n\nExperiment 1\nSeedlings were grown under red LEDs only, blue LEDs only, green LEDs only, a mixture of red and blue LEDs in which 50% of the photons were blue, or white LEDs.\n\nExperiment 2\nSeedlings were grown under mixtures of red and blue LEDs in which 0%, 10%, 25%, 50%, or 100% of the photons were blue. (A mixture with 0% blue photons is red light only.)\n\nExperiment 3\nSeedlings were grown under a mixture of red and blue LEDs in which 25% of the photons were blue, at a photon flux of 100, 200, 300, or 400 µmol/m²/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass and stem length of Species W seedlings after 21 days",
+   "colLabels": [
+    "Dry mass (mg)",
+    "Stem length (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1, red",
+    "Exp. 1, blue",
+    "Exp. 1, green",
+    "Exp. 1, red + blue (50% blue)",
+    "Exp. 1, white",
+    "Exp. 2, 0% blue",
+    "Exp. 2, 10% blue",
+    "Exp. 2, 25% blue",
+    "Exp. 2, 50% blue",
+    "Exp. 2, 100% blue",
+    "Exp. 3, 100 µmol/m²/s",
+    "Exp. 3, 200 µmol/m²/s",
+    "Exp. 3, 300 µmol/m²/s",
+    "Exp. 3, 400 µmol/m²/s"
+   ],
+   "cells": [
+    [
+     180,
+     95
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     110,
+     120
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     200,
+     70
+    ],
+    [
+     180,
+     95
+    ],
+    [
+     220,
+     75
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     210,
+     55
+    ],
+    [
+     150,
+     40
+    ],
+    [
+     140,
+     70
+    ],
+    [
+     235,
+     62
+    ],
+    [
+     290,
+     58
+    ],
+    [
+     300,
+     57
+    ]
+   ]
+  },
+  "prompt": "A grower wants seedlings with the greatest dry mass possible but with an average stem length of no more than 60 mm. Of the trials in Table 1, which condition best meets both goals?",
+  "choices": [
+   "Red + blue (50% blue) at 200 µmol/m²/s",
+   "25% blue at 200 µmol/m²/s",
+   "25% blue at 300 µmol/m²/s",
+   "25% blue at 400 µmol/m²/s"
+  ],
+  "correct_answer": "25% blue at 400 µmol/m²/s",
+  "explanation": "The trials with stems of 60 mm or less are 50% blue (55 mm, 210 mg), 100% blue (40 mm, 150 mg), 25% blue at 300 µmol/m²/s (58 mm, 290 mg), and 25% blue at 400 µmol/m²/s (57 mm, 300 mg). Of these, 400 µmol/m²/s gives the greatest dry mass. The 25% blue trial at 200 µmol/m²/s has stems of 62 mm, which exceeds the limit.",
+  "domain": "Interpretation of Data",
+  "subskill": "select a condition meeting two criteria from a table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P4-Q1",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what mass of precipitate formed when 60 mL of Solution X was added?",
+  "choices": [
+   "0.30 g",
+   "0.45 g",
+   "0.60 g",
+   "0.75 g"
+  ],
+  "correct_answer": "0.45 g",
+  "explanation": "The row labeled Exp. 1, 60 mL of X gives 0.45 g. The value 0.30 g is for 40 mL, 0.60 g is for 80 mL, and 0.75 g is for 100 mL or 120 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P4-Q2",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, if 140 mL of Solution X had been added to 50.0 mL of 0.10 M Solution Y at 25 °C, the mass of precipitate would most likely have been:",
+  "choices": [
+   "0.60 g.",
+   "0.75 g.",
+   "0.90 g.",
+   "1.05 g."
+  ],
+  "correct_answer": "0.75 g.",
+  "explanation": "In Experiment 1 the mass rose by 0.15 g for each additional 20 mL of Solution X up to 100 mL, then stayed at 0.75 g when 120 mL was added. Because the mass had stopped increasing, 140 mL would also give about 0.75 g. Values of 0.90 g and 1.05 g assume the rise continued past 100 mL, which the 120 mL trial contradicts; 0.60 g is the 80 mL result.",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate from a leveled-off trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P4-Q3",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, the smallest volume of Solution X that reacts with all of the dissolved compound in 50.0 mL of 0.10 M Solution Y is closest to:",
+  "choices": [
+   "60 mL.",
+   "80 mL.",
+   "100 mL.",
+   "120 mL."
+  ],
+  "correct_answer": "100 mL.",
+  "explanation": "The mass increased by exactly 0.15 g per 20 mL of Solution X through 100 mL (0.75 g), so up to 100 mL every added portion still found compound in Solution Y to react with. Adding 120 mL gave no more precipitate, so the compound in Solution Y was used up at 100 mL. At 60 mL and 80 mL the mass was still rising, and 120 mL is more than needed because it produced no additional precipitate.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate the point where a trend levels off",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P4-Q4",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Which two trials were performed under identical conditions?",
+  "choices": [
+   "Exp. 1 with 100 mL of X and Exp. 2 with 0.20 M Y",
+   "Exp. 1 with 60 mL of X and Exp. 3 at 10 °C",
+   "Exp. 1 with 60 mL of X and Exp. 3 at 25 °C",
+   "Exp. 1 with 20 mL of X and Exp. 2 with 0.05 M Y"
+  ],
+  "correct_answer": "Exp. 1 with 60 mL of X and Exp. 3 at 25 °C",
+  "explanation": "Experiment 1 used 0.10 M Solution Y at 25 °C, and Experiment 3 used 60 mL of Solution X with 0.10 M Solution Y, so its 25 °C trial matches the 60 mL trial of Experiment 1 (both gave 0.45 g). The 0.20 M trial of Experiment 2 used a different concentration of Solution Y than Experiment 1; the 10 °C trial used a different temperature; and the 0.05 M trial used 100 mL of X, not 20 mL, and a different concentration of Y.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the trial shared by two experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P4-Q5",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, increasing the concentration of Solution Y from 0.10 M to 0.20 M did not change the mass of precipitate. Based on Experiments 1 and 2, which of the following best explains this result?",
+  "choices": [
+   "The compound in Solution Y was used up at 0.10 M Y, so extra X had nothing to react with.",
+   "More of the precipitate dissolved as the concentration of Solution Y increased.",
+   "Raising the concentration of Solution Y lowered the temperature of the mixture.",
+   "The compound in Solution X was used up at 0.10 M Y, so extra Y had nothing to react with."
+  ],
+  "correct_answer": "The compound in Solution X was used up at 0.10 M Y, so extra Y had nothing to react with.",
+  "explanation": "Experiment 1 shows that 100 mL of Solution X exactly uses up the compound in 50.0 mL of 0.10 M Solution Y. In Experiment 2 the volume of X stayed at 100 mL, so once Y reached 0.10 M all of the compound in X had reacted, and the additional Y in the 0.15 M and 0.20 M trials could form no more precipitate. The amount of X was not increased in Experiment 2, so a shortage of Y cannot explain the constant mass. Dissolving would have lowered the mass rather than leaving it at 0.75 g, and no temperature change was reported.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify the limiting factor that explains a result",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P4-Q6",
+  "passage_id": "sc8b-p4",
+  "passage_title": "Mass of a Precipitate",
+  "format": "research_summaries",
+  "passage": "When two solutions containing certain dissolved compounds are mixed, the compounds react to form a solid that does not dissolve, called a precipitate. Students studied a reaction between two unidentified colorless solutions, Solution X and Solution Y, that forms a white precipitate. In each trial, a volume of Solution X was added to 50.0 mL of Solution Y in a beaker, and the mixture was stirred for 10 minutes. The precipitate was separated by spinning the mixture in a centrifuge and pouring off the liquid; it was then rinsed, dried in an oven to constant mass, and weighed. The concentration of Solution X was 0.10 M (moles of dissolved compound per liter) in every trial. Unless stated otherwise, the concentration of Solution Y was 0.10 M, and both solutions were at 25 °C. Table 1 shows the results.\n\nExperiment 1\nVolumes of 20, 40, 60, 80, 100, and 120 mL of Solution X were added to Solution Y.\n\nExperiment 2\nA volume of 100 mL of Solution X was added to Solution Y having a concentration of 0.05 M, 0.10 M, 0.15 M, or 0.20 M.\n\nExperiment 3\nA volume of 60 mL of Solution X was added to Solution Y, with both solutions at 10 °C, 25 °C, 40 °C, or 55 °C. The mixture was kept at that temperature while it was stirred.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Mass of dried precipitate formed in each trial",
+   "colLabels": [
+    "Mass of precipitate (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 20 mL of X",
+    "Exp. 1, 40 mL of X",
+    "Exp. 1, 60 mL of X",
+    "Exp. 1, 80 mL of X",
+    "Exp. 1, 100 mL of X",
+    "Exp. 1, 120 mL of X",
+    "Exp. 2, 0.05 M Y",
+    "Exp. 2, 0.10 M Y",
+    "Exp. 2, 0.15 M Y",
+    "Exp. 2, 0.20 M Y",
+    "Exp. 3, 10 °C",
+    "Exp. 3, 25 °C",
+    "Exp. 3, 40 °C",
+    "Exp. 3, 55 °C"
+   ],
+   "cells": [
+    [
+     0.15
+    ],
+    [
+     0.3
+    ],
+    [
+     0.45
+    ],
+    [
+     0.6
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.38
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.75
+    ],
+    [
+     0.46
+    ],
+    [
+     0.45
+    ],
+    [
+     0.43
+    ],
+    [
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Which variable was held constant in Experiment 2 but was varied in Experiment 1?",
+  "choices": [
+   "The concentration of Solution Y",
+   "The volume of Solution Y",
+   "The temperature of the solutions",
+   "The volume of Solution X"
+  ],
+  "correct_answer": "The volume of Solution X",
+  "explanation": "Experiment 1 used 20 to 120 mL of Solution X, while Experiment 2 used 100 mL in every trial. The concentration of Solution Y was varied in Experiment 2 but held at 0.10 M in Experiment 1. The volume of Solution Y (50.0 mL) and the temperature (25 °C) were the same in both experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "compare the designs of two experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P5-Q1",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, how long did it take 500 g of 1.0 mm grains to flow out of the tube in Experiment 3?",
+  "choices": [
+   "11.3 s",
+   "12.5 s",
+   "15.4 s",
+   "25.1 s"
+  ],
+  "correct_answer": "15.4 s",
+  "explanation": "The row labeled Exp. 3, 1.0 mm grains gives a time of 15.4 s. The value 11.3 s is for 0.25 mm grains, 12.5 s is for 0.5 mm grains, and 25.1 s is for 2.0 mm grains.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P5-Q2",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, as the fill height increased from 20 cm to 50 cm, the flow rate:",
+  "choices": [
+   "increased to about 2.5 times its value.",
+   "increased by about 25%.",
+   "decreased to about half its value.",
+   "stayed nearly the same."
+  ],
+  "correct_answer": "stayed nearly the same.",
+  "explanation": "In Experiment 2 the flow rates were 40.0, 40.3, 39.7, and 40.0 g/s at fill heights of 20, 30, 40, and 50 cm, so the rate stayed nearly constant even though the height increased 2.5 times. None of the trials shows an increase of 25% or more or a drop to half.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P5-Q3",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "Which set of conditions was used in a trial that is part of all three experiments?",
+  "choices": [
+   "Hole diameter 10 mm, grain diameter 1.0 mm, fill height 20 cm",
+   "Hole diameter 14 mm, grain diameter 0.5 mm, fill height 20 cm",
+   "Hole diameter 10 mm, grain diameter 0.5 mm, fill height 20 cm",
+   "Hole diameter 10 mm, grain diameter 0.5 mm, fill height 40 cm"
+  ],
+  "correct_answer": "Hole diameter 10 mm, grain diameter 0.5 mm, fill height 20 cm",
+  "explanation": "The standard conditions (10 mm hole, 0.5 mm grains, 20 cm fill) appear in Experiment 1 as the 10 mm trial, in Experiment 2 as the 20 cm trial, and in Experiment 3 as the 0.5 mm trial, each with a time of 12.5 s. The 1.0 mm grains were used only in Experiment 3, the 14 mm hole only in Experiment 1, and the 40 cm fill only in Experiment 2.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the trial shared by several experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P5-Q4",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 1, if the students had used a hole 9 mm in diameter (with 0.5 mm grains and a 20 cm fill), the time for 500 g to flow out would most likely have been:",
+  "choices": [
+   "less than 12.5 s.",
+   "between 12.5 s and 22.9 s.",
+   "between 22.9 s and 51.5 s.",
+   "greater than 51.5 s."
+  ],
+  "correct_answer": "between 12.5 s and 22.9 s.",
+  "explanation": "In Experiment 1 the time decreased steadily as the hole diameter increased: 22.9 s for 8 mm and 12.5 s for 10 mm. A 9 mm hole lies between these sizes, so its time would fall between 12.5 s and 22.9 s. Times under 12.5 s go with holes larger than 10 mm, and times above 22.9 s go with holes smaller than 8 mm.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P5-Q5",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "Suppose 1,000 g of 0.5 mm grains is poured into the tube (a 40 cm fill) with a 10 mm hole, and the time for ALL of the grains to flow out is measured. Based on Experiment 2, this time would be closest to:",
+  "choices": [
+   "13 s.",
+   "19 s.",
+   "25 s.",
+   "50 s."
+  ],
+  "correct_answer": "25 s.",
+  "explanation": "Experiment 2 shows that the first 500 g flows out of a 40 cm fill in 12.6 s. The remaining 500 g then forms a 20 cm fill, which empties in 12.5 s (the 20 cm trial), so the total is about 12.6 + 12.5 = 25.1 s. Because fill height does not change the flow rate (about 40 g/s), 1,000 g takes about twice as long as 500 g. About 13 s counts only the first 500 g, and 50 s would require the rate to halve.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine trials to predict a total",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P5-Q6",
+  "passage_id": "sc8b-p5",
+  "passage_title": "Flow of Dry Grains Through a Hole",
+  "format": "research_summaries",
+  "passage": "Dry grains such as sand can pour like a liquid, but their flow differs from that of a liquid in some ways. Students studied the flow of dry grains of an unidentified crushed mineral through a hole. They used a vertical plastic tube with an inside diameter of 8 cm and a flat base with a circular hole at its center. With the hole covered, they poured grains into the tube, uncovered the hole, and measured the time for the first 500 g of grains to flow out. The flow rate was calculated as 500 g divided by this time. Unless stated otherwise, 500 g of grains was used, which filled the tube to a height of 20 cm; the hole diameter was 10 mm; and the grains had been sieved to a diameter of 0.5 mm. Table 1 shows the results.\n\nExperiment 1\nThe hole diameter was 6, 8, 10, 12, or 14 mm.\n\nExperiment 2\nThe tube was filled to a height of 20, 30, 40, or 50 cm by pouring in 500, 750, 1,000, or 1,250 g of grains, respectively.\n\nExperiment 3\nThe grains had been sieved to a diameter of 0.25, 0.5, 1.0, or 2.0 mm. In each trial, 500 g of grains filled the tube to a height of about 20 cm.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time for the first 500 g of grains to flow out, and the flow rate",
+   "colLabels": [
+    "Time for 500 g to flow out (s)",
+    "Flow rate (g/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 6 mm hole",
+    "Exp. 1, 8 mm hole",
+    "Exp. 1, 10 mm hole",
+    "Exp. 1, 12 mm hole",
+    "Exp. 1, 14 mm hole",
+    "Exp. 2, 20 cm fill",
+    "Exp. 2, 30 cm fill",
+    "Exp. 2, 40 cm fill",
+    "Exp. 2, 50 cm fill",
+    "Exp. 3, 0.25 mm grains",
+    "Exp. 3, 0.5 mm grains",
+    "Exp. 3, 1.0 mm grains",
+    "Exp. 3, 2.0 mm grains"
+   ],
+   "cells": [
+    [
+     51.5,
+     9.7
+    ],
+    [
+     22.9,
+     21.8
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     7.7,
+     64.9
+    ],
+    [
+     5.1,
+     98.0
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     12.4,
+     40.3
+    ],
+    [
+     12.6,
+     39.7
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     11.3,
+     44.2
+    ],
+    [
+     12.5,
+     40.0
+    ],
+    [
+     15.4,
+     32.5
+    ],
+    [
+     25.1,
+     19.9
+    ]
+   ]
+  },
+  "prompt": "The students want to find out whether the effect of grain diameter on flow time is different for a larger hole. Which of the following additional experiments would best serve this purpose?",
+  "choices": [
+   "Repeating Experiment 2 with grains 1.0 mm in diameter",
+   "Repeating Experiment 1 with a fill height of 40 cm",
+   "Repeating Experiment 3 with a fill height of 40 cm",
+   "Repeating Experiment 3 with a hole diameter of 14 mm"
+  ],
+  "correct_answer": "Repeating Experiment 3 with a hole diameter of 14 mm",
+  "explanation": "Experiment 3 measured the effect of grain diameter with a 10 mm hole; repeating it with a 14 mm hole allows the two sets of times to be compared. Repeating Experiment 2 with larger grains varies fill height, not grain diameter. Changing the fill height in Experiment 1 or 3 does not change the hole size while grain diameter varies.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment to test an interaction",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P6-Q1",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "According to Scientist 1, fish in Lake Teral die during snowy winters mainly because:",
+  "choices": [
+   "the DO concentration falls below the level the fish need.",
+   "ammonia released by bacteria builds up under the ice.",
+   "the deep snow makes the water colder than the fish can tolerate.",
+   "algae under the ice release a toxin when they receive no light."
+  ],
+  "correct_answer": "the DO concentration falls below the level the fish need.",
+  "explanation": "Scientist 1 states that in snowy winters DO falls below 3 mg/L at every depth and that fish die from lack of oxygen. Ammonia buildup is the cause proposed by Scientist 2. Neither scientist says the water becomes too cold or that algae release a toxin.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P6-Q2",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that:",
+  "choices": [
+   "algae under the ice keep photosynthesizing throughout snowy winters.",
+   "DO falls below 3 mg/L at every depth by February of snowy winters.",
+   "ammonia rises above 2 mg/L throughout the lake in snowy winters.",
+   "bacteria decompose dead plant material on the lake bottom during winter."
+  ],
+  "correct_answer": "bacteria decompose dead plant material on the lake bottom during winter.",
+  "explanation": "Scientist 1 says bacteria decomposing dead plant material use up oxygen, and Scientist 2 says bacteria decomposing dead plant material release ammonia, so both accept that this decomposition occurs. Continued photosynthesis in snowy winters and rising ammonia are claims of Scientist 2 only, and DO falling below 3 mg/L at every depth is a claim of Scientist 1 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P6-Q3",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "Suppose that after a snowy winter, many dead fish of Species A were found, but no dead fish of Species B were found, and living Species B fish were caught in the lake. This finding is more consistent with the viewpoint of:",
+  "choices": [
+   "Scientist 1, because Species B can survive at a lower DO than Species A can.",
+   "Scientist 1, because ammonia kills Species A but does not kill Species B.",
+   "Scientist 2, because ammonia above 2 mg/L kills both species.",
+   "Scientist 2, because Species B can survive at a lower DO than Species A can."
+  ],
+  "correct_answer": "Scientist 1, because Species B can survive at a lower DO than Species A can.",
+  "explanation": "Scientist 1 says deaths depend on each species' oxygen requirement, and Species B tolerates DO down to 1 mg/L while Species A needs at least 3 mg/L, so low DO could kill Species A while sparing Species B. Scientist 2 says ammonia above 2 mg/L kills both species, which predicts deaths of Species B as well. The passage states that ammonia kills both species, and Scientist 2 does not attribute the deaths to DO.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P6-Q4",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "Which of the following sets of measurements, made under the ice in late February of a snowy winter, would best help determine which scientist's explanation is correct?",
+  "choices": [
+   "The thickness of the ice at several locations",
+   "DO and ammonia concentrations at several depths",
+   "The depth of the snow at several locations on the ice",
+   "The number of fish species living in the lake"
+  ],
+  "correct_answer": "DO and ammonia concentrations at several depths",
+  "explanation": "Scientist 1 predicts DO below 3 mg/L at every depth by February, while Scientist 2 predicts adequate DO and ammonia above 2 mg/L throughout the lake by late winter, so measuring both quantities at several depths tests both predictions. Both scientists accept that the snow is deep in die-off winters, and neither explanation makes a prediction about ice thickness or the number of species.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between hypotheses",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P6-Q5",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "Suppose DO measured throughout the lake in late February of a snowy winter was 1.5 mg/L, and ammonia was below 2 mg/L. Based on the passage, which species would be expected to die?",
+  "choices": [
+   "Species B only",
+   "Species A only",
+   "Both Species A and Species B",
+   "Neither Species A nor Species B"
+  ],
+  "correct_answer": "Species A only",
+  "explanation": "At 1.5 mg/L, DO is below the 3 mg/L that Species A requires but above the 1 mg/L that Species B can survive. Ammonia below 2 mg/L would not kill either species. So low oxygen would kill Species A but not Species B, as Scientist 1's mechanism predicts.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a model against a quantitative observation",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P6-Q6",
+  "passage_id": "sc8b-p6",
+  "passage_title": "Winter Fish Die-Offs in a Northern Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Teral is a small lake, 8 m deep at its deepest point, in a cold northern region. It is covered by ice from early December to early April every year. In 4 of the past 12 winters, large numbers of dead fish were found along the shore when the ice melted (a winter die-off). Two fish species live in the lake. Species A cannot survive for more than a few days in water containing less than 3 mg/L of dissolved oxygen (DO); Species B can survive at DO as low as 1 mg/L. Both species are killed within days by dissolved ammonia concentrations above 2 mg/L. In all 4 die-off winters, snow more than 25 cm deep lay on the ice from January onward; in the other 8 winters, the snow on the ice was never more than 10 cm deep. Two scientists explain the die-offs.\n\nScientist 1\nThe ice seals the lake off from the air, so no oxygen can enter the water from the atmosphere. The only source of new oxygen under the ice is photosynthesis by algae, which requires light passing through the ice. Clear ice lets light through, but deep snow on the ice blocks almost all of it. Meanwhile, bacteria decomposing dead plant material on the lake bottom use up oxygen all winter. In snowy winters photosynthesis stops, and by February DO falls below 3 mg/L at every depth. Fish die from lack of oxygen, so whether a fish dies depends on how much oxygen its species requires.\n\nScientist 2\nDO in the lake stays high enough for fish all winter, because algae just below the ice keep photosynthesizing with the small amount of light that passes through the snow. The die-offs are caused instead by ammonia, which bacteria release as they decompose dead plant material on the lake bottom. Ammonia builds up under the ice because it cannot escape to the air. Deep snow insulates the ice and keeps the bottom water slightly warmer, so decomposition is faster and more ammonia is released. In snowy winters, ammonia rises above 2 mg/L throughout the lake by late winter and kills fish of both species.",
+  "prompt": "Suppose snow were removed from the entire surface of the ice every week throughout one winter. Compared with a snowy winter, Scientist 1 would predict that in late winter the DO would be ___, and Scientist 2 would predict that the ammonia concentration would be ___.",
+  "choices": [
+   "higher; higher",
+   "higher; lower",
+   "lower; lower",
+   "lower; higher"
+  ],
+  "correct_answer": "higher; lower",
+  "explanation": "Scientist 1 says snow blocks the light algae need, so removing it lets photosynthesis continue and DO stays higher. Scientist 2 says snow insulates the ice and keeps the bottom water warmer, speeding decomposition; without snow the bottom water would be colder, decomposition slower, and ammonia lower.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive a further prediction from each viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P7-Q1",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "According to Scientist 2, the dayside of Kessa b is cooler than 1,900 K mainly because:",
+  "choices": [
+   "winds carry much of the absorbed heat to the nightside.",
+   "bright clouds reflect much of the starlight into space.",
+   "heat escapes from the deep interior of the planet.",
+   "the star gives off less light than was calculated."
+  ],
+  "correct_answer": "winds carry much of the absorbed heat to the nightside.",
+  "explanation": "Scientist 2 says the dayside absorbs nearly all of the starlight but that fast winds carry much of the heat to the nightside. Reflection by clouds is Scientist 1's explanation, Scientist 2 says interior heat is too small to matter, and neither scientist questions the star's brightness.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV8b-P7-Q2",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "Suppose the hottest point on the dayside of Kessa b were found to lie directly beneath the star. This finding would most strongly support the viewpoint of:",
+  "choices": [
+   "Scientist 1, because that scientist says winds blow from west to east.",
+   "Scientist 1, because that scientist says little heat moves away from the dayside.",
+   "Scientist 2, because that scientist says winds carry heat to the nightside.",
+   "Scientist 2, because that scientist says the dayside absorbs nearly all starlight."
+  ],
+  "correct_answer": "Scientist 1, because that scientist says little heat moves away from the dayside.",
+  "explanation": "Scientist 1 states that the atmosphere is calm and the hottest point lies at the substellar point. Scientist 2 predicts that west-to-east winds shift the hottest point about 30° east of that point, so the finding contradicts Scientist 2. The west-to-east winds are part of Scientist 2's view, not Scientist 1's.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P7-Q3",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "Which of the following measurements would best help determine which scientist's explanation of the dayside temperature is correct?",
+  "choices": [
+   "The fraction of starlight that Kessa b reflects",
+   "The average temperature of the nightside",
+   "The distance between Kessa b and its star",
+   "The time Kessa b takes to orbit its star"
+  ],
+  "correct_answer": "The fraction of starlight that Kessa b reflects",
+  "explanation": "Scientist 1 predicts that Kessa b reflects about 45% of the starlight, and Scientist 2 predicts less than 5%, so measuring the reflected fraction distinguishes the two views; the passage notes it has not yet been measured. The nightside temperature (1,100 K) is already known and each scientist explains it. Neither scientist makes a differing claim about the orbital distance or period.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that separates two explanations",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P7-Q4",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "Astronomers want to test Scientist 1's explanation of the nightside temperature. Which of the following would they most need to determine?",
+  "choices": [
+   "How fast the winds blow on the dayside of Kessa b",
+   "How much of the dayside is covered by mineral clouds",
+   "How much heat a planet of Kessa b's mass and age releases from its interior",
+   "How far east of the substellar point the hottest point lies"
+  ],
+  "correct_answer": "How much heat a planet of Kessa b's mass and age releases from its interior",
+  "explanation": "Scientist 1 attributes the 1,100 K nightside to heat escaping from the planet's interior, so the test is whether interior heat can supply that much energy. Wind speed and the position of the hottest point bear on Scientist 2's view, and cloud cover bears on Scientist 1's explanation of the dayside, not the nightside.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an observation that tests a stated mechanism",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV8b-P7-Q5",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "According to Scientist 2, if the winds on Kessa b were much weaker, the dayside would be ___ than 1,400 K and the nightside would be ___ than 1,100 K.",
+  "choices": [
+   "hotter; hotter",
+   "colder; colder",
+   "colder; hotter",
+   "hotter; colder"
+  ],
+  "correct_answer": "hotter; colder",
+  "explanation": "Scientist 2 says the winds carry heat from the dayside to the nightside. Weaker winds would move less heat, so more would stay on the dayside, raising its temperature toward 1,900 K, and less would reach the nightside, lowering its temperature. Scientist 2 also says interior heat is too small to keep the nightside warm on its own.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive a further prediction from a viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV8b-P7-Q6",
+  "passage_id": "sc8b-p7",
+  "passage_title": "The Cool Dayside of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a hypothetical gas giant planet that orbits very close to its star. It is tidally locked: one side (the dayside) always faces the star, and the other side (the nightside) never receives starlight. Infrared telescopes measured the average temperature of the dayside as 1,400 K and that of the nightside as 1,100 K. Astronomers calculated that if Kessa b absorbed all of the starlight striking it and all of that energy were radiated back into space from the dayside itself, the dayside temperature would be 1,900 K. The fraction of starlight that Kessa b reflects, and the location of the hottest point on its dayside, have not yet been measured. Two scientists explain why the dayside is cooler than 1,900 K.\n\nScientist 1\nA layer of bright clouds made of tiny mineral droplets covers most of the dayside. The clouds reflect about 45% of the starlight back into space, so the dayside absorbs only about 55% of the starlight striking it. The atmosphere is calm, and very little heat moves from the dayside to the nightside, so the hottest point on the planet lies directly beneath the star (the substellar point). The nightside is warm because heat left over from the planet's formation is still escaping from its deep interior.\n\nScientist 2\nKessa b has no thick clouds on its dayside and reflects less than 5% of the starlight striking it. The dayside absorbs nearly all of the starlight, but winds blowing at several kilometers per second carry much of that heat around the planet to the nightside, where it is radiated into space. Because these winds blow from west to east, the hottest point is shifted about 30° east of the substellar point. Heat escaping from the planet's interior is too small to affect the temperature of either side.",
+  "prompt": "Suppose calculations showed that heat escaping from the interior of Kessa b could keep the nightside no warmer than about 400 K. This result would most directly weaken:",
+  "choices": [
+   "Scientist 2's explanation of the nightside temperature",
+   "Scientist 1's explanation of the dayside temperature",
+   "Scientist 2's explanation of the hottest point's location",
+   "Scientist 1's explanation of the nightside temperature"
+  ],
+  "correct_answer": "Scientist 1's explanation of the nightside temperature",
+  "explanation": "Scientist 1 says the nightside is warm because of interior heat, but if interior heat can maintain only about 400 K, it cannot account for the measured 1,100 K. Scientist 2 already says interior heat is too small to matter and attributes the nightside temperature to winds, so the result is consistent with Scientist 2. The result says nothing about clouds on the dayside or the hottest point's location.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that weakens a specific mechanism",
+  "difficulty": "hard"
+ }
+]

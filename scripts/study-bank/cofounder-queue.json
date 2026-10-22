@@ -596,6 +596,56 @@
       "upTo": 2,
       "route": "spot",
       "runId": "ssatvd4-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v8a",
+      "tool": "item",
+      "domain": "Interpretation of Data:3,Scientific Investigation:1,Evaluation of Models, Inferences, and Experimental Results:1",
+      "size": 5,
+      "family": "act",
+      "group": "act-science-v8a:sc8a-p5",
+      "route": "spot",
+      "runId": "act-sci-v8a-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v8b",
+      "tool": "item",
+      "domain": "Interpretation of Data:3,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:1",
+      "size": 6,
+      "family": "act",
+      "group": "act-science-v8b:sc8b-p4",
+      "route": "spot",
+      "runId": "act-sci-v8b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v11a",
+      "tool": "item",
+      "domain": "Key Ideas and Details:5,Craft and Structure:3,Integration of Knowledge and Ideas:1",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v11a:arv11a-p1",
+      "route": "spot",
+      "runId": "act-rd-v11a-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v11b",
+      "tool": "item",
+      "domain": "Key Ideas and Details:4,Craft and Structure:3,Integration of Knowledge and Ideas:2",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v11b:arv11b-p2",
+      "route": "spot",
+      "runId": "act-rd-v11b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-13",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft13-IR13-P02",
+      "route": "spot",
+      "runId": "isee-draft13-spot-cofounder-{date}"
     }
   ]
 }

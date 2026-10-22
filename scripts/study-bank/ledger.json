@@ -11402,6 +11402,141 @@
           "verdict": "Kept 21: verify-answer-key-spread --batch ok (A6/B6/C4/D5); key strictly longest 5/21, strictly shortest 3/21 (each <= 7 = 35%); 0 option words repeated. Attrition check: stage-2 picks re-scored on the kept 21: 38.1% vs line 28.6%, M +9.5, E_kept = -2.8 <= +10 PASS; kept keys by declared rarity rank 4/5/6/6."
         }
       }
+    },
+    {
+      "id": "act-science-v8a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v8a",
+      "contentSha": "f07055c1376df8d42a3ece4604aec7c960dce1e93b7b626405ed9ee498114f10",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 6 (act-v11-v8-isee13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f07055c1376df8d42a3ece4604aec7c960dce1e93b7b626405ed9ee498114f10",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/40, B 0/40"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-science-v8b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v8b",
+      "contentSha": "1f24c1a70fd83072c2b0d75c3246db5f099c1d1a5ae5165d4a07216a11fe8665",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 6 (act-v11-v8-isee13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "1f24c1a70fd83072c2b0d75c3246db5f099c1d1a5ae5165d4a07216a11fe8665",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/40, B 0/40"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v11a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v11a",
+      "contentSha": "df9cdff00276ed4ca7e183c291c0a1b64af96a3544a681f8a84c9e68a8438d56",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 6 (act-v11-v8-isee13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "df9cdff00276ed4ca7e183c291c0a1b64af96a3544a681f8a84c9e68a8438d56",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v11b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v11b",
+      "contentSha": "7e416ddc432b48227a5f669e8ba56ee50e4e293c16bed3924bc3ee23a8012246",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 6 (act-v11-v8-isee13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7e416ddc432b48227a5f669e8ba56ee50e4e293c16bed3924bc3ee23a8012246",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-13-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-13",
+      "contentSha": "bfe2a5ad3530682ead2406e3811f5c1dc7256735007a903d168cf37a7816e248",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 wave 6 (act-v11-v8-isee13.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bfe2a5ad3530682ead2406e3811f5c1dc7256735007a903d168cf37a7816e248",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/36, B 1/36 (both IR13-P03-5: distractor \"expected the narrator to forget\" defensible), distractor replaced, checks rerun clean"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
