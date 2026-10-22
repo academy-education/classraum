@@ -1,0 +1,1122 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Please show your student ID to collect the tickets.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So my brother will have to watch online.",
+      "Wonderful, my grandparents can come after all.",
+      "Sure, it's right here in my wallet.",
+      "Yes, my grandfather uses one these days."
+    ],
+    "correct_answer": "Sure, it's right here in my wallet.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "ID is requested, so producing it is the natural reply.",
+    "distractor_rationales": {
+      "Wonderful, my grandparents can come after all.": "\"Please show your\" - a request, not news of extra seats.",
+      "So my brother will have to watch online.": "\"to collect the tickets\" - tickets are ready; no limit is announced.",
+      "Yes, my grandfather uses one these days.": "\"Please show\" - a request, not a seating question."
+    },
+    "_crv7": {
+      "localId": "cr14-a09",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "complying with a request",
+      "setting": "commencement ticket office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Oh, we found the sunglasses you left in your last rental.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sunday evening, around six if possible.",
+      "Thank goodness, I thought they were lost.",
+      "Sure, the bigger one sounds great.",
+      "Oh, then let me pay with this other one."
+    ],
+    "correct_answer": "Thank goodness, I thought they were lost.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A lost item has turned up, so expressing relief that it was not lost is the natural reply.",
+    "distractor_rationales": {
+      "Oh, then let me pay with this other one.": "\"we found the sunglasses\" - nothing has been declined or cancelled, so offering a replacement way to pay answers a problem the line does not have.",
+      "Sunday evening, around six if possible.": "\"we found the sunglasses\" is news, not a question; naming a day and time answers nothing that was asked.",
+      "Sure, the bigger one sounds great.": "\"we found the sunglasses\" - no upgrade or bigger vehicle is on offer, so there is no \"bigger one\" to accept."
+    },
+    "_crv7": {
+      "localId": "cr14-b01",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "welcoming a found item",
+      "setting": "car rental counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You failed the quiz, so you'll have to retake the session.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ugh, I knew I rushed through it.",
+      "Sure, it's printed on my ID card anyway.",
+      "Great, I can start my experiment tomorrow.",
+      "The second, I have class until lunch."
+    ],
+    "correct_answer": "Ugh, I knew I rushed through it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student failed, so self-blame is the natural reply.",
+    "distractor_rationales": {
+      "Great, I can start my experiment tomorrow.": "\"You failed the quiz\" - no access, so no experiment tomorrow.",
+      "The second, I have class until lunch.": "\"You failed\" - a statement; no day choice is asked.",
+      "Sure, it's printed on my ID card anyway.": "\"You failed the quiz\" - news of a result, not a request to bring a number."
+    },
+    "_crv7": {
+      "localId": "cr14-a18",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "reacting to a failure",
+      "setting": "lab safety training sign-up desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Actually, it's due back on the tenth, not the twentieth.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great, can I check it out right now?",
+      "Too bad, maybe I'll try buying one used.",
+      "Oh, so I've got less time than I thought.",
+      "The university address, I read that inbox daily."
+    ],
+    "correct_answer": "Oh, so I've got less time than I thought.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The due date is earlier than expected, so noting the shorter time is the natural reply.",
+    "distractor_rationales": {
+      "Great, can I check it out right now?": "\"it's due back\" - the book is already borrowed, so it cannot be checked out now.",
+      "Too bad, maybe I'll try buying one used.": "\"it's due back\" - the student already has the book, so buying one is pointless.",
+      "The university address, I read that inbox daily.": "\"due back on the tenth\" - a statement about a date; no address is asked for."
+    },
+    "_crv7": {
+      "localId": "cr14-a03",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "adjusting to a corrected date",
+      "setting": "interlibrary loan desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can email the professor for you, if that helps.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a shame, I was counting on that class.",
+      "Great news, so my schedule's final now.",
+      "The early one, since I work most evenings.",
+      "Yes, please, that would save me a trip."
+    ],
+    "correct_answer": "Yes, please, that would save me a trip.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The advisor offers to email, so accepting is the natural reply.",
+    "distractor_rationales": {
+      "Great news, so my schedule's final now.": "\"if that helps\" - the matter is still being arranged, so nothing is final.",
+      "That's a shame, I was counting on that class.": "\"I can email\" - this is help on offer, not a refusal to be disappointed by.",
+      "The early one, since I work most evenings.": "\"email the professor\" - a yes/no offer; no section choice is asked."
+    },
+    "_crv7": {
+      "localId": "cr14-a01",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "accepting help",
+      "setting": "academic advising office, advisor to student"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your group's glassware order is packed and waiting on the cart.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Not yet, I'll finish it tonight.",
+      "Thanks, I'll wheel it over to our bench.",
+      "Ugh, that's the one reagent we can't skip.",
+      "Thanks, mine are cracked anyway."
+    ],
+    "correct_answer": "Thanks, I'll wheel it over to our bench.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The order is ready on a cart, so taking it is the natural reply.",
+    "distractor_rationales": {
+      "Ugh, that's the one reagent we can't skip.": "\"glassware order is packed\" - this is glassware that is ready, not a missing reagent.",
+      "Not yet, I'll finish it tonight.": "\"packed and waiting\" - no question was asked, so \"Not yet\" answers nothing.",
+      "Thanks, mine are cracked anyway.": "\"Your group's glassware order\" - nothing is being lent, so there is nothing to thank for or replace."
+    },
+    "_crv7": {
+      "localId": "cr14-a04",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "collecting an order",
+      "setting": "chemistry stockroom window, technician to student"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We're out of blanks for that brand until Friday's delivery.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll swing by again on Saturday.",
+      "What a relief, the last copy never worked.",
+      "Sure, just the letters J and K.",
+      "Two of the front door, one of the garage."
+    ],
+    "correct_answer": "Then I'll swing by again on Saturday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "No copies can be cut until the Friday delivery, so planning to return after it is the natural reply.",
+    "distractor_rationales": {
+      "Two of the front door, one of the garage.": "\"We're out of blanks\" - no copies can be cut, so ordering a number of them contradicts the line.",
+      "Sure, just the letters J and K.": "\"out of blanks\" - no key will be made today, so there is nothing to engrave and no engraving was offered.",
+      "What a relief, the last copy never worked.": "\"out of blanks\" - no new copy exists, so relief that it works is impossible."
+    },
+    "_crv7": {
+      "localId": "cr14-b02",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "rescheduling after a shortage",
+      "setting": "locksmith key-cutting counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you water the orchids in the back room before you leave?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Nothing prickly, my hands are still sore.",
+      "Really? I've got to take a picture!",
+      "Oh no, all those weeks wasted.",
+      "Sure, is the hose by the sink?"
+    ],
+    "correct_answer": "Sure, is the hose by the sink?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The coordinator asks for a task, so agreeing and asking how is the natural reply.",
+    "distractor_rationales": {
+      "Oh no, all those weeks wasted.": "\"Could you water\" - a request; nothing has died.",
+      "Nothing prickly, my hands are still sore.": "\"Could you water the orchids\" - a single task, not a choice between two.",
+      "Really? I've got to take a picture!": "\"Could you water\" - a request, not news of a bloom."
+    },
+    "_crv7": {
+      "localId": "cr14-a17",
+      "selectedWorld": 0,
+      "kind": "request",
+      "keyAct": "complying with a request",
+      "setting": "campus greenhouse volunteer shift, coordinator to volunteer"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We're starting in two minutes, so grab a seat.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ooh, yes, I skipped dinner tonight.",
+      "Okay, I'll sit near the aisle.",
+      "Just one, years ago in high school.",
+      "Oh well, I'll come back in a few days."
+    ],
+    "correct_answer": "Okay, I'll sit near the aisle.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The film is starting, so taking a seat is the natural reply.",
+    "distractor_rationales": {
+      "Oh well, I'll come back in a few days.": "\"starting in two minutes\" - the film is on now, so no need to come back.",
+      "Ooh, yes, I skipped dinner tonight.": "\"grab a seat\" - no food is offered.",
+      "Just one, years ago in high school.": "\"We're starting in\" - an instruction, not a question about films."
+    },
+    "_crv7": {
+      "localId": "cr14-a19",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "complying with a request",
+      "setting": "campus film society screening, club member to attendee"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do you have a backup of your files somewhere?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, everything's saved in the cloud.",
+      "That's fine, I can wait for it to come in.",
+      "Fantastic, I can finally finish my essay tonight.",
+      "Then I guess it's time to buy another."
+    ],
+    "correct_answer": "Yes, everything's saved in the cloud.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The technician asks about a backup, so answering is the natural reply.",
+    "distractor_rationales": {
+      "Fantastic, I can finally finish my essay tonight.": "\"Do you have\" - a question; nothing says the laptop is fixed.",
+      "Then I guess it's time to buy another.": "\"Do you have a backup\" - a question; nothing says the laptop is dead.",
+      "That's fine, I can wait for it to come in.": "\"Do you have\" - a question; no part is on order."
+    },
+    "_crv7": {
+      "localId": "cr14-a08",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "answering a yes/no question",
+      "setting": "campus laptop repair desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, we're closing, so I can't make up a fresh bouquet tonight.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, a glass one would be lovely.",
+      "Great, I'll let the venue know they're coming.",
+      "Happy anniversary, with love from Sam.",
+      "Okay, I'll come back first thing tomorrow, then."
+    ],
+    "correct_answer": "Okay, I'll come back first thing tomorrow, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The shop is closing, so planning to return tomorrow is the natural reply.",
+    "distractor_rationales": {
+      "Happy anniversary, with love from Sam.": "\"I can't make up\" - no bouquet is being made, so there is no card message to dictate.",
+      "Sure, a glass one would be lovely.": "\"I can't make up\" - with no bouquet there is nothing to add a vase to, and none was offered.",
+      "Great, I'll let the venue know they're coming.": "\"we're closing\" - nothing is being sent, so telling the venue flowers are coming contradicts the line."
+    },
+    "_crv7": {
+      "localId": "cr14-b05",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "returning another day",
+      "setting": "florist"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, we're completely empty until Monday's donation arrives.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, please, my backpack's already full.",
+      "Perfect timing, it's usually all gone by now.",
+      "It is, a friend told me about this place.",
+      "That's a shame, my fridge is bare too."
+    ],
+    "correct_answer": "That's a shame, my fridge is bare too.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The pantry has nothing, so expressing disappointment is the natural reply.",
+    "distractor_rationales": {
+      "Perfect timing, it's usually all gone by now.": "\"completely empty\" - nothing is there, so the timing is not perfect.",
+      "It is, a friend told me about this place.": "\"we're completely empty\" - a statement; no question about visits is asked.",
+      "Yes, please, my backpack's already full.": "\"completely empty\" - nothing is offered and nothing to carry."
+    },
+    "_crv7": {
+      "localId": "cr14-a06",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "reacting to a shortage",
+      "setting": "campus food pantry, volunteer to student"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"How much shorter do you want the sleeves, roughly?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll just wear a belt with it.",
+      "That's fine, the wedding isn't until Saturday.",
+      "About two centimetres, just above the wrist.",
+      "Wonderful, where's the fitting room?"
+    ],
+    "correct_answer": "About two centimetres, just above the wrist.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The tailor asks how much, so giving a measurement is the natural reply.",
+    "distractor_rationales": {
+      "Then I'll just wear a belt with it.": "\"How much shorter do you\" - the alteration is possible; a belt as a workaround presupposes a refusal that was not made.",
+      "Wonderful, where's the fitting room?": "\"How much shorter\" - nothing has been altered yet, so asking to try a finished suit on contradicts the line.",
+      "That's fine, the wedding isn't until Saturday.": "\"How much shorter do you want\" asks for an amount; excusing a delay answers news that was never given."
+    },
+    "_crv7": {
+      "localId": "cr14-b03",
+      "selectedWorld": 0,
+      "kind": "question",
+      "keyAct": "specifying a measurement",
+      "setting": "tailor's alteration shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your visa extension letter is signed, and you can pick it up.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll download a more recent one tonight.",
+      "Great, I'll come collect it after lunch.",
+      "Oh, thanks, I'd have gone to the wrong place.",
+      "Sometime in March, I think, but I'll check."
+    ],
+    "correct_answer": "Great, I'll come collect it after lunch.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The letter is ready, so arranging to collect it is the natural reply.",
+    "distractor_rationales": {
+      "Then I'll download a more recent one tonight.": "\"letter is signed\" - nothing was rejected, so no new document is needed.",
+      "Sometime in March, I think, but I'll check.": "\"letter is signed\" - a statement, not a when-question.",
+      "Oh, thanks, I'd have gone to the wrong place.": "\"Your visa extension letter\" - no room was corrected, so nobody nearly went astray."
+    },
+    "_crv7": {
+      "localId": "cr14-a07",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "collecting a document",
+      "setting": "international student office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"How many miles do you expect to drive in total?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Hmm, I've never driven anything that large.",
+      "About forty, it's just across town.",
+      "Ah, I wondered why the total looked high.",
+      "Oh, perfect, those will save my couch."
+    ],
+    "correct_answer": "About forty, it's just across town.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The agent asks the distance, so estimating it is the natural reply.",
+    "distractor_rationales": {
+      "Hmm, I've never driven anything that large.": "\"How many miles do you\" - nothing is said about truck size, so worrying about a large one has no basis.",
+      "Oh, perfect, those will save my couch.": "\"How many miles do you\" asks for a number; nothing was offered for \"those\" to mean.",
+      "Ah, I wondered why the total looked high.": "\"How many miles do you\" asks a question; no charge has been corrected."
+    },
+    "_crv7": {
+      "localId": "cr14-b15",
+      "selectedWorld": 1,
+      "kind": "question",
+      "keyAct": "estimating distance",
+      "setting": "moving truck rental"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your fee waiver was approved, so the classes are free this term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I left it in the car, I'll grab it.",
+      "Please put my daughter's name down, then.",
+      "That really helps, thank you so much.",
+      "She turned seven just last month."
+    ],
+    "correct_answer": "That really helps, thank you so much.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A fee waiver was approved, so thanking the clerk is the natural reply.",
+    "distractor_rationales": {
+      "Please put my daughter's name down, then.": "\"the classes are free\" - nothing is full, so asking for the waiting list contradicts the line.",
+      "She turned seven just last month.": "\"Your fee waiver was approved\" is news, not a question about age.",
+      "I left it in the car, I'll grab it.": "\"the classes are free\" asks for nothing, so fetching \"it\" from the car has no referent."
+    },
+    "_crv7": {
+      "localId": "cr14-b14",
+      "selectedWorld": 2,
+      "kind": "good news",
+      "keyAct": "thanking for help",
+      "setting": "community recreation center registration desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Two of your mugs exploded in the firing, I'm sorry.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Amazing, I was sure the thin one would break.",
+      "The color, please, it'll match my kitchen.",
+      "Oh no, I must have left air bubbles inside.",
+      "That's fine, I'm not in any rush."
+    ],
+    "correct_answer": "Oh no, I must have left air bubbles inside.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Pieces broke in firing, so guessing the cause is the natural reply.",
+    "distractor_rationales": {
+      "Amazing, I was sure the thin one would break.": "\"mugs exploded\" - pieces did break, so relief is contradicted.",
+      "The color, please, it'll match my kitchen.": "\"exploded in the firing\" - already fired, so no glaze choice remains.",
+      "That's fine, I'm not in any rush.": "\"mugs exploded\" - a loss, so \"That's fine\" is contradicted."
+    },
+    "_crv7": {
+      "localId": "cr14-a11",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "explaining a failure",
+      "setting": "ceramics studio kiln room"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Repairs take three weeks here, and we need payment upfront.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh no, it was my grandfather's, too.",
+      "Oh, is that all? What a relief.",
+      "Brown, please, it's softer on my wrist.",
+      "Fine, I'll wear my old one till then."
+    ],
+    "correct_answer": "Fine, I'll wear my old one till then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The repair will take weeks, so making do with another watch until then is the natural reply.",
+    "distractor_rationales": {
+      "Oh no, it was my grandfather's, too.": "\"Repairs take three weeks\" - it will be repaired, so mourning it as lost contradicts the line.",
+      "Oh, is that all? What a relief.": "\"Repairs take three weeks\" - this is a long job, so \"Is that all?\" relief at a small fix contradicts it.",
+      "Brown, please, it's softer on my wrist.": "\"we need payment upfront\" gives terms, not a choice between straps."
+    },
+    "_crv7": {
+      "localId": "cr14-b13",
+      "selectedWorld": 3,
+      "kind": "neutral info",
+      "keyAct": "accepting a wait",
+      "setting": "watch repair shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"What time do you need the car back by this afternoon?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "By three, I have to collect my kids.",
+      "That's a relief, I was expecting a big bill.",
+      "Sure, it has been pulling to the left.",
+      "Then go ahead and put on a new one."
+    ],
+    "correct_answer": "By three, I have to collect my kids.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The mechanic asks for a time, so naming a deadline is the natural reply.",
+    "distractor_rationales": {
+      "Then go ahead and put on a new one.": "\"What time do you need\" asks for a time; nothing has been found that needs replacing.",
+      "That's a relief, I was expecting a big bill.": "\"What time do you need\" - the work is not done, so relief about the bill has nothing to react to.",
+      "Sure, it has been pulling to the left.": "\"What time do you need\" asks a when-question; \"Sure\" accepts an offer that was never made."
+    },
+    "_crv7": {
+      "localId": "cr14-b04",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "giving a deadline",
+      "setting": "tire shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Batteries go in the red bin by the door.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Really? I'll schedule that for next week.",
+      "Mostly jars, plus a few bottles.",
+      "Oh, where can my old printer go, then?",
+      "Thanks, I'll drop mine in there now."
+    ],
+    "correct_answer": "Thanks, I'll drop mine in there now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The worker says where batteries go, so using that bin is the natural reply.",
+    "distractor_rationales": {
+      "Oh, where can my old printer go, then?": "\"Batteries go in\" - items are accepted here, so there is no need to go elsewhere.",
+      "Mostly jars, plus a few bottles.": "\"the red bin\" - a statement, not a question about what the box holds.",
+      "Really? I'll schedule that for next week.": "\"by the door\" - no pickup service is offered."
+    },
+    "_crv7": {
+      "localId": "cr14-a14",
+      "selectedWorld": 0,
+      "kind": "neutral info",
+      "keyAct": "following directions",
+      "setting": "campus recycling center"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you choose a mat color from these samples for me?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let's go with the cream, it suits the print.",
+      "That's a shame, how long will that take?",
+      "Wonderful, I'll bring the car round.",
+      "The non-reflective type, it faces a window."
+    ],
+    "correct_answer": "Let's go with the cream, it suits the print.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The framer asks for a mat color, so choosing one is the natural reply.",
+    "distractor_rationales": {
+      "The non-reflective type, it faces a window.": "\"choose a mat color\" asks for a mat, not a type of glass.",
+      "That's a shame, how long will that take?": "\"Could you choose a\" - the job is going ahead, so asking about a reorder contradicts it.",
+      "Wonderful, I'll bring the car round.": "\"choose a mat color\" - nothing is finished, so collecting it is premature."
+    },
+    "_crv7": {
+      "localId": "cr14-b19",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "choosing a mat",
+      "setting": "picture framing shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Actually, the room code changed to 4471 this morning.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Perfect, I won't have to chain it outside.",
+      "I brought my own, thanks, a heavy chain.",
+      "Oh, that's why the door wouldn't open.",
+      "Ugh, then it stays out in the rain."
+    ],
+    "correct_answer": "Oh, that's why the door wouldn't open.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A new code explains a problem, so realizing that is the natural reply.",
+    "distractor_rationales": {
+      "Perfect, I won't have to chain it outside.": "\"the room code changed\" - a code update, not news of a renewed spot.",
+      "Ugh, then it stays out in the rain.": "\"the room code\" - a code update, not a lack of space.",
+      "I brought my own, thanks, a heavy chain.": "\"code changed to 4471\" - a statement, not a question about a lock."
+    },
+    "_crv7": {
+      "localId": "cr14-a15",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "understanding a correction",
+      "setting": "dorm bike storage room, hall staff to resident"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"What name is the order under?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The surname's Park, spelled P-A-R-K.",
+      "Just the sticks, please, I can't do spicy.",
+      "Thanks, it smells amazing already.",
+      "Could I switch to the fried rice, then?"
+    ],
+    "correct_answer": "The surname's Park, spelled P-A-R-K.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk asks for the name, so giving it is the natural reply.",
+    "distractor_rationales": {
+      "Could I switch to the fried rice, then?": "\"What name is the\" asks for a name; nothing is unavailable to switch from.",
+      "Thanks, it smells amazing already.": "\"What name is the order\" - the order has not been found yet, so remarking on its smell is premature.",
+      "Just the sticks, please, I can't do spicy.": "\"What name is the\" asks for a name; nothing was offered for \"Just the sticks\" to choose from."
+    },
+    "_crv7": {
+      "localId": "cr14-b20",
+      "selectedWorld": 1,
+      "kind": "question",
+      "keyAct": "giving a name",
+      "setting": "restaurant takeout counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"What country are these photos for, so I get the size right?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, hold on while I find a hair tie.",
+      "Japan, I'm applying for a work visa there.",
+      "Great, so the application can go in today.",
+      "Sorry about that, I'll try not to blink."
+    ],
+    "correct_answer": "Japan, I'm applying for a work visa there.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The photographer asks which country, so naming it is the natural reply.",
+    "distractor_rationales": {
+      "Sorry about that, I'll try not to blink.": "\"What country are these\" asks a which-question; no failed shot has been mentioned to apologise for.",
+      "Great, so the application can go in today.": "\"so I get the size right\" - the photos are not done, so saying the application can go today is premature.",
+      "Sure, hold on while I find a hair tie.": "\"What country are these\" asks for a country; \"Sure\" agrees to a request that was never made."
+    },
+    "_crv7": {
+      "localId": "cr14-b07",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "naming a destination",
+      "setting": "passport photo studio"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"When would you like to give your two-minute speech, Monday or Wednesday?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great, so it's official, I'm running.",
+      "Oh, so I'll hear back at the end of the week.",
+      "Early in the week works best for me.",
+      "Then I'll collect more in the dining hall."
+    ],
+    "correct_answer": "Early in the week works best for me.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk asks for a day, so picking one is the natural reply.",
+    "distractor_rationales": {
+      "Great, so it's official, I'm running.": "\"When would you like\" - a question, not news of approval.",
+      "Then I'll collect more in the dining hall.": "\"When would you like\" - a scheduling question; nothing is missing.",
+      "Oh, so I'll hear back at the end of the week.": "\"Monday or Wednesday\" - a choice of day, not a review date to wait for."
+    },
+    "_crv7": {
+      "localId": "cr14-a13",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "choosing between alternatives",
+      "setting": "student government elections office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If you'd like, I can install those wiper blades for you outside.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Okay, I'll drive over there after lunch.",
+      "That'd be great, I always get them crooked.",
+      "Lucky me, I almost threw the receipt away.",
+      "A 2015 Honda Civic, the hatchback."
+    ],
+    "correct_answer": "That'd be great, I always get them crooked.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "An installation is offered, so accepting it is the natural reply.",
+    "distractor_rationales": {
+      "A 2015 Honda Civic, the hatchback.": "\"I can install those\" is an offer; the car details are not being asked for.",
+      "Okay, I'll drive over there after lunch.": "\"I can install those\" - the part is here, so driving elsewhere contradicts the line.",
+      "Lucky me, I almost threw the receipt away.": "\"those wiper blades\" are being bought; nothing about a warranty was said."
+    },
+    "_crv7": {
+      "localId": "cr14-b18",
+      "selectedWorld": 2,
+      "kind": "offer",
+      "keyAct": "accepting help",
+      "setting": "auto parts store"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Please keep your phone screen off, the light ruins everyone's view.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "What a shame, I was hoping to see Saturn.",
+      "Never, so I might need a little help.",
+      "Sorry, I'll put it away right now.",
+      "Wow, I can actually make out four little dots."
+    ],
+    "correct_answer": "Sorry, I'll put it away right now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The guide asks for the screen off, so apologizing and complying is the natural reply.",
+    "distractor_rationales": {
+      "What a shame, I was hoping to see Saturn.": "\"ruins everyone's view\" - people are viewing, so nothing is cancelled.",
+      "Wow, I can actually make out four little dots.": "\"Please keep your phone\" - a request, not a description of the sky.",
+      "Never, so I might need a little help.": "\"Please keep\" - a request, so \"Never\" answers nothing."
+    },
+    "_crv7": {
+      "localId": "cr14-a12",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "complying with a request",
+      "setting": "campus observatory open night"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Actually, you were billed twice last month, so we'll refund one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Nice, that adds up over a year.",
+      "I'll work from the library today, then.",
+      "The cheaper tier is plenty for me.",
+      "So that's why my bank balance looked low."
+    ],
+    "correct_answer": "So that's why my bank balance looked low.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A past double charge is admitted, so connecting it to a low balance is the natural reply.",
+    "distractor_rationales": {
+      "I'll work from the library today, then.": "\"you were billed twice\" is about money; nothing has stopped working.",
+      "The cheaper tier is plenty for me.": "\"you were billed twice\" is a correction, not a choice between plans.",
+      "Nice, that adds up over a year.": "\"we'll refund one\" is a one-off refund, so a saving that adds up every month contradicts it."
+    },
+    "_crv7": {
+      "localId": "cr14-b17",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "explaining a discrepancy",
+      "setting": "internet provider store"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The cake's paid for, decorated and boxed, so it's ready now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Chocolate with a raspberry filling, please.",
+      "Is cash all right, or do you take cards?",
+      "Perfect, I parked right by the door.",
+      "Oh dear, how long will the second take?"
+    ],
+    "correct_answer": "Perfect, I parked right by the door.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The cake is ready and paid, so preparing to carry it out is the natural reply.",
+    "distractor_rationales": {
+      "Chocolate with a raspberry filling, please.": "\"decorated and boxed\" - the cake is finished, so choosing a flavor is impossible.",
+      "Oh dear, how long will the second take?": "\"it's ready now\" - nothing went wrong, so asking about a second attempt contradicts the line.",
+      "Is cash all right, or do you take cards?": "\"The cake's paid for\" - no payment is due, so asking whether cash is accepted contradicts it."
+    },
+    "_crv7": {
+      "localId": "cr14-b06",
+      "selectedWorld": 2,
+      "kind": "good news",
+      "keyAct": "collecting an order",
+      "setting": "bakery cake-order counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Please spell your last name so I can book the ride.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Perfect, I'll wait right outside then.",
+      "Ugh, then I'll have to call a cab.",
+      "The first one, it's nearer my dorm.",
+      "Sure, it's L-O-P-E-Z, with a Z."
+    ],
+    "correct_answer": "Sure, it's L-O-P-E-Z, with a Z.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The dispatcher asks for a spelling, so giving it is the natural reply.",
+    "distractor_rationales": {
+      "Ugh, then I'll have to call a cab.": "\"book the ride\" - a ride is available, so no cab is needed.",
+      "The first one, it's nearer my dorm.": "\"spell your last name\" - asks for a name, not a stop.",
+      "Perfect, I'll wait right outside then.": "\"so I can book\" - nothing is booked yet, so no driver is coming."
+    },
+    "_crv7": {
+      "localId": "cr14-a10",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "complying with a request",
+      "setting": "campus shuttle dispatch office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You passed the belay test, so you can climb without staff now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Awesome, so no more waiting for an instructor.",
+      "The bigger pair, my feet are a bit wide.",
+      "Oh no, I came all this way for nothing.",
+      "Sure, could I borrow a pen for that?"
+    ],
+    "correct_answer": "Awesome, so no more waiting for an instructor.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is now certified, so welcoming independence is the natural reply.",
+    "distractor_rationales": {
+      "Oh no, I came all this way for nothing.": "\"you can climb\" - climbing is open, so the trip was not wasted.",
+      "The bigger pair, my feet are a bit wide.": "\"You passed the belay test\" - no size question is asked.",
+      "Sure, could I borrow a pen for that?": "\"You passed\" - nothing is required to be signed, so no pen is needed."
+    },
+    "_crv7": {
+      "localId": "cr14-a05",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "welcoming a certification",
+      "setting": "rec center climbing wall desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, your technician called in sick, and we're fully booked today.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could I come in tomorrow morning instead?",
+      "That deep red in the corner, please.",
+      "Oh lovely, my sister gave me that for my birthday.",
+      "Yes, please, my wrists are sore from typing."
+    ],
+    "correct_answer": "Could I come in tomorrow morning instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "No one can see the client today, so asking for tomorrow is the natural reply.",
+    "distractor_rationales": {
+      "That deep red in the corner, please.": "\"we're fully booked today\" - there will be no manicure today, so choosing a color contradicts the line.",
+      "Yes, please, my wrists are sore from typing.": "\"fully booked today\" - no service is happening, so accepting a massage during drying is impossible.",
+      "Oh lovely, my sister gave me that for my birthday.": "\"called in sick\" is bad news; there is no gift card for \"that\" to refer to."
+    },
+    "_crv7": {
+      "localId": "cr14-b10",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "rebooking",
+      "setting": "nail salon"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The noon ferry's cancelled because of high winds, sorry.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh, I hadn't even noticed, thanks.",
+      "Only the two of us, with our bikes.",
+      "Perfect, we'll head to the gate right away.",
+      "Will the afternoon crossing still run?"
+    ],
+    "correct_answer": "Will the afternoon crossing still run?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The ferry is cancelled, so asking about a later one is the natural reply.",
+    "distractor_rationales": {
+      "Only the two of us, with our bikes.": "\"The noon ferry's cancelled\" - there is no crossing to book bikes onto, and no question about vehicles was asked.",
+      "Perfect, we'll head to the gate right away.": "\"The noon ferry's cancelled\" - nothing is leaving, so heading straight to the gate contradicts the line.",
+      "Oh, I hadn't even noticed, thanks.": "\"cancelled because of high winds\" - no money was returned, so reacting to extra change is nonsensical."
+    },
+    "_crv7": {
+      "localId": "cr14-b12",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "asking about the next option",
+      "setting": "ferry terminal ticket booth"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Please measure your doorway before we send the wardrobe out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Wonderful, I'll head home at lunch, then.",
+      "Then I'd rather cancel and get a refund.",
+      "Good idea, it's a pretty narrow hallway.",
+      "The second, I'm out of town until Wednesday."
+    ],
+    "correct_answer": "Good idea, it's a pretty narrow hallway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk suggests measuring, so agreeing with a reason is the natural reply.",
+    "distractor_rationales": {
+      "The second, I'm out of town until Wednesday.": "\"Please measure your doorway\" is a request; it does not offer a choice of days.",
+      "Then I'd rather cancel and get a refund.": "\"before we send the\" - delivery is going ahead, so cancelling over a delay contradicts it.",
+      "Wonderful, I'll head home at lunch, then.": "\"before we send the wardrobe\" - no delivery time is set, so heading home at lunch has nothing to meet."
+    },
+    "_crv7": {
+      "localId": "cr14-b16",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "agreeing to a suggestion",
+      "setting": "furniture store delivery desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your waiver went through, so you won't be charged for the school plan.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So I'm stuck paying for the campus one?",
+      "Great, that saves me a few hundred dollars.",
+      "Then I still have a couple of weeks.",
+      "No, I bought it myself last year."
+    ],
+    "correct_answer": "Great, that saves me a few hundred dollars.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The waiver was approved, so welcoming the savings is the natural reply.",
+    "distractor_rationales": {
+      "So I'm stuck paying for the campus one?": "\"won't be charged\" - the student does not have to pay for the campus plan.",
+      "No, I bought it myself last year.": "\"went through\" - a statement, so \"No\" answers nothing.",
+      "Then I still have a couple of weeks.": "\"went through\" - it is already done, so no time is left to count."
+    },
+    "_crv7": {
+      "localId": "cr14-a16",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "welcoming an approval",
+      "setting": "student health insurance office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm sorry, we have no record of your reservation under that name.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh, try my husband's surname instead.",
+      "Around noon, if that isn't too late.",
+      "No, thanks, we'll eat at the café nearby.",
+      "How generous, we'll enjoy the extra space."
+    ],
+    "correct_answer": "Oh, try my husband's surname instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The booking cannot be found, so suggesting another name to search is the natural reply.",
+    "distractor_rationales": {
+      "How generous, we'll enjoy the extra space.": "\"no record of your reservation\" - there is no room yet, let alone an upgraded one, to enjoy.",
+      "Around noon, if that isn't too late.": "\"no record of your reservation\" - with no booking found there is no stay to check out of, and no time was asked.",
+      "No, thanks, we'll eat at the café nearby.": "\"no record of your reservation\" - nothing was offered, so declining a meal answers nothing."
+    },
+    "_crv7": {
+      "localId": "cr14-b09",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "helping a search",
+      "setting": "hotel front desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'll need the receipt or the card you paid with.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "But it was already broken when I opened it.",
+      "Here's the slip, it's a bit crumpled.",
+      "Only the cable, the packaging's long gone.",
+      "Great, that's quicker than I expected."
+    ],
+    "correct_answer": "Here's the slip, it's a bit crumpled.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk asks for proof of purchase, so handing over the receipt is the natural reply.",
+    "distractor_rationales": {
+      "But it was already broken when I opened it.": "\"I'll need the receipt\" - the return is going ahead, so protesting a refusal contradicts the line.",
+      "Great, that's quicker than I expected.": "\"I'll need the receipt\" - nothing has been refunded yet, so reacting to the speed of one is premature.",
+      "Only the cable, the packaging's long gone.": "\"I'll need the receipt\" asks for proof of purchase, not about the box or charger."
+    },
+    "_crv7": {
+      "localId": "cr14-b11",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "handing over proof",
+      "setting": "electronics store returns desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can't cut a new one until housing sends a work order.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's steep, but I don't have a choice.",
+      "So I'll need to go see them first?",
+      "Finally, I can get back into my place.",
+      "It must've dropped out of my pocket on the bus."
+    ],
+    "correct_answer": "So I'll need to go see them first?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Housing must act first, so asking about visiting them is the natural reply.",
+    "distractor_rationales": {
+      "Finally, I can get back into my place.": "\"We can't cut\" - no key yet, so the student can't get back in.",
+      "It must've dropped out of my pocket on the bus.": "\"We can't cut\" - a statement, not a question about how it was lost.",
+      "That's steep, but I don't have a choice.": "\"until housing sends\" - no price is quoted, so nothing is \"steep\"."
+    },
+    "_crv7": {
+      "localId": "cr14-a20",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "asking about a blocked step",
+      "setting": "campus locksmith window, key replacement"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Room four is free now, so you can start early.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, do I need a coin for that?",
+      "No, the standard ninety minutes is plenty.",
+      "So I'd need another date? How annoying.",
+      "Perfect, the sooner I'm done the better."
+    ],
+    "correct_answer": "Perfect, the sooner I'm done the better.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student can begin early, so welcoming that is the natural reply.",
+    "distractor_rationales": {
+      "So I'd need another date? How annoying.": "\"you can start early\" - the exam is happening now, not cancelled.",
+      "Sure, do I need a coin for that?": "\"Room four is free\" - no locker is mentioned, so a coin question makes no sense.",
+      "No, the standard ninety minutes is plenty.": "\"Room four is free now\" - no question was asked, so \"No\" answers nothing."
+    },
+    "_crv7": {
+      "localId": "cr14-a02",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "welcoming an early start",
+      "setting": "campus testing center check-in, proctor to student"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That utility bill is from last year, so it won't count as proof.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll go home and print a newer one.",
+      "Should I take my hat off first?",
+      "Brilliant, when's the earliest slot?",
+      "It's eighty-seven, I've been here an hour."
+    ],
+    "correct_answer": "I'll go home and print a newer one.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The document is too old, so fetching a newer one is the natural reply.",
+    "distractor_rationales": {
+      "Brilliant, when's the earliest slot?": "\"it won't count as\" - the application is blocked, so asking for a road-test slot contradicts the line.",
+      "It's eighty-seven, I've been here an hour.": "\"That utility bill is\" is a ruling on a document, not a question about a ticket number.",
+      "Should I take my hat off first?": "\"it won't count as proof\" is a refusal, not an instruction to pose for a photo."
+    },
+    "_crv7": {
+      "localId": "cr14-b08",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "fixing a missing document",
+      "setting": "driver's license office"
+    }
+  }
+]

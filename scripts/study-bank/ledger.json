@@ -9753,6 +9753,33 @@
           "verdict": "Author review in-session; no independent AI grader."
         }
       }
+    },
+    {
+      "id": "crv7-b10-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v14",
+      "contentSha": "0f3e48d08cc0cdbc72132b5a2a9f112c0d14b338098b9d7b02d86924659a37cb",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 10: 40 four-world items by 2 Claude agents (strict-kill brief), seeded selection offset 1000; co-founder-standard grader dropped 4; 36 staged. Release by spot route (crv7-b10.RELEASE.PREREG.md). REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "0f3e48d08cc0cdbc72132b5a2a9f112c0d14b338098b9d7b02d86924659a37cb",
+          "verdict": "render-crv7: 0 problems; key echo 0/40; after drops letters 10/8/9/9, key uniquely shortest 13/36 (recorded)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A+B union: 4/40 flagged, all dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
