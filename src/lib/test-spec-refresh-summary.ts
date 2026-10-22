@@ -89,18 +89,36 @@ export function cronSkipsFamily(kind: 'format' | 'examples', family: string): bo
 }
 
 /**
- * A difficulty mix given in percent (30/50/20) instead of fractions. IELTS Listening failed the format refresh
- * on 2026-10-20 with "difficultyMix.hard: Number must be less than or equal to 1". Converted only when every
- * value is a number, at least one is above 1, and they sum to about 100; anything else is left for the schema.
+ * A difficulty mix on the wrong SCALE. IELTS Listening failed the format refresh on 2026-10-20 with
+ * "difficultyMix.hard: Number must be less than or equal to 1" (a percent mix, 30/50/20), and the 10-20 fix
+ * converted only mixes summing to ~100. It failed again on 2026-10-21 with the same message, so the model's
+ * mix was on another non-fraction scale (percent not summing to 100, or item counts). Any all-non-negative mix
+ * with a value above 1 is now rescaled by its own sum, which keeps the ratios the model reported. A negative
+ * value or a zero sum is still left for the schema to reject.
  */
 export function normalizeDifficultyMix(v: unknown): unknown {
   if (!v || typeof v !== 'object') return v
   const o = v as Record<string, unknown>
   const vals = ['easy', 'medium', 'hard'].map(k => o[k])
-  if (!vals.every(x => typeof x === 'number')) return v
+  if (!vals.every(x => typeof x === 'number' && Number.isFinite(x))) return v
   const nums = vals as number[], sum = nums.reduce((a, b) => a + b, 0)
-  if (!nums.some(x => x > 1) || sum < 90 || sum > 110) return v
-  return { ...o, easy: nums[0] / 100, medium: nums[1] / 100, hard: nums[2] / 100 }
+  if (!nums.some(x => x > 1) || nums.some(x => x < 0) || sum <= 0) return v
+  return { ...o, easy: nums[0] / sum, medium: nums[1] / sum, hard: nums[2] / sum }
+}
+
+/**
+ * A sample item's difficulty in the model's own words. The examples refresh failed on 2026-10-21 with
+ * "items.0.difficulty: Invalid enum value" (AP English Language). Case, whitespace and a short list of plain
+ * synonyms are mapped; any other word is returned unchanged so the enum still rejects it.
+ */
+const DIFFICULTY_SYNONYMS: Record<string, 'easy' | 'medium' | 'hard'> = {
+  easy: 'easy', simple: 'easy', basic: 'easy', low: 'easy',
+  medium: 'medium', moderate: 'medium', intermediate: 'medium', average: 'medium', mid: 'medium',
+  hard: 'hard', difficult: 'hard', challenging: 'hard', advanced: 'hard', high: 'hard',
+}
+export function normalizeItemDifficulty(v: unknown): unknown {
+  if (typeof v !== 'string') return v
+  return DIFFICULTY_SYNONYMS[v.trim().toLowerCase()] ?? v
 }
 
 /**

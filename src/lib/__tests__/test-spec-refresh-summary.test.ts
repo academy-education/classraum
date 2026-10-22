@@ -10,6 +10,7 @@ import {
   isNonMcSection,
   cronSkipsFamily,
   normalizeDifficultyMix,
+  normalizeItemDifficulty,
 } from '../test-spec-refresh-summary'
 
 jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: {} }))
@@ -174,17 +175,37 @@ describe('normalizeDifficultyMix', () => {
   it('converts a percent mix (the 2026-10-20 IELTS Listening failure) to fractions', () => {
     expect(normalizeDifficultyMix({ easy: 30, medium: 50, hard: 20 })).toEqual({ easy: 0.3, medium: 0.5, hard: 0.2 })
   })
-  it('leaves fractions, nulls and nonsense alone for the schema to judge', () => {
+  it('rescales any other non-fraction scale by its sum, keeping the ratios (the 2026-10-21 repeat failure)', () => {
+    // percent that does not sum to 100, and item counts
+    expect(normalizeDifficultyMix({ easy: 30, medium: 50, hard: 40 })).toEqual({ easy: 0.25, medium: 50 / 120, hard: 40 / 120 })
+    expect(normalizeDifficultyMix({ easy: 300, medium: 500, hard: 200 })).toEqual({ easy: 0.3, medium: 0.5, hard: 0.2 })
+  })
+  it('leaves fractions, nulls, negatives and a zero sum alone for the schema to judge', () => {
     expect(normalizeDifficultyMix({ easy: 0.3, medium: 0.5, hard: 0.2 })).toEqual({ easy: 0.3, medium: 0.5, hard: 0.2 })
     expect(normalizeDifficultyMix(null)).toBeNull()
-    expect(normalizeDifficultyMix({ easy: 300, medium: 500, hard: 200 })).toEqual({ easy: 300, medium: 500, hard: 200 })
+    expect(normalizeDifficultyMix({ easy: -5, medium: 50, hard: 55 })).toEqual({ easy: -5, medium: 50, hard: 55 })
+    expect(normalizeDifficultyMix({ easy: 0, medium: 0, hard: 0 })).toEqual({ easy: 0, medium: 0, hard: 0 })
   })
-  it('SectionSpecSchema accepts a percent mix end to end, and still rejects a mix that is neither', () => {
+  it('SectionSpecSchema accepts percent and count mixes end to end, and still rejects a negative one', () => {
     const base = SectionSpecSchema.safeParse({}).error?.issues.map(i => i.path[0]) ?? []
     const field = SectionSpecSchema.shape.difficultyMix
     expect(field.safeParse({ easy: 30, medium: 50, hard: 20 }).success).toBe(true)
-    expect(field.safeParse({ easy: 300, medium: 500, hard: 200 }).success).toBe(false)
+    expect(field.safeParse({ easy: 30, medium: 50, hard: 40 }).success).toBe(true)
+    expect(field.safeParse({ easy: -5, medium: 50, hard: 55 }).success).toBe(false)
     expect(field.safeParse(null).success).toBe(true)
     expect(base).toContain('minutesPerSection')
+  })
+})
+
+describe('normalizeItemDifficulty', () => {
+  it('maps case, whitespace and plain synonyms (the 2026-10-21 examples failure)', () => {
+    expect(normalizeItemDifficulty(' Hard ')).toBe('hard')
+    expect(normalizeItemDifficulty('Intermediate')).toBe('medium')
+    expect(normalizeItemDifficulty('difficult')).toBe('hard')
+    expect(normalizeItemDifficulty('simple')).toBe('easy')
+  })
+  it('leaves an unknown word for the enum to reject', () => {
+    expect(normalizeItemDifficulty('expert-level')).toBe('expert-level')
+    expect(normalizeItemDifficulty(3)).toBe(3)
   })
 })

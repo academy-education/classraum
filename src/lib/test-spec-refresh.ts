@@ -35,7 +35,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
 import { verifyAndCorrect, type Question } from '@/lib/test-verify'
-import { describeExtractionError, orderByLeastRecentlyAttempted, isNonMcSection, cronSkipsFamily, normalizeDifficultyMix } from '@/lib/test-spec-refresh-summary'
+import { describeExtractionError, orderByLeastRecentlyAttempted, isNonMcSection, cronSkipsFamily, normalizeDifficultyMix, normalizeItemDifficulty } from '@/lib/test-spec-refresh-summary'
 
 /** Refresh target — uses arbitrary strings so any test works, not
  *  limited to the 8 hardcoded TestFamily values. */
@@ -339,7 +339,7 @@ const SampleItemSchema = z.object({
   // here would reject the whole batch when one SPR item slips in.
   choices: z.array(z.string()),
   correct_answer: z.string(),
-  difficulty: z.enum(['easy', 'medium', 'hard']),
+  difficulty: z.preprocess(normalizeItemDifficulty, z.enum(['easy', 'medium', 'hard'])),
   why_hard: z.string(),
   source_url: z.string(),
 })
