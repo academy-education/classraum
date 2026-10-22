@@ -9506,6 +9506,35 @@
           "verdict": "Token Jaccard against the 136 live sentences: 2 of 46 drafts at or above 0.6 (0.89, 0.64) were dropped; max among the kept 0.46. Within batch max below 0.6. Topics spread across home, shops, transport, health, weather and study."
         }
       }
+    },
+    {
+      "id": "interview-v3-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "speaking",
+      "task": "interview",
+      "family": "production",
+      "cohort": "interview-v3",
+      "contentSha": "f9dd13a7aad8430c0eb257986fdade5aa3868abd323ec7bd7e974ff3862b465a",
+      "status": "shipped",
+      "note": "6 TOEFL Interview sets (24 rungs) written in-session by Claude on the live 4-rung ladder; interview bound TOEFL speaking at 20 after repeat-v4. Two drafted sets (sustainability, student budgets) were replaced before insert, because the interview-v2 panel dropped sustainability and travel sets on rung-1 answerability, and budgets assume spending money the stated population (16-17, first term, no money, no travel) may not have. contentSha = sha256 of interview-v3.rows.json.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f9dd13a7aad8430c0eb257986fdade5aa3868abd323ec7bd7e974ff3862b465a",
+          "verdict": "24/24 rungs pass checkSpeakingInterview: [Interview] tag, situation passage, EMPTY correct_answer, passageGroupId per set; ladder order personal-with-fallback -> preference -> evaluate-claim -> future, in file order."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "f9dd13a7aad8430c0eb257986fdade5aa3868abd323ec7bd7e974ff3862b465a",
+          "verdict": "ONE reader, the author, against the interview-v2 population and criteria: every rung-1 question carries a fallback answerable without the setting (no club -> a group you would join; no online class -> a video or app; no pleasure reading -> what you do to relax). Two sets that failed this read were replaced. Weaker than v2's three reviewers per set; recorded."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "f9dd13a7aad8430c0eb257986fdade5aa3868abd323ec7bd7e974ff3862b465a",
+          "verdict": "Rung-text token Jaccard (stopwords removed): max 0.40 vs the 80 live rungs, max 0.41 within batch (bar 0.5); both peaks are the shared future-rung frame. Topics distinct from the 20 live sets (nearest live: favourite campus places vs exploring the city off campus)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
