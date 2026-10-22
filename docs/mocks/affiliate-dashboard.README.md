@@ -1,5 +1,12 @@
 # Partner (affiliate) dashboard: mock and handoff notes
 
+**Built in the app's own design language** (v3, 2026-10-22): the same white sidebar and 57px header as
+`src/app/(app)/layout.tsx` + `src/components/ui/sidebar.tsx`, the page eyebrow/title from `/dashboard`, the
+`StatsCard.tsx` card (icon chip, uppercase label, 4xl figure, trend line, mini chart), and the table card from
+`payments-page.tsx`. Tailwind classes are copied from those files, so porting means moving markup into React
+components rather than redesigning. The Classraum logo is `public/text_logo.png`, embedded so the file opens
+anywhere. The partner switcher in the header is mock-only; a real partner sees only their own row.
+
 `affiliate-dashboard.html` is a static, self-contained mock for the Study referral partners
 신세기유학원 (uhak114.com) and HIS 헤럴드교육센터 (hisacademy.co.kr). Open it in a browser. Every number
 is generated sample data and the page says so.
