@@ -1,0 +1,2402 @@
+[
+ {
+  "id": "ASV5a-P1-Q1",
+  "passage_id": "sc5a-p1",
+  "passage_title": "Transpiration in Sunflowers",
+  "format": "data_representation",
+  "passage": "Transpiration is the loss of water vapor from a plant's leaves, mostly through stomata, small pores on the leaf surface. Light causes most stomata to open, and in darkness most stomata close. Wind carries away the moist air that collects next to a leaf, so water vapor leaves the leaf more easily.\n\nResearchers placed potted sunflower plants of similar size, one at a time, in a growth chamber held at an air temperature of 25 °C and a relative humidity of 50%. Each plant was exposed to one of five light intensities, measured in kilolux (klx), and one of three wind speeds produced by a fan. Each pot was sealed in plastic so that water could leave only through the plant. After 1 hour under the test conditions, the plant was weighed every 10 minutes for 1 hour, and the mass lost per hour was recorded as the transpiration rate. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Transpiration rate of sunflower plants (g of water per hour) at five light intensities and three wind speeds.",
+   "colLabels": [
+    "Wind speed 0 m/s",
+    "Wind speed 1 m/s",
+    "Wind speed 3 m/s"
+   ],
+   "rowLabels": [
+    "0 klx",
+    "10 klx",
+    "20 klx",
+    "30 klx",
+    "40 klx"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.6,
+     0.8
+    ],
+    [
+     1.6,
+     2.2,
+     2.7
+    ],
+    [
+     2.6,
+     3.5,
+     4.3
+    ],
+    [
+     3.2,
+     4.3,
+     5.2
+    ],
+    [
+     3.4,
+     4.6,
+     5.6
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at a light intensity of 20 klx and a wind speed of 1 m/s, the transpiration rate was:",
+  "choices": [
+   "2.6 g/h",
+   "3.2 g/h",
+   "3.5 g/h",
+   "4.3 g/h"
+  ],
+  "correct_answer": "3.5 g/h",
+  "explanation": "In the 20 klx row of Table 1, the entry under wind speed 1 m/s is 3.5 g/h. The value 2.6 g/h is the 20 klx rate at 0 m/s, 4.3 g/h is the 20 klx rate at 3 m/s (and the 30 klx rate at 1 m/s), and 3.2 g/h is the 30 klx rate at 0 m/s.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P1-Q2",
+  "passage_id": "sc5a-p1",
+  "passage_title": "Transpiration in Sunflowers",
+  "format": "data_representation",
+  "passage": "Transpiration is the loss of water vapor from a plant's leaves, mostly through stomata, small pores on the leaf surface. Light causes most stomata to open, and in darkness most stomata close. Wind carries away the moist air that collects next to a leaf, so water vapor leaves the leaf more easily.\n\nResearchers placed potted sunflower plants of similar size, one at a time, in a growth chamber held at an air temperature of 25 °C and a relative humidity of 50%. Each plant was exposed to one of five light intensities, measured in kilolux (klx), and one of three wind speeds produced by a fan. Each pot was sealed in plastic so that water could leave only through the plant. After 1 hour under the test conditions, the plant was weighed every 10 minutes for 1 hour, and the mass lost per hour was recorded as the transpiration rate. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Transpiration rate of sunflower plants (g of water per hour) at five light intensities and three wind speeds.",
+   "colLabels": [
+    "Wind speed 0 m/s",
+    "Wind speed 1 m/s",
+    "Wind speed 3 m/s"
+   ],
+   "rowLabels": [
+    "0 klx",
+    "10 klx",
+    "20 klx",
+    "30 klx",
+    "40 klx"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.6,
+     0.8
+    ],
+    [
+     1.6,
+     2.2,
+     2.7
+    ],
+    [
+     2.6,
+     3.5,
+     4.3
+    ],
+    [
+     3.2,
+     4.3,
+     5.2
+    ],
+    [
+     3.4,
+     4.6,
+     5.6
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at a wind speed of 0 m/s, over which of the following increases in light intensity did the transpiration rate increase the most?",
+  "choices": [
+   "From 0 klx to 10 klx",
+   "From 10 klx to 20 klx",
+   "From 20 klx to 30 klx",
+   "From 30 klx to 40 klx"
+  ],
+  "correct_answer": "From 0 klx to 10 klx",
+  "explanation": "The 0 m/s column reads 0.4, 1.6, 2.6, 3.2, and 3.4 g/h. The increases are 1.2 g/h from 0 to 10 klx, 1.0 g/h from 10 to 20 klx, 0.6 g/h from 20 to 30 klx, and 0.2 g/h from 30 to 40 klx, so the largest increase was from 0 klx to 10 klx. The rate itself is greatest at 40 klx, but the increase there is the smallest.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare differences between consecutive table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P1-Q3",
+  "passage_id": "sc5a-p1",
+  "passage_title": "Transpiration in Sunflowers",
+  "format": "data_representation",
+  "passage": "Transpiration is the loss of water vapor from a plant's leaves, mostly through stomata, small pores on the leaf surface. Light causes most stomata to open, and in darkness most stomata close. Wind carries away the moist air that collects next to a leaf, so water vapor leaves the leaf more easily.\n\nResearchers placed potted sunflower plants of similar size, one at a time, in a growth chamber held at an air temperature of 25 °C and a relative humidity of 50%. Each plant was exposed to one of five light intensities, measured in kilolux (klx), and one of three wind speeds produced by a fan. Each pot was sealed in plastic so that water could leave only through the plant. After 1 hour under the test conditions, the plant was weighed every 10 minutes for 1 hour, and the mass lost per hour was recorded as the transpiration rate. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Transpiration rate of sunflower plants (g of water per hour) at five light intensities and three wind speeds.",
+   "colLabels": [
+    "Wind speed 0 m/s",
+    "Wind speed 1 m/s",
+    "Wind speed 3 m/s"
+   ],
+   "rowLabels": [
+    "0 klx",
+    "10 klx",
+    "20 klx",
+    "30 klx",
+    "40 klx"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.6,
+     0.8
+    ],
+    [
+     1.6,
+     2.2,
+     2.7
+    ],
+    [
+     2.6,
+     3.5,
+     4.3
+    ],
+    [
+     3.2,
+     4.3,
+     5.2
+    ],
+    [
+     3.4,
+     4.6,
+     5.6
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if a plant had been tested at a light intensity of 25 klx and a wind speed of 1 m/s, its transpiration rate would most likely have been:",
+  "choices": [
+   "less than 2.6 g/h.",
+   "between 2.6 g/h and 3.5 g/h.",
+   "between 3.5 g/h and 4.3 g/h.",
+   "greater than 4.3 g/h."
+  ],
+  "correct_answer": "between 3.5 g/h and 4.3 g/h.",
+  "explanation": "In the 1 m/s column, the rate increases with light intensity, from 3.5 g/h at 20 klx to 4.3 g/h at 30 klx. A light intensity of 25 klx lies between these, so the rate should be between 3.5 g/h and 4.3 g/h. The range from 2.6 to 3.5 g/h uses the 0 m/s column (2.6 g/h at 20 klx), and the other ranges lie outside the values bracketing 25 klx at 1 m/s.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a table column",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P1-Q4",
+  "passage_id": "sc5a-p1",
+  "passage_title": "Transpiration in Sunflowers",
+  "format": "data_representation",
+  "passage": "Transpiration is the loss of water vapor from a plant's leaves, mostly through stomata, small pores on the leaf surface. Light causes most stomata to open, and in darkness most stomata close. Wind carries away the moist air that collects next to a leaf, so water vapor leaves the leaf more easily.\n\nResearchers placed potted sunflower plants of similar size, one at a time, in a growth chamber held at an air temperature of 25 °C and a relative humidity of 50%. Each plant was exposed to one of five light intensities, measured in kilolux (klx), and one of three wind speeds produced by a fan. Each pot was sealed in plastic so that water could leave only through the plant. After 1 hour under the test conditions, the plant was weighed every 10 minutes for 1 hour, and the mass lost per hour was recorded as the transpiration rate. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Transpiration rate of sunflower plants (g of water per hour) at five light intensities and three wind speeds.",
+   "colLabels": [
+    "Wind speed 0 m/s",
+    "Wind speed 1 m/s",
+    "Wind speed 3 m/s"
+   ],
+   "rowLabels": [
+    "0 klx",
+    "10 klx",
+    "20 klx",
+    "30 klx",
+    "40 klx"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.6,
+     0.8
+    ],
+    [
+     1.6,
+     2.2,
+     2.7
+    ],
+    [
+     2.6,
+     3.5,
+     4.3
+    ],
+    [
+     3.2,
+     4.3,
+     5.2
+    ],
+    [
+     3.4,
+     4.6,
+     5.6
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that increasing the wind speed from 0 m/s to 3 m/s increases the transpiration rate more at high light intensities than at low light intensities. Do the data in Table 1 support this hypothesis?",
+  "choices": [
+   "Yes; the increase was 0.4 g/h at 0 klx and 2.2 g/h at 40 klx.",
+   "Yes; the increase was 2.2 g/h at 0 klx and 0.4 g/h at 40 klx.",
+   "No; the increase was 0.4 g/h at every light intensity.",
+   "No; at 0 klx the transpiration rate was above zero at every wind speed."
+  ],
+  "correct_answer": "Yes; the increase was 0.4 g/h at 0 klx and 2.2 g/h at 40 klx.",
+  "explanation": "Going from 0 m/s to 3 m/s, the rate rose from 0.4 to 0.8 g/h at 0 klx (an increase of 0.4 g/h) and from 3.4 to 5.6 g/h at 40 klx (an increase of 2.2 g/h). The increase grows with light intensity (0.4, 1.1, 1.7, 2.0, 2.2 g/h), so the hypothesis is supported. Reversing the two increases misreads the table, the increase was not the same at every light intensity, and a nonzero rate in darkness says nothing about how the effect of wind changes with light.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis about an interaction between two variables",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P1-Q5",
+  "passage_id": "sc5a-p1",
+  "passage_title": "Transpiration in Sunflowers",
+  "format": "data_representation",
+  "passage": "Transpiration is the loss of water vapor from a plant's leaves, mostly through stomata, small pores on the leaf surface. Light causes most stomata to open, and in darkness most stomata close. Wind carries away the moist air that collects next to a leaf, so water vapor leaves the leaf more easily.\n\nResearchers placed potted sunflower plants of similar size, one at a time, in a growth chamber held at an air temperature of 25 °C and a relative humidity of 50%. Each plant was exposed to one of five light intensities, measured in kilolux (klx), and one of three wind speeds produced by a fan. Each pot was sealed in plastic so that water could leave only through the plant. After 1 hour under the test conditions, the plant was weighed every 10 minutes for 1 hour, and the mass lost per hour was recorded as the transpiration rate. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Transpiration rate of sunflower plants (g of water per hour) at five light intensities and three wind speeds.",
+   "colLabels": [
+    "Wind speed 0 m/s",
+    "Wind speed 1 m/s",
+    "Wind speed 3 m/s"
+   ],
+   "rowLabels": [
+    "0 klx",
+    "10 klx",
+    "20 klx",
+    "30 klx",
+    "40 klx"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.6,
+     0.8
+    ],
+    [
+     1.6,
+     2.2,
+     2.7
+    ],
+    [
+     2.6,
+     3.5,
+     4.3
+    ],
+    [
+     3.2,
+     4.3,
+     5.2
+    ],
+    [
+     3.4,
+     4.6,
+     5.6
+    ]
+   ]
+  },
+  "prompt": "Which of the following variables was held constant for all of the plants in the study?",
+  "choices": [
+   "Light intensity",
+   "Wind speed",
+   "Transpiration rate",
+   "Air temperature"
+  ],
+  "correct_answer": "Air temperature",
+  "explanation": "The passage states that the growth chamber was held at an air temperature of 25 °C (and 50% relative humidity) for every plant. Light intensity and wind speed were the variables the researchers changed (five and three values in Table 1), and transpiration rate was the quantity they measured.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P2-Q1",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 1, what was the soil loss from the tray set at a slope angle of 15°?",
+  "choices": [
+   "260 g",
+   "450 g",
+   "610 g",
+   "700 g"
+  ],
+  "correct_answer": "450 g",
+  "explanation": "In Table 1, the row labeled Exp. 1, 15° slope gives a soil loss of 450 g. The value 260 g is the loss at 10°, 700 g is the loss at 20°, and 610 g is the loss at a rainfall intensity of 75 mm/h in Experiment 3.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P2-Q2",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "Which of the following factors was the same in every trial of Experiment 2 but was varied in Experiment 3?",
+  "choices": [
+   "Slope angle",
+   "Soil type",
+   "Type of surface cover",
+   "Rainfall intensity"
+  ],
+  "correct_answer": "Rainfall intensity",
+  "explanation": "Experiment 2 used the standard rainfall intensity of 50 mm/h in every trial, while Experiment 3 used 25, 50, and 75 mm/h. The slope angle was 10° in both experiments, surface cover was the factor varied in Experiment 2 (and was bare throughout Experiment 3), and the same sandy loam soil was used in every tray.",
+  "domain": "Scientific Investigation",
+  "subskill": "distinguish variables across experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P2-Q3",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "Suppose a tray of bare soil had been set at a slope angle of 20° and exposed to a rainfall intensity of 75 mm/h for 30 minutes. Based on the results of Experiments 1 and 3, the soil loss would most likely have been:",
+  "choices": [
+   "less than 260 g.",
+   "between 260 g and 610 g.",
+   "between 610 g and 700 g.",
+   "greater than 700 g."
+  ],
+  "correct_answer": "greater than 700 g.",
+  "explanation": "In Experiment 1, raising the slope from 10° to 20° at 50 mm/h increased soil loss from 260 g to 700 g. In Experiment 3, raising the rainfall intensity from 50 mm/h to 75 mm/h at 10° increased soil loss from 260 g to 610 g. A tray with both the steeper slope and the heavier rain should lose more than the 700 g lost at 20° and 50 mm/h, so greater than 700 g. The lower ranges each reflect only one of the two changes.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P2-Q4",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "The students wanted to determine whether the type of cover (straw or grass) affected soil loss, independent of the percent of the surface covered. Which two trials of Experiment 2 should they compare?",
+  "choices": [
+   "Bare and grass, 90% cover",
+   "Straw, 50% cover and grass, 50% cover",
+   "Straw, 50% cover and grass, 90% cover",
+   "Grass, 50% cover and grass, 90% cover"
+  ],
+  "correct_answer": "Straw, 50% cover and grass, 50% cover",
+  "explanation": "To isolate the type of cover, the two trials must differ in cover type but not in percent cover. Straw at 50% cover and grass at 50% cover meet this condition (95 g versus 80 g of soil loss). Straw at 50% versus grass at 90% changes both type and amount, the two grass trials differ only in amount, and bare versus grass compares no cover with cover.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose trials that isolate one variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P2-Q5",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, in Experiment 1, a steeper slope increased soil loss only because it increased the volume of runoff, with each liter of runoff carrying about the same mass of soil at every slope angle. Do the results of Experiment 1 support this claim?",
+  "choices": [
+   "Yes; the runoff volume increased as the slope angle increased.",
+   "Yes; the soil loss increased from 120 g to 700 g as the slope angle increased.",
+   "No; the runoff volume decreased as the slope angle increased.",
+   "No; the soil carried per liter of runoff rose from about 39 g to about 143 g."
+  ],
+  "correct_answer": "No; the soil carried per liter of runoff rose from about 39 g to about 143 g.",
+  "explanation": "Dividing soil loss by runoff volume in Experiment 1 gives 120 g / 3.1 L, about 39 g per liter, at 5° and 700 g / 4.9 L, about 143 g per liter, at 20°. Each liter of runoff carried much more soil on steeper slopes, so the increase in runoff alone cannot explain the increase in soil loss, and the claim is not supported. Runoff volume did increase with slope (3.1 L to 4.9 L) and soil loss did increase, but neither fact shows that the soil per liter stayed the same; runoff volume did not decrease.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a proposed mechanism with a derived ratio",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P2-Q6",
+  "passage_id": "sc5a-p2",
+  "passage_title": "Soil Erosion Under Simulated Rainfall",
+  "format": "research_summaries",
+  "passage": "When rain falls faster than soil can absorb it, water flows across the surface as runoff and carries soil particles with it. Students studied soil erosion with a rainfall simulator. Identical trays, 1.0 m long and 0.5 m wide, were each filled with 40 kg of the same sandy loam soil and tilted to a set slope angle. Nozzles above each tray sprayed water onto it at a constant rate for 30 minutes. All runoff leaving the lower end of the tray was collected, its volume was measured, and the soil in it was dried and weighed to give the soil loss. Unless stated otherwise, the soil surface was bare, the slope angle was 10°, and the rainfall intensity was 50 mm/h. Table 1 shows the results.\n\nExperiment 1\nThe slope angle was set to 5°, 10°, 15°, or 20°.\n\nExperiment 2\nThe soil surface was left bare or was covered with straw mulch covering 50% of the surface, grass covering 50% of the surface, or grass covering 90% of the surface. The grass had been grown in the trays for 6 weeks before the trials.\n\nExperiment 3\nThe rainfall intensity was set to 25 mm/h, 50 mm/h, or 75 mm/h.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Runoff volume and soil loss from each tray during 30 minutes of simulated rainfall.",
+   "colLabels": [
+    "Runoff volume (L)",
+    "Soil loss (g)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 5° slope",
+    "Exp. 1, 10° slope",
+    "Exp. 1, 15° slope",
+    "Exp. 1, 20° slope",
+    "Exp. 2, bare",
+    "Exp. 2, straw, 50% cover",
+    "Exp. 2, grass, 50% cover",
+    "Exp. 2, grass, 90% cover",
+    "Exp. 3, 25 mm/h",
+    "Exp. 3, 50 mm/h",
+    "Exp. 3, 75 mm/h"
+   ],
+   "cells": [
+    [
+     3.1,
+     120
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     4.4,
+     450
+    ],
+    [
+     4.9,
+     700
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     2.9,
+     95
+    ],
+    [
+     2.6,
+     80
+    ],
+    [
+     1.2,
+     15
+    ],
+    [
+     1.1,
+     40
+    ],
+    [
+     3.8,
+     260
+    ],
+    [
+     6.9,
+     610
+    ]
+   ]
+  },
+  "prompt": "Suppose a fifth trial had been added to Experiment 2 using grass covering 70% of the soil surface. Based on the results of Experiment 2, the soil loss in this trial would most likely have been:",
+  "choices": [
+   "less than 15 g.",
+   "between 15 g and 80 g.",
+   "between 80 g and 95 g.",
+   "greater than 95 g."
+  ],
+  "correct_answer": "between 15 g and 80 g.",
+  "explanation": "In Experiment 2, soil loss under grass fell from 80 g at 50% cover to 15 g at 90% cover. Grass at 70% cover lies between these, so the loss should be between 15 g and 80 g. The range from 80 g to 95 g is bounded by the straw trial (95 g), a different cover type, and the other ranges fall outside the grass values that bracket 70% cover.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between two trials",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P3-Q1",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree with which of the following statements?",
+  "choices": [
+   "Birds of a given age do not leave the wintering grounds earlier now than in 1980.",
+   "Birds now spend fewer days at each stopover site than they did in 1980.",
+   "Adults make up a larger share of the arriving birds now than they did in 1980.",
+   "Warmer weather at the wintering grounds now causes the birds to leave them earlier."
+  ],
+  "correct_answer": "Birds of a given age do not leave the wintering grounds earlier now than in 1980.",
+  "explanation": "Scientist 1 says birds of a given age leave the wintering grounds on the same date now as in 1980, and Scientist 2 says individual warblers of a given age leave on the same date as such birds did in 1980, so both accept that birds of a given age do not leave earlier. Shorter stopovers are only Scientist 1's claim, the larger share of adults is only Scientist 2's claim, and neither scientist says weather at the wintering grounds changes the departure date.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement between viewpoints",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P3-Q2",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "According to Scientist 1, warblers now spend fewer days at each stopover site because:",
+  "choices": [
+   "insects become abundant earlier at the stopover sites, so the birds refuel faster.",
+   "adults, which spend less time at stopover sites, now make up most of the population.",
+   "the birds' internal annual clock now starts their migration earlier in the spring.",
+   "day length at the stopover sites is now longer during the migration season."
+  ],
+  "correct_answer": "insects become abundant earlier at the stopover sites, so the birds refuel faster.",
+  "explanation": "Scientist 1 states that because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. The larger share of adults is Scientist 2's explanation, Scientist 1 says the internal clock keeps the departure date unchanged, and neither scientist mentions a change in day length at stopover sites.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a scientist's stated reasoning",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P3-Q3",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "Suppose radio-tracking studies found that first-year warblers spent an average of 6 days at each stopover site in the 1980s but only 4 days in the 2010s. This finding would most strengthen the viewpoint of:",
+  "choices": [
+   "Scientist 1, because Scientist 1 says stopovers have shortened for all birds.",
+   "Scientist 1, because Scientist 1 says an internal clock sets the departure date.",
+   "Scientist 2, because Scientist 2 says first-year birds spend more time at stopovers than adults do.",
+   "Scientist 2, because Scientist 2 says the proportion of adults has increased."
+  ],
+  "correct_answer": "Scientist 1, because Scientist 1 says stopovers have shortened for all birds.",
+  "explanation": "Scientist 1 claims that faster refueling has shortened stopovers for all birds, so a shorter stopover among first-year birds alone directly supports Scientist 1. Scientist 2 says birds of a given age travel at the same pace as in 1980, so a change within first-year birds contradicts Scientist 2. Scientist 1's internal clock concerns the departure date, not stopover length, and neither the difference between adults and first-year birds nor the rise in adults explains a change within the first-year class.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P3-Q4",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "Based on Scientist 2's argument, in a year in which 50% of the warblers arriving at the station were adults, the mean arrival date would be about how many days earlier than in a year in which 20% were adults?",
+  "choices": [
+   "3 days",
+   "4.5 days",
+   "9 days",
+   "15 days"
+  ],
+  "correct_answer": "4.5 days",
+  "explanation": "According to Scientist 2, adults arrive 15 days earlier than first-year birds and arrival dates within each age class do not change. Each 10-percentage-point increase in the share of adults therefore moves the mean arrival 1.5 days earlier (0.10 × 15 days). Going from 20% to 50% adults is an increase of 30 points, so the mean moves 0.30 × 15 = 4.5 days earlier. A shift of 9 days corresponds to Scientist 2's change from 20% to 80%, and 15 days is the full difference between adults and first-year birds.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a viewpoint's quantitative model",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P3-Q5",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "Suppose warblers captured on the wintering grounds and kept in cages with a constant 12-hour day length and a constant temperature became restless and tried to fly north at about the same time each spring for 3 years. This finding most directly supports which claim made by Scientist 1?",
+  "choices": [
+   "The departure date is set by an internal clock rather than by local weather.",
+   "Warblers now spend fewer days at each stopover site than warblers did in 1980.",
+   "Warmer springs make insects abundant earlier at the stopover sites.",
+   "The mean arrival date has advanced among both adults and first-year birds."
+  ],
+  "correct_answer": "The departure date is set by an internal clock rather than by local weather.",
+  "explanation": "Birds kept under unchanging light and temperature had no outside weather or seasonal cues, yet still became restless at about the same time each spring. That shows a timing mechanism inside the bird, which supports the claim that the departure date is set by an internal clock rather than by local weather. Caged birds do not migrate, feed at stopover sites, or arrive at the breeding grounds, so the finding says nothing about stopover length, insect timing, or arrival dates.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "connect an experiment to a specific claim",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P3-Q6",
+  "passage_id": "sc5a-p3",
+  "passage_title": "Earlier Spring Arrival of a Songbird",
+  "format": "conflicting_viewpoints",
+  "passage": "A small songbird, the pale-throated warbler, spends the winter in tropical forest at about 10°N latitude, where day length changes by only about 1.5 hours over the year, and breeds in forests 4,000 km to the north. Records from a bird-banding station at the breeding grounds show that the mean spring arrival date of the warblers moved from May 14 in 1980 to May 5 in 2020, an advance of 9 days. Over the same period, the mean April air temperature along the birds' migration route rose by 1.5 °C. Two scientists explain the earlier arrival.\n\nScientist 1\nThe date on which warblers leave the wintering grounds is set by an internal annual clock, which the small yearly change in day length keeps on schedule. Local weather does not change this date, and birds of a given age leave the wintering grounds on the same date now as they did in 1980. The 9-day advance happened during the journey. Migrating warblers stop for several days at a time at stopover sites to feed and rebuild their fat reserves. Because springs along the route are now warmer, insects become abundant earlier at the stopover sites, so the birds refuel faster and spend fewer days at each stopover. This change affects all birds, so the mean arrival date should have advanced among adults and among first-year birds alike.\n\nScientist 2\nIndividual warblers of a given age leave the wintering grounds on the same date, and travel at the same pace, as such birds did in 1980; within each age class, the mean arrival date has not changed. However, adults (birds that have bred before) arrive on average 15 days earlier than first-year birds, because adults leave the wintering grounds earlier and spend less time at stopover sites. In 1980, 20% of the warblers arriving at the station were adults; by 2020, 80% were, because rising nest predation has reduced the number of young produced each year. The mean arrival date of the whole population advanced only because the population now contains a much larger proportion of early-arriving adults.",
+  "prompt": "Suppose banding records showed that, from 1980 to 2020, the mean arrival date of first-year warblers alone advanced by 8 days. This finding would weaken the viewpoint of:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "both Scientist 1 and Scientist 2.",
+   "neither Scientist 1 nor Scientist 2."
+  ],
+  "correct_answer": "Scientist 2 only.",
+  "explanation": "Scientist 2 states that within each age class the mean arrival date has not changed, so an 8-day advance among first-year birds alone contradicts Scientist 2. Scientist 1 predicts that the mean arrival date should have advanced among adults and among first-year birds alike, so the finding is consistent with Scientist 1. It therefore weakens Scientist 2 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "determine which viewpoint new evidence weakens",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P4-Q1",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 1, the freezing point of the 1.5 mol/kg NaCl solution was:",
+  "choices": [
+   "−1.7 °C",
+   "−3.4 °C",
+   "−5.1 °C",
+   "−6.8 °C"
+  ],
+  "correct_answer": "−5.1 °C",
+  "explanation": "In Table 1, the row labeled Exp. 1, NaCl 1.5 mol/kg gives a freezing point of −5.1 °C. The values −1.7 °C, −3.4 °C, and −6.8 °C are the freezing points of the 0.5, 1.0, and 2.0 mol/kg NaCl solutions.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P4-Q2",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, as the NaCl concentration increased from 0.0 mol/kg to 2.0 mol/kg, the freezing point:",
+  "choices": [
+   "increased only.",
+   "decreased only, by the same amount for each 0.5 mol/kg increase.",
+   "decreased only, by a larger amount for each successive 0.5 mol/kg increase.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "decreased only, by the same amount for each 0.5 mol/kg increase.",
+  "explanation": "The Experiment 1 freezing points are 0.0, −1.7, −3.4, −5.1, and −6.8 °C. Each 0.5 mol/kg step lowers the freezing point by exactly 1.7 °C, so it decreased only, by the same amount each time. The steps do not grow larger, and the freezing point never rises.",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a linear trend in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P4-Q3",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that, at the same concentration in mol/kg, a solute that produces more dissolved particles per formula unit lowers the freezing point of water by a greater amount. Do the results of Experiment 2 support this hypothesis?",
+  "choices": [
+   "Yes; the freezing points were −1.9 °C for glucose, −3.4 °C for NaCl, and −5.0 °C for CaCl₂.",
+   "Yes; the NaCl solution lowered the freezing point by exactly twice as much as the glucose solution did.",
+   "No; the freezing points were −5.0 °C for glucose, −3.4 °C for NaCl, and −1.9 °C for CaCl₂.",
+   "No; all three solutions had the same concentration, so they froze at the same temperature."
+  ],
+  "correct_answer": "Yes; the freezing points were −1.9 °C for glucose, −3.4 °C for NaCl, and −5.0 °C for CaCl₂.",
+  "explanation": "Glucose produces 1 particle per formula unit, NaCl 2, and CaCl₂ 3. Experiment 2 gives freezing points of −1.9, −3.4, and −5.0 °C in that order, so the lowering grows as the number of particles grows, supporting the hypothesis. NaCl lowered the freezing point by 3.4 °C, which is less than twice glucose's 1.9 °C (3.8 °C), so the claim of exactly twice is false. The reversed listing swaps the glucose and CaCl₂ values, and the three solutions did not freeze at the same temperature.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against ordered results",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P4-Q4",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, the most likely reason the students measured the freezing point of a 0.0 mol/kg sample was to:",
+  "choices": [
+   "find the temperature of the ice-and-salt bath.",
+   "show that all of the NaCl in each solution dissolved completely in the water.",
+   "measure how quickly the solutions cooled in the bath.",
+   "obtain the freezing point of water with no solute, for comparison with the solutions."
+  ],
+  "correct_answer": "obtain the freezing point of water with no solute, for comparison with the solutions.",
+  "explanation": "The 0.0 mol/kg sample was distilled water. Measuring its freezing point (0.0 °C) with the same apparatus gave a baseline against which the lowering produced by each NaCl solution could be judged. The bath temperature was set at −15 °C and was not what this sample measured, a sample with no NaCl cannot show how NaCl dissolves, and the recorded result was a freezing point, not a cooling rate.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a control",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P4-Q5",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 3, artificial seawater with a salinity of 28 g/kg would most likely have a freezing point:",
+  "choices": [
+   "above −0.5 °C.",
+   "between −0.5 °C and −1.1 °C.",
+   "between −1.1 °C and −1.9 °C.",
+   "below −1.9 °C."
+  ],
+  "correct_answer": "between −1.1 °C and −1.9 °C.",
+  "explanation": "In Experiment 3, the freezing point falls steadily as salinity rises: −1.1 °C at 20 g/kg and −1.9 °C at 35 g/kg. A salinity of 28 g/kg lies between 20 and 35 g/kg, so its freezing point should lie between −1.1 °C and −1.9 °C. The range from −0.5 to −1.1 °C corresponds to salinities of 10 to 20 g/kg, and the other ranges lie outside the bracketing values.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P4-Q6",
+  "passage_id": "sc5a-p4",
+  "passage_title": "Freezing Points of Salt Solutions",
+  "format": "research_summaries",
+  "passage": "Water that contains a dissolved substance (a solute) freezes at a lower temperature than pure water does. When glucose dissolves in water, it stays as whole molecules. When sodium chloride (NaCl) dissolves, each formula unit separates into 2 ions (Na⁺ and Cl⁻), and when calcium chloride (CaCl₂) dissolves, each formula unit separates into 3 ions (Ca²⁺ and 2 Cl⁻). Concentration is given in moles of solute per kilogram of water (mol/kg).\n\nIn each trial, students placed 20 g of a solution in a test tube, set the tube in a bath of ice and salt at −15 °C, and stirred the solution while recording its temperature every 15 seconds. As ice formed, the temperature stayed nearly constant for several minutes; this temperature was recorded as the freezing point. Table 1 shows the results.\n\nExperiment 1\nThe students tested NaCl solutions with concentrations of 0.0, 0.5, 1.0, 1.5, and 2.0 mol/kg. The 0.0 mol/kg sample was distilled water.\n\nExperiment 2\nThe students tested 1.0 mol/kg solutions of glucose, NaCl, and CaCl₂.\n\nExperiment 3\nThe students dissolved a commercial sea-salt mixture in distilled water to make artificial seawater with salinities of 0, 10, 20, and 35 grams of salt per kilogram of seawater (g/kg). Natural ocean water has an average salinity of about 35 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Freezing points of the solutions tested.",
+   "colLabels": [
+    "Freezing point (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, NaCl 0.0 mol/kg",
+    "Exp. 1, NaCl 0.5 mol/kg",
+    "Exp. 1, NaCl 1.0 mol/kg",
+    "Exp. 1, NaCl 1.5 mol/kg",
+    "Exp. 1, NaCl 2.0 mol/kg",
+    "Exp. 2, glucose 1.0 mol/kg",
+    "Exp. 2, NaCl 1.0 mol/kg",
+    "Exp. 2, CaCl₂ 1.0 mol/kg",
+    "Exp. 3, salinity 0 g/kg",
+    "Exp. 3, salinity 10 g/kg",
+    "Exp. 3, salinity 20 g/kg",
+    "Exp. 3, salinity 35 g/kg"
+   ],
+   "cells": [
+    [
+     0.0
+    ],
+    [
+     -1.7
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.1
+    ],
+    [
+     -6.8
+    ],
+    [
+     -1.9
+    ],
+    [
+     -3.4
+    ],
+    [
+     -5.0
+    ],
+    [
+     0.0
+    ],
+    [
+     -0.5
+    ],
+    [
+     -1.1
+    ],
+    [
+     -1.9
+    ]
+   ]
+  },
+  "prompt": "Suppose the students had also tested a 0.5 mol/kg CaCl₂ solution. Based on the results of Experiments 1 and 2, its freezing point would most likely have been:",
+  "choices": [
+   "between 0.0 °C and −1.7 °C.",
+   "between −1.7 °C and −3.4 °C.",
+   "between −3.4 °C and −5.0 °C.",
+   "below −5.0 °C."
+  ],
+  "correct_answer": "between −1.7 °C and −3.4 °C.",
+  "explanation": "Experiment 1 shows that halving the NaCl concentration from 1.0 to 0.5 mol/kg halved the lowering, from 3.4 °C to 1.7 °C. Experiment 2 shows that 1.0 mol/kg CaCl₂ lowered the freezing point by 5.0 °C, so 0.5 mol/kg CaCl₂ should lower it by about 2.5 °C, to about −2.5 °C. This lies between −1.7 °C (0.5 mol/kg NaCl, which CaCl₂ should exceed) and −3.4 °C. Values of −3.4 °C or lower would require 0.5 mol/kg CaCl₂ to lower the freezing point at least as much as 1.0 mol/kg NaCl.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P5-Q1",
+  "passage_id": "sc5a-p5",
+  "passage_title": "Surface Salinity of the Open Ocean",
+  "format": "data_representation",
+  "passage": "The salinity of seawater is the mass of dissolved salt, in grams, in 1 kilogram of seawater (g/kg). At the ocean surface, evaporation removes water but leaves the salt behind, which raises salinity, while precipitation (rain and snow) adds fresh water, which lowers salinity.\n\nOceanographers compiled long-term annual averages at seven locations in the open ocean along a single north-south line, far from any coast or river mouth. Table 1 gives the yearly evaporation and precipitation, the sea-surface temperature, and the surface salinity at each location.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Annual average evaporation, precipitation, sea-surface temperature, and surface salinity at seven latitudes.",
+   "colLabels": [
+    "Evaporation (cm/yr)",
+    "Precipitation (cm/yr)",
+    "Surface temperature (°C)",
+    "Surface salinity (g/kg)"
+   ],
+   "rowLabels": [
+    "60°N",
+    "40°N",
+    "20°N",
+    "0°",
+    "20°S",
+    "40°S",
+    "60°S"
+   ],
+   "cells": [
+    [
+     40,
+     100,
+     9,
+     34.2
+    ],
+    [
+     110,
+     90,
+     18,
+     35.6
+    ],
+    [
+     160,
+     50,
+     25,
+     37.0
+    ],
+    [
+     130,
+     180,
+     27,
+     34.5
+    ],
+    [
+     150,
+     60,
+     24,
+     36.6
+    ],
+    [
+     100,
+     100,
+     15,
+     35.1
+    ],
+    [
+     30,
+     95,
+     2,
+     34.1
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, surface salinity was greatest at which latitude?",
+  "choices": [
+   "60°N",
+   "20°N",
+   "0°",
+   "20°S"
+  ],
+  "correct_answer": "20°N",
+  "explanation": "The surface salinity column of Table 1 reads 34.2, 35.6, 37.0, 34.5, 36.6, 35.1, and 34.1 g/kg from 60°N to 60°S. The greatest value, 37.0 g/kg, is at 20°N. The value at 20°S (36.6 g/kg) is the second highest, 0° has the highest temperature but a salinity of only 34.5 g/kg, and 60°N has 34.2 g/kg.",
+  "domain": "Interpretation of Data",
+  "subskill": "find a maximum in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P5-Q2",
+  "passage_id": "sc5a-p5",
+  "passage_title": "Surface Salinity of the Open Ocean",
+  "format": "data_representation",
+  "passage": "The salinity of seawater is the mass of dissolved salt, in grams, in 1 kilogram of seawater (g/kg). At the ocean surface, evaporation removes water but leaves the salt behind, which raises salinity, while precipitation (rain and snow) adds fresh water, which lowers salinity.\n\nOceanographers compiled long-term annual averages at seven locations in the open ocean along a single north-south line, far from any coast or river mouth. Table 1 gives the yearly evaporation and precipitation, the sea-surface temperature, and the surface salinity at each location.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Annual average evaporation, precipitation, sea-surface temperature, and surface salinity at seven latitudes.",
+   "colLabels": [
+    "Evaporation (cm/yr)",
+    "Precipitation (cm/yr)",
+    "Surface temperature (°C)",
+    "Surface salinity (g/kg)"
+   ],
+   "rowLabels": [
+    "60°N",
+    "40°N",
+    "20°N",
+    "0°",
+    "20°S",
+    "40°S",
+    "60°S"
+   ],
+   "cells": [
+    [
+     40,
+     100,
+     9,
+     34.2
+    ],
+    [
+     110,
+     90,
+     18,
+     35.6
+    ],
+    [
+     160,
+     50,
+     25,
+     37.0
+    ],
+    [
+     130,
+     180,
+     27,
+     34.5
+    ],
+    [
+     150,
+     60,
+     24,
+     36.6
+    ],
+    [
+     100,
+     100,
+     15,
+     35.1
+    ],
+    [
+     30,
+     95,
+     2,
+     34.1
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at which latitude did yearly precipitation exceed yearly evaporation by the greatest amount?",
+  "choices": [
+   "60°N",
+   "0°",
+   "40°S",
+   "60°S"
+  ],
+  "correct_answer": "60°S",
+  "explanation": "Precipitation minus evaporation is 100 − 40 = 60 cm/yr at 60°N, 180 − 130 = 50 cm/yr at 0°, 100 − 100 = 0 cm/yr at 40°S, and 95 − 30 = 65 cm/yr at 60°S. The greatest excess is at 60°S. The 0° location has by far the most precipitation, but it also has high evaporation.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute and compare differences between columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P5-Q3",
+  "passage_id": "sc5a-p5",
+  "passage_title": "Surface Salinity of the Open Ocean",
+  "format": "data_representation",
+  "passage": "The salinity of seawater is the mass of dissolved salt, in grams, in 1 kilogram of seawater (g/kg). At the ocean surface, evaporation removes water but leaves the salt behind, which raises salinity, while precipitation (rain and snow) adds fresh water, which lowers salinity.\n\nOceanographers compiled long-term annual averages at seven locations in the open ocean along a single north-south line, far from any coast or river mouth. Table 1 gives the yearly evaporation and precipitation, the sea-surface temperature, and the surface salinity at each location.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Annual average evaporation, precipitation, sea-surface temperature, and surface salinity at seven latitudes.",
+   "colLabels": [
+    "Evaporation (cm/yr)",
+    "Precipitation (cm/yr)",
+    "Surface temperature (°C)",
+    "Surface salinity (g/kg)"
+   ],
+   "rowLabels": [
+    "60°N",
+    "40°N",
+    "20°N",
+    "0°",
+    "20°S",
+    "40°S",
+    "60°S"
+   ],
+   "cells": [
+    [
+     40,
+     100,
+     9,
+     34.2
+    ],
+    [
+     110,
+     90,
+     18,
+     35.6
+    ],
+    [
+     160,
+     50,
+     25,
+     37.0
+    ],
+    [
+     130,
+     180,
+     27,
+     34.5
+    ],
+    [
+     150,
+     60,
+     24,
+     36.6
+    ],
+    [
+     100,
+     100,
+     15,
+     35.1
+    ],
+    [
+     30,
+     95,
+     2,
+     34.1
+    ]
+   ]
+  },
+  "prompt": "A student claimed that surface salinity is highest where sea-surface temperature is highest. Do the data in Table 1 support this claim?",
+  "choices": [
+   "Yes; temperature and salinity were both higher at 20°N than at 60°N.",
+   "Yes; temperature and salinity were both highest at 0°.",
+   "No; temperature was highest at 60°S, where salinity was the lowest of the seven.",
+   "No; temperature was highest at 0°, but salinity there was lower than at 20°N."
+  ],
+  "correct_answer": "No; temperature was highest at 0°, but salinity there was lower than at 20°N.",
+  "explanation": "The highest surface temperature in Table 1 is 27 °C at 0°, but the salinity there is 34.5 g/kg, lower than the 37.0 g/kg at 20°N, so the claim is not supported. A single comparison of 20°N with 60°N cannot show where salinity is highest, salinity at 0° was not the highest, and 60°S had the lowest temperature (2 °C), not the highest.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against a counterexample in the data",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P5-Q4",
+  "passage_id": "sc5a-p5",
+  "passage_title": "Surface Salinity of the Open Ocean",
+  "format": "data_representation",
+  "passage": "The salinity of seawater is the mass of dissolved salt, in grams, in 1 kilogram of seawater (g/kg). At the ocean surface, evaporation removes water but leaves the salt behind, which raises salinity, while precipitation (rain and snow) adds fresh water, which lowers salinity.\n\nOceanographers compiled long-term annual averages at seven locations in the open ocean along a single north-south line, far from any coast or river mouth. Table 1 gives the yearly evaporation and precipitation, the sea-surface temperature, and the surface salinity at each location.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Annual average evaporation, precipitation, sea-surface temperature, and surface salinity at seven latitudes.",
+   "colLabels": [
+    "Evaporation (cm/yr)",
+    "Precipitation (cm/yr)",
+    "Surface temperature (°C)",
+    "Surface salinity (g/kg)"
+   ],
+   "rowLabels": [
+    "60°N",
+    "40°N",
+    "20°N",
+    "0°",
+    "20°S",
+    "40°S",
+    "60°S"
+   ],
+   "cells": [
+    [
+     40,
+     100,
+     9,
+     34.2
+    ],
+    [
+     110,
+     90,
+     18,
+     35.6
+    ],
+    [
+     160,
+     50,
+     25,
+     37.0
+    ],
+    [
+     130,
+     180,
+     27,
+     34.5
+    ],
+    [
+     150,
+     60,
+     24,
+     36.6
+    ],
+    [
+     100,
+     100,
+     15,
+     35.1
+    ],
+    [
+     30,
+     95,
+     2,
+     34.1
+    ]
+   ]
+  },
+  "prompt": "Suppose another open-ocean location along the same line has a yearly evaporation of 140 cm/yr and a yearly precipitation of 80 cm/yr. Based on Table 1 and the passage, its surface salinity would most likely be:",
+  "choices": [
+   "less than 35.1 g/kg.",
+   "between 35.1 g/kg and 35.6 g/kg.",
+   "between 35.6 g/kg and 36.6 g/kg.",
+   "greater than 36.6 g/kg."
+  ],
+  "correct_answer": "between 35.6 g/kg and 36.6 g/kg.",
+  "explanation": "The passage explains that evaporation raises salinity and precipitation lowers it, so the useful quantity is evaporation minus precipitation. In Table 1, salinity rises steadily with that difference: −65 cm/yr (34.1), −60 (34.2), −50 (34.5), 0 (35.1), +20 (35.6), +90 (36.6), +110 (37.0). The new location has 140 − 80 = +60 cm/yr, between +20 (35.6 g/kg) and +90 (36.6 g/kg), so its salinity should be between 35.6 g/kg and 36.6 g/kg. Looking at evaporation alone is misleading, because the 0° location has 130 cm/yr of evaporation but low salinity.",
+  "domain": "Interpretation of Data",
+  "subskill": "predict a value from a derived variable",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P5-Q5",
+  "passage_id": "sc5a-p5",
+  "passage_title": "Surface Salinity of the Open Ocean",
+  "format": "data_representation",
+  "passage": "The salinity of seawater is the mass of dissolved salt, in grams, in 1 kilogram of seawater (g/kg). At the ocean surface, evaporation removes water but leaves the salt behind, which raises salinity, while precipitation (rain and snow) adds fresh water, which lowers salinity.\n\nOceanographers compiled long-term annual averages at seven locations in the open ocean along a single north-south line, far from any coast or river mouth. Table 1 gives the yearly evaporation and precipitation, the sea-surface temperature, and the surface salinity at each location.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Annual average evaporation, precipitation, sea-surface temperature, and surface salinity at seven latitudes.",
+   "colLabels": [
+    "Evaporation (cm/yr)",
+    "Precipitation (cm/yr)",
+    "Surface temperature (°C)",
+    "Surface salinity (g/kg)"
+   ],
+   "rowLabels": [
+    "60°N",
+    "40°N",
+    "20°N",
+    "0°",
+    "20°S",
+    "40°S",
+    "60°S"
+   ],
+   "cells": [
+    [
+     40,
+     100,
+     9,
+     34.2
+    ],
+    [
+     110,
+     90,
+     18,
+     35.6
+    ],
+    [
+     160,
+     50,
+     25,
+     37.0
+    ],
+    [
+     130,
+     180,
+     27,
+     34.5
+    ],
+    [
+     150,
+     60,
+     24,
+     36.6
+    ],
+    [
+     100,
+     100,
+     15,
+     35.1
+    ],
+    [
+     30,
+     95,
+     2,
+     34.1
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, going from 0° to 60°N, surface salinity:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "increased and then decreased.",
+  "explanation": "Reading north from 0°, the surface salinity values are 34.5 g/kg at 0°, 37.0 g/kg at 20°N, 35.6 g/kg at 40°N, and 34.2 g/kg at 60°N. Salinity rose to a peak at 20°N and then fell, so it increased and then decreased. Surface temperature, by contrast, decreased only over this range.",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a non-monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P6-Q1",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, what was the rebound height of the ball at 0 °C?",
+  "choices": [
+   "0.52 m",
+   "0.63 m",
+   "0.80 m",
+   "0.86 m"
+  ],
+  "correct_answer": "0.63 m",
+  "explanation": "In Table 1, the row labeled Exp. 2, 0 °C gives a rebound height of 0.63 m. The value 0.52 m is the rebound at −10 °C, 0.80 m is the rebound at 20 °C, and 0.86 m is the rebound at 40 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P6-Q2",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "Which of the following factors was varied in Experiment 3 but was held constant in Experiment 2?",
+  "choices": [
+   "Drop height",
+   "Ball temperature",
+   "Ball used",
+   "Type of surface"
+  ],
+  "correct_answer": "Type of surface",
+  "explanation": "Experiment 3 dropped the ball onto steel, wood, and carpet, while every trial of Experiment 2 used the steel plate. Drop height was 1.00 m in both experiments, ball temperature was the factor varied in Experiment 2 (and was 20 °C throughout Experiment 3), and the same rubber ball was used in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "distinguish variables across experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P6-Q3",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, if the ball had been dropped onto the steel plate from a height of 2.50 m, its rebound height would most likely have been closest to:",
+  "choices": [
+   "1.60 m",
+   "1.80 m",
+   "2.00 m",
+   "2.50 m"
+  ],
+  "correct_answer": "2.00 m",
+  "explanation": "In Experiment 1 the rebound height was 0.80 times the drop height at every drop height (0.40/0.50, 0.80/1.00, 1.20/1.50, 1.60/2.00). Continuing this pattern, a 2.50 m drop gives about 0.80 × 2.50 = 2.00 m. A rebound of 1.60 m is the result for a 2.00 m drop, 1.80 m would be a smaller rise than the 0.40 m gained for each 0.50 m increase in drop height, and 2.50 m would mean no energy was lost.",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a proportional relationship",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P6-Q4",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, the ball was kept at 20 °C for 30 minutes before each trial. Based on the results of Experiment 2, the most likely reason for this step was to:",
+  "choices": [
+   "make the ball bounce higher than it would at any other temperature.",
+   "make the rebound heights in Experiment 3 equal to those in Experiment 1.",
+   "allow the steel, wood, and carpet surfaces to reach the same temperature as the ball.",
+   "prevent differences in ball temperature from affecting the rebound heights."
+  ],
+  "correct_answer": "prevent differences in ball temperature from affecting the rebound heights.",
+  "explanation": "Experiment 2 showed that ball temperature strongly affects rebound height (from 0.52 m at −10 °C to 0.88 m at 60 °C). Keeping the ball at the same temperature before every trial of Experiment 3 prevented differences in ball temperature from affecting the rebound heights, so that only the surface varied. At 20 °C the ball bounced lower than at 40 °C or 60 °C, the step conditioned the ball rather than the surfaces, and matching Experiment 1 was not its purpose.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain a control step using another experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P6-Q5",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "Suppose the ball, after being kept at 0 °C for 30 minutes, had been dropped from 1.00 m onto the wooden board. Based on the results of Experiments 2 and 3, its rebound height would most likely have been:",
+  "choices": [
+   "less than 0.63 m.",
+   "between 0.63 m and 0.68 m.",
+   "between 0.68 m and 0.80 m.",
+   "greater than 0.80 m."
+  ],
+  "correct_answer": "less than 0.63 m.",
+  "explanation": "In Experiment 2, cooling the ball from 20 °C to 0 °C lowered its rebound on steel from 0.80 m to 0.63 m. In Experiment 3, at 20 °C, wood gave a lower rebound than steel (0.68 m versus 0.80 m). A cold ball on wood is affected by both changes, so it should rebound less than a cold ball on steel (0.63 m) and less than a warm ball on wood (0.68 m), that is, less than 0.63 m. The higher ranges each account for only one of the two effects.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5a-P6-Q6",
+  "passage_id": "sc5a-p6",
+  "passage_title": "Rebound of a Rubber Ball",
+  "format": "research_summaries",
+  "passage": "When a ball is dropped onto a hard surface, part of its energy is converted to heat and sound during the impact, so it rebounds to a height less than the height from which it was dropped. If air resistance is ignored, the fraction of the ball's energy that is kept after one bounce equals the rebound height divided by the drop height.\n\nStudents dropped a solid rubber ball (diameter 4 cm, mass 40 g) from rest and filmed each bounce in front of a meter stick to measure the rebound height. Each value in Table 1 is the average of 5 drops. Unless stated otherwise, the ball was at 20 °C and was dropped from a height of 1.00 m onto a steel plate.\n\nExperiment 1\nThe ball was dropped from heights of 0.50 m, 1.00 m, 1.50 m, and 2.00 m.\n\nExperiment 2\nBefore each trial, the ball was kept for 30 minutes in a chamber at −10 °C, 0 °C, 20 °C, 40 °C, or 60 °C and was dropped within 10 seconds of being removed.\n\nExperiment 3\nBefore each trial, the ball was kept for 30 minutes in a chamber at 20 °C. It was then dropped onto a steel plate, a wooden board, or a piece of carpet.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average rebound height of the rubber ball.",
+   "colLabels": [
+    "Rebound height (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, drop height 0.50 m",
+    "Exp. 1, drop height 1.00 m",
+    "Exp. 1, drop height 1.50 m",
+    "Exp. 1, drop height 2.00 m",
+    "Exp. 2, −10 °C",
+    "Exp. 2, 0 °C",
+    "Exp. 2, 20 °C",
+    "Exp. 2, 40 °C",
+    "Exp. 2, 60 °C",
+    "Exp. 3, steel",
+    "Exp. 3, wood",
+    "Exp. 3, carpet"
+   ],
+   "cells": [
+    [
+     0.4
+    ],
+    [
+     0.8
+    ],
+    [
+     1.2
+    ],
+    [
+     1.6
+    ],
+    [
+     0.52
+    ],
+    [
+     0.63
+    ],
+    [
+     0.8
+    ],
+    [
+     0.86
+    ],
+    [
+     0.88
+    ],
+    [
+     0.8
+    ],
+    [
+     0.68
+    ],
+    [
+     0.3
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, in Experiment 1, the rebound height was directly proportional to the drop height. Do the results of Experiment 1 support this claim?",
+  "choices": [
+   "Yes; at every drop height, the rebound height was 0.80 times the drop height.",
+   "Yes; at every drop height, the rebound height was greater than the drop height.",
+   "No; the rebound height decreased as the drop height increased.",
+   "No; the rebound height was the same at every drop height."
+  ],
+  "correct_answer": "Yes; at every drop height, the rebound height was 0.80 times the drop height.",
+  "explanation": "Two quantities are directly proportional when one is always the same multiple of the other. In Experiment 1, 0.40/0.50, 0.80/1.00, 1.20/1.50, and 1.60/2.00 all equal 0.80, so the claim is supported. Every rebound height was less than its drop height, and the rebound heights increased (0.40 m to 1.60 m) rather than decreasing or staying the same.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a proportional relationship",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P7-Q1",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "According to Scientist 2, the sand layer was deposited by:",
+  "choices": [
+   "storm waves that reached farther inland as the shoreline retreated.",
+   "tidal currents that slowly built up the marsh after the trees died.",
+   "river floods that carried sand downstream from the mountains.",
+   "a tsunami produced by the earthquake that lowered the land."
+  ],
+  "correct_answer": "a tsunami produced by the earthquake that lowered the land.",
+  "explanation": "Scientist 2 states that the sand was carried in by a tsunami that the earthquake produced. Storm waves reaching farther inland as the shoreline retreated is Scientist 1's explanation, neither scientist attributes the sand to river floods, and Scientist 2 says the slowly accumulating material after the earthquake was tidal mud, not sand.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a scientist's stated explanation",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P7-Q2",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "Suppose tree-ring dating showed that the outermost growth rings of dead trees 0.2 km and 2 km from the coast formed in the same year. This finding would most strengthen the viewpoint of:",
+  "choices": [
+   "Scientist 1, because Scientist 1 says sea level rose at about 3 mm per year.",
+   "Scientist 1, because Scientist 1 says the trees nearest the coast died decades before the others.",
+   "Scientist 2, because Scientist 2 says trees at all distances died within a year or two.",
+   "Scientist 2, because Scientist 2 says the sand thins upstream."
+  ],
+  "correct_answer": "Scientist 2, because Scientist 2 says trees at all distances died within a year or two.",
+  "explanation": "The outermost ring of a dead tree records the last year it grew. Trees 0.2 km and 2 km from the coast dying in the same year matches Scientist 2's claim that trees at all distances from the coast died within a year or two of one another. Scientist 1 predicts that trees farther upstream died decades after those nearest the coast, which the finding contradicts. The thinning of the sand is not related to when the trees died.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P7-Q3",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "Based on Scientist 1's explanation, about how many years would it have taken for sea level to rise the 0.8 m described in the passage?",
+  "choices": [
+   "About 27 years",
+   "About 80 years",
+   "About 270 years",
+   "About 800 years"
+  ],
+  "correct_answer": "About 270 years",
+  "explanation": "Scientist 1 says sea level rose at about 3 mm per year until the water stood 0.8 m higher. Since 0.8 m = 800 mm, the time is 800 mm ÷ 3 mm per year, about 267 years, or about 270 years. The value of 27 years results from using 80 mm instead of 800 mm, 80 years treats 0.8 m as if 1 cm rose per year, and 800 years assumes 1 mm per year.",
+  "domain": "Interpretation of Data",
+  "subskill": "calculate using a rate stated in a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P7-Q4",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "Suppose new cores showed that, at every site, the buried forest soil grades into the tidal mud over about 8 cm, and this zone contains roots of both cedar seedlings and salt-tolerant marsh grasses. This finding would be more consistent with the viewpoint of:",
+  "choices": [
+   "Scientist 1, because Scientist 1 predicts a gradual transition from soil to mud.",
+   "Scientist 1, because Scientist 1 says the sand was deposited by storm waves.",
+   "Scientist 2, because Scientist 2 predicts a sharp contact between soil and mud.",
+   "Scientist 2, because Scientist 2 says the land dropped by about 0.8 m within a few minutes."
+  ],
+  "correct_answer": "Scientist 1, because Scientist 1 predicts a gradual transition from soil to mud.",
+  "explanation": "Scientist 1 predicts that the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants, which is exactly what the cores show. Scientist 2 predicts a sharp contact with no transition zone, so the finding conflicts with Scientist 2. The origin of the sand and the amount the land dropped are not what this finding tests.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a stated prediction",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5a-P7-Q5",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that the trees died because:",
+  "choices": [
+   "sea level rose gradually for centuries.",
+   "the land surface dropped suddenly.",
+   "storm waves buried them in sand.",
+   "salt water reached their roots."
+  ],
+  "correct_answer": "salt water reached their roots.",
+  "explanation": "The passage states that trees of this species die when salt water reaches their roots. Scientist 1 says advancing salt water killed the trees, and Scientist 2 says tidal water flooded the forest soil at every high tide, so both attribute the deaths to salt water reaching the roots. A sudden drop of the land is only Scientist 2's view, gradual centuries-long sea-level rise is only Scientist 1's view, and neither says burial in sand killed the trees.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement between viewpoints",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5a-P7-Q6",
+  "passage_id": "sc5a-p7",
+  "passage_title": "A Drowned Forest on a Tidal River",
+  "format": "conflicting_viewpoints",
+  "passage": "Along the lowest 3 km of a tidal river on a mountainous coast, hundreds of dead trunks of a cedar species stand in a salt marsh that is flooded by seawater at high tide. Living trees of this species die when salt water reaches their roots. Sediment cores show that the dead trees are rooted in a buried forest soil whose surface now lies 0.8 m below the surface of the marsh. Above the buried soil is tidal mud containing the remains of salt-tolerant marsh plants. At sites nearest the coast, a layer of sand up to 6 cm thick lies directly on the buried soil, beneath the mud; the sand layer thins upstream and is absent 2 km from the coast. Today, sea level in the region is rising at 3 mm per year relative to the land. Two scientists explain how the trees died.\n\nScientist 1\nThe trees were killed gradually by sea-level rise. Sea level rose at about the present rate of 3 mm per year until tidal water stood 0.8 m higher than when the forest grew. As salt water advanced up the river, it killed the trees nearest the coast first and trees farther upstream decades later. Marsh plants spread slowly onto the dying forest floor, so the change from forest soil to tidal mud should be gradual, with a transition zone several centimeters thick containing remains of both forest plants and marsh plants. The sand was washed in by storm waves, which reached farther inland as the shoreline retreated.\n\nScientist 2\nThe trees were killed suddenly when a large earthquake dropped the land surface by about 0.8 m within a few minutes. Tidal water then flooded the forest soil at every high tide, so trees at all distances from the coast died within a year or two of one another. Because the forest floor was flooded all at once, the contact between the forest soil and the tidal mud should be sharp, with no transition zone. The sand was carried in by a tsunami that the earthquake produced; the sand thins upstream because the wave lost energy as it traveled up the river. Since the earthquake, tidal mud has slowly built up on the lowered surface.",
+  "prompt": "Suppose tree-ring dating showed that trees 0.2 km from the coast died 40 years before trees 2 km from the coast. According to Scientist 1's explanation, by about how much would sea level have risen between the death of the trees near the coast and the death of the trees farther upstream?",
+  "choices": [
+   "1.2 cm",
+   "4 cm",
+   "12 cm",
+   "40 cm"
+  ],
+  "correct_answer": "12 cm",
+  "explanation": "Scientist 1 says sea level rose at about 3 mm per year. Over 40 years that is 40 × 3 mm = 120 mm, or 12 cm. A rise of 1.2 cm results from dividing by 10 too many times, 4 cm assumes 1 mm per year, and 40 cm assumes 1 cm per year.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a viewpoint's rate to new evidence",
+  "difficulty": "hard"
+ }
+]

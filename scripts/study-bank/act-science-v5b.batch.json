@@ -1,0 +1,2698 @@
+[
+ {
+  "id": "ASV5b-P1-Q1",
+  "passage_id": "sc5b-p1",
+  "passage_title": "Period of a Pendulum",
+  "format": "data_representation",
+  "passage": "A simple pendulum is a small, heavy bob hanging from a light string. The period of a pendulum is the time it takes the bob to swing from one side to the other and back again. Students built pendulums from a 200 g brass bob and strings of five different lengths, measured from the pivot to the center of the bob. For each length, they pulled the bob aside until the string made a given angle with the vertical (the release angle), released it, and timed 20 complete swings with a stopwatch. They divided each time by 20 to find the period. Each length was tested at a release angle of 10° and at a release angle of 40°. The 200 g bob was used in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Period of a pendulum for five string lengths at two release angles",
+   "colLabels": [
+    "Period at 10° release angle (s)",
+    "Period at 40° release angle (s)"
+   ],
+   "rowLabels": [
+    "Length 0.25 m",
+    "Length 0.50 m",
+    "Length 1.00 m",
+    "Length 1.50 m",
+    "Length 2.00 m"
+   ],
+   "cells": [
+    [
+     "1.00",
+     "1.03"
+    ],
+    [
+     "1.42",
+     "1.46"
+    ],
+    [
+     "2.01",
+     "2.07"
+    ],
+    [
+     "2.46",
+     "2.53"
+    ],
+    [
+     "2.84",
+     "2.92"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the period of the 1.00 m pendulum released at an angle of 40°?",
+  "choices": [
+   "1.46 s",
+   "2.01 s",
+   "2.07 s",
+   "2.53 s"
+  ],
+  "correct_answer": "2.07 s",
+  "explanation": "In the row for a length of 1.00 m, the 40° column reads \"2.07 s.\" The value 2.01 s is the same pendulum at a 10° release angle, 1.46 s is the 0.50 m pendulum at 40°, and 2.53 s is the 1.50 m pendulum at 40°.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P1-Q2",
+  "passage_id": "sc5b-p1",
+  "passage_title": "Period of a Pendulum",
+  "format": "data_representation",
+  "passage": "A simple pendulum is a small, heavy bob hanging from a light string. The period of a pendulum is the time it takes the bob to swing from one side to the other and back again. Students built pendulums from a 200 g brass bob and strings of five different lengths, measured from the pivot to the center of the bob. For each length, they pulled the bob aside until the string made a given angle with the vertical (the release angle), released it, and timed 20 complete swings with a stopwatch. They divided each time by 20 to find the period. Each length was tested at a release angle of 10° and at a release angle of 40°. The 200 g bob was used in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Period of a pendulum for five string lengths at two release angles",
+   "colLabels": [
+    "Period at 10° release angle (s)",
+    "Period at 40° release angle (s)"
+   ],
+   "rowLabels": [
+    "Length 0.25 m",
+    "Length 0.50 m",
+    "Length 1.00 m",
+    "Length 1.50 m",
+    "Length 2.00 m"
+   ],
+   "cells": [
+    [
+     "1.00",
+     "1.03"
+    ],
+    [
+     "1.42",
+     "1.46"
+    ],
+    [
+     "2.01",
+     "2.07"
+    ],
+    [
+     "2.46",
+     "2.53"
+    ],
+    [
+     "2.84",
+     "2.92"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if the students had also tested a pendulum with a length of 0.75 m at a release angle of 10°, its period would most likely have been closest to:",
+  "choices": [
+   "1.20 s",
+   "1.74 s",
+   "2.20 s",
+   "2.46 s"
+  ],
+  "correct_answer": "1.74 s",
+  "explanation": "At a 10° release angle, the period rises steadily with length, from 1.42 s at 0.50 m to 2.01 s at 1.00 m. A length of 0.75 m lies between these, so its period must lie between 1.42 s and 2.01 s; only \"1.74 s\" does. The value 1.20 s is shorter than the 0.50 m period, and 2.20 s and 2.46 s are longer than the 1.00 m period (2.46 s is the 1.50 m value).",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table rows",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P1-Q3",
+  "passage_id": "sc5b-p1",
+  "passage_title": "Period of a Pendulum",
+  "format": "data_representation",
+  "passage": "A simple pendulum is a small, heavy bob hanging from a light string. The period of a pendulum is the time it takes the bob to swing from one side to the other and back again. Students built pendulums from a 200 g brass bob and strings of five different lengths, measured from the pivot to the center of the bob. For each length, they pulled the bob aside until the string made a given angle with the vertical (the release angle), released it, and timed 20 complete swings with a stopwatch. They divided each time by 20 to find the period. Each length was tested at a release angle of 10° and at a release angle of 40°. The 200 g bob was used in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Period of a pendulum for five string lengths at two release angles",
+   "colLabels": [
+    "Period at 10° release angle (s)",
+    "Period at 40° release angle (s)"
+   ],
+   "rowLabels": [
+    "Length 0.25 m",
+    "Length 0.50 m",
+    "Length 1.00 m",
+    "Length 1.50 m",
+    "Length 2.00 m"
+   ],
+   "cells": [
+    [
+     "1.00",
+     "1.03"
+    ],
+    [
+     "1.42",
+     "1.46"
+    ],
+    [
+     "2.01",
+     "2.07"
+    ],
+    [
+     "2.46",
+     "2.53"
+    ],
+    [
+     "2.84",
+     "2.92"
+    ]
+   ]
+  },
+  "prompt": "A student predicted that increasing the release angle from 10° to 40° would double the period of a pendulum of a given length. Do the data in Table 1 support this prediction?",
+  "choices": [
+   "Yes; at every length, the period at 40° was about twice the period at 10°.",
+   "Yes; the longest period in the table was measured at a release angle of 40°.",
+   "No; at every length, the period at 40° was less than 5% longer than at 10°.",
+   "No; at every length, the period at 40° was shorter than the period at 10°."
+  ],
+  "correct_answer": "No; at every length, the period at 40° was less than 5% longer than at 10°.",
+  "explanation": "At each length the 40° period exceeds the 10° period by only a few hundredths of a second (for example, 2.07 s versus 2.01 s at 1.00 m, and 2.92 s versus 2.84 s at 2.00 m, about 3% longer), so the prediction is not supported. The 40° periods are not twice the 10° periods, they are not shorter, and the fact that the largest value is a 40° value says nothing about doubling.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a prediction against paired columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P1-Q4",
+  "passage_id": "sc5b-p1",
+  "passage_title": "Period of a Pendulum",
+  "format": "data_representation",
+  "passage": "A simple pendulum is a small, heavy bob hanging from a light string. The period of a pendulum is the time it takes the bob to swing from one side to the other and back again. Students built pendulums from a 200 g brass bob and strings of five different lengths, measured from the pivot to the center of the bob. For each length, they pulled the bob aside until the string made a given angle with the vertical (the release angle), released it, and timed 20 complete swings with a stopwatch. They divided each time by 20 to find the period. Each length was tested at a release angle of 10° and at a release angle of 40°. The 200 g bob was used in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Period of a pendulum for five string lengths at two release angles",
+   "colLabels": [
+    "Period at 10° release angle (s)",
+    "Period at 40° release angle (s)"
+   ],
+   "rowLabels": [
+    "Length 0.25 m",
+    "Length 0.50 m",
+    "Length 1.00 m",
+    "Length 1.50 m",
+    "Length 2.00 m"
+   ],
+   "cells": [
+    [
+     "1.00",
+     "1.03"
+    ],
+    [
+     "1.42",
+     "1.46"
+    ],
+    [
+     "2.01",
+     "2.07"
+    ],
+    [
+     "2.46",
+     "2.53"
+    ],
+    [
+     "2.84",
+     "2.92"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, when the length of a pendulum released at 10° is multiplied by 4, its period is multiplied by approximately:",
+  "choices": [
+   "1.4",
+   "2",
+   "4",
+   "16"
+  ],
+  "correct_answer": "2",
+  "explanation": "Two pairs of lengths in Table 1 differ by a factor of 4: 0.25 m and 1.00 m (1.00 s and 2.01 s), and 0.50 m and 2.00 m (1.42 s and 2.84 s). In each case the period is about \"2\" times as long. A factor of 1.4 is what doubling the length does (1.00 s to 1.42 s), and factors of 4 and 16 would require the period to grow as fast as or faster than the length, which the table does not show.",
+  "domain": "Interpretation of Data",
+  "subskill": "find a proportional relationship in a table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P1-Q5",
+  "passage_id": "sc5b-p1",
+  "passage_title": "Period of a Pendulum",
+  "format": "data_representation",
+  "passage": "A simple pendulum is a small, heavy bob hanging from a light string. The period of a pendulum is the time it takes the bob to swing from one side to the other and back again. Students built pendulums from a 200 g brass bob and strings of five different lengths, measured from the pivot to the center of the bob. For each length, they pulled the bob aside until the string made a given angle with the vertical (the release angle), released it, and timed 20 complete swings with a stopwatch. They divided each time by 20 to find the period. Each length was tested at a release angle of 10° and at a release angle of 40°. The 200 g bob was used in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Period of a pendulum for five string lengths at two release angles",
+   "colLabels": [
+    "Period at 10° release angle (s)",
+    "Period at 40° release angle (s)"
+   ],
+   "rowLabels": [
+    "Length 0.25 m",
+    "Length 0.50 m",
+    "Length 1.00 m",
+    "Length 1.50 m",
+    "Length 2.00 m"
+   ],
+   "cells": [
+    [
+     "1.00",
+     "1.03"
+    ],
+    [
+     "1.42",
+     "1.46"
+    ],
+    [
+     "2.01",
+     "2.07"
+    ],
+    [
+     "2.46",
+     "2.53"
+    ],
+    [
+     "2.84",
+     "2.92"
+    ]
+   ]
+  },
+  "prompt": "Suppose the students wanted to find out whether the mass of the bob affects the period of a pendulum. Which of the following sets of trials would best test this?",
+  "choices": [
+   "Bobs of 100 g, 200 g, and 400 g, each on a 1.00 m string released at 10°",
+   "A 200 g bob on strings of 0.50 m, 1.00 m, and 2.00 m, each released at 10°",
+   "Bobs of 100 g, 200 g, and 400 g on strings of 0.50 m, 1.00 m, and 2.00 m, respectively",
+   "A 200 g bob on a 1.00 m string released at angles of 10°, 20°, and 40°"
+  ],
+  "correct_answer": "Bobs of 100 g, 200 g, and 400 g, each on a 1.00 m string released at 10°",
+  "explanation": "To test the effect of mass, only the mass should change while length and release angle stay fixed, as in \"Bobs of 100 g, 200 g, and 400 g, each on a 1.00 m string released at 10°.\" Changing the mass and the length together would make it impossible to tell which caused any change in period, and trials that keep the 200 g bob vary only length or release angle, which Table 1 already examines.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a controlled test of one variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P2-Q1",
+  "passage_id": "sc5b-p2",
+  "passage_title": "Refraction of Light in Five Materials",
+  "format": "data_representation",
+  "passage": "When a beam of light passes at an angle from air into a transparent material, the beam bends. The angle of incidence is the angle between the incoming beam and a line perpendicular to the surface (the normal); the angle of refraction is the angle between the beam inside the material and the normal. Students aimed a narrow beam of red laser light from air onto a flat, polished face of blocks of five transparent materials. For each material, they measured the angle of refraction when the angle of incidence was 30° and again when it was 60°. Table 1 lists the results, along with the speed of light in each material taken from a reference book. The speed of light in air is 3.00 × 10⁸ m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Speed of light and angle of refraction in five materials",
+   "colLabels": [
+    "Speed of light (×10⁸ m/s)",
+    "Angle of refraction, 30° incidence",
+    "Angle of refraction, 60° incidence"
+   ],
+   "rowLabels": [
+    "Ice",
+    "Water",
+    "Acrylic",
+    "Flint glass",
+    "Diamond"
+   ],
+   "cells": [
+    [
+     "2.29",
+     "22.4°",
+     "41.4°"
+    ],
+    [
+     "2.26",
+     "22.1°",
+     "40.6°"
+    ],
+    [
+     "2.01",
+     "19.6°",
+     "35.5°"
+    ],
+    [
+     "1.85",
+     "18.0°",
+     "32.3°"
+    ],
+    [
+     "1.24",
+     "11.9°",
+     "21.0°"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at an angle of incidence of 60°, which material had the smallest angle of refraction?",
+  "choices": [
+   "Ice",
+   "Water",
+   "Flint glass",
+   "Diamond"
+  ],
+  "correct_answer": "Diamond",
+  "explanation": "In the 60° incidence column, the smallest entry is 21.0°, for \"Diamond.\" Flint glass (32.3°), water (40.6°), and ice (41.4°) all had larger angles of refraction; ice had the largest.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify an extreme value in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P2-Q2",
+  "passage_id": "sc5b-p2",
+  "passage_title": "Refraction of Light in Five Materials",
+  "format": "data_representation",
+  "passage": "When a beam of light passes at an angle from air into a transparent material, the beam bends. The angle of incidence is the angle between the incoming beam and a line perpendicular to the surface (the normal); the angle of refraction is the angle between the beam inside the material and the normal. Students aimed a narrow beam of red laser light from air onto a flat, polished face of blocks of five transparent materials. For each material, they measured the angle of refraction when the angle of incidence was 30° and again when it was 60°. Table 1 lists the results, along with the speed of light in each material taken from a reference book. The speed of light in air is 3.00 × 10⁸ m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Speed of light and angle of refraction in five materials",
+   "colLabels": [
+    "Speed of light (×10⁸ m/s)",
+    "Angle of refraction, 30° incidence",
+    "Angle of refraction, 60° incidence"
+   ],
+   "rowLabels": [
+    "Ice",
+    "Water",
+    "Acrylic",
+    "Flint glass",
+    "Diamond"
+   ],
+   "cells": [
+    [
+     "2.29",
+     "22.4°",
+     "41.4°"
+    ],
+    [
+     "2.26",
+     "22.1°",
+     "40.6°"
+    ],
+    [
+     "2.01",
+     "19.6°",
+     "35.5°"
+    ],
+    [
+     "1.85",
+     "18.0°",
+     "32.3°"
+    ],
+    [
+     "1.24",
+     "11.9°",
+     "21.0°"
+    ]
+   ]
+  },
+  "prompt": "In this study, which of the following did the students deliberately change for each material in order to obtain the two angle-of-refraction columns?",
+  "choices": [
+   "The speed of light in the material",
+   "The angle of incidence",
+   "The color of the laser light",
+   "The thickness of the block"
+  ],
+  "correct_answer": "The angle of incidence",
+  "explanation": "The passage says each material was tested with the angle of incidence at 30° and again at 60°, so \"The angle of incidence\" was changed. The same red laser was used throughout, block thickness is not described as varied, and the speed of light is a property of each material taken from a reference book, not something the students changed.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P2-Q3",
+  "passage_id": "sc5b-p2",
+  "passage_title": "Refraction of Light in Five Materials",
+  "format": "data_representation",
+  "passage": "When a beam of light passes at an angle from air into a transparent material, the beam bends. The angle of incidence is the angle between the incoming beam and a line perpendicular to the surface (the normal); the angle of refraction is the angle between the beam inside the material and the normal. Students aimed a narrow beam of red laser light from air onto a flat, polished face of blocks of five transparent materials. For each material, they measured the angle of refraction when the angle of incidence was 30° and again when it was 60°. Table 1 lists the results, along with the speed of light in each material taken from a reference book. The speed of light in air is 3.00 × 10⁸ m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Speed of light and angle of refraction in five materials",
+   "colLabels": [
+    "Speed of light (×10⁸ m/s)",
+    "Angle of refraction, 30° incidence",
+    "Angle of refraction, 60° incidence"
+   ],
+   "rowLabels": [
+    "Ice",
+    "Water",
+    "Acrylic",
+    "Flint glass",
+    "Diamond"
+   ],
+   "cells": [
+    [
+     "2.29",
+     "22.4°",
+     "41.4°"
+    ],
+    [
+     "2.26",
+     "22.1°",
+     "40.6°"
+    ],
+    [
+     "2.01",
+     "19.6°",
+     "35.5°"
+    ],
+    [
+     "1.85",
+     "18.0°",
+     "32.3°"
+    ],
+    [
+     "1.24",
+     "11.9°",
+     "21.0°"
+    ]
+   ]
+  },
+  "prompt": "Suppose a sixth material, in which the speed of light is 2.10 × 10⁸ m/s, had been tested at an angle of incidence of 30°. Based on Table 1, its angle of refraction would most likely have been:",
+  "choices": [
+   "less than 18.0°.",
+   "between 18.0° and 19.6°.",
+   "between 19.6° and 22.1°.",
+   "greater than 22.1°."
+  ],
+  "correct_answer": "between 19.6° and 22.1°.",
+  "explanation": "In Table 1, the angle of refraction at 30° incidence increases as the speed of light increases. A speed of 2.10 × 10⁸ m/s lies between acrylic (2.01, 19.6°) and water (2.26, 22.1°), so the angle should be \"between 19.6° and 22.1°.\" The range 18.0° to 19.6° belongs to speeds between flint glass and acrylic, below 18.0° to speeds slower than flint glass, and above 22.1° to speeds faster than water.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate using an ordering variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P2-Q4",
+  "passage_id": "sc5b-p2",
+  "passage_title": "Refraction of Light in Five Materials",
+  "format": "data_representation",
+  "passage": "When a beam of light passes at an angle from air into a transparent material, the beam bends. The angle of incidence is the angle between the incoming beam and a line perpendicular to the surface (the normal); the angle of refraction is the angle between the beam inside the material and the normal. Students aimed a narrow beam of red laser light from air onto a flat, polished face of blocks of five transparent materials. For each material, they measured the angle of refraction when the angle of incidence was 30° and again when it was 60°. Table 1 lists the results, along with the speed of light in each material taken from a reference book. The speed of light in air is 3.00 × 10⁸ m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Speed of light and angle of refraction in five materials",
+   "colLabels": [
+    "Speed of light (×10⁸ m/s)",
+    "Angle of refraction, 30° incidence",
+    "Angle of refraction, 60° incidence"
+   ],
+   "rowLabels": [
+    "Ice",
+    "Water",
+    "Acrylic",
+    "Flint glass",
+    "Diamond"
+   ],
+   "cells": [
+    [
+     "2.29",
+     "22.4°",
+     "41.4°"
+    ],
+    [
+     "2.26",
+     "22.1°",
+     "40.6°"
+    ],
+    [
+     "2.01",
+     "19.6°",
+     "35.5°"
+    ],
+    [
+     "1.85",
+     "18.0°",
+     "32.3°"
+    ],
+    [
+     "1.24",
+     "11.9°",
+     "21.0°"
+    ]
+   ]
+  },
+  "prompt": "For water, increasing the angle of incidence from 30° to 60° increased the angle of refraction by approximately:",
+  "choices": [
+   "9°",
+   "19°",
+   "30°",
+   "41°"
+  ],
+  "correct_answer": "19°",
+  "explanation": "For water, the angle of refraction rose from 22.1° to 40.6°, an increase of 18.5°, or about \"19°.\" The value 30° is the change in the angle of incidence, 41° is the 60° reading itself, and 9° is the increase for diamond (11.9° to 21.0°).",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference between columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P2-Q5",
+  "passage_id": "sc5b-p2",
+  "passage_title": "Refraction of Light in Five Materials",
+  "format": "data_representation",
+  "passage": "When a beam of light passes at an angle from air into a transparent material, the beam bends. The angle of incidence is the angle between the incoming beam and a line perpendicular to the surface (the normal); the angle of refraction is the angle between the beam inside the material and the normal. Students aimed a narrow beam of red laser light from air onto a flat, polished face of blocks of five transparent materials. For each material, they measured the angle of refraction when the angle of incidence was 30° and again when it was 60°. Table 1 lists the results, along with the speed of light in each material taken from a reference book. The speed of light in air is 3.00 × 10⁸ m/s.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Speed of light and angle of refraction in five materials",
+   "colLabels": [
+    "Speed of light (×10⁸ m/s)",
+    "Angle of refraction, 30° incidence",
+    "Angle of refraction, 60° incidence"
+   ],
+   "rowLabels": [
+    "Ice",
+    "Water",
+    "Acrylic",
+    "Flint glass",
+    "Diamond"
+   ],
+   "cells": [
+    [
+     "2.29",
+     "22.4°",
+     "41.4°"
+    ],
+    [
+     "2.26",
+     "22.1°",
+     "40.6°"
+    ],
+    [
+     "2.01",
+     "19.6°",
+     "35.5°"
+    ],
+    [
+     "1.85",
+     "18.0°",
+     "32.3°"
+    ],
+    [
+     "1.24",
+     "11.9°",
+     "21.0°"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, for every material tested, the light beam inside the material was closer to the normal than the incoming beam in air was. Do the data in Table 1 support this claim?",
+  "choices": [
+   "Yes; every angle of refraction was smaller than the angle of incidence used to produce it.",
+   "Yes; every material had a speed of light greater than 1.00 × 10⁸ m/s.",
+   "No; the angles of refraction at 60° incidence were larger than those at 30°.",
+   "No; ice and water had angles of refraction greater than 40° at 60° incidence."
+  ],
+  "correct_answer": "Yes; every angle of refraction was smaller than the angle of incidence used to produce it.",
+  "explanation": "A beam closer to the normal makes a smaller angle with it. Every 30°-incidence entry (11.9° to 22.4°) is below 30°, and every 60°-incidence entry (21.0° to 41.4°) is below 60°, so the claim is supported. That the 60° readings exceed the 30° readings, or that some exceed 40°, compares refraction angles with each other rather than with the angle of incidence, and the speed values do not describe the beam's direction.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a general claim against all rows",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P3-Q1",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, what was the time to color change at 30 °C?",
+  "choices": [
+   "16 s",
+   "31 s",
+   "60 s",
+   "118 s"
+  ],
+  "correct_answer": "31 s",
+  "explanation": "In Table 1, Trial 7 (Exp. 2, 30 °C) has a time of \"31 s.\" The times 16 s, 60 s, and 118 s are the Experiment 2 results at 40 °C, 20 °C, and 10 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P3-Q2",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "Which of the following was the same in all four trials of Experiment 2?",
+  "choices": [
+   "The temperature of the solutions",
+   "The KI concentration",
+   "The time to color change",
+   "The rate of the reaction"
+  ],
+  "correct_answer": "The KI concentration",
+  "explanation": "Every Experiment 2 trial used 0.10 M KI, so \"The KI concentration\" was held the same. Temperature was the variable being changed (10 °C to 40 °C), and the time to color change (118 s to 16 s), and therefore the rate, differed from trial to trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P3-Q3",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiments 1 and 2, a trial with 0.20 M KI at 30 °C and no catalyst would most likely have had a time to color change closest to:",
+  "choices": [
+   "8 s",
+   "15 s",
+   "30 s",
+   "60 s"
+  ],
+  "correct_answer": "15 s",
+  "explanation": "Experiment 1 shows that raising KI from 0.10 M to 0.20 M at 20 °C cut the time in half (60 s to 30 s). Experiment 2 shows that raising the temperature from 20 °C to 30 °C at 0.10 M also cut the time about in half (60 s to 31 s). Combining both changes should cut 60 s to about one-fourth, near \"15 s.\" The value 30 s accounts for only the concentration change, 60 s for neither change, and 8 s would require a third halving.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine two trends to predict a result",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P3-Q4",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "If a trial had been run at 25 °C with 0.10 M KI and no catalyst, the time to color change would most likely have been:",
+  "choices": [
+   "less than 31 s.",
+   "between 31 s and 60 s.",
+   "between 60 s and 118 s.",
+   "greater than 118 s."
+  ],
+  "correct_answer": "between 31 s and 60 s.",
+  "explanation": "In Experiment 2 the time decreased steadily as temperature increased: 60 s at 20 °C and 31 s at 30 °C. A temperature of 25 °C lies between these, so the time should be \"between 31 s and 60 s.\" Times between 60 s and 118 s correspond to temperatures between 10 °C and 20 °C, and times above 118 s or below 31 s to temperatures outside the 10 °C to 30 °C range.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within an experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P3-Q5",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "Do the results of Experiment 3 support the statement that ammonium molybdate increases the rate of this reaction?",
+  "choices": [
+   "Yes; the time to color change decreased each time a drop of the catalyst was added.",
+   "Yes; the time to color change increased each time a drop of the catalyst was added.",
+   "No; the time to color change decreased each time a drop of the catalyst was added.",
+   "No; the time to color change was the same with 3 drops of catalyst as with none."
+  ],
+  "correct_answer": "Yes; the time to color change decreased each time a drop of the catalyst was added.",
+  "explanation": "In Experiment 3 the time fell from 60 s with no catalyst to 38 s, 27 s, and 20 s with 1, 2, and 3 drops. A shorter time means a faster reaction, so the statement is supported. The times did not increase and did not stay the same, and a decreasing time cannot count against a faster rate, because the passage defines a shorter time as a faster reaction.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a conclusion from one experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P3-Q6",
+  "passage_id": "sc5b-p3",
+  "passage_title": "An Iodine Clock Reaction",
+  "format": "research_summaries",
+  "passage": "In an iodine clock reaction, hydrogen peroxide (H₂O₂) reacts with iodide ions (I⁻) from potassium iodide (KI) to produce iodine (I₂). The reaction mixture also contains starch and a small, fixed amount of sodium thiosulfate. Thiosulfate immediately converts any iodine back to iodide, so no iodine builds up until all the thiosulfate is used. At that moment, iodine combines with starch and the mixture suddenly turns blue-black. The shorter the time until the color change, the faster the reaction.\n\nIn every trial, 25 mL of a KI solution containing starch and 0.0010 mol of sodium thiosulfate was mixed with 25 mL of an acidified 0.50 M H₂O₂ solution, and the time until the color change was recorded. Unless stated otherwise, the KI concentration was 0.10 M, both solutions were at 20 °C, and no catalyst was added.\n\nExperiment 1\nThe KI concentration was varied.\n\nExperiment 2\nBoth solutions were brought to the same temperature before mixing, and the temperature was varied.\n\nExperiment 3\nDrops of an ammonium molybdate solution, which acts as a catalyst for this reaction, were added to the KI solution before mixing. The number of drops was varied.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Time to color change in Experiments 1-3",
+   "colLabels": [
+    "KI concentration (M)",
+    "Temperature (°C)",
+    "Catalyst (drops)",
+    "Time to color change (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 2, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 3, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "0.05",
+     "20",
+     "0",
+     "120"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.15",
+     "20",
+     "0",
+     "40"
+    ],
+    [
+     "0.20",
+     "20",
+     "0",
+     "30"
+    ],
+    [
+     "0.10",
+     "10",
+     "0",
+     "118"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "30",
+     "0",
+     "31"
+    ],
+    [
+     "0.10",
+     "40",
+     "0",
+     "16"
+    ],
+    [
+     "0.10",
+     "20",
+     "0",
+     "60"
+    ],
+    [
+     "0.10",
+     "20",
+     "1",
+     "38"
+    ],
+    [
+     "0.10",
+     "20",
+     "2",
+     "27"
+    ],
+    [
+     "0.10",
+     "20",
+     "3",
+     "20"
+    ]
+   ]
+  },
+  "prompt": "Why was it important that the same amount of sodium thiosulfate be used in every trial?",
+  "choices": [
+   "So that the color change in each trial marked the production of the same amount of iodine",
+   "So that the H₂O₂ solution in each trial would be at the same temperature",
+   "So that the catalyst in Experiment 3 would be used up before the color change",
+   "So that the starch in each trial would combine with iodine as soon as it formed"
+  ],
+  "correct_answer": "So that the color change in each trial marked the production of the same amount of iodine",
+  "explanation": "The color appears only after the thiosulfate is used up, and thiosulfate is used up by converting iodine back to iodide. With the same amount of thiosulfate in every trial, the color change always marks the same amount of iodine produced, which is what makes the times comparable: \"So that the color change in each trial marked the production of the same amount of iodine.\" Thiosulfate does not set the temperature, a catalyst is not used up, and thiosulfate actually delays rather than speeds the starch-iodine color.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain the purpose of a fixed quantity in a procedure",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P4-Q1",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, which cup held the warmest water after 30 minutes?",
+  "choices": [
+   "Aluminum",
+   "Glass",
+   "Ceramic",
+   "Foam"
+  ],
+  "correct_answer": "Foam",
+  "explanation": "In the 30 min column for Experiment 1, the foam cup reads 61.9 °C, higher than ceramic (48.3 °C), glass (44.4 °C), and aluminum (38.1 °C), so the answer is \"Foam.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "identify an extreme value in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P4-Q2",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "Which variable was investigated in Experiment 3?",
+  "choices": [
+   "The material of the cup",
+   "The volume of water in the cup",
+   "Whether the cup had a lid",
+   "The starting temperature of the water"
+  ],
+  "correct_answer": "The volume of water in the cup",
+  "explanation": "Experiment 3 used foam cups holding 100 mL, 200 mL, and 400 mL, so it investigated \"The volume of water in the cup.\" The material was studied in Experiment 1 and the lid in Experiment 2, and every trial started at 80.0 °C.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable of an experiment",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P4-Q3",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 3, as the volume of water increased, the temperature of the water after 30 minutes:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased, then decreased.",
+   "remained the same."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "In Experiment 3 the 30-minute temperatures were 52.9 °C for 100 mL, 61.9 °C for 200 mL, and 68.6 °C for 400 mL, so the temperature \"increased only\" as volume increased: larger volumes of water stayed warmer.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend across trials",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P4-Q4",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, the decrease in water temperature over 30 minutes in the cup with a lid was approximately what fraction of the decrease in the cup without a lid?",
+  "choices": [
+   "One-fourth",
+   "One-half",
+   "The same",
+   "Twice"
+  ],
+  "correct_answer": "One-half",
+  "explanation": "Both cups started at 80.0 °C. The cup with a lid fell to 70.1 °C, a decrease of 9.9 °C; the cup without a lid fell to 61.9 °C, a decrease of 18.1 °C. Since 9.9 is about 0.55 of 18.1, the fraction is about \"One-half.\" One-fourth would be a decrease of only about 4.5 °C, and comparing the final temperatures (70.1 and 61.9) instead of the decreases would wrongly suggest they were nearly the same.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute and compare changes from a starting value",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P4-Q5",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, in the foam cup without a lid, the water temperature decreased by the same amount during each 10-minute interval. Do the results support this claim?",
+  "choices": [
+   "Yes; the temperature decreased by about 6 °C during every 10-minute interval.",
+   "Yes; the temperature after 30 minutes was below the temperature after 20 minutes.",
+   "No; the temperature decreased by a smaller amount during each later interval.",
+   "No; the temperature decreased by a larger amount during each later interval."
+  ],
+  "correct_answer": "No; the temperature decreased by a smaller amount during each later interval.",
+  "explanation": "The foam cup without a lid went from 80.0 °C to 73.2 °C (a 6.8 °C drop), then to 67.2 °C (6.0 °C), then to 61.9 °C (5.3 °C). Each drop is smaller than the one before, so the claim is not supported. The drops are not equal and are not growing, and a falling temperature by itself says nothing about whether the drops are equal.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim about a rate of change",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P4-Q6",
+  "passage_id": "sc5b-p4",
+  "passage_title": "Cooling of Hot Water in Cups",
+  "format": "research_summaries",
+  "passage": "Hot water in a cup loses heat to the surrounding air through the walls of the cup and from its open surface. Students studied how quickly hot water cools in different situations. In each trial, water was heated to 80.0 °C and poured into a cup, a thermometer was placed in the center of the water, and the water temperature was recorded 10, 20, and 30 minutes later. The room was kept at 20 °C. All cups had the same shape and wall thickness. Unless stated otherwise, each cup held 200 mL of water and had no lid.\n\nExperiment 1\nCups made of four different materials were tested: aluminum, glass, ceramic, and polystyrene foam.\n\nExperiment 2\nTwo foam cups were tested, one without a lid and one with a tight-fitting foam lid.\n\nExperiment 3\nFoam cups holding 100 mL, 200 mL, and 400 mL of water were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Water temperature after 10, 20, and 30 minutes",
+   "colLabels": [
+    "10 min (°C)",
+    "20 min (°C)",
+    "30 min (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1, aluminum",
+    "Exp. 1, glass",
+    "Exp. 1, ceramic",
+    "Exp. 1, foam",
+    "Exp. 2, foam, no lid",
+    "Exp. 2, foam, lid",
+    "Exp. 3, 100 mL",
+    "Exp. 3, 200 mL",
+    "Exp. 3, 400 mL"
+   ],
+   "cells": [
+    [
+     "60.2",
+     "47.0",
+     "38.1"
+    ],
+    [
+     "64.4",
+     "52.9",
+     "44.4"
+    ],
+    [
+     "66.7",
+     "56.4",
+     "48.3"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "76.5",
+     "73.2",
+     "70.1"
+    ],
+    [
+     "69.1",
+     "60.2",
+     "52.9"
+    ],
+    [
+     "73.2",
+     "67.2",
+     "61.9"
+    ],
+    [
+     "75.9",
+     "72.2",
+     "68.6"
+    ]
+   ]
+  },
+  "prompt": "The students want to find out whether cup material affects cooling when the cup has a lid. Which trial should they run and compare with the foam cup with a lid in Experiment 2?",
+  "choices": [
+   "An aluminum cup without a lid holding 200 mL of water",
+   "An aluminum cup with a lid holding 200 mL of water",
+   "An aluminum cup with a lid holding 400 mL of water",
+   "A foam cup with a lid holding 400 mL of water"
+  ],
+  "correct_answer": "An aluminum cup with a lid holding 200 mL of water",
+  "explanation": "The lidded foam cup held 200 mL. A fair comparison changes only the material, so the new trial should be \"An aluminum cup with a lid holding 200 mL of water.\" An aluminum cup with a lid holding 400 mL changes both material and volume, a foam cup holding 400 mL does not change the material at all, and an aluminum cup without a lid was already tested in Experiment 1 and does not involve a lid.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a controlled comparison",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P5-Q1",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 1, what was the resistance of the 1.50 m nichrome wire?",
+  "choices": [
+   "2.80 Ω",
+   "5.60 Ω",
+   "8.40 Ω",
+   "22.4 Ω"
+  ],
+  "correct_answer": "8.40 Ω",
+  "explanation": "In Table 1, the Experiment 1 row for a length of 1.50 m shows \"8.40 Ω.\" The values 2.80 Ω and 5.60 Ω belong to the 0.50 m and 1.00 m wires, and 22.4 Ω is the thinnest wire in Experiment 2.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P5-Q2",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 2, each time the diameter of the nichrome wire was doubled, the resistance was divided by approximately:",
+  "choices": [
+   "2",
+   "4",
+   "8",
+   "16"
+  ],
+  "correct_answer": "4",
+  "explanation": "Doubling the diameter from 0.25 mm to 0.50 mm lowered the resistance from 22.4 Ω to 5.60 Ω, and doubling it again to 1.00 mm lowered it to 1.40 Ω. Since 22.4 ÷ 5.60 = 4 and 5.60 ÷ 1.40 = 4, the resistance was divided by about \"4\" each time. Dividing by 2 is what halving the length does in Experiment 1, and 8 or 16 would be much larger drops than measured.",
+  "domain": "Interpretation of Data",
+  "subskill": "find a proportional relationship in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P5-Q3",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, the resistance of a 2.00 m nichrome wire with a diameter of 0.50 mm would most likely be closest to:",
+  "choices": [
+   "8.40 Ω",
+   "11.2 Ω",
+   "14.0 Ω",
+   "22.4 Ω"
+  ],
+  "correct_answer": "11.2 Ω",
+  "explanation": "In Experiment 1 the resistance is proportional to length: 1.40 Ω per 0.25 m, so 5.60 Ω per 1.00 m. A 2.00 m wire should have twice the 1.00 m value, about \"11.2 Ω.\" The value 8.40 Ω is the 1.50 m wire, 14.0 Ω corresponds to 2.50 m, and 22.4 Ω is the 0.25 mm wire from Experiment 2.",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a linear trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P5-Q4",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "Which variable was held constant in Experiment 1 but varied in Experiment 2?",
+  "choices": [
+   "Material",
+   "Length",
+   "Diameter",
+   "Temperature"
+  ],
+  "correct_answer": "Diameter",
+  "explanation": "Every Experiment 1 wire had a diameter of 0.50 mm, while Experiment 2 used diameters of 0.25 mm, 0.50 mm, and 1.00 mm, so the answer is \"Diameter.\" Length was varied in Experiment 1 and held constant in Experiment 2, the material was nichrome in both, and the temperature was 20 °C throughout.",
+  "domain": "Scientific Investigation",
+  "subskill": "compare the designs of two experiments",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P5-Q5",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, which of the following wires would have the same resistance as the 0.25 m nichrome wire in Experiment 1?",
+  "choices": [
+   "A 0.50 m nichrome wire with a diameter of 0.50 mm",
+   "A 1.00 m constantan wire with a diameter of 0.50 mm",
+   "A 1.00 m nichrome wire with a diameter of 0.25 mm",
+   "A 1.00 m nichrome wire with a diameter of 1.00 mm"
+  ],
+  "correct_answer": "A 1.00 m nichrome wire with a diameter of 1.00 mm",
+  "explanation": "The 0.25 m nichrome wire in Experiment 1 measured 1.40 Ω. In Experiment 2, \"A 1.00 m nichrome wire with a diameter of 1.00 mm\" also measured 1.40 Ω. The 0.50 m nichrome wire measured 2.80 Ω, the 1.00 m constantan wire 2.50 Ω, and the 1.00 m nichrome wire with a 0.25 mm diameter 22.4 Ω.",
+  "domain": "Interpretation of Data",
+  "subskill": "match values across experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P5-Q6",
+  "passage_id": "sc5b-p5",
+  "passage_title": "Resistance of Metal Wires",
+  "format": "research_summaries",
+  "passage": "The electrical resistance of a wire, measured in ohms (Ω), describes how strongly the wire opposes the flow of electric current. Students measured the resistance of wires with a digital ohmmeter. All measurements were made at 20 °C, and each wire was stretched straight between two clamps.\n\nExperiment 1\nNichrome wires with a diameter of 0.50 mm were cut to four different lengths.\n\nExperiment 2\nNichrome wires 1.00 m long with three different diameters were tested.\n\nExperiment 3\nWires 1.00 m long with a diameter of 0.50 mm, made of four different metals, were tested.\n\nThe results are shown in Table 1.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Resistance of wires in Experiments 1-3",
+   "colLabels": [
+    "Material",
+    "Length (m)",
+    "Diameter (mm)",
+    "Resistance (Ω)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Wire 1",
+    "Exp. 1, Wire 2",
+    "Exp. 1, Wire 3",
+    "Exp. 1, Wire 4",
+    "Exp. 2, Wire 5",
+    "Exp. 2, Wire 6",
+    "Exp. 2, Wire 7",
+    "Exp. 3, Wire 8",
+    "Exp. 3, Wire 9",
+    "Exp. 3, Wire 10",
+    "Exp. 3, Wire 11"
+   ],
+   "cells": [
+    [
+     "nichrome",
+     "0.25",
+     "0.50",
+     "1.40"
+    ],
+    [
+     "nichrome",
+     "0.50",
+     "0.50",
+     "2.80"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.50",
+     "0.50",
+     "8.40"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.25",
+     "22.4"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "1.00",
+     "1.40"
+    ],
+    [
+     "copper",
+     "1.00",
+     "0.50",
+     "0.086"
+    ],
+    [
+     "iron",
+     "1.00",
+     "0.50",
+     "0.49"
+    ],
+    [
+     "constantan",
+     "1.00",
+     "0.50",
+     "2.50"
+    ],
+    [
+     "nichrome",
+     "1.00",
+     "0.50",
+     "5.60"
+    ]
+   ]
+  },
+  "prompt": "A student predicted that a 1.00 m copper wire with a diameter of 0.25 mm would have a lower resistance than the 1.00 m nichrome wire with a diameter of 1.00 mm. Based on Table 1, is this prediction likely correct?",
+  "choices": [
+   "Yes; halving the diameter of the copper wire would multiply its 0.086 Ω by about 4, still far below 1.40 Ω.",
+   "Yes; halving the diameter of the copper wire would lower its resistance to below its 0.086 Ω value.",
+   "No; halving the diameter of the copper wire would raise its resistance to about 22.4 Ω, above 1.40 Ω.",
+   "No; a wire with a diameter of 0.25 mm has a higher resistance than one of 1.00 mm in every experiment."
+  ],
+  "correct_answer": "Yes; halving the diameter of the copper wire would multiply its 0.086 Ω by about 4, still far below 1.40 Ω.",
+  "explanation": "Experiment 3 gives 0.086 Ω for 1.00 m of 0.50 mm copper. Experiment 2 shows that halving the diameter multiplies resistance by about 4, giving about 0.34 Ω for 0.25 mm copper, which is still far below the 1.40 Ω of the thick nichrome wire. A thinner wire has a higher, not lower, resistance; 22.4 Ω is the value for thin nichrome, not copper; and the only 0.25 mm wire tested was nichrome, so the material difference must be taken into account.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "combine two experiments to evaluate a prediction",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P6-Q1",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "According to Hypothesis 1, anthocyanins benefit a tree in autumn mainly by:",
+  "choices": [
+   "protecting leaves from strong sunlight so that more nutrients can be recovered from them.",
+   "warning aphids that the tree is well defended so that the aphids lay their eggs on other trees.",
+   "replacing chlorophyll so that the leaves can continue to make food through the winter.",
+   "making carotenoid pigments visible so that the leaves turn yellow before they fall."
+  ],
+  "correct_answer": "protecting leaves from strong sunlight so that more nutrients can be recovered from them.",
+  "explanation": "Hypothesis 1 says the red layer absorbs light and protects the leaf, \"so the leaf stays alive longer and the tree recovers more of its nitrogen.\" Warning aphids is Hypothesis 2's explanation. Neither hypothesis says anthocyanins replace chlorophyll, and the passage says carotenoids become visible because chlorophyll breaks down, not because of anthocyanins.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify the mechanism in one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P6-Q2",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "Supporters of both hypotheses would most likely agree with which of the following statements?",
+  "choices": [
+   "Red pigment protects leaves from damage by cold, bright sunlight.",
+   "Aphids prefer to lay their eggs on trees with yellow leaves.",
+   "Making red pigment costs the tree energy that it could otherwise use.",
+   "The reddest leaves on a tree are the ones receiving the most sunlight."
+  ],
+  "correct_answer": "Making red pigment costs the tree energy that it could otherwise use.",
+  "explanation": "Hypothesis 1 says \"Making anthocyanins uses energy,\" and Hypothesis 2 says the signal \"is costly\" because making anthocyanins uses energy, so both accept that making the pigment has an energy cost. Protection from sunlight and the reddest leaves being the sunniest belong to Hypothesis 1 only; aphids preferring yellow trees belongs to Hypothesis 2 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P6-Q3",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "Researchers found that, on individual trees, leaves on the sunny south side turned much redder than leaves on the shaded north side. This finding is predicted by:",
+  "choices": [
+   "Hypothesis 1 only.",
+   "Hypothesis 2 only.",
+   "both Hypothesis 1 and Hypothesis 2.",
+   "neither Hypothesis 1 nor Hypothesis 2."
+  ],
+  "correct_answer": "Hypothesis 1 only.",
+  "explanation": "Hypothesis 1 states that \"Leaves receiving the most sunlight need the most protection and should become the reddest,\" which predicts redder sunny leaves, so the answer is \"Hypothesis 1 only.\" Hypothesis 2 treats redness as a signal from the tree as a whole and says nothing about how sunlight affects individual leaves, so it does not predict a difference between the two sides of one tree.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match an observation to a viewpoint's prediction",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P6-Q4",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "In a laboratory test, aphids released into a cage containing red cards and yellow cards landed far more often on the yellow cards. How does this result relate to the hypotheses?",
+  "choices": [
+   "It is consistent with Hypothesis 2, because aphids that avoid red would land on yellow.",
+   "It is consistent with Hypothesis 1, because red pigment absorbs the light that aphids see.",
+   "It is inconsistent with Hypothesis 2, because aphids should prefer the red cards.",
+   "It is inconsistent with Hypothesis 1, because red leaves should attract more aphids."
+  ],
+  "correct_answer": "It is consistent with Hypothesis 2, because aphids that avoid red would land on yellow.",
+  "explanation": "Hypothesis 2 claims that aphids avoid red trees and lay eggs on yellow trees, so aphids choosing yellow over red is consistent with it. Hypothesis 2 does not predict a preference for red, and Hypothesis 1 says nothing about which colors attract aphids, so the result neither supports nor contradicts Hypothesis 1.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "relate a new result to each viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P6-Q5",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "Which of the following findings, if true, would most weaken Hypothesis 1?",
+  "choices": [
+   "Leaves that turned red recovered no more nitrogen than leaves in equal sunlight on the same tree that stayed yellow.",
+   "Trees with the reddest autumn leaves had the fewest aphid eggs on them in the following spring.",
+   "Anthocyanins were found to absorb the wavelengths of light that most damage a leaf's light-capturing machinery.",
+   "Leaves turned redder in autumns with many cold, bright days than in autumns that were mild and cloudy."
+  ],
+  "correct_answer": "Leaves that turned red recovered no more nitrogen than leaves in equal sunlight on the same tree that stayed yellow.",
+  "explanation": "Hypothesis 1 claims the benefit of red pigment is that the protected leaf lives longer and the tree recovers more nitrogen. If red leaves recovered no more nitrogen than yellow leaves in the same light, the claimed benefit is missing, which weakens Hypothesis 1. Light absorption by anthocyanins and redder leaves in cold, bright autumns support Hypothesis 1, and fewer aphid eggs on red trees bears on Hypothesis 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that weakens a viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P6-Q6",
+  "passage_id": "sc5b-p6",
+  "passage_title": "Red Leaves in Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "In autumn, the leaves of many deciduous trees change color before they fall. Yellow and orange colors come from carotenoid pigments that are present in the leaf all summer and become visible as the green pigment chlorophyll breaks down. Red colors are different: they come from anthocyanin pigments, which most of these trees make new in autumn, in the last weeks before the leaves drop. During those same weeks, the tree moves nitrogen and other nutrients out of the dying leaves and into its branches and roots, where they are stored for the next spring. Two hypotheses explain why trees make red pigment in leaves they are about to lose.\n\nHypothesis 1\nAnthocyanins act as a sunscreen. As chlorophyll breaks down, the leaf's remaining light-capturing machinery is easily damaged by strong sunlight, especially on cold, bright days. Damaged leaves die early, before the tree has finished moving nutrients out of them. A layer of red pigment absorbs some of the incoming light and protects the leaf, so the leaf stays alive longer and the tree recovers more of its nitrogen. Leaves receiving the most sunlight need the most protection and should become the reddest. Making anthocyanins uses energy, which the tree spends only because the benefit is greater.\n\nHypothesis 2\nRed color is a warning signal to aphids. Many aphid species fly to trees in autumn and lay eggs on them; the young that hatch in spring feed on the tree. A tree with strong chemical defenses can afford to spend energy on making anthocyanins, so an intensely red tree is advertising, as a whole, that it is well defended. Aphids that avoid red trees and lay their eggs on yellow trees leave more surviving offspring. The signal is honest because it is costly: making anthocyanins uses energy that only a vigorous, well-defended tree can spare.",
+  "prompt": "Which of the following studies would best test Hypothesis 2?",
+  "choices": [
+   "Measuring how much nitrogen leaves on the sunny and shaded sides of one tree recover before they drop",
+   "Counting the aphid eggs laid in autumn on trees of one species whose leaves turn red and on trees that turn yellow",
+   "Measuring the amount of carotenoid pigment in the leaves of one tree species in summer and again in the autumn",
+   "Comparing how much sunlight reaches the leaves on the south and north sides of many trees of one species"
+  ],
+  "correct_answer": "Counting the aphid eggs laid in autumn on trees of one species whose leaves turn red and on trees that turn yellow",
+  "explanation": "Hypothesis 2 predicts that aphids avoid red trees and lay their eggs on yellow trees, so counting eggs on red and yellow trees of the same species directly tests it. Nitrogen recovery on sunny and shaded sides and the sunlight reaching each side bear on Hypothesis 1, and carotenoid amounts do not distinguish either hypothesis.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a study that tests a hypothesis",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P7-Q1",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "According to Scientist 1, the water that flows from the spring comes from:",
+  "choices": [
+   "rain and snowmelt that soaked into the ground in the surrounding hills.",
+   "water released from a body of magma as it cools and solidifies.",
+   "seawater that seeped into the fault and was carried inland.",
+   "deep groundwater that has been trapped in the crust since the rocks formed."
+  ],
+  "correct_answer": "rain and snowmelt that soaked into the ground in the surrounding hills.",
+  "explanation": "Scientist 1 states that \"Rain and snowmelt soak into the ground in the surrounding hills\" and seep down along the fault, matching \"rain and snowmelt that soaked into the ground in the surrounding hills.\" Scientist 1 rejects magma as a source, and neither scientist mentions seawater or ancient trapped water.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a detail of one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5b-P7-Q2",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "Based on the passage, how deep would the water have to descend for Scientist 1's explanation to account for the spring's temperature?",
+  "choices": [
+   "About 0.5 km",
+   "About 2.2 km",
+   "About 2.7 km",
+   "About 5.6 km"
+  ],
+  "correct_answer": "About 2.2 km",
+  "explanation": "The water must warm from the region's surface temperature of 12 °C to 68 °C, a rise of 56 °C. At the normal rate of 25 °C per kilometer, that requires 56 ÷ 25 = 2.24 km, \"About 2.2 km.\" Dividing 68 by 25 ignores the 12 °C starting temperature and gives 2.7 km; 5.6 km results from using 10 °C per kilometer; and 0.5 km is far too shallow to reach 68 °C at the normal rate.",
+  "domain": "Interpretation of Data",
+  "subskill": "calculate from values in the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P7-Q3",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that:",
+  "choices": [
+   "the spring's heat comes from magma about 6 km below the surface.",
+   "the rock away from the fault warms with depth at the normal rate.",
+   "the heated water rises to the surface along the fault.",
+   "the helium in the spring water came from Earth's mantle."
+  ],
+  "correct_answer": "the heated water rises to the surface along the fault.",
+  "explanation": "Scientist 1 says the warmed water \"rises quickly back up the fault,\" and Scientist 2 says heated groundwater \"rises to the surface along the fault,\" so both agree that \"the heated water rises to the surface along the fault.\" Magma as the heat source and mantle helium are Scientist 2's claims only, and a normal temperature increase away from the fault is Scientist 1's claim only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P7-Q4",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "Suppose the helium dissolved in the spring water was found to have the same ratio of helium-3 to helium-4 as typical crustal rocks. This finding would:",
+  "choices": [
+   "support Scientist 1 and weaken Scientist 2.",
+   "support Scientist 2 and weaken Scientist 1.",
+   "support both scientists equally.",
+   "weaken both scientists equally."
+  ],
+  "correct_answer": "support Scientist 1 and weaken Scientist 2.",
+  "explanation": "Scientist 1 predicts that the spring's helium should have the low ratio found in crustal rocks, and Scientist 2 predicts an elevated ratio from mantle helium carried by magma. A crustal ratio matches Scientist 1's prediction and contradicts Scientist 2's, so it would \"support Scientist 1 and weaken Scientist 2.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate new evidence against both predictions",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5b-P7-Q5",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "A seismic survey finds a zone about 6 km below the spring in which seismic waves slow down sharply, as they do when passing through partly molten rock. This finding is most consistent with the viewpoint of:",
+  "choices": [
+   "Scientist 1, because water seeping along the fault reaches a depth of 6 km.",
+   "Scientist 1, because rock at 6 km is heated only at the normal rate.",
+   "Scientist 2, because a body of unsolidified magma lies about 6 km down.",
+   "Scientist 2, because heated groundwater rises along the fault from 6 km."
+  ],
+  "correct_answer": "Scientist 2, because a body of unsolidified magma lies about 6 km down.",
+  "explanation": "Scientist 2 proposes \"a body of magma, about 6 km below the surface, that has not yet solidified,\" which matches a zone of partly molten rock at that depth. Scientist 1 proposes no molten rock, and by Scientist 1's account the water needs to descend only a little over 2 km. Scientist 2 says groundwater is heated by rock above the magma, not that it rises from 6 km, and that detail would not explain slow seismic waves.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a new observation to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5b-P7-Q6",
+  "passage_id": "sc5b-p7",
+  "passage_title": "Heat Source of a Hot Spring",
+  "format": "conflicting_viewpoints",
+  "passage": "A hot spring flows from the ground where a large fault (a fracture along which rocks have moved) reaches the surface in a hilly region. The spring water is 68 °C, and its temperature has stayed within 1 °C of that value for the 120 years it has been recorded. The average yearly air temperature in the region is 12 °C. The youngest volcanic rocks within 100 km of the spring are about 30 million years old. In most of Earth's continental crust, temperature increases with depth by about 25 °C per kilometer. Two scientists explain the source of the spring's heat.\n\nScientist 1\nThe spring is heated only by the normal increase of temperature with depth. Rain and snowmelt soak into the ground in the surrounding hills and seep downward through cracked rock along the fault. The water descends until it is warmed to the temperature of the deep rock, then rises quickly back up the fault, losing little heat on the way. Away from the fault, the temperature of the rock increases with depth at the normal rate. Because the water comes from the atmosphere and has touched only crustal rock, the helium dissolved in it should have the low ratio of helium-3 to helium-4 found in crustal rocks.\n\nScientist 2\nThe spring is heated by a body of magma, about 6 km below the surface, that has not yet solidified. Groundwater is heated by the hot rock above the magma and rises to the surface along the fault. Heat from the magma has warmed the crust throughout the area, so the temperature of the rock increases with depth far faster than 25 °C per kilometer, even away from the fault. Magma carries helium from Earth's mantle, which has a ratio of helium-3 to helium-4 about 100 times higher than that of crustal rocks, so the spring water should contain helium with an elevated ratio.",
+  "prompt": "Which of the following measurements would best help decide between the two viewpoints?",
+  "choices": [
+   "The temperature of the spring water measured at several different times during the year",
+   "The rise in rock temperature per kilometer of depth in a borehole 5 km from the fault",
+   "The age of the volcanic rocks that lie about 100 km from the spring",
+   "The volume of water that flows out of the spring each day over a full year"
+  ],
+  "correct_answer": "The rise in rock temperature per kilometer of depth in a borehole 5 km from the fault",
+  "explanation": "Away from the fault, Scientist 1 predicts the normal increase of about 25 °C per kilometer, while Scientist 2 predicts an increase \"far faster than 25 °C per kilometer, even away from the fault.\" A borehole 5 km from the fault therefore distinguishes them. The spring's temperature through the year and its flow rate are not predicted differently by the two scientists, and the age of the distant volcanic rocks is already given and is not disputed.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that discriminates between viewpoints",
+  "difficulty": "medium"
+ }
+]

@@ -10070,6 +10070,60 @@
           "verdict": "verify-answer-key-spread --batch ok; key strictly longest 4/21 (19%), shortest 6/21 (29%); 0 option words repeated across kept items."
         }
       }
+    },
+    {
+      "id": "act-science-v5a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "data_representation",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v5a",
+      "contentSha": "7dc4f7f055036f3933ecdb218f1a43e435d634d5f7bd1ae2fcb2c8e9ee052057",
+      "status": "staged-for-human-review",
+      "note": "ACT Science v5 section (7 passages, 40) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE. Release by act-science-v5.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7dc4f7f055036f3933ecdb218f1a43e435d634d5f7bd1ae2fcb2c8e9ee052057",
+          "verdict": "act-bank-helper check science: structure OK (DR 2, RS 3, CV 2)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader with data tables: 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT Science."
+        }
+      }
+    },
+    {
+      "id": "act-science-v5b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "data_representation",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v5b",
+      "contentSha": "70f00c20cb5ffa5fa03cd64c3a4ed078209f3b0787928e92b95520a59201b653",
+      "status": "staged-for-human-review",
+      "note": "ACT Science v5 section (7 passages, 40) by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE. Release by act-science-v5.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "70f00c20cb5ffa5fa03cd64c3a4ed078209f3b0787928e92b95520a59201b653",
+          "verdict": "act-bank-helper check science: structure OK (DR 2, RS 3, CV 2)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader with data tables: 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT Science."
+        }
+      }
     }
   ],
   "auditedCohorts": [
