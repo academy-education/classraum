@@ -9448,6 +9448,35 @@
           "verdict": "NOT RUN by an independent grader; author read only."
         }
       }
+    },
+    {
+      "id": "isee-essay-v5-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "isee",
+      "section": "writing",
+      "task": "essay",
+      "family": "production",
+      "cohort": "essay-v5",
+      "contentSha": "e66d6950c1954579523a3a2765919a7442a188fed9d8e77dbf6f9be5942d9562",
+      "status": "shipped",
+      "note": "Eight ISEE Essay prompts (IE11-IE18), written in-session by Claude after the owner chose essay prompts as the next no-review addition (2026-10-22). ISEE writing had 8 prompts = 8 forms. Five opinion prompts in the house two-position form, three narrative/descriptive. None is a school-policy question. Unscored on the real exam; sent to schools.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e66d6950c1954579523a3a2765919a7442a188fed9d8e77dbf6f9be5942d9562",
+          "verdict": "check-essay-shape.mjs essay-prompts-v5.json against v1-v4 (44 prompts): 8 essays, shape ok, no theme collision. First run FAILED 3: IE11 (one activity vs many, 58% with SSAT SW2a) and IE18 (repair vs replace, 69% with SSAT SW4a) were the same ideas as live SSAT prompts, so a student sitting both tests could meet them twice; both were replaced (finishing books; big vs quiet celebrations). IE13 (53% with SW2a/SW12a on shared words) was reworded. Break-test: a planted copy of IE1 fails at 100%."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "e66d6950c1954579523a3a2765919a7442a188fed9d8e77dbf6f9be5942d9562",
+          "verdict": "ONE reader, the author: Claude re-read all 8 against the v2 panel briefs (general, fairness/redundancy, grader-discriminability). Each opinion prompt states two positions a 12-year-old can hold; each guidance credits reasoning and one specific example over knowledge or range (IE11 says naming many titles earns nothing); each accessibility note names a route for a student without the setting. The re-read changed IE18's note to cover families that do not mark birthdays or holidays. Weaker than three independent reviewers, and recorded as such."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "e66d6950c1954579523a3a2765919a7442a188fed9d8e77dbf6f9be5942d9562",
+          "verdict": "Free response has no key, so no letter, length or option tell can exist. Theme repetition was checked mechanically against all 44 earlier SSAT and ISEE prompts (live and held): no collision after the replacements above."
+        }
+      }
     }
   ],
   "auditedCohorts": [
