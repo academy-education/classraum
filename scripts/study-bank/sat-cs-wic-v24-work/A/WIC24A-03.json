@@ -1,0 +1,26 @@
+{
+  "id": "WIC24A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "fossil record preservation",
+  "passage": "A Cretaceous rock formation in one desert basin has yielded thousands of fossil shells, corals, and sea urchins, many preserved in fine detail. A recent survey notes, though, that the same rock contains almost no land plants, insects, or land vertebrates, groups that seldom fossilize on the shallow sea floor the rock represents. Neighboring basins of the same age, formed on land, show the reverse pattern. The survey thus calls each basin's record ______ and recommends reading the two together before drawing conclusions about the region's ancient life.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["damaged", "diverse", "biased", "condensed"],
+  "correct_answer": "biased",
+  "explanation": "Each basin preserves the organisms suited to its setting and almost none of the others, so each record is \"biased\" and must be read alongside the other. \"Damaged\" fails because the fossils are preserved in fine detail; the gaps come from where fossils form, not from harm to the rock. \"Diverse\" ignores the survey's point that whole groups are missing, and \"condensed\" concerns time compression, which the text never raises.",
+  "antonym_pairs": [],
+  "polarity": {"damaged": "-", "diverse": "+", "biased": "-", "condensed": "0"},
+  "register": {"damaged": "neutral", "diverse": "neutral", "biased": "neutral", "condensed": "neutral"},
+  "rarity_order": ["damaged", "diverse", "biased", "condensed"],
+  "killed_by": {"damaged": "logic", "diverse": "logic", "condensed": "logic"},
+  "after_blank": "and",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The survey thus calls each basin's record ______ and recommends reading the two together before drawing conclusions about the region's ancient life.",
+    "defensible": ["biased", "damaged", "condensed"],
+    "why": "alone, any shortcoming that makes one record insufficient fits: a biased, a damaged, or a condensed record would each call for a second source; only the earlier sentences show complete preservation of one group and absence of others"
+  }
+}

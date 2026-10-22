@@ -1,0 +1,54 @@
+{
+  "id": "WIC24C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "stage lighting and acting style",
+  "passage": "Before gas lighting, actors on large stages played to audiences who could barely make out their faces, and gesture carried most of the meaning. When brighter light let spectators in the back rows follow small changes of expression, some critics complained that the new performers seemed to be doing nothing. What the critics took for a lack of effort was in fact a shift in where the effort went. Broad movement had become ______, and actors who kept it looked as if they were overplaying.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "needless",
+    "mechanical",
+    "routine",
+    "monotonous"
+  ],
+  "correct_answer": "needless",
+  "explanation": "Gesture had carried meaning only because faces could not be seen; once light made expression readable, the face carried that meaning and broad movement became \"needless.\" \"Monotonous\" and \"mechanical\" fail because the passage concerns which part of the body carries meaning, not whether movement had grown repetitive or rote. \"Routine\" fails because a routine practice would not have read as overplaying.",
+  "antonym_pairs": [],
+  "polarity": {
+    "needless": "-",
+    "mechanical": "-",
+    "routine": "-",
+    "monotonous": "-"
+  },
+  "register": {
+    "needless": "neutral",
+    "mechanical": "neutral",
+    "routine": "everyday",
+    "monotonous": "neutral"
+  },
+  "rarity_order": [
+    "routine",
+    "mechanical",
+    "needless",
+    "monotonous"
+  ],
+  "killed_by": {
+    "mechanical": "logic",
+    "routine": "logic",
+    "monotonous": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Broad movement had become ______, and actors who kept it looked as if they were overplaying.",
+    "defensible": [
+      "needless",
+      "mechanical",
+      "monotonous"
+    ],
+    "why": "alone, any fault that makes big gestures look excessive fits: needless, mechanical or monotonous; only the first two sentences (gesture carried meaning because faces were unseen, then light made faces readable) show the change was that gesture was no longer required"
+  }
+}

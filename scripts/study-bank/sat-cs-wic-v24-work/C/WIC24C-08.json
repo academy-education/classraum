@@ -1,0 +1,55 @@
+{
+  "id": "WIC24C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "poets revising early sonnets",
+  "passage": "Two poets each revised a sonnet they had written in youth. The first cut nearly a third of its lines, stripping out ornament she had come to distrust, and left a poem shorter but recognizably the same. The second kept every line and changed almost no words; instead he reordered the stanzas so that the poem ended where it had once begun, turning a lament into something closer to a resolution. The second poet, in other words, ______ the poem without trimming it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "redirected",
+    "personalized",
+    "republished",
+    "padded"
+  ],
+  "correct_answer": "redirected",
+  "explanation": "By reordering the stanzas so the poem ended where it once began and moved toward resolution, the second poet changed where the poem goes: he \"redirected\" it. \"Personalized\" fails because nothing in the revision makes the poem more about the poet; it changes the poem’s direction. \"Republished\" fails because the passage describes a change to the poem’s structure, not a new appearance in print, and \"padded\" fails because the change was a reordering of existing stanzas rather than added filler.",
+  "antonym_pairs": [],
+  "polarity": {
+    "redirected": "0",
+    "personalized": "0",
+    "republished": "0",
+    "padded": "-"
+  },
+  "register": {
+    "redirected": "neutral",
+    "personalized": "neutral",
+    "republished": "neutral",
+    "padded": "everyday"
+  },
+  "rarity_order": [
+    "redirected",
+    "republished",
+    "padded",
+    "personalized"
+  ],
+  "killed_by": {
+    "personalized": "logic",
+    "republished": "logic",
+    "padded": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The second poet, in other words, ______ the poem without trimming it.",
+    "defensible": [
+      "redirected",
+      "personalized",
+      "republished",
+      "padded"
+    ],
+    "why": "alone, any treatment that leaves the length intact fits: redirecting, personalizing, republishing and padding all avoid trimming; only the description of the second revision (reordered stanzas, lament turned to resolution) and the contrast with the first poet decide it"
+  }
+}

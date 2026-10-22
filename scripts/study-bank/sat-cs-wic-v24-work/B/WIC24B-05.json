@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "shared public works",
+  "passage": "For centuries the two river towns of the valley competed fiercely for trade, each taxing the barges of the other. The canal that finally linked them to the coast in 1764 could not have been dug by either town alone: one controlled the quarries that supplied its stone, the other the marshland through which it had to pass. The surviving accounts show both councils paying laborers from a single fund. From its first spadeful, the canal was ______ work.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "lucrative",
+    "joint",
+    "idle",
+    "imperial"
+  ],
+  "correct_answer": "joint",
+  "explanation": "Neither town could build the canal alone, and both councils paid the laborers from one fund, so the canal was \"joint\" work despite the towns' rivalry. \"Lucrative\" fails because the passage describes who built and paid for the canal, not any profit from building it. \"Idle\" fails because the canal had a clear purpose, linking both towns to the coast, and paid laborers were digging it. \"Imperial\" fails because the towns' own councils, not any outside power, organized and funded it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "lucrative": "+",
+    "joint": "0",
+    "idle": "-",
+    "imperial": "0"
+  },
+  "register": {
+    "lucrative": "neutral",
+    "joint": "neutral",
+    "idle": "everyday",
+    "imperial": "formal"
+  },
+  "rarity_order": [
+    "joint",
+    "idle",
+    "imperial",
+    "lucrative"
+  ],
+  "killed_by": {
+    "lucrative": "logic",
+    "idle": "logic",
+    "imperial": "logic"
+  },
+  "after_blank": "work",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "From its first spadeful, the canal was ______ work.",
+    "defensible": [
+      "joint",
+      "lucrative",
+      "idle",
+      "imperial"
+    ],
+    "why": "the sentence alone says nothing about who built or paid, so joint, lucrative, idle and imperial work are all possible until the quarries, the marshland and the single fund are known"
+  }
+}

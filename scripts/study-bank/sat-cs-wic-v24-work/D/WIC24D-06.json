@@ -1,0 +1,54 @@
+{
+  "id": "WIC24D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "uniform postage and rural delivery",
+  "passage": "A national postal service charges the same price to deliver a letter across the street or across the country. A carrier on dense city blocks can drop off hundreds of letters an hour, while a rural carrier may drive several miles between mailboxes, so a rural letter costs the service far more to deliver. Over a year, the service as a whole roughly breaks even. In effect, the margin earned on urban letters is used to ______ the rural routes.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "tax",
+    "subsidize",
+    "surcharge",
+    "sunset"
+  ],
+  "correct_answer": "subsidize",
+  "explanation": "To \"subsidize\" something is to cover part of its cost from another source; urban letters cost less than the shared price, rural ones cost more, and since the service only breaks even overall, the urban margin pays for the rural shortfall. \"Surcharge\" fails because every sender pays the same price, so rural routes carry no extra charge. \"Sunset\" fails because the rural carriers are still driving their routes; the margin keeps them running rather than winding them down. \"Tax\" fails because the money flows to the rural routes, not out of them.",
+  "antonym_pairs": [],
+  "polarity": {
+    "tax": "-",
+    "subsidize": "0",
+    "surcharge": "0",
+    "sunset": "-"
+  },
+  "register": {
+    "tax": "neutral",
+    "subsidize": "formal",
+    "surcharge": "formal",
+    "sunset": "technical"
+  },
+  "rarity_order": [
+    "tax",
+    "subsidize",
+    "surcharge",
+    "sunset"
+  ],
+  "killed_by": {
+    "tax": "logic",
+    "surcharge": "explicit",
+    "sunset": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "consequence of a rule",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "In effect, the margin earned on urban letters is used to ______ the rural routes.",
+    "defensible": [
+      "subsidize",
+      "sunset",
+      "tax"
+    ],
+    "why": "alone, the sentence says urban margin is spent on rural routes but not whether they lose money, so paying their costs, paying to wind them down, or (read loosely) levying on them could each be meant"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "WIC24D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "introductory credit card offers",
+  "passage": "A credit card offering zero percent interest for its first year can look like free money. The fine print, however, often states that if the balance is not paid in full by the end of that year, interest is charged retroactively on every purchase made since the account was opened. Before signing up, consumers would do well to read the card's ______ as closely as its advertised rate.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "terms",
+    "statement",
+    "tiers",
+    "slogan"
+  ],
+  "correct_answer": "terms",
+  "explanation": "A card's \"terms\" are the conditions of the agreement, which is where the text says the costly retroactive-interest rule hides. \"Statement\" fails because a monthly statement arrives only after the account is open, and the advice is for before signing up. \"Tiers\" fails because reward levels say nothing about when interest is charged. \"Slogan\" fails because it is advertising, like the rate itself, while the danger lies in the fine print.",
+  "antonym_pairs": [],
+  "polarity": {
+    "terms": "0",
+    "statement": "0",
+    "tiers": "0",
+    "slogan": "0"
+  },
+  "register": {
+    "terms": "neutral",
+    "statement": "neutral",
+    "tiers": "neutral",
+    "slogan": "everyday"
+  },
+  "rarity_order": [
+    "terms",
+    "statement",
+    "slogan",
+    "tiers"
+  ],
+  "killed_by": {
+    "statement": "explicit",
+    "tiers": "logic",
+    "slogan": "logic"
+  },
+  "after_blank": "as",
+  "pos": "noun",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Before signing up, consumers would do well to read the card's ______ as closely as its advertised rate.",
+    "defensible": [
+      "terms",
+      "tiers",
+      "slogan"
+    ],
+    "why": "without the fine-print sentence, nothing says where the risk lies, so the conditions, the reward levels, or the advertising line could each be worth reading closely before signing up"
+  }
+}

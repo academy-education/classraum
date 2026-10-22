@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lichens and primary succession",
+  "passage": "Lichens growing on bare granite release weak acids that loosen mineral grains at the rock's surface. Over decades, those grains collect in cracks along with the lichens' own decaying tissue, forming a thin layer in which whatever seeds the wind happens to deliver can germinate. The mosses and grasses that sprout there soon shade the lichens out. Ecologists therefore describe pioneer lichens as ______ the plant communities that eventually replace them, even though the lichens themselves rarely share the ground with those communities for long.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "defining",
+    "enabling",
+    "dictating",
+    "foretelling"
+  ],
+  "correct_answer": "enabling",
+  "explanation": "The lichens loosen grains and add decaying tissue, building the layer in which later plants germinate, so they are \"enabling\" those communities. \"Defining\" and \"dictating\" would make the lichens decide which plants arrive, but the seeds are whatever the wind delivers. \"Foretelling\" would make the lichens a mere sign of what is coming, but the text shows them causing it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "defining": "0",
+    "enabling": "0",
+    "dictating": "0",
+    "foretelling": "0"
+  },
+  "register": {
+    "defining": "neutral",
+    "enabling": "neutral",
+    "dictating": "neutral",
+    "foretelling": "literary"
+  },
+  "rarity_order": [
+    "defining",
+    "enabling",
+    "dictating",
+    "foretelling"
+  ],
+  "killed_by": {
+    "defining": "logic",
+    "dictating": "logic",
+    "foretelling": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Ecologists therefore describe pioneer lichens as ______ the plant communities that eventually replace them, even though the lichens themselves rarely share the ground with those communities for long.",
+    "defensible": [
+      "enabling",
+      "defining",
+      "dictating",
+      "foretelling"
+    ],
+    "why": "alone, the sentence only says lichens come before the plants that replace them; they could enable, define, dictate, or foretell that community, and only the earlier sentences show that they build the soil while the wind chooses the seeds"
+  }
+}

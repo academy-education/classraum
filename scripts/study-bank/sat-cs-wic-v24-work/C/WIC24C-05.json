@@ -1,0 +1,55 @@
+{
+  "id": "WIC24C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "diary form in a novel",
+  "passage": "Readers have long admired the diary entries in the novel for their apparent spontaneity: sentences break off, spelling wavers, and the diarist seems to set down each event the moment it happens. A scholar who studied the author’s drafts found that early versions of the entries were smooth and regular, and that the broken sentences and wavering spelling were added in the fourth revision. The diary’s breathlessness, she concludes, is ______: a quality the reader should credit to the novelist rather than to the diarist.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "rehearsed",
+    "neat",
+    "poignant",
+    "modern"
+  ],
+  "correct_answer": "rehearsed",
+  "explanation": "The drafts show that the broken sentences were added deliberately in a late revision, so the breathlessness is \"rehearsed,\" prepared rather than spontaneous. \"Neat\" fails because tidiness belonged to the early drafts that the revision roughened. \"Poignant\" fails because the drafts bear on how the effect was produced, not on its emotional force, and \"modern\" fails for the same reason: the evidence concerns when and how the effect was made, not its period style.",
+  "antonym_pairs": [],
+  "polarity": {
+    "rehearsed": "0",
+    "neat": "+",
+    "poignant": "+",
+    "modern": "0"
+  },
+  "register": {
+    "rehearsed": "neutral",
+    "neat": "everyday",
+    "poignant": "literary",
+    "modern": "neutral"
+  },
+  "rarity_order": [
+    "neat",
+    "modern",
+    "rehearsed",
+    "poignant"
+  ],
+  "killed_by": {
+    "neat": "logic",
+    "poignant": "logic",
+    "modern": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The diary’s breathlessness, she concludes, is ______: a quality the reader should credit to the novelist rather than to the diarist.",
+    "defensible": [
+      "rehearsed",
+      "neat",
+      "poignant",
+      "modern"
+    ],
+    "why": "alone, any quality the novelist could produce can be credited to the novelist: rehearsed, neat, poignant and modern all fit; only the drafts (smooth early versions, roughness added late in revision) show the point is that the effect was prepared"
+  }
+}

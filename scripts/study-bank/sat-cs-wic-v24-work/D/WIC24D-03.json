@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "valuing a factory versus a software firm",
+  "passage": "When accountants value a steel mill, they can walk through most of what they count: furnaces, rolling machines, warehouses, land. When they value a software company, they find that most of what investors are paying for is its code, its brand, and the loyalty of its users. That is why, in such a company, ______ assets often amount to only a small fraction of the market price.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "surplus",
+    "tangible",
+    "taxable",
+    "vested"
+  ],
+  "correct_answer": "tangible",
+  "explanation": "Assets that are \"tangible\" are physical ones; only by setting the mill's furnaces and land beside the software firm's code, brand, and user loyalty does it emerge that the software firm's value is mostly not physical, so its physical assets are a small share of its price. \"Surplus\" fails because nothing says the firm holds more assets than it needs. \"Taxable\" fails because the comparison is about what the assets are made of, not their tax treatment. \"Vested\" fails because the text never discusses when anyone's ownership of an asset becomes secure.",
+  "antonym_pairs": [],
+  "polarity": {
+    "surplus": "0",
+    "tangible": "0",
+    "taxable": "0",
+    "vested": "0"
+  },
+  "register": {
+    "surplus": "neutral",
+    "tangible": "technical",
+    "taxable": "technical",
+    "vested": "technical"
+  },
+  "rarity_order": [
+    "surplus",
+    "tangible",
+    "taxable",
+    "vested"
+  ],
+  "killed_by": {
+    "surplus": "logic",
+    "taxable": "logic",
+    "vested": "logic"
+  },
+  "after_blank": "assets",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "That is why, in such a company, ______ assets often amount to only a small fraction of the market price.",
+    "defensible": [
+      "tangible",
+      "surplus",
+      "taxable",
+      "vested"
+    ],
+    "why": "without the comparison, any accounting category of assets (physical, excess, taxable, or vested) could be a small share of a company's market price"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "WIC24A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "octopus problem solving",
+  "passage": "Octopuses in one laboratory learned to unscrew jar lids to reach crabs sealed inside, but individuals differed in how they did it. Some twisted the lid with a single arm; others braced the jar with several arms and turned the lid with the rest; one simply pried at the seal until it gave. Even animals that had watched a neighbor succeed went on to use a method of their own, working alone. Each animal's solution was, in this sense, ______, which complicates any attempt to describe a single octopus method for the task.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cultural",
+    "distinctive",
+    "complex",
+    "communal"
+  ],
+  "correct_answer": "distinctive",
+  "explanation": "Every octopus settled on its own technique, even after watching others, so each solution was \"distinctive.\" \"Cultural\" fails because watching a neighbor did not pass a method on, and \"communal\" fails because each animal worked alone. \"Complex\" fails because one animal simply pried at the seal; the text's point is variety, not intricacy.",
+  "antonym_pairs": [],
+  "polarity": {
+    "cultural": "0",
+    "distinctive": "0",
+    "complex": "0",
+    "communal": "0"
+  },
+  "register": {
+    "cultural": "neutral",
+    "distinctive": "neutral",
+    "complex": "neutral",
+    "communal": "neutral"
+  },
+  "rarity_order": [
+    "complex",
+    "cultural",
+    "distinctive",
+    "communal"
+  ],
+  "killed_by": {
+    "cultural": "logic",
+    "complex": "explicit",
+    "communal": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "definition by example",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Each animal's solution was, in this sense, ______, which complicates any attempt to describe a single octopus method for the task.",
+    "defensible": [
+      "distinctive",
+      "complex",
+      "cultural"
+    ],
+    "why": "alone, solutions that resist being described as one method could be distinctive to each animal, too complex to summarize, or shaped by local culture; only the earlier sentences show simple methods kept individually despite watching others"
+  }
+}

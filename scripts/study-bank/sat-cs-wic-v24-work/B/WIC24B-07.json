@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "nineteenth-century reform movements",
+  "passage": "Organizers of a temperance campaign in the 1830s had little money and no newspaper of their own. Many of them, however, belonged to congregations that already met every week, and they used what they had. Instead of founding branches, they passed pledge cards through existing church choirs and sewing circles, whose members knew and trusted one another. The campaign's rapid spread, one historian argues, came from the way it ______ networks that others had built for entirely different purposes.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "gathered",
+    "harnessed",
+    "hijacked",
+    "idealized"
+  ],
+  "correct_answer": "harnessed",
+  "explanation": "Lacking money and a newspaper, the organizers put existing choirs and sewing circles, to which they already belonged, to work for their own cause, so the campaign \"harnessed\" those networks. \"Hijacked\" fails because the organizers were already members and worked openly among people who trusted one another; nothing was seized from its owners. \"Gathered\" fails because the choirs and circles were used where they already stood, each passing pledge cards among its own members, not collected together into something new. \"Idealized\" fails because the organizers used the networks for a practical purpose rather than portraying them as perfect.",
+  "antonym_pairs": [],
+  "polarity": {
+    "gathered": "0",
+    "harnessed": "0",
+    "hijacked": "-",
+    "idealized": "+"
+  },
+  "register": {
+    "gathered": "neutral",
+    "harnessed": "neutral",
+    "hijacked": "neutral",
+    "idealized": "formal"
+  },
+  "rarity_order": [
+    "gathered",
+    "harnessed",
+    "idealized",
+    "hijacked"
+  ],
+  "killed_by": {
+    "gathered": "logic",
+    "hijacked": "logic",
+    "idealized": "logic"
+  },
+  "after_blank": "networks",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The campaign's rapid spread, one historian argues, came from the way it ______ networks that others had built for entirely different purposes.",
+    "defensible": [
+      "harnessed",
+      "gathered",
+      "hijacked",
+      "idealized"
+    ],
+    "why": "a campaign could spread by using, collecting, seizing, or glorifying networks built by others; only the organizers' own membership and the cards passed within each trusted circle show the use was open and in place"
+  }
+}

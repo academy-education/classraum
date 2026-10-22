@@ -1,0 +1,53 @@
+{
+  "id": "WIC24C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "early film audiences",
+  "passage": "Early film audiences are often said to have fled their seats when a train on the screen appeared to rush toward them. Historians who have searched the newspapers of the period have found no report of such a panic, though they have found many accounts of viewers who enjoyed the illusion precisely because they knew it was one. The tale seems to have taken shape decades later, as a flattering ______ about how far cinema had come since its first, supposedly credulous audiences.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "myth",
+    "report",
+    "manifesto",
+    "prophecy"
+  ],
+  "correct_answer": "myth",
+  "explanation": "Contemporary sources record no panic, and the story arose decades later to flatter cinema’s progress, so it is a \"myth.\" \"Report\" fails because the newspapers of the period contain no report, and the tale took shape only decades afterward. \"Manifesto\" fails because the tale describes a supposed past event rather than declaring a program, and \"prophecy\" fails because it looks back on how far cinema had come, not forward.",
+  "antonym_pairs": [],
+  "polarity": {
+    "myth": "0",
+    "report": "0",
+    "manifesto": "0",
+    "prophecy": "0"
+  },
+  "register": {
+    "myth": "neutral",
+    "report": "neutral",
+    "manifesto": "formal",
+    "prophecy": "neutral"
+  },
+  "rarity_order": [
+    "report",
+    "myth",
+    "prophecy",
+    "manifesto"
+  ],
+  "killed_by": {
+    "report": "logic",
+    "manifesto": "logic",
+    "prophecy": "explicit"
+  },
+  "after_blank": "about",
+  "pos": "noun",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The tale seems to have taken shape decades later, as a flattering ______ about how far cinema had come since its first, supposedly credulous audiences.",
+    "defensible": [
+      "myth",
+      "report"
+    ],
+    "why": "alone, a flattering account of early audiences could be a myth or a report; only the previous sentence (the period newspapers contain no such report, and viewers knew the illusion for what it was) shows the tale is an untrue later invention, not an account of an event"
+  }
+}

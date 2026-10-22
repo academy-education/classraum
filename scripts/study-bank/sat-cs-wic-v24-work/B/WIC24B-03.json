@@ -1,0 +1,54 @@
+{
+  "id": "WIC24B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "colonial administration",
+  "passage": "Instructions from London to the governors of Britain's North American colonies could take two months to cross the Atlantic, and a governor's report of a crisis took as long to travel back. By the time a reply arrived, the situation it addressed had often changed beyond recognition. Officials in London understood this, and their instructions came increasingly to set out broad aims rather than precise orders. The delay thus handed governors a kind of ______ in applying royal policy that no commission had formally granted them.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "glory",
+    "leeway",
+    "hindsight",
+    "impunity"
+  ],
+  "correct_answer": "leeway",
+  "explanation": "Because replies arrived too late to direct events, London sent broad aims instead of precise orders, leaving governors to choose how to apply them: the delay gave them \"leeway.\" \"Glory\" fails because the delay changed how much governors could decide for themselves, not the renown or prestige their office carried. \"Hindsight\" fails because governors had to act before London's reply, without the benefit of later knowledge. \"Impunity\" fails because broad aims made their choices permissible under London's own instructions; nothing in the passage concerns escaping punishment.",
+  "antonym_pairs": [],
+  "polarity": {
+    "glory": "+",
+    "leeway": "0",
+    "hindsight": "0",
+    "impunity": "-"
+  },
+  "register": {
+    "glory": "neutral",
+    "leeway": "neutral",
+    "hindsight": "neutral",
+    "impunity": "formal"
+  },
+  "rarity_order": [
+    "glory",
+    "hindsight",
+    "impunity",
+    "leeway"
+  ],
+  "killed_by": {
+    "glory": "logic",
+    "hindsight": "logic",
+    "impunity": "logic"
+  },
+  "after_blank": "in",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The delay thus handed governors a kind of ______ in applying royal policy that no commission had formally granted them.",
+    "defensible": [
+      "leeway",
+      "glory",
+      "impunity"
+    ],
+    "why": "an unofficial gain from delay could be freedom of choice, prestige, or freedom from punishment; only the switch to broad aims in the previous sentence shows it was freedom of choice"
+  }
+}

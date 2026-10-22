@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "medieval royal court",
+  "passage": "Surviving charters of one medieval English king are each dated with the place where they were issued, and in a single year those places number more than forty, scattered across a dozen counties. No building in the kingdom held his records; the clerks who wrote them carried their rolls in chests. Accounts from the royal estates show each manor's stores of grain and meat being consumed over a few days, then left for months to recover. Royal government in this period was, in a quite literal sense, ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "informal",
+    "itinerant",
+    "intermittent",
+    "impersonal"
+  ],
+  "correct_answer": "itinerant",
+  "explanation": "Charters issued at more than forty places in one year, records carried in chests, and estates used up in turn and then left to recover together show a government that traveled from place to place: it was \"itinerant.\" \"Informal\" fails because this government worked through dated charters, clerks and written rolls, the apparatus of formal administration. \"Intermittent\" fails because charters were issued throughout the year, so government did not stop and start. \"Impersonal\" fails because the records, the clerks and the supplies all followed the king's own movements.",
+  "antonym_pairs": [],
+  "polarity": {
+    "informal": "0",
+    "itinerant": "0",
+    "intermittent": "0",
+    "impersonal": "0"
+  },
+  "register": {
+    "informal": "neutral",
+    "itinerant": "formal",
+    "intermittent": "formal",
+    "impersonal": "neutral"
+  },
+  "rarity_order": [
+    "informal",
+    "impersonal",
+    "intermittent",
+    "itinerant"
+  ],
+  "killed_by": {
+    "informal": "logic",
+    "intermittent": "logic",
+    "impersonal": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Royal government in this period was, in a quite literal sense, ______.",
+    "defensible": [
+      "itinerant",
+      "informal",
+      "intermittent",
+      "impersonal"
+    ],
+    "why": "the sentence alone only says government was literally something; informal, intermittent, impersonal and itinerant are all possible until the forty places of issue, the chests and the rotating estates are put together"
+  }
+}

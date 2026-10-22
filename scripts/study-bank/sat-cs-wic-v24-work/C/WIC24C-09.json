@@ -1,0 +1,54 @@
+{
+  "id": "WIC24C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "textual editing of Victorian novels",
+  "passage": "Before a nineteenth-century novel reached readers, its text usually passed through several hands. The author’s manuscript went to a copyist, the copy went to a compositor who set it in type, and the proofs came back to the author, who might rewrite whole paragraphs at that late stage. For this reason, modern editors treat the first printed edition with some caution: its text is the ______ result of many people’s work, not a direct record of what the author wrote.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "overall",
+    "practical",
+    "positive",
+    "orderly"
+  ],
+  "correct_answer": "overall",
+  "explanation": "The printed text is what remains after copyist, compositor and author have all added and changed things, so it is the \"overall\" result of their work. \"Practical\" fails because nothing in the passage concerns usefulness. \"Positive\" fails because editors treat the edition with caution, and \"orderly\" fails because the author might rewrite whole paragraphs at the last stage.",
+  "antonym_pairs": [],
+  "polarity": {
+    "overall": "0",
+    "practical": "0",
+    "positive": "+",
+    "orderly": "+"
+  },
+  "register": {
+    "overall": "neutral",
+    "practical": "neutral",
+    "positive": "neutral",
+    "orderly": "neutral"
+  },
+  "rarity_order": [
+    "overall",
+    "positive",
+    "practical",
+    "orderly"
+  ],
+  "killed_by": {
+    "practical": "logic",
+    "positive": "logic",
+    "orderly": "logic"
+  },
+  "after_blank": "result",
+  "pos": "adjective",
+  "shape": "process sequence",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "For this reason, modern editors treat the first printed edition with some caution: its text is the ______ result of many people’s work, not a direct record of what the author wrote.",
+    "defensible": [
+      "overall",
+      "practical",
+      "orderly"
+    ],
+    "why": "alone, overall, practical and orderly can each describe a group product that is not a direct record; only the process sentence (several stages, late rewriting by the author) shows it is the combined sum of everyone's changes rather than useful or tidy"
+  }
+}

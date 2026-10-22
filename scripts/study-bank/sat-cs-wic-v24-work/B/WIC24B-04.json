@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "weights and measures",
+  "passage": "When a northern port's council abolished its old weights and measures in favor of a regional standard in 1612, the change took effect in the customs house at once, since every duty now had to be recorded in the new units. In the marketplace, however, the old units ______ for decades. Merchants' account books from the period record sales in both systems side by side, and a visitor in 1660 complained that fishmongers still quoted every price in the abolished measures.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "grew",
+    "lingered",
+    "loomed",
+    "lurked"
+  ],
+  "correct_answer": "lingered",
+  "explanation": "The account books and the visitor's complaint show the old units still in everyday use for decades after they were abolished, so they \"lingered.\" \"Grew\" fails because the evidence shows the old units surviving beside the new ones, still in use, not spreading to new trades or places. \"Loomed\" fails because the old units were the everyday tools of trade for merchants and fishmongers, not a threatening presence hanging over the market. \"Lurked\" fails because they were used openly, written in account books and quoted aloud in the market, not hidden.",
+  "antonym_pairs": [],
+  "polarity": {
+    "grew": "0",
+    "lingered": "0",
+    "loomed": "-",
+    "lurked": "-"
+  },
+  "register": {
+    "grew": "everyday",
+    "lingered": "neutral",
+    "loomed": "neutral",
+    "lurked": "neutral"
+  },
+  "rarity_order": [
+    "grew",
+    "lingered",
+    "loomed",
+    "lurked"
+  ],
+  "killed_by": {
+    "grew": "logic",
+    "loomed": "logic",
+    "lurked": "logic"
+  },
+  "after_blank": "for",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "In the marketplace, however, the old units ______ for decades.",
+    "defensible": [
+      "lingered",
+      "grew",
+      "loomed",
+      "lurked"
+    ],
+    "why": "with only the contrast to official use, the old units could have persisted, spread, hung over the market, or survived out of sight; the side-by-side account books and the visitor's 'still' in the next sentence decide that they stayed in open, continuing use"
+  }
+}

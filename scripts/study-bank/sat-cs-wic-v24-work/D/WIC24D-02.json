@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "aging phone batteries and processor speed",
+  "passage": "As a phone's battery ages, it loses the ability to deliver sudden surges of current, and a demanding task can make the phone shut off without warning. To prevent this, some manufacturers began to ______ the processor in older devices. Owners soon noticed that apps opened more slowly, though every one of them still ran, and the abrupt shutdowns stopped.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "suspend",
+    "throttle",
+    "sandbox",
+    "virtualize"
+  ],
+  "correct_answer": "throttle",
+  "explanation": "To \"throttle\" a processor is to cap its speed; combining the first sentence (a worn battery cannot supply sudden surges of current) with the last (apps slowed but all still ran, and shutdowns stopped) shows the chip was held below its peak demand. \"Suspend\" fails because every app still ran, so the processor was not halted. \"Sandbox\" fails because walling apps off from one another does nothing about how much current the chip draws at its peak. \"Virtualize\" fails because running software in a simulated machine adds work for the chip rather than lowering the surges a worn battery cannot meet.",
+  "antonym_pairs": [],
+  "polarity": {
+    "suspend": "0",
+    "throttle": "0",
+    "sandbox": "0",
+    "virtualize": "0"
+  },
+  "register": {
+    "suspend": "neutral",
+    "throttle": "technical",
+    "sandbox": "technical",
+    "virtualize": "technical"
+  },
+  "rarity_order": [
+    "suspend",
+    "throttle",
+    "sandbox",
+    "virtualize"
+  ],
+  "killed_by": {
+    "suspend": "explicit",
+    "sandbox": "logic",
+    "virtualize": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "To prevent this, some manufacturers began to ______ the processor in older devices.",
+    "defensible": [
+      "throttle",
+      "suspend",
+      "sandbox",
+      "virtualize"
+    ],
+    "why": "with the neighbours gone, \"this\" names no specific problem, so pausing, limiting, isolating, or virtualizing the processor are all recognized ways a manufacturer might manage a device's processor"
+  }
+}

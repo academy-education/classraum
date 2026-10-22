@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "eye loss in cave fish",
+  "passage": "Cave-dwelling and river-dwelling populations of one minnow species still interbreed where a stream enters the cave. Embryos from both begin forming eyes on the same schedule, but in cave embryos a signal from neighboring tissue halts eye growth after a few days, and the halted eyes are later overgrown by skin. Cave embryos raised in lit tanks receive a weaker signal and develop partial eyes. Researchers therefore interpret eyelessness in the cave population as the ______ of a developmental program that the two populations still share.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "fossil",
+    "expression",
+    "breakdown",
+    "artifact"
+  ],
+  "correct_answer": "expression",
+  "explanation": "Cave embryos run the same eye program as river embryos, and a signal that weakens in light steers its result, so eyelessness is the \"expression\" of that program in the cave. \"Fossil\" would make the program an inactive remnant, but it still runs and responds to light. \"Breakdown\" fails because the halting signal is itself part of how the program normally unfolds, and \"artifact\" fails because eye loss follows directly from that signal rather than arising incidentally.",
+  "antonym_pairs": [],
+  "polarity": {
+    "fossil": "0",
+    "expression": "0",
+    "breakdown": "-",
+    "artifact": "0"
+  },
+  "register": {
+    "fossil": "neutral",
+    "expression": "neutral",
+    "breakdown": "neutral",
+    "artifact": "formal"
+  },
+  "rarity_order": [
+    "expression",
+    "fossil",
+    "breakdown",
+    "artifact"
+  ],
+  "killed_by": {
+    "fossil": "logic",
+    "breakdown": "logic",
+    "artifact": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Researchers therefore interpret eyelessness in the cave population as the ______ of a developmental program that the two populations still share.",
+    "defensible": [
+      "expression",
+      "fossil",
+      "breakdown",
+      "artifact"
+    ],
+    "why": "alone, a shared program could yield eyelessness as its expression, survive as an inert fossil, break down, or produce it as an artifact; only the neighbouring sentences show the program running and responding to light"
+  }
+}

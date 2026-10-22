@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early modern governance",
+  "passage": "In 1684 a provincial governor ordered the release of eleven debtors from the town jail on the anniversary of his appointment. Their debts were not forgiven: creditors kept every right to pursue them in court, and most were repaid within a few years. The governor's letters show that he chose the date months in advance, and townspeople's diaries from that week praise his mercy at length. Historians therefore read the episode chiefly as political ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "gamble",
+    "gesture",
+    "loss",
+    "legacy"
+  ],
+  "correct_answer": "gesture",
+  "explanation": "The release changed no one's obligations, since the debts still stood, yet it was planned for a symbolic date and won the governor praise, so its value lay in how it looked: it was a political \"gesture.\" \"Gamble\" fails because the governor risked little; creditors kept their rights and the date was chosen months ahead. \"Loss\" fails because the release earned him praise rather than costing him support. \"Legacy\" fails because an act that left every debt standing, with most repaid within a few years, changed nothing that lasted.",
+  "antonym_pairs": [],
+  "polarity": {
+    "gamble": "0",
+    "gesture": "0",
+    "loss": "-",
+    "legacy": "+"
+  },
+  "register": {
+    "gamble": "neutral",
+    "gesture": "neutral",
+    "loss": "everyday",
+    "legacy": "neutral"
+  },
+  "rarity_order": [
+    "loss",
+    "legacy",
+    "gesture",
+    "gamble"
+  ],
+  "killed_by": {
+    "gamble": "logic",
+    "loss": "explicit",
+    "legacy": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Historians therefore read the episode chiefly as political ______.",
+    "defensible": [
+      "gesture",
+      "gamble",
+      "loss",
+      "legacy"
+    ],
+    "why": "the sentence alone says only that the episode was political; gesture, gamble, loss and legacy are all ordinary things to call a political act until the unforgiven debts, the planned date and the praise are put together"
+  }
+}

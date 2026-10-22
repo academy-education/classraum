@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "ash dieback and rainfall",
+  "passage": "The fungus behind ash dieback spreads by spores released from fallen leaves in late summer; the wind carries them in any weather. A spore must stay damp for several days to germinate on a fresh leaf, and it dies within hours in dry air. Foresters have found that outbreaks are worst after mild, rainy summers and nearly absent after droughts. Wet summers, in other words, ______ the fungus, and foresters now watch rainfall records as closely as they watch the trees.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "defend",
+    "fuel",
+    "disperse",
+    "drench"
+  ],
+  "correct_answer": "fuel",
+  "explanation": "Spores need days of dampness to germinate and outbreaks peak after rainy summers, so wet summers \"fuel\" the fungus. \"Disperse\" fails because the wind spreads the spores in any weather. \"Defend\" implies protection from a threat, and \"drench\" names only the soaking, not the outbreaks it makes possible; moisture matters because it lets spores germinate.",
+  "antonym_pairs": [],
+  "polarity": {
+    "defend": "+",
+    "fuel": "+",
+    "disperse": "0",
+    "drench": "0"
+  },
+  "register": {
+    "defend": "neutral",
+    "fuel": "neutral",
+    "disperse": "neutral",
+    "drench": "everyday"
+  },
+  "rarity_order": [
+    "defend",
+    "fuel",
+    "disperse",
+    "drench"
+  ],
+  "killed_by": {
+    "defend": "logic",
+    "disperse": "explicit",
+    "drench": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Wet summers, in other words, ______ the fungus, and foresters now watch rainfall records as closely as they watch the trees.",
+    "defensible": [
+      "fuel",
+      "defend",
+      "disperse",
+      "drench"
+    ],
+    "why": "alone, rainfall could matter to foresters because wet summers fuel, defend, disperse, or simply drench the fungus; only the earlier sentences show that wind, not rain, spreads it and that damp lets spores germinate"
+  }
+}

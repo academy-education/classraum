@@ -1,0 +1,55 @@
+{
+  "id": "WIC24C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "borrowed phrases in early jazz",
+  "passage": "In much early jazz, a soloist’s chorus was not expected to be original from its first bar. Players routinely opened with a phrase lifted from a tune the audience already knew and then bent it, bar by bar, until it led somewhere new. The point of the borrowing was to give listeners a fixed mark against which the departure could be heard. Those who caught the phrase heard it less as theft than as a kind of ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "quotation",
+    "mockery",
+    "medley",
+    "reprise"
+  ],
+  "correct_answer": "quotation",
+  "explanation": "The borrowed phrase comes from another, familiar tune and serves as a fixed reference point for the soloist’s departure, which makes it a \"quotation.\" \"Mockery\" fails because the borrowing aims to let the invention be heard, not to ridicule the source. \"Medley\" fails because a single phrase opens the chorus rather than a string of tunes, and \"reprise\" fails because the phrase belongs to another tune, not to the soloist’s own earlier material.",
+  "antonym_pairs": [],
+  "polarity": {
+    "quotation": "0",
+    "mockery": "-",
+    "medley": "0",
+    "reprise": "0"
+  },
+  "register": {
+    "quotation": "neutral",
+    "mockery": "neutral",
+    "medley": "neutral",
+    "reprise": "formal"
+  },
+  "rarity_order": [
+    "quotation",
+    "mockery",
+    "medley",
+    "reprise"
+  ],
+  "killed_by": {
+    "mockery": "logic",
+    "medley": "logic",
+    "reprise": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Those who caught the phrase heard it less as theft than as a kind of ______.",
+    "defensible": [
+      "quotation",
+      "mockery",
+      "medley",
+      "reprise"
+    ],
+    "why": "alone, any legitimate form of reuse can stand against theft: quotation, mockery, medley and reprise all do; only the earlier sentences (one phrase from another known tune, used as a fixed mark for the departure) rule out mockery, a string of tunes and self-repetition"
+  }
+}

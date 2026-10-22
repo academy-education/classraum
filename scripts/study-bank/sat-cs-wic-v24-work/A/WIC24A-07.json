@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "salmon migration below dams",
+  "passage": "Each spring, salmon fry hatched in mountain streams begin drifting toward the sea once the water warms. Below a new dam, however, the river now stays cold until midsummer, because the dam releases water from the bottom of its deep reservoir. Fry kept in that water remained in the stream for months past the usual date, even though they had grown large enough to survive at sea; within days of the water warming, they left. For these fish, then, warm water is migration's ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "deadline",
+    "catalyst",
+    "corollary",
+    "accompaniment"
+  ],
+  "correct_answer": "catalyst",
+  "explanation": "Fry big enough to migrate stayed put until the water warmed and then left within days, so warm water is what sets migration off: its \"catalyst.\" \"Deadline\" fails because the cold-water fry simply waited, with no last date forcing them out. \"Corollary\" and \"accompaniment\" make warmth something that merely follows or coincides with migration, but warmth came first and without it the fry did not leave.",
+  "antonym_pairs": [],
+  "polarity": {
+    "deadline": "0",
+    "catalyst": "0",
+    "corollary": "0",
+    "accompaniment": "0"
+  },
+  "register": {
+    "deadline": "neutral",
+    "catalyst": "formal",
+    "corollary": "formal",
+    "accompaniment": "formal"
+  },
+  "rarity_order": [
+    "deadline",
+    "catalyst",
+    "accompaniment",
+    "corollary"
+  ],
+  "killed_by": {
+    "deadline": "logic",
+    "corollary": "logic",
+    "accompaniment": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "For these fish, then, warm water is migration's ______.",
+    "defensible": [
+      "catalyst",
+      "deadline",
+      "corollary",
+      "accompaniment"
+    ],
+    "why": "alone, warm water could trigger migration, set its deadline, follow from it, or merely accompany it; only the dam case, where ready fry waited for warmth and then left, shows it is the trigger"
+  }
+}

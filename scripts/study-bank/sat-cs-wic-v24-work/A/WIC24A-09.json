@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "planet formation",
+  "passage": "In a young solar system, dust grains first stick together through static attraction, building clumps a few centimeters across. Beyond that size, collisions between clumps tend to shatter them, and models in which planets grow one collision at a time stall at this stage. One proposal holds that swirling gas herds clumps into filaments so crowded that their combined gravity overwhelms the gas within a few orbits. There, gravity can ______ them into bodies kilometers wide.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "funnel",
+    "collapse",
+    "bond",
+    "accumulate"
+  ],
+  "correct_answer": "collapse",
+  "explanation": "In the crowded filaments, the clumps' combined gravity takes over all at once, so gravity can \"collapse\" them into large bodies. \"Accumulate\" describes the gradual, one-collision-at-a-time growth that the text says stalls. \"Bond\" describes the sticking that only builds centimeter clumps, and \"funnel\" describes the gas's herding, which happens before gravity acts.",
+  "antonym_pairs": [],
+  "polarity": {
+    "funnel": "0",
+    "collapse": "0",
+    "bond": "0",
+    "accumulate": "0"
+  },
+  "register": {
+    "funnel": "neutral",
+    "collapse": "neutral",
+    "bond": "neutral",
+    "accumulate": "neutral"
+  },
+  "rarity_order": [
+    "collapse",
+    "bond",
+    "accumulate",
+    "funnel"
+  ],
+  "killed_by": {
+    "funnel": "logic",
+    "bond": "logic",
+    "accumulate": "logic"
+  },
+  "after_blank": "them",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "There, gravity can ______ them into bodies kilometers wide.",
+    "defensible": [
+      "collapse",
+      "accumulate",
+      "bond",
+      "funnel"
+    ],
+    "why": "alone, gravity could collapse, accumulate, bond, or funnel unnamed material into large bodies; only the earlier sentences show that sticking and one-at-a-time growth fail, that the gas does the herding, and that gravity takes over all at once"
+  }
+}

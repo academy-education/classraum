@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a bank run and the value of assets",
+  "passage": "At the height of the panic, the bank's loans and bonds were worth more than everything it owed to depositors and lenders combined, but most of those holdings could not be sold at a fair price on short notice. When crowds of depositors arrived demanding cash, the bank could not pay all of them that week. It was ______, in other words, yet still at risk of failing within days.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "thriving",
+    "unlisted",
+    "solvent",
+    "unregulated"
+  ],
+  "correct_answer": "solvent",
+  "explanation": "A \"solvent\" institution owns more than it owes, which is what the first sentence says, while the danger came from being unable to turn those holdings into cash quickly. \"Thriving\" fails because a bank in a panic that cannot pay its depositors is not flourishing, so it restates nothing. \"Unlisted\" and \"unregulated\" fail because \"in other words\" calls for a restatement, and the text never mentioned stock-exchange listing or regulators.",
+  "antonym_pairs": [],
+  "polarity": {
+    "thriving": "+",
+    "unlisted": "0",
+    "solvent": "+",
+    "unregulated": "-"
+  },
+  "register": {
+    "thriving": "neutral",
+    "unlisted": "technical",
+    "solvent": "technical",
+    "unregulated": "formal"
+  },
+  "rarity_order": [
+    "thriving",
+    "solvent",
+    "unlisted",
+    "unregulated"
+  ],
+  "killed_by": {
+    "thriving": "logic",
+    "unlisted": "logic",
+    "unregulated": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "restatement of a distinction",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "It was ______, in other words, yet still at risk of failing within days.",
+    "defensible": [
+      "solvent",
+      "thriving",
+      "unlisted",
+      "unregulated"
+    ],
+    "why": "with the neighbours gone there is nothing for \"in other words\" to restate, so owning more than it owes, flourishing, trading off-exchange, or escaping oversight could each be set against being at risk of failing"
+  }
+}

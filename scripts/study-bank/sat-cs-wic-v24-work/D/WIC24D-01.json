@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "parking prices and downtown merchants",
+  "passage": "When one downtown district replaced its flat two-hour parking limit with meter prices that climb with each additional hour, the curb stayed about as full as before, and total meter revenue barely moved. What changed was who parked there: commuters who had once held a single space from morning to evening moved to garages at the district's edge, and shoppers making brief stops took their place. For the merchants who had lobbied for the new prices, the figure that mattered was the ______ of curbside spaces.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "supply",
+    "turnover",
+    "uptake",
+    "siting"
+  ],
+  "correct_answer": "turnover",
+  "explanation": "The \"turnover\" of a space is how often it changes hands; the text says all-day commuters were replaced by shoppers making brief stops, so each space now served many visitors a day, which is what merchants who want customers care about. \"Uptake\" fails because the curb stayed about as full as before, so the share of spaces taken up did not change. \"Supply\" fails because what changed was who parked, not how many spaces there were. \"Siting\" fails because no space moved; only how the spaces were used changed.",
+  "antonym_pairs": [],
+  "polarity": {
+    "supply": "0",
+    "turnover": "0",
+    "uptake": "0",
+    "siting": "0"
+  },
+  "register": {
+    "supply": "neutral",
+    "turnover": "neutral",
+    "uptake": "technical",
+    "siting": "technical"
+  },
+  "rarity_order": [
+    "supply",
+    "turnover",
+    "uptake",
+    "siting"
+  ],
+  "killed_by": {
+    "supply": "logic",
+    "uptake": "explicit",
+    "siting": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "For the merchants who had lobbied for the new prices, the figure that mattered was the ______ of curbside spaces.",
+    "defensible": [
+      "turnover",
+      "supply",
+      "uptake",
+      "siting"
+    ],
+    "why": "alone, the sentence only says merchants cared about some figure about curbside spaces; how many there are, how often they change hands, how many are taken up, and where they sit are all figures a merchant could track"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "free software offers and switching costs",
+  "passage": "Many software companies let new customers use the complete program for thirty days without paying. The arrangement is less generous than it looks. Firms have found that people who have spent a month building projects in a program are reluctant to abandon that work and start over somewhere else, and most of them go on to pay. The free ______ thus works less as a gift than as a way of making it costly to leave.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "version",
+    "trial",
+    "upgrade",
+    "voucher"
+  ],
+  "correct_answer": "trial",
+  "explanation": "A free \"trial\" is a limited period of use without charge, which is what thirty days of the complete program is. \"Version\" fails because a free version is a reduced edition kept indefinitely, while these customers used the complete program for a set period. \"Upgrade\" fails because the offer goes to new customers, who have nothing to move up from. \"Voucher\" fails because customers were not given a discount toward a purchase; they used the program itself.",
+  "antonym_pairs": [],
+  "polarity": {
+    "version": "0",
+    "trial": "0",
+    "upgrade": "0",
+    "voucher": "0"
+  },
+  "register": {
+    "version": "neutral",
+    "trial": "neutral",
+    "upgrade": "neutral",
+    "voucher": "neutral"
+  },
+  "rarity_order": [
+    "trial",
+    "version",
+    "upgrade",
+    "voucher"
+  ],
+  "killed_by": {
+    "version": "logic",
+    "upgrade": "logic",
+    "voucher": "logic"
+  },
+  "after_blank": "thus",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The free ______ thus works less as a gift than as a way of making it costly to leave.",
+    "defensible": [
+      "trial",
+      "version",
+      "upgrade",
+      "voucher"
+    ],
+    "why": "alone, the sentence names some free offer that keeps customers from leaving; a trial period, a free edition, a free upgrade, or a voucher could each do that"
+  }
+}

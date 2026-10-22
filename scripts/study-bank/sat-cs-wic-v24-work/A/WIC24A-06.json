@@ -1,0 +1,26 @@
+{
+  "id": "WIC24A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "induced plant defenses",
+  "passage": "When caterpillars begin chewing a tomato leaf, the plant floods its tissues with bitter compounds that make its leaves less palatable. Making those compounds draws on the same nitrogen the plant would otherwise spend on new leaves and fruit. In a greenhouse where no insects ever appeared, plants sprayed with a hormone that switches on the defense ended up smaller and set fewer fruit than unsprayed plants. Researchers cite such results as a measure of the ______ of defense: protection that pays off only when attackers are actually present.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["chemistry", "futility", "burden", "elegance"],
+  "correct_answer": "burden",
+  "explanation": "The defense uses nitrogen that would otherwise go to growth, and plants made to defend without attackers grew less, so the results measure its \"burden.\" \"Futility\" fails because the defense does pay off when caterpillars are present; the greenhouse only removed them. \"Chemistry\" fails because the experiment measured growth and fruit, not the compounds, and \"elegance\" fails because the results reveal a drawback.",
+  "antonym_pairs": [],
+  "polarity": {"chemistry": "0", "futility": "-", "burden": "-", "elegance": "+"},
+  "register": {"chemistry": "neutral", "futility": "formal", "burden": "neutral", "elegance": "formal"},
+  "rarity_order": ["burden", "chemistry", "elegance", "futility"],
+  "killed_by": {"chemistry": "logic", "futility": "logic", "elegance": "logic"},
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "experiment and its implication",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Researchers cite such results as a measure of the ______ of defense: protection that pays off only when attackers are actually present.",
+    "defensible": ["burden", "elegance", "futility"],
+    "why": "alone, protection that switches on only when needed could illustrate its burden, its elegance as an on-demand system, or its futility when no attacker comes; only the earlier sentences show nitrogen diverted from growth"
+  }
+}

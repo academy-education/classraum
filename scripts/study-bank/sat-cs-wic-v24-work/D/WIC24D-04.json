@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "commuter crowding and work start times",
+  "passage": "Every weekday morning, the city's commuter trains were packed beyond capacity for about forty minutes and then ran half empty, largely because the three biggest employers downtown all began work at 8:00. The transit agency could not afford more trains. Instead, it persuaded those employers to ______ their starting times. Within a month the crush had eased, although just as many people rode the morning trains as before.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "trade",
+    "vary",
+    "tabulate",
+    "sanction"
+  ],
+  "correct_answer": "vary",
+  "explanation": "To \"vary\" the starting times is to make them differ; the crush came from three employers all starting at 8:00, and it eased while ridership stayed the same, so the same riders must now arrive at different times. \"Trade\" fails because the employers shared one starting time, so exchanging times would have left all three at 8:00. \"Tabulate\" and \"sanction\" fail because recording or approving the times would have left them unchanged, and unchanged times could not have eased the crush with as many riders as before.",
+  "antonym_pairs": [],
+  "polarity": {
+    "trade": "0",
+    "vary": "0",
+    "tabulate": "0",
+    "sanction": "0"
+  },
+  "register": {
+    "trade": "neutral",
+    "vary": "neutral",
+    "tabulate": "formal",
+    "sanction": "formal"
+  },
+  "rarity_order": [
+    "vary",
+    "trade",
+    "sanction",
+    "tabulate"
+  ],
+  "killed_by": {
+    "trade": "logic",
+    "tabulate": "logic",
+    "sanction": "logic"
+  },
+  "after_blank": "their",
+  "pos": "verb",
+  "shape": "problem and solution",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Instead, it persuaded those employers to ______ their starting times.",
+    "defensible": [
+      "vary",
+      "trade",
+      "tabulate",
+      "sanction"
+    ],
+    "why": "alone, the sentence gives no starting times and no result, so changing, exchanging, recording, or approving the times are all things an agency might persuade employers to do"
+  }
+}

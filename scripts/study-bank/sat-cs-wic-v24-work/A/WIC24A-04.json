@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sun-tracking alpine flowers",
+  "passage": "Some flowers in cold mountain meadows track the sun, turning through the day so that their bowl-shaped petals stay aimed at it. The petals focus sunlight on the flower's center, which can sit several degrees warmer than the surrounding air. Flies and small bees land there between foraging trips to warm their flight muscles, and while they rest, pollen dusts their bodies. The flower's warmth thus ______ the insects in a habitat where shelter from the cold is scarce, and the plant is pollinated in return.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "feeds",
+    "courts",
+    "deceives",
+    "exploits"
+  ],
+  "correct_answer": "courts",
+  "explanation": "The warmth draws insects to rest at the flower, which then gains pollination, so it \"courts\" them. \"Feeds\" fails because the insects land between foraging trips, so their food comes from elsewhere. \"Deceives\" and \"exploits\" both cast the insects as losers, but the warmth is a real benefit that warms their flight muscles.",
+  "antonym_pairs": [],
+  "polarity": {
+    "feeds": "0",
+    "courts": "0",
+    "deceives": "-",
+    "exploits": "-"
+  },
+  "register": {
+    "feeds": "neutral",
+    "courts": "neutral",
+    "deceives": "neutral",
+    "exploits": "neutral"
+  },
+  "rarity_order": [
+    "feeds",
+    "exploits",
+    "deceives",
+    "courts"
+  ],
+  "killed_by": {
+    "feeds": "logic",
+    "deceives": "logic",
+    "exploits": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The flower's warmth thus ______ the insects in a habitat where shelter from the cold is scarce, and the plant is pollinated in return.",
+    "defensible": [
+      "courts",
+      "deceives",
+      "exploits",
+      "feeds"
+    ],
+    "why": "alone, the plant gets pollination from insects through its warmth, which it could do by courting, deceiving, exploiting, or feeding them; only the earlier sentences show genuine warming and food found elsewhere"
+  }
+}

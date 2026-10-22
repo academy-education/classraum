@@ -1,0 +1,55 @@
+{
+  "id": "WIC24C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "Renaissance altarpiece contracts",
+  "passage": "In Renaissance Florence, the subject of an altarpiece was usually fixed by contract before the artist touched a brush; the patron named the saints, the setting, and even the amount of costly blue pigment to be used. Historians who want to know what a painter himself valued therefore look less at what was painted than at how: the handling of a background figure, or a stretch of landscape the contract never mentioned. It was in these unspecified details that the painter could ______ his own taste.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "reveal",
+    "moderate",
+    "rationalize",
+    "question"
+  ],
+  "correct_answer": "reveal",
+  "explanation": "Because the contract fixed everything the patron named, historians look to the unmentioned details to learn what the painter valued, so these were where he could \"reveal\" his taste. \"Rationalize\" fails because the details show his preferences in paint; nothing suggests he was justifying them. \"Moderate\" fails because the details were the one place free of the patron’s terms, so nothing obliged him to temper his taste, and \"question\" fails because the passage concerns expressing preferences, not doubting them.",
+  "antonym_pairs": [],
+  "polarity": {
+    "reveal": "0",
+    "moderate": "0",
+    "rationalize": "0",
+    "question": "0"
+  },
+  "register": {
+    "reveal": "neutral",
+    "moderate": "neutral",
+    "rationalize": "formal",
+    "question": "neutral"
+  },
+  "rarity_order": [
+    "question",
+    "reveal",
+    "moderate",
+    "rationalize"
+  ],
+  "killed_by": {
+    "moderate": "logic",
+    "rationalize": "logic",
+    "question": "logic"
+  },
+  "after_blank": "his",
+  "pos": "verb",
+  "shape": "method and purpose of a historical inference",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "It was in these unspecified details that the painter could ______ his own taste.",
+    "defensible": [
+      "reveal",
+      "moderate",
+      "rationalize",
+      "question"
+    ],
+    "why": "alone, the sentence says only that the details were where the painter did something with his taste: reveal, moderate, rationalize and question all fit; only the contract sentence (everything named was fixed) and the historians’ method (they read his values from the details) show the details exposed his taste"
+  }
+}

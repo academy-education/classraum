@@ -1,0 +1,55 @@
+{
+  "id": "WIC24A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "lake delta sediment layers",
+  "passage": "Most of the sediment reaching a mountain lake's delta arrives during a few days each spring, when snowmelt swells the river feeding it. For the rest of the year the river runs clear, and the delta's channels barely shift. Cores drilled through the delta therefore show not a smooth gradient of grain sizes but a stack of thick sandy bands, one per year and of similar thickness, each separated from the next by a thin seam of fine silt. Sediment delivery to the lake, in short, is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "chaotic",
+    "diminishing",
+    "episodic",
+    "disrupted"
+  ],
+  "correct_answer": "episodic",
+  "explanation": "Sediment comes in a short burst each spring and almost none arrives otherwise, so delivery is \"episodic.\" \"Chaotic\" fails because the bursts come at a predictable time every year, and \"diminishing\" fails because the yearly bands are of similar thickness. \"Disrupted\" implies something interfering with delivery, but the pattern is the river's own seasonal cycle.",
+  "antonym_pairs": [],
+  "polarity": {
+    "chaotic": "-",
+    "diminishing": "0",
+    "episodic": "0",
+    "disrupted": "-"
+  },
+  "register": {
+    "chaotic": "neutral",
+    "diminishing": "formal",
+    "episodic": "formal",
+    "disrupted": "neutral"
+  },
+  "rarity_order": [
+    "chaotic",
+    "disrupted",
+    "diminishing",
+    "episodic"
+  ],
+  "killed_by": {
+    "chaotic": "logic",
+    "diminishing": "explicit",
+    "disrupted": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "inference from evidence",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Sediment delivery to the lake, in short, is ______.",
+    "defensible": [
+      "episodic",
+      "chaotic",
+      "diminishing",
+      "disrupted"
+    ],
+    "why": "alone, the sentence says nothing about the delivery, so it could be episodic, chaotic, diminishing, or disrupted; only the earlier sentences show a regular once-a-year burst of steady size"
+  }
+}

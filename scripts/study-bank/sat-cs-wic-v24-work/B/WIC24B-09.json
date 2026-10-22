@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "gift exchange",
+  "passage": "In the villages one anthropologist studied, a family that received a pig at a wedding was not expected to repay it soon, and no one ever named its price. Yet elders could recite, decades later, exactly who had given what to whom, and a gift left unreturned for too long became the subject of quiet gossip until a fitting gift went back. The absence of prices, she concluded, did not mean an absence of ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "gain",
+    "haggling",
+    "indebtedness",
+    "insolvency"
+  ],
+  "correct_answer": "indebtedness",
+  "explanation": "Elders remembered every gift for decades and gossiped about any left unreturned until a return gift settled it, so receivers clearly owed something even though no price was ever named: the absence of prices did not mean an absence of \"indebtedness.\" \"Gain\" fails because each gift was eventually answered by a fitting one, so the system balanced obligations rather than letting anyone come out ahead. \"Insolvency\" fails because the gift eventually went back; no one is described as unable to repay. \"Haggling\" fails because no one ever named a price to bargain over.",
+  "antonym_pairs": [],
+  "polarity": {
+    "gain": "+",
+    "haggling": "0",
+    "indebtedness": "-",
+    "insolvency": "-"
+  },
+  "register": {
+    "gain": "neutral",
+    "haggling": "everyday",
+    "indebtedness": "formal",
+    "insolvency": "formal"
+  },
+  "rarity_order": [
+    "gain",
+    "haggling",
+    "indebtedness",
+    "insolvency"
+  ],
+  "killed_by": {
+    "gain": "logic",
+    "haggling": "explicit",
+    "insolvency": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "The absence of prices, she concluded, did not mean an absence of ______.",
+    "defensible": [
+      "indebtedness",
+      "gain",
+      "haggling",
+      "insolvency"
+    ],
+    "why": "anything a reader links with prices and money (owing, profit, bargaining, inability to pay) can fill the sentence alone; only the remembered gifts and the gossip until a return show that what persisted was owing"
+  }
+}

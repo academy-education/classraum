@@ -1,0 +1,54 @@
+{
+  "id": "WIC24D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "keeping bakery staff: wages versus profit sharing",
+  "passage": "Two bakeries in the same town faced the same problem: experienced bakers kept leaving for better-paying jobs. The first raised its hourly wage, and departures fell for about a year, until rival shops matched the raise. The second left its wage alone but began setting aside part of each year's profits for its employees, credited to each person in proportion to years worked. Each worker's ______, and so what she would give up by quitting, grew with every year she stayed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "salary",
+    "stake",
+    "tips",
+    "stipend"
+  ],
+  "correct_answer": "stake",
+  "explanation": "A \"stake\" is a share in a business's results; the second bakery credited each worker with part of its profits in proportion to her years, a share she would lose by leaving. \"Salary\" fails because the second bakery left its wage alone. \"Tips\" fails because tips come from customers and are already in a worker's pocket, so the arrangement did not create them and quitting would not forfeit them. \"Stipend\" fails because a stipend is a fixed allowance paid out, while this was a share of profits set aside and credited by years worked.",
+  "antonym_pairs": [],
+  "polarity": {
+    "salary": "0",
+    "stake": "0",
+    "tips": "0",
+    "stipend": "0"
+  },
+  "register": {
+    "salary": "neutral",
+    "stake": "neutral",
+    "tips": "everyday",
+    "stipend": "formal"
+  },
+  "rarity_order": [
+    "salary",
+    "tips",
+    "stake",
+    "stipend"
+  ],
+  "killed_by": {
+    "salary": "explicit",
+    "tips": "logic",
+    "stipend": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Each worker's ______, and so what she would give up by quitting, grew with every year she stayed.",
+    "defensible": [
+      "stake",
+      "salary",
+      "stipend"
+    ],
+    "why": "a long-serving worker's pay, an allowance, or a share in the business could each grow with her years and be lost by quitting"
+  }
+}

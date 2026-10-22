@@ -1,0 +1,54 @@
+{
+  "id": "WIC24B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "printing and spelling",
+  "passage": "Before printing, a manuscript's spelling depended on its scribe, and the same word might appear three different ways on a single page. A printer, by contrast, set a text in type once and then produced hundreds of identical copies, so that readers in distant towns met the same forms again and again. Historians of the language credit early printers with an achievement none of them intended. By choosing one regional dialect for their books, printers ______ spellings that had varied from scribe to scribe.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "honored",
+    "hardened",
+    "itemized",
+    "hybridized"
+  ],
+  "correct_answer": "hardened",
+  "explanation": "Identical copies repeated one set of forms to readers everywhere, so spellings that had varied became fixed: printers \"hardened\" them. \"Honored\" fails because the variation was not preserved; it was replaced by one form repeated in every copy. \"Itemized\" fails because listing spellings is a deliberate act of cataloguing, while the achievement was one none of the printers intended and came from repetition, not from lists. \"Hybridized\" fails because printers chose one regional dialect rather than mixing several.",
+  "antonym_pairs": [],
+  "polarity": {
+    "honored": "+",
+    "hardened": "0",
+    "itemized": "0",
+    "hybridized": "0"
+  },
+  "register": {
+    "honored": "neutral",
+    "hardened": "neutral",
+    "itemized": "neutral",
+    "hybridized": "technical"
+  },
+  "rarity_order": [
+    "honored",
+    "hardened",
+    "itemized",
+    "hybridized"
+  ],
+  "killed_by": {
+    "honored": "logic",
+    "itemized": "logic",
+    "hybridized": "explicit"
+  },
+  "after_blank": "spellings",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "By choosing one regional dialect for their books, printers ______ spellings that had varied from scribe to scribe.",
+    "defensible": [
+      "hardened",
+      "honored",
+      "itemized"
+    ],
+    "why": "alone, the sentence allows printers to have fixed, respected, or listed the varying spellings; only the identical copies in the second sentence show that one form was repeated until it set"
+  }
+}

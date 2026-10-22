@@ -1,0 +1,55 @@
+{
+  "id": "WIC24B-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "town government",
+  "passage": "Under the town's 1720 charter, the office of mayor passed each year to the head of one of the four oldest guilds in turn. The mayor presided over council meetings, wore the chain of office, and signed every decree. Yet decrees required a majority of the council, the mayor could neither propose a measure nor cast a vote, and real authority lay with the council's standing committees. In practice, the mayor's role was largely ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "judicial",
+    "hereditary",
+    "honorary",
+    "janitorial"
+  ],
+  "correct_answer": "honorary",
+  "explanation": "The mayor held the dignities of office (presiding, the chain, the signature) but could neither propose nor vote, and real authority lay with the committees, so the role was largely \"honorary.\" \"Judicial\" fails because presiding over the council is not hearing or judging cases. \"Janitorial\" fails because the mayor's duties were marks of dignity at the head of the council, not routine upkeep or chores. \"Hereditary\" fails because the office rotated yearly among guild heads.",
+  "antonym_pairs": [],
+  "polarity": {
+    "judicial": "0",
+    "hereditary": "0",
+    "honorary": "0",
+    "janitorial": "0"
+  },
+  "register": {
+    "judicial": "formal",
+    "hereditary": "formal",
+    "honorary": "formal",
+    "janitorial": "neutral"
+  },
+  "rarity_order": [
+    "judicial",
+    "hereditary",
+    "honorary",
+    "janitorial"
+  ],
+  "killed_by": {
+    "judicial": "logic",
+    "hereditary": "explicit",
+    "janitorial": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "In practice, the mayor's role was largely ______.",
+    "defensible": [
+      "honorary",
+      "judicial",
+      "hereditary",
+      "janitorial"
+    ],
+    "why": "the sentence alone gives no facts about the office, so honorary, judicial, hereditary and janitorial roles are all possible until the rotation, the duties and the lack of a vote are known"
+  }
+}

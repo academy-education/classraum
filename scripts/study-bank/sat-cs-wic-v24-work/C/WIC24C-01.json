@@ -1,0 +1,54 @@
+{
+  "id": "WIC24C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "serialized Victorian fiction",
+  "passage": "Victorian novelists who published in monthly parts could not revise a chapter once it had appeared. One critic argues that this constraint, more than any taste for digression, explains the loose plotting of many serialized novels. A writer who had introduced a minor character in March could not quietly remove him in June; the character was already in print, and readers expected to see him again, so the author had to find something for him to do. On this view, the subplots that later readers found distracting were not lapses of control but ______ of the form itself.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "products",
+    "principles",
+    "relics",
+    "monuments"
+  ],
+  "correct_answer": "products",
+  "explanation": "The critic traces the subplots to a constraint of serial publication: a character already in print could not be removed, so the author had to give him something to do, which makes the subplots \"products\" of the form. \"Principles\" fails because the subplots are outcomes the constraint produced, not rules governing the form. \"Relics\" fails because they arose from the live constraint of each new installment, not as survivals of an older practice, and \"monuments\" fails because the passage presents them as forced, not as the form's celebrated achievements.",
+  "antonym_pairs": [],
+  "polarity": {
+    "products": "0",
+    "principles": "0",
+    "relics": "0",
+    "monuments": "+"
+  },
+  "register": {
+    "products": "neutral",
+    "principles": "neutral",
+    "relics": "neutral",
+    "monuments": "neutral"
+  },
+  "rarity_order": [
+    "products",
+    "principles",
+    "monuments",
+    "relics"
+  ],
+  "killed_by": {
+    "principles": "logic",
+    "relics": "logic",
+    "monuments": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "On this view, the subplots that later readers found distracting were not lapses of control but ______ of the form itself.",
+    "defensible": [
+      "products",
+      "principles",
+      "relics"
+    ],
+    "why": "alone, anything that belongs to the form rather than to authorial carelessness fits: products, principles and relics of the form all do; only the earlier sentences (no revision after printing, a character who could not be removed and had to be used) show the subplots were outcomes forced by serial publication"
+  }
+}

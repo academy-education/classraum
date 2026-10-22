@@ -1,0 +1,55 @@
+{
+  "id": "WIC24C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early photography and authorship",
+  "passage": "Early photographers were often accused of merely copying nature, and one historian concedes part of the charge: once the shutter opened, a camera fixed on a tripod could not decide what fell within its frame. She insists, however, that every decision of consequence had already been made. Where to stand, when to expose the plate, and which of a dozen negatives to print were all choices the photographer controlled. On her account, the mechanism ______ the photographer’s judgment only for the fraction of a second the exposure lasted.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "removed",
+    "misrepresented",
+    "outpaced",
+    "modified"
+  ],
+  "correct_answer": "removed",
+  "explanation": "The historian concedes that during the exposure the camera could not decide anything, while every real choice came before or after it, so the mechanism \"removed\" judgment only for that instant. \"Misrepresented\" fails because nothing suggests the photograph distorted the photographer’s choices. \"Outpaced\" fails because the point is that no decision was possible during exposure, not that judgment was too slow, and \"modified\" fails because judgment was absent then, not altered.",
+  "antonym_pairs": [],
+  "polarity": {
+    "removed": "0",
+    "misrepresented": "-",
+    "outpaced": "0",
+    "modified": "0"
+  },
+  "register": {
+    "removed": "neutral",
+    "misrepresented": "formal",
+    "outpaced": "neutral",
+    "modified": "neutral"
+  },
+  "rarity_order": [
+    "removed",
+    "modified",
+    "outpaced",
+    "misrepresented"
+  ],
+  "killed_by": {
+    "misrepresented": "logic",
+    "outpaced": "logic",
+    "modified": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "On her account, the mechanism ______ the photographer’s judgment only for the fraction of a second the exposure lasted.",
+    "defensible": [
+      "removed",
+      "outpaced",
+      "modified",
+      "misrepresented"
+    ],
+    "why": "alone, the sentence says only that the mechanism did something to judgment briefly: taking it away, outrunning it, altering it or distorting it all fit; only the concession (the camera could not decide once the shutter opened) and the claim that choices came before it show judgment was taken out of play"
+  }
+}

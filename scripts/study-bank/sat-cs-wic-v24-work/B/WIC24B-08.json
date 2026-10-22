@@ -1,0 +1,54 @@
+{
+  "id": "WIC24B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "census history",
+  "passage": "One country's first national census, taken in the early nineteenth century, asked parish officials to count inhabitants and to sort them by occupation. The officials received no definitions of the occupational categories, and the returns show the result: one parish counted farm servants as laborers, a neighboring parish listed them as members of their employers' households, and a third left them out altogether. Historians comparing districts must therefore handle the occupational figures with caution, because the categories were, in effect, ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "local",
+    "lucid",
+    "loaded",
+    "granular"
+  ],
+  "correct_answer": "local",
+  "explanation": "With no definitions supplied, each parish decided for itself what an occupational category meant, so neighboring parishes classified the same workers differently: the categories were, in effect, \"local.\" \"Lucid\" fails because three parishes read the same category three different ways, so it was not clear. \"Loaded\" fails because the differences came from missing definitions, not from any bias. \"Granular\" fails because the categories were inconsistent between parishes, not finely detailed.",
+  "antonym_pairs": [],
+  "polarity": {
+    "local": "0",
+    "lucid": "+",
+    "loaded": "-",
+    "granular": "0"
+  },
+  "register": {
+    "local": "neutral",
+    "lucid": "formal",
+    "loaded": "neutral",
+    "granular": "technical"
+  },
+  "rarity_order": [
+    "local",
+    "loaded",
+    "lucid",
+    "granular"
+  ],
+  "killed_by": {
+    "lucid": "logic",
+    "loaded": "logic",
+    "granular": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "definition by example",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Historians comparing districts must therefore handle the occupational figures with caution, because the categories were, in effect, ______.",
+    "defensible": [
+      "local",
+      "loaded",
+      "granular"
+    ],
+    "why": "caution about categories fits categories that differ by district, that were biased, or that were too fine to compare; only the missing definitions and the three parishes' different choices show they varied by place"
+  }
+}

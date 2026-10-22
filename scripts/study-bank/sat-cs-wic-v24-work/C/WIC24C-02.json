@@ -1,0 +1,54 @@
+{
+  "id": "WIC24C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "fresco and oil painting conservation",
+  "passage": "Painters working in true fresco had to brush pigment onto wet plaster before it dried, so a wall was completed in patches, each one a single day’s work. Oil painters faced no such deadline; a layer could be scraped off and repainted weeks later. Conservators therefore read the two kinds of work differently. In a fresco, the seams between patches record the order in which the wall was painted, whereas in an oil panel the visible surface is often ______ evidence of that order. A figure that looks as if it were painted in one sitting may conceal three abandoned versions, none of which reaches the surface.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "poor",
+    "mixed",
+    "physical",
+    "relevant"
+  ],
+  "correct_answer": "poor",
+  "explanation": "Because oil layers can be scraped and repainted, earlier versions may lie hidden with no trace on the surface, so the surface offers \"poor\" evidence of the painting order. \"Mixed\" fails because the hidden versions do not send conflicting signals; they send none. \"Physical\" fails because the fresco seams are physical too, so it marks no contrast, and \"relevant\" fails because the passage stresses how little the surface reveals, not its bearing on the question.",
+  "antonym_pairs": [],
+  "polarity": {
+    "poor": "-",
+    "mixed": "-",
+    "physical": "0",
+    "relevant": "0"
+  },
+  "register": {
+    "poor": "neutral",
+    "mixed": "neutral",
+    "physical": "neutral",
+    "relevant": "neutral"
+  },
+  "rarity_order": [
+    "poor",
+    "mixed",
+    "physical",
+    "relevant"
+  ],
+  "killed_by": {
+    "mixed": "logic",
+    "physical": "logic",
+    "relevant": "logic"
+  },
+  "after_blank": "evidence",
+  "pos": "adjective",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "In a fresco, the seams between patches record the order in which the wall was painted, whereas in an oil panel the visible surface is often ______ evidence of that order.",
+    "defensible": [
+      "poor",
+      "mixed",
+      "relevant"
+    ],
+    "why": "the whereas-contrast with the fresco seams is satisfied by poor (weak) or mixed (inconsistent) evidence, and relevant reads naturally on a quick pass; only the next sentence (abandoned versions never reach the surface) shows the evidence is scant rather than conflicting"
+  }
+}

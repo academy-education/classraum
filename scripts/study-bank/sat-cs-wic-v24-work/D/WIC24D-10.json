@@ -1,0 +1,55 @@
+{
+  "id": "WIC24D-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "automatic enrollment in retirement plans",
+  "passage": "When a large employer began enrolling new hires in its retirement savings plan automatically, it forced no one to save: anyone could leave the plan by returning a one-page form. Yet participation, which had hovered near 40 percent when workers had to sign up on their own, rose above 90 percent. Simply changing the default, the plan's designers concluded, can ______ the choices people make.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "vet",
+    "sway",
+    "usurp",
+    "solicit"
+  ],
+  "correct_answer": "sway",
+  "explanation": "To \"sway\" choices is to influence them; anyone could still opt out, yet participation jumped from about 40 to over 90 percent, so the default changed what people chose without taking the choice away. \"Usurp\" fails because no one was forced: a one-page form let anyone leave. \"Vet\" fails because the default screened nothing; it simply enrolled everyone, and the result was a change in what people chose, not a review of it. \"Solicit\" fails because automatic enrollment asked workers for nothing; it enrolled them unless they acted.",
+  "antonym_pairs": [],
+  "polarity": {
+    "vet": "0",
+    "sway": "0",
+    "usurp": "-",
+    "solicit": "0"
+  },
+  "register": {
+    "vet": "neutral",
+    "sway": "neutral",
+    "usurp": "formal",
+    "solicit": "formal"
+  },
+  "rarity_order": [
+    "sway",
+    "vet",
+    "solicit",
+    "usurp"
+  ],
+  "killed_by": {
+    "vet": "logic",
+    "usurp": "explicit",
+    "solicit": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false,
+  "deletion_test": {
+    "kept_sentence": "Simply changing the default, the plan's designers concluded, can ______ the choices people make.",
+    "defensible": [
+      "sway",
+      "usurp",
+      "vet",
+      "solicit"
+    ],
+    "why": "alone, the sentence says a default does something to people's choices; influencing, overriding, screening, or inviting them all fit, since nothing says whether people kept the option to leave or what happened to participation"
+  }
+}
