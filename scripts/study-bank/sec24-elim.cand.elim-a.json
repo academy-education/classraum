@@ -1,0 +1,148 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "Singular 'has' with plural 'their' is the likeliest mismatch, though singular they or an inverted question could rescue it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "C",
+    "why": "Present perfect plural looks least likely but any number/tense pairing could fit the hidden subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "B",
+    "why": "Present tense is least likely in a narrative passage, but nothing rules it out.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "D",
+    "why": "Singular present is a guess; all four number/tense pairings are grammatical somewhere.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "A",
+    "why": "'does the' needs a specific inversion context, but all four auxiliaries can be valid.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "D",
+    "why": "'shield it' pairs plural verb with singular object; still possible depending on subject and antecedent.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "C",
+    "why": "Singular past is a guess; every option can agree with some subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "B",
+    "why": "'were' is a guess; each auxiliary/verb can fit some frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "D",
+    "why": "A comma right after 'and' needs an interrupting phrase to follow, which is unusual but possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "C",
+    "why": "Singular present is a guess; number and tense depend on the hidden subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "D",
+    "why": "Plural verb with singular 'that' is a guess; all combos are possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "A",
+    "why": "Plural present perfect progressive is a guess; all four can agree with some subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "B",
+    "why": "A comma directly after the article 'the' splits the article from its noun and cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L14": {
+    "reject_first": "B",
+    "why": "'are its' mixes plural verb with singular possessive, though a separate antecedent could justify it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "C",
+    "why": "Auxiliary choice depends on the hidden verb; none is impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "C",
+    "why": "A question mark is unlikely in expository text, but a question is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "C",
+    "why": "'do' is a guess; each auxiliary fits some construction.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "D",
+    "why": "Comma-dash mismatch looks wrong, but the comma could close an earlier element and the dash open an aside.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "C",
+    "why": "Present plural is a guess; tense and number depend on context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "D",
+    "why": "'are avoided by it' mixes numbers, but subject and agent are independent so it remains possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "B",
+    "why": "Plural present perfect is a guess; all are possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "D",
+    "why": "A colon before a prepositional phrase is unusual but possible if an independent clause follows.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "D",
+    "why": "A colon before a participial phrase is unusual but not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "A",
+    "why": "Plural present progressive passive is a guess; all could agree with some subject.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

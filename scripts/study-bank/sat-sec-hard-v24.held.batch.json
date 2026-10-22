@@ -1,0 +1,155 @@
+[
+  {
+    "id": "SEC24A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound subject and possessive pronoun reference to the compound",
+    "difficulty": "hard",
+    "passage": "A typical apple tree sold by a commercial nursery is really two plants, joined at a graft just above the soil line. The fruiting scion and its dwarfing rootstock ______ genes, and no DNA passes across the union. Seeds from the fruit therefore inherit nothing from the rootstock, not even the compact size that growers prize.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has its own",
+      "have its own",
+      "has their own",
+      "have their own"
+    ],
+    "correct_answer": "have their own",
+    "explanation": "The subject is the compound \"the fruiting scion and its dwarfing rootstock\": two plants joined by \"and,\" so the verb must be plural, \"have.\" The possessive names the owner of the genes, and the text says the two plants are separate and that \"no DNA passes across the union,\" so each part owns its genes and the plural \"their\" is needed. \"has its own\" and \"has their own\" treat the subject as the single noun \"rootstock\" before the blank. \"have its own\" has a plural verb but a singular possessive that cannot refer to the two-part subject.",
+    "topic_tag": "pomology: apple scions and dwarfing rootstocks"
+  },
+  {
+    "id": "SEC24A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary choice in verb-phrase ellipsis",
+    "difficulty": "hard",
+    "passage": "A survey of soybean growers in one farming region confirms a familiar rule of weed control: resistance spreads fastest on farms that rely on a single herbicide and never rotate to another. Weeds resistant to glyphosate have appeared in fields across the region, and a resistant form of giant ragweed ______ too.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has",
+      "do",
+      "have",
+      "does"
+    ],
+    "correct_answer": "has",
+    "explanation": "The blank stands for a shortened verb phrase that repeats the first clause's verb, \"have appeared,\" so it needs the same auxiliary, a form of \"have.\" Its subject is \"a resistant form of giant ragweed,\" whose head \"form\" is singular; the plural \"Weeds\" belongs to the first clause. So the correct choice is \"has.\" \"have\" copies the first clause's auxiliary but also its plural number. \"does\" and \"do\" would stand for a simple-present verb such as \"appears,\" not for \"have appeared,\" and \"do\" is plural as well.",
+    "topic_tag": "weed management: glyphosate-resistant ragweed"
+  },
+  {
+    "id": "SEC24B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement past a parenthetical list, with tense set by a simultaneous as-clause",
+    "difficulty": "hard",
+    "passage": "A wind-energy laboratory tests full-scale turbine parts before they go to sea. The prototype rotor (a steel hub, a drive shaft, and three fiberglass blades) ______ in strong artificial crosswinds as two engineers watch the strain readings on a monitor. Any blade that flexes beyond its design limit is sent back to the factory for redesign.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was being tested",
+      "are being tested",
+      "were being tested",
+      "is being tested"
+    ],
+    "correct_answer": "is being tested",
+    "explanation": "The subject is \"The prototype rotor,\" which is singular; the parentheses only list its parts, so the plural \"blades\" closing the list does not set the verb's number. The testing happens at the same time as the action in \"as two engineers watch,\" whose verb is present tense, so the verb must be present as well. \"are being tested\" is present but plural, \"was being tested\" is singular but past and clashes with \"watch,\" and \"were being tested\" fails on both counts.",
+    "topic_tag": "wind engineering: rotor crosswind testing"
+  },
+  {
+    "id": "SEC24B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a deverbal head and two of/by phrases, with tense set by an unless-clause",
+    "difficulty": "hard",
+    "passage": "Radar satellites can detect the swelling of a volcano to within a few millimeters, an early sign that magma is collecting below. The measurements of the summit by both satellites ______ its uplift unless the delay caused by water vapor in the air is removed from the signal. Moist air slows the radar pulses and distorts the apparent height of the ground.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are overstating",
+      "was overstating",
+      "is overstating",
+      "were overstating"
+    ],
+    "correct_answer": "are overstating",
+    "explanation": "The head of the subject is \"measurements,\" which is plural; \"the summit\" names what is measured and does not set the number. The sentence is a first conditional: its condition, \"unless the delay ... is removed,\" is in the present tense, so the main verb must be present too. \"is overstating\" is present but singular, \"were overstating\" is plural but past and cannot pair with the present \"is removed,\" and \"was overstating\" fails on both counts.",
+    "topic_tag": "volcano geodesy: satellite radar uplift"
+  },
+  {
+    "id": "SEC24B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and object pronoun number with the antecedent in an opening place clause",
+    "difficulty": "hard",
+    "passage": "Strain sensors bolted to long-span bridges corrode in a few months if salt and wind reach them, and corroded units report false readings. Engineers who monitor these bridges therefore protect the most exposed instruments first. Wherever the sensors sit on the seaward girders, a thin steel housing ______ from the gusts and the salt spray.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "shields them",
+      "shield it",
+      "shield them",
+      "shields it"
+    ],
+    "correct_answer": "shields them",
+    "explanation": "The subject of the main clause is \"a thin steel housing,\" which is singular, so the verb is \"shields\"; the plural \"sensors\" belongs to the opening clause \"Wherever the sensors sit on the seaward girders\" and is not the subject. The object pronoun must refer back to those plural \"sensors,\" the only things the housing can protect, so it must be \"them\"; \"it\" has no possible referent, since the only singular noun before it is the housing itself. \"shield them\" has the right pronoun but a plural verb, \"shields it\" has the right verb but a pronoun with nothing to refer to, and \"shield it\" fails on both counts.",
+    "topic_tag": "structural health monitoring: bridge strain sensors"
+  },
+  {
+    "id": "SEC24C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular head noun followed by of + a gerund phrase whose object is plural, crossed with past progressive versus present perfect progressive decided by a past-tense verb in a before-clause of the same sentence",
+    "difficulty": "hard",
+    "passage": "Nineteenth-century etiquette manuals devote whole chapters to the calling card, a small printed card left at a house to announce a visit. The practice of exchanging such cards ______ slowly but steadily through provincial towns before the railway reached them, according to the order books of local printers. Social historians treat those order books as a rough map of middle-class ambition.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been spreading",
+      "was spreading",
+      "were spreading",
+      "has been spreading"
+    ],
+    "correct_answer": "was spreading",
+    "explanation": "The subject is \"practice,\" a singular noun; \"cards,\" the plural noun just before the blank, is the object of the gerund \"exchanging\" inside the phrase \"of exchanging such cards.\" The verb must also be past progressive rather than present perfect progressive, because the before-clause in the same sentence names a completed past event (\"before the railway reached them\"), and the present perfect cannot be anchored to a finished past moment. Only \"was spreading\" is singular and non-perfect. \"were spreading\" is past but plural, agreeing with \"cards.\" \"has been spreading\" is singular but cannot take \"before the railway reached them,\" and \"have been spreading\" is both plural and perfect.",
+    "topic_tag": "social history: calling-card etiquette"
+  },
+  {
+    "id": "SEC24C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a main clause with a plural subject after an opening concessive clause whose subject is singular, crossed with simple past versus present perfect passive decided by a definite-past when-clause of the same sentence",
+    "difficulty": "hard",
+    "passage": "Although the household inventory lists each chair and candlestick in the house, the painted hall screens ______ without a single written note when a new owner emptied the west wing for use as a school. Decorative arts historians therefore rely on an auction catalog to trace them. Its descriptions are brief, but they match two screens that hang in a regional museum.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been removed",
+      "was removed",
+      "were removed",
+      "has been removed"
+    ],
+    "correct_answer": "were removed",
+    "explanation": "The subject of the main clause is \"screens,\" a plural noun; \"inventory,\" the singular subject of the opening \"Although\" clause, belongs to a different clause and cannot govern this verb. The verb must also be simple past rather than present perfect, because the when-clause in the same sentence fixes a finished past moment (\"when a new owner emptied the west wing\"), and the present perfect cannot take a definite past time. Only \"were removed\" is plural and simple past. \"was removed\" is simple past but singular, as if \"inventory\" were the subject. \"have been removed\" is plural but present perfect, which clashes with \"emptied,\" and \"has been removed\" is both singular and perfect.",
+    "topic_tag": "decorative arts history: a country-house inventory"
+  },
+  {
+    "id": "SEC24C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head noun followed by an of-phrase ending on a singular noun, crossed with the number of the demonstrative pronoun that or those standing for the compared head",
+    "difficulty": "hard",
+    "passage": "Three illustrated copies of a town chronicle survive, and historians long disagreed about which of them served as the model for the others. A pigment analysis has offered an answer. The pigments of the smallest copy ______ of the two larger copies almost exactly, a match that points to a single workshop working over a short span of time.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "match those",
+      "matches that",
+      "match that",
+      "matches those"
+    ],
+    "correct_answer": "match those",
+    "explanation": "The subject is \"pigments,\" a plural noun; \"copy,\" the singular noun just before the blank, is only the object of \"of\" in \"of the smallest copy.\" The demonstrative stands for the thing being compared, which is the pigments of each copy, so it must also be plural: the sentence compares the pigments of one copy with the pigments (\"those\") of the other two. Only \"match those\" has both a plural verb and a plural demonstrative. \"matches those\" has the right demonstrative but a singular verb that agrees with \"copy.\" \"match that\" has the right verb, but \"that\" would need a singular noun to stand for, and the only candidate, \"copy,\" makes no sense (\"the copy of the two larger copies\"); \"matches that\" is wrong on both counts.",
+    "topic_tag": "codicology: dating sister copies of a town chronicle"
+  },
+  {
+    "id": "SEC24C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a direct question whose singular subject follows the auxiliary after plural nouns earlier in the sentence, crossed with do versus be as the auxiliary decided by the base verb after the subject",
+    "difficulty": "hard",
+    "passage": "Architectural historians who compare the cathedrals of two rival river towns keep returning to one question: why ______ taller and more elaborately carved west tower stop short of the spire drawn in its plans? Some blame a collapse in the wool trade that funded the work; others suspect that the foundations could not carry more weight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is the",
+      "are the",
+      "does the",
+      "do the"
+    ],
+    "correct_answer": "does the",
+    "explanation": "In this direct question the auxiliary comes before the subject, which is \"tower\" (\"the taller and more elaborately carved west tower\"), a singular noun; the plural nouns earlier in the sentence (\"historians,\" \"cathedrals,\" \"towns\") and the \"and\" joining two descriptive words do not make the subject plural. The auxiliary must also be a form of \"do,\" because the verb that completes it, \"stop,\" is a base form; a form of \"be\" would need \"stopping.\" Only \"does the\" is singular and a form of \"do.\" \"do the\" is a form of \"do\" but plural. \"is the\" is singular but cannot combine with \"stop,\" and \"are the\" is both plural and the wrong auxiliary.",
+    "topic_tag": "architectural history: an unfinished cathedral tower"
+  }
+]

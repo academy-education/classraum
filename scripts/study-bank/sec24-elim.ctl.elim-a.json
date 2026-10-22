@@ -1,0 +1,298 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "Expletive 'there was' is wordy and least likely to fix a dangling modifier, but any clause could fit.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "Tense/number depend on the hidden subject; none impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "B",
+    "why": "Expletive 'there turned out to be' cannot name the actor, but could still be grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "C",
+    "why": "Punctuation after 'court' depends on what follows; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "C",
+    "why": "Singular past is a guess; all agree with some subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "D",
+    "why": "Infinitive is least likely as a main verb, but could fit after a verb like 'seems'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "B",
+    "why": "'and therefore' requires a preceding comma or compound predicate, but could work.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "'records says' pairs plural noun with singular verb and cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L09": {
+    "reject_first": "D",
+    "why": "Past progressive is a guess; all can fit some time frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "B",
+    "why": "'that in' needs a relative clause frame, but is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "B",
+    "why": "Comma before restrictive 'that' is usually wrong, but 'that' could be a demonstrative after an aside.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "C",
+    "why": "Plural present perfect is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "C",
+    "why": "Plural present perfect is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "B",
+    "why": "Comma before 'that the' is suspicious but possible after an interrupter.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "A",
+    "why": "Active progressive is a guess; voice depends on the hidden subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "A",
+    "why": "'region, so,' is awkward but an interrupter could follow 'so'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "A",
+    "why": "Base form needs plural subject or subjunctive; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "C",
+    "why": "Progressive is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "C",
+    "why": "'bones outlasts' is likely a mismatch, but 'bones' could end a modifier of a singular subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "Nominalized 'acquisition' cannot be a clause subject after a modifier, but could complete other frames.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "C",
+    "why": "Plural present perfect is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "C",
+    "why": "'herds's' is never a correct possessive of the plural 'herds'.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L23": {
+    "reject_first": "D",
+    "why": "'; and' is nonstandard but semicolons before conjunctions can separate complex clauses.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "C",
+    "why": "No punctuation may create a run-on, but could be fine if 'deep' modifies within one clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "C",
+    "why": "Gerund-subject clause least likely to fit an introductory modifier, but is grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "C",
+    "why": "'there' is a possible adverb or expletive; none certain wrong.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "Past progressive is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "C",
+    "why": "'have been' is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "C",
+    "why": "'stocks ... stays' pairs plural head noun with singular verb and cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L30": {
+    "reject_first": "C",
+    "why": "'that's' contraction is least likely in formal prose but possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "B",
+    "why": "Missing punctuation may cause a run-on, but 'sunk the' could be within one clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "C",
+    "why": "'most of who' is usually wrong, but 'the most of who [they were]' is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "B",
+    "why": "Participle can't be main verb, but could fit a modifier frame.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "A",
+    "why": "Expletive 'there was' is least likely to fix a modifier, but grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "A",
+    "why": "Plural present perfect is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "C",
+    "why": "Singular passive is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "A",
+    "why": "No punctuation risks a run-on, but could be fine within an introductory phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "D",
+    "why": "'those of a seal's' doubles the possessive; a double genitive is rare but not strictly impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "A",
+    "why": "Comma after 'but' needs an interrupter, but possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "B",
+    "why": "Plural progressive passive is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "B",
+    "why": "'that' after 'applicants' looks redundant but could begin a relative clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "D",
+    "why": "'were' is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "A",
+    "why": "'players's' is never a correct plural possessive.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L44": {
+    "reject_first": "A",
+    "why": "Reflexive needs an antecedent, but one could exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "C",
+    "why": "Present perfect is a guess; all possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "D",
+    "why": "Gerund phrase breaks parallelism most likely, but context unknown.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "D",
+    "why": "Past perfect is a guess; conditional choice depends on context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "D",
+    "why": "Comma before 'in 1855' without a closing comma is suspicious but possible if the phrase ends the clause.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

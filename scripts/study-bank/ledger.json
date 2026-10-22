@@ -10980,6 +10980,53 @@
           "verdict": "verify-answer-key-spread on kept 14 (latent; choices shuffled at draw). Graders still name the number x tense grid with a when/while/until decider and the near-noun-opposite hint (now fails on 4 of 18) as batch tells."
         }
       }
+    },
+    {
+      "id": "sat-sec-hard-v24-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v24-sec-hard",
+      "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+      "status": "inserted",
+      "note": "PREREG-SEC24-2026-10-23.md (tense moved off the time clause: 9 pronoun/aux deciders, one inversion, explicit boundary option sets; Amendment 1 swapped four soft-decider slots). Three Claude authors x 8, frozen 9ac42428. Gate dropped 2 (B-08, C-07); template cover held 9 (1 hard). 13 inserted: 6 hard / 7 medium.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+          "verdict": "pre-freeze comparison clean; sec24-brief-counts 16/16 bars; near-dup 0 holds; 0 identical option sets vs live."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+          "verdict": "make-oo-render 24 cand + 24 live HARD SEC control: candidate 26.4% (19/72) vs control 59.7% (43/72, measured), margin -33.3 vs +10: PASS."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+          "verdict": "elimination-paired --match difficulty (24 v 48): 2.8% vs 7.6%, margin -4.9 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0.0278,
+          "controlRate": 0.0764,
+          "margin": -0.0486,
+          "threshold": 0.2,
+          "n": 24,
+          "controlN": 48,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+          "verdict": "Graders d/e/f phase 1 cold sha-recorded; identical cold answers 24/24; 0 cold misses. sec24-gate otherwise-kept 22 (7 hard); template cover held 9 (1 hard)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "c3693ca57a6728b5b078d049a6ec635c6fa83b9eb4b251249b53aaa9f262b164",
+          "verdict": "verify-answer-key-spread on kept 13 (latent). Grader-named tells now: present perfect never beats simple past under a past time clause (3 items); key avoids the near noun number in ~10 of 15 agreement items."
+        }
+      }
     }
   ],
   "auditedCohorts": [
