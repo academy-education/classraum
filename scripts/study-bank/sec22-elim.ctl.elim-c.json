@@ -1,0 +1,299 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "Expletive 'there was' is the weakest subject for a likely preceding modifier, but it could be correct if no modifier dangles.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "'way, by then, the council' looks like a comma splice, but a framing clause could make it grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "B",
+    "why": "Plural active progressive is one of four variants; none excluded without the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "D",
+    "why": "Noun phrase 'careful anticipation' breaks parallel verbal forms, but could fit as an object.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "C",
+    "why": "Infinitive 'To construct' as an opener is unlikely with a time phrase, but not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "C",
+    "why": "No-comma plural is one of four comma/agreement variants; none excluded blind.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "B",
+    "why": "Placing 'in the new census' at the end is awkward, but no option is ungrammatical in every context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "B",
+    "why": "Clause 'they would collaborate' rarely fits a slot built for a verbal, but could after 'that'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "D",
+    "why": "'nurses's' is never a correct possessive of the plural 'nurses'.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L10": {
+    "reject_first": "B",
+    "why": "A semicolon before 'among the' needs an independent clause after it, but one could follow.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "A",
+    "why": "Passive 'it was found that' likely leaves a modifier dangling, but could be correct without one.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "C",
+    "why": "'hospital; turn' needs an independent clause after the semicolon, which a bare verb rarely starts, but an imperative could.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "D",
+    "why": "Present perfect is one of four variants; none excluded without the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "C",
+    "why": "'consequently but' is an ungrammatical sequence of adverb then coordinating conjunction in any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L15": {
+    "reject_first": "D",
+    "why": "'entrance, its' risks a comma splice, but an absolute phrase could make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "C",
+    "why": "'would of had' is a nonstandard spelling of 'would have' and is never correct; 'would had' is likewise never grammatical.",
+    "certain": true,
+    "confident_rejects": [
+      "A",
+      "C"
+    ]
+  },
+  "L17": {
+    "reject_first": "B",
+    "why": "No punctuation between 'prices' and 'a' is likely wrong, but could fit if the phrase continues.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "B",
+    "why": "'the chicken emerged' is the likely dangling-subject distractor, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "Participle 'taking' can't serve as a main verb, but could fit a participial slot.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "No punctuation between 'oxygen' and 'any' is likely a run-on, but could be grammatical in some sentences.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "D",
+    "why": "Semicolon before a subordinate 'although' clause is usually wrong, but a full clause after could rescue it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "C",
+    "why": "'safe, still the weavers,' is awkward and likely a splice, but not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "B",
+    "why": "Plural active is one of four variants; none excluded without the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "'keep' changes meaning from the other copulas, but could fit.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "'being less intuitive' is wordy but could fit some frames.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "C",
+    "why": "Infinitive opener 'To examine them' is the least natural modifier, but could be correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "Missing closing comma after the interrupter is likely wrong, but the phrase could continue.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "Subject 'he' after a verb or preposition is usually wrong, but an inversion could make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "B",
+    "why": "' that is' without punctuation is the least likely fit, but could work.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "B",
+    "why": "A bare closing parenthesis needs an opener in the hidden text, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "Nominalized 'the jars' acquisition' is wordy and likely wrong, but not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "B",
+    "why": "Comma before 'however' joining clauses is likely a splice, but mid-clause 'however' could be correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "A",
+    "why": "'spine, come' needs a plural or subjunctive subject; possible but unlikely.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "A",
+    "why": "Lay/lie and tense variants all occur grammatically depending on context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "C",
+    "why": "Infinitive 'to meet' is one of four verbal forms; any could fit.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "A",
+    "why": "Infinitive 'to plate' is one of four verbal forms; any could fit.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "D",
+    "why": "Active 'had actually brought' needs an object; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "A",
+    "why": "'pane, consequently, restorers' risks a comma splice, but could be a non-clausal list.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "D",
+    "why": "Progressive 'are providing' is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "A",
+    "why": "Past progressive is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "D",
+    "why": "Future perfect is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "A",
+    "why": "Present perfect is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "A",
+    "why": "Present perfect is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "B",
+    "why": "'records says' is a subject-verb agreement error with the plural 'records' in any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L45": {
+    "reject_first": "D",
+    "why": "Expletive 'there was finally a firm conclusion' is the weakest subject for a likely preceding modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "C",
+    "why": "A clause 'it was satisfying' rarely fits a slot built for a verbal, but could.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "D",
+    "why": "Semicolon needs independent clauses on both sides, which may or may not be present.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "C",
+    "why": "Present perfect is one of four forms; none excluded.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

@@ -10832,6 +10832,53 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "sat-sec-hard-v22-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v22-sec-hard",
+      "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+      "status": "inserted",
+      "note": "PREREG-SEC22-2026-10-23.md (24-slot agreement construction table, minimum-cover template hold; Amendments 1-3). Three Claude authors x 8, frozen 50fc48c7. Gate dropped 4 (A-01, C-07 voice decided by meaning; A-04 simple vs progressive; C-05 two-way relative); template cover held 7 (1 hard, C-08). 13 inserted: 3 hard / 10 medium.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+          "verdict": "pre-freeze comparison 0 deviations; bank-helper + check-sec-preflight OK; sec22-brief-counts 6/6 bars; near-dup passage max 0.027, 0 identical option sets (14 skeleton-only matches recorded, Amendment 2); doubled-word drop 0."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+          "verdict": "make-oo-render 24 cand + 24 live HARD SEC control: candidate 15.3% (11/72) vs control 59.7% (43/72, measured), margin -44.4 vs +10: PASS."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+          "verdict": "elimination-paired --match difficulty (24 v 48): candidate 0.0% vs control 7.6%, margin -7.6 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0.0764,
+          "margin": -0.0764,
+          "threshold": 0.2,
+          "n": 24,
+          "controlN": 48,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+          "verdict": "Graders d/e/f phase 1 cold sha-recorded; 0 cold misses; 0 phase-1 fields changed. sec22-gate otherwise-kept 20 (4 hard); sec22-template-cover minimum cover held 7 (1 hard)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "165db008efa2da12a4eb1dbbd44714525a8721971bc5fc767dd33f39573a682e",
+          "verdict": "verify-answer-key-spread on kept (n=13) - see REGISTER; graders named a batch tell: every item a number x (tense|voice|aspect) grid and the near noun usually the wrong number (recorded; SEC23 table addresses it)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

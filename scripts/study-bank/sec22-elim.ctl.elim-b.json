@@ -1,0 +1,299 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "Expletive 'there was' clause is least likely to attach to a preceding modifier, but could still be grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "Two commas around 'by then' before a new subject looks like a comma splice, though a context could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "B",
+    "why": "Plural progressive active is one of four agreement/voice cells; nothing alone rules it out.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "D",
+    "why": "A noun phrase is the odd form out, but a verb like 'requires' could take it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "C",
+    "why": "An infinitive of purpose with a past time frame is semantically odd, though not provably ungrammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "D",
+    "why": "No comma before a verb is possible if 'plain' ends the subject; agreement depends on the hidden subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "D",
+    "why": "Passive with 'by sensors in the new census' is clumsy but grammatical; depends on the modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "B",
+    "why": "A full clause 'they would collaborate' is least likely to fit an infinitive/gerund slot, but could follow 'that'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "D",
+    "why": "'nurses's' is never the standard plural possessive.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L10": {
+    "reject_first": "A",
+    "why": "'however' set off between commas could create a comma splice, but could also be fine mid-clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "A",
+    "why": "Expletive passive 'it was found' rarely satisfies a preceding modifier, but is grammatical in isolation.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "D",
+    "why": "Semicolon followed by a participle is usually a fragment, though a gerund subject could make a clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "D",
+    "why": "Present perfect is one of four plausible verb forms; depends on subject and tense.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "C",
+    "why": "'consequently but' is not a standard construction in any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L15": {
+    "reject_first": "A",
+    "why": "Missing punctuation between 'entrance' and 'its' is often a run-on, but 'made the entrance its centerpiece' works.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "C",
+    "why": "'would of had' is a nonstandard spelling of 'would have'.",
+    "certain": true,
+    "confident_rejects": [
+      "A",
+      "C"
+    ]
+  },
+  "L17": {
+    "reject_first": "B",
+    "why": "No punctuation before 'a' is often wrong, but could be fine if 'a' continues the clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "B",
+    "why": "'the chicken emerged' is the likeliest dangling-modifier target, but depends on the hidden modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "A bare participle could leave the clause without a finite verb, but could fit a reduced construction.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "No punctuation at a likely clause boundary, but 'oxygen any' could run together in some sentences.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "C",
+    "why": "'and although' after a comma is often redundant, but can be grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "D",
+    "why": "No punctuation between 'safe' and a new subject looks like a run-on, though an introductory phrase could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "A",
+    "why": "Agreement/voice grid; nothing rules out any cell without the subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "'keep' is the lexical odd one out, but could fit a predicate like 'keep growing'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "'being less intuitive' is often wordy, but can be grammatical after some verbs.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "C",
+    "why": "An infinitive of purpose is a frequent dangling form here, but could be grammatical with the right subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "Unpaired comma before the phrase looks wrong unless the phrase ends the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "Nominative 'he' after a verb is unusual, though 'more than he over who...' is grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "B",
+    "why": "' that is' as a clause-linking choice is least common, but can introduce an appositive.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "D",
+    "why": "Closing parenthesis plus comma requires an earlier opener, which the hidden sentence could contain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "Nominalized 'the jars' acquisition' is wordy but grammatical; depends on the modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "C",
+    "why": "Comma before 'however' joining clauses would be a splice, but agreement and context are hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "A",
+    "why": "Comma between 'spine' and a verb may split subject and verb, but could close a nonessential phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "A",
+    "why": "Lay/lie with tense choices; context decides transitivity and tense.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "C",
+    "why": "The infinitive is the form least likely to fit, but could follow many verbs.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "A",
+    "why": "Infinitive is the odd form, but could be required by a parallel structure.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "D",
+    "why": "Past perfect active differs in voice and tense; context decides.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "A",
+    "why": "Comma before 'consequently' joining clauses would be a splice, but depends on the rest.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "D",
+    "why": "Progressive is least common here, but agreement and tense depend on the hidden subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "A",
+    "why": "Past progressive is one of four tense choices; context decides.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "D",
+    "why": "Future perfect is the least likely tense, but a future frame could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "A",
+    "why": "Present perfect is one of four plausible forms; depends on subject and tense.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "A",
+    "why": "Present perfect is one of four plausible forms; depends on subject and tense.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "B",
+    "why": "'records says' has plural 'records' with singular 'says'.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L45": {
+    "reject_first": "C",
+    "why": "Expletive passive 'it was finally concluded' rarely fits a modifier, but is grammatical in isolation.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "C",
+    "why": "A full clause 'it was satisfying' could create a run-on, but could follow a conjunction.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "B",
+    "why": "No punctuation at all may run clauses together, but depends on the hidden sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "C",
+    "why": "Present perfect is one of four plausible forms; depends on subject and tense.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}
