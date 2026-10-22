@@ -690,6 +690,15 @@
       "upTo": 1,
       "route": "spot",
       "runId": "crv21-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-16",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "route": "full",
+      "runId": "ssat-draft16-release-cofounder-{date}"
     }
   ]
 }

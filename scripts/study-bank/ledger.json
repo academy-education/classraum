@@ -11672,6 +11672,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-16-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-16",
+      "contentSha": "2363b4a1ebefeebedc362e8429cbb0c68acd698fb22e93f0b1d819c3497570ac",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23; FULL sitting (every-third SSAT after d13).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "2363b4a1ebefeebedc362e8429cbb0c68acd698fb22e93f0b1d819c3497570ac",
+          "verdict": "author checks clean; topics checked against the DB-dumped reading list."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
