@@ -10272,6 +10272,222 @@
           "verdict": "verify-answer-key-spread refuses n=9 (<12); run on the frozen 24: ok, but sequence stats are high (quads 60% vs 25%, lag-6 61% vs 37%) - latent only, choices are shuffled at draw. Kept: key strictly longest 0/9, shortest 1/9; no proper noun repeated."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-3-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-3",
+      "contentSha": "8b6b097dd4aecf431d72cac9c3f59934cae99edb4f170820fbd181e6a9cd5670",
+      "status": "staged-for-human-review",
+      "note": "12 x 5 academic passages by two Claude agents for upper/hard; co-founder-standard grader A and B 0/60. Spot route (toefl-passage-draft-3.RELEASE.PREREG.md). REGISTER section 5, 2026-10-23.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "8b6b097dd4aecf431d72cac9c3f59934cae99edb4f170820fbd181e6a9cd5670",
+          "verdict": "12 groups x 5; slots 15/15/15/15; author printouts key longest 3+2/60, shortest 7+5/60."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/60, B 0/60 (TOEFL Reading is not the proven arm)."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "cr-v16-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v16",
+      "contentSha": "b0b6bc74ac4dec0ec0c999956218071cf4d50c0f50f9b56fd4f28e110484224a",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 12, 2 Claude agents, 30 of 40 staged after pre-screen. Spot route (crv7-b12.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b0b6bc74ac4dec0ec0c999956218071cf4d50c0f50f9b56fd4f28e110484224a",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A+B union 10/40 flagged, all dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "toefl-talk-draft-3-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "academic_talk",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-3",
+      "contentSha": "bc9900e6f20257564befd1cccde4ea2c5b1f2130670b73d5d61fa6a26002c18d",
+      "status": "staged-for-human-review",
+      "note": "12 x 4 lectures, 2 Claude agents, keys dealt flat. Spot route (toefl-talk-draft-3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bc9900e6f20257564befd1cccde4ea2c5b1f2130670b73d5d61fa6a26002c18d",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/48, B 0/48."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-9-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-9",
+      "contentSha": "b231d54a0840dd5caea47c7ca9c63b96c488d3dc3616c1e8ddb98fd3e614a41a",
+      "status": "staged-for-human-review",
+      "note": "6 x 6, Claude agent. Spot draft9-D9-P05 (ssat-reading-drafts-9-10.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b231d54a0840dd5caea47c7ca9c63b96c488d3dc3616c1e8ddb98fd3e614a41a",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 1/36 (D9-P03-4, distractor replaced before staging), B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-10-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-10",
+      "contentSha": "84e8e197e184f8acbf75af975dc0152fce5bf7aff1bd36a428739bc42107d2e8",
+      "status": "staged-for-human-review",
+      "note": "6 x 6, Claude agent. Full sitting (every-third rule).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "84e8e197e184f8acbf75af975dc0152fce5bf7aff1bd36a428739bc42107d2e8",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-6-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-6",
+      "contentSha": "b5fe48c447fdd14ea8e557efe62de32be8f6f8dba88f09f88506a7911a6ece2b",
+      "status": "staged-for-human-review",
+      "note": "6 x 6 four-choice, Claude agent. Full sitting (every-third rule) (isee-reading-drafts-6-8.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b5fe48c447fdd14ea8e557efe62de32be8f6f8dba88f09f88506a7911a6ece2b",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-7-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-7",
+      "contentSha": "88e770cab58646cad541e7a5a9a77780b0f57e9494e08eabe343d724f9e0dede",
+      "status": "staged-for-human-review",
+      "note": "6 x 6 four-choice, Claude agent. Spot iseedraft7-IR7-P04.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "88e770cab58646cad541e7a5a9a77780b0f57e9494e08eabe343d724f9e0dede",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-8-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-8",
+      "contentSha": "af684df989d4faa15ba9b7b5091cd2a1cb99dadc7655a0ee60221e176e07611c",
+      "status": "staged-for-human-review",
+      "note": "6 x 6 four-choice, Claude agent. Spot iseedraft8-IR8-P05.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "af684df989d4faa15ba9b7b5091cd2a1cb99dadc7655a0ee60221e176e07611c",
+          "verdict": "author pre-flight clean (see prereg)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

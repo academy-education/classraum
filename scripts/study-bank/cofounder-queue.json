@@ -89,6 +89,13 @@
       "runId": "toefl-passage2-spot{n}-cofounder-{date}"
     },
     {
+      "cohort": "toefl-passage-draft-3",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-passage3-spot{n}-cofounder-{date}"
+    },
+    {
       "cohort": "toefl-talk-draft-1",
       "tool": "sets",
       "upTo": 2,
@@ -291,6 +298,71 @@
       "family": "act",
       "route": "full",
       "runId": "act-sci-v5d-release-cofounder-{date}"
+    },
+    {
+      "cohort": "cr-v16",
+      "tool": "item",
+      "domain": "Choose a Response",
+      "size": 12,
+      "family": "toefl",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "crv16-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-7",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft7-IR7-P04",
+      "route": "spot",
+      "runId": "isee-draft7-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-9",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft9-D9-P05",
+      "route": "spot",
+      "runId": "ssat-draft9-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-talk-draft-3",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-talk3-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-8",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "isee",
+      "group": "iseedraft8-IR8-P05",
+      "route": "spot",
+      "runId": "isee-draft8-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-6",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "isee",
+      "runId": "isee-draft6-release-cofounder-{date}",
+      "route": "full"
+    },
+    {
+      "cohort": "ssat-reading-draft-10",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "ssat",
+      "runId": "ssat-draft10-release-cofounder-{date}",
+      "route": "full"
     }
   ]
 }
