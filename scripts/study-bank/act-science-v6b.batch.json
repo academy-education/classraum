@@ -1,0 +1,3081 @@
+[
+ {
+  "id": "ASV6b-P1-Q1",
+  "passage_id": "sc6b-p1",
+  "passage_title": "Speed of Sound in Five Solid Materials",
+  "format": "data_representation",
+  "passage": "Sound travels through a solid as a wave of compression. How fast the wave travels depends on properties of the material, including its density (mass per unit volume) and its stiffness. Stiffness is measured as the pressure, in gigapascals (GPa), that would be needed to stretch a rod of the material by a given fraction of its length; a stiffer material stretches less under the same pressure.\n\nEngineers tested five experimental materials, coded V, W, X, Y, and Z, that were developed for vibration sensors. From each material they cut a rod exactly 1.00 m long. A small hammer tapped one end of the rod, and sensors at both ends recorded the time the sound pulse took to travel the length of the rod; the speed of sound was calculated from this time. Each rod was tested at 20 °C and again after it had been held at 80 °C for one hour. Table 1 lists the density and stiffness of each material at 20 °C and the speed of sound measured at each temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Density and stiffness at 20 °C, and speed of sound at 20 °C and 80 °C, for five materials.",
+   "colLabels": [
+    "Density (g/cm³)",
+    "Stiffness (GPa)",
+    "Speed of sound at 20 °C (m/s)",
+    "Speed of sound at 80 °C (m/s)"
+   ],
+   "rowLabels": [
+    "Material V",
+    "Material W",
+    "Material X",
+    "Material Y",
+    "Material Z"
+   ],
+   "cells": [
+    [
+     1.2,
+     4.8,
+     2000,
+     1600
+    ],
+    [
+     2.5,
+     40,
+     4000,
+     3920
+    ],
+    [
+     4.0,
+     36,
+     3000,
+     2880
+    ],
+    [
+     6.4,
+     160,
+     5000,
+     4950
+    ],
+    [
+     8.0,
+     98,
+     3500,
+     3395
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, which material had the greatest speed of sound at 80 °C?",
+  "choices": [
+   "Material V",
+   "Material W",
+   "Material Y",
+   "Material Z"
+  ],
+  "correct_answer": "Material Y",
+  "explanation": "At 80 °C the speeds were 1,600 m/s for Material V, 3,920 m/s for W, 2,880 m/s for X, 4,950 m/s for Y, and 3,395 m/s for Z, so Material Y had the greatest speed. Material W was second, Material Z third, and Material V had the lowest speed of all.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P1-Q2",
+  "passage_id": "sc6b-p1",
+  "passage_title": "Speed of Sound in Five Solid Materials",
+  "format": "data_representation",
+  "passage": "Sound travels through a solid as a wave of compression. How fast the wave travels depends on properties of the material, including its density (mass per unit volume) and its stiffness. Stiffness is measured as the pressure, in gigapascals (GPa), that would be needed to stretch a rod of the material by a given fraction of its length; a stiffer material stretches less under the same pressure.\n\nEngineers tested five experimental materials, coded V, W, X, Y, and Z, that were developed for vibration sensors. From each material they cut a rod exactly 1.00 m long. A small hammer tapped one end of the rod, and sensors at both ends recorded the time the sound pulse took to travel the length of the rod; the speed of sound was calculated from this time. Each rod was tested at 20 °C and again after it had been held at 80 °C for one hour. Table 1 lists the density and stiffness of each material at 20 °C and the speed of sound measured at each temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Density and stiffness at 20 °C, and speed of sound at 20 °C and 80 °C, for five materials.",
+   "colLabels": [
+    "Density (g/cm³)",
+    "Stiffness (GPa)",
+    "Speed of sound at 20 °C (m/s)",
+    "Speed of sound at 80 °C (m/s)"
+   ],
+   "rowLabels": [
+    "Material V",
+    "Material W",
+    "Material X",
+    "Material Y",
+    "Material Z"
+   ],
+   "cells": [
+    [
+     1.2,
+     4.8,
+     2000,
+     1600
+    ],
+    [
+     2.5,
+     40,
+     4000,
+     3920
+    ],
+    [
+     4.0,
+     36,
+     3000,
+     2880
+    ],
+    [
+     6.4,
+     160,
+     5000,
+     4950
+    ],
+    [
+     8.0,
+     98,
+     3500,
+     3395
+    ]
+   ]
+  },
+  "prompt": "Suppose a rod of Material X 2.00 m long were tested at 20 °C. Based on Table 1, the time for a sound pulse to travel the length of this rod would be closest to:",
+  "choices": [
+   "333 microseconds.",
+   "500 microseconds.",
+   "667 microseconds.",
+   "1,000 microseconds."
+  ],
+  "correct_answer": "667 microseconds.",
+  "explanation": "Table 1 gives a speed of 3,000 m/s in Material X at 20 °C. Traveling 2.00 m at 3,000 m/s takes 2.00 / 3,000 = 0.000667 s, or about 667 microseconds. The value 333 microseconds is the time for the 1.00 m rod, 500 microseconds is the 2.00 m time in a 4,000 m/s material such as W, and 1,000 microseconds would require a speed of only 2,000 m/s, the value for Material V.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a value from a table to a new length",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P1-Q3",
+  "passage_id": "sc6b-p1",
+  "passage_title": "Speed of Sound in Five Solid Materials",
+  "format": "data_representation",
+  "passage": "Sound travels through a solid as a wave of compression. How fast the wave travels depends on properties of the material, including its density (mass per unit volume) and its stiffness. Stiffness is measured as the pressure, in gigapascals (GPa), that would be needed to stretch a rod of the material by a given fraction of its length; a stiffer material stretches less under the same pressure.\n\nEngineers tested five experimental materials, coded V, W, X, Y, and Z, that were developed for vibration sensors. From each material they cut a rod exactly 1.00 m long. A small hammer tapped one end of the rod, and sensors at both ends recorded the time the sound pulse took to travel the length of the rod; the speed of sound was calculated from this time. Each rod was tested at 20 °C and again after it had been held at 80 °C for one hour. Table 1 lists the density and stiffness of each material at 20 °C and the speed of sound measured at each temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Density and stiffness at 20 °C, and speed of sound at 20 °C and 80 °C, for five materials.",
+   "colLabels": [
+    "Density (g/cm³)",
+    "Stiffness (GPa)",
+    "Speed of sound at 20 °C (m/s)",
+    "Speed of sound at 80 °C (m/s)"
+   ],
+   "rowLabels": [
+    "Material V",
+    "Material W",
+    "Material X",
+    "Material Y",
+    "Material Z"
+   ],
+   "cells": [
+    [
+     1.2,
+     4.8,
+     2000,
+     1600
+    ],
+    [
+     2.5,
+     40,
+     4000,
+     3920
+    ],
+    [
+     4.0,
+     36,
+     3000,
+     2880
+    ],
+    [
+     6.4,
+     160,
+     5000,
+     4950
+    ],
+    [
+     8.0,
+     98,
+     3500,
+     3395
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, as density increased from Material V to Material Z, the speed of sound at 20 °C:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "alternately increased and decreased."
+  ],
+  "correct_answer": "alternately increased and decreased.",
+  "explanation": "Listed in order of increasing density (1.2, 2.5, 4.0, 6.4, 8.0 g/cm³), the speeds at 20 °C were 2,000, 4,000, 3,000, 5,000, and 3,500 m/s. The speed rose, fell, rose, and fell again, so it alternately increased and decreased. It neither changed in one direction only nor rose once and then fell once.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P1-Q4",
+  "passage_id": "sc6b-p1",
+  "passage_title": "Speed of Sound in Five Solid Materials",
+  "format": "data_representation",
+  "passage": "Sound travels through a solid as a wave of compression. How fast the wave travels depends on properties of the material, including its density (mass per unit volume) and its stiffness. Stiffness is measured as the pressure, in gigapascals (GPa), that would be needed to stretch a rod of the material by a given fraction of its length; a stiffer material stretches less under the same pressure.\n\nEngineers tested five experimental materials, coded V, W, X, Y, and Z, that were developed for vibration sensors. From each material they cut a rod exactly 1.00 m long. A small hammer tapped one end of the rod, and sensors at both ends recorded the time the sound pulse took to travel the length of the rod; the speed of sound was calculated from this time. Each rod was tested at 20 °C and again after it had been held at 80 °C for one hour. Table 1 lists the density and stiffness of each material at 20 °C and the speed of sound measured at each temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Density and stiffness at 20 °C, and speed of sound at 20 °C and 80 °C, for five materials.",
+   "colLabels": [
+    "Density (g/cm³)",
+    "Stiffness (GPa)",
+    "Speed of sound at 20 °C (m/s)",
+    "Speed of sound at 80 °C (m/s)"
+   ],
+   "rowLabels": [
+    "Material V",
+    "Material W",
+    "Material X",
+    "Material Y",
+    "Material Z"
+   ],
+   "cells": [
+    [
+     1.2,
+     4.8,
+     2000,
+     1600
+    ],
+    [
+     2.5,
+     40,
+     4000,
+     3920
+    ],
+    [
+     4.0,
+     36,
+     3000,
+     2880
+    ],
+    [
+     6.4,
+     160,
+     5000,
+     4950
+    ],
+    [
+     8.0,
+     98,
+     3500,
+     3395
+    ]
+   ]
+  },
+  "prompt": "An engineer claims that a material's speed of sound at 20 °C is determined by its stiffness alone: the stiffer the material, the faster sound travels in it. Which two materials in Table 1 provide evidence AGAINST this claim?",
+  "choices": [
+   "Materials V and X",
+   "Materials W and Z",
+   "Materials X and Y",
+   "Materials Y and Z"
+  ],
+  "correct_answer": "Materials W and Z",
+  "explanation": "Material Z (98 GPa) is stiffer than Material W (40 GPa), yet sound traveled more slowly in Z (3,500 m/s) than in W (4,000 m/s), which contradicts the claim. In each other pair the stiffer material also had the faster speed: X (36 GPa, 3,000 m/s) over V (4.8 GPa, 2,000 m/s), Y (160 GPa, 5,000 m/s) over X, and Y over Z.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify data that contradict a stated claim",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P1-Q5",
+  "passage_id": "sc6b-p1",
+  "passage_title": "Speed of Sound in Five Solid Materials",
+  "format": "data_representation",
+  "passage": "Sound travels through a solid as a wave of compression. How fast the wave travels depends on properties of the material, including its density (mass per unit volume) and its stiffness. Stiffness is measured as the pressure, in gigapascals (GPa), that would be needed to stretch a rod of the material by a given fraction of its length; a stiffer material stretches less under the same pressure.\n\nEngineers tested five experimental materials, coded V, W, X, Y, and Z, that were developed for vibration sensors. From each material they cut a rod exactly 1.00 m long. A small hammer tapped one end of the rod, and sensors at both ends recorded the time the sound pulse took to travel the length of the rod; the speed of sound was calculated from this time. Each rod was tested at 20 °C and again after it had been held at 80 °C for one hour. Table 1 lists the density and stiffness of each material at 20 °C and the speed of sound measured at each temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Density and stiffness at 20 °C, and speed of sound at 20 °C and 80 °C, for five materials.",
+   "colLabels": [
+    "Density (g/cm³)",
+    "Stiffness (GPa)",
+    "Speed of sound at 20 °C (m/s)",
+    "Speed of sound at 80 °C (m/s)"
+   ],
+   "rowLabels": [
+    "Material V",
+    "Material W",
+    "Material X",
+    "Material Y",
+    "Material Z"
+   ],
+   "cells": [
+    [
+     1.2,
+     4.8,
+     2000,
+     1600
+    ],
+    [
+     2.5,
+     40,
+     4000,
+     3920
+    ],
+    [
+     4.0,
+     36,
+     3000,
+     2880
+    ],
+    [
+     6.4,
+     160,
+     5000,
+     4950
+    ],
+    [
+     8.0,
+     98,
+     3500,
+     3395
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if the rod of Material X had been tested at 50 °C, the speed of sound in it would most likely have been:",
+  "choices": [
+   "less than 2,880 m/s.",
+   "between 2,880 m/s and 3,000 m/s.",
+   "between 3,000 m/s and 3,120 m/s.",
+   "greater than 3,120 m/s."
+  ],
+  "correct_answer": "between 2,880 m/s and 3,000 m/s.",
+  "explanation": "The speed in Material X was 3,000 m/s at 20 °C and 2,880 m/s at 80 °C. A temperature of 50 °C lies between these two, so the speed would most likely lie between 2,880 m/s and 3,000 m/s. A value below 2,880 m/s would mean a slower speed than at 80 °C, and values above 3,000 m/s would mean a faster speed than at 20 °C, opposite to the decrease the table shows on heating.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P2-Q1",
+  "passage_id": "sc6b-p2",
+  "passage_title": "Cloud Base Heights at Six Weather Stations",
+  "format": "data_representation",
+  "passage": "When a parcel of air rises, it expands and cools. If it cools to its dew point, the temperature at which the water vapor it contains begins to condense, tiny water droplets form and a cloud appears. The cloud base is the height above the ground at which this condensation begins. Relative humidity is the amount of water vapor in the air expressed as a percent of the greatest amount the air could hold at its temperature.\n\nOn one summer afternoon, observers at six weather stations (A through F) on a flat plain recorded the air temperature and the dew point 2 m above the ground, and calculated the relative humidity. At the same time, an instrument at each station that bounces a laser pulse off the underside of clouds measured the height of the base of the clouds directly overhead. Each station had a layer of small, puffy clouds overhead at the time. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface measurements and cloud base height at six stations.",
+   "colLabels": [
+    "Air temperature (°C)",
+    "Dew point (°C)",
+    "Relative humidity (%)",
+    "Cloud base height (m)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E",
+    "Station F"
+   ],
+   "cells": [
+    [
+     24,
+     16,
+     61,
+     990
+    ],
+    [
+     30,
+     14,
+     38,
+     2010
+    ],
+    [
+     18,
+     15,
+     83,
+     380
+    ],
+    [
+     27,
+     21,
+     70,
+     760
+    ],
+    [
+     33,
+     13,
+     30,
+     2480
+    ],
+    [
+     21,
+     9,
+     46,
+     1490
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, which station had the lowest cloud base?",
+  "choices": [
+   "Station A",
+   "Station C",
+   "Station D",
+   "Station F"
+  ],
+  "correct_answer": "Station C",
+  "explanation": "The cloud base heights were 990 m at Station A, 380 m at Station C, 760 m at Station D, and 1,490 m at Station F. The lowest of these, and the lowest of all six stations, was 380 m at Station C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P2-Q2",
+  "passage_id": "sc6b-p2",
+  "passage_title": "Cloud Base Heights at Six Weather Stations",
+  "format": "data_representation",
+  "passage": "When a parcel of air rises, it expands and cools. If it cools to its dew point, the temperature at which the water vapor it contains begins to condense, tiny water droplets form and a cloud appears. The cloud base is the height above the ground at which this condensation begins. Relative humidity is the amount of water vapor in the air expressed as a percent of the greatest amount the air could hold at its temperature.\n\nOn one summer afternoon, observers at six weather stations (A through F) on a flat plain recorded the air temperature and the dew point 2 m above the ground, and calculated the relative humidity. At the same time, an instrument at each station that bounces a laser pulse off the underside of clouds measured the height of the base of the clouds directly overhead. Each station had a layer of small, puffy clouds overhead at the time. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface measurements and cloud base height at six stations.",
+   "colLabels": [
+    "Air temperature (°C)",
+    "Dew point (°C)",
+    "Relative humidity (%)",
+    "Cloud base height (m)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E",
+    "Station F"
+   ],
+   "cells": [
+    [
+     24,
+     16,
+     61,
+     990
+    ],
+    [
+     30,
+     14,
+     38,
+     2010
+    ],
+    [
+     18,
+     15,
+     83,
+     380
+    ],
+    [
+     27,
+     21,
+     70,
+     760
+    ],
+    [
+     33,
+     13,
+     30,
+     2480
+    ],
+    [
+     21,
+     9,
+     46,
+     1490
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, as the difference between the air temperature and the dew point increased, the cloud base height:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "The air temperature minus the dew point was 3 °C at Station C (380 m), 6 °C at D (760 m), 8 °C at A (990 m), 12 °C at F (1,490 m), 16 °C at B (2,010 m), and 20 °C at E (2,480 m). Each larger difference went with a higher cloud base, so the height increased only.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a relationship that requires a calculated variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P2-Q3",
+  "passage_id": "sc6b-p2",
+  "passage_title": "Cloud Base Heights at Six Weather Stations",
+  "format": "data_representation",
+  "passage": "When a parcel of air rises, it expands and cools. If it cools to its dew point, the temperature at which the water vapor it contains begins to condense, tiny water droplets form and a cloud appears. The cloud base is the height above the ground at which this condensation begins. Relative humidity is the amount of water vapor in the air expressed as a percent of the greatest amount the air could hold at its temperature.\n\nOn one summer afternoon, observers at six weather stations (A through F) on a flat plain recorded the air temperature and the dew point 2 m above the ground, and calculated the relative humidity. At the same time, an instrument at each station that bounces a laser pulse off the underside of clouds measured the height of the base of the clouds directly overhead. Each station had a layer of small, puffy clouds overhead at the time. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface measurements and cloud base height at six stations.",
+   "colLabels": [
+    "Air temperature (°C)",
+    "Dew point (°C)",
+    "Relative humidity (%)",
+    "Cloud base height (m)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E",
+    "Station F"
+   ],
+   "cells": [
+    [
+     24,
+     16,
+     61,
+     990
+    ],
+    [
+     30,
+     14,
+     38,
+     2010
+    ],
+    [
+     18,
+     15,
+     83,
+     380
+    ],
+    [
+     27,
+     21,
+     70,
+     760
+    ],
+    [
+     33,
+     13,
+     30,
+     2480
+    ],
+    [
+     21,
+     9,
+     46,
+     1490
+    ]
+   ]
+  },
+  "prompt": "Suppose a seventh station on the plain recorded an air temperature of 26 °C and a dew point of 16 °C at the same time. Based on Table 1, the cloud base above this station would most likely have been:",
+  "choices": [
+   "below 990 m.",
+   "between 990 m and 1,490 m.",
+   "between 1,490 m and 2,010 m.",
+   "above 2,010 m."
+  ],
+  "correct_answer": "between 990 m and 1,490 m.",
+  "explanation": "At the new station the air temperature exceeds the dew point by 10 °C. In Table 1 a difference of 8 °C (Station A) went with a 990 m cloud base and a difference of 12 °C (Station F) went with 1,490 m, so a 10 °C difference should give a base between 990 m and 1,490 m. Matching the new station by air temperature alone would wrongly place it near Station D or A.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate using a calculated variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P2-Q4",
+  "passage_id": "sc6b-p2",
+  "passage_title": "Cloud Base Heights at Six Weather Stations",
+  "format": "data_representation",
+  "passage": "When a parcel of air rises, it expands and cools. If it cools to its dew point, the temperature at which the water vapor it contains begins to condense, tiny water droplets form and a cloud appears. The cloud base is the height above the ground at which this condensation begins. Relative humidity is the amount of water vapor in the air expressed as a percent of the greatest amount the air could hold at its temperature.\n\nOn one summer afternoon, observers at six weather stations (A through F) on a flat plain recorded the air temperature and the dew point 2 m above the ground, and calculated the relative humidity. At the same time, an instrument at each station that bounces a laser pulse off the underside of clouds measured the height of the base of the clouds directly overhead. Each station had a layer of small, puffy clouds overhead at the time. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface measurements and cloud base height at six stations.",
+   "colLabels": [
+    "Air temperature (°C)",
+    "Dew point (°C)",
+    "Relative humidity (%)",
+    "Cloud base height (m)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E",
+    "Station F"
+   ],
+   "cells": [
+    [
+     24,
+     16,
+     61,
+     990
+    ],
+    [
+     30,
+     14,
+     38,
+     2010
+    ],
+    [
+     18,
+     15,
+     83,
+     380
+    ],
+    [
+     27,
+     21,
+     70,
+     760
+    ],
+    [
+     33,
+     13,
+     30,
+     2480
+    ],
+    [
+     21,
+     9,
+     46,
+     1490
+    ]
+   ]
+  },
+  "prompt": "A student claimed that the higher the air temperature at a station, the higher the cloud base above it. Which two stations in Table 1 provide evidence AGAINST this claim?",
+  "choices": [
+   "Stations A and D",
+   "Stations C and A",
+   "Stations B and E",
+   "Stations C and D"
+  ],
+  "correct_answer": "Stations A and D",
+  "explanation": "Station D was warmer than Station A (27 °C versus 24 °C) but had the lower cloud base (760 m versus 990 m), which contradicts the claim. In each other pair the warmer station also had the higher base: A (24 °C, 990 m) over C (18 °C, 380 m), E (33 °C, 2,480 m) over B (30 °C, 2,010 m), and D (760 m) over C.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify data that contradict a stated trend",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P2-Q5",
+  "passage_id": "sc6b-p2",
+  "passage_title": "Cloud Base Heights at Six Weather Stations",
+  "format": "data_representation",
+  "passage": "When a parcel of air rises, it expands and cools. If it cools to its dew point, the temperature at which the water vapor it contains begins to condense, tiny water droplets form and a cloud appears. The cloud base is the height above the ground at which this condensation begins. Relative humidity is the amount of water vapor in the air expressed as a percent of the greatest amount the air could hold at its temperature.\n\nOn one summer afternoon, observers at six weather stations (A through F) on a flat plain recorded the air temperature and the dew point 2 m above the ground, and calculated the relative humidity. At the same time, an instrument at each station that bounces a laser pulse off the underside of clouds measured the height of the base of the clouds directly overhead. Each station had a layer of small, puffy clouds overhead at the time. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface measurements and cloud base height at six stations.",
+   "colLabels": [
+    "Air temperature (°C)",
+    "Dew point (°C)",
+    "Relative humidity (%)",
+    "Cloud base height (m)"
+   ],
+   "rowLabels": [
+    "Station A",
+    "Station B",
+    "Station C",
+    "Station D",
+    "Station E",
+    "Station F"
+   ],
+   "cells": [
+    [
+     24,
+     16,
+     61,
+     990
+    ],
+    [
+     30,
+     14,
+     38,
+     2010
+    ],
+    [
+     18,
+     15,
+     83,
+     380
+    ],
+    [
+     27,
+     21,
+     70,
+     760
+    ],
+    [
+     33,
+     13,
+     30,
+     2480
+    ],
+    [
+     21,
+     9,
+     46,
+     1490
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, at a station on the plain with a cloud base height of 1,200 m at the time of the measurements, the relative humidity would most likely have been:",
+  "choices": [
+   "greater than 61%.",
+   "between 46% and 61%.",
+   "between 38% and 46%.",
+   "less than 38%."
+  ],
+  "correct_answer": "between 46% and 61%.",
+  "explanation": "In Table 1, relative humidity fell as cloud base height rose. A 1,200 m base lies between Station A's 990 m (61%) and Station F's 1,490 m (46%), so the relative humidity should lie between 46% and 61%. A value above 61% belongs with bases lower than 990 m, and values below 46% belong with bases higher than 1,490 m.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate in reverse from one variable to another",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P3-Q1",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, the average range of Ball P launched at 30° from a height of 1.0 m was:",
+  "choices": [
+   "3.11 m.",
+   "3.80 m.",
+   "4.32 m.",
+   "4.75 m."
+  ],
+  "correct_answer": "4.32 m.",
+  "explanation": "Trial 8 of Experiment 2 used Ball P at 30° from 1.0 m, and its average range was 4.32 m. The value 3.11 m was the range from 0.0 m, 3.80 m from 0.5 m, and 4.75 m from 1.5 m.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P3-Q2",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "Suppose Ball P had been launched at 30° from a height of 2.0 m. Based on the results of Experiment 2, the range would most likely have been:",
+  "choices": [
+   "less than 3.80 m.",
+   "between 3.80 m and 4.32 m.",
+   "between 4.32 m and 4.75 m.",
+   "greater than 4.75 m."
+  ],
+  "correct_answer": "greater than 4.75 m.",
+  "explanation": "In Experiment 2 the range rose with every increase in launch height: 3.11 m, 3.80 m, 4.32 m, and 4.75 m from 0.0, 0.5, 1.0, and 1.5 m. A height of 2.0 m is greater than the highest height tested, so the range should exceed the 4.75 m measured from 1.5 m. The lower ranges match heights of 1.5 m or less.",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate beyond table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P3-Q3",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "Which of the following was varied in Experiment 1 but held constant in Experiment 2?",
+  "choices": [
+   "Launch height",
+   "Ball mass",
+   "Launch angle",
+   "Launch speed"
+  ],
+  "correct_answer": "Launch angle",
+  "explanation": "Experiment 1 tested five launch angles at one height, while Experiment 2 kept the angle at 30° and changed the height, so launch angle was varied in Experiment 1 and held constant in Experiment 2. Launch height was the reverse, constant in Experiment 1 and varied in Experiment 2. Ball P was used throughout both, and the launch speed was 6.0 m/s in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify variables across experiments",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P3-Q4",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "Which trial in Experiment 3 was conducted under the same conditions as a trial in Experiment 1?",
+  "choices": [
+   "Trial 10, under the same conditions as Trial 2",
+   "Trial 12, under the same conditions as Trial 3",
+   "Trial 11, under the same conditions as Trial 4",
+   "Trial 10, under the same conditions as Trial 3"
+  ],
+  "correct_answer": "Trial 10, under the same conditions as Trial 3",
+  "explanation": "Trial 10 launched Ball P at 45° from 0.0 m, exactly as Trial 3 of Experiment 1 did, and both gave a range of 3.55 m. Trial 2 used an angle of 30°, Trial 12 used Ball R rather than Ball P, and Trial 11 used Ball Q at 45° while Trial 4 used Ball P at 60°.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the trial shared by two experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P3-Q5",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "The students hypothesized that, for balls of the same size launched in the same way, a lighter ball has a shorter range. Do the results of Experiment 3 support this hypothesis?",
+  "choices": [
+   "Yes; Ball R, the lightest ball, had the shortest range.",
+   "Yes; Ball R, the lightest ball, had the longest range.",
+   "No; Ball P, the heaviest ball, had the shortest range.",
+   "No; all three balls had about the same range."
+  ],
+  "correct_answer": "Yes; Ball R, the lightest ball, had the shortest range.",
+  "explanation": "In Experiment 3 the ranges were 3.55 m for Ball P (50 g), 3.40 m for Ball Q (20 g), and 2.90 m for Ball R (5 g). Range fell as mass decreased, and the lightest ball went the shortest distance, which supports the hypothesis. Ball R did not have the longest range, Ball P did not have the shortest, and the 0.65 m spread is not \"about the same.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against one experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P3-Q6",
+  "passage_id": "sc6b-p3",
+  "passage_title": "Range of Balls Fired from a Launcher",
+  "format": "research_summaries",
+  "passage": "The range of a launched ball is the horizontal distance from the point where it leaves the launcher to the point where it first strikes the floor. Students studied the range of balls fired from a spring-powered launcher. Three balls, P, Q, and R, were used; all had a diameter of 4.0 cm, and their masses were 50 g (Ball P), 20 g (Ball Q), and 5 g (Ball R). Before each trial the launcher's spring was adjusted so that the ball left the launcher at 6.0 m/s, as measured by a light sensor at the launcher's mouth. The launch angle is the angle between the launcher's barrel and the horizontal, and the launch height is the height of the launcher's mouth above the floor. Each trial was repeated five times, and the average range is reported in Table 1.\n\nExperiment 1\nBall P was launched from a height of 0.0 m at five launch angles.\n\nExperiment 2\nBall P was launched at an angle of 30° from four launch heights.\n\nExperiment 3\nEach of the three balls was launched at an angle of 45° from a height of 0.0 m.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average range of balls launched at 6.0 m/s.",
+   "colLabels": [
+    "Ball",
+    "Launch angle (°)",
+    "Launch height (m)",
+    "Range (m)"
+   ],
+   "rowLabels": [
+    "Exp. 1, Trial 1",
+    "Exp. 1, Trial 2",
+    "Exp. 1, Trial 3",
+    "Exp. 1, Trial 4",
+    "Exp. 1, Trial 5",
+    "Exp. 2, Trial 6",
+    "Exp. 2, Trial 7",
+    "Exp. 2, Trial 8",
+    "Exp. 2, Trial 9",
+    "Exp. 3, Trial 10",
+    "Exp. 3, Trial 11",
+    "Exp. 3, Trial 12"
+   ],
+   "cells": [
+    [
+     "P",
+     15,
+     0.0,
+     1.81
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "P",
+     60,
+     0.0,
+     3.02
+    ],
+    [
+     "P",
+     75,
+     0.0,
+     1.74
+    ],
+    [
+     "P",
+     30,
+     0.0,
+     3.11
+    ],
+    [
+     "P",
+     30,
+     0.5,
+     3.8
+    ],
+    [
+     "P",
+     30,
+     1.0,
+     4.32
+    ],
+    [
+     "P",
+     30,
+     1.5,
+     4.75
+    ],
+    [
+     "P",
+     45,
+     0.0,
+     3.55
+    ],
+    [
+     "Q",
+     45,
+     0.0,
+     3.4
+    ],
+    [
+     "R",
+     45,
+     0.0,
+     2.9
+    ]
+   ]
+  },
+  "prompt": "Suppose Ball R had been launched at 30° from a height of 1.0 m. Based on the results of Experiments 2 and 3, its range would most likely have been:",
+  "choices": [
+   "less than 4.32 m.",
+   "between 4.32 m and 4.75 m.",
+   "between 4.75 m and 5.20 m.",
+   "greater than 5.20 m."
+  ],
+  "correct_answer": "less than 4.32 m.",
+  "explanation": "Experiment 2 shows that Ball P launched at 30° from 1.0 m had a range of 4.32 m. Experiment 3 shows that, under identical launch conditions, Ball R traveled less far than Ball P (2.90 m versus 3.55 m). Ball R under the conditions of Trial 8 should therefore travel less than 4.32 m. The other ranges would require Ball R to outdistance Ball P, the reverse of Experiment 3.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P4-Q1",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average settling speed of 0.125 mm grains in fresh water at 35 °C?",
+  "choices": [
+   "6.6 mm/s",
+   "10 mm/s",
+   "13.8 mm/s",
+   "33 mm/s"
+  ],
+  "correct_answer": "13.8 mm/s",
+  "explanation": "In Experiment 2, 0.125 mm grains settled at 13.8 mm/s in water at 35 °C. The 6.6 mm/s and 10 mm/s speeds were measured at 5 °C and 20 °C, and 33 mm/s was the speed of 0.250 mm grains in Experiment 1.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P4-Q2",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, the settling speed of 0.250 mm grains was about how many times the settling speed of 0.125 mm grains?",
+  "choices": [
+   "2.0",
+   "3.3",
+   "4.0",
+   "7.2"
+  ],
+  "correct_answer": "3.3",
+  "explanation": "In Experiment 1, 0.250 mm grains settled at 33 mm/s and 0.125 mm grains at 10 mm/s, and 33 / 10 = 3.3. A factor of 2.0 is the ratio of the diameters, not of the speeds; 4.0 is the square of that diameter ratio, which the measured speeds do not show; and 7.2 is the ratio of the 0.500 mm speed (72 mm/s) to the 0.125 mm speed.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P4-Q3",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, grains 0.180 mm in diameter dropped into fresh water at 20 °C would most likely have a settling speed:",
+  "choices": [
+   "less than 10 mm/s.",
+   "between 10 mm/s and 33 mm/s.",
+   "between 33 mm/s and 72 mm/s.",
+   "greater than 72 mm/s."
+  ],
+  "correct_answer": "between 10 mm/s and 33 mm/s.",
+  "explanation": "In Experiment 1 settling speed rose with grain diameter: 3.0, 10, 33, and 72 mm/s for 0.063, 0.125, 0.250, and 0.500 mm grains. A diameter of 0.180 mm lies between 0.125 mm and 0.250 mm, so its speed should lie between 10 mm/s and 33 mm/s. The other ranges belong to diameters smaller than 0.125 mm or larger than 0.250 mm.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P4-Q4",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, why did the students most likely use grains of only one diameter?",
+  "choices": [
+   "So that differences in settling speed could be attributed to water temperature",
+   "Because 0.125 mm grains had the greatest settling speed in Experiment 1",
+   "So that the results could be compared directly with the clay of Experiment 3",
+   "Because 0.125 mm grains were the only grains that formed clumps in water"
+  ],
+  "correct_answer": "So that differences in settling speed could be attributed to water temperature",
+  "explanation": "Experiment 2 changed only the water temperature; keeping the grain diameter fixed meant that any change in settling speed could be attributed to temperature rather than to grain size. The 0.125 mm grains were not the fastest in Experiment 1 (the 0.500 mm grains settled at 72 mm/s), Experiment 3 used 0.002 mm clay rather than these grains, and the passage reports clumping only for clay in salty water.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a controlled variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P4-Q5",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "Suppose 0.250 mm grains had been dropped into fresh water at 5 °C. Based on the results of Experiments 1 and 2, their settling speed would most likely have been:",
+  "choices": [
+   "less than 10 mm/s.",
+   "between 10 mm/s and 33 mm/s.",
+   "between 33 mm/s and 72 mm/s.",
+   "greater than 72 mm/s."
+  ],
+  "correct_answer": "between 10 mm/s and 33 mm/s.",
+  "explanation": "Experiment 1 shows that 0.250 mm grains settled at 33 mm/s at 20 °C. Experiment 2 shows that cooling the water from 20 °C to 5 °C slowed 0.125 mm grains from 10 mm/s to 6.6 mm/s, a decrease of about one-third. Slowing the 0.250 mm grains by a similar fraction gives about 22 mm/s, between 10 mm/s and 33 mm/s. A speed above 33 mm/s would mean cold water sped the grains up, and a speed below 10 mm/s would require a far larger slowing than Experiment 2 showed.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P4-Q6",
+  "passage_id": "sc6b-p4",
+  "passage_title": "Settling of River Sediment",
+  "format": "research_summaries",
+  "passage": "A river carries grains of sediment of many sizes, from sand to clay. Where the river slows, grains sink to the bed; the speed at which a grain sinks through still water is its settling speed. Students collected sediment from the bed of a river and its estuary (the zone where the river meets the sea, and where the salinity of the water rises from 0 g/kg in the river to 35 g/kg in the sea). They separated the sediment by grain diameter with sieves.\n\nIn each trial, 1.0 g of grains of one diameter was dropped into a clear column of still water 1.0 m tall. The students recorded the time for the top of the falling cloud of sediment to descend from an upper mark to a lower mark 0.80 m below it, and calculated the settling speed by dividing 0.80 m by that time. Each trial was done three times, and the average settling speed is given in Table 1.\n\nExperiment 1\nGrains of four diameters were dropped into fresh water (salinity 0 g/kg) at 20 °C.\n\nExperiment 2\nGrains 0.125 mm in diameter were dropped into fresh water at three temperatures.\n\nExperiment 3\nClay particles 0.002 mm in diameter were dropped into water at 20 °C with five salinities, made by dissolving sea salt in fresh water. The slowest trials took more than two days. At every salinity of 2 g/kg or more, the students saw the clay particles gather into visible clumps within the first minute; no clumps formed at 0 g/kg.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average settling speed of sediment grains in still water.",
+   "colLabels": [
+    "Grain diameter (mm)",
+    "Water temperature (°C)",
+    "Salinity (g/kg)",
+    "Settling speed (mm/s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     20,
+     0,
+     72
+    ],
+    [
+     0.25,
+     20,
+     0,
+     33
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.063,
+     20,
+     0,
+     3.0
+    ],
+    [
+     0.125,
+     5,
+     0,
+     6.6
+    ],
+    [
+     0.125,
+     20,
+     0,
+     10
+    ],
+    [
+     0.125,
+     35,
+     0,
+     13.8
+    ],
+    [
+     0.002,
+     20,
+     0,
+     0.004
+    ],
+    [
+     0.002,
+     20,
+     2,
+     0.1
+    ],
+    [
+     0.002,
+     20,
+     5,
+     0.25
+    ],
+    [
+     0.002,
+     20,
+     10,
+     0.3
+    ],
+    [
+     0.002,
+     20,
+     35,
+     0.31
+    ]
+   ]
+  },
+  "prompt": "A student claimed that the settling speed of clay is proportional to the salinity of the water. Do the results of Experiment 3 support this claim?",
+  "choices": [
+   "Yes; the settling speed increased with every increase in salinity.",
+   "Yes; the greatest settling speed occurred at the greatest salinity.",
+   "No; the speed barely changed from 10 g/kg to 35 g/kg salinity.",
+   "No; the settling speed decreased as the salinity increased."
+  ],
+  "correct_answer": "No; the speed barely changed from 10 g/kg to 35 g/kg salinity.",
+  "explanation": "If speed were proportional to salinity, raising salinity from 10 g/kg to 35 g/kg (3.5 times) would raise the speed about 3.5 times. Instead it rose only from 0.30 mm/s to 0.31 mm/s, while the rise from 0 g/kg to 2 g/kg multiplied the speed 25 times (0.004 to 0.10 mm/s). Speed did increase at every step and was greatest at 35 g/kg, but neither fact shows proportionality, and speed never decreased.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a quantitative claim against data",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P5-Q1",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, as the percent of water in the solvent decreased from 100% to 0%, the Rf of Dye 3:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "In Experiment 1 the Rf of Dye 3 was 0.10, 0.28, 0.45, 0.61, and 0.77 for 100%, 75%, 50%, 25%, and 0% water, rising at every step, so it increased only. It is Dye 1 whose Rf decreased only (0.85 down to 0.40).",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P5-Q2",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "In which solvent in Experiment 1 were the spots of all four dyes at least 1.0 cm apart from one another?",
+  "choices": [
+   "100% water",
+   "75% water",
+   "50% water",
+   "0% water"
+  ],
+  "correct_answer": "75% water",
+  "explanation": "Because each spot traveled its Rf value times 8.0 cm, two spots are at least 1.0 cm apart when their Rf values differ by at least 0.125. With 75% water the Rf values were 0.80, 0.66, 0.28, and 0.05; the closest pair differ by 0.14, or 1.1 cm. With 100% water, Dyes 3 and 4 (0.10 and 0.00) were only 0.8 cm apart; with 50% water, Dyes 1 and 2 (0.71 and 0.70) nearly overlapped; and with 0% water, Dyes 2 and 3 (0.75 and 0.77) nearly overlapped.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a relationship from the passage to table values",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P5-Q3",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "The students want to test whether the amount of ink placed on the strip affects the Rf values. Which procedure would best test this?",
+  "choices": [
+   "Use 1 dot of ink on Paper A and 4 dots on Paper B, each with 75% water at 22 °C",
+   "Use 1 dot of ink with 100% water and 4 dots with 0% water, each on Paper A at 22 °C",
+   "Use 1 dot of ink at 10 °C and 4 dots at 34 °C, each with 75% water on Paper A",
+   "Use 1, 2, and 4 dots of ink, each with 75% water on Paper A at 22 °C"
+  ],
+  "correct_answer": "Use 1, 2, and 4 dots of ink, each with 75% water on Paper A at 22 °C",
+  "explanation": "To isolate the amount of ink, only the number of dots should change while solvent, paper, and temperature stay the same, as in the procedure using 1, 2, and 4 dots with 75% water on Paper A at 22 °C. Each other procedure changes the amount of ink together with paper type, solvent, or temperature, all of which changed the Rf values in Experiments 1 to 3, so any difference could not be attributed to the ink.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a controlled test of a new variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P5-Q4",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "Suppose the students had run a trial like those in Experiment 3 with the chamber at 28 °C. Based on Table 1, the time for the solvent front to travel 8.0 cm would most likely have been:",
+  "choices": [
+   "less than 13 min.",
+   "between 13 min and 17 min.",
+   "between 17 min and 22 min.",
+   "greater than 22 min."
+  ],
+  "correct_answer": "between 13 min and 17 min.",
+  "explanation": "In Experiment 3 the solvent front took 22 min at 10 °C, 17 min at 22 °C, and 13 min at 34 °C, getting faster as temperature rose. A temperature of 28 °C lies between 22 °C and 34 °C, so the time should lie between 13 min and 17 min. The other ranges correspond to temperatures above 34 °C or below 22 °C.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P5-Q5",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that whenever the solvent front travels faster, every dye has a higher Rf value. Which of Experiments 1 and 2 support this hypothesis?",
+  "choices": [
+   "Both Experiment 1 and Experiment 2",
+   "Experiment 2 only",
+   "Experiment 1 only",
+   "Neither Experiment 1 nor Experiment 2"
+  ],
+  "correct_answer": "Experiment 2 only",
+  "explanation": "In Experiment 2 the front was fastest on Paper B (11 min), slower on Paper A (17 min), and slowest on Paper C (30 min), and every dye's Rf followed the same order, which supports the hypothesis. In Experiment 1 the front was fastest with 100% water (10 min), yet Dye 3's Rf there (0.10) was lower than with 75% water (0.28, 17 min), so Experiment 1 contradicts it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P5-Q6",
+  "passage_id": "sc6b-p5",
+  "passage_title": "Separating the Dyes in a Marker Ink",
+  "format": "research_summaries",
+  "passage": "In paper chromatography, a small spot of ink is placed near the bottom of a strip of paper, and the bottom edge of the strip is dipped into a liquid called the solvent. As the solvent soaks up the paper, it carries the dyes in the ink with it, and different dyes travel different distances, separating into distinct spots. For each dye, the Rf value is the distance the dye's spot traveled divided by the distance the solvent front (the top edge of the wet region) traveled.\n\nStudents studied the black ink of an unlabeled marker, which separates into four dyes, called Dyes 1 to 4. In every trial a single dot of ink was placed 2.0 cm from the bottom of a paper strip, and the strip was removed from the solvent when the solvent front had traveled 8.0 cm above the ink dot. The distance each dye's spot traveled was therefore its Rf value multiplied by 8.0 cm. The students recorded the time the solvent front took to travel the 8.0 cm. Solvents were mixtures of water and ethanol, described by the percent of water by volume. Unless stated otherwise, Paper A was used and the room was at 22 °C. Table 1 shows the results.\n\nExperiment 1\nFive solvents, from 100% water to 0% water (pure ethanol), were used.\n\nExperiment 2\nA solvent of 75% water was used with three types of paper, A, B, and C, which differed in thickness and in the coating applied by their manufacturers.\n\nExperiment 3\nA solvent of 75% water was used in a chamber held at 10 °C, 22 °C, or 34 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Solvent travel time and Rf values of four dyes.",
+   "colLabels": [
+    "Time for solvent front to travel 8.0 cm (min)",
+    "Rf of Dye 1",
+    "Rf of Dye 2",
+    "Rf of Dye 3",
+    "Rf of Dye 4"
+   ],
+   "rowLabels": [
+    "Exp. 1: 100% water",
+    "Exp. 1: 75% water",
+    "Exp. 1: 50% water",
+    "Exp. 1: 25% water",
+    "Exp. 1: 0% water",
+    "Exp. 2: Paper A",
+    "Exp. 2: Paper B",
+    "Exp. 2: Paper C",
+    "Exp. 3: 10 °C",
+    "Exp. 3: 22 °C",
+    "Exp. 3: 34 °C"
+   ],
+   "cells": [
+    [
+     10,
+     0.85,
+     0.62,
+     0.1,
+     0.0
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     28,
+     0.71,
+     0.7,
+     0.45,
+     0.18
+    ],
+    [
+     24,
+     0.58,
+     0.73,
+     0.61,
+     0.36
+    ],
+    [
+     19,
+     0.4,
+     0.75,
+     0.77,
+     0.52
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     11,
+     0.84,
+     0.72,
+     0.35,
+     0.08
+    ],
+    [
+     30,
+     0.74,
+     0.55,
+     0.2,
+     0.02
+    ],
+    [
+     22,
+     0.78,
+     0.63,
+     0.25,
+     0.04
+    ],
+    [
+     17,
+     0.8,
+     0.66,
+     0.28,
+     0.05
+    ],
+    [
+     13,
+     0.82,
+     0.69,
+     0.31,
+     0.06
+    ]
+   ]
+  },
+  "prompt": "Which set of conditions was used in at least one trial of every experiment?",
+  "choices": [
+   "100% water, Paper A, 22 °C",
+   "75% water, Paper B, 22 °C",
+   "75% water, Paper A, 34 °C",
+   "75% water, Paper A, 22 °C"
+  ],
+  "correct_answer": "75% water, Paper A, 22 °C",
+  "explanation": "The 75% water, Paper A, 22 °C condition appears in Experiment 1 (the 75% water trial), Experiment 2 (Paper A), and Experiment 3 (22 °C), and all three trials gave identical results. Pure water was used only in Experiment 1, Paper B only in Experiment 2, and 34 °C only in Experiment 3.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the trial shared by all experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P6-Q1",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "According to Scientist 2, the hairs on the leaves of Species H benefit the plant mainly by:",
+  "choices": [
+   "reflecting UV radiation away from the leaf cells.",
+   "reducing the amount of water lost from the leaf.",
+   "shading the leaf cells from visible sunlight.",
+   "slowing heat loss from the leaf in the wind."
+  ],
+  "correct_answer": "slowing heat loss from the leaf in the wind.",
+  "explanation": "Scientist 2 says the hairs trap still air against the leaf \"so wind removes heat from the leaf more slowly,\" keeping the leaf warm. Reflecting UV is Scientist 1's explanation, and neither scientist mentions water loss or shading from visible light.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P6-Q2",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "According to the passage, the density of hairs on Species H leaves at 3,500 m is how much greater than the density at 1,500 m?",
+  "choices": [
+   "40 hairs/mm²",
+   "50 hairs/mm²",
+   "90 hairs/mm²",
+   "110 hairs/mm²"
+  ],
+  "correct_answer": "90 hairs/mm²",
+  "explanation": "The passage gives about 110 hairs/mm² at 3,500 m and 20 hairs/mm² at 1,500 m, a difference of 90 hairs/mm². The value 40 hairs/mm² is the increase from 1,500 m to 2,500 m, 50 hairs/mm² is the increase from 2,500 m to 3,500 m, and 110 hairs/mm² is the density at 3,500 m itself.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference from values in the passage",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P6-Q3",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "Which of the following findings would support Scientist 1's explanation but NOT Scientist 2's?",
+  "choices": [
+   "Species H plants at 3,500 m have denser hairs than Species H plants at 1,500 m.",
+   "Species H leaves with the hairs shaved off cooled faster in wind than unshaved leaves did.",
+   "Species H plants grown at 25 °C under UV lamps grew denser hairs than plants grown at 25 °C without UV lamps.",
+   "Species H plants grown at 5 °C grew denser hairs than plants grown at 20 °C under the same light."
+  ],
+  "correct_answer": "Species H plants grown at 25 °C under UV lamps grew denser hairs than plants grown at 25 °C without UV lamps.",
+  "explanation": "Plants grown at the same warm temperature but with more UV growing denser hairs fits Scientist 1, who says hair density tracks UV, and conflicts with Scientist 2, who says it tracks temperature, which was the same for both groups. Denser hairs at higher elevations is accepted by both scientists. Shaved leaves cooling faster, and denser hairs at a colder temperature under the same light, both support Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P6-Q4",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "At an elevation of 3,000 m, Species H grows on both a sunny south-facing slope and a shaded north-facing slope. Scientist 1 would most likely predict that, compared with plants on the south-facing slope, plants on the north-facing slope have:",
+  "choices": [
+   "fewer hairs per mm², because the air there is colder.",
+   "more hairs per mm², because the air there is colder.",
+   "more hairs per mm², because they receive more UV.",
+   "fewer hairs per mm², because they receive less UV."
+  ],
+  "correct_answer": "fewer hairs per mm², because they receive less UV.",
+  "explanation": "Scientist 1 states that plants on a shaded north-facing slope \"receive less UV and should grow fewer hairs\" than plants at the same elevation on a sunny slope. Linking hair density to colder air is Scientist 2's reasoning, and Scientist 2 predicts at least as many hairs, not fewer. The north-facing slope receives less UV, not more.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive a prediction from a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P6-Q5",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "Which of the following experiments would best distinguish between the two scientists' explanations?",
+  "choices": [
+   "Grow Species H from one seed source under four conditions (cold with high UV, cold with low UV, warm with high UV, warm with low UV) and measure hair density.",
+   "Measure the hair density of wild Species H plants at every 250 m of elevation from 1,500 m to 3,500 m.",
+   "Shave the hairs from Species H leaves at 3,500 m and measure how much the plants grow over one summer.",
+   "Count the hairs on Species H plants from 50 sites at 3,000 m on south-facing slopes and calculate the average."
+  ],
+  "correct_answer": "Grow Species H from one seed source under four conditions (cold with high UV, cold with low UV, warm with high UV, warm with low UV) and measure hair density.",
+  "explanation": "Scientist 1 links hair density to UV and Scientist 2 to temperature, but on the mountain both change together with elevation. Growing plants from one seed source with temperature and UV varied independently shows which factor changes hair density. Measuring more elevations or more sites at one elevation leaves UV and temperature linked, and shaving hairs and measuring growth could reflect either UV damage or cold leaves.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between viewpoints",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P6-Q6",
+  "passage_id": "sc6b-p6",
+  "passage_title": "Dense Hairs on the Leaves of an Alpine Plant",
+  "format": "conflicting_viewpoints",
+  "passage": "Species H is a small perennial plant that grows on mountain slopes from 1,500 m to 3,500 m above sea level. Its leaves are covered with fine white hairs, and the density of hairs increases with elevation: about 20 hairs per square millimeter (hairs/mm²) at 1,500 m, 60 hairs/mm² at 2,500 m, and 110 hairs/mm² at 3,500 m. Between 1,500 m and 3,500 m in this range, the average July air temperature falls from 18 °C to 6 °C, the intensity of ultraviolet (UV) radiation from the Sun increases by about 40%, and the average wind speed roughly doubles. Ultraviolet radiation can damage the DNA and the photosynthetic machinery of leaf cells. Two scientists propose explanations for why the hairs are denser at higher elevations.\n\nScientist 1\nThe hairs protect the leaf from UV radiation. The hairs reflect and scatter UV before it reaches the leaf cells beneath them. Because UV intensity increases with elevation, plants at higher elevations need more protection and grow denser hairs; each plant adjusts its hair density to the amount of UV it receives while its leaves are developing. Where a slope receives less direct sunlight, such as on a shaded north-facing slope, plants receive less UV and should grow fewer hairs than plants at the same elevation on a sunny south-facing slope.\n\nScientist 2\nThe hairs keep the leaf warm. A dense mat of hairs traps a thin layer of still air against the leaf surface, so wind removes heat from the leaf more slowly, and a leaf warmed by sunlight stays above air temperature. Warmer leaves photosynthesize and grow faster in a cold climate. Because air temperature falls and wind speed rises with elevation, plants at higher elevations need more insulation and grow denser hairs; each plant adjusts its hair density to the temperatures it experiences while its leaves are developing. Shaded north-facing slopes are colder than sunny south-facing slopes at the same elevation, so plants there should have at least as many hairs.",
+  "prompt": "Which of the following statements would both scientists most likely agree with?",
+  "choices": [
+   "The hairs reflect UV before it reaches the leaf cells.",
+   "Hair density is set by elevation alone, whatever the local conditions are.",
+   "Each plant's hair density depends on conditions during leaf development.",
+   "The hairs trap a layer of still air against the leaf surface."
+  ],
+  "correct_answer": "Each plant's hair density depends on conditions during leaf development.",
+  "explanation": "Scientist 1 says each plant adjusts its hair density to the UV it receives \"while its leaves are developing,\" and Scientist 2 says each plant adjusts to the temperatures it experiences \"while its leaves are developing,\" so both hold that hair density depends on conditions during leaf development. Reflecting UV is Scientist 1's claim only, and trapping still air is Scientist 2's only. Each scientist ties hair density to a condition (UV or temperature) that can differ between slopes at one elevation, so neither says elevation alone decides it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P7-Q1",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "According to Scientist 2, what triggers an outburst of Comet Halvard?",
+  "choices": [
+   "A small icy body striking the nucleus",
+   "Heat from perihelion reaching buried CO ice",
+   "Water ice turning to gas at the surface",
+   "A pocket of CO gas cooling and contracting"
+  ],
+  "correct_answer": "A small icy body striking the nucleus",
+  "explanation": "Scientist 2 states that \"the outbursts are triggered by collisions\" with small icy bodies that strike the nucleus. Heat from perihelion reaching buried CO ice is Scientist 1's mechanism. Neither scientist attributes the outbursts to water ice turning to gas, and the passage notes that water ice does not do so at these distances; neither describes CO gas cooling and contracting.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6b-P7-Q2",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "Based on the passage, what percent of the recorded outbursts occurred while the comet was outbound?",
+  "choices": [
+   "25%",
+   "33%",
+   "67%",
+   "75%"
+  ],
+  "correct_answer": "75%",
+  "explanation": "Nine of the 12 recorded outbursts were outbound, and 9 / 12 = 0.75, or 75%. The value 25% is the inbound fraction (3 of 12), 33% is the ratio of inbound to outbound outbursts (3 to 9), and 67% matches neither count.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent from values in the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P7-Q3",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "Scientist 1's explanation implies that, compared with the time when the nucleus's surface is most strongly heated, outbursts generally occur:",
+  "choices": [
+   "at the same time, because CO ice lies at the surface.",
+   "earlier, because the CO ice warms before the surface does.",
+   "at random times, because heating varies from orbit to orbit.",
+   "later, because heat takes time to reach the buried CO ice."
+  ],
+  "correct_answer": "later, because heat takes time to reach the buried CO ice.",
+  "explanation": "Scientist 1 says the surface is strongly heated near perihelion and that the heat reaches buried CO ice \"months to years later,\" so outbursts occur later than the strongest surface heating. Scientist 1 places the CO ice tens of meters down, not at the surface; the surface warms first, not the buried ice; and random timing is Scientist 2's view.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "trace the reasoning of one viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P7-Q4",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "Which of the following observations, if made, would most weaken Scientist 2's explanation?",
+  "choices": [
+   "The dust released in the next outburst has a mass of about 5 × 10^8 kg.",
+   "A spectrum taken during the next outburst again shows CO gas.",
+   "On the next two orbits, outbursts begin again within 0.1 AU of the same orbital positions as before.",
+   "A comet in a similar orbit shows no outbursts at all during one complete orbit of the Sun."
+  ],
+  "correct_answer": "On the next two orbits, outbursts begin again within 0.1 AU of the same orbital positions as before.",
+  "explanation": "Scientist 2 says collisions occur at random, so outbursts \"should occur at unrelated positions from one orbit to the next.\" Outbursts repeating at the same orbital positions orbit after orbit contradicts that and matches Scientist 1's prediction. A dust mass within the recorded range and CO in the spectrum fit both views, and a comet without outbursts says nothing about how Comet Halvard's outbursts are caused.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that weakens a viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6b-P7-Q5",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "Which of the following investigations would best help decide between the two explanations?",
+  "choices": [
+   "Measure the total mass of dust released by each outburst and compare the masses.",
+   "Test the spectrum of every outburst for the presence of CO gas.",
+   "Measure how quickly the dust cloud of each outburst fades.",
+   "Map the location on the nucleus from which the dust of each outburst spread."
+  ],
+  "correct_answer": "Map the location on the nucleus from which the dust of each outburst spread.",
+  "explanation": "Scientist 1 expects outbursts to come from the parts of the nucleus that receive the most sunlight near perihelion, while Scientist 2 expects them to come from random locations, so mapping where each outburst's dust originated distinguishes the views. Both scientists account for dust masses and CO, and neither explanation makes any prediction about how quickly a dust cloud fades.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6b-P7-Q6",
+  "passage_id": "sc6b-p7",
+  "passage_title": "Brightness Outbursts of a Distant Comet",
+  "format": "conflicting_viewpoints",
+  "passage": "Comet Halvard is a comet whose orbit carries it from 2.0 AU from the Sun at perihelion (its closest approach) out to 6.0 AU and back every 7.4 years (1 AU is the average Earth-Sun distance). Its solid nucleus is about 6 km across. Over two complete orbits, astronomers recorded 12 outbursts, events in which the comet's brightness rose by a factor of 10 to 50 within a day and then faded over about two weeks as a cloud of dust spread away from the nucleus. All 12 outbursts occurred while the comet was between 3.5 AU and 5.5 AU from the Sun. Nine occurred while the comet was moving away from the Sun after perihelion (outbound), and 3 while it was moving toward the Sun (inbound). Each outburst released between 10^8 kg and 10^9 kg of dust. Spectra taken during every outburst showed carbon monoxide (CO) gas. Frozen CO turns directly to gas at about 25 K, far colder than the comet's surface temperature at these distances; water ice does so at about 150 K, warmer than the surface temperature there. Two scientists explain the outbursts.\n\nScientist 1\nThe outbursts are driven by heat from the Sun. Near perihelion the nucleus's surface is strongly heated, and this heat travels slowly downward through the porous, poorly conducting material of the nucleus. Months to years later, the heat reaches pockets of CO ice buried tens of meters below the surface. The CO turns to gas, pressure builds, and the gas bursts through the overlying crust, carrying dust with it. Because of the delay, most outbursts occur on the outbound part of the orbit, and they should begin again at about the same orbital positions on each orbit, from the parts of the nucleus that receive the most sunlight near perihelion.\n\nScientist 2\nThe outbursts are triggered by collisions. Small icy bodies, from boulders to objects tens of meters across, are common in the region of the solar system between 3.5 AU and 5.5 AU. When one strikes the nucleus, it blasts a crater and throws out dust, and it exposes buried CO ice, which turns to gas and carries more dust away. Collisions happen at random times, so outbursts should occur at unrelated positions from one orbit to the next and from random locations on the nucleus. The excess of outbound outbursts in the record is a chance result from a small number of events.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that the CO gas seen during the outbursts:",
+  "choices": [
+   "comes from CO ice located beneath the nucleus's surface.",
+   "is released when heat from perihelion reaches the CO ice.",
+   "is carried to the comet by the bodies that strike it.",
+   "comes from CO ice that lies exposed on the surface."
+  ],
+  "correct_answer": "comes from CO ice located beneath the nucleus's surface.",
+  "explanation": "Scientist 1 says the gas comes from \"pockets of CO ice buried tens of meters below the surface,\" and Scientist 2 says a collision \"exposes buried CO ice.\" Both therefore place the source beneath the surface. Release by heat from perihelion is Scientist 1's view only, neither scientist says the impactors bring the CO, and both describe the ice as buried rather than exposed.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "hard"
+ }
+]

@@ -10697,6 +10697,114 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "act-reading-v9a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v9a",
+      "contentSha": "481d6b15a5f9b2cdd458ae40f7d25ae27bb9a6cf1276530492322ee5b192ba56",
+      "status": "staged-for-human-review",
+      "note": "Claude agent section; spot route (act-v9-v6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "481d6b15a5f9b2cdd458ae40f7d25ae27bb9a6cf1276530492322ee5b192ba56",
+          "verdict": "act-bank-helper structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader grader A 1/36 (ARV9a-26 distractor replaced), B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (ACT: instrument saturates)."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v9b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v9b",
+      "contentSha": "c51e7a5551164cc4e50b6de9841bcf54e6fe22fd820afeab72aaa07363a60e4c",
+      "status": "staged-for-human-review",
+      "note": "Claude agent section; spot route (act-v9-v6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c51e7a5551164cc4e50b6de9841bcf54e6fe22fd820afeab72aaa07363a60e4c",
+          "verdict": "act-bank-helper structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (ACT: instrument saturates)."
+        }
+      }
+    },
+    {
+      "id": "act-science-v6a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v6a",
+      "contentSha": "f6434ba0a8059fe6ad3529a1c30896c4dc23b0773f7df021dfa50c0544f2091f",
+      "status": "staged-for-human-review",
+      "note": "Claude agent section; spot route (act-v9-v6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f6434ba0a8059fe6ad3529a1c30896c4dc23b0773f7df021dfa50c0544f2091f",
+          "verdict": "act-bank-helper structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader grader A 0/40, B 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (ACT: instrument saturates)."
+        }
+      }
+    },
+    {
+      "id": "act-science-v6b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v6b",
+      "contentSha": "54f8991756d66ff28af88029abd43aa62ac2a91de55886abb424ce46ab7e14cc",
+      "status": "staged-for-human-review",
+      "note": "Claude agent section; spot route (act-v9-v6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "54f8991756d66ff28af88029abd43aa62ac2a91de55886abb424ce46ab7e14cc",
+          "verdict": "act-bank-helper structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader grader A 1/40 (ASV6b-P5-Q5 stem scoped), B 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (ACT: instrument saturates)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

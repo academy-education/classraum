@@ -422,6 +422,46 @@
       "group": "draft12-D12-P06",
       "route": "spot",
       "runId": "ssat-draft12-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v9a",
+      "tool": "item",
+      "domain": "Key Ideas and Details:4,Craft and Structure:3,Integration of Knowledge and Ideas:2",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v9a:arv9a-p4",
+      "route": "spot",
+      "runId": "act-v9a-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v9b",
+      "tool": "item",
+      "domain": "Key Ideas and Details:5,Craft and Structure:2,Integration of Knowledge and Ideas:2",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v9b:arv9b-p2",
+      "route": "spot",
+      "runId": "act-v9b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v6a",
+      "tool": "item",
+      "domain": "Evaluation of Models, Inferences, and Experimental Results:4,Interpretation of Data:1,Scientific Investigation:1",
+      "size": 6,
+      "family": "act",
+      "group": "act-science-v6a:sc6a-p6",
+      "route": "spot",
+      "runId": "act-sci-v6a-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v6b",
+      "tool": "item",
+      "domain": "Interpretation of Data:4,Evaluation of Models, Inferences, and Experimental Results:1",
+      "size": 5,
+      "family": "act",
+      "group": "act-science-v6b:sc6b-p1",
+      "route": "spot",
+      "runId": "act-sci-v6b-spot-cofounder-{date}"
     }
   ]
 }

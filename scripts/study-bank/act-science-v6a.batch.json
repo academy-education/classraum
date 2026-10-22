@@ -1,0 +1,2272 @@
+[
+ {
+  "id": "ASV6a-P1-Q1",
+  "passage_id": "sc6a-p1",
+  "passage_title": "Crystal Growth in Cooling Solutions",
+  "format": "data_representation",
+  "passage": "When a hot solution that is nearly saturated cools, the dissolved solid becomes less soluble and comes out of solution as crystals. Students studied crystal formation by a white solid, Compound Q, which is far more soluble in hot water than in cold water. At 20 °C, at most 18 g of Compound Q dissolves in 100 g of water.\n\nIn each of five trials, the students dissolved 60 g of Compound Q in 100 g of water at 80 °C in an identical glass beaker. The beaker was then placed in a programmable bath that cooled the solution from 80 °C to 20 °C at a constant rate, which was different in each trial. The students recorded the temperature at which crystals first appeared. As soon as the solution reached 20 °C, they filtered out the crystals, counted them, measured the length of each crystal, dried the crystals, and weighed them. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Crystal formation by Compound Q in solutions cooled from 80 °C to 20 °C at five rates.",
+   "colLabels": [
+    "Cooling rate (°C/min)",
+    "Temperature at which crystals first appeared (°C)",
+    "Number of crystals",
+    "Average crystal length (mm)",
+    "Total mass of crystals (g)"
+   ],
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "cells": [
+    [
+     0.5,
+     61,
+     12,
+     9.6,
+     41.5
+    ],
+    [
+     1,
+     58,
+     25,
+     7.1,
+     41.4
+    ],
+    [
+     2,
+     54,
+     60,
+     4.8,
+     41.2
+    ],
+    [
+     4,
+     47,
+     140,
+     3.0,
+     40.6
+    ],
+    [
+     8,
+     38,
+     330,
+     1.9,
+     39.8
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average crystal length in the trial with a cooling rate of 2 °C/min?",
+  "choices": [
+   "3.0 mm",
+   "4.8 mm",
+   "7.1 mm",
+   "9.6 mm"
+  ],
+  "correct_answer": "4.8 mm",
+  "explanation": "The 2 °C/min row of Table 1 (Trial 3) lists an average crystal length of 4.8 mm. The value 3.0 mm belongs to the 4 °C/min trial, 7.1 mm to the 1 °C/min trial, and 9.6 mm to the 0.5 °C/min trial.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P1-Q2",
+  "passage_id": "sc6a-p1",
+  "passage_title": "Crystal Growth in Cooling Solutions",
+  "format": "data_representation",
+  "passage": "When a hot solution that is nearly saturated cools, the dissolved solid becomes less soluble and comes out of solution as crystals. Students studied crystal formation by a white solid, Compound Q, which is far more soluble in hot water than in cold water. At 20 °C, at most 18 g of Compound Q dissolves in 100 g of water.\n\nIn each of five trials, the students dissolved 60 g of Compound Q in 100 g of water at 80 °C in an identical glass beaker. The beaker was then placed in a programmable bath that cooled the solution from 80 °C to 20 °C at a constant rate, which was different in each trial. The students recorded the temperature at which crystals first appeared. As soon as the solution reached 20 °C, they filtered out the crystals, counted them, measured the length of each crystal, dried the crystals, and weighed them. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Crystal formation by Compound Q in solutions cooled from 80 °C to 20 °C at five rates.",
+   "colLabels": [
+    "Cooling rate (°C/min)",
+    "Temperature at which crystals first appeared (°C)",
+    "Number of crystals",
+    "Average crystal length (mm)",
+    "Total mass of crystals (g)"
+   ],
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "cells": [
+    [
+     0.5,
+     61,
+     12,
+     9.6,
+     41.5
+    ],
+    [
+     1,
+     58,
+     25,
+     7.1,
+     41.4
+    ],
+    [
+     2,
+     54,
+     60,
+     4.8,
+     41.2
+    ],
+    [
+     4,
+     47,
+     140,
+     3.0,
+     40.6
+    ],
+    [
+     8,
+     38,
+     330,
+     1.9,
+     39.8
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as the cooling rate increased, how did the number of crystals and the average crystal length change?",
+  "choices": [
+   "The number of crystals increased, and the average crystal length increased.",
+   "The number of crystals decreased, and the average crystal length increased.",
+   "The number of crystals increased, and the average crystal length decreased.",
+   "The number of crystals decreased, and the average crystal length decreased."
+  ],
+  "correct_answer": "The number of crystals increased, and the average crystal length decreased.",
+  "explanation": "From 0.5 °C/min to 8 °C/min the number of crystals rose from 12 to 330, while the average length fell from 9.6 mm to 1.9 mm. Both trends hold at every step, so the number increased and the length decreased; every other pairing reverses at least one of these columns.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify two trends in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P1-Q3",
+  "passage_id": "sc6a-p1",
+  "passage_title": "Crystal Growth in Cooling Solutions",
+  "format": "data_representation",
+  "passage": "When a hot solution that is nearly saturated cools, the dissolved solid becomes less soluble and comes out of solution as crystals. Students studied crystal formation by a white solid, Compound Q, which is far more soluble in hot water than in cold water. At 20 °C, at most 18 g of Compound Q dissolves in 100 g of water.\n\nIn each of five trials, the students dissolved 60 g of Compound Q in 100 g of water at 80 °C in an identical glass beaker. The beaker was then placed in a programmable bath that cooled the solution from 80 °C to 20 °C at a constant rate, which was different in each trial. The students recorded the temperature at which crystals first appeared. As soon as the solution reached 20 °C, they filtered out the crystals, counted them, measured the length of each crystal, dried the crystals, and weighed them. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Crystal formation by Compound Q in solutions cooled from 80 °C to 20 °C at five rates.",
+   "colLabels": [
+    "Cooling rate (°C/min)",
+    "Temperature at which crystals first appeared (°C)",
+    "Number of crystals",
+    "Average crystal length (mm)",
+    "Total mass of crystals (g)"
+   ],
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "cells": [
+    [
+     0.5,
+     61,
+     12,
+     9.6,
+     41.5
+    ],
+    [
+     1,
+     58,
+     25,
+     7.1,
+     41.4
+    ],
+    [
+     2,
+     54,
+     60,
+     4.8,
+     41.2
+    ],
+    [
+     4,
+     47,
+     140,
+     3.0,
+     40.6
+    ],
+    [
+     8,
+     38,
+     330,
+     1.9,
+     39.8
+    ]
+   ]
+  },
+  "prompt": "Suppose an additional trial had been performed with a cooling rate of 3 °C/min. Based on Table 1, the temperature at which crystals first appeared would most likely have been:",
+  "choices": [
+   "above 58 °C.",
+   "between 54 °C and 58 °C.",
+   "between 47 °C and 54 °C.",
+   "below 47 °C."
+  ],
+  "correct_answer": "between 47 °C and 54 °C.",
+  "explanation": "The temperature at which crystals first appeared fell steadily as the cooling rate rose: 54 °C at 2 °C/min and 47 °C at 4 °C/min. A rate of 3 °C/min lies between those two rates, so the temperature would most likely fall between 47 °C and 54 °C. The range from 54 °C to 58 °C corresponds to rates between 1 and 2 °C/min, and below 47 °C to rates above 4 °C/min.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P1-Q4",
+  "passage_id": "sc6a-p1",
+  "passage_title": "Crystal Growth in Cooling Solutions",
+  "format": "data_representation",
+  "passage": "When a hot solution that is nearly saturated cools, the dissolved solid becomes less soluble and comes out of solution as crystals. Students studied crystal formation by a white solid, Compound Q, which is far more soluble in hot water than in cold water. At 20 °C, at most 18 g of Compound Q dissolves in 100 g of water.\n\nIn each of five trials, the students dissolved 60 g of Compound Q in 100 g of water at 80 °C in an identical glass beaker. The beaker was then placed in a programmable bath that cooled the solution from 80 °C to 20 °C at a constant rate, which was different in each trial. The students recorded the temperature at which crystals first appeared. As soon as the solution reached 20 °C, they filtered out the crystals, counted them, measured the length of each crystal, dried the crystals, and weighed them. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Crystal formation by Compound Q in solutions cooled from 80 °C to 20 °C at five rates.",
+   "colLabels": [
+    "Cooling rate (°C/min)",
+    "Temperature at which crystals first appeared (°C)",
+    "Number of crystals",
+    "Average crystal length (mm)",
+    "Total mass of crystals (g)"
+   ],
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "cells": [
+    [
+     0.5,
+     61,
+     12,
+     9.6,
+     41.5
+    ],
+    [
+     1,
+     58,
+     25,
+     7.1,
+     41.4
+    ],
+    [
+     2,
+     54,
+     60,
+     4.8,
+     41.2
+    ],
+    [
+     4,
+     47,
+     140,
+     3.0,
+     40.6
+    ],
+    [
+     8,
+     38,
+     330,
+     1.9,
+     39.8
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, approximately how many minutes after cooling began did crystals first appear in the trial with a cooling rate of 4 °C/min?",
+  "choices": [
+   "About 8 min",
+   "About 12 min",
+   "About 33 min",
+   "About 47 min"
+  ],
+  "correct_answer": "About 8 min",
+  "explanation": "Cooling began at 80 °C, and in the 4 °C/min trial crystals first appeared at 47 °C. The solution had cooled 80 − 47 = 33 °C, which at 4 °C per minute takes 33 ÷ 4 ≈ 8 minutes. The value 33 is the temperature drop itself, 47 is the temperature, and about 12 comes from dividing 47 rather than 33 by 4.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine passage and table values in a calculation",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P1-Q5",
+  "passage_id": "sc6a-p1",
+  "passage_title": "Crystal Growth in Cooling Solutions",
+  "format": "data_representation",
+  "passage": "When a hot solution that is nearly saturated cools, the dissolved solid becomes less soluble and comes out of solution as crystals. Students studied crystal formation by a white solid, Compound Q, which is far more soluble in hot water than in cold water. At 20 °C, at most 18 g of Compound Q dissolves in 100 g of water.\n\nIn each of five trials, the students dissolved 60 g of Compound Q in 100 g of water at 80 °C in an identical glass beaker. The beaker was then placed in a programmable bath that cooled the solution from 80 °C to 20 °C at a constant rate, which was different in each trial. The students recorded the temperature at which crystals first appeared. As soon as the solution reached 20 °C, they filtered out the crystals, counted them, measured the length of each crystal, dried the crystals, and weighed them. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Crystal formation by Compound Q in solutions cooled from 80 °C to 20 °C at five rates.",
+   "colLabels": [
+    "Cooling rate (°C/min)",
+    "Temperature at which crystals first appeared (°C)",
+    "Number of crystals",
+    "Average crystal length (mm)",
+    "Total mass of crystals (g)"
+   ],
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "cells": [
+    [
+     0.5,
+     61,
+     12,
+     9.6,
+     41.5
+    ],
+    [
+     1,
+     58,
+     25,
+     7.1,
+     41.4
+    ],
+    [
+     2,
+     54,
+     60,
+     4.8,
+     41.2
+    ],
+    [
+     4,
+     47,
+     140,
+     3.0,
+     40.6
+    ],
+    [
+     8,
+     38,
+     330,
+     1.9,
+     39.8
+    ]
+   ]
+  },
+  "prompt": "Which of the following was the same in all five trials?",
+  "choices": [
+   "The mass of Compound Q dissolved in 100 g of water",
+   "The cooling rate",
+   "The temperature at which crystals first appeared",
+   "The time taken to cool the solution to 20 °C"
+  ],
+  "correct_answer": "The mass of Compound Q dissolved in 100 g of water",
+  "explanation": "The passage states that in each trial 60 g of Compound Q was dissolved in 100 g of water, so that mass was held constant. The cooling rate was deliberately changed from trial to trial, the temperature of first crystals differed (61 °C to 38 °C), and because the solution always cooled through 60 °C at different rates, the cooling time also differed.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P2-Q1",
+  "passage_id": "sc6a-p2",
+  "passage_title": "Wind Transport of Sand Grains",
+  "format": "data_representation",
+  "passage": "Wind moves sand grains by rolling them along the ground and by bouncing them in short hops. Geologists studied how the rate at which wind carries sand depends on wind speed and on grain size. In a wind tunnel, a flat bed of sand 4 m long was exposed to a steady wind. Each bed contained grains of only one diameter: 0.15 mm, 0.30 mm, or 0.60 mm. The wind speed, measured 10 cm above the bed, was set to 4, 6, 8, 10, or 12 m/s. A trap at the downwind end of the bed caught all of the sand that left the bed during a 10 min run. The transport rate was calculated as the mass of sand caught, in grams, per centimeter of bed width per minute. A fresh, leveled bed was used for every run. Table 1 shows the results; a transport rate of 0 means that no grains left the bed.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand transport rate (g/cm/min) at five wind speeds for beds of three grain diameters.",
+   "colLabels": [
+    "0.15 mm grains",
+    "0.30 mm grains",
+    "0.60 mm grains"
+   ],
+   "rowLabels": [
+    "4 m/s",
+    "6 m/s",
+    "8 m/s",
+    "10 m/s",
+    "12 m/s"
+   ],
+   "cells": [
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0.6,
+     0
+    ],
+    [
+     3.9,
+     2.5,
+     0.7
+    ],
+    [
+     7.8,
+     5.6,
+     2.6
+    ],
+    [
+     13.1,
+     10.0,
+     5.9
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the transport rate of 0.30 mm grains at a wind speed of 10 m/s?",
+  "choices": [
+   "2.6 g/cm/min",
+   "5.6 g/cm/min",
+   "7.8 g/cm/min",
+   "10.0 g/cm/min"
+  ],
+  "correct_answer": "5.6 g/cm/min",
+  "explanation": "The entry in the 10 m/s row and the 0.30 mm column of Table 1 is 5.6 g/cm/min. The value 2.6 is for 0.60 mm grains at 10 m/s, 7.8 is for 0.15 mm grains at 10 m/s, and 10.0 is for 0.30 mm grains at 12 m/s.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P2-Q2",
+  "passage_id": "sc6a-p2",
+  "passage_title": "Wind Transport of Sand Grains",
+  "format": "data_representation",
+  "passage": "Wind moves sand grains by rolling them along the ground and by bouncing them in short hops. Geologists studied how the rate at which wind carries sand depends on wind speed and on grain size. In a wind tunnel, a flat bed of sand 4 m long was exposed to a steady wind. Each bed contained grains of only one diameter: 0.15 mm, 0.30 mm, or 0.60 mm. The wind speed, measured 10 cm above the bed, was set to 4, 6, 8, 10, or 12 m/s. A trap at the downwind end of the bed caught all of the sand that left the bed during a 10 min run. The transport rate was calculated as the mass of sand caught, in grams, per centimeter of bed width per minute. A fresh, leveled bed was used for every run. Table 1 shows the results; a transport rate of 0 means that no grains left the bed.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand transport rate (g/cm/min) at five wind speeds for beds of three grain diameters.",
+   "colLabels": [
+    "0.15 mm grains",
+    "0.30 mm grains",
+    "0.60 mm grains"
+   ],
+   "rowLabels": [
+    "4 m/s",
+    "6 m/s",
+    "8 m/s",
+    "10 m/s",
+    "12 m/s"
+   ],
+   "cells": [
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0.6,
+     0
+    ],
+    [
+     3.9,
+     2.5,
+     0.7
+    ],
+    [
+     7.8,
+     5.6,
+     2.6
+    ],
+    [
+     13.1,
+     10.0,
+     5.9
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at a wind speed of 8 m/s, the transport rate of 0.15 mm grains was approximately how many times the transport rate of 0.60 mm grains?",
+  "choices": [
+   "About 1.6",
+   "About 3.6",
+   "About 5.6",
+   "About 11"
+  ],
+  "correct_answer": "About 5.6",
+  "explanation": "At 8 m/s the transport rates were 3.9 g/cm/min for 0.15 mm grains and 0.7 g/cm/min for 0.60 mm grains, and 3.9 ÷ 0.7 ≈ 5.6. About 1.6 compares 0.15 mm with 0.30 mm grains (3.9 ÷ 2.5), about 3.6 compares 0.30 mm with 0.60 mm grains (2.5 ÷ 0.7), and about 11 uses the 10 m/s rate for the fine grains (7.8 ÷ 0.7).",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P2-Q3",
+  "passage_id": "sc6a-p2",
+  "passage_title": "Wind Transport of Sand Grains",
+  "format": "data_representation",
+  "passage": "Wind moves sand grains by rolling them along the ground and by bouncing them in short hops. Geologists studied how the rate at which wind carries sand depends on wind speed and on grain size. In a wind tunnel, a flat bed of sand 4 m long was exposed to a steady wind. Each bed contained grains of only one diameter: 0.15 mm, 0.30 mm, or 0.60 mm. The wind speed, measured 10 cm above the bed, was set to 4, 6, 8, 10, or 12 m/s. A trap at the downwind end of the bed caught all of the sand that left the bed during a 10 min run. The transport rate was calculated as the mass of sand caught, in grams, per centimeter of bed width per minute. A fresh, leveled bed was used for every run. Table 1 shows the results; a transport rate of 0 means that no grains left the bed.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand transport rate (g/cm/min) at five wind speeds for beds of three grain diameters.",
+   "colLabels": [
+    "0.15 mm grains",
+    "0.30 mm grains",
+    "0.60 mm grains"
+   ],
+   "rowLabels": [
+    "4 m/s",
+    "6 m/s",
+    "8 m/s",
+    "10 m/s",
+    "12 m/s"
+   ],
+   "cells": [
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0.6,
+     0
+    ],
+    [
+     3.9,
+     2.5,
+     0.7
+    ],
+    [
+     7.8,
+     5.6,
+     2.6
+    ],
+    [
+     13.1,
+     10.0,
+     5.9
+    ]
+   ]
+  },
+  "prompt": "Suppose a bed of 0.30 mm grains had been tested at a wind speed of 9 m/s. Based on Table 1, the transport rate would most likely have been:",
+  "choices": [
+   "less than 2.5 g/cm/min.",
+   "between 2.5 g/cm/min and 5.6 g/cm/min.",
+   "between 5.6 g/cm/min and 7.8 g/cm/min.",
+   "greater than 7.8 g/cm/min."
+  ],
+  "correct_answer": "between 2.5 g/cm/min and 5.6 g/cm/min.",
+  "explanation": "For 0.30 mm grains the transport rate rose at every step of wind speed, from 2.5 g/cm/min at 8 m/s to 5.6 g/cm/min at 10 m/s. A speed of 9 m/s lies between those speeds, so the rate would most likely be between 2.5 and 5.6 g/cm/min. The value 7.8 belongs to the 0.15 mm column, and a rate above 5.6 would require a speed above 10 m/s.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P2-Q4",
+  "passage_id": "sc6a-p2",
+  "passage_title": "Wind Transport of Sand Grains",
+  "format": "data_representation",
+  "passage": "Wind moves sand grains by rolling them along the ground and by bouncing them in short hops. Geologists studied how the rate at which wind carries sand depends on wind speed and on grain size. In a wind tunnel, a flat bed of sand 4 m long was exposed to a steady wind. Each bed contained grains of only one diameter: 0.15 mm, 0.30 mm, or 0.60 mm. The wind speed, measured 10 cm above the bed, was set to 4, 6, 8, 10, or 12 m/s. A trap at the downwind end of the bed caught all of the sand that left the bed during a 10 min run. The transport rate was calculated as the mass of sand caught, in grams, per centimeter of bed width per minute. A fresh, leveled bed was used for every run. Table 1 shows the results; a transport rate of 0 means that no grains left the bed.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand transport rate (g/cm/min) at five wind speeds for beds of three grain diameters.",
+   "colLabels": [
+    "0.15 mm grains",
+    "0.30 mm grains",
+    "0.60 mm grains"
+   ],
+   "rowLabels": [
+    "4 m/s",
+    "6 m/s",
+    "8 m/s",
+    "10 m/s",
+    "12 m/s"
+   ],
+   "cells": [
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0.6,
+     0
+    ],
+    [
+     3.9,
+     2.5,
+     0.7
+    ],
+    [
+     7.8,
+     5.6,
+     2.6
+    ],
+    [
+     13.1,
+     10.0,
+     5.9
+    ]
+   ]
+  },
+  "prompt": "A sand surface consists of an even mixture of 0.15 mm and 0.60 mm grains. Based on Table 1, if a steady wind of 6 m/s blew across this surface for several hours, the grains remaining at the surface would most likely become:",
+  "choices": [
+   "richer in 0.15 mm grains, because 0.15 mm grains had the highest transport rate at 6 m/s.",
+   "no different in composition, because neither grain size was moved at 6 m/s.",
+   "no different in composition, because both grain sizes were moved at the same rate at 6 m/s.",
+   "richer in 0.60 mm grains, because at 6 m/s the 0.15 mm grains were carried away but the 0.60 mm grains were not moved."
+  ],
+  "correct_answer": "richer in 0.60 mm grains, because at 6 m/s the 0.15 mm grains were carried away but the 0.60 mm grains were not moved.",
+  "explanation": "At 6 m/s Table 1 shows a transport rate of 1.4 g/cm/min for 0.15 mm grains and 0 for 0.60 mm grains. The wind would remove fine grains and leave coarse ones behind, so the surface would become richer in 0.60 mm grains. A high transport rate for the fine grains means they are removed, not that they accumulate; and the two sizes were neither both unmoved nor moved at the same rate at 6 m/s.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply results to a new situation",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P2-Q5",
+  "passage_id": "sc6a-p2",
+  "passage_title": "Wind Transport of Sand Grains",
+  "format": "data_representation",
+  "passage": "Wind moves sand grains by rolling them along the ground and by bouncing them in short hops. Geologists studied how the rate at which wind carries sand depends on wind speed and on grain size. In a wind tunnel, a flat bed of sand 4 m long was exposed to a steady wind. Each bed contained grains of only one diameter: 0.15 mm, 0.30 mm, or 0.60 mm. The wind speed, measured 10 cm above the bed, was set to 4, 6, 8, 10, or 12 m/s. A trap at the downwind end of the bed caught all of the sand that left the bed during a 10 min run. The transport rate was calculated as the mass of sand caught, in grams, per centimeter of bed width per minute. A fresh, leveled bed was used for every run. Table 1 shows the results; a transport rate of 0 means that no grains left the bed.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand transport rate (g/cm/min) at five wind speeds for beds of three grain diameters.",
+   "colLabels": [
+    "0.15 mm grains",
+    "0.30 mm grains",
+    "0.60 mm grains"
+   ],
+   "rowLabels": [
+    "4 m/s",
+    "6 m/s",
+    "8 m/s",
+    "10 m/s",
+    "12 m/s"
+   ],
+   "cells": [
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0.6,
+     0
+    ],
+    [
+     3.9,
+     2.5,
+     0.7
+    ],
+    [
+     7.8,
+     5.6,
+     2.6
+    ],
+    [
+     13.1,
+     10.0,
+     5.9
+    ]
+   ]
+  },
+  "prompt": "The geologists want to find, to the nearest 0.5 m/s, the lowest wind speed at which 0.60 mm grains begin to leave the bed. Based on Table 1, which of the following sets of additional runs would be most useful?",
+  "choices": [
+   "Runs with 0.60 mm grains at 6.5, 7.0, and 7.5 m/s",
+   "Runs with 0.60 mm grains at 4.5, 5.0, and 5.5 m/s",
+   "Runs with 0.15 mm grains at 6.5, 7.0, and 7.5 m/s",
+   "Runs with 0.60 mm grains at 12.5, 13.0, and 13.5 m/s"
+  ],
+  "correct_answer": "Runs with 0.60 mm grains at 6.5, 7.0, and 7.5 m/s",
+  "explanation": "The 0.60 mm grains had a transport rate of 0 at 6 m/s and 0.7 g/cm/min at 8 m/s, so they begin to move somewhere between 6 and 8 m/s; runs with 0.60 mm grains at 6.5, 7.0, and 7.5 m/s would locate that speed to the nearest 0.5 m/s. Speeds below 6 m/s would only repeat the zero result, speeds above 12 m/s are far above the threshold, and runs with 0.15 mm grains test the wrong grain size.",
+  "domain": "Scientific Investigation",
+  "subskill": "design additional trials to locate a threshold",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P3-Q1",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the percent change in mass after 2 h of cylinders in 0.4 M sucrose in Experiment 1?",
+  "choices": [
+   "−15.0%",
+   "−10.0%",
+   "−6.0%",
+   "−4.0%"
+  ],
+  "correct_answer": "−10.0%",
+  "explanation": "The Exp. 1, 0.4 M sucrose row lists −10.0% in the 2 h column. The value −6.0% is the 1 h result for the same solution, −15.0% is the 2 h result for 0.5 M sucrose, and −4.0% is the 2 h result for 0.3 M sucrose.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P3-Q2",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, a cylinder would most likely have shown no change in mass after 2 h in a sucrose solution with a concentration between:",
+  "choices": [
+   "0.1 M and 0.2 M.",
+   "0.2 M and 0.3 M.",
+   "0.3 M and 0.4 M.",
+   "0.4 M and 0.5 M."
+  ],
+  "correct_answer": "0.2 M and 0.3 M.",
+  "explanation": "After 2 h, cylinders gained 2.5% in 0.2 M sucrose and lost 4.0% in 0.3 M sucrose. Because mass change decreased steadily as concentration rose, it passed through zero between 0.2 M and 0.3 M. Cylinders still gained mass at 0.1 M and 0.2 M and lost mass at 0.3 M, 0.4 M, and 0.5 M, so no other interval contains the change of sign.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a zero crossing in a monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P3-Q3",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "Which variable was varied in Experiment 3 but held constant in Experiment 1?",
+  "choices": [
+   "The temperature of the solution",
+   "The concentration of sucrose",
+   "The identity of the solute",
+   "The initial mass of each cylinder"
+  ],
+  "correct_answer": "The temperature of the solution",
+  "explanation": "In Experiment 3 the solutions were kept at 5 °C, 22 °C, or 35 °C, whereas all Experiment 1 solutions were at 22 °C, so the temperature of the solution was varied only in Experiment 3. Sucrose concentration was varied in Experiment 1 and fixed at 0.3 M in Experiment 3, the solute was sucrose in both, and every cylinder started at 2.00 g.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable of an experiment",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P3-Q4",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and the results of Experiments 1 and 2, which solute more readily crossed the cell membranes of the tuber tissue?",
+  "choices": [
+   "Sucrose, because cylinders in 0.5 M sucrose lost more mass than cylinders in 0.5 M Solute M.",
+   "Sucrose, because cylinders in 0.1 M sucrose gained less mass than cylinders in 0.1 M Solute M.",
+   "Solute M, because cylinders in 0.1 M Solute M gained mass during both hours.",
+   "Solute M, because cylinders in 0.3 M and 0.5 M Solute M had a higher mass after 2 h than after 1 h."
+  ],
+  "correct_answer": "Solute M, because cylinders in 0.3 M and 0.5 M Solute M had a higher mass after 2 h than after 1 h.",
+  "explanation": "The passage states that when a solute slowly crosses the membranes, water moves back into the cells after it. In 0.3 M and 0.5 M Solute M, cylinders went from −1.0% to +1.0% and from −5.0% to −3.0% between 1 h and 2 h, regaining mass, whereas cylinders in 0.3 M and 0.5 M sucrose kept losing mass (−2.5% to −4.0% and −9.0% to −15.0%). A larger total loss or a smaller gain in sucrose describes how much water moved, not whether the solute entered; a gain during both hours in a dilute solution also occurred in dilute sucrose.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "use a stated mechanism to interpret results",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P3-Q5",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that, in 0.3 M sucrose, tuber tissue loses water faster at higher temperatures. Do the 1 h results of Experiment 3 support this hypothesis?",
+  "choices": [
+   "Yes; the mass loss after 1 h increased as the temperature increased.",
+   "Yes; the mass loss after 1 h decreased as the temperature increased.",
+   "No; the mass loss after 1 h increased as the temperature increased.",
+   "No; the mass loss after 1 h decreased as the temperature increased."
+  ],
+  "correct_answer": "Yes; the mass loss after 1 h increased as the temperature increased.",
+  "explanation": "After 1 h in 0.3 M sucrose, cylinders lost 1.5% at 5 °C, 2.5% at 22 °C, and 3.5% at 35 °C. Because the loss over the same hour grew with temperature, water left the tissue faster at higher temperatures, which supports the hypothesis. The data show the loss growing, not shrinking, and a growing loss is evidence for the hypothesis rather than against it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against results",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P3-Q6",
+  "passage_id": "sc6a-p3",
+  "passage_title": "Mass Change of Tuber Tissue in Solutions",
+  "format": "research_summaries",
+  "passage": "Osmosis is the movement of water across a cell membrane from a solution with a lower solute concentration to one with a higher solute concentration. Plant tissue placed in a solution therefore gains mass if the solution is less concentrated than the cell contents and loses mass if it is more concentrated. If a dissolved solute can itself slowly cross the cell membranes, it gradually enters the cells, and water then moves back into the cells after it.\n\nStudents cut cylinders from the tubers of an unidentified plant species. Each cylinder had a mass of 2.00 g. Each cylinder was placed in 50 mL of a solution, removed after 1 h, blotted dry, weighed, returned to the same solution, and weighed again after 2 h. The percent change in mass from 2.00 g was calculated. Each value in Table 1 is the average for 5 cylinders. Unless stated otherwise, the solutions were kept at 22 °C.\n\nExperiment 1\nCylinders were placed in sucrose solutions with concentrations from 0.0 M (pure water) to 0.5 M.\n\nExperiment 2\nCylinders were placed in solutions of an unidentified solute, Solute M, at concentrations of 0.1 M, 0.3 M, and 0.5 M.\n\nExperiment 3\nCylinders were placed in 0.3 M sucrose solutions kept at 5 °C, 22 °C, or 35 °C.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average percent change in mass of 2.00 g tuber cylinders after 1 h and after 2 h.",
+   "colLabels": [
+    "Mass change after 1 h (%)",
+    "Mass change after 2 h (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.0 M sucrose",
+    "Exp. 1, 0.1 M sucrose",
+    "Exp. 1, 0.2 M sucrose",
+    "Exp. 1, 0.3 M sucrose",
+    "Exp. 1, 0.4 M sucrose",
+    "Exp. 1, 0.5 M sucrose",
+    "Exp. 2, 0.1 M Solute M",
+    "Exp. 2, 0.3 M Solute M",
+    "Exp. 2, 0.5 M Solute M",
+    "Exp. 3, 5 °C",
+    "Exp. 3, 22 °C",
+    "Exp. 3, 35 °C"
+   ],
+   "cells": [
+    [
+     11.0,
+     17.5
+    ],
+    [
+     5.5,
+     9.0
+    ],
+    [
+     1.5,
+     2.5
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -6.0,
+     -10.0
+    ],
+    [
+     -9.0,
+     -15.0
+    ],
+    [
+     7.0,
+     10.5
+    ],
+    [
+     -1.0,
+     1.0
+    ],
+    [
+     -5.0,
+     -3.0
+    ],
+    [
+     -1.5,
+     -3.0
+    ],
+    [
+     -2.5,
+     -4.0
+    ],
+    [
+     -3.5,
+     -4.5
+    ]
+   ]
+  },
+  "prompt": "Suppose a cylinder had been placed in 0.2 M Solute M under the conditions of Experiment 2. Based on Table 1, its percent change in mass after 2 h would most likely have been:",
+  "choices": [
+   "less than +1.0%.",
+   "between +1.0% and +10.5%.",
+   "between +10.5% and +17.5%.",
+   "greater than +17.5%."
+  ],
+  "correct_answer": "between +1.0% and +10.5%.",
+  "explanation": "After 2 h, cylinders in Solute M changed by +10.5% at 0.1 M, +1.0% at 0.3 M, and −3.0% at 0.5 M, decreasing steadily as concentration rose. A concentration of 0.2 M lies between 0.1 M and 0.3 M, so the change would most likely be between +1.0% and +10.5%. The value +17.5% is the result for pure water in Experiment 1.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P4-Q1",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the initial reaction rate in Experiment 1 when the concentration of Substance S was 5 mM?",
+  "choices": [
+   "3.6 µmol/min",
+   "4.5 µmol/min",
+   "7.1 µmol/min",
+   "8.3 µmol/min"
+  ],
+  "correct_answer": "7.1 µmol/min",
+  "explanation": "In the 5 mM row of Table 1, the Exp. 1 (no inhibitor) column lists 7.1 µmol/min. The values 4.5 and 3.6 are the 5 mM rates with Inhibitor X and Inhibitor Y, and 8.3 is the uninhibited rate at 10 mM.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P4-Q2",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at which concentration of Substance S did Inhibitor X and Inhibitor Y produce the same initial reaction rate?",
+  "choices": [
+   "1 mM",
+   "2 mM",
+   "10 mM",
+   "20 mM"
+  ],
+  "correct_answer": "2 mM",
+  "explanation": "At 2 mM both inhibited trials gave 2.5 µmol/min. At 1 mM the rates were 1.4 (X) and 1.7 (Y), at 10 mM 6.3 and 4.2, and at 20 mM 7.7 and 4.5, so the rates differed at every other concentration listed.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two data series",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P4-Q3",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at 20 mM Substance S, the initial reaction rate with Inhibitor Y was approximately what fraction of the rate with no inhibitor?",
+  "choices": [
+   "One-quarter",
+   "One-half",
+   "Three-quarters",
+   "The same"
+  ],
+  "correct_answer": "One-half",
+  "explanation": "At 20 mM the rate was 4.5 µmol/min with Inhibitor Y and 9.1 µmol/min with no inhibitor; 4.5 ÷ 9.1 ≈ 0.49, about one-half. Three-quarters is closer to the Inhibitor X ratio at 10 mM (6.3 ÷ 8.3), and one-quarter or no reduction does not match the Inhibitor Y values.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P4-Q4",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, which inhibitor most likely competes with Substance S for the substrate binding site of Enzyme E?",
+  "choices": [
+   "Inhibitor X, because it produced a lower rate than Inhibitor Y at 1 mM Substance S.",
+   "Inhibitor Y, because its rate stayed at about one-half of the uninhibited rate at every concentration.",
+   "Inhibitor X, because its rate as a fraction of the uninhibited rate rose from about 0.4 at 1 mM to about 0.85 at 20 mM.",
+   "Inhibitor Y, because it produced the lowest rate of the three experiments at 20 mM Substance S."
+  ],
+  "correct_answer": "Inhibitor X, because its rate as a fraction of the uninhibited rate rose from about 0.4 at 1 mM to about 0.85 at 20 mM.",
+  "explanation": "The passage says a competing inhibitor slows the reaction proportionally less as substrate concentration rises. With Inhibitor X the fraction of the uninhibited rate rose from 1.4 ÷ 3.3 ≈ 0.42 at 1 mM to 7.7 ÷ 9.1 ≈ 0.85 at 20 mM, matching that description. Inhibitor Y cut the rate to about one-half at every concentration, which the passage assigns to inhibitors that bind elsewhere. Which inhibitor gave the lower rate at a single concentration does not show how the slowing changes with concentration.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match results to a described model",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P4-Q5",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "Which of the following was varied within each of the three experiments?",
+  "choices": [
+   "The concentration of Substance S",
+   "The temperature of the solution",
+   "The mass of Enzyme E added",
+   "The concentration of the inhibitor"
+  ],
+  "correct_answer": "The concentration of Substance S",
+  "explanation": "Each experiment was run at five concentrations of Substance S (1 mM to 20 mM). Every trial used 0.10 mg of Enzyme E at 30 °C, and within Experiments 2 and 3 the inhibitor concentration was always 0.5 mM.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P4-Q6",
+  "passage_id": "sc6a-p4",
+  "passage_title": "Two Inhibitors of a Bacterial Enzyme",
+  "format": "research_summaries",
+  "passage": "Enzymes are proteins that speed up chemical reactions. An enzyme inhibitor is a substance that slows an enzyme-catalyzed reaction. Some inhibitors compete with the reactant (the substrate) for the site on the enzyme where the substrate binds; the slowing they cause becomes proportionally smaller as the substrate concentration is raised. Other inhibitors bind elsewhere on the enzyme; they reduce the rate by about the same fraction at every substrate concentration.\n\nStudents studied Enzyme E, which was purified from an unidentified soil bacterium. Enzyme E converts a colorless substrate, Substance S, into a yellow product. In each trial, 0.10 mg of Enzyme E was added to 3.0 mL of a buffered solution at pH 7.0 and 30 °C containing Substance S. The initial reaction rate, in micromoles (µmol) of product formed per minute, was determined from how quickly the solution turned yellow during the first minute. A trial containing Substance S but no Enzyme E showed no color change.\n\nExperiment 1\nTrials were run with Substance S at five concentrations and no inhibitor.\n\nExperiment 2\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor X.\n\nExperiment 3\nExperiment 1 was repeated, except that each solution also contained 0.5 mM of Inhibitor Y.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Initial reaction rate (µmol/min) of Enzyme E at five concentrations of Substance S.",
+   "colLabels": [
+    "Exp. 1: no inhibitor",
+    "Exp. 2: Inhibitor X",
+    "Exp. 3: Inhibitor Y"
+   ],
+   "rowLabels": [
+    "1 mM Substance S",
+    "2 mM Substance S",
+    "5 mM Substance S",
+    "10 mM Substance S",
+    "20 mM Substance S"
+   ],
+   "cells": [
+    [
+     3.3,
+     1.4,
+     1.7
+    ],
+    [
+     5.0,
+     2.5,
+     2.5
+    ],
+    [
+     7.1,
+     4.5,
+     3.6
+    ],
+    [
+     8.3,
+     6.3,
+     4.2
+    ],
+    [
+     9.1,
+     7.7,
+     4.5
+    ]
+   ]
+  },
+  "prompt": "The students wanted to find out whether a high enough concentration of Substance S would make the rate with Inhibitor X equal to the rate with no inhibitor. Which of the following additional trials would be most useful?",
+  "choices": [
+   "Trials with Inhibitor X only, at 0.5 mM and 1 mM Substance S",
+   "Trials with Inhibitor Y and with no inhibitor, at 50 mM and 100 mM Substance S",
+   "Trials with Inhibitor X and with no inhibitor, at 20 mM Substance S and 50 °C",
+   "Trials with Inhibitor X and with no inhibitor, at 50 mM and 100 mM Substance S"
+  ],
+  "correct_answer": "Trials with Inhibitor X and with no inhibitor, at 50 mM and 100 mM Substance S",
+  "explanation": "The rate with Inhibitor X approached the uninhibited rate as Substance S increased (7.7 versus 9.1 µmol/min at 20 mM). Running Inhibitor X and no-inhibitor trials at 50 mM and 100 mM extends both series to higher concentrations so they can be compared. Low concentrations move away from the question, Inhibitor Y is the wrong inhibitor, and changing the temperature adds a second variable.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment to extend a trend",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P5-Q1",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at which pH did Species W have the greatest average dry mass in Experiment 1?",
+  "choices": [
+   "pH 4.0",
+   "pH 5.0",
+   "pH 6.0",
+   "pH 8.0"
+  ],
+  "correct_answer": "pH 6.0",
+  "explanation": "The Exp. 1 dry mass column reads 62, 118, 140, 112, and 70 mg from pH 4.0 to pH 8.0, so the greatest value, 140 mg, occurred at pH 6.0. The pH 5.0 value of 118 mg is the second highest, and pH 4.0 and pH 8.0 gave the two lowest values.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a maximum in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P5-Q2",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 1, as pH increased from 6.0 to 8.0, how did the dry mass and the chlorophyll content of Species W change?",
+  "choices": [
+   "Both increased.",
+   "Dry mass increased, and chlorophyll content decreased.",
+   "Dry mass decreased, and chlorophyll content increased.",
+   "Both decreased."
+  ],
+  "correct_answer": "Both decreased.",
+  "explanation": "In Experiment 1, from pH 6.0 to pH 8.0 the dry mass fell from 140 to 112 to 70 mg and the chlorophyll content fell from 44 to 33 to 19 units, so both decreased. Neither column increases anywhere in that range.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify two trends in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P5-Q3",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "A researcher hypothesized that the poor growth of Species W at high pH in Experiment 1 was caused by a shortage of iron available to the plants. Do the results of Experiments 1 and 2 support this hypothesis?",
+  "choices": [
+   "Yes; at pH 4.0, adding extra iron raised the dry mass from 60 mg to 62 mg.",
+   "No; at pH 4.0, adding extra iron had almost no effect on dry mass.",
+   "Yes; at pH 8.0, adding extra iron raised the dry mass from 70 mg to 124 mg.",
+   "No; at pH 6.0, adding extra iron had almost no effect on dry mass."
+  ],
+  "correct_answer": "Yes; at pH 8.0, adding extra iron raised the dry mass from 70 mg to 124 mg.",
+  "explanation": "At pH 8.0 Species W averaged 70 mg without extra iron (Experiment 1) and 124 mg with it (Experiment 2), and chlorophyll rose from 19 to 40 units, so supplying iron largely removed the high-pH growth deficit. At pH 4.0 the dry mass was 62 mg without and 60 mg with extra iron, a decrease rather than a rise. The small effects at pH 4.0 and pH 6.0 concern low and moderate pH, so they do not count against a hypothesis about high pH.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis using a comparison of two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P5-Q4",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "How did Experiment 2 differ from Experiment 1?",
+  "choices": [
+   "Extra iron was added to the nutrient solution.",
+   "A different plant species was grown.",
+   "The seedlings were grown at a different temperature.",
+   "The seedlings were grown for a different number of days."
+  ],
+  "correct_answer": "Extra iron was added to the nutrient solution.",
+  "explanation": "The passage states that Experiment 2 used the same species, Species W, with extra iron added to the standard nutrient solution. All experiments used 24 °C and 21 days, and the change of species to Species V occurred in Experiment 3.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify how two experiments differ",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P5-Q5",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at pH 7.0, how much greater was the average dry mass of Species W in Experiment 2 than in Experiment 1?",
+  "choices": [
+   "2 mg",
+   "24 mg",
+   "54 mg",
+   "112 mg"
+  ],
+  "correct_answer": "24 mg",
+  "explanation": "At pH 7.0 the dry mass was 136 mg in Experiment 2 and 112 mg in Experiment 1, a difference of 136 − 112 = 24 mg. The 2 mg difference is at pH 6.0 (142 − 140), 54 mg is at pH 8.0 (124 − 70), and 112 mg is the Experiment 1 value itself.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference between two series",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P5-Q6",
+  "passage_id": "sc6a-p5",
+  "passage_title": "Solution pH and Seedling Growth",
+  "format": "research_summaries",
+  "passage": "Plant roots take up mineral nutrients from the water around them, and the pH of that water can affect growth. Researchers grew seedlings of two unnamed wild plant species, Species W and Species V, in nutrient solutions without soil. Each container held 4 L of a complete nutrient solution adjusted to pH 4.0, 5.0, 6.0, 7.0, or 8.0 and was checked and readjusted daily. Ten seedlings of equal size were grown in each container for 21 days under the same lights and at 24 °C. The seedlings were then dried and weighed, and the average dry mass per seedling was calculated. Leaf chlorophyll content was measured with a meter in relative units (higher numbers mean more chlorophyll).\n\nExperiment 1\nSpecies W was grown in the standard nutrient solution.\n\nExperiment 2\nSpecies W was grown in the standard nutrient solution with extra iron added in a form that stays dissolved at all five pH values.\n\nExperiment 3\nSpecies V was grown in the standard nutrient solution. Chlorophyll was not measured.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average dry mass per seedling (mg) and leaf chlorophyll (relative units) after 21 days at five pH values.",
+   "colLabels": [
+    "Exp. 1 dry mass (mg)",
+    "Exp. 1 chlorophyll",
+    "Exp. 2 dry mass (mg)",
+    "Exp. 2 chlorophyll",
+    "Exp. 3 dry mass (mg)"
+   ],
+   "rowLabels": [
+    "pH 4.0",
+    "pH 5.0",
+    "pH 6.0",
+    "pH 7.0",
+    "pH 8.0"
+   ],
+   "cells": [
+    [
+     62,
+     30,
+     60,
+     29,
+     95
+    ],
+    [
+     118,
+     41,
+     120,
+     42,
+     108
+    ],
+    [
+     140,
+     44,
+     142,
+     45,
+     115
+    ],
+    [
+     112,
+     33,
+     136,
+     43,
+     121
+    ],
+    [
+     70,
+     19,
+     124,
+     40,
+     127
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiments 1 and 3, at which pH values did Species W grown in the standard nutrient solution have a greater average dry mass than Species V?",
+  "choices": [
+   "At pH 4.0 and pH 5.0 only",
+   "At pH 5.0 and pH 6.0 only",
+   "At pH 5.0, pH 6.0, and pH 7.0 only",
+   "At every pH tested"
+  ],
+  "correct_answer": "At pH 5.0 and pH 6.0 only",
+  "explanation": "Comparing Experiment 1 (Species W) with Experiment 3 (Species V): at pH 4.0, 62 < 95 mg; at pH 5.0, 118 > 108 mg; at pH 6.0, 140 > 115 mg; at pH 7.0, 112 < 121 mg; at pH 8.0, 70 < 127 mg. Species W was heavier only at pH 5.0 and pH 6.0. Including pH 7.0 overlooks that Species V was heavier there, and Species W was lighter at pH 4.0.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two series across conditions",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P6-Q1",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "According to Student 1, what is the terminal speed of a stack of 2 cones?",
+  "choices": [
+   "0.6 m/s",
+   "1.2 m/s",
+   "1.7 m/s",
+   "2.4 m/s"
+  ],
+  "correct_answer": "2.4 m/s",
+  "explanation": "Student 1 states that a stack of 2 cones should fall at 2.4 m/s, twice the 1.2 m/s of a single cone, because terminal speed is proportional to weight. The value 1.7 m/s is Student 2's prediction for 2 cones, 1.2 m/s is the single-cone speed, and 0.6 m/s would mean the heavier stack falls more slowly.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a prediction of one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P6-Q2",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "Based on Student 2's explanation, the terminal speed of a stack of 9 cones would be closest to which of the following?",
+  "choices": [
+   "2.4 m/s",
+   "3.6 m/s",
+   "4.8 m/s",
+   "10.8 m/s"
+  ],
+  "correct_answer": "3.6 m/s",
+  "explanation": "Student 2 says terminal speed is proportional to the square root of the weight. A 9-cone stack has 9 times the weight of one cone, and the square root of 9 is 3, so its speed would be 3 × 1.2 = 3.6 m/s. The value 10.8 m/s (9 × 1.2) follows Student 1's rule, 4.8 m/s is Student 1's value for 4 cones, and 2.4 m/s is Student 2's value for 4 cones.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a stated relationship to compute a value",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P6-Q3",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "Student 1 and Student 2 would most likely agree on which of the following statements?",
+  "choices": [
+   "A cone stops speeding up when the upward force of the air equals its weight.",
+   "The upward force of the air on a cone is proportional to the cone's speed.",
+   "The upward force of the air on a cone is proportional to the area of the cone's opening.",
+   "A stack of 4 cones has twice the terminal speed of a single cone."
+  ],
+  "correct_answer": "A cone stops speeding up when the upward force of the air equals its weight.",
+  "explanation": "Both students write that a cone stops speeding up when the upward force of the air equals the cone's weight. Proportionality to speed and to diameter is Student 1's claim, proportionality to the square of speed and to opening area is Student 2's, and doubling the speed for 4 cones is Student 2's prediction (Student 1 predicts 4.8 m/s, four times the single-cone speed).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P6-Q4",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "Suppose a cone with a mass of 1.0 g but an opening diameter of 5 cm (half the original) were dropped from 3 m. What terminal speed would each student predict?",
+  "choices": [
+   "Student 1: 2.4 m/s; Student 2: 1.7 m/s",
+   "Student 1: 4.8 m/s; Student 2: 2.4 m/s",
+   "Student 1: 1.2 m/s; Student 2: 1.2 m/s",
+   "Student 1: 2.4 m/s; Student 2: 2.4 m/s"
+  ],
+  "correct_answer": "Student 1: 2.4 m/s; Student 2: 2.4 m/s",
+  "explanation": "For Student 1, the force is proportional to diameter times speed, so halving the diameter halves the force at each speed and the speed must double, to 2.4 m/s, before the force equals the unchanged weight. For Student 2, the force is proportional to opening area times speed squared; halving the diameter cuts the area to one-quarter, so the speed squared must be 4 times larger and the speed must double, also to 2.4 m/s. A value of 1.7 m/s ignores the area, 4.8 m/s treats the diameter change like a change in weight, and 1.2 m/s ignores the change in size.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive predictions of both models for a new case",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P6-Q5",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "Suppose a stack of 4 cones were found to have a terminal speed of 2.4 m/s. This result would be consistent with the explanation of:",
+  "choices": [
+   "Student 1 only.",
+   "Student 2 only.",
+   "both Student 1 and Student 2.",
+   "neither Student 1 nor Student 2."
+  ],
+  "correct_answer": "Student 2 only.",
+  "explanation": "Student 2 predicts that a stack of 4 cones falls at 2.4 m/s, so the result agrees with Student 2. Student 1 predicts 4.8 m/s for 4 cones, so the result is inconsistent with Student 1.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P6-Q6",
+  "passage_id": "sc6a-p6",
+  "passage_title": "Terminal Speed of Falling Paper Cones",
+  "format": "conflicting_viewpoints",
+  "passage": "A paper cone dropped point-down speeds up at first, but within about 0.5 m it stops speeding up and falls at a constant speed, called its terminal speed. Students made identical paper cones, each with a mass of 1.0 g and an opening diameter of 10 cm. A single cone dropped from 3 m had a terminal speed of 1.2 m/s. Cones can be nested inside one another to form a stack that has the same shape and opening diameter as one cone but a greater mass. Two students explain what sets the terminal speed.\n\nStudent 1\nAs a cone falls, the air pushes up on it with a force that is proportional to the cone's speed: doubling the speed doubles the force. This force is also proportional to the cone's opening diameter. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to speed, the terminal speed is proportional to the weight: a stack of 2 cones should fall at 2.4 m/s, and a stack of 4 cones at 4.8 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.\n\nStudent 2\nAs a cone falls, the air pushes up on it with a force that is proportional to the SQUARE of the cone's speed: doubling the speed multiplies the force by 4. This force is also proportional to the area of the cone's opening. A cone stops speeding up when the upward force of the air equals the cone's weight. Because the force is proportional to the square of the speed, the terminal speed is proportional to the square root of the weight: a stack of 2 cones should fall at about 1.7 m/s, and a stack of 4 cones at 2.4 m/s. The height from which a cone is dropped does not affect its terminal speed, as long as the drop is long enough for the cone to reach that speed.",
+  "prompt": "Which of the following experiments would best distinguish between the two students' explanations?",
+  "choices": [
+   "Dropping single cones from heights of 2 m, 3 m, and 4 m and measuring their terminal speeds",
+   "Measuring the terminal speed of a 1.0 g cone with an opening diameter of 5 cm",
+   "Measuring the terminal speeds of stacks of 1, 4, and 16 cones",
+   "Measuring the masses of 16 individual cones"
+  ],
+  "correct_answer": "Measuring the terminal speeds of stacks of 1, 4, and 16 cones",
+  "explanation": "For stacks of 1, 4, and 16 cones, Student 1 predicts speeds of 1.2, 4.8, and 19.2 m/s, while Student 2 predicts 1.2, 2.4, and 4.8 m/s, so the results would favor one student. Both students say drop height does not matter once terminal speed is reached, both predict 2.4 m/s for the 5 cm cone, and the masses of the cones do not test either explanation.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an experiment that discriminates between models",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P7-Q1",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "According to Student 2, the gas collected from the jar was produced by:",
+  "choices": [
+   "wild yeasts on the skin of the fruit.",
+   "a reaction between sugar and the air in the jar.",
+   "the fruit's own living cells.",
+   "microorganisms in the water used to wash the fruit."
+  ],
+  "correct_answer": "the fruit's own living cells.",
+  "explanation": "Student 2 states that the gas was produced by the fruit's own cells, which remain alive for a time after crushing. Wild yeasts on the skin are Student 1's explanation, and neither student proposes a reaction with air or microorganisms from wash water.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify the claim of one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV6a-P7-Q2",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "Both students would most likely agree with which of the following statements?",
+  "choices": [
+   "The CO2 was released as living cells broke down sugar in the mash.",
+   "The volume of gas produced each day increased over the 3 days.",
+   "Adding extra sugar to the mash would increase the volume of gas produced.",
+   "The cells that produced the gas were present on the skin of the fruit."
+  ],
+  "correct_answer": "The CO2 was released as living cells broke down sugar in the mash.",
+  "explanation": "Student 1 says microorganisms break down the sugar and release CO2, and Student 2 says the fruit's cells break down their stored sugar and release CO2; both therefore hold that living cells breaking down sugar released the gas. A daily increase in gas, an increase from added sugar, and cells living on the skin are claims of Student 1 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P7-Q3",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "Suppose a second batch of mash was prepared from fruit that had first been washed in the sterilizing solution described in the passage, and only 0.1 L of gas was collected over 3 days. This result would most strongly support the explanation of:",
+  "choices": [
+   "Student 1, because the sterilizing solution killed the cells inside the fruit.",
+   "Student 2, because the fruit's own cells produced the gas after the skin was washed.",
+   "Student 2, because the sterilizing solution added sugar to the mash.",
+   "Student 1, because killing the microorganisms on the skin nearly stopped gas production."
+  ],
+  "correct_answer": "Student 1, because killing the microorganisms on the skin nearly stopped gas production.",
+  "explanation": "The passage states that the sterilizing wash kills microorganisms on the skin but does not harm the cells inside the fruit. A drop from 1.8 L to 0.1 L after the wash therefore points to the skin microorganisms as the gas source, as Student 1 claims. The wash leaves the fruit's own cells unharmed, so under Student 2's view gas production should have been about the same, and nothing indicates that the wash added sugar.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P7-Q4",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "Suppose the gas collected from the original jar had been measured each day: 0.1 L on Day 1, 0.5 L on Day 2, and 1.2 L on Day 3. These results are:",
+  "choices": [
+   "consistent with Student 1, who predicted that daily gas production would increase as the microorganisms multiplied.",
+   "consistent with Student 2, who predicted that daily gas production would increase as the fruit cells died.",
+   "consistent with Student 1, who predicted that daily gas production would be greatest on the first day.",
+   "consistent with Student 2, who predicted that daily gas production would be greatest on the first day."
+  ],
+  "correct_answer": "consistent with Student 1, who predicted that daily gas production would increase as the microorganisms multiplied.",
+  "explanation": "The daily volumes rose from 0.1 L to 0.5 L to 1.2 L (totaling the 1.8 L reported). Student 1 predicted that daily gas production should increase as the microorganisms multiply, which matches. Student 2 predicted the greatest production on the first day followed by a decline, the opposite of the measured pattern, and neither student predicted an increase caused by dying cells.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate time-course data against two predictions",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV6a-P7-Q5",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "Suppose a batch of mash were heated to 90 °C for 10 min before the jar was sealed. Which student(s) would predict that little or no gas would be produced?",
+  "choices": [
+   "Student 1 only",
+   "Student 2 only",
+   "Both Student 1 and Student 2",
+   "Neither Student 1 nor Student 2"
+  ],
+  "correct_answer": "Both Student 1 and Student 2",
+  "explanation": "Student 1 says heating would kill the microorganisms and prevent gas production, and Student 2 says heating would kill the fruit cells and prevent gas production. Both students therefore predict little or no gas, which also means this test could not distinguish between their explanations.",
+  "domain": "Scientific Investigation",
+  "subskill": "determine what each viewpoint predicts for a proposed test",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV6a-P7-Q6",
+  "passage_id": "sc6a-p7",
+  "passage_title": "Gas Production in Sealed Fruit Mash",
+  "format": "conflicting_viewpoints",
+  "passage": "Students crushed 500 g of the ripe fruit of an unidentified tropical plant, sealed the mash in a 2 L jar fitted with a tube that led to a gas-collecting bottle, and kept the jar at 25 °C. Over 3 days, 1.8 L of gas was collected; it was about 95% carbon dioxide (CO2). During the same period, the sugar content of the mash fell from 12% to 7% of its mass. Gas production of this kind comes from the breakdown of sugar by living cells in the absence of air (fermentation). Washing intact fruit in a dilute sterilizing solution kills microorganisms on the skin but does not harm the cells inside the fruit. Two students explain where the gas came from.\n\nStudent 1\nThe gas was produced by microorganisms, such as wild yeasts, that live on the skin of the fruit and were mixed into the mash when it was crushed. These microorganisms break down the sugar in the mash and release CO2. At first there are few microorganisms, but they multiply in the sealed jar, so the volume of gas produced each day should increase over the 3 days. Because the microorganisms' growth is limited by the sugar available, adding extra sugar to the mash would increase the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the microorganisms and prevent gas production.\n\nStudent 2\nThe gas was produced by the fruit's own cells, which remain alive for a time after crushing. Once sealed away from air, these cells break down their stored sugar and release CO2. The cells begin producing gas immediately but die one by one, so the volume of gas produced each day should be greatest on the first day and then decline. The fruit cells already contain far more sugar than they can use before they die, so adding extra sugar would not change the total volume of gas produced. Heating the mash to 90 °C for 10 min before sealing would kill the fruit cells and prevent gas production.",
+  "prompt": "Suppose 50 g of sugar were added to a fresh batch of mash before sealing, and a total of 1.8 L of gas was collected over 3 days, the same as from the original jar. This result would weaken the explanation of:",
+  "choices": [
+   "Student 2 only, who predicted that the added sugar would increase the volume of gas.",
+   "Student 2 only, who predicted that the added sugar would not change the volume of gas.",
+   "both students, who each predicted that the added sugar would decrease the volume of gas.",
+   "Student 1 only, who predicted that the added sugar would increase the volume of gas."
+  ],
+  "correct_answer": "Student 1 only, who predicted that the added sugar would increase the volume of gas.",
+  "explanation": "Student 1 argues that sugar limits the microorganisms, so extra sugar should increase the total gas; an unchanged 1.8 L contradicts that prediction. Student 2 predicted that extra sugar would not change the gas volume, so the result agrees with Student 2, and neither student predicted a decrease.",
+  "domain": "Scientific Investigation",
+  "subskill": "evaluate a test result against predictions",
+  "difficulty": "medium"
+ }
+]
