@@ -9421,6 +9421,33 @@
           "verdict": "NOT RUN by an independent reader; author self-review only."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-draft-1-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "ssat-verbal-draft-1",
+      "contentSha": "67ae05387ec213b9689c650b83d8e7869897b75e3f4107fa28947b1826fa9be9",
+      "status": "staged-for-human-edit",
+      "note": "48 analogies + 18 synonyms written in-session by Claude under the owner rule \"allow live words in new pairs\" (2026-10-22); staged verified=false; release only by the co-founder runs in ssat-verbal-draft-1.RELEASE.PREREG.md. contentSha = sha256 of ssat-verbal-draft-1.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "67ae05387ec213b9689c650b83d8e7869897b75e3f4107fa28947b1826fa9be9",
+          "verdict": "Every analogy stem/key/distractor pair absent from all 665 SSAT verbal rows (77 first-draft collisions rewritten); synonym headwords unused as SSAT/ISEE headwords; 7 same-relation distractors replaced; key uniquely longest analogies 9/48, synonyms 4/18; slots flat; no pair or key repeated in the batch."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (no agents); the human sitting decides."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent grader; author read only."
+        }
+      }
     }
   ],
   "auditedCohorts": [

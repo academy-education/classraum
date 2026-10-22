@@ -1,0 +1,3306 @@
+{
+ "cohort": "ssat-verbal-draft-1",
+ "created": "2026-10-22",
+ "rows": [
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] skeptic is to faith as",
+    "choices": [
+     "spark is to wildfire",
+     "pauper is to wealth",
+     "anchor is to ship",
+     "limerick is to verse",
+     "sapling is to oak"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: lack. A skeptic is marked by a lack of faith, as a pauper is marked by a lack of wealth.",
+    "correct_answer": "pauper is to wealth",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "anchor is to ship": "relation it instantiates instead: part/whole (an anchor is part of a ship's gear), not lack",
+     "spark is to wildfire": "relation it instantiates instead: cause/effect (a spark can start a wildfire), not lack",
+     "sapling is to oak": "relation it instantiates instead: young/adult (a sapling grows into an oak), not lack",
+     "limerick is to verse": "relation it instantiates instead: instance/category (a limerick is a kind of verse), not lack"
+    }
+   },
+   "content_hash": "7b23f77512d7f97316c5d9cc870d77fd",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A01",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] tinker is to pots as",
+    "choices": [
+     "upholsterer is to sofas",
+     "rudder is to navigation",
+     "apiary is to honey",
+     "seep is to gush",
+     "thimble is to finger"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: worker/thing repaired. A tinker mends pots, as an upholsterer re-covers sofas.",
+    "correct_answer": "upholsterer is to sofas",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "thimble is to finger": "relation it instantiates instead: protector/protected (a thimble protects a finger), not worker/thing repaired",
+     "apiary is to honey": "relation it instantiates instead: place/product (an apiary produces honey), not worker/thing repaired",
+     "seep is to gush": "relation it instantiates instead: degree (to seep is a far slower flow than to gush), not worker/thing repaired",
+     "rudder is to navigation": "relation it instantiates instead: tool/function (a rudder is used in navigation), not worker/thing repaired"
+    }
+   },
+   "content_hash": "842f5f8c2ef33870c19a009ab607842f",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A02",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] whisper is to shout as",
+    "choices": [
+     "ladle is to soup",
+     "peck is to gobble",
+     "foal is to stallion",
+     "raft is to timber",
+     "referee is to match"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: degree. To whisper is a far milder version of a shout, as to peck at food is a far milder version of gobbling it.",
+    "correct_answer": "peck is to gobble",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "ladle is to soup": "relation it instantiates instead: tool/object (a ladle serves soup), not degree",
+     "foal is to stallion": "relation it instantiates instead: young/adult (a foal grows into a stallion), not degree",
+     "raft is to timber": "relation it instantiates instead: thing/material (a raft is built of timber), not degree",
+     "referee is to match": "relation it instantiates instead: official/event (a referee officiates a match), not degree"
+    }
+   },
+   "content_hash": "1f765222756934ceb8bbb43055d544f5",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A03",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] thermostat is to temperature as",
+    "choices": [
+     "dairy is to cheese",
+     "stem is to tulip",
+     "blizzard is to snowdrift",
+     "dimmer is to brightness",
+     "timid is to bold"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: instrument/what it regulates. A thermostat adjusts temperature, as a dimmer adjusts brightness.",
+    "correct_answer": "dimmer is to brightness",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "dairy is to cheese": "relation it instantiates instead: place/product (a dairy produces cheese), not instrument/what it regulates",
+     "timid is to bold": "relation it instantiates instead: antonym (timid is the opposite of bold), not instrument/what it regulates",
+     "stem is to tulip": "relation it instantiates instead: part/whole (a stem is part of a tulip), not instrument/what it regulates",
+     "blizzard is to snowdrift": "relation it instantiates instead: cause/effect (a blizzard leaves snowdrifts), not instrument/what it regulates"
+    }
+   },
+   "content_hash": "89ee80a1e112159d51edbdd066b65b0c",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A04",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] hamper is to picnic food as",
+    "choices": [
+     "ember is to blaze",
+     "canister is to tea",
+     "siege is to castle",
+     "marksman is to rifle",
+     "knight is to armor"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: container/contents. A hamper holds picnic food, as a canister holds tea.",
+    "correct_answer": "canister is to tea",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "marksman is to rifle": "relation it instantiates instead: user/tool (a marksman uses a rifle), not container/contents",
+     "ember is to blaze": "relation it instantiates instead: degree (an ember is a dying remnant of a blaze), not container/contents",
+     "knight is to armor": "relation it instantiates instead: person/what they wear (a knight wears armor), not container/contents",
+     "siege is to castle": "relation it instantiates instead: action/target (a siege is laid against a castle), not container/contents"
+    }
+   },
+   "content_hash": "7f6154ebad2378bf8fc5ad7f88c5c38a",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A05",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] drenched is to damp as",
+    "choices": [
+     "freezing is to chilly",
+     "blanket is to warmth",
+     "cheerful is to mood",
+     "weary is to rest",
+     "extravagant is to miserly"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: degree. Drenched is extremely damp, as freezing is extremely chilly.",
+    "correct_answer": "freezing is to chilly",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "extravagant is to miserly": "relation it instantiates instead: antonym (extravagant is the opposite of miserly), not degree",
+     "weary is to rest": "relation it instantiates instead: state/remedy (rest relieves the weary), not degree",
+     "blanket is to warmth": "relation it instantiates instead: object/what it gives (a blanket gives warmth), not degree",
+     "cheerful is to mood": "relation it instantiates instead: instance/category (cheerful is a kind of mood), not degree"
+    }
+   },
+   "content_hash": "e850911cf8d57d5734dc0237dfd0cdb4",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A06",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] sculptor is to chisel as",
+    "choices": [
+     "patient is to hospital",
+     "bruise is to injury",
+     "glassblower is to blowpipe",
+     "bronze is to bell",
+     "canvas is to painter"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: worker/tool. A sculptor shapes stone with a chisel, as a glassblower shapes glass with a blowpipe.",
+    "correct_answer": "glassblower is to blowpipe",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "bronze is to bell": "relation it instantiates instead: material/product (a bell may be cast from bronze), not worker/tool",
+     "patient is to hospital": "relation it instantiates instead: person/place (a patient stays in a hospital), not worker/tool",
+     "canvas is to painter": "relation it instantiates instead: material/worker (a painter works on canvas), not worker/tool",
+     "bruise is to injury": "relation it instantiates instead: instance/category (a bruise is a kind of injury), not worker/tool"
+    }
+   },
+   "content_hash": "0e6e0651be759167fc00f7b18ceb6337",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A07",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] insomnia is to sleep as",
+    "choices": [
+     "rash is to measles",
+     "pillow is to bed",
+     "yawn is to fatigue",
+     "nurse is to infirmary",
+     "amnesia is to memory"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: condition/what is lacking. Insomnia is a loss of sleep, as amnesia is a loss of memory.",
+    "correct_answer": "amnesia is to memory",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "rash is to measles": "relation it instantiates instead: symptom/condition (a rash is a symptom of measles), not condition/what is lacking",
+     "pillow is to bed": "relation it instantiates instead: part/whole (a pillow is part of a bed's furnishings), not condition/what is lacking",
+     "yawn is to fatigue": "relation it instantiates instead: sign/state (a yawn signals fatigue), not condition/what is lacking",
+     "nurse is to infirmary": "relation it instantiates instead: worker/place (a nurse works in an infirmary), not condition/what is lacking"
+    }
+   },
+   "content_hash": "827918a4059aff426f09f5c59f8b8fe4",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A08",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] pride is to lions as",
+    "choices": [
+     "pod is to whales",
+     "savanna is to zebra",
+     "aerie is to eagle",
+     "roar is to growl",
+     "mane is to lion"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: group/member. A group of lions is a pride, as a group of whales is a pod.",
+    "correct_answer": "pod is to whales",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "mane is to lion": "relation it instantiates instead: part/whole (a mane is part of a lion), not group/member",
+     "savanna is to zebra": "relation it instantiates instead: habitat/animal (a zebra lives on the savanna), not group/member",
+     "aerie is to eagle": "relation it instantiates instead: home/animal (an eagle nests in an aerie), not group/member",
+     "roar is to growl": "relation it instantiates instead: degree (a roar is louder than a growl), not group/member"
+    }
+   },
+   "content_hash": "9230cdf0e394a4f962fdea70f89dd1bc",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A09",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] prologue is to novel as",
+    "choices": [
+     "critic is to review",
+     "author is to manuscript",
+     "preamble is to constitution",
+     "chapter is to verse",
+     "encore is to applause"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: beginning/whole. A prologue opens a novel, as a preamble opens a constitution.",
+    "correct_answer": "preamble is to constitution",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "author is to manuscript": "relation it instantiates instead: creator/work (an author writes a manuscript), not beginning/whole",
+     "chapter is to verse": "relation it instantiates instead: unit/unit (a chapter divides prose, a verse divides a poem), not beginning/whole",
+     "encore is to applause": "relation it instantiates instead: response/cause (applause can bring an encore), not beginning/whole",
+     "critic is to review": "relation it instantiates instead: person/product (a critic writes a review), not beginning/whole"
+    }
+   },
+   "content_hash": "8d41d0cdff23d371150f1aeeba8f57e2",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A10",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] miser is to hoard as",
+    "choices": [
+     "coin is to purse",
+     "banquet is to feast",
+     "thrifty is to wasteful",
+     "glutton is to gorge",
+     "pirate is to treasure"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: person/characteristic action. A miser hoards, as a glutton gorges.",
+    "correct_answer": "glutton is to gorge",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "pirate is to treasure": "relation it instantiates instead: person/object sought (a pirate seeks treasure), not person/characteristic action",
+     "thrifty is to wasteful": "relation it instantiates instead: antonym (thrifty is the opposite of wasteful), not person/characteristic action",
+     "coin is to purse": "relation it instantiates instead: contents/container (a coin is kept in a purse), not person/characteristic action",
+     "banquet is to feast": "relation it instantiates instead: synonym (a banquet is a feast), not person/characteristic action"
+    }
+   },
+   "content_hash": "edc79d2fce403e7c44a84ee8ab831957",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A11",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] pedal is to bicycle as",
+    "choices": [
+     "toll is to highway",
+     "kneepad is to skater",
+     "harbor is to ferry",
+     "canter is to walk",
+     "oar is to rowboat"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: control/vehicle. A pedal drives a bicycle, as an oar drives a rowboat.",
+    "correct_answer": "oar is to rowboat",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "kneepad is to skater": "relation it instantiates instead: protector/user (a skater wears a kneepad), not control/vehicle",
+     "harbor is to ferry": "relation it instantiates instead: place/vehicle (a ferry docks in a harbor), not control/vehicle",
+     "toll is to highway": "relation it instantiates instead: fee/route (a toll is paid to use a highway), not control/vehicle",
+     "canter is to walk": "relation it instantiates instead: degree (a canter is faster than a walk), not control/vehicle"
+    }
+   },
+   "content_hash": "ebc541dbf644a9b2a84abd3a5781864b",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A12",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] novice is to expert as",
+    "choices": [
+     "rookie is to team",
+     "diploma is to graduate",
+     "apprentice is to craftsman",
+     "lesson is to tutor",
+     "trophy is to victory"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: beginner/master. A novice becomes an expert, as an apprentice becomes a craftsman.",
+    "correct_answer": "apprentice is to craftsman",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "lesson is to tutor": "relation it instantiates instead: thing given/giver (a tutor gives a lesson), not beginner/master",
+     "trophy is to victory": "relation it instantiates instead: reward/achievement (a trophy marks a victory), not beginner/master",
+     "diploma is to graduate": "relation it instantiates instead: document/holder (a graduate receives a diploma), not beginner/master",
+     "rookie is to team": "relation it instantiates instead: member/group (a rookie joins a team), not beginner/master"
+    }
+   },
+   "content_hash": "f4ee34e95b4f0f402c5ade262f1ebb5b",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A13",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] drought is to rainfall as",
+    "choices": [
+     "flood is to levee",
+     "vacuum is to air",
+     "hill is to mountain",
+     "lantern is to wick",
+     "cistern is to rainwater"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: absence/what is absent. A drought is an absence of rainfall, as a vacuum is an absence of air.",
+    "correct_answer": "vacuum is to air",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "flood is to levee": "relation it instantiates instead: problem/barrier (a levee holds back a flood), not absence/what is absent",
+     "cistern is to rainwater": "relation it instantiates instead: container/contents (a cistern stores rainwater), not absence/what is absent",
+     "lantern is to wick": "relation it instantiates instead: whole/part (a lantern has a wick), not absence/what is absent",
+     "hill is to mountain": "relation it instantiates instead: degree of size (a hill is far smaller than a mountain), not absence/what is absent"
+    }
+   },
+   "content_hash": "fa6b7a5deaacfeab6a97621fca949041",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A14",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] stethoscope is to heartbeat as",
+    "choices": [
+     "volcano is to lava",
+     "pharmacist is to prescription",
+     "radar is to aircraft",
+     "pulse is to wrist",
+     "gauze is to cut"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: instrument/what it detects. A stethoscope detects a heartbeat, as radar detects aircraft.",
+    "correct_answer": "radar is to aircraft",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "pharmacist is to prescription": "relation it instantiates instead: worker/thing filled (a pharmacist fills a prescription), not instrument/what it detects",
+     "pulse is to wrist": "relation it instantiates instead: sign/location (a pulse is taken at the wrist), not instrument/what it detects",
+     "gauze is to cut": "relation it instantiates instead: covering/injury (gauze covers a cut), not instrument/what it detects",
+     "volcano is to lava": "relation it instantiates instead: source/product (a volcano emits lava), not instrument/what it detects"
+    }
+   },
+   "content_hash": "f33034ee1aa01fecb5e9158c0fe96cf7",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A15",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] ravenous is to appetite as",
+    "choices": [
+     "joyful is to sorrowful",
+     "frown is to displeasure",
+     "tantrum is to toddler",
+     "terror is to courage",
+     "furious is to anger"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: degree of a feeling. Ravenous is an extreme of appetite, as furious is an extreme of anger.",
+    "correct_answer": "furious is to anger",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "joyful is to sorrowful": "relation it instantiates instead: antonym (joyful is the opposite of sorrowful), not degree of a feeling",
+     "frown is to displeasure": "relation it instantiates instead: expression/feeling (a frown shows displeasure), not degree of a feeling",
+     "tantrum is to toddler": "relation it instantiates instead: behavior/typical agent (a tantrum is typical of a toddler), not degree of a feeling",
+     "terror is to courage": "relation it instantiates instead: emotion/what overcomes it (courage overcomes terror), not degree of a feeling"
+    }
+   },
+   "content_hash": "b2e8ceac27218b86b41217174e6269b6",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A16",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] ladder is to roofer as",
+    "choices": [
+     "shuttle is to thread",
+     "yarn is to sweater",
+     "harpoon is to whaler",
+     "bakery is to bread",
+     "flour is to pastry"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: tool/user. A roofer works from a ladder, as a whaler works with a harpoon.",
+    "correct_answer": "harpoon is to whaler",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "yarn is to sweater": "relation it instantiates instead: material/product (a sweater is knitted from yarn), not tool/user",
+     "flour is to pastry": "relation it instantiates instead: material/product (pastry is made from flour), not tool/user",
+     "shuttle is to thread": "relation it instantiates instead: tool/material (a shuttle carries thread), not tool/user",
+     "bakery is to bread": "relation it instantiates instead: place/product (a bakery produces bread), not tool/user"
+    }
+   },
+   "content_hash": "b890443211596952869e7e6fa9205f09",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A17",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] famine is to scarcity as",
+    "choices": [
+     "harvest is to crop",
+     "feast is to celebration",
+     "deluge is to shower",
+     "ration is to portion",
+     "silo is to corn"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: extreme/milder state. A famine is an extreme scarcity of food, as a deluge is an extreme shower of rain.",
+    "correct_answer": "deluge is to shower",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "harvest is to crop": "relation it instantiates instead: event/object (a crop is gathered at harvest), not extreme/milder state",
+     "silo is to corn": "relation it instantiates instead: container/contents (a silo stores corn), not extreme/milder state",
+     "feast is to celebration": "relation it instantiates instead: event/occasion (a feast marks a celebration), not extreme/milder state",
+     "ration is to portion": "relation it instantiates instead: synonym (a ration is a fixed portion), not extreme/milder state"
+    }
+   },
+   "content_hash": "7ab090c3e22465a83f6341aa7962da7d",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A18",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] gavel is to judge as",
+    "choices": [
+     "megaphone is to cheerleader",
+     "troupe is to actor",
+     "sculpture is to artist",
+     "courtroom is to lawyer",
+     "score is to game"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: tool/user. A judge uses a gavel to command a room, as a cheerleader uses a megaphone to lead a crowd.",
+    "correct_answer": "megaphone is to cheerleader",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "score is to game": "relation it instantiates instead: outcome/process (a game ends with a score), not tool/user",
+     "courtroom is to lawyer": "relation it instantiates instead: place/worker (a lawyer works in a courtroom), not tool/user",
+     "sculpture is to artist": "relation it instantiates instead: work/creator (an artist makes a sculpture), not tool/user",
+     "troupe is to actor": "relation it instantiates instead: group/member (an actor belongs to a troupe), not tool/user"
+    }
+   },
+   "content_hash": "a2a7105b7ff5b9bf6db9cd6e6de99863",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A19",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] bashful is to shy as",
+    "choices": [
+     "jubilant is to elated",
+     "flask is to broth",
+     "cheer is to crowd",
+     "shiver is to cold",
+     "courageous is to cowardly"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: synonym. Bashful means shy, as jubilant means elated.",
+    "correct_answer": "jubilant is to elated",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "courageous is to cowardly": "relation it instantiates instead: antonym (courageous is the opposite of cowardly), not synonym",
+     "shiver is to cold": "relation it instantiates instead: sign/feeling (a shiver shows cold), not synonym",
+     "flask is to broth": "relation it instantiates instead: container/contents (a flask holds broth), not synonym",
+     "cheer is to crowd": "relation it instantiates instead: action/agent (a crowd cheers), not synonym"
+    }
+   },
+   "content_hash": "f56f422f94a65ee534448fc5e28769c9",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A20",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] lighthouse is to sailors as",
+    "choices": [
+     "horn is to foghorn",
+     "keeper is to lighthouse",
+     "reef is to shipwreck",
+     "siren is to motorists",
+     "harbor is to coast"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: thing/those it warns. A lighthouse warns sailors, as a siren warns motorists.",
+    "correct_answer": "siren is to motorists",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "keeper is to lighthouse": "relation it instantiates instead: worker/place (a keeper tends a lighthouse), not thing/those it warns",
+     "reef is to shipwreck": "relation it instantiates instead: cause/effect (a reef can cause a shipwreck), not thing/those it warns",
+     "horn is to foghorn": "relation it instantiates instead: category/instance (a foghorn is a kind of horn), not thing/those it warns",
+     "harbor is to coast": "relation it instantiates instead: part/whole (a harbor lies along a coast), not thing/those it warns"
+    }
+   },
+   "content_hash": "a07afaf7d8cd35b50b5c3f77bf50bc20",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A21",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] fledgling is to sparrow as",
+    "choices": [
+     "chirp is to song",
+     "beak is to bird",
+     "calf is to giraffe",
+     "colony is to penguin",
+     "hive is to wax"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: young/adult. A fledgling grows into a sparrow, as a calf grows into a giraffe.",
+    "correct_answer": "calf is to giraffe",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "hive is to wax": "relation it instantiates instead: whole/material (a hive is built of wax), not young/adult",
+     "beak is to bird": "relation it instantiates instead: part/whole (a beak is part of a bird), not young/adult",
+     "chirp is to song": "relation it instantiates instead: degree (a chirp is shorter than a song), not young/adult",
+     "colony is to penguin": "relation it instantiates instead: group/member (a penguin lives in a colony), not young/adult"
+    }
+   },
+   "content_hash": "bd5a1fc3a18d32c9e57e2f569d733554",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A22",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] antidote is to poison as",
+    "choices": [
+     "rash is to allergy",
+     "sunscreen is to sunburn",
+     "tablet is to dose",
+     "dispensary is to medicine",
+     "ink is to squid"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: remedy/harm. An antidote counters poison, as sunscreen prevents sunburn.",
+    "correct_answer": "sunscreen is to sunburn",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "ink is to squid": "relation it instantiates instead: substance/source (a squid releases ink), not remedy/harm",
+     "dispensary is to medicine": "relation it instantiates instead: place/product (a dispensary gives out medicine), not remedy/harm",
+     "rash is to allergy": "relation it instantiates instead: symptom/condition (a rash can be a symptom of allergy), not remedy/harm",
+     "tablet is to dose": "relation it instantiates instead: form/amount (a dose may come as a tablet), not remedy/harm"
+    }
+   },
+   "content_hash": "de52b183fa4e20466a46259c7abded6f",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A23",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] sentry is to guard as",
+    "choices": [
+     "patrol is to night",
+     "valley is to peak",
+     "hike is to trail",
+     "fortress is to rampart",
+     "pinnacle is to summit"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: synonym. A sentry is a guard, as a pinnacle is a summit.",
+    "correct_answer": "pinnacle is to summit",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "fortress is to rampart": "relation it instantiates instead: whole/part (a fortress has a rampart), not synonym",
+     "valley is to peak": "relation it instantiates instead: antonym in landform (a valley is low where a peak is high), not synonym",
+     "hike is to trail": "relation it instantiates instead: activity/place (a hike follows a trail), not synonym",
+     "patrol is to night": "relation it instantiates instead: activity/time (a patrol may happen at night), not synonym"
+    }
+   },
+   "content_hash": "5d9da922ee730db0841f216f4f0e6a0f",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A24",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] inaudible is to sound as",
+    "choices": [
+     "invisible is to sight",
+     "deafening is to noise",
+     "echo is to canyon",
+     "murmur is to brook",
+     "microscope is to cell"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: not perceivable/what is not perceived. Something inaudible cannot be heard, as something invisible cannot be seen.",
+    "correct_answer": "invisible is to sight",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "deafening is to noise": "relation it instantiates instead: degree (deafening describes extreme noise), not not perceivable/what is not perceived",
+     "echo is to canyon": "relation it instantiates instead: effect/place (an echo sounds in a canyon), not not perceivable/what is not perceived",
+     "microscope is to cell": "relation it instantiates instead: instrument/object (a microscope shows a cell), not not perceivable/what is not perceived",
+     "murmur is to brook": "relation it instantiates instead: sound/source (a brook makes a murmur), not not perceivable/what is not perceived"
+    }
+   },
+   "content_hash": "c72a2def6ae991a21bee92685eaaf97f",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A25",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] carpenter is to sawdust as",
+    "choices": [
+     "forge is to iron",
+     "hammer is to nail",
+     "lumber is to cabinet",
+     "blacksmith is to sparks",
+     "shed is to rake"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: worker/byproduct. A carpenter's work throws off sawdust, as a blacksmith's work throws off sparks.",
+    "correct_answer": "blacksmith is to sparks",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "hammer is to nail": "relation it instantiates instead: tool/object (a hammer drives a nail), not worker/byproduct",
+     "lumber is to cabinet": "relation it instantiates instead: material/product (a cabinet is built from lumber), not worker/byproduct",
+     "forge is to iron": "relation it instantiates instead: place/material (iron is heated in a forge), not worker/byproduct",
+     "shed is to rake": "relation it instantiates instead: place/item stored (a rake is kept in a shed), not worker/byproduct"
+    }
+   },
+   "content_hash": "e4eeae334d740eb7f1306de764fe5588",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A26",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] inning is to game as",
+    "choices": [
+     "act is to play",
+     "anthem is to song",
+     "usher is to theater",
+     "script is to actor",
+     "poet is to rhyme"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: section/whole. An inning is a section of a game, as an act is a section of a play.",
+    "correct_answer": "act is to play",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "poet is to rhyme": "relation it instantiates instead: creator/device (a poet uses rhyme), not section/whole",
+     "usher is to theater": "relation it instantiates instead: worker/place (an usher works in a theater), not section/whole",
+     "script is to actor": "relation it instantiates instead: document/user (an actor learns a script), not section/whole",
+     "anthem is to song": "relation it instantiates instead: instance/category (an anthem is a kind of song), not section/whole"
+    }
+   },
+   "content_hash": "86f9abdb03028ea4d12c507bcd41c676",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A27",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] meander is to stream as",
+    "choices": [
+     "figurine is to porcelain",
+     "bank is to stream",
+     "blaze is to spark",
+     "source is to river",
+     "flicker is to flame"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: characteristic motion/thing. A stream meanders, as a flame flickers.",
+    "correct_answer": "flicker is to flame",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "source is to river": "relation it instantiates instead: origin/thing (a river begins at its source), not characteristic motion/thing",
+     "figurine is to porcelain": "relation it instantiates instead: thing/material (a figurine may be made of porcelain), not characteristic motion/thing",
+     "blaze is to spark": "relation it instantiates instead: degree (a blaze is far larger than a spark), not characteristic motion/thing",
+     "bank is to stream": "relation it instantiates instead: border/thing (a bank borders a stream), not characteristic motion/thing"
+    }
+   },
+   "content_hash": "3237f8141a115e13cd5b7b56b91f9142",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A28",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] archive is to documents as",
+    "choices": [
+     "scroll is to parchment",
+     "librarian is to catalog",
+     "historian is to past",
+     "aquarium is to fish",
+     "gill is to swordfish"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: place/kept items. An archive keeps documents, as an aquarium keeps fish.",
+    "correct_answer": "aquarium is to fish",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "librarian is to catalog": "relation it instantiates instead: worker/tool (a librarian keeps a catalog), not place/kept items",
+     "scroll is to parchment": "relation it instantiates instead: object/material (a scroll is made of parchment), not place/kept items",
+     "gill is to swordfish": "relation it instantiates instead: part/whole (a gill is part of a swordfish), not place/kept items",
+     "historian is to past": "relation it instantiates instead: specialist/subject (a historian studies the past), not place/kept items"
+    }
+   },
+   "content_hash": "fc2526e1783502f1fab47795b7af7ffa",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A29",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] benevolent is to kindness as",
+    "choices": [
+     "cruel is to gentle",
+     "judge is to verdict",
+     "vow is to oath",
+     "candid is to honesty",
+     "charity is to benefactor"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: quality/what it shows. A benevolent person shows kindness, as a candid person shows honesty.",
+    "correct_answer": "candid is to honesty",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "cruel is to gentle": "relation it instantiates instead: antonym (cruel is the opposite of gentle), not quality/what it shows",
+     "charity is to benefactor": "relation it instantiates instead: act/agent (a benefactor gives to charity), not quality/what it shows",
+     "judge is to verdict": "relation it instantiates instead: person/product (a judge delivers a verdict), not quality/what it shows",
+     "vow is to oath": "relation it instantiates instead: synonym (a vow is an oath), not quality/what it shows"
+    }
+   },
+   "content_hash": "c9268104c472bd220a7837309b495db3",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A30",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] trowel is to bricklayer as",
+    "choices": [
+     "recipe is to dish",
+     "loaf is to bread",
+     "kitchen is to oven",
+     "scaffold is to building",
+     "whisk is to baker"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: tool/user. A bricklayer spreads mortar with a trowel, as a baker beats batter with a whisk.",
+    "correct_answer": "whisk is to baker",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "scaffold is to building": "relation it instantiates instead: support/structure (a scaffold supports work on a building), not tool/user",
+     "kitchen is to oven": "relation it instantiates instead: whole/part (a kitchen holds an oven), not tool/user",
+     "recipe is to dish": "relation it instantiates instead: plan/product (a recipe produces a dish), not tool/user",
+     "loaf is to bread": "relation it instantiates instead: unit/substance (a loaf is a unit of bread), not tool/user"
+    }
+   },
+   "content_hash": "eb715062183364203377ac34eba1b6ea",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A31",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] nymph is to dragonfly as",
+    "choices": [
+     "antenna is to insect",
+     "cocoon is to silk",
+     "flutter is to soar",
+     "meadow is to bee",
+     "grub is to beetle"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: larva/adult. A nymph becomes a dragonfly, as a grub becomes a beetle.",
+    "correct_answer": "grub is to beetle",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "cocoon is to silk": "relation it instantiates instead: object/material (a cocoon is made of silk), not larva/adult",
+     "antenna is to insect": "relation it instantiates instead: part/whole (an antenna is part of an insect), not larva/adult",
+     "flutter is to soar": "relation it instantiates instead: degree (to soar is a stronger flight than to flutter), not larva/adult",
+     "meadow is to bee": "relation it instantiates instead: habitat/animal (a bee lives in a meadow), not larva/adult"
+    }
+   },
+   "content_hash": "608acaf42ec0a227097fec244e5104ff",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A32",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] altimeter is to height as",
+    "choices": [
+     "needle is to magnet",
+     "navigator is to voyage",
+     "barometer is to pressure",
+     "latitude is to longitude",
+     "storm is to gale"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: instrument/what it shows. An altimeter shows height, as a barometer shows pressure.",
+    "correct_answer": "barometer is to pressure",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "navigator is to voyage": "relation it instantiates instead: person/undertaking (a navigator plans a voyage), not instrument/what it shows",
+     "needle is to magnet": "relation it instantiates instead: part/force (a magnet moves the needle), not instrument/what it shows",
+     "storm is to gale": "relation it instantiates instead: category/instance (a gale is a kind of storm), not instrument/what it shows",
+     "latitude is to longitude": "relation it instantiates instead: pair (latitude and longitude are paired coordinates), not instrument/what it shows"
+    }
+   },
+   "content_hash": "8282c883940b57c45fa7d675421cbc3b",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A33",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] slander is to reputation as",
+    "choices": [
+     "eddy is to river",
+     "erosion is to shoreline",
+     "hearsay is to rumor",
+     "amends is to wrong",
+     "cliff is to pebble"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: act/what it damages. Slander wears away a reputation, as erosion wears away a shoreline.",
+    "correct_answer": "erosion is to shoreline",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "hearsay is to rumor": "relation it instantiates instead: synonym (hearsay is rumor), not act/what it damages",
+     "amends is to wrong": "relation it instantiates instead: remedy/offense (amends make up for a wrong), not act/what it damages",
+     "eddy is to river": "relation it instantiates instead: part/whole (an eddy is a swirl within a river), not act/what it damages",
+     "cliff is to pebble": "relation it instantiates instead: degree of size (a cliff is vastly larger than a pebble), not act/what it damages"
+    }
+   },
+   "content_hash": "28f4f839d46d548b76e0c34883c19022",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A34",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] lexicographer is to dictionaries as",
+    "choices": [
+     "ink is to quill",
+     "librarian is to shelf",
+     "choreographer is to dances",
+     "atlas is to globe",
+     "reader is to novel"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: maker/product. A lexicographer compiles dictionaries, as a choreographer creates dances.",
+    "correct_answer": "choreographer is to dances",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "atlas is to globe": "relation it instantiates instead: similar objects (an atlas and a globe both show the world), not maker/product",
+     "reader is to novel": "relation it instantiates instead: user/object (a reader reads a novel), not maker/product",
+     "librarian is to shelf": "relation it instantiates instead: worker/object tended (a librarian tends a shelf), not maker/product",
+     "ink is to quill": "relation it instantiates instead: material/tool (a quill holds ink), not maker/product"
+    }
+   },
+   "content_hash": "06e2d888b6eb9d69257f120362fecb78",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A35",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] prudent is to rash as",
+    "choices": [
+     "jewels is to vault",
+     "gamble is to risk",
+     "frugal is to lavish",
+     "watchful is to guarded",
+     "miser is to coin"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: antonym. Prudent is the opposite of rash, as frugal is the opposite of lavish.",
+    "correct_answer": "frugal is to lavish",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "watchful is to guarded": "relation it instantiates instead: synonym (watchful and guarded mean the same), not antonym",
+     "jewels is to vault": "relation it instantiates instead: thing/place (jewels are kept in a vault), not antonym",
+     "gamble is to risk": "relation it instantiates instead: act/quality (a gamble involves risk), not antonym",
+     "miser is to coin": "relation it instantiates instead: person/object (a miser hoards coins), not antonym"
+    }
+   },
+   "content_hash": "e9f3471479d453fb27483d41755c59d8",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A36",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] fang is to serpent as",
+    "choices": [
+     "venom is to bite",
+     "slither is to snake",
+     "ivory is to tusk",
+     "burrow is to rabbit",
+     "bill is to pelican"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: part/animal. A fang is part of a serpent, as a bill is part of a pelican.",
+    "correct_answer": "bill is to pelican",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "slither is to snake": "relation it instantiates instead: motion/animal (a snake slithers), not part/animal",
+     "burrow is to rabbit": "relation it instantiates instead: home/animal (a rabbit lives in a burrow), not part/animal",
+     "venom is to bite": "relation it instantiates instead: substance/act (venom is delivered by a bite), not part/animal",
+     "ivory is to tusk": "relation it instantiates instead: material/object (a tusk is made of ivory), not part/animal"
+    }
+   },
+   "content_hash": "30a73bed9f0600326d42a0e6ca4762a6",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A37",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] eulogy is to praise as",
+    "choices": [
+     "sobbing is to weeping",
+     "lament is to grief",
+     "funeral is to mourner",
+     "tribute is to monument",
+     "speaker is to podium"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: form/content. A eulogy is speech full of praise, as a lament is speech full of grief.",
+    "correct_answer": "lament is to grief",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "funeral is to mourner": "relation it instantiates instead: event/participant (a mourner attends a funeral), not form/content",
+     "tribute is to monument": "relation it instantiates instead: act/object (a monument is a tribute), not form/content",
+     "sobbing is to weeping": "relation it instantiates instead: synonym (sobbing is weeping), not form/content",
+     "speaker is to podium": "relation it instantiates instead: person/place (a speaker stands at a podium), not form/content"
+    }
+   },
+   "content_hash": "eeff08176d9002466da3b79ee765aa9a",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A38",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] sieve is to flour as",
+    "choices": [
+     "colander is to pasta",
+     "oven is to kitchen",
+     "pantry is to jar",
+     "slice is to pie",
+     "woodcarver is to oak"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: tool/what it sifts. Flour is sifted through a sieve, as pasta is drained in a colander.",
+    "correct_answer": "colander is to pasta",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "woodcarver is to oak": "relation it instantiates instead: worker/material (a woodcarver carves oak), not tool/what it sifts",
+     "pantry is to jar": "relation it instantiates instead: place/container (a jar is kept in a pantry), not tool/what it sifts",
+     "oven is to kitchen": "relation it instantiates instead: appliance/room (an oven is found in a kitchen), not tool/what it sifts",
+     "slice is to pie": "relation it instantiates instead: part/whole (a slice is part of a pie), not tool/what it sifts"
+    }
+   },
+   "content_hash": "694ce3566f2fcc5926614626b062f3aa",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A39",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] mutiny is to ship as",
+    "choices": [
+     "strike is to factory",
+     "captain is to crew",
+     "treaty is to war",
+     "lighthouse is to harbor",
+     "worker is to wage"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: revolt/place. A mutiny is a revolt aboard a ship, as a strike is a stoppage at a factory.",
+    "correct_answer": "strike is to factory",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "captain is to crew": "relation it instantiates instead: leader/group (a captain leads a crew), not revolt/place",
+     "lighthouse is to harbor": "relation it instantiates instead: object/place (a lighthouse stands at a harbor), not revolt/place",
+     "worker is to wage": "relation it instantiates instead: person/payment (a worker earns a wage), not revolt/place",
+     "treaty is to war": "relation it instantiates instead: agreement/conflict (a treaty ends a war), not revolt/place"
+    }
+   },
+   "content_hash": "e643c8356ebc30680cf17b8fae9b8bd2",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A40",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] garrulous is to talk as",
+    "choices": [
+     "whisper is to rumor",
+     "gregarious is to socialize",
+     "silent is to quiet",
+     "lecture is to audience",
+     "orator is to speech"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: tendency/act. A garrulous person tends to talk, as a gregarious person tends to socialize.",
+    "correct_answer": "gregarious is to socialize",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "silent is to quiet": "relation it instantiates instead: synonym (silent means quiet), not tendency/act",
+     "lecture is to audience": "relation it instantiates instead: event/participant (an audience hears a lecture), not tendency/act",
+     "whisper is to rumor": "relation it instantiates instead: act/content (a rumor is whispered), not tendency/act",
+     "orator is to speech": "relation it instantiates instead: person/product (an orator delivers a speech), not tendency/act"
+    }
+   },
+   "content_hash": "985ab9d6f76033e4b48f24583a603605",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A41",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] hut is to mansion as",
+    "choices": [
+     "bark is to tree",
+     "mine is to coal",
+     "forest is to lumberjack",
+     "twig is to log",
+     "mason is to granite"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: degree of size. A hut is a far smaller dwelling than a mansion, as a twig is a far smaller piece of wood than a log.",
+    "correct_answer": "twig is to log",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "mine is to coal": "relation it instantiates instead: place/product (coal is dug from a mine), not degree of size",
+     "bark is to tree": "relation it instantiates instead: part/whole (bark is part of a tree), not degree of size",
+     "mason is to granite": "relation it instantiates instead: worker/material (a mason works granite), not degree of size",
+     "forest is to lumberjack": "relation it instantiates instead: place/worker (a lumberjack works in a forest), not degree of size"
+    }
+   },
+   "content_hash": "011a3cecfd3d7c52c8bb74bd99c323c6",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A42",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] ointment is to rash as",
+    "choices": [
+     "itch is to scratch",
+     "splint is to fracture",
+     "skin is to bone",
+     "waiting room is to patient",
+     "doctor is to prescription"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: remedy/ailment. An ointment treats a rash, as a splint treats a fracture.",
+    "correct_answer": "splint is to fracture",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "itch is to scratch": "relation it instantiates instead: stimulus/response (an itch prompts a scratch), not remedy/ailment",
+     "waiting room is to patient": "relation it instantiates instead: place/person (a patient sits in a waiting room), not remedy/ailment",
+     "skin is to bone": "relation it instantiates instead: layer/structure (skin covers bone), not remedy/ailment",
+     "doctor is to prescription": "relation it instantiates instead: worker/product (a doctor writes a prescription), not remedy/ailment"
+    }
+   },
+   "content_hash": "a991b2e09c6a48ee590af35b7482367f",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A43",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] dormant is to volcano as",
+    "choices": [
+     "shovel is to trench",
+     "eruption is to ash",
+     "crater is to summit",
+     "harvest is to farmer",
+     "fallow is to field"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: inactive state/thing. A dormant volcano is inactive for now, as a fallow field is unplanted for now.",
+    "correct_answer": "fallow is to field",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "eruption is to ash": "relation it instantiates instead: event/product (an eruption produces ash), not inactive state/thing",
+     "crater is to summit": "relation it instantiates instead: part/whole (a crater sits at a summit), not inactive state/thing",
+     "harvest is to farmer": "relation it instantiates instead: event/worker (a farmer gathers the harvest), not inactive state/thing",
+     "shovel is to trench": "relation it instantiates instead: tool/product (a shovel digs a trench), not inactive state/thing"
+    }
+   },
+   "content_hash": "86045b4ded5f984127158e3b40394cfb",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A44",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] plumage is to peacock as",
+    "choices": [
+     "barn is to stable",
+     "fleece is to sheep",
+     "drover is to herd",
+     "linen is to tablecloth",
+     "strut is to march"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: covering/animal. A peacock is covered in plumage, as a sheep is covered in fleece.",
+    "correct_answer": "fleece is to sheep",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "drover is to herd": "relation it instantiates instead: worker/group (a drover moves a herd), not covering/animal",
+     "strut is to march": "relation it instantiates instead: similar motion (to strut is a proud kind of march), not covering/animal",
+     "linen is to tablecloth": "relation it instantiates instead: material/product (a tablecloth may be made of linen), not covering/animal",
+     "barn is to stable": "relation it instantiates instead: similar place (a barn and a stable both house animals), not covering/animal"
+    }
+   },
+   "content_hash": "b5595ebb5f3f755091079c886892c0c3",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A45",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] convoy is to truck as",
+    "choices": [
+     "flotilla is to boat",
+     "peninsula is to coast",
+     "lagoon is to sea",
+     "orbit is to planet",
+     "captain is to compass"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "Relation: group/member. A convoy is a group of trucks, as a flotilla is a group of boats.",
+    "correct_answer": "flotilla is to boat",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "peninsula is to coast": "relation it instantiates instead: landform/edge (a peninsula juts from a coast), not group/member",
+     "captain is to compass": "relation it instantiates instead: user/tool (a captain uses a compass), not group/member",
+     "lagoon is to sea": "relation it instantiates instead: degree of size (a lagoon is far smaller than a sea), not group/member",
+     "orbit is to planet": "relation it instantiates instead: path/body (a planet travels in an orbit), not group/member"
+    }
+   },
+   "content_hash": "8ab2f3857354fdc8564bc9dcb524e69d",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A46",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] feeble is to strength as",
+    "choices": [
+     "lesson is to pupil",
+     "lift is to heave",
+     "muscle is to athlete",
+     "ignorant is to knowledge",
+     "scholar is to library"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: lacking/quality. A feeble person lacks strength, as an ignorant person lacks knowledge.",
+    "correct_answer": "ignorant is to knowledge",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "muscle is to athlete": "relation it instantiates instead: feature/person (an athlete has muscle), not lacking/quality",
+     "scholar is to library": "relation it instantiates instead: person/place (a scholar works in a library), not lacking/quality",
+     "lift is to heave": "relation it instantiates instead: degree (to heave is a harder lift), not lacking/quality",
+     "lesson is to pupil": "relation it instantiates instead: thing given/receiver (a pupil receives a lesson), not lacking/quality"
+    }
+   },
+   "content_hash": "3e47c644ff2f44d41270d5c71e2944e1",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A47",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "analogy",
+   "task": "multiple_choice",
+   "topic_tag": "analogy",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Analogy] conductor is to orchestra as",
+    "choices": [
+     "cellist is to bow",
+     "rehearsal is to concert",
+     "melody is to harmony",
+     "foreman is to crew",
+     "hardhat is to worker"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "Relation: leader/group. A conductor directs an orchestra, as a foreman directs a crew.",
+    "correct_answer": "foreman is to crew",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "cellist is to bow": "relation it instantiates instead: user/tool (a cellist plays with a bow), not leader/group",
+     "rehearsal is to concert": "relation it instantiates instead: preparation/event (a rehearsal prepares a concert), not leader/group",
+     "melody is to harmony": "relation it instantiates instead: companion elements (melody and harmony combine in music), not leader/group",
+     "hardhat is to worker": "relation it instantiates instead: gear/wearer (a worker wears a hardhat), not leader/group"
+    }
+   },
+   "content_hash": "099ca09e02d44ed205bc21a4ec18f36a",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-A48",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] FRAIL",
+    "choices": [
+     "plain",
+     "distant",
+     "weak",
+     "eager",
+     "honest"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "easy",
+    "explanation": "FRAIL means lacking strength; 'weak' is the closest synonym.",
+    "correct_answer": "weak",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "eager": "'eager' means wanting something very much, not lacking strength; sense-family: desire.",
+     "honest": "'honest' means truthful, not lacking strength; sense-family: truth.",
+     "distant": "'distant' means far away, not lacking strength; sense-family: space.",
+     "plain": "'plain' means simple, without decoration, not lacking strength; sense-family: appearance."
+    }
+   },
+   "content_hash": "da10a3c59fb3cfcbda5c30aa224a4bf1",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-FRAIL",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] DILIGENT",
+    "choices": [
+     "comfortable",
+     "nervous",
+     "cheerful",
+     "wealthy",
+     "hardworking"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "DILIGENT means working with steady effort; 'hardworking' is the closest synonym.",
+    "correct_answer": "hardworking",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "cheerful": "'cheerful' means in good spirits, not working with steady effort; sense-family: mood.",
+     "wealthy": "'wealthy' means having a lot of money, not working with steady effort; sense-family: money.",
+     "comfortable": "'comfortable' means at ease, not working with steady effort; sense-family: comfort.",
+     "nervous": "'nervous' means easily worried, not working with steady effort; sense-family: anxiety."
+    }
+   },
+   "content_hash": "32065af238a24a23c3cd19b4c00bb72b",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-DILIGENT",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] VIVID",
+    "choices": [
+     "ancient",
+     "slender",
+     "gentle",
+     "mysterious",
+     "brilliant"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "easy",
+    "explanation": "VIVID means strikingly bright or clear; 'brilliant' is the closest synonym.",
+    "correct_answer": "brilliant",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "ancient": "'ancient' means very old, not strikingly bright or clear; sense-family: age.",
+     "slender": "'slender' means thin and graceful, not strikingly bright or clear; sense-family: shape.",
+     "mysterious": "'mysterious' means hard to explain, not strikingly bright or clear; sense-family: mystery.",
+     "gentle": "'gentle' means mild and kind, not strikingly bright or clear; sense-family: manner."
+    }
+   },
+   "content_hash": "5d47b67a648fe65e63d0fdd451bbc06e",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-VIVID",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] ABANDON",
+    "choices": [
+     "forsake",
+     "collect",
+     "polish",
+     "inspect",
+     "invite"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "ABANDON means to leave behind for good; 'forsake' is the closest synonym.",
+    "correct_answer": "forsake",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "collect": "'collect' means to gather together, not to leave behind for good; sense-family: gathering.",
+     "invite": "'invite' means to ask to come, not to leave behind for good; sense-family: hospitality.",
+     "polish": "'polish' means to make shiny, not to leave behind for good; sense-family: cleaning.",
+     "inspect": "'inspect' means to examine closely, not to leave behind for good; sense-family: checking."
+    }
+   },
+   "content_hash": "484e988b53f841b4039ec08b030201a8",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-ABANDON",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] OBSOLETE",
+    "choices": [
+     "punctual",
+     "outdated",
+     "generous",
+     "courageous",
+     "fragrant"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "OBSOLETE means no longer in use; 'outdated' is the closest synonym.",
+    "correct_answer": "outdated",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "fragrant": "'fragrant' means sweet-smelling, not no longer in use; sense-family: smell.",
+     "generous": "'generous' means willing to give, not no longer in use; sense-family: giving.",
+     "courageous": "'courageous' means brave, not no longer in use; sense-family: bravery.",
+     "punctual": "'punctual' means on time, not no longer in use; sense-family: timeliness."
+    }
+   },
+   "content_hash": "c666d82802291b1ee9ca171deeae70fe",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-OBSOLETE",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] CANDOR",
+    "choices": [
+     "laughter",
+     "patience",
+     "stubbornness",
+     "frankness",
+     "elegance"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "CANDOR means open, honest speech; 'frankness' is the closest synonym.",
+    "correct_answer": "frankness",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "elegance": "'elegance' means graceful style, not open, honest speech; sense-family: style.",
+     "patience": "'patience' means calm waiting, not open, honest speech; sense-family: waiting.",
+     "stubbornness": "'stubbornness' means refusal to change one's mind, not open, honest speech; sense-family: obstinacy.",
+     "laughter": "'laughter' means the sound of laughing, not open, honest speech; sense-family: amusement."
+    }
+   },
+   "content_hash": "2abd6842dd48fa81b3048203833d9b0c",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-CANDOR",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] FEASIBLE",
+    "choices": [
+     "possible",
+     "permanent",
+     "hollow",
+     "delicious",
+     "sincere"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "FEASIBLE means able to be done; 'possible' is the closest synonym.",
+    "correct_answer": "possible",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "delicious": "'delicious' means tasting very good, not able to be done; sense-family: taste.",
+     "permanent": "'permanent' means lasting forever, not able to be done; sense-family: duration.",
+     "sincere": "'sincere' means genuine in feeling, not able to be done; sense-family: honesty.",
+     "hollow": "'hollow' means empty inside, not able to be done; sense-family: shape."
+    }
+   },
+   "content_hash": "e20617014696f39f4f6e65649a807dbe",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-FEASIBLE",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] NIMBLE",
+    "choices": [
+     "damp",
+     "agile",
+     "loyal",
+     "stern",
+     "costly"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "NIMBLE means quick and light in movement; 'agile' is the closest synonym.",
+    "correct_answer": "agile",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "stern": "'stern' means strict and serious, not quick and light in movement; sense-family: manner.",
+     "costly": "'costly' means expensive, not quick and light in movement; sense-family: money.",
+     "damp": "'damp' means slightly wet, not quick and light in movement; sense-family: moisture.",
+     "loyal": "'loyal' means faithful, not quick and light in movement; sense-family: devotion."
+    }
+   },
+   "content_hash": "af8fe5badd929f015b7b9872e3af1835",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-NIMBLE",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] VIGILANT",
+    "choices": [
+     "clumsy",
+     "watchful",
+     "fragrant",
+     "ancient",
+     "generous"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "VIGILANT means alert to danger; 'watchful' is the closest synonym.",
+    "correct_answer": "watchful",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "generous": "'generous' means willing to give, not alert to danger; sense-family: giving.",
+     "clumsy": "'clumsy' means awkward in movement, not alert to danger; sense-family: movement.",
+     "ancient": "'ancient' means very old, not alert to danger; sense-family: age.",
+     "fragrant": "'fragrant' means sweet-smelling, not alert to danger; sense-family: smell."
+    }
+   },
+   "content_hash": "1b37b1700f0d0f85a839ea1364189ac3",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-VIGILANT",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] ARDENT",
+    "choices": [
+     "wooden",
+     "careless",
+     "ordinary",
+     "passionate",
+     "distant"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "ARDENT means full of strong feeling; 'passionate' is the closest synonym.",
+    "correct_answer": "passionate",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "wooden": "'wooden' means made of wood, not full of strong feeling; sense-family: material.",
+     "ordinary": "'ordinary' means usual, not special, not full of strong feeling; sense-family: commonness.",
+     "distant": "'distant' means far away, not full of strong feeling; sense-family: space.",
+     "careless": "'careless' means not paying attention, not full of strong feeling; sense-family: attention."
+    }
+   },
+   "content_hash": "7f4ff172facac5c851aee678ab6f9d88",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-ARDENT",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] BANISH",
+    "choices": [
+     "borrow",
+     "soothe",
+     "repair",
+     "exile",
+     "gather"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "BANISH means to send away as punishment; 'exile' is the closest synonym.",
+    "correct_answer": "exile",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "soothe": "'soothe' means to calm, not to send away as punishment; sense-family: comfort.",
+     "repair": "'repair' means to fix, not to send away as punishment; sense-family: fixing.",
+     "borrow": "'borrow' means to take for a time, not to send away as punishment; sense-family: lending.",
+     "gather": "'gather' means to bring together, not to send away as punishment; sense-family: collecting."
+    }
+   },
+   "content_hash": "fc7a0c3920973e69ea29df40ddd2e620",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-BANISH",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "easy",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] CHERISH",
+    "choices": [
+     "examine",
+     "scatter",
+     "postpone",
+     "imitate",
+     "treasure"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "easy",
+    "explanation": "CHERISH means to hold dear; 'treasure' is the closest synonym.",
+    "correct_answer": "treasure",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "scatter": "'scatter' means to spread widely, not to hold dear; sense-family: spreading.",
+     "imitate": "'imitate' means to copy, not to hold dear; sense-family: copying.",
+     "postpone": "'postpone' means to put off, not to hold dear; sense-family: delay.",
+     "examine": "'examine' means to look at closely, not to hold dear; sense-family: checking."
+    }
+   },
+   "content_hash": "274daaf4c377fb542c1d825e4f63a7a1",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-CHERISH",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] DWINDLE",
+    "choices": [
+     "glisten",
+     "stumble",
+     "diminish",
+     "boast",
+     "wander"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "DWINDLE means to grow smaller little by little; 'diminish' is the closest synonym.",
+    "correct_answer": "diminish",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "wander": "'wander' means to roam, not to grow smaller little by little; sense-family: travel.",
+     "glisten": "'glisten' means to shine wetly, not to grow smaller little by little; sense-family: light.",
+     "stumble": "'stumble' means to trip, not to grow smaller little by little; sense-family: movement.",
+     "boast": "'boast' means to brag, not to grow smaller little by little; sense-family: speech."
+    }
+   },
+   "content_hash": "5215dc149c928f99950964024892a565",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-DWINDLE",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] FLIMSY",
+    "choices": [
+     "fragile",
+     "noisy",
+     "sacred",
+     "savory",
+     "rapid"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "FLIMSY means easily broken; 'fragile' is the closest synonym.",
+    "correct_answer": "fragile",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "savory": "'savory' means tasty and salty, not easily broken; sense-family: taste.",
+     "noisy": "'noisy' means loud, not easily broken; sense-family: sound.",
+     "sacred": "'sacred' means holy, not easily broken; sense-family: religion.",
+     "rapid": "'rapid' means fast, not easily broken; sense-family: speed."
+    }
+   },
+   "content_hash": "c7c0c99e213ee88b61ee3a126680e8e7",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-FLIMSY",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] GENIAL",
+    "choices": [
+     "ancient",
+     "hollow",
+     "friendly",
+     "costly",
+     "rigid"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "GENIAL means pleasant and warm in manner; 'friendly' is the closest synonym.",
+    "correct_answer": "friendly",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "rigid": "'rigid' means stiff, not pleasant and warm in manner; sense-family: stiffness.",
+     "ancient": "'ancient' means very old, not pleasant and warm in manner; sense-family: age.",
+     "costly": "'costly' means expensive, not pleasant and warm in manner; sense-family: money.",
+     "hollow": "'hollow' means empty inside, not pleasant and warm in manner; sense-family: shape."
+    }
+   },
+   "content_hash": "779a69c3be7fd5a7cb7fd424d4104372",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-GENIAL",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] PONDER",
+    "choices": [
+     "hurry",
+     "lift",
+     "consider",
+     "decorate",
+     "whisper"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "PONDER means to think about carefully; 'consider' is the closest synonym.",
+    "correct_answer": "consider",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "hurry": "'hurry' means to move fast, not to think about carefully; sense-family: speed.",
+     "decorate": "'decorate' means to make attractive, not to think about carefully; sense-family: appearance.",
+     "whisper": "'whisper' means to speak softly, not to think about carefully; sense-family: speech.",
+     "lift": "'lift' means to raise, not to think about carefully; sense-family: movement."
+    }
+   },
+   "content_hash": "36c15875a3eb35da69e604ed60b6e243",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-PONDER",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] ROBUST",
+    "choices": [
+     "polite",
+     "sturdy",
+     "fragrant",
+     "shallow",
+     "distant"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "medium",
+    "explanation": "ROBUST means strong and healthy; 'sturdy' is the closest synonym.",
+    "correct_answer": "sturdy",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "fragrant": "'fragrant' means sweet-smelling, not strong and healthy; sense-family: smell.",
+     "shallow": "'shallow' means not deep, not strong and healthy; sense-family: depth.",
+     "polite": "'polite' means courteous, not strong and healthy; sense-family: manners.",
+     "distant": "'distant' means far away, not strong and healthy; sense-family: space."
+    }
+   },
+   "content_hash": "aaf9b872c6d48a4dda4b31b8f4d4e91b",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-ROBUST",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "ssat",
+   "section": "verbal",
+   "domain": "Verbal",
+   "subskill": "synonym",
+   "task": "multiple_choice",
+   "topic_tag": "synonym",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "passage_group_id": null,
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Synonym] SHREWD",
+    "choices": [
+     "astute",
+     "gentle",
+     "noisy",
+     "humble",
+     "sleepy"
+    ],
+    "graphic": null,
+    "passage": null,
+    "difficulty": "hard",
+    "explanation": "SHREWD means clever in practical matters; 'astute' is the closest synonym.",
+    "correct_answer": "astute",
+    "passageGroupId": null,
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": {
+     "gentle": "'gentle' means mild and kind, not clever in practical matters; sense-family: manner.",
+     "noisy": "'noisy' means loud, not clever in practical matters; sense-family: sound.",
+     "humble": "'humble' means modest, not clever in practical matters; sense-family: modesty.",
+     "sleepy": "'sleepy' means tired, not clever in practical matters; sense-family: rest."
+    }
+   },
+   "content_hash": "6aaff1707a92b29d0c568d614d40afcd",
+   "word_count": null,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "ssat-verbal-draft-1",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "localId": "SVD1-S-SHREWD",
+     "note": "Written in-session by Claude 2026-10-22 under the owner rule \"allow live words in new pairs\". No AI attack or grader (no agents). Release only by the co-founder sitting (ssat-verbal-draft-1.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
