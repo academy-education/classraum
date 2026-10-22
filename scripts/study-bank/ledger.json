@@ -10178,6 +10178,53 @@
           "verdict": "NOT RUN; saturates on ACT Science."
         }
       }
+    },
+    {
+      "id": "sat-cs-wic-v20-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v20-cs-wic",
+      "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+      "status": "inserted",
+      "note": "Pre-registered PREREG-WIC20-2026-10-23.md (v19 method, v19 words excluded) before any item existed. Four Claude authors x 10, one revision round, frozen sha 364a713e. 19 of 40 kept (5 hard / 14 medium by panel median), 21 dropped by the pre-registered gate.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+          "verdict": "bank-helper check OK; wic20-selfcheck --final 0 problems; rw17-dupscan vs all live R&W rows: 0 of 40 flagged."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+          "verdict": "wic20-oo-render: 40 candidates + live word-shaped WIC controls; three samples of one solver. Candidate M +5.8, control M +11.5 (control 37.4%, inside the measured range), E = -6.6 vs bar +10: PASS."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+          "verdict": "elimination-paired --match subskill --ratio 1 (40 v 40): candidate 0.0%, control 0.0%, margin 0.0 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0,
+          "margin": 0,
+          "threshold": 0.2,
+          "n": 40,
+          "controlN": 40,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+          "verdict": "Three graders d/e/f, phase 1 cold sha-recorded (wic20.ws-phase1.sha256) before the key; phase 2 key_ok false 0, recommend_drop 0 for every grader. All three flagged WIC20D-08 non-exclusive (stretch vs shift) in phase 1 -> dropped. wic20-gate: kept 19, dropped 21 (panel median easy, weak distractors, struck >= 2, non-exclusive)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "4901a0e4712a097938c28c18ff268fd13fc64adf9acdf7f38773e68dddd30c8c",
+          "verdict": "verify-answer-key-spread --batch ok (n=19); key strictly longest 3/19 (16%), shortest 4/19 (21%); 0 option words repeated across kept items."
+        }
+      }
     }
   ],
   "auditedCohorts": [

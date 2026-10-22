@@ -1,4 +1,4 @@
-# Options-only solver (sat-cs-wic-v20, stage 2)
+# Options-only solver (sat-cs-wic-v19, stage 2)
 
 Each item is a Digital SAT "Words in Context" question whose passage and question have been WITHHELD. You see only
 the four options A-D. One option is the correct word for a blank in an academic passage you cannot see. Pick the
