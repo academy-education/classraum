@@ -9477,6 +9477,35 @@
           "verdict": "Free response has no key, so no letter, length or option tell can exist. Theme repetition was checked mechanically against all 44 earlier SSAT and ISEE prompts (live and held): no collision after the replacements above."
         }
       }
+    },
+    {
+      "id": "repeat-v4-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "speaking",
+      "task": "listen_and_repeat",
+      "family": "production",
+      "cohort": "repeat-v4",
+      "contentSha": "870b6cc81594c672769e3d7582997d45142a7a4be746369756c553a078dddf35",
+      "status": "shipped",
+      "note": "44 TOEFL Listen and Repeat sentences written in-session by Claude (no agents). speaking_repeat bound TOEFL speaking at 18 sittings (136 live, 7 per sitting). contentSha = sha256 of repeat-v4.rows.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "870b6cc81594c672769e3d7582997d45142a7a4be746369756c553a078dddf35",
+          "verdict": "verify-listen-repeat.ts: 44 items, 0 violations; bands by word count 15 easy / 18 medium / 11 hard (first draft was 11/32/1 against the live 57/56/23; 15 sentences lengthened or trimmed, two of which overshot to 13 words and were cut back). passage === correct_answer, sentence case, one terminal period, at most one spelled number (one sentence has \"eight\")."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "870b6cc81594c672769e3d7582997d45142a7a4be746369756c553a078dddf35",
+          "verdict": "ONE reader, the author: Claude read all 44 for speakability (the repeat-v3 reviewers' criteria: tongue-twisters, names, homophone traps, above-B1 words, more than one number). None found. Weaker than v3's three reviewers; recorded."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "870b6cc81594c672769e3d7582997d45142a7a4be746369756c553a078dddf35",
+          "verdict": "Token Jaccard against the 136 live sentences: 2 of 46 drafts at or above 0.6 (0.89, 0.64) were dropped; max among the kept 0.46. Within batch max below 0.6. Topics spread across home, shops, transport, health, weather and study."
+        }
+      }
     }
   ],
   "auditedCohorts": [
