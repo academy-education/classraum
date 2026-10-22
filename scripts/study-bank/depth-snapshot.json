@@ -37,9 +37,8 @@
       "source": "ssat-verbal-replay.ts 2026-10-21"
     },
     "ssat/math": {
-      "value": 6,
-      "atLeast": true,
-      "source": "admission-form-depth.ts (replays 6 forms)"
+      "value": 12,
+      "source": "admission-form-depth.ts --forms 20, 2026-10-22"
     },
     "ssat/writing": {
       "value": 11,
@@ -50,14 +49,12 @@
       "source": "admission-form-depth.ts"
     },
     "isee/verbal": {
-      "value": 6,
-      "atLeast": true,
-      "source": "admission-form-depth.ts (replays 6 forms)"
+      "value": 14,
+      "source": "isee-verbal-replay.ts --forms 20, 2026-10-22"
     },
     "isee/math": {
-      "value": 6,
-      "atLeast": true,
-      "source": "admission-form-depth.ts (replays 6 forms)"
+      "value": 8,
+      "source": "admission-form-depth.ts --forms 20, 2026-10-22 (quant 9, math achievement 8; one shared pool, so the full test repeats at 8)"
     },
     "isee/writing": {
       "value": 8,
