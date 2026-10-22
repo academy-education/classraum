@@ -243,6 +243,19 @@ console.log(`number-heavy spoken lines          ${numeric}/${assembled.length}`)
 console.log('typography (key vs distractor):')
 for (const l of tellLines) console.log(l)
 
+// ECHO (added 2026-10-22, crv7-b8): a key that repeats a content word of the spoken line lets a listener
+// pick it by word-matching. b8's first render had key echo 10/20 against 2-4/20 in shipped batches.
+const ECHO_STOP = new Set('i im ill a an the to of and or is it its for you your me my we our be can could would will do does did that this then so on in at by up out now please okay yes no oh great thanks thank sure fine just there here what where when how any all have has get go'.split(' '))
+const echoWords = t => new Set((String(t).toLowerCase().replace(/[’']/g, '').match(/[a-z]+/g) || []).filter(w => !ECHO_STOP.has(w)).map(w => w.replace(/s$/, '')))
+let keyEcho = 0, keyMostEcho = 0, distEcho = 0, distN = 0
+for (const a of assembled) {
+  const line = echoWords(a.passage); const ov = c => [...echoWords(c)].filter(w => line.has(w)).length
+  const k = ov(a.correct_answer); const ds = a.choices.filter(c => c !== a.correct_answer).map(ov)
+  if (k > 0) keyEcho++; if (k > Math.max(...ds)) keyMostEcho++; distEcho += ds.filter(x => x > 0).length; distN += ds.length
+}
+console.log(`key echoes its spoken line         ${keyEcho}/${assembled.length} (uniquely most overlap ${keyMostEcho}); distractors ${distEcho}/${distN}`)
+if (keyMostEcho > Math.ceil(assembled.length / 4)) warn.push(`key has uniquely the most word overlap with its line on ${keyMostEcho}/${assembled.length} items (shipped batches 2-4/20): a listener can word-match`)
+
 const blindText = JSON.stringify(blindOut)
 const leaked = assembled.filter(a => {
   const inner = (a.passage.match(/"(.*)"/s)?.[1] ?? '').trim()
