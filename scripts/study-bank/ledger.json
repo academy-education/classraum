@@ -10670,6 +10670,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "ssat-reading-draft-12-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-12",
+      "contentSha": "be47af6163d2d337691a0bdbdf5ffe4844669d9f12b9359cedfeafae51c88823",
+      "status": "staged-for-human-review",
+      "note": "6 x 6, Claude agent; 5 flagged distractors fixed then re-screened clean; spot route (reading-drafts-wave3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "be47af6163d2d337691a0bdbdf5ffe4844669d9f12b9359cedfeafae51c88823",
+          "verdict": "merge 0; quotes 0; location 0."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "round 1: 5 of 36 flagged (A 4, B 2), fixed; round 2: A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

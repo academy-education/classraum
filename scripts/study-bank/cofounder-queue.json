@@ -412,6 +412,16 @@
       "family": "isee",
       "runId": "isee-draft9-release-cofounder-{date}",
       "route": "full"
+    },
+    {
+      "cohort": "ssat-reading-draft-12",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft12-D12-P06",
+      "route": "spot",
+      "runId": "ssat-draft12-spot-cofounder-{date}"
     }
   ]
 }

@@ -37,3 +37,13 @@ Passages: One Ballot (school election) · Under the Swings (poem) · Two Taps (h
 - Pre-flight: merge 0; quote check 0 of 244; location check 0 mismatches. Keys 9/9/9/9. Key uniquely longest 4/36,
   shortest 2/36.
 - **Grader A 0/36, B 0/36.** One 36-item run.
+
+## ssat-reading-draft-12 (staged 2026-10-23), spot `draft12-D12-P06`
+Passages: After the Cake (anniversary misunderstanding) · Room 14, July (poem) · The Toss (volleyball float serve) ·
+Then Stop (apologies) · The Red Cloth (horseback doctor, invented) · Living Screen (cuttlefish color).
+- **Pre-screen round 1:** grader A flagged 4 (D12-P01-4, P02-1, P02-6, P04-1) and grader B flagged 2 (P02-1,
+  P04-3); 5 items in all.
+- **The author fixed all 5 by rewriting the distractor.** For P01-4 it also added one passage line stating that the
+  parents had known since spring.
+- After the fix: merge 0, quotes 0 of 286, location 0.
+- **Re-screen round 2, on the whole batch: A 0/36, B 0/36.**
