@@ -11645,6 +11645,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "cr-v21-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v21",
+      "contentSha": "ad591bf0a8ebe1bc004a2ec597e21994bf574b75cbbe24ec969c60ebbb13c453",
+      "status": "staged-for-human-review",
+      "note": "crv7 batch 17 by two Claude agents (crv7-b17.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ad591bf0a8ebe1bc004a2ec597e21994bf574b75cbbe24ec969c60ebbb13c453",
+          "verdict": "render-crv7 0 refusals, keys 10/10/10/10."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 6/40, B 5/40, union 7 dropped."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
