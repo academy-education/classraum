@@ -10879,6 +10879,33 @@
           "verdict": "verify-answer-key-spread on kept (n=13) - see REGISTER; graders named a batch tell: every item a number x (tense|voice|aspect) grid and the near noun usually the wrong number (recorded; SEC23 table addresses it)."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-4-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-4",
+      "contentSha": "67015736e6579b79ec4e079098773f5b5790aba4db0f85cf9e3a9bd3f99d4cd9",
+      "status": "staged-for-human-review",
+      "note": "12 x 5 academic passages, 2 Claude agents; spot route (toefl-passage-draft-4.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "67015736e6579b79ec4e079098773f5b5790aba4db0f85cf9e3a9bd3f99d4cd9",
+          "verdict": "12 groups x 5; keys dealt flat."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/60, B 0/60."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
