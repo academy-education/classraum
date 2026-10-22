@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC22A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head followed by an \"as well as\" phrase ending in a singular noun, crossed with active versus passive voice decided by a later sentence stating that no agent acts",
+    "difficulty": "hard",
+    "passage": "Farm soil holds a reserve of dormant weed seeds that can stay viable underground for years. When a field is left bare after harvest, wild oat seeds, as well as the occasional seed of field bindweed, ______ in the warm top layer of soil within a week of the first rain. Nobody sows or waters them; the seeds simply sprout on their own when the exposed soil warms.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are germinated",
+      "germinates",
+      "germinate",
+      "is germinated"
+    ],
+    "correct_answer": "germinate",
+    "explanation": "The subject is \"wild oat seeds,\" whose head noun \"seeds\" is plural; the phrase \"as well as the occasional seed of field bindweed\" is set off by commas and does not join the subject, so the singular \"seed\" and \"bindweed\" beside the blank do not control the verb. The verb must therefore be plural. The next sentence, \"Nobody sows or waters them; the seeds simply sprout on their own,\" shows that no one acts on the seeds, so the verb must be active and used without an object: \"germinate.\" \"germinates\" is active but singular, agreeing with \"seed\" in the interrupting phrase. \"are germinated\" is plural but passive, implying an agent that the final sentence rules out. \"is germinated\" is both singular and passive.",
+    "topic_tag": "weed science: dormant seed reserves in farm soil",
+    "template": "plural head + \"as well as\" singular member x added member next to the blank x V-s/V | is/are V-en"
+  },
+  {
+    "id": "SEC22A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"a number of\" + plural noun crossed with present perfect versus past progressive decided by a present-tense consequence in the next sentence",
+    "difficulty": "hard",
+    "passage": "Keeping a rice paddy flooded all season starves its soil of oxygen, and microbes in the airless mud give off methane as a result. A number of the delta's rice growers ______ by draining their fields between irrigations so that air can reach the mud. Their paddies emit markedly less methane than neighboring fields, and their harvests are no smaller.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have adapted",
+      "was adapting",
+      "has adapted",
+      "were adapting"
+    ],
+    "correct_answer": "have adapted",
+    "explanation": "The subject is \"A number of the delta's rice growers.\" \"A number of\" means \"several\" and takes a plural verb, so the head word \"number\" does not make the subject singular; the verb must be plural, agreeing with \"growers.\" The next sentence states the result in the present tense: \"Their paddies emit markedly less methane\" and \"their harvests are no smaller.\" A past change whose consequence holds in the present calls for the present perfect, so the answer is \"have adapted.\" \"has adapted\" has the right aspect but is singular, treating \"number\" as the subject. \"were adapting\" is plural but past progressive, describing an action in progress at some past moment that the passage never establishes, which does not fit the present-tense result. \"was adapting\" is both singular and past progressive.",
+    "topic_tag": "rice agronomy: alternate wetting and drying",
+    "template": "\"a number of\" + plural x singular-looking head word \"number\" x has/have V-en | was/were V-ing"
+  },
+  {
+    "id": "SEC22A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural-form singular discipline name (\"hydroponics\") crossed with present versus past tense decided by the present-tense verbs of the surrounding sentences",
+    "difficulty": "hard",
+    "passage": "On desert farms near the coast, hydroponics ______ widely enough to supply lettuce and tomatoes to inland cities. Growing crops in nutrient solution instead of soil can cut irrigation water by up to ninety percent, because the roots take up only what they need and the rest flows back through the system. Growers on those farms add mineral salts to recirculating tanks and adjust the mixture as the plants mature.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were practiced",
+      "are practiced",
+      "was practiced",
+      "is practiced"
+    ],
+    "correct_answer": "is practiced",
+    "explanation": "The subject is \"hydroponics,\" the name of a growing method; although it ends in -s, it is a singular noun, like \"genetics,\" so the verb must be singular. The sentences that follow describe a current practice in the present tense: the method \"can cut\" water use, the rest \"flows\" back, and \"Growers on those farms add mineral salts\" and \"adjust the mixture.\" The verb must therefore be present: \"is practiced.\" \"are practiced\" is present but plural, treating the -s ending as a plural marker. \"was practiced\" is singular but past, which would place the farming in the past even though the last sentence says the growers on those same farms add salts today. \"were practiced\" is both plural and past.",
+    "topic_tag": "controlled-environment agriculture: desert hydroponics",
+    "template": "plural-form singular discipline noun as subject x -s morphology x is/are V-en | was/were V-en"
+  },
+  {
+    "id": "SEC22A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across an absolute phrase containing a plural noun, crossed with present progressive versus simple present decided by an interrupting when-clause and the result in the next sentence",
+    "difficulty": "hard",
+    "passage": "Tumor cells grown in a lab dish often clump into spheroids, small balls of tissue whose cells divide about every twenty hours. In one experiment, a spheroid, its outer cells wrapped in a thin sheath of collagen, ______ outward in all directions when the researchers add an experimental drug to the surrounding medium. Within hours of the dose, its growth halts, and its diameter stops changing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are proliferating",
+      "is proliferating",
+      "proliferate",
+      "proliferates"
+    ],
+    "correct_answer": "is proliferating",
+    "explanation": "The subject is \"a spheroid\"; the phrase \"its outer cells wrapped in a thin sheath of collagen\" is an absolute phrase with its own noun, \"cells,\" and is not part of the subject, so the verb must be singular. The next sentence says that \"its growth halts\" within hours of the dose, so the growth was already under way when the researchers \"add\" the drug and is interrupted by it; an action in progress at the moment another event occurs takes the progressive: \"is proliferating.\" \"proliferates\" is singular but simple present; with \"when the researchers add\" it would mean the spheroid starts growing in response to the drug, which contradicts the halt. \"are proliferating\" is progressive but plural, agreeing with \"cells\" in the absolute phrase. \"proliferate\" is both plural and simple.",
+    "topic_tag": "oncology: tumor spheroid drug response",
+    "template": "singular subject + absolute phrase with a plural noun x noun inside the absolute phrase x V-s/V | is/are V-ing"
+  },
+  {
+    "id": "SEC22A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement inside an object relative clause (plural antecedent, singular clause subject) crossed with active versus passive voice decided by the relative pronoun's role as the verb's object",
+    "difficulty": "hard",
+    "passage": "Ecologists fitted a hornbill with a radio tag to learn how far its meals carry the seeds of fruiting trees in a fragmented forest. The fig seeds that the bird ______ sprouted in a sunlit clearing more than a kilometer from any parent tree, well beyond the range of smaller fruit-eaters. The tag showed that the bird swallowed figs in one patch of forest and dropped their seeds hours later in another.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was deposited",
+      "were depositing",
+      "were deposited",
+      "was depositing"
+    ],
+    "correct_answer": "was depositing",
+    "explanation": "The blank is the verb of the relative clause \"that the bird ______,\" whose subject is \"the bird,\" not \"The fig seeds\"; the seeds are the antecedent of \"that.\" Because \"bird\" is singular, the verb must be singular. In that clause \"that\" stands for the seeds and is the verb's object, and the last sentence confirms that the bird is the one carrying the seeds, since it \"swallowed figs\" in one place and \"dropped their seeds\" in another. The verb must therefore be active: \"was depositing.\" \"were depositing\" is active but plural, agreeing with \"seeds.\" \"was deposited\" is singular but passive; it would make the bird the thing deposited and leave \"that\" with no role in the clause. \"were deposited\" is both plural and passive.",
+    "topic_tag": "frugivory: hornbill seed dispersal",
+    "template": "object relative \"the Xs that the Y ___\" x plural antecedent x was/were V-ing | was/were V-en"
+  },
+  {
+    "id": "SEC22A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head and a reduced participial relative ending in a singular noun, crossed with active versus passive voice decided by the agent named in the first sentence",
+    "difficulty": "hard",
+    "passage": "Technicians at a regional blood bank test donated plasma for viruses before it can be given to a patient, sometimes repeatedly when an early result is unclear. Physicians will not release a unit until a final test resolves any doubt. The plasma units collected from one donor with an unusual antibody ______ four separate times, and each round of testing produced the same ambiguous reading.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has screened",
+      "have been screened",
+      "have screened",
+      "has been screened"
+    ],
+    "correct_answer": "have been screened",
+    "explanation": "The subject is \"The plasma units,\" whose head noun \"units\" is plural; \"collected from one donor with an unusual antibody\" is a reduced relative clause that modifies \"units,\" so the singular \"donor\" and \"antibody\" beside the blank do not control the verb. The verb must be plural. The first sentence names who does the testing: \"Technicians at a regional blood bank test donated plasma,\" so the units are tested rather than doing any testing, and the verb must be passive: \"have been screened.\" \"have screened\" is plural but active; it would say the units screened something, and \"four separate times\" is not an object. \"has been screened\" is passive but singular, agreeing with \"antibody.\" \"has screened\" is both singular and active.",
+    "topic_tag": "transfusion medicine: plasma viral screening",
+    "template": "plural head + reduced participial relative ending in a singular x noun closing the reduced relative x has/have V-en | has/have been V-en"
+  },
+  {
+    "id": "SEC22A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in the second half of a comparative correlative with a fronted plural object, crossed with simple present versus present perfect decided by the parallel present verb in the first half",
+    "difficulty": "hard",
+    "passage": "Producing nectar costs a plant sugar that it could otherwise spend on leaves and roots. In field plots of wild sunflowers, the reward appears to repay the expense: the more nectar the flower heads secrete, the more foraging bees a single plant ______. The most heavily visited plants go on to produce the heaviest flower heads by the end of summer.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "attracts",
+      "have attracted",
+      "attract",
+      "has attracted"
+    ],
+    "correct_answer": "attracts",
+    "explanation": "In the second half of the comparison, \"the more foraging bees\" is the fronted object and \"a single plant\" is the subject, so the verb must agree with the singular \"plant,\" not with \"bees.\" The two halves of a \"the more ..., the more ...\" comparison are parallel, and the first half uses the simple present: \"the flower heads secrete\"; the next sentence also uses the simple present: \"The most heavily visited plants go on to produce.\" The verb must therefore be simple present and singular: \"attracts.\" \"attract\" is simple present but plural, agreeing with the fronted \"bees\" or copying the plural \"secrete.\" \"has attracted\" is singular but present perfect, which breaks the parallel with \"secrete.\" \"have attracted\" is both plural and perfect.",
+    "topic_tag": "plant reproductive ecology: sunflower nectar rewards",
+    "template": "comparative correlative with fronted plural object x fronted object x V-s/V | has/have V-en"
+  },
+  {
+    "id": "SEC22A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive relative clause after a possessive noun phrase (singular possessor, plural head), crossed with present perfect progressive versus past progressive decided by a present-tense verb showing the activity continuing",
+    "difficulty": "hard",
+    "passage": "The county's automated wastewater samplers, which ______ in four-hour cycles at every treatment plant, give health officials an early warning of outbreaks. Traces of a virus show up in sewage days before infected people visit a doctor, and the samplers continue to draw water around the clock. Each week's results appear on a public dashboard.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were operating",
+      "has been operating",
+      "have been operating",
+      "was operating"
+    ],
+    "correct_answer": "have been operating",
+    "explanation": "The relative pronoun \"which\" refers to \"samplers,\" the head of \"The county's automated wastewater samplers\"; \"county's\" is only a possessor, so the verb must be plural. The second sentence says that \"the samplers continue to draw water around the clock,\" and the main clause says they \"give\" officials warnings in the present, so the operation began in the past and is still going on; that calls for the present perfect progressive: \"have been operating.\" \"has been operating\" has the right form but is singular, agreeing with \"county's.\" \"were operating\" is plural but past progressive, which places the operation in a past period and does not fit samplers that \"continue\" to run. \"was operating\" is both singular and past.",
+    "topic_tag": "environmental epidemiology: wastewater virus monitoring",
+    "template": "possessive NP \"[sg]'s [pl], which ___\" x singular possessor x has/have been V-ing | was/were V-ing"
+  }
+]

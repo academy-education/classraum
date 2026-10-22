@@ -1,0 +1,381 @@
+[
+  {
+    "id": "SEC22B-01",
+    "slot": "B1",
+    "frame": "restrictive relative clause with its own singular subject and verb inside a plural subject",
+    "true_subject_head": "piezometers",
+    "misleader_words": [
+      "the night technician could reach",
+      "boat"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "boat",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "readings",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_quote": "\"filled\" (same sentence, 9+ words after the blank, in an as-clause); \"opened\" and \"leveled off\" (next sentence)",
+    "voice_device": null,
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is recording",
+        "are recording",
+        "was recording",
+        "were recording"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "steadily higher readings each",
+    "length_ratio": 1.17,
+    "distractor_kills": {
+      "was recording": "number: the head \"piezometers\" is the first word of the sentence, 11 words before the blank",
+      "are recording": "tense: \"filled\" 12 words after the blank and \"opened\" / \"leveled off\" in the next sentence",
+      "is recording": "both: \"piezometers\" (11 words before) and the past verbs after the blank"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete 2x2, no odd option (key is longest by one character: 'were' vs 'was')",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun 'boat'"
+      ],
+      "changed": "no 'During ...' fronted phrase (moved the filling into an as-clause after the blank); embedded verb is the modal 'could' so no past-tense verb sits beside the blank; sec-near-dup: option skeleton [are|is|was|were] equals live hard 6af65ba8 (rw-v14, locative inversion, was/were tucked). Forced by the assigned b|g grid: any single-verb b|g item reduces to this skeleton. Not changed; reported."
+    }
+  },
+  {
+    "id": "SEC22B-02",
+    "slot": "B2",
+    "frame": "adverbial clause (because) between subject and verb",
+    "true_subject_head": "wires",
+    "misleader_words": [
+      "the protective zinc coating has worn away",
+      "coating"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "coating",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "length",
+      "number": "sg"
+    },
+    "dimension": "voice",
+    "dimension_key": "passive",
+    "decider_quote": "agent by-phrase \"by hydrogen that forms\" (8 words after the blank); no object follows the verb",
+    "voice_device": "D3",
+    "grid": {
+      "code": "b|k",
+      "forms": [
+        "is attacking",
+        "are attacking",
+        "is being attacked",
+        "are being attacked"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "along the full length",
+    "length_ratio": 1.5,
+    "distractor_kills": {
+      "is being attacked": "number: head \"wires\" is 17 words before the blank",
+      "are attacking": "voice: no object anywhere after the blank and the agent \"by hydrogen\" at word 8 after the blank",
+      "is attacking": "both: \"wires\" 17 words before, \"by hydrogen\" 8 words after"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete 2x2 ('being' in 2 of 4). Key is the longest by one character (are vs is) - one of my 2 allowed unique-longest",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun 'coating'",
+        "(d) no object after blank -> passive",
+        "(f) 'being' wins"
+      ],
+      "changed": "replaced 'once' (banned in blank sentence) with 'because'; dropped an opening 'Inspectors who ...' sentence to move the blank to sentence 1 and avoid a who-clause; sec-near-dup: skeleton equals live hard 8547001f (rw-v16, floating 'each', 'are now being digitized'). Same b|k grid as the table assigns; mine carries no adverb. Not changeable without bending the grid; reported."
+    }
+  },
+  {
+    "id": "SEC22B-03",
+    "slot": "B3",
+    "frame": "singular head + stacked prepositional phrases ending in a plural",
+    "true_subject_head": "slab",
+    "misleader_words": [
+      "trails"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "trails",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "fracture",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_quote": "\"remains attached\" (next sentence); also \"widens\" and \"can measure\" (next sentence)",
+    "voice_device": null,
+    "grid": {
+      "code": "b|d",
+      "forms": [
+        "is detaching",
+        "are detaching",
+        "has detached",
+        "have detached"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "The fracture separating the",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "has detached": "aspect: \"remains attached at its base\" in the next sentence, ~20 words after the blank",
+      "are detaching": "number: head \"slab\" is 15 words before the blank",
+      "have detached": "both: \"slab\" 15 words before and \"remains attached\" in the next sentence"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; key tied shortest with 'has detached' (12 chars)",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun 'trails'",
+        "(b) plural near blank -> singular"
+      ],
+      "changed": "removed 'behind it' after the blank (a singular pronoun 5 words after the blank resolved number); the blank now ends its sentence, so nothing (no comma, no interrupter) follows it"
+    }
+  },
+  {
+    "id": "SEC22B-04",
+    "slot": "B4",
+    "frame": "subject containing a \"between X and Y\" phrase (a compound inside the modifier)",
+    "true_subject_head": "alignment",
+    "misleader_words": [
+      "the northern heading and the southern heading",
+      "and"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "heading",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "days",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_quote": "\"broke through\" and \"met\" (next sentence); also \"advanced\" (same sentence, as-clause 9 words after the blank)",
+    "voice_device": null,
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been checked",
+        "have been checked",
+        "was checked",
+        "were checked"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "every few days with",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "has been checked": "aspect: \"advanced\" (9 words after the blank) and \"broke through\" / \"met\" in the next sentence close the surveying period",
+      "were checked": "number: head \"alignment\" is the second word of the sentence, 9 words before the blank; 'and' is inside 'between ...'",
+      "have been checked": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; key is uniquely shortest (11 chars) - my only unique-shortest",
+      "heuristics_that_give_key": [],
+      "changed": "crews -> tunnel-boring machines (avoid collective noun); railway -> water-supply tunnel (B6 is about railways); sec-near-dup: skeleton [has been|have been|was|were] equals live hard 8022ca71 (rw-v9, 'along with' + has been shut) and B6 within batch. Forced by the e|h grid once the shared participle is removed; reported."
+    }
+  },
+  {
+    "id": "SEC22B-05",
+    "slot": "B5",
+    "frame": "\"..., nor ___\" + auxiliary inversion; singular postposed subject, head noun 5+ words after the blank",
+    "true_subject_head": "instrument",
+    "misleader_words": [
+      "stations",
+      "have never sampled"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "area",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "radar",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "do-support",
+    "decider_quote": "the base verb \"measure\" (10 words after the blank)",
+    "voice_device": null,
+    "grid": {
+      "code": "m|n",
+      "forms": [
+        "does the",
+        "do the",
+        "has the",
+        "have the"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "newer considerably more sensitive",
+    "length_ratio": 1.33,
+    "distractor_kills": {
+      "do the": "number: head \"instrument\" is 6 words after the blank (word 5 is the noun adjunct 'radar')",
+      "has the": "auxiliary: base verb \"measure\" 10 words after the blank",
+      "have the": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; shared 'the' in all four; key tied longest with 'have the' (8 chars)",
+      "heuristics_that_give_key": [],
+      "changed": "head noun pushed to word 6 with 'newer, considerably more sensitive radar'; no noun within 4 words after the blank"
+    }
+  },
+  {
+    "id": "SEC22B-06",
+    "slot": "B6",
+    "frame": "\"the latter\" resuming a PLURAL from an earlier sentence",
+    "true_subject_head": "latter (= long wrought-iron rails)",
+    "misleader_words": [
+      "The latter"
+    ],
+    "misleader_position": "self",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "yards",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "mile",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_quote": "\"tried\" (previous sentence); \"cracked\" and \"had replaced\" (same sentence, 6+ words after the blank)",
+    "voice_device": null,
+    "grid": {
+      "code": "r|i",
+      "forms": [
+        "has been costlier",
+        "have been costlier",
+        "was costlier",
+        "were costlier"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "per mile of track",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "was costlier": "number: \"short cast-iron rails and long wrought-iron rails\" in the previous sentence, ~12 words before the blank",
+      "have been costlier": "aspect: \"tried\" (previous sentence), \"cracked\" (8 words after the blank), \"had replaced\" (end of the sentence)",
+      "has been costlier": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complement 'costlier' shared by all four as the grid requires",
+      "heuristics_that_give_key": [],
+      "changed": "replaced a telegraph-cable topic that shared a corrosion topic shape with B2; avoided any pronoun referring to 'the latter'; sec-near-dup: skeleton equals live hard 8022ca71 (rw-v9, r|i 'has been' shut, 'along with' frame) and B4 within batch. The table's r|i grid is that item's grid; reported, not bent."
+    }
+  },
+  {
+    "id": "SEC22B-07",
+    "slot": "B7",
+    "frame": "interpolated comment clause between subject and verb",
+    "true_subject_head": "moon",
+    "misleader_words": [
+      "spacecraft measurements suggest",
+      "measurements"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "measurements",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "set",
+      "number": "sg"
+    },
+    "dimension": "voice",
+    "dimension_key": "active",
+    "decider_quote": "the delayed direct object \"towering jets\" (10 words after the blank, after the interrupter)",
+    "voice_device": "D5",
+    "grid": {
+      "code": "f|e",
+      "forms": [
+        "has been ejecting",
+        "have been ejecting",
+        "has been ejected",
+        "have been ejected"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "through a set of",
+    "length_ratio": 1.06,
+    "distractor_kills": {
+      "has been ejected": "voice: direct object \"towering jets\" at word 10 after the blank",
+      "have been ejecting": "number: head \"moon\" 6 words before the blank, set off from the comment clause by commas",
+      "have been ejected": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; all four carry 'been', clean 2x2; key not uniquely longest or shortest",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun 'measurements'",
+        "(b) plural near blank -> singular",
+        "(d) object after the interrupter -> active (the brief's one D5 slot)"
+      ],
+      "changed": "removed 'its south pole' after the blank (singular pronoun); removed a 'have long wondered' opener that read as a time anchor before a perfect key"
+    }
+  },
+  {
+    "id": "SEC22B-08",
+    "slot": "B8",
+    "frame": "noun + infinitive modifier with a singular noun EARLY inside it",
+    "true_subject_head": "Attempts",
+    "misleader_words": [
+      "a single amateur astronomer",
+      "brightness"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "fragments",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "tables",
+      "number": "pl"
+    },
+    "dimension": "progressive",
+    "dimension_key": "simple",
+    "decider_quote": "\"accepted and printed\" (relative clause, 10+ words after the blank) and \"became\" (next sentence)",
+    "voice_device": null,
+    "grid": {
+      "code": "c|k",
+      "forms": [
+        "is documented",
+        "are documented",
+        "is being documented",
+        "are being documented"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "in two tables in",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "are being documented": "progressive: \"accepted and printed\" 11 words after the blank; \"became the standard record\" in the next sentence",
+      "is documented": "number: head \"Attempts\" 13 words before the blank",
+      "is being documented": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete 2x2 with 'being' in 2 of 4",
+      "heuristics_that_give_key": [],
+      "changed": "'described' -> 'documented' for a cleaner state reading"
+    }
+  }
+]

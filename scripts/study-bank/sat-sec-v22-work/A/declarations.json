@@ -1,0 +1,397 @@
+[
+  {
+    "id": "SEC22A-01",
+    "slot": "A1",
+    "frame": "\"as well as\" pseudo-coordination after a plural head",
+    "true_subject_head": "seeds",
+    "misleader_words": [
+      "seed",
+      "bindweed"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "bindweed",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "layer",
+      "number": "sg"
+    },
+    "dimension": "voice",
+    "dimension_key": "active",
+    "decider_quote": "Nobody sows or waters them; the seeds simply sprout on their own",
+    "voice_device": "D2",
+    "grid": {
+      "code": "a|c",
+      "forms": [
+        "germinates",
+        "germinate",
+        "is germinated",
+        "are germinated"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in the warm top",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "germinates": "number: head \"seeds\" 12 words before the blank (past the commas of the as-well-as phrase)",
+      "are germinated": "voice: next sentence \"Nobody sows or waters them ... sprout on their own\", ~20 words after the blank",
+      "is germinated": "both: number via \"seeds\" and voice via the next sentence"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; clean 2x2. Key is uniquely shortest (forced by grid a|c; counted in the 2 allowed)",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun \"bindweed\" gives pl: yes",
+        "(b) n/a: no plural within 4 words of the blank",
+        "(d) no object after blank -> passive: NO (key active)"
+      ],
+      "changed": "replaced honey-crystallization draft (factual problem with the singular member) with weed seeds; removed \"light and moisture ... wake them\" so no natural cause reads as an agent"
+    }
+  },
+  {
+    "id": "SEC22A-02",
+    "slot": "A2",
+    "frame": "\"a number of\" + plural noun",
+    "true_subject_head": "growers",
+    "misleader_words": [
+      "number"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "growers",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "fields",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_quote": "Their paddies emit markedly less methane ... and their harvests are no smaller",
+    "voice_device": null,
+    "grid": {
+      "code": "d|g",
+      "forms": [
+        "has adapted",
+        "have adapted",
+        "was adapting",
+        "were adapting"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "by draining their fields",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "has adapted": "number: \"A number of\" 6 words before the blank takes plural",
+      "were adapting": "aspect: next sentence \"emit\"/\"are\" (present result), ~20 words after; no past frame anywhere",
+      "was adapting": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; clean 2x2, lengths 12-14",
+      "heuristics_that_give_key": [
+        "(a) near \"growers\" pl -> sg: no",
+        "(b) plural near -> sg: no",
+        "(c) no time anchor in the passage: n/a"
+      ],
+      "changed": "removed a \"for a few days\" duration phrase after the blank (it would have let heuristic (c) pick the perfect key); used intransitive \"adapt\" so no object follows the active key; what follows is a by + gerund adverbial (a \"by\" after an ACTIVE key, against the by-means-passive reflex); removed a whole-clause \", which\" (author C's C4 frame) from the blank's sentence"
+    }
+  },
+  {
+    "id": "SEC22A-03",
+    "slot": "A3",
+    "frame": "plural-form singular noun (discipline name: hydroponics)",
+    "true_subject_head": "hydroponics",
+    "misleader_words": [
+      "hydroponics"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "hydroponics",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "lettuce",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_quote": "can cut ... flows ... Growers on those farms add ... and adjust",
+    "voice_device": null,
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is practiced",
+        "are practiced",
+        "was practiced",
+        "were practiced"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "widely enough to supply",
+    "length_ratio": 1.0,
+    "distractor_kills": {
+      "are practiced": "number: knowing \"hydroponics\" is a singular method name (the subject itself)",
+      "was practiced": "tense: present verbs \"can cut\", \"flows\" (sentence 1) and \"Growers on those farms add\" (sentence 3, ~45 words after the blank) about the same farms; blank is in sentence 1",
+      "were practiced": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; key is uniquely shortest (forced by c|h, the second of 2 allowed)",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun: yes",
+        "(b) plural-looking noun near the blank -> singular: yes"
+      ],
+      "changed": "rejected rickets/measles (dictionaries allow singular or plural construction = banned dictionary variant); removed an \"is captured\" in sentence 1 that modelled the key's auxiliary; the blank's sentence has no finite verb other than the blank; blank moved to sentence 1 and followed by an adverbial (\"widely enough to\") instead of a PP"
+    }
+  },
+  {
+    "id": "SEC22A-04",
+    "slot": "A4",
+    "frame": "absolute phrase (its own noun + participle) between subject and verb",
+    "true_subject_head": "spheroid",
+    "misleader_words": [
+      "cells"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "collagen",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "directions",
+      "number": "pl"
+    },
+    "dimension": "progressive",
+    "dimension_key": "progressive",
+    "decider_quote": "when the researchers add ... Within hours of the dose, its growth halts",
+    "voice_device": null,
+    "grid": {
+      "code": "a|b",
+      "forms": [
+        "proliferates",
+        "proliferate",
+        "is proliferating",
+        "are proliferating"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "outward in all directions",
+    "length_ratio": 1.45,
+    "distractor_kills": {
+      "proliferates": "progressive: \"when the researchers add\" (words 6-8 after the blank) + \"its growth halts\" in the next sentence: simple present would make the drug start the growth",
+      "are proliferating": "number: subject \"spheroid\" ~16 words before the blank, past the absolute phrase",
+      "proliferate": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; clean 2x2, ratio 1.45",
+      "heuristics_that_give_key": [
+        "(a) near \"collagen\" sg -> pl: no",
+        "(b) plural \"directions\" 4 words after -> singular: yes",
+        "(c) \"Within hours\" in the next sentence: grid has no perfect, n/a"
+      ],
+      "changed": "verb chosen for length (base >= 11 letters needed for ratio < 1.6); 'regenerate' moved out to avoid a shared verb; the when-clause verb kept beyond 4 words after the blank; added \"outward\" so A4 and A1 do not both continue \"______ in ...\". spheroid defined in sentence 1 rather than by an appositive on the subject (singular head + appositive is a live template)"
+    }
+  },
+  {
+    "id": "SEC22A-05",
+    "slot": "A5",
+    "frame": "object relative clause \"the Xs that the Y ___\"",
+    "true_subject_head": "bird",
+    "misleader_words": [
+      "seeds"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "bird",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "clearing",
+      "number": "sg"
+    },
+    "dimension": "voice",
+    "dimension_key": "active",
+    "decider_quote": "the bird swallowed figs in one patch of forest and dropped their seeds hours later in another",
+    "voice_device": "D1",
+    "grid": {
+      "code": "g|h",
+      "forms": [
+        "was depositing",
+        "were depositing",
+        "was deposited",
+        "were deposited"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "sprouted in a sunlit",
+    "length_ratio": 1.08,
+    "distractor_kills": {
+      "were depositing": "number: clause subject \"the bird\" directly before the blank vs antecedent \"seeds\" 4 words before",
+      "was deposited": "voice: object-relative gap (\"that\" = the verb's object), confirmed by \"the bird ... dropped their seeds\" in the last sentence",
+      "were deposited": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; clean 2x2, key neither uniquely longest nor shortest",
+      "heuristics_that_give_key": [
+        "(a) near \"bird\" sg -> pl: no",
+        "(b) plural \"seeds\" 4 words before -> singular: yes",
+        "(d) no object after blank -> passive: NO (key active)"
+      ],
+      "changed": "removed a collective noun (flock); the blank now ends the relative clause and is followed directly by the main verb \"sprouted\" (shared past tense, resolves nothing); \"clearing\" made singular for After=agr"
+    }
+  },
+  {
+    "id": "SEC22A-06",
+    "slot": "A6",
+    "frame": "plural head + reduced participial relative ending in a singular noun",
+    "true_subject_head": "units",
+    "misleader_words": [
+      "donor",
+      "antibody"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "antibody",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "times",
+      "number": "pl"
+    },
+    "dimension": "voice",
+    "dimension_key": "passive",
+    "decider_quote": "technicians at a regional blood bank test it for viruses",
+    "voice_device": "D4",
+    "grid": {
+      "code": "d|e",
+      "forms": [
+        "has screened",
+        "have screened",
+        "has been screened",
+        "have been screened"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "four separate times, and",
+    "length_ratio": 1.5,
+    "distractor_kills": {
+      "have screened": "voice: technicians named as testers in sentence 1 (~40 words before); blank in sentence 3; \"four separate times\" is a frequency, not an object",
+      "has been screened": "number: head \"units\" 9 words before the blank, past the reduced relative",
+      "has screened": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "key is uniquely longest (forced by d|e; 1 of 2 allowed). Nothing else distinguishes it",
+      "heuristics_that_give_key": [
+        "(a) opposite of near noun \"antibody\" gives pl: yes",
+        "(b) plural \"times\" 3 words after -> singular: NO",
+        "(f) \"been\" wins: yes (forced by grid d|e + passive key)",
+        "(d) NP after blank read as object -> active: NO"
+      ],
+      "changed": "moved the topic from seed-bank regeneration to plasma screening to avoid a seed-storage topic already live and a second seed passage in my set; removed \"once\" from sentence 1"
+    }
+  },
+  {
+    "id": "SEC22A-07",
+    "slot": "A7",
+    "frame": "comparative correlative with fronted object, \"the more Xs a single Y ___\"",
+    "true_subject_head": "plant",
+    "misleader_words": [
+      "bees"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "plant",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "plants",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_quote": "the more nectar the flower heads secrete",
+    "voice_device": null,
+    "grid": {
+      "code": "a|d",
+      "forms": [
+        "attracts",
+        "attract",
+        "has attracted",
+        "have attracted"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "(end of sentence) The most heavily",
+    "length_ratio": 1.14,
+    "distractor_kills": {
+      "attract": "number: fronted \"bees\" 4 words before; also the plural parallel verb \"secrete\" invites copying",
+      "has attracted": "aspect: parallel \"secrete\" in the first half (~10 words before) and \"produce\" in the next sentence",
+      "have attracted": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; clean 2x2",
+      "heuristics_that_give_key": [
+        "(a) near \"plant\" sg -> pl: no",
+        "(b) plural \"bees\" 4 words before -> singular: yes",
+        "(c) \"by the end of summer\" read as an anchor -> perfect: NO (key non-perfect)"
+      ],
+      "changed": "made the first-half subject plural (\"the flower heads secrete\") so copying the parallel verb gives aspect but the WRONG number; the blank now ends its sentence instead of a PP; removed \"seed\" wording so A7 does not share a seed topic with A1/A5 (a comma after the blank was flagged by sec22-brief-counts as an interrupter, so the sentence ends there)"
+    }
+  },
+  {
+    "id": "SEC22A-08",
+    "slot": "A8",
+    "frame": "nonrestrictive relative after a possessive NP, \"[sg]'s [pl], which ___\"",
+    "true_subject_head": "samplers",
+    "misleader_words": [
+      "county's"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "samplers",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "cycles",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_quote": "The samplers continue to draw water around the clock",
+    "voice_device": null,
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been operating",
+        "have been operating",
+        "was operating",
+        "were operating"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in four-hour cycles at",
+    "length_ratio": 1.46,
+    "distractor_kills": {
+      "has been operating": "number: \"which\" -> \"samplers\" immediately before; possessor \"county's\" 4 words earlier",
+      "were operating": "aspect: \"continue\" in sentence 2 (~30 words after) and main-clause \"give\" (8 words after)",
+      "was operating": "both"
+    },
+    "hostile_reader": {
+      "options_only_pick": "key is uniquely longest (forced by f|g; 2 of 2 allowed)",
+      "heuristics_that_give_key": [
+        "(a) near \"samplers\" pl -> sg: no",
+        "(b) plural near -> sg: no",
+        "(c) \"around the clock\" (sentence 2) read as an anchor -> perfect: yes",
+        "(f) \"been\" wins: yes (forced by grid f|g + perfect key)"
+      ],
+      "changed": "moved \"at every treatment plant\" after \"in four-hour cycles\" so the first noun after the blank is plural (After=agr); blank moved to sentence 1 and the decider \"continue\" to sentence 2"
+    }
+  }
+]

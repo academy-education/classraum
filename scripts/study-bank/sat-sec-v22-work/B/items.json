@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC22B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head whose restrictive object-relative clause carries its own singular subject and verb, crossed with present vs. past progressive decided by past-tense narrative verbs",
+    "difficulty": "hard",
+    "passage": "The piezometers that the night technician could reach without a boat ______ steadily higher readings each evening as the new reservoir filled behind the earthen dam. Alarmed by the trend, the engineers opened a line of relief wells along the downstream toe of the embankment, and within a week the water pressure inside the dam leveled off.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was recording",
+      "are recording",
+      "were recording",
+      "is recording"
+    ],
+    "correct_answer": "were recording",
+    "explanation": "The subject is \"piezometers\"; \"the night technician could reach without a boat\" is a relative clause with its own singular subject, so neither \"technician\" nor \"boat\" controls the main verb, which must be plural. The passage narrates a finished episode in the past: the reservoir \"filled,\" the engineers \"opened\" relief wells, and the pressure \"leveled off,\" so the verb must be past: \"were recording.\" \"was recording\" is past but singular, agreeing with \"technician\" or \"boat\" inside the relative clause. \"are recording\" is plural but present, which clashes with the past-tense account of what happened during the filling. \"is recording\" is both singular and present.",
+    "topic_tag": "geotechnical engineering: earthen dam piezometers",
+    "template": "plural head + restrictive object relative with its own singular subject and modal verb x embedded singular subject/noun adjacent to the blank x is/are V-ing / was/were V-ing"
+  },
+  {
+    "id": "SEC22B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head separated from its verb by a because-clause whose own singular subject and verb sit beside the blank, crossed with active vs. passive progressive decided by a delayed by-phrase",
+    "difficulty": "hard",
+    "passage": "The galvanized steel wires inside the main cable of an aging suspension bridge, because the protective zinc coating has worn away, ______ along the full length of each strand by hydrogen that forms as the bare metal corrodes. The gas makes the steel brittle. Inspectors opening such cables find wires that have snapped without any visible warning, so many bridge owners pump dry air through their cables.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are being attacked",
+      "is attacking",
+      "is being attacked",
+      "are attacking"
+    ],
+    "correct_answer": "are being attacked",
+    "explanation": "The subject is \"wires\"; \"because the protective zinc coating has worn away\" is an adverbial clause with its own singular subject and verb, so \"coating\" and \"has\" do not control the main verb, which must be plural. The wires do not attack anything: nothing after the blank is an object, and the sentence names the attacker in \"by hydrogen that forms as the bare metal corrodes,\" eight words after the blank, so the verb must be passive: \"are being attacked.\" \"is being attacked\" is passive but singular, agreeing with \"coating\" (or \"bridge\") rather than \"wires.\" \"are attacking\" is plural but active, which would make the wires the attackers and leaves the verb with no object while \"by hydrogen\" names the real agent. \"is attacking\" is both singular and active.",
+    "topic_tag": "structural engineering: suspension bridge cable corrosion",
+    "template": "plural head + PP chain + interrupting because-clause with its own singular subject/verb x clause subject 'coating' + 'has' adjacent x is/are V-ing / is/are being V-en"
+  },
+  {
+    "id": "SEC22B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular head followed by stacked prepositional phrases ending in a plural, crossed with present progressive vs. present perfect decided by a present-tense verb in the next sentence",
+    "difficulty": "hard",
+    "passage": "Geologists monitoring a steep alpine valley have concentrated on a single hazard. A slab of granite on the eastern face of the ridge above the valley's hiking trails ______. The fracture separating the slab from the bedrock widens by a few millimeters each summer, but because the slab remains attached at its base, the geologists can measure the gap weekly and estimate when the block might fall.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have detached",
+      "has detached",
+      "are detaching",
+      "is detaching"
+    ],
+    "correct_answer": "is detaching",
+    "explanation": "The subject is \"slab\"; \"of granite on the eastern face of the ridge above the valley's hiking trails\" is a chain of prepositional phrases, so the plural \"trails\" just before the blank does not control the verb, which must be singular. The next sentence says the slab \"remains attached at its base\" while the fracture \"widens,\" so the separation is still in progress, not complete: \"is detaching.\" \"has detached\" is singular but present perfect, saying the slab has already come away, which contradicts \"remains attached.\" \"are detaching\" is progressive but plural, agreeing with \"trails.\" \"have detached\" is plural and also says the separation is complete.",
+    "topic_tag": "geomorphology: rockslide fracture monitoring",
+    "template": "singular head + four stacked PPs ending in a plural x PP-final plural 'trails' adjacent x is/are V-ing / has/have V-en"
+  },
+  {
+    "id": "SEC22B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular head whose \"between X and Y\" modifier contains a compound, crossed with simple past passive vs. present perfect passive decided by a past-tense verb that closes the interval",
+    "difficulty": "hard",
+    "passage": "The alignment between the northern heading and the southern heading ______ every few days with laser surveys as two tunnel-boring machines advanced toward each other beneath the mountain. When the machines finally broke through, the two halves of the new water-supply tunnel met with an offset of less than two centimeters, a result that the project's surveyors celebrated.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been checked",
+      "was checked",
+      "have been checked",
+      "were checked"
+    ],
+    "correct_answer": "was checked",
+    "explanation": "The subject is \"alignment\"; \"the northern heading and the southern heading\" is a compound inside the prepositional phrase \"between ...,\" not a compound subject, so the verb must be singular. The checking happened only while the machines \"advanced toward each other,\" and the next sentence closes that period: the machines \"broke through\" and the halves \"met,\" so the verb must be simple past: \"was checked.\" \"has been checked\" is singular but present perfect, which wrongly ties a finished, closed-off period of surveying to the present. \"were checked\" is past but plural, treating the two headings as the subject. \"have been checked\" is both plural and present perfect.",
+    "topic_tag": "tunnel engineering: twin-heading survey alignment",
+    "template": "singular head + 'between X and Y' PP (compound inside the modifier) x internal 'and' reads as compound subject x has/have been V-en / was/were V-en"
+  },
+  {
+    "id": "SEC22B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after \"nor\" with auxiliary inversion and a singular postposed subject, crossed with do-support vs. perfect auxiliary decided by the lexical base verb",
+    "difficulty": "hard",
+    "passage": "Hydrologists estimating how much water a mountain snowpack holds must combine two incomplete sources. The automated ground stations scattered across a typical watershed have never sampled more than a small fraction of its area, nor ______ newer, considerably more sensitive radar instrument aboard an orbiting satellite measure snow depth reliably beneath a dense forest canopy.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "does the",
+      "have the",
+      "do the",
+      "has the"
+    ],
+    "correct_answer": "does the",
+    "explanation": "After \"nor,\" the auxiliary comes before the subject, and the subject here is \"instrument,\" five words later, not the plural \"stations\" of the first clause, so the auxiliary must be singular. The main verb of this clause is the base form \"measure,\" ten words after the blank, and a base form needs the auxiliary \"do,\" not \"have\" (which would need \"measured\"): \"does the.\" \"do the\" uses the right auxiliary but is plural, copying the number of \"stations.\" \"has the\" is singular but takes the perfect auxiliary, which cannot combine with \"measure.\" \"have the\" copies the first clause's \"have never sampled\" in both number and auxiliary.",
+    "topic_tag": "snow hydrology: snowpack water estimation",
+    "template": "'..., nor' + auxiliary inversion, singular postposed head 5+ words after the blank x first clause's plural 'stations ... have' invites copying x does/do/has/have + shared 'the'"
+  },
+  {
+    "id": "SEC22B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with \"the latter\" resuming a plural noun from the previous sentence, crossed with simple past vs. present perfect decided by past-tense verbs anchoring a finished period",
+    "difficulty": "hard",
+    "passage": "Engineers building the first railways tried two kinds of track: short cast-iron rails and long wrought-iron rails. The latter, rolled in lengths of several yards, ______ per mile of track, but the brittle cast rails cracked under heavier locomotives, and by the end of that period every major line had replaced them.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been costlier",
+      "was costlier",
+      "has been costlier",
+      "were costlier"
+    ],
+    "correct_answer": "were costlier",
+    "explanation": "\"The latter\" refers to the second of the two kinds of track named in the first sentence, \"long wrought-iron rails,\" which is plural, so the verb must be plural even though \"latter\" looks like a single item. The passage describes a finished historical period: engineers \"tried\" both kinds, the cast rails \"cracked,\" and every line \"had replaced\" them, so the verb must be simple past: \"were costlier.\" \"was costlier\" is past but singular, treating \"the latter\" as one thing. \"have been costlier\" is plural but present perfect, which wrongly connects a closed episode in early railway history to the present. \"has been costlier\" is both singular and present perfect.",
+    "topic_tag": "railway history: cast-iron versus wrought-iron rails",
+    "template": "'the latter' resuming a plural from the previous sentence + short participial phrase ending in a plural x 'latter' reads singular x has/have been + complement / was/were + complement"
+  },
+  {
+    "id": "SEC22B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular head separated from its verb by an interpolated comment clause with a plural subject, crossed with active vs. passive perfect decided by an object delayed by an interrupter",
+    "difficulty": "hard",
+    "passage": "A moon too small to retain much internal heat should, in theory, be frozen solid. One such icy moon, spacecraft measurements suggest, ______, through a set of long fractures near the pole, towering jets of water vapor and salty ice grains into space. Because the grains contain dissolved minerals, many planetary scientists infer that a liquid ocean lies beneath the frozen crust.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been ejected",
+      "have been ejecting",
+      "has been ejecting",
+      "has been ejected"
+    ],
+    "correct_answer": "has been ejecting",
+    "explanation": "The subject is \"moon\"; \"spacecraft measurements suggest\" is a comment clause set off by commas, so its plural subject \"measurements\" does not control the main verb, which must be singular. After the interrupter \"through a set of long fractures near the pole,\" the verb takes a direct object, \"towering jets of water vapor and salty ice grains,\" so the moon is doing the ejecting and the verb must be active: \"has been ejecting.\" \"has been ejected\" is singular but passive, which would make the moon itself the thing ejected and leave \"towering jets\" with no grammatical role. \"have been ejecting\" is active but plural, agreeing with \"measurements.\" \"have been ejected\" is both plural and passive.",
+    "topic_tag": "planetary science: cryovolcanic plumes on icy moons",
+    "template": "singular head + interpolated comment clause 'X suggest' x comment-clause plural subject adjacent x has/have been V-ing / has/have been V-en"
+  },
+  {
+    "id": "SEC22B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head and an infinitive modifier containing an early singular noun, crossed with simple present passive vs. present progressive passive decided by a later verb reporting a completed result",
+    "difficulty": "hard",
+    "passage": "When a bright comet broke apart near perihelion, the large observatories were committed to other targets. Attempts by a single amateur astronomer to measure the brightness of its scattered fragments ______ in two tables in a short paper, which a professional journal accepted and printed within months. That paper became the standard record of the breakup.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is being documented",
+      "are documented",
+      "is documented",
+      "are being documented"
+    ],
+    "correct_answer": "are documented",
+    "explanation": "The subject is \"Attempts\"; \"by a single amateur astronomer to measure the brightness of its scattered fragments\" modifies it, so \"astronomer\" and \"brightness\" do not control the verb, which must be plural. The documenting is finished, not in progress: the paper that holds the tables is one that a journal \"accepted and printed,\" and it \"became\" the standard record, so the verb must be simple present passive describing what the finished paper contains: \"are documented.\" \"are being documented\" is plural but progressive, as if the tables were still being compiled, which contradicts \"printed.\" \"is documented\" is simple but singular, agreeing with \"astronomer\" or \"brightness.\" \"is being documented\" is both singular and progressive.",
+    "topic_tag": "cometary science: amateur photometry of a fragmenting comet",
+    "template": "plural head + 'by a single X to V the ... Ys' infinitive modifier x early singular 'astronomer' x is/are V-en / is/are being V-en"
+  }
+]

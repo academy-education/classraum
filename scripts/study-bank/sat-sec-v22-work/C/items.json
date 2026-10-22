@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC22C-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural possessor before a singular head noun (the [pl]' [sg]) crossed with present perfect versus simple present decided by a past-tense starting point and a present-tense continuing verb",
+    "difficulty": "hard",
+    "passage": "Two statisticians drafted the province's first household census in a single winter, arguing over nearly all of its questions. Even so, the statisticians' questionnaire ______ to regional planners and university demographers from the season it was printed, and analysts who design new surveys borrow its wording more often than that of any later form.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been indispensable",
+      "has been indispensable",
+      "are indispensable",
+      "is indispensable"
+    ],
+    "correct_answer": "has been indispensable",
+    "explanation": "The subject is \"questionnaire,\" a singular noun; \"the statisticians'\" is only a possessive describing whose questionnaire it is, so it cannot be the subject, and the verb must be singular. The verb must also be present perfect: the state began at a past point, \"from the season it was printed,\" and still holds, as the present-tense \"borrow\" in the same sentence shows, so only \"has been indispensable\" spans that interval. \"have been indispensable\" has the right aspect but is plural, agreeing with the possessive \"statisticians'.\" \"is indispensable\" is singular, but the simple present cannot reach back to a starting point in the past (\"from the season it was printed\"). \"are indispensable\" is both plural and in the wrong tense.",
+    "topic_tag": "historical demography: a provincial census questionnaire",
+    "template": "possessive NP subject the [pl]' [sg] x plural possessor read as subject x has/have been + adjective vs is/are + adjective"
+  },
+  {
+    "id": "SEC22C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement on the second verb of a compound predicate far from its plural subject, after a singular object, crossed with simple versus progressive present perfect decided by the first predicate and a later past-tense verb",
+    "difficulty": "hard",
+    "passage": "The diary records the lessons, quarrels, and harvests of a one-room school. Retired teachers who volunteer at the county museum transcribed the water-stained diary of its last schoolmistress and ______ to statewide registries of rural manuscripts. Both registries stopped accepting entries two winters ago, and historians who consult them treat both as closed collections.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been contributing",
+      "has contributed",
+      "have been contributing",
+      "have contributed"
+    ],
+    "correct_answer": "have contributed",
+    "explanation": "The blank is the second verb of a compound predicate whose subject is \"teachers,\" at the start of the sentence, so the verb must be plural; \"schoolmistress,\" the singular noun just before \"and,\" belongs to the first predicate (\"transcribed the water-stained diary of its last schoolmistress\") and is not a subject. The action must also be a completed one, not an ongoing one: it is paired with the simple, completed \"transcribed,\" and the next sentence says the registries \"stopped accepting entries two winters ago,\" so no contributing can still be in progress. Only \"have contributed\" is plural and completed. \"have been contributing\" is plural but describes an activity continuing up to now, which a registry that stopped accepting entries two winters ago rules out. \"has contributed\" is completed but singular, as if \"schoolmistress\" were the subject. \"has been contributing\" is both singular and progressive.",
+    "topic_tag": "manuscript transcription: a schoolmistress's diary",
+    "template": "compound predicate, second verb far from plural subject x singular object of the first predicate x has/have V-en vs has/have been V-ing"
+  },
+  {
+    "id": "SEC22C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a whose-relative clause (singular antecedent, whose + plural noun as the clause subject) crossed with past versus present progressive passive decided by the past-tense frame verbs",
+    "difficulty": "hard",
+    "passage": "During the occupation, a single playwright kept the city's banned theater alive almost by herself. The playwright, whose unsigned scripts ______ hand to hand after dark, wrote under four invented names and never attended a performance of her own plays. Actors memorized each scene within a night and then burned the pages.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were being passed",
+      "was being passed",
+      "is being passed",
+      "are being passed"
+    ],
+    "correct_answer": "were being passed",
+    "explanation": "Inside the relative clause, the subject of the blank is \"scripts\" (\"whose unsigned scripts\"), which is plural; \"playwright\" is the subject of the main clause, whose verb is \"wrote,\" not of the relative clause, so the verb must be plural. The verb must also be past: the frame is a past narrative, with \"kept\" in the first sentence, \"wrote\" and \"never attended\" in the playwright's own clause, and \"memorized\" and \"burned\" in the last sentence. Only \"were being passed\" is plural and past. \"are being passed\" is plural but present, which clashes with \"wrote\" and the rest of the past narrative. \"was being passed\" is past but singular, agreeing with \"playwright.\" \"is being passed\" is both singular and present.",
+    "topic_tag": "theater history: clandestine performance under occupation",
+    "template": "whose-relative, whose + plural as clause subject x singular antecedent read as subject x is/are being V-en vs was/were being V-en"
+  },
+  {
+    "id": "SEC22C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a nonrestrictive which-clause whose antecedent is the whole preceding clause, ending in a plural noun, crossed with simple present versus present perfect passive decided by the habitual present-tense frame",
+    "difficulty": "hard",
+    "passage": "Whenever a museum lends one of its panel paintings, a conservator first strips the yellowed varnish left by earlier owners, which ______ in written reports as a separate treatment. Registrars at the borrowing museum read that entry when the crate arrives and compare the panel's surface against it before the painting goes on view.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been logged",
+      "are logged",
+      "is logged",
+      "have been logged"
+    ],
+    "correct_answer": "is logged",
+    "explanation": "\"which\" here refers to the whole action of the preceding clause, the conservator's stripping of the varnish; that action is what can be recorded \"as a separate treatment,\" whereas \"owners,\" the plural noun just before the comma, cannot be a treatment. A clause used as an antecedent takes a singular verb. The verb must also be simple present: the sentence describes a routine that recurs \"Whenever a museum lends\" a painting, and the next sentence continues that routine in the present tense (\"read,\" \"compare,\" \"goes\"), so the logging is part of each repetition rather than a single completed event. Only \"is logged\" is singular and simple present. \"has been logged\" is singular but presents the logging as one finished event, which does not fit a procedure repeated whenever a painting is lent. \"are logged\" is simple present but plural, as if \"owners\" were the antecedent. \"have been logged\" is both plural and perfect.",
+    "topic_tag": "museum studies: loan condition reporting",
+    "template": "which-clause with whole-clause antecedent x plural noun closing that clause x is/are V-en vs has/have been V-en"
+  },
+  {
+    "id": "SEC22C-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a subject relative clause whose antecedent is the far plural noun across a prepositional phrase, not the nearer singular noun, crossed with active progressive versus passive decided by who does the action in other sentences",
+    "difficulty": "hard",
+    "passage": "Anthropologists who attend one mountain village's spring festival watch its procession more closely than its feast. The boys behind the village priest that ______ as part of the river god's escort carry reed torches down to the water. The priest himself wears his everyday black cassock, and the boys' grandmothers sew the costumes in secret and fit them onto the boys before dawn.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is dressing",
+      "are dressed",
+      "is dressed",
+      "are dressing"
+    ],
+    "correct_answer": "are dressed",
+    "explanation": "The relative clause \"that ______ as part of the river god's escort\" describes \"boys,\" not \"priest\": the next sentence says the priest \"wears his everyday black cassock,\" so he is not in costume, and the verb must agree with the plural \"boys.\" The verb must also be passive: the boys do not dress themselves, because their grandmothers \"sew the costumes\" and \"fit them onto the boys before dawn,\" so by the time the boys carry torches in the procession they have been dressed by someone else. Only \"are dressed\" is plural and passive. \"are dressing\" is plural but active and progressive, saying the boys are putting on costumes themselves during the procession, which the grandmothers' fitting before dawn rules out. \"is dressed\" is passive but singular, attaching the clause to \"priest,\" whom the cassock sentence excludes. \"is dressing\" is both singular and active.",
+    "topic_tag": "anthropology: a village spring procession",
+    "template": "subject relative on the far plural across a PP x nearer singular noun as false antecedent x is/are V-ing vs is/are V-en"
+  },
+  {
+    "id": "SEC22C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after an unlike-those-of comparison phrase ending in a plural noun, crossed with present perfect progressive versus present progressive decided by a past-tense span and a present-tense continuing verb",
+    "difficulty": "hard",
+    "passage": "A husband and wife who tour as puppeteers revived the forgotten shadow play in a borrowed barn, with one painted screen and no money for advertising. The shadow play's script, unlike those of the puppeteers' lavish marionette dramas, ______ steadily from village stage to village stage in each of the seasons that followed its premiere, and directors in distant towns write to the puppeteers each month asking for copies.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been traveling",
+      "is traveling",
+      "have been traveling",
+      "are traveling"
+    ],
+    "correct_answer": "has been traveling",
+    "explanation": "The subject is \"script,\" which is singular; \"unlike those of the puppeteers' lavish marionette dramas\" is a comparison phrase set off by commas, and neither \"those\" nor \"dramas\" is the subject, so the verb must be singular. The verb must also be present perfect progressive: the activity covers a span that began in the past, \"each of the seasons that followed its premiere,\" and it continues, as the present-tense \"write\" shows. Only \"has been traveling\" is singular and spans that interval. \"is traveling\" is singular, but the present progressive describes only the present moment and cannot cover seasons that \"followed\" the premiere in the past. \"have been traveling\" has the right aspect but is plural, agreeing with \"those\" or \"dramas.\" \"are traveling\" is both plural and in the wrong aspect.",
+    "topic_tag": "puppetry: a revived shadow-play script",
+    "template": "unlike-those-of comparison phrase between subject and verb x plural pronoun those + plural noun x has/have been V-ing vs is/are V-ing"
+  },
+  {
+    "id": "SEC22C-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular head followed by a content clause containing its own plural subject and verb, crossed with active intransitive versus passive progressive decided by a later sentence naming the subject as the doer",
+    "difficulty": "hard",
+    "passage": "The claim that the abbey's monks had forged their own land charters ______ through crowded marketplaces long before any scholar examined the parchment itself. The monks' rivals never needed to promote it; the accusation spread by itself, passing from tavern gossip into Sunday sermons without any pamphlet or proclamation behind it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was being circulated",
+      "were circulating",
+      "were being circulated",
+      "was circulating"
+    ],
+    "correct_answer": "was circulating",
+    "explanation": "The subject is \"claim,\" which is singular; \"that the abbey's monks had forged their own land charters\" is a clause explaining the claim, and its own subject \"monks\" and the plural \"charters\" just before the blank belong to that clause, so the verb must be singular. The verb must also be active: the next sentence says the rivals \"never needed to promote it\" and that the accusation \"spread by itself,\" so the claim is the thing moving through the marketplaces, not something that anyone was distributing. Only \"was circulating\" is singular and active. \"was being circulated\" is singular but passive, implying someone was deliberately passing the claim around, which the second sentence denies. \"were circulating\" is active but plural, agreeing with \"monks\" or \"charters.\" \"were being circulated\" is both plural and passive.",
+    "topic_tag": "medieval history: rumors of forged abbey charters",
+    "template": "noun-complement (content) clause inside the subject x content-clause subject and plural object as attractors x was/were V-ing vs was/were being V-en"
+  },
+  {
+    "id": "SEC22C-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in an inversion after a fronted -ing participial phrase, with the plural subject head postposed five or more words after the verb, crossed with present versus past decided by the present-tense frame verbs",
+    "difficulty": "hard",
+    "passage": "Art historians disagree about who painted the small altarpiece in the village church. Complicating any attempt to credit the panel to one master or to his assistants ______ faint and partly scraped initials hidden beneath the frame. Some scholars read the letters as a signature, while others dismiss them as a later owner's mark.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was the",
+      "is the",
+      "are the",
+      "were the"
+    ],
+    "correct_answer": "are the",
+    "explanation": "The sentence is inverted: the fronted phrase \"Complicating any attempt to credit the panel to one master or to his assistants\" is not the subject, and the subject follows the verb, \"the faint and partly scraped initials,\" whose head noun \"initials\" is plural; \"attempt,\" \"panel,\" and \"master\" are singular but sit inside the fronted phrase, so the verb must be plural. The verb must also be present: the dispute is a current one, with \"disagree\" in the first sentence and \"read\" and \"dismiss\" in the last, so the initials complicate attribution now. Only \"are the\" is plural and present. \"were the\" is plural but past, which clashes with the present-tense dispute around it. \"is the\" is present but singular, as if \"attempt\" or the fronted phrase were the subject. \"was the\" is both singular and past.",
+    "topic_tag": "art history: a disputed altarpiece attribution",
+    "template": "fronted -ing participial phrase + inversion, plural head postposed x singular nouns early in the fronted phrase x is/are/was/were + shared determiner"
+  }
+]

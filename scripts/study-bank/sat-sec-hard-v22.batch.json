@@ -1,0 +1,410 @@
+[
+ {
+  "id": "SEC22A-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural head followed by an \"as well as\" phrase ending in a singular noun, crossed with active versus passive voice decided by a later sentence stating that no agent acts",
+  "difficulty": "hard",
+  "passage": "Farm soil holds a reserve of dormant weed seeds that can stay viable underground for years. When a field is left bare after harvest, wild oat seeds, as well as the occasional seed of field bindweed, ______ in the warm top layer of soil within a week of the first rain. Nobody sows or waters them; the seeds simply sprout on their own when the exposed soil warms.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are germinated",
+   "germinates",
+   "germinate",
+   "is germinated"
+  ],
+  "correct_answer": "germinate",
+  "explanation": "The subject is \"wild oat seeds,\" whose head noun \"seeds\" is plural; the phrase \"as well as the occasional seed of field bindweed\" is set off by commas and does not join the subject, so the singular \"seed\" and \"bindweed\" beside the blank do not control the verb. The verb must therefore be plural. The next sentence, \"Nobody sows or waters them; the seeds simply sprout on their own,\" shows that no one acts on the seeds, so the verb must be active and used without an object: \"germinate.\" \"germinates\" is active but singular, agreeing with \"seed\" in the interrupting phrase. \"are germinated\" is plural but passive, implying an agent that the final sentence rules out. \"is germinated\" is both singular and passive.",
+  "topic_tag": "weed science: dormant seed reserves in farm soil"
+ },
+ {
+  "id": "SEC22A-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with \"a number of\" + plural noun crossed with present perfect versus past progressive decided by a present-tense consequence in the next sentence",
+  "difficulty": "hard",
+  "passage": "Keeping a rice paddy flooded all season starves its soil of oxygen, and microbes in the airless mud give off methane as a result. A number of the delta's rice growers ______ by draining their fields between irrigations so that air can reach the mud. Their paddies emit markedly less methane than neighboring fields, and their harvests are no smaller.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have adapted",
+   "was adapting",
+   "has adapted",
+   "were adapting"
+  ],
+  "correct_answer": "have adapted",
+  "explanation": "The subject is \"A number of the delta's rice growers.\" \"A number of\" means \"several\" and takes a plural verb, so the head word \"number\" does not make the subject singular; the verb must be plural, agreeing with \"growers.\" The next sentence states the result in the present tense: \"Their paddies emit markedly less methane\" and \"their harvests are no smaller.\" A past change whose consequence holds in the present calls for the present perfect, so the answer is \"have adapted.\" \"has adapted\" has the right aspect but is singular, treating \"number\" as the subject. \"were adapting\" is plural but past progressive, describing an action in progress at some past moment that the passage never establishes, which does not fit the present-tense result. \"was adapting\" is both singular and past progressive.",
+  "topic_tag": "rice agronomy: alternate wetting and drying"
+ },
+ {
+  "id": "SEC22A-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural-form singular discipline name (\"hydroponics\") crossed with present versus past tense decided by the present-tense verbs of the surrounding sentences",
+  "difficulty": "hard",
+  "passage": "On desert farms near the coast, hydroponics ______ widely enough to supply lettuce and tomatoes to inland cities. Growing crops in nutrient solution instead of soil can cut irrigation water by up to ninety percent, because the roots take up only what they need and the rest flows back through the system. Growers on those farms add mineral salts to recirculating tanks and adjust the mixture as the plants mature.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "were practiced",
+   "are practiced",
+   "was practiced",
+   "is practiced"
+  ],
+  "correct_answer": "is practiced",
+  "explanation": "The subject is \"hydroponics,\" the name of a growing method; although it ends in -s, it is a singular noun, like \"genetics,\" so the verb must be singular. The sentences that follow describe a current practice in the present tense: the method \"can cut\" water use, the rest \"flows\" back, and \"Growers on those farms add mineral salts\" and \"adjust the mixture.\" The verb must therefore be present: \"is practiced.\" \"are practiced\" is present but plural, treating the -s ending as a plural marker. \"was practiced\" is singular but past, which would place the farming in the past even though the last sentence says the growers on those same farms add salts today. \"were practiced\" is both plural and past.",
+  "topic_tag": "controlled-environment agriculture: desert hydroponics"
+ },
+ {
+  "id": "SEC22A-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement across an absolute phrase containing a plural noun, crossed with present progressive versus simple present decided by an interrupting when-clause and the result in the next sentence",
+  "difficulty": "hard",
+  "passage": "Tumor cells grown in a lab dish often clump into spheroids, small balls of tissue whose cells divide about every twenty hours. In one experiment, a spheroid, its outer cells wrapped in a thin sheath of collagen, ______ outward in all directions when the researchers add an experimental drug to the surrounding medium. Within hours of the dose, its growth halts, and its diameter stops changing.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are proliferating",
+   "is proliferating",
+   "proliferate",
+   "proliferates"
+  ],
+  "correct_answer": "is proliferating",
+  "explanation": "The subject is \"a spheroid\"; the phrase \"its outer cells wrapped in a thin sheath of collagen\" is an absolute phrase with its own noun, \"cells,\" and is not part of the subject, so the verb must be singular. The next sentence says that \"its growth halts\" within hours of the dose, so the growth was already under way when the researchers \"add\" the drug and is interrupted by it; an action in progress at the moment another event occurs takes the progressive: \"is proliferating.\" \"proliferates\" is singular but simple present; with \"when the researchers add\" it would mean the spheroid starts growing in response to the drug, which contradicts the halt. \"are proliferating\" is progressive but plural, agreeing with \"cells\" in the absolute phrase. \"proliferate\" is both plural and simple.",
+  "topic_tag": "oncology: tumor spheroid drug response"
+ },
+ {
+  "id": "SEC22A-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement inside an object relative clause (plural antecedent, singular clause subject) crossed with active versus passive voice decided by the relative pronoun's role as the verb's object",
+  "difficulty": "hard",
+  "passage": "Ecologists fitted a hornbill with a radio tag to learn how far its meals carry the seeds of fruiting trees in a fragmented forest. The fig seeds that the bird ______ sprouted in a sunlit clearing more than a kilometer from any parent tree, well beyond the range of smaller fruit-eaters. The tag showed that the bird swallowed figs in one patch of forest and dropped their seeds hours later in another.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was deposited",
+   "were depositing",
+   "were deposited",
+   "was depositing"
+  ],
+  "correct_answer": "was depositing",
+  "explanation": "The blank is the verb of the relative clause \"that the bird ______,\" whose subject is \"the bird,\" not \"The fig seeds\"; the seeds are the antecedent of \"that.\" Because \"bird\" is singular, the verb must be singular. In that clause \"that\" stands for the seeds and is the verb's object, and the last sentence confirms that the bird is the one carrying the seeds, since it \"swallowed figs\" in one place and \"dropped their seeds\" in another. The verb must therefore be active: \"was depositing.\" \"were depositing\" is active but plural, agreeing with \"seeds.\" \"was deposited\" is singular but passive; it would make the bird the thing deposited and leave \"that\" with no role in the clause. \"were deposited\" is both plural and passive.",
+  "topic_tag": "frugivory: hornbill seed dispersal"
+ },
+ {
+  "id": "SEC22A-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural head and a reduced participial relative ending in a singular noun, crossed with active versus passive voice decided by the agent named in the first sentence",
+  "difficulty": "hard",
+  "passage": "Technicians at a regional blood bank test donated plasma for viruses before it can be given to a patient, sometimes repeatedly when an early result is unclear. Physicians will not release a unit until a final test resolves any doubt. The plasma units collected from one donor with an unusual antibody ______ four separate times, and each round of testing produced the same ambiguous reading.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has screened",
+   "have been screened",
+   "have screened",
+   "has been screened"
+  ],
+  "correct_answer": "have been screened",
+  "explanation": "The subject is \"The plasma units,\" whose head noun \"units\" is plural; \"collected from one donor with an unusual antibody\" is a reduced relative clause that modifies \"units,\" so the singular \"donor\" and \"antibody\" beside the blank do not control the verb. The verb must be plural. The first sentence names who does the testing: \"Technicians at a regional blood bank test donated plasma,\" so the units are tested rather than doing any testing, and the verb must be passive: \"have been screened.\" \"have screened\" is plural but active; it would say the units screened something, and \"four separate times\" is not an object. \"has been screened\" is passive but singular, agreeing with \"antibody.\" \"has screened\" is both singular and active.",
+  "topic_tag": "transfusion medicine: plasma viral screening"
+ },
+ {
+  "id": "SEC22A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in the second half of a comparative correlative with a fronted plural object, crossed with simple present versus present perfect decided by the parallel present verb in the first half",
+  "difficulty": "hard",
+  "passage": "Producing nectar costs a plant sugar that it could otherwise spend on leaves and roots. In field plots of wild sunflowers, the reward appears to repay the expense: the more nectar the flower heads secrete, the more foraging bees a single plant ______. The most heavily visited plants go on to produce the heaviest flower heads by the end of summer.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "attracts",
+   "have attracted",
+   "attract",
+   "has attracted"
+  ],
+  "correct_answer": "attracts",
+  "explanation": "In the second half of the comparison, \"the more foraging bees\" is the fronted object and \"a single plant\" is the subject, so the verb must agree with the singular \"plant,\" not with \"bees.\" The two halves of a \"the more ..., the more ...\" comparison are parallel, and the first half uses the simple present: \"the flower heads secrete\"; the next sentence also uses the simple present: \"The most heavily visited plants go on to produce.\" The verb must therefore be simple present and singular: \"attracts.\" \"attract\" is simple present but plural, agreeing with the fronted \"bees\" or copying the plural \"secrete.\" \"has attracted\" is singular but present perfect, which breaks the parallel with \"secrete.\" \"have attracted\" is both plural and perfect.",
+  "topic_tag": "plant reproductive ecology: sunflower nectar rewards"
+ },
+ {
+  "id": "SEC22A-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a nonrestrictive relative clause after a possessive noun phrase (singular possessor, plural head), crossed with present perfect progressive versus past progressive decided by a present-tense verb showing the activity continuing",
+  "difficulty": "hard",
+  "passage": "The county's automated wastewater samplers, which ______ in four-hour cycles at every treatment plant, give health officials an early warning of outbreaks. Traces of a virus show up in sewage days before infected people visit a doctor, and the samplers continue to draw water around the clock. Each week's results appear on a public dashboard.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "were operating",
+   "has been operating",
+   "have been operating",
+   "was operating"
+  ],
+  "correct_answer": "have been operating",
+  "explanation": "The relative pronoun \"which\" refers to \"samplers,\" the head of \"The county's automated wastewater samplers\"; \"county's\" is only a possessor, so the verb must be plural. The second sentence says that \"the samplers continue to draw water around the clock,\" and the main clause says they \"give\" officials warnings in the present, so the operation began in the past and is still going on; that calls for the present perfect progressive: \"have been operating.\" \"has been operating\" has the right form but is singular, agreeing with \"county's.\" \"were operating\" is plural but past progressive, which places the operation in a past period and does not fit samplers that \"continue\" to run. \"was operating\" is both singular and past.",
+  "topic_tag": "environmental epidemiology: wastewater virus monitoring"
+ },
+ {
+  "id": "SEC22B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural head whose restrictive object-relative clause carries its own singular subject and verb, crossed with present vs. past progressive decided by past-tense narrative verbs",
+  "difficulty": "hard",
+  "passage": "The piezometers that the night technician could reach without a boat ______ steadily higher readings each evening as the new reservoir filled behind the earthen dam. Alarmed by the trend, the engineers opened a line of relief wells along the downstream toe of the embankment, and within a week the water pressure inside the dam leveled off.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was recording",
+   "are recording",
+   "were recording",
+   "is recording"
+  ],
+  "correct_answer": "were recording",
+  "explanation": "The subject is \"piezometers\"; \"the night technician could reach without a boat\" is a relative clause with its own singular subject, so neither \"technician\" nor \"boat\" controls the main verb, which must be plural. The passage narrates a finished episode in the past: the reservoir \"filled,\" the engineers \"opened\" relief wells, and the pressure \"leveled off,\" so the verb must be past: \"were recording.\" \"was recording\" is past but singular, agreeing with \"technician\" or \"boat\" inside the relative clause. \"are recording\" is plural but present, which clashes with the past-tense account of what happened during the filling. \"is recording\" is both singular and present.",
+  "topic_tag": "geotechnical engineering: earthen dam piezometers"
+ },
+ {
+  "id": "SEC22B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural head separated from its verb by a because-clause whose own singular subject and verb sit beside the blank, crossed with active vs. passive progressive decided by a delayed by-phrase",
+  "difficulty": "hard",
+  "passage": "The galvanized steel wires inside the main cable of an aging suspension bridge, because the protective zinc coating has worn away, ______ along the full length of each strand by hydrogen that forms as the bare metal corrodes. The gas makes the steel brittle. Inspectors opening such cables find wires that have snapped without any visible warning, so many bridge owners pump dry air through their cables.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are being attacked",
+   "is attacking",
+   "is being attacked",
+   "are attacking"
+  ],
+  "correct_answer": "are being attacked",
+  "explanation": "The subject is \"wires\"; \"because the protective zinc coating has worn away\" is an adverbial clause with its own singular subject and verb, so \"coating\" and \"has\" do not control the main verb, which must be plural. The wires do not attack anything: nothing after the blank is an object, and the sentence names the attacker in \"by hydrogen that forms as the bare metal corrodes,\" eight words after the blank, so the verb must be passive: \"are being attacked.\" \"is being attacked\" is passive but singular, agreeing with \"coating\" (or \"bridge\") rather than \"wires.\" \"are attacking\" is plural but active, which would make the wires the attackers and leaves the verb with no object while \"by hydrogen\" names the real agent. \"is attacking\" is both singular and active.",
+  "topic_tag": "structural engineering: suspension bridge cable corrosion"
+ },
+ {
+  "id": "SEC22B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a singular head followed by stacked prepositional phrases ending in a plural, crossed with present progressive vs. present perfect decided by a present-tense verb in the next sentence",
+  "difficulty": "hard",
+  "passage": "Geologists monitoring a steep alpine valley have concentrated on a single hazard. A slab of granite on the eastern face of the ridge above the valley's hiking trails ______. The fracture separating the slab from the bedrock widens by a few millimeters each summer, but because the slab remains attached at its base, the geologists can measure the gap weekly and estimate when the block might fall.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have detached",
+   "has detached",
+   "are detaching",
+   "is detaching"
+  ],
+  "correct_answer": "is detaching",
+  "explanation": "The subject is \"slab\"; \"of granite on the eastern face of the ridge above the valley's hiking trails\" is a chain of prepositional phrases, so the plural \"trails\" just before the blank does not control the verb, which must be singular. The next sentence says the slab \"remains attached at its base\" while the fracture \"widens,\" so the separation is still in progress, not complete: \"is detaching.\" \"has detached\" is singular but present perfect, saying the slab has already come away, which contradicts \"remains attached.\" \"are detaching\" is progressive but plural, agreeing with \"trails.\" \"have detached\" is plural and also says the separation is complete.",
+  "topic_tag": "geomorphology: rockslide fracture monitoring"
+ },
+ {
+  "id": "SEC22B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a singular head whose \"between X and Y\" modifier contains a compound, crossed with simple past passive vs. present perfect passive decided by a past-tense verb that closes the interval",
+  "difficulty": "hard",
+  "passage": "The alignment between the northern heading and the southern heading ______ every few days with laser surveys as two tunnel-boring machines advanced toward each other beneath the mountain. When the machines finally broke through, the two halves of the new water-supply tunnel met with an offset of less than two centimeters, a result that the project's surveyors celebrated.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been checked",
+   "was checked",
+   "have been checked",
+   "were checked"
+  ],
+  "correct_answer": "was checked",
+  "explanation": "The subject is \"alignment\"; \"the northern heading and the southern heading\" is a compound inside the prepositional phrase \"between ...,\" not a compound subject, so the verb must be singular. The checking happened only while the machines \"advanced toward each other,\" and the next sentence closes that period: the machines \"broke through\" and the halves \"met,\" so the verb must be simple past: \"was checked.\" \"has been checked\" is singular but present perfect, which wrongly ties a finished, closed-off period of surveying to the present. \"were checked\" is past but plural, treating the two headings as the subject. \"have been checked\" is both plural and present perfect.",
+  "topic_tag": "tunnel engineering: twin-heading survey alignment"
+ },
+ {
+  "id": "SEC22B-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement after \"nor\" with auxiliary inversion and a singular postposed subject, crossed with do-support vs. perfect auxiliary decided by the lexical base verb",
+  "difficulty": "hard",
+  "passage": "Hydrologists estimating how much water a mountain snowpack holds must combine two incomplete sources. The automated ground stations scattered across a typical watershed have never sampled more than a small fraction of its area, nor ______ newer, considerably more sensitive radar instrument aboard an orbiting satellite measure snow depth reliably beneath a dense forest canopy.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "does the",
+   "have the",
+   "do the",
+   "has the"
+  ],
+  "correct_answer": "does the",
+  "explanation": "After \"nor,\" the auxiliary comes before the subject, and the subject here is \"instrument,\" five words later, not the plural \"stations\" of the first clause, so the auxiliary must be singular. The main verb of this clause is the base form \"measure,\" ten words after the blank, and a base form needs the auxiliary \"do,\" not \"have\" (which would need \"measured\"): \"does the.\" \"do the\" uses the right auxiliary but is plural, copying the number of \"stations.\" \"has the\" is singular but takes the perfect auxiliary, which cannot combine with \"measure.\" \"have the\" copies the first clause's \"have never sampled\" in both number and auxiliary.",
+  "topic_tag": "snow hydrology: snowpack water estimation"
+ },
+ {
+  "id": "SEC22B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with \"the latter\" resuming a plural noun from the previous sentence, crossed with simple past vs. present perfect decided by past-tense verbs anchoring a finished period",
+  "difficulty": "hard",
+  "passage": "Engineers building the first railways tried two kinds of track: short cast-iron rails and long wrought-iron rails. The latter, rolled in lengths of several yards, ______ per mile of track, but the brittle cast rails cracked under heavier locomotives, and by the end of that period every major line had replaced them.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have been costlier",
+   "was costlier",
+   "has been costlier",
+   "were costlier"
+  ],
+  "correct_answer": "were costlier",
+  "explanation": "\"The latter\" refers to the second of the two kinds of track named in the first sentence, \"long wrought-iron rails,\" which is plural, so the verb must be plural even though \"latter\" looks like a single item. The passage describes a finished historical period: engineers \"tried\" both kinds, the cast rails \"cracked,\" and every line \"had replaced\" them, so the verb must be simple past: \"were costlier.\" \"was costlier\" is past but singular, treating \"the latter\" as one thing. \"have been costlier\" is plural but present perfect, which wrongly connects a closed episode in early railway history to the present. \"has been costlier\" is both singular and present perfect.",
+  "topic_tag": "railway history: cast-iron versus wrought-iron rails"
+ },
+ {
+  "id": "SEC22B-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a singular head separated from its verb by an interpolated comment clause with a plural subject, crossed with active vs. passive perfect decided by an object delayed by an interrupter",
+  "difficulty": "hard",
+  "passage": "A moon too small to retain much internal heat should, in theory, be frozen solid. One such icy moon, spacecraft measurements suggest, ______, through a set of long fractures near the pole, towering jets of water vapor and salty ice grains into space. Because the grains contain dissolved minerals, many planetary scientists infer that a liquid ocean lies beneath the frozen crust.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have been ejected",
+   "have been ejecting",
+   "has been ejecting",
+   "has been ejected"
+  ],
+  "correct_answer": "has been ejecting",
+  "explanation": "The subject is \"moon\"; \"spacecraft measurements suggest\" is a comment clause set off by commas, so its plural subject \"measurements\" does not control the main verb, which must be singular. After the interrupter \"through a set of long fractures near the pole,\" the verb takes a direct object, \"towering jets of water vapor and salty ice grains,\" so the moon is doing the ejecting and the verb must be active: \"has been ejecting.\" \"has been ejected\" is singular but passive, which would make the moon itself the thing ejected and leave \"towering jets\" with no grammatical role. \"have been ejecting\" is active but plural, agreeing with \"measurements.\" \"have been ejected\" is both plural and passive.",
+  "topic_tag": "planetary science: cryovolcanic plumes on icy moons"
+ },
+ {
+  "id": "SEC22B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural head and an infinitive modifier containing an early singular noun, crossed with simple present passive vs. present progressive passive decided by a later verb reporting a completed result",
+  "difficulty": "hard",
+  "passage": "When a bright comet broke apart near perihelion, the large observatories were committed to other targets. Attempts by a single amateur astronomer to measure the brightness of its scattered fragments ______ in two tables in a short paper, which a professional journal accepted and printed within months. That paper became the standard record of the breakup.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is being documented",
+   "are documented",
+   "is documented",
+   "are being documented"
+  ],
+  "correct_answer": "are documented",
+  "explanation": "The subject is \"Attempts\"; \"by a single amateur astronomer to measure the brightness of its scattered fragments\" modifies it, so \"astronomer\" and \"brightness\" do not control the verb, which must be plural. The documenting is finished, not in progress: the paper that holds the tables is one that a journal \"accepted and printed,\" and it \"became\" the standard record, so the verb must be simple present passive describing what the finished paper contains: \"are documented.\" \"are being documented\" is plural but progressive, as if the tables were still being compiled, which contradicts \"printed.\" \"is documented\" is simple but singular, agreeing with \"astronomer\" or \"brightness.\" \"is being documented\" is both singular and progressive.",
+  "topic_tag": "cometary science: amateur photometry of a fragmenting comet"
+ },
+ {
+  "id": "SEC22C-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a plural possessor before a singular head noun (the [pl]' [sg]) crossed with present perfect versus simple present decided by a past-tense starting point and a present-tense continuing verb",
+  "difficulty": "hard",
+  "passage": "Two statisticians drafted the province's first household census in a single winter, arguing over nearly all of its questions. Even so, the statisticians' questionnaire ______ to regional planners and university demographers from the season it was printed, and analysts who design new surveys borrow its wording more often than that of any later form.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have been indispensable",
+   "has been indispensable",
+   "are indispensable",
+   "is indispensable"
+  ],
+  "correct_answer": "has been indispensable",
+  "explanation": "The subject is \"questionnaire,\" a singular noun; \"the statisticians'\" is only a possessive describing whose questionnaire it is, so it cannot be the subject, and the verb must be singular. The verb must also be present perfect: the state began at a past point, \"from the season it was printed,\" and still holds, as the present-tense \"borrow\" in the same sentence shows, so only \"has been indispensable\" spans that interval. \"have been indispensable\" has the right aspect but is plural, agreeing with the possessive \"statisticians'.\" \"is indispensable\" is singular, but the simple present cannot reach back to a starting point in the past (\"from the season it was printed\"). \"are indispensable\" is both plural and in the wrong tense.",
+  "topic_tag": "historical demography: a provincial census questionnaire"
+ },
+ {
+  "id": "SEC22C-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement on the second verb of a compound predicate far from its plural subject, after a singular object, crossed with simple versus progressive present perfect decided by the first predicate and a later past-tense verb",
+  "difficulty": "hard",
+  "passage": "The diary records the lessons, quarrels, and harvests of a one-room school. Retired teachers who volunteer at the county museum transcribed the water-stained diary of its last schoolmistress and ______ to statewide registries of rural manuscripts. Both registries stopped accepting entries two winters ago, and historians who consult them treat both as closed collections.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been contributing",
+   "has contributed",
+   "have been contributing",
+   "have contributed"
+  ],
+  "correct_answer": "have contributed",
+  "explanation": "The blank is the second verb of a compound predicate whose subject is \"teachers,\" at the start of the sentence, so the verb must be plural; \"schoolmistress,\" the singular noun just before \"and,\" belongs to the first predicate (\"transcribed the water-stained diary of its last schoolmistress\") and is not a subject. The action must also be a completed one, not an ongoing one: it is paired with the simple, completed \"transcribed,\" and the next sentence says the registries \"stopped accepting entries two winters ago,\" so no contributing can still be in progress. Only \"have contributed\" is plural and completed. \"have been contributing\" is plural but describes an activity continuing up to now, which a registry that stopped accepting entries two winters ago rules out. \"has contributed\" is completed but singular, as if \"schoolmistress\" were the subject. \"has been contributing\" is both singular and progressive.",
+  "topic_tag": "manuscript transcription: a schoolmistress's diary"
+ },
+ {
+  "id": "SEC22C-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a whose-relative clause (singular antecedent, whose + plural noun as the clause subject) crossed with past versus present progressive passive decided by the past-tense frame verbs",
+  "difficulty": "hard",
+  "passage": "During the occupation, a single playwright kept the city's banned theater alive almost by herself. The playwright, whose unsigned scripts ______ hand to hand after dark, wrote under four invented names and never attended a performance of her own plays. Actors memorized each scene within a night and then burned the pages.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "were being passed",
+   "was being passed",
+   "is being passed",
+   "are being passed"
+  ],
+  "correct_answer": "were being passed",
+  "explanation": "Inside the relative clause, the subject of the blank is \"scripts\" (\"whose unsigned scripts\"), which is plural; \"playwright\" is the subject of the main clause, whose verb is \"wrote,\" not of the relative clause, so the verb must be plural. The verb must also be past: the frame is a past narrative, with \"kept\" in the first sentence, \"wrote\" and \"never attended\" in the playwright's own clause, and \"memorized\" and \"burned\" in the last sentence. Only \"were being passed\" is plural and past. \"are being passed\" is plural but present, which clashes with \"wrote\" and the rest of the past narrative. \"was being passed\" is past but singular, agreeing with \"playwright.\" \"is being passed\" is both singular and present.",
+  "topic_tag": "theater history: clandestine performance under occupation"
+ },
+ {
+  "id": "SEC22C-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a nonrestrictive which-clause whose antecedent is the whole preceding clause, ending in a plural noun, crossed with simple present versus present perfect passive decided by the habitual present-tense frame",
+  "difficulty": "hard",
+  "passage": "Whenever a museum lends one of its panel paintings, a conservator first strips the yellowed varnish left by earlier owners, which ______ in written reports as a separate treatment. Registrars at the borrowing museum read that entry when the crate arrives and compare the panel's surface against it before the painting goes on view.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been logged",
+   "are logged",
+   "is logged",
+   "have been logged"
+  ],
+  "correct_answer": "is logged",
+  "explanation": "\"which\" here refers to the whole action of the preceding clause, the conservator's stripping of the varnish; that action is what can be recorded \"as a separate treatment,\" whereas \"owners,\" the plural noun just before the comma, cannot be a treatment. A clause used as an antecedent takes a singular verb. The verb must also be simple present: the sentence describes a routine that recurs \"Whenever a museum lends\" a painting, and the next sentence continues that routine in the present tense (\"read,\" \"compare,\" \"goes\"), so the logging is part of each repetition rather than a single completed event. Only \"is logged\" is singular and simple present. \"has been logged\" is singular but presents the logging as one finished event, which does not fit a procedure repeated whenever a painting is lent. \"are logged\" is simple present but plural, as if \"owners\" were the antecedent. \"have been logged\" is both plural and perfect.",
+  "topic_tag": "museum studies: loan condition reporting"
+ },
+ {
+  "id": "SEC22C-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a subject relative clause whose antecedent is the far plural noun across a prepositional phrase, not the nearer singular noun, crossed with active progressive versus passive decided by who does the action in other sentences",
+  "difficulty": "hard",
+  "passage": "Anthropologists who attend one mountain village's spring festival watch its procession more closely than its feast. The boys behind the village priest that ______ as part of the river god's escort carry reed torches down to the water. The priest himself wears his everyday black cassock, and the boys' grandmothers sew the costumes in secret and fit them onto the boys before dawn.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is dressing",
+   "are dressed",
+   "is dressed",
+   "are dressing"
+  ],
+  "correct_answer": "are dressed",
+  "explanation": "The relative clause \"that ______ as part of the river god's escort\" describes \"boys,\" not \"priest\": the next sentence says the priest \"wears his everyday black cassock,\" so he is not in costume, and the verb must agree with the plural \"boys.\" The verb must also be passive: the boys do not dress themselves, because their grandmothers \"sew the costumes\" and \"fit them onto the boys before dawn,\" so by the time the boys carry torches in the procession they have been dressed by someone else. Only \"are dressed\" is plural and passive. \"are dressing\" is plural but active and progressive, saying the boys are putting on costumes themselves during the procession, which the grandmothers' fitting before dawn rules out. \"is dressed\" is passive but singular, attaching the clause to \"priest,\" whom the cassock sentence excludes. \"is dressing\" is both singular and active.",
+  "topic_tag": "anthropology: a village spring procession"
+ },
+ {
+  "id": "SEC22C-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement after an unlike-those-of comparison phrase ending in a plural noun, crossed with present perfect progressive versus present progressive decided by a past-tense span and a present-tense continuing verb",
+  "difficulty": "hard",
+  "passage": "A husband and wife who tour as puppeteers revived the forgotten shadow play in a borrowed barn, with one painted screen and no money for advertising. The shadow play's script, unlike those of the puppeteers' lavish marionette dramas, ______ steadily from village stage to village stage in each of the seasons that followed its premiere, and directors in distant towns write to the puppeteers each month asking for copies.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been traveling",
+   "is traveling",
+   "have been traveling",
+   "are traveling"
+  ],
+  "correct_answer": "has been traveling",
+  "explanation": "The subject is \"script,\" which is singular; \"unlike those of the puppeteers' lavish marionette dramas\" is a comparison phrase set off by commas, and neither \"those\" nor \"dramas\" is the subject, so the verb must be singular. The verb must also be present perfect progressive: the activity covers a span that began in the past, \"each of the seasons that followed its premiere,\" and it continues, as the present-tense \"write\" shows. Only \"has been traveling\" is singular and spans that interval. \"is traveling\" is singular, but the present progressive describes only the present moment and cannot cover seasons that \"followed\" the premiere in the past. \"have been traveling\" has the right aspect but is plural, agreeing with \"those\" or \"dramas.\" \"are traveling\" is both plural and in the wrong aspect.",
+  "topic_tag": "puppetry: a revived shadow-play script"
+ },
+ {
+  "id": "SEC22C-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a singular head followed by a content clause containing its own plural subject and verb, crossed with active intransitive versus passive progressive decided by a later sentence naming the subject as the doer",
+  "difficulty": "hard",
+  "passage": "The claim that the abbey's monks had forged their own land charters ______ through crowded marketplaces long before any scholar examined the parchment itself. The monks' rivals never needed to promote it; the accusation spread by itself, passing from tavern gossip into Sunday sermons without any pamphlet or proclamation behind it.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was being circulated",
+   "were circulating",
+   "were being circulated",
+   "was circulating"
+  ],
+  "correct_answer": "was circulating",
+  "explanation": "The subject is \"claim,\" which is singular; \"that the abbey's monks had forged their own land charters\" is a clause explaining the claim, and its own subject \"monks\" and the plural \"charters\" just before the blank belong to that clause, so the verb must be singular. The verb must also be active: the next sentence says the rivals \"never needed to promote it\" and that the accusation \"spread by itself,\" so the claim is the thing moving through the marketplaces, not something that anyone was distributing. Only \"was circulating\" is singular and active. \"was being circulated\" is singular but passive, implying someone was deliberately passing the claim around, which the second sentence denies. \"were circulating\" is active but plural, agreeing with \"monks\" or \"charters.\" \"were being circulated\" is both plural and passive.",
+  "topic_tag": "medieval history: rumors of forged abbey charters"
+ },
+ {
+  "id": "SEC22C-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in an inversion after a fronted -ing participial phrase, with the plural subject head postposed five or more words after the verb, crossed with present versus past decided by the present-tense frame verbs",
+  "difficulty": "hard",
+  "passage": "Art historians disagree about who painted the small altarpiece in the village church. Complicating any attempt to credit the panel to one master or to his assistants ______ faint and partly scraped initials hidden beneath the frame. Some scholars read the letters as a signature, while others dismiss them as a later owner's mark.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was the",
+   "is the",
+   "are the",
+   "were the"
+  ],
+  "correct_answer": "are the",
+  "explanation": "The sentence is inverted: the fronted phrase \"Complicating any attempt to credit the panel to one master or to his assistants\" is not the subject, and the subject follows the verb, \"the faint and partly scraped initials,\" whose head noun \"initials\" is plural; \"attempt,\" \"panel,\" and \"master\" are singular but sit inside the fronted phrase, so the verb must be plural. The verb must also be present: the dispute is a current one, with \"disagree\" in the first sentence and \"read\" and \"dismiss\" in the last, so the initials complicate attribution now. Only \"are the\" is plural and present. \"were the\" is plural but past, which clashes with the present-tense dispute around it. \"is the\" is present but singular, as if \"attempt\" or the fronted phrase were the subject. \"was the\" is both singular and past.",
+  "topic_tag": "art history: a disputed altarpiece attribution"
+ }
+]
