@@ -666,6 +666,20 @@
       "group": "draft15-D15-P06",
       "route": "spot",
       "runId": "ssat-draft15-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-passage-draft-6",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-passage6-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-talk-draft-6",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-talk6-spot{n}-cofounder-{date}"
     }
   ]
 }

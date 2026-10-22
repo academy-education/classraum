@@ -11591,6 +11591,60 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-6-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-6",
+      "contentSha": "e6b93ad2df0c32395bc2723195308579593584e768b1e0190cfae114bd2ff7be",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; staged 2026-10-23 (toefl-wave6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e6b93ad2df0c32395bc2723195308579593584e768b1e0190cfae114bd2ff7be",
+          "verdict": "author checks clean; topics grepped against 670 live+staged TOEFL reading/listening openings dumped from the DB."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/60, B 0/60"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "toefl-talk-draft-6-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "academic_talk",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-6",
+      "contentSha": "ecb24449e5ed97d5de228336a92566c2fa82b7fd901d4d121dcf987bb44e04b5",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; staged 2026-10-23 (toefl-wave6.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ecb24449e5ed97d5de228336a92566c2fa82b7fd901d4d121dcf987bb44e04b5",
+          "verdict": "author checks clean; topics grepped against 670 live+staged TOEFL reading/listening openings dumped from the DB."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/48, B 0/48"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [
