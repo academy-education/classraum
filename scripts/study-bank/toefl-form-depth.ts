@@ -37,10 +37,13 @@
  * the real database from here — in particular it can never write a
  * simulated student's exposures into the live ledger.
  *
- * It emulates PostgREST's 1000-row cap on the bank read, because the
- * assembler's bank query is UNPAGED: a TOEFL section that grows past 1000
- * verified rows is silently truncated in production. Listening sits at
- * ~840. The script warns when a section is within 15% of the cap.
+ * It emulates PostgREST's 1000-row cap on every read. The assembler's bank
+ * read has been PAGED since 2026-10-02 (readBankPaged), so the size of a
+ * section is no longer a risk on its own; what is checked instead is the
+ * READ: any request that arrives without an offset and would exceed the cap
+ * raises a CAP WARNING (the fetch stand-in below). The old static "within
+ * 15% of the cap" warning was removed 2026-10-22: it fired on Listening's
+ * 899 rows and claimed truncation that paging had already fixed.
  *
  * ── What it reports ──────────────────────────────────────────────────
  * Per task × path × routed band: sittings until first repeat, i.e. the
@@ -360,9 +363,6 @@ async function loadLiveBank(): Promise<string[]> {
     if (count !== rows.length || distinct !== rows.length) {
       console.error(`REFUSING: toefl/${section} loaded ${rows.length} rows (${distinct} distinct), live count is ${count}`)
       process.exit(2)
-    }
-    if (rows.length > MAX_ROWS * 0.85) {
-      capWarnings.add(`${section}: ${rows.length} verified rows — the assembler's bank query is UNPAGED and will silently truncate past ${MAX_ROWS}`)
     }
     BANK.set(section, rows)
   }
