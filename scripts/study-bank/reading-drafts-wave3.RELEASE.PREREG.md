@@ -47,3 +47,9 @@ Then Stop (apologies) · The Red Cloth (horseback doctor, invented) · Living Sc
   parents had known since spring.
 - After the fix: merge 0, quotes 0 of 286, location 0.
 - **Re-screen round 2, on the whole batch: A 0/36, B 0/36.**
+
+## isee-reading-draft-12 (staged 2026-10-23), FULL sitting (every-third ISEE batch)
+Passages: The Duck's Head (lost umbrella) · Where the Wind Went In (poem, kite) · The North Wall (seedling stall) ·
+The Key to the Room (cursive) · A Barn on the River (covered bridge, invented) · Written in Wood (tree rings).
+- Pre-flight: merge 0; quote check 0 of 250; location check 0 mismatches.
+- **Grader A 0/36, B 0/36.** One 36-item run.

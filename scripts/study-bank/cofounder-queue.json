@@ -486,6 +486,39 @@
       "upTo": 1,
       "route": "spot",
       "runId": "crv18-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-passage-draft-5",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-passage5-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-talk-draft-5",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-talk5-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "cr-v19",
+      "tool": "item",
+      "domain": "Choose a Response",
+      "size": 12,
+      "family": "toefl",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "crv19-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-12",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "isee",
+      "runId": "isee-draft12-release-cofounder-{date}",
+      "route": "full"
     }
   ]
 }

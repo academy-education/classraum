@@ -11027,6 +11027,114 @@
           "verdict": "verify-answer-key-spread on kept 13 (latent). Grader-named tells now: present perfect never beats simple past under a past time clause (3 items); key avoids the near noun number in ~10 of 15 agreement items."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-5-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-5",
+      "contentSha": "74e8a3da2154b4532fd156fa2a0eab45acf17f67baf0b99270a53b11dc18d55e",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; see toefl-wave5.RELEASE.PREREG.md / reading-drafts-wave3.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "74e8a3da2154b4532fd156fa2a0eab45acf17f67baf0b99270a53b11dc18d55e",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/60, B 0/60; cross-section collision check replaced 2 passages"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "toefl-talk-draft-5-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "academic_talk",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-5",
+      "contentSha": "c5eaa90efe4a88ff520f5dafda3632d971b794bf28ff6db022e6965d1aea2f60",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; see toefl-wave5.RELEASE.PREREG.md / reading-drafts-wave3.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c5eaa90efe4a88ff520f5dafda3632d971b794bf28ff6db022e6965d1aea2f60",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/48, B 0/48; 2 lectures replaced for collisions"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "cr-v19-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v19",
+      "contentSha": "e58a98004355f5c5ea8f32a54e3b9440620109e207f8571e2d781a11a567ec2f",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; see toefl-wave5.RELEASE.PREREG.md / reading-drafts-wave3.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e58a98004355f5c5ea8f32a54e3b9440620109e207f8571e2d781a11a567ec2f",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A+B 4/40 dropped"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-12-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-12",
+      "contentSha": "941ca8fb9e51938ba054936895a02a4bd7951cee0d6b02d64c6c1e1c2e0ce266",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; see toefl-wave5.RELEASE.PREREG.md / reading-drafts-wave3.RELEASE.PREREG.md.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "941ca8fb9e51938ba054936895a02a4bd7951cee0d6b02d64c6c1e1c2e0ce266",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "grader A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

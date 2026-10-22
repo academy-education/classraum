@@ -1,0 +1,2838 @@
+{
+ "cohort": "toefl-talk-draft-5",
+ "created": "2026-10-23",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Earthquake waves are how we see inside the planet. Nobody has drilled more than about twelve kilometers down, but every large earthquake sends waves through the whole Earth, and stations on the far side record them. By the early twentieth century, seismologists had noticed something odd. Beyond roughly a hundred and four degrees around the globe from an earthquake, the direct waves went quiet. There was a band, a shadow zone, where stations picked up very little, and then, farther out, strong arrivals again. The explanation was a core, about twenty-nine hundred kilometers down, that bends waves sharply, the way a lens bends light. And since one kind of wave, the shear wave, can't travel through liquid and never came through the core, most researchers concluded the core was liquid.\n\nSo the picture seemed settled: a molten core, with a shadow behind it. Then in 1936 the Danish seismologist Inge Lehmann published a paper with what may be the shortest title in the field, just P-prime. She'd been studying records of a large earthquake in New Zealand, and she noticed weak waves arriving inside the shadow zone, where, on the accepted model, they had no business being. Others had tended to explain such arrivals away. Lehmann took them seriously. She showed they made sense if there were a second boundary, deeper down, an inner core where the waves travel faster and get bent back toward the surface.\n\nNow, here's what usually gets lost in the retelling. Lehmann didn't prove the inner core was solid. Her argument was about speed, not state. The idea that it's solid came a few years later, and firm evidence took until the early 1970s, from the way the whole planet rings like a bell after a great earthquake. What she did was refuse to treat inconvenient data as junk.",
+    "passageGroupId": "pg-73ffc11c85849606b244b6f9abc78e8a",
+    "prompt": "[Academic Talk — Seismology] What is the lecture mainly about?",
+    "choices": [
+     "How shear waves showed that the inner core is solid",
+     "Why the shadow zone was later shown not to exist",
+     "Why drilling has never reached the Earth's core",
+     "How weak, overlooked waves pointed to an inner core"
+    ],
+    "correct_answer": "How weak, overlooked waves pointed to an inner core",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Lehmann took seriously weak arrivals in the shadow zone and proposed an inner core to explain them.",
+    "distractor_rationales": [
+     {
+      "choice": "How shear waves showed that the inner core is solid",
+      "reason": "Shear waves showed the core was liquid; solidity came from the planet ringing 'like a bell'."
+     },
+     {
+      "choice": "Why the shadow zone was later shown not to exist",
+      "reason": "The weak waves arrived 'inside the shadow zone'; the zone itself is not denied."
+     },
+     {
+      "choice": "Why drilling has never reached the Earth's core",
+      "reason": "Drilling depth is mentioned in one sentence as background."
+     }
+    ]
+   },
+   "content_hash": "3327962ec355662a6beec401d0447302",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Earthquake waves are how we see inside the planet. Nobody has drilled more than about twelve kilometers down, but every large earthquake sends waves through the whole Earth, and stations on the far side record them. By the early twentieth century, seismologists had noticed something odd. Beyond roughly a hundred and four degrees around the globe from an earthquake, the direct waves went quiet. There was a band, a shadow zone, where stations picked up very little, and then, farther out, strong arrivals again. The explanation was a core, about twenty-nine hundred kilometers down, that bends waves sharply, the way a lens bends light. And since one kind of wave, the shear wave, can't travel through liquid and never came through the core, most researchers concluded the core was liquid.\n\nSo the picture seemed settled: a molten core, with a shadow behind it. Then in 1936 the Danish seismologist Inge Lehmann published a paper with what may be the shortest title in the field, just P-prime. She'd been studying records of a large earthquake in New Zealand, and she noticed weak waves arriving inside the shadow zone, where, on the accepted model, they had no business being. Others had tended to explain such arrivals away. Lehmann took them seriously. She showed they made sense if there were a second boundary, deeper down, an inner core where the waves travel faster and get bent back toward the surface.\n\nNow, here's what usually gets lost in the retelling. Lehmann didn't prove the inner core was solid. Her argument was about speed, not state. The idea that it's solid came a few years later, and firm evidence took until the early 1970s, from the way the whole planet rings like a bell after a great earthquake. What she did was refuse to treat inconvenient data as junk.",
+    "passageGroupId": "pg-73ffc11c85849606b244b6f9abc78e8a",
+    "prompt": "[Academic Talk — Seismology] According to the professor, why did most researchers conclude that the core was liquid?",
+    "choices": [
+     "Shear waves never passed through it",
+     "Waves sped up sharply inside it",
+     "The planet rang like a bell after quakes",
+     "Its depth matched that of molten rock"
+    ],
+    "correct_answer": "Shear waves never passed through it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The shear wave, can't travel through liquid and never came through the core.'",
+    "distractor_rationales": [
+     {
+      "choice": "Waves sped up sharply inside it",
+      "reason": "Faster waves belong to Lehmann's inner core."
+     },
+     {
+      "choice": "The planet rang like a bell after quakes",
+      "reason": "The ringing was 1970s evidence that the inner core is solid."
+     },
+     {
+      "choice": "Its depth matched that of molten rock",
+      "reason": "No such comparison with molten rock is made."
+     }
+    ]
+   },
+   "content_hash": "9567a4094f18fd3cd23197f19c5ad1a4",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Earthquake waves are how we see inside the planet. Nobody has drilled more than about twelve kilometers down, but every large earthquake sends waves through the whole Earth, and stations on the far side record them. By the early twentieth century, seismologists had noticed something odd. Beyond roughly a hundred and four degrees around the globe from an earthquake, the direct waves went quiet. There was a band, a shadow zone, where stations picked up very little, and then, farther out, strong arrivals again. The explanation was a core, about twenty-nine hundred kilometers down, that bends waves sharply, the way a lens bends light. And since one kind of wave, the shear wave, can't travel through liquid and never came through the core, most researchers concluded the core was liquid.\n\nSo the picture seemed settled: a molten core, with a shadow behind it. Then in 1936 the Danish seismologist Inge Lehmann published a paper with what may be the shortest title in the field, just P-prime. She'd been studying records of a large earthquake in New Zealand, and she noticed weak waves arriving inside the shadow zone, where, on the accepted model, they had no business being. Others had tended to explain such arrivals away. Lehmann took them seriously. She showed they made sense if there were a second boundary, deeper down, an inner core where the waves travel faster and get bent back toward the surface.\n\nNow, here's what usually gets lost in the retelling. Lehmann didn't prove the inner core was solid. Her argument was about speed, not state. The idea that it's solid came a few years later, and firm evidence took until the early 1970s, from the way the whole planet rings like a bell after a great earthquake. What she did was refuse to treat inconvenient data as junk.",
+    "passageGroupId": "pg-73ffc11c85849606b244b6f9abc78e8a",
+    "prompt": "[Academic Talk — Seismology] Why does the professor say 'Her argument was about speed, not state'?",
+    "choices": [
+     "To suggest that her measurements of wave speed were inaccurate",
+     "To explain why the outer core is thought to be liquid",
+     "To clarify that she never showed the inner core was solid",
+     "To argue that the inner core may in fact be molten"
+    ],
+    "correct_answer": "To clarify that she never showed the inner core was solid",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It follows 'Lehmann didn't prove the inner core was solid.'",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that her measurements of wave speed were inaccurate",
+      "reason": "Her measurements are not questioned."
+     },
+     {
+      "choice": "To explain why the outer core is thought to be liquid",
+      "reason": "The outer core's liquid state was argued from shear waves earlier."
+     },
+     {
+      "choice": "To argue that the inner core may in fact be molten",
+      "reason": "Firm evidence that it is solid came in the early 1970s."
+     }
+    ]
+   },
+   "content_hash": "390b32e928fb20b09015f12d8d277d4e",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Earthquake waves are how we see inside the planet. Nobody has drilled more than about twelve kilometers down, but every large earthquake sends waves through the whole Earth, and stations on the far side record them. By the early twentieth century, seismologists had noticed something odd. Beyond roughly a hundred and four degrees around the globe from an earthquake, the direct waves went quiet. There was a band, a shadow zone, where stations picked up very little, and then, farther out, strong arrivals again. The explanation was a core, about twenty-nine hundred kilometers down, that bends waves sharply, the way a lens bends light. And since one kind of wave, the shear wave, can't travel through liquid and never came through the core, most researchers concluded the core was liquid.\n\nSo the picture seemed settled: a molten core, with a shadow behind it. Then in 1936 the Danish seismologist Inge Lehmann published a paper with what may be the shortest title in the field, just P-prime. She'd been studying records of a large earthquake in New Zealand, and she noticed weak waves arriving inside the shadow zone, where, on the accepted model, they had no business being. Others had tended to explain such arrivals away. Lehmann took them seriously. She showed they made sense if there were a second boundary, deeper down, an inner core where the waves travel faster and get bent back toward the surface.\n\nNow, here's what usually gets lost in the retelling. Lehmann didn't prove the inner core was solid. Her argument was about speed, not state. The idea that it's solid came a few years later, and firm evidence took until the early 1970s, from the way the whole planet rings like a bell after a great earthquake. What she did was refuse to treat inconvenient data as junk.",
+    "passageGroupId": "pg-73ffc11c85849606b244b6f9abc78e8a",
+    "prompt": "[Academic Talk — Seismology] What does the professor most admire about Lehmann's work?",
+    "choices": [
+     "She gathered more earthquake records than anyone before her",
+     "She treated unexpected readings as evidence, not as error",
+     "She built a new instrument that could detect very faint waves",
+     "She was the first to measure how deep the core lies"
+    ],
+    "correct_answer": "She treated unexpected readings as evidence, not as error",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'What she did was refuse to treat inconvenient data as junk.'",
+    "distractor_rationales": [
+     {
+      "choice": "She gathered more earthquake records than anyone before her",
+      "reason": "The amount of data she gathered is not compared."
+     },
+     {
+      "choice": "She built a new instrument that could detect very faint waves",
+      "reason": "No instrument she built is mentioned."
+     },
+     {
+      "choice": "She was the first to measure how deep the core lies",
+      "reason": "The core's depth was already known before her paper."
+     }
+    ]
+   },
+   "content_hash": "a8d16be1f2c6b1a14d26740ca89f54f2",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In English, and in most languages that have been studied, the future is in front of you and the past is behind. We look forward to the weekend; we put a bad year behind us. Cognitive linguists, building on work by George Lakoff and Mark Johnson around 1980, argue that metaphors like these aren't decoration. We understand an abstract domain, time, through a concrete one, space.\n\nSo it's striking that Aymara, a language spoken in the Andes, seems to reverse it. The Aymara word for front, which is also the word for eye, is used for the past, and the word for back is used for the future. A reasonable skeptic might say, so what? Languages are full of dead metaphors. English speakers say breakfast without ever thinking about breaking a fast. Maybe the Aymara words are just fossils, and nobody actually pictures the past in front of them.\n\nTo test that, the cognitive scientist Rafael Núñez and the linguist Eve Sweetser looked not at words but at hands. In a study published in 2006, they recorded Aymara speakers talking about earlier and later events and analyzed their spontaneous gestures. Older speakers, especially those who spoke little Spanish, pointed or swept forward when talking about the past, and gestured backward, over the shoulder, for what was to come. Younger speakers fluent in Spanish tended to gesture the Spanish way. People don't usually plan their gestures, so this is hard to dismiss as a figure of speech.\n\nAnd the logic behind the reversed layout makes sense once you see it. The past is what you've already seen, so it lies before your eyes. The future can't be seen, so it's behind you. The idea that we think of time through space held up. What turned out to vary was which feature of space a culture builds it on.",
+    "passageGroupId": "pg-f06390657a4bd8bf40cd53ceb633ee9f",
+    "prompt": "[Academic Talk — Cognitive Linguistics] What is the main point of the lecture?",
+    "choices": [
+     "Aymara speakers really do locate the past in front",
+     "Metaphors for time are only decoration in most languages",
+     "Lakoff and Johnson were the first to describe Aymara",
+     "Spanish has replaced Aymara among younger speakers"
+    ],
+    "correct_answer": "Aymara speakers really do locate the past in front",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Gesture evidence shows the reversed mapping is more than a dead metaphor.",
+    "distractor_rationales": [
+     {
+      "choice": "Metaphors for time are only decoration in most languages",
+      "reason": "The professor says such metaphors 'aren't decoration'."
+     },
+     {
+      "choice": "Lakoff and Johnson were the first to describe Aymara",
+      "reason": "The Aymara study is by Núñez and Sweetser."
+     },
+     {
+      "choice": "Spanish has replaced Aymara among younger speakers",
+      "reason": "Younger speakers' gestures shifted; no claim about language loss is made."
+     }
+    ]
+   },
+   "content_hash": "e8fe24679f4aee0916213188a95acc7b",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In English, and in most languages that have been studied, the future is in front of you and the past is behind. We look forward to the weekend; we put a bad year behind us. Cognitive linguists, building on work by George Lakoff and Mark Johnson around 1980, argue that metaphors like these aren't decoration. We understand an abstract domain, time, through a concrete one, space.\n\nSo it's striking that Aymara, a language spoken in the Andes, seems to reverse it. The Aymara word for front, which is also the word for eye, is used for the past, and the word for back is used for the future. A reasonable skeptic might say, so what? Languages are full of dead metaphors. English speakers say breakfast without ever thinking about breaking a fast. Maybe the Aymara words are just fossils, and nobody actually pictures the past in front of them.\n\nTo test that, the cognitive scientist Rafael Núñez and the linguist Eve Sweetser looked not at words but at hands. In a study published in 2006, they recorded Aymara speakers talking about earlier and later events and analyzed their spontaneous gestures. Older speakers, especially those who spoke little Spanish, pointed or swept forward when talking about the past, and gestured backward, over the shoulder, for what was to come. Younger speakers fluent in Spanish tended to gesture the Spanish way. People don't usually plan their gestures, so this is hard to dismiss as a figure of speech.\n\nAnd the logic behind the reversed layout makes sense once you see it. The past is what you've already seen, so it lies before your eyes. The future can't be seen, so it's behind you. The idea that we think of time through space held up. What turned out to vary was which feature of space a culture builds it on.",
+    "passageGroupId": "pg-f06390657a4bd8bf40cd53ceb633ee9f",
+    "prompt": "[Academic Talk — Cognitive Linguistics] According to the professor, how did older Aymara speakers gesture about the future?",
+    "choices": [
+     "They pointed or swept forward",
+     "They gestured back over the shoulder",
+     "They pointed toward their own eyes",
+     "They gestured the way Spanish speakers do"
+    ],
+    "correct_answer": "They gestured back over the shoulder",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "They 'gestured backward, over the shoulder, for what was to come.'",
+    "distractor_rationales": [
+     {
+      "choice": "They pointed or swept forward",
+      "reason": "Forward gestures were used for the past."
+     },
+     {
+      "choice": "They pointed toward their own eyes",
+      "reason": "The eye is linked to the word for front, not to a gesture."
+     },
+     {
+      "choice": "They gestured the way Spanish speakers do",
+      "reason": "Younger, Spanish-fluent speakers gestured that way."
+     }
+    ]
+   },
+   "content_hash": "d08fc8197b47954d1f22c78d90ff2ba7",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In English, and in most languages that have been studied, the future is in front of you and the past is behind. We look forward to the weekend; we put a bad year behind us. Cognitive linguists, building on work by George Lakoff and Mark Johnson around 1980, argue that metaphors like these aren't decoration. We understand an abstract domain, time, through a concrete one, space.\n\nSo it's striking that Aymara, a language spoken in the Andes, seems to reverse it. The Aymara word for front, which is also the word for eye, is used for the past, and the word for back is used for the future. A reasonable skeptic might say, so what? Languages are full of dead metaphors. English speakers say breakfast without ever thinking about breaking a fast. Maybe the Aymara words are just fossils, and nobody actually pictures the past in front of them.\n\nTo test that, the cognitive scientist Rafael Núñez and the linguist Eve Sweetser looked not at words but at hands. In a study published in 2006, they recorded Aymara speakers talking about earlier and later events and analyzed their spontaneous gestures. Older speakers, especially those who spoke little Spanish, pointed or swept forward when talking about the past, and gestured backward, over the shoulder, for what was to come. Younger speakers fluent in Spanish tended to gesture the Spanish way. People don't usually plan their gestures, so this is hard to dismiss as a figure of speech.\n\nAnd the logic behind the reversed layout makes sense once you see it. The past is what you've already seen, so it lies before your eyes. The future can't be seen, so it's behind you. The idea that we think of time through space held up. What turned out to vary was which feature of space a culture builds it on.",
+    "passageGroupId": "pg-f06390657a4bd8bf40cd53ceb633ee9f",
+    "prompt": "[Academic Talk — Cognitive Linguistics] Why does the professor mention the word 'breakfast'?",
+    "choices": [
+     "To show that English also places the past in front",
+     "To give an example of a word taken from Spanish",
+     "To illustrate a metaphor that speakers no longer notice",
+     "To show how speakers' gestures can reveal a word's long history"
+    ],
+    "correct_answer": "To illustrate a metaphor that speakers no longer notice",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Speakers say it 'without ever thinking about breaking a fast', which supports the skeptic's dead-metaphor point.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that English also places the past in front",
+      "reason": "English puts the past behind."
+     },
+     {
+      "choice": "To give an example of a word taken from Spanish",
+      "reason": "No borrowing from Spanish is mentioned."
+     },
+     {
+      "choice": "To show how speakers' gestures can reveal a word's long history",
+      "reason": "Gestures come up only in the later study."
+     }
+    ]
+   },
+   "content_hash": "47657cea8b3deb6fab5a96ff321e0123",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In English, and in most languages that have been studied, the future is in front of you and the past is behind. We look forward to the weekend; we put a bad year behind us. Cognitive linguists, building on work by George Lakoff and Mark Johnson around 1980, argue that metaphors like these aren't decoration. We understand an abstract domain, time, through a concrete one, space.\n\nSo it's striking that Aymara, a language spoken in the Andes, seems to reverse it. The Aymara word for front, which is also the word for eye, is used for the past, and the word for back is used for the future. A reasonable skeptic might say, so what? Languages are full of dead metaphors. English speakers say breakfast without ever thinking about breaking a fast. Maybe the Aymara words are just fossils, and nobody actually pictures the past in front of them.\n\nTo test that, the cognitive scientist Rafael Núñez and the linguist Eve Sweetser looked not at words but at hands. In a study published in 2006, they recorded Aymara speakers talking about earlier and later events and analyzed their spontaneous gestures. Older speakers, especially those who spoke little Spanish, pointed or swept forward when talking about the past, and gestured backward, over the shoulder, for what was to come. Younger speakers fluent in Spanish tended to gesture the Spanish way. People don't usually plan their gestures, so this is hard to dismiss as a figure of speech.\n\nAnd the logic behind the reversed layout makes sense once you see it. The past is what you've already seen, so it lies before your eyes. The future can't be seen, so it's behind you. The idea that we think of time through space held up. What turned out to vary was which feature of space a culture builds it on.",
+    "passageGroupId": "pg-f06390657a4bd8bf40cd53ceb633ee9f",
+    "prompt": "[Academic Talk — Cognitive Linguistics] What does the professor conclude about thinking of time in terms of space?",
+    "choices": [
+     "It is a habit of English that most other languages lack",
+     "It is shared, though cultures orient it differently",
+     "It is real in speech but absent from gesture",
+     "It vanishes once speakers learn a second language"
+    ],
+    "correct_answer": "It is shared, though cultures orient it differently",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'The idea... held up. What turned out to vary was which feature of space a culture builds it on.'",
+    "distractor_rationales": [
+     {
+      "choice": "It is a habit of English that most other languages lack",
+      "reason": "The pattern holds 'in most languages that have been studied'."
+     },
+     {
+      "choice": "It is real in speech but absent from gesture",
+      "reason": "Gestures are the evidence that it is real."
+     },
+     {
+      "choice": "It vanishes once speakers learn a second language",
+      "reason": "Bilingual speakers gestured the Spanish way; the mapping did not vanish."
+     }
+    ]
+   },
+   "content_hash": "8d5f8d146a15bf5624eb77be0f5f4770",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably met this claim: Jan van Eyck invented oil painting. It goes back to Giorgio Vasari, the sixteenth-century Italian writer whose biographies of artists still shape how we tell this period. In Vasari's version, van Eyck, working in Flanders in the early fourteen hundreds, was experimenting with varnishes, hit on oil as a binder for his pigments, and the secret eventually made its way to Italy.\n\nIt's a tidy story, and in that form it's wrong. Painters had been mixing pigments with oil for centuries. A monk known as Theophilus, writing a craft manual in the twelfth century, describes it, and he also complains about it. Each layer, he says, has to dry before you add the next, and with some colors that takes a very long time, so it's tedious for pictures. That was the real obstacle. It just wasn't practical for detailed painting.\n\nSo what did van Eyck do? Two things, as far as studies can tell. First, he seems to have prepared his oils so they dried faster, which made a slow, layered process workable. Second, he exploited something that tempera, the egg-based paint most painters used, does far less well: translucent layers. He'd lay down an opaque base, then build thin, tinted films of oil paint over it. Those are glazes. Light passes through those films, bounces off the bright white ground underneath, and comes back out. That's where the glow of the jewels and fabrics in a work like the Ghent Altarpiece, finished in 1432, comes from.\n\nAnd notice the irony. The property Theophilus grumbled about, that oil paint has to be built up in separate layers, is exactly what van Eyck turned into a method. People long searched his paintings for a secret ingredient. The analyses mostly turned up ordinary drying oils. The secret, if there was one, was in the handling.",
+    "passageGroupId": "pg-705e949067efc9ccdf24f06d965b02b8",
+    "prompt": "[Academic Talk — Renaissance Art] What is the professor's main purpose in the lecture?",
+    "choices": [
+     "To replace a popular origin story with van Eyck's real contribution",
+     "To explain why tempera replaced oil paint in Flanders",
+     "To describe how oil painting spread from Flanders to Italy",
+     "To argue that Theophilus was the first painter to use oil"
+    ],
+    "correct_answer": "To replace a popular origin story with van Eyck's real contribution",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture rejects Vasari's 'invented oil painting' claim and explains faster drying and glazing.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why tempera replaced oil paint in Flanders",
+      "reason": "Tempera was the usual paint; van Eyck's oil methods are the subject."
+     },
+     {
+      "choice": "To describe how oil painting spread from Flanders to Italy",
+      "reason": "The spread to Italy is part of Vasari's story, mentioned in one clause."
+     },
+     {
+      "choice": "To argue that Theophilus was the first painter to use oil",
+      "reason": "Theophilus describes oil painting that had gone on 'for centuries'; he is not called its first user."
+     }
+    ]
+   },
+   "content_hash": "7c74dd5adba2d268351322f5962b050c",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably met this claim: Jan van Eyck invented oil painting. It goes back to Giorgio Vasari, the sixteenth-century Italian writer whose biographies of artists still shape how we tell this period. In Vasari's version, van Eyck, working in Flanders in the early fourteen hundreds, was experimenting with varnishes, hit on oil as a binder for his pigments, and the secret eventually made its way to Italy.\n\nIt's a tidy story, and in that form it's wrong. Painters had been mixing pigments with oil for centuries. A monk known as Theophilus, writing a craft manual in the twelfth century, describes it, and he also complains about it. Each layer, he says, has to dry before you add the next, and with some colors that takes a very long time, so it's tedious for pictures. That was the real obstacle. It just wasn't practical for detailed painting.\n\nSo what did van Eyck do? Two things, as far as studies can tell. First, he seems to have prepared his oils so they dried faster, which made a slow, layered process workable. Second, he exploited something that tempera, the egg-based paint most painters used, does far less well: translucent layers. He'd lay down an opaque base, then build thin, tinted films of oil paint over it. Those are glazes. Light passes through those films, bounces off the bright white ground underneath, and comes back out. That's where the glow of the jewels and fabrics in a work like the Ghent Altarpiece, finished in 1432, comes from.\n\nAnd notice the irony. The property Theophilus grumbled about, that oil paint has to be built up in separate layers, is exactly what van Eyck turned into a method. People long searched his paintings for a secret ingredient. The analyses mostly turned up ordinary drying oils. The secret, if there was one, was in the handling.",
+    "passageGroupId": "pg-705e949067efc9ccdf24f06d965b02b8",
+    "prompt": "[Academic Talk — Renaissance Art] According to the professor, what did Theophilus complain about?",
+    "choices": [
+     "Oil paint could not hold bright colors",
+     "Painters kept their oil recipes secret",
+     "Each layer had to dry before the next",
+     "Oil paint cracked on wooden panels"
+    ],
+    "correct_answer": "Each layer had to dry before the next",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Each layer, he says, has to dry before you add the next.'",
+    "distractor_rationales": [
+     {
+      "choice": "Oil paint could not hold bright colors",
+      "reason": "Bright color is linked to van Eyck's glazes, not to Theophilus's complaint."
+     },
+     {
+      "choice": "Painters kept their oil recipes secret",
+      "reason": "The 'secret' belongs to Vasari's story and the later search."
+     },
+     {
+      "choice": "Oil paint cracked on wooden panels",
+      "reason": "Cracking is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "486faac31820b1e2862888a6667ddab3",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably met this claim: Jan van Eyck invented oil painting. It goes back to Giorgio Vasari, the sixteenth-century Italian writer whose biographies of artists still shape how we tell this period. In Vasari's version, van Eyck, working in Flanders in the early fourteen hundreds, was experimenting with varnishes, hit on oil as a binder for his pigments, and the secret eventually made its way to Italy.\n\nIt's a tidy story, and in that form it's wrong. Painters had been mixing pigments with oil for centuries. A monk known as Theophilus, writing a craft manual in the twelfth century, describes it, and he also complains about it. Each layer, he says, has to dry before you add the next, and with some colors that takes a very long time, so it's tedious for pictures. That was the real obstacle. It just wasn't practical for detailed painting.\n\nSo what did van Eyck do? Two things, as far as studies can tell. First, he seems to have prepared his oils so they dried faster, which made a slow, layered process workable. Second, he exploited something that tempera, the egg-based paint most painters used, does far less well: translucent layers. He'd lay down an opaque base, then build thin, tinted films of oil paint over it. Those are glazes. Light passes through those films, bounces off the bright white ground underneath, and comes back out. That's where the glow of the jewels and fabrics in a work like the Ghent Altarpiece, finished in 1432, comes from.\n\nAnd notice the irony. The property Theophilus grumbled about, that oil paint has to be built up in separate layers, is exactly what van Eyck turned into a method. People long searched his paintings for a secret ingredient. The analyses mostly turned up ordinary drying oils. The secret, if there was one, was in the handling.",
+    "passageGroupId": "pg-705e949067efc9ccdf24f06d965b02b8",
+    "prompt": "[Academic Talk — Renaissance Art] Why does the professor mention the bright white ground under the glazes?",
+    "choices": [
+     "To show how van Eyck made his oils dry faster",
+     "To identify the ingredient people later searched for",
+     "To explain why the Ghent Altarpiece took years to finish",
+     "To explain how the glazes make colors appear to glow"
+    ],
+    "correct_answer": "To explain how the glazes make colors appear to glow",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Light 'bounces off the bright white ground underneath, and comes back out. That's where the glow... comes from.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show how van Eyck made his oils dry faster",
+      "reason": "Faster drying is a separate point about preparing the oils."
+     },
+     {
+      "choice": "To identify the ingredient people later searched for",
+      "reason": "The analyses found 'ordinary drying oils'; the ground is not the searched-for ingredient."
+     },
+     {
+      "choice": "To explain why the Ghent Altarpiece took years to finish",
+      "reason": "How long the altarpiece took is not discussed."
+     }
+    ]
+   },
+   "content_hash": "a35e8bb26dc4b95e5c2ac6b8861611b2",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You've probably met this claim: Jan van Eyck invented oil painting. It goes back to Giorgio Vasari, the sixteenth-century Italian writer whose biographies of artists still shape how we tell this period. In Vasari's version, van Eyck, working in Flanders in the early fourteen hundreds, was experimenting with varnishes, hit on oil as a binder for his pigments, and the secret eventually made its way to Italy.\n\nIt's a tidy story, and in that form it's wrong. Painters had been mixing pigments with oil for centuries. A monk known as Theophilus, writing a craft manual in the twelfth century, describes it, and he also complains about it. Each layer, he says, has to dry before you add the next, and with some colors that takes a very long time, so it's tedious for pictures. That was the real obstacle. It just wasn't practical for detailed painting.\n\nSo what did van Eyck do? Two things, as far as studies can tell. First, he seems to have prepared his oils so they dried faster, which made a slow, layered process workable. Second, he exploited something that tempera, the egg-based paint most painters used, does far less well: translucent layers. He'd lay down an opaque base, then build thin, tinted films of oil paint over it. Those are glazes. Light passes through those films, bounces off the bright white ground underneath, and comes back out. That's where the glow of the jewels and fabrics in a work like the Ghent Altarpiece, finished in 1432, comes from.\n\nAnd notice the irony. The property Theophilus grumbled about, that oil paint has to be built up in separate layers, is exactly what van Eyck turned into a method. People long searched his paintings for a secret ingredient. The analyses mostly turned up ordinary drying oils. The secret, if there was one, was in the handling.",
+    "passageGroupId": "pg-705e949067efc9ccdf24f06d965b02b8",
+    "prompt": "[Academic Talk — Renaissance Art] What does the professor imply about the search for van Eyck's secret ingredient?",
+    "choices": [
+     "It found a rare oil unknown to other painters",
+     "It confirmed Vasari's original account of the invention",
+     "It looked for his achievement in the wrong place",
+     "It showed that he painted mainly with egg"
+    ],
+    "correct_answer": "It looked for his achievement in the wrong place",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Analyses found 'ordinary drying oils'; 'the secret, if there was one, was in the handling.'",
+    "distractor_rationales": [
+     {
+      "choice": "It found a rare oil unknown to other painters",
+      "reason": "The oils found were 'ordinary'."
+     },
+     {
+      "choice": "It confirmed Vasari's original account of the invention",
+      "reason": "The professor calls Vasari's story 'wrong' in that form."
+     },
+     {
+      "choice": "It showed that he painted mainly with egg",
+      "reason": "Egg-based tempera is what most other painters used."
+     }
+    ]
+   },
+   "content_hash": "97a260277455dd68834c0e6d5a3c3a44",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most soils in the Amazon basin are, frankly, poor for farming. That surprises people, because the forest above them is so lush. But in a warm, wet climate, soils have been weathered for a very long time, rain washes the nutrients out, and most of the nutrients there are sit in the living plants, not in the ground. Clear the forest, farm for a few years, and yields usually drop.\n\nAnd yet, scattered through the region, often on bluffs near rivers, there are patches of dark, rich soil, sometimes a meter or more deep, that people still dig up and even sell as potting soil. In Portuguese it's called terra preta, black earth. Some researchers once assumed it formed naturally, maybe from volcanic ash or old lake beds. But these soils are full of broken pottery. They're human-made, built up over centuries of settlement, and many seem to be well over a thousand years old.\n\nWhat makes them black is charcoal. Ordinary plant matter rots away within a few years in that climate, but charcoal can last for centuries, and its porous surface holds on to nutrients that would otherwise wash out. That finding set off a wave of enthusiasm for what's now called biochar. The idea is that charcoal worked into fields can recreate Amazonian fertility and lock away carbon too.\n\nHere's the problem. Terra preta isn't just charcoal. It's charcoal mixed with fish and animal bones, ash, manure, and household waste, added little by little over generations. When researchers add charcoal alone to soil, the results vary widely, from clear gains to almost nothing, depending on the soil and the crop. Charcoal seems to be what holds the nutrients in place. It isn't what supplied them. Whether the residents meant to improve the soil, or were just piling up rubbish, is still debated.",
+    "passageGroupId": "pg-9a12e7c9335d180635cef2b9b548701b",
+    "prompt": "[Academic Talk — Soil Science] What is the main idea of the lecture?",
+    "choices": [
+     "Most Amazon soils are rich because the forest above them is so lush",
+     "Charcoal alone reliably restores fertility to poor soils",
+     "Terra preta formed naturally from old volcanic ash",
+     "The dark Amazon soils owe their richness to more than charcoal"
+    ],
+    "correct_answer": "The dark Amazon soils owe their richness to more than charcoal",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Charcoal 'holds the nutrients in place. It isn't what supplied them'; bones, ash, manure, and waste supplied them.",
+    "distractor_rationales": [
+     {
+      "choice": "Most Amazon soils are rich because the forest above them is so lush",
+      "reason": "The professor says most Amazon soils are 'poor for farming'."
+     },
+     {
+      "choice": "Charcoal alone reliably restores fertility to poor soils",
+      "reason": "Results with charcoal alone 'vary widely'."
+     },
+     {
+      "choice": "Terra preta formed naturally from old volcanic ash",
+      "reason": "The pottery shows the soils are 'human-made'."
+     }
+    ]
+   },
+   "content_hash": "893469f9894d0d1d2f63afb1f8f36a1f",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most soils in the Amazon basin are, frankly, poor for farming. That surprises people, because the forest above them is so lush. But in a warm, wet climate, soils have been weathered for a very long time, rain washes the nutrients out, and most of the nutrients there are sit in the living plants, not in the ground. Clear the forest, farm for a few years, and yields usually drop.\n\nAnd yet, scattered through the region, often on bluffs near rivers, there are patches of dark, rich soil, sometimes a meter or more deep, that people still dig up and even sell as potting soil. In Portuguese it's called terra preta, black earth. Some researchers once assumed it formed naturally, maybe from volcanic ash or old lake beds. But these soils are full of broken pottery. They're human-made, built up over centuries of settlement, and many seem to be well over a thousand years old.\n\nWhat makes them black is charcoal. Ordinary plant matter rots away within a few years in that climate, but charcoal can last for centuries, and its porous surface holds on to nutrients that would otherwise wash out. That finding set off a wave of enthusiasm for what's now called biochar. The idea is that charcoal worked into fields can recreate Amazonian fertility and lock away carbon too.\n\nHere's the problem. Terra preta isn't just charcoal. It's charcoal mixed with fish and animal bones, ash, manure, and household waste, added little by little over generations. When researchers add charcoal alone to soil, the results vary widely, from clear gains to almost nothing, depending on the soil and the crop. Charcoal seems to be what holds the nutrients in place. It isn't what supplied them. Whether the residents meant to improve the soil, or were just piling up rubbish, is still debated.",
+    "passageGroupId": "pg-9a12e7c9335d180635cef2b9b548701b",
+    "prompt": "[Academic Talk — Soil Science] According to the professor, why are most Amazon soils poor for farming?",
+    "choices": [
+     "People have dug up and sold off the best of them",
+     "Rain has washed their nutrients out over time",
+     "Their charcoal traps nutrients too tightly",
+     "Volcanic ash has buried their richer layers"
+    ],
+    "correct_answer": "Rain has washed their nutrients out over time",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Soils have been weathered for a very long time, rain washes the nutrients out.'",
+    "distractor_rationales": [
+     {
+      "choice": "People have dug up and sold off the best of them",
+      "reason": "Digging is mentioned only for the dark patches."
+     },
+     {
+      "choice": "Their charcoal traps nutrients too tightly",
+      "reason": "Charcoal is what makes terra preta rich, not what makes ordinary soil poor."
+     },
+     {
+      "choice": "Volcanic ash has buried their richer layers",
+      "reason": "Volcanic ash was a rejected idea about terra preta's origin."
+     }
+    ]
+   },
+   "content_hash": "a625b1378153dd09b35a7da4d2db1cd7",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most soils in the Amazon basin are, frankly, poor for farming. That surprises people, because the forest above them is so lush. But in a warm, wet climate, soils have been weathered for a very long time, rain washes the nutrients out, and most of the nutrients there are sit in the living plants, not in the ground. Clear the forest, farm for a few years, and yields usually drop.\n\nAnd yet, scattered through the region, often on bluffs near rivers, there are patches of dark, rich soil, sometimes a meter or more deep, that people still dig up and even sell as potting soil. In Portuguese it's called terra preta, black earth. Some researchers once assumed it formed naturally, maybe from volcanic ash or old lake beds. But these soils are full of broken pottery. They're human-made, built up over centuries of settlement, and many seem to be well over a thousand years old.\n\nWhat makes them black is charcoal. Ordinary plant matter rots away within a few years in that climate, but charcoal can last for centuries, and its porous surface holds on to nutrients that would otherwise wash out. That finding set off a wave of enthusiasm for what's now called biochar. The idea is that charcoal worked into fields can recreate Amazonian fertility and lock away carbon too.\n\nHere's the problem. Terra preta isn't just charcoal. It's charcoal mixed with fish and animal bones, ash, manure, and household waste, added little by little over generations. When researchers add charcoal alone to soil, the results vary widely, from clear gains to almost nothing, depending on the soil and the crop. Charcoal seems to be what holds the nutrients in place. It isn't what supplied them. Whether the residents meant to improve the soil, or were just piling up rubbish, is still debated.",
+    "passageGroupId": "pg-9a12e7c9335d180635cef2b9b548701b",
+    "prompt": "[Academic Talk — Soil Science] Why does the professor mention broken pottery?",
+    "choices": [
+     "To explain how charcoal holds on to nutrients",
+     "To establish that people created the dark soils",
+     "To show where the potting soil is sold today",
+     "To suggest that the soils formed in ancient lake beds"
+    ],
+    "correct_answer": "To establish that people created the dark soils",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'These soils are full of broken pottery. They're human-made.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how charcoal holds on to nutrients",
+      "reason": "Nutrient retention is explained by charcoal's porous surface."
+     },
+     {
+      "choice": "To show where the potting soil is sold today",
+      "reason": "The sale of potting soil is unrelated to the pottery."
+     },
+     {
+      "choice": "To suggest that the soils formed in ancient lake beds",
+      "reason": "Lake beds were the natural-origin idea the pottery argues against."
+     }
+    ]
+   },
+   "content_hash": "8539d1323ee0d742d22ee75942ca6326",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most soils in the Amazon basin are, frankly, poor for farming. That surprises people, because the forest above them is so lush. But in a warm, wet climate, soils have been weathered for a very long time, rain washes the nutrients out, and most of the nutrients there are sit in the living plants, not in the ground. Clear the forest, farm for a few years, and yields usually drop.\n\nAnd yet, scattered through the region, often on bluffs near rivers, there are patches of dark, rich soil, sometimes a meter or more deep, that people still dig up and even sell as potting soil. In Portuguese it's called terra preta, black earth. Some researchers once assumed it formed naturally, maybe from volcanic ash or old lake beds. But these soils are full of broken pottery. They're human-made, built up over centuries of settlement, and many seem to be well over a thousand years old.\n\nWhat makes them black is charcoal. Ordinary plant matter rots away within a few years in that climate, but charcoal can last for centuries, and its porous surface holds on to nutrients that would otherwise wash out. That finding set off a wave of enthusiasm for what's now called biochar. The idea is that charcoal worked into fields can recreate Amazonian fertility and lock away carbon too.\n\nHere's the problem. Terra preta isn't just charcoal. It's charcoal mixed with fish and animal bones, ash, manure, and household waste, added little by little over generations. When researchers add charcoal alone to soil, the results vary widely, from clear gains to almost nothing, depending on the soil and the crop. Charcoal seems to be what holds the nutrients in place. It isn't what supplied them. Whether the residents meant to improve the soil, or were just piling up rubbish, is still debated.",
+    "passageGroupId": "pg-9a12e7c9335d180635cef2b9b548701b",
+    "prompt": "[Academic Talk — Soil Science] What would the professor most likely expect from a field treated only with charcoal?",
+    "choices": [
+     "It would probably match terra preta within a few years",
+     "It would likely lose its charcoal within a few years",
+     "Its gains would depend on the soil and the crop",
+     "It would almost certainly yield less than before"
+    ],
+    "correct_answer": "Its gains would depend on the soil and the crop",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Charcoal alone gives results 'from clear gains to almost nothing, depending on the soil and the crop.'",
+    "distractor_rationales": [
+     {
+      "choice": "It would probably match terra preta within a few years",
+      "reason": "Terra preta built up 'over generations' and includes more than charcoal."
+     },
+     {
+      "choice": "It would likely lose its charcoal within a few years",
+      "reason": "Charcoal 'can last for centuries'."
+     },
+     {
+      "choice": "It would almost certainly yield less than before",
+      "reason": "Results range from gains to almost nothing; losses are not described."
+     }
+    ]
+   },
+   "content_hash": "04a7956f2f2f6848a5bd3cb235a6da4c",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early 1950s, Japanese researchers studying a troop of macaques on the small island of Koshima began leaving sweet potatoes on the beach, to draw the monkeys into the open. In 1953 a young female the researchers called Imo did something new. She carried a sandy potato to a stream and washed it. Over the next few years the habit spread, and later the troop took to washing potatoes in the sea, perhaps for the salty taste.\n\nYou may have heard a far more dramatic version. In a popular book from the late 1970s, a writer claimed that once a certain number of monkeys, say the hundredth, had learned to wash potatoes, the habit suddenly jumped to every monkey on the island, and even to troops on other islands, with no contact at all. That's the hundredth monkey story, and there's no evidence for it. The writer later conceded that it rested on very little.\n\nThe real record is more interesting. The habit spread slowly, over years, and along social lines. One of Imo's playmates and her mother picked it up first, then her siblings and other young monkeys. Infants learned it from their mothers. Most of the adult males never took it up at all. That pattern looks like learning by watching companions, which is why Koshima became an early example of what some call animal culture.\n\nNot everyone accepts that label. The psychologist Bennett Galef pointed out that the spread was slow, as if each monkey had partly worked it out alone. He also noted that the researchers were feeding the monkeys, which could have encouraged the behavior. Now, I'm not sure he's right. But his is the right kind of challenge. It's an argument about how the habit spread, built from the same records. The hundredth monkey story asked us to ignore them.",
+    "passageGroupId": "pg-10a7acd3e80fdce19e0025f4f281318c",
+    "prompt": "[Academic Talk — Primatology] What is the lecture mainly about?",
+    "choices": [
+     "How a feeding habit actually spread through a troop",
+     "How a habit crossed between islands without contact",
+     "How researchers trained macaques to clean their food",
+     "Why adult male macaques learn faster than females"
+    ],
+    "correct_answer": "How a feeding habit actually spread through a troop",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture contrasts the recorded, gradual spread with the myth and discusses how to interpret it.",
+    "distractor_rationales": [
+     {
+      "choice": "How a habit crossed between islands without contact",
+      "reason": "The professor says 'there's no evidence for it'."
+     },
+     {
+      "choice": "How researchers trained macaques to clean their food",
+      "reason": "Imo began washing on her own; no training is described."
+     },
+     {
+      "choice": "Why adult male macaques learn faster than females",
+      "reason": "Most adult males 'never took it up at all'."
+     }
+    ]
+   },
+   "content_hash": "6a5ac46ab76cafe8c61bdc3dbd2971e2",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early 1950s, Japanese researchers studying a troop of macaques on the small island of Koshima began leaving sweet potatoes on the beach, to draw the monkeys into the open. In 1953 a young female the researchers called Imo did something new. She carried a sandy potato to a stream and washed it. Over the next few years the habit spread, and later the troop took to washing potatoes in the sea, perhaps for the salty taste.\n\nYou may have heard a far more dramatic version. In a popular book from the late 1970s, a writer claimed that once a certain number of monkeys, say the hundredth, had learned to wash potatoes, the habit suddenly jumped to every monkey on the island, and even to troops on other islands, with no contact at all. That's the hundredth monkey story, and there's no evidence for it. The writer later conceded that it rested on very little.\n\nThe real record is more interesting. The habit spread slowly, over years, and along social lines. One of Imo's playmates and her mother picked it up first, then her siblings and other young monkeys. Infants learned it from their mothers. Most of the adult males never took it up at all. That pattern looks like learning by watching companions, which is why Koshima became an early example of what some call animal culture.\n\nNot everyone accepts that label. The psychologist Bennett Galef pointed out that the spread was slow, as if each monkey had partly worked it out alone. He also noted that the researchers were feeding the monkeys, which could have encouraged the behavior. Now, I'm not sure he's right. But his is the right kind of challenge. It's an argument about how the habit spread, built from the same records. The hundredth monkey story asked us to ignore them.",
+    "passageGroupId": "pg-10a7acd3e80fdce19e0025f4f281318c",
+    "prompt": "[Academic Talk — Primatology] According to the professor, who first picked up the habit from Imo?",
+    "choices": [
+     "Most of the adult males",
+     "A playmate and her mother",
+     "The troop's youngest infants",
+     "Monkeys on nearby islands"
+    ],
+    "correct_answer": "A playmate and her mother",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'One of Imo's playmates and her mother picked it up first.'",
+    "distractor_rationales": [
+     {
+      "choice": "Most of the adult males",
+      "reason": "Most adult males never took it up."
+     },
+     {
+      "choice": "The troop's youngest infants",
+      "reason": "Infants learned it later, from their mothers."
+     },
+     {
+      "choice": "Monkeys on nearby islands",
+      "reason": "The spread to other islands is the unsupported myth."
+     }
+    ]
+   },
+   "content_hash": "eee5f32fc40f567df826a80526c5871b",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early 1950s, Japanese researchers studying a troop of macaques on the small island of Koshima began leaving sweet potatoes on the beach, to draw the monkeys into the open. In 1953 a young female the researchers called Imo did something new. She carried a sandy potato to a stream and washed it. Over the next few years the habit spread, and later the troop took to washing potatoes in the sea, perhaps for the salty taste.\n\nYou may have heard a far more dramatic version. In a popular book from the late 1970s, a writer claimed that once a certain number of monkeys, say the hundredth, had learned to wash potatoes, the habit suddenly jumped to every monkey on the island, and even to troops on other islands, with no contact at all. That's the hundredth monkey story, and there's no evidence for it. The writer later conceded that it rested on very little.\n\nThe real record is more interesting. The habit spread slowly, over years, and along social lines. One of Imo's playmates and her mother picked it up first, then her siblings and other young monkeys. Infants learned it from their mothers. Most of the adult males never took it up at all. That pattern looks like learning by watching companions, which is why Koshima became an early example of what some call animal culture.\n\nNot everyone accepts that label. The psychologist Bennett Galef pointed out that the spread was slow, as if each monkey had partly worked it out alone. He also noted that the researchers were feeding the monkeys, which could have encouraged the behavior. Now, I'm not sure he's right. But his is the right kind of challenge. It's an argument about how the habit spread, built from the same records. The hundredth monkey story asked us to ignore them.",
+    "passageGroupId": "pg-10a7acd3e80fdce19e0025f4f281318c",
+    "prompt": "[Academic Talk — Primatology] Why does the professor mention that the researchers were feeding the monkeys?",
+    "choices": [
+     "To give one reason to doubt the copying account",
+     "To explain how the monkeys came to like salt",
+     "To show why adult males refused the potatoes",
+     "To explain why the habit eventually reached other islands"
+    ],
+    "correct_answer": "To give one reason to doubt the copying account",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It is Galef's point: the feeding 'could have encouraged the behavior', so copying may not explain the spread.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how the monkeys came to like salt",
+      "reason": "The salty taste is linked to washing in the sea."
+     },
+     {
+      "choice": "To show why adult males refused the potatoes",
+      "reason": "No reason for the males' refusal is given."
+     },
+     {
+      "choice": "To explain why the habit eventually reached other islands",
+      "reason": "The habit is not said to have reached other islands."
+     }
+    ]
+   },
+   "content_hash": "1cafc322b6a792e3a16c867915b01925",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early 1950s, Japanese researchers studying a troop of macaques on the small island of Koshima began leaving sweet potatoes on the beach, to draw the monkeys into the open. In 1953 a young female the researchers called Imo did something new. She carried a sandy potato to a stream and washed it. Over the next few years the habit spread, and later the troop took to washing potatoes in the sea, perhaps for the salty taste.\n\nYou may have heard a far more dramatic version. In a popular book from the late 1970s, a writer claimed that once a certain number of monkeys, say the hundredth, had learned to wash potatoes, the habit suddenly jumped to every monkey on the island, and even to troops on other islands, with no contact at all. That's the hundredth monkey story, and there's no evidence for it. The writer later conceded that it rested on very little.\n\nThe real record is more interesting. The habit spread slowly, over years, and along social lines. One of Imo's playmates and her mother picked it up first, then her siblings and other young monkeys. Infants learned it from their mothers. Most of the adult males never took it up at all. That pattern looks like learning by watching companions, which is why Koshima became an early example of what some call animal culture.\n\nNot everyone accepts that label. The psychologist Bennett Galef pointed out that the spread was slow, as if each monkey had partly worked it out alone. He also noted that the researchers were feeding the monkeys, which could have encouraged the behavior. Now, I'm not sure he's right. But his is the right kind of challenge. It's an argument about how the habit spread, built from the same records. The hundredth monkey story asked us to ignore them.",
+    "passageGroupId": "pg-10a7acd3e80fdce19e0025f4f281318c",
+    "prompt": "[Academic Talk — Primatology] What is the professor's attitude toward Galef's argument?",
+    "choices": [
+     "As baseless as the hundredth monkey story",
+     "Proof that the monkeys never copied each other",
+     "A fair challenge, whether or not it is correct",
+     "Convincing only for the habit of sea washing"
+    ],
+    "correct_answer": "A fair challenge, whether or not it is correct",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'I'm not sure he's right. But his is the right kind of challenge.'",
+    "distractor_rationales": [
+     {
+      "choice": "As baseless as the hundredth monkey story",
+      "reason": "Galef works from 'the same records'; the myth ignored them."
+     },
+     {
+      "choice": "Proof that the monkeys never copied each other",
+      "reason": "The professor is 'not sure he's right'."
+     },
+     {
+      "choice": "Convincing only for the habit of sea washing",
+      "reason": "Galef's points concern the spread in general, not sea washing."
+     }
+    ]
+   },
+   "content_hash": "ed6e1d7568ee2a7ee4d8ca3e06192731",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, sailors could find their latitude fairly easily, from the height of the Sun or the Pole Star. Longitude, how far east or west you were, was the hard problem. The Earth turns fifteen degrees an hour, so if you know the time at your home port and the local time where you are, the difference gives you your longitude. Local time you can get from the Sun. The trouble was carrying home-port time across an ocean, because the best clocks of the day, pendulum clocks, couldn't keep time on a rolling ship.\n\nIn 1714 the British Parliament offered a prize of up to twenty thousand pounds for a practical solution. John Harrison, a largely self-taught clockmaker, spent decades building sea clocks, and his fourth, a large pocket watch, did remarkably well on test voyages to the Caribbean in the 1760s. Yet the Board of Longitude paid him only part of the prize. He got substantial money later only after appealing to Parliament, with support from King George the Third.\n\nThe popular telling, popularized by a 1990s bestseller, casts this as a lone genius against snobbish astronomers, especially Nevil Maskelyne, the Astronomer Royal, who backed a rival method. That method, lunar distances, worked out home-port time by measuring the Moon's position against the stars and using printed tables. There's some truth to the snobbery charge. But the Board's demand wasn't absurd. One extraordinary watch isn't a method. They wanted proof that other makers could copy it, and they could. A copy by Larcum Kendall sailed with James Cook on his second Pacific voyage and performed very well.\n\nEven then, chronometers were expensive, and for decades many ships relied on lunar tables, published yearly by Maskelyne, often checking one method against the other. The watch won in the end. But the astronomers' caution wasn't only prejudice.",
+    "passageGroupId": "pg-5a8d3fa313ef4fdcbff8a9d83d9ed536",
+    "prompt": "[Academic Talk — History of Navigation] What is the professor's main purpose in the lecture?",
+    "choices": [
+     "To argue that the Board's doubts about Harrison had some basis",
+     "To show that lunar distances were more accurate than watches",
+     "To explain how sailors found their latitude from the stars",
+     "To show that Harrison was never paid for his sea clocks"
+    ],
+    "correct_answer": "To argue that the Board's doubts about Harrison had some basis",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The Board's demand wasn't absurd... the astronomers' caution wasn't only prejudice.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that lunar distances were more accurate than watches",
+      "reason": "'The watch won in the end.'"
+     },
+     {
+      "choice": "To explain how sailors found their latitude from the stars",
+      "reason": "Latitude is mentioned only as the easier problem."
+     },
+     {
+      "choice": "To show that Harrison was never paid for his sea clocks",
+      "reason": "He was paid part of the prize and more money later."
+     }
+    ]
+   },
+   "content_hash": "f0e5382dedeb6d25d3883896b06f817b",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, sailors could find their latitude fairly easily, from the height of the Sun or the Pole Star. Longitude, how far east or west you were, was the hard problem. The Earth turns fifteen degrees an hour, so if you know the time at your home port and the local time where you are, the difference gives you your longitude. Local time you can get from the Sun. The trouble was carrying home-port time across an ocean, because the best clocks of the day, pendulum clocks, couldn't keep time on a rolling ship.\n\nIn 1714 the British Parliament offered a prize of up to twenty thousand pounds for a practical solution. John Harrison, a largely self-taught clockmaker, spent decades building sea clocks, and his fourth, a large pocket watch, did remarkably well on test voyages to the Caribbean in the 1760s. Yet the Board of Longitude paid him only part of the prize. He got substantial money later only after appealing to Parliament, with support from King George the Third.\n\nThe popular telling, popularized by a 1990s bestseller, casts this as a lone genius against snobbish astronomers, especially Nevil Maskelyne, the Astronomer Royal, who backed a rival method. That method, lunar distances, worked out home-port time by measuring the Moon's position against the stars and using printed tables. There's some truth to the snobbery charge. But the Board's demand wasn't absurd. One extraordinary watch isn't a method. They wanted proof that other makers could copy it, and they could. A copy by Larcum Kendall sailed with James Cook on his second Pacific voyage and performed very well.\n\nEven then, chronometers were expensive, and for decades many ships relied on lunar tables, published yearly by Maskelyne, often checking one method against the other. The watch won in the end. But the astronomers' caution wasn't only prejudice.",
+    "passageGroupId": "pg-5a8d3fa313ef4fdcbff8a9d83d9ed536",
+    "prompt": "[Academic Talk — History of Navigation] According to the professor, why was finding longitude at sea so difficult?",
+    "choices": [
+     "The best clocks could not keep time on a moving ship",
+     "Local time could not be read from the Sun while at sea",
+     "The Earth's rate of turning was not yet known",
+     "Printed star tables were full of errors"
+    ],
+    "correct_answer": "The best clocks could not keep time on a moving ship",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Pendulum clocks 'couldn't keep time on a rolling ship.'",
+    "distractor_rationales": [
+     {
+      "choice": "Local time could not be read from the Sun while at sea",
+      "reason": "'Local time you can get from the Sun.'"
+     },
+     {
+      "choice": "The Earth's rate of turning was not yet known",
+      "reason": "The rate, 'fifteen degrees an hour', is given as known."
+     },
+     {
+      "choice": "Printed star tables were full of errors",
+      "reason": "No errors in the tables are mentioned."
+     }
+    ]
+   },
+   "content_hash": "16b5bdb37f1edf3818ce89e2b61de537",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, sailors could find their latitude fairly easily, from the height of the Sun or the Pole Star. Longitude, how far east or west you were, was the hard problem. The Earth turns fifteen degrees an hour, so if you know the time at your home port and the local time where you are, the difference gives you your longitude. Local time you can get from the Sun. The trouble was carrying home-port time across an ocean, because the best clocks of the day, pendulum clocks, couldn't keep time on a rolling ship.\n\nIn 1714 the British Parliament offered a prize of up to twenty thousand pounds for a practical solution. John Harrison, a largely self-taught clockmaker, spent decades building sea clocks, and his fourth, a large pocket watch, did remarkably well on test voyages to the Caribbean in the 1760s. Yet the Board of Longitude paid him only part of the prize. He got substantial money later only after appealing to Parliament, with support from King George the Third.\n\nThe popular telling, popularized by a 1990s bestseller, casts this as a lone genius against snobbish astronomers, especially Nevil Maskelyne, the Astronomer Royal, who backed a rival method. That method, lunar distances, worked out home-port time by measuring the Moon's position against the stars and using printed tables. There's some truth to the snobbery charge. But the Board's demand wasn't absurd. One extraordinary watch isn't a method. They wanted proof that other makers could copy it, and they could. A copy by Larcum Kendall sailed with James Cook on his second Pacific voyage and performed very well.\n\nEven then, chronometers were expensive, and for decades many ships relied on lunar tables, published yearly by Maskelyne, often checking one method against the other. The watch won in the end. But the astronomers' caution wasn't only prejudice.",
+    "passageGroupId": "pg-5a8d3fa313ef4fdcbff8a9d83d9ed536",
+    "prompt": "[Academic Talk — History of Navigation] Why does the professor mention the copy made by Larcum Kendall?",
+    "choices": [
+     "To show that Cook preferred the lunar tables",
+     "To explain why chronometers stayed so expensive",
+     "To name the watch tested on the Caribbean voyages",
+     "To show that Harrison's design could be reproduced"
+    ],
+    "correct_answer": "To show that Harrison's design could be reproduced",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The Board 'wanted proof that other makers could copy it, and they could.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that Cook preferred the lunar tables",
+      "reason": "Kendall's copy 'performed very well' for Cook."
+     },
+     {
+      "choice": "To explain why chronometers stayed so expensive",
+      "reason": "Cost is mentioned afterward, not explained by the copy."
+     },
+     {
+      "choice": "To name the watch tested on the Caribbean voyages",
+      "reason": "Harrison's own fourth clock was tested in the Caribbean."
+     }
+    ]
+   },
+   "content_hash": "2010ceb234b1a99b8f33d5f7d664123e",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-A06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, sailors could find their latitude fairly easily, from the height of the Sun or the Pole Star. Longitude, how far east or west you were, was the hard problem. The Earth turns fifteen degrees an hour, so if you know the time at your home port and the local time where you are, the difference gives you your longitude. Local time you can get from the Sun. The trouble was carrying home-port time across an ocean, because the best clocks of the day, pendulum clocks, couldn't keep time on a rolling ship.\n\nIn 1714 the British Parliament offered a prize of up to twenty thousand pounds for a practical solution. John Harrison, a largely self-taught clockmaker, spent decades building sea clocks, and his fourth, a large pocket watch, did remarkably well on test voyages to the Caribbean in the 1760s. Yet the Board of Longitude paid him only part of the prize. He got substantial money later only after appealing to Parliament, with support from King George the Third.\n\nThe popular telling, popularized by a 1990s bestseller, casts this as a lone genius against snobbish astronomers, especially Nevil Maskelyne, the Astronomer Royal, who backed a rival method. That method, lunar distances, worked out home-port time by measuring the Moon's position against the stars and using printed tables. There's some truth to the snobbery charge. But the Board's demand wasn't absurd. One extraordinary watch isn't a method. They wanted proof that other makers could copy it, and they could. A copy by Larcum Kendall sailed with James Cook on his second Pacific voyage and performed very well.\n\nEven then, chronometers were expensive, and for decades many ships relied on lunar tables, published yearly by Maskelyne, often checking one method against the other. The watch won in the end. But the astronomers' caution wasn't only prejudice.",
+    "passageGroupId": "pg-5a8d3fa313ef4fdcbff8a9d83d9ed536",
+    "prompt": "[Academic Talk — History of Navigation] What can be inferred about navigators in the decades after Cook's voyage?",
+    "choices": [
+     "Most had given up on the lunar tables completely",
+     "Few of them could afford the printed lunar tables",
+     "They mainly relied on the Pole Star for longitude",
+     "Many used both methods to check their position"
+    ],
+    "correct_answer": "Many used both methods to check their position",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Many ships relied on lunar tables, 'often checking one method against the other.'",
+    "distractor_rationales": [
+     {
+      "choice": "Most had given up on the lunar tables completely",
+      "reason": "Many ships 'relied on lunar tables' for decades."
+     },
+     {
+      "choice": "Few of them could afford the printed lunar tables",
+      "reason": "Chronometers, not tables, were expensive."
+     },
+     {
+      "choice": "They mainly relied on the Pole Star for longitude",
+      "reason": "The Pole Star gives latitude, not longitude."
+     }
+    ]
+   },
+   "content_hash": "0edd2055532b17a6f36bc169f3efcba4",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's an old idea, going back at least to the nineteenth century, that forests act like sponges. They soak up the rain and let it out slowly, so if you cut down a forest, the streams below it will dry up. It's intuitive, and it shaped land policy in several countries.\n\nThe way hydrologists tested it is called a paired catchment experiment. You find two small neighboring watersheds with similar soils, slopes, and rainfall, and you measure the streams draining both for several years, so you know how they compare. Then you cut the trees in one and keep the other as a control. At Hubbard Brook, in New Hampshire, in the mid-1960s, researchers cleared all the forest in one small watershed and used herbicides to stop it growing back. The result went the opposite way from the sponge idea. Streamflow went up, by something like forty percent in the first year.\n\nThe reason is transpiration. Trees pull water out of the soil and release it into the air through their leaves, and a forest does that over an enormous surface. Take the trees away, and more of the rain ends up in the stream. A review in the early 1980s, pooling dozens of these experiments, found the same direction almost every time, with the biggest effects where evergreen conifers were removed.\n\nSo, case closed against the sponge? Not everywhere. In tropical cloud forests on mountain slopes, the trees comb droplets right out of passing fog, water that would never have fallen as rain. Clear those forests, and streams can lose water.\n\nBut the experiments measure total yearly flow. Whether a stream keeps running through the dry season is a separate question, and there, bare, compacted soil can make things worse. The sponge picture was wrong about the total, but maybe not about everything.",
+    "passageGroupId": "pg-d41e0c08d5b3a671c694d66bcd9ae79d",
+    "prompt": "[Academic Talk — Hydrology] What is the lecture mainly about?",
+    "choices": [
+     "Why cloud forests on mountains grow faster than forests in the lowlands",
+     "How herbicides changed the soil at Hubbard Brook",
+     "Why conifers need more water than other trees to survive",
+     "How experiments challenged a popular belief about forests and water"
+    ],
+    "correct_answer": "How experiments challenged a popular belief about forests and water",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Paired catchment experiments showed that removing forest usually raises streamflow, against the sponge idea, with exceptions.",
+    "distractor_rationales": [
+     {
+      "choice": "Why cloud forests on mountains grow faster than forests in the lowlands",
+      "reason": "Growth rates of cloud forests are not compared with anything."
+     },
+     {
+      "choice": "How herbicides changed the soil at Hubbard Brook",
+      "reason": "Herbicides are mentioned only as a way to stop regrowth."
+     },
+     {
+      "choice": "Why conifers need more water than other trees to survive",
+      "reason": "Conifers are mentioned only as giving the biggest effect when removed."
+     }
+    ]
+   },
+   "content_hash": "63200591a686dfa9d0f9d930ce632ea1",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's an old idea, going back at least to the nineteenth century, that forests act like sponges. They soak up the rain and let it out slowly, so if you cut down a forest, the streams below it will dry up. It's intuitive, and it shaped land policy in several countries.\n\nThe way hydrologists tested it is called a paired catchment experiment. You find two small neighboring watersheds with similar soils, slopes, and rainfall, and you measure the streams draining both for several years, so you know how they compare. Then you cut the trees in one and keep the other as a control. At Hubbard Brook, in New Hampshire, in the mid-1960s, researchers cleared all the forest in one small watershed and used herbicides to stop it growing back. The result went the opposite way from the sponge idea. Streamflow went up, by something like forty percent in the first year.\n\nThe reason is transpiration. Trees pull water out of the soil and release it into the air through their leaves, and a forest does that over an enormous surface. Take the trees away, and more of the rain ends up in the stream. A review in the early 1980s, pooling dozens of these experiments, found the same direction almost every time, with the biggest effects where evergreen conifers were removed.\n\nSo, case closed against the sponge? Not everywhere. In tropical cloud forests on mountain slopes, the trees comb droplets right out of passing fog, water that would never have fallen as rain. Clear those forests, and streams can lose water.\n\nBut the experiments measure total yearly flow. Whether a stream keeps running through the dry season is a separate question, and there, bare, compacted soil can make things worse. The sponge picture was wrong about the total, but maybe not about everything.",
+    "passageGroupId": "pg-d41e0c08d5b3a671c694d66bcd9ae79d",
+    "prompt": "[Academic Talk — Hydrology] According to the professor, why did streamflow increase after the trees were cut?",
+    "choices": [
+     "Herbicides made the soil unable to absorb the rain",
+     "Less water was being drawn up and released through leaves",
+     "More rain fell on the cleared watershed than on its neighbor",
+     "Fog collected more easily over the open ground"
+    ],
+    "correct_answer": "Less water was being drawn up and released through leaves",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Trees pull water out of the soil and release it into the air through their leaves... Take the trees away, and more of the rain ends up in the stream.'",
+    "distractor_rationales": [
+     {
+      "choice": "Herbicides made the soil unable to absorb the rain",
+      "reason": "The herbicides only stopped regrowth; the stated reason is transpiration."
+     },
+     {
+      "choice": "More rain fell on the cleared watershed than on its neighbor",
+      "reason": "The watersheds were chosen for similar rainfall."
+     },
+     {
+      "choice": "Fog collected more easily over the open ground",
+      "reason": "Fog capture is tied to cloud forests, where clearing reduces flow."
+     }
+    ]
+   },
+   "content_hash": "98d97a4c260823487eab4edba37915e5",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's an old idea, going back at least to the nineteenth century, that forests act like sponges. They soak up the rain and let it out slowly, so if you cut down a forest, the streams below it will dry up. It's intuitive, and it shaped land policy in several countries.\n\nThe way hydrologists tested it is called a paired catchment experiment. You find two small neighboring watersheds with similar soils, slopes, and rainfall, and you measure the streams draining both for several years, so you know how they compare. Then you cut the trees in one and keep the other as a control. At Hubbard Brook, in New Hampshire, in the mid-1960s, researchers cleared all the forest in one small watershed and used herbicides to stop it growing back. The result went the opposite way from the sponge idea. Streamflow went up, by something like forty percent in the first year.\n\nThe reason is transpiration. Trees pull water out of the soil and release it into the air through their leaves, and a forest does that over an enormous surface. Take the trees away, and more of the rain ends up in the stream. A review in the early 1980s, pooling dozens of these experiments, found the same direction almost every time, with the biggest effects where evergreen conifers were removed.\n\nSo, case closed against the sponge? Not everywhere. In tropical cloud forests on mountain slopes, the trees comb droplets right out of passing fog, water that would never have fallen as rain. Clear those forests, and streams can lose water.\n\nBut the experiments measure total yearly flow. Whether a stream keeps running through the dry season is a separate question, and there, bare, compacted soil can make things worse. The sponge picture was wrong about the total, but maybe not about everything.",
+    "passageGroupId": "pg-d41e0c08d5b3a671c694d66bcd9ae79d",
+    "prompt": "[Academic Talk — Hydrology] Why does the professor mention tropical cloud forests?",
+    "choices": [
+     "To show that evergreen trees lose more water than others",
+     "To give a setting where clearing trees can reduce streamflow",
+     "To explain why the review in the 1980s found mixed results",
+     "To describe where paired catchment experiments began"
+    ],
+    "correct_answer": "To give a setting where clearing trees can reduce streamflow",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Clear those forests, and streams can lose water.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show that evergreen trees lose more water than others",
+      "reason": "Evergreen conifers are discussed in connection with the review, not cloud forests."
+     },
+     {
+      "choice": "To explain why the review in the 1980s found mixed results",
+      "reason": "The review 'found the same direction almost every time'."
+     },
+     {
+      "choice": "To describe where paired catchment experiments began",
+      "reason": "The experiments described took place in New Hampshire and elsewhere; their origin is not discussed."
+     }
+    ]
+   },
+   "content_hash": "cf690dced3e1c82dd0da16cc3356161f",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's an old idea, going back at least to the nineteenth century, that forests act like sponges. They soak up the rain and let it out slowly, so if you cut down a forest, the streams below it will dry up. It's intuitive, and it shaped land policy in several countries.\n\nThe way hydrologists tested it is called a paired catchment experiment. You find two small neighboring watersheds with similar soils, slopes, and rainfall, and you measure the streams draining both for several years, so you know how they compare. Then you cut the trees in one and keep the other as a control. At Hubbard Brook, in New Hampshire, in the mid-1960s, researchers cleared all the forest in one small watershed and used herbicides to stop it growing back. The result went the opposite way from the sponge idea. Streamflow went up, by something like forty percent in the first year.\n\nThe reason is transpiration. Trees pull water out of the soil and release it into the air through their leaves, and a forest does that over an enormous surface. Take the trees away, and more of the rain ends up in the stream. A review in the early 1980s, pooling dozens of these experiments, found the same direction almost every time, with the biggest effects where evergreen conifers were removed.\n\nSo, case closed against the sponge? Not everywhere. In tropical cloud forests on mountain slopes, the trees comb droplets right out of passing fog, water that would never have fallen as rain. Clear those forests, and streams can lose water.\n\nBut the experiments measure total yearly flow. Whether a stream keeps running through the dry season is a separate question, and there, bare, compacted soil can make things worse. The sponge picture was wrong about the total, but maybe not about everything.",
+    "passageGroupId": "pg-d41e0c08d5b3a671c694d66bcd9ae79d",
+    "prompt": "[Academic Talk — Hydrology] What does the professor imply about the sponge idea?",
+    "choices": [
+     "It could still be relevant to flow during dry seasons",
+     "It may hold for total yearly flow in most regions",
+     "It was supported by the result at Hubbard Brook",
+     "It has nothing left to offer hydrologists working today"
+    ],
+    "correct_answer": "It could still be relevant to flow during dry seasons",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Dry-season flow is 'a separate question'; the sponge picture was wrong about the total 'but maybe not about everything.'",
+    "distractor_rationales": [
+     {
+      "choice": "It may hold for total yearly flow in most regions",
+      "reason": "The experiments showed the sponge idea was 'wrong about the total'."
+     },
+     {
+      "choice": "It was supported by the result at Hubbard Brook",
+      "reason": "Streamflow at Hubbard Brook 'went up', the opposite of the prediction."
+     },
+     {
+      "choice": "It has nothing left to offer hydrologists working today",
+      "reason": "The closing remark suggests it is 'maybe not' wrong about everything."
+     }
+    ]
+   },
+   "content_hash": "42e1df50a9265fa91a270a3666c9ba71",
+   "word_count": 304,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the summer of 1954, the psychologist Muzafer Sherif and his team ran one of the best-known field studies in social psychology, at a summer camp in Robbers Cave State Park in Oklahoma. Twenty-two boys, about eleven years old, were split into two groups that at first didn't know the other existed. Each group bonded and chose a name, the Rattlers and the Eagles. Then the staff, who were really researchers, set up a tournament with prizes, and hostility followed fast: name-calling, a burned flag, raids on each other's cabins.\n\nThe next phase is the part textbooks emphasize. Simply bringing the groups together, for meals or movies, didn't help. The shared meals turned into food fights. What did help were what Sherif called superordinate goals, problems neither group could solve alone, like a broken water supply, or a stalled truck that needed everyone pulling on a rope. Over several of these, the hostility faded.\n\nHere's what the textbooks usually leave out. The year before, in 1953, Sherif ran a similar study near Middle Grove, New York, and it fell apart. According to later accounts, including archival work by the writer Gina Perry, the boys there kept friendships across the two groups and didn't turn on each other as planned, and at one point some of them seem to have suspected that the staff were behind the incidents meant to provoke them. The study was abandoned and largely left out of the published record.\n\nNow, that doesn't mean the Robbers Cave findings were faked. But it changes how we should read them. Competition for prizes didn't produce hostility automatically. In 1954, the groups were kept apart from the very beginning. The conflict grew under conditions the researchers had arranged quite carefully, and those conditions probably mattered more than the textbook version suggests.",
+    "passageGroupId": "pg-82a053b985a5290ef38ca04e4a020786",
+    "prompt": "[Academic Talk — Social Psychology] What is the main purpose of the lecture?",
+    "choices": [
+     "To argue that Sherif probably invented the Robbers Cave results",
+     "To explain how shared meals reduced hostility between groups",
+     "To show that a famous result depended on its setup",
+     "To compare summer camps in Oklahoma and New York"
+    ],
+    "correct_answer": "To show that a famous result depended on its setup",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The conflict 'grew under conditions the researchers had arranged quite carefully'.",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that Sherif probably invented the Robbers Cave results",
+      "reason": "'That doesn't mean the Robbers Cave findings were faked.'"
+     },
+     {
+      "choice": "To explain how shared meals reduced hostility between groups",
+      "reason": "The shared meals 'turned into food fights'."
+     },
+     {
+      "choice": "To compare summer camps in Oklahoma and New York",
+      "reason": "The camps are compared only to make a point about the study's conditions."
+     }
+    ]
+   },
+   "content_hash": "48613c878aa3f2685f38594bc88bda98",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the summer of 1954, the psychologist Muzafer Sherif and his team ran one of the best-known field studies in social psychology, at a summer camp in Robbers Cave State Park in Oklahoma. Twenty-two boys, about eleven years old, were split into two groups that at first didn't know the other existed. Each group bonded and chose a name, the Rattlers and the Eagles. Then the staff, who were really researchers, set up a tournament with prizes, and hostility followed fast: name-calling, a burned flag, raids on each other's cabins.\n\nThe next phase is the part textbooks emphasize. Simply bringing the groups together, for meals or movies, didn't help. The shared meals turned into food fights. What did help were what Sherif called superordinate goals, problems neither group could solve alone, like a broken water supply, or a stalled truck that needed everyone pulling on a rope. Over several of these, the hostility faded.\n\nHere's what the textbooks usually leave out. The year before, in 1953, Sherif ran a similar study near Middle Grove, New York, and it fell apart. According to later accounts, including archival work by the writer Gina Perry, the boys there kept friendships across the two groups and didn't turn on each other as planned, and at one point some of them seem to have suspected that the staff were behind the incidents meant to provoke them. The study was abandoned and largely left out of the published record.\n\nNow, that doesn't mean the Robbers Cave findings were faked. But it changes how we should read them. Competition for prizes didn't produce hostility automatically. In 1954, the groups were kept apart from the very beginning. The conflict grew under conditions the researchers had arranged quite carefully, and those conditions probably mattered more than the textbook version suggests.",
+    "passageGroupId": "pg-82a053b985a5290ef38ca04e4a020786",
+    "prompt": "[Academic Talk — Social Psychology] According to the professor, what happened when the two groups shared meals?",
+    "choices": [
+     "The boys kept their friendships across groups",
+     "The staff ended the tournament early",
+     "The hostility began to fade slowly",
+     "The meals turned into food fights"
+    ],
+    "correct_answer": "The meals turned into food fights",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The shared meals turned into food fights.'",
+    "distractor_rationales": [
+     {
+      "choice": "The boys kept their friendships across groups",
+      "reason": "Friendships across groups are described at Middle Grove in 1953."
+     },
+     {
+      "choice": "The staff ended the tournament early",
+      "reason": "No early end to the tournament is mentioned."
+     },
+     {
+      "choice": "The hostility began to fade slowly",
+      "reason": "Hostility faded through superordinate goals, not shared meals."
+     }
+    ]
+   },
+   "content_hash": "d2da9fdf855a585f3af2de3ec50ffff8",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the summer of 1954, the psychologist Muzafer Sherif and his team ran one of the best-known field studies in social psychology, at a summer camp in Robbers Cave State Park in Oklahoma. Twenty-two boys, about eleven years old, were split into two groups that at first didn't know the other existed. Each group bonded and chose a name, the Rattlers and the Eagles. Then the staff, who were really researchers, set up a tournament with prizes, and hostility followed fast: name-calling, a burned flag, raids on each other's cabins.\n\nThe next phase is the part textbooks emphasize. Simply bringing the groups together, for meals or movies, didn't help. The shared meals turned into food fights. What did help were what Sherif called superordinate goals, problems neither group could solve alone, like a broken water supply, or a stalled truck that needed everyone pulling on a rope. Over several of these, the hostility faded.\n\nHere's what the textbooks usually leave out. The year before, in 1953, Sherif ran a similar study near Middle Grove, New York, and it fell apart. According to later accounts, including archival work by the writer Gina Perry, the boys there kept friendships across the two groups and didn't turn on each other as planned, and at one point some of them seem to have suspected that the staff were behind the incidents meant to provoke them. The study was abandoned and largely left out of the published record.\n\nNow, that doesn't mean the Robbers Cave findings were faked. But it changes how we should read them. Competition for prizes didn't produce hostility automatically. In 1954, the groups were kept apart from the very beginning. The conflict grew under conditions the researchers had arranged quite carefully, and those conditions probably mattered more than the textbook version suggests.",
+    "passageGroupId": "pg-82a053b985a5290ef38ca04e4a020786",
+    "prompt": "[Academic Talk — Social Psychology] Why does the professor mention a broken water supply and a stalled truck?",
+    "choices": [
+     "To show how the staff provoked the groups into fighting",
+     "To describe the prizes offered during the tournament",
+     "To give examples of problems that required both groups",
+     "To explain why the Middle Grove study was abandoned"
+    ],
+    "correct_answer": "To give examples of problems that required both groups",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "They illustrate superordinate goals, 'problems neither group could solve alone'.",
+    "distractor_rationales": [
+     {
+      "choice": "To show how the staff provoked the groups into fighting",
+      "reason": "The provocations were the tournament and staged incidents, not these problems."
+     },
+     {
+      "choice": "To describe the prizes offered during the tournament",
+      "reason": "The prizes are not described."
+     },
+     {
+      "choice": "To explain why the Middle Grove study was abandoned",
+      "reason": "Middle Grove fell apart for other reasons; these examples are from 1954."
+     }
+    ]
+   },
+   "content_hash": "1dbf8a39f62dda8a75effdc804d7ed83",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the summer of 1954, the psychologist Muzafer Sherif and his team ran one of the best-known field studies in social psychology, at a summer camp in Robbers Cave State Park in Oklahoma. Twenty-two boys, about eleven years old, were split into two groups that at first didn't know the other existed. Each group bonded and chose a name, the Rattlers and the Eagles. Then the staff, who were really researchers, set up a tournament with prizes, and hostility followed fast: name-calling, a burned flag, raids on each other's cabins.\n\nThe next phase is the part textbooks emphasize. Simply bringing the groups together, for meals or movies, didn't help. The shared meals turned into food fights. What did help were what Sherif called superordinate goals, problems neither group could solve alone, like a broken water supply, or a stalled truck that needed everyone pulling on a rope. Over several of these, the hostility faded.\n\nHere's what the textbooks usually leave out. The year before, in 1953, Sherif ran a similar study near Middle Grove, New York, and it fell apart. According to later accounts, including archival work by the writer Gina Perry, the boys there kept friendships across the two groups and didn't turn on each other as planned, and at one point some of them seem to have suspected that the staff were behind the incidents meant to provoke them. The study was abandoned and largely left out of the published record.\n\nNow, that doesn't mean the Robbers Cave findings were faked. But it changes how we should read them. Competition for prizes didn't produce hostility automatically. In 1954, the groups were kept apart from the very beginning. The conflict grew under conditions the researchers had arranged quite carefully, and those conditions probably mattered more than the textbook version suggests.",
+    "passageGroupId": "pg-82a053b985a5290ef38ca04e4a020786",
+    "prompt": "[Academic Talk — Social Psychology] What can be inferred about the boys at Middle Grove?",
+    "choices": [
+     "They were older than the boys studied at Robbers Cave",
+     "They competed in a tournament that had no prizes",
+     "They later took part in the Robbers Cave study",
+     "Their ties across groups may have worked against the plan"
+    ],
+    "correct_answer": "Their ties across groups may have worked against the plan",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "They 'kept friendships across the two groups', while in 1954 the groups 'were kept apart from the very beginning'.",
+    "distractor_rationales": [
+     {
+      "choice": "They were older than the boys studied at Robbers Cave",
+      "reason": "The ages of the Middle Grove boys are not given."
+     },
+     {
+      "choice": "They competed in a tournament that had no prizes",
+      "reason": "Nothing is said about prizes at Middle Grove."
+     },
+     {
+      "choice": "They later took part in the Robbers Cave study",
+      "reason": "No boy is said to have attended both camps."
+     }
+    ]
+   },
+   "content_hash": "65a55f6c679270cdd5cc1880e5bc37e7",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ludwig van Beethoven was one of the first major composers to tell us exactly how fast he wanted his music played. In 1815, the inventor Johann Maelzel patented a practical metronome, a clockwork pendulum with a sliding weight. Move the weight up or down, and the ticking slows down or speeds up. Beethoven was enthusiastic. In 1817, he published metronome markings for his first eight symphonies: numbers, instead of loose Italian words like allegro.\n\nAnd for two hundred years, performers have argued with those numbers. Many of them are startlingly fast. Some passages, played at the marked speed, feel rushed, almost frantic, and most orchestras have quietly taken them slower.\n\nSo people looked for an explanation. Beethoven was going deaf. Or his metronome was faulty, an early mechanism running unevenly. But a broken machine ought to produce errors that go every which way: some markings too fast, some too slow, by differing amounts.\n\nIn 2020, two researchers in Spain tried another approach. They measured the tempos in dozens of recorded performances of the symphonies and compared them with Beethoven's markings. The conductors weren't scattered at random. They were slower by a fairly steady amount, roughly twelve beats a minute. And the researchers pointed out that this is about what you'd get if someone read the scale on the wrong side of the sliding weight, the bottom edge instead of the top. That's a human slip, not a mechanical fault, and it could have been made by Beethoven or by someone helping him, since he couldn't hear the ticking well.\n\nNow, that's a hypothesis, not proof. But notice what it does to the old debate, which was always framed as whether to trust Beethoven or not. If the error was systematic, his markings may still tell us the speeds he intended, once you correct for it.",
+    "passageGroupId": "pg-1b06529dcacad11a58e3c3f9a1b486aa",
+    "prompt": "[Academic Talk — Music History] What is the main purpose of the lecture?",
+    "choices": [
+     "To argue that orchestras should play the markings exactly as written",
+     "To explain how Maelzel's metronome kept steady time",
+     "To show how deafness changed the way Beethoven composed",
+     "To present a newer explanation for some puzzling tempo marks"
+    ],
+    "correct_answer": "To present a newer explanation for some puzzling tempo marks",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture moves from older explanations to the 2020 reading-error hypothesis.",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that orchestras should play the markings exactly as written",
+      "reason": "The professor suggests correcting for an error, not playing the numbers as written."
+     },
+     {
+      "choice": "To explain how Maelzel's metronome kept steady time",
+      "reason": "The mechanism is described in one sentence of background."
+     },
+     {
+      "choice": "To show how deafness changed the way Beethoven composed",
+      "reason": "Deafness is raised only as one proposed explanation for the markings."
+     }
+    ]
+   },
+   "content_hash": "69a8da3d1fd35c47b23ab033c6f4bd7b",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ludwig van Beethoven was one of the first major composers to tell us exactly how fast he wanted his music played. In 1815, the inventor Johann Maelzel patented a practical metronome, a clockwork pendulum with a sliding weight. Move the weight up or down, and the ticking slows down or speeds up. Beethoven was enthusiastic. In 1817, he published metronome markings for his first eight symphonies: numbers, instead of loose Italian words like allegro.\n\nAnd for two hundred years, performers have argued with those numbers. Many of them are startlingly fast. Some passages, played at the marked speed, feel rushed, almost frantic, and most orchestras have quietly taken them slower.\n\nSo people looked for an explanation. Beethoven was going deaf. Or his metronome was faulty, an early mechanism running unevenly. But a broken machine ought to produce errors that go every which way: some markings too fast, some too slow, by differing amounts.\n\nIn 2020, two researchers in Spain tried another approach. They measured the tempos in dozens of recorded performances of the symphonies and compared them with Beethoven's markings. The conductors weren't scattered at random. They were slower by a fairly steady amount, roughly twelve beats a minute. And the researchers pointed out that this is about what you'd get if someone read the scale on the wrong side of the sliding weight, the bottom edge instead of the top. That's a human slip, not a mechanical fault, and it could have been made by Beethoven or by someone helping him, since he couldn't hear the ticking well.\n\nNow, that's a hypothesis, not proof. But notice what it does to the old debate, which was always framed as whether to trust Beethoven or not. If the error was systematic, his markings may still tell us the speeds he intended, once you correct for it.",
+    "passageGroupId": "pg-1b06529dcacad11a58e3c3f9a1b486aa",
+    "prompt": "[Academic Talk — Music History] According to the professor, what did the 2020 study find about the recorded performances?",
+    "choices": [
+     "They varied randomly around Beethoven's markings",
+     "They had grown faster over the past century",
+     "They matched the markings in nearly every one of the slow movements",
+     "They were slower than the markings by a fairly steady amount"
+    ],
+    "correct_answer": "They were slower than the markings by a fairly steady amount",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'They were slower by a fairly steady amount, roughly twelve beats a minute.'",
+    "distractor_rationales": [
+     {
+      "choice": "They varied randomly around Beethoven's markings",
+      "reason": "'The conductors weren't scattered at random.'"
+     },
+     {
+      "choice": "They had grown faster over the past century",
+      "reason": "No change over time is mentioned."
+     },
+     {
+      "choice": "They matched the markings in nearly every one of the slow movements",
+      "reason": "Slow movements are not singled out; performances were slower overall."
+     }
+    ]
+   },
+   "content_hash": "6c5b68de7b7836cd45294f199dad0f27",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ludwig van Beethoven was one of the first major composers to tell us exactly how fast he wanted his music played. In 1815, the inventor Johann Maelzel patented a practical metronome, a clockwork pendulum with a sliding weight. Move the weight up or down, and the ticking slows down or speeds up. Beethoven was enthusiastic. In 1817, he published metronome markings for his first eight symphonies: numbers, instead of loose Italian words like allegro.\n\nAnd for two hundred years, performers have argued with those numbers. Many of them are startlingly fast. Some passages, played at the marked speed, feel rushed, almost frantic, and most orchestras have quietly taken them slower.\n\nSo people looked for an explanation. Beethoven was going deaf. Or his metronome was faulty, an early mechanism running unevenly. But a broken machine ought to produce errors that go every which way: some markings too fast, some too slow, by differing amounts.\n\nIn 2020, two researchers in Spain tried another approach. They measured the tempos in dozens of recorded performances of the symphonies and compared them with Beethoven's markings. The conductors weren't scattered at random. They were slower by a fairly steady amount, roughly twelve beats a minute. And the researchers pointed out that this is about what you'd get if someone read the scale on the wrong side of the sliding weight, the bottom edge instead of the top. That's a human slip, not a mechanical fault, and it could have been made by Beethoven or by someone helping him, since he couldn't hear the ticking well.\n\nNow, that's a hypothesis, not proof. But notice what it does to the old debate, which was always framed as whether to trust Beethoven or not. If the error was systematic, his markings may still tell us the speeds he intended, once you correct for it.",
+    "passageGroupId": "pg-1b06529dcacad11a58e3c3f9a1b486aa",
+    "prompt": "[Academic Talk — Music History] Why does the professor say that a broken machine 'ought to produce errors that go every which way'?",
+    "choices": [
+     "To cast doubt on the faulty-metronome explanation",
+     "To explain why early metronomes were so cheaply made",
+     "To show that Beethoven owned several metronomes",
+     "To suggest that modern orchestras play much too slowly"
+    ],
+    "correct_answer": "To cast doubt on the faulty-metronome explanation",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The markings are consistently fast, which random mechanical errors would not produce.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why early metronomes were so cheaply made",
+      "reason": "Cost of manufacture is not discussed."
+     },
+     {
+      "choice": "To show that Beethoven owned several metronomes",
+      "reason": "Only one metronome of Beethoven's is discussed."
+     },
+     {
+      "choice": "To suggest that modern orchestras play much too slowly",
+      "reason": "The remark concerns the markings, not whether orchestras are too slow."
+     }
+    ]
+   },
+   "content_hash": "ef0a689dfde515ce94631fa3b16836df",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ludwig van Beethoven was one of the first major composers to tell us exactly how fast he wanted his music played. In 1815, the inventor Johann Maelzel patented a practical metronome, a clockwork pendulum with a sliding weight. Move the weight up or down, and the ticking slows down or speeds up. Beethoven was enthusiastic. In 1817, he published metronome markings for his first eight symphonies: numbers, instead of loose Italian words like allegro.\n\nAnd for two hundred years, performers have argued with those numbers. Many of them are startlingly fast. Some passages, played at the marked speed, feel rushed, almost frantic, and most orchestras have quietly taken them slower.\n\nSo people looked for an explanation. Beethoven was going deaf. Or his metronome was faulty, an early mechanism running unevenly. But a broken machine ought to produce errors that go every which way: some markings too fast, some too slow, by differing amounts.\n\nIn 2020, two researchers in Spain tried another approach. They measured the tempos in dozens of recorded performances of the symphonies and compared them with Beethoven's markings. The conductors weren't scattered at random. They were slower by a fairly steady amount, roughly twelve beats a minute. And the researchers pointed out that this is about what you'd get if someone read the scale on the wrong side of the sliding weight, the bottom edge instead of the top. That's a human slip, not a mechanical fault, and it could have been made by Beethoven or by someone helping him, since he couldn't hear the ticking well.\n\nNow, that's a hypothesis, not proof. But notice what it does to the old debate, which was always framed as whether to trust Beethoven or not. If the error was systematic, his markings may still tell us the speeds he intended, once you correct for it.",
+    "passageGroupId": "pg-1b06529dcacad11a58e3c3f9a1b486aa",
+    "prompt": "[Academic Talk — Music History] What is the professor's attitude toward the reading-error hypothesis?",
+    "choices": [
+     "Convinced that it has settled the question for good",
+     "Doubtful, as deafness explains the marks better",
+     "Dismissive, since Beethoven read the scale himself",
+     "Interested in it, while treating it as unproven"
+    ],
+    "correct_answer": "Interested in it, while treating it as unproven",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'That's a hypothesis, not proof. But notice what it does to the old debate.'",
+    "distractor_rationales": [
+     {
+      "choice": "Convinced that it has settled the question for good",
+      "reason": "The professor calls it 'a hypothesis, not proof'."
+     },
+     {
+      "choice": "Doubtful, as deafness explains the marks better",
+      "reason": "Deafness is not preferred; the professor focuses on the reading error."
+     },
+     {
+      "choice": "Dismissive, since Beethoven read the scale himself",
+      "reason": "The slip 'could have been made by Beethoven or by someone helping him'."
+     }
+    ]
+   },
+   "content_hash": "7a6a1a3c5a93d2b80d25d88c45cbc8cd",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, Chinese porcelain was one of the most prized things you could buy in Europe. It was white and hard, thin enough to let light through, and it rang when you tapped it. European potters couldn't make anything like it, and they didn't know why. Even the name shows how little they understood. Porcelain comes from an Italian word for a kind of cowrie shell, because the material seemed to resemble one, and some writers guessed it was actually made from crushed shells.\n\nEuropeans did produce imitations. In Florence, in the late fifteen hundreds, workshops backed by the Medici family made what we now call soft-paste porcelain, and French factories later made more. They mixed clay with ground glass. The result looked something like the real thing, but it was softer, easier to scratch, and liable to slump or crack in the kiln.\n\nThe breakthrough came in Saxony, in eastern Germany, around 1708. Johann Friedrich Böttger was an alchemist, kept under guard by the ruler, Augustus the Strong, who wanted him to make gold. He worked with an older scholar, Ehrenfried Walther von Tschirnhaus, who had been reaching very high temperatures with huge burning lenses. By testing local clays and minerals methodically, they found the answer, and it wasn't a hidden technique. It was the ingredients: a white clay called kaolin, plus a mineral that helps it fuse, fired at around thirteen hundred degrees or more, far hotter than ordinary European kilns. The Meissen factory opened in 1710.\n\nNow, Böttger usually gets the credit. But Tschirnhaus died in 1708, just as the work came together, and some historians think his notes and his approach did much of the work. And look again at what the Medici imitators had been doing. They copied how porcelain looked. The real problem was what it was made of.",
+    "passageGroupId": "pg-34d4d820bfcec8ca577cea34326224f6",
+    "prompt": "[Academic Talk — Ceramics] What is the lecture mainly about?",
+    "choices": [
+     "How Chinese potters kept their methods secret from Europe",
+     "How Europe came to make true porcelain, and what blocked it",
+     "Why the Medici family preferred soft-paste porcelain",
+     "How alchemists used huge burning lenses in trying to make gold"
+    ],
+    "correct_answer": "How Europe came to make true porcelain, and what blocked it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture covers failed imitations, the Saxon breakthrough, and the real obstacle: the ingredients.",
+    "distractor_rationales": [
+     {
+      "choice": "How Chinese potters kept their methods secret from Europe",
+      "reason": "Chinese secrecy is never discussed."
+     },
+     {
+      "choice": "Why the Medici family preferred soft-paste porcelain",
+      "reason": "No preference by the Medici is described."
+     },
+     {
+      "choice": "How alchemists used huge burning lenses in trying to make gold",
+      "reason": "Burning lenses are mentioned as a way to reach high temperatures."
+     }
+    ]
+   },
+   "content_hash": "b493b79d1eed4f380d024652105773c0",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, Chinese porcelain was one of the most prized things you could buy in Europe. It was white and hard, thin enough to let light through, and it rang when you tapped it. European potters couldn't make anything like it, and they didn't know why. Even the name shows how little they understood. Porcelain comes from an Italian word for a kind of cowrie shell, because the material seemed to resemble one, and some writers guessed it was actually made from crushed shells.\n\nEuropeans did produce imitations. In Florence, in the late fifteen hundreds, workshops backed by the Medici family made what we now call soft-paste porcelain, and French factories later made more. They mixed clay with ground glass. The result looked something like the real thing, but it was softer, easier to scratch, and liable to slump or crack in the kiln.\n\nThe breakthrough came in Saxony, in eastern Germany, around 1708. Johann Friedrich Böttger was an alchemist, kept under guard by the ruler, Augustus the Strong, who wanted him to make gold. He worked with an older scholar, Ehrenfried Walther von Tschirnhaus, who had been reaching very high temperatures with huge burning lenses. By testing local clays and minerals methodically, they found the answer, and it wasn't a hidden technique. It was the ingredients: a white clay called kaolin, plus a mineral that helps it fuse, fired at around thirteen hundred degrees or more, far hotter than ordinary European kilns. The Meissen factory opened in 1710.\n\nNow, Böttger usually gets the credit. But Tschirnhaus died in 1708, just as the work came together, and some historians think his notes and his approach did much of the work. And look again at what the Medici imitators had been doing. They copied how porcelain looked. The real problem was what it was made of.",
+    "passageGroupId": "pg-34d4d820bfcec8ca577cea34326224f6",
+    "prompt": "[Academic Talk — Ceramics] According to the professor, what was soft-paste porcelain made from?",
+    "choices": [
+     "Kaolin combined with crushed shells",
+     "White clay fired at very high heat",
+     "Clay mixed with ground glass",
+     "Local minerals tested in Saxony"
+    ],
+    "correct_answer": "Clay mixed with ground glass",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'They mixed clay with ground glass.'",
+    "distractor_rationales": [
+     {
+      "choice": "Kaolin combined with crushed shells",
+      "reason": "Crushed shells were a guess about Chinese porcelain."
+     },
+     {
+      "choice": "White clay fired at very high heat",
+      "reason": "High-fired white clay describes the Meissen breakthrough."
+     },
+     {
+      "choice": "Local minerals tested in Saxony",
+      "reason": "Testing in Saxony led to true porcelain, not soft-paste."
+     }
+    ]
+   },
+   "content_hash": "b81b83550e480f0c2f11d7109220e191",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, Chinese porcelain was one of the most prized things you could buy in Europe. It was white and hard, thin enough to let light through, and it rang when you tapped it. European potters couldn't make anything like it, and they didn't know why. Even the name shows how little they understood. Porcelain comes from an Italian word for a kind of cowrie shell, because the material seemed to resemble one, and some writers guessed it was actually made from crushed shells.\n\nEuropeans did produce imitations. In Florence, in the late fifteen hundreds, workshops backed by the Medici family made what we now call soft-paste porcelain, and French factories later made more. They mixed clay with ground glass. The result looked something like the real thing, but it was softer, easier to scratch, and liable to slump or crack in the kiln.\n\nThe breakthrough came in Saxony, in eastern Germany, around 1708. Johann Friedrich Böttger was an alchemist, kept under guard by the ruler, Augustus the Strong, who wanted him to make gold. He worked with an older scholar, Ehrenfried Walther von Tschirnhaus, who had been reaching very high temperatures with huge burning lenses. By testing local clays and minerals methodically, they found the answer, and it wasn't a hidden technique. It was the ingredients: a white clay called kaolin, plus a mineral that helps it fuse, fired at around thirteen hundred degrees or more, far hotter than ordinary European kilns. The Meissen factory opened in 1710.\n\nNow, Böttger usually gets the credit. But Tschirnhaus died in 1708, just as the work came together, and some historians think his notes and his approach did much of the work. And look again at what the Medici imitators had been doing. They copied how porcelain looked. The real problem was what it was made of.",
+    "passageGroupId": "pg-34d4d820bfcec8ca577cea34326224f6",
+    "prompt": "[Academic Talk — Ceramics] Why does the professor say that the answer 'wasn't a hidden technique'?",
+    "choices": [
+     "To suggest that Böttger copied a method used in China",
+     "To argue that the Medici workshops had already solved it",
+     "To stress that it lay in the raw materials and the heat",
+     "To explain why Augustus kept Böttger under guard"
+    ],
+    "correct_answer": "To stress that it lay in the raw materials and the heat",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'It was the ingredients: a white clay called kaolin, plus a mineral... fired at around thirteen hundred degrees.'",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that Böttger copied a method used in China",
+      "reason": "No copying from China is described."
+     },
+     {
+      "choice": "To argue that the Medici workshops had already solved it",
+      "reason": "The Medici made imitations that 'copied how porcelain looked'."
+     },
+     {
+      "choice": "To explain why Augustus kept Böttger under guard",
+      "reason": "Augustus guarded him because he 'wanted him to make gold'."
+     }
+    ]
+   },
+   "content_hash": "66bfb4b411ba11f7773d95be8bd4da1e",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: For centuries, Chinese porcelain was one of the most prized things you could buy in Europe. It was white and hard, thin enough to let light through, and it rang when you tapped it. European potters couldn't make anything like it, and they didn't know why. Even the name shows how little they understood. Porcelain comes from an Italian word for a kind of cowrie shell, because the material seemed to resemble one, and some writers guessed it was actually made from crushed shells.\n\nEuropeans did produce imitations. In Florence, in the late fifteen hundreds, workshops backed by the Medici family made what we now call soft-paste porcelain, and French factories later made more. They mixed clay with ground glass. The result looked something like the real thing, but it was softer, easier to scratch, and liable to slump or crack in the kiln.\n\nThe breakthrough came in Saxony, in eastern Germany, around 1708. Johann Friedrich Böttger was an alchemist, kept under guard by the ruler, Augustus the Strong, who wanted him to make gold. He worked with an older scholar, Ehrenfried Walther von Tschirnhaus, who had been reaching very high temperatures with huge burning lenses. By testing local clays and minerals methodically, they found the answer, and it wasn't a hidden technique. It was the ingredients: a white clay called kaolin, plus a mineral that helps it fuse, fired at around thirteen hundred degrees or more, far hotter than ordinary European kilns. The Meissen factory opened in 1710.\n\nNow, Böttger usually gets the credit. But Tschirnhaus died in 1708, just as the work came together, and some historians think his notes and his approach did much of the work. And look again at what the Medici imitators had been doing. They copied how porcelain looked. The real problem was what it was made of.",
+    "passageGroupId": "pg-34d4d820bfcec8ca577cea34326224f6",
+    "prompt": "[Academic Talk — Ceramics] What does the professor suggest about the credit usually given to Böttger?",
+    "choices": [
+     "It is probably deserved, as Tschirnhaus left no useful notes",
+     "It may understate his partner's part in the work",
+     "It belongs instead to the workshops in Florence",
+     "It was given only after the factory had failed"
+    ],
+    "correct_answer": "It may understate his partner's part in the work",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "'Some historians think his notes and his approach did much of the work.'",
+    "distractor_rationales": [
+     {
+      "choice": "It is probably deserved, as Tschirnhaus left no useful notes",
+      "reason": "Historians point to Tschirnhaus's notes as important."
+     },
+     {
+      "choice": "It belongs instead to the workshops in Florence",
+      "reason": "The Florence workshops made only imitations."
+     },
+     {
+      "choice": "It was given only after the factory had failed",
+      "reason": "The Meissen factory opened in 1710; no failure is mentioned."
+     }
+    ]
+   },
+   "content_hash": "f9ef80668c467e09651b5a9c686aeef7",
+   "word_count": 305,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You may have heard that the largest living thing on Earth is a fungus. In the Malheur National Forest in Oregon, there's a honey fungus, a species of Armillaria, that's been estimated to cover close to a thousand hectares, and to be anywhere from about two thousand to more than eight thousand years old. Headlines call it the humongous fungus.\n\nWhat you see above ground isn't much: clusters of honey-colored mushrooms in the autumn. The fungus itself is mostly underground and inside wood, a mass of fine threads plus dark, rootlike cords that grow through the soil from one tree root to the next. It's a parasite, and it kills many of the trees it spreads through, which is how researchers first noticed the pattern, as patches of dead and dying conifers.\n\nSo how do you know it's one organism and not many? The method goes back to a study published in 1992 on a related fungus in Michigan. Researchers took samples across a large area and compared them genetically, and they kept finding the same individual. In Oregon, a team did the same thing, and samples spread across several kilometers matched.\n\nBut here's where we have to be careful about what that evidence shows. Matching genes tell you the samples came from one individual that grew outward from a single beginning. They don't tell you it's all still connected. Over centuries, the cords between distant patches may have died, leaving genetically identical pieces that no longer exchange anything. Is that one organism, or a clone colony? The genetic test can't decide.\n\nSo the record is real, as a record of how far one genetic individual has spread. Whether it's the largest organism depends on what you mean by organism, and the people who study fungi don't entirely agree on that.",
+    "passageGroupId": "pg-0a1a8391813bd3c2c70232613d442455",
+    "prompt": "[Academic Talk — Mycology] What is the main point of the lecture?",
+    "choices": [
+     "Genetic evidence shows the fungus's spread, not that it is one body",
+     "The Oregon fungus is far younger than newspaper headlines have suggested",
+     "Honey fungus helps the trees that it grows through",
+     "The Michigan fungus is larger than the one in Oregon"
+    ],
+    "correct_answer": "Genetic evidence shows the fungus's spread, not that it is one body",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Matching genes show 'how far one genetic individual has spread' but 'don't tell you it's all still connected.'",
+    "distractor_rationales": [
+     {
+      "choice": "The Oregon fungus is far younger than newspaper headlines have suggested",
+      "reason": "The age estimate is reported without challenge."
+     },
+     {
+      "choice": "Honey fungus helps the trees that it grows through",
+      "reason": "It is 'a parasite' that kills trees."
+     },
+     {
+      "choice": "The Michigan fungus is larger than the one in Oregon",
+      "reason": "The two fungi are not compared in size."
+     }
+    ]
+   },
+   "content_hash": "f576f9da28cf583d9a9aa3558f95bf13",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You may have heard that the largest living thing on Earth is a fungus. In the Malheur National Forest in Oregon, there's a honey fungus, a species of Armillaria, that's been estimated to cover close to a thousand hectares, and to be anywhere from about two thousand to more than eight thousand years old. Headlines call it the humongous fungus.\n\nWhat you see above ground isn't much: clusters of honey-colored mushrooms in the autumn. The fungus itself is mostly underground and inside wood, a mass of fine threads plus dark, rootlike cords that grow through the soil from one tree root to the next. It's a parasite, and it kills many of the trees it spreads through, which is how researchers first noticed the pattern, as patches of dead and dying conifers.\n\nSo how do you know it's one organism and not many? The method goes back to a study published in 1992 on a related fungus in Michigan. Researchers took samples across a large area and compared them genetically, and they kept finding the same individual. In Oregon, a team did the same thing, and samples spread across several kilometers matched.\n\nBut here's where we have to be careful about what that evidence shows. Matching genes tell you the samples came from one individual that grew outward from a single beginning. They don't tell you it's all still connected. Over centuries, the cords between distant patches may have died, leaving genetically identical pieces that no longer exchange anything. Is that one organism, or a clone colony? The genetic test can't decide.\n\nSo the record is real, as a record of how far one genetic individual has spread. Whether it's the largest organism depends on what you mean by organism, and the people who study fungi don't entirely agree on that.",
+    "passageGroupId": "pg-0a1a8391813bd3c2c70232613d442455",
+    "prompt": "[Academic Talk — Mycology] According to the professor, how did researchers first notice the fungus's pattern?",
+    "choices": [
+     "From mushrooms that appeared in spring",
+     "From patches of dead and dying trees",
+     "From genetic samples taken in Michigan",
+     "From dark cords on the forest floor"
+    ],
+    "correct_answer": "From patches of dead and dying trees",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The pattern was first noticed 'as patches of dead and dying conifers.'",
+    "distractor_rationales": [
+     {
+      "choice": "From mushrooms that appeared in spring",
+      "reason": "The mushrooms appear 'in the autumn'."
+     },
+     {
+      "choice": "From genetic samples taken in Michigan",
+      "reason": "Genetic sampling confirmed the extent; it came after the pattern was noticed."
+     },
+     {
+      "choice": "From dark cords on the forest floor",
+      "reason": "The cords grow 'through the soil', not visibly on the floor."
+     }
+    ]
+   },
+   "content_hash": "fa2a5aeabefbc7f385eeb2d2d0d7bb30",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You may have heard that the largest living thing on Earth is a fungus. In the Malheur National Forest in Oregon, there's a honey fungus, a species of Armillaria, that's been estimated to cover close to a thousand hectares, and to be anywhere from about two thousand to more than eight thousand years old. Headlines call it the humongous fungus.\n\nWhat you see above ground isn't much: clusters of honey-colored mushrooms in the autumn. The fungus itself is mostly underground and inside wood, a mass of fine threads plus dark, rootlike cords that grow through the soil from one tree root to the next. It's a parasite, and it kills many of the trees it spreads through, which is how researchers first noticed the pattern, as patches of dead and dying conifers.\n\nSo how do you know it's one organism and not many? The method goes back to a study published in 1992 on a related fungus in Michigan. Researchers took samples across a large area and compared them genetically, and they kept finding the same individual. In Oregon, a team did the same thing, and samples spread across several kilometers matched.\n\nBut here's where we have to be careful about what that evidence shows. Matching genes tell you the samples came from one individual that grew outward from a single beginning. They don't tell you it's all still connected. Over centuries, the cords between distant patches may have died, leaving genetically identical pieces that no longer exchange anything. Is that one organism, or a clone colony? The genetic test can't decide.\n\nSo the record is real, as a record of how far one genetic individual has spread. Whether it's the largest organism depends on what you mean by organism, and the people who study fungi don't entirely agree on that.",
+    "passageGroupId": "pg-0a1a8391813bd3c2c70232613d442455",
+    "prompt": "[Academic Talk — Mycology] Why does the professor ask 'Is that one organism, or a clone colony?'",
+    "choices": [
+     "To introduce a newer test that settles the matter",
+     "To point to a question the genetic test leaves open",
+     "To suggest that the Oregon samples did not match",
+     "To explain how the mushrooms spread their spores"
+    ],
+    "correct_answer": "To point to a question the genetic test leaves open",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The next sentence is 'The genetic test can't decide.'",
+    "distractor_rationales": [
+     {
+      "choice": "To introduce a newer test that settles the matter",
+      "reason": "No newer test is mentioned."
+     },
+     {
+      "choice": "To suggest that the Oregon samples did not match",
+      "reason": "The samples 'matched'."
+     },
+     {
+      "choice": "To explain how the mushrooms spread their spores",
+      "reason": "Spore spread is not discussed."
+     }
+    ]
+   },
+   "content_hash": "dda7461d47722a235cd0df4e0ef728fa",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: You may have heard that the largest living thing on Earth is a fungus. In the Malheur National Forest in Oregon, there's a honey fungus, a species of Armillaria, that's been estimated to cover close to a thousand hectares, and to be anywhere from about two thousand to more than eight thousand years old. Headlines call it the humongous fungus.\n\nWhat you see above ground isn't much: clusters of honey-colored mushrooms in the autumn. The fungus itself is mostly underground and inside wood, a mass of fine threads plus dark, rootlike cords that grow through the soil from one tree root to the next. It's a parasite, and it kills many of the trees it spreads through, which is how researchers first noticed the pattern, as patches of dead and dying conifers.\n\nSo how do you know it's one organism and not many? The method goes back to a study published in 1992 on a related fungus in Michigan. Researchers took samples across a large area and compared them genetically, and they kept finding the same individual. In Oregon, a team did the same thing, and samples spread across several kilometers matched.\n\nBut here's where we have to be careful about what that evidence shows. Matching genes tell you the samples came from one individual that grew outward from a single beginning. They don't tell you it's all still connected. Over centuries, the cords between distant patches may have died, leaving genetically identical pieces that no longer exchange anything. Is that one organism, or a clone colony? The genetic test can't decide.\n\nSo the record is real, as a record of how far one genetic individual has spread. Whether it's the largest organism depends on what you mean by organism, and the people who study fungi don't entirely agree on that.",
+    "passageGroupId": "pg-0a1a8391813bd3c2c70232613d442455",
+    "prompt": "[Academic Talk — Mycology] What would the professor most likely say about calling it the largest organism?",
+    "choices": [
+     "That the Michigan study may already have disproved it",
+     "That it is certain, since the samples all matched",
+     "That it applies only to fungi that kill trees",
+     "That it rests on a definition specialists dispute"
+    ],
+    "correct_answer": "That it rests on a definition specialists dispute",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It 'depends on what you mean by organism', and specialists 'don't entirely agree'.",
+    "distractor_rationales": [
+     {
+      "choice": "That the Michigan study may already have disproved it",
+      "reason": "The Michigan study introduced the method; it did not disprove anything."
+     },
+     {
+      "choice": "That it is certain, since the samples all matched",
+      "reason": "Matching samples cannot show the pieces are still connected."
+     },
+     {
+      "choice": "That it applies only to fungi that kill trees",
+      "reason": "Nothing restricts the claim to tree-killing fungi."
+     }
+    ]
+   },
+   "content_hash": "a2c715f83d81a4b7e7b0ff4aa8cfdd42",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask who invented printing with movable metal type, and most people will say Johannes Gutenberg, around 1450. But the oldest surviving book printed with movable metal type is Korean. It's called the Jikji, a collection of Buddhist teachings printed at a temple in Cheongju in 1377, roughly seventy-five years before Gutenberg's Bible. Only its second volume survives, and it's held by the national library of France. And movable type itself goes back further still, to the Chinese printer Bi Sheng, who made type from baked clay in the eleventh century.\n\nSo why didn't printing in Korea set off the kind of explosion it did in Europe? The usual answer is the writing system. Korean scholars wrote in Chinese characters, which number in the thousands, so a printer needed an enormous stock of type. Compare that with a couple of dozen letters in the Latin alphabet.\n\nThere's something to that, but it runs into a problem. In 1443, King Sejong's court created hangul, the Korean alphabet, which also has only a couple of dozen letters. And Korean printers did cast hangul type. Yet printing didn't take off in the European way after that, either.\n\nMany historians now point instead to who was doing the printing, and why. In Korea, metal type was largely run by the royal court. The government printed what it wanted spread: classics, histories, Buddhist and Confucian texts, often in small runs for officials and scholars. Gutenberg, by contrast, was a businessman working on borrowed money, and the printers who followed him had to sell books to survive, so they printed whatever buyers would pay for.\n\nI don't want to make this too neat. The alphabet still mattered, and many scholars looked down on hangul for a long time. But the technology alone didn't decide the outcome. The setting it was placed in did.",
+    "passageGroupId": "pg-5c45f8d420d52cb83163896e1a67379e",
+    "prompt": "[Academic Talk — History of Printing] What is the professor mainly doing in the lecture?",
+    "choices": [
+     "Arguing that Gutenberg borrowed his methods from earlier Korean printers",
+     "Describing how the Jikji came to be held in France",
+     "Weighing explanations for why Korean printing spread less widely",
+     "Explaining how Bi Sheng made his type from clay"
+    ],
+    "correct_answer": "Weighing explanations for why Korean printing spread less widely",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The professor tests the writing-system explanation and then turns to who did the printing.",
+    "distractor_rationales": [
+     {
+      "choice": "Arguing that Gutenberg borrowed his methods from earlier Korean printers",
+      "reason": "No copying by Gutenberg is suggested."
+     },
+     {
+      "choice": "Describing how the Jikji came to be held in France",
+      "reason": "Only the fact that it is held in France is given."
+     },
+     {
+      "choice": "Explaining how Bi Sheng made his type from clay",
+      "reason": "Bi Sheng is mentioned in one sentence of background."
+     }
+    ]
+   },
+   "content_hash": "5313b140a28fea552ee607f402804e12",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask who invented printing with movable metal type, and most people will say Johannes Gutenberg, around 1450. But the oldest surviving book printed with movable metal type is Korean. It's called the Jikji, a collection of Buddhist teachings printed at a temple in Cheongju in 1377, roughly seventy-five years before Gutenberg's Bible. Only its second volume survives, and it's held by the national library of France. And movable type itself goes back further still, to the Chinese printer Bi Sheng, who made type from baked clay in the eleventh century.\n\nSo why didn't printing in Korea set off the kind of explosion it did in Europe? The usual answer is the writing system. Korean scholars wrote in Chinese characters, which number in the thousands, so a printer needed an enormous stock of type. Compare that with a couple of dozen letters in the Latin alphabet.\n\nThere's something to that, but it runs into a problem. In 1443, King Sejong's court created hangul, the Korean alphabet, which also has only a couple of dozen letters. And Korean printers did cast hangul type. Yet printing didn't take off in the European way after that, either.\n\nMany historians now point instead to who was doing the printing, and why. In Korea, metal type was largely run by the royal court. The government printed what it wanted spread: classics, histories, Buddhist and Confucian texts, often in small runs for officials and scholars. Gutenberg, by contrast, was a businessman working on borrowed money, and the printers who followed him had to sell books to survive, so they printed whatever buyers would pay for.\n\nI don't want to make this too neat. The alphabet still mattered, and many scholars looked down on hangul for a long time. But the technology alone didn't decide the outcome. The setting it was placed in did.",
+    "passageGroupId": "pg-5c45f8d420d52cb83163896e1a67379e",
+    "prompt": "[Academic Talk — History of Printing] According to the professor, what is the Jikji?",
+    "choices": [
+     "The earliest surviving book made with movable metal type",
+     "The first book printed in the Korean alphabet",
+     "A history printed for King Sejong's court",
+     "A Chinese text printed with Bi Sheng's type made of baked clay"
+    ],
+    "correct_answer": "The earliest surviving book made with movable metal type",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The oldest surviving book printed with movable metal type is Korean. It's called the Jikji.'",
+    "distractor_rationales": [
+     {
+      "choice": "The first book printed in the Korean alphabet",
+      "reason": "It dates from 1377; hangul was created in 1443."
+     },
+     {
+      "choice": "A history printed for King Sejong's court",
+      "reason": "It is 'a collection of Buddhist teachings', printed at a temple."
+     },
+     {
+      "choice": "A Chinese text printed with Bi Sheng's type made of baked clay",
+      "reason": "Clay type belongs to Bi Sheng in the eleventh century."
+     }
+    ]
+   },
+   "content_hash": "3df13a01c289f0156e134a2f17f18933",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask who invented printing with movable metal type, and most people will say Johannes Gutenberg, around 1450. But the oldest surviving book printed with movable metal type is Korean. It's called the Jikji, a collection of Buddhist teachings printed at a temple in Cheongju in 1377, roughly seventy-five years before Gutenberg's Bible. Only its second volume survives, and it's held by the national library of France. And movable type itself goes back further still, to the Chinese printer Bi Sheng, who made type from baked clay in the eleventh century.\n\nSo why didn't printing in Korea set off the kind of explosion it did in Europe? The usual answer is the writing system. Korean scholars wrote in Chinese characters, which number in the thousands, so a printer needed an enormous stock of type. Compare that with a couple of dozen letters in the Latin alphabet.\n\nThere's something to that, but it runs into a problem. In 1443, King Sejong's court created hangul, the Korean alphabet, which also has only a couple of dozen letters. And Korean printers did cast hangul type. Yet printing didn't take off in the European way after that, either.\n\nMany historians now point instead to who was doing the printing, and why. In Korea, metal type was largely run by the royal court. The government printed what it wanted spread: classics, histories, Buddhist and Confucian texts, often in small runs for officials and scholars. Gutenberg, by contrast, was a businessman working on borrowed money, and the printers who followed him had to sell books to survive, so they printed whatever buyers would pay for.\n\nI don't want to make this too neat. The alphabet still mattered, and many scholars looked down on hangul for a long time. But the technology alone didn't decide the outcome. The setting it was placed in did.",
+    "passageGroupId": "pg-5c45f8d420d52cb83163896e1a67379e",
+    "prompt": "[Academic Talk — History of Printing] Why does the professor mention that Korean printers cast hangul type?",
+    "choices": [
+     "To challenge the idea that the script alone explains the result",
+     "To show that hangul quickly replaced Chinese characters",
+     "To explain why scholars admired the new alphabet",
+     "To show that hangul was designed to make printing cheaper"
+    ],
+    "correct_answer": "To challenge the idea that the script alone explains the result",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Even with a small alphabet, 'printing didn't take off in the European way'.",
+    "distractor_rationales": [
+     {
+      "choice": "To show that hangul quickly replaced Chinese characters",
+      "reason": "Nothing suggests a quick replacement."
+     },
+     {
+      "choice": "To explain why scholars admired the new alphabet",
+      "reason": "'Many scholars looked down on hangul.'"
+     },
+     {
+      "choice": "To show that hangul was designed to make printing cheaper",
+      "reason": "The purpose of creating hangul is not discussed."
+     }
+    ]
+   },
+   "content_hash": "d7eca577b663aedfe03fb79dfa5b0a1e",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD5-B06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Ask who invented printing with movable metal type, and most people will say Johannes Gutenberg, around 1450. But the oldest surviving book printed with movable metal type is Korean. It's called the Jikji, a collection of Buddhist teachings printed at a temple in Cheongju in 1377, roughly seventy-five years before Gutenberg's Bible. Only its second volume survives, and it's held by the national library of France. And movable type itself goes back further still, to the Chinese printer Bi Sheng, who made type from baked clay in the eleventh century.\n\nSo why didn't printing in Korea set off the kind of explosion it did in Europe? The usual answer is the writing system. Korean scholars wrote in Chinese characters, which number in the thousands, so a printer needed an enormous stock of type. Compare that with a couple of dozen letters in the Latin alphabet.\n\nThere's something to that, but it runs into a problem. In 1443, King Sejong's court created hangul, the Korean alphabet, which also has only a couple of dozen letters. And Korean printers did cast hangul type. Yet printing didn't take off in the European way after that, either.\n\nMany historians now point instead to who was doing the printing, and why. In Korea, metal type was largely run by the royal court. The government printed what it wanted spread: classics, histories, Buddhist and Confucian texts, often in small runs for officials and scholars. Gutenberg, by contrast, was a businessman working on borrowed money, and the printers who followed him had to sell books to survive, so they printed whatever buyers would pay for.\n\nI don't want to make this too neat. The alphabet still mattered, and many scholars looked down on hangul for a long time. But the technology alone didn't decide the outcome. The setting it was placed in did.",
+    "passageGroupId": "pg-5c45f8d420d52cb83163896e1a67379e",
+    "prompt": "[Academic Talk — History of Printing] What does the professor imply was the main difference between printing in Korea and in Europe?",
+    "choices": [
+     "Whether type was cast in metal or made of baked clay",
+     "Whether books were allowed to leave the country",
+     "Whether printers depended on selling to the public",
+     "Whether printers could cast type for the local alphabet"
+    ],
+    "correct_answer": "Whether printers depended on selling to the public",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "European printers 'had to sell books to survive'; Korean printing was 'largely run by the royal court'.",
+    "distractor_rationales": [
+     {
+      "choice": "Whether type was cast in metal or made of baked clay",
+      "reason": "Both Korea and Gutenberg used metal type."
+     },
+     {
+      "choice": "Whether books were allowed to leave the country",
+      "reason": "Exporting books is not discussed."
+     },
+     {
+      "choice": "Whether printers could cast type for the local alphabet",
+      "reason": "Korean printers 'did cast hangul type'."
+     }
+    ]
+   },
+   "content_hash": "205f8342852b0a2a9db1ab362624ebe3",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-5",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td5-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-talk-draft-5.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
