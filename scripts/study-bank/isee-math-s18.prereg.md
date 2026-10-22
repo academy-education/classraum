@@ -49,3 +49,17 @@ repaired after the freeze.
 ## Prediction
 About 50 of 60 survive (s16 90%, s17 79%); form 9 (+47) is reachable only if >= 47 insert. If fewer
 pass, the passers are still inserted and form 9 is reported NOT bought.
+
+## Result (2026-10-22): PAUSED at M1, nothing frozen or inserted
+- 60 authored; sandbox 60/60, distractors 180/180; pre-flight passed after pre-freeze re-authoring (numeric
+  hub +15.4 -> -13.6, key extremity 34.7% -> 49.0%, run-middle key 6/18 -> 0/12).
+- **M1: the agent named 46 of the 60 as live or batch duplicates; confirmed by hand ~44**, many near-verbatim
+  (E03 has the same numbers and answer as live 7f018ffc; D09, E08, D05, C07, D08, C08 near-identical). Of 14 it
+  cleared, 3 borderlines were confirmed (E04, F05, A03): **11 unique of 60.**
+- Break-test: 3 of 4 plants named; IM16C-14 was parked as borderline, so by this prereg M1 would have to be
+  re-run before a freeze. Not re-run, because the batch stopped here.
+- Why: I authored without reading the 709 live rows first. A keyword probe of 35 further ideas found the bank
+  already holds most standard ISEE items ("exactly three divisors", 2^12 - 1, square from its diagonal, three-part
+  ratios, a near-verbatim "1/3 then 1/4 of the rest"). About 15 ideas were clear. 11 kept plus about 15 new is
+  about 26, short of form 9 (+47), with no real student near ISEE math depth 8. Stopped rather than spend the
+  approved agents (B3 solvers, B4 graders) on a batch that cannot buy a form.

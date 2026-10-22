@@ -1,0 +1,1572 @@
+[
+ {
+  "id": "IM18A-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting multiples of one number that are not multiples of another (subtract the multiples of the LCM)",
+  "difficulty": "medium",
+  "prompt": "How many positive integers less than 200 are multiples of 6 but are NOT multiples of 9?",
+  "choices": [
+   "33",
+   "28",
+   "22",
+   "30"
+  ],
+  "correct_answer": "22",
+  "explanation": "There are 33 multiples of 6 below 200 (6 through 198). A multiple of 6 is also a multiple of 9 exactly when it is a multiple of 18, the least common multiple, and there are 11 of those (18 through 198). 33 - 11 = 22. The option 33 forgets to remove anything, 28 removes only multiples of 36, and 30 removes multiples of 54 (6 x 9) instead of 18.",
+  "solve": "let c=0;for(let n=1;n<200;n++)if(n%6===0&&n%9!==0)c++;return String(c);",
+  "distractor_solve": {
+   "28": "// removes only the multiples of 36 (6 x 6) instead of 18\nlet c=0;for(let n=1;n<200;n++)if(n%6===0&&n%36!==0)c++;return String(c);",
+   "30": "// removes multiples of 54 (6 x 9) instead of 18, the true LCM\nlet c=0;for(let n=1;n<200;n++)if(n%6===0&&n%54!==0)c++;return String(c);",
+   "33": "// counts every multiple of 6 below 200 and forgets the exclusion\nlet c=0;for(let n=1;n<200;n++)if(n%6===0)c++;return String(c);"
+  },
+  "forced": [
+   "a whole-number count",
+   "at most 33 (there are only 33 multiples of 6 under 200)"
+  ]
+ },
+ {
+  "id": "IM18A-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least multiple of a number with a stated greatest common factor (LCM, then check the GCF condition)",
+  "difficulty": "medium",
+  "prompt": "The number n is a multiple of 8, and the greatest common factor of n and 90 is 30. What is the least possible value of n?",
+  "choices": [
+   "720",
+   "240",
+   "360",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "n must be a multiple of 8 and of 30, so a multiple of their least common multiple, 120. Check 120: 120 = 2^3 x 3 x 5 and 90 = 2 x 3^2 x 5, so their greatest common factor is 2 x 3 x 5 = 30. The least value is 120. The option 240 multiplies 8 by 30, 360 is the least common multiple of 8 and 90, and 720 is 8 x 90.",
+  "solve": "function g(a,b){while(b){[a,b]=[b,a%b]}return a}for(let n=8;;n+=8)if(g(n,90)===30)return String(n);",
+  "distractor_solve": {
+   "240": "// multiplies 8 by 30 instead of taking their least common multiple\nreturn String(8*30);",
+   "360": "// takes the least common multiple of 8 and 90\nlet m=90;while(m%8)m+=90;return String(m);",
+   "720": "// multiplies 8 by 90\nreturn String(8*90);"
+  },
+  "forced": [
+   "a positive multiple of both 8 and 30",
+   "every option is a multiple of 120, so divisibility by 8, 3 or 5 strikes nothing"
+  ]
+ },
+ {
+  "id": "IM18A-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of digits of a product of powers of 2 and 5 (pair factors into powers of 10)",
+  "difficulty": "hard",
+  "prompt": "The number 2^10 x 5^7 is written out in standard form. How many digits does it have?",
+  "choices": [
+   "17",
+   "10",
+   "8",
+   "7"
+  ],
+  "correct_answer": "8",
+  "explanation": "Pair seven 2s with the seven 5s: 2^10 x 5^7 = 2^3 x (2 x 5)^7 = 8 x 10^7 = 80,000,000, which has 8 digits. The option 7 counts only the 10^7 and drops the 8 in front, 17 adds the exponents, and 10 takes the larger exponent.",
+  "solve": "return String((2n**10n*5n**7n).toString().length);",
+  "distractor_solve": {
+   "7": "// counts only the 10^7 part and forgets the leftover factor 2^3 = 8 in front\nreturn String(7);",
+   "10": "// takes the larger exponent\nreturn String(Math.max(10,7));",
+   "17": "// adds the exponents 10 + 7\nreturn String(10+7);"
+  },
+  "forced": [
+   "a whole number of digits"
+  ]
+ },
+ {
+  "id": "IM18A-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting even divisors from a prime factorization (total divisors minus odd divisors)",
+  "difficulty": "medium",
+  "prompt": "How many of the positive divisors of 360 are even numbers?",
+  "choices": [
+   "6",
+   "24",
+   "18",
+   "12"
+  ],
+  "correct_answer": "18",
+  "explanation": "360 = 2^3 x 3^2 x 5 has (3+1)(2+1)(1+1) = 24 divisors. The odd ones use no factor of 2: (2+1)(1+1) = 6. So 24 - 6 = 18 are even. The option 24 counts every divisor, 6 counts the odd ones, and 12 assumes half are even.",
+  "solve": "let c=0;for(let d=2;d<=360;d+=2)if(360%d===0)c++;return String(c);",
+  "distractor_solve": {
+   "6": "// counts the odd divisors instead\nlet c=0;for(let d=1;d<=360;d+=2)if(360%d===0)c++;return String(c);",
+   "12": "// assumes exactly half the divisors are even\nlet c=0;for(let d=1;d<=360;d++)if(360%d===0)c++;return String(c/2);",
+   "24": "// counts all divisors of 360\nlet c=0;for(let d=1;d<=360;d++)if(360%d===0)c++;return String(c);"
+  },
+  "forced": [
+   "a whole-number count",
+   "at most the total number of divisors, which is not visible without factoring"
+  ]
+ },
+ {
+  "id": "IM18A-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "repeating decimal to a fraction in lowest terms, then a sum of numerator and denominator",
+  "difficulty": "hard",
+  "prompt": "The repeating decimal 0.181818... (the digits 18 repeat forever) is written as a fraction a/b in lowest terms. What is a + b?",
+  "choices": [
+   "59",
+   "117",
+   "39",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let x = 0.181818... Then 100x = 18.1818..., so 99x = 18 and x = 18/99 = 2/11 in lowest terms. a + b = 2 + 11 = 13. The option 117 leaves 18/99 unreduced, 39 reduces only to 6/33, and 59 treats the decimal as 0.18 = 9/50.",
+  "solve": "function g(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}function fr(n,d){const k=g(n,d);n/=k;d/=k;if(d<0){n=-n;d=-d}return d===1?String(n):n+\"/\"+d}const [a,b]=fr(18,99).split('/').map(Number);return String(a+b);",
+  "distractor_solve": {
+   "39": "// reduces 18/99 only by 3, giving 6/33\nreturn String(6+33);",
+   "59": "// treats the decimal as the terminating 0.18 = 18/100 = 9/50\nreturn String(9+50);",
+   "117": "// writes 18/99 and does not reduce\nreturn String(18+99);"
+  },
+  "forced": [
+   "a positive whole number",
+   "no option is the sum for an impossible fraction; each comes from a real fraction close to 0.18"
+  ]
+ },
+ {
+  "id": "IM18A-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal totals from two package sizes under a cap (common multiple below a bound, then count packages)",
+  "difficulty": "hard",
+  "prompt": "A store sells pencils in packs of 6 and pens in packs of 8. Mia buys exactly as many pencils as pens, and she buys fewer than 100 pencils. What is the greatest total number of packs (pencil packs plus pen packs) she could have bought?",
+  "choices": [
+   "32",
+   "21",
+   "16",
+   "28"
+  ],
+  "correct_answer": "28",
+  "explanation": "The number of pencils equals the number of pens, so it is a common multiple of 6 and 8: 24, 48, 72, 96, ... The largest below 100 is 96, which is 96/6 = 16 pencil packs and 96/8 = 12 pen packs, 28 packs in all. The option 32 doubles the 16 pencil packs, 21 uses 72, and 16 counts only the pencil packs.",
+  "solve": "let best=0;for(let n=1;n<100;n++)if(n%6===0&&n%8===0)best=Math.max(best,n/6+n/8);return String(best);",
+  "distractor_solve": {
+   "16": "// counts the 16 pencil packs and forgets the pen packs\nreturn String(96/6);",
+   "21": "// stops at 72, the previous common multiple\nreturn String(72/6+72/8);",
+   "32": "// uses 96 pencils, finds 16 pencil packs, and doubles it as if pens also came in 6s\nreturn String(2*(96/6));"
+  },
+  "forced": [
+   "a whole number of packs",
+   "each option is a sum of two whole pack counts for some common multiple of 6 and 8, or a doubled count"
+  ]
+ },
+ {
+  "id": "IM18A-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "order of operations with negative bases, exponents and division by a fraction",
+  "difficulty": "medium",
+  "prompt": "What is the value of (-2)^3 - (-3)^2 / (1/3) x 2 ?",
+  "choices": [
+   "-21.5",
+   "-62",
+   "46",
+   "-46"
+  ],
+  "correct_answer": "-62",
+  "explanation": "(-2)^3 = -8 and (-3)^2 = 9. Division and multiplication go left to right: 9 / (1/3) = 27, then 27 x 2 = 54. So -8 - 54 = -62. The option -21.5 multiplies before dividing, 46 treats (-3)^2 as -9, and -46 treats (-2)^3 as +8.",
+  "solve": "return String(Math.pow(-2,3)-Math.pow(-3,2)/(1/3)*2);",
+  "distractor_solve": {
+   "46": "// reads (-3)^2 as -9\nreturn String(-8-(-9)/(1/3)*2);",
+   "-21.5": "// multiplies (1/3) x 2 first, then divides: 9 / (2/3)\nreturn String(-8-9/(2/3));",
+   "-46": "// reads (-2)^3 as +8\nreturn String(8-9/(1/3)*2);"
+  },
+  "forced": [
+   "a single number",
+   "options include both signs, so sign alone strikes nothing without evaluating"
+  ]
+ },
+ {
+  "id": "IM18A-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "multiplying and dividing numbers in scientific notation (coefficients and exponents separately)",
+  "difficulty": "medium",
+  "prompt": "What is (4.8 x 10^5)(2.5 x 10^-3) / (6 x 10^-2) written in scientific notation?",
+  "choices": [
+   "2 x 10^0",
+   "2 x 10^4",
+   "2 x 10^6",
+   "2 x 10^2"
+  ],
+  "correct_answer": "2 x 10^4",
+  "explanation": "Coefficients: 4.8 x 2.5 = 12, and 12 / 6 = 2. Exponents: 5 + (-3) - (-2) = 4. The value is 2 x 10^4. The option 2 x 10^0 subtracts all three exponents, 2 x 10^2 ignores the divisor's power of ten, and 2 x 10^6 adds 3 and subtracts 2.",
+  "solve": "const v=4.8e5*2.5e-3/6e-2;const e=Math.floor(Math.log10(v)+1e-9);return Math.round(v/10**e)+' x 10^'+e;",
+  "distractor_solve": {
+   "2 x 10^0": "// subtracts every exponent: 5 - 3 - 2\nreturn '2 x 10^'+(5-3-2);",
+   "2 x 10^2": "// ignores the power of ten in the divisor\nreturn '2 x 10^'+(5-3);",
+   "2 x 10^6": "// adds 3 and subtracts 2: 5 + 3 - 2\nreturn '2 x 10^'+(5+3-2);"
+  },
+  "forced": [
+   "every option has coefficient 2, so only the exponent decides"
+  ]
+ },
+ {
+  "id": "IM18A-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "term of a sequence given by a rule applied to the previous term (multiply by a negative, then add)",
+  "difficulty": "hard",
+  "prompt": "In a sequence, each term after the first is found by multiplying the previous term by -2 and then adding 3. The first term is 2. What is the 6th term?",
+  "choices": [
+   "17",
+   "157",
+   "31",
+   "-31"
+  ],
+  "correct_answer": "-31",
+  "explanation": "Apply the rule five times: 2, then -2(2) + 3 = -1, then -2(-1) + 3 = 5, then -7, then 17, then -2(17) + 3 = -31. The option 17 is the 5th term, 157 multiplies by +2, and 31 drops the sign.",
+  "solve": "let t=2;for(let i=2;i<=6;i++)t=-2*t+3;return String(t);",
+  "distractor_solve": {
+   "17": "// stops at the 5th term\nlet t=2;for(let i=2;i<=5;i++)t=-2*t+3;return String(t);",
+   "31": "// computes the 6th term correctly but drops the sign\nlet t=2;for(let i=2;i<=6;i++)t=-2*t+3;return String(Math.abs(t));",
+   "157": "// multiplies by +2 instead of -2\nlet t=2;for(let i=2;i<=6;i++)t=2*t+3;return String(t);"
+  },
+  "forced": [
+   "an odd integer (every term after the first is odd)",
+   "both signs appear among the options"
+  ]
+ },
+ {
+  "id": "IM18A-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting perfect-square divisors from a prime factorization (even exponents only)",
+  "difficulty": "hard",
+  "prompt": "Let N = 3^4 x 5^2 x 7. How many positive divisors of N are perfect squares?",
+  "choices": [
+   "4",
+   "6",
+   "30",
+   "3"
+  ],
+  "correct_answer": "6",
+  "explanation": "A divisor 3^a x 5^b x 7^c is a perfect square when every exponent is even: a can be 0, 2 or 4 (3 ways), b can be 0 or 2 (2 ways), and c must be 0 (1 way). That gives 3 x 2 x 1 = 6. The option 30 counts every divisor, 4 forgets the products 225 and 2025, and 3 counts only the powers of 3.",
+  "solve": "const N=3**4*5**2*7;let c=0;for(let d=1;d<=N;d++)if(N%d===0&&Number.isInteger(Math.sqrt(d)))c++;return String(c);",
+  "distractor_solve": {
+   "3": "// counts only the choices for the power of 3 (0, 2, 4)\nreturn String(3);",
+   "4": "// lists 1, 9, 81 and 25 but misses the products 225 and 2025\nreturn String(4);",
+   "30": "// counts every divisor\nreturn String((4+1)*(2+1)*(1+1));"
+  },
+  "forced": [
+   "a whole-number count",
+   "every option is a plausible small count; none exceeds the total number of divisors except by computing it"
+  ]
+ },
+ {
+  "id": "IM18B-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "limiting ingredient in a fixed ratio, then the leftover of the other ingredient",
+  "difficulty": "medium",
+  "prompt": "A recipe uses flour and sugar in the ratio 3 : 2 by volume. A baker has 15 cups of flour and 12 cups of sugar and makes as much as possible without changing the ratio. How many cups of sugar are left over?",
+  "choices": [
+   "3",
+   "2",
+   "6",
+   "4"
+  ],
+  "correct_answer": "2",
+  "explanation": "Using all 15 cups of flour needs 15 x 2/3 = 10 cups of sugar, which the baker has. (Using all 12 cups of sugar would need 18 cups of flour, which the baker does not have.) So 12 - 10 = 2 cups of sugar are left. The option 3 subtracts the amounts, 6 takes 2/5 of the flour, and 4 applies 2/3 to the sugar.",
+  "solve": "const used=Math.min(15,12*3/2);return String(12-used*2/3);",
+  "distractor_solve": {
+   "3": "// subtracts the two amounts, 15 - 12\nreturn String(15-12);",
+   "4": "// applies 2/3 to the sugar instead of the flour: 12 - 12 x 2/3\nreturn String(12-12*2/3);",
+   "6": "// takes 2/5 of 15 as the sugar used, then 12 - 6\nreturn String(12-15*2/5);"
+  },
+  "forced": [
+   "a non-negative amount less than 12"
+  ]
+ },
+ {
+  "id": "IM18B-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "combined work rate after a head start (fraction left, divided by the combined rate)",
+  "difficulty": "hard",
+  "prompt": "Pipe A alone can fill a tank in 4 hours, and pipe B alone can fill it in 6 hours. Pipe A runs alone for 1 hour, and then pipe B is also opened. How long after pipe B is opened will the tank be full?",
+  "choices": [
+   "3 hours",
+   "2 hours 48 minutes",
+   "2 hours 24 minutes",
+   "1 hour 48 minutes"
+  ],
+  "correct_answer": "1 hour 48 minutes",
+  "explanation": "In its first hour pipe A fills 1/4 of the tank, leaving 3/4. Together the pipes fill 1/4 + 1/6 = 5/12 of the tank per hour, so the rest takes (3/4) / (5/12) = 9/5 hours = 1 hour 48 minutes. The option 2 hours 24 minutes fills the whole tank together, 3 hours uses pipe A alone, and 2 hours 48 minutes adds back the first hour.",
+  "solve": "const h=(3/4)/(1/4+1/6);return Math.floor(h)+' hour '+Math.round((h%1)*60)+' minutes';",
+  "distractor_solve": {
+   "2 hours 24 minutes": "// fills the WHOLE tank at the combined rate: 1 / (1/4 + 1/6)\nconst h=1/(1/4+1/6);return Math.floor(h)+' hours '+Math.round((h%1)*60)+' minutes';",
+   "3 hours": "// finishes the remaining 3/4 with pipe A alone\nreturn String((3/4)/(1/4))+' hours';",
+   "2 hours 48 minutes": "// adds pipe A's first hour to the correct answer\nconst h=1+(3/4)/(1/4+1/6);return Math.floor(h)+' hours '+Math.round((h%1)*60)+' minutes';"
+  },
+  "forced": [
+   "every option is a whole number of hours and minutes"
+  ]
+ },
+ {
+  "id": "IM18B-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "map scale applied to both dimensions before finding an actual area",
+  "difficulty": "medium",
+  "prompt": "A map has a scale of 1 : 50,000. A rectangular field on the map measures 3 centimeters by 2 centimeters. What is the actual area of the field, in square kilometers?",
+  "choices": [
+   "1.5",
+   "5",
+   "150",
+   "6"
+  ],
+  "correct_answer": "1.5",
+  "explanation": "1 centimeter on the map is 50,000 centimeters = 500 meters = 0.5 kilometer. The field is 1.5 km by 1 km, so its area is 1.5 square kilometers. The option 150 uses 5 km per centimeter, 6 reads the scale as 1 cm = 1 km, and 5 is the perimeter in kilometers.",
+  "solve": "const kmPerCm=50000/100000;return String((3*kmPerCm)*(2*kmPerCm));",
+  "distractor_solve": {
+   "5": "// finds the perimeter in kilometers instead of the area\nreturn String(2*(1.5+1));",
+   "6": "// reads the scale as 1 cm = 1 km\nreturn String(3*2);",
+   "150": "// treats 50,000 cm as 5 km (10 times too large), so the field is 15 km by 10 km\nreturn String(15*10);"
+  },
+  "forced": [
+   "a positive area in square kilometers"
+  ]
+ },
+ {
+  "id": "IM18B-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "markup followed by a discount, then working back from the profit to the cost",
+  "difficulty": "hard",
+  "prompt": "A store marks up the wholesale cost of a jacket by 60%. During a sale it sells the jacket for 25% off the marked price, and its profit on the sale is $6. What was the wholesale cost, in dollars?",
+  "choices": [
+   "10",
+   "40",
+   "24",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "The sale price is 1.6 x 0.75 = 1.2 times the cost, so the profit is 0.2 of the cost. 0.2 x cost = 6 gives a cost of $30. The option 24 treats the profit as 25% of the cost, 10 treats it as 60%, and 40 multiplies the two percents to get 15%.",
+  "solve": "const f=1.6*0.75;return String(Math.round(6/(f-1)));",
+  "distractor_solve": {
+   "10": "// treats the $6 profit as 60% of the cost\nreturn String(6/0.6);",
+   "24": "// treats the $6 profit as 25% of the cost\nreturn String(6/0.25);",
+   "40": "// multiplies the two percents, 60% x 25% = 15%, and treats $6 as 15% of the cost\nreturn String(6/0.15);"
+  },
+  "forced": [
+   "a positive whole number of dollars"
+  ]
+ },
+ {
+  "id": "IM18B-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "concentration after evaporation (the amount of solute stays fixed)",
+  "difficulty": "hard",
+  "prompt": "A 40-liter solution is 15% salt. How many liters of water must evaporate so that the solution becomes 24% salt?",
+  "choices": [
+   "15",
+   "6",
+   "25",
+   "3.6"
+  ],
+  "correct_answer": "15",
+  "explanation": "The salt does not evaporate: 15% of 40 = 6 liters of salt. For 6 liters to be 24% of the solution, the solution must be 6 / 0.24 = 25 liters, so 40 - 25 = 15 liters of water evaporate. The option 25 is the final volume, 3.6 is 40 x 9%, and 6 is the amount of salt.",
+  "solve": "const salt=40*0.15;return String(40-salt/0.24);",
+  "distractor_solve": {
+   "6": "// gives the amount of salt, 15% of 40\nreturn String(40*0.15);",
+   "25": "// gives the final volume, 6 / 0.24, instead of the water removed\nreturn String(6/0.24);",
+   "3.6": "// takes 40 x (24% - 15%)\nreturn String(Math.round(40*0.09*10)/10);"
+  },
+  "forced": [
+   "a positive number of liters less than 40"
+  ]
+ },
+ {
+  "id": "IM18B-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chained currency conversion with a percentage fee taken at the end",
+  "difficulty": "hard",
+  "prompt": "One euro is worth 1.25 dollars, and one dollar is worth 150 yen. A traveler changes 300 euros into yen, and the exchange office keeps a 4% fee from the yen. How many yen does the traveler receive?",
+  "choices": [
+   "36000",
+   "56250",
+   "54000",
+   "34560"
+  ],
+  "correct_answer": "54000",
+  "explanation": "300 euros = 300 x 1.25 = 375 dollars = 375 x 150 = 56,250 yen. The office keeps 4%, so the traveler gets 96% of 56,250 = 54,000 yen. The option 56,250 forgets the fee, and 36,000 and 34,560 divide by 1.25 instead of multiplying.",
+  "solve": "return String(Math.round(300*1.25*150*0.96));",
+  "distractor_solve": {
+   "34560": "// divides by 1.25 instead of multiplying, then takes the fee\nreturn String(Math.round(300/1.25*150*0.96));",
+   "36000": "// divides by 1.25 instead of multiplying, and forgets the fee\nreturn String(300/1.25*150);",
+   "56250": "// forgets the fee\nreturn String(300*1.25*150);"
+  },
+  "forced": [
+   "a whole number of yen",
+   "every option is a product of the given rates, so size alone strikes nothing"
+  ]
+ },
+ {
+  "id": "IM18B-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "repeated tripling: find the number of periods, then convert to time",
+  "difficulty": "medium",
+  "prompt": "A population of bacteria triples every 20 minutes. It starts with 50 bacteria. After how many minutes will there be 4,050 bacteria?",
+  "choices": [
+   "80",
+   "240",
+   "60",
+   "1620"
+  ],
+  "correct_answer": "80",
+  "explanation": "4,050 / 50 = 81 = 3^4, so the population triples 4 times, which takes 4 x 20 = 80 minutes. The option 60 stops one tripling early, 240 multiplies the 4 triplings by 3 again, and 1,620 multiplies 81 by 20.",
+  "solve": "let n=50,t=0;while(n<4050){n*=3;t+=20}return String(t);",
+  "distractor_solve": {
+   "60": "// stops one tripling early (50 x 27 = 1,350)\nreturn String(3*20);",
+   "240": "// multiplies the 4 triplings by 3 again and then by 20\nreturn String(4*3*20);",
+   "1620": "// multiplies the growth factor 81 by 20\nreturn String(81*20);"
+  },
+  "forced": [
+   "a multiple of 20 minutes, except a distractor built from the factor 81"
+  ]
+ },
+ {
+  "id": "IM18B-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "successive percent changes combine by multiplication, not addition",
+  "difficulty": "medium",
+  "prompt": "A shop's sales rose 15% from 2022 to 2023 and then fell 10% from 2023 to 2024. What was the overall percent change in sales from 2022 to 2024?",
+  "choices": [
+   "a decrease of 3.5%",
+   "an increase of 1.5%",
+   "an increase of 5%",
+   "an increase of 3.5%"
+  ],
+  "correct_answer": "an increase of 3.5%",
+  "explanation": "Multiply the factors: 1.15 x 0.90 = 1.035, an increase of 3.5%. The option \"an increase of 5%\" adds the percents, \"a decrease of 3.5%\" has the wrong direction, and \"an increase of 1.5%\" takes 10% of 15.",
+  "solve": "const c=Math.round((1.15*0.9-1)*1000)/10;return (c>=0?'an increase of ':'a decrease of ')+Math.abs(c)+'%';",
+  "distractor_solve": {
+   "an increase of 5%": "// adds the percents: 15 - 10\nreturn 'an increase of '+(15-10)+'%';",
+   "a decrease of 3.5%": "// gets the right size but the wrong direction\nreturn 'a decrease of '+Math.round((1.15*0.9-1)*1000)/10+'%';",
+   "an increase of 1.5%": "// takes 10% of 15% and calls it the change\nreturn 'an increase of '+(15*10/100)+'%';"
+  },
+  "forced": [
+   "each option is a small percent change written in words"
+  ]
+ },
+ {
+  "id": "IM18B-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "ratio before and after adding the same amount to both quantities",
+  "difficulty": "hard",
+  "prompt": "Two numbers are in the ratio 3 : 7. When 12 is added to each number, the new ratio is 3 : 5. What is the larger of the two original numbers?",
+  "choices": [
+   "4",
+   "12",
+   "28",
+   "40"
+  ],
+  "correct_answer": "28",
+  "explanation": "Write the numbers as 3x and 7x. Then (3x + 12)/(7x + 12) = 3/5, so 15x + 60 = 21x + 36, 6x = 24 and x = 4. The numbers are 12 and 28, so the larger is 28. The option 12 is the smaller, 40 is 28 + 12, and 4 is x.",
+  "solve": "for(let x=1;x<100;x++){if(5*(3*x+12)===3*(7*x+12))return String(7*x)}",
+  "distractor_solve": {
+   "4": "// gives the multiplier x itself\nreturn String(4);",
+   "12": "// gives the smaller original number\nreturn String(3*4);",
+   "40": "// gives the larger number after 12 is added\nreturn String(7*4+12);"
+  },
+  "forced": [
+   "a positive whole number"
+  ]
+ },
+ {
+  "id": "IM18B-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "average speed for a whole trip including a stop (total distance over total time)",
+  "difficulty": "hard",
+  "prompt": "Lena drives 100 kilometers at 50 kilometers per hour, stops for 30 minutes, and then drives 150 kilometers at 60 kilometers per hour. What is her average speed for the whole trip, including the stop, in kilometers per hour?",
+  "choices": [
+   "55",
+   "62.5",
+   "50",
+   "56"
+  ],
+  "correct_answer": "50",
+  "explanation": "Total distance is 250 km. Time is 100/50 = 2 hours, plus 0.5 hour stopped, plus 150/60 = 2.5 hours, for 5 hours. Average speed = 250 / 5 = 50 km/h. The option 55 averages the two speeds, 56 leaves out the stop (250 / 4.5, about 55.6), and 62.5 leaves out the stop and miscounts the second leg.",
+  "solve": "return String(250/(100/50+0.5+150/60));",
+  "distractor_solve": {
+   "55": "// averages the two speeds\nreturn String((50+60)/2);",
+   "56": "// leaves out the stop: 250 / 4.5, rounded\nreturn String(Math.round(250/4.5));",
+   "62.5": "// leaves out the stop and takes the second leg as 2 hours\nreturn String(250/(2+2));"
+  },
+  "forced": [
+   "a speed between the slowest and fastest values that appear in the options"
+  ]
+ },
+ {
+  "id": "IM18C-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equation with the variable in two denominators (cross-multiply, distribute both sides)",
+  "difficulty": "medium",
+  "prompt": "If 2/(x - 1) = 3/(x + 2), what is the value of x?",
+  "choices": [
+   "1",
+   "-8",
+   "5",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Cross-multiply: 2(x + 2) = 3(x - 1), so 2x + 4 = 3x - 3 and x = 7. Check: 2/6 = 3/9 = 1/3. The option -8 cross-multiplies the wrong way, 5 distributes 3(x - 1) as 3x - 1, and 1 is the value that makes a denominator zero.",
+  "solve": "for(let x=-50;x<=50;x++)if(x!==1&&x!==-2&&2*(x+2)===3*(x-1))return String(x);",
+  "distractor_solve": {
+   "1": "// sets the first denominator to zero\nreturn String(1);",
+   "5": "// distributes 3(x - 1) as 3x - 1: 2x + 4 = 3x - 1\nfor(let x=-50;x<=50;x++)if(2*x+4===3*x-1)return String(x);",
+   "-8": "// cross-multiplies the wrong way: 2(x - 1) = 3(x + 2)\nfor(let x=-50;x<=50;x++)if(2*(x-1)===3*(x+2))return String(x);"
+  },
+  "forced": [
+   "an integer"
+  ]
+ },
+ {
+  "id": "IM18C-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference of two squares used to find two numbers from their sum",
+  "difficulty": "hard",
+  "prompt": "The sum of two numbers is 20, and the difference of their squares is 80. What is the larger number?",
+  "choices": [
+   "4",
+   "16",
+   "12",
+   "8"
+  ],
+  "correct_answer": "12",
+  "explanation": "x^2 - y^2 = (x + y)(x - y) = 80 and x + y = 20, so x - y = 4. Then x = (20 + 4)/2 = 12 and y = 8. The option 8 is the smaller number, 4 is the difference, and 16 subtracts the difference from the sum.",
+  "solve": "for(let x=0;x<=20;x+=0.5){const y=20-x;if(x>y&&x*x-y*y===80)return String(x)}",
+  "distractor_solve": {
+   "4": "// gives the difference x - y = 80/20\nreturn String(80/20);",
+   "8": "// gives the smaller number\nreturn String((20-80/20)/2);",
+   "16": "// subtracts the difference from the sum and stops, without halving: 20 - 4\nreturn String(20-80/20);"
+  },
+  "forced": [
+   "a positive number less than 20"
+  ]
+ },
+ {
+  "id": "IM18C-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear equation with a parameter that has no solution (coefficient zero, constant nonzero)",
+  "difficulty": "hard",
+  "prompt": "For what value of k does the equation 3x - k = kx + 6 have NO solution?",
+  "choices": [
+   "-3",
+   "-6",
+   "6",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Collect x terms: 3x - kx = 6 + k, so (3 - k)x = 6 + k. There is no solution when the left side is 0x but the right side is not zero: k = 3 gives 0x = 9, impossible. The option -6 makes the right side zero (which would never give \"no solution\"), 6 is the constant, and -3 moves kx with the wrong sign.",
+  "solve": "for(let k=-20;k<=20;k++){const a=3-k,b=6+k;if(a===0&&b!==0)return String(k)}",
+  "distractor_solve": {
+   "6": "// takes the constant 6 as the answer\nreturn String(6);",
+   "-6": "// sets the constant term to zero, k + 6 = 0\nreturn String(-6);",
+   "-3": "// sets 3 + k = 0, moving kx with the wrong sign\nreturn String(-3);"
+  },
+  "forced": [
+   "an integer",
+   "options come in sign pairs (3/-3, 6/-6), so sign symmetry strikes nothing"
+  ]
+ },
+ {
+  "id": "IM18C-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "composition of functions evaluated from the inside out",
+  "difficulty": "medium",
+  "prompt": "If f(x) = 2x^2 - 3x and g(x) = x + 2, what is the value of f(g(-1))?",
+  "choices": [
+   "-1",
+   "5",
+   "7",
+   "27"
+  ],
+  "correct_answer": "-1",
+  "explanation": "Work from the inside: g(-1) = -1 + 2 = 1, and f(1) = 2(1) - 3(1) = -1. The option 7 composes in the other order, 5 is f(-1), and 27 takes g(-1) as -3.",
+  "solve": "const f=x=>2*x*x-3*x,g=x=>x+2;return String(f(g(-1)));",
+  "distractor_solve": {
+   "5": "// computes f(-1) and never applies g\nconst f=x=>2*x*x-3*x;return String(f(-1));",
+   "7": "// computes g(f(-1)) instead: f(-1) = 5, then 5 + 2\nconst f=x=>2*x*x-3*x,g=x=>x+2;return String(g(f(-1)));",
+   "27": "// takes g(-1) as -3, then f(-3)\nconst f=x=>2*x*x-3*x;return String(f(-3));"
+  },
+  "forced": [
+   "an integer"
+  ]
+ },
+ {
+  "id": "IM18C-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fixed fee of a linear cost model from two data points (slope first, then the intercept)",
+  "difficulty": "hard",
+  "prompt": "The cost of renting a van is a fixed fee plus a constant charge per mile. Renting for 40 miles costs $86, and renting for 100 miles costs $125. What is the fixed fee, in dollars?",
+  "choices": [
+   "39",
+   "46",
+   "26",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "The extra 60 miles cost 125 - 86 = $39, so the charge is 39/60 = $0.65 per mile. For 40 miles that is $26, so the fixed fee is 86 - 26 = $60. The option 46 assumes $1 per mile, 26 is the mileage charge, and 39 is the difference in cost.",
+  "solve": "const m=(125-86)/(100-40);return String(Math.round(86-m*40));",
+  "distractor_solve": {
+   "26": "// gives the mileage charge for 40 miles, 0.65 x 40\nreturn String(Math.round(0.65*40));",
+   "39": "// gives the cost difference, 125 - 86\nreturn String(125-86);",
+   "46": "// assumes the charge is $1 per mile: 86 - 40\nreturn String(86-40);"
+  },
+  "forced": [
+   "a whole number of dollars below 86"
+  ]
+ },
+ {
+  "id": "IM18C-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of the integer solutions of a compound inequality (strict on one end, inclusive on the other)",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all the integers n that satisfy -11 < 2n - 3 <= 9 ?",
+  "choices": [
+   "15",
+   "11",
+   "9",
+   "10"
+  ],
+  "correct_answer": "15",
+  "explanation": "Add 3: -8 < 2n <= 12. Divide by 2: -4 < n <= 6, so n = -3, -2, ..., 6. The -3 through 3 cancel in pairs, leaving 4 + 5 + 6 = 15. The option 11 includes -4, 9 leaves out 6, and 10 counts the integers instead of adding them.",
+  "solve": "let s=0;for(let n=-20;n<=20;n++)if(-11<2*n-3&&2*n-3<=9)s+=n;return String(s);",
+  "distractor_solve": {
+   "9": "// drops the endpoint n = 6\nlet s=0;for(let n=-20;n<=20;n++)if(-11<2*n-3&&2*n-3<9)s+=n;return String(s);",
+   "10": "// counts the integers instead of adding them\nlet c=0;for(let n=-20;n<=20;n++)if(-11<2*n-3&&2*n-3<=9)c++;return String(c);",
+   "11": "// includes the endpoint n = -4\nlet s=0;for(let n=-20;n<=20;n++)if(-11<=2*n-3&&2*n-3<=9)s+=n;return String(s);"
+  },
+  "forced": [
+   "an integer"
+  ]
+ },
+ {
+  "id": "IM18C-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rectangle dimensions from an area and a relation between sides (factor a quadratic, then perimeter)",
+  "difficulty": "hard",
+  "prompt": "The length of a rectangle is 3 centimeters more than twice its width. The area of the rectangle is 44 square centimeters. What is its perimeter, in centimeters?",
+  "choices": [
+   "26",
+   "22",
+   "30",
+   "15"
+  ],
+  "correct_answer": "30",
+  "explanation": "Let the width be w, so the length is 2w + 3 and w(2w + 3) = 44, which gives 2w^2 + 3w - 44 = 0, or (2w + 11)(w - 4) = 0. The width is 4 cm and the length is 11 cm, so the perimeter is 2(4 + 11) = 30 cm. The option 15 is half the perimeter, 26 counts the width once, and 22 doubles only the length.",
+  "solve": "for(let w=0.5;w<20;w+=0.5){const l=2*w+3;if(l*w===44)return String(2*(l+w))}",
+  "distractor_solve": {
+   "15": "// gives half the perimeter, length + width\nreturn String(11+4);",
+   "22": "// doubles the length only\nreturn String(2*11);",
+   "26": "// adds the width only once: 2 x 11 + 4\nreturn String(2*11+4);"
+  },
+  "forced": [
+   "a positive whole number of centimeters"
+  ]
+ },
+ {
+  "id": "IM18C-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "y-intercept of the line through two points (slope, then substitute)",
+  "difficulty": "medium",
+  "prompt": "A line passes through the points (-2, 5) and (4, -7). At what value of y does the line cross the y-axis?",
+  "choices": [
+   "-2",
+   "-1",
+   "1",
+   "9"
+  ],
+  "correct_answer": "1",
+  "explanation": "The slope is (-7 - 5)/(4 - (-2)) = -12/6 = -2. From (-2, 5), moving 2 units right to x = 0 changes y by -4, so y = 1. The option -2 is the slope, 9 adds 4 instead of subtracting, and -1 is the y-coordinate of the midpoint.",
+  "solve": "const m=(-7-5)/(4-(-2));return String(5+m*(0-(-2)));",
+  "distractor_solve": {
+   "9": "// moves 2 units right using slope -2 but adds: 5 + 4\nreturn String(5+4);",
+   "-1": "// gives the y-coordinate of the midpoint of the two points\nreturn String((5+(-7))/2);",
+   "-2": "// gives the slope instead of the intercept\nreturn String((-7-5)/(4-(-2)));"
+  },
+  "forced": [
+   "an integer"
+  ]
+ },
+ {
+  "id": "IM18C-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "age word problem translated into one linear equation (future and past ages)",
+  "difficulty": "hard",
+  "prompt": "In 6 years, Ana will be twice as old as she was 9 years ago. How old is Ana now?",
+  "choices": [
+   "24",
+   "15",
+   "30",
+   "21"
+  ],
+  "correct_answer": "24",
+  "explanation": "Let a be her age now. Then a + 6 = 2(a - 9) = 2a - 18, so a = 24. Check: in 6 years she is 30, and 9 years ago she was 15. The option 15 is her age 9 years ago, 30 is her age in 6 years, and 21 reverses the relationship and drops a minus sign.",
+  "solve": "for(let a=1;a<100;a++)if(a+6===2*(a-9))return String(a);",
+  "distractor_solve": {
+   "15": "// gives her age 9 years ago\nreturn String(24-9);",
+   "21": "// reverses the relationship, a - 9 = 2(a + 6), and drops the minus sign from a = -21\nfor(let a=-100;a<100;a++)if(a-9===2*(a+6))return String(Math.abs(a));",
+   "30": "// gives her age in 6 years\nreturn String(24+6);"
+  },
+  "forced": [
+   "a whole number of years greater than 9 (she had an age 9 years ago)"
+  ]
+ },
+ {
+  "id": "IM18C-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving a system by substitution, then evaluating a combination of the variables",
+  "difficulty": "hard",
+  "prompt": "If 2x + 3y = 12 and 4x - y = 10, what is the value of x + y?",
+  "choices": [
+   "5",
+   "1",
+   "3",
+   "11"
+  ],
+  "correct_answer": "5",
+  "explanation": "From the second equation, y = 4x - 10. Substitute: 2x + 3(4x - 10) = 12, so 14x = 42 and x = 3, y = 2. Then x + y = 5. The option 1 is x - y, 3 is x alone, and 11 is 3x + y from adding the equations.",
+  "solve": "for(let x=-20;x<=20;x++)for(let y=-20;y<=20;y++)if(2*x+3*y===12&&4*x-y===10)return String(x+y);",
+  "distractor_solve": {
+   "1": "// gives x - y\nreturn String(3-2);",
+   "3": "// gives x alone\nreturn String(3);",
+   "11": "// adds the equations (6x + 2y = 22) and halves: 3x + y\nreturn String(22/2);"
+  },
+  "forced": [
+   "a positive integer"
+  ]
+ },
+ {
+  "id": "IM18D-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of sides of a regular polygon from its interior angle (use the exterior angle)",
+  "difficulty": "medium",
+  "prompt": "Each interior angle of a regular polygon measures 156 degrees. How many sides does the polygon have?",
+  "choices": [
+   "15",
+   "12",
+   "24",
+   "18"
+  ],
+  "correct_answer": "15",
+  "explanation": "Each exterior angle is 180 - 156 = 24 degrees, and the exterior angles of any polygon add to 360 degrees, so there are 360 / 24 = 15 sides. The option 24 is the exterior angle itself; 12 and 18 divide 360 by the wrong angle.",
+  "solve": "for(let n=3;n<100;n++)if((n-2)*180/n===156)return String(n);",
+  "distractor_solve": {
+   "12": "// divides 360 by 30\nreturn String(360/30);",
+   "18": "// divides 360 by 20\nreturn String(360/20);",
+   "24": "// gives the exterior angle, 180 - 156\nreturn String(180-156);"
+  },
+  "forced": [
+   "a whole number of sides"
+  ]
+ },
+ {
+  "id": "IM18D-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area between a square and its inscribed circle (radius is half the side)",
+  "difficulty": "hard",
+  "prompt": "A circle is drawn inside a square so that it touches all four sides. Each side of the square is 8 centimeters. Using 3.14 for pi, what is the area of the region inside the square but outside the circle, to the nearest square centimeter?",
+  "choices": [
+   "39",
+   "14",
+   "28",
+   "50"
+  ],
+  "correct_answer": "14",
+  "explanation": "The circle's diameter equals the side, 8 cm, so its radius is 4 cm and its area is 3.14 x 16 = 50.24 square cm. The square's area is 64, so the region outside the circle is 64 - 50.24 = 13.76, about 14 square cm. The option 50 is the circle, 39 subtracts the circumference, and 28 subtracts a 6-by-6 square.",
+  "solve": "return String(Math.round(64-3.14*4*4));",
+  "distractor_solve": {
+   "28": "// treats the circle as a 6-by-6 square\nreturn String(64-36);",
+   "39": "// subtracts the circumference instead of the area: 64 - 25.12\nreturn String(Math.round(64-3.14*8));",
+   "50": "// gives the area of the circle\nreturn String(Math.round(3.14*16));"
+  },
+  "forced": [
+   "a whole number of square centimeters less than 64"
+  ]
+ },
+ {
+  "id": "IM18D-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "altitude to the hypotenuse of a right triangle (area computed two ways)",
+  "difficulty": "hard",
+  "prompt": "A right triangle has legs of length 9 and 12. What is the length of the altitude drawn from the right angle to the hypotenuse?",
+  "choices": [
+   "10.5",
+   "7.5",
+   "7.2",
+   "5.4"
+  ],
+  "correct_answer": "7.2",
+  "explanation": "The hypotenuse is 15 (a 3-4-5 triangle scaled by 3). The area is (1/2)(9)(12) = 54, and it is also (1/2)(15)(h), so h = 108/15 = 7.2. The option 7.5 is half the hypotenuse, 10.5 averages the legs, and 5.4 is a piece of the hypotenuse.",
+  "solve": "const h=Math.hypot(9,12);return String(Math.round(9*12/h*100)/100);",
+  "distractor_solve": {
+   "7.5": "// takes half the hypotenuse\nreturn String(15/2);",
+   "10.5": "// averages the two legs\nreturn String((9+12)/2);",
+   "5.4": "// gives the part of the hypotenuse next to the leg of 9: 81/15\nreturn String(81/15);"
+  },
+  "forced": [
+   "a positive length"
+  ]
+ },
+ {
+  "id": "IM18D-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pouring water from a cylinder into a rectangular box (equal volumes, solve for height)",
+  "difficulty": "hard",
+  "prompt": "A cylinder with radius 3 centimeters and height 10 centimeters is full of water. All of the water is poured into an empty rectangular box whose base is 6 centimeters by 5 centimeters. Using 3.14 for pi, how deep is the water in the box, in centimeters?",
+  "choices": [
+   "9.42",
+   "28.26",
+   "6.28",
+   "37.68"
+  ],
+  "correct_answer": "9.42",
+  "explanation": "The water's volume is pi r^2 h = 3.14 x 9 x 10 = 282.6 cubic cm. In the box it covers a base of 6 x 5 = 30 square cm, so its depth is 282.6 / 30 = 9.42 cm. The option 37.68 uses the diameter as the radius, 6.28 uses surface area, and 28.26 divides by 10 instead of 30.",
+  "solve": "return String(Math.round(3.14*9*10/30*100)/100);",
+  "distractor_solve": {
+   "37.68": "// uses the diameter, 6, as the radius\nreturn String(Math.round(3.14*36*10/30*100)/100);",
+   "6.28": "// uses the curved surface area 2 x pi x r x h instead of the volume\nreturn String(Math.round(2*3.14*3*10/30*100)/100);",
+   "28.26": "// divides the volume by the height 10 instead of the base area\nreturn String(Math.round(3.14*9*10/10*100)/100);"
+  },
+  "forced": [
+   "every option is a multiple of 3.14, so pi alone strikes nothing"
+  ]
+ },
+ {
+  "id": "IM18D-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of an isosceles trapezoid when the height must be found from the legs",
+  "difficulty": "hard",
+  "prompt": "An isosceles trapezoid has parallel sides of length 10 and 16, and each of its other two sides has length 5. What is its area?",
+  "choices": [
+   "52",
+   "65",
+   "104",
+   "78"
+  ],
+  "correct_answer": "52",
+  "explanation": "The longer base overhangs the shorter by (16 - 10)/2 = 3 on each side. Each slanted side of 5 forms a right triangle with that 3 and the height, so the height is 4. Area = (10 + 16)/2 x 4 = 52. The option 65 uses 5 as the height, 104 forgets to halve, and 78 uses 16 - 10 = 6 as the height.",
+  "solve": "const over=(16-10)/2;const h=Math.sqrt(25-over*over);return String((10+16)/2*h);",
+  "distractor_solve": {
+   "65": "// uses the slanted side, 5, as the height\nreturn String((10+16)/2*5);",
+   "78": "// uses the difference of the parallel sides, 6, as the height\nreturn String((10+16)/2*6);",
+   "104": "// forgets to halve the sum of the parallel sides\nreturn String((10+16)*4);"
+  },
+  "forced": [
+   "a whole-number area"
+  ]
+ },
+ {
+  "id": "IM18D-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a square from two adjacent vertices (side length by the distance formula)",
+  "difficulty": "medium",
+  "prompt": "The points (1, 2) and (4, 6) are two vertices of a square that are next to each other (they share a side). What is the area of the square?",
+  "choices": [
+   "7",
+   "49",
+   "25",
+   "12"
+  ],
+  "correct_answer": "25",
+  "explanation": "The side is the distance between the points: the changes are 3 and 4, so the side is 5 and the area is 25. The option 12 multiplies the changes, 49 squares their sum, and 7 adds them as if that were the side.",
+  "solve": "const s=Math.hypot(4-1,6-2);return String(s*s);",
+  "distractor_solve": {
+   "7": "// takes the side as 3 + 4\nreturn String(3+4);",
+   "12": "// multiplies the horizontal and vertical changes, 3 x 4\nreturn String(3*4);",
+   "49": "// squares the sum of the changes, (3 + 4)^2\nreturn String((3+4)**2);"
+  },
+  "forced": [
+   "a positive whole number"
+  ]
+ },
+ {
+  "id": "IM18D-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "longest segment inside a rectangular box (Pythagorean theorem used twice)",
+  "difficulty": "hard",
+  "prompt": "A closed rectangular box measures 4 inches by 6 inches by 10 inches. What is the length of the longest straight rod that fits completely inside the box?",
+  "choices": [
+   "20 inches",
+   "2√34 inches",
+   "2√38 inches",
+   "2√29 inches"
+  ],
+  "correct_answer": "2√38 inches",
+  "explanation": "The longest rod runs corner to opposite corner, with length sqrt(4^2 + 6^2 + 10^2) = sqrt(152) = 2√38 inches. The option 2√34 is only the 6-by-10 face diagonal, 2√29 is only the 4-by-10 face diagonal, and 20 adds the edges.",
+  "solve": "const s=16+36+100;return '2√'+(s/4)+' inches';",
+  "distractor_solve": {
+   "2√34 inches": "// uses only the 6-by-10 face diagonal: sqrt(36 + 100) = sqrt(136)\nreturn '2√'+(136/4)+' inches';",
+   "20 inches": "// adds the three edges\nreturn (4+6+10)+' inches';",
+   "2√29 inches": "// uses only the 4-by-10 face diagonal: sqrt(16 + 100) = sqrt(116)\nreturn '2√'+(116/4)+' inches';"
+  },
+  "forced": [
+   "every radical option has the same form 2√n"
+  ]
+ },
+ {
+  "id": "IM18D-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a rectangle from its perimeter and diagonal (find the sides, or use the square of the sum)",
+  "difficulty": "hard",
+  "prompt": "A rectangle has a perimeter of 46 centimeters and a diagonal of 17 centimeters. What is its area, in square centimeters?",
+  "choices": [
+   "913.5",
+   "120",
+   "240",
+   "132.25"
+  ],
+  "correct_answer": "120",
+  "explanation": "Length + width = 23 and length^2 + width^2 = 17^2 = 289. The sides 15 and 8 fit (15 + 8 = 23, 225 + 64 = 289), so the area is 15 x 8 = 120. The option 240 is 2 x length x width, 132.25 assumes a square, and 913.5 uses 46 instead of 23 as length + width.",
+  "solve": "for(let w=1;w<23;w++){const l=23-w;if(l*l+w*w===289)return String(l*w)}",
+  "distractor_solve": {
+   "240": "// finds 2lw = 529 - 289 and stops there\nreturn String(23*23-289);",
+   "132.25": "// assumes the rectangle is a square with perimeter 46\nreturn String((46/4)**2);",
+   "913.5": "// uses the full perimeter 46 as length + width: (46^2 - 289)/2\nreturn String((46*46-289)/2);"
+  },
+  "forced": [
+   "a positive area"
+  ]
+ },
+ {
+  "id": "IM18D-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "isosceles triangle angles from an exterior angle at a base vertex",
+  "difficulty": "medium",
+  "prompt": "In an isosceles triangle, the exterior angle at one of the two base angles measures 110 degrees. What is the measure of the vertex angle (the angle between the two equal sides)?",
+  "choices": [
+   "70",
+   "110",
+   "40",
+   "55"
+  ],
+  "correct_answer": "40",
+  "explanation": "The base angle is 180 - 110 = 70 degrees, and both base angles are equal, so the vertex angle is 180 - 70 - 70 = 40 degrees. The option 70 is a base angle, 55 treats 70 as the vertex angle, and 110 is the exterior angle.",
+  "solve": "const base=180-110;return String(180-2*base);",
+  "distractor_solve": {
+   "55": "// halves 180 - 70 as if 70 were the vertex angle\nreturn String((180-70)/2);",
+   "70": "// gives a base angle, 180 - 110\nreturn String(180-110);",
+   "110": "// takes the exterior angle itself\nreturn String(110);"
+  },
+  "forced": [
+   "a whole number of degrees less than 180"
+  ]
+ },
+ {
+  "id": "IM18D-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arc length as a fraction of the circumference",
+  "difficulty": "medium",
+  "prompt": "A circle has a radius of 12 centimeters. What is the length of an arc cut off by a central angle of 150 degrees?",
+  "choices": [
+   "60π centimeters",
+   "10π centimeters",
+   "14π centimeters",
+   "24π centimeters"
+  ],
+  "correct_answer": "10π centimeters",
+  "explanation": "The circumference is 2 x pi x 12 = 24pi, and 150 degrees is 150/360 = 5/12 of the circle, so the arc is (5/12)(24pi) = 10pi cm. The option 60pi is the sector's area, 24pi is the whole circumference, and 14pi is the other arc.",
+  "solve": "return (150/360*2*12)+'π centimeters';",
+  "distractor_solve": {
+   "60π centimeters": "// computes the sector area: (150/360) x pi x 144\nreturn (150/360*144)+'π centimeters';",
+   "24π centimeters": "// gives the whole circumference\nreturn (2*12)+'π centimeters';",
+   "14π centimeters": "// finds the other (larger) arc: (210/360) x 24 pi\nreturn ((360-150)/360*2*12)+'π centimeters';"
+  },
+  "forced": [
+   "every option is a whole multiple of pi centimeters"
+  ]
+ },
+ {
+  "id": "IM18E-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "elapsed time across noon with borrowing minutes",
+  "difficulty": "medium",
+  "prompt": "A train leaves at 10:47 a.m. and arrives at 3:18 p.m. on the same day. How long is the trip?",
+  "choices": [
+   "4 hours 29 minutes",
+   "4 hours 31 minutes",
+   "5 hours 29 minutes",
+   "5 hours 31 minutes"
+  ],
+  "correct_answer": "4 hours 31 minutes",
+  "explanation": "From 10:47 a.m. to 2:47 p.m. is 4 hours, and from 2:47 p.m. to 3:18 p.m. is 31 minutes, so the trip is 4 hours 31 minutes. The other options mix up the borrowing: 5 hours 29 minutes subtracts 18 from 47 and never borrows, 4 hours 29 minutes borrows but still subtracts 18 from 47, and 5 hours 31 minutes forgets to borrow the hour.",
+  "solve": "const m=(15*60+18)-(10*60+47);return Math.floor(m/60)+' hours '+(m%60)+' minutes';",
+  "distractor_solve": {
+   "5 hours 29 minutes": "// subtracts the smaller minutes from the larger (47 - 18) and 15 - 10 without borrowing\nreturn (15-10)+' hours '+(47-18)+' minutes';",
+   "4 hours 29 minutes": "// borrows an hour but subtracts 18 from 47\nreturn (15-10-1)+' hours '+(47-18)+' minutes';",
+   "5 hours 31 minutes": "// gets the minutes right but forgets to borrow the hour\nreturn (15-10)+' hours '+(78-47)+' minutes';"
+  },
+  "forced": [
+   "every option is 4 or 5 hours plus 29 or 31 minutes"
+  ]
+ },
+ {
+  "id": "IM18E-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unit conversion before division with a remainder (meters to centimeters)",
+  "difficulty": "medium",
+  "prompt": "A board 2 meters long is cut into as many pieces 15 centimeters long as possible. How many centimeters of the board are left over?",
+  "choices": [
+   "13",
+   "5",
+   "2",
+   "10"
+  ],
+  "correct_answer": "5",
+  "explanation": "2 meters = 200 centimeters, and 200 = 13 x 15 + 5, so 13 pieces are cut and 5 centimeters are left. The option 13 is the number of pieces, 2 forgets to convert meters to centimeters, and 10 rounds up to 14 pieces and finds the shortfall, 210 - 200.",
+  "solve": "return String(200%15);",
+  "distractor_solve": {
+   "2": "// works in meters: 2 is less than 15, so the whole board is left\nreturn String(2);",
+   "10": "// rounds 13.3 up to 14 pieces and reports 14 x 15 - 200\nreturn String(14*15-200);",
+   "13": "// gives the number of pieces instead of the leftover\nreturn String(Math.floor(200/15));"
+  },
+  "forced": [
+   "a whole number of centimeters less than 15, except the piece count"
+  ]
+ },
+ {
+  "id": "IM18E-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "endpoint of a segment from one endpoint and the midpoint",
+  "difficulty": "medium",
+  "prompt": "The midpoint of segment AB is (3, -1). Point A is at (-2, 4). What are the coordinates of point B?",
+  "choices": [
+   "(8, -6)",
+   "(-7, 9)",
+   "(0.5, 1.5)",
+   "(5, -5)"
+  ],
+  "correct_answer": "(8, -6)",
+  "explanation": "From A to the midpoint, x increases by 5 and y decreases by 5. B is the same step again past the midpoint: (3 + 5, -1 - 5) = (8, -6). The option (0.5, 1.5) averages A and the midpoint, (-7, 9) steps the wrong way, and (5, -5) is the step itself.",
+  "solve": "return '('+(2*3-(-2))+', '+(2*(-1)-4)+')';",
+  "distractor_solve": {
+   "(0.5, 1.5)": "// averages A and the midpoint instead of extending past the midpoint\nreturn '('+((-2+3)/2)+', '+((4-1)/2)+')';",
+   "(-7, 9)": "// steps from A away from the midpoint\nreturn '('+(-2-5)+', '+(4+5)+')';",
+   "(5, -5)": "// gives the change from A to the midpoint\nreturn '('+(3-(-2))+', '+(-1-4)+')';"
+  },
+  "forced": [
+   "every option is an ordered pair"
+  ]
+ },
+ {
+  "id": "IM18E-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "nth term of a quadratic pattern (recognize n(n + 2) or (n + 1)^2 - 1)",
+  "difficulty": "hard",
+  "prompt": "The pattern 3, 8, 15, 24, 35, ... continues in the same way. What is the 20th number in the pattern?",
+  "choices": [
+   "399",
+   "440",
+   "483",
+   "420"
+  ],
+  "correct_answer": "440",
+  "explanation": "The differences are 5, 7, 9, 11, ..., and each number is one less than a perfect square: 3 = 2^2 - 1, 8 = 3^2 - 1, 15 = 4^2 - 1. The nth number is (n + 1)^2 - 1, so the 20th is 21^2 - 1 = 440. The option 399 uses 20^2 - 1, 420 is 20 x 21, and 483 is 21 x 23.",
+  "solve": "let t=3,d=5;for(let n=2;n<=20;n++){t+=d;d+=2}return String(t);",
+  "distractor_solve": {
+   "399": "// uses n^2 - 1 with n = 20 instead of (n + 1)^2 - 1\nreturn String(20*20-1);",
+   "420": "// uses n(n + 1) instead of n(n + 2)\nreturn String(20*21);",
+   "483": "// uses (n + 1)(n + 3), one step too far\nreturn String(21*23);"
+  },
+  "forced": [
+   "every option is a whole number near 20^2"
+  ]
+ },
+ {
+  "id": "IM18E-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "converting a speed between km per hour and meters per second",
+  "difficulty": "medium",
+  "prompt": "A car travels at 72 kilometers per hour. What is this speed in meters per second?",
+  "choices": [
+   "259.2",
+   "20",
+   "72000",
+   "1200"
+  ],
+  "correct_answer": "20",
+  "explanation": "72 km per hour = 72,000 meters per 3,600 seconds = 20 meters per second. The option 1,200 is meters per minute, 72,000 is meters per hour, and 259.2 multiplies by 3.6 instead of dividing.",
+  "solve": "return String(72*1000/3600);",
+  "distractor_solve": {
+   "1200": "// converts to meters per minute\nreturn String(72*1000/60);",
+   "72000": "// converts to meters per hour and stops\nreturn String(72*1000);",
+   "259.2": "// multiplies by 3.6 instead of dividing\nreturn String(Math.round(72*3.6*10)/10);"
+  },
+  "forced": [
+   "a positive speed"
+  ]
+ },
+ {
+  "id": "IM18E-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "edge from surface area, then the volume after scaling every edge",
+  "difficulty": "hard",
+  "prompt": "A cube has a surface area of 150 square centimeters. If every edge of the cube is doubled in length, what is the volume of the new cube, in cubic centimeters?",
+  "choices": [
+   "600",
+   "1000",
+   "500",
+   "250"
+  ],
+  "correct_answer": "1000",
+  "explanation": "Each face has area 150 / 6 = 25, so each edge is 5 cm. Doubled, the edge is 10 cm and the volume is 10^3 = 1,000 cubic cm (8 times the original 125). The option 250 doubles the volume, 500 multiplies by 4, and 600 is the new surface area.",
+  "solve": "const e=Math.sqrt(150/6);return String((2*e)**3);",
+  "distractor_solve": {
+   "250": "// doubles the original volume of 125\nreturn String(125*2);",
+   "500": "// multiplies the original volume by 4, as for area\nreturn String(125*4);",
+   "600": "// gives the new surface area instead of the volume\nreturn String(6*10*10);"
+  },
+  "forced": [
+   "a positive whole number"
+  ]
+ },
+ {
+  "id": "IM18E-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a fast clock: relate shown time to real time by a constant ratio",
+  "difficulty": "hard",
+  "prompt": "A clock gains 4 minutes every hour. It is set to the correct time at 12:00 noon on Monday. What is the correct time when this clock first shows 12:00 noon on Tuesday?",
+  "choices": [
+   "11:36 a.m. Tuesday",
+   "10:24 a.m. Tuesday",
+   "1:36 p.m. Tuesday",
+   "10:30 a.m. Tuesday"
+  ],
+  "correct_answer": "10:30 a.m. Tuesday",
+  "explanation": "In each real hour the clock moves 64 minutes. It must move 24 x 60 = 1,440 minutes, which takes 1,440 / 64 = 22.5 real hours. 22.5 hours after noon Monday is 10:30 a.m. Tuesday. The option 10:24 a.m. subtracts 24 x 4 = 96 minutes from 24 hours, as if the clock gained 4 minutes per hour of real time over a full day; 1:36 p.m. adds the gain; and 11:36 a.m. subtracts only 24 minutes.",
+  "solve": "const real=24*60*60/64;const h=Math.floor(real/60),mi=real%60;return (h-12)+':'+String(mi).padStart(2,'0')+' a.m. Tuesday';",
+  "distractor_solve": {
+   "10:24 a.m. Tuesday": "// subtracts 24 x 4 = 96 minutes from 24 real hours\nconst m=24*60-96;return Math.floor(m/60)-12+':'+String(m%60).padStart(2,'0')+' a.m. Tuesday';",
+   "1:36 p.m. Tuesday": "// adds the 96 minutes instead\nconst m=24*60+96;return (Math.floor(m/60)-24)+':'+String(m%60).padStart(2,'0')+' p.m. Tuesday';",
+   "11:36 a.m. Tuesday": "// subtracts only 24 minutes, one per hour\nconst m=24*60-24;return (Math.floor(m/60)-12)+':'+String(m%60).padStart(2,'0')+' a.m. Tuesday';"
+  },
+  "forced": [
+   "every option is a Tuesday time within two hours of noon"
+  ]
+ },
+ {
+  "id": "IM18E-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume to capacity: cubic centimeters to liters for a partly filled tank",
+  "difficulty": "medium",
+  "prompt": "An aquarium is a rectangular box 50 centimeters long, 30 centimeters wide and 40 centimeters tall. It is filled with water to 3/4 of its height. How many more liters of water are needed to fill it to the top? (1 liter = 1,000 cubic centimeters)",
+  "choices": [
+   "60",
+   "15",
+   "150",
+   "45"
+  ],
+  "correct_answer": "15",
+  "explanation": "The empty top quarter is 40 / 4 = 10 cm deep, so it holds 50 x 30 x 10 = 15,000 cubic cm = 15 liters. The option 45 is the water already there, 60 is the full tank, and 150 divides by 100 instead of 1,000.",
+  "solve": "return String(50*30*(40/4)/1000);",
+  "distractor_solve": {
+   "45": "// gives the water already in the tank\nreturn String(50*30*30/1000);",
+   "60": "// gives the full capacity\nreturn String(50*30*40/1000);",
+   "150": "// divides by 100 instead of 1,000\nreturn String(50*30*10/100);"
+  },
+  "forced": [
+   "a positive whole number of liters"
+  ]
+ },
+ {
+  "id": "IM18E-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two reflections in order (over y = x, then over the x-axis)",
+  "difficulty": "hard",
+  "prompt": "The point P(4, -3) is reflected over the line y = x, and then the image is reflected over the x-axis. What are the coordinates of the final image?",
+  "choices": [
+   "(-3, -4)",
+   "(3, 4)",
+   "(-3, 4)",
+   "(4, 3)"
+  ],
+  "correct_answer": "(-3, -4)",
+  "explanation": "Reflecting (4, -3) over y = x swaps the coordinates: (-3, 4). Reflecting over the x-axis changes the sign of y: (-3, -4). The option (3, 4) does the reflections in the other order, (-3, 4) stops after the first, and (4, 3) does only the second.",
+  "solve": "let [x,y]=[4,-3];[x,y]=[y,x];y=-y;return '('+x+', '+y+')';",
+  "distractor_solve": {
+   "(3, 4)": "// does the reflections in the opposite order (x-axis first, then y = x)\nreturn '('+3+', '+4+')';",
+   "(-3, 4)": "// does only the reflection over y = x\nreturn '('+(-3)+', '+4+')';",
+   "(4, 3)": "// does only the reflection over the x-axis\nreturn '('+4+', '+3+')';"
+  },
+  "forced": [
+   "every option uses the numbers 3 and 4"
+  ]
+ },
+ {
+  "id": "IM18E-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear growing pattern: write the rule, then solve for the figure number",
+  "difficulty": "medium",
+  "prompt": "Figure 1 of a tile pattern uses 5 tiles, Figure 2 uses 9 tiles, Figure 3 uses 13 tiles, and the pattern continues in the same way. Which figure uses exactly 201 tiles?",
+  "choices": [
+   "Figure 100",
+   "Figure 196",
+   "Figure 50",
+   "Figure 40"
+  ],
+  "correct_answer": "Figure 50",
+  "explanation": "Each figure adds 4 tiles, and Figure 1 has 5 = 4(1) + 1, so Figure n uses 4n + 1 tiles. 4n + 1 = 201 gives n = 50. The option Figure 100 adds 2 tiles per figure, Figure 196 subtracts the first figure's tiles and stops, and Figure 40 divides 201 by 5.",
+  "solve": "for(let n=1;n<1000;n++)if(4*n+1===201)return 'Figure '+n;",
+  "distractor_solve": {
+   "Figure 100": "// thinks each figure adds 2 tiles: 2n + 1 = 201\nreturn 'Figure '+((201-1)/2);",
+   "Figure 196": "// subtracts Figure 1's tiles and stops: 201 - 5\nreturn 'Figure '+(201-5);",
+   "Figure 40": "// divides 201 by 5 tiles per figure\nreturn 'Figure '+Math.floor(201/5);"
+  },
+  "forced": [
+   "every option is a figure number"
+  ]
+ },
+ {
+  "id": "IM18F-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a product of two dice is odd (both must be odd)",
+  "difficulty": "medium",
+  "prompt": "Two fair six-sided dice are rolled. What is the probability that the product of the two numbers rolled is odd?",
+  "choices": [
+   "1/2",
+   "1/4",
+   "3/4",
+   "1/6"
+  ],
+  "correct_answer": "1/4",
+  "explanation": "The product is odd only when both numbers are odd. Each die is odd with probability 1/2, so the probability is 1/2 x 1/2 = 1/4 (9 of the 36 outcomes). The option 3/4 is the probability of an even product, 1/2 assumes the two are equally likely, and 1/6 counts the six different odd products as if each were one outcome.",
+  "solve": "function g(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}function fr(n,d){const k=g(n,d);n/=k;d/=k;return d===1?String(n):n+\"/\"+d}let c=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if((a*b)%2)c++;return fr(c,36);",
+  "distractor_solve": {
+   "1/2": "// assumes odd and even products are equally likely\nreturn '1/2';",
+   "3/4": "// gives the probability of an EVEN product\nreturn '3/4';",
+   "1/6": "// counts the six different odd products (1, 3, 5, 9, 15, 25) as six outcomes out of 36\nreturn '1/6';"
+  },
+  "forced": [
+   "every option is a probability between 0 and 1"
+  ]
+ },
+ {
+  "id": "IM18F-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability two draws without replacement match in color (add the two same-color cases)",
+  "difficulty": "hard",
+  "prompt": "A bag holds 4 red marbles and 6 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles are the same color?",
+  "choices": [
+   "2/15",
+   "1/3",
+   "13/25",
+   "7/15"
+  ],
+  "correct_answer": "7/15",
+  "explanation": "Both red: (4/10)(3/9) = 12/90. Both blue: (6/10)(5/9) = 30/90. Together 42/90 = 7/15. The option 13/25 draws with replacement, 1/3 counts only blue, and 2/15 counts only red.",
+  "solve": "function g(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}function fr(n,d){const k=g(n,d);n/=k;d/=k;return d===1?String(n):n+\"/\"+d}return fr(4*3+6*5,10*9);",
+  "distractor_solve": {
+   "13/25": "// draws WITH replacement: (16 + 36)/100\nreturn '13/25';",
+   "1/3": "// counts only the both-blue case: 30/90\nreturn '1/3';",
+   "2/15": "// counts only the both-red case: 12/90\nreturn '2/15';"
+  },
+  "forced": [
+   "every option is a probability between 0 and 1"
+  ]
+ },
+ {
+  "id": "IM18F-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mean of removed values from the change in a total",
+  "difficulty": "medium",
+  "prompt": "Eight numbers have a mean of 15. Two of the numbers are removed, and the remaining six numbers have a mean of 13. What is the mean of the two numbers that were removed?",
+  "choices": [
+   "14",
+   "7",
+   "42",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "The eight numbers total 8 x 15 = 120 and the six remaining total 6 x 13 = 78, so the two removed numbers total 42 and their mean is 21. The option 42 is their sum, 14 averages the means, and 7 divides by 6.",
+  "solve": "return String((8*15-6*13)/2);",
+  "distractor_solve": {
+   "7": "// divides the removed sum by the six remaining numbers\nreturn String((8*15-6*13)/6);",
+   "14": "// averages the two means\nreturn String((15+13)/2);",
+   "42": "// gives the sum of the two removed numbers\nreturn String(8*15-6*13);"
+  },
+  "forced": [
+   "a positive whole number"
+  ]
+ },
+ {
+  "id": "IM18F-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "committee count with one member required (choose the rest from those left)",
+  "difficulty": "hard",
+  "prompt": "A committee of 3 is chosen from a group of 7 people. Rosa must be on the committee. How many different committees are possible?",
+  "choices": [
+   "35",
+   "30",
+   "21",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Rosa takes one seat, so the other 2 members are chosen from the remaining 6 people: (6 x 5)/2 = 15 committees. The option 35 ignores the condition, 30 counts the other two in order, and 21 chooses from all 7.",
+  "solve": "let c=0;const n=6;for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)c++;return String(c);",
+  "distractor_solve": {
+   "21": "// chooses 2 of all 7, forgetting Rosa is already taken\nreturn String(7*6/2);",
+   "30": "// counts ordered choices of the other two, 6 x 5\nreturn String(6*5);",
+   "35": "// ignores the condition and chooses any 3 of 7\nreturn String(7*6*5/6);"
+  },
+  "forced": [
+   "a whole-number count"
+  ]
+ },
+ {
+  "id": "IM18F-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability the second spin beats the first (remove ties, split the rest evenly)",
+  "difficulty": "hard",
+  "prompt": "A spinner has 8 equal sections numbered 1 through 8. It is spun twice. What is the probability that the second number is greater than the first?",
+  "choices": [
+   "9/16",
+   "1/2",
+   "3/8",
+   "7/16"
+  ],
+  "correct_answer": "7/16",
+  "explanation": "There are 64 equally likely outcomes, and 8 of them are ties. The other 56 split evenly between \"second greater\" and \"first greater\", so 28 favor the second: 28/64 = 7/16. The option 1/2 forgets the ties, 9/16 counts ties as favorable, and 3/8 undercounts.",
+  "solve": "function g(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}function fr(n,d){const k=g(n,d);n/=k;d/=k;return d===1?String(n):n+\"/\"+d}let c=0;for(let a=1;a<=8;a++)for(let b=1;b<=8;b++)if(b>a)c++;return fr(c,64);",
+  "distractor_solve": {
+   "1/2": "// assumes greater and less each happen half the time, forgetting ties\nreturn '1/2';",
+   "9/16": "// counts greater than OR EQUAL\nreturn '9/16';",
+   "3/8": "// counts 24 favorable outcomes instead of 28\nreturn '3/8';"
+  },
+  "forced": [
+   "every option is a probability near 1/2"
+  ]
+ },
+ {
+  "id": "IM18F-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "missing value from a median of an even-sized data set (decide where the value falls)",
+  "difficulty": "medium",
+  "prompt": "Ten test scores are 70, 72, 75, 75, 80, 84, 85, 88, 90 and x. The median of the ten scores is 81. What is the value of x?",
+  "choices": [
+   "78",
+   "80",
+   "82",
+   "81"
+  ],
+  "correct_answer": "82",
+  "explanation": "With ten scores the median is the mean of the 5th and 6th in order. If x were 84 or more, the middle pair would be 80 and 84 (median 82); if x were 80 or less, it would be 80 and lower. So x lies between 80 and 84 and the middle pair is 80 and x: (80 + x)/2 = 81 gives x = 82. The option 81 sets x to the median, 78 pairs x with 84, and 80 takes x as the 5th listed score.",
+  "solve": "for(let x=0;x<=100;x++){const a=[70,72,75,75,80,84,85,88,90,x].sort((p,q)=>p-q);if((a[4]+a[5])/2===81)return String(x)}",
+  "distractor_solve": {
+   "78": "// assumes x pairs with 84 in the middle: (x + 84)/2 = 81\nreturn String(2*81-84);",
+   "80": "// takes x as the 5th listed score\nreturn String(80);",
+   "81": "// sets x equal to the median\nreturn String(81);"
+  },
+  "forced": [
+   "a whole-number score between 70 and 90"
+  ]
+ },
+ {
+  "id": "IM18F-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly one defective in two picks without replacement (unordered counting)",
+  "difficulty": "hard",
+  "prompt": "A box of 20 light bulbs contains 3 that are defective. Two bulbs are chosen at random. What is the probability that exactly one of them is defective?",
+  "choices": [
+   "51/190",
+   "51/380",
+   "3/20",
+   "3/190"
+  ],
+  "correct_answer": "51/190",
+  "explanation": "There are (20 x 19)/2 = 190 equally likely pairs. Pairs with exactly one defective bulb: 3 choices of defective x 17 choices of good = 51. The probability is 51/190. The option 3/20 is one bulb, 51/380 counts one order only, and 3/190 is both defective.",
+  "solve": "function g(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}function fr(n,d){const k=g(n,d);n/=k;d/=k;return d===1?String(n):n+\"/\"+d}return fr(3*17,20*19/2);",
+  "distractor_solve": {
+   "3/20": "// gives the chance that a single bulb is defective\nreturn '3/20';",
+   "51/380": "// counts only the order defective-then-good\nreturn '51/380';",
+   "3/190": "// gives the chance that both are defective\nreturn '3/190';"
+  },
+  "forced": [
+   "every option is a probability between 0 and 1"
+  ]
+ },
+ {
+  "id": "IM18F-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "expected net gain of a game with a cost to play",
+  "difficulty": "hard",
+  "prompt": "A game costs $2 to play. A player rolls a fair six-sided die and wins $9 for a 6 and nothing otherwise. On average, how much does a player gain or lose per game?",
+  "choices": [
+   "gains $7.00",
+   "loses $0.50",
+   "gains $1.50",
+   "gains $0.50"
+  ],
+  "correct_answer": "loses $0.50",
+  "explanation": "The average winnings are (1/6)(9) = $1.50 per game, and every game costs $2, so a player loses $0.50 per game on average. The option \"gains $1.50\" forgets the cost, \"gains $0.50\" has the wrong direction, and \"gains $7.00\" subtracts the cost from the prize.",
+  "solve": "const e=9/6-2;return (e<0?'loses $':'gains $')+Math.abs(e).toFixed(2);",
+  "distractor_solve": {
+   "gains $1.50": "// gives the average winnings and forgets the cost\nreturn 'gains $'+(9/6).toFixed(2);",
+   "gains $0.50": "// gets the size right and the direction wrong\nreturn 'gains $'+Math.abs(9/6-2).toFixed(2);",
+   "gains $7.00": "// subtracts the cost from the prize\nreturn 'gains $'+(9-2).toFixed(2);"
+  },
+  "forced": [
+   "every option is an amount of money with a direction"
+  ]
+ },
+ {
+  "id": "IM18F-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "building a data set from mean, median, mode and range",
+  "difficulty": "hard",
+  "prompt": "A list of five integers has a mean of 10, a median of 9, a mode of 8 and a range of 6. What is the largest number in the list?",
+  "choices": [
+   "14",
+   "15",
+   "12",
+   "11"
+  ],
+  "correct_answer": "14",
+  "explanation": "The mode is 8 and the median is 9, so the two smallest numbers are 8 and 8 and the middle is 9. The range is 6, so the largest is 8 + 6 = 14. The total is 5 x 10 = 50, so the fourth number is 50 - 8 - 8 - 9 - 14 = 11, which fits (9 <= 11 <= 14). The option 11 is the fourth number, 15 adds the range to the median, and 12 splits 25 evenly.",
+  "solve": "for(let d=9;d<=40;d++)for(let e=d;e<=40;e++){const a=[8,8,9,d,e];if(a.reduce((s,x)=>s+x,0)===50&&e-8===6&&d!==8&&!(d===9&&e===9))return String(e)}",
+  "distractor_solve": {
+   "11": "// gives the fourth number instead of the largest\nreturn String(11);",
+   "12": "// assumes the two numbers above the median are equal: 25/2 rounded down\nreturn String(Math.floor(25/2));",
+   "15": "// takes the range from the median: 9 + 6\nreturn String(9+6);"
+  },
+  "forced": [
+   "a whole number at least 9"
+  ]
+ },
+ {
+  "id": "IM18F-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting numbers below 1,000 whose digits have a given sum (cases by number of digits)",
+  "difficulty": "medium",
+  "prompt": "How many positive integers less than 1,000 have digits that add up to 3?",
+  "choices": [
+   "10",
+   "6",
+   "9",
+   "4"
+  ],
+  "correct_answer": "10",
+  "explanation": "One digit: 3. Two digits: 12, 21, 30. Three digits: 102, 111, 120, 201, 210, 300. That is 1 + 3 + 6 = 10. The option 6 counts only three-digit numbers, 9 misses the number 3, and 4 leaves out every number with a zero digit.",
+  "solve": "let c=0;for(let n=1;n<1000;n++)if(String(n).split('').reduce((s,d)=>s+ +d,0)===3)c++;return String(c);",
+  "distractor_solve": {
+   "4": "// counts only numbers with no zero digit: 3, 12, 21, 111\nlet c=0;for(let n=1;n<1000;n++){const s=String(n);if(!s.includes('0')&&s.split('').reduce((a,d)=>a+ +d,0)===3)c++}return String(c);",
+   "6": "// counts only the three-digit numbers\nlet c=0;for(let n=100;n<1000;n++)if(String(n).split('').reduce((s,d)=>s+ +d,0)===3)c++;return String(c);",
+   "9": "// misses the one-digit number 3\nlet c=0;for(let n=10;n<1000;n++)if(String(n).split('').reduce((s,d)=>s+ +d,0)===3)c++;return String(c);"
+  },
+  "forced": [
+   "a small whole-number count"
+  ]
+ }
+]
