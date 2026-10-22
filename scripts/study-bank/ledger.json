@@ -9807,6 +9807,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "toefl-passage-draft-2-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "academic_passage",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-2",
+      "contentSha": "52716f115e3db10f0c293cd9f87c44146482474c244aef53366555e733a0b8de",
+      "status": "staged-for-human-review",
+      "note": "6 x 5 academic passages by a Claude agent for upper/hard; co-founder-standard grader 0/30. Spot route (toefl-passage-draft-2.RELEASE.PREREG.md). REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "52716f115e3db10f0c293cd9f87c44146482474c244aef53366555e733a0b8de",
+          "verdict": "6 groups x 5; key longest 2/30 shortest 7/30; slots 7/8/8/7."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A: 0/30 flagged (TOEFL Reading is not the proven arm)."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,1806 @@
+{
+ "cohort": "toefl-passage-draft-2",
+ "created": "2026-10-22",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+   "item": {
+    "id": "PD2-P01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most animals that live through northern winters avoid freezing in one of two ways: they migrate, or they shelter somewhere the temperature stays above the freezing point of their body fluids. The wood frog of North America, whose range reaches north of the Arctic Circle in Alaska and Canada, does neither. It spends the winter beneath a shallow layer of leaf litter, and when the temperature falls far enough, it freezes.\n\nThe freezing is not uniform. Ice forms in the spaces outside the cells, in the body cavity, and beneath the skin, while the fluid inside the cells stays liquid. In this state, which can last for weeks, the frog's heart stops beating and it does not breathe. Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into large amounts of glucose, which the blood carries to the organs before circulation stops. The sugar acts as a cryoprotectant: by raising the concentration of dissolved substances inside the cells, it limits how much water is drawn out of them as the surrounding fluid turns to ice, so that the cells do not shrink to a fatal degree.\n\nThere are limits to this tolerance. Laboratory studies suggest that frogs generally survive when up to roughly two-thirds of their body water has frozen, but not much more. In spring the ice melts, the heart begins beating again, and the frog soon moves on to breed in temporary ponds.",
+    "passageGroupId": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+    "prompt": "[Academic — Biology] The word \"tolerance\" in the passage is closest in meaning to",
+    "choices": [
+     "willingness to accept opinions different from one's own",
+     "ability to survive a harmful condition",
+     "reduced response to a drug after repeated use",
+     "permitted variation in a measured value"
+    ],
+    "correct_answer": "ability to survive a harmful condition",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"This tolerance\" refers back to the frog's capacity to live through being frozen, and the next sentence gives its limit (about two-thirds of body water frozen).",
+    "distractor_rationales": [
+     {
+      "choice": "willingness to accept opinions different from one's own",
+      "reason": "The passage is about surviving freezing, not about accepting other people's views."
+     },
+     {
+      "choice": "permitted variation in a measured value",
+      "reason": "No measurement or engineering allowance is discussed."
+     },
+     {
+      "choice": "reduced response to a drug after repeated use",
+      "reason": "No drug or repeated dosing is involved; the frog is enduring ice."
+     }
+    ]
+   },
+   "content_hash": "2d99231242eb0a8e26c925b21b67c75a",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P01",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+   "item": {
+    "id": "PD2-P01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most animals that live through northern winters avoid freezing in one of two ways: they migrate, or they shelter somewhere the temperature stays above the freezing point of their body fluids. The wood frog of North America, whose range reaches north of the Arctic Circle in Alaska and Canada, does neither. It spends the winter beneath a shallow layer of leaf litter, and when the temperature falls far enough, it freezes.\n\nThe freezing is not uniform. Ice forms in the spaces outside the cells, in the body cavity, and beneath the skin, while the fluid inside the cells stays liquid. In this state, which can last for weeks, the frog's heart stops beating and it does not breathe. Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into large amounts of glucose, which the blood carries to the organs before circulation stops. The sugar acts as a cryoprotectant: by raising the concentration of dissolved substances inside the cells, it limits how much water is drawn out of them as the surrounding fluid turns to ice, so that the cells do not shrink to a fatal degree.\n\nThere are limits to this tolerance. Laboratory studies suggest that frogs generally survive when up to roughly two-thirds of their body water has frozen, but not much more. In spring the ice melts, the heart begins beating again, and the frog soon moves on to breed in temporary ponds.",
+    "passageGroupId": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+    "prompt": "[Academic — Biology] According to paragraph 2, when does the liver begin producing large amounts of glucose?",
+    "choices": [
+     "shortly after ice starts to form on the skin",
+     "after the heart has stopped beating",
+     "as the ice in the body begins to melt",
+     "when the frog first buries itself beneath the leaf litter"
+    ],
+    "correct_answer": "shortly after ice starts to form on the skin",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into ... glucose.\"",
+    "distractor_rationales": [
+     {
+      "choice": "after the heart has stopped beating",
+      "reason": "The glucose is carried to the organs \"before circulation stops\", so production begins before the heart stops."
+     },
+     {
+      "choice": "when the frog first buries itself beneath the leaf litter",
+      "reason": "Burial in leaf litter is described in paragraph 1 and is not linked to glucose."
+     },
+     {
+      "choice": "as the ice in the body begins to melt",
+      "reason": "Melting happens in spring (paragraph 3), long after the glucose is produced."
+     }
+    ]
+   },
+   "content_hash": "04184933d9fec8fefe55232de70f1280",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P01",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+   "item": {
+    "id": "PD2-P01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most animals that live through northern winters avoid freezing in one of two ways: they migrate, or they shelter somewhere the temperature stays above the freezing point of their body fluids. The wood frog of North America, whose range reaches north of the Arctic Circle in Alaska and Canada, does neither. It spends the winter beneath a shallow layer of leaf litter, and when the temperature falls far enough, it freezes.\n\nThe freezing is not uniform. Ice forms in the spaces outside the cells, in the body cavity, and beneath the skin, while the fluid inside the cells stays liquid. In this state, which can last for weeks, the frog's heart stops beating and it does not breathe. Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into large amounts of glucose, which the blood carries to the organs before circulation stops. The sugar acts as a cryoprotectant: by raising the concentration of dissolved substances inside the cells, it limits how much water is drawn out of them as the surrounding fluid turns to ice, so that the cells do not shrink to a fatal degree.\n\nThere are limits to this tolerance. Laboratory studies suggest that frogs generally survive when up to roughly two-thirds of their body water has frozen, but not much more. In spring the ice melts, the heart begins beating again, and the frog soon moves on to breed in temporary ponds.",
+    "passageGroupId": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+    "prompt": "[Academic — Biology] Why does the author mention that the wood frog's range \"reaches north of the Arctic Circle\"?",
+    "choices": [
+     "To show that the frog breeds in temporary ponds",
+     "To explain why the frog migrates south before winter",
+     "To stress that the frog endures long, severe winters",
+     "To suggest that the frog's range has recently expanded northward"
+    ],
+    "correct_answer": "To stress that the frog endures long, severe winters",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The detail sets up the contrast in paragraph 1: animals usually migrate or shelter from freezing, but this frog, living in very cold regions, \"does neither\".",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that the frog's range has recently expanded northward",
+      "reason": "No change in the frog's range over time is mentioned."
+     },
+     {
+      "choice": "To explain why the frog migrates south before winter",
+      "reason": "The passage says the frog does not migrate: it \"does neither\"."
+     },
+     {
+      "choice": "To show that the frog breeds in temporary ponds",
+      "reason": "Breeding in ponds is mentioned only in paragraph 3 and is unrelated to the frog's range."
+     }
+    ]
+   },
+   "content_hash": "c3291807e6f4930a894d62fb7dcbc5e9",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P01",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+   "item": {
+    "id": "PD2-P01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most animals that live through northern winters avoid freezing in one of two ways: they migrate, or they shelter somewhere the temperature stays above the freezing point of their body fluids. The wood frog of North America, whose range reaches north of the Arctic Circle in Alaska and Canada, does neither. It spends the winter beneath a shallow layer of leaf litter, and when the temperature falls far enough, it freezes.\n\nThe freezing is not uniform. Ice forms in the spaces outside the cells, in the body cavity, and beneath the skin, while the fluid inside the cells stays liquid. In this state, which can last for weeks, the frog's heart stops beating and it does not breathe. Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into large amounts of glucose, which the blood carries to the organs before circulation stops. The sugar acts as a cryoprotectant: by raising the concentration of dissolved substances inside the cells, it limits how much water is drawn out of them as the surrounding fluid turns to ice, so that the cells do not shrink to a fatal degree.\n\nThere are limits to this tolerance. Laboratory studies suggest that frogs generally survive when up to roughly two-thirds of their body water has frozen, but not much more. In spring the ice melts, the heart begins beating again, and the frog soon moves on to breed in temporary ponds.",
+    "passageGroupId": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+    "prompt": "[Academic — Biology] According to the passage, all of the following happen to a wood frog while it is frozen EXCEPT:",
+    "choices": [
+     "The fluid inside its cells turns to ice.",
+     "The frog's heart stops beating for a time.",
+     "Ice forms in the body cavity and beneath the skin.",
+     "The frog stops breathing."
+    ],
+    "correct_answer": "The fluid inside its cells turns to ice.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "The passage says \"the fluid inside the cells stays liquid\"; only the fluid outside the cells freezes.",
+    "distractor_rationales": [
+     {
+      "choice": "Ice forms in the body cavity and beneath the skin.",
+      "reason": "Stated: ice forms \"in the body cavity, and beneath the skin\"."
+     },
+     {
+      "choice": "The frog's heart stops beating for a time.",
+      "reason": "Stated: \"the frog's heart stops beating\"."
+     },
+     {
+      "choice": "The frog stops breathing.",
+      "reason": "Stated: \"it does not breathe\"."
+     }
+    ]
+   },
+   "content_hash": "40e1917f704b3dcc2941eb7730aff6c7",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P01",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+   "item": {
+    "id": "PD2-P01-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Most animals that live through northern winters avoid freezing in one of two ways: they migrate, or they shelter somewhere the temperature stays above the freezing point of their body fluids. The wood frog of North America, whose range reaches north of the Arctic Circle in Alaska and Canada, does neither. It spends the winter beneath a shallow layer of leaf litter, and when the temperature falls far enough, it freezes.\n\nThe freezing is not uniform. Ice forms in the spaces outside the cells, in the body cavity, and beneath the skin, while the fluid inside the cells stays liquid. In this state, which can last for weeks, the frog's heart stops beating and it does not breathe. Survival depends on what happens when ice first begins to form on the skin. Within minutes, the liver starts converting its stored glycogen into large amounts of glucose, which the blood carries to the organs before circulation stops. The sugar acts as a cryoprotectant: by raising the concentration of dissolved substances inside the cells, it limits how much water is drawn out of them as the surrounding fluid turns to ice, so that the cells do not shrink to a fatal degree.\n\nThere are limits to this tolerance. Laboratory studies suggest that frogs generally survive when up to roughly two-thirds of their body water has frozen, but not much more. In spring the ice melts, the heart begins beating again, and the frog soon moves on to breed in temporary ponds.",
+    "passageGroupId": "pg-62e8c1115d14462cd9dc580ccba6ca14",
+    "prompt": "[Academic — Biology] What is the main purpose of paragraph 2?",
+    "choices": [
+     "To argue that large amounts of glucose damage the frog's cells",
+     "To explain how the frog finds temporary ponds for breeding in spring",
+     "To describe how the frog freezes and how glucose protects its cells",
+     "To compare the wood frog with animals that migrate in winter"
+    ],
+    "correct_answer": "To describe how the frog freezes and how glucose protects its cells",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Paragraph 2 explains where ice forms, what stops, and how glucose keeps cells from shrinking to a fatal degree.",
+    "distractor_rationales": [
+     {
+      "choice": "To compare the wood frog with animals that migrate in winter",
+      "reason": "The comparison with migrating animals is made in paragraph 1."
+     },
+     {
+      "choice": "To explain how the frog finds temporary ponds for breeding in spring",
+      "reason": "Breeding in ponds is mentioned briefly in paragraph 3, and finding ponds is not explained."
+     },
+     {
+      "choice": "To argue that large amounts of glucose damage the frog's cells",
+      "reason": "The passage says glucose protects the cells, not that it damages them."
+     }
+    ]
+   },
+   "content_hash": "5be08447fedac65f3daa65f13d51ed88",
+   "word_count": 249,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P01",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-6569e06ceec930033c66a69f1bdb33ac",
+   "item": {
+    "id": "PD2-P02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In lakes fed by melting glaciers, the mud on the bottom often builds up in thin, paired layers. Each spring and summer, meltwater streams carry sand and silt into the lake, and these relatively coarse particles settle quickly, forming a light-colored band. In winter, when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles, which had remained suspended, slowly sink to form a thinner, darker band. One light band and one dark band together make up a varve, a deposit representing a single year.\n\nBecause each varve records one year, counting varves works much like counting tree rings. In the late nineteenth century, the Swedish geologist Gerard De Geer began measuring varves exposed in Swedish clay deposits. He noticed that the thickness of successive varves rose and fell in recognizable sequences, reflecting warm years with heavy melting and cold years with little. By matching these sequences from one site to the next, he linked overlapping records into a single chronology. Extended by later researchers, it covers roughly the last 13,000 years, the period during which the great ice sheet retreated across Sweden.\n\nThe method requires care. A sudden flood or an underwater landslide can deposit a layer that resembles an annual band, and a year with very little sediment may leave a layer too thin to see. Researchers therefore check varve counts against independent methods, such as radiocarbon dating of plant remains preserved in the layers.",
+    "passageGroupId": "pg-6569e06ceec930033c66a69f1bdb33ac",
+    "prompt": "[Academic — Earth Science] The word \"suspended\" in the passage is closest in meaning to",
+    "choices": [
+     "floating in the water",
+     "temporarily stopped",
+     "removed from a post as a punishment",
+     "hanging from a fixed support"
+    ],
+    "correct_answer": "floating in the water",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The clay particles \"had remained suspended\" in the water and then \"slowly sink\" once the water is still.",
+    "distractor_rationales": [
+     {
+      "choice": "temporarily stopped",
+      "reason": "Nothing is paused or interrupted; the particles are in the water."
+     },
+     {
+      "choice": "hanging from a fixed support",
+      "reason": "The particles are in the lake water, not attached to anything."
+     },
+     {
+      "choice": "removed from a post as a punishment",
+      "reason": "No person or position is involved."
+     }
+    ]
+   },
+   "content_hash": "af56422f9774ce425ee0da9241f7b556",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P02",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-6569e06ceec930033c66a69f1bdb33ac",
+   "item": {
+    "id": "PD2-P02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In lakes fed by melting glaciers, the mud on the bottom often builds up in thin, paired layers. Each spring and summer, meltwater streams carry sand and silt into the lake, and these relatively coarse particles settle quickly, forming a light-colored band. In winter, when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles, which had remained suspended, slowly sink to form a thinner, darker band. One light band and one dark band together make up a varve, a deposit representing a single year.\n\nBecause each varve records one year, counting varves works much like counting tree rings. In the late nineteenth century, the Swedish geologist Gerard De Geer began measuring varves exposed in Swedish clay deposits. He noticed that the thickness of successive varves rose and fell in recognizable sequences, reflecting warm years with heavy melting and cold years with little. By matching these sequences from one site to the next, he linked overlapping records into a single chronology. Extended by later researchers, it covers roughly the last 13,000 years, the period during which the great ice sheet retreated across Sweden.\n\nThe method requires care. A sudden flood or an underwater landslide can deposit a layer that resembles an annual band, and a year with very little sediment may leave a layer too thin to see. Researchers therefore check varve counts against independent methods, such as radiocarbon dating of plant remains preserved in the layers.",
+    "passageGroupId": "pg-6569e06ceec930033c66a69f1bdb33ac",
+    "prompt": "[Academic — Earth Science] According to paragraph 1, why does a dark band form in winter?",
+    "choices": [
+     "Plant remains darken the sediment as they decay.",
+     "Coarse particles sink more slowly in cold water.",
+     "Streams carry more sand and silt into the lake in cold weather.",
+     "Ice cover leaves the water still, so fine clay can settle."
+    ],
+    "correct_answer": "Ice cover leaves the water still, so fine clay can settle.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles ... slowly sink.\"",
+    "distractor_rationales": [
+     {
+      "choice": "Streams carry more sand and silt into the lake in cold weather.",
+      "reason": "Streams carry sand and silt in spring and summer; in winter they freeze."
+     },
+     {
+      "choice": "Plant remains darken the sediment as they decay.",
+      "reason": "Plant remains are mentioned only in paragraph 3, as material for radiocarbon dating."
+     },
+     {
+      "choice": "Coarse particles sink more slowly in cold water.",
+      "reason": "Coarse particles settle quickly in summer; the winter band is fine clay."
+     }
+    ]
+   },
+   "content_hash": "df645db6a3c7eb3ea66d67ad223df1f7",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P02",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-6569e06ceec930033c66a69f1bdb33ac",
+   "item": {
+    "id": "PD2-P02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In lakes fed by melting glaciers, the mud on the bottom often builds up in thin, paired layers. Each spring and summer, meltwater streams carry sand and silt into the lake, and these relatively coarse particles settle quickly, forming a light-colored band. In winter, when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles, which had remained suspended, slowly sink to form a thinner, darker band. One light band and one dark band together make up a varve, a deposit representing a single year.\n\nBecause each varve records one year, counting varves works much like counting tree rings. In the late nineteenth century, the Swedish geologist Gerard De Geer began measuring varves exposed in Swedish clay deposits. He noticed that the thickness of successive varves rose and fell in recognizable sequences, reflecting warm years with heavy melting and cold years with little. By matching these sequences from one site to the next, he linked overlapping records into a single chronology. Extended by later researchers, it covers roughly the last 13,000 years, the period during which the great ice sheet retreated across Sweden.\n\nThe method requires care. A sudden flood or an underwater landslide can deposit a layer that resembles an annual band, and a year with very little sediment may leave a layer too thin to see. Researchers therefore check varve counts against independent methods, such as radiocarbon dating of plant remains preserved in the layers.",
+    "passageGroupId": "pg-6569e06ceec930033c66a69f1bdb33ac",
+    "prompt": "[Academic — Earth Science] Why does the author mention \"counting tree rings\"?",
+    "choices": [
+     "To compare varve counting with a familiar dating method",
+     "To identify the independent method used to check varve counts",
+     "To explain how De Geer first became interested in geology",
+     "To show that tree rings are more accurate than varves"
+    ],
+    "correct_answer": "To compare varve counting with a familiar dating method",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Each varve, like a tree ring, records one year, so the comparison explains how varves are counted.",
+    "distractor_rationales": [
+     {
+      "choice": "To identify the independent method used to check varve counts",
+      "reason": "The independent check named in paragraph 3 is radiocarbon dating, not tree rings."
+     },
+     {
+      "choice": "To show that tree rings are more accurate than varves",
+      "reason": "The accuracy of the two methods is not compared."
+     },
+     {
+      "choice": "To explain how De Geer first became interested in geology",
+      "reason": "De Geer's interests are not discussed."
+     }
+    ]
+   },
+   "content_hash": "890694524e36f0cb6f631421e0db534f",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P02",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-6569e06ceec930033c66a69f1bdb33ac",
+   "item": {
+    "id": "PD2-P02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In lakes fed by melting glaciers, the mud on the bottom often builds up in thin, paired layers. Each spring and summer, meltwater streams carry sand and silt into the lake, and these relatively coarse particles settle quickly, forming a light-colored band. In winter, when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles, which had remained suspended, slowly sink to form a thinner, darker band. One light band and one dark band together make up a varve, a deposit representing a single year.\n\nBecause each varve records one year, counting varves works much like counting tree rings. In the late nineteenth century, the Swedish geologist Gerard De Geer began measuring varves exposed in Swedish clay deposits. He noticed that the thickness of successive varves rose and fell in recognizable sequences, reflecting warm years with heavy melting and cold years with little. By matching these sequences from one site to the next, he linked overlapping records into a single chronology. Extended by later researchers, it covers roughly the last 13,000 years, the period during which the great ice sheet retreated across Sweden.\n\nThe method requires care. A sudden flood or an underwater landslide can deposit a layer that resembles an annual band, and a year with very little sediment may leave a layer too thin to see. Researchers therefore check varve counts against independent methods, such as radiocarbon dating of plant remains preserved in the layers.",
+    "passageGroupId": "pg-6569e06ceec930033c66a69f1bdb33ac",
+    "prompt": "[Academic — Earth Science] It can be inferred from paragraph 2 that an unusually thick varve most likely indicates",
+    "choices": [
+     "a cold year with little melting",
+     "a warm year with heavy melting",
+     "a year when no clay settled to the bottom",
+     "a summer in which the lake stayed frozen"
+    ],
+    "correct_answer": "a warm year with heavy melting",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Varve thickness rose and fell \"reflecting warm years with heavy melting and cold years with little\"; heavy melting brings more sediment and a thicker layer.",
+    "distractor_rationales": [
+     {
+      "choice": "a cold year with little melting",
+      "reason": "Cold years with little melting are linked to less sediment, so thinner varves."
+     },
+     {
+      "choice": "a year when no clay settled to the bottom",
+      "reason": "A varve by definition includes a dark clay band; a year without one is not described."
+     },
+     {
+      "choice": "a summer in which the lake stayed frozen",
+      "reason": "Summer is when streams carry sediment in; a lake frozen all summer is never described and would not thicken a varve."
+     }
+    ]
+   },
+   "content_hash": "659fbcbad3adc07076230c2e7dab3151",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P02",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-6569e06ceec930033c66a69f1bdb33ac",
+   "item": {
+    "id": "PD2-P02-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In lakes fed by melting glaciers, the mud on the bottom often builds up in thin, paired layers. Each spring and summer, meltwater streams carry sand and silt into the lake, and these relatively coarse particles settle quickly, forming a light-colored band. In winter, when the streams freeze and the lake's surface is covered by ice, the water becomes still, and the finest clay particles, which had remained suspended, slowly sink to form a thinner, darker band. One light band and one dark band together make up a varve, a deposit representing a single year.\n\nBecause each varve records one year, counting varves works much like counting tree rings. In the late nineteenth century, the Swedish geologist Gerard De Geer began measuring varves exposed in Swedish clay deposits. He noticed that the thickness of successive varves rose and fell in recognizable sequences, reflecting warm years with heavy melting and cold years with little. By matching these sequences from one site to the next, he linked overlapping records into a single chronology. Extended by later researchers, it covers roughly the last 13,000 years, the period during which the great ice sheet retreated across Sweden.\n\nThe method requires care. A sudden flood or an underwater landslide can deposit a layer that resembles an annual band, and a year with very little sediment may leave a layer too thin to see. Researchers therefore check varve counts against independent methods, such as radiocarbon dating of plant remains preserved in the layers.",
+    "passageGroupId": "pg-6569e06ceec930033c66a69f1bdb33ac",
+    "prompt": "[Academic — Earth Science] Which of the following best describes the purpose of paragraph 3?",
+    "choices": [
+     "To explain how floods produced the clay deposits De Geer studied",
+     "To describe how the ice sheet retreated across Sweden",
+     "To note possible errors in varve counts and how they are checked",
+     "To argue that radiocarbon dating should replace varve counting"
+    ],
+    "correct_answer": "To note possible errors in varve counts and how they are checked",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "It names floods, landslides, and very thin years as sources of miscounting, and radiocarbon dating as the check.",
+    "distractor_rationales": [
+     {
+      "choice": "To describe how the ice sheet retreated across Sweden",
+      "reason": "The retreat of the ice sheet is mentioned in paragraph 2."
+     },
+     {
+      "choice": "To argue that radiocarbon dating should replace varve counting",
+      "reason": "Radiocarbon dating is used to check varve counts, not to replace them."
+     },
+     {
+      "choice": "To explain how floods produced the clay deposits De Geer studied",
+      "reason": "Floods are a source of misleading layers, not the origin of De Geer's deposits."
+     }
+    ]
+   },
+   "content_hash": "f0501d5255e19029a3e866684f436ed2",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P02",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-65724fe4a395a497342a72797c4d4aae",
+   "item": {
+    "id": "PD2-P03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Until the second half of the nineteenth century, most towns kept their own time. Clocks were set by the sun, so that noon was the moment the sun stood highest over that particular place. Because the Earth turns through one degree of longitude about every four minutes, a town some distance east of its neighbor would be several minutes ahead of it. For people who rarely traveled far, these differences hardly mattered.\n\nThe railways changed that. A train passing through many towns could not follow all of their clocks at once, and timetables printed in local time were confusing and, where trains shared a single track, dangerous. Railway companies responded by adopting standards of their own. In Britain, most lines had adopted London time by the late 1840s. In the United States, where distances were far greater, individual railroads used dozens of different standards, and a large station might display several clocks, each showing the time kept by a different company.\n\nOn November 18, 1883, the major railroads of the United States and Canada replaced these with a small number of time zones, each an hour apart, so that all clocks within a zone agreed. Many cities adopted railroad time quickly, although some resisted what they saw as interference with the natural time set by the sun. Standard time was the railroads' own arrangement, however; it did not become federal law in the United States until 1918.",
+    "passageGroupId": "pg-65724fe4a395a497342a72797c4d4aae",
+    "prompt": "[Academic — History of Technology] The word \"arrangement\" in the passage is closest in meaning to",
+    "choices": [
+     "a piece of music adapted for other instruments",
+     "the positioning of furniture in a room",
+     "a plan agreed on by the parties involved",
+     "a decorative grouping of cut flowers"
+    ],
+    "correct_answer": "a plan agreed on by the parties involved",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The railroads agreed on standard time among themselves; it was not yet law.",
+    "distractor_rationales": [
+     {
+      "choice": "a piece of music adapted for other instruments",
+      "reason": "Music is not discussed."
+     },
+     {
+      "choice": "a decorative grouping of cut flowers",
+      "reason": "Flowers are not discussed."
+     },
+     {
+      "choice": "the positioning of furniture in a room",
+      "reason": "Furniture is not discussed; the sense here is an agreed system."
+     }
+    ]
+   },
+   "content_hash": "dc50ca721634e877efd885dee5cf6cfc",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P03",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-65724fe4a395a497342a72797c4d4aae",
+   "item": {
+    "id": "PD2-P03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Until the second half of the nineteenth century, most towns kept their own time. Clocks were set by the sun, so that noon was the moment the sun stood highest over that particular place. Because the Earth turns through one degree of longitude about every four minutes, a town some distance east of its neighbor would be several minutes ahead of it. For people who rarely traveled far, these differences hardly mattered.\n\nThe railways changed that. A train passing through many towns could not follow all of their clocks at once, and timetables printed in local time were confusing and, where trains shared a single track, dangerous. Railway companies responded by adopting standards of their own. In Britain, most lines had adopted London time by the late 1840s. In the United States, where distances were far greater, individual railroads used dozens of different standards, and a large station might display several clocks, each showing the time kept by a different company.\n\nOn November 18, 1883, the major railroads of the United States and Canada replaced these with a small number of time zones, each an hour apart, so that all clocks within a zone agreed. Many cities adopted railroad time quickly, although some resisted what they saw as interference with the natural time set by the sun. Standard time was the railroads' own arrangement, however; it did not become federal law in the United States until 1918.",
+    "passageGroupId": "pg-65724fe4a395a497342a72797c4d4aae",
+    "prompt": "[Academic — History of Technology] It can be inferred from paragraph 1 that the clocks of a town east of its neighbor were ahead because",
+    "choices": [
+     "its residents traveled farther than their neighbors",
+     "the sun reached its highest point there earlier",
+     "it lay closer to a major city such as London",
+     "its clocks were set by a railway company's standard"
+    ],
+    "correct_answer": "the sun reached its highest point there earlier",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Noon was set when \"the sun stood highest over that particular place\", and as the Earth turns, places farther east reach that moment first.",
+    "distractor_rationales": [
+     {
+      "choice": "its clocks were set by a railway company's standard",
+      "reason": "Paragraph 1 describes the period before railway standards, when clocks were set by the sun."
+     },
+     {
+      "choice": "it lay closer to a major city such as London",
+      "reason": "Distance from London is not mentioned in paragraph 1."
+     },
+     {
+      "choice": "its residents traveled farther than their neighbors",
+      "reason": "The passage says travel was rare and the differences \"hardly mattered\"; travel does not cause them."
+     }
+    ]
+   },
+   "content_hash": "7a0d9d58c5b510417bf6b452413d9602",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P03",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-65724fe4a395a497342a72797c4d4aae",
+   "item": {
+    "id": "PD2-P03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Until the second half of the nineteenth century, most towns kept their own time. Clocks were set by the sun, so that noon was the moment the sun stood highest over that particular place. Because the Earth turns through one degree of longitude about every four minutes, a town some distance east of its neighbor would be several minutes ahead of it. For people who rarely traveled far, these differences hardly mattered.\n\nThe railways changed that. A train passing through many towns could not follow all of their clocks at once, and timetables printed in local time were confusing and, where trains shared a single track, dangerous. Railway companies responded by adopting standards of their own. In Britain, most lines had adopted London time by the late 1840s. In the United States, where distances were far greater, individual railroads used dozens of different standards, and a large station might display several clocks, each showing the time kept by a different company.\n\nOn November 18, 1883, the major railroads of the United States and Canada replaced these with a small number of time zones, each an hour apart, so that all clocks within a zone agreed. Many cities adopted railroad time quickly, although some resisted what they saw as interference with the natural time set by the sun. Standard time was the railroads' own arrangement, however; it did not become federal law in the United States until 1918.",
+    "passageGroupId": "pg-65724fe4a395a497342a72797c4d4aae",
+    "prompt": "[Academic — History of Technology] Why does the author mention that a large station \"might display several clocks\"?",
+    "choices": [
+     "To suggest that local sun time was more accurate than railroad time",
+     "To illustrate how many competing time standards were in use",
+     "To show that American stations were larger than British ones",
+     "To describe how some cities opposed railroad time"
+    ],
+    "correct_answer": "To illustrate how many competing time standards were in use",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Each clock showed \"the time kept by a different company\", illustrating the \"dozens of different standards\".",
+    "distractor_rationales": [
+     {
+      "choice": "To show that American stations were larger than British ones",
+      "reason": "The sizes of stations in the two countries are not compared."
+     },
+     {
+      "choice": "To suggest that local sun time was more accurate than railroad time",
+      "reason": "The accuracy of sun time is not compared with railroad time."
+     },
+     {
+      "choice": "To describe how some cities opposed railroad time",
+      "reason": "Opposition by cities is described in paragraph 3, after the 1883 change."
+     }
+    ]
+   },
+   "content_hash": "e1aedaf2b115e80f3c63f4e9f3947f56",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P03",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-65724fe4a395a497342a72797c4d4aae",
+   "item": {
+    "id": "PD2-P03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Until the second half of the nineteenth century, most towns kept their own time. Clocks were set by the sun, so that noon was the moment the sun stood highest over that particular place. Because the Earth turns through one degree of longitude about every four minutes, a town some distance east of its neighbor would be several minutes ahead of it. For people who rarely traveled far, these differences hardly mattered.\n\nThe railways changed that. A train passing through many towns could not follow all of their clocks at once, and timetables printed in local time were confusing and, where trains shared a single track, dangerous. Railway companies responded by adopting standards of their own. In Britain, most lines had adopted London time by the late 1840s. In the United States, where distances were far greater, individual railroads used dozens of different standards, and a large station might display several clocks, each showing the time kept by a different company.\n\nOn November 18, 1883, the major railroads of the United States and Canada replaced these with a small number of time zones, each an hour apart, so that all clocks within a zone agreed. Many cities adopted railroad time quickly, although some resisted what they saw as interference with the natural time set by the sun. Standard time was the railroads' own arrangement, however; it did not become federal law in the United States until 1918.",
+    "passageGroupId": "pg-65724fe4a395a497342a72797c4d4aae",
+    "prompt": "[Academic — History of Technology] According to the passage, all of the following are true of the change made on November 18, 1883, EXCEPT:",
+    "choices": [
+     "It included railroads in Canada as well as the United States.",
+     "It created zones in which clocks were an hour apart.",
+     "It was organized by the railroads rather than by law.",
+     "It was accepted at once by every city it affected."
+    ],
+    "correct_answer": "It was accepted at once by every city it affected.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "\"Many cities adopted railroad time quickly, although some resisted.\"",
+    "distractor_rationales": [
+     {
+      "choice": "It was organized by the railroads rather than by law.",
+      "reason": "Stated: \"Standard time was the railroads' own arrangement\" and became law only in 1918."
+     },
+     {
+      "choice": "It included railroads in Canada as well as the United States.",
+      "reason": "Stated: \"the major railroads of the United States and Canada\"."
+     },
+     {
+      "choice": "It created zones in which clocks were an hour apart.",
+      "reason": "Stated: \"time zones, each an hour apart\"."
+     }
+    ]
+   },
+   "content_hash": "55ea17a57ba1fbf7e61dec97e4739825",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P03",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-65724fe4a395a497342a72797c4d4aae",
+   "item": {
+    "id": "PD2-P03-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "Until the second half of the nineteenth century, most towns kept their own time. Clocks were set by the sun, so that noon was the moment the sun stood highest over that particular place. Because the Earth turns through one degree of longitude about every four minutes, a town some distance east of its neighbor would be several minutes ahead of it. For people who rarely traveled far, these differences hardly mattered.\n\nThe railways changed that. A train passing through many towns could not follow all of their clocks at once, and timetables printed in local time were confusing and, where trains shared a single track, dangerous. Railway companies responded by adopting standards of their own. In Britain, most lines had adopted London time by the late 1840s. In the United States, where distances were far greater, individual railroads used dozens of different standards, and a large station might display several clocks, each showing the time kept by a different company.\n\nOn November 18, 1883, the major railroads of the United States and Canada replaced these with a small number of time zones, each an hour apart, so that all clocks within a zone agreed. Many cities adopted railroad time quickly, although some resisted what they saw as interference with the natural time set by the sun. Standard time was the railroads' own arrangement, however; it did not become federal law in the United States until 1918.",
+    "passageGroupId": "pg-65724fe4a395a497342a72797c4d4aae",
+    "prompt": "[Academic — History of Technology] Which of the following best states the main idea of the passage?",
+    "choices": [
+     "The needs of the railways led to standard time zones replacing local sun time.",
+     "Most cities defended local sun time as more accurate than railroad time.",
+     "Federal law in 1918 created the time zones used by American railroads.",
+     "Britain adopted standard time first because its railways were older."
+    ],
+    "correct_answer": "The needs of the railways led to standard time zones replacing local sun time.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Paragraph 1 describes local sun time, paragraph 2 the problems trains created, and paragraph 3 the zones that replaced it.",
+    "distractor_rationales": [
+     {
+      "choice": "Britain adopted standard time first because its railways were older.",
+      "reason": "Britain's earlier adoption is a detail, and no reason based on the age of its railways is given."
+     },
+     {
+      "choice": "Federal law in 1918 created the time zones used by American railroads.",
+      "reason": "The railroads created the zones in 1883; the 1918 law came later."
+     },
+     {
+      "choice": "Most cities defended local sun time as more accurate than railroad time.",
+      "reason": "Only \"some\" cities resisted, and accuracy is not the reason given."
+     }
+    ]
+   },
+   "content_hash": "b91e572eef1977ed4239668458d04b57",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P03",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+   "item": {
+    "id": "PD2-P04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In a well-known experiment published in 1999, the psychologists Daniel Simons and Christopher Chabris asked participants to watch a short video of two teams passing basketballs and to count the passes made by the players wearing white. Partway through, a person in a gorilla costume walked into the middle of the scene, paused, and walked off. Roughly half of the viewers, absorbed in counting, did not notice the gorilla at all, and many were astonished when the video was replayed.\n\nThe phenomenon, which the researchers Arien Mack and Irvin Rock had named inattentional blindness, shows that seeing is not simply a matter of having an object in front of one's eyes. Attention acts as a filter. When it is fully occupied by a demanding task, objects outside that task can pass through the field of view without being consciously registered, even when they are large, unusual, and in plain sight. Importantly, the effect depends on what the observer is attending to. In related studies, unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\n\nThe finding has practical implications. A driver talking on a phone, for instance, may look directly at a hazard and still fail to respond to it. At the same time, people tend to be confident that they would notice anything important that happened in front of them, a belief the experiment suggests is often mistaken.",
+    "passageGroupId": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+    "prompt": "[Academic — Psychology] The word \"registered\" in the passage is closest in meaning to",
+    "choices": [
+     "shown on a measuring instrument",
+     "officially recorded on a list",
+     "sent by guaranteed mail",
+     "perceived"
+    ],
+    "correct_answer": "perceived",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Objects can pass through the field of view without being \"consciously registered\", that is, without being noticed.",
+    "distractor_rationales": [
+     {
+      "choice": "officially recorded on a list",
+      "reason": "No official list is involved; the sense concerns awareness."
+     },
+     {
+      "choice": "sent by guaranteed mail",
+      "reason": "Mail is not discussed."
+     },
+     {
+      "choice": "shown on a measuring instrument",
+      "reason": "No instrument is involved; the sentence concerns conscious awareness."
+     }
+    ]
+   },
+   "content_hash": "009270ad405bfb891b16101c8661dcd3",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P04",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+   "item": {
+    "id": "PD2-P04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In a well-known experiment published in 1999, the psychologists Daniel Simons and Christopher Chabris asked participants to watch a short video of two teams passing basketballs and to count the passes made by the players wearing white. Partway through, a person in a gorilla costume walked into the middle of the scene, paused, and walked off. Roughly half of the viewers, absorbed in counting, did not notice the gorilla at all, and many were astonished when the video was replayed.\n\nThe phenomenon, which the researchers Arien Mack and Irvin Rock had named inattentional blindness, shows that seeing is not simply a matter of having an object in front of one's eyes. Attention acts as a filter. When it is fully occupied by a demanding task, objects outside that task can pass through the field of view without being consciously registered, even when they are large, unusual, and in plain sight. Importantly, the effect depends on what the observer is attending to. In related studies, unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\n\nThe finding has practical implications. A driver talking on a phone, for instance, may look directly at a hazard and still fail to respond to it. At the same time, people tend to be confident that they would notice anything important that happened in front of them, a belief the experiment suggests is often mistaken.",
+    "passageGroupId": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+    "prompt": "[Academic — Psychology] According to paragraph 2, which unexpected objects were noticed more often?",
+    "choices": [
+     "objects that moved more quickly than the players",
+     "objects that resembled the items being tracked",
+     "objects that were larger than the items being tracked",
+     "objects that appeared near the edge of the scene"
+    ],
+    "correct_answer": "objects that resembled the items being tracked",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\"",
+    "distractor_rationales": [
+     {
+      "choice": "objects that were larger than the items being tracked",
+      "reason": "The passage says objects can be missed \"even when they are large\"."
+     },
+     {
+      "choice": "objects that appeared near the edge of the scene",
+      "reason": "Position in the scene is not discussed."
+     },
+     {
+      "choice": "objects that moved more quickly than the players",
+      "reason": "Speed of movement is not discussed."
+     }
+    ]
+   },
+   "content_hash": "3ac194bc547331b5aa03ae839a4bf391",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P04",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+   "item": {
+    "id": "PD2-P04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In a well-known experiment published in 1999, the psychologists Daniel Simons and Christopher Chabris asked participants to watch a short video of two teams passing basketballs and to count the passes made by the players wearing white. Partway through, a person in a gorilla costume walked into the middle of the scene, paused, and walked off. Roughly half of the viewers, absorbed in counting, did not notice the gorilla at all, and many were astonished when the video was replayed.\n\nThe phenomenon, which the researchers Arien Mack and Irvin Rock had named inattentional blindness, shows that seeing is not simply a matter of having an object in front of one's eyes. Attention acts as a filter. When it is fully occupied by a demanding task, objects outside that task can pass through the field of view without being consciously registered, even when they are large, unusual, and in plain sight. Importantly, the effect depends on what the observer is attending to. In related studies, unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\n\nThe finding has practical implications. A driver talking on a phone, for instance, may look directly at a hazard and still fail to respond to it. At the same time, people tend to be confident that they would notice anything important that happened in front of them, a belief the experiment suggests is often mistaken.",
+    "passageGroupId": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+    "prompt": "[Academic — Psychology] Why does the author mention a driver talking on a phone?",
+    "choices": [
+     "To give an example of the effect in everyday life",
+     "To argue that phone use causes most accidents",
+     "To show that the effect disappears when a task is familiar",
+     "To contrast confident people with those who doubt themselves"
+    ],
+    "correct_answer": "To give an example of the effect in everyday life",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "It follows \"The finding has practical implications\" and illustrates the effect outside the laboratory.",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that phone use causes most accidents",
+      "reason": "No claim is made about the share of accidents caused by phones."
+     },
+     {
+      "choice": "To show that the effect disappears when a task is familiar",
+      "reason": "Familiar tasks are not discussed."
+     },
+     {
+      "choice": "To contrast confident people with those who doubt themselves",
+      "reason": "The confidence point is a separate observation about people in general."
+     }
+    ]
+   },
+   "content_hash": "2b204ce583fcd3d293652a3e1eeb2297",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P04",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+   "item": {
+    "id": "PD2-P04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In a well-known experiment published in 1999, the psychologists Daniel Simons and Christopher Chabris asked participants to watch a short video of two teams passing basketballs and to count the passes made by the players wearing white. Partway through, a person in a gorilla costume walked into the middle of the scene, paused, and walked off. Roughly half of the viewers, absorbed in counting, did not notice the gorilla at all, and many were astonished when the video was replayed.\n\nThe phenomenon, which the researchers Arien Mack and Irvin Rock had named inattentional blindness, shows that seeing is not simply a matter of having an object in front of one's eyes. Attention acts as a filter. When it is fully occupied by a demanding task, objects outside that task can pass through the field of view without being consciously registered, even when they are large, unusual, and in plain sight. Importantly, the effect depends on what the observer is attending to. In related studies, unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\n\nThe finding has practical implications. A driver talking on a phone, for instance, may look directly at a hazard and still fail to respond to it. At the same time, people tend to be confident that they would notice anything important that happened in front of them, a belief the experiment suggests is often mistaken.",
+    "passageGroupId": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+    "prompt": "[Academic — Psychology] Which of the following can be inferred from paragraph 2 about the viewers who missed the gorilla?",
+    "choices": [
+     "They had seen the video before the experiment began.",
+     "They had poorer eyesight than viewers who noticed it.",
+     "They were not paying attention to the video at all.",
+     "The gorilla may have been in view yet unseen."
+    ],
+    "correct_answer": "The gorilla may have been in view yet unseen.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Seeing \"is not simply a matter of having an object in front of one's eyes\"; objects can pass through the field of view without being registered.",
+    "distractor_rationales": [
+     {
+      "choice": "They had poorer eyesight than viewers who noticed it.",
+      "reason": "The passage says the effect is about attention, not the eyes."
+     },
+     {
+      "choice": "They were not paying attention to the video at all.",
+      "reason": "They were attending closely to the video, \"absorbed in counting\" passes."
+     },
+     {
+      "choice": "They had seen the video before the experiment began.",
+      "reason": "Nothing suggests prior viewing; many \"were astonished\" on replay."
+     }
+    ]
+   },
+   "content_hash": "da295f37667159b48a7a984319b49ed3",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P04",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+   "item": {
+    "id": "PD2-P04-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In a well-known experiment published in 1999, the psychologists Daniel Simons and Christopher Chabris asked participants to watch a short video of two teams passing basketballs and to count the passes made by the players wearing white. Partway through, a person in a gorilla costume walked into the middle of the scene, paused, and walked off. Roughly half of the viewers, absorbed in counting, did not notice the gorilla at all, and many were astonished when the video was replayed.\n\nThe phenomenon, which the researchers Arien Mack and Irvin Rock had named inattentional blindness, shows that seeing is not simply a matter of having an object in front of one's eyes. Attention acts as a filter. When it is fully occupied by a demanding task, objects outside that task can pass through the field of view without being consciously registered, even when they are large, unusual, and in plain sight. Importantly, the effect depends on what the observer is attending to. In related studies, unexpected objects that resembled the items being tracked were noticed more often than objects that differed from them.\n\nThe finding has practical implications. A driver talking on a phone, for instance, may look directly at a hazard and still fail to respond to it. At the same time, people tend to be confident that they would notice anything important that happened in front of them, a belief the experiment suggests is often mistaken.",
+    "passageGroupId": "pg-7f20fde29d55251abefbf21b0b9c8fe1",
+    "prompt": "[Academic — Psychology] According to paragraph 1, all of the following are true of the 1999 experiment EXCEPT:",
+    "choices": [
+     "A person in a gorilla costume walked through the scene.",
+     "Viewers counted the passes made by both teams.",
+     "The players in the video passed basketballs.",
+     "About half the viewers failed to notice the gorilla."
+    ],
+    "correct_answer": "Viewers counted the passes made by both teams.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Viewers counted only \"the passes made by the players wearing white\".",
+    "distractor_rationales": [
+     {
+      "choice": "The players in the video passed basketballs.",
+      "reason": "Stated: \"two teams passing basketballs\"."
+     },
+     {
+      "choice": "A person in a gorilla costume walked through the scene.",
+      "reason": "Stated: \"a person in a gorilla costume walked into the middle of the scene\"."
+     },
+     {
+      "choice": "About half the viewers failed to notice the gorilla.",
+      "reason": "Stated: \"Roughly half of the viewers ... did not notice the gorilla\"."
+     }
+    ]
+   },
+   "content_hash": "49cbce993e5a478f4133fd3fad1a2adf",
+   "word_count": 237,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P04",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0fdac86ee230b41e406c90635b72b50f",
+   "item": {
+    "id": "PD2-P05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In 1959, a very large natural gas field was discovered near Groningen in the northern Netherlands. Over the following years, gas exports brought substantial income into the country. Yet by the 1970s, observers noticed that Dutch manufacturing was struggling, and in 1977 the magazine The Economist gave the pattern a name: the Dutch disease. The term now describes a broader puzzle, in which a boom in one natural-resource sector appears to weaken other parts of an economy.\n\nEconomists usually explain the effect through prices. When foreign buyers pay for a country's resource exports, they must acquire its currency, and this added demand tends to push up the currency's value. A stronger currency makes the country's other exports, such as manufactured goods, more expensive abroad, while making imported goods cheaper at home. Domestic manufacturers are squeezed from both sides. At the same time, the booming sector may draw workers and investment away from other industries by offering higher wages.\n\nThe difficulty becomes clearest when the boom ends. Resources may run out or their world price may fall, and the industries that shrank during the boom cannot always be rebuilt quickly, because skills and businesses that were lost take years to replace. For this reason, some resource-rich governments have tried to limit the effect by saving part of their resource income abroad, often in large state funds, rather than spending all of it at home, which eases the pressure on the currency.",
+    "passageGroupId": "pg-0fdac86ee230b41e406c90635b72b50f",
+    "prompt": "[Academic — Economics] The word \"squeezed\" in the passage is closest in meaning to",
+    "choices": [
+     "obtained by force or threats",
+     "pressed firmly between the fingers",
+     "put under financial pressure",
+     "fitted into a very small space"
+    ],
+    "correct_answer": "put under financial pressure",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Manufacturers lose sales abroad and face cheaper imports at home, so they are under pressure \"from both sides\".",
+    "distractor_rationales": [
+     {
+      "choice": "pressed firmly between the fingers",
+      "reason": "The sense is economic, not physical pressing."
+     },
+     {
+      "choice": "fitted into a very small space",
+      "reason": "Nothing is being fitted into a space."
+     },
+     {
+      "choice": "obtained by force or threats",
+      "reason": "Nothing is being taken from the manufacturers by threats."
+     }
+    ]
+   },
+   "content_hash": "2c24015ee2d83b7d01cdb92245b5715e",
+   "word_count": 240,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P05",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0fdac86ee230b41e406c90635b72b50f",
+   "item": {
+    "id": "PD2-P05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In 1959, a very large natural gas field was discovered near Groningen in the northern Netherlands. Over the following years, gas exports brought substantial income into the country. Yet by the 1970s, observers noticed that Dutch manufacturing was struggling, and in 1977 the magazine The Economist gave the pattern a name: the Dutch disease. The term now describes a broader puzzle, in which a boom in one natural-resource sector appears to weaken other parts of an economy.\n\nEconomists usually explain the effect through prices. When foreign buyers pay for a country's resource exports, they must acquire its currency, and this added demand tends to push up the currency's value. A stronger currency makes the country's other exports, such as manufactured goods, more expensive abroad, while making imported goods cheaper at home. Domestic manufacturers are squeezed from both sides. At the same time, the booming sector may draw workers and investment away from other industries by offering higher wages.\n\nThe difficulty becomes clearest when the boom ends. Resources may run out or their world price may fall, and the industries that shrank during the boom cannot always be rebuilt quickly, because skills and businesses that were lost take years to replace. For this reason, some resource-rich governments have tried to limit the effect by saving part of their resource income abroad, often in large state funds, rather than spending all of it at home, which eases the pressure on the currency.",
+    "passageGroupId": "pg-0fdac86ee230b41e406c90635b72b50f",
+    "prompt": "[Academic — Economics] According to paragraph 2, how does a resource boom raise the value of a country's currency?",
+    "choices": [
+     "The government prints less money during a boom.",
+     "Manufacturers raise prices to match higher wages.",
+     "Imported goods become more expensive at home.",
+     "Foreign buyers need the currency to pay for the exports."
+    ],
+    "correct_answer": "Foreign buyers need the currency to pay for the exports.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Foreign buyers \"must acquire its currency, and this added demand tends to push up the currency's value.\"",
+    "distractor_rationales": [
+     {
+      "choice": "The government prints less money during a boom.",
+      "reason": "Printing money is not mentioned."
+     },
+     {
+      "choice": "Imported goods become more expensive at home.",
+      "reason": "The passage says imports become cheaper, not more expensive."
+     },
+     {
+      "choice": "Manufacturers raise prices to match higher wages.",
+      "reason": "Wages are discussed separately and are not linked to the currency's value."
+     }
+    ]
+   },
+   "content_hash": "cb50fc749c3f3325f5c7c493c4cb75f3",
+   "word_count": 240,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P05",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0fdac86ee230b41e406c90635b72b50f",
+   "item": {
+    "id": "PD2-P05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In 1959, a very large natural gas field was discovered near Groningen in the northern Netherlands. Over the following years, gas exports brought substantial income into the country. Yet by the 1970s, observers noticed that Dutch manufacturing was struggling, and in 1977 the magazine The Economist gave the pattern a name: the Dutch disease. The term now describes a broader puzzle, in which a boom in one natural-resource sector appears to weaken other parts of an economy.\n\nEconomists usually explain the effect through prices. When foreign buyers pay for a country's resource exports, they must acquire its currency, and this added demand tends to push up the currency's value. A stronger currency makes the country's other exports, such as manufactured goods, more expensive abroad, while making imported goods cheaper at home. Domestic manufacturers are squeezed from both sides. At the same time, the booming sector may draw workers and investment away from other industries by offering higher wages.\n\nThe difficulty becomes clearest when the boom ends. Resources may run out or their world price may fall, and the industries that shrank during the boom cannot always be rebuilt quickly, because skills and businesses that were lost take years to replace. For this reason, some resource-rich governments have tried to limit the effect by saving part of their resource income abroad, often in large state funds, rather than spending all of it at home, which eases the pressure on the currency.",
+    "passageGroupId": "pg-0fdac86ee230b41e406c90635b72b50f",
+    "prompt": "[Academic — Economics] It can be inferred from paragraph 2 that during a resource boom, a domestic car manufacturer would most likely face",
+    "choices": [
+     "stronger competition from cheaper imports",
+     "higher domestic prices for natural gas",
+     "a weaker currency that boosts its exports",
+     "lower wages for the workers it employs"
+    ],
+    "correct_answer": "stronger competition from cheaper imports",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "A stronger currency makes \"imported goods cheaper at home\", so imported cars compete more easily.",
+    "distractor_rationales": [
+     {
+      "choice": "lower wages for the workers it employs",
+      "reason": "The booming sector offers higher wages, which pushes wages up, not down."
+     },
+     {
+      "choice": "a weaker currency that boosts its exports",
+      "reason": "The boom strengthens the currency, which makes exports more expensive abroad."
+     },
+     {
+      "choice": "higher domestic prices for natural gas",
+      "reason": "Domestic gas prices are not discussed."
+     }
+    ]
+   },
+   "content_hash": "ab1092d3dae9ca93a525aeb814582fbe",
+   "word_count": 240,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P05",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0fdac86ee230b41e406c90635b72b50f",
+   "item": {
+    "id": "PD2-P05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In 1959, a very large natural gas field was discovered near Groningen in the northern Netherlands. Over the following years, gas exports brought substantial income into the country. Yet by the 1970s, observers noticed that Dutch manufacturing was struggling, and in 1977 the magazine The Economist gave the pattern a name: the Dutch disease. The term now describes a broader puzzle, in which a boom in one natural-resource sector appears to weaken other parts of an economy.\n\nEconomists usually explain the effect through prices. When foreign buyers pay for a country's resource exports, they must acquire its currency, and this added demand tends to push up the currency's value. A stronger currency makes the country's other exports, such as manufactured goods, more expensive abroad, while making imported goods cheaper at home. Domestic manufacturers are squeezed from both sides. At the same time, the booming sector may draw workers and investment away from other industries by offering higher wages.\n\nThe difficulty becomes clearest when the boom ends. Resources may run out or their world price may fall, and the industries that shrank during the boom cannot always be rebuilt quickly, because skills and businesses that were lost take years to replace. For this reason, some resource-rich governments have tried to limit the effect by saving part of their resource income abroad, often in large state funds, rather than spending all of it at home, which eases the pressure on the currency.",
+    "passageGroupId": "pg-0fdac86ee230b41e406c90635b72b50f",
+    "prompt": "[Academic — Economics] Why does the author mention that \"skills and businesses that were lost take years to replace\"?",
+    "choices": [
+     "To explain why lost industries are slow to recover",
+     "To show why manufacturing wages rise during a boom",
+     "To suggest that foreign workers should be hired during a boom",
+     "To argue that resource booms usually last many years"
+    ],
+    "correct_answer": "To explain why lost industries are slow to recover",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "It gives the reason that \"the industries that shrank during the boom cannot always be rebuilt quickly.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that foreign workers should be hired during a boom",
+      "reason": "Hiring foreign workers is not discussed."
+     },
+     {
+      "choice": "To argue that resource booms usually last many years",
+      "reason": "The paragraph is about what happens when booms end, not how long they last."
+     },
+     {
+      "choice": "To show why manufacturing wages rise during a boom",
+      "reason": "Wages are discussed in paragraph 2, and the phrase concerns the period after the boom."
+     }
+    ]
+   },
+   "content_hash": "21fec064a321abc8458da22199dc36da",
+   "word_count": 240,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P05",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-0fdac86ee230b41e406c90635b72b50f",
+   "item": {
+    "id": "PD2-P05-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In 1959, a very large natural gas field was discovered near Groningen in the northern Netherlands. Over the following years, gas exports brought substantial income into the country. Yet by the 1970s, observers noticed that Dutch manufacturing was struggling, and in 1977 the magazine The Economist gave the pattern a name: the Dutch disease. The term now describes a broader puzzle, in which a boom in one natural-resource sector appears to weaken other parts of an economy.\n\nEconomists usually explain the effect through prices. When foreign buyers pay for a country's resource exports, they must acquire its currency, and this added demand tends to push up the currency's value. A stronger currency makes the country's other exports, such as manufactured goods, more expensive abroad, while making imported goods cheaper at home. Domestic manufacturers are squeezed from both sides. At the same time, the booming sector may draw workers and investment away from other industries by offering higher wages.\n\nThe difficulty becomes clearest when the boom ends. Resources may run out or their world price may fall, and the industries that shrank during the boom cannot always be rebuilt quickly, because skills and businesses that were lost take years to replace. For this reason, some resource-rich governments have tried to limit the effect by saving part of their resource income abroad, often in large state funds, rather than spending all of it at home, which eases the pressure on the currency.",
+    "passageGroupId": "pg-0fdac86ee230b41e406c90635b72b50f",
+    "prompt": "[Academic — Economics] What is the main purpose of paragraph 1?",
+    "choices": [
+     "To argue that the Netherlands managed its gas income well",
+     "To describe how a strong currency harms manufacturers",
+     "To explain why the Groningen gas field was discovered so late",
+     "To present the case that gave an economic pattern its name"
+    ],
+    "correct_answer": "To present the case that gave an economic pattern its name",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "It describes the Dutch gas discovery, the struggles of Dutch manufacturing, and the naming of \"the Dutch disease\".",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why the Groningen gas field was discovered so late",
+      "reason": "No suggestion is made that the discovery came late."
+     },
+     {
+      "choice": "To argue that the Netherlands managed its gas income well",
+      "reason": "The paragraph notes that manufacturing was struggling, not that income was managed well."
+     },
+     {
+      "choice": "To describe how a strong currency harms manufacturers",
+      "reason": "The currency mechanism is explained in paragraph 2."
+     }
+    ]
+   },
+   "content_hash": "852122500bcf8f2ad2ad208e23744f8e",
+   "word_count": 240,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P05",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-059ad95bec408ebbee4381c30a123faf",
+   "item": {
+    "id": "PD2-P06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In true fresco, or buon fresco, the painter applies pigments mixed only with water to a layer of wet lime plaster. As the plaster dries, the lime reacts with carbon dioxide in the air and forms a crystalline layer of calcium carbonate that locks the pigment particles into the surface of the wall. Because the color becomes part of the plaster rather than resting on top of it, a well-made fresco can survive for centuries.\n\nThe technique imposes strict demands. Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session, an area Italian painters called a giornata, or \"day's work.\" The joins between these patches are often still visible to conservators, allowing them to estimate how many days a mural took. Mistakes were difficult to correct; the usual remedy was to cut away the plaster and begin that section again. In addition, some pigments, including certain blues, did not work well in wet lime and had to be added later, on the dry surface, in a method known as secco.\n\nPainting on dry plaster gave artists more time and a wider range of colors, but the paint never bonded with the wall in the same way. Leonardo da Vinci painted The Last Supper in Milan on a dry wall rather than in true fresco, and the painting began to deteriorate within a few decades. It has required repeated restoration ever since.",
+    "passageGroupId": "pg-059ad95bec408ebbee4381c30a123faf",
+    "prompt": "[Academic — Art History] The word \"imposes\" in the passage is closest in meaning to",
+    "choices": [
+     "arranges pages for printing",
+     "enters without being invited",
+     "takes unfair advantage of",
+     "places as a requirement"
+    ],
+    "correct_answer": "places as a requirement",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "The technique \"imposes strict demands\": it places requirements on the painter, which the paragraph then lists.",
+    "distractor_rationales": [
+     {
+      "choice": "takes unfair advantage of",
+      "reason": "Nobody's goodwill is being exploited; the sentence is about requirements."
+     },
+     {
+      "choice": "arranges pages for printing",
+      "reason": "Printing is not discussed."
+     },
+     {
+      "choice": "enters without being invited",
+      "reason": "Nothing enters anywhere; the technique places demands on the artist."
+     }
+    ]
+   },
+   "content_hash": "d289a3e110464c1419abc930de178f33",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P06",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-059ad95bec408ebbee4381c30a123faf",
+   "item": {
+    "id": "PD2-P06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In true fresco, or buon fresco, the painter applies pigments mixed only with water to a layer of wet lime plaster. As the plaster dries, the lime reacts with carbon dioxide in the air and forms a crystalline layer of calcium carbonate that locks the pigment particles into the surface of the wall. Because the color becomes part of the plaster rather than resting on top of it, a well-made fresco can survive for centuries.\n\nThe technique imposes strict demands. Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session, an area Italian painters called a giornata, or \"day's work.\" The joins between these patches are often still visible to conservators, allowing them to estimate how many days a mural took. Mistakes were difficult to correct; the usual remedy was to cut away the plaster and begin that section again. In addition, some pigments, including certain blues, did not work well in wet lime and had to be added later, on the dry surface, in a method known as secco.\n\nPainting on dry plaster gave artists more time and a wider range of colors, but the paint never bonded with the wall in the same way. Leonardo da Vinci painted The Last Supper in Milan on a dry wall rather than in true fresco, and the painting began to deteriorate within a few decades. It has required repeated restoration ever since.",
+    "passageGroupId": "pg-059ad95bec408ebbee4381c30a123faf",
+    "prompt": "[Academic — Art History] According to paragraph 2, why could an artist plaster only a limited area at a time?",
+    "choices": [
+     "Wet plaster was too heavy to stay on a high wall.",
+     "The paint would bind only while the plaster was damp.",
+     "Lime plaster was too costly to use in large amounts.",
+     "Conservators needed to see the joins between patches."
+    ],
+    "correct_answer": "The paint would bind only while the plaster was damp.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "\"Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session.\"",
+    "distractor_rationales": [
+     {
+      "choice": "Lime plaster was too costly to use in large amounts.",
+      "reason": "The cost of plaster is not mentioned."
+     },
+     {
+      "choice": "Wet plaster was too heavy to stay on a high wall.",
+      "reason": "The weight of plaster is not mentioned."
+     },
+     {
+      "choice": "Conservators needed to see the joins between patches.",
+      "reason": "The visible joins are a result of the method, discovered later, not its cause."
+     }
+    ]
+   },
+   "content_hash": "330ca587050537e2a0123c542a0eba8b",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P06",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-059ad95bec408ebbee4381c30a123faf",
+   "item": {
+    "id": "PD2-P06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In true fresco, or buon fresco, the painter applies pigments mixed only with water to a layer of wet lime plaster. As the plaster dries, the lime reacts with carbon dioxide in the air and forms a crystalline layer of calcium carbonate that locks the pigment particles into the surface of the wall. Because the color becomes part of the plaster rather than resting on top of it, a well-made fresco can survive for centuries.\n\nThe technique imposes strict demands. Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session, an area Italian painters called a giornata, or \"day's work.\" The joins between these patches are often still visible to conservators, allowing them to estimate how many days a mural took. Mistakes were difficult to correct; the usual remedy was to cut away the plaster and begin that section again. In addition, some pigments, including certain blues, did not work well in wet lime and had to be added later, on the dry surface, in a method known as secco.\n\nPainting on dry plaster gave artists more time and a wider range of colors, but the paint never bonded with the wall in the same way. Leonardo da Vinci painted The Last Supper in Milan on a dry wall rather than in true fresco, and the painting began to deteriorate within a few decades. It has required repeated restoration ever since.",
+    "passageGroupId": "pg-059ad95bec408ebbee4381c30a123faf",
+    "prompt": "[Academic — Art History] Why does the author mention that the joins between patches \"are often still visible to conservators\"?",
+    "choices": [
+     "To suggest that secco paint flaked away at the joins",
+     "To argue that most frescoes were poorly made",
+     "To show how a mural's painting time can be estimated",
+     "To explain why mistakes were difficult to correct"
+    ],
+    "correct_answer": "To show how a mural's painting time can be estimated",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "The visible joins allow conservators \"to estimate how many days a mural took.\"",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that most frescoes were poorly made",
+      "reason": "The passage says well-made frescoes survive for centuries; it does not call them poorly made."
+     },
+     {
+      "choice": "To explain why mistakes were difficult to correct",
+      "reason": "The difficulty of corrections is a separate point in the next sentence."
+     },
+     {
+      "choice": "To suggest that secco paint flaked away at the joins",
+      "reason": "Secco paint is discussed later and is not linked to the joins."
+     }
+    ]
+   },
+   "content_hash": "535047cd5c486440e70a580e8a7f21be",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P06",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-059ad95bec408ebbee4381c30a123faf",
+   "item": {
+    "id": "PD2-P06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In true fresco, or buon fresco, the painter applies pigments mixed only with water to a layer of wet lime plaster. As the plaster dries, the lime reacts with carbon dioxide in the air and forms a crystalline layer of calcium carbonate that locks the pigment particles into the surface of the wall. Because the color becomes part of the plaster rather than resting on top of it, a well-made fresco can survive for centuries.\n\nThe technique imposes strict demands. Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session, an area Italian painters called a giornata, or \"day's work.\" The joins between these patches are often still visible to conservators, allowing them to estimate how many days a mural took. Mistakes were difficult to correct; the usual remedy was to cut away the plaster and begin that section again. In addition, some pigments, including certain blues, did not work well in wet lime and had to be added later, on the dry surface, in a method known as secco.\n\nPainting on dry plaster gave artists more time and a wider range of colors, but the paint never bonded with the wall in the same way. Leonardo da Vinci painted The Last Supper in Milan on a dry wall rather than in true fresco, and the painting began to deteriorate within a few decades. It has required repeated restoration ever since.",
+    "passageGroupId": "pg-059ad95bec408ebbee4381c30a123faf",
+    "prompt": "[Academic — Art History] It can be inferred from the passage that the blues added \"on the dry surface\" would be",
+    "choices": [
+     "more permanent than colors bound into wet plaster",
+     "visible only to conservators under close examination",
+     "less firmly bonded to the wall than fresco colors",
+     "applied before the wet plaster was laid on the wall"
+    ],
+    "correct_answer": "less firmly bonded to the wall than fresco colors",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Paragraph 3: paint on dry plaster \"never bonded with the wall in the same way.\"",
+    "distractor_rationales": [
+     {
+      "choice": "more permanent than colors bound into wet plaster",
+      "reason": "The passage implies the opposite: colors in true fresco last longest."
+     },
+     {
+      "choice": "visible only to conservators under close examination",
+      "reason": "Only the joins are said to be visible to conservators."
+     },
+     {
+      "choice": "applied before the wet plaster was laid on the wall",
+      "reason": "Secco colors were \"added later, on the dry surface\", after the plaster was laid and dried."
+     }
+    ]
+   },
+   "content_hash": "a137c8e0fef915b681b926606a9bf9cf",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P06",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "reading",
+   "domain": "Academic Passage",
+   "subskill": null,
+   "task": "academic_passage",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_passage",
+   "passage_group_id": "pg-059ad95bec408ebbee4381c30a123faf",
+   "item": {
+    "id": "PD2-P06-5",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "section": "reading",
+    "passage": "In true fresco, or buon fresco, the painter applies pigments mixed only with water to a layer of wet lime plaster. As the plaster dries, the lime reacts with carbon dioxide in the air and forms a crystalline layer of calcium carbonate that locks the pigment particles into the surface of the wall. Because the color becomes part of the plaster rather than resting on top of it, a well-made fresco can survive for centuries.\n\nThe technique imposes strict demands. Since the paint binds only while the plaster is damp, the artist could plaster only as much wall as could be painted in a single session, an area Italian painters called a giornata, or \"day's work.\" The joins between these patches are often still visible to conservators, allowing them to estimate how many days a mural took. Mistakes were difficult to correct; the usual remedy was to cut away the plaster and begin that section again. In addition, some pigments, including certain blues, did not work well in wet lime and had to be added later, on the dry surface, in a method known as secco.\n\nPainting on dry plaster gave artists more time and a wider range of colors, but the paint never bonded with the wall in the same way. Leonardo da Vinci painted The Last Supper in Milan on a dry wall rather than in true fresco, and the painting began to deteriorate within a few decades. It has required repeated restoration ever since.",
+    "passageGroupId": "pg-059ad95bec408ebbee4381c30a123faf",
+    "prompt": "[Academic — Art History] How does paragraph 3 relate to paragraph 2?",
+    "choices": [
+     "It rejects the claim that true fresco can last for centuries.",
+     "It weighs the dry method's gains and costs, using a famous case.",
+     "It explains how conservators repaired the joins between patches.",
+     "It gives a second example of a mural that took many days to paint."
+    ],
+    "correct_answer": "It weighs the dry method's gains and costs, using a famous case.",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "readingTask": "academic_passage",
+    "explanation": "Paragraph 2 ends by introducing secco; paragraph 3 gives its advantages (time, colors) and its weakness (weak bond), with The Last Supper as the example.",
+    "distractor_rationales": [
+     {
+      "choice": "It rejects the claim that true fresco can last for centuries.",
+      "reason": "The claim about centuries is made in paragraph 1 and is not rejected."
+     },
+     {
+      "choice": "It gives a second example of a mural that took many days to paint.",
+      "reason": "No mural is described as taking many days in paragraph 3."
+     },
+     {
+      "choice": "It explains how conservators repaired the joins between patches.",
+      "reason": "Repairs to the joins are not discussed; The Last Supper's restoration concerns deterioration."
+     }
+    ]
+   },
+   "content_hash": "cbe05a30c425ad1b84c01caf0e5730f4",
+   "word_count": 247,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-passage-draft-2",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "pd2-P06",
+     "note": "Written by a Claude agent 2026-10-22 for the upper/hard Reading band (220-252 words); co-founder-standard grader before any sitting. Release by the option-2 spot route (toefl-passage-draft-2.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}
