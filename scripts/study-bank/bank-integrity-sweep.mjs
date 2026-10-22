@@ -1100,17 +1100,25 @@ async function sweep({ max = 25, jsonOut = null }) {
   if (!grp.findings.length) console.log('  no findings')
   report.groups = grp
 
-  // The serving reads, replicated. assembleFromBank (SAT) and the ACT/admission
-  // section reads are unpaged selects; run each exactly as written and compare.
+  // The serving reads, replicated. Since 2026-10-04 every assembler path (SAT, ACT, admission, TOEFL) reads
+  // through readBankPaged (src/lib/study/bank-read.ts): pages ordered by id, count asserted. This replay used to
+  // run ONE unpaged select, so after the fix it kept reporting "666 NEVER DRAWN" for SAT Math - a truncation
+  // production no longer has (found 2026-10-22). It now pages the same way, so a gap here means the served path
+  // itself is short.
   const sections = [...new Set(live.map(r => `${r.family}/${r.section}`))].sort()
   const trunc = []
-  console.log(`\n[assembler read truncation] replaying the unpaged serving select for ${sections.length} family/sections`)
+  console.log(`\n[assembler read truncation] replaying the PAGED serving read (readBankPaged) for ${sections.length} family/sections`)
   for (const k of sections) {
     const [family, section] = k.split('/')
     if (family === 'toefl') continue          // assembleToeflFromBank pages and asserts the count
     const select = family === 'sat' ? 'id, domain, difficulty, item' : family === 'act' ? 'id, difficulty, item, passage_group_id, task, domain' : 'id, difficulty, item, passage_group_id, task'
-    const { data, error } = await db.from('study_item_bank').select(select).eq('family', family).eq('section', section).eq('verified', true).eq('archived', false)
-    if (error) die(`replay ${k}: ${error.message}`)
+    const data = []
+    for (let from = 0; ; from += 1000) {
+      const { data: page, error } = await db.from('study_item_bank').select(select).eq('family', family).eq('section', section).eq('verified', true).eq('archived', false).order('id').range(from, from + 999)
+      if (error) die(`replay ${k}: ${error.message}`)
+      data.push(...page)
+      if (page.length < 1000) break
+    }
     const liveK = live.filter(r => `${r.family}/${r.section}` === k)
     const g = truncationGap(data.length, liveK.length)
     if (!g) die(`replay ${k}: no measurement`)
@@ -1121,6 +1129,12 @@ async function sweep({ max = 25, jsonOut = null }) {
     if (g.unreachable) trunc.push({ section: k, ...g, ids: cut.map(r => r.id), cohorts: Object.entries(cut.reduce((a, r) => (a[r.cohort] = (a[r.cohort] ?? 0) + 1, a), {})).sort((a, b) => b[1] - a[1]) })
   }
   report.truncation = trunc
+  // The replay above pages, so it cannot see an assembler that STOPPED paging. That regression (one unpaged
+  // .select() in assemble.ts) is what hid 481 SAT items before 2026-10-04, so check the source directly.
+  const unpaged = checkPagedAssemblers(readFileSync('src/lib/study/assemble.ts', 'utf8'))
+  console.log(`  assembler source: ${unpaged.checked} bank-reading functions checked; ${unpaged.missing.length ? 'NOT PAGED: ' + unpaged.missing.join(', ') : 'all read through readBankPaged'}`)
+  if (!unpaged.checked) unmeasured++
+  if (unpaged.missing.length) report.unpagedAssemblers = unpaged.missing
 
   const dups = checkDuplicates(live)
   const withSha = live.filter(r => r.content_sha).length, withKey = live.filter(r => r.dedup_key).length
@@ -1157,6 +1171,26 @@ async function sweep({ max = 25, jsonOut = null }) {
 const EXPECT_SCORABLE = new Set(['reader/undrawable', 'key/not-exactly-one-choice', 'choices/equal-value', 'ctw/blanks-vs-placeholders',
   'bas/key-not-assemblable', 'repeat/script-key-mismatch', 'open/has-key-or-scored', 'graphic/svg-invalid', 'graphic/data-shape', 'audio/missing-object',
   'passage/required-empty', 'explanation/endorses-distractor', 'meta/content-sha', 'meta/unreachable', 'graphic/referenced-missing'])
+
+
+/** Every exported assembler in assemble.ts that queries study_item_bank must do it through readBankPaged. */
+export function checkPagedAssemblers(src) {
+  const names = ['drawBankPractice', 'assembleToeflFromBank', 'assembleAdmissionSection', 'assembleFromBank', 'assembleActSection']
+  const missing = []; let checked = 0
+  for (const n of names) {
+    const start = src.indexOf(`export async function ${n}(`)
+    if (start < 0) continue
+    const next = src.indexOf('\nexport ', start + 10)
+    // comments stripped first: assembleFromBank's own comment names readBankPaged, which let an unpaged
+    // planted copy pass the first version of this check
+    const body = src.slice(start, next < 0 ? undefined : next).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+    const calls = /readBankPaged\s*[<(]/.test(body)
+    if (!body.includes("from('study_item_bank')") && !calls) continue
+    checked++
+    if (!calls) missing.push(n)
+  }
+  return { checked, missing }
+}
 
 const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('bank-integrity-sweep.mjs')
 if (RUN_AS_CLI) {

@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classraum 파트너 대시보드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --bg:#f4f6fa; --surface:#ffffff; --surface-2:#f8fafc; --line:#e3e8f0; --line-2:#eef1f6;
+  --ink:#0f172a; --ink-2:#334155; --muted:#64748b; --faint:#94a3b8;
+  --brand:#1776db; --brand-soft:#e8f1fc;
+  --accent:#1f4e9c; --accent-2:#3b82f6; --accent-soft:#e9f0fb; --accent-ink:#ffffff;
+  --good:#0f9d58; --good-soft:#e6f6ee; --warn:#b7791f; --warn-soft:#fdf4e3; --bad:#d64545; --bad-soft:#fdecec;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 4px 16px rgba(15,23,42,.06);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1120; --surface:#111a2e; --surface-2:#0f172a; --line:#1f2a44; --line-2:#18233a;
+  --ink:#e8edf6; --ink-2:#c3cee0; --muted:#8a9ab5; --faint:#5d6c87;
+  --brand-soft:#132744; --accent-soft:#16233d;
+  --good-soft:#0f2a1f; --warn-soft:#2e2412; --bad-soft:#2f1717;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0b1120; --surface:#111a2e; --surface-2:#0f172a; --line:#1f2a44; --line-2:#18233a;
+  --ink:#e8edf6; --ink-2:#c3cee0; --muted:#8a9ab5; --faint:#5d6c87;
+  --brand-soft:#132744; --accent-soft:#16233d;
+  --good-soft:#0f2a1f; --warn-soft:#2e2412; --bad-soft:#2f1717;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35); color-scheme:dark }
+/* partner themes: only the accent changes, so the dashboard stays one product */
+body[data-partner="uhak"]{ --accent:#1f4e9c; --accent-2:#3b82f6; }
+body[data-partner="his"]{ --accent:#13233f; --accent-2:#c9a24a; }
+:root[data-theme="dark"] body[data-partner="his"], body[data-partner="his"].dk{ --accent:#c9a24a; }
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:0 48px}
+.num{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-block:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.logo-mark{width:30px;height:30px;border-radius:9px;background:var(--brand);display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
+.logo small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;letter-spacing:0}
+.spacer{flex:1}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:7px;cursor:pointer;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.12)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:10px;height:34px;min-width:34px;padding:0 10px;cursor:pointer;color:var(--ink-2);font-weight:600;font-size:13px}
+
+.sample{margin-top:16px;display:flex;align-items:center;gap:10px;background:var(--warn-soft);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 25%,transparent);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:500}
+.sample b{font-weight:700}
+
+/* hero */
+.hero{margin-top:18px;display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0}
+.partner{padding:22px 24px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--accent) 0%,color-mix(in srgb,var(--accent) 70%,#000) 100%);color:#fff;border:0}
+body[data-partner="his"] .partner{background:linear-gradient(135deg,#13233f 0%,#0a1426 100%)}
+.partner::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent-2) 55%,transparent) 0%,transparent 70%);opacity:.55}
+.partner .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
+.partner h1{margin:6px 0 4px;font-size:26px;letter-spacing:-.02em;line-height:1.25;text-wrap:balance}
+.partner .sub{opacity:.8;font-size:13.5px}
+.partner .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:12.5px}
+.partner .meta div{opacity:.9}
+.partner .meta b{display:block;font-size:15px;opacity:1;margin-top:2px}
+.gold{color:#e3c27a}
+.code{padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.code .label{color:var(--muted);font-size:12.5px;font-weight:600}
+.code .big{font-size:34px;font-weight:800;letter-spacing:.14em;margin:4px 0 8px;font-family:"SF Mono",ui-monospace,Menlo,monospace;color:var(--ink)}
+.linkrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.link{background:var(--surface-2);border:1px dashed var(--line);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--ink-2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%;flex:1 1 100%}
+.btn{border:0;border-radius:9px;padding:8px 13px;font-weight:700;font-size:13px;cursor:pointer;background:var(--brand);color:#fff;white-space:nowrap}
+.btn.ghost{background:var(--brand-soft);color:var(--brand)}
+.qr{width:112px;height:112px;background:#fff;border-radius:10px;padding:7px;border:1px solid var(--line)}
+.qr img,.qr canvas{width:100%!important;height:100%!important}
+
+/* KPIs */
+.kpis{margin-top:16px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.kpi{padding:15px 16px}
+.kpi .k{color:var(--muted);font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.kpi .v{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:6px}
+.kpi .v small{font-size:13px;font-weight:600;color:var(--muted);margin-left:2px}
+.delta{display:inline-flex;align-items:center;gap:3px;margin-top:4px;font-size:12px;font-weight:700;padding:2px 7px;border-radius:999px}
+.delta.up{color:var(--good);background:var(--good-soft)}
+.delta.down{color:var(--bad);background:var(--bad-soft)}
+.kpi.hi{border-color:color-mix(in srgb,var(--accent-2) 45%,var(--line))}
+.kpi .hint{color:var(--faint);font-size:11.5px;margin-top:4px}
+
+/* grid sections */
+.row{margin-top:16px;display:grid;gap:16px}
+.row.a{grid-template-columns:1.6fr 1fr}
+.row.b{grid-template-columns:1fr 1fr 1fr}
+.section-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px 0}
+.section-h h2{margin:0;font-size:15px;letter-spacing:-.01em}
+.section-h .s{color:var(--muted);font-size:12.5px}
+.pad{padding:14px 18px 18px}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+svg text{fill:var(--muted);font-size:11px;font-family:inherit}
+.chartbox{overflow-x:auto}
+
+/* funnel */
+.fun{display:flex;flex-direction:column;gap:12px}
+.fun .step{display:grid;grid-template-columns:96px 1fr 70px;gap:10px;align-items:center}
+.fun .bar{height:30px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.fun .bar i{position:absolute;inset:0 auto 0 0;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+.fun .bar span{position:relative;z-index:1;color:#fff;font-weight:700;font-size:12.5px;padding-left:10px;line-height:30px}
+.fun .lbl{font-size:13px;font-weight:600;color:var(--ink-2)}
+.fun .rate{font-size:12.5px;color:var(--muted);text-align:right}
+.fun .rate b{color:var(--ink);font-size:13px}
+
+/* plan mix */
+.mix{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.mix ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;flex:1;min-width:150px}
+.mix li{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.mix li span:last-child{color:var(--muted)}
+
+/* table */
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.search{border:1px solid var(--line);background:var(--surface-2);border-radius:9px;padding:7px 11px;font:inherit;color:var(--ink);min-width:0;width:180px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;padding:10px 18px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface-2)}
+td{padding:12px 18px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+.pill.paid{background:var(--good-soft);color:var(--good)}
+.pill.free{background:var(--brand-soft);color:var(--brand)}
+.pill.churn{background:var(--bad-soft);color:var(--bad)}
+.pill.pending{background:var(--warn-soft);color:var(--warn)}
+.who{display:flex;align-items:center;gap:10px}
+.av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px;background:var(--accent-soft);color:var(--accent)}
+body[data-partner="his"] .av{color:#a07f2e}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+
+/* payouts + kit */
+.next{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:16px 18px;border-bottom:1px solid var(--line-2)}
+.next .amt{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.next .s{color:var(--muted);font-size:12.5px}
+.kit textarea{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:13px;padding:10px 12px;line-height:1.6}
+.kit .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;cursor:pointer;color:var(--ink-2)}
+.chip[aria-pressed="true"]{border-color:var(--accent-2);color:var(--accent);background:var(--accent-soft)}
+body[data-partner="his"] .chip[aria-pressed="true"]{color:#8a6a1f}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:13px;opacity:0;transition:.2s;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{margin-top:22px;color:var(--faint);font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+@media (max-width:1080px){.kpis{grid-template-columns:repeat(3,1fr)}.row.b{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){.hero,.row.a{grid-template-columns:1fr}}
+@media (max-width:640px){
+  .wrap{padding-inline:16px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .row.b{grid-template-columns:1fr}
+  .code{grid-template-columns:1fr}
+  .qr{justify-self:start}
+  .partner h1{font-size:22px}
+  .code .big{font-size:28px}
+  .fun .step{grid-template-columns:72px 1fr 58px}
+  .search{width:100%}
+}
+</style>
+</head>
+<body data-partner="uhak">
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><div class="logo-mark">C</div><div>Classraum Study<small data-i18n="partnerPortal">파트너 대시보드</small></div></div>
+    <div class="spacer"></div>
+    <div class="controls">
+    <div class="seg" role="group" aria-label="partner">
+      <button data-p="uhak" aria-pressed="true">신세기유학원</button>
+      <button data-p="his" aria-pressed="false">HIS 헤럴드교육센터</button>
+    </div>
+    <div class="seg" role="group" aria-label="period" id="period">
+      <button data-r="30" aria-pressed="false" data-i18n="p30">최근 30일</button>
+      <button data-r="90" aria-pressed="true" data-i18n="p90">최근 3개월</button>
+      <button data-r="all" aria-pressed="false" data-i18n="pall">전체</button>
+    </div>
+    <button class="iconbtn" id="lang" aria-label="language">EN</button>
+    <button class="iconbtn" id="theme" aria-label="theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="sample" role="note"><b data-i18n="sampleB">샘플 데이터</b><span data-i18n="sampleT">이 화면의 모든 숫자는 디자인 검토용 예시입니다. 실제 실적이 아닙니다.</span></div>
+
+  <section class="hero">
+    <div class="card partner">
+      <div class="eyebrow" data-i18n="eyebrow">Classraum Study 공식 파트너</div>
+      <h1 id="pName">신세기유학원</h1>
+      <div class="sub" id="pSub">싱가포르 유학 전문 · 추천 코드로 Classraum Study를 소개하고 있습니다</div>
+      <div class="meta">
+        <div><span data-i18n="since">파트너 시작일</span><b id="pSince" class="num">2026.05.06</b></div>
+        <div><span data-i18n="rate">수수료율 (예시)</span><b id="pRate" class="num">20%</b></div>
+        <div><span data-i18n="manager">담당 매니저</span><b data-i18n="team">Classraum 파트너팀</b></div>
+      </div>
+    </div>
+    <div class="card code">
+      <div style="min-width:0">
+        <div class="label" data-i18n="yourCode">우리 기관 추천 코드</div>
+        <div class="big" id="code">SSGUHK</div>
+        <div class="linkrow">
+          <span class="link" id="link">app.classraum.com/invite/SSGUHK</span>
+          <button class="btn" id="copyLink" data-i18n="copyLink">링크 복사</button>
+          <button class="btn ghost" id="copyCode" data-i18n="copyCode">코드 복사</button>
+        </div>
+        <div style="color:var(--muted);font-size:12px;margin-top:10px" data-i18n="codeNote">코드를 입력한 학생은 무료 크레딧 5개를 받습니다.</div>
+      </div>
+      <div class="qr" id="qr" aria-label="QR"></div>
+    </div>
+  </section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="row a">
+    <div class="card">
+      <div class="section-h">
+        <div><h2 data-i18n="trend">월별 추이</h2><div class="s" data-i18n="trendS">코드 가입과 유료 전환 (최근 6개월)</div></div>
+        <div class="legend"><span><i class="dot" style="background:var(--accent-soft);border:1px solid var(--accent-2)"></i><span data-i18n="signups">가입</span></span><span><i class="dot" style="background:var(--accent)"></i><span data-i18n="paid">유료 전환</span></span></div>
+      </div>
+      <div class="pad chartbox" id="trend"></div>
+    </div>
+    <div class="card">
+      <div class="section-h"><div><h2 data-i18n="funnel">전환 퍼널</h2><div class="s" data-i18n="funnelS">선택한 기간 기준</div></div></div>
+      <div class="pad"><div class="fun" id="funnel"></div></div>
+    </div>
+  </section>
+
+  <section class="row b">
+    <div class="card">
+      <div class="section-h"><div><h2 data-i18n="mix">플랜 구성</h2><div class="s" data-i18n="mixS">유료 학생의 현재 플랜</div></div></div>
+      <div class="pad"><div class="mix" id="mix"></div></div>
+    </div>
+    <div class="card">
+      <div class="section-h"><div><h2 data-i18n="payout">정산</h2><div class="s" data-i18n="payoutS">매월 10일 지급 (예시)</div></div></div>
+      <div class="next"><div><div class="s" data-i18n="nextPay">다음 정산 예정액</div><div class="amt num" id="nextAmt">₩0</div></div><div class="s" id="nextDate">2026.11.10</div></div>
+      <div class="tablewrap"><table><thead><tr><th data-i18n="month">정산월</th><th class="r" data-i18n="amount">금액</th><th data-i18n="status">상태</th></tr></thead><tbody id="payouts"></tbody></table></div>
+    </div>
+    <div class="card kit">
+      <div class="section-h"><div><h2 data-i18n="kit">홍보 문구</h2><div class="s" data-i18n="kitS">복사해서 카카오톡·문자로 보내세요</div></div></div>
+      <div class="pad">
+        <div class="chips" id="chips">
+          <button class="chip" data-m="parent" aria-pressed="true" data-i18n="toParent">학부모용</button>
+          <button class="chip" data-m="student" aria-pressed="false" data-i18n="toStudent">학생용</button>
+          <button class="chip" data-m="short" aria-pressed="false" data-i18n="toShort">짧게</button>
+        </div>
+        <textarea id="msg" aria-label="message"></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn" id="copyMsg" data-i18n="copyMsg">문구 복사</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" style="grid-template-columns:1fr">
+    <div class="card">
+      <div class="section-h" style="padding-bottom:12px;flex-wrap:wrap">
+        <div><h2 data-i18n="students">추천 학생</h2><div class="s" id="studentsS">코드로 가입한 학생 · 이름은 일부만 표시됩니다</div></div>
+        <div class="tools">
+          <div class="seg" id="filter" role="group" aria-label="filter">
+            <button data-f="all" aria-pressed="true" data-i18n="fAll">전체</button>
+            <button data-f="paid" aria-pressed="false" data-i18n="fPaid">유료</button>
+            <button data-f="free" aria-pressed="false" data-i18n="fFree">무료</button>
+            <button data-f="churn" aria-pressed="false" data-i18n="fChurn">해지</button>
+          </div>
+          <input class="search" id="q" placeholder="이름·학년 검색" aria-label="search">
+        </div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th data-i18n="tName">학생</th><th data-i18n="tJoined">가입일</th><th data-i18n="tTarget">목표 시험</th><th data-i18n="tPlan">플랜</th><th data-i18n="tStatus">상태</th><th class="r" data-i18n="tRevenue">누적 결제</th><th class="r" data-i18n="tCommission">수수료</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot"><span data-i18n="foot1">Classraum Study 파트너 프로그램 · 문의: partners@classraum.com</span><span data-i18n="foot2">개인정보 보호를 위해 학생 이름은 가려서 표시됩니다</span></div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const PARTNERS = {
+  uhak: { name:'신세기유학원', nameEn:'Shinsegi Study Abroad', code:'SSGUHK', since:'2026.05.06', rate:0.2,
+          sub:'싱가포르 유학 전문 · 추천 코드로 Classraum Study를 소개하고 있습니다',
+          subEn:'Singapore study-abroad specialists · introducing Classraum Study with a referral code',
+          scale:1.0, seed:11, tests:['SAT','TOEFL','ISEE','SSAT'] },
+  his:  { name:'HIS 헤럴드교육센터', nameEn:'HIS Herald Education Center', code:'HSEDU7', since:'2026.05.12', rate:0.2,
+          sub:'국제학교 입학 · IB/AP/SAT 전문 · 추천 코드로 Classraum Study를 소개하고 있습니다',
+          subEn:'International-school admissions · IB/AP/SAT · introducing Classraum Study with a referral code',
+          scale:1.35, seed:29, tests:['SAT','SSAT','TOEFL','AP'] }
+}
+const PLANS = [ {id:'basic', ko:'베이직', en:'Basic', price:9900}, {id:'premium', ko:'프리미엄', en:'Premium', price:18900}, {id:'plus', ko:'프리미엄 플러스', en:'Premium Plus', price:26900} ]
+const T = {
+  ko:{partnerPortal:'파트너 대시보드',p30:'최근 30일',p90:'최근 3개월',pall:'전체',sampleB:'샘플 데이터',sampleT:'이 화면의 모든 숫자는 디자인 검토용 예시입니다. 실제 실적이 아닙니다.',eyebrow:'Classraum Study 공식 파트너',since:'파트너 시작일',rate:'수수료율 (예시)',manager:'담당 매니저',yourCode:'우리 기관 추천 코드',copyLink:'링크 복사',copyCode:'코드 복사',codeNote:'코드를 입력한 학생은 무료 크레딧 5개를 받습니다.',trend:'월별 추이',trendS:'코드 가입과 유료 전환 (최근 6개월)',signups:'가입',paid:'유료 전환',funnel:'전환 퍼널',funnelS:'선택한 기간 기준',mix:'플랜 구성',mixS:'유료 학생의 현재 플랜',payout:'정산',payoutS:'매월 10일 지급 (예시)',nextPay:'다음 정산 예정액',month:'정산월',amount:'금액',status:'상태',kit:'홍보 문구',kitS:'복사해서 카카오톡·문자로 보내세요',toParent:'학부모용',toStudent:'학생용',toShort:'짧게',copyMsg:'문구 복사',students:'추천 학생',fAll:'전체',fPaid:'유료',fFree:'무료',fChurn:'해지',tName:'학생',tJoined:'가입일',tTarget:'목표 시험',tPlan:'플랜',tStatus:'상태',tRevenue:'누적 결제',tCommission:'수수료',foot1:'Classraum Study 파트너 프로그램 · 문의: partners@classraum.com',foot2:'개인정보 보호를 위해 학생 이름은 가려서 표시됩니다',team:'Classraum 파트너팀',
+      kVisits:'링크 방문',kSign:'코드 가입',kPaid:'유료 전환',kConv:'전환율',kRev:'추천 매출',kComm:'예상 수수료',vsPrev:'이전 기간 대비',visitsHint:'초대 페이지 조회',convHint:'가입 → 유료',stVisit:'방문',stSign:'가입',stTrial:'학습 시작',stPaid:'유료',sPaid:'유료',sFree:'무료',sChurn:'해지',sPending:'지급 예정',sDone:'지급 완료',search:'이름·학년 검색',copied:'복사했습니다',studentsS:'코드로 가입한 학생 · 이름은 일부만 표시됩니다',none:'조건에 맞는 학생이 없습니다',people:'명',free:'무료',
+      msg:{parent:(p,c,l)=>`안녕하세요, ${p}입니다.\n저희가 추천하는 SAT·TOEFL·SSAT 모의고사 앱 Classraum Study를 소개해 드립니다. 실제 시험과 같은 형식의 모의고사와 AI 피드백으로 집에서도 꾸준히 준비할 수 있어요.\n\n아래 링크로 가입하고 추천 코드 ${c}를 입력하면 무료 크레딧 5개를 드립니다.\n${l}`,student:(p,c,l)=>`${p} 추천 🎓 Classraum Study\nSAT·TOEFL·SSAT 실전 모의고사 + AI 피드백\n가입할 때 코드 ${c} 입력하면 무료 크레딧 5개!\n${l}`,short:(p,c,l)=>`Classraum Study 추천 코드 ${c} → 무료 크레딧 5개\n${l}`}},
+  en:{partnerPortal:'Partner dashboard',p30:'Last 30 days',p90:'Last 3 months',pall:'All time',sampleB:'Sample data',sampleT:'Every number on this screen is an example for design review. These are not real results.',eyebrow:'Official Classraum Study partner',since:'Partner since',rate:'Commission (example)',manager:'Account manager',yourCode:'Your referral code',copyLink:'Copy link',copyCode:'Copy code',codeNote:'Students who enter the code get 5 free credits.',trend:'Monthly trend',trendS:'Code sign-ups and paid conversions (last 6 months)',signups:'Sign-ups',paid:'Paid',funnel:'Conversion funnel',funnelS:'For the selected period',mix:'Plan mix',mixS:'Current plan of paying students',payout:'Payouts',payoutS:'Paid on the 10th of each month (example)',nextPay:'Next payout (estimated)',month:'Month',amount:'Amount',status:'Status',kit:'Share message',kitS:'Copy and send by KakaoTalk or text',toParent:'For parents',toStudent:'For students',toShort:'Short',copyMsg:'Copy message',students:'Referred students',fAll:'All',fPaid:'Paid',fFree:'Free',fChurn:'Cancelled',tName:'Student',tJoined:'Joined',tTarget:'Target test',tPlan:'Plan',tStatus:'Status',tRevenue:'Total paid',tCommission:'Commission',foot1:'Classraum Study partner program · partners@classraum.com',foot2:'Student names are partially hidden for privacy',team:'Classraum partner team',
+      kVisits:'Link visits',kSign:'Code sign-ups',kPaid:'Paid conversions',kConv:'Conversion',kRev:'Referred revenue',kComm:'Est. commission',vsPrev:'vs previous period',visitsHint:'Invite page views',convHint:'Sign-up → paid',stVisit:'Visited',stSign:'Signed up',stTrial:'Started a test',stPaid:'Paid',sPaid:'Paid',sFree:'Free',sChurn:'Cancelled',sPending:'Scheduled',sDone:'Paid out',search:'Search name or grade',copied:'Copied',studentsS:'Students who joined with your code · names partially hidden',none:'No students match',people:'',free:'Free',
+      msg:{parent:(p,c,l)=>`Hello from ${p}.\nWe recommend Classraum Study, a practice app for SAT, TOEFL and SSAT with full mock tests in the real exam format and AI feedback.\n\nSign up with the link below and enter code ${c} to get 5 free credits.\n${l}`,student:(p,c,l)=>`Recommended by ${p} 🎓 Classraum Study\nReal-format SAT · TOEFL · SSAT mock tests + AI feedback\nEnter code ${c} when you sign up for 5 free credits!\n${l}`,short:(p,c,l)=>`Classraum Study code ${c} → 5 free credits\n${l}`}}
+}
+let state = { p:'uhak', range:'90', lang:'ko', filter:'all', q:'', msg:'parent' }
+
+function rng(seed){ let s = seed>>>0 || 1; return () => { s ^= s<<13; s>>>=0; s ^= s>>17; s ^= s<<5; s>>>=0; return s/4294967296 } }
+const SUR = '김이박최정강조윤장임한오서신권황안송류홍'.split('')
+const GIVEN = ['민','서','지','하','도','예','시','주','유','은','준','현','윤','채','수','연','우','진']
+const GRADES = ['중2','중3','고1','고2','고3','G9','G10','G11']
+
+function build(pk){
+  // ONE source of truth: a list of referred students and their monthly payments. Every tile, the chart,
+  // the funnel, the plan mix, payouts and the table are computed from it, so they always agree.
+  const P = PARTNERS[pk], r = rng(P.seed)
+  const today = new Date(2026,9,22), DAY = 86400000
+  const n = Math.round(150 * P.scale)
+  const students = []
+  for (let i=0;i<n;i++){
+    const daysAgo = Math.floor(Math.pow(r(),1.35)*165)            // more recent sign-ups: a growing programme
+    const joined = new Date(today - daysAgo*DAY)
+    const roll = r()
+    const converts = roll < 0.38, churns = converts && daysAgo > 45 && r() < 0.25   // cancelling needs at least one finished month
+    const plan = converts ? PLANS[r()<0.45?0:r()<0.72?1:2] : null
+    const firstPayAgo = converts ? Math.max(0, daysAgo - Math.floor(r()*12)) : null
+    const payments = []
+    if (converts){
+      const maxMonths = churns ? 1 + Math.floor(r()*Math.min(3, Math.floor(firstPayAgo/30))) : 99
+      for (let k=0; k<maxMonths; k++){ const ago = firstPayAgo - 30*k; if (ago < 0) break; payments.push({ ago, amount: plan.price }) }
+    }
+    const status = !converts ? 'free' : churns ? 'churn' : 'paid'
+    students.push({ name: SUR[Math.floor(r()*SUR.length)] + '*' + GIVEN[Math.floor(r()*GIVEN.length)], grade: GRADES[Math.floor(r()*GRADES.length)],
+      joined, daysAgo, status, plan, payments, firstPayAgo, revenue: payments.reduce((x,p)=>x+p.amount,0), started: r() < 0.74 || converts,
+      test: P.tests[Math.floor(r()*P.tests.length)] })
+  }
+  students.sort((a,b)=> a.daysAgo-b.daysAgo)
+  // last 6 calendar months for the chart
+  const monthKeys = [], months = [], monthsEn = []
+  for (let k=5;k>=0;k--){ const d = new Date(2026, 9-k, 1); monthKeys.push(d.getFullYear()*12+d.getMonth()); months.push((d.getMonth()+1)+'월'); monthsEn.push(d.toLocaleString('en',{month:'short'})) }
+  const mk = d => d.getFullYear()*12 + d.getMonth()
+  const signs = monthKeys.map(k => students.filter(s => mk(s.joined)===k).length)
+  const paid = monthKeys.map(k => students.filter(s => s.firstPayAgo!=null && mk(new Date(today - s.firstPayAgo*DAY))===k).length)
+  return { P, months, monthsEn, signs, paid, students, today, DAY }
+}
+let D = build(state.p)
+
+const won = n => '₩' + Math.round(n).toLocaleString('ko-KR')
+const t = k => T[state.lang][k] ?? k
+function fmtDate(d){ return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}` }
+
+function inRange(s, range, offset=0){
+  if (range==='all') return offset===0
+  const n = +range
+  return s.daysAgo >= n*offset && s.daysAgo < n*(offset+1)
+}
+function metrics(offset){
+  const n = state.range==='all' ? 1e9 : +state.range, lo = n*offset, hi = n*(offset+1)
+  if (state.range==='all' && offset>0) return null
+  const list = D.students.filter(s => s.daysAgo >= lo && s.daysAgo < hi)
+  const sign = list.length
+  const paid = D.students.filter(s => s.firstPayAgo!=null && s.firstPayAgo >= lo && s.firstPayAgo < hi).length
+  const rev = D.students.reduce((a,s)=> a + s.payments.filter(p => p.ago >= lo && p.ago < hi).reduce((x,p)=>x+p.amount,0), 0)
+  const visits = Math.round(sign * 3.3) + 4
+  return { sign, paid, rev, visits, conv: sign ? Math.min(1, paid/sign) : 0, comm: rev*D.P.rate, started: list.filter(s=>s.started).length }
+}
+function delta(cur, prev){
+  if (state.range==='all' || !prev) return ''
+  const pct = Math.round((cur-prev)/prev*100)
+  return `<span class="delta ${pct>=0?'up':'down'} num">${pct>=0?'▲':'▼'} ${Math.abs(pct)}%</span>`
+}
+
+function renderKpis(){
+  const c = metrics(0), p = metrics(1) || {}
+  const tiles = [
+    ['kVisits', c.visits.toLocaleString(), delta(c.visits,p.visits), t('visitsHint')],
+    ['kSign', c.sign + `<small>${t('people')}</small>`, delta(c.sign,p.sign), ''],
+    ['kPaid', c.paid + `<small>${t('people')}</small>`, delta(c.paid,p.paid), ''],
+    ['kConv', Math.round(c.conv*100) + '<small>%</small>', delta(c.conv,p.conv), t('convHint')],
+    ['kRev', won(c.rev), delta(c.rev,p.rev), ''],
+    ['kComm', won(c.comm), delta(c.comm,p.comm), `${Math.round(D.P.rate*100)}% · ${t('rate')}`],
+  ]
+  document.getElementById('kpis').innerHTML = tiles.map(([k,v,d,h],i)=>`<div class="card kpi ${i===5?'hi':''}"><div class="k">${t(k)}</div><div class="v num">${v}</div>${d}${h?`<div class="hint">${h}</div>`:''}</div>`).join('')
+}
+
+function renderTrend(){
+  const W=640,H=230,L=34,B=28,Tp=12, n=D.signs.length
+  const step = Math.max(1, Math.ceil(Math.max(...D.signs)/4/5)*5), max = step*4
+  const bw = (W-L-10)/n
+  const y = v => Tp + (H-Tp-B) * (1 - v/max)
+  let g = ''
+  for (let i=0;i<=4;i++){ const v = step*i, yy=y(v); g += `<line x1="${L}" x2="${W-6}" y1="${yy}" y2="${yy}" stroke="var(--line-2)"/><text x="${L-8}" y="${yy+4}" text-anchor="end">${v}</text>` }
+  const labels = state.lang==='ko'?D.months:D.monthsEn
+  D.signs.forEach((s,i)=>{
+    const x = L + i*bw + bw*0.18, w = bw*0.64
+    g += `<rect x="${x}" y="${y(s)}" width="${w}" height="${H-B-y(s)}" rx="5" fill="var(--accent-soft)" stroke="color-mix(in srgb,var(--accent-2) 55%,transparent)"/>`
+    const pv = D.paid[i]
+    g += `<rect x="${x+w*0.2}" y="${y(pv)}" width="${w*0.6}" height="${H-B-y(pv)}" rx="4" fill="var(--accent)"/>`
+    g += `<text x="${x+w/2}" y="${y(s)-6}" text-anchor="middle" style="fill:var(--ink-2);font-weight:600">${s}</text>`
+    g += `<text x="${x+w/2}" y="${H-8}" text-anchor="middle">${labels[i]}</text>`
+  })
+  document.getElementById('trend').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:420px;display:block" role="img" aria-label="${t('trend')}">${g}</svg>`
+}
+
+function renderFunnel(){
+  const m = metrics(0)
+  const steps = [['stVisit',m.visits],['stSign',m.sign],['stTrial',m.started],['stPaid',m.paid]]
+  const top = steps[0][1] || 1
+  document.getElementById('funnel').innerHTML = steps.map(([k,v],i)=>{
+    const rate = i===0 ? '' : `<b class="num">${steps[i-1][1]?Math.round(v/steps[i-1][1]*100):0}%</b>`
+    return `<div class="step"><div class="lbl">${t(k)}</div><div class="bar"><i style="width:${Math.max(8,v/top*100)}%"></i><span class="num">${v.toLocaleString()}</span></div><div class="rate">${rate}</div></div>`
+  }).join('')
+}
+
+function renderMix(){
+  const paid = D.students.filter(s=>s.status==='paid')
+  const counts = PLANS.map(p=>paid.filter(s=>s.plan && s.plan.id===p.id).length)
+  const total = counts.reduce((a,b)=>a+b,0) || 1
+  const colors = ['var(--accent-2)','var(--accent)','color-mix(in srgb,var(--accent) 45%,var(--muted))']
+  let a0 = -Math.PI/2, arcs = ''
+  const R=52, cx=64, cy=64
+  counts.forEach((c,i)=>{
+    const a1 = a0 + c/total*Math.PI*2
+    const large = a1-a0 > Math.PI ? 1 : 0
+    if (c>0) arcs += `<path d="M ${cx+R*Math.cos(a0)} ${cy+R*Math.sin(a0)} A ${R} ${R} 0 ${large} 1 ${cx+R*Math.cos(a1)} ${cy+R*Math.sin(a1)}" stroke="${colors[i]}" stroke-width="18" fill="none"/>`
+    a0 = a1
+  })
+  const svg = `<svg width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="${t('mix')}">${arcs}<text x="64" y="62" text-anchor="middle" style="fill:var(--ink);font-size:20px;font-weight:800">${paid.length}</text><text x="64" y="80" text-anchor="middle">${t('sPaid')}</text></svg>`
+  const list = PLANS.map((p,i)=>`<li><span><i class="dot" style="background:${colors[i]}"></i>${state.lang==='ko'?p.ko:p.en} <span style="color:var(--faint)" class="num">${won(p.price)}</span></span><span class="num">${counts[i]} · ${Math.round(counts[i]/total*100)}%</span></li>`).join('')
+  document.getElementById('mix').innerHTML = svg + `<ul>${list}</ul>`
+}
+
+function renderPayouts(){
+  const rate = D.P.rate, byMonth = {}
+  for (const st of D.students) for (const p of st.payments){ const d = new Date(D.today - p.ago*D.DAY); const k = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}`; byMonth[k] = (byMonth[k]||0) + p.amount*rate }
+  const rows = ['2026.10','2026.09','2026.08','2026.07'].map((m,i)=>[m, byMonth[m]||0, i===0?'pending':'done'])
+  document.getElementById('nextAmt').textContent = won(rows[0][1])
+  document.getElementById('payouts').innerHTML = rows.map(([m,a,s])=>`<tr><td class="num">${m}</td><td class="r num">${won(a)}</td><td><span class="pill ${s==='done'?'paid':'pending'}">${t(s==='done'?'sDone':'sPending')}</span></td></tr>`).join('')
+}
+function renderRows(){
+  const q = state.q.trim()
+  const list = D.students.filter(s => (state.filter==='all' || s.status===state.filter) && (!q || s.name.includes(q) || s.grade.toLowerCase().includes(q.toLowerCase())))
+  const body = document.getElementById('rows')
+  if (!list.length){ body.innerHTML = `<tr><td colspan="7" class="empty">${t('none')}</td></tr>`; return }
+  const pill = s => `<span class="pill ${s.status}">${t(s.status==='paid'?'sPaid':s.status==='free'?'sFree':'sChurn')}</span>`
+  body.innerHTML = list.slice(0,40).map(s=>`<tr>
+    <td><div class="who"><div class="av">${s.name[0]}</div><div><div style="font-weight:600">${s.name}</div><div style="color:var(--muted);font-size:12px">${s.grade}</div></div></div></td>
+    <td class="num">${fmtDate(s.joined)}</td><td>${s.test}</td>
+    <td>${s.plan ? (state.lang==='ko'?s.plan.ko:s.plan.en) : `<span style="color:var(--faint)">${t('free')}</span>`}</td>
+    <td>${pill(s)}</td><td class="r num">${s.revenue?won(s.revenue):'—'}</td><td class="r num">${s.revenue?won(s.revenue*D.P.rate):'—'}</td></tr>`).join('')
+}
+
+function renderMsg(){
+  const P = D.P, link = `https://app.classraum.com/invite/${P.code}`
+  document.getElementById('msg').value = T[state.lang].msg[state.msg](state.lang==='ko'?P.name:P.nameEn, P.code, link)
+}
+
+function renderPartner(){
+  const P = D.P
+  document.body.dataset.partner = state.p
+  document.getElementById('pName').textContent = state.lang==='ko' ? P.name : P.nameEn
+  document.getElementById('pSub').textContent = state.lang==='ko' ? P.sub : P.subEn
+  document.getElementById('pSince').textContent = P.since
+  document.getElementById('pRate').textContent = Math.round(P.rate*100) + '%'
+  document.getElementById('code').textContent = P.code
+  document.getElementById('link').textContent = `app.classraum.com/invite/${P.code}`
+  const qr = document.getElementById('qr'); qr.innerHTML = ''
+  try { new QRCode(qr, { text:`https://app.classraum.com/invite/${P.code}`, width:96, height:96, colorDark:'#0f172a', colorLight:'#ffffff', correctLevel: QRCode.CorrectLevel.M }) }
+  catch(e){ qr.textContent = 'QR' }
+  document.title = (state.lang==='ko' ? P.name + ' · Classraum 파트너 대시보드' : P.nameEn + ' · Classraum Partner Dashboard')
+}
+
+function renderI18n(){
+  document.documentElement.lang = state.lang
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[state.lang][el.dataset.i18n]; if (typeof v === 'string') el.textContent = v })
+  document.getElementById('q').placeholder = t('search')
+  document.getElementById('lang').textContent = state.lang==='ko' ? 'EN' : '한국어'
+}
+
+function renderAll(){ renderI18n(); renderPartner(); renderKpis(); renderTrend(); renderFunnel(); renderMix(); renderPayouts(); renderRows(); renderMsg() }
+
+function press(group, attr, val){ document.querySelectorAll(`#${group} button, [role=group][aria-label=${group}] button`).forEach(b=> b.setAttribute('aria-pressed', String(b.dataset[attr]===val))) }
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{ state.p=b.dataset.p; document.querySelectorAll('[data-p]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); D=build(state.p); renderAll() })
+document.querySelectorAll('#period button').forEach(b=>b.onclick=()=>{ state.range=b.dataset.r; document.querySelectorAll('#period button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); renderKpis(); renderFunnel() })
+document.querySelectorAll('#filter button').forEach(b=>b.onclick=()=>{ state.filter=b.dataset.f; document.querySelectorAll('#filter button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); renderRows() })
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{ state.msg=b.dataset.m; document.querySelectorAll('#chips button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); renderMsg() })
+document.getElementById('q').oninput = e => { state.q = e.target.value; renderRows() }
+document.getElementById('lang').onclick = () => { state.lang = state.lang==='ko'?'en':'ko'; renderAll() }
+document.getElementById('theme').onclick = () => {
+  const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches
+  r.dataset.theme = dark ? 'light' : 'dark'
+}
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),1400) }
+async function copy(text){ try { await navigator.clipboard.writeText(text); toast(t('copied')) } catch { toast(text) } }
+document.getElementById('copyLink').onclick = () => copy(`https://app.classraum.com/invite/${D.P.code}`)
+document.getElementById('copyCode').onclick = () => copy(D.P.code)
+document.getElementById('copyMsg').onclick = () => copy(document.getElementById('msg').value)
+renderAll()
+</script>
+</body>
+</html>
