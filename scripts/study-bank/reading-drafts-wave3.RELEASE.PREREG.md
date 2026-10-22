@@ -30,3 +30,10 @@ gravity sensing).
 - Pre-flight: merge 0; quote check 0 of 236; location check 0 mismatches. Keys 9/9/9/9. Key uniquely longest 7/36,
   shortest 9/36.
 - **Grader A 0/36, B 0/36.**
+
+## isee-reading-draft-9 (staged 2026-10-23), FULL sitting (every-third ISEE batch)
+Passages: One Ballot (school election) · Under the Swings (poem) · Two Taps (handbell concert) · The Number at the Top
+(grades vs. comments) · The Post Road (invented Caddow) · Two Waves (P and S waves).
+- Pre-flight: merge 0; quote check 0 of 244; location check 0 mismatches. Keys 9/9/9/9. Key uniquely longest 4/36,
+  shortest 2/36.
+- **Grader A 0/36, B 0/36.** One 36-item run.

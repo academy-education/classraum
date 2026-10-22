@@ -10643,6 +10643,33 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "isee-reading-draft-9-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-9",
+      "contentSha": "d60cc8426640213b6eb414616ee761cf20bb4f64a89c5a7c0302d14c6e376fa4",
+      "status": "staged-for-human-review",
+      "note": "6 x 6 four-choice, Claude agent; full sitting (reading-drafts-wave3.RELEASE.PREREG.md).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "d60cc8426640213b6eb414616ee761cf20bb4f64a89c5a7c0302d14c6e376fa4",
+          "verdict": "merge 0; quotes 0; location 0."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader A 0/36, B 0/36."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

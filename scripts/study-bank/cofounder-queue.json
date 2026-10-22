@@ -403,6 +403,15 @@
       "group": "iseedraft10-IR10-P02",
       "route": "spot",
       "runId": "isee-draft10-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-9",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "isee",
+      "runId": "isee-draft9-release-cofounder-{date}",
+      "route": "full"
     }
   ]
 }
