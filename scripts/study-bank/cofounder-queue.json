@@ -646,6 +646,26 @@
       "group": "iseedraft13-IR13-P02",
       "route": "spot",
       "runId": "isee-draft13-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "cr-v20",
+      "tool": "item",
+      "domain": "Choose a Response",
+      "size": 12,
+      "family": "toefl",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "crv20-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-15",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft15-D15-P06",
+      "route": "spot",
+      "runId": "ssat-draft15-spot-cofounder-{date}"
     }
   ]
 }

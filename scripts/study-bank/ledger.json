@@ -11537,6 +11537,60 @@
           "verdict": "NOT RUN."
         }
       }
+    },
+    {
+      "id": "cr-v20-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v20",
+      "contentSha": "ed4f4cd71c8d6f9478b3c608d614b10d807e73d166616d81d8b663889ff7f45f",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; staged 2026-10-23 wave 6.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ed4f4cd71c8d6f9478b3c608d614b10d807e73d166616d81d8b663889ff7f45f",
+          "verdict": "author checks clean (render-crv7 0 refusals)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 5/40, B 6/40, union 8 (cr20-a01, a07, a10, a11, a18, b04, b05, b10) dropped"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-15-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-15",
+      "contentSha": "f96a3b6b58c0c977842c37c714651f9a8cc6bc41040bb6b9442397e08e53cbfc",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; staged 2026-10-23 wave 6.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f96a3b6b58c0c977842c37c714651f9a8cc6bc41040bb6b9442397e08e53cbfc",
+          "verdict": "author checks clean."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
     }
   ],
   "auditedCohorts": [

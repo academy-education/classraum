@@ -1,0 +1,2164 @@
+{
+ "items": [
+  {
+   "localId": "cr20-a01",
+   "setting": "bike-share kiosk help line, phone agent to rider",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "confirming the bike locked",
+     "line": "The charge stopped the moment you docked, so you owe nothing extra.",
+     "reply": "Oh good, so the lock did catch after all.",
+     "explanationIfSpoken": "The bike registered as docked, so relief that the lock worked is the natural reply.",
+     "kills": {
+      "1": "\"the moment you docked\" - the bike is already docked, so the rider is not hunting for space or running late to find a dock.",
+      "2": "\"you owe nothing extra\" - a statement, not an either/or question, so naming a bike type answers nothing.",
+      "3": "\"the moment you docked\" - the ride is over and nothing is offered, so there is no pedalling left to save and nothing to accept."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "objecting to no space",
+     "line": "Sorry, every dock within a mile of you is full right now.",
+     "reply": "No space anywhere? But I'm already late.",
+     "explanationIfSpoken": "Every nearby dock is full, so dismay at having nowhere to leave the bike is the natural reply.",
+     "kills": {
+      "0": "\"every dock within\" ... \"is full\" - the bike could not have been docked, so its lock cannot have caught.",
+      "2": "\"is full right now\" - a statement, not a question about the bike, so \"The battery kind\" answers nothing.",
+      "3": "\"Sorry, every dock\" - bad news with no offer in it, so \"Yes please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "naming the bike type",
+     "line": "Is the bike you're on a pedal one or electric?",
+     "reply": "The battery kind, it's got a little screen.",
+     "explanationIfSpoken": "The agent asks which type of bike, so identifying it as electric is the natural reply.",
+     "kills": {
+      "0": "\"the bike you're on\" - the rider is still on the bike, so it has not been docked or locked.",
+      "1": "\"a pedal one or electric\" - an either/or question about the bike; nothing about space was said, so \"No space anywhere?\" echoes nothing.",
+      "3": "\"a pedal one or electric\" - an either/or question; \"Yes please\" picks neither type."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting extra minutes",
+     "line": "I can add ten free minutes so you reach the open dock.",
+     "reply": "Yes please, that'd save me pedalling flat out.",
+     "explanationIfSpoken": "The agent offers more ride time, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"so you reach the open dock\" - the rider has not reached a dock yet, so the lock cannot have caught.",
+      "1": "\"the open dock\" - a dock with space exists, so \"No space anywhere?\" contradicts the line.",
+      "2": "\"I can add\" - an offer of time, not a question about the bike, so \"The battery kind\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a02",
+   "setting": "car rental return lane, return agent to driver",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "disputing damage",
+     "line": "There's a long scratch on the rear bumper that wasn't on the form.",
+     "reply": "That was there when I picked it up, honestly.",
+     "explanationIfSpoken": "The agent blames the driver for damage, so insisting it was already there is the natural reply.",
+     "kills": {
+      "1": "\"a long scratch\" - the car has damage on record, so nothing has cleared and no hold is off the card.",
+      "2": "\"There's a long scratch\" - a damage report with no offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"a long scratch\" - nothing about the booking length was said, so there are no unused days for \"those\" to refer to."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "noticing a quick release",
+     "line": "Everything checks out, and your deposit's already been released.",
+     "reply": "Oh, so the hold's off my card? That was quick.",
+     "explanationIfSpoken": "The deposit has been returned, so remarking on how fast is the natural reply.",
+     "kills": {
+      "0": "\"Everything checks out\" - no damage was found, so there is no \"that\" to defend.",
+      "2": "\"Everything checks out\" - a report, not an offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"Everything checks out\" - nothing about early return was said, so \"those\" days refer to nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a lift",
+     "line": "Want a lift to the terminal in our shuttle van?",
+     "reply": "Yes, please, this suitcase weighs a ton.",
+     "explanationIfSpoken": "The agent offers a ride to the terminal, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want a lift\" - an offer; no damage was mentioned, so there is no \"that\" to defend.",
+      "1": "\"Want a lift\" - an offer; nothing was said about a deposit, so no hold has come off any card.",
+      "3": "\"in our shuttle van\" - an offer of a ride; no booking dates were mentioned, so \"those\" refers to nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "asking about unused days",
+     "line": "Actually, you were booked until Friday, so this is two days early.",
+     "reply": "Do I get a partial refund for those, then?",
+     "explanationIfSpoken": "The driver is returning the car two days early, so asking about money for the unused days is the natural reply.",
+     "kills": {
+      "0": "\"two days early\" - a point about dates; no damage was found, so there is no \"that\" to defend.",
+      "1": "\"Actually, you were booked\" - a correction about dates, not a release of money, so no hold has come off the card.",
+      "2": "\"two days early\" - a correction, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a03",
+   "setting": "airline gate desk, gate agent to passenger",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "reacting to an upgrade",
+     "line": "We've moved you up to business class at no charge.",
+     "reply": "Wow, I've never sat at the front before.",
+     "explanationIfSpoken": "The passenger has been upgraded, so excitement about sitting at the front is the natural reply.",
+     "kills": {
+      "1": "\"moved you up\" - the passenger is flying on this flight, so no later arrival exists for \"that\" to describe.",
+      "2": "\"at no charge\" - nothing must be checked, so there is nothing for a laptop to come out of first.",
+      "3": "\"moved you up to business\" - the seat is assigned and no choice is asked, so \"By the glass\" answers nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "objecting to a later flight",
+     "line": "This flight's overbooked, so you'll have to wait for the evening one.",
+     "reply": "But that gets me in after the wedding starts.",
+     "explanationIfSpoken": "The passenger is pushed to a later flight, so objecting that it arrives too late is the natural reply.",
+     "kills": {
+      "0": "\"This flight's overbooked\" - the passenger has lost the seat, so there is no front seat to be excited about.",
+      "2": "\"wait for the evening one\" - the passenger is not boarding, so no bag is being checked and no laptop must come out.",
+      "3": "\"This flight's overbooked\" - there is no seat to choose, so \"By the glass\" answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complying with bag check",
+     "line": "Please check that carry-on, it's too big for the cabin.",
+     "reply": "Fine, but my laptop has to come out first.",
+     "explanationIfSpoken": "The bag must be checked, so agreeing while removing a laptop is the natural reply.",
+     "kills": {
+      "0": "\"Please check that carry-on\" - an instruction, not an upgrade, so there is no front seat to be excited about.",
+      "1": "\"Please check that\" - the passenger is boarding, so no later flight exists for \"that\" to describe.",
+      "3": "\"it's too big\" - an instruction about a bag, not a seat choice, so \"By the glass\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a seat",
+     "line": "Your boarding pass didn't print a seat; window or aisle?",
+     "reply": "By the glass, so I can sleep against it.",
+     "explanationIfSpoken": "The agent asks window or aisle, so picking the window is the natural reply.",
+     "kills": {
+      "0": "\"didn't print a seat\" - no seat is assigned yet, let alone a front-row upgrade, so there is nothing to be excited about.",
+      "1": "\"window or aisle\" - the passenger is getting a seat on this flight, so no later arrival exists for \"that\".",
+      "2": "\"window or aisle\" - a seat question, so nothing is being checked and no laptop must come out."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a04",
+   "setting": "parking garage exit booth, attendant to driver",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "objecting to a day rate",
+     "line": "Without the ticket, I have to charge the full day rate.",
+     "reply": "Twenty-four hours? I was in for forty minutes.",
+     "explanationIfSpoken": "The driver is charged for a whole day, so objecting to the length is the natural reply.",
+     "kills": {
+      "1": "\"Without the ticket\" - the driver has no ticket or stub, so nothing was kept or nearly tossed.",
+      "2": "\"charge the full day rate\" - this is the first price stated, so there is no earlier figure to be eight less than.",
+      "3": "\"Without the ticket, I\" - a charge, not a request to move, so \"is this close enough\" answers nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to free parking",
+     "line": "Your movie stub validates parking, so there's nothing to pay.",
+     "reply": "Brilliant, I nearly tossed that at the cinema.",
+     "explanationIfSpoken": "The stub makes parking free, so relief at having kept it is the natural reply.",
+     "kills": {
+      "0": "\"nothing to pay\" - no charge at all, so there is no day rate to object to.",
+      "2": "\"there's nothing to pay\" - no price was stated or revised, so nothing is \"eight less\".",
+      "3": "\"Your movie stub validates\" - no request to move the car was made, so \"close enough\" answers nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "noting a lower price",
+     "line": "Sorry, I misread it, that's twelve dollars, not twenty.",
+     "reply": "Oh, so eight less than you first said, then?",
+     "explanationIfSpoken": "The price was corrected down, so noting the difference is the natural reply.",
+     "kills": {
+      "0": "\"twelve dollars, not twenty\" - a modest charge, not a full day rate, so \"Twenty-four hours?\" objects to nothing.",
+      "1": "\"that's twelve dollars\" - the driver must pay, so no stub made parking free.",
+      "3": "\"Sorry, I misread\" - a price correction, not a request to move, so \"close enough\" answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "checking position",
+     "line": "Could you pull forward so the barrier can read your plate?",
+     "reply": "Sure, is this close enough to the arm now?",
+     "explanationIfSpoken": "The attendant asks the driver to move up, so checking the position is the natural reply.",
+     "kills": {
+      "0": "\"Could you pull forward\" - a request; no rate was stated, so \"Twenty-four hours?\" echoes nothing.",
+      "1": "\"read your plate\" - the plate, not a stub, is being read, so no stub was nearly tossed.",
+      "2": "\"Could you pull forward\" - no price was said at all, so nothing is \"eight less\"."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a05",
+   "setting": "tour-bus check-in table, guide to tourist",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "asking about payment",
+     "line": "Lunch isn't included, but we stop at a market around noon.",
+     "reply": "Do the stalls there take cards, or just cash?",
+     "explanationIfSpoken": "The tour stops at a market for lunch, so asking how to pay there is the natural reply.",
+     "kills": {
+      "1": "\"Lunch isn't included\" - information, not an offer, so \"Yes, please\" accepts nothing.",
+      "2": "\"we stop at a market\" - the tourist is on today's tour, so there is no date to dispute.",
+      "3": "\"we stop at a market\" - nothing was handed over, so \"Should it go on my coat\" refers to nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a front seat",
+     "line": "Want the front seat? It helps if you get carsick.",
+     "reply": "Yes, please, the winding roads always get me.",
+     "explanationIfSpoken": "The guide offers a seat that helps with motion sickness, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want the front seat?\" - a seat offer; no stop or market was mentioned, so \"the stalls there\" refers to nothing.",
+      "2": "\"Want the front seat?\" - the tourist is being seated today, so there is no date to dispute.",
+      "3": "\"Want the front seat?\" - a seat cannot be worn, so \"Should it go on my coat\" makes no sense."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "disputing a date",
+     "line": "Your name's not on today's list; the booking was for tomorrow.",
+     "reply": "But my confirmation email says the fourteenth.",
+     "explanationIfSpoken": "The guide says the booking is for another day, so disputing the date is the natural reply.",
+     "kills": {
+      "0": "\"not on today's list\" - the tourist is not on today's trip, so asking about paying at today's stop makes no sense.",
+      "1": "\"the booking was for tomorrow\" - the tourist is not boarding today, so there is no seat to accept.",
+      "3": "\"not on today's list\" - the tourist is not joining, so nothing is to be worn."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "asking where to wear it",
+     "line": "Please wear this sticker so the driver can count you.",
+     "reply": "Should it go on my coat or my bag strap?",
+     "explanationIfSpoken": "The guide hands over a sticker, so asking where to put it is the natural reply.",
+     "kills": {
+      "0": "\"Please wear this\" - an instruction; no stop was mentioned, so \"the stalls there\" refers to nothing.",
+      "1": "\"Please wear this sticker\" - an instruction, not an offer, so \"Yes, please\" accepts nothing.",
+      "2": "\"so the driver can count you\" - the tourist is on the trip, so there is no date to dispute."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a06",
+   "setting": "marina fuel dock, dock hand to boater",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "naming the fuel",
+     "line": "Is she diesel, or does she take regular?",
+     "reply": "The heavy kind; it's an old fishing trawler.",
+     "explanationIfSpoken": "The dock hand asks which fuel, so identifying it as diesel is the natural reply.",
+     "kills": {
+      "1": "\"does she take regular\" - fuel is about to be pumped, so the boater is not stuck overnight.",
+      "2": "\"Is she diesel\" - a question, not an offer, so \"Please\" accepts nothing.",
+      "3": "\"Is she diesel\" - nothing is free yet, so there is no fortune being saved."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "resigning to a delay",
+     "line": "The pump's broken till tomorrow, so I can't fill you today.",
+     "reply": "Then I'm stuck here overnight, I suppose.",
+     "explanationIfSpoken": "No fuel until tomorrow, so accepting an overnight stay is the natural reply.",
+     "kills": {
+      "0": "\"I can't fill you\" - no fuel is being sold, so naming a fuel type answers nothing.",
+      "2": "\"The pump's broken\" - bad news, not an offer, so \"Please\" accepts nothing.",
+      "3": "\"I can't fill you today\" - no fuel at all, so nothing is saved by a free fill-up."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting help mooring",
+     "line": "Want me to tie you off while you go pay?",
+     "reply": "Please, the wind keeps pushing her out.",
+     "explanationIfSpoken": "The dock hand offers to secure the boat, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want me to\" - an offer, not a fuel question, so \"The heavy kind\" answers nothing.",
+      "1": "\"while you go pay\" - fuel has been sold, so the boater is not stuck overnight.",
+      "3": "\"while you go pay\" - there is a bill, so nothing is saved by a free fill-up."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a free fill-up",
+     "line": "Your loyalty card's full, so this fill-up costs nothing.",
+     "reply": "Really? That'll save me a fortune today.",
+     "explanationIfSpoken": "The fuel is free, so pleasure at the saving is the natural reply.",
+     "kills": {
+      "0": "\"this fill-up costs nothing\" - news about price, not a question, so \"The heavy kind\" answers nothing.",
+      "1": "\"this fill-up costs\" - the boat is being fuelled, so the boater is not stuck overnight.",
+      "2": "\"costs nothing\" - nobody is going off to pay and nothing is offered, so \"Please\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a07",
+   "setting": "ferry car deck, deckhand to driver",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "checking the gear rule",
+     "line": "Turn off your engine and leave the car in gear.",
+     "reply": "It's an automatic, so will park mode do?",
+     "explanationIfSpoken": "The driver is told to leave the car in gear, so asking whether park works for an automatic is the natural reply.",
+     "kills": {
+      "1": "\"Turn off your engine\" - the car is aboard this sailing, so there is no wait for \"it\".",
+      "2": "\"Turn off your engine\" - no mistake was pointed out, so \"I misread\" admits to nothing.",
+      "3": "\"Turn off your engine\" - an instruction, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking about the wait",
+     "line": "No more room on this sailing; you'll go on the next one.",
+     "reply": "How long's the wait for it, roughly?",
+     "explanationIfSpoken": "The driver must wait for the next ferry, so asking how long is the natural reply.",
+     "kills": {
+      "0": "\"No more room\" - the car is not boarding, so no engine or gear question arises.",
+      "2": "\"No more room on\" - no lane mistake was pointed out, so \"I misread\" admits to nothing.",
+      "3": "\"No more room\" - there is no space at all, so nothing is offered to accept."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "admitting a mistake",
+     "line": "Sorry, lane four, not lane three; follow the yellow arrows.",
+     "reply": "Oops, I misread which sign was mine.",
+     "explanationIfSpoken": "The driver went to the wrong lane, so admitting the mistake is the natural reply.",
+     "kills": {
+      "0": "\"follow the yellow arrows\" - the car is still moving, so no gear question arises yet.",
+      "1": "\"lane four, not lane three\" - the car is boarding now, so there is no wait for \"it\".",
+      "3": "\"Sorry, lane four\" - a correction, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an easy spot",
+     "line": "There's a free spot by the stairs if you need easy access.",
+     "reply": "Yes, please, my knees struggle with steps.",
+     "explanationIfSpoken": "The deckhand offers a spot near the stairs, so accepting it for bad knees is the natural reply.",
+     "kills": {
+      "0": "\"a free spot\" - the car has not parked, so no gear question arises.",
+      "1": "\"There's a free spot\" - space is available now, so there is no wait for \"it\".",
+      "2": "\"if you need easy\" - an offer, not a correction, so \"I misread\" admits to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a08",
+   "setting": "airport lounge reception, host to traveler",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a denial",
+     "line": "Your card doesn't include lounge access on budget fares, unfortunately.",
+     "reply": "Even though I paid a hefty annual fee?",
+     "explanationIfSpoken": "Entry is refused despite the card, so protesting is the natural reply.",
+     "kills": {
+      "1": "\"doesn't include lounge access\" - the traveler cannot enter, and nothing is offered, so \"Please\" accepts nothing.",
+      "2": "\"doesn't include lounge access\" - the traveler is not going in, so there is no room to head up to.",
+      "3": "\"doesn't include lounge access\" - no boarding time was mentioned, so \"Then I'd better\" ... \"run\" follows from nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a shower",
+     "line": "Would you like me to book you a shower room?",
+     "reply": "Please, I've been in transit since yesterday.",
+     "explanationIfSpoken": "The host offers a shower, so accepting after a long journey is the natural reply.",
+     "kills": {
+      "0": "\"Would you like me\" - an offer of service, so nothing has been refused.",
+      "2": "\"book you a shower\" - nothing about phones was said, so \"mute mine\" refers to nothing.",
+      "3": "\"Would you like me\" - an unhurried offer; no boarding time was given, so there is no reason to run."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "complying with a rule",
+     "line": "The quiet room's upstairs, and phones must stay on silent there.",
+     "reply": "I'll mute mine before I head up, then.",
+     "explanationIfSpoken": "Phones must be silent, so agreeing to silence it is the natural reply.",
+     "kills": {
+      "0": "\"The quiet room's upstairs\" - the traveler is welcome inside, so nothing has been refused.",
+      "1": "\"phones must stay\" - a rule, not an offer, so \"Please\" accepts nothing.",
+      "3": "\"The quiet room's upstairs\" - no boarding time was given, so there is no reason to run."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "rushing to board",
+     "line": "Sorry, I misspoke: boarding's in ten minutes, not forty.",
+     "reply": "Then I'd better skip that coffee and run.",
+     "explanationIfSpoken": "Boarding is much sooner than said, so hurrying off is the natural reply.",
+     "kills": {
+      "0": "\"boarding's in ten minutes\" - a correction about time, not a refusal of entry.",
+      "1": "\"boarding's in ten minutes\" - a correction, not an offer, so \"Please\" accepts nothing.",
+      "2": "\"boarding's in ten minutes\" - nothing about phones was said, so \"mute mine\" refers to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a09",
+   "setting": "cruise ship shore-excursion desk, staff to passenger",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "regretting a cancellation",
+     "line": "The snorkeling trip's cancelled; the sea's too rough today.",
+     "reply": "Shame, I bought a mask just for that.",
+     "explanationIfSpoken": "The trip is off, so regret about the wasted mask is the natural reply.",
+     "kills": {
+      "1": "\"trip's cancelled\" - a statement, not an either/or question, so \"Riding, please\" answers nothing.",
+      "2": "\"trip's cancelled\" - bad news, so surprise at winning makes no sense.",
+      "3": "\"trip's cancelled\" - no return time was set, so \"Is that ship's time\" refers to nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a tour",
+     "line": "Do you want the walking tour or the one by minibus?",
+     "reply": "Riding, please; my ankle's still swollen.",
+     "explanationIfSpoken": "The staff ask which tour, so choosing the minibus is the natural reply.",
+     "kills": {
+      "0": "\"Do you want\" - a tour is being booked, not cancelled, so there is nothing to regret.",
+      "2": "\"walking tour or\" - an either/or question, not news of a prize.",
+      "3": "\"the one by minibus\" - no time was stated, so \"Is that ship's time\" refers to nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a prize",
+     "line": "Your name came up in the draw for free dolphin watching.",
+     "reply": "Me? I never win anything like that!",
+     "explanationIfSpoken": "The passenger won a free excursion, so surprised delight is the natural reply.",
+     "kills": {
+      "0": "\"free dolphin watching\" - the passenger gains a trip, so there is nothing to regret.",
+      "1": "\"Your name came up\" - news, not an either/or question, so \"Riding, please\" picks nothing.",
+      "3": "\"came up in the draw\" - no time was stated, so \"Is that ship's time\" refers to nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "clarifying the deadline",
+     "line": "Please be back at the gangway by four, or we sail without you.",
+     "reply": "Is that ship's time or local time?",
+     "explanationIfSpoken": "A return time is set, so asking which clock it uses is the natural reply.",
+     "kills": {
+      "0": "\"by four, or we sail\" - a deadline, not a cancellation, so there is nothing to regret.",
+      "1": "\"Please be back\" - an instruction, not an either/or question, so \"Riding, please\" answers nothing.",
+      "2": "\"or we sail without you\" - a warning, not a prize, so \"I never win\" makes no sense."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a10",
+   "setting": "electric-car charging station help line, agent to driver",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "describing the plug",
+     "line": "Is your plug the round type or the flat one?",
+     "reply": "The rectangular kind with the clip on top.",
+     "explanationIfSpoken": "The agent asks the plug shape, so describing it is the natural reply.",
+     "kills": {
+      "1": "\"Is your plug\" - a question; no move was asked for, so \"move the cable over\" follows nothing.",
+      "2": "\"Is your plug\" - nothing has been fixed yet, so \"that did the trick\" refers to nothing.",
+      "3": "\"the round type or\" - no duration was stated, so \"That long?\" echoes nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complying with a switch",
+     "line": "Please unplug and try the charger next to it.",
+     "reply": "Okay, hang on while I move the cable over.",
+     "explanationIfSpoken": "The agent asks the driver to switch chargers, so agreeing to move the cable is the natural reply.",
+     "kills": {
+      "0": "\"Please unplug and\" - an instruction, not a question about plug shape.",
+      "2": "\"Please unplug and try\" - the switch has not happened yet, so nothing has done the trick.",
+      "3": "\"try the charger next\" - no duration was stated, so \"That long?\" echoes nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "confirming the fix",
+     "line": "I've reset it remotely, so charging should start in a moment.",
+     "reply": "Oh, it's whirring now; that did the trick.",
+     "explanationIfSpoken": "The agent reset the charger, so confirming it now works is the natural reply.",
+     "kills": {
+      "0": "\"I've reset it\" - news, not a question about plug shape.",
+      "1": "\"I've reset it remotely\" - the driver need not move anything, so \"move the cable over\" follows nothing.",
+      "3": "\"start in a moment\" - a short wait, so \"That long?\" contradicts the line."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "objecting to a long charge",
+     "line": "This one's a slow charger, so it'll take about six hours.",
+     "reply": "That long? I only planned on a lunch stop.",
+     "explanationIfSpoken": "Charging will take six hours, so objecting to the length is the natural reply.",
+     "kills": {
+      "0": "\"This one's a slow charger\" - a statement, not a question about plug shape.",
+      "1": "\"This one's a slow\" - no move was asked for, so \"move the cable over\" follows nothing.",
+      "2": "\"it'll take about six hours\" - nothing was done to fix anything, so \"that did the trick\" refers to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a11",
+   "setting": "highway rest area information desk, staff to motorist",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "planning to refuel",
+     "line": "The next fuel stop's eighty kilometers on, past the tunnel.",
+     "reply": "I'd better fill up here before I leave, then.",
+     "explanationIfSpoken": "Fuel is far ahead, so deciding to refuel now is the natural reply.",
+     "kills": {
+      "1": "\"The next fuel stop's\" - nothing says this place is closed, so \"Then why's\" ... \"still lit\" protests nothing.",
+      "2": "\"The next fuel stop's\" - information, not an offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"eighty kilometers on\" - nothing about food or closing was said, so \"order now\" follows nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a closure",
+     "line": "Our pumps are closed tonight; the tanker didn't come.",
+     "reply": "Then why's the whole forecourt still lit up?",
+     "explanationIfSpoken": "The pumps are closed, so protesting that the station looks open is the natural reply.",
+     "kills": {
+      "0": "\"Our pumps are closed\" - the motorist cannot fill up here, so the reply contradicts the line.",
+      "2": "\"Our pumps are closed\" - bad news, not an offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"closed tonight; the tanker\" - only the pumps are mentioned, so \"order now\" follows nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a map",
+     "line": "Want a free map of the scenic routes nearby?",
+     "reply": "Yes, please, we've got all afternoon to wander.",
+     "explanationIfSpoken": "Staff offer a scenic map, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want a free map\" - an offer; no fuel distance was given, so \"I'd better fill up here\" follows nothing.",
+      "1": "\"Want a free map\" - nothing is closed, so \"Then why's\" ... \"still lit\" protests nothing.",
+      "3": "\"Want a free map\" - nothing about food or closing was said, so \"order now\" follows nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "hurrying to eat",
+     "line": "Actually, the café closes at nine, not midnight like the sign says.",
+     "reply": "Then we'd better order now, before it's too late.",
+     "explanationIfSpoken": "The café closes earlier than posted, so hurrying to order is the natural reply.",
+     "kills": {
+      "0": "\"the café closes at nine\" - nothing about fuel was said, so \"fill up here\" follows nothing.",
+      "1": "\"the café closes at\" - the correction is about the café's hours, not the pumps, so \"Then why's\" ... \"still lit\" protests nothing said.",
+      "2": "\"Actually, the café closes\" - a correction, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a12",
+   "setting": "sightseeing boat boarding pier, crew member to passenger",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "realizing there's spare time",
+     "line": "Sorry, the boat leaves at half past, not on the hour.",
+     "reply": "Ah, so I didn't need to rush after all.",
+     "explanationIfSpoken": "Departure is later than the passenger thought, so realizing the hurry was needless is the natural reply.",
+     "kills": {
+      "1": "\"leaves at half past\" - nothing about a stop was said, so \"look around there\" refers to nothing.",
+      "2": "\"the boat leaves at\" - nothing is being scanned, so \"Like this\" responds to nothing.",
+      "3": "\"leaves at half past\" - a statement, not an either/or question, so \"The evening sailing\" answers nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asking about the stop",
+     "line": "The trip lasts ninety minutes, with one stop at the island.",
+     "reply": "Can we get off and look around there?",
+     "explanationIfSpoken": "The trip has a stop, so asking whether passengers may go ashore is the natural reply.",
+     "kills": {
+      "0": "\"The trip lasts\" - nothing about departure time was corrected, so there was no needless rush.",
+      "2": "\"The trip lasts ninety\" - nothing is being scanned, so \"Like this\" responds to nothing.",
+      "3": "\"with one stop\" - a statement, not an either/or question, so \"The evening sailing\" answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "checking the scan",
+     "line": "Please hold your phone flat so the scanner can read it.",
+     "reply": "Like this, with the brightness turned up?",
+     "explanationIfSpoken": "The crew member asks the passenger to position the phone, so checking the position is the natural reply.",
+     "kills": {
+      "0": "\"Please hold your phone\" - nothing about departure time was corrected, so there was no needless rush.",
+      "1": "\"the scanner can read\" - no stop was mentioned, so \"there\" refers to nothing.",
+      "3": "\"Please hold your\" - an instruction, not an either/or question, so \"The evening sailing\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "naming the cruise",
+     "line": "Are you on the harbor cruise or the sunset one?",
+     "reply": "The evening sailing, at least I think so.",
+     "explanationIfSpoken": "The crew member asks which cruise, so naming the sunset one is the natural reply.",
+     "kills": {
+      "0": "\"Are you on\" - a question; no departure time was corrected, so there was no needless rush.",
+      "1": "\"the harbor cruise or\" - no stop was mentioned, so \"there\" refers to nothing.",
+      "2": "\"Are you on\" - a question, not a scan, so \"Like this\" responds to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a13",
+   "setting": "mountain cable car ticket station, clerk to visitor",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "objecting to a higher price",
+     "line": "Sorry, the ticket's thirty, not the twenty on the board.",
+     "reply": "Ten more than advertised? That's a bit cheeky.",
+     "explanationIfSpoken": "The price is higher than posted, so objecting to the difference is the natural reply.",
+     "kills": {
+      "1": "\"the ticket's thirty\" - a price correction; no age rule was mentioned, so \"she turned five\" answers nothing.",
+      "2": "\"the ticket's thirty\" - a statement, not a question about the group, so \"My husband\" answers nothing.",
+      "3": "\"Sorry, the ticket's\" - a correction, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "confirming a child's age",
+     "line": "Kids under six ride free, so you only owe for two.",
+     "reply": "Oh nice, she turned five just last month.",
+     "explanationIfSpoken": "Young children ride free, so confirming the child qualifies is the natural reply.",
+     "kills": {
+      "0": "\"ride free, so\" - the price went down, not up, so \"Ten more than advertised?\" contradicts the line.",
+      "2": "\"you only owe for two\" - a statement, not a question about fears, so \"My husband\" answers nothing.",
+      "3": "\"Kids under six\" - a pricing rule, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "naming a nervous rider",
+     "line": "Is anyone in your group scared of heights?",
+     "reply": "My husband, so he'll stand in the middle.",
+     "explanationIfSpoken": "The clerk asks about fear of heights, so naming who is nervous is the natural reply.",
+     "kills": {
+      "0": "\"Is anyone in\" - no price was stated, so \"Ten more\" refers to nothing.",
+      "1": "\"scared of heights\" - nothing about age or free rides was said, so \"she turned five\" answers nothing.",
+      "3": "\"Is anyone in your group\" - a yes/no question, not an offer; \"Yes, please\" is not an answer to it."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a blanket",
+     "line": "Want a blanket? It's freezing in the cabin.",
+     "reply": "Yes, please, I only packed a thin jacket.",
+     "explanationIfSpoken": "The clerk offers a blanket for the cold, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want a blanket?\" - an offer; no price was stated, so \"Ten more\" refers to nothing.",
+      "1": "\"Want a blanket?\" - an offer; nothing about age was said, so \"she turned five\" answers nothing.",
+      "2": "\"It's freezing in\" - an offer, not a question about fears, so \"My husband\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a14",
+   "setting": "canal boat hire wharf, staff to renter",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "asking about a child size",
+     "line": "Please wear these life jackets the whole time you're aboard.",
+     "reply": "Even the toddler? Do you have tiny ones?",
+     "explanationIfSpoken": "Everyone must wear a life jacket, so asking about a child's size is the natural reply.",
+     "kills": {
+      "1": "\"the whole time you're aboard\" - the trip goes ahead normally and no blockage was mentioned, so \"So we'd be stuck\" draws a conclusion from nothing.",
+      "2": "\"Please wear these\" - an instruction, not an offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"Please wear these\" - nothing was packed or provided as food, so \"did they pack\" refers to nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "objecting to a blocked route",
+     "line": "The lock gates upstream are jammed, so you can't pass the mill.",
+     "reply": "So we'd be stuck going in circles down here?",
+     "explanationIfSpoken": "The route is blocked, so objecting to the limited trip is the natural reply.",
+     "kills": {
+      "0": "\"The lock gates upstream\" - nothing was handed out, so \"tiny ones\" refers to nothing.",
+      "2": "\"are jammed, so\" - bad news, not an offer, so \"Yes, please\" accepts nothing.",
+      "3": "\"you can't pass the mill\" - nothing was provided, so \"did they pack\" refers to nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a lesson",
+     "line": "Want a quick lesson on steering before you set off?",
+     "reply": "Yes, please, I've never handled a tiller.",
+     "explanationIfSpoken": "Staff offer a steering lesson, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"Want a quick lesson\" - nothing was handed out, so \"tiny ones\" refers to nothing.",
+      "1": "\"before you set off\" - the trip is open, so there is no blocked route to object to.",
+      "3": "\"Want a quick lesson\" - a lesson, not food, so \"did they pack\" refers to nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asking about the food",
+     "line": "Your hire includes a free picnic hamper; it's in the galley.",
+     "reply": "Lovely, did they pack anything vegetarian?",
+     "explanationIfSpoken": "A free picnic comes with the boat, so asking what is in it is the natural reply.",
+     "kills": {
+      "0": "\"a free picnic hamper\" - food, not something to wear, so \"tiny ones\" refers to nothing.",
+      "1": "\"Your hire includes\" - good news; nothing is blocked, so there is no route to object to.",
+      "2": "\"Your hire includes\" - news, not an offer, so \"Yes, please\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a15",
+   "setting": "train station left-luggage office, clerk to traveler",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "objecting to closing hours",
+     "line": "We close at ten tonight and reopen at six tomorrow.",
+     "reply": "Oh, but my train won't get back till midnight.",
+     "explanationIfSpoken": "The office shuts before the traveler returns, so raising the clash is the natural reply.",
+     "kills": {
+      "1": "\"We close at ten\" - nothing was refused, so \"instead\" replaces nothing.",
+      "2": "\"We close at ten\" - information, not an offer, so \"Go ahead\" agrees to nothing.",
+      "3": "\"reopen at six tomorrow\" - a statement, not a question about contents, so \"Just my laptop\" answers nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking for an alternative",
+     "line": "That suitcase is too big for any of our lockers.",
+     "reply": "Can I leave it behind your counter instead?",
+     "explanationIfSpoken": "The bag will not fit a locker, so asking for another place is the natural reply.",
+     "kills": {
+      "0": "\"too big for any\" - no hours were mentioned, so \"till midnight\" clashes with nothing.",
+      "2": "\"That suitcase is too big\" - a refusal, not an offer, so \"Go ahead\" agrees to nothing.",
+      "3": "\"That suitcase is too\" - a statement, not a question about contents, so \"Just my laptop\" answers nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting wrapping",
+     "line": "I can wrap that box in plastic for an extra dollar.",
+     "reply": "Go ahead, it's meant to rain all afternoon.",
+     "explanationIfSpoken": "The clerk offers to protect the box, so accepting because of rain is the natural reply.",
+     "kills": {
+      "0": "\"I can wrap\" - an offer; no closing time was given, so \"till midnight\" clashes with nothing.",
+      "1": "\"I can wrap that box\" - the item is being accepted, so nothing was refused and \"instead\" replaces nothing.",
+      "3": "\"wrap that box in plastic\" - an offer, not a question about contents, so \"Just my laptop\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "naming a fragile item",
+     "line": "Is there anything fragile or valuable in the bag?",
+     "reply": "Just my laptop, so please keep it upright.",
+     "explanationIfSpoken": "The clerk asks about fragile items, so naming one is the natural reply.",
+     "kills": {
+      "0": "\"Is there anything\" - a question; no hours were given, so \"till midnight\" clashes with nothing.",
+      "1": "\"in the bag\" - the bag is being taken in, so nothing was refused and \"instead\" replaces nothing.",
+      "2": "\"Is there anything fragile\" - a yes/no question, not an offer, so \"Go ahead\" agrees to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a16",
+   "setting": "airline pet-travel check-in, agent to owner",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a refusal",
+     "line": "Your dog's crate is too small, so he can't fly today.",
+     "reply": "But the pet shop swore it was the right size!",
+     "explanationIfSpoken": "The crate is rejected, so protesting that it was sold as correct is the natural reply.",
+     "kills": {
+      "1": "\"he can't fly today\" - the dog is not boarding, so nothing comes off before boarding and there is no tag to store.",
+      "2": "\"he can't fly today\" - the dog is not flying, so it cannot be calmer at the owner's feet; and the animal is \"he\", not \"she\".",
+      "3": "\"Your dog's crate\" - no fee was stated, so \"more than twice\" compares nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "asking about the tag",
+     "line": "Please take his collar off before he goes in the carrier.",
+     "reply": "Will the tag be okay in my pocket, then?",
+     "explanationIfSpoken": "The collar must come off, so asking where to keep its tag is the natural reply.",
+     "kills": {
+      "0": "\"before he goes in\" - the carrier is accepted, so there is no wrong size to protest.",
+      "2": "\"goes in the carrier\" - the animal travels in a carrier and is \"he\", so \"she'll be\" ... \"by my feet\" does not fit.",
+      "3": "\"Please take his\" - no fee was stated, so \"more than twice\" compares nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "welcoming a cabin seat",
+     "line": "There's a cabin spot free, so your cat can sit with you.",
+     "reply": "Oh, she'll be so much calmer by my feet.",
+     "explanationIfSpoken": "The cat may travel in the cabin, so relief that she will be close is the natural reply.",
+     "kills": {
+      "0": "\"your cat can sit\" - the pet is flying, so no container was rejected.",
+      "1": "\"your cat can sit\" - nothing was asked of the owner, so there is no collar or tag to deal with.",
+      "3": "\"There's a cabin spot\" - no fee was stated, so \"more than twice\" compares nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "objecting to a higher fee",
+     "line": "Sorry, the pet fee's ninety dollars, not the forty I quoted.",
+     "reply": "Wait, that's more than twice what you said.",
+     "explanationIfSpoken": "The fee is much higher than quoted, so objecting is the natural reply.",
+     "kills": {
+      "0": "\"the pet fee's ninety\" - the pet is being charged to fly, so no container was rejected.",
+      "1": "\"the pet fee's ninety\" - a price, not an instruction, so there is no collar or tag to deal with.",
+      "2": "\"ninety dollars, not the forty\" - a price correction; nothing about a seat was said, so \"by my feet\" follows nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a17",
+   "setting": "overnight sleeper train cabin, attendant to passenger",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "accepting breakfast",
+     "line": "I can bring you a hot breakfast at seven if you like.",
+     "reply": "Please; could I have tea rather than coffee?",
+     "explanationIfSpoken": "The attendant offers breakfast, so accepting with a drink preference is the natural reply.",
+     "kills": {
+      "1": "\"bring you a hot breakfast\" - nothing about washing was said, so \"towel for those\" refers to nothing.",
+      "2": "\"I can bring\" - a yes/no offer, not an upper-or-lower question, so \"Bottom\" answers nothing.",
+      "3": "\"breakfast at seven\" - no arrival time was corrected, so \"two hours less\" compares nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asking about towels",
+     "line": "Showers are at the end of the next carriage, by the way.",
+     "reply": "Do I need to bring my own towel for those?",
+     "explanationIfSpoken": "The attendant points out the showers, so asking what to bring is the natural reply.",
+     "kills": {
+      "0": "\"Showers are at\" - information, not an offer, so \"Please\" accepts nothing.",
+      "2": "\"Showers are at the end\" - a statement, not a which-berth question, so \"Bottom\" answers nothing.",
+      "3": "\"by the way\" - no arrival time was mentioned, so \"two hours less\" compares nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a berth",
+     "line": "Would you like the upper or the lower berth?",
+     "reply": "Bottom, please, I'm not great with ladders.",
+     "explanationIfSpoken": "The attendant asks which berth, so choosing the lower one is the natural reply.",
+     "kills": {
+      "0": "\"the upper or the lower\" - an either/or question; no food was offered, so \"tea rather than coffee\" picks neither.",
+      "1": "\"the upper or the lower berth\" - nothing about washing was said, so \"those\" refers to nothing.",
+      "3": "\"Would you like\" - a question; no arrival time was given, so \"two hours less\" compares nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "noting lost sleep",
+     "line": "Correction: we reach Vienna at five, not seven.",
+     "reply": "Two hours less sleep, then? That's rough.",
+     "explanationIfSpoken": "Arrival is two hours earlier, so noting the lost sleep is the natural reply.",
+     "kills": {
+      "0": "\"Correction: we reach\" - a correction, not an offer, so \"Please\" accepts nothing.",
+      "1": "\"we reach Vienna\" - nothing about washing was said, so \"those\" refers to nothing.",
+      "2": "\"at five, not seven\" - a correction, not an upper-or-lower question, so \"Bottom\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a18",
+   "setting": "airport rideshare pickup zone, coordinator to passenger",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "asking how to spot the car",
+     "line": "Please wait behind the yellow line until your car pulls up.",
+     "reply": "Sure, how will I know which one's mine?",
+     "explanationIfSpoken": "The passenger must wait for an unnamed car, so asking how to recognize it is the natural reply.",
+     "kills": {
+      "1": "\"wait behind the yellow line\" - pickups happen right here, so going \"all the way up there\" contradicts the line.",
+      "2": "\"until your car pulls\" - the car has not arrived, so no particular one is in view to ask about.",
+      "3": "\"Please wait behind\" - an instruction, not an either/or question, so \"The bigger one\" answers nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "objecting to the new spot",
+     "line": "Rideshares can't stop here anymore; they moved to the garage roof.",
+     "reply": "All the way up there, with these heavy bags?",
+     "explanationIfSpoken": "Pickup has moved somewhere far, so objecting because of the luggage is the natural reply.",
+     "kills": {
+      "0": "\"can't stop here anymore\" - no car will pull up here, so waiting to recognize one makes no sense.",
+      "2": "\"can't stop here\" - no car is in the queue here, so \"is that the one\" points at nothing.",
+      "3": "\"they moved to\" - a statement, not an either/or question, so \"The bigger one\" answers nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "confirming the car",
+     "line": "Your driver's grey hatchback is the third car in the queue.",
+     "reply": "Ah, is that the one with the dented door?",
+     "explanationIfSpoken": "The car has been identified, so checking which one it is is the natural reply.",
+     "kills": {
+      "0": "\"the third car in\" - the car is already identified, so asking how to know it contradicts the line.",
+      "1": "\"in the queue\" - the car is right here, so going \"all the way up there\" contradicts the line.",
+      "3": "\"grey hatchback\" - a statement, not a which-size question, so \"The bigger one\" answers nothing; it is also a small car."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a vehicle size",
+     "line": "Did you book a standard ride or the larger van?",
+     "reply": "The bigger one; there are six of us.",
+     "explanationIfSpoken": "The coordinator asks which vehicle, so naming the van is the natural reply.",
+     "kills": {
+      "0": "\"standard ride or\" - a question; nobody has been told to wait, so \"Sure\" agrees to nothing.",
+      "1": "\"Did you book\" - nothing says pickups moved, so going \"all the way up there\" follows nothing.",
+      "2": "\"Did you book\" - no vehicle has been pointed out, so \"is that the one\" refers to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a19",
+   "setting": "motorway toll plaza booth, toll collector to driver",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "noting an extra charge",
+     "line": "Sorry, I charged your card six; it should've been eight.",
+     "reply": "Oh, so another two coming off it, then?",
+     "explanationIfSpoken": "The card was undercharged, so noting the extra two is the natural reply.",
+     "kills": {
+      "1": "\"I charged your card\" - the card was already accepted, so \"I've nothing but plastic\" raises no problem.",
+      "2": "\"Sorry, I charged\" - a correction, not an offer, so \"Please\" accepts nothing.",
+      "3": "\"it should've been eight\" - the toll is being charged, so nothing is free."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "explaining no cash",
+     "line": "This lane doesn't take cards; it's cash or tag only.",
+     "reply": "I've nothing but plastic on me, I'm afraid.",
+     "explanationIfSpoken": "Cards are not accepted, so admitting to carrying only cards is the natural reply.",
+     "kills": {
+      "0": "\"doesn't take cards\" - nothing was charged to any card, so \"another two coming off it\" contradicts the line.",
+      "2": "\"it's cash or tag only\" - a rule, not an offer, so \"Please\" accepts nothing.",
+      "3": "\"it's cash or tag\" - payment is required, so nothing is free."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a receipt",
+     "line": "I can give you a receipt for your business expenses.",
+     "reply": "Please, my accountant insists on them.",
+     "explanationIfSpoken": "The collector offers a receipt, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"I can give you\" - an offer; no amount was charged or corrected, so \"another two\" refers to nothing.",
+      "1": "\"I can give you\" - nothing about cards was said, so \"nothing but plastic\" responds to nothing.",
+      "3": "\"your business expenses\" - there is a charge to claim, so the toll is not free."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a waived toll",
+     "line": "The toll's waived this weekend for the festival, so drive on.",
+     "reply": "Really? Nobody told me it was free today.",
+     "explanationIfSpoken": "There is nothing to pay, so surprise is the natural reply.",
+     "kills": {
+      "0": "\"The toll's waived\" - nothing is charged, so \"another two coming off\" contradicts the line.",
+      "1": "\"so drive on\" - no payment is needed, so worrying about having nothing but plastic makes no sense.",
+      "2": "\"The toll's waived\" - there is no charge to claim and nothing is offered, so \"Please\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-a20",
+   "setting": "campervan rental pickup lot, agent to renter",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "answering about experience",
+     "line": "Have you driven anything this tall before?",
+     "reply": "Only a removal truck, and that was years ago.",
+     "explanationIfSpoken": "The agent asks about driving tall vehicles, so describing past experience is the natural reply.",
+     "kills": {
+      "1": "\"Have you driven\" - a question about experience; nothing was given away, so \"about to go buy pillows\" follows nothing.",
+      "2": "\"Have you driven\" - a question, not an instruction, so \"Does the inside count\" refers to nothing.",
+      "3": "\"anything this tall\" - nothing about fuel was said, so \"no need to fill it\" follows nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "welcoming free bedding",
+     "line": "We've thrown in bedding and a camp stove at no charge.",
+     "reply": "Oh perfect, I was about to go buy pillows.",
+     "explanationIfSpoken": "Bedding comes free, so relief at not having to buy any is the natural reply.",
+     "kills": {
+      "0": "\"We've thrown in\" - news, not a question about driving, so \"Only a removal truck\" answers nothing.",
+      "2": "\"at no charge\" - nothing is asked of the renter, so \"Does the inside count\" refers to nothing.",
+      "3": "\"bedding and a camp stove\" - nothing about fuel was said, so \"no need to fill it\" follows nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "clarifying the photo rule",
+     "line": "Please photograph every scratch before you drive off the lot.",
+     "reply": "Does the inside count too, or just outside?",
+     "explanationIfSpoken": "The renter must record damage, so asking how far the rule extends is the natural reply.",
+     "kills": {
+      "0": "\"Please photograph every\" - an instruction, not a question about driving, so \"Only a removal truck\" answers nothing.",
+      "1": "\"Please photograph every scratch\" - nothing was given away, so \"about to go buy pillows\" follows nothing.",
+      "3": "\"every scratch before\" - nothing about fuel was said, so \"no need to fill it\" follows nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "checking the fuel rule",
+     "line": "The van's tank is half full; just return it the same.",
+     "reply": "So there's no need to fill it right up, then?",
+     "explanationIfSpoken": "Return at the same level is required, so confirming a full refill is not needed is the natural reply.",
+     "kills": {
+      "0": "\"The van's tank\" - a statement, not a question about driving, so \"Only a removal truck\" answers nothing.",
+      "1": "\"tank is half full\" - nothing was given away, so \"about to go buy pillows\" follows nothing.",
+      "2": "\"just return it the same\" - a fuel rule, not a photo rule, so \"Does the inside count\" refers to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b01",
+   "setting": "washing machine repair home visit, technician to homeowner",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "replacing a broken appliance",
+     "line": "Your machine's motor is burnt out, and it's not worth fixing.",
+     "reply": "Then I'd better start shopping for a new washer.",
+     "explanationIfSpoken": "The washer cannot be saved, so planning to buy a replacement is the natural reply.",
+     "kills": {
+      "1": "\"motor is burnt out\" - the fault is serious, so \"That's all?\" contradicts the line.",
+      "2": "\"not worth fixing\" - a verdict, not a question about how long, so \"Since Sunday night\" answers nothing.",
+      "3": "\"not worth fixing\" - no repair is coming, so there are no \"few more days\" to wait out."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a minor fault",
+     "line": "Good news, it was just a sock jammed in the drain pump.",
+     "reply": "That's all? I was bracing for a huge bill.",
+     "explanationIfSpoken": "The fault was trivial, so expressing surprised relief is the natural reply.",
+     "kills": {
+      "0": "\"just a sock jammed\" - the washer is fine, so there is no reason to buy a new one.",
+      "2": "\"Good news, it was\" - an announcement, not a question about how long, so \"Since Sunday night\" answers nothing.",
+      "3": "\"just a sock jammed\" - the problem is already solved, so there is no wait and no hand-washing ahead."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "stating how long a fault has lasted",
+     "line": "How long has it been leaking like this?",
+     "reply": "Since Sunday night, so about three days now.",
+     "explanationIfSpoken": "The technician asks how long, so giving a duration is the natural reply.",
+     "kills": {
+      "0": "\"How long has it\" - nothing has been diagnosed, so there is no verdict that makes a new washer necessary.",
+      "1": "\"How long has it been\" - no cause has been found, so \"That's all?\" reacts to nothing.",
+      "3": "\"How long has it\" - a question about the past; no part or delay is mentioned to wait for."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adjusting to a later repair date",
+     "line": "Sorry, I said Tuesday, but the part arrives Friday.",
+     "reply": "So we'll be hand-washing for a few more days?",
+     "explanationIfSpoken": "The repair is delayed, so asking about the extra days without a washer is the natural reply.",
+     "kills": {
+      "0": "\"the part arrives Friday\" - the washer will be repaired, so buying a new one contradicts the line.",
+      "1": "\"Sorry, I said Tuesday\" - the news is a delay, so \"That's all?\" and relief about the bill do not fit.",
+      "2": "\"the part arrives Friday\" - a correction, not a question, so \"Since Sunday night\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b02",
+   "setting": "piano moving company scheduling call, scheduler to customer",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "describing stairs at a destination",
+     "line": "How many flights of stairs are there at the new place?",
+     "reply": "Three, and the stairwell's pretty narrow.",
+     "explanationIfSpoken": "The scheduler asks about stairs, so giving a number and a warning is the natural reply.",
+     "kills": {
+      "1": "\"How many flights\" - a question about stairs; no date is given, so asking for something sooner makes no sense.",
+      "2": "\"How many flights of stairs\" - a question, not an offer, so \"Yes, keep it\" accepts nothing.",
+      "3": "\"How many flights\" - no price is stated, so there is no jump to object to."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "pushing for an earlier date",
+     "line": "Our crew is booked solid until the end of next month.",
+     "reply": "Nothing sooner? My lease runs out in two weeks.",
+     "explanationIfSpoken": "No crew is free for weeks, so asking for an earlier slot is the natural reply.",
+     "kills": {
+      "0": "\"booked solid until\" - an announcement, not a question about stairs, so \"Three\" answers nothing.",
+      "2": "\"booked solid until the end\" - nothing is offered, so there is no storage to accept.",
+      "3": "\"booked solid until\" - only the timing is given; no price is stated to have jumped."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting storage",
+     "line": "We can add climate-controlled storage if your new place isn't ready.",
+     "reply": "Yes, keep it for me until my renovation's done.",
+     "explanationIfSpoken": "The scheduler offers storage, so accepting it with a reason is the natural reply.",
+     "kills": {
+      "0": "\"We can add\" - an offer, not a question about stairs, so \"Three\" answers nothing.",
+      "1": "\"We can add climate-controlled storage\" - a service is offered, not a date, so there is nothing to ask to have sooner.",
+      "3": "\"We can add\" - an offer with no price, so \"a big jump\" refers to nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "objecting to a price change",
+     "line": "Correction, the quote's six hundred dollars, not four hundred.",
+     "reply": "That's a big jump; what changed since yesterday?",
+     "explanationIfSpoken": "The price has risen, so objecting and asking why is the natural reply.",
+     "kills": {
+      "0": "\"the quote's six hundred\" - a price correction, not a question about stairs, so \"Three\" answers nothing.",
+      "1": "\"six hundred dollars, not four\" - the correction is to the price, not the date, so \"Nothing sooner?\" asks about nothing that changed.",
+      "2": "\"the quote's six hundred\" - a price, not an offer, so \"Yes, keep it\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b03",
+   "setting": "chimney sweep appointment, sweep to homeowner",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "clearing space for work",
+     "line": "Please move the rug away from the hearth before I start.",
+     "reply": "Sure, give me a second to roll it up.",
+     "explanationIfSpoken": "The sweep asks for the rug to be moved, so agreeing to roll it up is the natural reply.",
+     "kills": {
+      "1": "\"before I start\" - the work has not begun, so no fault has been found to protest.",
+      "2": "\"before I start\" - nothing has been inspected, so there is no result to be relieved about.",
+      "3": "\"Please move the rug\" - nothing about billing is said, so naming an email address answers a question nobody asked."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a ban on fires",
+     "line": "There's a crack in the flue, so don't light any fires.",
+     "reply": "But that fireplace is how we heat our house!",
+     "explanationIfSpoken": "Fires are now forbidden, so protesting that the house depends on them is the natural reply.",
+     "kills": {
+      "0": "\"don't light any fires\" - a warning, not a request about the rug, so there is nothing to roll up.",
+      "2": "\"a crack in the flue\" - the chimney is damaged, so relief contradicts the line.",
+      "3": "\"There's a crack\" - a fault is reported; no invoice is mentioned, so an email address answers nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a good inspection",
+     "line": "Your liner's in great shape; it should last another decade.",
+     "reply": "What a relief; the previous sweep disagreed.",
+     "explanationIfSpoken": "The chimney is sound, so expressing relief is the natural reply.",
+     "kills": {
+      "0": "\"in great shape\" - a verdict, not a request, so \"it\" has nothing to roll up.",
+      "1": "\"in great shape\" - nothing forbids fires, so protesting about heating contradicts the line.",
+      "3": "\"Your liner's in great shape\" - a verdict; no invoice is mentioned, so an email address answers nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "choosing where a bill goes",
+     "line": "My invoice will come by email later this afternoon.",
+     "reply": "Use my work address; I never check the other.",
+     "explanationIfSpoken": "The sweep says the bill comes by email, so naming the address to use is the natural reply.",
+     "kills": {
+      "0": "\"invoice will come by\" - a statement about billing, not a request, so \"it\" has nothing to roll up.",
+      "1": "\"invoice will come by email\" - nothing is forbidden, so there is nothing to protest.",
+      "2": "\"My invoice will come\" - no inspection result is given, so there is nothing to be relieved about."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b04",
+   "setting": "garage door repair visit, technician to homeowner",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "welcoming a working door",
+     "line": "The spring's replaced, so the door opens smoothly again.",
+     "reply": "Finally, I can park inside tonight.",
+     "explanationIfSpoken": "The door works again, so looking forward to using the garage is the natural reply.",
+     "kills": {
+      "1": "\"opens smoothly again\" - the door works, so lifting it by hand contradicts the line.",
+      "2": "\"The spring's replaced\" - an announcement, not a question about remotes, so \"Two\" answers nothing.",
+      "3": "\"The spring's replaced, so\" - nothing is offered, so \"Sure\" accepts nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "coping with a dead opener",
+     "line": "The opener's motor is dead, and the new one's on backorder.",
+     "reply": "So I'll have to lift it by hand for now?",
+     "explanationIfSpoken": "The opener cannot work for a while, so asking about lifting the door manually is the natural reply.",
+     "kills": {
+      "0": "\"motor is dead\" - the door does not open on its own, so parking inside tonight contradicts the line.",
+      "2": "\"on backorder\" - an announcement, not a question, so \"Two\" answers nothing.",
+      "3": "\"The opener's motor is dead\" - nothing is offered, so \"Sure\" accepts nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a number of remotes",
+     "line": "Do you want a remote for each driver or just one?",
+     "reply": "Two, please; my wife uses the car too.",
+     "explanationIfSpoken": "The technician asks how many remotes, so choosing a number is the natural reply.",
+     "kills": {
+      "0": "\"Do you want a remote\" - a question; no repair is announced, so \"Finally\" welcomes nothing.",
+      "1": "\"Do you want a remote\" - nothing is reported broken, so manual lifting has no basis.",
+      "3": "\"for each driver or just one\" - a how-many question, not an offer, so \"Sure\" chooses nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting extra maintenance",
+     "line": "I can lubricate the tracks too while I'm here, no charge.",
+     "reply": "Sure, they've been squeaking for months.",
+     "explanationIfSpoken": "The technician offers to lubricate the tracks, so accepting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"I can lubricate\" - an offer for later; nothing is said to be fixed, so \"Finally\" welcomes nothing.",
+      "1": "\"while I'm here\" - the work is going ahead, so nothing is said to be dead or delayed.",
+      "2": "\"I can lubricate the tracks\" - an offer, not a how-many question, so \"Two\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b05",
+   "setting": "knife sharpening stall at a neighborhood market, sharpener to customer",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "waiting a turn",
+     "line": "I work through them in the order they arrive.",
+     "reply": "Fine, I'll look around until it's my turn.",
+     "explanationIfSpoken": "The sharpener explains there is a queue, so agreeing to wait is the natural reply.",
+     "kills": {
+      "1": "\"in the order they arrive\" - no price is given, so there is no total to work out.",
+      "2": "\"I work through them\" - the knives will be done, so asking who else can do it contradicts the line.",
+      "3": "\"I work through them\" - nothing is offered, so \"Please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "working out a total",
+     "line": "Sorry, it's eight dollars per blade, not per set.",
+     "reply": "So all five of mine come to forty?",
+     "explanationIfSpoken": "The price is per knife, so multiplying it out is the natural reply.",
+     "kills": {
+      "0": "\"eight dollars per blade\" - a price correction, not a queue, so there is no turn to wait for.",
+      "2": "\"eight dollars per blade\" - the knives will be sharpened, so asking who else can do it contradicts the line.",
+      "3": "\"it's eight dollars\" - a price, not an offer, so \"Please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asking for an alternative",
+     "line": "This bread knife's serrated, so I can't do it here.",
+     "reply": "Is there anybody nearby who can, then?",
+     "explanationIfSpoken": "The sharpener cannot do this knife, so asking for someone else is the natural reply.",
+     "kills": {
+      "0": "\"I can't do it\" - the knife will not be sharpened, so there is no turn to wait for.",
+      "1": "\"I can't do it here\" - no price applies to a job refused, so there is no total to work out.",
+      "3": "\"I can't do it\" - a refusal, not an offer, so \"Please\" accepts nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an extra repair",
+     "line": "I can fix that chipped tip while I'm at it.",
+     "reply": "Please, my son dropped it on the tile.",
+     "explanationIfSpoken": "The sharpener offers to fix the tip, so accepting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"while I'm at it\" - the knife is being worked on now, so there is no turn to wait for.",
+      "1": "\"I can fix that\" - an offer with no price, so there is nothing to multiply.",
+      "2": "\"I can fix that\" - the sharpener can do it, so asking who else can contradicts the line."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b06",
+   "setting": "dog walking service, walker to owner",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "agreeing to leave equipment",
+     "line": "Could you leave his harness by the door for Monday?",
+     "reply": "Okay, I'll hang it on the doorknob tonight.",
+     "explanationIfSpoken": "The walker asks for the harness, so agreeing where to put it is the natural reply.",
+     "kills": {
+      "1": "\"Could you leave\" - a request, not a report on a walk, so there is no progress to credit to training.",
+      "2": "\"for Monday\" - no time is changed, so there is no extra wait to complain about.",
+      "3": "\"Could you leave his harness\" - a request, not a question about other dogs, so \"Not really\" answers nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "crediting training",
+     "line": "Biscuit finally walked the whole route without pulling today.",
+     "reply": "Wow, those training classes are paying off.",
+     "explanationIfSpoken": "The dog behaved well, so crediting the training is the natural reply.",
+     "kills": {
+      "0": "\"walked the whole route\" - a report, not a request, so \"it\" has nothing to hang up.",
+      "2": "\"walked the whole route... today\" - the walk already happened, so there is no later visit to wait for.",
+      "3": "\"without pulling today\" - a report, not a question, so \"Not really\" answers nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "noticing a longer wait",
+     "line": "Sorry, I'm coming at noon tomorrow, not ten.",
+     "reply": "So he'll have to hold it two more hours?",
+     "explanationIfSpoken": "The walk is two hours later, so worrying about the wait is the natural reply.",
+     "kills": {
+      "0": "\"I'm coming at noon\" - a time change, not a request, so \"it\" has nothing to hang up.",
+      "1": "\"coming at noon tomorrow\" - the walk has not happened, so there is no good behaviour to credit.",
+      "3": "\"at noon tomorrow, not ten\" - a correction, not a question, so \"Not really\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "describing a dog's temperament",
+     "line": "Does he get along with other dogs in a group?",
+     "reply": "Not really; he snaps at the bigger ones.",
+     "explanationIfSpoken": "The walker asks about other dogs, so answering honestly is the natural reply.",
+     "kills": {
+      "0": "\"Does he get along\" - a question, not a request, so \"it\" has nothing to hang up.",
+      "1": "\"Does he get along\" - no walk is reported, so there is no progress to credit.",
+      "2": "\"Does he get along\" - no time is changed, so there are no extra hours to wait."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b07",
+   "setting": "lawn care company, crew leader to homeowner",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "worrying about a skipped visit",
+     "line": "We can't mow today; the ground's too soggy from the storm.",
+     "reply": "So the grass will be knee-high by next time?",
+     "explanationIfSpoken": "The visit is cancelled, so worrying about the overgrowth is the natural reply.",
+     "kills": {
+      "1": "\"the ground's too soggy\" - the soil is wet, so calling it \"packed rock-hard\" contradicts the line, and nothing is offered.",
+      "2": "\"We can't mow today\" - an announcement, not a which-question, so \"Mulch them in\" answers nothing.",
+      "3": "\"We can't mow today\" - no one is working, so keeping the dog in during work has no basis."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting aeration",
+     "line": "We could aerate the front yard this fall at half price.",
+     "reply": "Sounds good; that ground's packed rock-hard.",
+     "explanationIfSpoken": "The crew offers aeration, so accepting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"We could aerate\" - service is being offered, not cancelled, so no overgrowth is coming.",
+      "2": "\"We could aerate the front yard\" - a yes/no offer, not a which-question, so \"Mulch them in\" chooses nothing.",
+      "3": "\"this fall at half price\" - an offer for later, not a request, so \"No problem\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing what to do with clippings",
+     "line": "Should we bag the clippings or leave them on the lawn?",
+     "reply": "Mulch them in; they're free fertilizer.",
+     "explanationIfSpoken": "The crew asks an either/or question, so choosing one is the natural reply.",
+     "kills": {
+      "0": "\"Should we bag the clippings\" - mowing is going ahead, so nothing is skipped.",
+      "1": "\"bag the clippings or leave them\" - an either/or question, so \"Sounds good\" chooses neither.",
+      "3": "\"Should we bag\" - a question, not a request, so \"No problem\" answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agreeing to keep a pet in",
+     "line": "Please keep the dog inside while we're working.",
+     "reply": "No problem, he'll be napping in the kitchen.",
+     "explanationIfSpoken": "The crew asks for the dog to stay in, so agreeing is the natural reply.",
+     "kills": {
+      "0": "\"while we're working\" - the crew is working today, so nothing is skipped.",
+      "1": "\"Please keep the dog\" - a request, not an offer, so \"Sounds good\" accepts nothing.",
+      "2": "\"Please keep the dog inside\" - a request, not an either/or question, so \"Mulch them in\" answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b08",
+   "setting": "community tool library lending desk, volunteer to member",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "collecting a reserved tool",
+     "line": "The pressure washer you reserved just came back, so it's yours.",
+     "reply": "Great, I'll load it into my trunk now.",
+     "explanationIfSpoken": "The reserved tool is available, so taking it is the natural reply.",
+     "kills": {
+      "1": "\"so it's yours\" - the member can borrow, so dues being unpaid contradicts the line.",
+      "2": "\"just came back, so it's yours\" - the loan is starting; no shorter period is set, so there is no need to work faster.",
+      "3": "\"The pressure washer you reserved\" - an announcement, not a question about experience, so \"Only once\" answers nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "disputing a lapsed membership",
+     "line": "Your membership's lapsed, so you can't borrow anything today.",
+     "reply": "Oh, I thought my dues were paid through June.",
+     "explanationIfSpoken": "Borrowing is blocked, so disputing the lapse is the natural reply.",
+     "kills": {
+      "0": "\"you can't borrow anything\" - nothing can be taken, so loading a tool contradicts the line.",
+      "2": "\"can't borrow anything today\" - there is no loan, so there is no loan period to hurry for.",
+      "3": "\"Your membership's lapsed\" - an announcement, not a question, so \"Only once\" answers nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adjusting to a shorter loan",
+     "line": "Sorry, loans are one week here, not two.",
+     "reply": "Oh, so I'll have to finish the deck faster.",
+     "explanationIfSpoken": "The loan is shorter than expected, so planning to work faster is the natural reply.",
+     "kills": {
+      "0": "\"loans are one week\" - a rule correction, not an announcement that a tool is ready, so \"Great\" welcomes nothing.",
+      "1": "\"loans are one week here\" - borrowing is allowed, so a lapsed-dues complaint has no basis.",
+      "3": "\"one week here, not two\" - a correction, not a question, so \"Only once\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "describing experience with a tool",
+     "line": "Have you used a tile saw before?",
+     "reply": "Only once, and someone helped me set it up.",
+     "explanationIfSpoken": "The volunteer asks about experience, so answering is the natural reply.",
+     "kills": {
+      "0": "\"Have you used\" - a question, not news that a tool is ready, so \"Great\" welcomes nothing.",
+      "1": "\"Have you used a tile saw\" - borrowing is under way, so nothing about dues is blocked.",
+      "2": "\"Have you used\" - no loan period is stated, so there is nothing to hurry for."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b09",
+   "setting": "furniture assembly service visit, assembler to customer",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "reacting to a long job",
+     "line": "This wardrobe usually takes me about three hours.",
+     "reply": "That long? The box said forty minutes.",
+     "explanationIfSpoken": "The assembler gives a long estimate, so expressing surprise is the natural reply.",
+     "kills": {
+      "1": "\"usually takes me about\" - an estimate, not a request, so there is nothing to hold or let go.",
+      "2": "\"This wardrobe usually takes\" - nothing is offered, so \"Would you?\" accepts nothing.",
+      "3": "\"This wardrobe usually takes\" - the right item is being built, so no boxes were mixed up."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "helping with assembly",
+     "line": "Could you hold this side steady for a second?",
+     "reply": "Got it; just tell me when I can let go.",
+     "explanationIfSpoken": "The assembler asks for help holding a panel, so agreeing is the natural reply.",
+     "kills": {
+      "0": "\"for a second\" - no duration is estimated, so \"That long?\" reacts to nothing.",
+      "2": "\"Could you hold\" - the assembler is asking for help, not offering any, so \"Would you?\" makes no sense.",
+      "3": "\"hold this side steady\" - assembly is going ahead, so no wrong item was delivered."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting cardboard removal",
+     "line": "I can take all this cardboard with me when I leave.",
+     "reply": "Would you? Our recycling bin's already full.",
+     "explanationIfSpoken": "The assembler offers to take the cardboard, so accepting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"I can take all\" - an offer, not an estimate, so \"That long?\" reacts to nothing.",
+      "1": "\"when I leave\" - an offer for later, not a request, so there is nothing to hold now.",
+      "3": "\"take all this cardboard\" - nothing is wrong with the order, so no boxes were mixed up."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "explaining a wrong delivery",
+     "line": "Actually, this is the bookcase, not the desk you ordered.",
+     "reply": "Then the warehouse must've mixed up my boxes.",
+     "explanationIfSpoken": "The wrong item arrived, so blaming a mix-up is the natural reply.",
+     "kills": {
+      "0": "\"this is the bookcase\" - a correction, not a time estimate, so \"That long?\" reacts to nothing.",
+      "1": "\"not the desk you ordered\" - a correction, not a request, so there is nothing to hold.",
+      "2": "\"Actually, this is\" - nothing is offered, so \"Would you?\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b10",
+   "setting": "window blinds measuring visit, installer to homeowner",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "choosing a cord side",
+     "line": "Do you want the cords on the left or the right?",
+     "reply": "Whichever side's farther from the radiator.",
+     "explanationIfSpoken": "The installer asks which side, so choosing is the natural reply.",
+     "kills": {
+      "1": "\"Do you want the cords\" - no samples are mentioned, so there is nothing to flip through.",
+      "2": "\"on the left or the right\" - nothing has arrived early, so \"Already?\" reacts to nothing.",
+      "3": "\"Do you want\" - a question, not a request, so \"Sure\" answers nothing and \"him\" has no referent."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "browsing samples",
+     "line": "The fabric samples are in this binder, sorted by color.",
+     "reply": "Let me flip through the gray ones first.",
+     "explanationIfSpoken": "The installer points to samples, so starting to look through them is the natural reply.",
+     "kills": {
+      "0": "\"The fabric samples are\" - a statement, not an either/or question, so \"Whichever side\" answers nothing.",
+      "2": "\"samples are in this binder\" - the fabric is not chosen, so nothing has arrived early.",
+      "3": "\"sorted by color\" - no request is made, so \"I'll shut him\" has no referent."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to an early delivery",
+     "line": "Your blinds came in early, so I can install them today.",
+     "reply": "Already? I was told another month at least.",
+     "explanationIfSpoken": "The blinds are early, so expressing surprise is the natural reply.",
+     "kills": {
+      "0": "\"I can install them\" - a statement, not a which-question, so \"Whichever side\" answers nothing.",
+      "1": "\"blinds came in early\" - they are already made, so there are no fabric choices left to browse.",
+      "3": "\"so I can install\" - no request is made, so \"I'll shut him\" has no referent."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "keeping a pet away",
+     "line": "Please keep the cat out of this room while I drill.",
+     "reply": "Sure, I'll shut him in the bedroom.",
+     "explanationIfSpoken": "The installer asks for the cat to be kept out, so agreeing is the natural reply.",
+     "kills": {
+      "0": "\"Please keep the cat\" - a request, not a which-question, so \"Whichever side\" answers nothing.",
+      "1": "\"while I drill\" - installation is under way, so fabric samples no longer apply.",
+      "2": "\"Please keep the cat\" - a request; nothing is announced early, so \"Already?\" reacts to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b11",
+   "setting": "aquarium supply shop, clerk to customer",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "reacting to dead fish",
+     "line": "Those angelfish you reserved died over the weekend, I'm afraid.",
+     "reply": "Oh no, they looked so healthy on Friday.",
+     "explanationIfSpoken": "The reserved fish died, so expressing dismay is the natural reply.",
+     "kills": {
+      "1": "\"died over the weekend\" - nothing about equipment size is corrected, so \"twice as powerful\" has no basis.",
+      "2": "\"I'm afraid\" - bad news about fish, not an instruction to add anything, so \"How many drops\" has no referent.",
+      "3": "\"died over the weekend\" - nothing is offered, so there is no test to bring a jar for."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "needing a bigger filter",
+     "line": "Sorry, that filter's rated for twenty gallons, not forty.",
+     "reply": "Then I need one twice as powerful.",
+     "explanationIfSpoken": "The filter is half the expected size, so needing one twice as strong is the natural reply.",
+     "kills": {
+      "0": "\"that filter's rated\" - a correction about equipment; no fish died, so \"Oh no\" mourns nothing.",
+      "2": "\"rated for twenty gallons\" - nothing is to be added to water, so \"How many drops\" has no referent.",
+      "3": "\"that filter's rated\" - a correction, not an offer, so there is no test to bring a jar for."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asking a dose",
+     "line": "Tap water here needs a conditioner before it touches the fish.",
+     "reply": "How many drops do I use per gallon?",
+     "explanationIfSpoken": "The clerk says water must be treated, so asking the dose is the natural reply.",
+     "kills": {
+      "0": "\"before it touches the fish\" - the fish are alive and still to be added, so \"Oh no\" mourns nothing.",
+      "1": "\"needs a conditioner\" - a water treatment, not a filter rating, so \"twice as powerful\" has no basis.",
+      "3": "\"Tap water here needs\" - an instruction, not an offer, so there is no test to bring a jar for."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a water test",
+     "line": "I can test a sample of your tank water for free.",
+     "reply": "I'll bring a jar of it in tomorrow.",
+     "explanationIfSpoken": "The clerk offers a free test, so agreeing to bring a sample is the natural reply.",
+     "kills": {
+      "0": "\"I can test\" - an offer; nothing has died, so \"Oh no\" mourns nothing.",
+      "1": "\"test a sample\" - an offer, not a filter correction, so \"twice as powerful\" has no basis.",
+      "2": "\"I can test a sample\" - the clerk will test it; no product to dose is named, so \"How many drops\" has no referent."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b12",
+   "setting": "self-service car wash bay, attendant to driver",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "choosing an extra spray",
+     "line": "Do you want the undercarriage spray this time?",
+     "reply": "Yes, it's caked with road salt from winter.",
+     "explanationIfSpoken": "The attendant asks a yes/no question, so answering with a reason is the natural reply.",
+     "kills": {
+      "1": "\"Do you want\" - a question; nothing about the change machine is said, so \"Then\" has no premise.",
+      "2": "\"Do you want the undercarriage\" - a question, not news of credits, so \"Really?\" doubts nothing.",
+      "3": "\"this time\" - the driver is being served, not blocking anyone, so the apology has no basis."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "asking for change",
+     "line": "Sorry, the change machine only takes fives, not twenties.",
+     "reply": "Then could you break a big bill for me?",
+     "explanationIfSpoken": "The machine rejects large bills, so asking for change is the natural reply.",
+     "kills": {
+      "0": "\"the change machine only\" - a correction, not a yes/no question, so \"Yes\" answers nothing.",
+      "2": "\"only takes fives\" - a statement about the machine, not about credits, so \"them\" has no referent and \"Really?\" doubts nothing.",
+      "3": "\"Sorry, the change machine\" - nothing is asked of the driver about the queue, so the apology has no basis."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "doubting leftover credits",
+     "line": "Your wash card has ten free credits left on it.",
+     "reply": "Really? I thought I'd used them all.",
+     "explanationIfSpoken": "The driver has unexpected credits, so surprise is the natural reply.",
+     "kills": {
+      "0": "\"has ten free credits\" - a statement, not a yes/no question, so \"Yes\" answers nothing.",
+      "1": "\"ten free credits left\" - the driver need not pay cash, so asking for change has no premise.",
+      "3": "\"Your wash card has\" - no request about moving is made, so the apology has no basis."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "apologizing for blocking",
+     "line": "Please pull forward so the next car can get in.",
+     "reply": "Sorry, I didn't notice anyone behind me.",
+     "explanationIfSpoken": "The attendant asks the driver to move for the next car, so apologizing is the natural reply.",
+     "kills": {
+      "0": "\"Please pull forward\" - a request, not a yes/no question, so \"Yes\" answers nothing.",
+      "1": "\"Please pull forward\" - nothing about paying is said, so \"Then\" has no premise.",
+      "2": "\"so the next car\" - a request, not news of credits, so \"Really?\" doubts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b13",
+   "setting": "city bulk trash pickup scheduling line, operator to resident",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "accepting a fee waiver",
+     "line": "I can waive the twenty-dollar fee since you're a senior.",
+     "reply": "That's kind; I'm on a fixed income now.",
+     "explanationIfSpoken": "The operator offers to waive the fee, so thanking them with a reason is the natural reply.",
+     "kills": {
+      "1": "\"I can waive\" - pickup is going ahead, so nothing is refused that would need taking elsewhere.",
+      "2": "\"I can waive the twenty-dollar fee\" - an offer, not a request for an address, so a street address answers nothing.",
+      "3": "\"waive the twenty-dollar fee\" - no pickup time is given, so \"That early?\" reacts to nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a refusal",
+     "line": "We can't take construction debris like drywall or tiles.",
+     "reply": "Where am I supposed to dump it, then?",
+     "explanationIfSpoken": "The city refuses the items, so asking where else to take them is the natural reply.",
+     "kills": {
+      "0": "\"We can't take\" - a refusal, not an offer, so \"That's kind\" thanks nothing.",
+      "2": "\"We can't take construction debris\" - nothing is asked for, so a street address answers nothing.",
+      "3": "\"We can't take\" - nothing will be collected, so there is no pickup time to set things out for."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "giving an address",
+     "line": "Could you give me your street address, please?",
+     "reply": "Sure, it's 42 Maple Lane, apartment B.",
+     "explanationIfSpoken": "The operator asks for the address, so giving it is the natural reply.",
+     "kills": {
+      "0": "\"Could you give me\" - a request, not an offer, so \"That's kind\" thanks nothing.",
+      "1": "\"Could you give me\" - pickup is being arranged, so nothing is refused.",
+      "3": "\"your street address\" - a request, not a pickup time, so \"That early?\" reacts to nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "reacting to early pickup hours",
+     "line": "Our trucks run between six and ten in the morning.",
+     "reply": "That early? I'll set everything out overnight.",
+     "explanationIfSpoken": "The trucks come early, so planning to put things out the night before is the natural reply.",
+     "kills": {
+      "0": "\"Our trucks run\" - a schedule, not an offer, so \"That's kind\" thanks nothing.",
+      "1": "\"Our trucks run between\" - collection is happening, so nothing needs taking elsewhere.",
+      "2": "\"between six and ten\" - a statement, not a request, so giving an address answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b14",
+   "setting": "clock repair shop, clockmaker to customer",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "welcoming a working clock",
+     "line": "Your mantel clock's running perfectly again, so you can take it home.",
+     "reply": "It's ticking? It hasn't made a sound in ages.",
+     "explanationIfSpoken": "The clock works again, so delighted surprise is the natural reply.",
+     "kills": {
+      "1": "\"you can take it home\" - it is ready now, so there is no later date to be ten days late.",
+      "2": "\"running perfectly again\" - the repair is done, so an estimate before opening it is impossible and \"Please do\" accepts nothing.",
+      "3": "\"so you can take\" - a statement, not a question about the chime, so \"Less often\" answers nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "noting a longer wait",
+     "line": "Sorry, it'll be ready on the fourteenth, not the fourth.",
+     "reply": "That's ten days later than I'd planned on.",
+     "explanationIfSpoken": "The date moves from the fourth to the fourteenth, so noting the ten-day delay is the natural reply.",
+     "kills": {
+      "0": "\"it'll be ready on\" - the clock is not fixed yet, so \"It's ticking?\" contradicts the line.",
+      "2": "\"Sorry, it'll be ready\" - a date correction, not an offer, so \"Please do\" accepts nothing.",
+      "3": "\"the fourteenth, not the fourth\" - a correction, not a question, so \"Less often\" answers nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an estimate",
+     "line": "I can give you an estimate before I open it up.",
+     "reply": "Please do; I don't want a nasty surprise.",
+     "explanationIfSpoken": "The clockmaker offers an estimate first, so accepting is the natural reply.",
+     "kills": {
+      "0": "\"before I open it\" - the clock has not been worked on, so it cannot be ticking again.",
+      "1": "\"before I open it up\" - no date has been set, so there is no delay to measure.",
+      "3": "\"I can give you\" - an offer, not a question about the chime, so \"Less often\" answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a chime setting",
+     "line": "Should the chime ring every hour or every quarter hour?",
+     "reply": "Less often, please; my wife's a light sleeper.",
+     "explanationIfSpoken": "The clockmaker asks about the chime, so choosing the less frequent one is the natural reply.",
+     "kills": {
+      "0": "\"Should the chime ring\" - a question, not news that the clock is fixed, so \"It's ticking?\" has no basis.",
+      "1": "\"Should the chime ring\" - no date is stated, so there is no ten-day delay.",
+      "2": "\"every hour or every quarter\" - an either/or question, so \"Please do\" chooses neither."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b15",
+   "setting": "neighborhood hazardous waste drop-off event, staff to resident",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "following directions",
+     "line": "Paint cans go to the tent on the far left.",
+     "reply": "Got it, I'll carry these over there now.",
+     "explanationIfSpoken": "The staff member says where paint goes, so taking it there is the natural reply.",
+     "kills": {
+      "1": "\"Paint cans go to\" - paint is accepted, so protesting a refusal contradicts the line.",
+      "2": "\"go to the tent\" - the resident is to walk the cans over, so nothing is being unloaded from a trunk.",
+      "3": "\"Paint cans go\" - a direction, not an offer, so \"Sure, just toss it\" accepts nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "protesting a refusal",
+     "line": "We can't accept these propane tanks today, sorry.",
+     "reply": "Seriously? Your flyer said those were fine.",
+     "explanationIfSpoken": "The tanks are refused, so protesting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"We can't accept\" - nothing is to be dropped off, so carrying it over contradicts the line.",
+      "2": "\"can't accept these propane\" - nothing will be unloaded, so there is no trunk to pop open.",
+      "3": "\"We can't accept\" - a refusal, not an offer, so \"Sure, just toss it\" accepts nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "helping staff unload",
+     "line": "Please stay in your car while we unload the trunk.",
+     "reply": "Okay, should I pop it open from in here?",
+     "explanationIfSpoken": "Staff will unload the trunk, so asking about opening it is the natural reply.",
+     "kills": {
+      "0": "\"stay in your car\" - the resident must not get out, so carrying things over contradicts the line.",
+      "1": "\"while we unload\" - the items are being accepted, so nothing is refused.",
+      "3": "\"Please stay in\" - a request, not an offer, so \"Sure, just toss it\" accepts nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting a freebie",
+     "line": "We have free compost bags today, if you'd like one.",
+     "reply": "Sure, just toss it onto my back seat.",
+     "explanationIfSpoken": "Staff offer a free bag, so accepting it is the natural reply.",
+     "kills": {
+      "0": "\"if you'd like one\" - an offer, not directions, so there is nothing to carry over.",
+      "1": "\"We have free\" - something is being given, not refused, so there is nothing to protest.",
+      "2": "\"We have free compost\" - no unloading is mentioned, so \"pop it open\" has no referent."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b16",
+   "setting": "gutter cleaning crew, worker to homeowner",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "asking about a nest",
+     "line": "We found a bird's nest in the corner downspout.",
+     "reply": "Oh, can it be moved somewhere safe?",
+     "explanationIfSpoken": "A nest was found, so asking about moving it safely is the natural reply.",
+     "kills": {
+      "1": "\"We found a bird's\" - nothing about price is said, so \"So what do I owe\" draws a conclusion the line does not support.",
+      "2": "\"We found a bird's nest\" - no day is changed, so there is no earlier day to be home.",
+      "3": "\"We found a bird's nest\" - nothing is asked of the homeowner, so \"Sure\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asking about a reduced bill",
+     "line": "There was less debris than expected, so you'll pay half.",
+     "reply": "Really? So what do I owe you now?",
+     "explanationIfSpoken": "The price is halved, so asking for the new amount is the natural reply.",
+     "kills": {
+      "0": "\"less debris than expected\" - nothing living was found, so \"it\" has nothing to move.",
+      "2": "\"you'll pay half\" - the job is done, so there is no visit day to be home for.",
+      "3": "\"so you'll pay half\" - nothing is asked of the homeowner, so \"Sure\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adjusting to an earlier day",
+     "line": "Sorry, we're coming Saturday, not Sunday as I told you.",
+     "reply": "So I'll need to be home a day earlier.",
+     "explanationIfSpoken": "The visit moves from Sunday to Saturday, so noting it is a day earlier is the natural reply.",
+     "kills": {
+      "0": "\"we're coming Saturday\" - the crew has not come yet, so nothing was found to move.",
+      "1": "\"we're coming Saturday\" - the work has not been done, so there is no reduced bill yet.",
+      "3": "\"Sorry, we're coming\" - a correction, not a request, so \"Sure\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "moving a car",
+     "line": "Could you move your car off the driveway for the ladder?",
+     "reply": "Sure, I'll park it on the street.",
+     "explanationIfSpoken": "The worker asks for the car to be moved, so agreeing is the natural reply.",
+     "kills": {
+      "0": "\"Could you move your car\" - the homeowner is the one asked to move something, so asking whether \"it\" can be moved reverses the request.",
+      "1": "\"for the ladder\" - work has not started, so there is no bill to settle.",
+      "2": "\"Could you move your car\" - no day is changed, so there is no earlier day to be home."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b17",
+   "setting": "lamp rewiring at a lighting repair shop, repairer to customer",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "reacting to a lamp's age",
+     "line": "This lamp's wiring is original, from around the nineteen-forties.",
+     "reply": "Wow, so it's older than my parents.",
+     "explanationIfSpoken": "The lamp is from the 1940s, so remarking on its age is the natural reply.",
+     "kills": {
+      "1": "\"wiring is original\" - a statement, not a which-question, so \"The adjustable kind\" answers nothing.",
+      "2": "\"from around the nineteen-forties\" - nothing is offered, so \"Go ahead\" accepts nothing.",
+      "3": "\"wiring is original\" - no price is stated, so \"Nothing at all?\" reacts to nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a switch type",
+     "line": "Would you like a dimmer switch or a regular on-off one?",
+     "reply": "The adjustable kind, for my reading nook.",
+     "explanationIfSpoken": "The repairer asks which switch, so choosing one is the natural reply.",
+     "kills": {
+      "0": "\"Would you like a\" - a question; no date for the lamp is given, so \"older than my parents\" has no basis.",
+      "2": "\"a dimmer switch or a regular\" - an either/or question, so \"Go ahead\" chooses neither.",
+      "3": "\"Would you like\" - a question, not a price, so \"Nothing at all?\" reacts to nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting an extra repair",
+     "line": "I can replace the frayed shade too, for fifteen more.",
+     "reply": "Go ahead; our cat chewed one edge.",
+     "explanationIfSpoken": "The repairer offers a new shade, so accepting with a reason is the natural reply.",
+     "kills": {
+      "0": "\"I can replace\" - an offer; no age is given, so \"older than my parents\" has no basis.",
+      "1": "\"replace the frayed shade\" - a yes/no offer, not a which-question, so \"The adjustable kind\" answers nothing.",
+      "3": "\"for fifteen more\" - the shade costs extra, so \"Nothing at all?\" contradicts the line."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "reacting to a free repair",
+     "line": "It just needed a new socket, so there's no charge.",
+     "reply": "Nothing at all? That's generous of you.",
+     "explanationIfSpoken": "The repair is free, so surprised thanks is the natural reply.",
+     "kills": {
+      "0": "\"It just needed\" - the repair is described; no date is given, so \"older than my parents\" has no basis.",
+      "1": "\"so there's no charge\" - the repair is finished; no switch choice is asked.",
+      "2": "\"there's no charge\" - nothing more is offered, so \"Go ahead\" accepts nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b18",
+   "setting": "vacuum cleaner repair shop, repairer to customer",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "owning up to a clog's cause",
+     "line": "Most of what clogged it was long hair wrapped around the brush.",
+     "reply": "That'd be our golden retriever's doing.",
+     "explanationIfSpoken": "The clog was hair, so naming the dog as the source is the natural reply.",
+     "kills": {
+      "1": "\"what clogged it\" - only a clog, so the vacuum works and buying a new one contradicts the line.",
+      "2": "\"wrapped around the brush\" - no request is made, so \"them\" has no referent.",
+      "3": "\"Most of what clogged\" - a statement, not a when-question, so \"The earlier one\" picks between nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "facing a replacement",
+     "line": "The battery's dead, and they don't make replacements anymore.",
+     "reply": "So I'm stuck buying a whole new one?",
+     "explanationIfSpoken": "No part exists, so asking whether a new vacuum is needed is the natural reply.",
+     "kills": {
+      "0": "\"The battery's dead\" - the fault is a battery, not hair, so blaming the dog has no basis.",
+      "2": "\"they don't make replacements\" - no request is made, so \"them\" has no referent.",
+      "3": "\"don't make replacements anymore\" - it cannot be repaired, so there is no return date to rush."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "taking back accessories",
+     "line": "Please leave the attachments; I just need the main unit.",
+     "reply": "Oh, I'll put them back in my car, then.",
+     "explanationIfSpoken": "The repairer does not need the attachments, so taking them back is the natural reply.",
+     "kills": {
+      "0": "\"I just need the\" - nothing has been opened yet, so there is no clog to blame on the dog.",
+      "1": "\"I just need the main unit\" - it is being taken in for repair, so no replacement verdict exists.",
+      "3": "\"Please leave the attachments\" - a request, not a when-question, so \"The earlier one\" picks between nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a return date",
+     "line": "Do you want it back by Friday, or is next week fine?",
+     "reply": "The earlier one; I'm hosting on Saturday.",
+     "explanationIfSpoken": "The repairer asks when it is needed, so picking the earlier option is the natural reply.",
+     "kills": {
+      "0": "\"Do you want it\" - a question; no cause is reported, so blaming the dog answers nothing.",
+      "1": "\"want it back by Friday\" - it will be repaired, so buying a new one contradicts the line.",
+      "2": "\"Do you want it back\" - a question, not a request, so \"them\" has no referent."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b19",
+   "setting": "snow removal service phone call, dispatcher to homeowner",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "noticing an early visit",
+     "line": "Sorry, your plow visit's at five a.m., not five p.m.",
+     "reply": "Oh, so you'll come before sunrise?",
+     "explanationIfSpoken": "The visit is at 5 a.m., so noticing it is before dawn is the natural reply.",
+     "kills": {
+      "1": "\"your plow visit's at\" - a time correction; nothing is added, so there is no sidewalk for the mail carrier.",
+      "2": "\"at five a.m.\" - a fixed visit, not a snowfall threshold, so \"So a light dusting\" infers nothing.",
+      "3": "\"your plow visit's\" - a correction, not a request, so \"Will do\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "welcoming an added service",
+     "line": "We've added your sidewalk to the plan at no extra cost.",
+     "reply": "My mail carrier will be thrilled, then.",
+     "explanationIfSpoken": "The sidewalk will now be cleared, so saying the mail carrier will benefit is the natural reply.",
+     "kills": {
+      "0": "\"We've added your sidewalk\" - no time is given, so \"before sunrise\" has no basis.",
+      "2": "\"added your sidewalk to the plan\" - a free addition, not a snowfall threshold, so \"So a light dusting\" infers nothing.",
+      "3": "\"at no extra cost\" - nothing is asked of the homeowner, so \"Will do\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "checking a snowfall threshold",
+     "line": "Our trucks go out once there's three inches on the ground.",
+     "reply": "So a light dusting won't bring you out?",
+     "explanationIfSpoken": "The service has a minimum depth, so checking that small snowfalls are skipped is the natural reply.",
+     "kills": {
+      "0": "\"once there's three inches\" - a rule, not a fixed time, so \"before sunrise\" has no basis.",
+      "1": "\"Our trucks go out\" - a rule, not an added service, so the mail carrier gains nothing.",
+      "3": "\"Our trucks go out\" - nothing is asked of the homeowner, so \"Will do\" agrees to nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agreeing to buy markers",
+     "line": "Please mark your driveway edges with stakes before it snows.",
+     "reply": "Will do; I'll pick some up this weekend.",
+     "explanationIfSpoken": "The dispatcher asks for stakes, so agreeing to buy some is the natural reply.",
+     "kills": {
+      "0": "\"before it snows\" - an instruction, not a visit time, so \"before sunrise\" has no basis.",
+      "1": "\"Please mark your driveway\" - work is asked of the homeowner, not added for free.",
+      "2": "\"Please mark your driveway\" - a request, not a threshold, so \"So a light dusting\" infers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "cr20-b20",
+   "setting": "fence installation estimate visit, contractor to homeowner",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "reacting to a fence's lifespan",
+     "line": "Cedar fences like this usually last about fifteen years.",
+     "reply": "Probably longer than I'll live here.",
+     "explanationIfSpoken": "The contractor gives a lifespan, so comparing it with one's own plans is the natural reply.",
+     "kills": {
+      "1": "\"usually last about\" - a statement, not a which-question, so \"Near the car\" answers nothing.",
+      "2": "\"Cedar fences like this\" - nothing is offered, so \"stack them\" has no referent.",
+      "3": "\"last about fifteen years\" - no price is corrected, so there is no higher total."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "choosing a gate position",
+     "line": "Do you want the gate on the driveway side or the garden side?",
+     "reply": "Near the car, so groceries are easier.",
+     "explanationIfSpoken": "The contractor asks where the gate goes, so choosing the driveway side is the natural reply.",
+     "kills": {
+      "0": "\"Do you want the gate\" - a question; no lifespan is given, so \"longer than I'll live here\" compares nothing.",
+      "2": "\"on the driveway side\" - a which-question, not an offer, so \"Sure, stack them\" answers nothing.",
+      "3": "\"Do you want\" - no price is mentioned, so there is no higher total."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepting old posts",
+     "line": "I can leave the old posts if you want them for firewood.",
+     "reply": "Sure, stack them beside the shed for me.",
+     "explanationIfSpoken": "The contractor offers the old posts, so accepting and saying where is the natural reply.",
+     "kills": {
+      "0": "\"I can leave\" - an offer; no lifespan is given, so \"longer than I'll live here\" compares nothing.",
+      "1": "\"if you want them\" - a yes/no offer, not a which-question, so \"Near the car\" answers nothing.",
+      "3": "\"I can leave the old posts\" - no price is corrected, so there is no higher total."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "inferring a higher total",
+     "line": "Sorry, that estimate was per foot, not per section.",
+     "reply": "So the total will be a lot higher?",
+     "explanationIfSpoken": "A per-foot price multiplies over many more units than a per-section one, so expecting a higher total is the natural reply.",
+     "kills": {
+      "0": "\"that estimate was\" - a price correction, not a lifespan, so \"longer than I'll live here\" compares nothing.",
+      "1": "\"per foot, not per section\" - a correction, not a which-question, so \"Near the car\" answers nothing.",
+      "2": "\"Sorry, that estimate\" - nothing is offered, so \"stack them\" has no referent."
+     }
+    }
+   ]
+  }
+ ]
+}
