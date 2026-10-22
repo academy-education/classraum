@@ -57,3 +57,5 @@ The held passages are unserved, not archived, and await an owner-approved wordin
 SSAT Reading stays at 5 clean forms (form 6 is 35/40); the 12 held items would complete it. Other notes: four easy
 main-idea/function sets, and two keys that could be more precise ("queue" -> rows/files; "stall" -> break down).
 Neither has a competing distractor.
+
+**Follow-up, same day:** owner approved both fixes ("Approve it"); the 12 held items were corrected with his suggested wording and released (`fixes/ssat-draft3-held-passages-2026-10-22.mjs`). Their reviews are on the earlier text and are stale. SSAT Reading 5 -> 6 clean forms.

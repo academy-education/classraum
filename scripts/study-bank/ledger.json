@@ -4050,13 +4050,13 @@
       "task": "multiple_choice",
       "family": "mc_hidden_source",
       "cohort": "ssat-reading-draft-3",
-      "contentSha": "a68192d5e2fb9d0ec7b1c4b3a28f6e18a3d205774bd478c3a5e4876d36b64258",
-      "status": "staged-for-human-edit",
-      "note": "Third SSAT draft-route batch: 6 passages x 6 = 36 items written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in ssat-reading-draft-3.RELEASE.PREREG.md (draft 1 rule). contentSha = sha256 of ssat-reading-draft-3.batch.json. REGISTER section 5, 2026-10-21. Pre-sitting author fix 2026-10-22: poem item 7fd034ad said \"third stanza\", the word is in the fourth; corrected before any review (fixes/ssat-draft3-stanza-ref-2026-10-22.mjs). contentSha moved from 6262c550348a.",
+      "contentSha": "cf90bdc817aecb79fa371cb1cae5f1dd8223aa85ecc9b61aab36a2640f10b68c",
+      "status": "released",
+      "note": "Third SSAT draft-route batch: 6 passages x 6 = 36 items written in-session by Claude, inserted verified=false with verify_meta.draft. Release only by the co-founder sitting pre-registered in ssat-reading-draft-3.RELEASE.PREREG.md (draft 1 rule). contentSha = sha256 of ssat-reading-draft-3.batch.json. REGISTER section 5, 2026-10-21. Pre-sitting author fix 2026-10-22: poem item 7fd034ad said \"third stanza\", the word is in the fourth; corrected before any review (fixes/ssat-draft3-stanza-ref-2026-10-22.mjs). contentSha moved from 6262c550348a. Released 2026-10-22: 24 by the sitting rule, then the 2 held passages (12) after an owner-approved fix of factual errors he named (offside rule; goldfish origin sentence), fixes/ssat-draft3-held-passages-2026-10-22.mjs. contentSha moved from a68192d5e2fb.",
       "stages": {
         "shape": {
           "passed": true,
-          "contentSha": "a68192d5e2fb9d0ec7b1c4b3a28f6e18a3d205774bd478c3a5e4876d36b64258",
+          "contentSha": "cf90bdc817aecb79fa371cb1cae5f1dd8223aa85ecc9b61aab36a2640f10b68c",
           "verdict": "merge.mjs (draft-2 checks): 0 problems after pre-insert edits (poem 212 -> 233 words; attitude-table word removed; key uniquely longest 14/36 -> 7/36 by one lengthened distractor on 7 items; key uniquely shortest 1/36 recorded). Key slots 8/7/7/7/7. Edit screen 36/36."
         },
         "nosource": {
