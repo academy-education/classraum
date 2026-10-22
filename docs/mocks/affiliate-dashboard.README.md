@@ -2,7 +2,12 @@
 
 `affiliate-dashboard.html` is a static, self-contained mock for the Study referral partners
 신세기유학원 (uhak114.com) and HIS 헤럴드교육센터 (hisacademy.co.kr). Open it in a browser. Every number
-is generated sample data and the page says so. KO is the default language, with an EN toggle; it
+is generated sample data and the page says so.
+
+**Logos are hot-linked from the partners' own sites** (`uhak114.com/layout/images/common/logo_on.png`,
+`hisacademy.co.kr/assets/images/logo01-3.svg`) for the mock only. Before production, get official
+logo files and written permission from each partner and host them ourselves; both are dark-text
+marks, so the page shows them on a white plate. KO is the default language, with an EN toggle; it
 supports light and dark themes and a phone layout.
 
 ## What each block needs from the real system
