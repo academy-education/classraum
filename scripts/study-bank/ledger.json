@@ -9313,6 +9313,33 @@
           "verdict": "Key token-Jaccard max 0.33 vs 201 live keys, 0.25 within batch (bar 0.5); passive-with-agent 0/46 (bar <= 20%); 44 structure families; difficulty 31 medium / 15 hard as authored."
         }
       }
+    },
+    {
+      "id": "crv7-b7-2026-10-22",
+      "createdAt": "2026-10-22",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "cohort": "cr-v11",
+      "contentSha": "03636b01035eef2b9770121d998a029a62426d426ec31594a5e85743e9dd3901",
+      "status": "staged-for-human-edit",
+      "note": "16 Choose a Response items, crv7 four-world method, seed offset 700, written in-session by Claude for the lower paths (Choose a Response binds lower/easy 11, lower/medium 12); staged verified=false; release only by the co-founder runs in crv7-b7.RELEASE.PREREG.md. contentSha = sha256 of crv7-b7.batch.json. REGISTER section 5, 2026-10-22.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "03636b01035eef2b9770121d998a029a62426d426ec31594a5e85743e9dd3901",
+          "verdict": "render-crv7.mjs: key letters 4/4/4/4, key longest 4/16, typography level key vs distractor, blind file carries no spoken line; 4 items over the 1.6 reply-length ratio (max 1.90), reported not rewritten. No spoken line matches any of 249 live lines."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN (no agents since 2026-10-12); the human sitting decides TOEFL listening."
+        },
+        "withsource": {
+          "passed": null,
+          "verdict": "NOT RUN by an independent reader."
+        }
+      }
     }
   ],
   "auditedCohorts": [
