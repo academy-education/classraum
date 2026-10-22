@@ -1,0 +1,2477 @@
+[
+ {
+  "id": "ASV5d-P1-Q1",
+  "passage_id": "sc5d-p1",
+  "passage_title": "Thermal Expansion of Metal Rods",
+  "format": "data_representation",
+  "passage": "Most solids expand when heated. Students measured the thermal expansion of rods made of four metals. Each rod was exactly 1.000 m long at 20 °C. A rod was placed in a long water-filled trough, one end was clamped against a fixed stop, and the other end pressed against a dial gauge that measured changes in length to the nearest 0.01 mm. The water was heated to a final temperature of 40 °C, 60 °C, 80 °C, or 100 °C and held there until the gauge reading stopped changing. Table 1 gives the increase in length of each rod at each final temperature, measured from its length at 20 °C. For a given metal and temperature change, the increase in length of a rod is proportional to the rod's original length.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Increase in length (mm) of 1.000 m metal rods heated from 20 °C",
+   "colLabels": [
+    "Heated to 40 °C",
+    "Heated to 60 °C",
+    "Heated to 80 °C",
+    "Heated to 100 °C"
+   ],
+   "rowLabels": [
+    "Aluminum",
+    "Brass",
+    "Copper",
+    "Steel"
+   ],
+   "cells": [
+    [
+     "0.46",
+     "0.92",
+     "1.38",
+     "1.84"
+    ],
+    [
+     "0.38",
+     "0.76",
+     "1.14",
+     "1.52"
+    ],
+    [
+     "0.34",
+     "0.68",
+     "1.02",
+     "1.36"
+    ],
+    [
+     "0.24",
+     "0.48",
+     "0.72",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, when the copper rod was heated to 80 °C, its length increased by:",
+  "choices": [
+   "0.72 mm",
+   "1.02 mm",
+   "1.14 mm",
+   "1.38 mm"
+  ],
+  "correct_answer": "1.02 mm",
+  "explanation": "In the copper row of Table 1, the 80 °C column reads \"1.02 mm.\" The value 0.72 mm is the steel rod at 80 °C, 1.14 mm is the brass rod at 80 °C, and 1.38 mm is the aluminum rod at 80 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P1-Q2",
+  "passage_id": "sc5d-p1",
+  "passage_title": "Thermal Expansion of Metal Rods",
+  "format": "data_representation",
+  "passage": "Most solids expand when heated. Students measured the thermal expansion of rods made of four metals. Each rod was exactly 1.000 m long at 20 °C. A rod was placed in a long water-filled trough, one end was clamped against a fixed stop, and the other end pressed against a dial gauge that measured changes in length to the nearest 0.01 mm. The water was heated to a final temperature of 40 °C, 60 °C, 80 °C, or 100 °C and held there until the gauge reading stopped changing. Table 1 gives the increase in length of each rod at each final temperature, measured from its length at 20 °C. For a given metal and temperature change, the increase in length of a rod is proportional to the rod's original length.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Increase in length (mm) of 1.000 m metal rods heated from 20 °C",
+   "colLabels": [
+    "Heated to 40 °C",
+    "Heated to 60 °C",
+    "Heated to 80 °C",
+    "Heated to 100 °C"
+   ],
+   "rowLabels": [
+    "Aluminum",
+    "Brass",
+    "Copper",
+    "Steel"
+   ],
+   "cells": [
+    [
+     "0.46",
+     "0.92",
+     "1.38",
+     "1.84"
+    ],
+    [
+     "0.38",
+     "0.76",
+     "1.14",
+     "1.52"
+    ],
+    [
+     "0.34",
+     "0.68",
+     "1.02",
+     "1.36"
+    ],
+    [
+     "0.24",
+     "0.48",
+     "0.72",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as the final temperature increased from 40 °C to 100 °C, the increase in length of each rod:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "remained the same."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "Every row of Table 1 rises from left to right; for example, the steel rod's increase goes 0.24, 0.48, 0.72, and 0.96 mm. So for each rod the increase in length \"increased only.\" No row falls, peaks, or stays constant.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P1-Q3",
+  "passage_id": "sc5d-p1",
+  "passage_title": "Thermal Expansion of Metal Rods",
+  "format": "data_representation",
+  "passage": "Most solids expand when heated. Students measured the thermal expansion of rods made of four metals. Each rod was exactly 1.000 m long at 20 °C. A rod was placed in a long water-filled trough, one end was clamped against a fixed stop, and the other end pressed against a dial gauge that measured changes in length to the nearest 0.01 mm. The water was heated to a final temperature of 40 °C, 60 °C, 80 °C, or 100 °C and held there until the gauge reading stopped changing. Table 1 gives the increase in length of each rod at each final temperature, measured from its length at 20 °C. For a given metal and temperature change, the increase in length of a rod is proportional to the rod's original length.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Increase in length (mm) of 1.000 m metal rods heated from 20 °C",
+   "colLabels": [
+    "Heated to 40 °C",
+    "Heated to 60 °C",
+    "Heated to 80 °C",
+    "Heated to 100 °C"
+   ],
+   "rowLabels": [
+    "Aluminum",
+    "Brass",
+    "Copper",
+    "Steel"
+   ],
+   "cells": [
+    [
+     "0.46",
+     "0.92",
+     "1.38",
+     "1.84"
+    ],
+    [
+     "0.38",
+     "0.76",
+     "1.14",
+     "1.52"
+    ],
+    [
+     "0.34",
+     "0.68",
+     "1.02",
+     "1.36"
+    ],
+    [
+     "0.24",
+     "0.48",
+     "0.72",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if the steel rod had been heated from 20 °C to 70 °C, its length would most likely have increased by about:",
+  "choices": [
+   "0.40 mm",
+   "0.60 mm",
+   "0.80 mm",
+   "1.19 mm"
+  ],
+  "correct_answer": "0.60 mm",
+  "explanation": "The steel rod lengthened by 0.48 mm at 60 °C and 0.72 mm at 80 °C, rising steadily, so at 70 °C the increase should lie between those values; only \"0.60 mm\" does. The value 0.40 mm is less than the 60 °C value, 0.80 mm is more than the 80 °C value, and 1.19 mm is about what the aluminum rod would show at 70 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P1-Q4",
+  "passage_id": "sc5d-p1",
+  "passage_title": "Thermal Expansion of Metal Rods",
+  "format": "data_representation",
+  "passage": "Most solids expand when heated. Students measured the thermal expansion of rods made of four metals. Each rod was exactly 1.000 m long at 20 °C. A rod was placed in a long water-filled trough, one end was clamped against a fixed stop, and the other end pressed against a dial gauge that measured changes in length to the nearest 0.01 mm. The water was heated to a final temperature of 40 °C, 60 °C, 80 °C, or 100 °C and held there until the gauge reading stopped changing. Table 1 gives the increase in length of each rod at each final temperature, measured from its length at 20 °C. For a given metal and temperature change, the increase in length of a rod is proportional to the rod's original length.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Increase in length (mm) of 1.000 m metal rods heated from 20 °C",
+   "colLabels": [
+    "Heated to 40 °C",
+    "Heated to 60 °C",
+    "Heated to 80 °C",
+    "Heated to 100 °C"
+   ],
+   "rowLabels": [
+    "Aluminum",
+    "Brass",
+    "Copper",
+    "Steel"
+   ],
+   "cells": [
+    [
+     "0.46",
+     "0.92",
+     "1.38",
+     "1.84"
+    ],
+    [
+     "0.38",
+     "0.76",
+     "1.14",
+     "1.52"
+    ],
+    [
+     "0.34",
+     "0.68",
+     "1.02",
+     "1.36"
+    ],
+    [
+     "0.24",
+     "0.48",
+     "0.72",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1 and the passage, a brass rod that was 2.000 m long at 20 °C and was heated to 60 °C would increase in length by approximately:",
+  "choices": [
+   "1.52 mm",
+   "1.14 mm",
+   "0.76 mm",
+   "0.38 mm"
+  ],
+  "correct_answer": "1.52 mm",
+  "explanation": "The 1.000 m brass rod lengthened by 0.76 mm when heated to 60 °C. The passage states that the increase is proportional to the original length, so a rod twice as long increases twice as much: 2 × 0.76 mm = \"1.52 mm.\" The value 0.76 mm ignores the doubled length, 0.38 mm halves instead of doubling, and 1.14 mm is the 1.000 m brass rod at 80 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a stated proportionality to table data",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P1-Q5",
+  "passage_id": "sc5d-p1",
+  "passage_title": "Thermal Expansion of Metal Rods",
+  "format": "data_representation",
+  "passage": "Most solids expand when heated. Students measured the thermal expansion of rods made of four metals. Each rod was exactly 1.000 m long at 20 °C. A rod was placed in a long water-filled trough, one end was clamped against a fixed stop, and the other end pressed against a dial gauge that measured changes in length to the nearest 0.01 mm. The water was heated to a final temperature of 40 °C, 60 °C, 80 °C, or 100 °C and held there until the gauge reading stopped changing. Table 1 gives the increase in length of each rod at each final temperature, measured from its length at 20 °C. For a given metal and temperature change, the increase in length of a rod is proportional to the rod's original length.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Increase in length (mm) of 1.000 m metal rods heated from 20 °C",
+   "colLabels": [
+    "Heated to 40 °C",
+    "Heated to 60 °C",
+    "Heated to 80 °C",
+    "Heated to 100 °C"
+   ],
+   "rowLabels": [
+    "Aluminum",
+    "Brass",
+    "Copper",
+    "Steel"
+   ],
+   "cells": [
+    [
+     "0.46",
+     "0.92",
+     "1.38",
+     "1.84"
+    ],
+    [
+     "0.38",
+     "0.76",
+     "1.14",
+     "1.52"
+    ],
+    [
+     "0.34",
+     "0.68",
+     "1.02",
+     "1.36"
+    ],
+    [
+     "0.24",
+     "0.48",
+     "0.72",
+     "0.96"
+    ]
+   ]
+  },
+  "prompt": "A bimetallic strip is made by bonding two strips of different metals together along their length. When the strip is heated, it curls so that the metal that lengthens more is on the outer side of the curve. Based on Table 1, if a strip made of copper bonded to steel were heated, which metal would be on the outer side of the curve?",
+  "choices": [
+   "Steel, because steel lengthened less than copper at every temperature tested",
+   "Steel, because steel lengthened more than copper at every temperature tested",
+   "Copper, because copper lengthened less than steel at every temperature tested",
+   "Copper, because copper lengthened more than steel at every temperature tested"
+  ],
+  "correct_answer": "Copper, because copper lengthened more than steel at every temperature tested",
+  "explanation": "At every final temperature the copper rod lengthened more than the steel rod (for example, 1.36 mm versus 0.96 mm at 100 °C). The metal that lengthens more is on the outer side, so the answer is copper for that reason. Copper did not lengthen less than steel, and steel, which lengthened less, would be on the inner side of the curve.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a stated rule to compare rows",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P2-Q1",
+  "passage_id": "sc5d-p2",
+  "passage_title": "Strength of an Electromagnet",
+  "format": "data_representation",
+  "passage": "An electromagnet can be made by winding insulated wire around an iron core and passing an electric current through the wire. Students wound insulated copper wire around the same iron bolt to make coils of 25, 50, 75, and 100 turns. For each coil, they connected the wire to an adjustable power supply and set the current to 0.5, 1.0, or 1.5 amperes (A). With the current on, they touched one end of the bolt to a pile of identical steel paper clips, lifted it slowly, and counted the clips that remained attached to the bolt. Each combination was tested three times, and the average number of clips lifted, rounded to the nearest whole number, is shown in Table 1. The same bolt and the same type of paper clip were used in every trial.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average number of paper clips lifted by the electromagnet",
+   "colLabels": [
+    "Current 0.5 A",
+    "Current 1.0 A",
+    "Current 1.5 A"
+   ],
+   "rowLabels": [
+    "25 turns",
+    "50 turns",
+    "75 turns",
+    "100 turns"
+   ],
+   "cells": [
+    [
+     "2",
+     "5",
+     "7"
+    ],
+    [
+     "5",
+     "10",
+     "14"
+    ],
+    [
+     "7",
+     "14",
+     "21"
+    ],
+    [
+     "10",
+     "19",
+     "26"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, how many paper clips, on average, did the 75-turn coil lift at a current of 1.0 A?",
+  "choices": [
+   "7",
+   "10",
+   "14",
+   "21"
+  ],
+  "correct_answer": "14",
+  "explanation": "In the 75-turn row of Table 1, the 1.0 A column reads \"14.\" The value 7 is the 75-turn coil at 0.5 A, 21 is the 75-turn coil at 1.5 A, and 10 is the 50-turn coil at 1.0 A.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P2-Q2",
+  "passage_id": "sc5d-p2",
+  "passage_title": "Strength of an Electromagnet",
+  "format": "data_representation",
+  "passage": "An electromagnet can be made by winding insulated wire around an iron core and passing an electric current through the wire. Students wound insulated copper wire around the same iron bolt to make coils of 25, 50, 75, and 100 turns. For each coil, they connected the wire to an adjustable power supply and set the current to 0.5, 1.0, or 1.5 amperes (A). With the current on, they touched one end of the bolt to a pile of identical steel paper clips, lifted it slowly, and counted the clips that remained attached to the bolt. Each combination was tested three times, and the average number of clips lifted, rounded to the nearest whole number, is shown in Table 1. The same bolt and the same type of paper clip were used in every trial.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average number of paper clips lifted by the electromagnet",
+   "colLabels": [
+    "Current 0.5 A",
+    "Current 1.0 A",
+    "Current 1.5 A"
+   ],
+   "rowLabels": [
+    "25 turns",
+    "50 turns",
+    "75 turns",
+    "100 turns"
+   ],
+   "cells": [
+    [
+     "2",
+     "5",
+     "7"
+    ],
+    [
+     "5",
+     "10",
+     "14"
+    ],
+    [
+     "7",
+     "14",
+     "21"
+    ],
+    [
+     "10",
+     "19",
+     "26"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, which of the following combinations lifted the same average number of paper clips as the 50-turn coil at 1.0 A?",
+  "choices": [
+   "100 turns at 0.5 A",
+   "25 turns at 1.5 A",
+   "75 turns at 0.5 A",
+   "100 turns at 1.0 A"
+  ],
+  "correct_answer": "100 turns at 0.5 A",
+  "explanation": "The 50-turn coil at 1.0 A lifted 10 clips, and the only other entry of 10 is \"100 turns at 0.5 A.\" The 25-turn coil at 1.5 A and the 75-turn coil at 0.5 A each lifted 7 clips, and the 100-turn coil at 1.0 A lifted 19.",
+  "domain": "Interpretation of Data",
+  "subskill": "match equal values across a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P2-Q3",
+  "passage_id": "sc5d-p2",
+  "passage_title": "Strength of an Electromagnet",
+  "format": "data_representation",
+  "passage": "An electromagnet can be made by winding insulated wire around an iron core and passing an electric current through the wire. Students wound insulated copper wire around the same iron bolt to make coils of 25, 50, 75, and 100 turns. For each coil, they connected the wire to an adjustable power supply and set the current to 0.5, 1.0, or 1.5 amperes (A). With the current on, they touched one end of the bolt to a pile of identical steel paper clips, lifted it slowly, and counted the clips that remained attached to the bolt. Each combination was tested three times, and the average number of clips lifted, rounded to the nearest whole number, is shown in Table 1. The same bolt and the same type of paper clip were used in every trial.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average number of paper clips lifted by the electromagnet",
+   "colLabels": [
+    "Current 0.5 A",
+    "Current 1.0 A",
+    "Current 1.5 A"
+   ],
+   "rowLabels": [
+    "25 turns",
+    "50 turns",
+    "75 turns",
+    "100 turns"
+   ],
+   "cells": [
+    [
+     "2",
+     "5",
+     "7"
+    ],
+    [
+     "5",
+     "10",
+     "14"
+    ],
+    [
+     "7",
+     "14",
+     "21"
+    ],
+    [
+     "10",
+     "19",
+     "26"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if the 100-turn coil had been tested at a current of 1.25 A, the average number of paper clips lifted would most likely have been closest to:",
+  "choices": [
+   "14",
+   "17",
+   "23",
+   "28"
+  ],
+  "correct_answer": "23",
+  "explanation": "The 100-turn coil lifted 19 clips at 1.0 A and 26 clips at 1.5 A, increasing with current, so at 1.25 A it should lift a number between 19 and 26; of the choices, only \"23\" lies in that range. The values 14 and 17 are fewer than the 1.0 A result, and 28 is more than the 1.5 A result.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P2-Q4",
+  "passage_id": "sc5d-p2",
+  "passage_title": "Strength of an Electromagnet",
+  "format": "data_representation",
+  "passage": "An electromagnet can be made by winding insulated wire around an iron core and passing an electric current through the wire. Students wound insulated copper wire around the same iron bolt to make coils of 25, 50, 75, and 100 turns. For each coil, they connected the wire to an adjustable power supply and set the current to 0.5, 1.0, or 1.5 amperes (A). With the current on, they touched one end of the bolt to a pile of identical steel paper clips, lifted it slowly, and counted the clips that remained attached to the bolt. Each combination was tested three times, and the average number of clips lifted, rounded to the nearest whole number, is shown in Table 1. The same bolt and the same type of paper clip were used in every trial.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average number of paper clips lifted by the electromagnet",
+   "colLabels": [
+    "Current 0.5 A",
+    "Current 1.0 A",
+    "Current 1.5 A"
+   ],
+   "rowLabels": [
+    "25 turns",
+    "50 turns",
+    "75 turns",
+    "100 turns"
+   ],
+   "cells": [
+    [
+     "2",
+     "5",
+     "7"
+    ],
+    [
+     "5",
+     "10",
+     "14"
+    ],
+    [
+     "7",
+     "14",
+     "21"
+    ],
+    [
+     "10",
+     "19",
+     "26"
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, the number of paper clips lifted depended most closely on which of the following quantities?",
+  "choices": [
+   "The number of turns multiplied by the current",
+   "The number of turns in the coil, whatever the current",
+   "The current in the wire, whatever the number of turns",
+   "The number of turns added to the current in amperes"
+  ],
+  "correct_answer": "The number of turns multiplied by the current",
+  "explanation": "Combinations with the same product of turns and current lifted the same number of clips: 25 × 1.5 and 75 × 0.5 both equal 37.5 and both lifted 7; 50 × 1.0 and 100 × 0.5 both equal 50 and both lifted 10; 50 × 1.5 and 75 × 1.0 both equal 75 and both lifted 14. So the result tracks \"The number of turns multiplied by the current.\" Turns alone fails because the 75-turn coil lifted anywhere from 7 to 21 clips; current alone fails because at 1.0 A results ranged from 5 to 19; and the sum fails because 25 + 1.5 and 75 + 0.5 differ greatly yet gave the same result.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "infer a combined relationship from a table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P2-Q5",
+  "passage_id": "sc5d-p2",
+  "passage_title": "Strength of an Electromagnet",
+  "format": "data_representation",
+  "passage": "An electromagnet can be made by winding insulated wire around an iron core and passing an electric current through the wire. Students wound insulated copper wire around the same iron bolt to make coils of 25, 50, 75, and 100 turns. For each coil, they connected the wire to an adjustable power supply and set the current to 0.5, 1.0, or 1.5 amperes (A). With the current on, they touched one end of the bolt to a pile of identical steel paper clips, lifted it slowly, and counted the clips that remained attached to the bolt. Each combination was tested three times, and the average number of clips lifted, rounded to the nearest whole number, is shown in Table 1. The same bolt and the same type of paper clip were used in every trial.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average number of paper clips lifted by the electromagnet",
+   "colLabels": [
+    "Current 0.5 A",
+    "Current 1.0 A",
+    "Current 1.5 A"
+   ],
+   "rowLabels": [
+    "25 turns",
+    "50 turns",
+    "75 turns",
+    "100 turns"
+   ],
+   "cells": [
+    [
+     "2",
+     "5",
+     "7"
+    ],
+    [
+     "5",
+     "10",
+     "14"
+    ],
+    [
+     "7",
+     "14",
+     "21"
+    ],
+    [
+     "10",
+     "19",
+     "26"
+    ]
+   ]
+  },
+  "prompt": "In this experiment, which of the following was held constant in every trial?",
+  "choices": [
+   "The number of turns in the coil",
+   "The current in the wire",
+   "The bolt used as the core",
+   "The number of paper clips lifted"
+  ],
+  "correct_answer": "The bolt used as the core",
+  "explanation": "The passage states that the same bolt and the same type of paper clip were used in every trial, so \"The bolt used as the core\" was held constant. The number of turns and the current were deliberately varied, and the number of clips lifted was the quantity measured.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a controlled variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P3-Q1",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, the block had the greatest critical angle when its bottom was covered with:",
+  "choices": [
+   "plastic.",
+   "felt.",
+   "sandpaper.",
+   "rubber."
+  ],
+  "correct_answer": "rubber.",
+  "explanation": "In Table 1, the Experiment 1 critical angles are 17° for plastic, 24° for felt, 31° for sandpaper, and 38° for rubber, so the block covered with \"rubber\" had the greatest critical angle. Plastic had the smallest.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify an extreme value in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P3-Q2",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 2, if the felt-covered block had been given a total mass of 300 g, its critical angle would most likely have been closest to:",
+  "choices": [
+   "12°",
+   "17°",
+   "24°",
+   "36°"
+  ],
+  "correct_answer": "24°",
+  "explanation": "In Experiment 2, the felt-covered block had a critical angle of 24° at 100 g, 200 g, and 400 g, so the critical angle did not depend on mass, and a 300 g block should also start sliding at about \"24°.\" The value 36° assumes the angle grows with mass, 12° assumes it shrinks, and 17° is the critical angle of the plastic-covered block.",
+  "domain": "Interpretation of Data",
+  "subskill": "predict from a constant result",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P3-Q3",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, the ramp angle was most likely set at 40° rather than at 30° because at 30°:",
+  "choices": [
+   "the plastic-covered block would have slid but no other block would have.",
+   "the plastic- and felt-covered blocks would not have started to slide.",
+   "the sandpaper- and rubber-covered blocks would not have started to slide.",
+   "all four blocks would have slid down the ramp too quickly to be timed accurately."
+  ],
+  "correct_answer": "the sandpaper- and rubber-covered blocks would not have started to slide.",
+  "explanation": "A block slides from rest only if the ramp is at or above its critical angle. From Experiment 1, sandpaper (31°) and rubber (38°) have critical angles above 30°, so at 30° \"the sandpaper- and rubber-covered blocks would not have started to slide.\" Plastic (17°) and felt (24°) have critical angles below 30°, so both would have slid; the plastic block would not have been the only one to slide, and neither plastic nor felt would have stayed put. At 40° every block slid, and the slowest took over a second, so a lower angle would not make the blocks too fast to time.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain a choice of experimental condition",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P3-Q4",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "Suppose the bottom of the block had been covered with cork, and the cork-covered 200 g block had a critical angle of 28° when tested as in Experiment 1. Based on Experiments 1 and 3, if the cork-covered block were tested as in Experiment 3, its time to slide 1.00 m would most likely have been:",
+  "choices": [
+   "less than 0.67 s.",
+   "between 0.67 s and 0.75 s.",
+   "between 0.75 s and 0.89 s.",
+   "greater than 1.19 s."
+  ],
+  "correct_answer": "between 0.75 s and 0.89 s.",
+  "explanation": "Across the four materials, a greater critical angle in Experiment 1 went with a longer time in Experiment 3: plastic 17° and 0.67 s, felt 24° and 0.75 s, sandpaper 31° and 0.89 s, rubber 38° and 1.19 s. A critical angle of 28° lies between felt and sandpaper, so the time should lie \"between 0.75 s and 0.89 s.\" Times below 0.67 s or between 0.67 s and 0.75 s would fit critical angles smaller than felt's, and a time above 1.19 s would fit a critical angle greater than rubber's.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine two experiments to predict a value",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P3-Q5",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "How did Experiment 2 differ from Experiment 1?",
+  "choices": [
+   "In Experiment 2, the material on the block was varied and the mass was kept the same.",
+   "In Experiment 2, the ramp was fixed at one angle and the sliding time was measured.",
+   "In Experiment 2, both the mass of the block and the material on it were varied.",
+   "In Experiment 2, the mass of the block was varied and the material was kept the same."
+  ],
+  "correct_answer": "In Experiment 2, the mass of the block was varied and the material was kept the same.",
+  "explanation": "Experiment 1 varied the covering material with the mass fixed at 200 g; Experiment 2 used felt only and set the mass to 100 g, 200 g, or 400 g. So in Experiment 2 \"the mass of the block was varied and the material was kept the same.\" Varying the material at constant mass describes Experiment 1, fixing the angle and timing the slide describes Experiment 3, and no experiment varied both mass and material.",
+  "domain": "Scientific Investigation",
+  "subskill": "compare experimental designs",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P3-Q6",
+  "passage_id": "sc5d-p3",
+  "passage_title": "Blocks Sliding on a Ramp",
+  "format": "research_summaries",
+  "passage": "When a block rests on a ramp, friction between the block and the ramp keeps it from sliding. If the ramp is tilted steeply enough, the block begins to slide. The smallest angle between the ramp and the horizontal at which a block starts to slide is called the critical angle. Students used a wooden block whose bottom face could be covered with different materials and a smooth wooden ramp 1.20 m long whose angle could be adjusted. Lead weights could be fixed to the top of the block to change its total mass.\n\nExperiment 1\nThe bottom of the block was covered with plastic, felt, sandpaper, or rubber. The total mass of the block was 200 g. The block was placed at the top of the ramp, and the ramp, starting from horizontal, was tilted slowly until the block began to slide. The angle at that moment was recorded as the critical angle.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with the block covered with felt only, but with weights added so that the block's total mass was 100 g, 200 g, or 400 g.\n\nExperiment 3\nThe ramp was fixed at an angle of 40°. The 200 g block, covered with each of the four materials in turn, was held at rest at the top of the ramp and released. The time for the block to slide 1.00 m down the ramp was measured with two light gates.\n\nEach value in Table 1 is the average of five trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Total mass of block (g)",
+    "Critical angle (°)",
+    "Time to slide 1.00 m at 40° (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1, plastic",
+    "Exp. 1, felt",
+    "Exp. 1, sandpaper",
+    "Exp. 1, rubber",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 2, felt",
+    "Exp. 3, plastic",
+    "Exp. 3, felt",
+    "Exp. 3, sandpaper",
+    "Exp. 3, rubber"
+   ],
+   "cells": [
+    [
+     "200",
+     "17",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "31",
+     "—"
+    ],
+    [
+     "200",
+     "38",
+     "—"
+    ],
+    [
+     "100",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "24",
+     "—"
+    ],
+    [
+     "400",
+     "24",
+     "—"
+    ],
+    [
+     "200",
+     "—",
+     "0.67"
+    ],
+    [
+     "200",
+     "—",
+     "0.75"
+    ],
+    [
+     "200",
+     "—",
+     "0.89"
+    ],
+    [
+     "200",
+     "—",
+     "1.19"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that a heavier block will begin to slide at a smaller ramp angle than a lighter block covered with the same material. Do the results of Experiment 2 support this claim?",
+  "choices": [
+   "No; all three blocks had the same critical angle.",
+   "Yes; the 400 g block had a smaller critical angle than the 100 g block.",
+   "Yes; the 400 g block had the longest sliding time of the three blocks.",
+   "No; the 400 g block had a larger critical angle than the 100 g block."
+  ],
+  "correct_answer": "No; all three blocks had the same critical angle.",
+  "explanation": "In Experiment 2, the felt-covered block had a critical angle of 24° at 100 g, 200 g, and 400 g, so the claim is not supported: \"all three blocks had the same critical angle.\" The 400 g block's angle was neither smaller nor larger than the 100 g block's, and sliding times were measured only in Experiment 3, which used 200 g blocks.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against results",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P4-Q1",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what volume of NaOH was needed to neutralize the 0.20 M HCl sample?",
+  "choices": [
+   "20.0 mL",
+   "15.0 mL",
+   "10.0 mL",
+   "5.0 mL"
+  ],
+  "correct_answer": "20.0 mL",
+  "explanation": "Table 1 lists \"20.0 mL\" of NaOH for the 0.20 M HCl sample in Experiment 1. The 0.05 M and 0.10 M samples required 5.0 mL and 10.0 mL, and no sample in Experiment 1 required 15.0 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P4-Q2",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "Based on Experiments 1 and 2, which brand of diluted vinegar had the greatest concentration of acetic acid?",
+  "choices": [
+   "Brand W",
+   "Brand X",
+   "Brand Y",
+   "Brand Z"
+  ],
+  "correct_answer": "Brand X",
+  "explanation": "Experiment 1 shows that a sample containing more acid needs more NaOH (5.0, 10.0, and 20.0 mL as the HCl concentration rose). In Experiment 2, the diluted vinegar that needed the most NaOH was Brand X, at 13.4 mL, so \"Brand X\" had the most acetic acid. Brand Y (11.7 mL) and Brand Z (9.1 mL) needed less, and Brand W (8.3 mL), which needed the least, had the lowest concentration.",
+  "domain": "Interpretation of Data",
+  "subskill": "rank samples using a relationship from another experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P4-Q3",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 3, over which of the following ranges of NaOH volume added did the pH of the mixture change the most?",
+  "choices": [
+   "From 0.0 mL to 5.0 mL",
+   "From 5.0 mL to 9.0 mL",
+   "From 9.9 mL to 10.1 mL",
+   "From 11.0 mL to 15.0 mL"
+  ],
+  "correct_answer": "From 9.9 mL to 10.1 mL",
+  "explanation": "In Experiment 3, the pH rose from 3.3 to 10.7, a change of 7.4, between 9.9 mL and 10.1 mL, so the greatest change occurred \"From 9.9 mL to 10.1 mL.\" The pH changed by only 0.5 from 0.0 to 5.0 mL, by 0.8 from 5.0 to 9.0 mL, and by 0.6 from 11.0 to 15.0 mL, even though those ranges are much wider.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between table rows",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P4-Q4",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "In Experiments 1 and 2, phenolphthalein was added to each sample in order to:",
+  "choices": [
+   "neutralize part of the acid before any NaOH was added.",
+   "show when enough NaOH had been added to neutralize all of the acid.",
+   "keep the pH of the sample constant while the NaOH was being added from the buret.",
+   "make the reaction between the acid and the NaOH occur more quickly and completely."
+  ],
+  "correct_answer": "show when enough NaOH had been added to neutralize all of the acid.",
+  "explanation": "The passage describes phenolphthalein as an indicator that is colorless in acid and turns pink once all the acid has been neutralized; NaOH was added until the solution first stayed pink. Its role was therefore to \"show when enough NaOH had been added to neutralize all of the acid.\" The passage does not say it reacts with the acid, holds the pH steady, or speeds the reaction, and Experiment 3 shows that the pH does change as NaOH is added.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a procedural step",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P4-Q5",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "Suppose Experiment 1 had been repeated with 0.20 M NaOH instead of 0.10 M NaOH. Based on Experiment 1, what volume of NaOH would most likely have been needed to neutralize the 0.10 M HCl sample?",
+  "choices": [
+   "2.5 mL",
+   "5.0 mL",
+   "10.0 mL",
+   "20.0 mL"
+  ],
+  "correct_answer": "5.0 mL",
+  "explanation": "With 0.10 M NaOH, the 0.10 M HCl sample needed 10.0 mL. Because each HCl molecule reacts with one hydroxide ion, the amount of OH⁻ needed is fixed; NaOH twice as concentrated delivers that amount in half the volume, \"5.0 mL.\" The value 10.0 mL ignores the change in concentration, 20.0 mL doubles the volume instead of halving it, and 2.5 mL halves it twice.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict the effect of changing a reagent concentration",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P4-Q6",
+  "passage_id": "sc5d-p4",
+  "passage_title": "Titration of Acids with a Base",
+  "format": "research_summaries",
+  "passage": "In a titration, a solution of a base is added slowly to an acid until all of the acid has been neutralized. Students titrated acids with a 0.10 M sodium hydroxide (NaOH) solution (M = moles of solute per liter of solution) added from a buret. Each molecule of hydrochloric acid (HCl) and each molecule of acetic acid reacts with exactly one hydroxide ion (OH⁻) from NaOH. Every acid sample had a volume of 10.0 mL.\n\nExperiment 1\nTwo drops of phenolphthalein, an indicator that is colorless in acidic solution and turns pink once all the acid has been neutralized, were added to each of three HCl samples, with concentrations of 0.05 M, 0.10 M, and 0.20 M. NaOH was added until the solution first stayed pink, and the volume of NaOH added was recorded.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with samples of four brands of vinegar, W, X, Y, and Z. Vinegar is a solution of acetic acid in water. Each vinegar had first been diluted with water to one-tenth of its original concentration.\n\nExperiment 3\nNo indicator was used. A pH probe was placed in a sample of 0.10 M HCl, and the pH was recorded as NaOH was added (lower pH means more acidic; pH 7 is neutral).",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of Experiments 1-3 (a dash means the quantity was not measured)",
+   "colLabels": [
+    "Volume of NaOH added (mL)",
+    "pH"
+   ],
+   "rowLabels": [
+    "Exp. 1, 0.05 M HCl",
+    "Exp. 1, 0.10 M HCl",
+    "Exp. 1, 0.20 M HCl",
+    "Exp. 2, vinegar W",
+    "Exp. 2, vinegar X",
+    "Exp. 2, vinegar Y",
+    "Exp. 2, vinegar Z",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "5.0",
+     "—"
+    ],
+    [
+     "10.0",
+     "—"
+    ],
+    [
+     "20.0",
+     "—"
+    ],
+    [
+     "8.3",
+     "—"
+    ],
+    [
+     "13.4",
+     "—"
+    ],
+    [
+     "11.7",
+     "—"
+    ],
+    [
+     "9.1",
+     "—"
+    ],
+    [
+     "0.0",
+     "1.0"
+    ],
+    [
+     "5.0",
+     "1.5"
+    ],
+    [
+     "9.0",
+     "2.3"
+    ],
+    [
+     "9.9",
+     "3.3"
+    ],
+    [
+     "10.1",
+     "10.7"
+    ],
+    [
+     "11.0",
+     "11.7"
+    ],
+    [
+     "15.0",
+     "12.3"
+    ]
+   ]
+  },
+  "prompt": "Based on Experiments 1 and 2, the concentration of acetic acid in the diluted Brand Y vinegar was closest to which of the following?",
+  "choices": [
+   "0.05 M",
+   "0.08 M",
+   "0.12 M",
+   "0.20 M"
+  ],
+  "correct_answer": "0.12 M",
+  "explanation": "Experiment 1 shows that the volume of 0.10 M NaOH needed is proportional to the acid concentration: 10.0 mL for 0.10 M. Since acetic acid also reacts one-to-one with OH⁻, the 11.7 mL needed for diluted Brand Y corresponds to about 0.117 M, closest to \"0.12 M.\" A concentration of 0.05 M would need about 5 mL, 0.08 M about 8 mL (near Brand W's 8.3 mL), and 0.20 M about 20 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "use a calibration series to find an unknown",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P5-Q1",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average heart rate of the Daphnia tested at 15 °C in Experiment 1?",
+  "choices": [
+   "140 beats/min",
+   "190 beats/min",
+   "210 beats/min",
+   "250 beats/min"
+  ],
+  "correct_answer": "190 beats/min",
+  "explanation": "The Experiment 1 row for 15 °C reads \"190 beats/min.\" The value 140 beats/min is the 10 °C result, 250 beats/min is the 20 °C result, and 210 beats/min is the Experiment 3 result for 1% ethanol.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P5-Q2",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 3, the average heart rate of Daphnia tested at 20 °C in 3% ethanol would most likely have been closest to:",
+  "choices": [
+   "110 beats/min",
+   "145 beats/min",
+   "180 beats/min",
+   "215 beats/min"
+  ],
+  "correct_answer": "145 beats/min",
+  "explanation": "In Experiment 3, heart rate fell steadily as ethanol increased, from 170 beats/min at 2% to 120 beats/min at 4%. At 3% it should lie between those values; only \"145 beats/min\" does. The value 110 beats/min is below the 4% result, and 180 and 215 beats/min are above the 2% result.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table rows",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P5-Q3",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "Experiments 2 and 3 were most likely both carried out at the same temperature because:",
+  "choices": [
+   "Experiment 1 showed that temperature does not affect Daphnia heart rate.",
+   "caffeine and ethanol do not dissolve in water at other temperatures.",
+   "Daphnia heart rates cannot be counted at temperatures other than 20 °C.",
+   "Experiment 1 showed that temperature affects Daphnia heart rate."
+  ],
+  "correct_answer": "Experiment 1 showed that temperature affects Daphnia heart rate.",
+  "explanation": "Experiment 1 showed heart rate rising from 140 to 300 beats/min between 10 °C and 25 °C. Holding Experiments 2 and 3 at one temperature keeps that variable from mixing with the effects of caffeine and ethanol; the reason is that \"Experiment 1 showed that temperature affects Daphnia heart rate.\" Experiment 1 did not show the opposite, the passage says nothing about the chemicals failing to dissolve, and heart rates were counted at four temperatures in Experiment 1.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain why a variable was controlled",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P5-Q4",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that caffeine and ethanol have opposite effects on the heart rate of Daphnia. Do the results of Experiments 2 and 3 support this hypothesis?",
+  "choices": [
+   "No; heart rate increased as the concentration of either substance increased.",
+   "No; heart rate decreased as the concentration of either substance increased.",
+   "Yes; heart rate decreased as caffeine concentration increased and increased as ethanol concentration increased.",
+   "Yes; heart rate increased as caffeine concentration increased and decreased as ethanol concentration increased."
+  ],
+  "correct_answer": "Yes; heart rate increased as caffeine concentration increased and decreased as ethanol concentration increased.",
+  "explanation": "Starting from 250 beats/min with neither substance, heart rate rose to 330 beats/min at 0.4 mg/mL caffeine and fell to 120 beats/min at 4% ethanol. So the hypothesis is supported because \"heart rate increased as caffeine concentration increased and decreased as ethanol concentration increased.\" Caffeine did not lower the heart rate, ethanol did not raise it, and the two substances did not act in the same direction.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against two experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P5-Q5",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "Based on Experiments 1 and 3, Daphnia in 2% ethanol at 20 °C had about the same average heart rate as Daphnia in pond water with no ethanol at a temperature:",
+  "choices": [
+   "below 10 °C.",
+   "between 10 °C and 15 °C.",
+   "between 15 °C and 20 °C.",
+   "between 20 °C and 25 °C."
+  ],
+  "correct_answer": "between 10 °C and 15 °C.",
+  "explanation": "In 2% ethanol the average heart rate was 170 beats/min. In Experiment 1, pond-water Daphnia averaged 140 beats/min at 10 °C and 190 beats/min at 15 °C, with heart rate rising steadily with temperature, so 170 beats/min corresponds to a temperature \"between 10 °C and 15 °C.\" Temperatures from 15 °C to 25 °C gave 190 to 300 beats/min, and below 10 °C the rate would be under 140 beats/min.",
+  "domain": "Interpretation of Data",
+  "subskill": "match a value across two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P5-Q6",
+  "passage_id": "sc5d-p5",
+  "passage_title": "Heart Rate of Daphnia",
+  "format": "research_summaries",
+  "passage": "Daphnia are tiny freshwater crustaceans whose bodies are transparent, so the heart can be seen beating under a microscope. Daphnia are ectotherms: their body temperature matches the temperature of the surrounding water. In each trial below, a single Daphnia was placed in a drop of the test solution on a microscope slide, held at the test temperature for 10 minutes, and then observed while its heartbeats were counted for 15 seconds. The count was multiplied by 4 to give beats per minute. Each condition was tested on 5 different Daphnia, and Table 1 gives the average heart rate. All Daphnia came from the same culture.\n\nExperiment 1\nDaphnia were tested in pond water at 10 °C, 15 °C, 20 °C, and 25 °C.\n\nExperiment 2\nDaphnia were tested at 20 °C in pond water containing 0, 0.1, 0.2, or 0.4 milligrams of caffeine per milliliter (mg/mL).\n\nExperiment 3\nDaphnia were tested at 20 °C in pond water containing 0%, 1%, 2%, or 4% ethanol by volume.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate of Daphnia under each condition",
+   "colLabels": [
+    "Average heart rate (beats/min)"
+   ],
+   "rowLabels": [
+    "Exp. 1, 10 °C",
+    "Exp. 1, 15 °C",
+    "Exp. 1, 20 °C",
+    "Exp. 1, 25 °C",
+    "Exp. 2, 0 mg/mL caffeine",
+    "Exp. 2, 0.1 mg/mL caffeine",
+    "Exp. 2, 0.2 mg/mL caffeine",
+    "Exp. 2, 0.4 mg/mL caffeine",
+    "Exp. 3, 0% ethanol",
+    "Exp. 3, 1% ethanol",
+    "Exp. 3, 2% ethanol",
+    "Exp. 3, 4% ethanol"
+   ],
+   "cells": [
+    [
+     "140"
+    ],
+    [
+     "190"
+    ],
+    [
+     "250"
+    ],
+    [
+     "300"
+    ],
+    [
+     "250"
+    ],
+    [
+     "275"
+    ],
+    [
+     "300"
+    ],
+    [
+     "330"
+    ],
+    [
+     "250"
+    ],
+    [
+     "210"
+    ],
+    [
+     "170"
+    ],
+    [
+     "120"
+    ]
+   ]
+  },
+  "prompt": "Which of the following additional experiments would best test whether the effect of caffeine on Daphnia heart rate depends on temperature?",
+  "choices": [
+   "Repeating Experiment 3 at 10 °C and at 25 °C",
+   "Repeating Experiment 1 with 10 Daphnia per temperature instead of 5",
+   "Repeating Experiment 2 at 10 °C and at 25 °C",
+   "Repeating Experiment 2 at 20 °C with caffeine concentrations up to 0.8 mg/mL"
+  ],
+  "correct_answer": "Repeating Experiment 2 at 10 °C and at 25 °C",
+  "explanation": "To see whether caffeine's effect depends on temperature, the caffeine series must be run at more than one temperature, which is done by \"Repeating Experiment 2 at 10 °C and at 25 °C\" and comparing with the 20 °C results. Repeating Experiment 3 tests ethanol, not caffeine; adding Daphnia to Experiment 1 involves no caffeine; and extending the caffeine range at 20 °C keeps the temperature fixed.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment to test an interaction",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P6-Q1",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "According to Scientist 1, the nitrogen gas in Nereth's atmosphere comes mainly from:",
+  "choices": [
+   "liquid nitrogen beneath the surface that erupts through cracks.",
+   "nitrogen gas captured from the atmosphere of the giant planet.",
+   "dust blown across the surface by winds in the atmosphere.",
+   "frozen nitrogen on the surface that is warmed by starlight."
+  ],
+  "correct_answer": "frozen nitrogen on the surface that is warmed by starlight.",
+  "explanation": "Scientist 1 states that sunlight warms the frozen nitrogen on the surface and some of it changes directly from solid to gas, so the gas comes from \"frozen nitrogen on the surface that is warmed by starlight.\" Nitrogen erupting through cracks is Scientist 2's view, neither scientist says gas is captured from the giant planet, and Scientist 1 describes the windblown dust as the cause of the streaks, not a source of gas.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's central claim",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P6-Q2",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "Suppose that, over 30 days, the surface pressure of Nereth's atmosphere was found to rise and fall five times, each time reaching its highest value shortly after Nereth's closest approach to the planet. This finding would most strengthen the viewpoint of:",
+  "choices": [
+   "Scientist 2, because geysers are most active just after Nereth's closest approach to the planet.",
+   "Scientist 1, because sublimation is greatest when Nereth is closest to the star.",
+   "Scientist 1, because the planet's shadow falls on Nereth once in each orbit.",
+   "Scientist 2, because the giant planet's gravity pulls the most nitrogen gas away from Nereth at its closest approach."
+  ],
+  "correct_answer": "Scientist 2, because geysers are most active just after Nereth's closest approach to the planet.",
+  "explanation": "Thirty days is five 6.0-day orbits, and Scientist 2 predicts that the pressure should rise and fall in a 6.0-day cycle because \"geysers are most active just after Nereth's closest approach to the planet.\" Scientist 1 links pressure to the moon's distance from the star, which changes over decades, not every 6 days, and a shadow passage would make the pressure dip, not peak, in Scientist 1's view. Scientist 2 never says the planet pulls gas away.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match an observation to a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P6-Q3",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "Based on Scientist 1's viewpoint, while Nereth is in the planet's shadow for a few hours, the surface pressure of its atmosphere should:",
+  "choices": [
+   "increase, because nitrogen gas is released as the surface cools.",
+   "decrease, because some nitrogen gas freezes onto the cooling surface.",
+   "increase, because geysers become more active when starlight is blocked.",
+   "remain the same, because starlight warms only a thin surface layer."
+  ],
+  "correct_answer": "decrease, because some nitrogen gas freezes onto the cooling surface.",
+  "explanation": "Scientist 1 says that in the planet's shadow the surface ice cools slightly, that nitrogen gas freezes back onto the surface when the ice cools, and that the pressure should drop. So the pressure should \"decrease, because some nitrogen gas freezes onto the cooling surface.\" Cooling releases less gas, not more; geysers are part of Scientist 2's view; and no change in the shadow is what Scientist 2 predicts.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict an outcome from a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P6-Q4",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely agree that:",
+  "choices": [
+   "the heat that supplies the atmosphere comes from Nereth's interior.",
+   "the surface pressure changes in a 6.0-day cycle.",
+   "the rise in pressure over 20 years was caused by Nereth's approach to the star.",
+   "the dark streaks near the south pole are deposits of dust."
+  ],
+  "correct_answer": "the dark streaks near the south pole are deposits of dust.",
+  "explanation": "Scientist 1 says the streaks are dust blown by winds, and Scientist 2 says they are dust carried up by geysers and deposited downwind; they disagree about how the dust got there but agree that \"the dark streaks near the south pole are deposits of dust.\" Only Scientist 2 credits interior heat and a 6.0-day cycle, and only Scientist 1 attributes the 20-year rise to the approach to the star.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P6-Q5",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "According to the passage, as the planet and Nereth moved from 11.0 to 9.8 times the Earth-Sun distance from the star, Nereth's surface pressure increased by a total of about:",
+  "choices": [
+   "0.6 microbar",
+   "0.7 microbar",
+   "1.3 microbars",
+   "2.5 microbars"
+  ],
+  "correct_answer": "1.3 microbars",
+  "explanation": "The surface pressure rose from 1.2 microbars at 11.0 times the Earth-Sun distance to 2.5 microbars at 9.8 times, a total increase of 2.5 - 1.2 = \"1.3 microbars.\" The value 0.7 microbar is only the first step (1.2 to 1.9), 0.6 microbar is only the second step (1.9 to 2.5), and 2.5 microbars is the final pressure, not the increase.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a change from values in the text",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P6-Q6",
+  "passage_id": "sc5d-p6",
+  "passage_title": "The Atmosphere of an Icy Moon",
+  "format": "conflicting_viewpoints",
+  "passage": "Nereth is a large icy moon of a giant planet in a distant solar system. Nereth orbits the planet once every 6.0 days in a slightly elongated orbit, so its distance from the planet changes during each orbit; the planet, in turn, orbits its star once every 160 years. Nereth's surface is coated with frozen nitrogen at about -235 °C, and the moon has a very thin atmosphere made mostly of nitrogen gas. A space telescope has measured the surface pressure of the atmosphere three times over 20 years. During those years the planet and Nereth moved closer to the star, from 11.0 to 10.4 to 9.8 times the Earth-Sun distance, and the surface pressure rose from 1.2 to 1.9 to 2.5 microbars (millionths of Earth's surface air pressure). A spacecraft that flew past Nereth once photographed dozens of dark streaks, each several kilometers long, on the frozen nitrogen near the moon's south pole. Two scientists explain how Nereth's atmosphere is maintained.\n\nScientist 1\nNereth's atmosphere is supplied by sublimation: sunlight warms the frozen nitrogen on the surface, and some of it changes directly from solid to gas. A small rise in the temperature of nitrogen ice greatly increases the amount of nitrogen gas it releases, which is why the pressure rose as Nereth moved closer to the star. When the ice cools, nitrogen gas freezes back onto the surface. Whenever Nereth passes into the planet's shadow and is cut off from starlight for a few hours, the surface ice cools slightly and the surface pressure should drop. The dark streaks are dust blown across the surface by winds in the thin atmosphere.\n\nScientist 2\nNereth's atmosphere is supplied by geysers. As Nereth's distance from the giant planet changes during each orbit, the planet's gravity alternately squeezes and relaxes the moon, heating its interior. This heat melts nitrogen beneath the surface, and the nitrogen erupts through cracks as geysers. The dark streaks are dust carried up by geysers and deposited downwind. The geysers are most active just after Nereth makes its closest approach to the planet, so the surface pressure should rise and fall in a 6.0-day cycle. Starlight warms only a thin surface layer, and the pressure should not change while Nereth is in the planet's shadow. The rise in pressure over 20 years reflects a long-term increase in geyser activity, which can vary over decades.",
+  "prompt": "Which of the following observations would best help decide between the two viewpoints?",
+  "choices": [
+   "Measuring the surface pressure several times while Nereth passes through the planet's shadow",
+   "Measuring the mass of the giant planet more precisely",
+   "Determining whether Nereth's atmosphere is made mostly of nitrogen gas",
+   "Photographing the dark streaks near the south pole at higher magnification from a second spacecraft"
+  ],
+  "correct_answer": "Measuring the surface pressure several times while Nereth passes through the planet's shadow",
+  "explanation": "Scientist 1 predicts that the pressure should drop in the planet's shadow, and Scientist 2 predicts that it should not change, so \"Measuring the surface pressure several times while Nereth passes through the planet's shadow\" would distinguish them. Both scientists accept that the atmosphere is nitrogen and that the streaks are dust, so neither of those observations separates them, and the planet's exact mass is not something their predictions differ on.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an observation that discriminates between viewpoints",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P7-Q1",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "According to Student 2, the granite boulders were carried to the plain by:",
+  "choices": [
+   "a glacier flowing south from the mountains.",
+   "floodwater released when a natural dam failed.",
+   "meltwater streams flowing from the front of a glacier.",
+   "rock falls from the sides of the valley."
+  ],
+  "correct_answer": "floodwater released when a natural dam failed.",
+  "explanation": "Student 2 says a mountain lake was held back by a natural dam of ice and rock, and that when the dam failed the flood swept granite boulders down the valley, so the boulders were carried by \"floodwater released when a natural dam failed.\" Transport by a glacier, and meltwater streams from a glacier, are parts of Student 1's explanation, and neither student mentions rock falls.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's central claim",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5d-P7-Q2",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "Student 1 and Student 2 would most likely agree that the granite boulders in the ridge:",
+  "choices": [
+   "were frozen into the base of a glacier.",
+   "came from the mountains at the head of the valley.",
+   "were rounded by tumbling against one another in turbulent water.",
+   "were deposited by meltwater streams flowing from a glacier."
+  ],
+  "correct_answer": "came from the mountains at the head of the valley.",
+  "explanation": "Student 1 says the glacier carried granite torn from the valley's head, and Student 2 says the flood swept granite boulders down the valley from the mountains; both therefore hold that the boulders \"came from the mountains at the head of the valley.\" Being frozen into ice is only Student 1's view, rounding by tumbling is only Student 2's, and both students say meltwater or late floodwater deposited the layered sand and gravel, not the boulders of the ridge.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P7-Q3",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "Suppose that the bedrock between the ridge and the mountains, where exposed, was found to be smoothed and cut by long, straight grooves running north to south. This finding would most strengthen the viewpoint of:",
+  "choices": [
+   "Student 1, because meltwater streams flowed south across the plain away from the glacier.",
+   "Student 2, because the flood flowed south from the mountains, down the valley, to the plain.",
+   "Student 1, because rock held in the base of moving ice is dragged across the bedrock.",
+   "Student 2, because boulders tumbling in fast-moving water strike against one another."
+  ],
+  "correct_answer": "Student 1, because rock held in the base of moving ice is dragged across the bedrock.",
+  "explanation": "Long, straight grooves cut into bedrock along the direction of flow are what Student 1's glacier would produce, because \"rock held in the base of moving ice is dragged across the bedrock\" in a fixed position. Tumbling boulders strike one another and would not cut long straight grooves, and neither student's account of streams or floodwater on the plain describes grinding grooves into bedrock.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate how new evidence bears on viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P7-Q4",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "Suppose that the scratches on each boulder were found to run in many directions, crossing one another. How would this finding affect the students' explanations of the scratches?",
+  "choices": [
+   "It would support Student 1's explanation, because a boulder dragged across bedrock is scratched in many directions.",
+   "It would support both explanations, because both students say that the boulders were scratched while they were being carried down the valley.",
+   "It would weaken both explanations, because neither student says the scratches cross one another.",
+   "It would support Student 2's explanation, because boulders tumbling and striking one another are scratched in many directions."
+  ],
+  "correct_answer": "It would support Student 2's explanation, because boulders tumbling and striking one another are scratched in many directions.",
+  "explanation": "Student 2 says the boulders were scratched as they tumbled and struck one another, \"so their scratches run in many directions,\" which matches the finding. Student 1 says each boulder was held in one position, so its scratches run parallel to one another; crossing scratches would count against that view, not for it. So the finding does not support both students, and it does not weaken Student 2, whose account predicts scratches in many directions.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate how new evidence bears on viewpoints",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5d-P7-Q5",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "Which of the following studies would best test the two students' different descriptions of the boulders themselves?",
+  "choices": [
+   "Measuring the height of the ridge at several points along its full 8 km length",
+   "Examining whether the boulders have flat, ground faces or rounded edges",
+   "Determining the type of rock that underlies the plain",
+   "Measuring the exact distance from the ridge to the granite exposed in the mountains"
+  ],
+  "correct_answer": "Examining whether the boulders have flat, ground faces or rounded edges",
+  "explanation": "Student 1 says the boulders' sides were ground into flat faces, while Student 2 says tumbling rounded their edges, so \"Examining whether the boulders have flat, ground faces or rounded edges\" tests the difference. The ridge's height, the limestone beneath the plain, and the 60 km distance to the granite are already described and are not predicted differently by the two students.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a study that discriminates between viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5d-P7-Q6",
+  "passage_id": "sc5d-p7",
+  "passage_title": "A Ridge of Boulders on a Plain",
+  "format": "conflicting_viewpoints",
+  "passage": "A curved ridge of boulders and finer sediment crosses a broad, flat plain at the mouth of a mountain valley. The ridge is about 15 m high and 8 km long and is curved like an arc, with its middle bulging farthest to the south, away from the mountains. The plain is underlain by limestone, but most of the boulders in the ridge are granite, some as wide as 4 m. The nearest granite is exposed in the mountains 60 km to the north, at the head of the valley. Within the ridge, clay, sand, gravel, and boulders are jumbled together with no layering. Many of the boulders are scratched. South of the ridge, the plain is covered by layers of sand and gravel. Two students explain how the ridge formed.\n\nStudent 1\nThe ridge is a moraine, a heap of rock debris left at the front of a glacier. During the last ice age, a glacier flowed south down the valley from the mountains, carrying granite it had torn from the valley's head. Where the ice melted at its front, it dropped its load, building a ridge that follows the curved front of the glacier. Ice does not sort sediment by size, so all sizes are mixed. Boulders frozen into the base of the ice were dragged across bedrock, which scratched them; because each boulder was held in one position, its scratches run parallel to one another, and its sides were ground into flat faces. The layered sand and gravel south of the ridge were deposited by meltwater streams flowing away from the glacier.\n\nStudent 2\nThe ridge was deposited by a single enormous flood. A lake in the mountains was held back by a natural dam of ice and rock; when the dam failed, the lake drained in a few days, and the flood swept granite boulders down the valley. Where the valley opened onto the plain, the water spread out and slowed, and it dropped its boulders and sediment so quickly that sizes did not have time to separate. The boulders were scratched as they tumbled and struck one another in the turbulent water, so their scratches run in many directions, and the tumbling rounded their edges. The layered sand and gravel south of the ridge were deposited by the last, slower-moving floodwater.",
+  "prompt": "Student 2's explanation requires that a lake once existed in the mountains. Which of the following investigations would best test this requirement?",
+  "choices": [
+   "Searching the mountain valley for old lake-bottom clay and former shorelines",
+   "Counting the number of granite boulders in the ridge that are wider than 1 m",
+   "Measuring the thickness of the layered sand and gravel at several places south of the ridge",
+   "Determining whether the limestone beneath the plain contains fossils"
+  ],
+  "correct_answer": "Searching the mountain valley for old lake-bottom clay and former shorelines",
+  "explanation": "If a lake once filled part of the mountain valley, it would have left traces there, such as fine clay settled on its bottom and shorelines above today's valley floor, so \"Searching the mountain valley for old lake-bottom clay and former shorelines\" tests the requirement directly. The number of large boulders and the thickness of the sand and gravel on the plain are explained by both students, and fossils in the limestone bedrock say nothing about a recent lake.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an investigation to test an assumption",
+  "difficulty": "hard"
+ }
+]

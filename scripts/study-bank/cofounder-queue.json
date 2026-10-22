@@ -272,6 +272,25 @@
       "group": "act-science-v5b:sc5b-p3",
       "route": "spot",
       "runId": "act-sci-v5b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v5c",
+      "tool": "item",
+      "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+      "size": 6,
+      "family": "act",
+      "group": "act-science-v5c:sc5c-p3",
+      "route": "spot",
+      "runId": "act-sci-v5c-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v5d",
+      "tool": "item",
+      "domain": "Interpretation of Data:18,Evaluation of Models, Inferences, and Experimental Results:13,Scientific Investigation:9",
+      "size": 40,
+      "family": "act",
+      "route": "full",
+      "runId": "act-sci-v5d-release-cofounder-{date}"
     }
   ]
 }

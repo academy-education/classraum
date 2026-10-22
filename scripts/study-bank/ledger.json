@@ -10124,6 +10124,60 @@
           "verdict": "NOT RUN; saturates on ACT Science."
         }
       }
+    },
+    {
+      "id": "act-science-v5c-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "data_representation",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v5c",
+      "contentSha": "620b0ea77076756920826fc1289dcf2bcfa201be977578b3fb792843f1a37338",
+      "status": "staged-for-human-review",
+      "note": "ACT Science v5 section by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE. Release by act-science-v5.RELEASE.PREREG.md (amendment).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "620b0ea77076756920826fc1289dcf2bcfa201be977578b3fb792843f1a37338",
+          "verdict": "structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader with data: 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT Science."
+        }
+      }
+    },
+    {
+      "id": "act-science-v5d-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "data_representation",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v5d",
+      "contentSha": "e6cea313185982b53c87be339d898d7742e5c937531d1bdffa8b01913fd56d68",
+      "status": "staged-for-human-review",
+      "note": "ACT Science v5 section by a Claude agent; staged verified=false with BANK_GATE_OVERRIDE. Release by act-science-v5.RELEASE.PREREG.md (amendment).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e6cea313185982b53c87be339d898d7742e5c937531d1bdffa8b01913fd56d68",
+          "verdict": "structure OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader with data: 0/40."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN; saturates on ACT Science."
+        }
+      }
     }
   ],
   "auditedCohorts": [

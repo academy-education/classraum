@@ -11,3 +11,10 @@ model's science knowledge, so the human sitting decides (CLAUDE.md 2026-09-21).
 Release route (Amendment 1): one seeded data passage per section ('spotcheck-groups-act-sci-v5-2026-10-23'). All
 "Only defensible" -> the section released; any flag -> that passage archived and the rest go to a full sitting.
 After release: `form-capacity.mjs` ACT Science line (3 -> about 5).
+
+## Amendment (2026-10-23, before any run is drawn): sections c and d added
+Two more sections (`act-science-v5c`, `act-science-v5d`), same brief, structure OK, co-founder-standard grader with
+data 0/80. v5c: one seeded data passage spot ('spotcheck-groups-act-sci-v5cd-2026-10-23'); v5d: FULL sitting (every
+third ACT Science batch). Noted, not a defect: v5c P5 (slip angle of a block) and v5d P3 (blocks on a ramp) share a
+topic with different data and items; they sit in different forms. v5d's key is never uniquely longest (0/40), a mild
+reverse length lean on mostly numeric choices; recorded.

@@ -1,0 +1,2610 @@
+[
+ {
+  "id": "ASV5c-P1-Q1",
+  "passage_id": "sc5c-p1",
+  "passage_title": "Heart Rate During Treadmill Exercise",
+  "format": "data_representation",
+  "passage": "Heart rate, the number of times the heart beats per minute (bpm), rises during exercise as the heart pumps more blood to the working muscles. Blood lactate concentration, measured in millimoles per liter (mmol/L), also rises when muscles work harder than their oxygen supply can fully support. Researchers studied 10 endurance-trained runners and 10 untrained adults, all 20 years old. Each person first rested for 10 minutes and then walked or ran on a treadmill for 4 minutes at each of five speeds, in order from slowest to fastest, without stopping between speeds. At the end of the rest period and at the end of each 4-minute stage, the person's heart rate was recorded and a drop of blood was taken from a fingertip to measure blood lactate concentration. Table 1 shows the average results for each group.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate and blood lactate concentration at rest and at five treadmill speeds",
+   "colLabels": [
+    "Heart rate, trained (bpm)",
+    "Heart rate, untrained (bpm)",
+    "Blood lactate, trained (mmol/L)",
+    "Blood lactate, untrained (mmol/L)"
+   ],
+   "rowLabels": [
+    "Rest (0 km/hr)",
+    "4 km/hr",
+    "6 km/hr",
+    "8 km/hr",
+    "10 km/hr",
+    "12 km/hr"
+   ],
+   "cells": [
+    [
+     "55",
+     "72",
+     "1.0",
+     "1.1"
+    ],
+    [
+     "80",
+     "98",
+     "1.0",
+     "1.2"
+    ],
+    [
+     "98",
+     "120",
+     "1.1",
+     "1.6"
+    ],
+    [
+     "117",
+     "145",
+     "1.4",
+     "2.6"
+    ],
+    [
+     "136",
+     "169",
+     "2.0",
+     "4.8"
+    ],
+    [
+     "155",
+     "190",
+     "3.1",
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average heart rate of the untrained group at a speed of 8 km/hr?",
+  "choices": [
+   "117 bpm",
+   "136 bpm",
+   "145 bpm",
+   "169 bpm"
+  ],
+  "correct_answer": "145 bpm",
+  "explanation": "In the 8 km/hr row, the untrained heart rate column reads 145 bpm. The value 117 bpm is the trained group at 8 km/hr, 136 bpm is the trained group at 10 km/hr, and 169 bpm is the untrained group at 10 km/hr.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P1-Q2",
+  "passage_id": "sc5c-p1",
+  "passage_title": "Heart Rate During Treadmill Exercise",
+  "format": "data_representation",
+  "passage": "Heart rate, the number of times the heart beats per minute (bpm), rises during exercise as the heart pumps more blood to the working muscles. Blood lactate concentration, measured in millimoles per liter (mmol/L), also rises when muscles work harder than their oxygen supply can fully support. Researchers studied 10 endurance-trained runners and 10 untrained adults, all 20 years old. Each person first rested for 10 minutes and then walked or ran on a treadmill for 4 minutes at each of five speeds, in order from slowest to fastest, without stopping between speeds. At the end of the rest period and at the end of each 4-minute stage, the person's heart rate was recorded and a drop of blood was taken from a fingertip to measure blood lactate concentration. Table 1 shows the average results for each group.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate and blood lactate concentration at rest and at five treadmill speeds",
+   "colLabels": [
+    "Heart rate, trained (bpm)",
+    "Heart rate, untrained (bpm)",
+    "Blood lactate, trained (mmol/L)",
+    "Blood lactate, untrained (mmol/L)"
+   ],
+   "rowLabels": [
+    "Rest (0 km/hr)",
+    "4 km/hr",
+    "6 km/hr",
+    "8 km/hr",
+    "10 km/hr",
+    "12 km/hr"
+   ],
+   "cells": [
+    [
+     "55",
+     "72",
+     "1.0",
+     "1.1"
+    ],
+    [
+     "80",
+     "98",
+     "1.0",
+     "1.2"
+    ],
+    [
+     "98",
+     "120",
+     "1.1",
+     "1.6"
+    ],
+    [
+     "117",
+     "145",
+     "1.4",
+     "2.6"
+    ],
+    [
+     "136",
+     "169",
+     "2.0",
+     "4.8"
+    ],
+    [
+     "155",
+     "190",
+     "3.1",
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as treadmill speed increased from 4 km/hr to 12 km/hr, the difference between the untrained group's average heart rate and the trained group's average heart rate:",
+  "choices": [
+   "decreased only.",
+   "increased and then decreased.",
+   "remained the same.",
+   "increased only."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "Subtracting the trained heart rate from the untrained heart rate gives 98 - 80 = 18 bpm at 4 km/hr, 22 bpm at 6 km/hr, 28 bpm at 8 km/hr, 33 bpm at 10 km/hr, and 35 bpm at 12 km/hr. The difference grew at every step, so it never decreased and did not stay the same.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two data series across a variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P1-Q3",
+  "passage_id": "sc5c-p1",
+  "passage_title": "Heart Rate During Treadmill Exercise",
+  "format": "data_representation",
+  "passage": "Heart rate, the number of times the heart beats per minute (bpm), rises during exercise as the heart pumps more blood to the working muscles. Blood lactate concentration, measured in millimoles per liter (mmol/L), also rises when muscles work harder than their oxygen supply can fully support. Researchers studied 10 endurance-trained runners and 10 untrained adults, all 20 years old. Each person first rested for 10 minutes and then walked or ran on a treadmill for 4 minutes at each of five speeds, in order from slowest to fastest, without stopping between speeds. At the end of the rest period and at the end of each 4-minute stage, the person's heart rate was recorded and a drop of blood was taken from a fingertip to measure blood lactate concentration. Table 1 shows the average results for each group.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate and blood lactate concentration at rest and at five treadmill speeds",
+   "colLabels": [
+    "Heart rate, trained (bpm)",
+    "Heart rate, untrained (bpm)",
+    "Blood lactate, trained (mmol/L)",
+    "Blood lactate, untrained (mmol/L)"
+   ],
+   "rowLabels": [
+    "Rest (0 km/hr)",
+    "4 km/hr",
+    "6 km/hr",
+    "8 km/hr",
+    "10 km/hr",
+    "12 km/hr"
+   ],
+   "cells": [
+    [
+     "55",
+     "72",
+     "1.0",
+     "1.1"
+    ],
+    [
+     "80",
+     "98",
+     "1.0",
+     "1.2"
+    ],
+    [
+     "98",
+     "120",
+     "1.1",
+     "1.6"
+    ],
+    [
+     "117",
+     "145",
+     "1.4",
+     "2.6"
+    ],
+    [
+     "136",
+     "169",
+     "2.0",
+     "4.8"
+    ],
+    [
+     "155",
+     "190",
+     "3.1",
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "The trained group's average blood lactate concentration at 12 km/hr was closest to the untrained group's average blood lactate concentration at which speed?",
+  "choices": [
+   "6 km/hr",
+   "8 km/hr",
+   "10 km/hr",
+   "12 km/hr"
+  ],
+  "correct_answer": "8 km/hr",
+  "explanation": "The trained group's blood lactate at 12 km/hr was 3.1 mmol/L. The untrained group's values were 1.6 mmol/L at 6 km/hr (1.5 lower), 2.6 mmol/L at 8 km/hr (0.5 lower), 4.8 mmol/L at 10 km/hr (1.7 higher), and 8.2 mmol/L at 12 km/hr (5.1 higher). The 8 km/hr value is the closest.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across columns",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P1-Q4",
+  "passage_id": "sc5c-p1",
+  "passage_title": "Heart Rate During Treadmill Exercise",
+  "format": "data_representation",
+  "passage": "Heart rate, the number of times the heart beats per minute (bpm), rises during exercise as the heart pumps more blood to the working muscles. Blood lactate concentration, measured in millimoles per liter (mmol/L), also rises when muscles work harder than their oxygen supply can fully support. Researchers studied 10 endurance-trained runners and 10 untrained adults, all 20 years old. Each person first rested for 10 minutes and then walked or ran on a treadmill for 4 minutes at each of five speeds, in order from slowest to fastest, without stopping between speeds. At the end of the rest period and at the end of each 4-minute stage, the person's heart rate was recorded and a drop of blood was taken from a fingertip to measure blood lactate concentration. Table 1 shows the average results for each group.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate and blood lactate concentration at rest and at five treadmill speeds",
+   "colLabels": [
+    "Heart rate, trained (bpm)",
+    "Heart rate, untrained (bpm)",
+    "Blood lactate, trained (mmol/L)",
+    "Blood lactate, untrained (mmol/L)"
+   ],
+   "rowLabels": [
+    "Rest (0 km/hr)",
+    "4 km/hr",
+    "6 km/hr",
+    "8 km/hr",
+    "10 km/hr",
+    "12 km/hr"
+   ],
+   "cells": [
+    [
+     "55",
+     "72",
+     "1.0",
+     "1.1"
+    ],
+    [
+     "80",
+     "98",
+     "1.0",
+     "1.2"
+    ],
+    [
+     "98",
+     "120",
+     "1.1",
+     "1.6"
+    ],
+    [
+     "117",
+     "145",
+     "1.4",
+     "2.6"
+    ],
+    [
+     "136",
+     "169",
+     "2.0",
+     "4.8"
+    ],
+    [
+     "155",
+     "190",
+     "3.1",
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "If the untrained group had also been tested at a speed of 9 km/hr, their average heart rate at that speed would most likely have been closest to:",
+  "choices": [
+   "131 bpm",
+   "157 bpm",
+   "176 bpm",
+   "190 bpm"
+  ],
+  "correct_answer": "157 bpm",
+  "explanation": "The untrained group's heart rate rose steadily with speed, from 145 bpm at 8 km/hr to 169 bpm at 10 km/hr, so at 9 km/hr it should lie between those values; 157 bpm is the only choice in that range. A value of 131 bpm is below the 8 km/hr rate, 176 bpm is above the 10 km/hr rate, and 190 bpm is the rate at 12 km/hr.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P1-Q5",
+  "passage_id": "sc5c-p1",
+  "passage_title": "Heart Rate During Treadmill Exercise",
+  "format": "data_representation",
+  "passage": "Heart rate, the number of times the heart beats per minute (bpm), rises during exercise as the heart pumps more blood to the working muscles. Blood lactate concentration, measured in millimoles per liter (mmol/L), also rises when muscles work harder than their oxygen supply can fully support. Researchers studied 10 endurance-trained runners and 10 untrained adults, all 20 years old. Each person first rested for 10 minutes and then walked or ran on a treadmill for 4 minutes at each of five speeds, in order from slowest to fastest, without stopping between speeds. At the end of the rest period and at the end of each 4-minute stage, the person's heart rate was recorded and a drop of blood was taken from a fingertip to measure blood lactate concentration. Table 1 shows the average results for each group.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average heart rate and blood lactate concentration at rest and at five treadmill speeds",
+   "colLabels": [
+    "Heart rate, trained (bpm)",
+    "Heart rate, untrained (bpm)",
+    "Blood lactate, trained (mmol/L)",
+    "Blood lactate, untrained (mmol/L)"
+   ],
+   "rowLabels": [
+    "Rest (0 km/hr)",
+    "4 km/hr",
+    "6 km/hr",
+    "8 km/hr",
+    "10 km/hr",
+    "12 km/hr"
+   ],
+   "cells": [
+    [
+     "55",
+     "72",
+     "1.0",
+     "1.1"
+    ],
+    [
+     "80",
+     "98",
+     "1.0",
+     "1.2"
+    ],
+    [
+     "98",
+     "120",
+     "1.1",
+     "1.6"
+    ],
+    [
+     "117",
+     "145",
+     "1.4",
+     "2.6"
+    ],
+    [
+     "136",
+     "169",
+     "2.0",
+     "4.8"
+    ],
+    [
+     "155",
+     "190",
+     "3.1",
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "Suppose exercise is classified as vigorous when a person's heart rate is at least 80% of the person's maximum heart rate, and that maximum heart rate is estimated as 220 bpm minus the person's age in years. Based on Table 1, at which speed did each group's average heart rate first reach the vigorous level?",
+  "choices": [
+   "Trained: never reached; untrained: 10 km/hr",
+   "Trained: 10 km/hr; untrained: 8 km/hr",
+   "Trained: 12 km/hr; untrained: 10 km/hr",
+   "Trained: never reached; untrained: 12 km/hr"
+  ],
+  "correct_answer": "Trained: never reached; untrained: 10 km/hr",
+  "explanation": "All participants were 20 years old, so the estimated maximum heart rate is 220 - 20 = 200 bpm, and 80% of that is 160 bpm. The untrained group was at 145 bpm at 8 km/hr and 169 bpm at 10 km/hr, so it first reached 160 bpm at 10 km/hr. The trained group's highest average was 155 bpm at 12 km/hr, so it never reached 160 bpm at any speed tested.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a stated threshold to table data",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P2-Q1",
+  "passage_id": "sc5c-p2",
+  "passage_title": "Light and Photosynthesis in Sun and Shade Leaves",
+  "format": "data_representation",
+  "passage": "In photosynthesis, a leaf takes up carbon dioxide (CO2) and uses light energy to make sugar. At the same time, the leaf releases CO2 through respiration. A leaf's net photosynthesis rate is the rate at which it takes up CO2 minus the rate at which it releases CO2; a negative net rate means the leaf is releasing more CO2 than it is taking up. Leaves that grow in full sun and leaves that grow in shade can respond differently to light, even on the same tree.\n\nResearchers selected 10 leaves that had grown in full sun at the top of a maple tree's crown and 10 leaves that had grown in deep shade near the bottom of the same crown. Each leaf, still attached to the tree, was sealed in a clear chamber kept at 25 °C, and a lamp exposed it to light at eight different intensities, measured in micromoles of photons per square meter per second (µmol photons/m²/s). At each intensity, the leaf's net photosynthesis rate was measured in micromoles of CO2 per square meter of leaf per second (µmol CO2/m²/s). Table 1 shows the average net photosynthesis rates.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average net photosynthesis rate of sun leaves and shade leaves at eight light intensities",
+   "colLabels": [
+    "Net rate, sun leaves (µmol CO2/m²/s)",
+    "Net rate, shade leaves (µmol CO2/m²/s)"
+   ],
+   "rowLabels": [
+    "0 µmol photons/m²/s",
+    "25 µmol photons/m²/s",
+    "50 µmol photons/m²/s",
+    "100 µmol photons/m²/s",
+    "200 µmol photons/m²/s",
+    "400 µmol photons/m²/s",
+    "800 µmol photons/m²/s",
+    "1,600 µmol photons/m²/s"
+   ],
+   "cells": [
+    [
+     "-1.6",
+     "-0.5"
+    ],
+    [
+     "-0.8",
+     "0.4"
+    ],
+    [
+     "0.2",
+     "1.3"
+    ],
+    [
+     "2.0",
+     "2.9"
+    ],
+    [
+     "5.0",
+     "4.4"
+    ],
+    [
+     "8.6",
+     "5.0"
+    ],
+    [
+     "11.2",
+     "5.1"
+    ],
+    [
+     "11.4",
+     "4.6"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at a light intensity of 400 µmol photons/m²/s, the average net photosynthesis rate of the shade leaves was:",
+  "choices": [
+   "4.4 µmol CO2/m²/s",
+   "5.0 µmol CO2/m²/s",
+   "8.6 µmol CO2/m²/s",
+   "11.2 µmol CO2/m²/s"
+  ],
+  "correct_answer": "5.0 µmol CO2/m²/s",
+  "explanation": "In the 400 µmol photons/m²/s row, the shade leaves column reads 5.0. The value 4.4 is the shade leaves at 200 µmol photons/m²/s, 8.6 is the sun leaves at 400, and 11.2 is the sun leaves at 800.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P2-Q2",
+  "passage_id": "sc5c-p2",
+  "passage_title": "Light and Photosynthesis in Sun and Shade Leaves",
+  "format": "data_representation",
+  "passage": "In photosynthesis, a leaf takes up carbon dioxide (CO2) and uses light energy to make sugar. At the same time, the leaf releases CO2 through respiration. A leaf's net photosynthesis rate is the rate at which it takes up CO2 minus the rate at which it releases CO2; a negative net rate means the leaf is releasing more CO2 than it is taking up. Leaves that grow in full sun and leaves that grow in shade can respond differently to light, even on the same tree.\n\nResearchers selected 10 leaves that had grown in full sun at the top of a maple tree's crown and 10 leaves that had grown in deep shade near the bottom of the same crown. Each leaf, still attached to the tree, was sealed in a clear chamber kept at 25 °C, and a lamp exposed it to light at eight different intensities, measured in micromoles of photons per square meter per second (µmol photons/m²/s). At each intensity, the leaf's net photosynthesis rate was measured in micromoles of CO2 per square meter of leaf per second (µmol CO2/m²/s). Table 1 shows the average net photosynthesis rates.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average net photosynthesis rate of sun leaves and shade leaves at eight light intensities",
+   "colLabels": [
+    "Net rate, sun leaves (µmol CO2/m²/s)",
+    "Net rate, shade leaves (µmol CO2/m²/s)"
+   ],
+   "rowLabels": [
+    "0 µmol photons/m²/s",
+    "25 µmol photons/m²/s",
+    "50 µmol photons/m²/s",
+    "100 µmol photons/m²/s",
+    "200 µmol photons/m²/s",
+    "400 µmol photons/m²/s",
+    "800 µmol photons/m²/s",
+    "1,600 µmol photons/m²/s"
+   ],
+   "cells": [
+    [
+     "-1.6",
+     "-0.5"
+    ],
+    [
+     "-0.8",
+     "0.4"
+    ],
+    [
+     "0.2",
+     "1.3"
+    ],
+    [
+     "2.0",
+     "2.9"
+    ],
+    [
+     "5.0",
+     "4.4"
+    ],
+    [
+     "8.6",
+     "5.0"
+    ],
+    [
+     "11.2",
+     "5.1"
+    ],
+    [
+     "11.4",
+     "4.6"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at which light intensities was the average net photosynthesis rate of the shade leaves greater than that of the sun leaves?",
+  "choices": [
+   "At 0 through 200 µmol photons/m²/s only",
+   "At 200 through 1,600 µmol photons/m²/s only",
+   "At 0 through 100 µmol photons/m²/s only",
+   "At all eight light intensities"
+  ],
+  "correct_answer": "At 0 through 100 µmol photons/m²/s only",
+  "explanation": "The shade leaves had the greater (less negative or larger positive) rate at 0 (-0.5 vs. -1.6), 25 (0.4 vs. -0.8), 50 (1.3 vs. 0.2), and 100 µmol photons/m²/s (2.9 vs. 2.0). From 200 µmol photons/m²/s upward the sun leaves were greater (5.0 vs. 4.4 at 200), so the shade leaves were not greater at 200 or above.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two data series",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P2-Q3",
+  "passage_id": "sc5c-p2",
+  "passage_title": "Light and Photosynthesis in Sun and Shade Leaves",
+  "format": "data_representation",
+  "passage": "In photosynthesis, a leaf takes up carbon dioxide (CO2) and uses light energy to make sugar. At the same time, the leaf releases CO2 through respiration. A leaf's net photosynthesis rate is the rate at which it takes up CO2 minus the rate at which it releases CO2; a negative net rate means the leaf is releasing more CO2 than it is taking up. Leaves that grow in full sun and leaves that grow in shade can respond differently to light, even on the same tree.\n\nResearchers selected 10 leaves that had grown in full sun at the top of a maple tree's crown and 10 leaves that had grown in deep shade near the bottom of the same crown. Each leaf, still attached to the tree, was sealed in a clear chamber kept at 25 °C, and a lamp exposed it to light at eight different intensities, measured in micromoles of photons per square meter per second (µmol photons/m²/s). At each intensity, the leaf's net photosynthesis rate was measured in micromoles of CO2 per square meter of leaf per second (µmol CO2/m²/s). Table 1 shows the average net photosynthesis rates.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average net photosynthesis rate of sun leaves and shade leaves at eight light intensities",
+   "colLabels": [
+    "Net rate, sun leaves (µmol CO2/m²/s)",
+    "Net rate, shade leaves (µmol CO2/m²/s)"
+   ],
+   "rowLabels": [
+    "0 µmol photons/m²/s",
+    "25 µmol photons/m²/s",
+    "50 µmol photons/m²/s",
+    "100 µmol photons/m²/s",
+    "200 µmol photons/m²/s",
+    "400 µmol photons/m²/s",
+    "800 µmol photons/m²/s",
+    "1,600 µmol photons/m²/s"
+   ],
+   "cells": [
+    [
+     "-1.6",
+     "-0.5"
+    ],
+    [
+     "-0.8",
+     "0.4"
+    ],
+    [
+     "0.2",
+     "1.3"
+    ],
+    [
+     "2.0",
+     "2.9"
+    ],
+    [
+     "5.0",
+     "4.4"
+    ],
+    [
+     "8.6",
+     "5.0"
+    ],
+    [
+     "11.2",
+     "5.1"
+    ],
+    [
+     "11.4",
+     "4.6"
+    ]
+   ]
+  },
+  "prompt": "The light compensation point of a leaf is the light intensity at which its net photosynthesis rate equals zero. Based on Table 1, the light compensation point of the sun leaves was between:",
+  "choices": [
+   "0 and 25 µmol photons/m²/s.",
+   "25 and 50 µmol photons/m²/s.",
+   "50 and 100 µmol photons/m²/s.",
+   "100 and 200 µmol photons/m²/s."
+  ],
+  "correct_answer": "25 and 50 µmol photons/m²/s.",
+  "explanation": "The sun leaves' net rate was still negative (-0.8) at 25 µmol photons/m²/s and had become positive (0.2) at 50 µmol photons/m²/s, so it crossed zero between those two intensities. The shade leaves crossed zero between 0 and 25 µmol photons/m²/s (-0.5 to 0.4), and the sun leaves were already positive at 50 and above.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate where a value crosses zero",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P2-Q4",
+  "passage_id": "sc5c-p2",
+  "passage_title": "Light and Photosynthesis in Sun and Shade Leaves",
+  "format": "data_representation",
+  "passage": "In photosynthesis, a leaf takes up carbon dioxide (CO2) and uses light energy to make sugar. At the same time, the leaf releases CO2 through respiration. A leaf's net photosynthesis rate is the rate at which it takes up CO2 minus the rate at which it releases CO2; a negative net rate means the leaf is releasing more CO2 than it is taking up. Leaves that grow in full sun and leaves that grow in shade can respond differently to light, even on the same tree.\n\nResearchers selected 10 leaves that had grown in full sun at the top of a maple tree's crown and 10 leaves that had grown in deep shade near the bottom of the same crown. Each leaf, still attached to the tree, was sealed in a clear chamber kept at 25 °C, and a lamp exposed it to light at eight different intensities, measured in micromoles of photons per square meter per second (µmol photons/m²/s). At each intensity, the leaf's net photosynthesis rate was measured in micromoles of CO2 per square meter of leaf per second (µmol CO2/m²/s). Table 1 shows the average net photosynthesis rates.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average net photosynthesis rate of sun leaves and shade leaves at eight light intensities",
+   "colLabels": [
+    "Net rate, sun leaves (µmol CO2/m²/s)",
+    "Net rate, shade leaves (µmol CO2/m²/s)"
+   ],
+   "rowLabels": [
+    "0 µmol photons/m²/s",
+    "25 µmol photons/m²/s",
+    "50 µmol photons/m²/s",
+    "100 µmol photons/m²/s",
+    "200 µmol photons/m²/s",
+    "400 µmol photons/m²/s",
+    "800 µmol photons/m²/s",
+    "1,600 µmol photons/m²/s"
+   ],
+   "cells": [
+    [
+     "-1.6",
+     "-0.5"
+    ],
+    [
+     "-0.8",
+     "0.4"
+    ],
+    [
+     "0.2",
+     "1.3"
+    ],
+    [
+     "2.0",
+     "2.9"
+    ],
+    [
+     "5.0",
+     "4.4"
+    ],
+    [
+     "8.6",
+     "5.0"
+    ],
+    [
+     "11.2",
+     "5.1"
+    ],
+    [
+     "11.4",
+     "4.6"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as light intensity increased from 800 to 1,600 µmol photons/m²/s, the average net photosynthesis rate:",
+  "choices": [
+   "increased for the sun leaves and decreased for the shade leaves.",
+   "increased for both the sun leaves and the shade leaves.",
+   "decreased for the sun leaves and increased for the shade leaves.",
+   "decreased for both the sun leaves and the shade leaves."
+  ],
+  "correct_answer": "increased for the sun leaves and decreased for the shade leaves.",
+  "explanation": "From 800 to 1,600 µmol photons/m²/s, the sun leaves' rate went from 11.2 to 11.4 (an increase), while the shade leaves' rate went from 5.1 to 4.6 (a decrease).",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in each data series",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P2-Q5",
+  "passage_id": "sc5c-p2",
+  "passage_title": "Light and Photosynthesis in Sun and Shade Leaves",
+  "format": "data_representation",
+  "passage": "In photosynthesis, a leaf takes up carbon dioxide (CO2) and uses light energy to make sugar. At the same time, the leaf releases CO2 through respiration. A leaf's net photosynthesis rate is the rate at which it takes up CO2 minus the rate at which it releases CO2; a negative net rate means the leaf is releasing more CO2 than it is taking up. Leaves that grow in full sun and leaves that grow in shade can respond differently to light, even on the same tree.\n\nResearchers selected 10 leaves that had grown in full sun at the top of a maple tree's crown and 10 leaves that had grown in deep shade near the bottom of the same crown. Each leaf, still attached to the tree, was sealed in a clear chamber kept at 25 °C, and a lamp exposed it to light at eight different intensities, measured in micromoles of photons per square meter per second (µmol photons/m²/s). At each intensity, the leaf's net photosynthesis rate was measured in micromoles of CO2 per square meter of leaf per second (µmol CO2/m²/s). Table 1 shows the average net photosynthesis rates.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average net photosynthesis rate of sun leaves and shade leaves at eight light intensities",
+   "colLabels": [
+    "Net rate, sun leaves (µmol CO2/m²/s)",
+    "Net rate, shade leaves (µmol CO2/m²/s)"
+   ],
+   "rowLabels": [
+    "0 µmol photons/m²/s",
+    "25 µmol photons/m²/s",
+    "50 µmol photons/m²/s",
+    "100 µmol photons/m²/s",
+    "200 µmol photons/m²/s",
+    "400 µmol photons/m²/s",
+    "800 µmol photons/m²/s",
+    "1,600 µmol photons/m²/s"
+   ],
+   "cells": [
+    [
+     "-1.6",
+     "-0.5"
+    ],
+    [
+     "-0.8",
+     "0.4"
+    ],
+    [
+     "0.2",
+     "1.3"
+    ],
+    [
+     "2.0",
+     "2.9"
+    ],
+    [
+     "5.0",
+     "4.4"
+    ],
+    [
+     "8.6",
+     "5.0"
+    ],
+    [
+     "11.2",
+     "5.1"
+    ],
+    [
+     "11.4",
+     "4.6"
+    ]
+   ]
+  },
+  "prompt": "A leaf's gross photosynthesis rate is its net photosynthesis rate plus its rate of CO2 release by respiration. Assume that each leaf released CO2 by respiration in the light at the same rate it did at 0 µmol photons/m²/s. Based on Table 1, the gross photosynthesis rate of the sun leaves at 200 µmol photons/m²/s was closest to:",
+  "choices": [
+   "3.4 µmol CO2/m²/s",
+   "5.0 µmol CO2/m²/s",
+   "6.6 µmol CO2/m²/s",
+   "8.6 µmol CO2/m²/s"
+  ],
+  "correct_answer": "6.6 µmol CO2/m²/s",
+  "explanation": "At 0 µmol photons/m²/s the sun leaves had a net rate of -1.6, meaning they released CO2 by respiration at 1.6 µmol CO2/m²/s. At 200 µmol photons/m²/s their net rate was 5.0, so the gross rate is 5.0 + 1.6 = 6.6. The value 3.4 subtracts respiration instead of adding it, 5.0 is the net rate alone, and 8.6 is the sun leaves' net rate at 400 µmol photons/m²/s.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine table values with a given relationship",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P3-Q1",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, how many fronds were in the 0.5 mg/L container of Experiment 1 on Day 8?",
+  "choices": [
+   "18",
+   "31",
+   "48",
+   "50"
+  ],
+  "correct_answer": "31",
+  "explanation": "In the Exp. 1 row for 0.5 mg/L phosphate, the Day 8 column reads 31. The value 18 is that container on Day 4, 48 is the 2.0 mg/L container on Day 8, and 50 is the 0.5 mg/L container on Day 12.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P3-Q2",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "Which of the following factors was varied in Experiment 2 but was kept the same for all containers in Experiment 1?",
+  "choices": [
+   "The phosphate concentration",
+   "The number of fronds on Day 0",
+   "The volume of solution",
+   "The water temperature"
+  ],
+  "correct_answer": "The water temperature",
+  "explanation": "In Experiment 1 all containers were kept at 25 °C, while Experiment 2 used 15 °C, 25 °C, and 35 °C. Phosphate concentration was varied in Experiment 1 and held at 2.0 mg/L in Experiment 2. The starting number of fronds (10) and the volume of solution (1 L) were the same in every container of both experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P3-Q3",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, which of the following best describes how the number of fronds on Day 12 changed as phosphate concentration increased?",
+  "choices": [
+   "It increased only slightly from 0 to 2.0 mg/L and greatly from 2.0 to 8.0 mg/L.",
+   "It increased from 0 to 2.0 mg/L and then decreased from 2.0 to 8.0 mg/L.",
+   "It increased greatly from 0 to 2.0 mg/L and only slightly from 2.0 to 8.0 mg/L.",
+   "It increased by about the same amount from each concentration to the next."
+  ],
+  "correct_answer": "It increased greatly from 0 to 2.0 mg/L and only slightly from 2.0 to 8.0 mg/L.",
+  "explanation": "On Day 12 the counts were 20 at 0 mg/L, 50 at 0.5 mg/L, 102 at 2.0 mg/L, and 105 at 8.0 mg/L. The count rose by 82 fronds from 0 to 2.0 mg/L but by only 3 fronds from 2.0 to 8.0 mg/L. It never decreased, and the increases (30, 52, 3) were far from equal.",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend that levels off",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P3-Q4",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "A student predicted that raising the water temperature from 25 °C to 35 °C would speed up the growth of the duckweed population. Do the results of Experiment 2 support this prediction?",
+  "choices": [
+   "Yes; on Day 12 there were more fronds at 35 °C than at 25 °C.",
+   "Yes; on Day 12 there were more fronds at 25 °C than at 15 °C.",
+   "No; on Day 12 there were more fronds at 35 °C than at 15 °C.",
+   "No; on Day 12 there were fewer fronds at 35 °C than at 25 °C."
+  ],
+  "correct_answer": "No; on Day 12 there were fewer fronds at 35 °C than at 25 °C.",
+  "explanation": "On Day 12 the 35 °C container held 11 fronds and the 25 °C container held 99, so raising the temperature from 25 °C to 35 °C slowed growth, which contradicts the prediction. It is false that 35 °C had more fronds than 25 °C or than 15 °C (28). The comparison of 25 °C with 15 °C is true but says nothing about the change from 25 °C to 35 °C.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a prediction against results",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P3-Q5",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "The 0 mg/L container in Experiment 1 was most likely included in order to:",
+  "choices": [
+   "show how the population grew without added phosphate, as a basis for comparison.",
+   "show how the population grew at a temperature other than 25 °C.",
+   "supply the conditions used in all three containers of Experiment 2.",
+   "find how many fronds were present before any of the plants grew."
+  ],
+  "correct_answer": "show how the population grew without added phosphate, as a basis for comparison.",
+  "explanation": "The 0 mg/L container differed from the other Experiment 1 containers only in having no added phosphate, so it served as a control showing growth without phosphate (20 fronds by Day 12) against which the effect of 0.5, 2.0, and 8.0 mg/L could be judged. It was kept at 25 °C like the others, Experiment 2 used 2.0 mg/L rather than 0 mg/L, and the starting count was 10 fronds in every container.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a control",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P3-Q6",
+  "passage_id": "sc5c-p3",
+  "passage_title": "Duckweed Growth, Phosphate, and Temperature",
+  "format": "research_summaries",
+  "passage": "Duckweed is a tiny plant that floats on the surface of ponds. Each plant consists of one or more flat, leaflike fronds, and the population grows as existing fronds bud off new fronds. Phosphate, a nutrient found in fertilizer, can wash into ponds from nearby farmland. Students studied how phosphate concentration and water temperature affect the growth of a duckweed population.\n\nExperiment 1\nStudents filled 4 identical containers with 1 L of a nutrient solution that contained everything duckweed needs except phosphate. They then added phosphate to give concentrations of 0, 0.5, 2.0, and 8.0 milligrams per liter (mg/L). They placed 10 duckweed fronds in each container and kept all the containers at 25 °C under lamps that were on for 16 hours each day. They counted the fronds in each container on Days 0, 4, 8, and 12.\n\nExperiment 2\nStudents repeated the procedure of Experiment 1 with 3 new containers, each with a phosphate concentration of 2.0 mg/L. The containers were kept at 15 °C, 25 °C, and 35 °C, respectively.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Number of duckweed fronds in each container",
+   "colLabels": [
+    "Day 0",
+    "Day 4",
+    "Day 8",
+    "Day 12"
+   ],
+   "rowLabels": [
+    "Exp. 1: 0 mg/L phosphate",
+    "Exp. 1: 0.5 mg/L phosphate",
+    "Exp. 1: 2.0 mg/L phosphate",
+    "Exp. 1: 8.0 mg/L phosphate",
+    "Exp. 2: 15 °C",
+    "Exp. 2: 25 °C",
+    "Exp. 2: 35 °C"
+   ],
+   "cells": [
+    [
+     "10",
+     "14",
+     "18",
+     "20"
+    ],
+    [
+     "10",
+     "18",
+     "31",
+     "50"
+    ],
+    [
+     "10",
+     "22",
+     "48",
+     "102"
+    ],
+    [
+     "10",
+     "23",
+     "50",
+     "105"
+    ],
+    [
+     "10",
+     "14",
+     "20",
+     "28"
+    ],
+    [
+     "10",
+     "21",
+     "46",
+     "99"
+    ],
+    [
+     "10",
+     "12",
+     "13",
+     "11"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of both experiments, a pond receiving phosphate runoff would most likely become covered with duckweed most quickly under which of the following conditions?",
+  "choices": [
+   "Phosphate at 0.5 mg/L and water at 25 °C",
+   "Phosphate at 2.0 mg/L and water at 15 °C",
+   "Phosphate at 8.0 mg/L and water at 35 °C",
+   "Phosphate at 2.0 mg/L and water at 25 °C"
+  ],
+  "correct_answer": "Phosphate at 2.0 mg/L and water at 25 °C",
+  "explanation": "The 2.0 mg/L, 25 °C conditions produced about 100 fronds by Day 12 (102 in Experiment 1 and 99 in Experiment 2). At 25 °C, 0.5 mg/L produced only 50, and at 2.0 mg/L, 15 °C produced only 28. At 35 °C the population barely grew (11 fronds at 2.0 mg/L), and Experiment 1 shows that raising phosphate above 2.0 mg/L adds very little (102 to 105), so 8.0 mg/L could not make up for the harmful temperature.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "combine results of two experiments to predict",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P4-Q1",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, in Experiment 1, what volume of water had risen into the tube with the steel wool dipped in distilled water after 4 hr?",
+  "choices": [
+   "1.6 mL",
+   "3.1 mL",
+   "5.8 mL",
+   "7.2 mL"
+  ],
+  "correct_answer": "3.1 mL",
+  "explanation": "In the Exp. 1 distilled water row, the 4 hr column reads 3.1 mL. The value 1.6 mL is the same tube at 2 hr, 5.8 mL is the same tube at 8 hr, and 7.2 mL is the 3% salt water tube at 4 hr.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P4-Q2",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "No tube in either experiment showed a rise of more than 10.4 mL. Which of the following best explains this result?",
+  "choices": [
+   "Rusting stopped once nearly all of the O2 in the trapped air had been used up.",
+   "Rusting stopped once all of the steel wool in the tube had been converted to rust.",
+   "Rusting stopped once all of the salt or vinegar on the steel wool had been used up.",
+   "Rusting stopped after 8 hr no matter how much of the O2 in the tube remained."
+  ],
+  "correct_answer": "Rusting stopped once nearly all of the O2 in the trapped air had been used up.",
+  "explanation": "The trapped air was 50 mL, and 21% of 50 mL is about 10.5 mL of O2, so a rise of about 10.4 mL means nearly all the O2 was gone. If the steel wool had run out, the 0.5 g and 2.0 g balls in Experiment 2 would have stopped at different volumes, but both reached about 10.3-10.4 mL. The distilled water tube had no salt or vinegar yet still reached 10.3 mL, and that tube was still rising after 8 hr (5.8 mL to 10.3 mL), so rusting did not stop at 8 hr.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate explanations for a limiting value",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P4-Q3",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "Which two trials in Experiment 1, when compared, best show whether water is needed for steel wool to rust?",
+  "choices": [
+   "The distilled water trial and the 3% salt water trial",
+   "The 3% salt water trial and the vinegar trial",
+   "The dry trial and the distilled water trial",
+   "The dry trial and the vinegar trial"
+  ],
+  "correct_answer": "The dry trial and the distilled water trial",
+  "explanation": "The dry steel wool and the steel wool dipped in distilled water differ only in whether water was present, and the dry tube rose just 0.2 mL in 24 hr compared with 10.3 mL. The salt water and vinegar trials both contain water, so comparing them with each other or with distilled water tests the dissolved substances, and the dry-versus-vinegar comparison changes both the water and the acid at once.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a controlled comparison",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P4-Q4",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "Based on the volumes recorded after 2 hr in Experiment 1, which of the following lists the treatments in order from the greatest volume of O2 used to the least?",
+  "choices": [
+   "3% salt water, vinegar, distilled water, dry",
+   "Vinegar, distilled water, 3% salt water, dry",
+   "Distilled water, 3% salt water, vinegar, dry",
+   "Vinegar, 3% salt water, distilled water, dry"
+  ],
+  "correct_answer": "Vinegar, 3% salt water, distilled water, dry",
+  "explanation": "The volume of water risen equals the volume of O2 used. After 2 hr the volumes were 5.9 mL for vinegar, 3.9 mL for 3% salt water, 1.6 mL for distilled water, and 0.0 mL for dry, which gives that order from greatest to least.",
+  "domain": "Interpretation of Data",
+  "subskill": "rank values from a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P4-Q5",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "If a 1.5 g ball of steel wool dipped in 3% salt water had also been tested in Experiment 2, the volume of water risen into its tube after 2 hr would most likely have been:",
+  "choices": [
+   "less than 2.0 mL.",
+   "between 2.0 mL and 3.9 mL.",
+   "between 3.9 mL and 6.9 mL.",
+   "greater than 6.9 mL."
+  ],
+  "correct_answer": "between 3.9 mL and 6.9 mL.",
+  "explanation": "In Experiment 2, the volume after 2 hr increased with mass: 2.0 mL for 0.5 g, 3.9 mL for 1.0 g, and 6.9 mL for 2.0 g. A 1.5 g ball lies between 1.0 g and 2.0 g, so its volume should lie between 3.9 mL and 6.9 mL.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P4-Q6",
+  "passage_id": "sc5c-p4",
+  "passage_title": "Rusting of Steel Wool",
+  "format": "research_summaries",
+  "passage": "Iron rusts when it reacts with oxygen (O2) from the air in the presence of water. Steel wool, which is made of thin strands of iron-rich steel, rusts quickly because of its large surface area. Air is about 21% O2 by volume.\n\nStudents pushed a ball of steel wool into the closed end of a glass tube, turned the tube upside down, and stood its open end in a dish of water, trapping 50 mL of air above the water. As the O2 in the trapped air is used up by rusting, water rises into the tube to take its place; the volume of water that has risen equals the volume of O2 used. All trials were done at 22 °C.\n\nExperiment 1\nFour 1.0 g balls of steel wool were prepared. One was left dry. The others were dipped for 1 minute in distilled water, in 3% salt water, or in vinegar (a dilute solution of acetic acid) and allowed to drain. Each ball was placed in its own tube, and the volume of water that had risen into each tube was recorded 1, 2, 4, 8, and 24 hours (hr) later.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated with balls of steel wool with masses of 0.5 g, 1.0 g, and 2.0 g, all dipped in 3% salt water.\n\nTable 1 shows the results of both experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Volume of water risen into each tube (mL)",
+   "colLabels": [
+    "1 hr",
+    "2 hr",
+    "4 hr",
+    "8 hr",
+    "24 hr"
+   ],
+   "rowLabels": [
+    "Exp. 1: dry",
+    "Exp. 1: distilled water",
+    "Exp. 1: 3% salt water",
+    "Exp. 1: vinegar",
+    "Exp. 2: 0.5 g",
+    "Exp. 2: 1.0 g",
+    "Exp. 2: 2.0 g"
+   ],
+   "cells": [
+    [
+     "0.0",
+     "0.0",
+     "0.1",
+     "0.1",
+     "0.2"
+    ],
+    [
+     "0.8",
+     "1.6",
+     "3.1",
+     "5.8",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.2",
+     "10.2",
+     "10.4"
+    ],
+    [
+     "3.1",
+     "5.9",
+     "9.6",
+     "10.4",
+     "10.4"
+    ],
+    [
+     "1.0",
+     "2.0",
+     "3.8",
+     "6.9",
+     "10.3"
+    ],
+    [
+     "2.0",
+     "3.9",
+     "7.1",
+     "10.1",
+     "10.4"
+    ],
+    [
+     "3.8",
+     "6.9",
+     "10.1",
+     "10.4",
+     "10.4"
+    ]
+   ]
+  },
+  "prompt": "Which of the following was varied in Experiment 2 but not in Experiment 1?",
+  "choices": [
+   "The mass of the steel wool",
+   "The liquid the steel wool was dipped in",
+   "The volume of air trapped in the tube",
+   "The temperature of the trials"
+  ],
+  "correct_answer": "The mass of the steel wool",
+  "explanation": "Experiment 2 used 0.5 g, 1.0 g, and 2.0 g balls, while every ball in Experiment 1 was 1.0 g. The dipping liquid was varied in Experiment 1 but was always 3% salt water in Experiment 2. The trapped air (50 mL) and the temperature (22 °C) were the same in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P5-Q1",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the average slip angle of the block on felt in Experiment 1?",
+  "choices": [
+   "22.0°",
+   "27.7°",
+   "39.0°",
+   "45.0°"
+  ],
+  "correct_answer": "27.7°",
+  "explanation": "In the Exp. 1 felt row, the Average column reads 27.7°. The value 22.0° is the average for bare wood, 39.0° is the average for sandpaper, and 45.0° is the average for rubber.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P5-Q2",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that increasing the mass of the block would increase its slip angle. Do the results of Experiment 2 support this hypothesis?",
+  "choices": [
+   "Yes; the average slip angle increased as the total mass increased.",
+   "Yes; the average slip angle was greater on every surface for a heavier block.",
+   "No; the average slip angle decreased as the total mass increased.",
+   "No; the average slip angle was the same for all three total masses."
+  ],
+  "correct_answer": "No; the average slip angle was the same for all three total masses.",
+  "explanation": "In Experiment 2 the average slip angle was 21.7° for 200 g, 400 g, and 800 g, so increasing the mass did not change it, and the hypothesis is not supported. The average neither rose nor fell with mass, and Experiment 2 used only bare wood, so it gives no information about heavier blocks on other surfaces.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against results",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P5-Q3",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "Experiment 3 was designed to test the effect of which of the following on the slip angle?",
+  "choices": [
+   "The mass of the block resting on the board",
+   "The material covering the surface of the board",
+   "The area of the block that touches the board",
+   "The number of trials done for each condition"
+  ],
+  "correct_answer": "The area of the block that touches the board",
+  "explanation": "In Experiment 3 the same 200 g block was tested on the same bare wood, resting first on its 60 cm² face and then on its 20 cm² face, so only the area in contact with the board changed. Mass was varied in Experiment 2, the board material was varied in Experiment 1, and every condition in every experiment used 3 trials.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variable an experiment tests",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P5-Q4",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "Why did the students most likely do 3 trials for each condition and calculate an average?",
+  "choices": [
+   "To let the mass of the block change from trial to trial",
+   "To test a different board material in each of the trials",
+   "To make the slip angle grow larger from one trial to the next",
+   "To reduce the effect of small random errors in any one trial"
+  ],
+  "correct_answer": "To reduce the effect of small random errors in any one trial",
+  "explanation": "The trial values for a single condition differed by 1° or 2° (for example 38°, 40°, and 39° on sandpaper) even though nothing was changed, so averaging repeated trials reduces the influence of random measurement error. Within a condition the mass and the board material were held the same, and the slip angle did not rise steadily from trial to trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain the purpose of repeated trials",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P5-Q5",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "Suppose the board in Experiment 1 had been held fixed at an angle of 30°. On which of the materials would the 200 g block most likely have stayed at rest?",
+  "choices": [
+   "Rubber only",
+   "Sandpaper and rubber only",
+   "Felt, sandpaper, and rubber only",
+   "Bare wood, felt, sandpaper, and rubber only"
+  ],
+  "correct_answer": "Sandpaper and rubber only",
+  "explanation": "The block stays at rest as long as the board's angle is less than the slip angle. On sandpaper (38°-40°) and rubber (44°-46°) every trial's slip angle was above 30°, so the block would stay at rest. On felt (27°-28°), bare wood (21°-23°), and waxed paper (9°-10°) every slip angle was below 30°, so the block would slide.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply data to a new condition",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P5-Q6",
+  "passage_id": "sc5c-p5",
+  "passage_title": "Slip Angle of a Sliding Block",
+  "format": "research_summaries",
+  "passage": "When a block rests on a board and one end of the board is slowly raised, the block stays in place until the board reaches a certain angle, called the slip angle, at which the block begins to slide. The slip angle depends on how strongly the surfaces of the block and the board resist sliding past each other. Students used a wooden block that has a wide face (area 60 cm²) and a narrow face (area 20 cm²), and a 1 m long board. In each trial they raised one end of the board slowly until the block began to slide and then measured the board's angle above the horizontal. Each condition was tested in 3 trials, and the average slip angle was calculated.\n\nExperiment 1\nThe block, which has a mass of 200 g, was placed on its wide face on the board. The board's surface was covered, in turn, with each of 5 different materials.\n\nExperiment 2\nThe block was placed on its wide face on the bare wooden board. Brass masses were attached to the top of the block so that the total mass was 200 g, 400 g, or 800 g.\n\nExperiment 3\nThe 200 g block was tested on the bare wooden board, first resting on its wide face and then resting on its narrow face.\n\nTable 1 shows the results of all three experiments.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Slip angles (degrees)",
+   "colLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Average"
+   ],
+   "rowLabels": [
+    "Exp. 1: waxed paper",
+    "Exp. 1: bare wood",
+    "Exp. 1: felt",
+    "Exp. 1: sandpaper",
+    "Exp. 1: rubber",
+    "Exp. 2: 200 g",
+    "Exp. 2: 400 g",
+    "Exp. 2: 800 g",
+    "Exp. 3: wide face",
+    "Exp. 3: narrow face"
+   ],
+   "cells": [
+    [
+     "9",
+     "10",
+     "9",
+     "9.3"
+    ],
+    [
+     "22",
+     "21",
+     "23",
+     "22.0"
+    ],
+    [
+     "27",
+     "28",
+     "28",
+     "27.7"
+    ],
+    [
+     "38",
+     "40",
+     "39",
+     "39.0"
+    ],
+    [
+     "44",
+     "46",
+     "45",
+     "45.0"
+    ],
+    [
+     "22",
+     "22",
+     "21",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "22",
+     "21.7"
+    ],
+    [
+     "22",
+     "21",
+     "22",
+     "21.7"
+    ],
+    [
+     "21",
+     "22",
+     "23",
+     "22.0"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiments 1 and 2, if the block with a total mass of 800 g were placed on its wide face on the board covered with rubber, its average slip angle would most likely be closest to:",
+  "choices": [
+   "11°",
+   "22°",
+   "45°",
+   "68°"
+  ],
+  "correct_answer": "45°",
+  "explanation": "Experiment 2 showed that changing the total mass from 200 g to 800 g did not change the average slip angle (21.7° each time). Experiment 1 showed that the 200 g block on rubber had an average slip angle of 45.0°, so the 800 g block on rubber should also have a slip angle of about 45°. The value 22° is the slip angle on bare wood, and 11° and 68° assume the mass changes the angle, which Experiment 2 contradicts.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "combine results of two experiments to predict",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P6-Q1",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "According to the passage, the percent of seedlings 30 m from an adult that survived 1 year was about how many times the percent of seedlings within 5 m of an adult that survived 1 year?",
+  "choices": [
+   "3",
+   "9",
+   "24",
+   "30"
+  ],
+  "correct_answer": "9",
+  "explanation": "The passage states that 27% of seedlings 30 m away and 3% of seedlings near adults survived 1 year, and 27 / 3 = 9. The value 3 is the survival percent near adults, 24 is the difference 27 - 3 rather than the ratio, and 30 is the distance in meters.",
+  "domain": "Interpretation of Data",
+  "subskill": "calculate a ratio from passage data",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P6-Q2",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "Scientist 2 would most likely predict that seedlings of a different tree species growing within 5 m of an adult Species T tree would:",
+  "choices": [
+   "survive poorly, because they would be short of light, water, and nutrients.",
+   "survive well, because the beetle and fungus attack only Species T seedlings.",
+   "survive poorly, because the beetle and fungus build up beneath Species T adults.",
+   "survive well, because the adult's roots take up little water near its trunk."
+  ],
+  "correct_answer": "survive poorly, because they would be short of light, water, and nutrients.",
+  "explanation": "Scientist 2 states that \"seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive.\" The reasoning that the enemies attack only Species T, or that they build up beneath adults, belongs to Scientist 1, and Scientist 2 says the adult's roots take up most of the water within about 10 m of the trunk.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict from a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P6-Q3",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "Which of the following studies would best help determine which scientist's explanation is correct?",
+  "choices": [
+   "Plant seeds of Species T and of several other species within 5 m of Species T adults, and compare survival.",
+   "Count the fruits produced by Species T adults of several sizes, and compare the counts with trunk diameter.",
+   "Measure how far monkeys and bats carry Species T seeds, and compare the distances for the two animals.",
+   "Plant Species T seeds 30 m from adults at sites with different rainfall, and compare survival at the sites."
+  ],
+  "correct_answer": "Plant seeds of Species T and of several other species within 5 m of Species T adults, and compare survival.",
+  "explanation": "Scientist 1 predicts that other species would survive well near Species T adults while Species T seedlings die, because the enemies attack only Species T; Scientist 2 predicts that all species would survive poorly there because of the shortage of resources. Planting several species near adults therefore separates the two views. Fruit counts and seed-carrying distances are not predicted differently by the scientists, and a study done only at 30 m never tests conditions near adults, where the two views disagree.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a study that discriminates between viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P6-Q4",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "Suppose Species T seedlings within 5 m of adults were treated with chemicals that killed the beetle and the fungus without changing the light, water, or nutrients the seedlings received, and 24% of them survived 1 year. This result would most likely weaken the viewpoint of:",
+  "choices": [
+   "Scientist 1, because treated seedlings survived nearly as well as seedlings 30 m away.",
+   "Scientist 1, because treated seedlings were still shaded by the crowns of the adults.",
+   "Scientist 2, because the chemicals added nutrients that the adults' roots had taken up.",
+   "Scientist 2, because removing the enemies alone raised survival nearly to that 30 m away."
+  ],
+  "correct_answer": "Scientist 2, because removing the enemies alone raised survival nearly to that 30 m away.",
+  "explanation": "Survival rose from 3% to 24%, close to the 27% seen 30 m away, even though the seedlings were still short of light, water, and nutrients. That is what Scientist 1 predicts and contradicts Scientist 2, who says such resource-starved seedlings would die regardless and that enemies kill mainly seedlings already weakened. The result supports rather than weakens Scientist 1, and the chemicals are described as not changing the nutrients the seedlings received.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate how a new result bears on each viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P6-Q5",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "A large Species T adult died and fell, so that full sunlight reached the ground where it had stood, and its dead roots no longer took up water or nutrients. Species T seeds that sprouted within 5 m of its stump the next year would be expected to survive poorly according to:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "both Scientist 1 and Scientist 2.",
+   "neither Scientist 1 nor Scientist 2."
+  ],
+  "correct_answer": "Scientist 1 only.",
+  "explanation": "Scientist 1 says the fungus \"survives for several years in its dead roots, so seedlings near the spot remain at risk,\" so Scientist 1 predicts poor survival. Scientist 2 attributes poor survival to the adult's shade and its roots taking water and nutrients; with sunlight reaching the ground and the roots dead, Scientist 2 would expect the seedlings to be well supplied and to survive.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply both viewpoints to a new situation",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P6-Q6",
+  "passage_id": "sc5c-p6",
+  "passage_title": "Seedling Survival Near Parent Trees",
+  "format": "conflicting_viewpoints",
+  "passage": "In a tropical forest, adult trees of a species called Species T produce large fruits, each containing one seed. Monkeys and bats eat some of the fruits and drop the seeds as far as 100 m away, but most fruits fall beneath the parent tree's crown, which extends about 10 m from the trunk. Researchers marked 1,000 newly sprouted Species T seedlings within 5 m of adult Species T trees and 1,000 newly sprouted seedlings 30 m from the nearest adult Species T tree. After 1 year, 3% of the seedlings near adults and 27% of the seedlings 30 m away were still alive. Two scientists explain why seedlings near adults survive so poorly.\n\nScientist 1\nSeedlings near adults die mainly because of natural enemies that specialize on Species T. A species of beetle and a soil fungus attack only Species T. Because each adult drops fruit beneath its crown year after year, these enemies build up in large numbers in the soil and leaf litter there. A Species T seedling near an adult is therefore almost certain to be attacked, while one 30 m away is usually not found by the enemies. Seedlings of other tree species growing beneath Species T adults are not harmed by these enemies. Even after an adult dies, the fungus survives for several years in its dead roots, so seedlings near the spot remain at risk.\n\nScientist 2\nSeedlings near adults die mainly because the adults take the resources the seedlings need. An adult's dense crown blocks most of the sunlight, and its roots, which are densest within about 10 m of the trunk, take up most of the water and nutrients in the soil there. Seedlings of any species growing beneath a Species T adult are short of light, water, and nutrients and grow too slowly to survive. Seedlings 30 m away are beyond the adult's crown and its densest roots, so they receive more of these resources. Insects and fungi do attack seedlings, but they kill mainly seedlings of any species that are already weakened by a lack of resources; well-supplied seedlings survive attack.",
+  "prompt": "Both scientists would most likely agree that if the monkeys and bats in the forest disappeared, the number of Species T seedlings surviving 1 year would:",
+  "choices": [
+   "increase, because more seeds would fall beneath adult crowns.",
+   "stay the same, because most fruits already fall beneath adults.",
+   "stay the same, because these animals eat fruit but not the seeds.",
+   "decrease, because fewer seeds would be carried away from adults."
+  ],
+  "correct_answer": "decrease, because fewer seeds would be carried away from adults.",
+  "explanation": "Both scientists agree that seedlings 30 m from adults survive much better than seedlings near adults (27% vs. 3%), whether because they escape the enemies (Scientist 1) or because they are beyond the adult's crown and roots (Scientist 2). Without the animals that carry seeds away, nearly all seeds would land where survival is poorest, so the number of surviving seedlings would fall.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P7-Q1",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "According to Scientist 1, the pain of a side stitch comes from:",
+  "choices": [
+   "irritation of the abdominal lining.",
+   "a cramp in the abdominal wall.",
+   "a cramp in the diaphragm.",
+   "the liver pressing on the ribs."
+  ],
+  "correct_answer": "a cramp in the diaphragm.",
+  "explanation": "Scientist 1 states that \"a stitch is a cramp of the diaphragm caused by reduced blood flow to it.\" Irritation of the abdominal lining is Scientist 2's explanation, and Scientist 1 says nothing about cramps of the abdominal wall or about the liver pressing on the ribs; the liver tugs on the diaphragm.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's central claim",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV5c-P7-Q2",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "Both scientists' explanations account for the observation that stitches are more frequent after a large drink, because both scientists state that a full stomach:",
+  "choices": [
+   "increases the stress on the tissue that produces the pain.",
+   "reduces the flow of blood to the abdominal lining.",
+   "makes the torso jolt harder each time the body lands.",
+   "directly irritates the phrenic nerve near the shoulder."
+  ],
+  "correct_answer": "increases the stress on the tissue that produces the pain.",
+  "explanation": "Scientist 1 says a full stomach \"adds weight and increases the tug\" on the diaphragm, and Scientist 2 says a swollen stomach \"presses against the lining and rubs against it.\" Each therefore says a full stomach adds stress to the tissue it identifies as the source of pain. Neither says a full stomach reduces blood flow to the lining or makes the torso jolt harder, and both say the phrenic nerve carries pain from the irritated tissue, not that the stomach irritates the nerve directly.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P7-Q3",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "A survey found that competitive swimmers, whose torsos twist repeatedly but undergo little up-and-down jolting, report stitches nearly as often as runners do. This finding would most likely weaken the viewpoint of:",
+  "choices": [
+   "Scientist 1, who says the diaphragm does not work hard during swimming.",
+   "Scientist 1, who says stitches occur mainly in activities with repeated jolting.",
+   "Scientist 2, who says a hunched posture is required for a stitch to occur.",
+   "Scientist 2, who says jolting is needed for the stomach to irritate the lining."
+  ],
+  "correct_answer": "Scientist 1, who says stitches occur mainly in activities with repeated jolting.",
+  "explanation": "Scientist 1 concludes that \"stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso,\" so frequent stitches in swimmers contradict Scientist 1. Scientist 1 never discusses swimming. Scientist 2 says a hunched posture makes a stitch more likely, not that it is required, and says \"jolting is not required\" and that twisting can produce a stitch, so the finding fits Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate how a new finding bears on each viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV5c-P7-Q4",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "Which of the following measurements, made in runners both during a stitch and when no stitch is present, would most directly test the mechanism proposed by Scientist 1?",
+  "choices": [
+   "The volume of liquid in the stomach",
+   "The location of the sharpest point of pain",
+   "The angle at which the spine is bent forward",
+   "The rate of blood flow to the diaphragm"
+  ],
+  "correct_answer": "The rate of blood flow to the diaphragm",
+  "explanation": "Scientist 1's mechanism is that tugging by the organs reduces the diaphragm's blood supply, causing it to cramp; if that is right, blood flow to the diaphragm should be lower during a stitch. The volume of liquid in the stomach is a factor both scientists already agree raises stitch frequency, and the sharp location of the pain and the bending of the spine are part of Scientist 2's account.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that tests a mechanism",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P7-Q5",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "Scientist 2 would most likely respond to Scientist 1's argument that shoulder-tip pain shows a stitch comes from the diaphragm by pointing out that:",
+  "choices": [
+   "shoulder-tip pain occurs only in runners who run hunched over.",
+   "the diaphragm has no blood vessels that the organs could squeeze.",
+   "the phrenic nerve also serves the lining just beneath the diaphragm.",
+   "shoulder-tip pain is caused by the liver jolting against the ribs."
+  ],
+  "correct_answer": "the phrenic nerve also serves the lining just beneath the diaphragm.",
+  "explanation": "Scientist 2 states that \"the part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain,\" which means shoulder-tip pain does not single out the diaphragm. Scientist 2 never ties shoulder-tip pain to posture, never claims the diaphragm lacks blood vessels, and does not attribute the pain to jolting of the liver.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify how one viewpoint answers another",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV5c-P7-Q6",
+  "passage_id": "sc5c-p7",
+  "passage_title": "The Cause of a Side Stitch",
+  "format": "conflicting_viewpoints",
+  "passage": "A side stitch is a sharp pain felt at one spot on one side of the abdomen, usually just below the ribs, during exercise. It is reported by about 70% of regular runners each year and is also common among horseback riders. Stitches are more frequent when a person has eaten a meal or drunk a large volume of liquid within 2 hours before exercising, and some stitches are accompanied by pain at the tip of the shoulder. The diaphragm is the dome-shaped sheet of muscle beneath the lungs that contracts when a person inhales. The parietal peritoneum is a thin membrane that lines the inside of the abdominal wall. Pain at the tip of the shoulder can result from irritation of tissues served by the phrenic nerve. Two scientists discuss the cause of side stitches.\n\nScientist 1\nA stitch is a cramp of the diaphragm caused by reduced blood flow to it. The liver, stomach, and spleen hang from the underside of the diaphragm by ligaments. During running or riding, each time the body lands, these organs are jolted downward and tug on the diaphragm while it is also working hard to move air. The repeated tugging squeezes the diaphragm's blood vessels and reduces its blood supply, and the muscle cramps. A full stomach adds weight and increases the tug. Because the diaphragm is served by the phrenic nerve, pain from the diaphragm can be felt at the shoulder tip. Stitches should therefore occur mainly in activities that involve repeated up-and-down jolting of the torso.\n\nScientist 2\nA stitch is caused by irritation of the parietal peritoneum. This lining is rich in pain-sensing nerve endings that can pinpoint the location of an irritation, which is why a stitch is felt at one sharp spot. When the stomach is swollen with food or drink, it presses against the lining and rubs against it as the torso moves. Bending the spine forward also presses the abdominal organs against the lining, so a stitch is more likely when a person exercises in a hunched posture. The part of the parietal peritoneum just beneath the diaphragm is also served by the phrenic nerve, so irritation there can produce shoulder-tip pain. Jolting is not required; any activity that repeatedly moves the torso against a full stomach, including twisting, can produce a stitch.",
+  "prompt": "Which of the following studies would best test Scientist 2's claim about posture?",
+  "choices": [
+   "Have the same runners run one route once upright and once hunched, after equal drinks, and compare stitches.",
+   "Compare how often stitches are reported by runners and by horseback riders who ride for equal times.",
+   "Measure the blood flow to the diaphragm in runners who run upright, before and after they drink.",
+   "Have runners drink different volumes of liquid before running upright, and compare how often stitches occur."
+  ],
+  "correct_answer": "Have the same runners run one route once upright and once hunched, after equal drinks, and compare stitches.",
+  "explanation": "Scientist 2 claims a stitch is more likely in a hunched posture, so the study must change posture while holding other factors, such as the runners, the route, and the amount drunk, constant. Comparing runners with riders changes the activity, not the posture; measuring diaphragm blood flow tests Scientist 1's mechanism; and varying the drink volume while everyone runs upright never changes posture.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a controlled test of a claim",
+  "difficulty": "medium"
+ }
+]
