@@ -25,6 +25,14 @@ supports light and dark themes and a phone layout.
 - **No student names at all**, not even masked. The referred-students table shows join date, grade, target test,
   plan, status and total paid; the name search and name sort are gone.
 
+## Owner decisions (2026-10-23, v5)
+- **Removed:** the contract/tax-invoice menu (계약 · 세금계산서) and the contract-term fact; the marketing kit (홍보 자료)
+  menu and its message-template card; the referred-payments card (추천 결제액), the per-student total-paid column and
+  the plan prices. With v4's removals (정산, 수수료, student names) the partner sees no money figures at all.
+- **What remains:** referral code, link and QR; code sign-ups, first test taken and paid conversions (counts only);
+  the monthly trend and funnel; plan mix as counts; a referred-students table with join date, grade, target test,
+  plan and status. Navigation: 대시보드, 추천 학생, 설정.
+
 ## What each block needs from the real system
 
 | Block | Source today | Gap to close |
@@ -32,7 +40,7 @@ supports light and dark themes and a phone layout.
 | Referral code + link + QR | `study_referral_codes` (one 6-char code per student) | Codes belong to a STUDENT. Partners need an org-owned code (a `study_affiliates` row with `code`, `name`, `since`; any commission terms stay internal). The code must use the redeem alphabet (`CODE_ALPHABET` in `src/lib/study/referral.ts`: no 0/O/1/I/L), so "HERALD" or "UHAK114" would never redeem. The mock uses `SSGUHK` / `HSEDU7`. |
 | Code sign-ups | `study_referral_redemptions` (`code`, `referee_id`, `created_at`) | Join on the affiliate's code instead of `referrer_id`. |
 | Paid conversions | `study_referral_redemptions.converted` / `converted_at` | Already recorded (`referral-conversion.ts`); no change. |
-| Referred payments | `study_payments` (`student_id`, `amount_won`, `paid_at`, `refunded_at`) for referees | Sum net of refunds. Commission and payouts are handled outside the partner's screen (owner, 2026-10-22). |
+| Paid conversions | `study_referral_redemptions.converted` | Counts only. No payment amounts are shown to partners (owner, 2026-10-23). |
 | Link visits | not tracked | `/invite/[code]` must log a view event; without it, drop the tile and the funnel's first step. |
 | "Started a test" | `study_attempts` / sessions for referees | Define "started" (first completed section?) before showing it. |
 | Plan mix | `study_subscriptions` current plan for paying referees | Only monthly plans are sold (`non-monthly-plans-not-sold` test). |
