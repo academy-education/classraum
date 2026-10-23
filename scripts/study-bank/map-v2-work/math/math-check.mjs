@@ -31,11 +31,22 @@ import { keyprint, struct, inter } from '../../mf30-checks.mjs'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '../../../..'), SB = join(ROOT, 'scripts/study-bank')
 const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
-const file = process.argv[2]
+// Batch 2 (2026-10-24): --slots <slots.json> --prior <prior-math.json> --families isee,ssat,map. All three default
+// to batch 1's values, so `math-check.mjs <file>` behaves exactly as it did for batch 1.
+const ARGS = process.argv.slice(2)
+const opt = (n, d) => { const i = ARGS.indexOf(n); if (i < 0) return d; if (!ARGS[i + 1] || ARGS[i + 1].startsWith('--')) die(`${n} needs a value`); return ARGS[i + 1] }
+const OPTS = ['--slots', '--prior', '--families']
+const file = ARGS.find((a, i) => !a.startsWith('--') && !OPTS.includes(ARGS[i - 1]))
+const SLOTS_PATH = opt('--slots', join(HERE, 'slots.json'))
+const PRIOR_PATH = opt('--prior', null)
+const FAMILIES = opt('--families', 'isee,ssat').split(',').filter(Boolean)
+if (!FAMILIES.length || FAMILIES.some(f => !['isee', 'ssat', 'map', 'sat', 'act'].includes(f))) die(`--families: unknown family in '${FAMILIES.join(',')}'`)
 if (!file || !existsSync(file)) die(`no such file: ${file}`)
+if (!existsSync(SLOTS_PATH)) die(`no such slots file: ${SLOTS_PATH}`)
 let items; try { items = JSON.parse(readFileSync(file, 'utf8')) } catch (e) { die('unparseable JSON: ' + e.message) }
 if (!Array.isArray(items) || !items.length) die('expected a non-empty JSON array')
-const SL = JSON.parse(readFileSync(join(HERE, 'slots.json'), 'utf8'))
+const SL = JSON.parse(readFileSync(SLOTS_PATH, 'utf8'))
+if (!Object.values(SL).length || Object.values(SL).some(v => !Array.isArray(v?.rows) || !v.rows.length || typeof v.area !== 'string')) die(`${SLOTS_PATH}: every author needs an area and a non-empty rows array`)
 const SLOT = Object.fromEntries(Object.entries(SL).flatMap(([a, v]) => v.rows.map(r => [r.id, { ...r, author: a, domain: v.area }])))
 const RIT = { 5: { low: 'RIT 190-199', mid: 'RIT 200-209', high: 'RIT 210-219' }, 6: { low: 'RIT 200-209', mid: 'RIT 210-219', high: 'RIT 220-229' }, 7: { low: 'RIT 200-209', mid: 'RIT 210-219', high: 'RIT 220-229' }, 8: { low: 'RIT 210-219', mid: 'RIT 220-229', high: 'RIT 230-239' } }
 const DIFF = { low: 'easy', mid: 'medium', high: 'hard' }
@@ -107,7 +118,7 @@ function bounds(it) {
   }
   return out
 }
-const priorMap = (() => { const p = JSON.parse(readFileSync(join(ROOT, 'scratchpad/map-v2-math-work/dump/prior-math.json'), 'utf8')); if (p.length < 1000) die('prior dump too small'); return p.filter(x => /map-math|DB map/.test(x.file ?? '')) })()
+const priorMap = (() => { const p = JSON.parse(readFileSync(PRIOR_PATH ?? join(ROOT, 'scratchpad/map-v2-math-work/dump/prior-math.json'), 'utf8')); if (p.length < 1000) die('prior dump too small'); return p.filter(x => /map-math|DB map/.test(x.file ?? '')) })()
 const bag = s => new Set(String(s ?? '').toLowerCase().replace(/\d+(\.\d+)?/g, '#').match(/[a-z#]+/g) ?? [])
 const jac = (a, b) => { let i = 0; for (const x of a) if (b.has(x)) i++; return i / (a.size + b.size - i || 1) }
 
@@ -117,7 +128,7 @@ let failed = 0
 for (const it of items) {
   const bad = [], read = []
   const s = SLOT[it.id]
-  if (!s) { console.log(`${it.id}  PART FAIL\n    - not a slot in slots.json`); failed++; continue }
+  if (!s) { console.log(`${it.id}  PART FAIL\n    - not a slot in ${SLOTS_PATH}`); failed++; continue }
   if (it.domain !== s.domain) bad.push(`domain must be "${s.domain}"`)
   if (it.grade_target !== s.g) bad.push(`grade_target ${it.grade_target}, slot ${s.g}`)
   if (it.tier !== s.tier) bad.push(`tier ${it.tier}, slot ${s.tier}`)
@@ -163,7 +174,7 @@ for (const it of items) {
   const vl = v.stdout.split('\n').filter(l => /^(FAIL|SHAPE)|DISTRACTOR|Distractors:/.test(l))
   if (v.status !== 0 || !/Sandbox: 1\/1/.test(v.stdout)) bad.push('sandbox: ' + (vl.join(' | ') || (v.stderr || v.stdout).slice(0, 300)))
   else if (/Distractors: NOT CHECKED|partial coverage|mismatch\./.test(v.stdout) && !/0 item\(s\) with a mismatch/.test(v.stdout)) bad.push('distractor_solve: ' + vl.join(' | '))
-  for (const fam of ['isee', 'ssat']) {
+  for (const fam of FAMILIES) {
     const nd = spawnSync('node', [join(SB, 'check-math-near-dup.mjs'), one, '--family', fam], { cwd: ROOT, encoding: 'utf8' })
     const fl = (nd.stdout + nd.stderr).split('\n').filter(l => /FLAG|REFUS/.test(l))
     if (nd.status !== 0 || fl.length) bad.push(`near-dup ${fam}: ${fl.join(' | ').slice(0, 300) || 'exit ' + nd.status}`)

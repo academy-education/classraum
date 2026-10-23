@@ -1,0 +1,2384 @@
+{
+ "O5": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "5.OA (all three clusters)",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O5-01",
+    "cls": null,
+    "mech": "evaluate an expression with one pair of parentheses and a division, no brackets",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O5-02",
+    "cls": null,
+    "mech": "write \"k times the sum of a and b\" from words and evaluate it",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-O5-03",
+    "cls": "NEGTERM",
+    "mech": "a total minus a parenthesised difference, a - (b - c), in a context",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O5-04",
+    "cls": null,
+    "mech": "two numerical patterns with different add-rules: the B-term paired with a given A-term",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O5-05",
+    "cls": "NEGTERM",
+    "mech": "a total minus a bracket [ (a + b) x c / d ] from a word description",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O5-06",
+    "cls": "DIVISOR",
+    "mech": "a division by a parenthesised product, n / (a x b) + c, where left-to-right and product-first errors fall on opposite sides",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O5-07",
+    "cls": null,
+    "mech": "pattern B is k times pattern A: find the A-term for a given B-term",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O5-08",
+    "cls": "DIFF",
+    "mech": "difference between the 9th terms of two patterns with different starts and rules",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O5-09",
+    "cls": null,
+    "mech": "one expression for a multi-step story (buy n packs of p, share among k), evaluated",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O5-10",
+    "cls": "DIVISOR",
+    "mech": "\"divide the sum of A and B by the difference of C and D\", evaluated",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O5-11",
+    "cls": null,
+    "mech": "nested brackets and braces with a product inside, evaluated",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O5-12",
+    "cls": "NEGTERM",
+    "mech": "nested brackets: a total minus [ k x (a - b) - c / d ]",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O5-13",
+    "cls": "DIVISOR",
+    "mech": "share a total among (a + b) teams after first removing c: grouping is the decision",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O5-14",
+    "cls": null,
+    "mech": "two patterns: which term number of A pairs with a given value of B (inverse reading)",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O5-15",
+    "cls": null,
+    "mech": "\"three times as large as the difference of\" nested phrase, written and evaluated",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O5-16",
+    "cls": null,
+    "mech": "expression with brackets where one pair of parentheses is moved: value of the new expression",
+    "core": false
+   }
+  ]
+ },
+ "O6R": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "6.RP",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6R-01",
+    "cls": null,
+    "mech": "unit price from a total for n items, then the cost of m items",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6R-02",
+    "cls": null,
+    "mech": "ratio table with a non-integer scale factor (4:6 to 10:?)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "L",
+    "id": "MB2-O6R-03",
+    "cls": "DIFF",
+    "mech": "two unit speeds from distance and time; how much faster one is",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6R-04",
+    "cls": null,
+    "mech": "percent of a quantity (e.g. 35% of 260) in a context",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6R-05",
+    "cls": null,
+    "mech": "unit conversion by a ratio table, one step",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O6R-06",
+    "cls": "DIFF",
+    "mech": "part-to-part ratio with the total given; how many more of the larger part",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O6R-07",
+    "cls": "DIVISOR",
+    "mech": "best buy: difference in unit prices where dividing the wrong way (items per dollar) is the error",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6R-08",
+    "cls": null,
+    "mech": "the whole from a part and its percent (24 is 15% of what)",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O6R-09",
+    "cls": "NEGTERM",
+    "mech": "amount left after spending a percent and then a fixed amount",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6R-10",
+    "cls": null,
+    "mech": "ratio changes after some people join; new count of one group",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O6R-11",
+    "cls": "DIVISOR",
+    "mech": "rate per hour applied to a time given in minutes",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6R-12",
+    "cls": null,
+    "mech": "mixing ratio (3:5): amount of the second part for a given total",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O6R-13",
+    "cls": "DIFF",
+    "mech": "two rows of one ratio table: how many more of B the larger batch needs",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O6R-14",
+    "cls": "DIFF",
+    "mech": "percent off versus a fixed coupon on the same price: difference in final prices",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O6R-15",
+    "cls": "DIVISOR",
+    "mech": "time to finish a job from a unit rate given as a ratio (rate inverted is the error)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O6R-16",
+    "cls": null,
+    "mech": "tape-diagram ratio of part to total with a change; the original amount",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O6R-17",
+    "cls": "NEGTERM",
+    "mech": "rope in yards, pieces cut in feet: inches left (conversion chain with a subtraction)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O6R-18",
+    "cls": null,
+    "mech": "three-part ratio a:b:c with the total given; one share",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O6R-19",
+    "cls": "NEGTERM",
+    "mech": "give away a number, then a percent of the rest: how many are kept",
+    "core": false
+   }
+  ]
+ },
+ "O6E": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "6.EE",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6E-01",
+    "cls": null,
+    "mech": "evaluate a coefficient times a squared variable plus a constant",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6E-02",
+    "cls": null,
+    "mech": "one-step equation x / k = n from a word context",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-O6E-03",
+    "cls": "NEGTERM",
+    "mech": "evaluate a - b x c for given values (subtraction of a product)",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6E-04",
+    "cls": null,
+    "mech": "dependent variable from a rule y = 3x + 2 given in a table heading",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O6E-05",
+    "cls": null,
+    "mech": "greatest whole-number solution of x + a < b (interior slot)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O6E-06",
+    "cls": "DIVISOR",
+    "mech": "evaluate (a + b) / c where dividing only b is the error",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O6E-07",
+    "cls": "NEGTERM",
+    "mech": "evaluate 3(x - 4) - 2x at a value: distribution errors fall on both sides",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6E-08",
+    "cls": null,
+    "mech": "difference of two powers, 4^3 - 2^5 style, in a context",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O6E-09",
+    "cls": "DIFF",
+    "mech": "two cost expressions (fee plus rate) evaluated at n; the difference",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6E-10",
+    "cls": null,
+    "mech": "one-step equation with decimals, 0.6x = 4.2, in a context",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O6E-11",
+    "cls": "DIVISOR",
+    "mech": "d = rt solved for t, with r stated as a ratio",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O6E-12",
+    "cls": null,
+    "mech": "independent/dependent from \"each week adds 4\": value after w weeks",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O6E-13",
+    "cls": "NEGTERM",
+    "mech": "combine like terms in 7y - 2(y - 3), then evaluate",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O6E-14",
+    "cls": "DIFF",
+    "mech": "two rules y = ax + b given as tables: difference of their outputs at one input",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O6E-15",
+    "cls": "DIVISOR",
+    "mech": "area formula A = bh / 2 solved for h, then used in a second step",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O6E-16",
+    "cls": null,
+    "mech": "perimeter with one variable side: one-step equation after combining",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O6E-17",
+    "cls": "NEGTERM",
+    "mech": "2^4 - (3^2 - 5) x 2 style: an exponent and a subtracted product of a group",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O6E-18",
+    "cls": null,
+    "mech": "how many whole numbers satisfy two inequalities together (interior slot)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O6E-19",
+    "cls": null,
+    "mech": "evaluate an expression with fractional coefficients, (3/4)x + x/2, at a value",
+    "core": false
+   }
+  ]
+ },
+ "O7R": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "7.RP",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7R-01",
+    "cls": null,
+    "mech": "constant of proportionality from a table, then a new value",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7R-02",
+    "cls": null,
+    "mech": "sales tax on one price",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-O7R-03",
+    "cls": "DIFF",
+    "mech": "two unit rates with fractions (miles per 1/2 hour vs per 3/4 hour): how many more per hour",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7R-04",
+    "cls": null,
+    "mech": "percent error from measured and actual values",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7R-05",
+    "cls": null,
+    "mech": "k from a described proportional relationship, then y for a new x",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7R-06",
+    "cls": "DIFF",
+    "mech": "markup then discount on one item: final price minus the original",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O7R-07",
+    "cls": "NEGTERM",
+    "mech": "coupon applied before vs after a percent discount: amount saved by the better order",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7R-08",
+    "cls": null,
+    "mech": "simple interest over a number of months",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7R-09",
+    "cls": "DIVISOR",
+    "mech": "complex-fraction unit rate (2/3 cup per 3/4 batch): cups per batch",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7R-10",
+    "cls": null,
+    "mech": "percent increase from an old and a new value",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O7R-11",
+    "cls": "DIFF",
+    "mech": "commissions of two salespeople at different rates: the difference",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7R-12",
+    "cls": null,
+    "mech": "k from a point on a described graph, then y at another x",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7R-13",
+    "cls": "DIVISOR",
+    "mech": "percent decrease where the wrong base (the new value) is the error",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O7R-14",
+    "cls": "DIFF",
+    "mech": "two successive percent changes vs their naive sum: difference in final amounts",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O7R-15",
+    "cls": "DIVISOR",
+    "mech": "original price from a price including tax (divide by 1.08, not multiply by 0.92)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O7R-16",
+    "cls": null,
+    "mech": "tip and tax on a bill, tip computed on the pre-tax amount: total paid",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O7R-17",
+    "cls": "NEGTERM",
+    "mech": "percent error where the measurement is under the actual value, against the actual",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O7R-18",
+    "cls": null,
+    "mech": "recipe scaled by a ratio and converted to another unit",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O7R-19",
+    "cls": "DIFF",
+    "mech": "interest earned by two accounts at different rates and times: the difference",
+    "core": false
+   }
+  ]
+ },
+ "O7E": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "7.EE",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7E-01",
+    "cls": null,
+    "mech": "px + q = r from a fee-plus-rate context",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7E-02",
+    "cls": null,
+    "mech": "combine 0.4x + 0.15x: the single coefficient",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-O7E-03",
+    "cls": "NEGTERM",
+    "mech": "p(x - q) = r with q subtracted",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7E-04",
+    "cls": null,
+    "mech": "px + q > r: least whole-number solution (interior slot)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O7E-05",
+    "cls": null,
+    "mech": "evaluate an expression with rational coefficients at a value",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7E-06",
+    "cls": "DIVISOR",
+    "mech": "x / p + q = r",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O7E-07",
+    "cls": "SIGNED",
+    "mech": "px + q = r with a negative p",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7E-08",
+    "cls": null,
+    "mech": "perimeter 2(L + w) with a stated relation between L and w",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7E-09",
+    "cls": "NEGTERM",
+    "mech": "5(x - 2) - 3 = 22 style: distribution across a subtraction",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7E-10",
+    "cls": null,
+    "mech": "savings goal with a starting amount: least number of weeks",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O7E-11",
+    "cls": "DIFF",
+    "mech": "two people each solve an equation from a story: how much greater one solution is",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O7E-12",
+    "cls": null,
+    "mech": "a + 0.06a rewritten as one product: the multiplier times a price",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O7E-13",
+    "cls": "SIGNED",
+    "mech": "-k(x + a) = -b + c style equation with negatives on both sides",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O7E-14",
+    "cls": "NEGTERM",
+    "mech": "(2/3)(x - 6) = 10: a fraction times a group with a subtraction",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O7E-15",
+    "cls": "DIFF",
+    "mech": "two two-step wage equations: how much more one earns per hour",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O7E-16",
+    "cls": null,
+    "mech": "backward chain (spent a fraction, then an amount, has n left): the original",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O7E-17",
+    "cls": "SIGNED",
+    "mech": "px + q = r with negative rational p and q",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O7E-18",
+    "cls": null,
+    "mech": "px + q <= r with decimal p: the greatest number of items (interior slot)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O7E-19",
+    "cls": "NEGTERM",
+    "mech": "perimeter of a figure with expression sides minus a shared side, evaluated",
+    "core": false
+   }
+  ]
+ },
+ "O8": {
+  "area": "Operations and Algebraic Thinking",
+  "scope": "8.EE.B-C, 8.F",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O8-01",
+    "cls": null,
+    "mech": "slope from two points given in a context",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O8-02",
+    "cls": null,
+    "mech": "initial value from a table of a linear function",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-O8-03",
+    "cls": null,
+    "mech": "linear equation with variables on both sides, integer solution",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "L",
+    "id": "MB2-O8-04",
+    "cls": "DIVISOR",
+    "mech": "unit rates of two proportional relationships (one equation, one table): how much greater",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O8-05",
+    "cls": "DIFF",
+    "mech": "rates of change of two functions given in different forms: the difference",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O8-06",
+    "cls": null,
+    "mech": "system by substitution: the value of x",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O8-07",
+    "cls": "NEGTERM",
+    "mech": "equation with distribution and subtraction on both sides, rational solution",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O8-08",
+    "cls": null,
+    "mech": "function value from \"starts at 12, decreases 1.5 per hour\"",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-O8-09",
+    "cls": "SIGNED",
+    "mech": "y-intercept from a slope and a point with negative coordinates",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O8-10",
+    "cls": null,
+    "mech": "k that makes an equation have infinitely many solutions",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-O8-11",
+    "cls": "DIVISOR",
+    "mech": "x-intercept of a line through two points (division by the slope)",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-O8-12",
+    "cls": null,
+    "mech": "input where two linear functions given in words are equal",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O8-13",
+    "cls": "DIFF",
+    "mech": "tickets system (two prices, two totals): how many more of one type",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O8-14",
+    "cls": "DIVISOR",
+    "mech": "line through a point with a given slope: x when y is a given value",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O8-15",
+    "cls": null,
+    "mech": "rate of change from a table with uneven x steps",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-O8-16",
+    "cls": "NEGTERM",
+    "mech": "rate of change from a verbal situation with a fee subtracted first",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-O8-17",
+    "cls": "SIGNED",
+    "mech": "parameter so two lines meet at a given x (not y: distinct from live MV2-O78-12)",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-O8-18",
+    "cls": null,
+    "mech": "function from two points: output at a non-integer input",
+    "core": false
+   }
+  ]
+ },
+ "G5": {
+  "area": "Geometry",
+  "scope": "5.G, 5.MD.C",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G5-01",
+    "cls": null,
+    "mech": "grid-line distance between two points sharing an x-coordinate, with a map scale",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G5-02",
+    "cls": null,
+    "mech": "volume of a prism from described layers of unit cubes",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "L",
+    "id": "MB2-G5-03",
+    "cls": "DIFF",
+    "mech": "volumes of two boxes: how much more one holds",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G5-04",
+    "cls": null,
+    "mech": "classifying: how many of a described list of figures always have a property",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G5-05",
+    "cls": "DIFF",
+    "mech": "L-shaped solid as two non-overlapping prisms, given as a box minus a notch",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G5-06",
+    "cls": null,
+    "mech": "grid path with a backtrack: total length walked",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G5-07",
+    "cls": "NEGTERM",
+    "mech": "volume left in a box after a smaller prism is removed (over-removal is natural too)",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G5-08",
+    "cls": "DIVISOR",
+    "mech": "how many 2-unit cubes fit in a box (volume / volume vs per-edge)",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G5-09",
+    "cls": null,
+    "mech": "rectangle from three vertices on a grid: a coordinate of the fourth",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G5-10",
+    "cls": "DIVISOR",
+    "mech": "height of a prism from its volume and base edges",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G5-11",
+    "cls": null,
+    "mech": "volume with the base area given and the height described by a relation",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G5-12",
+    "cls": "DIFF",
+    "mech": "two boxes with equal volume and different bases: the difference in heights",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-G5-13",
+    "cls": "DIFF",
+    "mech": "one edge doubled and another halved: how much more the new box holds",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G5-14",
+    "cls": null,
+    "mech": "point after a sequence of grid moves: its x-coordinate",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G5-15",
+    "cls": "DIVISOR",
+    "mech": "layers of cubes needed to reach a volume (volume / layer)",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G5-16",
+    "cls": null,
+    "mech": "perimeter of a figure built from a rhombus and a square, from their properties",
+    "core": false
+   }
+  ]
+ },
+ "G6": {
+  "area": "Geometry",
+  "scope": "6.G",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G6-01",
+    "cls": null,
+    "mech": "area of a right triangle from its legs in a context",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G6-02",
+    "cls": null,
+    "mech": "area of a parallelogram with a slanted side printed as a decoy",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-G6-03",
+    "cls": "DIFF",
+    "mech": "two rectangles on the coordinate plane: how much greater one area is",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G6-04",
+    "cls": null,
+    "mech": "cubes of edge 1/2 packed in a prism: volume",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G6-05",
+    "cls": null,
+    "mech": "surface area of a rectangular prism from a described net",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G6-06",
+    "cls": "NEGTERM",
+    "mech": "trapezoid as a rectangle minus two right-triangle corners",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G6-07",
+    "cls": "DIFF",
+    "mech": "surface areas of two nets sharing dimensions: the difference",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G6-08",
+    "cls": null,
+    "mech": "perimeter of a rectangle with vertices in two quadrants",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G6-09",
+    "cls": "DIVISOR",
+    "mech": "number of 1/4-unit cubes in a prism (dividing by a small volume)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G6-10",
+    "cls": "DIFF",
+    "mech": "L-shaped polygon area from coordinates",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G6-11",
+    "cls": null,
+    "mech": "area of a rhombus from its described diagonals",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G6-12",
+    "cls": "NEGTERM",
+    "mech": "open box (no top) surface area, where removing the wrong face is the error",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G6-13",
+    "cls": null,
+    "mech": "triangle with its base on a horizontal line and its apex in another quadrant: area",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G6-14",
+    "cls": "DIVISOR",
+    "mech": "height of a prism from a volume with a fractional base",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G6-15",
+    "cls": "DIFF",
+    "mech": "two triangles with one base and different heights on the plane: area difference",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-G6-16",
+    "cls": "NEGTERM",
+    "mech": "trapezoid from coordinates after one vertex is moved: new area",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G6-17",
+    "cls": null,
+    "mech": "stack of boxes with fractional edges: total volume",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G6-18",
+    "cls": "DIVISOR",
+    "mech": "paper from a net divided across boxes: square units per box",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G6-19",
+    "cls": null,
+    "mech": "surface area of a triangular prism from a described net",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G6-20",
+    "cls": null,
+    "mech": "pentagon (house shape) on the plane by decomposition: area",
+    "core": false
+   }
+  ]
+ },
+ "G7A": {
+  "area": "Geometry",
+  "scope": "7.G.A (scale drawings, triangle conditions), 7.G.B.5 (angles)",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G7A-01",
+    "cls": null,
+    "mech": "actual length from a scale and a drawing length",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G7A-02",
+    "cls": null,
+    "mech": "complementary angles, one described relative to the other",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G7A-03",
+    "cls": null,
+    "mech": "vertical angles given as expressions: the angle",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G7A-04",
+    "cls": "DIFF",
+    "mech": "a drawing redrawn at a new scale: new minus old length",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G7A-05",
+    "cls": "DIVISOR",
+    "mech": "area on a drawing to actual area (scale squared; linear-scale errors fall both ways)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G7A-06",
+    "cls": null,
+    "mech": "three adjacent angles on a line: the unknown one",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G7A-07",
+    "cls": "NEGTERM",
+    "mech": "angles around a point with a right angle among them",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G7A-08",
+    "cls": null,
+    "mech": "how many whole-number lengths can the third side have (interior slot)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-G7A-09",
+    "cls": "DIFF",
+    "mech": "supplementary and vertical expressions: how much larger one angle is than the other",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G7A-10",
+    "cls": "DIVISOR",
+    "mech": "map A to map B scale factor, then the actual distance",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G7A-11",
+    "cls": null,
+    "mech": "triangle conditions with a perimeter constraint: a side length",
+    "core": true
+   }
+  ]
+ },
+ "G7B": {
+  "area": "Geometry",
+  "scope": "7.G.B.4, 7.G.B.6 (circles; composite area, volume, surface area)",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G7B-01",
+    "cls": null,
+    "mech": "circumference from a diameter with 3.14",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-G7B-02",
+    "cls": "DIFF",
+    "mech": "area of a ring: outer circle minus inner circle",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G7B-03",
+    "cls": null,
+    "mech": "volume of a prism with a triangular base",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G7B-04",
+    "cls": "DIFF",
+    "mech": "track of two semicircles and two straights: perimeter (full circle vs semicircle errors both ways)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G7B-05",
+    "cls": null,
+    "mech": "circle area from its circumference",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G7B-06",
+    "cls": "NEGTERM",
+    "mech": "prism with a square hole through it: surface area (faces removed, inner walls added)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G7B-07",
+    "cls": "DIVISOR",
+    "mech": "wheel revolutions to cover a distance (distance / circumference)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G7B-08",
+    "cls": null,
+    "mech": "two prisms stacked: total volume",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G7B-09",
+    "cls": "DIFF",
+    "mech": "square minus its inscribed circle: area of the corners",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-G7B-10",
+    "cls": "NEGTERM",
+    "mech": "two cubes glued face to face: surface area (hidden faces)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G7B-11",
+    "cls": null,
+    "mech": "quarter circle plus a triangle: composite area",
+    "core": true
+   }
+  ]
+ },
+ "G8": {
+  "area": "Geometry",
+  "scope": "8.G",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G8-01",
+    "cls": null,
+    "mech": "hypotenuse from two legs in a context",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-G8-02",
+    "cls": null,
+    "mech": "volume of a cylinder with 3.14",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-G8-03",
+    "cls": "NEGTERM",
+    "mech": "third angle of a triangle from two angle expressions, 180 - (a + b)",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G8-04",
+    "cls": "DIFF",
+    "mech": "grid-line distance minus straight-line distance between two points",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G8-05",
+    "cls": null,
+    "mech": "exterior angle as the sum of two remote interior expressions",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-G8-06",
+    "cls": "NEGTERM",
+    "mech": "cylinder minus a cone on the same base: the volume left",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G8-07",
+    "cls": null,
+    "mech": "dilation about the origin by a fraction: a coordinate of the image",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-G8-08",
+    "cls": "DIVISOR",
+    "mech": "height of a cylinder from its volume and radius",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-G8-09",
+    "cls": null,
+    "mech": "translation then reflection: a coordinate of the image",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G8-10",
+    "cls": "SIGNED",
+    "mech": "reflection across an axis then a translation, from a point with negative coordinates: a coordinate",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-G8-11",
+    "cls": "NEGTERM",
+    "mech": "missing leg from hypotenuse and leg (subtract squares), then the triangle area",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G8-12",
+    "cls": null,
+    "mech": "parallel lines and a transversal with angle expressions: an angle",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-G8-13",
+    "cls": "DIVISOR",
+    "mech": "cone height from its volume (the 1/3 and the radius-diameter errors fall both ways)",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-G8-14",
+    "cls": null,
+    "mech": "distance between two points in different quadrants",
+    "core": false
+   }
+  ]
+ },
+ "N56": {
+  "area": "Real and Complex Number Systems",
+  "scope": "5.NBT, 5.NF (grade 5); 6.NS (grade 6)",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N56-01",
+    "cls": null,
+    "mech": "multiply a decimal by a power of ten in a context",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-N56-02",
+    "cls": "NEGTERM",
+    "mech": "decimal subtraction: money left after two purchases (hundredths)",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N56-03",
+    "cls": null,
+    "mech": "add unlike fractions in a recipe",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N56-04",
+    "cls": "DIFF",
+    "mech": "two mixed-number totals with unlike denominators: how much longer one is",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N56-05",
+    "cls": null,
+    "mech": "a fraction times a whole number, then a subtraction",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-N56-06",
+    "cls": "DIVISOR",
+    "mech": "a whole divided by a unit fraction (1/4-cup servings), then some removed",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N56-07",
+    "cls": null,
+    "mech": "multi-digit division by a two-digit divisor in equal groups",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N56-08",
+    "cls": "NEGTERM",
+    "mech": "decimal price times quantity minus a coupon",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N56-09",
+    "cls": null,
+    "mech": "a fraction of a fraction (2/3 of 3/4 of a pan)",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-N56-10",
+    "cls": "DIVISOR",
+    "mech": "a unit fraction divided by a whole number, then multiplied by a count",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-N56-11",
+    "cls": null,
+    "mech": "3.2 x 10^3 - 450 in a place-value context",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-N56-12",
+    "cls": "DIFF",
+    "mech": "two divisions with remainders interpreted (vans needed): how many more for one group",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-N56-13",
+    "cls": "NEGTERM",
+    "mech": "mixed numbers: subtract with regrouping across a whole, then add",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N56-14",
+    "cls": null,
+    "mech": "GCF word problem (largest equal groups)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-N56-15",
+    "cls": "SIGNED",
+    "mech": "distance between two points with one shared coordinate in different quadrants",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N56-16",
+    "cls": null,
+    "mech": "fraction divided by fraction (how many 3/8-lb bags from 4 1/2 lb)",
+    "core": true
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N56-17",
+    "cls": "DIVISOR",
+    "mech": "multi-digit decimal divided by a decimal, then compared with a second amount",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-N56-18",
+    "cls": null,
+    "mech": "LCM of two repeating events: how many times one happens before they coincide",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-N56-19",
+    "cls": "SIGNED",
+    "mech": "how many degrees warmer one reading is than another, both may be negative",
+    "core": true
+   }
+  ]
+ },
+ "N78": {
+  "area": "Real and Complex Number Systems",
+  "scope": "7.NS (grade 7); 8.NS, 8.EE.A (grade 8)",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N78-01",
+    "cls": null,
+    "mech": "add and subtract rationals with negatives (a bank balance)",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "S",
+    "id": "MB2-N78-02",
+    "cls": "SIGNED",
+    "mech": "elevation after a descent and an ascent (integer and decimal)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N78-03",
+    "cls": "SIGNED",
+    "mech": "a negative rational times a difference, -1.5 x (4 - 7.2)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N78-04",
+    "cls": null,
+    "mech": "a fraction as a decimal, rounded to the thousandth (every option a rounded value)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-N78-05",
+    "cls": "DIFF",
+    "mech": "two temperature drops at different rates and times: the difference",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N78-06",
+    "cls": null,
+    "mech": "a negative fraction divided by days: the average change per day",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N78-07",
+    "cls": "NEGTERM",
+    "mech": "an account starting negative, with deposits and fees",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-N78-08",
+    "cls": "DIVISOR",
+    "mech": "average change: a negative total divided by the number of days",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-N78-09",
+    "cls": null,
+    "mech": "complex fraction with negatives, -3/4 / (1/2 - 2/3)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-N78-10",
+    "cls": "SIGNED",
+    "mech": "two points on a number line both move: the distance between them",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N78-11",
+    "cls": null,
+    "mech": "integer exponents, 3^-2 x 3^4",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N78-12",
+    "cls": null,
+    "mech": "between which two whole numbers a square root lies: the smaller one",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-N78-13",
+    "cls": null,
+    "mech": "scientific notation times a whole number, written in standard form",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-N78-14",
+    "cls": "DIFF",
+    "mech": "difference of two quantities in scientific notation with different powers",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N78-15",
+    "cls": null,
+    "mech": "square root to the nearest tenth (every option a rounded value)",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-N78-16",
+    "cls": "DIVISOR",
+    "mech": "a quotient in scientific notation whose coefficient needs adjusting",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-N78-17",
+    "cls": null,
+    "mech": "cube root of a volume for an edge, then the perimeter of a face",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-N78-18",
+    "cls": "DIVISOR",
+    "mech": "how many times greater one scientific-notation number is (coefficient ratio < 1)",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-N78-19",
+    "cls": null,
+    "mech": "2^x x 2^3 = 2^-4: the exponent x",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-N78-20",
+    "cls": "NEGTERM",
+    "mech": "(10^-2)(3 x 10^5) - 4 x 10^2 in standard form",
+    "core": false
+   }
+  ]
+ },
+ "D5": {
+  "area": "Statistics and Probability",
+  "scope": "5.MD.A-B",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D5-01",
+    "cls": null,
+    "mech": "feet and inches to inches (mixed units)",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D5-02",
+    "cls": null,
+    "mech": "line plot: total of one fractional row (count x value)",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D5-03",
+    "cls": null,
+    "mech": "centimetres to metres within a total",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D5-04",
+    "cls": "NEGTERM",
+    "mech": "line plot: container amount minus everything poured out",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-D5-05",
+    "cls": "DIVISOR",
+    "mech": "line plot: total redistributed equally among the beakers",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-D5-06",
+    "cls": null,
+    "mech": "rope in yards minus two pieces in feet, answer in inches",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D5-07",
+    "cls": "DIFF",
+    "mech": "two line plots (class A and class B): difference of their totals",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-D5-08",
+    "cls": null,
+    "mech": "pounds-and-ounces total of several packages",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-D5-09",
+    "cls": "NEGTERM",
+    "mech": "line plot: total weight left after the measurements under a cut-off are removed",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-D5-10",
+    "cls": "DIVISOR",
+    "mech": "line-plot total converted (pints to gallons), then shared",
+    "core": false
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-D5-11",
+    "cls": null,
+    "mech": "line plot: equal share with a fractional answer",
+    "core": true
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-D5-12",
+    "cls": "DIFF",
+    "mech": "two elapsed durations in hours and minutes: the difference in minutes",
+    "core": false
+   }
+  ]
+ },
+ "D67": {
+  "area": "Statistics and Probability",
+  "scope": "6.SP (grade 6); 7.SP (grade 7)",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D67-01",
+    "cls": null,
+    "mech": "median of an even-sized unsorted list",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D67-02",
+    "cls": "DIFF",
+    "mech": "mean minus median of a set with an outlier",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-D67-03",
+    "cls": "NEGTERM",
+    "mech": "new mean after one value is removed",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-D67-04",
+    "cls": null,
+    "mech": "MAD of a five-value set (one set, not a comparison)",
+    "core": false
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-D67-05",
+    "cls": "DIFF",
+    "mech": "a frequency table with one wrong entry corrected: by how much the mean drops",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D67-06",
+    "cls": null,
+    "mech": "probability of a simple event from a described bag",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-D67-07",
+    "cls": null,
+    "mech": "expected count of a \"not\" event from an experimental frequency table",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D67-08",
+    "cls": "DIFF",
+    "mech": "two dice: how much greater P(sum = a) is than P(sum = b)",
+    "core": true
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-D67-09",
+    "cls": "DIFF",
+    "mech": "two samples from two populations: difference of their estimated totals",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-D67-10",
+    "cls": null,
+    "mech": "sample space count with one combination excluded",
+    "core": false
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-D67-11",
+    "cls": null,
+    "mech": "expected count from theoretical probability compared with the observed count",
+    "core": false
+   }
+  ]
+ },
+ "D8": {
+  "area": "Statistics and Probability",
+  "scope": "8.SP",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D8-01",
+    "cls": null,
+    "mech": "predicted value from a line-of-fit equation",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "id": "MB2-D8-02",
+    "cls": null,
+    "mech": "two-way table: row relative frequency as a percent",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D8-03",
+    "cls": "DIFF",
+    "mech": "residual: actual minus predicted for one point (signed)",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "id": "MB2-D8-04",
+    "cls": "DIVISOR",
+    "mech": "slope of a fit line from two of its points, then the change over k units",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "id": "MB2-D8-05",
+    "cls": null,
+    "mech": "two-way table: column relative frequency (conditional)",
+    "core": true
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "id": "MB2-D8-06",
+    "cls": "NEGTERM",
+    "mech": "fit line with a negative slope: prediction a number of years later",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "id": "MB2-D8-07",
+    "cls": "DIFF",
+    "mech": "two groups with two fit lines: difference of predictions at one x",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-D8-08",
+    "cls": null,
+    "mech": "two-way table: joint relative frequency of one cell",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "id": "MB2-D8-09",
+    "cls": "SIGNED",
+    "mech": "fit line through two given points with a negative intercept: the prediction at x = 0",
+    "core": false
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "id": "MB2-D8-10",
+    "cls": null,
+    "mech": "fit line in hours used with an input given in minutes",
+    "core": false
+   }
+  ]
+ }
+}

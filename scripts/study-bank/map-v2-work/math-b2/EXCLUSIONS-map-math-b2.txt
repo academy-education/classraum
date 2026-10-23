@@ -1,0 +1,1405 @@
+# map-v2 Math batch 2 exclusions (2026-10-24): every MAP maths item ever authored = the batch-1 file's 244 below its own header,
+# then all 221 map-math-v2 batch 1 items (103 LIVE, 86 withdrawn, 32 dropped by graders; revised text where revised).
+# A new story over the same chain of steps is a duplicate - of a withdrawn or dropped item as much as of a live one.
+
+# Every MAP maths item ever authored (244): 68 in the bank (staged) + earlier batch files never banked.
+# Dumped read-only 2026-10-23. A new story over the same chain of steps is a duplicate.
+# area | grade | tier | source | subskill || prompt || key
+Geometry | g5 | mid | DB map-math-g58-v3 staged | Volume of a box whose edges are given by relations
+    A toy box is shaped like a rectangular prism. It is 5 inches wide. Its length is twice its width, and its height is 3 inches less than its length. What is the volume of the toy box, in cubic inches?
+    options ["350","100","650","150"] key 350
+Geometry | g5 | mid | DB map-math-g58-v3 staged | Compare two grid-line routes on a coordinate map
+    A town map is drawn on a coordinate grid, and each unit on the grid is one block. Maya's home is at (2, 3), Joe's home is at (11, 13), and the school is at (11, 34). Maya walks along grid lines from her home straight right to the point below the school, then straight up to the school. Joe walks straight up from his home to the school. How many more blocks does Maya walk than Joe?
+    options ["19","29","27","40"] key 19
+Geometry | g5 | high | DB map-math-g58-v3 staged | Volume of sand after a box is turned on its side
+    A box shaped like a rectangular prism is 15 inches long, 8 inches wide, and 6 inches tall. Ana turns the box onto one of its sides so that it now stands 8 inches tall. Then she pours sand into the box until the sand is 5 inches deep. How many cubic inches of sand are in the box?
+    options ["540","600","240","450"] key 450
+Geometry | g5 | mid | file map-math-g58-v1.batch.json (not banked) | Volume of two stacked prisms, one height to derive
+    A display stand is made of two rectangular blocks that do not overlap. The bottom block is 7 inches long, 4 inches wide, and 3 inches tall. The top block is 5 inches long and 4 inches wide. It sits on the bottom block, and the top of the stand is 9 inches above the floor. What is the volume of the stand in cubic inches?
+    options ["114","204","252","264"] key 204
+Geometry | g5 | high | file map-math-g58-v1.batch.json (not banked) | Unit cubes in an open box with walls one cube thick
+    Jon builds an open box with no lid out of 1-centimeter cubes. On the outside, the box is 7 centimeters long, 5 centimeters wide, and 4 centimeters tall. The bottom and the four walls are each 1 cube thick, and the inside is empty. How many cubes does Jon use?
+    options ["95","110","140","166"] key 95
+Geometry | g5 | low | file map-math-g58-v1.batch.json (not banked) | Side length from coordinates, then area of a square
+    A square garden is drawn on a coordinate plane where each unit is 1 meter. Two of its corners are at (4, 6) and (4, 13), and the side joining them is one side of the square. What is the area of the garden in square meters?
+    options ["49","64","169","361"] key 49
+Geometry | g5 | high | file map-math-g58-v1.batch.json (not banked) | Total walk along grid lines on a scaled map, with a turn back
+    On a park map drawn on a coordinate plane, each unit stands for 20 meters. Tara starts at the gate at (2, 1) and walks along grid lines. She walks straight right to the pond, which is directly below the tower at (8, 13). Then she walks straight up to the tower, and then straight left to the picnic area at (3, 13). How many meters does Tara walk in all?
+    options ["220","260","320","460"] key 460
+Geometry | g5 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Volume of a box with one edge given in decimal feet
+    A shipping box is shaped like a rectangular prism. It is 1.5 feet long, 8 inches wide, and 5 inches tall. What is the volume of the box in cubic inches?
+    options ["540","600","680","720"] key 720
+Geometry | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Volume as layers: cubes still needed to fill a box
+    A box is 12 centimeters long, 5 centimeters wide, and 9 centimeters tall. Ken has already filled the bottom 4 layers of the box with 1-centimeter cubes. How many more 1-centimeter cubes does Ken need to fill the box completely?
+    options ["300","360","480","780"] key 300
+Geometry | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Compare the volumes of two boxes
+    Box A is 7 inches long, 6 inches wide, and 8 inches tall. Box B is 5 inches long, 4 inches wide, and 3 inches tall. How many more cubic inches does Box A hold than Box B?
+    options ["20","66","176","276"] key 276
+Geometry | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Count the cubes left after two crossing tunnels
+    Ana builds a solid box out of 1-centimeter cubes. The box is 7 cubes long, 5 cubes deep from front to back, and 3 cubes tall. Then she takes cubes out to make two straight tunnels through the middle layer, each tunnel 1 cube wide and 1 cube tall. One tunnel goes all the way from the front of the box to the back. The other goes all the way from the left side to the right side. The two tunnels cross in the middle of the box. How many cubes are left in the box?
+    options ["94","95","98","100"] key 94
+Geometry | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Fence around a notched shape on a coordinate grid
+    A playground is drawn on a coordinate grid where each unit is 1 meter. Going around the playground, its corners are at (5, 10), (5, 7), (9, 7), (9, 10), (12, 10), (12, 2), (1, 2), and (1, 10), and then back to (5, 10). Every side runs along a grid line. A fence will go all the way around the playground. How many meters of fence are needed?
+    options ["38","40","44","76"] key 44
+Geometry | g5 | low | file map-math-g58-v3.batch.json (not banked) | Volume of a box, then cubes left from a supply
+    Liam has a bag of 100 one-centimeter cubes. He uses some of them to fill a box that is 6 centimeters long, 3 centimeters wide, and 4 centimeters tall, with no gaps. How many cubes are left in the bag?
+    options ["28","46","82","87"] key 28
+Geometry | g6 | mid | DB map-math-g58-v3 staged | Height of a parallelogram with the same area as a triangle
+    A triangle has a base of 16 centimeters and a height of 9 centimeters. A parallelogram has the same area as the triangle. The sides of the parallelogram are 15 centimeters and 10 centimeters long. What is the distance between the two 10-centimeter sides of the parallelogram, in centimeters?
+    options ["7.2","4.5","3.6","4.8"] key 7.2
+Geometry | g6 | low | DB map-math-g58-v3 staged | Number of right-triangle tiles that cover a rectangle
+    A rectangular wall is 30 inches wide and 28 inches tall. It is covered completely, with no gaps or overlaps, by tiles shaped like right triangles. On each tile the two sides that meet at the right angle are 5 inches and 4 inches long. How many tiles cover the wall?
+    options ["42","60","70","84"] key 84
+Geometry | g6 | mid | DB map-math-g58-v3 staged | Area of a parallelogram drawn in the coordinate plane
+    Parallelogram ABCD is drawn in the coordinate plane with vertices A(-5, -5), B(4, -5), C(9, 9), and D(0, 9). Each unit on the grid is 1 meter. What is the area of the parallelogram, in square meters?
+    options ["150","126","36","63"] key 126
+Geometry | g6 | low | DB map-math-g58-v3 staged | Area of a hexagon made of a rectangle and two triangles
+    A sign is shaped like a hexagon. It is made of a rectangle that is 6 inches wide and 11 inches tall, with one triangle attached to its left side and another triangle attached to its right side. For each triangle, the base is the 11-inch side of the rectangle and the height is 8 inches. What is the area of the sign, in square inches?
+    options ["187","110","114","154"] key 154
+Geometry | g6 | mid | DB map-math-g58-v3 staged | Total surface area after a box is cut into two halves
+    A wooden block shaped like a rectangular prism is 12 centimeters long, 7 centimeters wide, and 5 centimeters tall. Ana cuts it into two blocks of the same size with one straight cut that is parallel to the faces that are 7 centimeters by 5 centimeters. What is the total surface area of the two new blocks, in square centimeters?
+    options ["478","526","358","428"] key 428
+Geometry | g6 | high | DB map-math-g58-v3 staged | Extra cardboard needed for a box's net
+    Kai wants to make a closed box shaped like a rectangular prism that is 10 inches long, 7 inches wide, and 5 inches tall. He will cut its net from cardboard, with no flaps or overlaps. He has one rectangular piece of cardboard that is 12 inches long and 10 inches wide, which is not enough. How many more square inches of cardboard does he need?
+    options ["230","300","220","190"] key 190
+Geometry | g6 | high | DB map-math-g58-v3 staged | Height of a rhombus from its diagonals and side
+    A rhombus has diagonals that are 24 centimeters and 18 centimeters long, and each of its four sides is 15 centimeters long. The height of the rhombus is the distance between two opposite sides, measured at a right angle to them. What is the height of the rhombus, in centimeters?
+    options ["12","7.2","9","14.4"] key 14.4
+Geometry | g6 | mid | file map-math-g58-v1.batch.json (not banked) | Surface area of a square pyramid from its net
+    A paper net folds up into a pyramid. The net is made of one square with sides 9 centimeters long and four triangles that are all the same size. Each triangle has a base of 9 centimeters, which is one side of the square, and a height of 12 centimeters. What is the total area of the net in square centimeters?
+    options ["189","216","252","297"] key 297
+Geometry | g6 | low | file map-math-g58-v1.batch.json (not banked) | Area of a right triangle as half a rectangle
+    A rectangular piece of cloth is 14 inches long and 5 inches wide. It is cut along a diagonal into two triangles that are the same size. What is the area of one triangle in square inches?
+    options ["19","35","38","70"] key 35
+Geometry | g6 | high | file map-math-g58-v1.batch.json (not banked) | Area of a pentagon across the axes by decomposing
+    A garden plot is drawn on a coordinate plane in which each unit is 1 meter. Its corners, in order, are (-2, -4), (5, -4), (5, 1), (1, 9), and (-2, 9). What is the area of the garden plot in square meters?
+    options ["19","23","59","75"] key 75
+Geometry | g6 | mid | file map-math-g58-v1.batch.json (not banked) | Volume with fractional edges, one edge a fraction of another
+    A small storage box is shaped like a rectangular prism. It is 2/3 meter long and 1/2 meter wide. Its height is 4/5 of its length. What is the volume of the box in cubic meters?
+    options ["8/45","5/18","13/15","1 7/10"] key 8/45
+Geometry | g6 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Area left after cutting two different right triangles from a rectangle
+    A rectangular lawn is 14 meters long and 9 meters wide. Two flower beds are cut out of the lawn, one in each of two opposite corners, and they do not overlap. Each bed is a right triangle whose two shorter sides run along the edges of the lawn. In the first bed the two shorter sides are each 4 meters long. In the second bed they are 9 meters and 6 meters long. How many square meters of lawn are left?
+    options ["91","99","103","110"] key 91
+Geometry | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Count unit-fraction cubes that fill a box
+    A small box is shaped like a rectangular prism. Its inside measures 2 1/2 inches long, 2 inches wide, and 1 1/2 inches tall. Mason fills the box completely, with no gaps, using cubes whose edges are each 1/2 inch long. How many of these cubes does Mason use?
+    options ["12","32","45","60"] key 60
+Geometry | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Surface area of a box with no lid
+    A box with no lid is shaped like a rectangular prism. It is 4 centimeters long, 3 centimeters wide, and 7 centimeters tall. The box is made from one flat piece of cardboard with no overlaps. How many square centimeters of cardboard are used to make the box?
+    options ["73","84","98","110"] key 110
+Geometry | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Area of a photo inside a mat with unequal borders
+    A rectangular mat is 18 inches wide and 15 inches tall. A rectangular photo is placed on the mat so that the mat shows a border around the photo: the border is 2 inches wide along the left and right sides and 3 inches wide along the top and bottom. What is the area of the photo, in square inches?
+    options ["126","132","150","192"] key 126
+Geometry | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Surface area of a triangular prism from its net
+    A net for a triangular prism is made of 2 right triangles and 3 rectangles. Each triangle has sides that are 6 centimeters, 8 centimeters, and 10 centimeters long, and the right angle is between the 6-centimeter and 8-centimeter sides. Each rectangle is 12 centimeters long, and its width matches one side of the triangle: one rectangle is 6 centimeters wide, one is 8 centimeters wide, and one is 10 centimeters wide. What is the total area of the net, in square centimeters?
+    options ["312","336","384","408"] key 336
+Geometry | g7 | low | DB map-math-g58-v3 staged | Adjacent angles on a straight line with two equal parts
+    Points A, O and D lie on a straight line, with O between A and D. Rays OB and OC are drawn on the same side of the line, and ray OB is closer to ray OA. Angle AOB measures 44 degrees, and angles BOC and COD have the same measure. What is the measure of angle AOC, in degrees?
+    options ["112","88","67","134"] key 112
+Geometry | g7 | mid | DB map-math-g58-v3 staged | Name the vertical pair, solve, then find the adjacent angle
+    Line AB and line CD cross at point E. Angle AEC measures (3x + 5) degrees, and angle BED measures (5x - 31) degrees. What is the measure of angle AED, in degrees?
+    options ["121","136","18","31"] key 121
+Geometry | g7 | mid | DB map-math-g58-v3 staged | Volume of a prism whose base is six triangles
+    A wooden pencil is shaped like a prism that is 148 millimeters long. Each end of the pencil is a six-sided shape made of 6 identical triangles that meet at the center, and each triangle has a base of 4 millimeters and a height of 3.5 millimeters. What is the volume of the pencil, in cubic millimeters?
+    options ["3552","3636","12432","6216"] key 6216
+Geometry | g7 | mid | DB map-math-g58-v3 staged | Surface area of a prism with trapezoid ends
+    A wooden block is shaped like a prism. Each of its two ends is a trapezoid whose parallel sides are 3 centimeters and 9 centimeters long, whose height is 4 centimeters, and whose two slanted sides are each 5 centimeters long. The block is 14 centimeters long from one end to the other. What is the total surface area of the block, in square centimeters?
+    options ["328","286","356","336"] key 356
+Geometry | g7 | high | DB map-math-g58-v3 staged | Supplement of one of two complementary angles from a difference
+    Angle P and angle Q are complementary. The supplement of angle P is 40 degrees greater than the supplement of angle Q. What is the measure of the supplement of angle Q, in degrees?
+    options ["110","115","95","130"] key 115
+Geometry | g7 | low | DB map-math-g58-v3 staged | Actual length from a scale with a non-unit ratio
+    On a floor plan, 4 centimeters represent 7 meters. A hallway is 9.6 centimeters long on the floor plan. How long is the real hallway, in meters?
+    options ["15.6","12.6","16.8","14.8"] key 16.8
+Geometry | g7 | mid | file map-math-g58-v1.batch.json (not banked) | Perimeter of a quarter-circle region (arc plus two radii)
+    A garden bed is shaped like one fourth of a circle. Its two straight edges are each 6 meters long and meet at a right angle at the center of the circle, and its curved edge is one fourth of the circle. A plastic border will go all the way around the edge of the bed. Using 3.14 for pi, how many meters of border are needed?
+    options ["16.71","21.42","28.26","30.84"] key 21.42
+Geometry | g7 | high | file map-math-g58-v1.batch.json (not banked) | Distance traveled by a clock hand's tip over more than one turn
+    The minute hand of a clock is 6 centimeters long. How many centimeters does the tip of the minute hand travel from 8:05 to 9:55? Use 3.14 for pi.
+    options ["31.4","34.54","56.52","69.08"] key 69.08
+Geometry | g7 | low | file map-math-g58-v1.batch.json (not banked) | Laps of a circular track from its diameter (circumference, then whole laps)
+    A circular running track has a diameter of 50 meters. Ana runs complete laps around the track until she has run at least 1000 meters. Using 3.14 for pi, what is the fewest number of complete laps she can run?
+    options ["4","6","7","20"] key 7
+Geometry | g7 | high | file map-math-g58-v1.batch.json (not banked) | Unknown angle from an equation inside a right angle on a line
+    Points A, B and C lie on a straight line, with B between A and C. Ray BD is perpendicular to line AC. Ray BE lies inside angle DBC. The measure of angle DBE is 18 degrees more than twice the measure of angle EBC. What is the measure of angle ABE, in degrees?
+    options ["114","126","144","156"] key 156
+Geometry | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Area of a square with a semicircle on every side
+    A garden is made of a square with sides 6 meters long and a semicircle attached to the outside of each side of the square. Each side of the square is the diameter of the semicircle attached to it. What is the total area of the garden, in square meters? Use 3.14 for pi.
+    options ["73.68","80.52","92.52","149.04"] key 92.52
+Geometry | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Area of a ring: outer circle minus a centered hole
+    A flat metal washer is a circle with a round hole cut out of it. The hole and the outer edge have the same center. The outer edge is a circle with a diameter of 12 millimeters, and the hole is a circle with a diameter of 6 millimeters. What is the area of the metal part of the washer, in square millimeters? Use 3.14 for pi.
+    options ["84.78","103.62","104.04","141.3"] key 84.78
+Geometry | g7 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Redrawing a length at a different scale
+    Map A and Map B show the same town. On Map A, 1 centimeter represents 5 kilometers. On Map B, 1 centimeter represents 2 kilometers. A straight road is 6.2 centimeters long on Map A. How many centimeters long is the same road on Map B?
+    options ["2.48","9.2","15.5","18.6"] key 15.5
+Geometry | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Surface area of a prism with an L-shaped face
+    A wooden block is a prism whose front face is shaped like the letter L. To make the L, start with a rectangle 8 centimeters wide and 6 centimeters tall, and cut a rectangle 3 centimeters wide and 4 centimeters tall out of its top right corner. The block is 5 centimeters deep from front to back, and its back face is the same L shape. What is the total surface area of the block, in square centimeters?
+    options ["142","180","212","236"] key 212
+Geometry | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Length of a triangular prism from its volume
+    A box for a rolled-up poster is shaped like a triangular prism. Each end of the box is a triangle with sides 16 centimeters, 10 centimeters, and 10 centimeters, and the height of the triangle from the 16-centimeter side to the opposite corner is 6 centimeters. The box holds 3600 cubic centimeters. How long is the box, in centimeters?
+    options ["37.5","45","72","75"] key 75
+Geometry | g8 | low | DB map-math-g58-v3 staged | Area of a rectangle from its diagonal and one side
+    A computer screen is shaped like a rectangle. The diagonal of the screen is 20 inches long, and the screen is 12 inches tall. What is the area of the screen, in square inches?
+    options ["192","200","96","120"] key 192
+Geometry | g8 | mid | DB map-math-g58-v3 staged | Number of full cylinders poured from a larger cylinder
+    A pitcher shaped like a cylinder has an inside radius of 6 centimeters and is filled with water to a height of 17 centimeters. Each glass is shaped like a cylinder with an inside radius of 3 centimeters and a height of 5 centimeters. How many glasses can be filled completely with the water in the pitcher?
+    options ["6","3","54","13"] key 13
+Geometry | g8 | low | DB map-math-g58-v3 staged | Volume of a sphere from its diameter
+    A globe is shaped like a sphere with a diameter of 12 inches. Using 3.14 for pi, what is the volume of the globe, in cubic inches?
+    options ["678.24","904.32","150.72","7234.56"] key 904.32
+Geometry | g8 | high | DB map-math-g58-v3 staged | Empty space in a cube around a ball that just fits
+    A ball is placed inside a closed box shaped like a cube with inside edges 6 inches long. The ball just fits: it touches all six faces of the box. Using 3.14 for pi, how many cubic inches of space inside the box are not taken up by the ball?
+    options ["102.96","113.04","131.22","178.32"] key 102.96
+Geometry | g8 | mid | file map-math-g58-v1.batch.json (not banked) | Water from a cone poured into a cylinder: depth from equal volumes
+    A paper cup is shaped like a cone with a radius of 6 centimeters and a height of 10 centimeters. The cup is filled to the top with water, and all of the water is poured into an empty glass shaped like a cylinder with a radius of 5 centimeters. How deep is the water in the glass, in centimeters?
+    options ["4","4.8","7.2","14.4"] key 4.8
+Geometry | g8 | high | file map-math-g58-v1.batch.json (not banked) | Coordinate after a 90-degree clockwise rotation then a translation
+    In the xy-plane, point A is at (-9, -5). Point A is rotated 90 degrees clockwise about the origin. The image is then translated 2 units to the left and 6 units up. What is the x-coordinate of the final image?
+    options ["-11","-7","3","15"] key -7
+Geometry | g8 | low | file map-math-g58-v1.batch.json (not banked) | Coordinate of an image under a dilation centered at the origin
+    In the xy-plane, point P is at (-21, -24). Point P is dilated by a scale factor of 1.5 with the center of dilation at the origin. What is the y-coordinate of the image of point P?
+    options ["-36","-31.5","-25.5","-16"] key -36
+Geometry | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Perimeter of a rectangle after a dilation
+    A rectangle drawn in the xy-plane has its four corners at (0, 0), (8, 0), (8, 3), and (0, 3). Maya enlarges the rectangle with a dilation centered at the origin, using 3 as the scale factor. What is the perimeter of Maya's enlarged rectangle?
+    options ["34","54","66","216"] key 66
+Geometry | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Overlap of a square and its translated image
+    In the xy-plane, square ABCD has vertices A(3, 6), B(13, 6), C(13, 16), and D(3, 16). The square is translated 3 units to the left and 4 units down. What is the area of the region where the original square and its image overlap?
+    options ["42","54","56","60"] key 42
+Geometry | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Cylinder volume from the length of its wrap-around label
+    A paper label wraps exactly once around the curved side of a can shaped like a cylinder, with no overlap. Laid flat, the label is a rectangle 18.84 centimeters long and 11 centimeters tall, and the can is also 11 centimeters tall. What is the volume of the can, in cubic centimeters? Use 3.14 for pi.
+    options ["235.5","263.76","310.86","1243.44"] key 310.86
+Geometry | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Volume of a cone topped by a half sphere
+    A toy is made of a solid cone with a solid half-sphere on top. The cone has a radius of 6 centimeters and a height of 10 centimeters. The flat side of the half-sphere has a radius of 6 centimeters and sits exactly on the top of the cone (the cone's wide circular face). What is the total volume of the toy, in cubic centimeters? Use 3.14 for pi.
+    options ["452.16","602.88","828.96","1281.12"] key 828.96
+Geometry | g8 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Wax left in a candle after a cone-shaped hole is carved
+    A candle is shaped like a cylinder with a radius of 3 centimeters and a height of 12 centimeters. A hole shaped like a cone is carved into the candle from its flat upper face: the cone's circular opening is that whole upper face, and its point is 11 centimeters below it. What is the volume of the wax that is left, in cubic centimeters? Use 3.14 for pi.
+    options ["183.69","207.24","226.08","235.5"] key 235.5
+Geometry | g8 | mid | file map-math-g58-v3.batch.json (not banked) | Volume of a cylinder joined to a taller cone
+    A toy rocket is a solid made of a cylinder and a cone. The cylinder has a radius of 3 centimeters and a height of 4 centimeters. A cone with the same radius and a height of 11 centimeters is attached to one end of the cylinder, so that the cone's base covers that end exactly. Using 3.14 for pi, what is the volume of the toy rocket, in cubic centimeters?
+    options ["113.04","147.58","150.72","216.66"] key 216.66
+Operations and Algebraic Thinking | g5 | mid | DB map-math-g58-v3 staged | Gap between matching terms of two patterns
+    Mia writes two number patterns. Pattern A begins with 1, and each number after that is 3 more than the number before it. Pattern B begins with 20, and each number after that is 8 more than the number before it. How much greater is the 9th number in Pattern B than the 9th number in Pattern A?
+    options ["59","57","43","45"] key 59
+Operations and Algebraic Thinking | g5 | high | DB map-math-g58-v3 staged | Record and compare (a - b) x c with a x (c - d)
+    A theater has 31 rows with 21 seats in each row. For the afternoon show, 5 of the rows are closed, and every seat in the other rows can be used. For the evening show, every row is open, but 2 seats in each row are saved for the crew and cannot be used. How many more seats can be used for the evening show than for the afternoon show?
+    options ["93","103","63","43"] key 43
+Operations and Algebraic Thinking | g5 | low | DB map-math-g58-v3 staged | Evaluate: parentheses, then divide and multiply left to right
+    On a quiz, Jada must simplify 90 / (2 + 4) x 3, following the order of operations. What number should she get?
+    options ["57","5","147","45"] key 45
+Operations and Algebraic Thinking | g5 | mid | DB map-math-g58-v3 staged | How many times as large: m x (sum) versus (sum) / n
+    Jin wrote two expressions. Expression P is 2 x (30 + 18). Expression Q is (30 + 18) / 8. The value of expression P is how many times the value of expression Q?
+    options ["16","12","0.25","13"] key 16
+Operations and Algebraic Thinking | g5 | low | DB map-math-g58-v3 staged | Record a comparison of two equal shares as a / b - c / d
+    Ana shares 168 stickers equally among her 8 friends. Ben shares 56 stickers equally among his 7 friends. How many more stickers does each of Ana's friends get than each of Ben's friends?
+    options ["14","13","17","16"] key 13
+Operations and Algebraic Thinking | g5 | mid | DB map-math-g58-v3 staged | Compare k x (a + b) with m x (a + b) by structure
+    Ben wrote two expressions: 8 x (39 + 20) and 5 x (39 + 20). How much greater is the value of Ben's first expression than the value of his second expression?
+    options ["767","137","177","117"] key 177
+Operations and Algebraic Thinking | g5 | low | file map-math-g58-v1.batch.json (not banked) | Write and evaluate an expression from a story
+    Ana had 46 stickers. She bought 4 packs with 6 stickers in each pack. Then she gave half of all her stickers to her brother. How many stickers does Ana have now?
+    options ["26","35","47","58"] key 35
+Operations and Algebraic Thinking | g5 | high | file map-math-g58-v1.batch.json (not banked) | Write an expression from words with two groupings
+    Ravi read these directions: "Multiply the difference of 44 and 11 by 6. Then divide that product by the sum of 3 and 8." He must write one expression for the directions and find its value. What value should he get?
+    options ["18","30","38","74"] key 18
+Operations and Algebraic Thinking | g5 | mid | file map-math-g58-v1.batch.json (not banked) | Evaluate an expression with nested grouping symbols
+    Lena's teacher wrote 4 x [50 - (14 + 6) / 5] on the board and asked the class to find its value, using the correct order of operations. What value should Lena get?
+    options ["24","36","184","196"] key 184
+Operations and Algebraic Thinking | g5 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Evaluate an expression with a grouped difference and a quotient
+    Mr. Diaz wrote 6 x (12 - 7) + 12 / 3 on the board. Kim found its value using the correct order of operations. What value did Kim find?
+    options ["34","54","66","69"] key 34
+Operations and Algebraic Thinking | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Matching terms of two numerical patterns
+    Pattern A starts at 0 and follows the rule 'add 2.' Pattern B starts at 0 and follows the rule 'add 10.' Lia writes both patterns in two rows, so each term in Pattern A lines up with one term in Pattern B. She finds the term 80 in Pattern B and adds it to the term in Pattern A that lines up with it. What sum does Lia get?
+    options ["96","120","152","480"] key 96
+Operations and Algebraic Thinking | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Evaluate nested grouping that subtracts a grouped sum
+    Rosa's worksheet shows 7 + 3 x [16 - (6 + 4)]. She works it out correctly, from the innermost grouping outward. What value does Rosa get?
+    options ["25","49","53","60"] key 25
+Operations and Algebraic Thinking | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Missing number in a bracketed expression
+    Omar thought of a number and wrote it in the box: 4 x [(box - 6) / 6] = 48. The expression on the left is equal to 48. What number did Omar write in the box?
+    options ["18","66","78","108"] key 78
+Operations and Algebraic Thinking | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Corresponding terms when one rule is not a whole-number multiple
+    Pattern A starts at 0 and follows the rule 'add 2.' Pattern B starts at 0 and follows the rule 'add 3.' Ben lines up the two patterns so that the first terms match, the second terms match, and so on. The number 54 is a term in Pattern A. What number in Pattern B lines up with 54?
+    options ["55","57","72","81"] key 81
+Operations and Algebraic Thinking | g5 | high | file map-math-g58-v3.batch.json (not banked) | Record 'still needed' with two groups, one described by 'fewer'
+    Nia needs 180 beads for a project. She has 6 bags with 13 beads in each bag. She also has 5 bags that each hold 3 fewer beads than one of the first bags. How many more beads does Nia need?
+    options ["22","40","42","52"] key 52
+Operations and Algebraic Thinking | g6 | mid | DB map-math-g58-v3 staged | Part of a total from a part-to-part ratio, in two groups
+    Garden A has 60 tulips. The ratio of red tulips to yellow tulips in Garden A is 3 to 7. Garden B has 40 tulips, and its ratio of red tulips to yellow tulips is 1 to 3. How many more yellow tulips does Garden A have than Garden B?
+    options ["14","20","32","12"] key 12
+Operations and Algebraic Thinking | g6 | high | DB map-math-g58-v3 staged | Combined unit rate, time converted to seconds
+    Ana can fold 9 letters per minute, and Ben can fold 7 letters per minute. They work together, each at a steady rate, to fold a stack of 24 letters. How many seconds does it take them to fold all 24 letters?
+    options ["40","90","110","80"] key 90
+Operations and Algebraic Thinking | g6 | mid | DB map-math-g58-v3 staged | Convert a rate in feet per hour to inches per minute
+    A box on a slow conveyor belt moves at a steady speed of 90 feet per hour. What is the box's speed in inches per minute?
+    options ["15","17","1.5","18"] key 18
+Operations and Algebraic Thinking | g6 | low | DB map-math-g58-v3 staged | Scale a decimal ratio to a new amount
+    A paint color is made by mixing blue paint and white paint in the ratio 2.5 liters of blue to 2 liters of white. Kai uses 7 liters of white paint. How many liters of blue paint does he need to make the same color?
+    options ["7.5","5.6","8.75","8.5"] key 8.75
+Operations and Algebraic Thinking | g6 | mid | DB map-math-g58-v3 staged | Distribute and combine like terms, then read the parts
+    Lena simplified 3(6x + 5) + 8x as far as possible. Her answer had one term with x and one number term without x. When she subtracts the number term from the coefficient of x, what does she get?
+    options ["27","11","41","21"] key 11
+Operations and Algebraic Thinking | g6 | high | DB map-math-g58-v3 staged | Find the whole from a percent of a percent
+    At Lakeview School, 30% of the students are in sixth grade. Of the sixth graders, 25% walk to school. Exactly 36 sixth graders walk to school. How many students are at Lakeview School?
+    options ["480","400","720","30"] key 480
+Operations and Algebraic Thinking | g6 | mid | file map-math-g58-v1.batch.json (not banked) | Evaluate a formula with an exponent at a decimal
+    A sign shop uses the formula C = 4s^2 + 13 to find the cost C, in dollars, of a square sign with sides s feet long. What is the cost, in dollars, of a square sign with sides 0.5 foot long?
+    options ["14","15","17","23"] key 14
+Operations and Algebraic Thinking | g6 | low | file map-math-g58-v1.batch.json (not banked) | Use a unit price below $1 to find a quantity
+    Ribbon at a craft store costs $0.80 per foot. Tara spends $26 on ribbon. How many feet of ribbon does she buy?
+    options ["20.8","31.2","32.4","32.5"] key 32.5
+Operations and Algebraic Thinking | g6 | high | file map-math-g58-v1.batch.json (not banked) | Percent of a quantity, then a new percent from a part
+    Ana took two tests. The first test had 40 questions, and she answered 85% of them correctly. The second test had 50 questions, and she got the same number of questions wrong as on the first test. What percent of the questions on the second test did Ana answer correctly?
+    options ["68","85","88","94"] key 88
+Operations and Algebraic Thinking | g6 | high | file map-math-g58-v1.batch.json (not banked) | Find a missing constant that makes expressions equivalent
+    In the expression 3(3x - k) + 15x, the letter k stands for a number. The expression is equivalent to 24x - 36. What is the value of k?
+    options ["1.5","7","12","33"] key 12
+Operations and Algebraic Thinking | g6 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Evaluate an expression with a cube at a given value
+    Dev is asked to substitute x = 2 into the expression 2 + 144 / x^3 and simplify it completely. What number should Dev get?
+    options ["20","26","36","38"] key 20
+Operations and Algebraic Thinking | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Combine an arriving rate with a leaving rate given as a ratio
+    During a concert, cars drive into an empty parking lot at a steady rate of 8 cars per minute. At the same time, cars drive out of the lot at a steady rate of 6 cars every 4 minutes. How many cars are in the lot after 36 minutes?
+    options ["234","264","279","342"] key 234
+Operations and Algebraic Thinking | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Find the whole when a part over 100% is given
+    A bike shop sells a helmet for $80. That price is 125% of the amount the shop paid for the helmet. How many dollars did the shop pay for the helmet?
+    options ["55","60","64","96"] key 64
+Operations and Algebraic Thinking | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Unit rate with a unit conversion (minutes to hours)
+    A hose fills a 45-gallon tank in 6 minutes. Water flows from the hose at the same rate the whole time. How many gallons of water flow from the hose in 2.5 hours?
+    options ["20","675","1050","1125"] key 1125
+Operations and Algebraic Thinking | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Split a total by a ratio, then change one part
+    A bag holds 176 beads, and every bead is red or blue. The ratio of red beads to blue beads is 5 to 11. Nina adds only red beads to the bag until the bag has the same number of red beads as blue beads. How many red beads does Nina add?
+    options ["16","33","66","96"] key 66
+Operations and Algebraic Thinking | g6 | low | file map-math-g58-v3.batch.json (not banked) | Convert pounds to ounces, then compare two weights
+    A bag of flour weighs 5 pounds. A bag of sugar weighs 73 ounces. How many ounces heavier is the heavier bag?
+    options ["7","13","23","68"] key 7
+Operations and Algebraic Thinking | g7 | high | DB map-math-g58-v3 staged | Order of a discount and a tax: compare two plans
+    A pair of shoes costs $65. The shoes can be bought in two ways. Plan 1: take 20% off the price, then add 8% sales tax. Plan 2: add 8% sales tax to the price, then take $13 off. How many dollars more does Plan 2 cost than Plan 1?
+    options ["8.60","1.04","4.91","4.78"] key 1.04
+Operations and Algebraic Thinking | g7 | low | DB map-math-g58-v3 staged | Solve p(x - q) = r from a coupon story
+    Four friends each bought one concert ticket at the regular price. Each friend used an $8 coupon on their ticket. Together, they paid $60 after the coupons. What was the regular price, in dollars, of one ticket?
+    options ["17","23","47","13"] key 23
+Operations and Algebraic Thinking | g7 | low | DB map-math-g58-v3 staged | Subtract a multiple of a binomial; read the constant term
+    Mia simplifies the expression 4(3x - 8) - 3(x - 7) as far as she can. Her answer has an x-term and a number term. What is the number term?
+    options ["-39","-53","-11","13"] key -11
+Operations and Algebraic Thinking | g7 | mid | DB map-math-g58-v3 staged | Money left after buying several items at a percent discount
+    Jo has $120. She buys 3 shirts. Each shirt has a regular price of $18.50, and every shirt is on sale for 20% off. How many dollars does Jo have left after she pays for the 3 shirts?
+    options ["66.9","75.6","53.4","68.2"] key 75.6
+Operations and Algebraic Thinking | g7 | mid | DB map-math-g58-v3 staged | Compare two sale prices with different discounts
+    Shop A sells a bike helmet for $80 and is taking 30% off. Shop B sells the same helmet for $70 and is taking 15% off. After the discounts, how many dollars less does the helmet cost at Shop A than at Shop B?
+    options ["13.5","15","3.5","9.5"] key 3.5
+Operations and Algebraic Thinking | g7 | mid | DB map-math-g58-v3 staged | Chained percent more / percent fewer, then a total
+    A farm stand sold 160 pounds of apples on Saturday. On Sunday it sold 20% more pounds of apples than on Saturday. On Monday it sold 25% fewer pounds of apples than on Sunday. How many pounds of apples did the farm stand sell on the three days in all?
+    options ["472","400","496","475"] key 496
+Operations and Algebraic Thinking | g7 | high | file map-math-g58-v1.batch.json (not banked) | Simple interest: solve for the time, in months
+    Nadia puts $2,000 in a savings account that pays 4% simple interest per year. She makes no other deposits or withdrawals. After how many months will the account have earned $200 in interest?
+    options ["4.8","25","29","30"] key 30
+Operations and Algebraic Thinking | g7 | mid | file map-math-g58-v1.batch.json (not banked) | Percent error with a unit change
+    Leo guessed that his walk to the park would take 48 minutes. The walk actually took 1 hour. What was the percent error of Leo's guess?
+    options ["20","25","52","125"] key 20
+Operations and Algebraic Thinking | g7 | low | file map-math-g58-v1.batch.json (not banked) | Unit rate from a ratio of mixed numbers
+    Jo mows 3 2/3 acres of lawn in 2 3/4 hours, working at a steady rate. At this rate, how many minutes does it take Jo to mow 1 acre?
+    options ["45","55","75","80"] key 45
+Operations and Algebraic Thinking | g7 | high | file map-math-g58-v1.batch.json (not banked) | Write and solve an equation with fractional parts of a whole
+    A school club spent 1/4 of its budget on T-shirts. Then it spent $30 on snacks. After that, the club had 1/3 of its budget left. What was the club's budget, in dollars?
+    options ["45","60","72","90"] key 72
+Operations and Algebraic Thinking | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Write and solve px + q = r from words (negative result)
+    When 14 is subtracted from 2 times a number, the result is -52. What is the number?
+    options ["-40","-24","-19","-12"] key -19
+Operations and Algebraic Thinking | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Unit rate from a ratio of a mixed number to a fraction
+    Kai paints 2 1/2 meters of fence in 2/3 of an hour, working at a steady rate. How many meters of fence does Kai paint per hour?
+    options ["1 2/3","3 1/3","3 1/2","3 3/4"] key 3 3/4
+Operations and Algebraic Thinking | g7 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Compare simple interest earned by two accounts
+    Ana has $1,500 in a savings account that earns 3.5% simple interest each year. Ben has $900 in a different account that earns 4.5% simple interest each year. Neither of them adds or takes out any money. After 4 years, how many more dollars of interest has Ana's account earned than Ben's account?
+    options ["48","84","108","162"] key 48
+Operations and Algebraic Thinking | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Work backward from pay with base salary and threshold commission
+    Rosa earns $340 each week plus a commission of 4% of her sales above $1,850 for that week. One week Rosa earned $480 in all. What were her total sales that week, in dollars?
+    options ["1650","2200","5350","13850"] key 5350
+Operations and Algebraic Thinking | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Set up and solve px + q = r from two related amounts
+    Ana has $44 more than Ben. Ana spends 1/3 of her money on a game, and Ben spends $5 on lunch. Now Ana and Ben have the same amount of money. How many dollars did Ana have before she bought the game?
+    options ["15","93","117","147"] key 147
+Operations and Algebraic Thinking | g7 | high | file map-math-g58-v3.batch.json (not banked) | Strict inequality px + q < r with a negative rate, whole-number answer
+    A weather balloon is 160 meters above the ground and is coming down at a steady rate of 7.5 meters per minute. After how many whole minutes will the balloon first be lower than 25 meters above the ground?
+    options ["4","18","19","21"] key 19
+Operations and Algebraic Thinking | g8 | mid | DB map-math-g58-v3 staged | System from two orders, then the price difference
+    At a deli, every sandwich has the same price and every juice has the same price. Two sandwiches and 1 juice cost $12.75. Two sandwiches and 2 juices cost $16.00. How many dollars more does one sandwich cost than one juice?
+    options ["8.00","6.25","1.50","3.25"] key 1.50
+Operations and Algebraic Thinking | g8 | low | DB map-math-g58-v3 staged | Compare two proportional relationships given two ways
+    Two elevators start from the ground floor at the same time and rise at constant speeds. Elevator A rises 24 feet in 3 seconds. The height y, in feet, of Elevator B after x seconds is given by y = 12x. After 32 seconds, how many feet higher is Elevator B than Elevator A?
+    options ["360","8","288","128"] key 128
+Operations and Algebraic Thinking | g8 | high | DB map-math-g58-v3 staged | Initial value from two clock-time readings of a linear function
+    A pool is drained at a constant rate, starting at 8:30 a.m. At 9:45 a.m. the pool holds 11830 gallons of water, and at 11:15 a.m. it holds 9490 gallons. How many gallons of water did the pool hold at 8:30 a.m., when the draining started?
+    options ["13180","14080","11440","13780"] key 13780
+Operations and Algebraic Thinking | g8 | mid | DB map-math-g58-v3 staged | Write and solve a(x - p) = bx + q from a story
+    Each day Ana runs 6 laps around a small track. One lap of the small track is 80 meters shorter than one lap of the big track. Ben runs 4 laps around the big track and then runs 100 more meters. Ana and Ben run the same distance. How many meters long is one lap of the big track?
+    options ["90","240","290","440"] key 290
+Operations and Algebraic Thinking | g8 | low | DB map-math-g58-v3 staged | Rate of change from two points given in words
+    A truck drives along a straight highway, away from a city, at a steady speed. Two hours after noon, the truck is 168 kilometers from the city. Seven hours after noon, it is 483 kilometers from the city. What is the truck's speed, in kilometers per hour?
+    options ["45","63","35","69"] key 63
+Operations and Algebraic Thinking | g8 | mid | DB map-math-g58-v3 staged | Function from two values vs an equation: when is one k more
+    Function A is linear. When x = 0, the output of function A is 15, and when x = 2, its output is 25. Function B is defined by the equation y = 6x - 12. For what value of x is the output of function B 40 more than the output of function A?
+    options ["67","37","-8","77"] key 67
+Operations and Algebraic Thinking | g8 | high | DB map-math-g58-v3 staged | Build one function from two readings, add another function's value
+    Barrel A is being drained at a constant rate. It holds 340 liters of water 2 minutes after draining starts and 250 liters 5 minutes after draining starts. Barrel B is being filled, and the number of liters in it t minutes after the start is V = 180 + 25t. How many liters of water are in the two barrels in all 8 minutes after the start?
+    options ["540","480","450","390"] key 540
+Operations and Algebraic Thinking | g8 | mid | file map-math-g58-v1.batch.json (not banked) | Set up and solve a two-variable system for a mixture
+    A pet store mixes millet that costs $2 per pound with sunflower seed that costs $5 per pound. It makes 60 pounds of birdseed mix that is worth $4 per pound. How many pounds of sunflower seed are in the mix?
+    options ["24","30","40","48"] key 40
+Operations and Algebraic Thinking | g8 | low | file map-math-g58-v1.batch.json (not banked) | Use a rate of change and one value to find another value
+    A tap drains water from a rain barrel at a steady rate, lowering the water level 0.4 inch every 5 minutes. Fifty minutes after the tap was opened, the water was 17 inches deep. How deep, in inches, was the water 10 minutes after the tap was opened?
+    options ["12.2","17.8","18.6","20.2"] key 20.2
+Operations and Algebraic Thinking | g8 | mid | file map-math-g58-v1.batch.json (not banked) | Compare two proportional relationships given as a graph and an equation
+    In the xy-plane, the graph of the bottles y that Machine A fills in x minutes is a line through the origin and the point (3.5, 84). Machine B fills bottles at a rate given by the equation y = 30x. How many more minutes does Machine A take than Machine B to fill 360 bottles?
+    options ["3","6","15","60"] key 3
+Operations and Algebraic Thinking | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Compare rates of change: table vs equation
+    Function A is shown in the table: when x = 2, y = 6, and when x = 6, y = 48. Function A is linear. Function B is defined by the equation y = 2x + 3. How much greater is the rate of change of function A than the rate of change of function B?
+    options ["6","7.5","8.5","40"] key 8.5
+Operations and Algebraic Thinking | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Solve a system when one line is described in words
+    The point (x, y) lies on two lines. On the first line, y is 5 less than three times x. The second line has the equation 5x + 5y = 215. What is the value of x?
+    options ["10.75","11","12","14.5"] key 12
+Operations and Algebraic Thinking | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Use the rate of change to compare two outputs
+    A taxi company uses the equation C = 1.75m + 3.5 to find the cost C, in dollars, of a ride that is m miles long. Ana and Ben each took one ride. Ana paid $15.75 more than Ben. How many more miles long was Ana's ride than Ben's ride?
+    options ["3","7","9","12.25"] key 9
+Operations and Algebraic Thinking | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Solve a decimal-coefficient equation with the variable on both sides
+    Store A sells a jacket at 20% off its regular price and adds a $9 shipping charge. Store B sells the same jacket at 5% off the same regular price with free shipping. For what regular price, in dollars, do the two stores charge the same total?
+    options ["1.35","36","45","60"] key 60
+Operations and Algebraic Thinking | g8 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Initial value of a function with another function's rate
+    Function A is linear, and its graph passes through the points (-2, 10) and (2, -2). Function B is linear and has the same rate of change as function A. The graph of function B passes through the point (12, 13). What is the y-intercept of the graph of function B?
+    options ["4","17","43","49"] key 49
+Real and Complex Number Systems | g5 | high | DB map-math-g58-v5 staged | Combine amounts, then divide by a two-digit number to hundredths
+    A school raised $1,520 at a fair and $35 at a bake sale. It spent $480 of that money on supplies. Then it shared the rest of the money equally among 20 classrooms. How many dollars did each classroom get?
+    options ["53.75","53.25","53.15","50.25"] key 53.75
+Real and Complex Number Systems | g5 | mid | DB map-math-g58-v5 staged | Round four prices to tenths, then add the rounded prices
+    Leo buys a book for $6.24, a cap for $2.63, a snack for $3.95, and a toy for $1.61. To estimate the total, he rounds each price to the nearest ten cents and then adds the rounded prices. What estimate does he get, in dollars?
+    options ["14.70","14.30","14.40","14.60"] key 14.40
+Real and Complex Number Systems | g5 | high | DB map-math-g58-v5 staged | Unit price with a zero in the quotient, then a multi-step total
+    A box of 6 bottles of juice costs $24.30, and each bottle costs the same amount. Ms. Ray has $50.00. She buys 4 bottles of the juice at that price per bottle. Then her friend gives her $2.50. How many dollars does Ms. Ray have now?
+    options ["36.30","34.50","28.20","36.10"] key 36.30
+Real and Complex Number Systems | g5 | high | DB map-math-g58-v5 staged | Multi-step problem: repeated fraction amount, subtract, then add
+    A tank had 9 3/8 gallons of water in it. A pipe drained 3/8 gallon of water out of the tank each minute for 10 minutes. Then Ana poured 1 1/2 gallons of water into the tank. How many gallons of water are in the tank now?
+    options ["7 7/8","9 5/8","7 1/8","7 3/8"] key 7 1/8
+Real and Complex Number Systems | g5 | low | DB map-math-g58-v5 staged | Multiply a decimal by a whole number, then add a decimal
+    Each bag of rice weighs 1.15 kilograms. Mia puts 7 bags of rice and a box that weighs 2.15 kilograms in a cart. How many kilograms are in the cart?
+    options ["9.30","10.20","10.10","9.90"] key 10.20
+Real and Complex Number Systems | g5 | mid | DB map-math-g58-v5 staged | Multiply a mixed number by a whole number, then subtract
+    Each of 5 shelves is 2 1/6 feet long. Mr. Diaz cuts 1 1/4 feet off one of the shelves. What is the total length of the 5 shelves now, in feet?
+    options ["9 7/12","9 1/12","8 11/12","5 5/12"] key 9 7/12
+Real and Complex Number Systems | g5 | low | DB map-math-g58-v5 staged | Multiply a whole number by a fraction
+    A ribbon is 16 feet long. Lena uses 5/12 of the ribbon to make a bow. How many feet of ribbon does she use?
+    options ["5 2/3","7 1/3","6 2/3","6 1/3"] key 6 2/3
+Real and Complex Number Systems | g5 | low | DB map-math-g58-v5 staged | Round decimals to the nearest tenth
+    Look at these numbers: 4.643, 4.645, 4.648, 4.65, 4.651, 4.653, 4.655, 4.657, 4.704, 4.741, 4.752. How many of them round to 4.7 when they are rounded to the nearest tenth?
+    options ["7","1","9","3"] key 7
+Real and Complex Number Systems | g5 | high | file map-math-g58-v1.batch.json (not banked) | Fraction of the remaining part of a whole
+    A farmer has 168 acres of land. He plants corn on 2/7 of the land. He plants wheat on 5/8 of the remaining land. He leaves the rest of the land empty. How many acres does he plant with wheat?
+    options ["30","45","57","75"] key 75
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v1.batch.json (not banked) | Use the division-multiplication relationship with a remainder
+    Kai divided a whole number by 24. His answer was 35 R17, which means the quotient was 35 and the remainder was 17. What number did Kai divide by 24?
+    options ["227","619","857","1248"] key 857
+Real and Complex Number Systems | g5 | high | file map-math-g58-v1.batch.json (not banked) | Multistep problem ending in division by a unit fraction
+    A baker has 6 bags of flour, and each bag holds 3 3/4 pounds. She saves 2 1/2 pounds of the flour for later. She uses the rest to bake loaves of bread. Each loaf needs 1/4 pound of flour. How many loaves can she bake?
+    options ["5","30","65","80"] key 80
+Real and Complex Number Systems | g5 | low | file map-math-g58-v1.batch.json (not banked) | Multiply a fraction by a mixed number
+    A rope is 3 1/3 meters long. Ben cuts off 4/5 of the rope to use for a swing. How many meters long is the piece that Ben cuts off?
+    options ["2 2/3","2 11/15","3 4/15","4 1/6"] key 2 2/3
+Real and Complex Number Systems | g5 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply a two-digit number by a two-digit number
+    A school orders 37 boxes of crayons. Each box holds 46 crayons. How many crayons does the school order in all?
+    options ["1602","1662","1702","2142"] key 1702
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Area of a rectangle with mixed-number side lengths
+    Ana plants flowers in a rectangular bed that measures 2 1/3 yards by 1 1/5 yards. How many square yards of ground does the flower bed cover?
+    options ["2 2/5","2 8/15","2 11/15","2 4/5"] key 2 4/5
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Subtract mixed numbers (thirds and twelfths) with regrouping
+    A water jug holds 6 1/3 liters of water. Sam pours out 2 7/12 liters to fill some bottles. How many liters of water are still in the jug?
+    options ["3 1/2","3 2/3","3 3/4","4 11/12"] key 3 3/4
+Real and Complex Number Systems | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply a mixed number by a fraction, then subtract
+    Each lap around a park trail is 3/4 mile long. Sam plans to run 4 1/2 laps. So far he has run 1 7/12 miles. How many more miles does Sam need to run?
+    options ["1 13/24","1 19/24","1 11/12","2 1/12"] key 1 19/24
+Real and Complex Number Systems | g5 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Two-step money problem: subtract decimals, then multiply
+    A jacket regularly costs $48.60. During a sale, the store takes $12.85 off the price of each jacket. Ana buys 3 jackets during the sale. How much does she pay in all, in dollars?
+    options ["107.15","107.25","108.75","132.95"] key 107.25
+Real and Complex Number Systems | g5 | low | file map-math-g58-v3.batch.json (not banked) | Two 2-digit products in context, then their sum
+    A fruit stand gets 24 large crates and 14 small crates of apples. A small crate holds 33 apples, and a large crate holds 36 apples. How many apples does the stand get in all?
+    options ["678","1296","1306","1326"] key 1326
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v3.batch.json (not banked) | Long division by a two-digit divisor: the remainder
+    A teacher has 315 markers. She puts them into boxes that hold 24 markers each, filling as many boxes as she can. How many markers are left over?
+    options ["3","7","13","15"] key 3
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v3.batch.json (not banked) | Subtract then add decimals of different lengths
+    A pitcher has 2.75 liters of juice in it. Lee pours out 0.8 liter of the juice. Then his mom pours 1.45 liters more juice into the pitcher. How many liters of juice are in the pitcher now?
+    options ["3.3","3.4","3.6","4.12"] key 3.4
+Real and Complex Number Systems | g5 | high | file map-math-g58-v3.batch.json (not banked) | Tiling a rectangle with fractional side lengths
+    A rectangular floor is 3 1/2 meters long and 2 2/3 meters wide. It is covered with no gaps or overlaps by tiles that are each 1/2 meter long and 1/3 meter wide. All the tiles face the same way, with the 1/2-meter side along the length of the floor. How many tiles cover the floor?
+    options ["30","42","56","64"] key 56
+Real and Complex Number Systems | g5 | low | file map-math-g58-v3.batch.json (not banked) | Fraction as division: sharing a whole amount equally
+    Five friends share 14 pounds of grapes equally. How many pounds of grapes does each friend get?
+    options ["5/14","2 1/5","2 2/5","2 4/5"] key 2 4/5
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v3.batch.json (not banked) | Unit price from a total with one extra item, then scale
+    Mia paid $12.40 for 4 notebooks and 1 pen. The pen cost $1.80, and the notebooks all cost the same amount. At that price, how much would 7 of these notebooks cost, in dollars?
+    options ["9.10","15.05","17.36","18.55"] key 18.55
+Real and Complex Number Systems | g5 | high | file map-math-g58-v3.batch.json (not banked) | Fraction of a fraction-length path in context
+    A walking path around a park is 6/7 mile long. It is marked off into 5 sections of equal length. Mia starts at the beginning of the path, walks around it, and stops when she has walked 9 sections. How many miles has she walked?
+    options ["1 1/5","1 19/35","1 23/35","1 24/35"] key 1 19/35
+Real and Complex Number Systems | g5 | low | file map-math-g58-v4.batch.json (not banked) | Round decimals to the nearest whole to estimate a product
+    Leo wants to estimate 6.8 x 4.3. He rounds each number to the nearest whole number and then multiplies the rounded numbers. What estimate does Leo get?
+    options ["24","28","29","35"] key 28
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v4.batch.json (not banked) | Subtract mixed numbers, unlike denominators, regrouping
+    A ribbon is 6 1/4 yards long. Mia cuts off a piece that is 2 2/3 yards long. How many yards of ribbon are left?
+    options ["3 1/3","3 5/12","3 7/12","4 5/12"] key 3 7/12
+Real and Complex Number Systems | g5 | high | file map-math-g58-v4.batch.json (not banked) | Divide a unit fraction by a whole number in a multi-step problem
+    Ms. Lin has 3 pounds of clay. She cuts 1/2 pound of it into 9 equal pieces and gives 7 of the pieces to her students. How many pounds of clay does Ms. Lin have now?
+    options ["2 11/18","2 13/18","2 17/18","3 11/18"] key 2 11/18
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v5.batch.json (not banked) | Multi-step decimal problem with doubling and subtracting
+    A red board is 2.2 meters long. A blue board is 0.65 meter shorter than twice the length of the red board. What is the total length of the two boards, in meters?
+    options ["5.75","5.95","6.45","7.25"] key 5.95
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v5.batch.json (not banked) | Multi-digit multiplication then subtraction in context
+    A school gym has 28 rows of bleacher seats with 35 seats in each row. At a basketball game, 186 of the seats were empty and every other seat had one person in it. How many people were sitting in the seats?
+    options ["694","794","804","864"] key 794
+Real and Complex Number Systems | g5 | low | file map-math-g58-v5p.batch.json (not banked) | Money left after a decimal times whole and two subtractions
+    Maya has $50.00. She buys 3 notebooks that cost $4.45 each and 1 pen that costs $2.62. How much money, in dollars, does Maya have left?
+    options ["34.03","34.93","35.13","37.69"] key 34.03
+Real and Complex Number Systems | g5 | high | file map-math-g58-v5p.batch.json (not banked) | Decimal times a decimal below 1, plus a second cost
+    Ribbon costs $7.25 per meter. Nora buys 0.6 meter of ribbon and 2 bows that cost $1.70 each. How much does Nora spend in all, in dollars?
+    options ["7.75","7.85","8.05","10.65"] key 7.75
+Real and Complex Number Systems | g5 | mid | file map-math-g58-v5p.batch.json (not banked) | Area with mixed numbers, then subtract with regrouping
+    A rectangular garden is 2 1/4 meters long and 2 1/3 meters wide. Ben covers 1 2/3 square meters of the garden with stones. How many square meters of the garden are not covered with stones?
+    options ["2 11/12","3 1/12","3 5/12","3 7/12"] key 3 7/12
+Real and Complex Number Systems | g6 | mid | DB map-math-g58-v5 staged | Side lengths from coordinates, one side across an axis
+    On a map drawn on a coordinate plane, each unit stands for 1 meter. A rectangular garden has corners at (-10, 5), (22, 5), (22, 23) and (-10, 23). A fence will go all the way around the garden except for a gate that is 4 meters wide. How many meters of fence are needed?
+    options ["116","96","56","46"] key 96
+Real and Complex Number Systems | g6 | mid | DB map-math-g58-v5 staged | Combine amounts, divide by a decimal, then subtract
+    A school has 210 liters of juice for a fair. A store gives the school 30 more liters of juice. All of the juice is poured into bottles that each hold 0.75 liter. The school gives away 60 of the bottles. How many bottles of juice does the school have left?
+    options ["220","120","260","250"] key 260
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v1.batch.json (not banked) | Least common multiple in a packaging problem
+    Paper plates are sold in packs of 12, and paper cups are sold in packs of 8. Mr. Diaz wants to buy exactly the same number of plates as cups, and he wants to buy as few packs as possible. How many packs will he buy in all?
+    options ["2","5","20","24"] key 5
+Real and Complex Number Systems | g6 | high | file map-math-g58-v1.batch.json (not banked) | Order rational numbers and absolute value on a number line
+    How many integers are greater than -3 3/5 and less than |-5 3/5| ?
+    options ["2","5","8","9"] key 9
+Real and Complex Number Systems | g6 | low | file map-math-g58-v1.batch.json (not banked) | Divide a mixed number by a fraction in context
+    Mia used 2 1/2 cups of flour to make 3/4 of a batch of muffins. At this rate, how many cups of flour are needed to make a full batch?
+    options ["1 7/8","3 1/8","3 1/6","3 1/3"] key 3 1/3
+Real and Complex Number Systems | g6 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply a decimal price by a decimal weight
+    Jess buys 2.2 pounds of cheese. The cheese costs $4.75 per pound. How much does Jess pay, in dollars?
+    options ["9.65","10.35","10.45","10.75"] key 10.45
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Divide a mixed number by a fraction in context
+    A pitcher holds 1 1/5 liters of lemonade. One serving is 2/3 liter. How many servings of lemonade are in the pitcher?
+    options ["5/9","1 3/10","1 7/10","1 4/5"] key 1 4/5
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Locate a point across 0 from a distance, then find a distance
+    On a number line, point A is at -4.68 and point C is at 1.25. Point B is 7.52 units away from point A, on the other side of 0. How far apart are points B and C?
+    options ["1.59","1.69","1.99","13.45"] key 1.59
+Real and Complex Number Systems | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Factor a sum with the GCF using the distributive property
+    Using the distributive property, Kim writes 48 + 72 as a(b + c), where a x b = 48, a x c = 72, and b and c are whole numbers with no common factor other than 1. What is the value of a + b + c?
+    options ["5","22","23","29"] key 29
+Real and Complex Number Systems | g6 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Interpret a quotient, then multiply by a multi-digit decimal
+    A factory has 3,276 cans of soup. It packs them into cases of 24 cans each, and only full cases are shipped. Each full case weighs 9.65 kilograms. What is the total weight, in kilograms, of the cases that are shipped?
+    options ["1224.65","1302.4","1305.6","1312.4"] key 1312.4
+Real and Complex Number Systems | g6 | low | file map-math-g58-v3.batch.json (not banked) | Multiply and subtract decimals in a money problem
+    Pencils cost $0.45 each and erasers cost $0.80 each. Ana buys 7 pencils and 5 erasers. How much more money does she spend on the erasers than on the pencils, in dollars?
+    options ["0.85","0.95","1.15","3.35"] key 0.85
+Real and Complex Number Systems | g6 | high | file map-math-g58-v3.batch.json (not banked) | Common multiples counted over a time window
+    Two ferries leave a dock at the same moment. After that, Ferry A leaves again once in 15 minutes, and Ferry B leaves again once in 25 minutes. Not counting the first moment, how many more times do the two ferries leave at the same time during the next 300 minutes, counting a departure at the end of the 300 minutes?
+    options ["4","6","7","20"] key 4
+Real and Complex Number Systems | g6 | low | file map-math-g58-v3.batch.json (not banked) | Multiply a decimal by a decimal in a money problem
+    Ribbon costs $0.45 for each meter. Ms. Lee buys 4.6 meters of ribbon. How much does she pay, in dollars?
+    options ["1.63","1.87","2.07","2.1"] key 2.07
+Real and Complex Number Systems | g6 | high | file map-math-g58-v3.batch.json (not banked) | Two divisions rounded up, then the items left over
+    A school needs 1,300 pencils and 1,450 erasers. Pencils are sold only in boxes of 32, and erasers only in boxes of 45. The school buys just enough whole boxes of each to have all the pencils and erasers it needs. How many pencils and erasers will be left over in all?
+    options ["22","35","37","47"] key 47
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v3.batch.json (not banked) | Distance between elevations on opposite sides of 0
+    A submarine is 351 meters below sea level, so its elevation is -351 meters. A diver is at 4/9 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull?
+    options ["164","184","194","233"] key 194
+Real and Complex Number Systems | g6 | high | file map-math-g58-v4.batch.json (not banked) | Decimal division with the remainder as money left
+    A store sells markers for $0.37 each. Leo has $11.75. He buys as many markers as he can. How much money, in dollars, does Leo have left?
+    options ["0.15","0.27","0.28","0.76"] key 0.28
+Real and Complex Number Systems | g6 | high | file map-math-g58-v4.batch.json (not banked) | Greatest common factor, then the size of each group
+    Rosa has 48 red beads and 180 blue beads. She makes identical bracelets, using all of the beads, and she makes as many bracelets as she can. How many blue beads are on each bracelet?
+    options ["4","10","15","30"] key 15
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v4.batch.json (not banked) | Use the least common multiple to find a later common time
+    A sign has two lights. The red light flashes every 6 seconds, and the blue light flashes every 10 seconds. Both lights flash at the same moment when the sign is turned on. How many seconds after the sign is turned on do the two lights flash at the same moment for the third time after that?
+    options ["48","60","90","180"] key 90
+Real and Complex Number Systems | g6 | low | file map-math-g58-v4.batch.json (not banked) | Distance between points with the same x-coordinate
+    A town map is drawn on a coordinate plane, and each unit on the map stands for one block. The bus stop is at the point (-3.5, -4), and the school is at the point (-3.5, -13). How many blocks apart are the bus stop and the school?
+    options ["7","9","10","17"] key 9
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v4.batch.json (not banked) | Compare absolute values of positive and negative decimals
+    Which number is farther from 0 than -6.45 and closer to 0 than 7.4?
+    options ["-6.4","-6.21","6.45","6.88"] key 6.88
+Real and Complex Number Systems | g6 | high | file map-math-g58-v4.batch.json (not banked) | Use the LCM to build the smallest square from rectangles
+    Mia has many rectangular tiles that are each 10 centimeters long and 14 centimeters wide. She places them side by side, all turned the same way, with no gaps or overlaps, to make the smallest possible square. How many tiles does she use?
+    options ["5","12","35","140"] key 35
+Real and Complex Number Systems | g6 | low | file map-math-g58-v4.batch.json (not banked) | Multiply decimals, then subtract from a whole amount
+    Mr. Diaz buys 2.4 pounds of grapes. The grapes cost $3.15 per pound. He pays with a $10 bill. How much change should he get, in dollars?
+    options ["2.44","2.54","2.65","4.45"] key 2.44
+Real and Complex Number Systems | g6 | low | file map-math-g58-v4.batch.json (not banked) | Divide a decimal by a decimal less than 1 to compare
+    A puppy weighs 15.84 pounds. A kitten weighs 0.75 pound. How many times as heavy as the kitten is the puppy?
+    options ["11.88","20.12","20.84","21.12"] key 21.12
+Real and Complex Number Systems | g6 | high | file map-math-g58-v5.batch.json (not banked) | Multi-step decimal problem: divide by a decimal, then scale
+    At a store, 2.5 kilograms of white rice cost $9.50. Brown rice costs $0.40 more per kilogram than white rice. Mr. Lee buys the 2.5 kilograms of white rice and 4.5 kilograms of brown rice. How much does he pay in all, in dollars?
+    options ["27.00","27.60","28.40","29.40"] key 28.40
+Real and Complex Number Systems | g6 | low | file map-math-g58-v5p.batch.json (not banked) | Unit price by dividing by a decimal, then a difference
+    At a deli, 0.75 pound of cheddar cheese costs $4.80. Swiss cheese costs $0.90 less per pound than cheddar cheese. What is the price of 1 pound of Swiss cheese, in dollars?
+    options ["2.70","5.10","5.40","5.50"] key 5.50
+Real and Complex Number Systems | g6 | high | file map-math-g58-v5p.batch.json (not banked) | Mixed number divided by a fraction, as laps
+    One lap of a track is 3/5 mile. Jo runs 10 1/2 miles in all, but 1/4 mile of that is on the road to and from the track. The rest is on the track. How many laps of the track does Jo run?
+    options ["4 7/12","10 5/12","16 11/12","17 1/12"] key 17 1/12
+Real and Complex Number Systems | g6 | mid | file map-math-g58-v5p.batch.json (not banked) | Locate a negative rational point, then a distance
+    On a number line, point P is 1 1/4 units to the left of -6 1/4. Point Q is at -2 7/8. What is the distance between point P and point Q?
+    options ["4 5/8","4 7/8","5 3/8","6 3/8"] key 4 5/8
+Real and Complex Number Systems | g7 | mid | DB map-math-g58-v5 staged | mean of positive and negative decimal changes
+    The water level in a pond was measured every morning. Over four days, the level changed by +0.8 cm, -6.3 cm, -9.5 cm and +4.4 cm. What was the mean (average) change per day, in centimeters?
+    options ["-3.05","-3.95","-2.55","-2.65"] key -2.65
+Real and Complex Number Systems | g7 | high | file map-math-g58-v1.batch.json (not banked) | Multistep signed-number problem with fractions of a loss
+    A bakery records a profit as a positive number and a loss as a negative number. Its result for week 1 was -$360. Its result for week 2 was 2/3 of its result for week 1. In week 3, the bakery made a profit that was 1 3/4 times its total loss for weeks 1 and 2. What was the bakery's total result, in dollars, for the three weeks?
+    options ["-1650","-180","450","690"] key 450
+Real and Complex Number Systems | g7 | low | file map-math-g58-v1.batch.json (not banked) | Multiply and add rational numbers in a depth context
+    A diver is 8 feet below the surface of a lake, so her position is -8 feet. She swims straight down at a steady rate of 1.5 feet per second for 14 seconds. What is her position, in feet, after the 14 seconds?
+    options ["-133","-29","-22","13"] key -29
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v1.batch.json (not banked) | Evaluate an expression mixing negative decimals and fractions
+    Without a calculator, Nora works out -3.6 ÷ (4/5) - (-1 1/4)(2.2). What number should she get?
+    options ["-7.15","-2.85","-1.75","-0.13"] key -1.75
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v1.batch.json (not banked) | Work backward through signed changes to a starting value
+    The price of one share of a stock went down $1.15 each day for 8 days in a row. Then it went up $0.45 each day for the next 4 days. After these changes, the price was $36.15. What was the price, in dollars, before the changes began?
+    options ["28.75","36.85","41.75","43.55"] key 43.55
+Real and Complex Number Systems | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply two negative decimals
+    Maya multiplies -4.5 by -3.4 without a calculator. What product should she get?
+    options ["13.9","14.8","15.1","15.3"] key 15.3
+Real and Complex Number Systems | g7 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Add and subtract negative decimals in one expression
+    Evaluate the expression -6.4 - (-2.7) + (-1.85).
+    options ["-10.95","-6.15","-5.55","-4.55"] key -5.55
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply a negative mixed number by a mixed number in context
+    During a dry spell, the water level in a pond changed by -2 4/5 centimeters each hour. What was the total change in the water level, in centimeters, over 1 1/3 hours?
+    options ["-3 11/15","-3 7/15","-3 2/15","-2 4/15"] key -3 11/15
+Real and Complex Number Systems | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Find an unknown equal change from a signed total
+    Over 6 hours, the temperature in a greenhouse changed by a total of -1.62 degrees Celsius. During each of the first 4 hours, the temperature changed by -0.64 degree. During each of the last 2 hours, it changed by the same amount. What was the change in temperature during each of the last 2 hours, in degrees Celsius?
+    options ["-0.49","0.42","0.47","0.57"] key 0.47
+Real and Complex Number Systems | g7 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Add three negative mixed numbers with unlike denominators
+    In a cave, Rosa recorded three changes in her elevation, in meters: -2 3/8, -4 5/12, and -1 19/24. What was the total change in her elevation, in meters?
+    options ["-8 7/12","-8 1/3","-8 3/8","-8 1/8"] key -8 7/12
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v3.batch.json (not banked) | Sum of signed daily changes, scaled by a count
+    Over five days, the price of one share of a stock changed by -$0.85, +$1.20, -$2.45, +$0.60 and -$1.10. Ali owns 12 shares of this stock. What was the total change in the value of Ali's 12 shares over the five days, in dollars?
+    options ["-52.80","-45.60","-31.20","-4.80"] key -31.20
+Real and Complex Number Systems | g7 | low | file map-math-g58-v3.batch.json (not banked) | Fraction of a negative change, then the total change
+    On Monday the price of one share of a stock changed by -$4.35. On Tuesday the price fell again, by 2/5 as much as it fell on Monday. What was the total change in the price over the two days, in dollars?
+    options ["-6.09","-5.99","-5.97","-4.75"] key -6.09
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v3.batch.json (not banked) | Rate given per time period, then a signed result
+    A pan of water is put in a freezer when its temperature is 4.7 degrees Celsius. In the freezer, its temperature drops 0.8 degree every 2.5 minutes. What is its temperature 20 minutes after it is put in the freezer, in degrees Celsius?
+    options ["-11.3","-2.7","-1.7","-1.3"] key -1.7
+Real and Complex Number Systems | g7 | low | file map-math-g58-v3.batch.json (not banked) | Total of positive and negative scores
+    In a quiz game, each right answer scores 4 points and each wrong answer scores -1.5 points. Kim answered 16 questions and got 4 of them wrong. What was Kim's total score?
+    options ["24","30","32","42"] key 42
+Real and Complex Number Systems | g7 | high | file map-math-g58-v3.batch.json (not banked) | Quotient of two signed mixed-number sums
+    Jin divides the sum of -1/2 and 1 2/3 by the sum of -2 1/6 and 1/2. In other words, he works out (-1/2 + 1 2/3) ÷ (-2 1/6 + 1/2). What quotient does he get?
+    options ["-1 3/7","-7/8","-7/10","-7/16"] key -7/10
+Real and Complex Number Systems | g7 | high | file map-math-g58-v3.batch.json (not banked) | Fraction of the distance to 0, then a signed change
+    A small submarine is at an elevation of -17.4 meters. It rises 2/3 of the way to the surface of the water (elevation 0). Then it dives 4.8 meters. What is its elevation now, in meters?
+    options ["-33.8","-16.4","-10.6","-7.4"] key -10.6
+Real and Complex Number Systems | g7 | low | file map-math-g58-v4.batch.json (not banked) | Balance after one week of an equal rise between negatives
+    Lena's bank balance was -$94.25, which means she owed the bank $94.25. Over the next 5 weeks, her balance went up by the same amount each week. At the end of the 5 weeks, her balance was -$36.70. What was her balance, in dollars, at the end of the first week?
+    options ["-82.74","-81.74","-80.54","-68.06"] key -82.74
+Real and Complex Number Systems | g7 | high | file map-math-g58-v4.batch.json (not banked) | Multistep debt problem with a fraction of a negative
+    Ana owed her brother $40, so her balance with him was -$40. She paid him $5.20 each week for 5 weeks. Then she borrowed more money from him: 1/4 of the amount she still owed. What is Ana's balance with her brother now, in dollars?
+    options ["-24.00","-20.50","-17.50","-10.50"] key -17.50
+Real and Complex Number Systems | g7 | low | file map-math-g58-v4.batch.json (not banked) | Multiply two negative mixed numbers
+    Find the product (-1 3/4) x (-2 1/5). Write your answer as a mixed number.
+    options ["2 3/20","3 17/20","3 19/20","4 1/5"] key 3 17/20
+Real and Complex Number Systems | g7 | low | file map-math-g58-v4.batch.json (not banked) | Divide a negative mixed number by a negative fraction
+    Find the quotient (-2 1/4) ÷ (-3/5). Write your answer as a mixed number.
+    options ["1 7/20","2 1/2","3 3/4","4 1/6"] key 3 3/4
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v5.batch.json (not banked) | repeated equal moves on a number line from a negative start
+    A game piece starts at -1 1/8 on a number line. It moves 2 1/8 units to the right five times. Then it moves 1 3/8 units to the left. At what number does the game piece stop?
+    options ["7 5/8","8 1/8","8 3/8","10 7/8"] key 8 1/8
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v5.batch.json (not banked) | signed rate times signed time, working back in time
+    The temperature inside a lab freezer changes by -2.35 degrees Celsius every hour. Right now the temperature inside the freezer is -30.6 degrees Celsius. What was the temperature inside the freezer 7 hours ago, in degrees Celsius?
+    options ["-21.25","-16.25","-16.15","-14.15"] key -14.15
+Real and Complex Number Systems | g7 | high | file map-math-g58-v5.batch.json (not banked) | a fraction of a negative balance, then repeated fees and a deposit
+    A club's bank account balance is -$36.40, which means the club owes the bank $36.40. First, the bank adds a service charge equal to 1/4 of the amount the club owes. Then, from week 3 through week 9, the club pays a fee of $3.50 out of the account each week. The club also deposits $27.70 into the account. What is the account balance after all of these changes, in dollars?
+    options ["-42.30","-41.50","-41.30","-24.10"] key -42.30
+Real and Complex Number Systems | g7 | low | file map-math-g58-v5.batch.json (not banked) | adding a positive and subtracting a negative integer
+    In a card game, a player's score is the total of the points on all the cards in her pile. Rosa's score is -90 points. She adds a card worth 15 points to her pile. Then she must give away one card from her pile, and the card she gives away is worth -40 points. What is Rosa's score now?
+    options ["-115","-65","-45","-35"] key -35
+Real and Complex Number Systems | g7 | mid | file map-math-g58-v5p.batch.json (not banked) | Signed rates times time, then a depth
+    A diver's elevation is -8.8 meters (8.8 meters below the surface). Her elevation changes by -0.9 meter each minute for 7 minutes. Then it changes by +1.5 meters each minute for 3 minutes. How many meters below the surface is the diver now?
+    options ["10.6","11.6","12.2","19.6"] key 10.6
+Real and Complex Number Systems | g7 | high | file map-math-g58-v5p.batch.json (not banked) | Negative balance, fraction deposit, amount still needed
+    Mia's bank balance is -$6.40. She deposits 2/5 of her $45 paycheck into the account. How much more money, in dollars, must she deposit to bring her balance up to $60?
+    options ["35.60","47.40","47.60","48.40"] key 48.40
+Real and Complex Number Systems | g7 | low | file map-math-g58-v5p.batch.json (not banked) | Negative balance after a charge and a credit
+    Kai's bank account balance is -$23.46. The bank charges him an $8.75 fee. Then a $2.60 refund is added to his account. How much money, in dollars, does Kai owe the bank now?
+    options ["29.61","30.41","30.61","34.81"] key 29.61
+Real and Complex Number Systems | g8 | mid | DB map-math-g58-v5 staged | mean of three numbers given in scientific notation
+    The populations of three towns are shown in scientific notation. Town A: 3.284 x 10^5 people. Town B: 1.9 x 10^4 people. Town C: 1.68 x 10^5 people. What is the mean population of the three towns?
+    options ["168000","171800","228800","166100"] key 171800
+Real and Complex Number Systems | g8 | high | file map-math-g58-v1.batch.json (not banked) | Divide in scientific notation, renormalize, convert mg to kg
+    A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be written as a × 10^n, where 1 ≤ a < 10. What is the value of n? (1 gram = 1,000 milligrams and 1 kilogram = 1,000 grams.)
+    options ["-15","-14","-12","-3"] key -15
+Real and Complex Number Systems | g8 | high | file map-math-g58-v1.batch.json (not banked) | Cube root of a negative decimal and square root of a decimal
+    Lena solved two equations. The solution of x^3 = -0.216 is x, and the positive solution of y^2 = 1.69 is y. When she subtracts y from x, what number does she get?
+    options ["-1.9","-1.36","-0.73","-0.7"] key -1.9
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v1.batch.json (not banked) | Square root of a decimal square, then square a new side
+    A square patio has an area of 18.49 square meters. A square rug has sides that are 1.7 meters shorter than the sides of the patio. What is the area of the rug, in square meters?
+    options ["6.76","10.4","15.6","16.79"] key 6.76
+Real and Complex Number Systems | g8 | low | file map-math-g58-v1.batch.json (not banked) | Estimate a multiple of an irrational square root
+    Leo needs to estimate 2√5 without a calculator. Which of these numbers is closest to the value of 2√5 ?
+    options ["3.2","4.2","4.5","5.0"] key 4.5
+Real and Complex Number Systems | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Subtract numbers in scientific notation with different powers
+    A city's reservoir held 5.2 x 10^6 liters of water. During a dry month, 3.85 x 10^5 liters of the water were used. How many liters of water were left in the reservoir?
+    options ["4815000","4825000","4885000","5185000"] key 4815000
+Real and Complex Number Systems | g8 | low | file map-math-g58-v2/stage0.assembled.json (not banked) | Evaluate a negative integer exponent inside a difference
+    Sam is asked to find 6 - 2^-2 and to write the answer as a decimal. What decimal should he write?
+    options ["5.75","5.96","5.98","10"] key 5.75
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Multiply in scientific notation, then subtract
+    A factory makes 2.4 x 10^4 bolts each day for 1.5 x 10^2 days. During that time it ships 6.8 x 10^5 of the bolts to stores. How many of the bolts made in that time have not been shipped?
+    options ["2920000","3020000","3220000","359320000"] key 2920000
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v2/stage0.assembled.json (not banked) | Evaluate a sum of negative powers as a fraction
+    Write the exact value of 3 x 2^-2 + 3^-2 in simplest form.
+    options ["7/9","31/36","11/12","21"] key 31/36
+Real and Complex Number Systems | g8 | high | file map-math-g58-v2/stage0.assembled.json (not banked) | Chain three integer-exponent properties, one negative
+    Ravi simplifies (2^-2 x 2^6)^3 / (2^2)^2 using the properties of exponents. What is the value of the expression?
+    options ["1/16","1","8","256"] key 256
+Real and Complex Number Systems | g8 | low | file map-math-g58-v3.batch.json (not banked) | Divide numbers in scientific notation, answer in standard form
+    A grain of sand is about 5 x 10^-4 meter wide. A speck of dust is about 2 x 10^-6 meter wide. How many specks of dust, lined up side by side, would make a row as long as the grain of sand is wide?
+    options ["250","300","700","25000000000"] key 250
+Real and Complex Number Systems | g8 | low | file map-math-g58-v3.batch.json (not banked) | Product of a negative base power and a negative exponent
+    Ana works out the product (-2)^3 x 3^-2 and writes her answer as a fraction or mixed number. What is the product?
+    options ["-72","-7 8/9","-1 1/3","-8/9"] key -8/9
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v3.batch.json (not banked) | Whole numbers whose square roots lie between two decimals
+    For how many whole numbers n is the square root of n greater than 3.5 and less than 6.6?
+    options ["6","27","31","34"] key 31
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v3.batch.json (not banked) | Find integer exponents, one of them negative
+    The numbers a and b are integers. 4 raised to the power a equals 1/1024, and 5 raised to the power b equals 625. In symbols, 4^a = 1/1024 and 5^b = 625. What is b - a?
+    options ["6","7","9","130"] key 9
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v3.batch.json (not banked) | Multiply numbers in scientific notation, answer in standard form
+    A grain of rice has a mass of about 3.5 x 10^-2 gram. A sack holds about 4.6 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in the sack, in grams?
+    options ["140300","151000","161000","1610000000"] key 161000
+Real and Complex Number Systems | g8 | high | file map-math-g58-v3.batch.json (not banked) | Cube root of a decimal, then a negative exponent
+    The number x is the cube root of 0.216, so x^3 = 0.216. What is the value of x^-2? Give the answer as a fraction or mixed number.
+    options ["1 4/9","2 7/25","2 14/25","2 7/9"] key 2 7/9
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v4.batch.json (not banked) | Count integers between a negative and a positive square root
+    On a number line, point A is at -√13 and point B is at √75. How many integers are on the number line between point A and point B?
+    options ["9","11","12","14"] key 12
+Real and Complex Number Systems | g8 | high | file map-math-g58-v4.batch.json (not banked) | Estimate a difference of two irrational square roots
+    Without a calculator, Lia wants to estimate √50 - √30. Which of these decimals is closest to √50 - √30?
+    options ["1.59","1.61","1.67","2.00"] key 1.59
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v4.batch.json (not banked) | Approximate the edge of a cube from its volume (cube root)
+    A cube-shaped storage box holds exactly 5 cubic feet. Which of these is closest to the length of one edge of the box, in feet?
+    options ["1.50","1.57","1.67","1.71"] key 1.71
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v4.batch.json (not banked) | Count the irrational numbers in a list
+    Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep getting longer). How many of the eight numbers are irrational?
+    options ["2","4","5","7"] key 4
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v5.batch.json (not banked) | evaluate a negative power plus a square root of a sum
+    On a quiz, Jun must evaluate -4^2 + √(225 + 400), using the rules for exponents, square roots and the order of operations. What number should Jun get?
+    options ["9","17","19","41"] key 9
+Real and Complex Number Systems | g8 | high | file map-math-g58-v5p.batch.json (not banked) | Divide by a negative power of ten, then adjust a count
+    A factory makes 5.13 x 10^5 grams of candy. Each piece of candy has a mass of 1.35 x 10^(-1) gram. Then 2.6 x 10^4 of the pieces are thrown away, and 4.5 x 10^3 pieces made the day before are added. How many pieces of candy are there now?
+    options ["3544500","3758500","3769500","3778500"] key 3778500
+Real and Complex Number Systems | g8 | low | file map-math-g58-v5p.batch.json (not banked) | Product of powers with a negative exponent, then a difference
+    A game saves 9 x 2^7 x 2^(-2) kilobytes of data. Later, 5 x 2^2 kilobytes of that data are deleted. How many kilobytes of data are left?
+    options ["128","188","238","268"] key 268
+Real and Complex Number Systems | g8 | mid | file map-math-g58-v5p.batch.json (not banked) | Two quotients in scientific notation, then a difference
+    Country A has 8.4 x 10^6 people living on 1.2 x 10^4 square kilometers. Country B has 4.2 x 10^6 people living on 1.4 x 10^4 square kilometers. How many more people per square kilometer does Country A have than Country B?
+    options ["400","420","520","1000"] key 400
+Statistics and Probability | g5 | high | DB map-math-g58-v1 staged | Equal share of line-plot fractional data
+    A science class put water in some beakers. The table shows the line plot data: each row gives an amount of water, in liters, and the number of beakers that held that amount. All the water is poured together and then shared equally among all of the beakers. How many liters of water will be in each beaker?
+    options ["1 3/32","7/16","3/8","3/20"] key 7/16
+Statistics and Probability | g5 | mid | DB map-math-g58-v1 staged | Combine meters and kilometers with decimals
+    On Monday, Sam ran 4 laps around a track. One lap is 400 meters. On Tuesday, Sam ran 2.45 kilometers. How many kilometers did Sam run on the two days in all?
+    options ["2.85","2.61","4.05","18.45"] key 4.05
+Statistics and Probability | g5 | low | file map-math-g58-v1.batch.json (not banked) | Total weight in pounds of equal bags in pounds and ounces
+    Each bag of rice weighs 1 pound 4 ounces. Mr. Diaz buys 6 bags of rice. What is the total weight of the rice, in pounds?
+    options ["7.5","7.8","8.4","120"] key 7.5
+Statistics and Probability | g5 | mid | file map-math-g58-v1.batch.json (not banked) | Total of line-plot data with mixed-number values
+    Students measured some worms. The line plot data are shown in the table: each row gives a length, in inches, and the number of worms with that length. What is the total length, in inches, of all the worms that are 1 1/4 inches long or 1 3/4 inches long?
+    options ["8 1/2","7","6","3"] key 8 1/2
+Statistics and Probability | g6 | low | DB map-math-g58-v1 staged | Percent of a data set from a histogram
+    The histogram data below show the ages, in whole years, of all the people at a park one afternoon. What percent of the people at the park were younger than 12 years old?
+    options ["50","20","25","34"] key 20
+Statistics and Probability | g6 | mid | DB map-math-g58-v1 staged | Mean of a data set with negative values and a zero
+    The low temperatures, in degrees Celsius, in a town for 6 days in a row were -12, -6, -8, 0, 12, and -7. What was the mean low temperature, in degrees Celsius, for the 6 days?
+    options ["-7.5","-3.5","-4.2","-6.5"] key -3.5
+Statistics and Probability | g6 | high | DB map-math-g58-v1 staged | Interquartile range from a frequency table
+    A teacher asked 13 students how many books they read over the summer. The table shows how many students gave each answer. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half, and when the number of values is odd, the median itself is not included in either half. What is the interquartile range of the 13 answers?
+    options ["2","4","1","4.5"] key 4.5
+Statistics and Probability | g6 | high | file map-math-g58-v1.batch.json (not banked) | Mean absolute deviation from a frequency table
+    The table shows the ages, in years, of the 25 children at a summer camp and how many children are each age. The mean absolute deviation is the mean of the distances between each value and the mean of the data. What is the mean absolute deviation of the 25 ages, in years?
+    options ["1.12","1.2","5.6","8"] key 1.12
+Statistics and Probability | g7 | high | DB map-math-g58-v1 staged | Difference of means as a multiple of the MAD
+    The table shows the number of sit-ups each student in two exercise groups did in one minute. The two groups have the same mean absolute deviation. The difference between the mean of Group B and the mean of Group A is how many times that mean absolute deviation?
+    options ["2.5","0.5","0.4","6"] key 2.5
+Statistics and Probability | g7 | low | DB map-math-g58-v1 staged | Estimate a population count from the mean of several samples
+    There are 500 students at a school. Three students each took a different random sample of 20 students at the school and asked whether they bring lunch from home. The table shows how many students in each sample said yes. Use the mean of the three sample results to estimate how many of the 500 students at the school bring lunch from home.
+    options ["475","65","275","325"] key 325
+Statistics and Probability | g7 | mid | file map-math-g58-v1.batch.json (not banked) | Compound probability from a sample space of two unequal devices
+    A spinner has 5 equal sections numbered 1 through 5. A fair number cube has faces numbered 1 through 6. Lena spins the spinner once and rolls the number cube once, then adds the two numbers. What is the probability that the sum is greater than 7?
+    options ["1/3","2/5","1/2","10/11"] key 1/3
+Statistics and Probability | g8 | high | DB map-math-g58-v1 staged | Complete a two-way table from fractions and a total
+    A survey asked 96 students two questions: Do you have a curfew? Do you do chores at home? Of the 96 students, 3/8 have a curfew. Of the students who have a curfew, 3/4 do chores at home. In all, 35 of the 96 students do chores at home. How many of the students who do NOT have a curfew also do NOT do chores at home?
+    options ["33","25","8","52"] key 52
+Statistics and Probability | g8 | low | DB map-math-g58-v1 staged | Predict from a line of fit with x measured from a base year
+    A scatter plot shows the average price of a movie ticket in a town, in dollars, for several years. A line of fit for the data is y = 0.5x + 12.4, where x is the number of years since 2016 and y is the average ticket price in dollars. According to the line of fit, what is the predicted average ticket price, in dollars, in the year 2025?
+    options ["30.4","16.9","10.7","24.9"] key 16.9
+Statistics and Probability | g8 | high | DB map-math-g58-v1 staged | Row relative frequency from a table of percents of the whole
+    Students in a school were asked whether they have a cell phone and whether they ride the bus to school. The table shows the results, where each entry is a percent of ALL the students surveyed. Of the students who have a cell phone, what percent ride the bus to school?
+    options ["30","32","40","75"] key 30
+Statistics and Probability | g8 | mid | DB map-math-g58-v1 staged | Use a line of fit backward: find x for a given y
+    A typing teacher made a scatter plot of x, the number of minutes each student practiced typing per day, and y, the student's typing speed in words per minute. A line of fit for the data is y = 0.8x + 6. According to the line of fit, how many minutes per day of practice go with a typing speed of 48 words per minute?
+    options ["52.5","60","44.4","33.6"] key 52.5
+
+# ---- map-math-v2 batch 1 (221) ----
+# area | grade | tier | source | subskill || prompt || key
+Operations and Algebraic Thinking | g5 | high | map-math-v2 batch 1 LIVE (MV2-O56-02) | Find where a falling and a rising pattern meet
+    Wen writes two number patterns. Each pattern keeps going in the same way. Pattern A: 68, 65, 62, 59, ... Pattern B: 8, 15, 22, 29, ... At one position (the same term number in both lists), Pattern A and Pattern B have the same number. What is that number?
+    options ["47","38","50","57"] key 50
+Operations and Algebraic Thinking | g5 | high | map-math-v2 batch 1 LIVE (MV2-O56-10) | Subtract a whole bracket holding a quotient-product
+    Leo's homework has one problem: find 94 - [72 / (4 + 2) x 3 + 4]. He must use the correct order for the brackets, parentheses and operations. What is the correct answer?
+    options ["54","66","86","63"] key 54
+Operations and Algebraic Thinking | g5 | high | map-math-v2 batch 1 withdrawn (MV2-O56-06) | Interpret "gives twice as much as he has" in an expression
+    Ravi saves $6 each week for 9 weeks. Then his aunt gives him twice as much money as he has saved. After that, he spends $25 on a game. How many dollars does Ravi have now?
+    options ["83","41","87","137"] key 137
+Operations and Algebraic Thinking | g5 | low | map-math-v2 batch 1 dropped by graders (MV2-O56-01) | Evaluate a quotient with a grouped divisor, then subtract
+    In a math card game, each card shows an expression, and a player scores the value of the expression on the card. Tia draws the card 144 / (4 + 5) - 3. How many points does Tia score?
+    options ["13","24","38","15"] key 13
+Operations and Algebraic Thinking | g5 | low | map-math-v2 batch 1 withdrawn (MV2-O56-03) | Write and evaluate n x (price + fee) from words
+    A class of 27 students goes to a science museum. Each student's ticket costs $9, and each ticket also has a $3 fee. How many dollars does the class pay in all for the tickets and fees?
+    options ["246","270","243","324"] key 324
+Operations and Algebraic Thinking | g5 | low | map-math-v2 batch 1 withdrawn (MV2-O56-11) | Write and evaluate a x b + c x d for two kinds of box
+    A builder orders 8 boxes of floor tiles with 15 tiles in each box. She also orders 6 boxes of wall tiles with 12 tiles in each box. How many tiles does she order in all?
+    options ["168","132","192","138"] key 192
+Operations and Algebraic Thinking | g5 | mid | map-math-v2 batch 1 LIVE (MV2-O56-04) | Share (total - kept) among a group that includes the sharer
+    Lina has 6 bags with 39 marbles in each bag. She keeps 18 marbles for a game. She shares the rest of the marbles equally among herself and 8 friends. After the sharing, how many marbles does Lina have in all, counting her share and the marbles she kept?
+    options ["45","42","54","46"] key 42
+Operations and Algebraic Thinking | g5 | mid | map-math-v2 batch 1 LIVE (MV2-O56-05) | Matching terms when neither pattern starts at 0
+    Omar makes two lists of numbers. List A begins with 21, and he adds 4 to get each new number. List B begins with 5, and he adds 8 to get each new number. He writes the lists side by side, so the 1st numbers are together, the 2nd numbers are together, and so on. Which number in List B is beside the number 61 in List A?
+    options ["85","69","45","122"] key 85
+Operations and Algebraic Thinking | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-07) | Evaluate brackets around a product, then divide
+    A class puzzle hides a secret number. The secret number is equal to [(15 + 11) x 6 - 12] / 3. What is the secret number?
+    options ["40","52","48","23"] key 48
+Operations and Algebraic Thinking | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-08) | Work back through "times as many" and "more than"
+    During a basketball season, Sam scored 120 points. That is 4 times as many points as Ann scored. Ann scored 12 more points than Ben. How many points did Ben score?
+    options ["33","18","104","27"] key 18
+Operations and Algebraic Thinking | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-09) | Add matching terms of two patterns at a far position
+    Kofi writes two number patterns. Each pattern keeps going in the same way. Pattern A: 2, 5, 8, 11, ... Pattern B: 35, 44, 53, 62, ... He adds the matching numbers of the patterns: the 1st numbers, the 2nd numbers, and so on. What is the sum of the 13th numbers?
+    options ["169","73","109","181"] key 181
+Operations and Algebraic Thinking | g6 | high | map-math-v2 batch 1 dropped by graders (MV2-O56-20) | Savings from unit prices across different bag sizes
+    Store A sells rice in 2-pound bags for $2.20 each. Store B sells rice in 4-pound bags for $4.00 each. Mia needs exactly 12 pounds of rice. How many dollars does she save by buying all of it at Store B instead of Store A?
+    options ["2.20","1.20","5.40","1.80"] key 1.20
+Operations and Algebraic Thinking | g6 | high | map-math-v2 batch 1 withdrawn (MV2-O56-12) | Whole from a percent of a part, then scale by a ratio
+    In a garden, the ratio of tulips to daisies is 3 to 5. Of the tulips, 30% are red. There are 18 red tulips. How many tulips and daisies are in the garden altogether?
+    options ["96","160","48","60"] key 160
+Operations and Algebraic Thinking | g6 | high | map-math-v2 batch 1 withdrawn (MV2-O56-15) | Constant term after distributing a subtracted group
+    Maya rewrites 5(2x + 11) - 4(x + 6) in the form ax + b, where a and b are numbers. What is the value of b?
+    options ["31","49","61","45"] key 31
+Operations and Algebraic Thinking | g6 | low | map-math-v2 batch 1 withdrawn (MV2-O56-13) | Evaluate a difference of a square and a cube
+    Nadia works out 7^2 - 3^3 on the whiteboard, finding each power before she subtracts. What answer should she get?
+    options ["43","101","40","22"] key 22
+Operations and Algebraic Thinking | g6 | low | map-math-v2 batch 1 withdrawn (MV2-O56-16) | Scale a part-to-part ratio to a new amount
+    A rice recipe uses rice and water in the ratio 2 cups of rice to 3 cups of water. Jon cooks 18 cups of rice using this recipe. How many cups of water does he need?
+    options ["21","12","27","19"] key 27
+Operations and Algebraic Thinking | g6 | low | map-math-v2 batch 1 withdrawn (MV2-O56-22) | Evaluate a + b(k - c) at a whole number
+    A game gives a player 7 + 3(k - 2) points for clearing k levels. Mira clears 6 levels. How many points does she get?
+    options ["58","40","23","19"] key 19
+Operations and Algebraic Thinking | g6 | mid | map-math-v2 batch 1 LIVE (MV2-O56-19) | Two unit prices from packs, then a mixed purchase
+    A school store sells 10 pens for $3.50 and 6 glue sticks for $2.70. Ella buys 4 pens and 4 glue sticks at these unit prices. How many dollars does she spend?
+    options ["4.10","2.48","3.20","3.60"] key 3.20
+Operations and Algebraic Thinking | g6 | mid | map-math-v2 batch 1 LIVE (MV2-O56-21) | Evaluate 3a^2 - 2b with the exponent on a only
+    Jae substitutes a = 4 and b = 5 into the expression 3a^2 - 2b. Remember that 3a^2 means 3 times a^2. What number does Jae get?
+    options ["38","134","14","6"] key 38
+Operations and Algebraic Thinking | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-14) | Convert a yards-feet-inches length to inches
+    A wooden board is 4 yards 2 feet 5 inches long. A carpenter needs to write its whole length in inches. How many inches long is the board?
+    options ["155","173","113","149"] key 173
+Operations and Algebraic Thinking | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-17) | Percent of a group that is NOT in a given part
+    In a survey, 120 students each named one favorite sport. Of these students, 42 named soccer. What percent of the students in the survey did not name soccer?
+    options ["65","78","30","58"] key 65
+Operations and Algebraic Thinking | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-O56-18) | Extend a table by its multiplicative rule, not by adding
+    A table shows how much Dana earns for different numbers of hours of work. Hours: 3, 5, 8 Pay (dollars): 39, 65, 104 Dana's pay always depends on the number of hours in the same way. How many dollars does she earn for 12 hours of work?
+    options ["147","108","130","156"] key 156
+Operations and Algebraic Thinking | g7 | high | map-math-v2 batch 1 withdrawn (MV2-O78-02) | Equation from a difference of two fractional parts
+    Kim spent 2/5 of her savings on a bike and 1/4 of her savings on a helmet. She spent $39 more on the bike than on the helmet. How many dollars were Kim's savings?
+    options ["60","156","260","195"] key 260
+Operations and Algebraic Thinking | g7 | high | map-math-v2 batch 1 withdrawn (MV2-O78-03) | Discount percent from a price that includes tax
+    A jacket has a regular price of $75. It is on sale, and Ken pays $63.60 for it. This amount includes a 6% sales tax on the sale price. By what percent was the regular price lowered for the sale?
+    options ["25","20","23.2","21.2"] key 20
+Operations and Algebraic Thinking | g7 | high | map-math-v2 batch 1 withdrawn (MV2-O78-11) | Unit rate from a fraction of an order and mixed time units
+    A machine filled 2/3 of an order of 3,060 bottles in 1 hour 25 minutes, working at a steady rate. How many bottles per minute did the machine fill?
+    options ["34","24","36","27.2"] key 24
+Operations and Algebraic Thinking | g7 | low | map-math-v2 batch 1 withdrawn (MV2-O78-01) | Percent tip on a bill, then an equal split
+    Ana and Ben have lunch, and the bill is $64. They leave a tip of 15% of the bill. They split the total cost of the bill and the tip equally. How many dollars does each of them pay?
+    options ["36.80","41.60","48.00","39.50"] key 36.80
+Operations and Algebraic Thinking | g7 | low | map-math-v2 batch 1 withdrawn (MV2-O78-04) | Scale a proportional weight to a new count
+    The weight of a stack of identical floor tiles is proportional to the number of tiles in the stack. A stack of 15 tiles weighs 27 pounds. How many pounds does a stack of 40 tiles weigh?
+    options ["52","67","70.2","72"] key 72
+Operations and Algebraic Thinking | g7 | low | map-math-v2 batch 1 withdrawn (MV2-O78-09) | Amount left after a percent is removed
+    A tank holds 60 liters of water. Then 35% of the water is drained out. How many liters of water are left in the tank?
+    options ["39","40","51","56.5"] key 39
+Operations and Algebraic Thinking | g7 | mid | map-math-v2 batch 1 LIVE (MV2-O78-05) | Actual value from an estimate and its percent error
+    Mia estimated that a rock had a mass of 102 grams. Her estimate was more than the actual mass, and the percent error of her estimate was 20%. What is the actual mass of the rock, in grams?
+    options ["85","82","122.4","81.6"] key 85
+Operations and Algebraic Thinking | g7 | mid | map-math-v2 batch 1 LIVE (MV2-O78-07) | Whole-number answer to px + q <= r
+    Lena has $50 to spend at a fair. She pays $14.75 to get in, and each ride costs $2.50. What is the greatest number of rides she can go on?
+    options ["11","15","20","14"] key 14
+Operations and Algebraic Thinking | g7 | mid | map-math-v2 batch 1 LIVE (MV2-O78-10) | px - q = r from a triangle with two equal sides
+    A triangle has two sides of equal length. The third side is 4.5 centimeters shorter than each of the equal sides. The perimeter of the triangle is 32.4 centimeters. How long is each of the equal sides, in centimeters?
+    options ["13.95","11.3","11.7","12.3"] key 12.3
+Operations and Algebraic Thinking | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-O78-06) | Other share from one share of a percent split
+    The school band sells T-shirts. On every T-shirt sale, the band keeps 35% of the money and the T-shirt company gets the rest. One month the band kept $182. How many dollars did the T-shirt company get that month?
+    options ["280","338","300.3","236.6"] key 338
+Operations and Algebraic Thinking | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-O78-08) | Undo two successive percent decreases
+    A reservoir lost 20% of its water in July. In August it lost 10% of the water that was left. It now holds 5,400 cubic meters of water. How many cubic meters did it hold before July?
+    options ["6750","7020","7500","7128"] key 7500
+Operations and Algebraic Thinking | g8 | high | map-math-v2 batch 1 LIVE (MV2-O78-12) | Slope of a line from where it crosses a given line
+    Two lines are graphed: y = -2x + 24 and y = mx - 20. They meet at a point that is 16 units above the x-axis. Find m.
+    options ["4","1.8","9","2.25"] key 9
+Operations and Algebraic Thinking | g8 | high | map-math-v2 batch 1 LIVE (MV2-O78-16) | Sum of the coordinates of a system's solution
+    The pair (x, y) makes both x + 4y = 7 and 5x - 4y = 59 true. Find x + y for this pair.
+    options ["11","15.5","10","11.5"] key 10
+Operations and Algebraic Thinking | g8 | high | map-math-v2 batch 1 LIVE (MV2-O78-19) | Zero of a function that shares another's initial value
+    Line f goes through (-6, 21) and (1, 7). Line g crosses the y-axis where line f does, and g drops 1.25 units for every 1 unit it moves to the right. Where does line g cross the x-axis? Give the x-coordinate.
+    options ["11.25","16.8","4.5","7.2"] key 7.2
+Operations and Algebraic Thinking | g8 | low | map-math-v2 batch 1 LIVE (MV2-O78-17) | Distribute, then solve with the variable on both sides
+    What value of x makes the equation 8(x - 9) = 2x + 24 true?
+    options ["16","36","9.6","5.5"] key 16
+Operations and Algebraic Thinking | g8 | low | map-math-v2 batch 1 withdrawn (MV2-O78-20) | Evaluate a linear function at a negative input
+    A rule takes an input x and gives the output 1.5x + 17. Find the output when the input is -4.
+    options ["13","21.5","11","11.5"] key 11
+Operations and Algebraic Thinking | g8 | low | map-math-v2 batch 1 withdrawn (MV2-O78-21) | Solve ax - b = x + c
+    For which number x is 4x - 9 equal to x + 42?
+    options ["11","12.75","10.2","17"] key 17
+Operations and Algebraic Thinking | g8 | mid | map-math-v2 batch 1 dropped by graders (MV2-O78-15) | Shared point of two lines by substitution: the y-value
+    The point (x, y) is on both of these lines: y = 3x - 2 and 2x + y = 23. What is y at that point?
+    options ["5","17","10.6","13"] key 13
+Operations and Algebraic Thinking | g8 | mid | map-math-v2 batch 1 LIVE (MV2-O78-13) | Change in y over an interval from a line in standard form
+    On the line 3x + 5y = 55, as x increases from 7 to 37, by how much does y decrease?
+    options ["18","29","50","22.2"] key 18
+Operations and Algebraic Thinking | g8 | mid | map-math-v2 batch 1 LIVE (MV2-O78-14) | Linear equation with fractions on both sides
+    Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.
+    options ["2","26","10.6","7.5"] key 26
+Operations and Algebraic Thinking | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-O78-18) | Rate of change from an equation, in new units
+    A snail crawls in a straight line. Its distance d, in centimeters, from a rock t minutes after a timer starts is given by d = 1.5t + 8. At what speed does the snail move, in meters per hour?
+    options ["5.7","0.9","0.98","2.5"] key 0.9
+Real and Complex Number Systems | g5 | high | map-math-v2 batch 1 LIVE (MV2-N56-02) | Whole times a fraction, then a fraction of the result
+    A park trail is 7/8 mile around. Ana walks around it 8 times. Ben walks 2/5 as far as Ana. How many miles farther does Ana walk than Ben?
+    options ["4 1/5","5 4/5","6 3/5","9 4/5"] key 4 1/5
+Real and Complex Number Systems | g5 | high | map-math-v2 batch 1 LIVE (MV2-N56-07) | Two quotients with two-digit divisors, compare, then scale
+    A farm packs 572 apples into 22 crates, with the same number of apples in each crate. Another farm packs 858 apples into 26 crates, also with the same number in each crate. How many more apples are in 5 crates from the second farm than in 5 crates from the first farm?
+    options ["35","45","65","85"] key 35
+Real and Complex Number Systems | g5 | low | map-math-v2 batch 1 LIVE (MV2-N56-05) | Divide a decimal by a whole number, then subtract a decimal
+    Ms. Ortiz has a bag with 6.3 kilograms of rice. She splits the rice equally into 3 jars. Then she takes 0.45 kilogram of rice out of one jar to cook dinner. How many kilograms of rice are left in that jar?
+    options ["1.65","1.75","1.95","2.55"] key 1.65
+Real and Complex Number Systems | g5 | low | map-math-v2 batch 1 withdrawn (MV2-N56-04) | Compare the values of one digit in different places
+    In the number 44.44, how much greater is the value of the 4 in the tens place than the value of the 4 in the hundredths place?
+    options ["0.36","3.96","39.06","39.96"] key 39.96
+Real and Complex Number Systems | g5 | mid | map-math-v2 batch 1 LIVE (MV2-N56-01) | Fraction of a fraction of a whole number of objects
+    A town has 480 garden plots. Exactly 3/4 of the plots grow vegetables. Of the vegetable plots, 5/12 grow beans. How many of the garden plots grow beans?
+    options ["80","150","160","210"] key 150
+Real and Complex Number Systems | g5 | mid | map-math-v2 batch 1 LIVE (MV2-N56-03) | Decimal times a whole number, add, then subtract once
+    A science class measured a seedling that was 7.45 centimeters tall. It grew 1.4 centimeters each week for 4 weeks. At the end of the 4 weeks, a rabbit bit 0.5 centimeter off the top. How tall is the seedling now, in centimeters?
+    options ["11.05","11.35","12.35","12.55"] key 12.55
+Real and Complex Number Systems | g5 | mid | map-math-v2 batch 1 LIVE (MV2-N56-06) | Scale a mixed number by two factors, then compare
+    A photo is 2 4/5 inches wide. Ana prints a large copy that is 1 1/2 times as wide as the photo. She also prints a small copy that is 1/3 as wide as the photo. How many inches wider is the large copy than the small copy?
+    options ["1 13/15","3 4/15","3 13/15","5 2/15"] key 3 4/15
+Real and Complex Number Systems | g5 | mid | map-math-v2 batch 1 LIVE (MV2-N56-08) | Whole numbers times powers of ten, with a change in the count
+    A toy factory has 3 crates of marbles, and each crate holds 10^3 marbles. It has 19 boxes of marbles, and each box holds 10^2 marbles. It also has 87 bags of marbles, and each bag holds 10^1 marbles. There are also 6 loose marbles. The factory ships 7 of the bags to a store. How many marbles does the factory have left?
+    options ["3006","4986","5076","5706"] key 5706
+Real and Complex Number Systems | g6 | high | map-math-v2 batch 1 dropped by graders (MV2-N56-23) | Halfway point across 0, its opposite, then a distance
+    Point P is halfway between -11 and 6 on a number line. Point Q is at the opposite of the number at point P. How far is point Q from 9?
+    options ["6.5","7.5","9.5","11.5"] key 6.5
+Real and Complex Number Systems | g6 | high | map-math-v2 batch 1 LIVE (MV2-N56-11) | Two four-digit divisions by different divisors, then a sum
+    A school library packs 5,985 paperback books into boxes that hold 19 books and 1,995 hardcover books into boxes that hold 21 books. Every box is full, and paperbacks and hardcovers are never packed in the same box. How many boxes does the library fill altogether?
+    options ["220","380","390","410"] key 410
+Real and Complex Number Systems | g6 | high | map-math-v2 batch 1 LIVE (MV2-N56-17) | Two fraction divisions, then compare the times
+    A tank holds 10 10/11 gallons of water. Pump A, working alone, empties the full tank at a rate of 1 1/5 gallons per minute. Pump B, working alone, empties the full tank at a rate of 1 3/5 gallons per minute. How many more minutes does pump A take to empty the full tank than pump B takes?
+    options ["2 3/11","3 8/11","4 4/11","15 10/11"] key 2 3/11
+Real and Complex Number Systems | g6 | high | map-math-v2 batch 1 LIVE (MV2-N56-18) | Path across the y-axis, then to a reflected point
+    A hiking map is drawn on a coordinate plane where each unit stands for 1 kilometer. The ranger station is at (-4.5, 7) and the lookout tower is at (5, 7). The campsite is at the reflection of the lookout tower across the x-axis. A hiker walks in a straight line from the ranger station to the lookout tower, and then in a straight line from the lookout tower to the campsite. How many kilometers does the hiker walk in all?
+    options ["14.5","19.5","22.5","23.5"] key 23.5
+Real and Complex Number Systems | g6 | high | map-math-v2 batch 1 LIVE (MV2-N56-19) | Debt size as absolute value, scaled, then distance across 0
+    Kai's bank balance is -$0.75, which means he owes the bank $0.75. Lena owes the bank 5 times as much money as Kai owes. Max has a balance of $12.50. On a number line of balances, how many dollars apart are Lena's balance and Max's balance?
+    options ["13.25","15.25","16.25","18.25"] key 16.25
+Real and Complex Number Systems | g6 | low | map-math-v2 batch 1 LIVE (MV2-N56-09) | Multiply two decimals, then subtract a decimal
+    In a game, a toy car rolls 1.25 meters every second for 2.6 seconds. Then it hits a pillow and bounces straight back 0.4 meter. How many meters from its starting point does the car end up?
+    options ["1.75","2.75","2.85","3.65"] key 2.85
+Real and Complex Number Systems | g6 | low | map-math-v2 batch 1 LIVE (MV2-N56-14) | Subtract decimals, then multiply by a decimal rate
+    Each square meter of tile on a wall needs 3.75 kilograms of grout. The wall has 7 square meters to tile, and 0.4 square meter of it is already finished. How many kilograms of grout are needed to finish the rest of the wall?
+    options ["20.55","23.45","24.75","25.85"] key 24.75
+Real and Complex Number Systems | g6 | low | map-math-v2 batch 1 LIVE (MV2-N56-22) | Evaluate an opposite, an absolute value and a difference size
+    Lia writes the expression -(-5) - |-1.5| + |2 - 9| on the board and works it out step by step. What number should she get?
+    options ["10.5","11.5","13.5","14.5"] key 10.5
+Real and Complex Number Systems | g6 | low | map-math-v2 batch 1 withdrawn (MV2-N56-13) | Count the common factors of two numbers
+    How many whole numbers are factors of both 24 and 60?
+    options ["6","8","12","14"] key 6
+Real and Complex Number Systems | g6 | low | map-math-v2 batch 1 withdrawn (MV2-N56-25) | Factor a sum with the GCF; the sum left in the parentheses
+    Ana uses the distributive property to rewrite 15 + 105 as a product of two factors. The first factor is the greatest common factor of 15 and 105. The second factor is a sum of two whole numbers. What is the value of that sum?
+    options ["6","8","22","24"] key 8
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 dropped by graders (MV2-N56-12) | Divide a mixed number by a fraction
+    A green rope is 2 4/7 meters long. A blue rope is 2/3 meter long. How many times as long as the blue rope is the green rope?
+    options ["1 5/7","2 6/7","3 4/7","3 6/7"] key 3 6/7
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 LIVE (MV2-N56-10) | GCF as group size, then count the groups
+    A gym teacher has 63 red mats and 84 blue mats. She stacks them so that every stack has mats of only one color and every stack has the same number of mats. She makes the stacks as tall as she can. How many stacks does she make in all?
+    options ["3","7","21","49"] key 7
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 LIVE (MV2-N56-15) | Two divisions of one total by different divisors, then a difference
+    A bakery has 6,300 cookies to pack. If it packs them in trays that hold 14 cookies, every tray is full. If it packs them in trays that hold 35 cookies, every tray is also full. How many fewer trays does the bakery need with the 35-cookie trays than with the 14-cookie trays?
+    options ["270","300","350","630"] key 270
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 LIVE (MV2-N56-16) | Add decimals, multiply by a decimal, then subtract
+    A rowboat moves at 5.65 kilometers per hour in still water. Going downstream, the current makes it go 0.25 kilometer per hour faster. The boat travels downstream for 1.4 hours. Then it turns around and rows back 0.75 kilometer to a dock. How many kilometers is the dock from where the boat started?
+    options ["6.81","7.21","7.41","7.51"] key 7.51
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 LIVE (MV2-N56-24) | Locate a point from an opposite and a move, then a distance
+    Jin marks the opposite of 7.5 on a number line. From that mark he moves 1.5 units to the right and marks point B. He also marks point A at -0.5. How many units long is the segment from A to B?
+    options ["5.5","6.5","8.5","9.5"] key 5.5
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-N56-20) | Total change in temperature across 0, rise then fall
+    One winter day, the temperature in a town was -2.5 degrees Celsius in the morning. By the afternoon it had risen to 9.5 degrees Celsius. By night it had fallen to -14 degrees Celsius. How many degrees did the temperature rise and fall in all?
+    options ["23.5","30.5","34.5","35.5"] key 35.5
+Real and Complex Number Systems | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-N56-21) | Move on a number line, take the opposite, then the distance
+    Start at point A, which is at -15 on a number line. Move 8.5 units to the left. Point B is at the opposite of the number where you stop. How many units apart are points A and B?
+    options ["8.5","21.5","37.5","38.5"] key 38.5
+Real and Complex Number Systems | g7 | high | map-math-v2 batch 1 LIVE (MV2-N7-03) | Difference between two rises that each cross zero
+    On Monday the temperature in a town went from -7.35 degrees Celsius at dawn to 3.6 degrees Celsius in the afternoon. On Tuesday it went from -2.6 degrees Celsius at dawn to 4.2 degrees Celsius in the afternoon. How many more degrees did the temperature rise on Monday than on Tuesday?
+    options ["4.15","4.75","9.35","17.75"] key 4.15
+Real and Complex Number Systems | g7 | high | map-math-v2 batch 1 LIVE (MV2-N7-18) | Start below zero, a long descent and a shorter climb at different rates
+    An elevator in a mine starts at a loading platform at an elevation of -6.4 meters. It goes down at 11.5 meters per minute for 4.5 minutes. Then it goes up at 5.6 meters per minute for 2 minutes. What is the elevator's elevation now, in meters?
+    options ["-46.95","-44.75","-34.15","-32.95"] key -46.95
+Real and Complex Number Systems | g7 | high | map-math-v2 batch 1 LIVE (MV2-N7-19) | A negative mixed-number change repeated, then a decimal change
+    A scientist measures how the front edge of a glacier moves, using negative numbers for moving back and positive numbers for moving forward. For 5 days in a row the edge moved -2 1/8 meters each day. Then, in one storm, it moved forward 3.35 meters. What was the total change in the position of the edge over the 6 days, in meters?
+    options ["-7.275","-7.175","-6.775","-6.025"] key -7.275
+Real and Complex Number Systems | g7 | high | map-math-v2 batch 1 withdrawn (MV2-N7-07) | Fraction of a distance that crosses zero, added to a negative start
+    A climbing wall goes down into a pit. The bottom of the pit is at an elevation of -14.4 meters, and the top of the wall is at an elevation of 30.2 meters. Lena starts at the bottom of the pit and climbs straight up 1/4 of the way to the top of the wall. What is her elevation now, in meters?
+    options ["-6.85","-3.25","7.55","19.05"] key -3.25
+Real and Complex Number Systems | g7 | high | map-math-v2 batch 1 withdrawn (MV2-N7-14) | Order of operations with a negative quotient carried into a product
+    Rosa works out -3.5 - (-7.2) ÷ 2.5 × 4.5, using the order of operations. What number should she get?
+    options ["-16.46","-2.86","6.66","9.46"] key 9.46
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 dropped by graders (MV2-N7-10) | Gap between two below-zero readings after each changes
+    Freezer A is set to -18.6 degrees Celsius, and Freezer B is set to -4.35 degrees Celsius. Then Freezer A is warmed by 3.5 degrees, and Freezer B is cooled by 2.4 degrees. Now how many degrees colder is Freezer A than Freezer B?
+    options ["8.35","9.35","13.15","21.85"] key 8.35
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 LIVE (MV2-N7-12) | How much lower one negative product is than another
+    Two divers start at the surface of a lake. Diver A's elevation changes by -1.35 meters each minute for 7 minutes. Diver B's elevation changes by -0.6 meter each minute for 11 minutes. How many meters lower than Diver B is Diver A then?
+    options ["2.85","7.05","7.65","16.05"] key 2.85
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 LIVE (MV2-N7-13) | Equal bonuses added to a negative score
+    In a video game, Mia's score is -12.75 points. She then finishes 3 bonus rounds, and each bonus round adds 1.6 points to her score. What is her score now?
+    options ["-17.55","-8.95","-8.15","-7.95"] key -7.95
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 withdrawn (MV2-N7-01) | Distance across zero after two signed moves
+    A hot-air balloon is floating 85.6 meters above the surface of a lake. A diver is 4.35 meters below the surface. The balloon then goes down 12.4 meters, and the diver swims 2.7 meters deeper. How many meters above the diver is the balloon now?
+    options ["66.15","74.85","80.25","105.05"] key 80.25
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 withdrawn (MV2-N7-11) | Distance between positions reached in opposite directions
+    Two hikers start at the same trail sign and walk in opposite directions along a straight trail. Positions east of the sign are positive, and positions west of it are negative. Hiker A walks east at 2.6 kilometers per hour for 3 hours. Hiker B walks west at 3.85 kilometers per hour for 5 hours. How many kilometers apart are the hikers then?
+    options ["11.45","19.35","24.55","27.05"] key 27.05
+Real and Complex Number Systems | g7 | low | map-math-v2 batch 1 withdrawn (MV2-N7-16) | A negative depth made k times as deep, then raised
+    Workers dig a hole for a post. At first the bottom of the hole is at an elevation of -2.35 meters, which is 2.35 meters below the ground. They dig until the hole is 3 times as deep. Then they pour in gravel, which raises the bottom of the hole by 1.6 meters. What is the elevation of the bottom of the hole now, in meters?
+    options ["-5.45","-4.45","-3.75","-2.25"] key -5.45
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 dropped by graders (MV2-N7-04) | Total strokes from scores written relative to par
+    In golf, a player's score for a round can be written compared with par: a negative score means that many strokes under par, and a positive score means that many strokes over par. Par for each round of a tournament is 70 strokes. Over four rounds, Jin's scores were -8, +1, -7 and +9. How many strokes did Jin take in all four rounds?
+    options ["255","275","285","305"] key 275
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 LIVE (MV2-N7-05) | Equally spaced points across zero: spaces, not marks
+    A ladder hangs straight down into a well. Its top rung is at an elevation of 0.45 meter, and its bottom rung is at an elevation of -4.05 meters. The ladder has 10 rungs in all, and they are equally spaced. What is the elevation of the 4th rung from the top, in meters?
+    options ["-2.55","-1.55","-1.35","-1.05"] key -1.05
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 LIVE (MV2-N7-09) | Difference of two absolute values with signed sums inside
+    In the expression |-7.25 + 1.2| - |3.4 - (-4.6)|, the bars stand for absolute value. Mia simplifies the expression completely. What number does she get?
+    options ["-14.05","-1.95","0.45","4.85"] key -1.95
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 LIVE (MV2-N7-17) | Flour left after loaves and a fraction of the remainder
+    A baker has 11 1/2 cups of flour. She makes 3 loaves of bread, and each loaf uses 1 2/3 cups of flour. Then she uses 1/4 of the flour that is left to make muffins. How many cups of flour does she have left after making the muffins?
+    options ["3 5/8","4 7/8","7 3/8","12 3/8"] key 4 7/8
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-N7-02) | Total vertical distance over two legs that cross zero
+    A hiker starts at the bottom of a canyon, at an elevation of -12.35 meters. She climbs up a trail to a lookout at an elevation of 27.6 meters. Then she walks down to a campsite at an elevation of 8.4 meters. How many meters does she go up and down in all, counting both the climb up and the walk down?
+    options ["20.75","34.45","48.35","59.15"] key 59.15
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-N7-06) | Negative times a bracket with a subtraction, then a negative added
+    Kai is checking his homework. He has to find (-3.5)(-1.5 - 0.6) + (-3.6), working inside the parentheses first. What number should he get?
+    options ["-10.95","-0.45","1.05","3.75"] key 3.75
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-N7-08) | Opposite of a mixed number, then a move left
+    Mark the number 1 1/8 on a number line and call it A. Point B is the opposite of A, on the other side of 0. Starting at B, go 2 11/12 units in the negative direction to reach point C. What number is at point C?
+    options ["-5 1/24","-4 1/24","-3 19/24","-2 5/24"] key -4 1/24
+Real and Complex Number Systems | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-N7-15) | Two rates acting at once: net rate times time from a start
+    A science class puts a beaker of water at 6.4 degrees Celsius into a cold-water bath. The bath cools the water by 1.35 degrees each minute. At the same time, a small heater in the beaker warms the water by 0.4 degree each minute. What is the temperature of the water after 9 minutes, in degrees Celsius?
+    options ["-2.15","-1.15","5.45","14.95"] key -2.15
+Real and Complex Number Systems | g8 | high | map-math-v2 batch 1 dropped by graders (MV2-N8-03) | Power of a power, then a quotient of powers, with a coefficient
+    A calculator screen shows the expression 5 x (3^2)^3 ÷ 3^3. Without a calculator, find the number this expression equals.
+    options ["32805","135","3375","98415"] key 135
+Real and Complex Number Systems | g8 | high | map-math-v2 batch 1 LIVE (MV2-N8-06) | Use 3^x = 10 to evaluate 9^x + 3^(x + 3) with exponent properties
+    The number x makes the equation 3^x = 10 true. What is the value of 9^x + 3^(x + 3)?
+    options ["130","1100","370","290"] key 370
+Real and Complex Number Systems | g8 | high | map-math-v2 batch 1 LIVE (MV2-N8-14) | Convert a decimal with one non-repeating digit to a fraction
+    In the decimal 0.3484848..., the digits 48 repeat forever and the 3 does not repeat. When this decimal is written as a fraction a/b in simplest form, what is a + b?
+    options ["49","589","89","449"] key 89
+Real and Complex Number Systems | g8 | high | map-math-v2 batch 1 withdrawn (MV2-N8-02) | Square of a difference of a square root and a cube root
+    Priya computes (√144 - ∛729)^2. She finds each root first and works inside the parentheses before squaring. What result should she get?
+    options ["63","3969","9","53361"] key 9
+Real and Complex Number Systems | g8 | high | map-math-v2 batch 1 withdrawn (MV2-N8-18) | Approximate a cube root, then square it for a face area
+    A cube-shaped storage box has a volume of 2,000 cubic centimeters. To the nearest 10 square centimeters, what is the area of one face of the box?
+    options ["400","160","950","330"] key 160
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 LIVE (MV2-N8-10) | Add a multiple of a square root and the cube root of a negative number
+    Find the sum 2√64 + ∛(-729), where 2√64 means 2 times the square root of 64.
+    options ["-1","7","1","-227"] key 7
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 LIVE (MV2-N8-15) | Divide a square root by a cube root of perfect powers
+    Sofia divides the square root of 256 by the cube root of 64, written √256 ÷ ∛64. What quotient does she get?
+    options ["12","4","32","2"] key 4
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 withdrawn (MV2-N8-09) | Multiply a square root by a cube root of perfect powers
+    Tomas multiplies the square root of 225 by the cube root of 64, written √225 x ∛64. What product does he get?
+    options ["450","120","60","320"] key 60
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 withdrawn (MV2-N8-11) | Multiply numbers in scientific notation in context, answer in standard form
+    A company has 1.2 x 10^4 computer servers. Each server can store 2.5 x 10^2 terabytes of data. How many terabytes can all of the servers store in total?
+    options ["300000000","3700000","3000000","300"] key 3000000
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 withdrawn (MV2-N8-16) | Product of powers with different bases (pair 2s and 5s)
+    A number is written in factored form as 2^2 x 5^4. What is this number written in standard form?
+    options ["62500","2500","1000000","40000"] key 2500
+Real and Complex Number Systems | g8 | low | map-math-v2 batch 1 withdrawn (MV2-N8-17) | Evaluate a power minus a square root
+    Kenji subtracts a square root from a cube: 5^3 - √100. What difference does he get?
+    options ["25","115","5","75"] key 115
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 dropped by graders (MV2-N8-19) | Cube root of a product of powers
+    Write the cube root ∛(2^12 x 5^6) as a single whole number.
+    options ["8000","400","102400","64000"] key 400
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 LIVE (MV2-N8-01) | Negative power, negative exponent and zero exponent in one expression
+    Marcus is checking his homework. One problem asks for the value of -2^4 + 56 x 2^-2 - 6 x 7^0. What is the correct value?
+    options ["-36","-8","-246","-44"] key -8
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 LIVE (MV2-N8-04) | Locate a decimal between two irrational square roots
+    Two points are marked on a number line, one at √40 and one at √50. Which of these decimals is located between the two points?
+    options ["6.25","7.15","4.45","6.85"] key 6.85
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-N8-05) | Divide numbers in scientific notation in a rate context
+    A lake holds about 4 x 10^8 liters of water. A pump removes 1.6 x 10^2 liters of water each minute. At this rate, how many minutes would it take the pump to remove all of the water?
+    options ["400000","2500000","25000","2400000"] key 2500000
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-N8-07) | Divide by a power with a negative exponent, with a coefficient
+    Work out 5 x 4^3 ÷ 4^-3, dividing by the power with the negative exponent, and give the result as a whole number.
+    options ["320","20","20480","3840"] key 20480
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-N8-08) | Approximate a square root to find a perimeter, then round
+    A square park has an area of 2,000 square meters. A path runs along all four edges of the park. To the nearest 10 meters, how long is the path?
+    options ["90","180","60","160"] key 180
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-N8-12) | Product of powers with a negative exponent and a coefficient
+    Jada works out the product 5 x 2^5 x 2^-2 by combining the powers of 2 first. What whole number does she get?
+    options ["640","40","1000","5120"] key 40
+Real and Complex Number Systems | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-N8-13) | Square root of a product of powers
+    Find the exact whole-number value of the square root √(2^8 x 5^6).
+    options ["40000","2000","250000","120"] key 2000
+Geometry | g5 | high | map-math-v2 batch 1 LIVE (MV2-G56-02) | Volume of a tower of a box and a cube with a derived edge
+    A tower is made of two boxes that do not overlap. The bottom box is 8 inches long, 8 inches wide, and 5 inches tall. The top box is a cube, and each of its edges is half as long as the length of the bottom box. What is the total volume of the tower, in cubic inches?
+    options ["400","336","384","480"] key 384
+Geometry | g5 | high | map-math-v2 batch 1 LIVE (MV2-G56-07) | Count shapes that belong to the parallelogram category
+    Ms. Diaz draws these eight shapes: a square; a rectangle that is not a square; a rhombus that is not a square; a quadrilateral with two pairs of parallel sides and no right angles; a trapezoid with exactly one pair of parallel sides; a kite that is not a rhombus; a quadrilateral with four right angles; and a triangle. How many of the eight shapes are parallelograms?
+    options ["2","6","1","5"] key 5
+Geometry | g5 | high | map-math-v2 batch 1 LIVE (MV2-G56-11) | Area of the overlap of two rectangles given by grid corners
+    Two rectangles are drawn on a coordinate grid. Rectangle A has corners at (1, 1), (10, 1), (10, 10), and (1, 10). Rectangle B has corners at (6, 3), (13, 3), (13, 12), and (6, 12). The two rectangles overlap. What is the area, in square units, of the part that is inside both rectangles?
+    options ["36","28","11","49"] key 28
+Geometry | g5 | high | map-math-v2 batch 1 withdrawn (MV2-G56-10) | Find a point from a grid-line route length that includes a vertical part
+    Point P is at (2, 3) on a coordinate grid. Point Q has a y-coordinate of 13 and is to the right of P. Walking only along grid lines, the shortest route from P to Q is 26 units long. What is the x-coordinate of Q?
+    options ["25","28","19","18"] key 18
+Geometry | g5 | high | map-math-v2 batch 1 withdrawn (MV2-G56-14) | Unit cubes in a staircase built of four box-shaped steps
+    Mia builds a solid staircase out of 1-inch cubes. The staircase has 4 steps in a row from front to back. Every step is 7 inches wide and 3 inches deep from front to back. The first step is 1 inch tall, the second is 2 inches tall, the third is 3 inches tall, and the fourth is 4 inches tall. How many cubes does Mia use?
+    options ["210","168","84","100"] key 210
+Geometry | g5 | low | map-math-v2 batch 1 dropped by graders (MV2-G56-13) | Shorter side of a rectangle from its corner coordinates
+    A rectangular sandbox is drawn on a coordinate grid. Its corners are at (5, 1), (5, 7), (14, 7), and (14, 1). Each unit on the grid stands for one foot. How many feet long is the shorter side of the sandbox?
+    options ["9","19","7","6"] key 6
+Geometry | g5 | low | map-math-v2 batch 1 LIVE (MV2-G56-09) | Distance between two points on a vertical line of a scaled map
+    On a trail map drawn on a coordinate grid, each unit stands for 3 kilometers. A campsite is at the point (4, 1) and a lookout tower is at the point (4, 14). How many kilometers apart are the campsite and the tower?
+    options ["39","30","12","15"] key 39
+Geometry | g5 | low | map-math-v2 batch 1 LIVE (MV2-G56-12) | Perimeter of an equilateral triangle from a related square
+    A square has a perimeter of 44 centimeters. Each side of an equilateral triangle is 4 centimeters longer than a side of the square. What is the perimeter of the triangle, in centimeters?
+    options ["48","60","45","56"] key 45
+Geometry | g5 | low | map-math-v2 batch 1 withdrawn (MV2-G56-01) | Count unit cubes that fill a box from cubes along each edge
+    For a class project, Rosa packs 1-inch cubes into a box with no gaps. Exactly 9 cubes fit along the length of the box, 4 cubes fit along the width, and the cubes are stacked 7 cubes high. How many cubes does Rosa pack into the box?
+    options ["252","182","127","212"] key 252
+Geometry | g5 | low | map-math-v2 batch 1 withdrawn (MV2-G56-06) | Volume of a cube from its edge length
+    A storage box is shaped like a cube and has no lid. Each edge of the box is 8 inches long. What is the volume of the box, in cubic inches?
+    options ["512","320","192","482"] key 512
+Geometry | g5 | mid | map-math-v2 batch 1 dropped by graders (MV2-G56-03) | Fence on three sides of a rectangle given by grid corners
+    A rectangular garden is drawn on a coordinate grid where each unit stands for one meter. Its corners are at (4, 2), (4, 9), (12, 9), and (12, 2). The side from (4, 2) to (12, 2) runs along a wall, so it needs no fence. A fence goes along the other three sides. How many meters of fence are needed?
+    options ["30","22","56","23"] key 22
+Geometry | g5 | mid | map-math-v2 batch 1 dropped by graders (MV2-G56-04) | Volume left after a box-shaped groove is cut from a block
+    A wooden block for a toy train is shaped like a rectangular prism 9 centimeters long, 7 centimeters wide, and 5 centimeters tall. A groove for the track is cut along the whole length of the top of the block. The groove is shaped like a rectangular prism 9 centimeters long, 2 centimeters wide, and 2 centimeters deep. What is the volume of the wood that is left, in cubic centimeters?
+    options ["297","189","225","279"] key 279
+Geometry | g5 | mid | map-math-v2 batch 1 LIVE (MV2-G56-05) | Missing corner coordinate from a rectangle's perimeter
+    A rectangle is drawn on a coordinate grid. Two of its corners are at (7, 1) and (7, 7), and the rest of the rectangle lies to the right of the side joining them. The perimeter of the rectangle is 32 units. What is the x-coordinate of each of the other two corners?
+    options ["13","20","17","12"] key 17
+Geometry | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-G56-08) | Volume of a box whose edges are each 2 inches longer than another
+    Box A is 8 inches long, 5 inches wide, and 6 inches tall. Box B is 2 inches longer, 2 inches wider, and 2 inches taller than Box A. What is the volume of Box B, in cubic inches?
+    options ["480","560","246","320"] key 560
+Geometry | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-G56-15) | Parallelogram side from a rhombus with the same perimeter
+    A rhombus has sides that are each 9 centimeters long. A parallelogram has the same perimeter as the rhombus. Two of the parallelogram's sides are each 11 centimeters long. How long is each of the other two sides of the parallelogram, in centimeters?
+    options ["29","9","7","25"] key 7
+Geometry | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-G56-16) | Square built on the equal side of an isosceles trapezoid
+    A tabletop is shaped like an isosceles trapezoid. Its two parallel edges measure 8 centimeters and 14 centimeters, and its two slanted edges are the same length. The distance all the way around the tabletop is 40 centimeters. A square tile has edges as long as one slanted edge of the tabletop. What is the distance all the way around the tile, in centimeters?
+    options ["72","36","40","104"] key 36
+Geometry | g6 | high | map-math-v2 batch 1 LIVE (MV2-G56-17) | Area of a right trapezoid whose vertices cross the axes
+    A patio is drawn on a map in the coordinate plane, with one unit standing for one foot. Going around the patio, its four corners are at (-8, -5), (9, -5), (9, 5), and (2, 5). How many square feet does the patio cover?
+    options ["140","120","145","135"] key 120
+Geometry | g6 | high | map-math-v2 batch 1 LIVE (MV2-G56-25) | Surface area of a box after a cube is cut from a corner
+    A wooden block is a rectangular prism 6 centimeters long, 5 centimeters wide, and 4 centimeters tall. A cube with edges 2 centimeters long is cut out of one corner of the block. What is the surface area of the block that is left, in square centimeters?
+    options ["148","136","172","112"] key 148
+Geometry | g6 | high | map-math-v2 batch 1 withdrawn (MV2-G56-24) | Area of an obtuse triangle whose height falls outside the base
+    Triangle ABC has a base AB that is 6 centimeters long. Angle B is obtuse, so the height from C does not land on side AB. Instead, it lands on the line through A and B at a point 5 centimeters past B. The height from C to that line is 8 centimeters. What is the area of triangle ABC, in square centimeters?
+    options ["44","88","24","48"] key 24
+Geometry | g6 | low | map-math-v2 batch 1 dropped by graders (MV2-G56-23) | Area of a square from one side that crosses the x-axis
+    In the coordinate plane, the points (-5, 4) and (-5, -5) are the ends of one side of a square. What is the area of the square, in square units?
+    options ["81","36","25","64"] key 81
+Geometry | g6 | low | map-math-v2 batch 1 LIVE (MV2-G56-21) | Area of a right triangle when all three sides are given
+    The reading corner of a classroom has a shelf shaped like a right triangle. The two edges that run along the walls are 9 inches and 12 inches long and meet at a right angle. The front edge is 15 inches long. What is the area of the shelf, in square inches?
+    options ["90","36","108","54"] key 54
+Geometry | g6 | low | map-math-v2 batch 1 withdrawn (MV2-G56-26) | Triangle area when the slanted sides are also given
+    A triangular flag has a bottom edge of 21 inches. The height of the flag, measured straight up from the bottom edge to the top point, is 12 inches. The two slanted edges are 13 inches and 20 inches long. What is the area of the flag, in square inches?
+    options ["130","252","210","126"] key 126
+Geometry | g6 | mid | map-math-v2 batch 1 dropped by graders (MV2-G56-20) | Area of a rectangle with corners in all four quadrants
+    A swimming area at a lake is marked off with ropes. On a map in the coordinate plane, with one unit standing for one meter, its corners are at (-2, 7), (3, 7), (3, -3), and (-2, -3). How many square meters of water does the swimming area cover?
+    options ["27","20","50","30"] key 50
+Geometry | g6 | mid | map-math-v2 batch 1 LIVE (MV2-G56-19) | Area of a triangle whose base lies below the x-axis
+    A sail is drawn on a map in the coordinate plane, with one unit standing for one foot. The three corners of the sail are at (-2, -4), (5, -4), and (2, 8). How many square feet of cloth does the sail need?
+    options ["42","24","18","28"] key 42
+Geometry | g6 | mid | map-math-v2 batch 1 LIVE (MV2-G56-22) | Area left after a triangle is cut from a rectangle
+    A baker rolls cookie dough into a rectangle 15 inches long and 9 inches wide. She cuts a triangle out of the middle of one long edge. The triangle's base, along that edge, is 6 inches, and its tip is 4 inches in from the edge. What is the area of the dough that is left, in square inches?
+    options ["131","123","135","125"] key 123
+Geometry | g6 | mid | map-math-v2 batch 1 withdrawn (MV2-G56-18) | Volume of a box with two mixed-number edges
+    The bottom of a water tank measures 3 1/2 feet by 1 1/2 feet, and the water in the tank is 4 feet deep. The tank has straight sides. How many cubic feet of water are in the tank?
+    options ["20","13","32","21"] key 21
+Geometry | g7 | high | map-math-v2 batch 1 dropped by graders (MV2-G78-03) | Vertical and complementary angles in one equation
+    Angle 1 and angle 2 are vertical angles. Angle 2 and angle 3 are complementary. Angle 1 measures (3x + 5) degrees, and angle 3 measures (2x + 10) degrees. What is the measure of angle 2, in degrees?
+    options ["15","104","50","20"] key 50
+Geometry | g7 | high | map-math-v2 batch 1 LIVE (MV2-G78-05) | Volume of a prism with a house-shaped base
+    A wooden block is a prism that is 12 centimeters long. Each end of the block is shaped like a house: a rectangle 6 centimeters wide and 4 centimeters tall, with a triangle on top whose base is the rectangle's 6-centimeter top edge. The top point of the triangle is 9 centimeters above the bottom of the rectangle. What is the volume of the block, in cubic centimeters?
+    options ["612","408","648","468"] key 468
+Geometry | g7 | high | map-math-v2 batch 1 withdrawn (MV2-G78-01) | Circle area after an overhang widens the radius
+    A round table has a circular top with a diameter of 100 centimeters. Mia puts a circular tablecloth on the table. The cloth is centered, and it hangs down 20 centimeters past the edge of the table all the way around. Using 3.14 for pi, what is the area of the tablecloth, in square centimeters?
+    options ["9106","15386","7850","11304"] key 15386
+Geometry | g7 | low | map-math-v2 batch 1 dropped by graders (MV2-G78-07) | Empty space in a bin after a cube is put in
+    A storage bin is shaped like a rectangular prism that is 27 centimeters long, 20 centimeters wide, and 13 centimeters tall. A solid cube with edges 10 centimeters long is placed inside the bin. How many cubic centimeters of space inside the bin are not filled by the cube?
+    options ["6920","6420","6020","6990"] key 6020
+Geometry | g7 | low | map-math-v2 batch 1 LIVE (MV2-G78-04) | Fabric for a floorless triangular-prism tent
+    A tent is shaped like a triangular prism with no floor. Each of its two triangular ends has a base of 8 feet and a height of 3 feet, and each slanted side of a triangular end is 5 feet long. The tent is 10 feet long. Fabric covers the two triangular ends and the two slanted rectangular sides. How many square feet of fabric are used?
+    options ["112","84","124","120"] key 124
+Geometry | g7 | low | map-math-v2 batch 1 withdrawn (MV2-G78-02) | Real perimeter when one side is a drawing length
+    A scale drawing of a rectangular garden uses the scale 1 centimeter = 3 meters. On the drawing, the garden is 7 centimeters long. The real garden is 12 meters wide. How many meters of fence are needed to go all the way around the real garden?
+    options ["45","66","38","50"] key 66
+Geometry | g7 | mid | map-math-v2 batch 1 LIVE (MV2-G78-06) | Cardboard for an open box with an inside divider
+    An open storage bin (it has a bottom and four sides but nothing on top) is 50 centimeters long, 20 centimeters wide, and 12 centimeters high. Inside, a flat divider stands across the 20-centimeter width, from the floor of the bin up to the rim. The bin and the divider are made of cardboard. How many square centimeters of cardboard are needed for the bin and the divider together?
+    options ["2520","2080","2920","2680"] key 2920
+Geometry | g7 | mid | map-math-v2 batch 1 LIVE (MV2-G78-10) | Wood left after a triangular groove is cut
+    A wooden block is a rectangular prism 20 centimeters long, 10 centimeters wide, and 8 centimeters tall. A straight groove is cut into the upper face along the whole 20-centimeter length. The groove is shaped like a triangular prism: each end of the groove is a triangle 4 centimeters wide at the block's upper face and 3 centimeters deep. What is the volume of the wood that is left, in cubic centimeters?
+    options ["1520","1594","1480","1540"] key 1480
+Geometry | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-G78-08) | Length of one lap of a track with half-circle ends
+    A running track is made of two straight sides, each 80 meters long, and two half-circle ends. Each half-circle end has a diameter of 50 meters, and the ends join the straight sides to make one closed loop. Using 3.14 for pi, how many meters long is one lap around the track?
+    options ["417","238.5","474","317"] key 317
+Geometry | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-G78-09) | Painted area of two glued boxes, floor excluded
+    Two boxes are glued together to make a display stand. The bottom box is 12 centimeters long, 8 centimeters wide, and 4 centimeters tall. The top box is 6 centimeters long, 5 centimeters wide, and 3 centimeters tall, and its whole bottom face is glued to the top face of the bottom box. The stand rests on the floor. Every outside face is painted except the face touching the floor. What is the total painted area, in square centimeters?
+    options ["418","352","478","322"] key 322
+Geometry | g7 | mid | map-math-v2 batch 1 withdrawn (MV2-G78-11) | Concrete in a block with two square holes
+    A concrete block is shaped like a rectangular prism 40 centimeters long, 20 centimeters wide, and 20 centimeters tall. Two square holes, each 6 centimeters by 6 centimeters, go straight down through the block from its upper face to its bottom face. What is the volume of the concrete in the block, in cubic centimeters?
+    options ["15568","15760","14560","15280"] key 14560
+Geometry | g8 | high | map-math-v2 batch 1 dropped by graders (MV2-G78-14) | Cable between the tops of two poles of different heights
+    Two poles stand straight up on level ground, 14 meters apart. One pole is 15 meters tall and the other is 6 meters tall. A cable is stretched straight from the top of one pole to the top of the other. How long is the cable, to the nearest tenth of a meter?
+    options ["20.5","14.3","16.6","15.2"] key 16.6
+Geometry | g8 | high | map-math-v2 batch 1 LIVE (MV2-G78-20) | Space left in a cone after a sphere of ice cream melts into it
+    An ice cream cone is shaped like a cone with a radius of 3 centimeters and a height of 17 centimeters. A scoop of ice cream shaped like a sphere with a radius of 3 centimeters sits on the cone. The scoop melts, and all of it flows into the cone. How many cubic centimeters of the cone are still empty? Use 3.14 for pi.
+    options ["127.17","47.1","131.88","75.36"] key 47.1
+Geometry | g8 | high | map-math-v2 batch 1 LIVE (MV2-G78-23) | Angle of a triangle from a parallel line through a vertex
+    Line DE is drawn through point A of triangle ABC so that DE is parallel to side BC. Point D is on the same side as B, and point E is on the same side as C. Angle DAB measures (3x - 10) degrees, angle BAC measures (2x - 15) degrees, and angle CAE measures (x + 19) degrees. What is the measure of angle ABC, in degrees?
+    options ["50","77","31","83"] key 83
+Geometry | g8 | high | map-math-v2 batch 1 withdrawn (MV2-G78-18) | Rubber in a hollow ball with a thick wall
+    A hollow rubber ball has an outer radius of 12 centimeters. Its rubber wall is 3 centimeters thick all the way around, and the space inside is a smaller sphere. Using 3.14 for pi, what is the volume of the rubber, in cubic centimeters?
+    options ["6330.24","7234.56","4182.48","5425.92"] key 4182.48
+Geometry | g8 | low | map-math-v2 batch 1 dropped by graders (MV2-G78-22) | Volume of glass in a cup with a hollow inside
+    A drinking glass is a solid cylinder of glass with a cylinder-shaped space hollowed out of it. The outside of the glass is a cylinder with a radius of 7 centimeters and a height of 12 centimeters. The hollow space is a cylinder with a radius of 6 centimeters and a depth of 10 centimeters. Using 3.14 for pi, what is the volume of the glass itself, in cubic centimeters?
+    options ["1486.32","715.92","1657.92","1130.4"] key 715.92
+Geometry | g8 | low | map-math-v2 batch 1 LIVE (MV2-G78-17) | Empty space above the water in a cylinder tank
+    A water tank is shaped like a cylinder with a radius of 2 meters and a height of 10 meters. It stands upright, and the water in it is 4.5 meters deep. Using 3.14 for pi, how many cubic meters of the tank are empty?
+    options ["113.04","81.64","69.08","125.6"] key 69.08
+Geometry | g8 | low | map-math-v2 batch 1 LIVE (MV2-G78-21) | Length of a ramp from its rise and run
+    A wheelchair ramp rises 1.2 meters over a horizontal distance of 5 meters. How long is the sloped surface of the ramp, to the nearest hundredth of a meter?
+    options ["5.23","5.04","5.14","5.12"] key 5.14
+Geometry | g8 | low | map-math-v2 batch 1 withdrawn (MV2-G78-19) | Volume of a two-layer cylinder cake
+    A cake has two layers, and each layer is shaped like a cylinder. The bottom layer has a diameter of 24 centimeters and a height of 9 centimeters. The top layer has a diameter of 16 centimeters and a height of 6 centimeters. Using 3.14 for pi, what is the total volume of the cake, in cubic centimeters?
+    options ["4521.6","4710","5275.2","4370.88"] key 5275.2
+Geometry | g8 | mid | map-math-v2 batch 1 dropped by graders (MV2-G78-15) | Volume of a ball resting on a cylinder base
+    A trophy is made of a solid ball resting on a solid cylinder. The ball has a radius of 3 centimeters. The cylinder has a radius of 5 centimeters and a height of 4 centimeters. Using 3.14 for pi, what is the total volume of the trophy, in cubic centimeters?
+    options ["351.68","427.04","238.64","398.78"] key 427.04
+Geometry | g8 | mid | map-math-v2 batch 1 dropped by graders (MV2-G78-25) | Area of a square from two adjacent corners
+    In the coordinate plane, the points (1, 2) and (6, 14) are two corners of a square, and the segment joining them is one side of the square. What is the area of the square, in square units?
+    options ["193","156","169","232"] key 169
+Geometry | g8 | mid | map-math-v2 batch 1 LIVE (MV2-G78-12) | Stone left after a half-sphere bowl is carved
+    A stone mortar is a solid cylinder with a radius of 8 centimeters and a height of 10 centimeters. A bowl shaped like half of a sphere, with a radius of 6 centimeters, is carved into the center of its flat upper face. Using 3.14 for pi, what is the volume of the stone that is left, in cubic centimeters?
+    options ["1896.56","1557.44","1934.24","1670.48"] key 1557.44
+Geometry | g8 | mid | map-math-v2 batch 1 LIVE (MV2-G78-13) | Volume of a box topped by half a cylinder
+    A mailbox is shaped like a rectangular box with half of a cylinder on top. The box part is 40 centimeters long, 20 centimeters wide, and 15 centimeters tall. Above the box is half of a cylinder that is 40 centimeters long, and its flat face, which is 20 centimeters wide, covers the box's upper face exactly. Using 3.14 for pi, what is the volume of the mailbox, in cubic centimeters?
+    options ["15140","18280","13256","18000"] key 18280
+Geometry | g8 | mid | map-math-v2 batch 1 LIVE (MV2-G78-24) | Two reflections across parallel vertical lines
+    Point P has coordinates (-6, 9). First, P is reflected over the line x = 3, giving point Q. Then Q is reflected over the line x = 14, giving point R. What is the first coordinate (the x-coordinate) of R?
+    options ["12","23","16","5"] key 16
+Geometry | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-G78-16) | Exterior angle equals the two remote interior angles
+    Triangle ABC has an angle of (2x + 22) degrees at A and an angle of (3x + 16) degrees at B. Side BC is extended past C, and the angle formed outside the triangle at C, between that extension and side AC, is (7x - 2) degrees. How many degrees is that outside angle?
+    options ["82","124","138","76"] key 138
+Statistics and Probability | g5 | high | map-math-v2 batch 1 LIVE (MV2-D5-01) | Line plot: join pieces meeting a condition, cut unit-fraction lengths
+    Rosa has some pieces of ribbon. The table shows her line plot data: each row gives a length, in yards, and the number of pieces with that length. Rosa sews together, end to end, every piece that is half a yard long or longer, making one long strip with no length lost. Then she cuts the strip into pieces that are each one quarter of a yard long. How many quarter-yard pieces can she cut?
+    options ["13","22","23","29"] key 23
+Statistics and Probability | g5 | high | map-math-v2 batch 1 LIVE (MV2-D5-07) | Line plot: difference of two group totals, boundary in neither
+    A science class measured caterpillars. The table shows the line plot data: each row gives a length, in inches, and the number of caterpillars with that length. How much greater, in inches, is the total length of the caterpillars longer than 2 inches than the total length of the caterpillars shorter than 2 inches?
+    options ["10 1/4","20 1/4","21 1/4","25 1/4"] key 25 1/4
+Statistics and Probability | g5 | high | map-math-v2 batch 1 LIVE (MV2-D5-11) | Line plot: find a missing count from the total length
+    Mr. Ford's class measured some leaves. The table shows the line plot data for every leaf except the leaves that are 1/2 inch long: each row gives a length, in inches, and the number of leaves with that length. The total length of all the leaves the class measured, including the 1/2-inch leaves, is 9 inches. How many leaves did the class measure in all?
+    options ["9","11","15","18"] key 15
+Statistics and Probability | g5 | high | map-math-v2 batch 1 LIVE (MV2-D5-12) | Line plot: amount still needed to reach a goal
+    Students in a class collected cans for recycling. The table shows the line plot data: each row gives a weight of cans, in pounds, and the number of students who collected that weight. The class wants to collect 25 pounds of cans in all. How many more pounds of cans does the class need to collect?
+    options ["5 1/4","6 1/4","6 1/2","8 1/4"] key 5 1/4
+Statistics and Probability | g5 | high | map-math-v2 batch 1 withdrawn (MV2-D5-15) | Line plot: count values strictly between two mixed numbers
+    A science class grew bean seedlings. The table shows the line plot data: each row gives a height, in inches, and the number of seedlings with that height. How many seedlings are taller than 1 1/2 inches but shorter than 3 inches?
+    options ["8","12","14","17"] key 8
+Statistics and Probability | g5 | low | map-math-v2 batch 1 withdrawn (MV2-D5-02) | Convert kilometers (decimal) to meters, then subtract
+    A hiking trail is 2.4 kilometers long. Ben has walked 900 meters of the trail. How many meters of the trail does Ben still have to walk?
+    options ["1100","1500","1600","2500"] key 1500
+Statistics and Probability | g5 | low | map-math-v2 batch 1 withdrawn (MV2-D5-03) | Convert yards and feet to inches
+    A jump rope is 2 yards 1 foot long. How many inches long is the jump rope?
+    options ["70","73","75","84"] key 84
+Statistics and Probability | g5 | low | map-math-v2 batch 1 withdrawn (MV2-D5-04) | Line plot: count the values above a fraction
+    Lena measured the rain in her town every day for a few weeks. The table shows her line plot data: each row gives an amount of rain, in inches, and the number of days with that amount. On how many days did more than half an inch of rain fall?
+    options ["9","11","15","20"] key 9
+Statistics and Probability | g5 | low | map-math-v2 batch 1 withdrawn (MV2-D5-09) | Convert yards to inches, subtract inches and a foot
+    A camper has a rope that is 3 yards long. She cuts off a piece that is 28 inches long. Then she cuts off another piece that is 1 foot long. How many inches of rope are left?
+    options ["68","70","79","80"] key 68
+Statistics and Probability | g5 | low | map-math-v2 batch 1 withdrawn (MV2-D5-16) | Add two times given in hours and minutes, answer in minutes
+    The Lee family drove 2 hours 40 minutes to the beach. The drive home took 1 hour 35 minutes. How many minutes did they spend driving in all?
+    options ["225","249","255","375"] key 255
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 dropped by graders (MV2-D5-10) | Line plot: total of all values, minus some pieces from one row
+    A builder has some pieces of wood trim. The table shows the line plot data: each row gives a length, in yards, and the number of pieces with that length. The builder uses 2 of the 3/4-yard pieces. What is the total length, in yards, of the pieces that are left?
+    options ["2 3/4","4 3/4","5","6 1/4"] key 6 1/4
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 dropped by graders (MV2-D5-14) | Line plot: how many more values above than below a point
+    Kim measured shells at the beach. The table shows the line plot data: each row gives a length, in inches, and the number of shells with that length. How many more shells are longer than 1 inch than are shorter than 1 inch?
+    options ["21","23","24","34"] key 21
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 LIVE (MV2-D5-06) | Multistep conversion: equal lengths in yards and feet to inches
+    A builder is putting trim around 6 windows. Each window needs a strip of trim that is 1 yard 1 foot long. How many inches of trim does the builder need in all?
+    options ["228","248","252","288"] key 288
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-D5-05) | Line plot: total of the values at or above a mixed number
+    A farm stand sells bags of apples. The table shows the line plot data: each row gives a weight, in pounds, and the number of bags with that weight. The farmer keeps every bag that weighs 1 1/2 pounds or more and sells the rest. What is the total weight, in pounds, of the bags the farmer keeps?
+    options ["7 1/2","11 3/4","12 1/2","13 1/2"] key 13 1/2
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-D5-08) | Line plot: difference between two row totals
+    A deli cut a block of cheese into pieces. The table shows the line plot data: each row gives a weight, in pounds, and the number of pieces with that weight. How many more pounds is the total weight of the 1/2-pound pieces than the total weight of the 1/8-pound pieces?
+    options ["1/2","1 1/4","1 3/4","2 3/4"] key 1 1/4
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-D5-13) | Convert yards to inches, count whole pieces
+    A board is 5 yards long. Pat cuts the board into pieces that are each 8 inches long. How many 8-inch pieces can Pat cut?
+    options ["15","18","21","22"] key 22
+Statistics and Probability | g5 | mid | map-math-v2 batch 1 withdrawn (MV2-D5-17) | Subtract ounces, convert to pounds as a decimal
+    A cook had 72 ounces of rice. She used 20 ounces to make dinner. How many pounds of rice are left? (1 pound = 16 ounces)
+    options ["3.25","3.35","3.4","4.5"] key 3.25
+Statistics and Probability | g6 | high | map-math-v2 batch 1 LIVE (MV2-D6-01) | Compare the MADs of two data sets with different means
+    The table shows the number of points Ana and Bea each scored in 5 basketball games. The mean absolute deviation (MAD) of a data set is the mean of the distances between each value and the mean of that data set. How many points greater is the MAD of Ana's points than the MAD of Bea's points?
+    options ["2.6","3","3.4","3.6"] key 3.6
+Statistics and Probability | g6 | high | map-math-v2 batch 1 LIVE (MV2-D6-06) | Find an added value from the new median, then the mean
+    A store sells seven board games. Their prices, in dollars, are 34, 54, 5, 38, 6, 41, and 4. The store adds one new board game. Now the median price of the eight games is 28 dollars. What is the mean price, in dollars, of the eight games?
+    options ["22.75","24","25","25.5"] key 25.5
+Statistics and Probability | g6 | high | map-math-v2 batch 1 LIVE (MV2-D6-11) | How the IQR changes when one value is added
+    Eight sunflower seedlings have heights, in centimeters, of 18, 27, 12, 13, 3, 9, 26, and 10. A ninth seedling that is 33 centimeters tall is added. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half; when the number of values is odd, the median is not included in either half. By how many centimeters does the interquartile range increase when the ninth seedling is added?
+    options ["3.5","4.5","5","6"] key 4.5
+Statistics and Probability | g6 | high | map-math-v2 batch 1 LIVE (MV2-D6-13) | Find a missing value from the mean, then the MAD
+    The mean mass of 5 rocks is 40 grams. Four of the rocks have masses of 30, 45, 44, and 31 grams. The mean absolute deviation (MAD) is the mean of the distances between each value and the mean. What is the MAD of the masses of all 5 rocks, in grams?
+    options ["5.6","7","7.6","9.5"] key 7.6
+Statistics and Probability | g6 | high | map-math-v2 batch 1 LIVE (MV2-D6-16) | Compare the interquartile ranges of two data sets
+    The table shows the cooking times, in minutes, of 8 recipes in Book A and 8 recipes in Book B. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half. How many minutes greater is the interquartile range of the Book A times than the interquartile range of the Book B times?
+    options ["9","12.5","13","14.5"] key 14.5
+Statistics and Probability | g6 | low | map-math-v2 batch 1 dropped by graders (MV2-D6-04) | Mean of the values that count when some entries are blank
+    Mia's basketball team played 10 games. The table shows the points Mia scored in each game. DNP means Mia did not play in that game. What was Mia's mean number of points per game for the games she played?
+    options ["9","13.5","14","15"] key 15
+Statistics and Probability | g6 | low | map-math-v2 batch 1 dropped by graders (MV2-D6-10) | Count data values below a cutoff from a histogram table
+    The table shows the data from two histograms of how many minutes it takes students to travel to school: one for students who walk and one for students who ride the bus. How many of the students who walk take less than 20 minutes?
+    options ["14","16","21","25"] key 14
+Statistics and Probability | g6 | low | map-math-v2 batch 1 LIVE (MV2-D6-09) | Difference between the mode and the median of a list
+    The numbers of floors in nine buildings on a street are 9, 16, 1, 15, 6, 16, 2, 5, and 16. How much greater is the mode of the numbers of floors than the median?
+    options ["7","7.5","10","11"] key 7
+Statistics and Probability | g6 | low | map-math-v2 batch 1 LIVE (MV2-D6-14) | Interquartile range read from a box plot
+    A box plot shows the prices, in dollars, of the used bikes at a shop. The left whisker starts at 10, the box starts at 18, the line inside the box is at 24, the box ends at 35, and the right whisker ends at 47. What is the interquartile range of the prices, in dollars?
+    options ["11","17","25","29"] key 17
+Statistics and Probability | g6 | low | map-math-v2 batch 1 withdrawn (MV2-D6-05) | Range of data shown in a frequency table with empty rows
+    A class caught fish in a pond and measured each one. The table shows each length, in inches, and how many fish had that length. What is the range of the fish lengths, in inches?
+    options ["6","7","9","15"] key 6
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 dropped by graders (MV2-D6-07) | MAD of a data set that includes negative values
+    A class checked 6 bags of rice that should each weigh 500 grams. They subtracted 500 grams from the weight of each bag. The results were -14, 13, -6, -9, 5, and -7. The mean absolute deviation (MAD) is the mean of the distances between each value and the mean. What is the MAD of these 6 numbers, in grams?
+    options ["8","9","12","13.5"] key 8
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 LIVE (MV2-D6-02) | Median of two groups of data combined
+    Two science groups measured the heights of their bean plants, in centimeters. Group A's plants are 14, 21, 9, and 17 centimeters tall. Group B's plants are 16, 13, 8, 11, 6, and 12 centimeters tall. What is the median height, in centimeters, of all the plants in both groups together?
+    options ["12.5","13","14.5","15.5"] key 12.5
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 LIVE (MV2-D6-03) | Change in the median when one extreme value is removed
+    Eight players scored 31, 8, 25, 64, 15, 33, 10, and 18 points in a video game. The score of 64 was a mistake, so it is removed. By how many points does the median score decrease when the 64 is removed?
+    options ["3.5","4","5","5.5"] key 3.5
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 LIVE (MV2-D6-08) | Third quartile of an unordered list of 12 values
+    Twelve students took a quiz. Their scores were 16, 4, 21, 12, 9, 22, 15, 7, 20, 13, 17, and 11. The third quartile is the median of the upper half of the scores. What is the third quartile of the 12 scores?
+    options ["14","17","18","18.5"] key 18.5
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 LIVE (MV2-D6-12) | Median of data in a frequency table with an even count
+    In a card game, 30 players each scored points in one round. The table shows how many players got each score. What is the median score of the 30 players?
+    options ["5","5.5","6.1","6.5"] key 5.5
+Statistics and Probability | g6 | mid | map-math-v2 batch 1 LIVE (MV2-D6-15) | Find a missing count from the total, then the mean
+    Twenty students were asked how many times they rode a bus last week. The table shows the results, but the number of students who rode 3 times is missing. What is the mean number of bus rides for the twenty students?
+    options ["1.6","2","2.2","2.65"] key 2.2
+Statistics and Probability | g7 | high | map-math-v2 batch 1 dropped by graders (MV2-D7-01) | Read a random-digit simulation of a compound event
+    A basketball player makes 40% of her free throws. Kim uses random digits to simulate sets of 3 free throws. The digits 0 through 3 stand for a made shot, and the digits 4 through 9 stand for a missed shot. Each group of 3 digits in the table is one trial, or one set of 3 free throws. Based on the 20 trials, in what percent of the sets did the player make 1 or more of the 3 shots?
+    options ["35","55","80","90"] key 90
+Statistics and Probability | g7 | high | map-math-v2 batch 1 LIVE (MV2-D7-02) | Compare the variability of two samples by their MADs
+    A gardener measured the heights, in centimeters, of 5 randomly chosen seedlings from each of two trays. The heights are shown in the table. The mean absolute deviation of a data set is the mean of the distances between each value and the mean of the set. How many centimeters greater is the mean absolute deviation of the Tray B heights than the mean absolute deviation of the Tray A heights?
+    options ["1.5","1.9","2.1","2.4"] key 2.4
+Statistics and Probability | g7 | high | map-math-v2 batch 1 LIVE (MV2-D7-13) | Estimate a population total from random sample plots
+    A forest covers 90 square miles. To estimate the number of deer in the forest, a ranger chose 6 plots of land at random in the forest. Each plot is 1/4 square mile. The table shows the number of deer the ranger counted in each plot. Based on these plots, about how many deer are in the whole forest?
+    options ["1200","1260","1440","1800"] key 1200
+Statistics and Probability | g7 | high | map-math-v2 batch 1 LIVE (MV2-D7-16) | Compare the variability of two samples by their IQRs
+    A farmer weighed nine plums picked at random from each of two trees. The masses, in grams, are shown in the table. For each tree, find the first quartile as the middle of the four masses below the median and the third quartile as the middle of the four masses above the median; the median is left out of both groups of four. How many grams greater is the interquartile range of the Tree B masses than the interquartile range of the Tree A masses?
+    options ["4","8","9","11"] key 9
+Statistics and Probability | g7 | high | map-math-v2 batch 1 withdrawn (MV2-D7-04) | Expected count of a compound event with an unequal spinner
+    A spinner has three sections. The red section has an angle of 160 degrees, the blue section has an angle of 110 degrees, and the green section has an angle of 90 degrees. In a game, a player spins the spinner once and flips a fair coin once. Tasha plays the game 480 times. How many times should she expect to get green on the spinner and heads on the coin?
+    options ["60","80","120","360"] key 60
+Statistics and Probability | g7 | low | map-math-v2 batch 1 dropped by graders (MV2-D7-11) | Estimate a population count for one category of a sample
+    A park had 1,200 visitors on Saturday. A ranger asked a random sample of 60 of the visitors how they got to the park. The table shows the results. Based on the sample, about how many of the 1,200 visitors rode a bike to the park?
+    options ["200","240","360","600"] key 200
+Statistics and Probability | g7 | low | map-math-v2 batch 1 LIVE (MV2-D7-09) | Estimate a population count from a sample table
+    A school has 900 students. Mr. Diaz asked a random sample of 60 students to name their favorite sport. The table shows the results. Based on the sample, about how many of the 900 students would name basketball as their favorite sport?
+    options ["162","225","270","360"] key 270
+Statistics and Probability | g7 | low | map-math-v2 batch 1 LIVE (MV2-D7-12) | Compare the means of two random samples of different sizes
+    Marco wrote down the prices, in dollars, of five notebooks chosen at random at Store A and four notebooks chosen at random at Store B. The prices are shown in the table. How many dollars greater is the mean price at Store B than the mean price at Store A?
+    options ["4","4.5","6","7"] key 4
+Statistics and Probability | g7 | low | map-math-v2 batch 1 withdrawn (MV2-D7-08) | Probability from a uniform model with repeated outcomes
+    Each of the 11 letters of the word PROBABILITY is written on its own card. The cards are mixed up, and Sam picks one card without looking. What is the probability that the card shows a B or an I?
+    options ["2/9","4/15","3/11","4/11"] key 4/11
+Statistics and Probability | g7 | low | map-math-v2 batch 1 withdrawn (MV2-D7-15) | Expected count of an "or" event on a spinner
+    A spinner has 12 equal sections. Five of the sections are red, 3 sections are blue, and 4 sections are green. Kira will spin the spinner 240 times. How many times should she expect the spinner to land on red or green?
+    options ["100","120","160","180"] key 180
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 dropped by graders (MV2-D7-07) | Compare two random samples by their medians
+    A reporter asked seven randomly chosen workers in each of two towns how many minutes it takes them to get to work. The table shows the answers. How many minutes greater is the median time for Town B than the median time for Town A?
+    options ["6","7","9","16"] key 6
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 dropped by graders (MV2-D7-14) | Find a missing value so two samples have equal means
+    Two coaches each chose basketball players at random and recorded the points each player scored in one game. The table shows the scores of Coach Lee's four players and Coach Ruiz's five players, but one of Coach Ruiz's scores is missing. The two samples have the same mean. What is the missing score?
+    options ["16","21","33","39"] key 33
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 LIVE (MV2-D7-03) | Estimate a population count from two pooled samples
+    Ms. Cole wants to estimate how many of the 1,000 students at her school have a library card. She asks a random sample of 12 students, and 6 of them have a library card. Later she asks a different random sample of 60 students, and 21 of them have a library card. She puts the two samples together into one larger sample. Based on the combined sample, about how many of the 1,000 students have a library card?
+    options ["350","375","425","450"] key 375
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 LIVE (MV2-D7-05) | Gauge the variation between two sample estimates
+    A crate holds 1,200 apples. Dev takes a random sample of 20 apples from the crate and finds 3 bruised apples. Mia takes a different random sample of 30 apples and finds 8 bruised apples. Each of them uses only their own sample to estimate the number of bruised apples in the crate. How much greater is Mia's estimate than Dev's estimate?
+    options ["140","200","264","600"] key 140
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 LIVE (MV2-D7-06) | Predict a frequency from experimental results
+    Jay rolled a number cube with faces numbered 1 through 6 a total of 120 times. The table shows how many times each number came up. Based on Jay's results, how many times should he expect to roll a 5 or a 6 in his next 240 rolls?
+    options ["70","72","80","84"] key 84
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 LIVE (MV2-D7-10) | Probability of a compound event from two independent choices
+    A lunch menu has 5 soups and 7 salads. Two of the soups are served hot, and 4 of the salads have no nuts. Lia picks one soup and one salad at random. What is the probability that she gets a hot soup and a salad with no nuts?
+    options ["6/35","8/35","12/35","1/2"] key 8/35
+Statistics and Probability | g7 | mid | map-math-v2 batch 1 LIVE (MV2-D7-17) | Estimate a population total from a sample frequency table
+    An apartment building has 400 apartments. A manager chose 20 of the apartments at random and counted the bicycles in each one. The table shows how many of the 20 apartments had each number of bicycles. Based on the sample, about how many bicycles are in all 400 apartments?
+    options ["800","840","855","900"] key 900
+Statistics and Probability | g8 | high | map-math-v2 batch 1 dropped by graders (MV2-D8-11) | Common prediction of two lines of fit with different starting years
+    Two schools have chess clubs. A line of fit for the number of members of the chess club at Hill School is y = 2.5x + 45, where x is the number of years since 2014. A line of fit for the chess club at Park School is y = 3.5x + 20, where x is the number of years since 2010. According to the two lines of fit, the two clubs will at some point have the same predicted number of members. What is that number of members?
+    options ["72.5","82.5","97.5","107.5"] key 72.5
+Statistics and Probability | g8 | high | map-math-v2 batch 1 LIVE (MV2-D8-10) | Intercept of a line fitted through two group means
+    The table shows the number of hours each of six students spent on a science project and the score each student received. Mr. Ortiz fits a line to the data this way: he finds the mean hours and the mean score of the three students with the fewest hours, finds the same two means for the other three students, and draws the line through those two mean points. According to his line, what score is predicted for a student who spends 0 hours?
+    options ["13","15","18","29"] key 13
+Statistics and Probability | g8 | high | map-math-v2 batch 1 LIVE (MV2-D8-14) | Re-base a line of fit: new intercept when x is counted from a later year
+    A city counted its bike-share stations each year and made a scatter plot. A line of fit for the data is y = 4x + 40, where x is the number of years since 2008 and y is the number of stations. Lena wants to rewrite the line of fit so that x is the number of years since 2014 instead, and every prediction stays the same. Her new line is y = 4x + b. What is the value of b?
+    options ["34","44","46","64"] key 64
+Statistics and Probability | g8 | high | map-math-v2 batch 1 withdrawn (MV2-D8-12) | Count that would show no association in a two-way table
+    A community center asked teens and adults whether they would sign up for a cooking class. The two-way table shows the results. Suppose the percent of adults who said yes had been the same as the percent of teens who said yes. How many of the adults would have said yes?
+    options ["16","24","27","33"] key 27
+Statistics and Probability | g8 | low | map-math-v2 batch 1 dropped by graders (MV2-D8-05) | Predict from a line of fit after converting hours and minutes
+    Jae recorded how much battery charge his tablet had left while he played a video game, and made a scatter plot. A line of fit for the data is y = -30x + 96, where x is the number of hours he has been playing and y is the percent of battery charge left. According to the line of fit, what percent of battery charge is left after Jae plays for 2 hours 30 minutes?
+    options ["21","25","27","36"] key 21
+Statistics and Probability | g8 | low | map-math-v2 batch 1 LIVE (MV2-D8-01) | Column relative frequency from a two-way table of counts
+    A school asked 75 eighth graders two questions: Are you in the school band? Do you walk to school? The two-way table shows the results. Of the students who walk to school, what percent are in the band?
+    options ["8","20","25","40"] key 20
+Statistics and Probability | g8 | low | map-math-v2 batch 1 withdrawn (MV2-D8-06) | Count an "or both" group from the cells of a two-way table
+    All 80 students in a club were asked whether they play a team sport and whether they play a musical instrument. The two-way table shows the results. How many of the students play a team sport, a musical instrument, or both?
+    options ["44","50","62","68"] key 68
+Statistics and Probability | g8 | low | map-math-v2 batch 1 withdrawn (MV2-D8-07) | Predict from a falling line of fit at a negative x-value
+    A cafe owner made a scatter plot of the daily low temperature and the number of cups of hot chocolate sold that day. A line of fit for the data is y = -3x + 48, where x is the low temperature in degrees Celsius and y is the number of cups sold. According to the line of fit, how many cups of hot chocolate will be sold on a day when the low temperature is -5 degrees Celsius?
+    options ["51","53","56","63"] key 63
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 dropped by graders (MV2-D8-03) | Column total from row relative frequencies of unequal groups
+    A librarian surveyed students in the sixth, seventh and eighth grades and asked each student whether he or she has a library card. The table shows how many students in each grade were surveyed and what percent of those students have a library card. In all, how many of the surveyed students have a library card?
+    options ["50","63","71","77"] key 77
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 LIVE (MV2-D8-02) | Use the slope of a line of fit to find the time for a given change
+    Mia measured the depth of the snow in her yard several times on a sunny day and made a scatter plot. A line of fit for the data is y = -1.6x + 20, where x is the number of hours after sunrise and y is the snow depth in centimeters. According to the line of fit, how many hours does it take for the predicted snow depth to go down by 12 centimeters?
+    options ["5","6","7.5","10.4"] key 7.5
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 LIVE (MV2-D8-04) | Find the point that breaks a linear pattern and correct it
+    Ravi hung different numbers of identical weights on a spring and measured the length of the spring each time. The table shows his results. When the points are graphed, all of them lie on one straight line except one point, which Ravi recorded wrong. If that point followed the same linear pattern as the others, what length, in centimeters, should Ravi have recorded for it?
+    options ["35","40","47","49"] key 47
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 LIVE (MV2-D8-08) | Fit a line through the mean point of a data table and predict
+    The table shows the number of hours each of five students practiced the piano in a week and the number of songs the student learned that month. Kai fits a line to the data. His line has a slope of 3 and passes through the point whose x-coordinate is the mean of the five practice times and whose y-coordinate is the mean of the five numbers of songs. According to Kai's line, how many songs would a student who practices 16 hours a week learn?
+    options ["42","55","60","62"] key 62
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 LIVE (MV2-D8-09) | Compare row relative frequencies of unequal groups in points
+    A park ranger asked visitors at two campgrounds whether they had seen a moose that day. The two-way table shows the results. How many percentage points greater is the percent of River Campground visitors who saw a moose than the percent of Lake Campground visitors who saw a moose?
+    options ["15","20","26","60"] key 15
+Statistics and Probability | g8 | mid | map-math-v2 batch 1 withdrawn (MV2-D8-13) | Slope of a line of fit after changing the units of y
+    A park ranger measured the height of a young oak tree each year and made a scatter plot. A line of fit for the data is y = 2.4x + 30, where x is the number of years since the tree was planted and y is the height of the tree in inches. The ranger wants to write the line of fit with the height measured in feet instead of inches. What is the slope of the new line, in feet per year?
+    options ["0.2","0.24","0.8","2.4"] key 0.2
