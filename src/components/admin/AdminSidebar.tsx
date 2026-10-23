@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Bell,
   LogOut,
+  X,
   Banknote,
   ScrollText,
   Bug,
@@ -33,6 +34,8 @@ import { initialsFromName } from '@/lib/name';
 
 interface AdminSidebarProps {
   adminUser: AdminUser;
+  /** Set when rendered as the phone drawer: shows a close button. */
+  onClose?: () => void;
 }
 
 interface NavigationItem {
@@ -69,7 +72,7 @@ const superAdminItems: NavigationItem[] = [
   { nameKey: 'settings',        descriptionKey: 'settingsDesc',        href: '/admin/settings',           icon: Settings,     permission: undefined },
 ];
 
-export function AdminSidebar({ adminUser }: AdminSidebarProps) {
+export function AdminSidebar({ adminUser, onClose }: AdminSidebarProps) {
   const { t } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
@@ -147,7 +150,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
   const systemItems = filteredSuperAdminItems
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col">
+    <div className="w-64 max-w-[85vw] h-dvh bg-white border-r border-gray-100 flex flex-col">
       {/* Header — logo + admin label. Height matched to the top header
           (h-[57px]) + bottom border so the sidebar's logo bar and the page
           header align cleanly across the top, like the manager dashboard. */}
@@ -162,9 +165,21 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
           quality={100}
           style={{ height: '1.75rem', width: 'auto' }}
         />
-        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-900 text-white text-[10px] font-semibold tracking-wide flex-shrink-0 whitespace-nowrap">
-          <ShieldCheck className="w-3 h-3 flex-shrink-0" />
-          {String(t('admin.users.roles.admin'))}
+        <div className="flex items-center gap-1 flex-shrink-0">
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-900 text-white text-[10px] font-semibold tracking-wide flex-shrink-0 whitespace-nowrap">
+            <ShieldCheck className="w-3 h-3 flex-shrink-0" />
+            {String(t('admin.users.roles.admin'))}
+          </div>
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="lg:hidden -mr-2 inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+              aria-label={String(t('admin.dashboard.closeSidebar'))}
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -210,7 +225,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
             dashboard, so that is where it goes. */}
         <button
           onClick={() => router.push('/admin')}
-          className="group w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+          className="group w-full flex items-center gap-3 px-3 py-2.5 lg:py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
         >
           <Bell className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
           <span className="flex-1 text-left">{String(t('admin.dashboard.alerts'))}</span>
@@ -237,8 +252,9 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
             <button
               onClick={handleLogout}
               disabled={loading}
-              className="p-1.5 rounded-md text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-colors disabled:opacity-50"
+              className="p-3 -m-1.5 lg:p-1.5 lg:m-0 rounded-md text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-colors disabled:opacity-50"
               title={loading ? String(t('admin.sidebar.loading')) : String(t('admin.sidebar.signOut'))}
+              aria-label={loading ? String(t('admin.sidebar.loading')) : String(t('admin.sidebar.signOut'))}
             >
               <LogOut className="w-4 h-4" />
             </button>
@@ -275,7 +291,7 @@ function SidebarLink({
   return (
     <Link
       href={item.href}
-      className={`group relative flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm ${
+      className={`group relative flex items-center gap-3 px-3 py-2.5 lg:py-2 rounded-lg text-left transition-all text-sm ${
         isActive
           ? 'bg-primary/10 text-primary font-semibold'
           : 'text-gray-600 hover:bg-gray-50 hover:text-primary font-medium'

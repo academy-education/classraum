@@ -21,7 +21,9 @@
  */
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { existsSync, readFileSync } from 'node:fs'
-import { studentExclusions } from '../../src/lib/study/real-attempts'
+import {
+  realStudentIds, taskMixBySession, toeflPathFromTaskMix, tallyFullTests, studentSectionRows, type DepthSnapshot,
+} from '../../src/lib/study/bank-usage'
 
 function loadEnv(): Record<string, string> {
   return Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
@@ -45,7 +47,7 @@ async function pageAll<T>(db: SupabaseClient, table: string, select: string, ord
 }
 const arg = (n: string) => { const i = process.argv.indexOf(n); return i >= 0 ? process.argv[i + 1] : undefined }
 
-type Snap = { measured: string; sections: Record<string, { value?: number; byPath?: Record<string, number>; atLeast?: boolean }> }
+type Snap = DepthSnapshot
 
 async function main() {
   if (!existsSync('.env.local')) { console.error('run from the repo root'); process.exit(1) }
@@ -70,18 +72,12 @@ async function main() {
   ])
   const attempts = await pageAll<{ id: string; session_id: string; item_id: string | null }>(db, 'study_attempts', 'id,session_id,item_id')
 
-  const testUser = new Set(prefs.filter(p => p.is_test_user).map(p => p.student_id))
-  const staff = new Set([...managers, ...teachers].map(r => r.user_id))
-  const testAcademy = new Set(academies.filter(a => a.is_test).map(a => a.id))
-  const inTestAcademy = new Set(students.filter(s => testAcademy.has(s.academy_id)).map(s => s.user_id))
-  const suppressed = new Set(suppress.map(s => s.email.trim().toLowerCase()))
+  // Real-student rule, path inference, the tally and the depth arithmetic are
+  // src/lib/study/bank-usage.ts — shared with /api/admin/bank-qc/usage, so the
+  // admin page and this script cannot disagree about who counts.
+  const realIds = realStudentIds(users, { prefs, managers, teachers, students, academies, suppressions: suppress })
   const real = new Map<string, { name: string; email: string }>()
-  for (const u of users) {
-    const email = (u.email ?? '').trim().toLowerCase()
-    const ex = studentExclusions({ id: u.id, role: u.role, isInternal: u.is_internal, isStudyTestUser: testUser.has(u.id), isStaff: staff.has(u.id),
-      inTestAcademy: inTestAcademy.has(u.id), emailDomain: email.includes('@') ? email.split('@')[1] : null, emailSuppressed: email !== '' && suppressed.has(email) })
-    if (!ex.length) real.set(u.id, { name: u.name ?? '', email })
-  }
+  for (const u of users) if (realIds.has(u.id)) real.set(u.id, { name: u.name ?? '', email: (u.email ?? '').trim().toLowerCase() })
 
   const liveBy = new Map<string, string>(); const liveCount = new Map<string, number>()
   const taskOf = new Map(bank.map(b => [b.id, b.task]))
@@ -89,40 +85,19 @@ async function main() {
   const seen = new Map<string, number>() // student|section -> live items seen
   for (const e of exposures) { if (!real.has(e.student_id)) continue; const k = liveBy.get(e.item_id); if (!k) continue; const key = `${e.student_id}|${k}`; seen.set(key, (seen.get(key) ?? 0) + 1) }
   // TOEFL path per session, inferred from the task mix it served (see depth-snapshot.json _paths).
-  const perSessTask = new Map<string, Map<string, number>>()
-  for (const a of attempts) { if (!a.item_id) continue; const t = taskOf.get(a.item_id); if (!t) continue; if (!perSessTask.has(a.session_id)) perSessTask.set(a.session_id, new Map()); const m = perSessTask.get(a.session_id)!; m.set(t, (m.get(t) ?? 0) + 1) }
-  const pathOf = (sid: string, sec: string): 'upper' | 'lower' | null => {
-    const m = perSessTask.get(sid); if (!m) return null
-    if (sec === 'reading') { const n = m.get('academic_passage') ?? 0; return n > 8 ? 'upper' : n > 0 || (m.get('daily_life') ?? 0) > 0 ? 'lower' : null }
-    if (sec === 'listening') { const n = m.get('academic_talk') ?? 0; return n > 4 ? 'upper' : n > 0 || (m.get('announcement') ?? 0) > 0 ? 'lower' : null }
-    return null
-  }
-  const taken = new Map<string, number>(); const routes = new Map<string, Map<string, number>>()
-  for (const s of sessions) {
-    if (!real.has(s.student_id) || s.mode !== 'full_test' || !s.completed_at) continue
-    const fam = s.config?.family, sec = s.config?.section; if (!fam || !sec) continue
-    const key = `${s.student_id}|${fam}/${sec}`; taken.set(key, (taken.get(key) ?? 0) + 1)
-    if (fam === 'toefl' && s.module2_route && (sec === 'reading' || sec === 'listening')) {
-      const p = pathOf(s.id, sec); const combo = p ? `${p}/${s.module2_route}` : `?/${s.module2_route}`
-      if (!routes.has(key)) routes.set(key, new Map()); const m = routes.get(key)!; m.set(combo, (m.get(combo) ?? 0) + 1)
-    }
-  }
+  const perSessTask = taskMixBySession(attempts, taskOf)
+  const pathOf = (sid: string, sec: string) => toeflPathFromTaskMix(perSessTask.get(sid), sec)
+  const tally = tallyFullTests(sessions, realIds, pathOf)
 
   type Row = { who: string; section: string; taken: number; depth: string; left: number | null; unseen: number; live: number; route: string }
   const rows: Row[] = []
-  for (const [key, n] of taken) {
-    const [sid, section] = key.split('|')
-    const ent = snap.sections[section]
-    const r = routes.get(key); const route = r ? [...r].sort((a, b) => b[1] - a[1])[0][0] : ''
-    let d: number | null = null
-    // most frequent path/route; an unknown path falls back to the SMALLEST depth (warn early, never late)
-    if (ent?.byPath) d = ent.byPath[route] ?? Math.min(...Object.values(ent.byPath))
-    else if (typeof ent?.value === 'number') d = ent.value
-    const live = liveCount.get(section) ?? 0
-    const unseen = live - (seen.get(key) ?? 0)
-    const u = real.get(sid)!
-    rows.push({ who: `${u.name || '(no name)'} <${u.email}>`, section, taken: n, route, live, unseen,
-      depth: d === null ? 'no measurement' : `${d}${ent?.atLeast ? '+' : ''}`, left: d === null ? null : d - n })
+  for (const r of studentSectionRows(tally, snap)) {
+    const ent = snap.sections[r.section]
+    const live = liveCount.get(r.section) ?? 0
+    const unseen = live - (seen.get(`${r.studentId}|${r.section}`) ?? 0)
+    const u = real.get(r.studentId)!
+    rows.push({ who: `${u.name || '(no name)'} <${u.email}>`, section: r.section, taken: r.taken, route: r.route, live, unseen,
+      depth: r.depth === null ? 'no measurement' : `${r.depth}${ent?.atLeast ? '+' : ''}`, left: r.left })
   }
   rows.sort((a, b) => (a.left ?? 999) - (b.left ?? 999) || a.unseen - b.unseen)
   const flagged = rows.filter(r => r.left !== null && r.left <= WARN)

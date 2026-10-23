@@ -1779,19 +1779,21 @@
       "aiNotice": "All solve numbers come from AI solvers, not students. No real test-taker data exists yet. Every figure here is a comparison against published ETS and College Board items measured the same way, not a prediction of what a student would score.",
       "tabs": {
         "overview": "Overview",
-        "review": "Human review",
-        "drafts": "Drafts",
-        "hardening": "Hardening",
-        "runs": "Measurements",
-        "reference": "Reference"
+        "review": "Review",
+        "drafts": "Staged drafts",
+        "live": "Live bank",
+        "quality": "Quality checks",
+        "register": "Register",
+        "history": "History"
       },
       "tabHints": {
-        "overview": "What is broken, what is unread, what is left to do",
-        "review": "Blind sittings and the read-every-question sweep",
-        "drafts": "AI-drafted SSAT reading passages to fix before our checks run",
-        "hardening": "Lift near-hard items with one human edit; the gate decides",
-        "runs": "Attack runs, batches, cohorts and history",
-        "reference": "Baselines and how questions are made"
+        "overview": "How many tests each section can serve, what is staged behind it, and how close students are to a repeat",
+        "review": "The co-founder's blind review: options first, then the source and key",
+        "drafts": "AI-drafted reading passages (SSAT, MAP) for a person to fix before our checks run",
+        "live": "What is in the bank right now: finish bar, readiness per cohort, how each batch was made, attack runs",
+        "quality": "Read every SSAT/ISEE item with its key showing, and lift near-hard items with one human edit",
+        "register": "The plan: open work, what is settled, and what was found while fixing",
+        "history": "The checked-in ledger: past attempts, batches, audited cohorts, baselines and how questions are made"
       },
       "whatIsWrong": "What is actually wrong",
       "knownBroken": "{cohort} — known broken",
@@ -1982,6 +1984,51 @@
         "reset": "Reset to the live text",
         "notLive": "Not live until the gate passes it.",
         "savedQueued": "Staged and queued for the gate (changed: {fields}). Students still see the original."
+      },
+      "tabsLabel": "Section",
+      "usage": {
+        "title": "Question supply and use",
+        "blurb": "Per section: how many whole tests the live bank can serve, what is staged behind it, and how much real students have used it. Test and seeded accounts are excluded.",
+        "asOf": "As of {when}",
+        "refresh": "Refresh",
+        "error": "Could not load supply and use ({error}). No numbers are shown rather than partial ones.",
+        "underFive": "Under 5",
+        "measured": "measured {date}",
+        "byDivision": "live items ÷ per test",
+        "noSize": "no test size known",
+        "hardRoute": "hard route {n}",
+        "liveItems": "{n} live items",
+        "divisionAlt": "live ÷ test size ≈ {n}",
+        "none": "None",
+        "approxTests": "(≈ {n} tests)",
+        "inOpenReview": "{n} in an open review",
+        "humanReviewed": "{n} reviewed by a person",
+        "notTaken": "Not taken yet",
+        "completedBy": "{tests} tests by {students} students",
+        "noMeasurement": "{n} with no depth measured",
+        "perTest": "{n} per test",
+        "col": {
+          "section": "Test / Section",
+          "live": "Live tests",
+          "staged": "Staged items (≈ tests)",
+          "most": "Most tests by one student",
+          "under5": "Students under 5 left",
+          "liveDate": "depth measured {date}"
+        },
+        "cards": {
+          "live": "Live items",
+          "liveSub": "across {n} sections",
+          "staged": "Staged items",
+          "stagedSub": "{n} in an open review",
+          "low": "Sections under 5 tests",
+          "lowSub": "below the five-test floor",
+          "students": "Students under 5 left",
+          "studentsSub": "of {n} real students"
+        },
+        "footnote": "Live tests is the measured depth (clean tests before a repeat) from depth-snapshot.json, dated {date}; where a section has no measurement it is live items divided by items per test, which ignores domain quotas and overstates. Staged tests is always the plain division. Usage counts completed full tests by {students} real students; tests left = measured depth minus tests taken. {items} bank rows read in full.",
+        "staleDot": "From the depth snapshot, which may be out of date",
+        "staleNote": "Depth snapshot measured {days} days ago ({date}), may be out of date. Numbers with an amber dot come from it; the \"live ÷ test size\" line under each is computed from today's bank.",
+        "staleUnknown": "The depth snapshot date ({date}) could not be read, so its numbers may be out of date."
       }
     }
   },

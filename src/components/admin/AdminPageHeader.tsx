@@ -35,7 +35,7 @@ export function AdminPageHeader({ kicker, title, description, actions }: AdminPa
             {kicker}
           </p>
         )}
-        <h1 className="mt-1 text-3xl font-semibold text-gray-900 tracking-tight leading-tight">
+        <h1 className="mt-1 text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight leading-tight break-words">
           {title}
         </h1>
         {description && (

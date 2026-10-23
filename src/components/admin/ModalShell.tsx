@@ -78,7 +78,7 @@ export function ModalShell({
   const hasHeader = title !== undefined || !hideClose
   return (
     <div
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-2 sm:p-4"
       onClick={onBackdropClick}
     >
       <div
@@ -87,12 +87,14 @@ export function ModalShell({
         aria-modal="true"
         className={
           `bg-white rounded-lg border border-border shadow-lg w-full ${sizeClass[size]} ` +
-          `max-h-[90vh] flex flex-col overflow-hidden ` +
+          // dvh on phones: 90vh measured behind the browser toolbar and
+          // pushed the footer's buttons off-screen. Unchanged from sm up.
+          `max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] flex flex-col overflow-hidden ` +
           (className || '')
         }
       >
         {hasHeader && (
-          <div className="px-6 py-4 border-b border-gray-100 flex items-start justify-between gap-4">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex items-start justify-between gap-4">
             <div className="min-w-0">
               {title !== undefined && (
                 <h2 className="text-xl font-semibold text-gray-900 truncate">{title}</h2>
@@ -104,7 +106,7 @@ export function ModalShell({
             {!hideClose && (
               <button
                 onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                className="-m-2 p-2 sm:m-0 sm:p-0 text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
                 aria-label={closeLabel}
               >
                 <X className="h-6 w-6" />
@@ -113,12 +115,12 @@ export function ModalShell({
           </div>
         )}
 
-        <div className={`flex-1 overflow-y-auto ${bodyClassName ?? 'p-6'}`}>
+        <div className={`flex-1 overflow-y-auto ${bodyClassName ?? 'p-4 sm:p-6'}`}>
           {children}
         </div>
 
         {footer && (
-          <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-white">
+          <div className="flex flex-wrap items-center justify-end gap-3 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-100 bg-white">
             {footer}
           </div>
         )}

@@ -156,7 +156,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
   const finished = finish.done + finish.humanCleared
 
   return (
-    <div className={`${CARD} p-5`}>
+    <div className={`${CARD} p-4 sm:p-5`}>
       <div className="flex items-baseline justify-between gap-3 flex-wrap">
         <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.optimization')}</h2>
         <span className="text-[13px] tabular-nums text-gray-500">
@@ -176,6 +176,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
             <button
               key={s.key}
               type="button"
+              data-tap-exempt
               aria-label={`${t(`admin.bankQc.finish.${s.key}`)}: ${n} items`}
               className={`${s.bar} h-full transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 ${
                 open && open !== s.state ? 'opacity-40' : ''
@@ -293,6 +294,10 @@ function Chip({ status }: { status: Status }) {
 export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
   const { t } = useQcT()
   const hide = (own: QcTab) => tab !== undefined && tab !== 'all' && tab !== own
+  /* The two tabs this component serves. On any other tab its loading and
+   * error boxes are noise above an unrelated panel, so they render only
+   * here — the fetch itself still runs once, on mount. */
+  const servesTab = tab === undefined || tab === 'all' || tab === 'live' || tab === 'review'
   const [data, setData] = React.useState<Live | null>(null)
   const [error, setError] = React.useState<string | null>(null)
 
@@ -319,17 +324,19 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
   }, [])
 
   if (error) {
+    if (!servesTab) return null
     return (
-      <div className={`${CARD} p-5 mb-6`}>
+      <div className={`${CARD} p-4 sm:p-5 mb-6`}>
         <p className="text-sm text-red-600">Live bank state unavailable ({error}).</p>
         <p className="text-[12.5px] text-gray-500 mt-1">
-          Everything below this point is the checked-in ledger file, not the current bank.
+          The History tab is the checked-in ledger file, not the current bank.
         </p>
       </div>
     )
   }
 
   if (!data) {
+    if (!servesTab) return null
     return <div className={`${CARD} p-5 mb-6 animate-pulse h-32`} />
   }
 
@@ -337,8 +344,8 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
     : Math.round((100 * data.totals.measured) / data.totals.items)
 
   return (
-    <section className="mb-8 space-y-4">
-      <div hidden={hide('overview')}>
+    <section hidden={!servesTab} className="mb-8 space-y-4">
+      <div hidden={hide('live')}>
       {data.finish && <FinishBar finish={data.finish} cohorts={data.cohorts} />}
       </div>
 
@@ -355,8 +362,8 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
       />
       </div>
 
-      <div hidden={hide('overview')} className="space-y-4">
-      <div className={`${CARD} p-5`}>
+      <div hidden={hide('live')} className="space-y-4">
+      <div className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.readinessLive')}</h2>
           <span className="text-[11.5px] text-gray-400">
@@ -420,8 +427,8 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
       </div>
       </div>
 
-      <div hidden={hide('runs')} className="space-y-4">
-      <div className={`${CARD} p-5`}>
+      <div hidden={hide('live')} className="space-y-4">
+      <div className={`${CARD} p-4 sm:p-5`}>
         <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.howMadeLive')}</h2>
         <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed">
           Authoring batches as recorded on the items themselves: where they came from,
@@ -468,7 +475,7 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
       </div>
 
       {data.runs.length > 0 && (
-        <div className={`${CARD} p-5`}>
+        <div className={`${CARD} p-4 sm:p-5`}>
           <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.attackRuns')}</h2>
           <p className="text-[12.5px] text-gray-500 mt-1">
             Every measurement, newest first. Re-attacking uses a new run id, so a
@@ -476,9 +483,9 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
           </p>
           <ul className="mt-3 space-y-1">
             {data.runs.map(r => (
-              <li key={r.runId} className="flex items-baseline gap-3 text-[12.5px]">
+              <li key={r.runId} className="flex flex-wrap sm:flex-nowrap items-baseline gap-x-3 gap-y-0.5 text-[12.5px]">
                 <span className="text-gray-400 tabular-nums w-[86px] shrink-0">{r.at ?? '—'}</span>
-                <span className="text-gray-800 flex-1 truncate">{r.runId}</span>
+                <span className="text-gray-800 flex-1 min-w-0 truncate">{r.runId}</span>
                 <span className="text-gray-500 tabular-nums">{r.items} items · {r.solvers} solvers</span>
                 <span className="text-gray-900 tabular-nums w-14 text-right">
                   {r.blindPct === null ? '—' : `${r.blindPct}%`}

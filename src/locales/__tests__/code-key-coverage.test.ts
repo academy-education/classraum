@@ -42,6 +42,7 @@
 import fs from 'fs'
 import path from 'path'
 import { languages } from '@/locales'
+import { QC_TABS } from '@/components/admin/bank-qc/tabs'
 
 const SRC = path.resolve(__dirname, '../..')
 const SELF = __filename
@@ -185,6 +186,16 @@ const DOMAINS: ReadonlyArray<{ ns: string; values: readonly string[]; suffix?: s
     ns: 'admin.users.roles',
     values: ['student', 'parent', 'teacher', 'manager', 'admin', 'superAdmin'],
     source: 'the role options in admin/users/EditUserModal (super_admin is mapped to superAdmin at the call site)',
+  },
+  {
+    ns: 'admin.bankQc.tabs',
+    values: QC_TABS,
+    source: 'QC_TABS in src/components/admin/bank-qc/tabs.ts — the tab bar and the mobile select render one label per entry',
+  },
+  {
+    ns: 'admin.bankQc.tabHints',
+    values: QC_TABS,
+    source: 'QC_TABS in src/components/admin/bank-qc/tabs.ts — the hint line under the tabs reads the current tab',
   },
 ]
 

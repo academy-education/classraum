@@ -29,7 +29,8 @@ import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
 import { useEffect, useState } from 'react'
 import { useQcT } from './i18n'
-import { QC_TABS, tabFromSearch, type QcTab } from './tabs'
+import { QC_TABS, TAB_STORAGE_KEY, initialTab, type QcView } from './tabs'
+import { BankUsagePanel } from './BankUsagePanel'
 import { HardeningPanel } from './HardeningPanel'
 import { DraftsPanel } from './DraftsPanel'
 
@@ -331,11 +332,25 @@ function CoverageGroup({ title, rows, auditFor, readiness }: {
 
 export function BankQcDashboard() {
   const { t } = useQcT()
-  const [tab, setTab] = useState<Exclude<QcTab, 'all'>>('overview')
-  useEffect(() => { setTab(tabFromSearch(window.location.search)) }, [])
-  const selectTab = (k: Exclude<QcTab, 'all'>) => {
+  const [tab, setTab] = useState<QcView>('overview')
+  // Tabs already opened stay mounted (hidden), so going back to one does not
+  // refetch it — the overview's usage read pages the whole bank.
+  const [visited, setVisited] = useState<ReadonlySet<QcView>>(() => new Set<QcView>(['overview']))
+  useEffect(() => {
+    let stored: string | null = null
+    try { stored = window.localStorage.getItem(TAB_STORAGE_KEY) } catch { /* storage blocked */ }
+    const first = initialTab(window.location, stored)
+    setTab(first)
+    setVisited(v => (v.has(first) ? v : new Set([...v, first])))
+  }, [])
+  const selectTab = (k: QcView) => {
     setTab(k)
-    const u = new URL(window.location.href); u.searchParams.set('tab', k); window.history.replaceState(null, '', u.toString())
+    setVisited(v => (v.has(k) ? v : new Set([...v, k])))
+    // ?tab= in the URL (shareable, and what every existing link uses) plus
+    // localStorage, so reopening the page lands on the last tab used.
+    const u = new URL(window.location.href); u.searchParams.set('tab', k); u.hash = ''
+    window.history.replaceState(null, '', u.toString())
+    try { window.localStorage.setItem(TAB_STORAGE_KEY, k) } catch { /* storage blocked */ }
   }
   const ledger = getLedger()
   const { baselines, batches, auditedCohorts, coverage } = ledger
@@ -367,7 +382,7 @@ export function BankQcDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 min-w-0">
       {/* Was a bespoke <header> with a text-xl h1 — 22px against the 30px
           every other admin page renders through AdminPageHeader. Same
           copy, same page; only the chrome is now shared. */}
@@ -385,11 +400,27 @@ export function BankQcDashboard() {
         </p>
       </header>
       {/* ── TABS ─────────────────────────────────────────────────────
-          Added 2026-09-02 after Andy called the page "super unorganized":
-          fourteen sections on one scroll, history interleaved with state.
-          Everything stays mounted (one live fetch), only visibility moves.
-          The URL carries ?tab= so a link lands on the right view. */}
-      <nav className="mt-4 flex flex-wrap gap-1 rounded-xl bg-gray-100 p-1" aria-label="Question bank QC sections">
+          2026-09-02: tabs replaced fourteen sections on one scroll.
+          2026-10-23: regrouped by job (see tabs.ts) — overview, the
+          co-founder's review, staged drafts, the live bank, quality
+          checks, the register, and the checked-in ledger history.
+          Below `sm` the bar becomes a select: seven tabs do not fit at
+          375px. The URL carries ?tab= so a link lands on the right view;
+          old ?tab=hardening / runs / reference links map onto new tabs. */}
+      <div className="sm:hidden">
+        <label htmlFor="bank-qc-tab" className="block text-[11px] font-medium uppercase tracking-wide text-gray-500 mb-1">
+          {t('admin.bankQc.tabsLabel')}
+        </label>
+        <select
+          id="bank-qc-tab"
+          value={tab}
+          onChange={e => selectTab(e.target.value as QcView)}
+          className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-[14px] font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/30"
+        >
+          {QC_TABS.map(k => <option key={k} value={k}>{t(`admin.bankQc.tabs.${k}`)}</option>)}
+        </select>
+      </div>
+      <nav className="hidden sm:flex flex-wrap gap-1 rounded-xl bg-gray-100 p-1" aria-label={t('admin.bankQc.tabsLabel')}>
         {QC_TABS.map(k => (
           <button
             key={k} type="button" onClick={() => selectTab(k)}
@@ -402,21 +433,22 @@ export function BankQcDashboard() {
           </button>
         ))}
       </nav>
+      <p className="-mt-3 text-[12px] text-gray-500">{t(`admin.bankQc.tabHints.${tab}`)}</p>
+
+      {/* ── OVERVIEW ─────────────────────────────────────────────────
+          Supply and use first: how many tests each section can serve,
+          what is staged behind it, and how close real students are to a
+          repeat. Then the two headline counts from the register. */}
+      <div hidden={tab !== 'overview'} className="space-y-6">
+      {visited.has('overview') && <BankUsagePanel />}
 
       {/* ── WHAT IS ACTUALLY WRONG ────────────────────────────────────
-          Added 2026-08-11. Andy said twice that there was no visibility
-          and he was right: this page led with per-cohort readiness and
-          the register led with open work, so a reader could scroll both
-          and still not learn that ONE cohort is broken and the rest is
-          merely unread. 2% is a quality problem; 98% is a scheduling
+          Added 2026-08-11. 2% is a quality problem; 98% is a scheduling
           problem; they need opposite responses and were being reported
-          as one thing.
-
-          Same source as REGISTER.md (lib/study/bank-register.ts), so
-          the page and the file cannot drift — the failure that created
-          this register in the first place. */}
-      <div hidden={tab !== 'overview'}>
-      <section className="mt-6 rounded-2xl ring-1 ring-gray-200 bg-white p-5">
+          as one thing. Same source as REGISTER.md
+          (lib/study/bank-register.ts), so the page and the file cannot
+          drift. The attempt-by-attempt table is under History. */}
+      <section className="rounded-2xl ring-1 ring-gray-200 bg-white p-4 sm:p-5">
         <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.whatIsWrong')}</h2>
 
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -441,10 +473,51 @@ export function BankQcDashboard() {
         <p className="text-[11px] text-gray-600 mt-3 leading-snug max-w-3xl">
           {PLAIN_STATUS.humanChecksSoFar}
         </p>
+      </section>
+      </div>
 
-        <h3 className="text-[12px] font-semibold text-gray-900 mt-5">
+      {/* LIVE — the database, read on every load: the finish bar,
+          readiness, provenance and attack runs (Live bank tab) and the
+          co-founder's blind review tool (Review tab). One fetch serves
+          both, so it stays mounted and only visibility moves. */}
+      <LiveBankState tab={tab} />
+      {/*
+        * QUALITY CHECKS — the open sweep and hardening.
+        *
+        * The sweep is MOUNTED HERE, NOT INSIDE LiveBankState. It was
+        * inside, after that component's `if (error)` and `if (!data)`
+        * early returns — so whenever /api/admin/bank-qc/live was slow or
+        * failed, this panel did not render AT ALL and the page just
+        * looked empty (reported 2026-08-31). It fetches its own data and
+        * shows its own errors.
+        *
+        * Hardening is super_admin-only, so it mounts only once its tab
+        * has been opened: fetching it behind a hidden tab would put a 403
+        * in every admin's console.
+        */}
+      <div hidden={tab !== 'quality'} className="space-y-6">
+      <ItemSweepPanel />
+      {visited.has('quality') && <HardeningPanel />}
+      </div>
+      {/* STAGED / DRAFTS — reading drafts (SSAT, MAP) for a person to fix
+          (owner's method, 2026-10-11/12). Fetches nothing until opened,
+          then stays mounted so an unsaved edit survives a tab switch. */}
+      {visited.has('drafts') && (
+        <div hidden={tab !== 'drafts'}>
+          <DraftsPanel />
+        </div>
+      )}
+      <div hidden={tab !== 'register'}>
+      <RegisterPanel />
+      </div>
+
+      <div hidden={tab !== 'history'} className="space-y-6">
+      {/* The attempt-by-attempt record for the one broken cohort. History,
+          not status: it moved here from the overview on 2026-10-23. */}
+      <section className="rounded-2xl ring-1 ring-gray-200 bg-white p-4 sm:p-5">
+        <h2 className="text-sm font-semibold text-gray-900">
           {t('admin.bankQc.everyAttempt', { cohort: PLAIN_STATUS.brokenCohort })}
-        </h3>
+        </h2>
         <p className="text-[11px] text-gray-500 mt-1 max-w-3xl leading-snug">
           <span className="font-medium text-gray-700">blind</span> is how often three AI solvers
           pick the right answer with the audio withheld;{' '}
@@ -502,41 +575,6 @@ export function BankQcDashboard() {
           </table>
         </div>
       </section>
-      </div>
-
-      {/* LIVE — the database, read on every load. Placed FIRST because
-          everything below it is the checked-in ledger file, and the
-          ledger cannot answer "is this ready" (it does not know what is
-          in the bank). Putting history above state is what made this
-          page unreadable. */}
-      <LiveBankState tab={tab} />
-      {/*
-        * MOUNTED HERE, NOT INSIDE LiveBankState.
-        *
-        * It was inside, after that component's `if (error)` and
-        * `if (!data)` early returns — so whenever /api/admin/bank-qc/live
-        * was slow or failed, this panel did not render AT ALL and the
-        * page just looked empty. That is what a reviewer reported on
-        * 2026-08-31. The live route pages the whole 4,500-row bank plus
-        * attacks and reviews, so it is the most failure-prone fetch on
-        * the page, and the review tool must not be behind it.
-        *
-        * It fetches its own data and shows its own errors.
-        */}
-      <div hidden={tab !== 'review'}>
-      <ItemSweepPanel />
-      </div>
-      {/* Mounted only on its tab: it is super_admin-only, and fetching it
-          behind a hidden tab would put a 403 in every admin's console. */}
-      {tab === 'hardening' && <HardeningPanel />}
-      {/* Reading drafts (SSAT, MAP) for a person to fix (owner's method, 2026-10-11/12).
-          Mounted only on its tab so it fetches nothing elsewhere. */}
-      {tab === 'drafts' && <DraftsPanel />}
-      <div hidden={tab !== 'overview'}>
-      <RegisterPanel />
-      </div>
-
-      <div hidden={tab !== 'runs'} className="space-y-6">
       <div className="pt-2 border-t border-gray-100">
         <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.historicalRuns')}</h2>
         <p className="text-[12.5px] text-gray-500 mt-1 max-w-3xl leading-relaxed">
@@ -570,8 +608,8 @@ export function BankQcDashboard() {
       </div>
 
       {/* Coverage — the "how many questions per test type" answer. */}
-      <div hidden={tab !== 'reference'} className="space-y-6">
-      <section className={`${CARD} p-5`}>
+      <div hidden={tab !== 'history'} className="space-y-6">
+      <section className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <Layers className="w-4 h-4 text-gray-500" />
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.coverage')}</h2>
@@ -589,7 +627,7 @@ export function BankQcDashboard() {
       {/* Baselines first: without these every other number on the page is
           uninterpretable, which is exactly the mistake that failed a good
           batch and condemned a healthy domain before they were measured. */}
-      <section className={`${CARD} p-5`}>
+      <section className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <ShieldCheck className="w-4 h-4 text-gray-500" />
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.baseline')}</h2>
@@ -614,7 +652,7 @@ export function BankQcDashboard() {
       </section>
 
       {/* How questions are made — grouped by test, the way people ask about it. */}
-      <section className={`${CARD} p-5`}>
+      <section className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <Workflow className="w-4 h-4 text-gray-500" />
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.howMade')}</h2>
@@ -663,8 +701,8 @@ export function BankQcDashboard() {
       </div>
 
       {/* Batches in flight */}
-      <div hidden={tab !== 'runs'} className="space-y-6">
-      <section className={`${CARD} p-5`}>
+      <div hidden={tab !== 'history'} className="space-y-6">
+      <section className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-center gap-2 mb-4">
           <FlaskConical className="w-4 h-4 text-gray-500" />
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.batches')}</h2>
@@ -738,7 +776,7 @@ export function BankQcDashboard() {
       </section>
 
       {/* Already in the bank */}
-      <section className={`${CARD} p-5`}>
+      <section className={`${CARD} p-4 sm:p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <XCircle className="w-4 h-4 text-gray-500" />
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.cohortsInBank')}</h2>
