@@ -1,0 +1,1336 @@
+# Every MAP Language Usage item ever authored (444): 37 staged in the bank + earlier pilot/batch files (killed, never banked).
+# Do not reuse a sentence, a tested word, or a (rule, context) pair from this list.
+# TESTED SPELLING WORDS ALREADY USED (113 named in v5, v6 and pilot files; v2-v4 spelling items are listed in full below, read them too): accurate, achievement, acknowledge, acquaintance, acquire, annihilate, anniversary, answer, assistance, bulletin, camouflage, campaign, cauliflower, cemetery, coincidence, colossal, column, commitment, committee, conscience, conscious, curiosity, deceive, definitely, desperate, deterrent, dilemma, disappear, disastrous, dissatisfied, eligible, entrepreneur, especially, exaggerate, exercise, existence, finally, foreign, glisten, grievance, guarantee, hygiene, illegible, immediately, indispensable, inoculate, interrupt, irrelevant, irritable, liaison, magnificent, medieval, miniature, mischief, mortgage, necessary, negligible, noticeable, occurred, occurrence, outrageous, parliament, particularly, patience, permanent, perpendicular, pharaoh, plagiarism, possession, preferred, prejudice, privilege, procedure, pronunciation, publicly, pursue, questionnaire, raspberry, receipt, recipient, recommend, regrettable, relevant, reminiscent, repetition, resilient, restaurant, rhythm, ridiculous, sacrilegious, schedule, separate, silhouette, sincerely, sovereign, stubbornness, superstitious, susceptible, symmetry, temperament, threshold, truly, twelfth, unanimous, unconscious, vacuum, valiant, vengeance, vicious, villain, weird, withhold, zucchini
+# strand | grade | source | rule/word || prompt || key
+Analyze Central Idea, Concepts, and Events; Summarize | 5 | file map-pilot-rlu.batch.json | 
+    What is the central idea of the passage?
+    KEY: Honeybees use a special dance to tell others where to find flowers.
+Analyze Central Idea, Concepts, and Events; Summarize | 6 | file map-pilot-2-rlu.batch.json | 
+    Which choice best summarizes the passage?
+    KEY: Scientists set posts in the creek so beavers would move in. The beavers' dams spread water into the meadows, and the wet ground kept the creek flowing.
+Analyze Central Idea, Concepts, and Events; Summarize | 7 | file map-pilot-2-rlu.batch.json | 
+    Which statement best expresses the central idea of the passage?
+    KEY: Trains made each town's sun time hard to follow, so the railroads set up time zones that the nation later took up.
+Analyze Point of View, Features, and Structure | 7 | file map-pilot-rlu.batch.json | 
+    How does the narrator's point of view shape what readers understand in the passage?
+    KEY: Readers may guess Lucía's plan because they notice clues the narrator misses.
+Analyze Point of View, Features, and Structure | 6 | file map-pilot-2-rlu.batch.json | 
+    Which statement best describes the effect of the point of view used in the passage?
+    KEY: Readers see only what Kofi notices, so they can catch clues about Ama that Kofi reads the wrong way.
+Analyze Point of View, Purpose, Features, and Structure | 7 | file map-pilot-rlu.batch.json | 
+    Why does the author most likely mention the garden in Riverton?
+    KEY: to answer the worry that a garden would cost too much
+Analyze Point of View, Purpose, Features, and Structure | 5 | file map-pilot-2-rlu.batch.json | 
+    Why does the author most likely include the paragraph about Mr. Okafor?
+    KEY: to show how borrowing helps someone who needs a costly tool only rarely
+Analyze Point of View, Purpose, Features, and Structure | 7 | file map-pilot-2-rlu.batch.json | 
+    Which statement best describes how the passage is organized?
+    KEY: It explains why taller dikes once seemed enough, shows how the 1995 flood revealed their limits, and then describes a new plan.
+Analyze Theme and Literary Elements; Summarize | 6 | file map-pilot-rlu.batch.json | 
+    Which sentence best states a theme of the passage?
+    KEY: Some things turn out best when given time.
+Analyze Theme and Literary Elements; Summarize | 5 | file map-pilot-rlu.batch.json | 
+    Which is the best summary of the passage?
+    KEY: Pepper runs off after a squirrel, and Kofi gets her back by shaking her treat bag.
+Analyze Theme and Literary Elements; Summarize | 7 | file map-pilot-2-rlu.batch.json | 
+    Which statement best expresses a theme of the passage?
+    KEY: Priya's story shows that asking for help matters more than doing it all alone.
+Capitalization | 5 | file map-pilot-mech.batch.json | family title as part of a name vs. common noun
+    Which sentence is capitalized correctly?
+    KEY: My uncle and Aunt Rosa live near the river.
+Capitalization | 6 | file map-pilot-mech.batch.json | days and months vs. seasons
+    Which sentence is capitalized correctly?
+    KEY: Our swim lessons begin on Monday, June 3, at the start of summer.
+Capitalization | 6 | file map-pilot-mech.batch.json | region name vs. compass direction
+    Which sentence is capitalized correctly?
+    KEY: Last year Kenji's family moved from the South to a town north of Chicago.
+Capitalization | 7 | file map-pilot-mech.batch.json | titles of works (short words lowercase)
+    Which sentence is capitalized correctly?
+    KEY: Amara chose the book Journey to the Edge of the Sea for her report.
+Capitalization | 8 | file map-pilot-mech.batch.json | split quotation (second part continues the sentence)
+    Which sentence is capitalized correctly?
+    KEY: "Hurry up," said Lena, "or we will miss the bus."
+Capitalization | 9 | file map-pilot-mech.batch.json | title before a name vs. title used generically
+    Which sentence is capitalized correctly?
+    KEY: The governor met with Senator Okafor and two other senators.
+Capitalization | 5 | file map-pilot-2-mech.batch.json | Holiday names: the word Day is capitalized as part of the holiday name; generic word "lake" capitalized in a named body of water
+    Which sentence is capitalized correctly?
+    KEY: On Thanksgiving Day, we drove north to Lake Erie to visit my cousins.
+Capitalization | 6 | file map-pilot-2-mech.batch.json | Titles of works: short prepositions inside a title stay lowercase; seasons are not capitalized
+    Which sentence is capitalized correctly?
+    KEY: Our class finished reading Bridge to Terabithia last spring.
+Capitalization | 7 | file map-pilot-2-mech.batch.json | Compass directions: a region (the South) is capitalized; a direction (west of) is not
+    Which sentence is capitalized correctly?
+    KEY: My family moved from the South to a small town west of Chicago.
+Capitalization | 7 | file map-pilot-2-mech.batch.json | Titles of office: capitalized directly before a name, lowercase when used generically after "the"
+    Which sentence is capitalized correctly?
+    KEY: On Friday, Governor Ruiz met with the mayor of our town to discuss the new bridge.
+Capitalization | 8 | file map-pilot-2-mech.batch.json | School subjects: general subject names are lowercase; specific numbered course titles are capitalized
+    Which sentence is capitalized correctly?
+    KEY: Marisol has chemistry during first period and Algebra II right after lunch.
+Capitalization | 10 | file map-pilot-2-mech.batch.json | Quotations: capitalize the first word of a quoted complete sentence, not of a quoted fragment worked into the sentence
+    Which sentence is capitalized correctly?
+    KEY: Grandpa called the Great Depression "a hard school" and said, "Nobody forgets being hungry."
+Capitalization | 5 | file map-pilot-3-lu.batch.json | seasons lowercase (site 1); language/nationality proper adjective capitalized (site 2)
+    Which sentence is capitalized correctly?
+    KEY: This summer, my brother is taking a Korean cooking class at the community center.
+Capitalization | 6 | file map-pilot-3-lu.batch.json | family title after a possessive lowercase (site 1); article in the middle of a title lowercase (site 2)
+    Which sentence is capitalized correctly?
+    KEY: For my birthday, my grandmother gave me a copy of Secrets of the Silver Mine.
+Capitalization | 7 | file map-pilot-3-lu.batch.json | compass word naming a region capitalized (site 1); compass word giving a direction lowercase (site 2)
+    Which sentence is capitalized correctly?
+    KEY: Ms. Okafor grew up in the Southwest, but she moved north to teach at our school.
+Capitalization | 7 | file map-pilot-3-lu.batch.json | generic word that is part of a proper name capitalized (site 1); continuation of a split quotation lowercase (site 2)
+    Which sentence is capitalized correctly?
+    KEY: “This fossil,” said the guide at Ridgeway Science Museum, “is older than the rocks in our town.”
+Capitalization | 5 | file map-pilot-4-lu.batch.json | compass direction (lowercase) vs. named region (capitalized)
+    Which sentence is capitalized correctly?
+    KEY: Last summer we drove north for two days to visit my cousins, who live in the Midwest.
+Capitalization | 5 | file map-pilot-4-lu.batch.json | family title used as a name (capitalized) vs. after a possessive (lowercase)
+    Which sentence is capitalized correctly?
+    KEY: On Saturday, my uncle and Grandma drove us to the county fair.
+Capitalization | 6 | file map-pilot-4-lu.batch.json | language (capitalized) vs. general school subject (lowercase)
+    Which sentence is capitalized correctly?
+    KEY: Because Hana signed up for French this year, her science class moved to the last period of the day.
+Capitalization | 7 | file map-pilot-4-lu.batch.json | named historical event (capitalized) vs. century as a time span (lowercase)
+    Which sentence is capitalized correctly?
+    KEY: Our report compares the Civil War with other wars of the nineteenth century.
+Capitalization | 5 | file map-lu-mech-v1/batch.authored.json | generic place word inside a proper name (Cedar Avenue) vs the same kind of word used generically (the small lake)
+    Which sentence is capitalized correctly?
+    KEY: After school, Priya and I rode our bikes down Cedar Avenue, crossed the old bridge, and fed the ducks at the small lake behind Willow Creek Park.
+Capitalization | 5 | file map-lu-mech-v1/batch.authored.json | title capitalization: articles lowercase unless first, short verbs capitalized
+    Which sentence is capitalized correctly?
+    KEY: Our librarian, Ms. Ortiz, read The Night the Moon Was Late aloud to the third graders during their visit on Friday.
+Capitalization | 6 | file map-lu-mech-v1/batch.authored.json | language name (English) vs ordinary school subject (geography)
+    Which sentence is capitalized correctly?
+    KEY: Ava has art with Mr. Okafor before lunch, but after lunch she has English literature, a class she enjoys far more than geography or health.
+Capitalization | 6 | file map-lu-mech-v1/batch.authored.json | family title used as a name vs family word after a possessive
+    Which sentence is capitalized correctly?
+    KEY: Before the recital, Grandpa reminded my sister to thank her piano teacher, and my uncle recorded the whole performance on his phone.
+Capitalization | 6 | file map-lu-mech-v1/batch.authored.json | region (the American Southwest) vs direction (drove east)
+    Which sentence is capitalized correctly?
+    KEY: The Ramos family lived in the American Southwest for six years before they packed up the truck and drove east to their new home near the Atlantic Ocean.
+Capitalization | 7 | file map-lu-mech-v1/batch.authored.json | named historical period (Middle Ages) vs numbered century
+    Which sentence is capitalized correctly?
+    KEY: Our class learned that castles built during the Middle Ages were often surrounded by moats and that many of them were still standing in the sixteenth century.
+Capitalization | 7 | file map-lu-mech-v1/batch.authored.json | proper adjective capitalized, the common noun after it lowercase
+    Which sentence is capitalized correctly?
+    KEY: Hana's grandmother keeps a Japanese garden behind her house, and every winter she mails us a box of Canadian maple candy.
+Capitalization | 8 | file map-lu-mech-v1/batch.authored.json | quoted full sentence (capitalize first word) vs quoted fragment blended into the sentence
+    Which sentence is capitalized correctly?
+    KEY: After the game, Coach Rivera told us that we had played "with real heart," and then she added, "Next week we face the strongest team in the league."
+Capitalization | 8 | file map-lu-mech-v1/batch.authored.json | full name of an organization vs a season
+    Which sentence is capitalized correctly?
+    KEY: At the town meeting, members of the Greenfield Historical Society (GHS) read aloud from a letter that the town's founders had written in the spring of 1852.
+Capitalization | 5 | file map-lu-v2/batch.authored.json | titles of works: a short article inside the title stays lowercase, but a short verb is capitalized
+    Which sentence is capitalized correctly?
+    KEY: For her book report, Talia chose a novel called Why the Moon Is Always Following Us.
+Capitalization | 5 | file map-lu-v2/batch.authored.json | every important word in the name of a historical document or event
+    Which sentence is capitalized correctly?
+    KEY: In social studies, our class read part of the Bill of Rights while we studied the American Revolution.
+Capitalization | 5 | file map-lu-v2/batch.authored.json | a region name is capitalized; a compass direction is not
+    Which sentence is capitalized correctly?
+    KEY: After two days of driving south, the Lindqvist family finally reached the Southwest, where Grandma owns a small ranch.
+Capitalization | 5 | file map-lu-v2/batch.authored.json | a family word after a possessive is lowercase; a family word used as a name is capitalized
+    Which sentence is capitalized correctly?
+    KEY: Last weekend my uncle drove Grandpa and me to the lake, and my grandmother packed lunch for all three of us.
+Capitalization | 5 | file map-lu-v2/batch.authored.json | a language used as a school subject is capitalized; other school subjects are not
+    Which sentence is capitalized correctly?
+    KEY: On Mondays I have science first, then Spanish, then math, and English is my last class of the day.
+Capitalization | 6 | file map-lu-v2/batch.authored.json | a proper adjective formed from a name is capitalized; an ordinary descriptive adjective is not
+    Which sentence is capitalized correctly?
+    KEY: Priya's family lives in an old Victorian house, but every room inside is filled with modern furniture.
+Capitalization | 6 | file map-lu-v2/batch.authored.json | a quoted complete sentence begins with a capital; a quoted fragment worked into the sentence does not
+    Which sentence is capitalized correctly?
+    KEY: Coach Benson told us, "Keep your eyes on the ball," and later he called our passing "the best he had seen all season."
+Capitalization | 6 | file map-lu-v2/batch.authored.json | a brand name is capitalized; the common product noun after it is not
+    Which sentence is capitalized correctly?
+    KEY: For the camping trip, Mom packed a bottle of Sunny Day sunscreen and a box of Trailblazer crackers.
+Capitalization | 6 | file map-lu-v2/batch.authored.json | a generic word used alone stays lowercase even when it was part of a proper name earlier in the sentence
+    Which sentence is capitalized correctly?
+    KEY: Our school is across the street from Hollis River Park, so after class we often walk to the park to watch the river.
+Capitalization | 6 | file map-lu-v2/batch.authored.json | every important word in the name of an organization or club, including a generic word that is part of the name
+    Which sentence is capitalized correctly?
+    KEY: My sister volunteers with the Friends of the Library on weekends, and my brother just joined the Lakeview Chess Club.
+Capitalization | 5 | file map-lu-v3/batch.authored.json | every word of a multi-word place name, including the generic word (school, park)
+    Which sentence is capitalized correctly?
+    KEY: Our class walked from Hillside Middle School to Cedar Lake Park for the spring picnic.
+Capitalization | 5 | file map-lu-v3/batch.authored.json | seasons stay lowercase while a holiday is capitalized
+    Which sentence is capitalized correctly?
+    KEY: Every summer our town holds a parade on Independence Day, and every fall it holds a pumpkin fair behind the library.
+Capitalization | 5 | file map-lu-v3/batch.authored.json | nationality adjectives and names of languages
+    Which sentence is capitalized correctly?
+    KEY: Nina's Brazilian grandmother is teaching her to speak Portuguese, and Nina practices with her every weekend.
+Capitalization | 5 | file map-lu-v3/batch.authored.json | days of the week vs a general time word (weekend)
+    Which sentence is capitalized correctly?
+    KEY: The town pool is closed on Sundays in August, so we usually swim at the lake on the weekend instead.
+Capitalization | 5 | file map-lu-v3/batch.authored.json | family title used with a name vs family word after a possessive
+    Which sentence is capitalized correctly?
+    KEY: When Aunt Rosa visits next week, she will bring the puzzle that my uncle gave us last year.
+Capitalization | 6 | file map-lu-v3/batch.authored.json | short verbs and pronouns inside a title are capitalized
+    Which sentence is capitalized correctly?
+    KEY: For her book report, Dana chose a novel called Why the Sea Is Salty and What It Hides.
+Capitalization | 6 | file map-lu-v3/batch.authored.json | named historical period vs the same word used as a common noun
+    Which sentence is capitalized correctly?
+    KEY: In middle school, Ben became interested in the knights and castles of the Middle Ages.
+Capitalization | 6 | file map-lu-v3/batch.authored.json | compass direction vs the name of a region
+    Which sentence is capitalized correctly?
+    KEY: We drove west for two days to visit my cousins, who live on a ranch in the Southwest.
+Capitalization | 6 | file map-lu-v3/batch.authored.json | school subjects are lowercase except languages
+    Which sentence is capitalized correctly?
+    KEY: On Mondays I have math and French before lunch, and history right after it.
+Capitalization | 6 | file map-lu-v3/batch.authored.json | a quoted fragment begins with a lowercase letter
+    Which sentence is capitalized correctly?
+    KEY: Mr. Adams called our play "a total success" and said it was "the best show in years."
+Capitalization | 6 | file map-lu-v4/batch.authored.json | titles of works: a short verb and a pronoun inside the title are capitalized, while small words like 'to' stay lowercase
+    Which sentence is capitalized correctly?
+    KEY: In music class we practiced a song called “The Night Is Ours to Keep,” which has a tricky high note.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | historical events: the name of a war is capitalized, the word 'war' used on its own is not
+    Which sentence is capitalized correctly?
+    KEY: My grandfather's book about the Revolutionary War says that the war lasted about eight years.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | historical periods: 'the Middle Ages' is capitalized, but 'medieval' and the ordinary phrase 'the middle of the day' are not
+    Which sentence is capitalized correctly?
+    KEY: Knights in medieval Europe, as our book on the Middle Ages explains, ate their main meal in the middle of the day.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | documents: every main word of a document's name is capitalized ('Declaration of Independence', 'Bill of Rights'), while 'documents' alone is not
+    Which sentence is capitalized correctly?
+    KEY: Mr. Ross showed us copies of the Declaration of Independence and the Bill of Rights before our test on the two documents.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | organizations and government bodies: 'the Senate' is capitalized, but 'a senator' used without a name is not
+    Which sentence is capitalized correctly?
+    KEY: Our class wrote to a senator in Washington, and she invited us to watch the Senate debate a bill about national parks.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | regions vs directions: 'the Midwest' is a region and capitalized, but 'drive south' and 'the eastern coast' are directions
+    Which sentence is capitalized correctly?
+    KEY: Every winter my grandparents leave the Midwest and drive south to Florida, where they rent a cottage on the eastern coast.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | languages and course names vs school subjects: 'Spanish' and 'Algebra I' are capitalized, 'math' is not
+    Which sentence is capitalized correctly?
+    KEY: On Tuesdays I have Spanish before lunch and Algebra I right after it, so my math homework is due by noon.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | quotations: a quoted full sentence begins with a capital, a quoted fragment worked into the sentence does not
+    Which sentence is capitalized correctly?
+    KEY: Coach Kim shouted, “Keep your eyes on the ball,” and then told us that good defense “wins more games than offense.”
+Capitalization | 6 | file map-lu-v4/batch.authored.json | brand names vs products: the brand 'Brightway' is capitalized, the product nouns after it are not
+    Which sentence is capitalized correctly?
+    KEY: For the camping trip, Dad bought two Brightway flashlights and a Brightway lantern that runs on batteries.
+Capitalization | 6 | file map-lu-v4/batch.authored.json | multi-word proper names: 'River' is capitalized in 'the Hudson River', but 'the river' used alone later is not
+    Which sentence is capitalized correctly?
+    KEY: We hiked along the Hudson River all morning, ate lunch beside an old stone bridge, and then waded into the river.
+Establish and Maintain Style; Use Precise Language | 7 | file map-pilot-rlu.batch.json | 
+    The writer wants to replace "made a sound" in sentence 3 with a more precise verb. Which verb fits the sentence best?
+    KEY: creaked
+Establish and Maintain Style; Use Precise Language | 6 | file map-pilot-3-lu.batch.json | 
+    Which word best completes sentence 3 to show most precisely that the tree hit the shed with great force?
+    KEY: crashed
+Establish and Maintain Style; Use Precise Language | 7 | file map-pilot-4-lu.batch.json | 
+    Which word most precisely completes sentence 3?
+    KEY: measured
+Parts of Speech | 5 | file map-pilot-rlu.batch.json | 
+    Read the sentence: "My friendly cousin Priya never eats spicy food." Which word in the sentence is an adverb?
+    KEY: never
+Parts of Speech | 5 | file map-pilot-2-rlu.batch.json | pronoun case/form of the first-person singular pronoun (subject, reflexive, possessive, object); the rest of the sentence is fixed
+    Which word correctly completes the sentence? Before the parade began, Coach Barros handed the team flag to Mia and ___.
+    KEY: me
+Parts of Speech | 5 | file map-pilot-3-lu.batch.json | verb tense
+    Which verb correctly completes the sentence? By the time Ana reached the theater, the movie ______.
+    KEY: had already started
+Parts of Speech | 6 | file map-pilot-3-lu.batch.json | pronoun case (subjective vs objective) of each pronoun
+    Which words correctly complete the sentence? Ms. Chen asked ______ to stay after class and help clean the lab tables.
+    KEY: him and me
+Parts of Speech | 7 | file map-pilot-3-lu.batch.json | adjective vs adverb form of each modifier
+    Which words correctly complete the sentence? The puppy sniffed ______ at its new bowl, but the food inside smelled ______.
+    KEY: cautiously / delicious
+Parts of Speech | 5 | file map-pilot-4-lu.batch.json | verb tense
+    Which verb correctly completes the sentence? Mr. Kwan ___ at our school since my sister was in first grade, and he still runs the chess club every Friday.
+    KEY: has taught
+Parts of Speech | 6 | file map-pilot-4-lu.batch.json | form of the intensive pronoun
+    Which word correctly completes the sentence? The twins built the entire birdhouse ___, without any help from their dad.
+    KEY: themselves
+Parts of Speech | 7 | file map-pilot-4-lu.batch.json | grammatical function of the clause
+    How does the clause "where the hamster had hidden" function in the sentence?
+    KEY: as a noun that is the object of knew
+Parts of Speech | 5 | file map-lu-mech-v1/batch.authored.json | perfect-tense participle form; shift in verb tense
+    Which sentence is written correctly?
+    KEY: By the time the bus pulled into the school parking lot, Jada had already eaten her breakfast and was reading the last chapter of her library book.
+Parts of Speech | 5 | file map-lu-mech-v1/batch.authored.json | correlative pair not only/but also; correlative pair either/or
+    Which sentence is written correctly?
+    KEY: Not only did Kendra finish her science project two days early, but she also offered to help Theo choose either a volcano or a model of the solar system for his own project.
+Parts of Speech | 6 | file map-lu-mech-v1/batch.authored.json | pronoun case in a compound object; intensive pronoun form
+    Which sentence is written correctly?
+    KEY: Mr. Grant asked Marisol and me to paint the backdrop for the spring play, but the twins built the wooden castle themselves.
+Parts of Speech | 6 | file map-lu-mech-v1/batch.authored.json | shift in pronoun person; pronoun case before an appositive noun
+    Which sentence is written correctly?
+    KEY: If students want to join the robotics club, they need a form signed by a parent, and Mr. Diaz has promised to save the front table for us sixth graders.
+Parts of Speech | 8 | file map-lu-mech-v1/batch.authored.json | subjunctive mood after wish; past perfect in a counterfactual if-clause
+    Which sentence is written correctly?
+    KEY: I wish I were better at chess, because if I had practiced over the summer, I would have beaten Owen in the final round.
+Parts of Speech | 5 | file map-lu-v2/batch.authored.json | past perfect vs present perfect; past participle form
+    Which sentence is written correctly?
+    KEY: By the time the bell rang, Ana had already written three pages of her story.
+Parts of Speech | 5 | file map-lu-v2/batch.authored.json | tense shift in a series of verbs; tense shift in a later dependent clause
+    Which sentence is written correctly?
+    KEY: Last Saturday, Jonah woke up early, packed a lunch, and rode his bike to the lake, where he met his cousins.
+Parts of Speech | 6 | file map-lu-v2/batch.authored.json | objective pronoun in a compound object; subjective pronoun in a compound subject
+    Which sentence is written correctly?
+    KEY: Ms. Patel asked Leila and me to hand out the tests, and later she and I collected them.
+Parts of Speech | 6 | file map-lu-v2/batch.authored.json | intensive pronoun misused as a subject; nonstandard intensive pronoun form
+    Which sentence is written correctly?
+    KEY: My brother and I built the birdhouse ourselves, but Dad cut all the wood himself.
+Parts of Speech | 6 | file map-lu-v2/batch.authored.json | pronoun case before an appositive noun; pronoun case after a preposition
+    Which sentence is written correctly?
+    KEY: We sixth graders planned the whole party, but between you and me, the teachers did most of the work.
+Parts of Speech | 7 | file map-lu-v2/batch.authored.json | contrast conjunction in the opening dependent clause; cause conjunction in the closing dependent clause
+    Which sentence is written correctly?
+    KEY: Although the trail was steep and rocky, we reached the top before noon since we had started hiking at dawn.
+Parts of Speech | 8 | file map-lu-v2/batch.authored.json | past participle in a perfect participial phrase; gerund after 'be used to'
+    Which sentence is written correctly?
+    KEY: Having grown up on a farm, Mateo was used to waking up before sunrise.
+Parts of Speech | 5 | file map-lu-v3/batch.authored.json | past perfect vs present perfect; past-tense consistency
+    Which sentence is written correctly?
+    KEY: By the time Grandpa arrived at the station, the train had already left, so he took a taxi home.
+Parts of Speech | 5 | file map-lu-v3/batch.authored.json | past participle of swim; past participle of break
+    Which sentence is written correctly?
+    KEY: Since last fall, Owen has swum in every meet, and he has broken the school record twice.
+Parts of Speech | 5 | file map-lu-v3/batch.authored.json | modal perfect helper (have vs of); past participle (gone vs went)
+    Which sentence is written correctly?
+    KEY: Our group should have gone to the library on Monday because now the books we need are all checked out.
+Parts of Speech | 6 | file map-lu-v3/batch.authored.json | objective case in a compound object; subjective case in a compound subject
+    Which sentence is written correctly?
+    KEY: Coach Diaz asked Priya and me to collect the cones, so after practice she and I carried them all to the shed.
+Parts of Speech | 6 | file map-lu-v3/batch.authored.json | reflexive pronoun misused as a subject; nonstandard intensive pronoun form
+    Which sentence is written correctly?
+    KEY: Jamal and I painted the whole fence by ourselves, and Dad said he couldn't have done a better job himself.
+Parts of Speech | 6 | file map-lu-v3/batch.authored.json | vague 'they' with no antecedent; vague 'it' with no antecedent
+    Which sentence is written correctly?
+    KEY: This morning the librarian told us our books are due Friday, and the school newsletter says the late fee is ten cents a day.
+Parts of Speech | 7 | file map-lu-v3/batch.authored.json | extra conjunction after a subordinate clause (although...but); repeated subject pronoun after an interrupting clause
+    Which sentence is written correctly?
+    KEY: Although the bus was late, Ms. Chu, who drives it every day, still got us to school on time.
+Parts of Speech | 8 | file map-lu-v3/batch.authored.json | gerund vs infinitive after 'stop'; infinitive vs gerund after 'forget'
+    Which sentence is written correctly?
+    KEY: When Ms. Ortiz asked for quiet, the class stopped talking at once, but Dev had forgotten to turn off his phone, and it rang.
+Parts of Speech | 5 | file map-lu-v4/batch.authored.json | past perfect for the earlier of two past actions; tense shift in the final clause
+    Which sentence is written correctly?
+    KEY: By the time the bus pulled into the parking lot, the first bell had already sounded, so Marco hurried to class.
+Parts of Speech | 5 | file map-lu-v4/batch.authored.json | present tense in a 'by the time' clause about the future; future perfect in the main clause
+    Which sentence is written correctly?
+    KEY: By the time the parents arrive at three o'clock, the team will have finished cleaning up the soccer field.
+Parts of Speech | 5 | file map-lu-v4/batch.authored.json | past tense in a clause set inside an interrupting time phrase; past tense of the main verb far from 'Last summer'
+    Which sentence is written correctly?
+    KEY: Last summer my cousins visited for a week, and every morning, before anyone else was awake, they walked to the bakery.
+Parts of Speech | 5 | file map-lu-v4/batch.authored.json | conjunction vs preposition at the start ('Although' vs 'Despite'); conjunction vs two-word preposition before a clause ('because' vs 'because of')
+    Which sentence is written correctly?
+    KEY: Although the field was still muddy, the game went on because the referee decided the grass was safe enough.
+Parts of Speech | 5 | file map-lu-v4/batch.authored.json | present perfect with 'since'; simple past with a finished time ('last week')
+    Which sentence is written correctly?
+    KEY: Since joining the chess club in September, Ben has won four matches, and last week he defeated the club's best player.
+Parts of Speech | 6 | file map-lu-v4/batch.authored.json | objective case after the preposition 'between'; subjective case in a compound subject
+    Which sentence is written correctly?
+    KEY: Mr. Hale split the leftover clay between Dev and me, so Dev and I could finish our sculptures before the art show.
+Parts of Speech | 6 | file map-lu-v4/batch.authored.json | objective case of a pronoun with an appositive object ('us volunteers'); subjective case with an appositive subject ('we volunteers')
+    Which sentence is written correctly?
+    KEY: The librarian gave us volunteers a tour of the new wing, and afterward we volunteers helped shelve the donated books.
+Parts of Speech | 6 | file map-lu-v4/batch.authored.json | standard plural intensive pronoun; standard singular intensive pronoun
+    Which sentence is written correctly?
+    KEY: The twins built the birdhouse themselves, but their uncle cut the roof pieces himself because the saw was too dangerous for them.
+Parts of Speech | 6 | file map-lu-v4/batch.authored.json | 'should have' vs nonstandard 'should of'; demonstrative 'those' vs nonstandard 'them' before a noun
+    Which sentence is written correctly?
+    KEY: Mia should have returned those library books last week, but she forgot until the librarian sent her a reminder.
+Parts of Speech | 6 | file map-lu-v4/batch.authored.json | object pronoun vs reflexive after a preposition in a compound; subject pronoun vs reflexive in a compound subject
+    Which sentence is written correctly?
+    KEY: The mayor herself presented the science award to Eli and me, and afterward Eli and I thanked her for visiting.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-pilot-rlu.batch.json | 
+    Which choice is a complete sentence that is written correctly?
+    KEY: The museum opens at nine, so we got there early.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-pilot-rlu.batch.json | 
+    Which choice correctly completes sentence 2?
+    KEY: is
+Phrases, Clauses, Agreement, Sentences | 6 | file map-pilot-2-rlu.batch.json | subject-verb agreement only: each sentence has one tricky subject (intervening phrase, neither/nor, indefinite pronoun, inversion) and only one breaks agreement
+    Which sentence has an error in subject-verb agreement?
+    KEY: Each of the twins have a turn walking the dog after dinner.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-pilot-3-lu.batch.json | correlative conjunction pair
+    Which words correctly complete the sentence? Mom said we can ______ walk to the park ______ ride our bikes there, so we need to decide which one we want to do.
+    KEY: either / or
+Phrases, Clauses, Agreement, Sentences | 6 | file map-pilot-3-lu.batch.json | verb number (singular vs plural) in each clause
+    Which words correctly complete the sentence? Each of the drawings ______ signed by the artist, and there ______ three more drying on the table.
+    KEY: was / are
+Phrases, Clauses, Agreement, Sentences | 7 | file map-pilot-3-lu.batch.json | placement of the modifier
+    Which sentence places the phrase "covered in sprinkles" correctly?
+    KEY: Leah handed the cupcake covered in sprinkles to her brother.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-pilot-4-lu.batch.json | correlative conjunction pair
+    Which pair of words best completes the sentence? ___ the gym ___ the cafeteria had room for the science fair, so the school rented a tent.
+    KEY: Neither ... nor
+Phrases, Clauses, Agreement, Sentences | 6 | file map-pilot-4-lu.batch.json | pronoun person and number
+    Which word correctly completes the sentence? Our coach explained that if we skip the warm-up, ___ muscles are more likely to get hurt.
+    KEY: our
+Phrases, Clauses, Agreement, Sentences | 7 | file map-pilot-4-lu.batch.json | placement of the modifier
+    In which sentence is the phrase "dripping with melted cheese" placed correctly?
+    KEY: Marco carried the pizza, dripping with melted cheese, to the table.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-mech-v1/batch.authored.json | subject-verb agreement with a neither/nor subject; shift in verb tense across clauses
+    Which sentence is written correctly?
+    KEY: Neither Ethan nor his older sisters were at the bus stop when the storm started, so their mom drove them to school in her truck.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-mech-v1/batch.authored.json | dangling modifier (possessive subject); doubled conjunction with although/but
+    Which sentence is written correctly?
+    KEY: Nervous about her speech, Talia gripped her note cards tightly, and although the microphone squealed twice, she kept going until the very end.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-mech-v1/batch.authored.json | subordinating conjunction vs preposition before a clause; relative adverb vs relative pronoun
+    Which sentence is written correctly?
+    KEY: While the coach was explaining the new play, two players slipped back into the locker room, where they had left their water bottles.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-mech-v1/batch.authored.json | agreement with a gerund-phrase subject; shift from active to passive voice
+    Which sentence is written correctly?
+    KEY: Painting the hallway murals was harder than we expected, so we sketched every design on paper first, and then we painted the walls during lunch for two weeks.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-mech-v1/batch.authored.json | dangling verbal phrase; subject-verb agreement in a there-clause
+    Which sentence is written correctly?
+    KEY: After pouring the solution into the test tubes, each group should record the results on the chart, since there are three columns left to fill in.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-v2/batch.authored.json | correlative conjunction pair; verb agreement with the nearer of two subjects
+    Which sentence is written correctly?
+    KEY: Either Marcus or his older sisters are going to walk the dog after dinner tonight.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-lu-v2/batch.authored.json | shift in pronoun person in a possessive; shift in pronoun person in a subject
+    Which sentence is written correctly?
+    KEY: Hikers who want to reach the top before dark should pack their bags the night before, so they can leave at sunrise.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v2/batch.authored.json | dangling participial phrase; misplaced relative clause
+    Which sentence is written correctly?
+    KEY: Reaching for the top shelf, Grace knocked the jar of honey that Mom had just bought onto the floor.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v2/batch.authored.json | verb agreement with a gerund-phrase subject; verb agreement inside a relative clause
+    Which sentence is written correctly?
+    KEY: Collecting old coins and stamps is a hobby that keeps my grandparents busy all winter.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v2/batch.authored.json | subordinating conjunction that makes a clause dependent; coordinating conjunction joining independent clauses
+    Which sentence is written correctly?
+    KEY: Although the power went out during the storm, we played board games by candlelight, and nobody missed the TV.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-v2/batch.authored.json | shift from active to passive voice; shift from imperative to indicative mood
+    Which sentence is written correctly?
+    KEY: Read the directions carefully, answer every question, and check your work before the timer goes off.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-v2/batch.authored.json | conditional mood in the if-clause; conditional mood in the result clause
+    Which sentence is written correctly?
+    KEY: If Carmen had left home ten minutes earlier, she would have caught the bus to the game.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-v3/batch.authored.json | correlative pair (neither/nor); verb agreement with the nearer subject
+    Which sentence is written correctly?
+    KEY: Neither the twins nor their older brother knows how to fix the bike chain, so they asked a neighbor for help.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-lu-v3/batch.authored.json | pronoun person shift (subject); pronoun person shift (possessive)
+    Which sentence is written correctly?
+    KEY: When hikers reach the top of Bear Hill, they can see the whole valley, and most of them take out their phones.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v3/batch.authored.json | dangling opening participial phrase; dangling participial phrase after a conjunction
+    Which sentence is written correctly?
+    KEY: While Theo was running for the bus, his lunch fell out of his bag, so during math class, his stomach growled nonstop.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v3/batch.authored.json | agreement across a prepositional phrase and a clause; agreement with 'each of'
+    Which sentence is written correctly?
+    KEY: The box of photos that my grandparents kept in the attic was opened at last, and each of the pictures has a date on it.
+Phrases, Clauses, Agreement, Sentences | 7 | file map-lu-v3/batch.authored.json | missing main verb (fragment); missing coordinating conjunction (comma splice)
+    Which sentence is written correctly?
+    KEY: My cousin, who has never seen the ocean, is visiting us next week, and we are taking him to the beach on Saturday.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-v3/batch.authored.json | progressive passive (is being); perfect passive (has been)
+    Which sentence is written correctly?
+    KEY: The gym floor is being repaired this week, so the spring dance has been moved to the cafeteria.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-v3/batch.authored.json | past conditional in the if-clause; past conditional in the result clause
+    Which sentence is written correctly?
+    KEY: If Omar had checked the weather before the hike last Saturday, he would have packed a raincoat instead of a thin sweatshirt.
+Phrases, Clauses, Agreement, Sentences | 8 | file map-lu-v3/batch.authored.json | shift from imperative to indicative (second instruction); shift from imperative to indicative (third instruction)
+    Which sentence is written correctly?
+    KEY: Before the test begins, sharpen your pencil and write your name at the top, and when the timer starts, read each question twice.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-v4/batch.authored.json | placement of 'not only' so both halves match; 'nor' as the partner of 'neither'
+    Which sentence is written correctly?
+    KEY: Coach Ruiz not only reminded us to stretch but also warned that neither the gym nor the pool would open Monday.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-v4/batch.authored.json | extra 'but' after an 'Although' clause; missing conjunction between the last two clauses (comma splice)
+    Which sentence is written correctly?
+    KEY: Although the art room was crowded after lunch, the students kept painting, and Ms. Lee walked between the tables to help.
+Phrases, Clauses, Agreement, Sentences | 5 | file map-lu-v4/batch.authored.json | placement of 'either' so both halves match; the partner word for 'both'
+    Which sentence is written correctly?
+    KEY: Ms. Ford let us either write a poem or draw a comic, and she wanted both a title and a date.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-lu-v4/batch.authored.json | pronoun number for a plural antecedent as subject; pronoun number for the same antecedent as object later in the clause
+    Which sentence is written correctly?
+    KEY: We planted tomato seedlings in April, and by July the plants were so tall that they needed stakes to hold them up.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-lu-v4/batch.authored.json | verb agreement with a plural subject placed after the verb; verb agreement with a singular subject placed after the verb
+    Which sentence is written correctly?
+    KEY: Behind the old gym stand two tall maple trees, and between them sits a wooden bench that the art club painted.
+Phrases, Clauses, Agreement, Sentences | 6 | file map-lu-v4/batch.authored.json | verb agreement with a plural head noun across prepositional phrases; pronoun number referring back to that noun
+    Which sentence is written correctly?
+    KEY: The boxes of trophies in the storage room were so heavy that the custodian moved them one at a time.
+Plan, Organize; Create Cohesion, Use Transitions | 6 | file map-pilot-rlu.batch.json | 
+    Which transition should the writer use at the start of sentence 3?
+    KEY: However
+Plan, Organize; Create Cohesion, Use Transitions | 5 | file map-pilot-2-rlu.batch.json | 
+    Which transition best completes sentence 4?
+    KEY: As a result,
+Plan, Organize; Create Cohesion, Use Transitions | 5 | file map-pilot-3-lu.batch.json | 
+    Which transition best completes sentence 3?
+    KEY: As a result
+Punctuation | 6 | DB map-lu-v3-punctuation staged | parentheses around a nonrestrictive element, with no extra commas around them
+    Which sentence is punctuated correctly?
+    KEY: Grandpa's old truck (the blue one parked behind the barn) still starts on the coldest mornings.
+Punctuation | 7 | DB map-lu-v3-punctuation staged | no comma between cumulative adjectives
+    Which sentence is punctuated correctly?
+    KEY: The tired, hungry campers ate warm vegetable soup out of small metal bowls by the fire.
+Punctuation | 5 | DB map-lu-v3-punctuation staged | tag question ended with a question mark, with a comma before a name in direct address at the end
+    Which sentence is punctuated correctly?
+    KEY: You remembered to lock the back door before we left for the airport, didn't you, Grandpa?
+Punctuation | 6 | DB map-lu-v3-punctuation staged | no commas around a restrictive clause; comma before a nonrestrictive clause
+    Which sentence is punctuated correctly?
+    KEY: The bike that I got for my birthday has a flat tire, which means I will walk to school today.
+Punctuation | 7 | DB map-lu-v3-punctuation staged | comma between coordinate adjectives but not cumulative ones
+    Which sentence is punctuated correctly?
+    KEY: We took a long, windy walk past the three old red barns on Miller Avenue.
+Punctuation | 8 | DB map-lu-v3-punctuation staged | colon after a complete clause to introduce a list, never after a verb
+    Which sentence is punctuated correctly?
+    KEY: The club has three officers: Nora, Ben, and Ivy, and their main jobs are planning trips and raising money.
+Punctuation | 8 | DB map-lu-v3-punctuation staged | dashes around an interrupting independent clause (a break)
+    Which sentence is punctuated correctly?
+    KEY: My grandmother's garden—she planted it the year I was born—has grown bigger every summer since.
+Punctuation | 6 | DB map-lu-v3-punctuation staged | a pair of commas around a long nonrestrictive appositive
+    Which sentence is punctuated correctly?
+    KEY: Ms. Grant, the coach who started our running club three years ago, ordered new shirts for every runner on the team.
+Punctuation | 8 | DB map-lu-v3-punctuation staged | semicolon joining two independent clauses; comma after a dependent clause
+    Which sentence is punctuated correctly?
+    KEY: Because the field was flooded, the game was moved to the gym; most fans did not mind the change.
+Punctuation | 5 | DB map-lu-v3-punctuation staged | comma after the full introductory clause, not inside it
+    Which sentence is punctuated correctly?
+    KEY: After the storm knocked out the power in our whole neighborhood, my brother and I read comic books by flashlight.
+Punctuation | 5 | DB map-lu-v3-punctuation staged | quotation marks around titles of songs and poems
+    Which sentence is punctuated correctly?
+    KEY: Our class sang "Rain on the Roof" at the concert, and Ava read her poem "The Green Bike" afterward.
+Punctuation | 5 | file map-pilot-3-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: Because the bus was late, our teacher handed out snacks to every group.
+Punctuation | 6 | file map-pilot-3-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: Priya, the library closes at five, but the study room stays open until six.
+Punctuation | 7 | file map-pilot-3-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: The children's museum was closed for repairs; however, the aquarium next door was open.
+Punctuation | 5 | file map-pilot-4-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: When the storm ended, we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.
+Punctuation | 6 | file map-pilot-4-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: Our school library, which reopened last month after the flood, now stays open until five o'clock.
+Punctuation | 7 | file map-pilot-4-lu.batch.json | 
+    Which sentence is punctuated correctly?
+    KEY: After a long, boring bus ride, Mia pulled on her new winter coat and stepped into the snow.
+Punctuation | 5 | file map-lu-mech-v1/batch.authored.json | comma before the tag question "don't they" (missing if absent); end mark after the tag question (wrong mark if a period)
+    Which sentence is punctuated correctly?
+    KEY: The posters for the science fair have to be finished before the judges arrive on Friday morning, don't they?
+Punctuation | 5 | file map-lu-mech-v1/batch.authored.json | comma after the first series item "A tent with a broken zipper" (missing if absent); comma between the last series item and the verb "were" (wrongly present if added)
+    Which sentence is punctuated correctly?
+    KEY: A tent with a broken zipper, two muddy sleeping bags, and a box of crushed granola bars were all we found in the old shed behind the cabin.
+Punctuation | 6 | file map-lu-mech-v1/batch.authored.json | commas around "who finished their projects early," a restrictive clause after "Only the students" (wrongly present if added); closing comma after the nonrestrictive clause "who runs the school garden" (missing if absent)
+    Which sentence is punctuated correctly?
+    KEY: Only the students who finished their projects early were allowed to help Mr. Castillo, who runs the school garden, plant the new tomato seedlings.
+Punctuation | 6 | file map-lu-mech-v1/batch.authored.json | comma after the closing parenthesis, between the subject and the verb "asked" (wrongly present if added); opening comma before the nonrestrictive clause "which had won the poster contest" (missing if absent)
+    Which sentence is punctuated correctly?
+    KEY: Ms. Alvarez (the art teacher who painted the hallway mural) asked our class, which had won the poster contest, to design the cover of this year's yearbook.
+Punctuation | 7 | file map-lu-mech-v1/batch.authored.json | comma between the coordinate adjectives "long" and "exhausting" (missing if absent); comma between the cumulative adjectives "tall" and "pine" (wrongly present if added)
+    Which sentence is punctuated correctly?
+    KEY: After a long, exhausting hike, the scouts set up their tents under two tall pine trees beside the lake.
+Punctuation | 7 | file map-lu-mech-v1/batch.authored.json | plural possessive "teams'" after "three" (wrong apostrophe placement if "team's"); possessive pronoun "its" (wrongly present apostrophe if "it's")
+    Which sentence is punctuated correctly?
+    KEY: The three teams' coaches met in the gym to decide whether the school should replace its old scoreboard before the basketball season begins.
+Punctuation | 7 | file map-lu-mech-v1/batch.authored.json | comma between the last adjective "windy" and the noun "evening" (wrongly present if added); possessive of the irregular plural "children" (wrong apostrophe placement if "childrens'")
+    Which sentence is punctuated correctly?
+    KEY: On a cold, windy evening in December, the children's choir sang songs outside the town library.
+Punctuation | 8 | file map-lu-mech-v1/batch.authored.json | mark after the dependent clause "Although our bus was late" (wrong mark if a semicolon); mark between the two independent clauses (wrong mark if a comma, creating a comma splice)
+    Which sentence is punctuated correctly?
+    KEY: Although our bus was late, we still reached the stadium before the opening ceremony; the storm that slowed us down had delayed the other teams even more.
+Punctuation | 8 | file map-lu-mech-v1/batch.authored.json | mark opening the break before "my sleeping bag" (wrong mark if a colon); mark closing the break before "was packed" (wrong mark if a comma)
+    Which sentence is punctuated correctly?
+    KEY: Everything I needed for the trip—my sleeping bag, my flashlight, and my hiking boots—was packed by Friday night.
+Punctuation | 5 | file map-lu-v2/batch.authored.json | comma after the long introductory clause (after "ended") is missing; an extra comma separates the long subject from its verb (after "race")
+    Which sentence is punctuated correctly?
+    KEY: After the long assembly about bike safety ended, the students who had signed up for the race lined up near the gym doors.
+Punctuation | 5 | file map-lu-v2/batch.authored.json | comma missing after the series item "plates and cups"; comma missing after the series item "a bag of ice"
+    Which sentence is punctuated correctly?
+    KEY: For the picnic, Ms. Ortiz asked us to bring plates and cups, a bag of ice, two jugs of lemonade, and something sweet.
+Punctuation | 5 | file map-lu-v2/batch.authored.json | comma missing between the name in direct address and the tag question; period used instead of a question mark after the tag question
+    Which sentence is punctuated correctly?
+    KEY: You remembered to feed the fish before you left for school, Dani, didn't you?
+Punctuation | 6 | file map-lu-v2/batch.authored.json | commas wrongly placed around the restrictive clause "who finished the reading early"; commas missing around the nonrestrictive clause "who teaches seventh grade"
+    Which sentence is punctuated correctly?
+    KEY: Only the students who finished the reading early were allowed to help Mr. Abara, who teaches seventh grade, set up the science fair tables.
+Punctuation | 6 | file map-lu-v2/batch.authored.json | opening comma before the appositive "a model volcano..." is missing; closing comma after the appositive (after "erupts") is missing
+    Which sentence is punctuated correctly?
+    KEY: Ruby's science project, a model volcano that really erupts, won first place at the county fair.
+Punctuation | 6 | file map-lu-v2/batch.authored.json | extra comma before the opening parenthesis; extra comma after the closing parenthesis, between subject and verb
+    Which sentence is punctuated correctly?
+    KEY: My grandmother (she turns eighty next month) still walks two miles every morning.
+Punctuation | 6 | file map-lu-v2/batch.authored.json | extra comma after "novel" treats the restrictive appositive "Starlight Road" as nonrestrictive; commas missing around the nonrestrictive appositive "Dana Whitfield"
+    Which sentence is punctuated correctly?
+    KEY: Our class read the novel Starlight Road, and its author, Dana Whitfield, visited our school in May.
+Punctuation | 7 | file map-lu-v2/batch.authored.json | comma missing between the coordinate adjectives "long" and "tiring"; comma missing between the coordinate adjectives "cool" and "quiet"
+    Which sentence is punctuated correctly?
+    KEY: After the long, tiring hike, we rested beside a cool, quiet stream and ate our sandwiches.
+Punctuation | 7 | file map-lu-v2/batch.authored.json | extra comma between cumulative modifiers "warm" and "spring"; extra comma between cumulative modifiers "yellow" and "rain"
+    Which sentence is punctuated correctly?
+    KEY: On the first warm spring morning, Hana wore her bright yellow rain boots to school.
+Punctuation | 7 | file map-lu-v2/batch.authored.json | comma missing between the coordinate adjectives "loud" and "playful"; extra comma between "playful" and the cumulative "golden" (part of "golden retriever")
+    Which sentence is punctuated correctly?
+    KEY: Our neighbor's loud, playful golden retriever barks at every car that drives past.
+Punctuation | 7 | file map-lu-v2/batch.authored.json | apostrophe misplaced after the s of the irregular plural "women's"; apostrophe misplaced before the s of the plural time expression "weeks'"
+    Which sentence is punctuated correctly?
+    KEY: The women's soccer team got only two weeks' notice before the big tournament.
+Punctuation | 8 | file map-lu-v2/batch.authored.json | comma used instead of a semicolon between two independent clauses (comma splice after "pond"); semicolon used instead of a comma before the dependent clause beginning "although"
+    Which sentence is punctuated correctly?
+    KEY: Our class had planned a picnic by the pond; dark clouds rolled in just before noon, although the forecast had promised sunshine.
+Punctuation | 8 | file map-lu-v2/batch.authored.json | extra colon between the verb "includes" and its objects; colon missing after the complete clause "Ms. Tran added one more rule"
+    Which sentence is punctuated correctly?
+    KEY: Our packing list includes a flashlight, a sleeping bag, and warm socks, and Ms. Tran added one more rule: no phones after dark.
+Punctuation | 8 | file map-lu-v2/batch.authored.json | closing comma of the interrupting phrase (after "puppy") is missing; extra comma between "convinced them" and its that-clause object
+    Which sentence is punctuated correctly?
+    KEY: My older sister, after weeks of begging our parents for a puppy, finally convinced them that a small dog would not be much work.
+Punctuation | 5 | file map-lu-v3/batch.authored.json | comma between the verb and the start of the list; comma between the first and second items in the series
+    Which sentence is punctuated correctly?
+    KEY: Dad packed snacks for the car, a map of the state park, and two jackets for the rainy hike.
+Punctuation | 5 | file map-lu-v3/batch.authored.json | comma before the tag question; question mark at the end
+    Which sentence is punctuated correctly?
+    KEY: You remembered to lock the back door before we left for the airport, didn't you?
+Punctuation | 6 | file map-lu-v3/batch.authored.json | dash opening the interrupting list; dash closing the interrupting list
+    Which sentence is punctuated correctly?
+    KEY: Three students from our class—Ana, Raj, and Tomas—won ribbons at the science fair.
+Punctuation | 7 | file map-lu-v3/batch.authored.json | comma between the coordinate adjectives 'long' and 'windy'; comma between the cumulative adjectives 'old' and 'red'
+    Which sentence is punctuated correctly?
+    KEY: We took a long, windy walk past the three old red barns on Miller Road.
+Punctuation | 7 | file map-lu-v3/batch.authored.json | apostrophe in the possessive 'everyone else's'; no apostrophe in the possessive pronoun 'ours'
+    Which sentence is punctuated correctly?
+    KEY: Everyone else's coats were dry, but ours were soaked after the long walk from the bus stop.
+Punctuation | 7 | file map-lu-v3/batch.authored.json | apostrophe in the irregular plural possessive 'women's'; apostrophe in the irregular plural possessive 'children's'
+    Which sentence is punctuated correctly?
+    KEY: The women's soccer team shared the field with the children's league while both teams' coaches watched.
+Punctuation | 8 | file map-lu-v3/batch.authored.json | ellipsis marking words left out after 'library'; ellipsis marking words left out after 'student'
+    Which sentence is punctuated correctly?
+    KEY: In her speech, the mayor said, "Our new library ... will open next spring, and every student ... will get a free card."
+Spelling | 6 | DB map-lu-v6-spelling staged | suffix -ence vs -ance (existence)
+    Which sentence has a spelling error?
+    KEY: Scientists still argue about the existance of life on other planets.
+Spelling | 5 | DB map-lu-v6-spelling staged | ie/ei: i before e in the final syllable of handkerchief
+    Which sentence has a spelling error?
+    KEY: Grandpa always keeps a folded handkercheif in the pocket of his winter coat.
+Spelling | 7 | DB map-lu-v6-spelling staged | procedure carried over the double e of proceed
+    Which sentence has a spelling error?
+    KEY: The teacher explained the proceedure for the fire drill to the class.
+Spelling | 6 | DB map-lu-v6-spelling staged | doubled consonant: one r, double s (harass)
+    Which sentence has a spelling error?
+    KEY: Students should never harrass or tease younger kids on the bus or in the hallway at school.
+Spelling | 6 | DB map-lu-v6-spelling staged | silent letter in the sc cluster (conscience)
+    Which sentence has a spelling error?
+    KEY: Maya had a guilty concience after she ate the last cookie without asking her brother first.
+Spelling | 7 | DB map-lu-v6-spelling staged | silent a in the ea vowel team (treacherous)
+    Which sentence has a spelling error?
+    KEY: The trail up the steep cliff was trecherous after the rain.
+Spelling | 8 | DB map-lu-v6-spelling staged | -eous written as -ious (simultaneous)
+    Which sentence has a spelling error?
+    KEY: The fireworks and the music began in a simultanious burst that thrilled the whole crowd.
+Spelling | 5 | DB map-lu-v6-spelling staged | unstressed vowel dropped in speech (laboratory)
+    Which sentence has a spelling error?
+    KEY: The science teacher showed us the new labratory down the hall.
+Spelling | 8 | DB map-lu-v6-spelling staged | -ance/-ence ending (nuisance)
+    Which sentence has a spelling error?
+    KEY: The barking dog next door has become a real nuisence.
+Spelling | 7 | DB map-lu-v6-spelling staged | -cede versus -ceed (precede, confused with proceed and succeed)
+    Which sentence has a spelling error?
+    KEY: In the alphabet, the letter A will always preceed the letter B.
+Spelling | 8 | DB map-lu-v6-spelling staged | dropped unstressed syllable (temper-a-ment)
+    Which sentence has a spelling error?
+    KEY: Our cat has a calm temperment around kids.
+Spelling | 5 | DB map-lu-v6-spelling staged | suffix -ance vs -ence (guidance)
+    Which sentence has a spelling error?
+    KEY: Jack thanked his coach for her guidence.
+Spelling | 7 | DB map-lu-v6-spelling staged | ei after c (perceive)
+    Which sentence has a spelling error?
+    KEY: Some animals can percieve sounds that people cannot hear.
+Spelling | 6 | DB map-lu-v6-spelling staged | c before q after the prefix (ac- + quire)
+    Which sentence has a spelling error?
+    KEY: Ben hopes to aquire a rare stamp for his collection.
+Spelling | 6 | DB map-lu-v6-spelling staged | prefix dis- meeting a root that starts with s (dis + satisfied)
+    Which sentence has a spelling error?
+    KEY: Mia was disatisfied with her first drawing.
+Spelling | 7 | DB map-lu-v6-spelling staged | -ant/-ent ending in an unstressed syllable (relevant)
+    Which sentence has a spelling error?
+    KEY: Omar asked whether the photo was relevent to the report he was writing for science class.
+Spelling | 8 | DB map-lu-v6-spelling staged | missing consonant in a cluster: the l in vulnerable is often not pronounced
+    Which sentence has a spelling error?
+    KEY: Baby sea turtles are very vunerable to hungry birds.
+Spelling | 5 | DB map-lu-v6-spelling staged | unstressed vowel dropped (miniature)
+    Which sentence has a spelling error?
+    KEY: Ben built a minature castle out of clay for his art class.
+Spelling | 6 | DB map-lu-v6-spelling staged | no doubling before -ment (commit + -ment = commitment)
+    Which sentence has a spelling error?
+    KEY: Being on the team takes a big committment of time and energy.
+Spelling | 6 | DB map-lu-v6-spelling staged | double consonant and double vowel (committee)
+    Which sentence has a spelling error?
+    KEY: The commitee will meet on Monday to plan the spring fair for the whole school.
+Spelling | 7 | DB map-lu-v6-spelling staged | unstressed vowel (schwa) in the middle syllable of quarantine
+    Which sentence has a spelling error?
+    KEY: The sick puppy was kept in quarentine at the animal shelter for two full weeks.
+Spelling | 7 | DB map-lu-v6-spelling staged | keeping the final e before -able after soft c (notice + able = noticeable)
+    Which sentence has a spelling error?
+    KEY: Leo made a noticable change to his drawing.
+Spelling | 5 | DB map-lu-v6-spelling staged | silent e kept before -ous to keep the g soft (gorgeous)
+    Which sentence has a spelling error?
+    KEY: Nora wore a gorgous blue dress to her cousin's wedding in the spring.
+Spelling | 8 | DB map-lu-v6-spelling staged | double n in a French-derived ending (questionnaire)
+    Which sentence has a spelling error?
+    KEY: Every student filled out a short questionaire about their reading habits at the start of the year.
+Spelling | 5 | DB map-lu-v6-spelling staged | silent e kept before -ous to keep the g soft (courage + -ous = courageous)
+    Which sentence has a spelling error?
+    KEY: It was couragous of Mia to sing alone.
+Spelling | 8 | DB map-lu-v6-spelling staged | pronunciation does not keep the ou of pronounce
+    Which sentence has a spelling error?
+    KEY: The Spanish teacher helped us practice the pronounciation of each new word.
+Spelling | 5 | file map-pilot-mech.batch.json | vowel team au with final silent e
+    Which word is spelled correctly?
+    KEY: because
+Spelling | 6 | file map-pilot-mech.batch.json | doubling the final consonant before -ing
+    Which word correctly completes the sentence? My little brother is learning to swim, and he loves ___ in the lake.
+    KEY: swimming
+Spelling | 7 | file map-pilot-mech.batch.json | silent letters (kn, wr, s, mn)
+    Which word is spelled INCORRECTLY?
+    KEY: colum
+Spelling | 7 | file map-pilot-mech.batch.json | -ible vs. -able ending
+    Which word correctly completes the sentence? The tiny green bug was almost ___ on the leaf.
+    KEY: invisible
+Spelling | 9 | file map-pilot-mech.batch.json | -ance vs. -ence ending
+    Which word is spelled correctly?
+    KEY: perseverance
+Spelling | 10 | file map-pilot-mech.batch.json | -tious ending (sh sound spelled ti)
+    Which word is spelled correctly?
+    KEY: conscientious
+Spelling | 5 | file map-pilot-2-mech.batch.json | prefix dis- added to a base word: one s (dis + appear), double p kept from appear
+    Which word correctly completes the sentence? The magician made the coin ______ from his hand.
+    KEY: disappear
+Spelling | 6 | file map-pilot-2-mech.batch.json | one c, double s (necessary)
+    Which word is spelled correctly?
+    KEY: necessary
+Spelling | 7 | file map-pilot-2-mech.batch.json | root finite keeps i and silent e before -ly (definite + ly)
+    Which word correctly completes the sentence? I will ______ finish my project before the weekend.
+    KEY: definitely
+Spelling | 7 | file map-pilot-2-mech.batch.json | no d before the final ge, and i (not e) in the second syllable (privilege)
+    Which word correctly completes the sentence? Voting in the student election is a ______ that every member shares.
+    KEY: privilege
+Spelling | 8 | file map-pilot-2-mech.batch.json | silent h after r and no vowel letter before the final m (rhythm)
+    Which word correctly completes the sentence? The drummer kept a steady ______ while the band tuned their guitars.
+    KEY: rhythm
+Spelling | 10 | file map-pilot-2-mech.batch.json | -able vs -ible suffix plus unstressed i in the prefix in- / dis- (indispensable)
+    Which word correctly completes the sentence? Her careful notes proved ______ when the team rebuilt the experiment.
+    KEY: indispensable
+Spelling | 5 | file map-pilot-3-lu.batch.json | es- vs ex- in the first syllable (site 1); -ally with double l from adding -ly to -al (site 2)
+    Which word correctly completes the sentence? The trail was ______ steep near the top, so we stopped often to rest.
+    KEY: especially
+Spelling | 6 | file map-pilot-3-lu.batch.json | double m from prefix im- (site 1); silent e kept before -ly (site 2)
+    Which word correctly completes the sentence? When the fire alarm rang, the students ______ lined up at the classroom door.
+    KEY: immediately
+Spelling | 7 | file map-pilot-4-lu.batch.json | double c in the prefix oc- (site 1) + -ence vs. -ance after a doubled r (site 2)
+    Which word correctly completes the sentence? A total solar eclipse is a rare ___ that scientists plan for years in advance.
+    KEY: occurrence
+Spelling | 5 | file map-lu-v2/batch.authored.json | single m versus double m in the first syllable, and the double r
+    Which word correctly completes the sentence? Our class will visit the history museum ____ morning if the weather is nice.
+    KEY: tomorrow
+Spelling | 5 | file map-lu-v2/batch.authored.json | silent w in answer: the s and w swapped
+    Which sentence has a spelling error?
+    KEY: Leo raised his hand to give the right anwser to the teacher.
+Spelling | 5 | file map-lu-v2/batch.authored.json | unstressed vowels in the second and third syllables (ex-per-i-ment)
+    Which word correctly completes the sentence? For the fair, Ana did an ____ to see which soil helps beans grow fastest.
+    KEY: experiment
+Spelling | 5 | file map-lu-v2/batch.authored.json | suffix -ly added to a word ending in l (final + ly keeps both l's)
+    Which sentence has a spelling error?
+    KEY: The rain finaly stopped, so the team went outside to play.
+Spelling | 5 | file map-lu-v2/batch.authored.json | ei after c, and the soft c spelling the s sound
+    Which word correctly completes the sentence? Every student will ____ a certificate at the end of the reading contest.
+    KEY: receive
+Spelling | 5 | file map-lu-v2/batch.authored.json | the eau vowel group from beauty, and the suffix -ful with one l
+    Which word correctly completes the sentence? We watched the ____ sunset from the top of the hill last night.
+    KEY: beautiful
+Spelling | 5 | file map-lu-v2/batch.authored.json | ei exception: weird breaks 'i before e'
+    Which sentence has a spelling error?
+    KEY: Lily heard a wierd noise coming from the attic.
+Spelling | 6 | file map-lu-v2/batch.authored.json | the silent n of environ before -ment, and the ro order
+    Which word correctly completes the sentence? Planting trees and picking up trash are good ways to protect the ____.
+    KEY: environment
+Spelling | 6 | file map-lu-v2/batch.authored.json | unstressed vowel in separate (sep-a-rate)
+    Which sentence has a spelling error?
+    KEY: We had to seperate the red beads from the blue ones.
+Spelling | 6 | file map-lu-v2/batch.authored.json | double c and single s
+    Which word correctly completes the sentence? The whole family dressed up for the special ____ of my sister's graduation.
+    KEY: occasion
+Spelling | 6 | file map-lu-v2/batch.authored.json | dropping the final e of true before -ly (an exception)
+    Which sentence has a spelling error?
+    KEY: Ben was truely sorry that he forgot his friend's birthday.
+Spelling | 6 | file map-lu-v2/batch.authored.json | ie in achieve, and keeping the final e before -ment
+    Which word correctly completes the sentence? Learning to swim across the whole pool was a proud ____ for Omar.
+    KEY: achievement
+Spelling | 6 | file map-lu-v2/batch.authored.json | the -ule ending of schedule written as -ual
+    Which sentence has a spelling error?
+    KEY: The bus schedual for our town changes when the new school year begins.
+Spelling | 7 | file map-lu-v2/batch.authored.json | two sets of double consonants: rr and ss
+    Which word correctly completes the sentence? Leo felt ____ when he tripped on the stage in front of the whole school.
+    KEY: embarrassed
+Spelling | 7 | file map-lu-v2/batch.authored.json | the three doubled pairs of committee (mm, tt, ee): one t dropped
+    Which sentence has a spelling error?
+    KEY: The commitee met after school to plan the dance.
+Spelling | 7 | file map-lu-v2/batch.authored.json | single c and double m (re- + commend)
+    Which word correctly completes the sentence? Doctors ____ that children get at least nine hours of sleep each night.
+    KEY: recommend
+Spelling | 7 | file map-lu-v2/batch.authored.json | unstressed vowel in the last syllable: cemetery ends in -ery, not -ary
+    Which sentence has a spelling error?
+    KEY: The old cemetary behind the church is full of tall stone markers.
+Spelling | 7 | file map-lu-v2/batch.authored.json | y for the short i sound in the Greek prefix hypo-, and the unstressed e in -the-
+    Which word correctly completes the sentence? Before testing, each group wrote a ____ predicting which plant would grow the tallest.
+    KEY: hypothesis
+Spelling | 7 | file map-lu-v2/batch.authored.json | unstressed a in the middle syllable and the -ent (not -ant) ending
+    Which word correctly completes the sentence? The marker leaves a ____ stain, so it will never wash out of your shirt.
+    KEY: permanent
+Spelling | 7 | file map-lu-v2/batch.authored.json | the c before qu in acquire (ac- + quire)
+    Which sentence has a spelling error?
+    KEY: Mia hopes to aquire a rare stamp for her collection this year.
+Spelling | 8 | file map-lu-v2/batch.authored.json | unstressed e in the middle syllable and the -ance ending
+    Which word correctly completes the sentence? The city closed the bridge for a week of ____ and repairs.
+    KEY: maintenance
+Spelling | 8 | file map-lu-v2/batch.authored.json | unstressed a in the middle syllable of guarantee
+    Which sentence has a spelling error?
+    KEY: The store offers a guarentee that the bike will last ten years.
+Spelling | 8 | file map-lu-v2/batch.authored.json | prefix ir- meeting a root starting with r, and the -ible ending
+    Which word correctly completes the sentence? The smell of fresh popcorn was ____, so we bought a big bag.
+    KEY: irresistible
+Spelling | 8 | file map-lu-v2/batch.authored.json | double l after -ei-, and the -ance ending
+    Which word correctly completes the sentence? Security cameras keep the store under ____ day and night.
+    KEY: surveillance
+Spelling | 8 | file map-lu-v2/batch.authored.json | double n in questionnaire (question + -naire)
+    Which sentence has a spelling error?
+    KEY: Every parent filled out a short questionaire about lunch.
+Spelling | 5 | file map-lu-v3/batch.authored.json | a single l in develop, and nothing added between develop and the suffix -ment
+    Which word correctly completes the sentence? The coach was pleased with the ____ of Maya's skills over the school year.
+    KEY: development
+Spelling | 5 | file map-lu-v3/batch.authored.json | ei word that breaks "i before e" (weird misspelled as wierd)
+    Which sentence has a spelling error?
+    KEY: Mia heard a wierd sound in the hall.
+Spelling | 5 | file map-lu-v3/batch.authored.json | double c at the start and -al + -ly giving double l
+    Which word correctly completes the sentence? Sam ____ knocked the glass of juice off the table with his elbow.
+    KEY: accidentally
+Spelling | 5 | file map-lu-v3/batch.authored.json | c alone spelling the s sound (not sc), and the i kept in -cious
+    Which word correctly completes the sentence? The guard grew ____ when the stranger kept peeking through the window of the closed bank.
+    KEY: suspicious
+Spelling | 5 | file map-lu-v3/batch.authored.json | silent t in glisten dropped
+    Which sentence has a spelling error?
+    KEY: Fresh snow will glisen in the bright sun.
+Spelling | 5 | file map-lu-v3/batch.authored.json | single m from omit, and double s in -ssion
+    Which word correctly completes the sentence? The ____ of one important step in the recipe made the cake fall flat.
+    KEY: omission
+Spelling | 5 | file map-lu-v3/batch.authored.json | unstressed vowels in the second and third syllables (all e)
+    Which word correctly completes the sentence? The old church has a small ____ where many of the town's first settlers are buried.
+    KEY: cemetery
+Spelling | 5 | file map-lu-v3/batch.authored.json | extra c added after ex in exercise
+    Which sentence has a spelling error?
+    KEY: Daily excercise helps keep your heart strong and healthy.
+Spelling | 5 | file map-lu-v3/batch.authored.json | the base word fortunate kept whole: no extra n before the t, and the final e kept before the consonant suffix -ly
+    Which word correctly completes the sentence? We wanted to swim this afternoon, but ____ the pool was closed for repairs.
+    KEY: unfortunately
+Spelling | 5 | file map-lu-v3/batch.authored.json | -ence ending written as -ance
+    Which sentence has a spelling error?
+    KEY: Fixing the old clock took a lot of patiance.
+Spelling | 6 | file map-lu-v3/batch.authored.json | single r and double s
+    Which word correctly completes the sentence? The school has clear rules against bullying and ____ of any kind.
+    KEY: harassment
+Spelling | 6 | file map-lu-v3/batch.authored.json | ai in the last syllable reversed to ia
+    Which sentence has a spelling error?
+    KEY: The villian in the movie wore a long black cape and laughed loudly.
+Spelling | 6 | file map-lu-v3/batch.authored.json | two different doubled consonants: cc and ss
+    Which word correctly completes the sentence? Nora wore a bright scarf as an ____ with her plain winter coat.
+    KEY: accessory
+Spelling | 6 | file map-lu-v3/batch.authored.json | ie reversed to ei in hygiene
+    Which sentence has a spelling error?
+    KEY: Good hygeine means washing your hands often during the day.
+Spelling | 6 | file map-lu-v3/batch.authored.json | three doubled letters (m, t and e); the doubled m and t are tested
+    Which word correctly completes the sentence? The student ____ voted to hold the spring dance in the school gym.
+    KEY: committee
+Spelling | 6 | file map-lu-v3/batch.authored.json | unstressed a after the double p, and the -ent ending
+    Which word correctly completes the sentence? From the dark clouds, it was ____ that a big storm was coming soon.
+    KEY: apparent
+Spelling | 6 | file map-lu-v3/batch.authored.json | u of curious wrongly kept in curiosity
+    Which sentence has a spelling error?
+    KEY: Out of curiousity, Leo opened the old wooden box.
+Spelling | 6 | file map-lu-v3/batch.authored.json | the ie sits only in the -ient ending, not after conv-
+    Which word correctly completes the sentence? The new store is ____ for us because it is only a short walk from our house.
+    KEY: convenient
+Spelling | 6 | file map-lu-v3/batch.authored.json | -ence ending written as -ance
+    Which sentence has a spelling error?
+    KEY: Many people doubt the existance of ghosts in old houses.
+Spelling | 7 | file map-lu-v3/batch.authored.json | single s after di, and disaster dropping its e before -ous
+    Which word correctly completes the sentence? The flood was ____ for the farmers, who lost almost all of their crops.
+    KEY: disastrous
+Spelling | 7 | file map-lu-v3/batch.authored.json | ei after c reversed to ie
+    Which sentence has a spelling error?
+    KEY: The fake email tried to decieve people into sharing their passwords.
+Spelling | 7 | file map-lu-v3/batch.authored.json | single n and single c, where students expect doubled consonants
+    Which word correctly completes the sentence? Doctors ____ children against measles to protect them from the disease.
+    KEY: inoculate
+Spelling | 7 | file map-lu-v3/batch.authored.json | no consonant doubling before the consonant suffix -ful, and -ful spelled with one l
+    Which word correctly completes the sentence? Maya felt ____ after she said something unkind to her best friend at lunch.
+    KEY: regretful
+Spelling | 7 | file map-lu-v3/batch.authored.json | unstressed i in the first syllable written as e
+    Which sentence has a spelling error?
+    KEY: Jack wore a rediculous hat to the costume party.
+Spelling | 7 | file map-lu-v3/batch.authored.json | silent u after g, and a single r
+    Which word correctly completes the sentence? The store offers a ____ that the blender will work for at least two years.
+    KEY: guarantee
+Spelling | 7 | file map-lu-v3/batch.authored.json | similar inside dis-: one m, and the ending -lar with no extra i
+    Which word correctly completes the sentence? The two poems share a topic, but their styles are completely ____.
+    KEY: dissimilar
+Spelling | 7 | file map-lu-v3/batch.authored.json | e of venge- kept but the a of -ance dropped
+    Which sentence has a spelling error?
+    KEY: The angry pirate swore vengence on the captain who had stolen his ship.
+Spelling | 7 | file map-lu-v3/batch.authored.json | prefix in- + accurate: the n is not doubled because the root starts with a, and accurate has one r
+    Which word correctly completes the sentence? The weather report was ____ because it promised sun, but it rained all day.
+    KEY: inaccurate
+Spelling | 7 | file map-lu-v3/batch.authored.json | unstressed i in the third syllable written as a
+    Which sentence has a spelling error?
+    KEY: The vote to name the class pet Pepper was unanamous among all the students in the room.
+Spelling | 8 | file map-lu-v3/batch.authored.json | silent t dropped
+    Which sentence has a spelling error?
+    KEY: My parents finally paid off the morgage on the house they bought twenty years ago.
+Spelling | 8 | file map-lu-v3/batch.authored.json | double m after co and double s in -ssion
+    Which word correctly completes the sentence? The police ____ spoke to reporters about the new safety plan for the city.
+    KEY: commissioner
+Spelling | 8 | file map-lu-v3/batch.authored.json | o of pronounce wrongly kept in pronunciation
+    Which sentence has a spelling error?
+    KEY: The teacher helped Sam with the correct pronounciation of several difficult French words.
+Spelling | 8 | file map-lu-v3/batch.authored.json | y spelling the short i sound, and the i in the -crisy ending
+    Which word correctly completes the sentence? The class discussed the ____ of a leader who breaks the same rules he makes for others.
+    KEY: hypocrisy
+Spelling | 8 | file map-lu-v3/batch.authored.json | the vowel pair uo after fl, and the sc spelling of the s sound
+    Which word correctly completes the sentence? The bright ____ lights in the hallway hummed softly all day long.
+    KEY: fluorescent
+Spelling | 8 | file map-lu-v3/batch.authored.json | c of the sc spelling dropped
+    Which sentence has a spelling error?
+    KEY: Young children and older adults are more suseptible to the flu during the cold winter months.
+Spelling | 8 | file map-lu-v3/batch.authored.json | mm written as mn
+    Which sentence has a spelling error?
+    KEY: Leo faced a dilemna when both of his friends invited him to parties on the same night.
+Spelling | 5 | file map-lu-v4/batch.authored.json | a soft g that is spelled with g alone (no -dge) and the unstressed vowel e in the middle syllable
+    Which word correctly completes the sentence? The sinking of the great ship was a terrible ____ that saddened the whole world.
+    KEY: tragedy
+Spelling | 5 | file map-lu-v4/batch.authored.json | the -ain ending of villain (not -ian)
+    Which sentence has a spelling error?
+    KEY: In the play, Omar wore a black cape because he was the villian.
+Spelling | 5 | file map-lu-v4/batch.authored.json | dropping the final e of bustle before -ing, and keeping the silent t
+    Which word correctly completes the sentence? The ____ market was crowded with shoppers, sellers, and noisy delivery carts.
+    KEY: bustling
+Spelling | 5 | file map-lu-v4/batch.authored.json | the -ence suffix: the vowel e and the final soft c
+    Which word correctly completes the sentence? Scientists still argue about the ____ of life on other planets.
+    KEY: existence
+Spelling | 5 | file map-lu-v4/batch.authored.json | ei in foreign, an exception to 'i before e'
+    Which sentence has a spelling error?
+    KEY: Nora was excited to learn a foriegn language when she moved to a new city.
+Spelling | 5 | file map-lu-v4/batch.authored.json | dropping the final e of fascinate before -ing, and the silent c in sc
+    Which word correctly completes the sentence? The museum guide told us a ____ fact about how the pyramids were built.
+    KEY: fascinating
+Spelling | 5 | file map-lu-v4/batch.authored.json | ie in mischief ('i before e')
+    Which sentence has a spelling error?
+    KEY: The puppy was full of mischeif and chewed every shoe it could find in the house.
+Spelling | 5 | file map-lu-v4/batch.authored.json | the unstressed i after magn- and the soft c in -cent
+    Which word correctly completes the sentence? From the top of the mountain, we had a ____ view of the valley below.
+    KEY: magnificent
+Spelling | 5 | file map-lu-v4/batch.authored.json | keeping the final e of sincere before -ly
+    Which sentence has a spelling error?
+    KEY: Mia wrote that she sincerly hoped her grandmother would feel better soon.
+Spelling | 5 | file map-lu-v4/batch.authored.json | the double s in mess- and the soft g in -enger
+    Which word correctly completes the sentence? In the old days, a ____ on horseback carried important letters between towns.
+    KEY: messenger
+Spelling | 6 | file map-lu-v4/batch.authored.json | a single l after de- and the unstressed e in -ber-
+    Which word correctly completes the sentence? Breaking the window was not an accident; it was a ____ act.
+    KEY: deliberate
+Spelling | 6 | file map-lu-v4/batch.authored.json | the au in restaurant, a vowel that is not heard clearly
+    Which sentence has a spelling error?
+    KEY: We ate dinner at a new resturant downtown.
+Spelling | 6 | file map-lu-v4/batch.authored.json | keeping the double l and the i of million before -aire
+    Which word correctly completes the sentence? After winning the lottery, the farmer became a ____ overnight.
+    KEY: millionaire
+Spelling | 6 | file map-lu-v4/batch.authored.json | the unstressed o in demo- and the final soft c in -cracy
+    Which word correctly completes the sentence? In a ____, citizens choose their leaders by voting in free elections.
+    KEY: democracy
+Spelling | 6 | file map-lu-v4/batch.authored.json | the silent sc in conscious
+    Which sentence has a spelling error?
+    KEY: Ben was concious of the time all morning.
+Spelling | 6 | file map-lu-v4/batch.authored.json | a soft g spelled with g alone and the i in -giance
+    Which word correctly completes the sentence? The knights swore ____ to their king and promised to defend his castle.
+    KEY: allegiance
+Spelling | 6 | file map-lu-v4/batch.authored.json | the soft c in vicious (no sc)
+    Which sentence has a spelling error?
+    KEY: The guard dog looked viscious, but it was really very gentle.
+Spelling | 6 | file map-lu-v4/batch.authored.json | the double l from literal + -ly and the unstressed e in lit-e-r
+    Which word correctly completes the sentence? The bridge was ____ falling apart, with pieces of stone dropping into the river.
+    KEY: literally
+Spelling | 6 | file map-lu-v4/batch.authored.json | the unstressed e in el-e-g and the a in the -ant suffix
+    Which word correctly completes the sentence? The bride wore an ____ white gown with lace sleeves.
+    KEY: elegant
+Spelling | 6 | file map-lu-v4/batch.authored.json | keeping the e of notice before -able to keep the c soft
+    Which sentence has a spelling error?
+    KEY: There was a noticable change in the weather.
+Spelling | 6 | file map-lu-v4/batch.authored.json | the ie in -chie- and the -vous ending with no extra i
+    Which word correctly completes the sentence? The ____ kitten knocked every pencil off the desk and then hid under the bed.
+    KEY: mischievous
+Spelling | 7 | file map-lu-v4/batch.authored.json | a single n after u- and the -mous ending with no extra i
+    Which word correctly completes the sentence? Every member voted yes, so the decision was ____.
+    KEY: unanimous
+Spelling | 7 | file map-lu-v4/batch.authored.json | the double g and single r in exaggerate
+    Which sentence has a spelling error?
+    KEY: Sam tends to exagerrate when he tells stories about his fishing trips.
+Spelling | 7 | file map-lu-v4/batch.authored.json | the double c at the start and the single l in -cel-
+    Which word correctly completes the sentence? When the light turns green, the driver will ____ and move ahead with the traffic.
+    KEY: accelerate
+Spelling | 7 | file map-lu-v4/batch.authored.json | doubling the final r of occur before -ed
+    Which sentence has a spelling error?
+    KEY: The accident occured at the corner of Main Street and Oak Avenue late last night.
+Spelling | 7 | file map-lu-v4/batch.authored.json | the double r and the unstressed u before the final m
+    Which word correctly completes the sentence? Our school added a coding class to the ____ for all seventh graders.
+    KEY: curriculum
+Spelling | 7 | file map-lu-v4/batch.authored.json | the -nun- spelling (not -noun- from pronounce) and the soft c in -ciation
+    Which word correctly completes the sentence? The dictionary shows the correct ____ of each word, so you know how to say it.
+    KEY: pronunciation
+Spelling | 7 | file map-lu-v4/batch.authored.json | the f of twelve in twelfth, which is often not pronounced
+    Which sentence has a spelling error?
+    KEY: Jack finished the race in twelth place today.
+Spelling | 7 | file map-lu-v4/batch.authored.json | the double m and the -try ending with no extra vowel
+    Which word correctly completes the sentence? A butterfly's wings show perfect ____, because the left side matches the right side.
+    KEY: symmetry
+Spelling | 7 | file map-lu-v4/batch.authored.json | a single l in phil- and the unstressed o in -soph-
+    Which word correctly completes the sentence? In her ____ class, Ana discussed big questions about truth and the meaning of life.
+    KEY: philosophy
+Spelling | 7 | file map-lu-v4/batch.authored.json | the i before -ature in miniature, which is often not pronounced
+    Which sentence has a spelling error?
+    KEY: Omar built a minature model of the bridge for his history project at school.
+Spelling | 7 | file map-lu-v4/batch.authored.json | a single m in geo-m- and the -try ending with no extra vowel
+    Which word correctly completes the sentence? In ____ class, we studied how to measure angles and find the area of triangles.
+    KEY: geometry
+Spelling | 8 | file map-lu-v4/batch.authored.json | two unstressed vowels: e in rep-e-t and i in -tition
+    Which word correctly completes the sentence? Learning a new language takes a lot of ____, so review the same words every day.
+    KEY: repetition
+Spelling | 8 | file map-lu-v4/batch.authored.json | the double n in questionnaire
+    Which sentence has a spelling error?
+    KEY: Please fill out the questionaire and return it to the front desk.
+Spelling | 8 | file map-lu-v4/batch.authored.json | the unstressed e in vet-e-r and the i in -rinarian
+    Which word correctly completes the sentence? We took our sick dog to the ____ for a checkup and some medicine.
+    KEY: veterinarian
+Spelling | 8 | file map-lu-v4/batch.authored.json | a single z in haz- and the -dous ending with no extra i
+    Which word correctly completes the sentence? Workers must wear masks when they clean up ____ chemicals that could harm their lungs.
+    KEY: hazardous
+Spelling | 8 | file map-lu-v4/batch.authored.json | the silent h in silhouette
+    Which sentence has a spelling error?
+    KEY: The silouette of a tall man appeared in the doorway behind the curtain.
+Spelling | 8 | file map-lu-v4/batch.authored.json | a soft g spelled with g alone and the d of alleged before -ly
+    Which word correctly completes the sentence? The suspect ____ stole the painting, but the police have not proven it yet.
+    KEY: allegedly
+Spelling | 8 | file map-lu-v4/batch.authored.json | the c before q and the doubled t before -ed
+    Which word correctly completes the sentence? After the trial, the jury found the man not guilty, and he was ____ of all charges.
+    KEY: acquitted
+Spelling | 8 | file map-lu-v4/batch.authored.json | the -eur ending of entrepreneur
+    Which sentence has a spelling error?
+    KEY: Ben hopes to become an entreprenuer and start his own bakery someday.
+Spelling | 8 | file map-lu-v4/batch.authored.json | the soft c spelled with c alone (no sc) and the -cent ending with no extra i
+    Which word correctly completes the sentence? Our house is ____ to the park, so we can walk there in one minute.
+    KEY: adjacent
+Spelling | 8 | file map-lu-v4/batch.authored.json | the doubled r from recur + -ence and the -ence suffix
+    Which word correctly completes the sentence? The doctor gave Leo medicine to prevent a ____ of the infection.
+    KEY: recurrence
+Spelling | 8 | file map-lu-v4/batch.authored.json | the i-e order in sacrilegious (from sacrilege, not religious)
+    Which sentence has a spelling error?
+    KEY: The villagers believed it was sacreligious to cut down the sacred tree.
+Spelling | 5 | file map-lu-v5/batch.authored.json | especially: special + -ly keeps the final l of the base, giving a double l
+    Which sentence has a spelling error?
+    KEY: Maya loves the park, especialy when the leaves turn orange in the fall.
+Spelling | 5 | file map-lu-v5/batch.authored.json | vacuum: one c and a double u; the error doubles the wrong letter
+    Which sentence has a spelling error?
+    KEY: After dinner, Jack used the vaccum to clean the crumbs under the kitchen table.
+Spelling | 5 | file map-lu-v5/batch.authored.json | raspberry: silent p in the compound rasp + berry is dropped
+    Which sentence has a spelling error?
+    KEY: Mia spread rasberry jam on her toast this morning.
+Spelling | 5 | file map-lu-v5/batch.authored.json | curiosity: the u of curious is dropped before -ity
+    Which sentence has a spelling error?
+    KEY: Leo's curiousity about bugs and spiders never ends.
+Spelling | 5 | file map-lu-v5/batch.authored.json | villain: the -ain ending is reversed to -ian
+    Which sentence has a spelling error?
+    KEY: In the play, the villian tried to steal the queen's crown.
+Spelling | 5 | file map-lu-v5/batch.authored.json | interrupt: inter- + rupt keeps the double r where prefix meets root
+    Which sentence has a spelling error?
+    KEY: Please do not interupt your sister while she is talking.
+Spelling | 5 | file map-lu-v5/batch.authored.json | schedule: the -ule ending is spelled by sound as -ual
+    Which sentence has a spelling error?
+    KEY: The new bus schedual changes on most holidays.
+Spelling | 5 | file map-lu-v5/batch.authored.json | preferred: final r is doubled before -ed because the stress falls on the last syllable
+    Which sentence has a spelling error?
+    KEY: Ben prefered the blue bike to the red one.
+Spelling | 5 | file map-lu-v5/batch.authored.json | permanent: -ent ending written as -ant (unstressed vowel)
+    Which sentence has a spelling error?
+    KEY: The marker left a permanant mark on the desk.
+Spelling | 5 | file map-lu-v5/batch.authored.json | achievement: ie/ei reversed (i before e after ch)
+    Which sentence has a spelling error?
+    KEY: Winning the spelling bee was a big acheivement for Nora.
+Spelling | 5 | file map-lu-v5/batch.authored.json | separate: unstressed second vowel written e instead of a
+    Which sentence has a spelling error?
+    KEY: Please seperate the paper and the plastic before recycling.
+Spelling | 5 | file map-lu-v5/batch.authored.json | existence: -ence ending written as -ance
+    Which sentence has a spelling error?
+    KEY: Long ago, people argued about the existance of the giant squid in the deep sea.
+Spelling | 6 | file map-lu-v5/batch.authored.json | conscience: the silent s of the 'sc' cluster is dropped
+    Which sentence has a spelling error?
+    KEY: Maya's concience bothered her after she took the last cookie without asking anyone.
+Spelling | 6 | file map-lu-v5/batch.authored.json | dilemma: double m written as mn
+    Which sentence has a spelling error?
+    KEY: Sam faced a dilemna when two friends had parties on the same day.
+Spelling | 6 | file map-lu-v5/batch.authored.json | relevant: -ant ending written as -ent
+    Which sentence has a spelling error?
+    KEY: Ask only questions that are relevent to the topic.
+Spelling | 6 | file map-lu-v5/batch.authored.json | commitment: the t is not doubled before -ment (consonant suffix)
+    Which sentence has a spelling error?
+    KEY: Training every day for the race takes real committment.
+Spelling | 6 | file map-lu-v5/batch.authored.json | receipt: ei after c reversed to ie
+    Which sentence has a spelling error?
+    KEY: Keep the reciept in case the shoes do not fit.
+Spelling | 6 | file map-lu-v5/batch.authored.json | recommend: re- + commend keeps the double m
+    Which sentence has a spelling error?
+    KEY: I would recomend this book to anyone who enjoys a good adventure.
+Spelling | 6 | file map-lu-v5/batch.authored.json | temperament: the unstressed a in the middle syllable is dropped
+    Which sentence has a spelling error?
+    KEY: Our cat has a calm temperment and almost never gets upset when visitors come to the house.
+Spelling | 6 | file map-lu-v5/batch.authored.json | pursue: the first vowel is written e (per-) instead of u (pur-)
+    Which sentence has a spelling error?
+    KEY: After high school, Mia plans to persue a career in music and dance.
+Spelling | 6 | file map-lu-v5/batch.authored.json | symmetry: sym- + metry keeps the double m
+    Which sentence has a spelling error?
+    KEY: A butterfly's wings show perfect symetry, with the same pattern on both sides.
+Spelling | 6 | file map-lu-v5/batch.authored.json | procedure: the 'ceed' of proceed is wrongly carried into procedure
+    Which sentence has a spelling error?
+    KEY: The nurse explained the proceedure before the blood test.
+Spelling | 6 | file map-lu-v5/batch.authored.json | vengeance: the e that keeps the g soft before -ance is dropped, and -ance becomes -ence
+    Which sentence has a spelling error?
+    KEY: The angry pirate swore vengence on the crew.
+Spelling | 6 | file map-lu-v5/batch.authored.json | guarantee: unstressed middle vowel written e instead of a
+    Which sentence has a spelling error?
+    KEY: The store offers a guarentee that the toaster will last one year.
+Spelling | 7 | file map-lu-v5/batch.authored.json | -ance/-ence suffix: acquaintance ends in -ance
+    Which sentence has a spelling error?
+    KEY: Maya was surprised to meet an old acquaintence from summer camp at the crowded train station.
+Spelling | 7 | file map-lu-v5/batch.authored.json | doubled consonant: possession has double s twice
+    Which sentence has a spelling error?
+    KEY: Ben kept the old coin in his posession for years.
+Spelling | 7 | file map-lu-v5/batch.authored.json | -ance/-ence suffix: coincidence ends in -ence
+    Which sentence has a spelling error?
+    KEY: It was a strange coincidance that Sam and Omar wore the same shirt to the party.
+Spelling | 7 | file map-lu-v5/batch.authored.json | -able/-ible suffix: negligible ends in -ible
+    Which sentence has a spelling error?
+    KEY: The cost of the repair was negligable, so Jack paid it right away.
+Spelling | 7 | file map-lu-v5/batch.authored.json | keeping final e before -ous: outrage + ous keeps the e to keep the soft g
+    Which sentence has a spelling error?
+    KEY: Omar thought the price of the tickets was outragous.
+Spelling | 7 | file map-lu-v5/batch.authored.json | missing vowel in a vowel pair: camouflage has 'ou'
+    Which sentence has a spelling error?
+    KEY: The green lizard used camoflage to hide among the leaves and branches of the old oak tree.
+Spelling | 7 | file map-lu-v5/batch.authored.json | dropped syllable: particular + ly keeps every letter
+    Which sentence has a spelling error?
+    KEY: Leo was particulary proud of the model bridge he built for the fair.
+Spelling | 7 | file map-lu-v5/batch.authored.json | dropping the e of -er when adding -ous: disastrous, not disasterous
+    Which sentence has a spelling error?
+    KEY: The flood was disasterous for the farms along the river.
+Spelling | 7 | file map-lu-v5/batch.authored.json | -ly versus -ally after -ic: publicly is the exception, not publically
+    Which sentence has a spelling error?
+    KEY: The mayor publically thanked the volunteers who cleaned up the park after the big storm.
+Spelling | 7 | file map-lu-v5/batch.authored.json | -able/-ible suffix: illegible ends in -ible
+    Which sentence has a spelling error?
+    KEY: Sam's handwriting was so messy that it was illegable.
+Spelling | 7 | file map-lu-v5/batch.authored.json | prefix meeting a root: dis + satisfied keeps both s's
+    Which sentence has a spelling error?
+    KEY: Ana was disatisfied with her first drawing, so she started over on a clean sheet of paper.
+Spelling | 7 | file map-lu-v5/batch.authored.json | ie/ei reversal: grievance, not greivance
+    Which sentence has a spelling error?
+    KEY: The workers sent a list of every greivance to the company owner.
+Spelling | 8 | file map-lu-v5/batch.authored.json | dropped consonant in a cluster: entrepreneur has an r after the second p
+    Which sentence has a spelling error?
+    KEY: The young entrepeneur started a business walking dogs and soon hired three of her friends.
+Spelling | 8 | file map-lu-v5/batch.authored.json | missing vowel in a vowel cluster: liaison has i before the second s
+    Which sentence has a spelling error?
+    KEY: The school has a parent liason for new families.
+Spelling | 8 | file map-lu-v5/batch.authored.json | undoubled consonant: questionnaire has a double n
+    Which sentence has a spelling error?
+    KEY: Each parent filled out a short questionaire about the trip.
+Spelling | 8 | file map-lu-v5/batch.authored.json | extra consonant at a compound-like boundary: threshold has one h in the middle
+    Which sentence has a spelling error?
+    KEY: The tired hikers sat down at the threshhold of the old cabin.
+Spelling | 8 | file map-lu-v5/batch.authored.json | falsely doubled consonant after a prefix-like start: inoculate has one n
+    Which sentence has a spelling error?
+    KEY: Doctors innoculate babies against several diseases during their first year.
+Spelling | 8 | file map-lu-v5/batch.authored.json | carrying the root vowel into a derived form: pronounce becomes pronunciation, with no o after the first n
+    Which sentence has a spelling error?
+    KEY: Our Spanish teacher helps us practice the correct pronounciation of each new word on the list.
+Spelling | 8 | file map-lu-v5/batch.authored.json | vowel transposition by analogy with religious: sacrilegious, not sacreligious
+    Which sentence has a spelling error?
+    KEY: Some villagers thought the new statue was sacreligious.
+Spelling | 8 | file map-lu-v5/batch.authored.json | -ible/-able suffix confusion: susceptible, not susceptable
+    Which sentence has a spelling error?
+    KEY: Young children are more susceptable to colds during the winter months.
+Spelling | 8 | file map-lu-v5/batch.authored.json | unstressed vowel (schwa) in the second syllable: plagiarism, not plagerism
+    Which sentence has a spelling error?
+    KEY: Copying a friend's essay and turning it in as your own is plagerism.
+Spelling | 8 | file map-lu-v5/batch.authored.json | doubling the final consonant of a stressed syllable before a suffix: deter + ent becomes deterrent
+    Which sentence has a spelling error?
+    KEY: A tall fence is a good deterent for deer.
+Spelling | 8 | file map-lu-v5/batch.authored.json | unstressed vowel (schwa) in the third syllable: annihilate, not annihalate
+    Which sentence has a spelling error?
+    KEY: In the movie, a giant robot tries to annihalate the city.
+Spelling | 8 | file map-lu-v5/batch.authored.json | silent vowel dropped: parliament has an a after the i
+    Which sentence has a spelling error?
+    KEY: The members of parliment debated the new law late into the night before the final vote.
+Spelling | 5 | file map-lu-v6/batch.authored.json | unstressed vowel: -tery, not -tary
+    Which sentence has a spelling error?
+    KEY: Every spring, the town plants fresh flowers along the old wall of the cemetary by the church.
+Spelling | 5 | file map-lu-v6/batch.authored.json | suffix -ent vs -ant (magnificent)
+    Which sentence has a spelling error?
+    KEY: We had a magnificant view of the valley.
+Spelling | 5 | file map-lu-v6/batch.authored.json | unstressed vowel in the final syllable (-etin)
+    Which sentence has a spelling error?
+    KEY: Mr. Lee pinned a note about the field trip on the bulliten board outside the main office.
+Spelling | 5 | file map-lu-v6/batch.authored.json | unstressed middle vowel dropped (desperate)
+    Which sentence has a spelling error?
+    KEY: The lost hikers were desprate for water after a long day in the hot sun.
+Spelling | 5 | file map-lu-v6/batch.authored.json | silent g in -aign
+    Which sentence has a spelling error?
+    KEY: Maya ran a strong campain for class president.
+Spelling | 5 | file map-lu-v6/batch.authored.json | suffix -ance vs -ence (assistance, from assistant)
+    Which sentence has a spelling error?
+    KEY: Lily asked for assistence carrying the heavy boxes to the car.
+Spelling | 5 | file map-lu-v6/batch.authored.json | doubled consonant after the prefix (ac- + curate)
+    Which sentence has a spelling error?
+    KEY: The nurse used a scale to get an acurate weight for each baby in the clinic.
+Spelling | 5 | file map-lu-v6/batch.authored.json | vowel team dropped (cauli-)
+    Which sentence has a spelling error?
+    KEY: Mom picked some califlower and peas from her garden to cook for our big meal at home.
+Spelling | 5 | file map-lu-v6/batch.authored.json | -ary vs -ery ending
+    Which sentence has a spelling error?
+    KEY: My parents went out to dinner for their anniversery last night.
+Spelling | 5 | file map-lu-v6/batch.authored.json | which consonant doubles (colossal: one l, double s)
+    Which sentence has a spelling error?
+    KEY: A collosal statue stood in the middle of the town square for many years.
+Spelling | 6 | file map-lu-v6/batch.authored.json | unstressed vowel in the middle syllable (exaggerate)
+    Which sentence has a spelling error?
+    KEY: Leo tends to exaggarate when he tells stories about fishing.
+Spelling | 6 | file map-lu-v6/batch.authored.json | suffix -ible vs -able (eligible)
+    Which sentence has a spelling error?
+    KEY: Students who finish the reading challenge are eligable to win a prize in June.
+Spelling | 6 | file map-lu-v6/batch.authored.json | unstressed vowel (guarantee)
+    Which sentence has a spelling error?
+    KEY: The store offers a guarentee that the bike will last for five years.
+Spelling | 6 | file map-lu-v6/batch.authored.json | dropping the e of -er before -ous (disaster + -ous = disastrous)
+    Which sentence has a spelling error?
+    KEY: The storm was disasterous for the farmers who lost their crops.
+Spelling | 6 | file map-lu-v6/batch.authored.json | dge spelling of the j sound after a short vowel (acknowledge)
+    Which sentence has a spelling error?
+    KEY: Please acknowlege the letter when you get it.
+Spelling | 6 | file map-lu-v6/batch.authored.json | letter order in the root (ir- + relevant); switched l and v
+    Which sentence has a spelling error?
+    KEY: That fact is irrevelant to our science report.
+Spelling | 6 | file map-lu-v6/batch.authored.json | ie/ei: i before e (grievance, from grieve)
+    Which sentence has a spelling error?
+    KEY: The workers met with the owner of the factory to share a greivance about their low pay.
+Spelling | 6 | file map-lu-v6/batch.authored.json | suffix -able vs -ible (irritable)
+    Which sentence has a spelling error?
+    KEY: Nora gets irritible when she is hungry or has not slept well.
+Spelling | 6 | file map-lu-v6/batch.authored.json | vowel team dropped in the middle (medieval)
+    Which sentence has a spelling error?
+    KEY: We read a story about a medival knight and his loyal horse.
+Spelling | 7 | file map-lu-v6/batch.authored.json | single c and double m in recommend (re + commend); the doubled consonant is placed on the wrong letter
+    Which sentence has a spelling error?
+    KEY: I reccomend the tomato soup at that little cafe.
+Spelling | 7 | file map-lu-v6/batch.authored.json | unstressed vowel: repetition keeps the e of repeat (rep-e-ti-tion)
+    Which sentence has a spelling error?
+    KEY: Learning piano takes a lot of daily repitition.
+Spelling | 7 | file map-lu-v6/batch.authored.json | unstressed first syllable: pur- written as per- (pursue)
+    Which sentence has a spelling error?
+    KEY: After high school, Ana hopes to persue a career in medicine or in science research.
+Spelling | 7 | file map-lu-v6/batch.authored.json | compound word keeps both letters where parts meet (with + hold = withhold)
+    Which sentence has a spelling error?
+    KEY: Mom decided to withold dessert until my brother finished all of his homework.
+Spelling | 7 | file map-lu-v6/batch.authored.json | doubling the final consonant before -able (regret + able = regrettable)
+    Which sentence has a spelling error?
+    KEY: It was regretable that Leo missed the last bus home.
+Spelling | 7 | file map-lu-v6/batch.authored.json | double consonant cc in a borrowed word (zucchini)
+    Which sentence has a spelling error?
+    KEY: Grandma grows zuchini and tomatoes in her garden every summer.
+Spelling | 7 | file map-lu-v6/batch.authored.json | missing i in the -tious ending (superstitious)
+    Which sentence has a spelling error?
+    KEY: My uncle is very superstitous about black cats and broken mirrors.
+Spelling | 7 | file map-lu-v6/batch.authored.json | -ant/-ent ending in an unstressed syllable (recipient)
+    Which sentence has a spelling error?
+    KEY: Omar was the recipiant of the art award.
+Spelling | 7 | file map-lu-v6/batch.authored.json | -iant written as -ient in an unstressed ending (valiant)
+    Which sentence has a spelling error?
+    KEY: The valient firefighter carried the frightened child out of the burning house.
+Spelling | 8 | file map-lu-v6/batch.authored.json | -ance/-ence ending after a doubled consonant (occurrence)
+    Which sentence has a spelling error?
+    KEY: Thunderstorms are a common occurrance here in July.
+Spelling | 8 | file map-lu-v6/batch.authored.json | vowel order in an unusual borrowed word (pharaoh: a-o-h, not o-a-h)
+    Which sentence has a spelling error?
+    KEY: The pharoah was buried with gold and jewels.
+Spelling | 8 | file map-lu-v6/batch.authored.json | extra d from the -dge pattern (prejudice has no d before j)
+    Which sentence has a spelling error?
+    KEY: The speaker said that predjudice can be overcome through kindness.
+Spelling | 8 | file map-lu-v6/batch.authored.json | adding -ness to a word ending in n keeps both n's (stubborn + ness)
+    Which sentence has a spelling error?
+    KEY: His stubborness kept him from asking anyone for help with the project.
+Spelling | 8 | file map-lu-v6/batch.authored.json | -ant/-ent ending in an unstressed syllable (resilient)
+    Which sentence has a spelling error?
+    KEY: Children are often more resiliant than adults expect.
+Spelling | 8 | file map-lu-v6/batch.authored.json | missing s in the -sc- cluster (unconscious)
+    Which sentence has a spelling error?
+    KEY: The boxer was knocked unconcious in the third round of the match.
+Spelling | 8 | file map-lu-v6/batch.authored.json | unstressed vowel in the second syllable (perpendicular)
+    Which sentence has a spelling error?
+    KEY: In geometry class we learned how to draw a perpindicular line through any point on a circle.
+Spelling | 8 | file map-lu-v6/batch.authored.json | unstressed ia vowel pair reduced to e (plagiarism)
+    Which sentence has a spelling error?
+    KEY: Copying sentences from a website without giving credit is called plagerism by our teachers.
+Spelling | 8 | file map-lu-v6/batch.authored.json | -ant/-ent ending in an unstressed syllable (reminiscent)
+    Which sentence has a spelling error?
+    KEY: The smell of the bakery was reminiscant of my grandmother's kitchen.
+Spelling | 8 | file map-lu-v6/batch.authored.json | dropped unstressed vowel (sov-er-eign)
+    Which sentence has a spelling error?
+    KEY: The king was a sovreign ruler for decades.
+Vocabulary | 5 | file map-pilot-rlu.batch.json | 
+    What does the word "bright" mean in this passage?
+    KEY: smart
+Vocabulary | 6 | file map-pilot-rlu.batch.json | 
+    As it is used in the passage, the word "sound" most nearly means
+    KEY: sturdy
+Vocabulary | 5 | file map-pilot-2-rlu.batch.json | 
+    What does the word "steep" mean as it is used in the passage?
+    KEY: higher than usual
+Vocabulary | 6 | file map-pilot-2-rlu.batch.json | 
+    What does the word "draw" mean as it is used in the passage?
+    KEY: attract
+Vocabulary | 7 | file map-pilot-2-rlu.batch.json | 
+    What does the word "sound" mean as it is used in the passage?
+    KEY: based on good reasoning
+Vocabulary | 5 | file map-pilot-3-lu.batch.json | 
+    What does the word **yield** most likely mean as it is used in the sentence? The new garden beds should yield almost twice as many tomatoes as the old ones did.
+    KEY: produce
+Vocabulary | 5 | file map-pilot-3-lu.batch.json | 
+    What does the word **scale** most likely mean as it is used in the sentence? The scale in the corner of the map shows that one inch stands for ten miles.
+    KEY: ratio of distances
+Vocabulary | 6 | file map-pilot-3-lu.batch.json | 
+    What does the word **novel** most likely mean as it is used in the passage?
+    KEY: new and unusual
+Vocabulary | 6 | file map-pilot-3-lu.batch.json | 
+    What does the word **observes** most likely mean as it is used in the sentence? Every spring, the town of Millbrook observes Founders' Day by closing the schools and holding a parade down Main Street.
+    KEY: celebrates
+Vocabulary | 7 | file map-pilot-3-lu.batch.json | 
+    What does the word **tempered** most likely mean as it is used in the passage?
+    KEY: softened
+Vocabulary | 7 | file map-pilot-3-lu.batch.json | 
+    What does the word **qualified** most likely mean as it is used in the passage?
+    KEY: limited
+Vocabulary | 5 | file map-pilot-4-lu.batch.json | 
+    What does the word **dwindle** most likely mean as it is used in the passage?
+    KEY: run low
+Vocabulary | 5 | file map-pilot-4-lu.batch.json | 
+    Instead of a simple card for her grandmother's birthday, Priya made an elaborate one. It had pop-up flowers, a fold-out map of their town, and a poem inside. What does the word **elaborate** most likely mean as it is used in the passage?
+    KEY: detailed
+Vocabulary | 6 | file map-pilot-4-lu.batch.json | 
+    What does the word **skeptical** most likely mean as it is used in the passage?
+    KEY: doubtful
+Vocabulary | 6 | file map-pilot-4-lu.batch.json | 
+    What does the word **meticulous** most likely mean as it is used in the passage?
+    KEY: careful
+Vocabulary | 7 | file map-pilot-4-lu.batch.json | 
+    What does the word **ambivalent** most likely mean as it is used in the passage?
+    KEY: having mixed feelings
+Vocabulary | 7 | file map-pilot-4-lu.batch.json | 
+    What does the word **deteriorate** most likely mean as it is used in the passage?
+    KEY: break down
