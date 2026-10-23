@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T05:43:10.466367+00:00",
+  "generatedAt": "2026-10-23T05:45:10.621713+00:00",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -12224,6 +12224,33 @@
         "withsource": {
           "passed": true,
           "verdict": "Round 1 co-founder-standard A 0/48, B 0/48, but both named a cross-lecture template (usual story -> partly right; key the only qualified option on ~12 items) plus two factual simplifications (Grand Banks current speed, cross-staff vs backstaff). One distractor-side round by each author (shapes matched across options, two plain keys, two lectures end with the usual story upheld, facts fixed). Round 2 fresh A+B: 48/48 unique each, per-item odd-one-out tells gone; both still name a batch-level pattern (view keys are the moderate verdict; absolutes only in distractors). Stopped after one round (agent-rewrite rule); the human full sitting decides."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-15-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-15",
+      "contentSha": "3a4e775ff7621d20f50b00554f0a612f1ee3693200f5daf3770635ae6deb3654",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot iseedraft15-IR15-P02 (sha256 mod 6).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3a4e775ff7621d20f50b00554f0a612f1ee3693200f5daf3770635ae6deb3654",
+          "verdict": "author checks clean (merge 0, quote 0, location 0). Five suggested topics collided with the bank and were replaced; then P02 (barbershop poem), P03 (firewood memoir) and P05 (1849 plank road) collided with d16/d18 written concurrently and were rewritten (airport baggage poem, necktie memoir, town pound history) before the pre-screen."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
         },
         "nosource": {
           "passed": null,

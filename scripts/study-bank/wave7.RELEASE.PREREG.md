@@ -29,7 +29,7 @@ and every flag was fixed before staging. All rows are `verified=false` until rel
   decide the item? It found a whole passage (floating cylinders: depth = mass / (density × area)) answerable
   without the table, and a numeric item whose factor was exactly 1000, so the key was a table cell. Neither was
   visible to a key-correctness check. Ask it on every ACT Science pre-screen.
-- ISEE draft 15 is held back: three of its passages duplicated d16 and d18, which were written at the same time.
+- ISEE draft 15 (36): three of its passages duplicated d16 and d18, which were written at the same time; they were rewritten before the pre-screen (A 0, B 0). Route: spot `iseedraft15-IR15-P02` (sha256 mod 6 = 1); added after the first wave-7 commit, before any run.
 - TOEFL talk d7 is routed to a full sitting rather than a spot because both graders, before and after the rework,
   named a batch-level template: the view-item key is the moderate partial-revision verdict, and absolute words
   appear only in distractors. Per item it is clean. Next talk brief: some lectures end with the challenge winning
