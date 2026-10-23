@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 /**
- * map-math-v2.mjs — map-v2 Math batch 1 gate pipeline (MAP-MATH-V2.prereg.md, MAP-PLAN-2026-10-23 §3.1), 2026-10-24.
+ * map-math-v2.mjs — map-v2 Math gate pipeline, batches 1 and 2 (MAP-MATH-V2.prereg.md, MAP-MATH-V2-B2.prereg.md,
+ * MAP-PLAN-2026-10-23 §3.1), 2026-10-24. `--batch b2` (anywhere on the command line) selects batch 2; the default is
+ * batch 1, unchanged. Batch 2 differs in work dir, slots, ids (MB2-), authors (only files present; core-only is
+ * normal), seeds, math-check flags (--slots --prior --families isee,ssat,map), cohorts map-math-v2-b2-<area>,
+ * options-only parts of <= 60 rows, R11 against the 221 batch-1 items, and rule C-prime.
  * map-math-g58-v5.mjs made general to the four MAP maths areas. Inputs: the 11 author files
  * scratchpad/map-v2-math-work/<author>/items.json (221 slots in map-v2-work/math/slots.json, checked per item by
  * map-v2-work/math/math-check.mjs). Every bar runs PER AREA and each area freezes as its own batch.
  *
- *   assemble                     11 author files -> WORK/assembled.json; every file must exit 0 from math-check.mjs
+ *   assemble                     author files -> WORK/assembled.json; every file must exit 0 from math-check.mjs
  *   oo-pool                      read-only: live ISEE control pool per area x difficulty vs the assembled need
  *   screen-render 1              every assembled item, seeded order, packets of <= 40 -> WORK/screen/p1-<x>/screen.md
  *   screen-score 1               read every p1 screen.json; fails -> WORK/screen-p1.json and WORK/returns/needed-<author>.json
@@ -41,13 +45,49 @@ import { keyExtremityVerdict } from './key-extremity-gate.mjs'
 import { difficultyBars, iseeArea, jac } from './map-math-g58-v5.mjs'
 
 export const ROOT = '/Users/andylee/Downloads/saas/classraum'
-export const WORK = ROOT + '/scratchpad/map-math-v2-work'
-const AUTHORED = ROOT + '/scratchpad/map-v2-math-work'
 const D = ROOT + '/scripts/study-bank/'
-const R = D + 'map-math-v2/'
 const CHECK = D + 'map-v2-work/math/math-check.mjs'
-const SLOTS_FILE = D + 'map-v2-work/math/slots.json'
-export const PREREG = 'scripts/study-bank/MAP-MATH-V2.prereg.md'
+
+/* ------------------------------------------------------------------ batch selector: --batch b1 (default) | b2
+ * Everything batch-specific lives here; nothing below names a batch. Batch 1 is unchanged (its files, seeds, ids,
+ * cohorts and the batch-1 rule "C fails -> area held"). Batch 2 per MAP-MATH-V2-B2.prereg.md. */
+export const BATCHES = {
+  b1: {
+    name: 'map-v2 Math batch 1', prereg: 'scripts/study-bank/MAP-MATH-V2.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-work', authored: ROOT + '/scratchpad/map-v2-math-work',
+    results: D + 'map-math-v2/', slots: D + 'map-v2-work/math/slots.json', idPrefix: 'MV2',
+    checkArgs: [], authorsPresentOnly: false, slotTotal: 221,
+    cohortStem: 'map-math-v2', cPrime: false, ooPartMax: null, earlierFile: null,
+    seed: {
+      screen1Order: 20261301, screen1Deal: 20261302, screen2Order: 20261303, screen2Deal: 20261304,
+      freeze: { O: 20261311, N: 20261312, G: 20261313, D: 20261314 },
+      oo: { O: 20261321, N: 20261322, G: 20261323, D: 20261324 },
+      grade: { O: 20261330, N: 20261340, G: 20261350, D: 20261360 },   // + part number
+      cPrime: null,
+    },
+  },
+  b2: {
+    name: 'map-v2 Math batch 2', prereg: 'scripts/study-bank/MAP-MATH-V2-B2.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b2-work', authored: ROOT + '/scratchpad/map-v2-math-b2-work',
+    results: D + 'map-math-v2-b2/', slots: D + 'map-v2-work/math-b2/slots.json', idPrefix: 'MB2',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b2/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b2/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 254,
+    cohortStem: 'map-math-v2-b2',   // prereg's cohort table: map-math-v2-b2-<oa|num|geo|data>
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b2/EXCLUSIONS-map-math-b2.txt',
+    seed: {
+      screen1Order: 20261401, screen1Deal: 20261402, screen2Order: 20261403, screen2Deal: 20261404,
+      freeze: { O: 20261411, N: 20261412, G: 20261413, D: 20261414 },
+      oo: { O: 20261421, N: 20261422, G: 20261423, D: 20261424 },
+      grade: { O: 20261430, N: 20261440, G: 20261450, D: 20261460 },
+      cPrime: { O: 20261471, N: 20261472, G: 20261473, D: 20261474 },
+    },
+  },
+}
+export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
+export const B = BATCHES[BATCH]
+export const WORK = B.work
+const AUTHORED = B.authored, R = B.results, SLOTS_FILE = B.slots
+export const PREREG = B.prereg
 const die = (m, code = 2) => { console.error(`REFUSING: ${m}`); process.exit(code) }
 const rd = p => { if (!existsSync(p)) die(`missing ${p}`); try { return JSON.parse(readFileSync(p, 'utf8')) } catch (e) { die(`unreadable ${p}: ${e.message}`) } }
 const sha = p => createHash('sha256').update(readFileSync(p)).digest('hex')
@@ -56,22 +96,29 @@ const f1 = x => Number.isFinite(x) ? x.toFixed(1) : 'NaN'
 const wj = (p, o) => writeFileSync(p, JSON.stringify(o, null, 1) + '\n')
 
 /* ------------------------------------------------------------------ areas, authors, seeds */
-export const AREAS = {
-  O: { key: 'oa', domain: 'Operations and Algebraic Thinking', authors: ['O56', 'O78'], cohort: 'map-math-v2-oa' },
-  N: { key: 'num', domain: 'Real and Complex Number Systems', authors: ['N56', 'N7', 'N8'], cohort: 'map-math-v2-num' },
-  G: { key: 'geo', domain: 'Geometry', authors: ['G56', 'G78'], cohort: 'map-math-v2-geo' },
-  D: { key: 'data', domain: 'Statistics and Probability', authors: ['D5', 'D6', 'D7', 'D8'], cohort: 'map-math-v2-data' },
+const AREA_BASE = {
+  O: { key: 'oa', domain: 'Operations and Algebraic Thinking' },
+  N: { key: 'num', domain: 'Real and Complex Number Systems' },
+  G: { key: 'geo', domain: 'Geometry' },
+  D: { key: 'data', domain: 'Statistics and Probability' },
 }
+/** authors per area come from the batch's slots file (author -> area), in slots-file order */
+function slotsOf() { if (!existsSync(SLOTS_FILE)) die(`missing ${SLOTS_FILE}`); return JSON.parse(readFileSync(SLOTS_FILE, 'utf8')) }
+export const AREAS = Object.fromEntries(Object.entries(AREA_BASE).map(([L, a]) => [L, { ...a, cohort: `${B.cohortStem}-${a.key}`, authors: Object.entries(slotsOf()).filter(([, v]) => v.area === a.domain).map(([k]) => k) }]))
 export const AUTHORS = Object.values(AREAS).flatMap(a => a.authors)
 const LETTER_OF_DOMAIN = Object.fromEntries(Object.entries(AREAS).map(([L, a]) => [a.domain, L]))
-export const SEED = {
-  screen1Order: 20261301, screen1Deal: 20261302, screen2Order: 20261303, screen2Deal: 20261304,
-  freeze: { O: 20261311, N: 20261312, G: 20261313, D: 20261314 },
-  oo: { O: 20261321, N: 20261322, G: 20261323, D: 20261324 },
-  grade: { O: 20261330, N: 20261340, G: 20261350, D: 20261360 },   // + part number
-}
+export const SEED = B.seed
 export const SCREEN_PACKET_MAX = 40, GRADE_PART_MAX = 35
-export const ID_RE = /^MV2-([ONGD])\d+-\d\d$/
+export const ID_RE = new RegExp(`^${B.idPrefix}-([ONGD])[0-9A-Z]*-\\d\\d$`)
+/** batch 2: R11 also counts a template of any batch-1 item (the graders get the EXCLUSIONS file's batch-1 section) */
+function earlierBatchIds() {
+  if (!B.earlierFile) return { ids: [], text: null }
+  const t = readFileSync(B.earlierFile, 'utf8'), at = t.indexOf('# ---- map-math-v2 batch 1')
+  if (at < 0) die(`${B.earlierFile}: no batch-1 section`)
+  const text = t.slice(at), ids = [...new Set([...text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
+  if (ids.length !== 221) die(`${B.earlierFile}: batch-1 section names ${ids.length} ids, expected 221`)
+  return { ids, text }
+}
 const areaOfItem = it => { const L = LETTER_OF_DOMAIN[it?.domain]; if (!L) die(`${it?.id}: domain '${it?.domain}' is not a MAP maths area`); if (AREAS[L].key !== it.map_area) die(`${it.id}: map_area '${it.map_area}' != '${AREAS[L].key}' for ${it.domain}`); return L }
 const areaArg = a => { if (!a) return Object.keys(AREAS); if (!AREAS[a]) die(`area must be one of ${Object.keys(AREAS).join(' ')}`); return [a] }
 const areaDir = L => R + AREAS[L].key + '/'
@@ -101,6 +148,8 @@ export const RULES = {
   // kept-set key extremity, per insert batch (= per area)
   extremityGate: true,     // fail (< 0.8 x derived chance) -> area held
   smallNHolds: false,      // n < 10 -> no measurement, recorded; NOT a hold (plan removed v1's n >= 10 hold)
+  cPrime: true,            // batch 2: a C failure defers the minimum interior items by seed (batch 1 runs with false)
+  cPrimeExtra: 0,          // selftest-only: shifts m to revert minimality
   // per-item with-source rules
   keyDisputeAnyDrops: true,   // R1 key_ok false by either grader -> drop (the key is sandbox-recomputed; a dispute is about the stem)
   exclBoth: true, exclOneTb: true,   // R2 exclusivity: both -> drop; one -> tie-break grader F
@@ -121,6 +170,9 @@ export const RULES = {
   coldCompare: true,
 }
 
+/** the rules this batch runs under: batch 1 without C-prime (its prereg), batch 2 with it */
+export const RL = { ...RULES, cPrime: B.cPrime }
+
 /* ---- options-only verdict, per area */
 export function ooVerdict(cand, ctrl, Rl = RULES) {
   const cr = pct(cand.hits, cand.picks), kr = pct(ctrl.hits, ctrl.picks)
@@ -134,13 +186,45 @@ export function ooVerdict(cand, ctrl, Rl = RULES) {
 }
 
 /* ---- area status: options-only + kept-set extremity */
-export function areaStatus(kept, oo, Rl = RULES) {
-  const ext = keyExtremityVerdict(kept), reasons = [], notes = []
+/**
+ * C-prime (batch 2 prereg): when C refuses the kept set (n >= 10 scorable, e end keys, e/n < 40%), defer the minimum
+ * m = n - floor(5e / 2) kept INTERIOR-key items, drawn by the area's seed (seeded shuffle of the kept interior items
+ * in frozen order, first m), so that e/(n - m) >= 40%. e = 0 -> nothing can be inserted. Pure; no hand choice.
+ * `cPrimeExtra` exists only so --selftest can revert minimality (m - 1 / m + 1) and see a case fail.
+ */
+export function cPrimeDeferral(kept, seed, Rl = RULES) {
+  const sc = kept.map(it => ({ it, s: scoreItem(it.choices.map(String), String(it.correct_answer)) })).filter(x => !x.s.skip)
+  const n = sc.length, e = sc.filter(x => x.s.ext).length
+  if (!e) return { ok: false, n, e, m: null, deferred: [], why: 'no end key among the kept items: C-prime cannot reach 40%' }
+  const m = Math.max(0, n - Math.floor(5 * e / 2) + (Rl.cPrimeExtra ?? 0))
+  const interior = sc.filter(x => !x.s.ext).map(x => x.it)
+  if (m > interior.length) return { ok: false, n, e, m, deferred: [], why: `needs ${m} interior items, ${interior.length} kept` }
+  const deferred = shuffleWith(interior.slice(), rng(seed)).slice(0, m)
+  return { ok: true, n, e, m, deferred, why: `deferred ${m} of ${interior.length} kept interior items: ${e}/${n - m} = ${f1(100 * e / (n - m))}% at an end (was ${e}/${n} = ${f1(100 * e / n)}%)` }
+}
+
+export function areaStatus(kept, oo, Rl = RULES, seed = null) {
+  let ext = keyExtremityVerdict(kept), inserted = kept, deferred = [], cprime = null
+  const reasons = [], notes = []
   if (oo !== 'pass') reasons.push(`options-only ${oo}`)
-  if (ext.status === 'fail' && Rl.extremityGate) reasons.push(`kept-set key extremity fail: ${ext.reason}`)
-  if (ext.status === 'no-measurement') (Rl.smallNHolds ? reasons : notes).push(`kept-set extremity: ${ext.reason} (recorded; the inserter's gate measures from n >= 10)`)
-  if (!kept.length) reasons.push('nothing kept')
-  return { status: reasons.length ? 'held' : 'pass', reasons, notes, extremity: ext }
+  if (ext.status === 'fail' && Rl.extremityGate) {
+    if (Rl.cPrime) {
+      if (!Number.isInteger(seed)) die('C-prime needs the area seed')
+      cprime = cPrimeDeferral(kept, seed, Rl)
+      if (!cprime.ok) reasons.push(`kept-set key extremity fail and C-prime cannot apply (${cprime.why}): ${ext.reason}`)
+      else {
+        deferred = cprime.deferred; inserted = kept.filter(i => !deferred.includes(i))
+        const after = keyExtremityVerdict(inserted), share = cprime.e / (cprime.n - cprime.m)
+        notes.push(`C-prime: ${cprime.why}; C on the inserted set: ${after.status} (${after.reason})`)
+        // C re-run on the inserted set must not fail, and the share must reach 40% by the prereg's own arithmetic
+        if (after.status === 'fail' || share + 1e-9 < 0.4) reasons.push(`after C-prime the inserted set still fails C: ${after.reason}`)
+        ext = after
+      }
+    } else reasons.push(`kept-set key extremity fail: ${ext.reason}`)
+  }
+  if (ext.status === 'no-measurement') (Rl.smallNHolds ? reasons : notes).push(`${cprime ? 'inserted' : 'kept'}-set extremity: ${ext.reason} (recorded; the inserter's gate measures from n >= 10)`)
+  if (!inserted.length) reasons.push('nothing kept')
+  return { status: reasons.length ? 'held' : 'pass', reasons, notes, extremity: ext, inserted, deferred, cprime: cprime && { n: cprime.n, e: cprime.e, m: cprime.m, why: cprime.why } }
 }
 
 /* ---- the screen: one cold screener row -> rule codes */
@@ -259,12 +343,15 @@ function dealOptions(it, i, rand) {
 /* ------------------------------------------------------------------ math-check over files, in parallel */
 function runCheck(file) {
   return new Promise(res => {
-    const p = spawn('node', [CHECK, file], { cwd: ROOT }); let out = '', err = ''
+    const p = spawn('node', [CHECK, file, ...B.checkArgs], { cwd: ROOT }); let out = '', err = ''
     p.stdout.on('data', d => { out += d }); p.stderr.on('data', d => { err += d })
     p.on('close', code => { const m = out.match(/(\d+) items read; (\d+) PART OK; (\d+) failing/); res({ file, code, read: m ? +m[1] : NaN, ok: m ? +m[2] : NaN, fails: out.split('\n').filter(l => /PART FAIL/.test(l)).map(l => l.trim()), err: err.trim() }) })
   })
 }
 async function checkAll(files, label) {
+  if (BATCH !== 'b1' && !['--slots', '--prior', '--families'].every(f => B.checkArgs.includes(f))) die(`${BATCH}: math-check must get --slots, --prior and --families (prereg: without them a verbatim live batch-1 copy prints PART OK)`)
+  if (BATCH !== 'b1' && !B.checkArgs[B.checkArgs.indexOf('--families') + 1].split(',').includes('map')) die('math-check --families must include map')
+  for (const f of ['--slots', '--prior']) { const i = B.checkArgs.indexOf(f); if (i >= 0 && !existsSync(B.checkArgs[i + 1])) die(`math-check ${f} ${B.checkArgs[i + 1]} missing`) }
   const rs = await Promise.all(files.map(runCheck))
   let bad = 0
   for (const r of rs) {
@@ -293,7 +380,17 @@ function cases(Rl) {
   // area status: kept-set extremity, no per-area minimum
   const ex = (n, e) => Array.from({ length: n }, (_, i) => ({ choices: ['2', '5', '9', '14'], correct_answer: i < e ? (i % 2 ? '14' : '2') : '5' }))
   t(areaStatus(ex(10, 4), 'pass', Rl).status === 'pass', 'extremity 4/10 = 40.0% passes')
-  t(areaStatus(ex(10, 3), 'pass', Rl).status === 'held', 'extremity 3/10 = 30.0% holds the area')
+  t(areaStatus(ex(10, 3), 'pass', { ...Rl, cPrime: false }).status === 'held', 'batch-1 rule (no C-prime): extremity 3/10 = 30.0% holds the area')
+  // C-prime at its margin: n 20, e 7 (35%) -> m = 20 - floor(35/2) = 3 -> 7/17 = 41.2%; m 2 would leave 7/18 = 38.9%
+  const exi = (n, e) => ex(n, e).map((x, i) => ({ ...x, id: `X${i}` }))
+  const c20 = areaStatus(exi(20, 7), 'pass', Rl, 20261471)
+  t(c20.status === 'pass' && c20.deferred.length === 3 && c20.inserted.length === 17, `C-prime: 7/20 defers exactly 3 interior items and inserts 17 (${c20.reasons.join('; ') || c20.notes.join('; ')})`)
+  t(c20.deferred.every(d => d.correct_answer === '5'), 'C-prime defers interior-key items only')
+  t(JSON.stringify(areaStatus(exi(20, 7), 'pass', Rl, 20261471).deferred.map(d => d.id)) === JSON.stringify(c20.deferred.map(d => d.id)), 'C-prime draw is a function of the kept set and the seed')
+  t(cPrimeDeferral(exi(20, 8), 1, Rl).m === 0 && areaStatus(exi(20, 8), 'pass', Rl, 1).deferred.length === 0, 'C-prime: 8/20 = 40.0% passes C, nothing deferred')
+  t(cPrimeDeferral(exi(21, 8), 1, Rl).m === 1, 'C-prime: 8/21 = 38.1% -> m = 21 - 20 = 1 (8/20 = 40.0%)')
+  t(areaStatus(exi(12, 0), 'pass', Rl, 1).status === 'held', 'C-prime: no end key -> held, nothing inserted')
+  t(areaStatus(exi(20, 7), 'hold', Rl, 1).status === 'held', 'C-prime never rescues an options-only hold')
   t(areaStatus(ex(9, 0), 'pass', Rl).status === 'pass', 'n = 9: extremity not measured, recorded, NOT a hold (no per-area minimum)')
   t(areaStatus(ex(12, 6), 'hold', Rl).status === 'held', 'options-only hold holds the area')
   t(areaStatus(ex(12, 6), 'not-measured', Rl).status === 'held', 'options-only not-measured holds the area')
@@ -305,7 +402,7 @@ function cases(Rl) {
   t(controlPlan({ 'oa/easy': 12 }, { 'oa/easy': 51 }).substituted.length === 0, 'control: a covered cell substitutes nothing')
   // freeze and screen-drop policy
   t(freezable({ O: 3, N: 40 }, Rl).O === true, 'an area keeping 3 still freezes (no minimum)')
-  t(Object.keys(stage0Drops({ 'MV2-O56-01': 'x' }, { 'MV2-N7-02': ['S-R4 2 struck'] }, Rl)).join() === 'MV2-O56-01', 'pass-2 fail recorded, not dropped; withdrawal drops')
+  t(Object.keys(stage0Drops({ [`${B.idPrefix}-O56-01`]: 'x' }, { [`${B.idPrefix}-N7-02`]: ['S-R4 2 struck'] }, Rl)).join() === `${B.idPrefix}-O56-01`, 'pass-2 fail recorded, not dropped; withdrawal drops')
   // screen at its margins
   const it = { correct_answer: '14', choices: ['2', '5', '9', '14'] }
   const sOk = { my_answer: '14', n_struck: 1, struck: ['2'], key_identifiable_free: false, plugback_routine: false, one_sided: false, single_bound_kills_all: false, option_pair_tell: null }
@@ -345,17 +442,17 @@ function cases(Rl) {
   t(V({ ...ok, one_sided: true }, ok, {}).drop.some(x => /tie/.test(x)), 'F row without the field: tie -> drop')
   t(itemVerdict({ correct_answer: '5', choices: ['2', '5', '9', '14'] }, { ...ok, one_sided: true }, { ...ok, one_sided: true }, undefined, new Set(), Rl).keep, 'one_sided ignored on an interior key')
   t(V({ ...ok, option_pair_tell: '14 = 2 x 7' }, { ...ok, option_pair_tell: '14 - 5' }).drop.some(x => x.startsWith('R7')), 'R7 by both drops')
-  const E = new Set(['MV2-O56-01'])
-  t(V({ ...ok, same_template_as: ['MV2-O56-01'] }, { ...ok, same_template_as: ['MV2-O56-01'] }, undefined, E).drop.some(x => x.startsWith('R11')), 'R11 template of an earlier item by both drops')
-  t(V({ ...ok, same_template_as: ['MV2-O56-09'] }, ok, undefined, E).keep, 'template of a LATER item is not R11')
+  const E = new Set([`${B.idPrefix}-O56-01`])
+  t(V({ ...ok, same_template_as: [`${B.idPrefix}-O56-01`] }, { ...ok, same_template_as: [`${B.idPrefix}-O56-01`] }, undefined, E).drop.some(x => x.startsWith('R11')), 'R11 template of an earlier item by both drops')
+  t(V({ ...ok, same_template_as: [`${B.idPrefix}-O56-09`] }, ok, undefined, E).keep, 'template of a LATER item is not R11')
   t(V({ ...ok, drop_recommend: true }, ok).drop.some(x => x.startsWith('EXT-1')), 'EXT-1 drop_recommend by one grader drops')
   t(V({ ...ok, grade_fit: 'too_easy' }, { ...ok, grade_fit: 'too_easy' }).keep && V({ ...ok, grade_fit: 'too_easy' }, { ...ok, grade_fit: 'too_easy' }).rec.length === 1, 'grade fit too_easy by both: RECORDED, kept')
   t(V({ ...ok, on_blueprint: false }, { ...ok, on_blueprint: false }).hold.length === 1, 'off-blueprint by both holds')
   // cold integrity
-  const s1 = { 'MV2-O56-01': Object.fromEntries(S1_FIELDS.map(f => [f, f === 'n_struck' ? 1 : null])) }
-  const s2 = { 'MV2-O56-01': { ...s1['MV2-O56-01'], ...Object.fromEntries(S2_FIELDS.map(f => [f, null])) } }
+  const s1 = { [`${B.idPrefix}-O56-01`]: Object.fromEntries(S1_FIELDS.map(f => [f, f === 'n_struck' ? 1 : null])) }
+  const s2 = { [`${B.idPrefix}-O56-01`]: { ...s1[`${B.idPrefix}-O56-01`], ...Object.fromEntries(S2_FIELDS.map(f => [f, null])) } }
   t(coldDiff(s1, s2, Rl).length === 0, 'coldcheck: unchanged copy passes')
-  t(coldDiff(s1, { 'MV2-O56-01': { ...s2['MV2-O56-01'], n_struck: 0 } }, Rl).length === 1, 'coldcheck: a changed stage-1 field is caught')
+  t(coldDiff(s1, { [`${B.idPrefix}-O56-01`]: { ...s2[`${B.idPrefix}-O56-01`], n_struck: 0 } }, Rl).length === 1, 'coldcheck: a changed stage-1 field is caught')
   return c
 }
 
@@ -374,6 +471,7 @@ const MUTATIONS = {
   'screen wrong-answer flag removed': { screenWrongAnswer: false }, 'screen malformed check removed': { screenMalformed: false },
   'pass-2 one-screener drop re-imposed (v5)': { screenP2Drops: true }, 'per-area freeze minimum 15 re-imposed (v5)': { areaFreezeMin: 15 },
   'coldcheck field compare removed': { coldCompare: false },
+  'C-prime removed (batch-1 rule on batch 2)': { cPrime: false }, 'C-prime defers one too few': { cPrimeExtra: -1 }, 'C-prime defers one too many': { cPrimeExtra: 1 },
 }
 
 async function selftest() {
@@ -382,10 +480,16 @@ async function selftest() {
   for (const [ok, msg] of base) if (!ok) { bad++; console.error('FAIL', msg) }
   // structure
   const sl = rd(SLOTS_FILE), slotIds = Object.values(sl).flatMap(v => v.rows.map(r => r.id))
-  const st = [[slotIds.length === 221 && slotIds.every(id => ID_RE.test(id)), 'slots.json: 221 ids, all MV2-<area><cell>-NN'],
-    [Object.keys(sl).sort().join() === [...AUTHORS].sort().join(), 'slots.json authors = the 11 cells'],
+  const core = slotIds.filter((_, i) => Object.values(sl).flatMap(v => v.rows)[i].core === true).length
+  const b1Ids = BATCH === 'b2' ? earlierBatchIds().ids : []
+  const st = [[slotIds.length === B.slotTotal && new Set(slotIds).size === B.slotTotal && slotIds.every(id => ID_RE.test(id)), `${BATCH} slots: ${B.slotTotal} distinct ids, all ${B.idPrefix}-<area><cell>-NN (read ${slotIds.length})`],
+    [Object.keys(sl).length === (BATCH === 'b1' ? 11 : 16) && AUTHORS.length === Object.keys(sl).length, `${BATCH} slots: ${BATCH === 'b1' ? 11 : 16} author cells, each in one area`],
     [Object.entries(sl).every(([a, v]) => AREAS[a[0]].domain === v.area), 'each author cell is in its letter\'s area'],
-    [chunk([...Array(221).keys()], SCREEN_PACKET_MAX).map(x => x.length).join() === '37,37,37,37,37,36', 'screen packets 221 -> 6 of 36-37'],
+    [BATCH === 'b1' ? chunk([...Array(221).keys()], SCREEN_PACKET_MAX).map(x => x.length).join() === '37,37,37,37,37,36' : core === 77 && chunk([...Array(core).keys()], SCREEN_PACKET_MAX).length === 2 && chunk([...Array(254).keys()], SCREEN_PACKET_MAX).length === 7, BATCH === 'b1' ? 'screen packets 221 -> 6 of 36-37' : `b2: ${core} core slots -> 2 screen packets; FULL 254 -> 7 (prereg)`],
+    [BATCH === 'b1' || (b1Ids.length === 221 && b1Ids.every(x => /^MV2-/.test(x))), 'b2: the 221 batch-1 ids are read for R11 (earlier items)'],
+    [BATCH === 'b1' || (B.ooPartMax === 60 && chunk([...Array(120).keys()], B.ooPartMax).length === 2 && chunk([...Array(60).keys()], B.ooPartMax).length === 1), 'b2: options-only parts of <= 60 rows (60 -> 1, 120 -> 2)'],
+    [RL.cPrime === (BATCH === 'b2'), `${BATCH} runs ${BATCH === 'b2' ? 'with' : 'without'} C-prime`],
+    [BATCH === 'b1' || ['O', 'N', 'G', 'D'].every(L => Number.isInteger(SEED.cPrime?.[L])), 'b2: a C-prime seed per area'],
     [chunk([...Array(35).keys()], GRADE_PART_MAX).length === 1 && chunk([...Array(36).keys()], GRADE_PART_MAX).map(x => x.length).join() === '18,18', 'grade parts: 35 -> 1, 36 -> 18+18'],
     [(() => { try { return renderGraphic({ type: 'twowaytable', colLabels: ['a', 'b'], rowLabels: ['x'], cells: [['1', '2']] }).includes('| x | 1 | 2 |') } catch { return false } })(), 'graphic renders as a markdown table']]
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
@@ -399,33 +503,40 @@ async function selftest() {
   }
   // insert-prep row shape: everything math-bank-helper and map-math-meta read
   const { mapMathMeta } = await import('./map-math-meta.mjs')
-  const src = { id: 'MV2-O56-01', domain: AREAS.O.domain, map_area: 'oa', subskill: 's', tier: 'low', ccss: '5.OA.A.1', prompt: 'p', correct_answer: '14', choices: ['2', '5', '9', '14'], explanation: 'e', solve: 'return 14', grade_target: 5, rit_band: 'RIT 190-199', distractor_meta: { 2: { why: 'w2' } }, distractor_solve: {} }
+  const src = { id: `${B.idPrefix}-O56-01`, domain: AREAS.O.domain, map_area: 'oa', subskill: 's', tier: 'low', ccss: '5.OA.A.1', prompt: 'p', correct_answer: '14', choices: ['2', '5', '9', '14'], explanation: 'e', solve: 'return 14', grade_target: 5, rit_band: 'RIT 190-199', distractor_meta: { 2: { why: 'w2' } }, distractor_solve: {} }
   const row = toInsertRow(src, ['9', '14', '2', '5'])
   const meta = mapMathMeta(row)
   const rowOk = row.difficulty === 'easy' && row.topic_tag === '5.OA.A.1' && row.choices.join() === '9,14,2,5' && row.graphic === null && meta.grade_target === 5 && meta.rit_band_target === 'RIT 190-199' && row.distractor_steps.find(d => d.choice === '2')?.mis_step === 'w2'
   if (!rowOk) { console.error('FAIL insert row shape / mapMathMeta'); process.exit(2) }
   if (missed.length) { console.error(`SELFTEST: ${missed.length} reverted rule(s) went undetected: ${missed.join('; ')}`); process.exit(2) }
-  console.log(`selftest ${n + 1}/${n + 1} cases pass (incl. insert row shape); ${caught}/${Object.keys(MUTATIONS).length} reverted rules each fail >= 1 case`)
+  console.log(`selftest [${BATCH}] ${n + 1}/${n + 1} cases pass (incl. insert row shape); ${caught}/${Object.keys(MUTATIONS).length} reverted rules each fail >= 1 case`)
 }
 
 /* ------------------------------------------------------------------ commands */
 async function cmdAssemble() {
   const sl = rd(SLOTS_FILE)
   const slot = Object.fromEntries(Object.entries(sl).flatMap(([a, v]) => v.rows.map(r => [r.id, { ...r, author: a, domain: v.area }])))
-  const files = AUTHORS.map(a => `${AUTHORED}/${a}/items.json`)
+  const present = AUTHORS.filter(a => existsSync(`${AUTHORED}/${a}/items.json`))
+  if (!B.authorsPresentOnly && present.length !== AUTHORS.length) die(`${BATCH} needs every author file; missing ${AUTHORS.filter(a => !present.includes(a)).join(' ')}`)
+  if (!present.length) die(`no author file under ${AUTHORED}`)
+  console.log(`${B.name}: author files ${present.length} of ${AUTHORS.length} (${present.join(' ')})${present.length < AUTHORS.length ? '; absent: ' + AUTHORS.filter(a => !present.includes(a)).join(' ') : ''}`)
+  const files = present.map(a => `${AUTHORED}/${a}/items.json`)
   const items = []
   for (const [i, f] of files.entries()) {
     const j = rd(f); if (!Array.isArray(j) || !j.length) die(`${f}: not a non-empty array`)
     for (const it of j) {
       const s = slot[it.id]; if (!s) die(`${it.id} (${f}) is not a slot`)
-      if (s.author !== AUTHORS[i]) die(`${it.id} is ${s.author}'s slot but sits in ${AUTHORS[i]}'s file`)
+      if (s.author !== present[i]) die(`${it.id} is ${s.author}'s slot but sits in ${present[i]}'s file`)
       if (it.domain !== s.domain) die(`${it.id}: domain '${it.domain}' != slot area '${s.domain}'`)
       areaOfItem(it); items.push(it)
     }
   }
   if (new Set(items.map(i => i.id)).size !== items.length) die('duplicate ids across files')
   const missing = Object.keys(slot).filter(id => !items.find(i => i.id === id))
-  console.log(`items read ${items.length} of ${Object.keys(slot).length} slots; empty slots: ${missing.join(' ') || 'none'}`)
+  const mCore = missing.filter(id => slot[id].core === true), mPresent = missing.filter(id => present.includes(slot[id].author))
+  console.log(`items read ${items.length} of ${Object.keys(slot).length} slots; empty: ${missing.length}${BATCH === 'b1' ? (missing.length ? ' - ' + missing.join(' ') : '') : ` (core ${mCore.length}${mCore.length ? ': ' + mCore.join(' ') : ''}; in present authors' cells ${mPresent.length}${mPresent.length ? ': ' + mPresent.join(' ') : ''})`}`)
+  const nonCore = items.filter(it => slot[it.id].core === false)
+  if (BATCH !== 'b1' && nonCore.length) console.log(`  (read) ${nonCore.length} item(s) in non-core slots: ${nonCore.map(i => i.id).join(' ')} (the 177 non-core slots wait on the owner decision)`)
   const checked = await checkAll(files, 'assemble')
   if (checked !== items.length) die(`math-check read ${checked} items, files hold ${items.length}`)
   // batch-level (read) lines: cross-author near-duplicates and repeated key values
@@ -636,7 +747,7 @@ async function cmdFreeze() {
 
 async function cmdOo(a) {
   const areas = areaArg(a)
-  for (const L of areas) if (existsSync(`${WORK}/oo/${L}/oo.blind.json`)) die(`options-only render for ${L} already exists; made once`)
+  for (const L of areas) if (existsSync(`${WORK}/oo/${L}/oo.blind.json`) || existsSync(areaDir(L) + 'oo.key.json')) die(`options-only render for ${L} already exists; made once`)
   const { rows, pool } = await iseePool()
   console.log(`live isee/math ${rows}; eligible by area/difficulty: ${JSON.stringify(Object.fromEntries(Object.entries(pool).map(([k, v]) => [k, v.length])))}`)
   for (const L of areas) {
@@ -655,9 +766,16 @@ async function cmdOo(a) {
     const order = shuffle(entries), blind = {}, key = {}
     order.forEach((e, i) => { const id = `${L}${String(i + 1).padStart(3, '0')}`; blind[id] = e.blind; key[id] = e.key })
     mkdirSync(`${WORK}/oo/${L}`, { recursive: true }); mkdirSync(areaDir(L), { recursive: true })
-    wj(`${WORK}/oo/${L}/oo.blind.json`, blind); copyFileSync(`${WORK}/oo/${L}/oo.blind.json`, areaDir(L) + 'oo.blind.json'); wj(areaDir(L) + 'oo.key.json', key)
+    wj(areaDir(L) + 'oo.key.json', key)
+    if (B.ooPartMax) {
+      // batch 2: parts of <= ooPartMax rows, candidates and controls interleaved by the seeded order; three samples per part
+      const parts = chunk(Object.keys(blind), B.ooPartMax).map((ids, pi) => ({ part: pi + 1, dir: `${WORK}/oo/${L}/p${pi + 1}`, ids }))
+      for (const pt of parts) { mkdirSync(pt.dir, { recursive: true }); wj(`${pt.dir}/oo.blind.json`, Object.fromEntries(pt.ids.map(id => [id, blind[id]]))); const c = pt.ids.map(id => key[id].kind); console.log(`  ${L} part ${pt.part}: ${pt.dir}/oo.blind.json  ${pt.ids.length} rows (candidates ${c.filter(x => x === 'candidate').length}, controls ${c.filter(x => x === 'live-control').length})  sha ${sha(`${pt.dir}/oo.blind.json`).slice(0, 16)}`) }
+      wj(areaDir(L) + 'oo.parts.json', parts.map(pt => ({ ...pt, sha: sha(`${pt.dir}/oo.blind.json`) })))
+      wj(areaDir(L) + 'oo.blind.json', blind)
+    } else { wj(`${WORK}/oo/${L}/oo.blind.json`, blind); copyFileSync(`${WORK}/oo/${L}/oo.blind.json`, areaDir(L) + 'oo.blind.json') }
     for (const kind of ['candidate', 'live-control']) { const d = {}; for (const k of Object.values(key)) if (k.kind === kind) d[k.letter] = (d[k.letter] ?? 0) + 1; console.log(`  ${L} ${kind.padEnd(13)} n ${Object.values(key).filter(k => k.kind === kind).length} deal ${JSON.stringify(d)}`) }
-    console.log(`  ${L}: ${WORK}/oo/${L}/oo.blind.json  ${Object.keys(blind).length} ids  sha ${sha(`${WORK}/oo/${L}/oo.blind.json`).slice(0, 16)}`)
+    if (!B.ooPartMax) console.log(`  ${L}: ${WORK}/oo/${L}/oo.blind.json  ${Object.keys(blind).length} ids  sha ${sha(`${WORK}/oo/${L}/oo.blind.json`).slice(0, 16)}`)
   }
 }
 
@@ -684,11 +802,19 @@ function cmdGrade(a) {
   }
 }
 
+/** batch 2: the batch-1 items as the "earlier items" list beside a grader's or F's render (R11 counts them) */
+function writeEarlier(dir) {
+  const { text } = earlierBatchIds(); if (!text) return
+  writeFileSync(`${dir}/earlier-items.md`, `# Earlier items (batch 1, 221)\n\nFor same_template_as you may also name any id below (an item in this list that your item repeats as the same chain of steps on the same kind of givens to the same asked quantity).\n\n${text}`)
+  console.log(`${dir}/earlier-items.md  sha ${sha(dir + '/earlier-items.md').slice(0, 16)}`)
+}
+/** R11's earlier set: items earlier in the frozen order, plus every batch-1 id in batch 2 */
+const earlierSet = (frozen, i) => new Set([...frozen.slice(0, i).map(x => x.id), ...earlierBatchIds().ids])
 const partsOf = L => rd(areaDir(L) + 'ws.parts.json').map(p => p.part)
 function cmdStage(L, k, g, which) {
   if (!AREAS[L] || !partsOf(L).includes(+k) || !['d', 'e'].includes(g) || !['cold', 'keyed'].includes(which)) die('stage <O|N|G|D> <part> <d|e> <cold|keyed>')
   const tag = `${L}-p${k}-${g}`, dir = `${WORK}/grade/${tag}`; mkdirSync(dir, { recursive: true })
-  if (which === 'cold') { copyFileSync(areaDir(L) + `ws-p${k}.md`, `${dir}/grade.md`); console.log(`${dir}/grade.md  sha ${sha(dir + '/grade.md').slice(0, 16)}`); return }
+  if (which === 'cold') { copyFileSync(areaDir(L) + `ws-p${k}.md`, `${dir}/grade.md`); console.log(`${dir}/grade.md  sha ${sha(dir + '/grade.md').slice(0, 16)}`); writeEarlier(dir); return }
   const s1 = `${dir}/stage1.json`, j = rd(s1)
   const want = Object.keys(rd(areaDir(L) + `ws-p${k}.key.json`))
   const miss = want.filter(id => !j[id] || S1_FIELDS.some(f => !(f in j[id])))
@@ -720,7 +846,10 @@ function cmdColdcheck(L) {
 
 function scoreOo(L) {
   const key = rd(areaDir(L) + 'oo.key.json'), ids = Object.keys(key)
-  const sol = ['a', 'b', 'c'].map(x => { const j = rd(`${WORK}/oo/${L}/solver-${x}.json`); const m = j.items ?? j; const got = ids.filter(i => m[i]?.pick).length; if (got !== ids.length) die(`${L} solver ${x} answered ${got} of ${ids.length}`); return m })
+  // batch 1: one file per solver; batch 2: one file per solver per part, pooled per area before any rate is computed
+  const parts = B.ooPartMax ? rd(areaDir(L) + 'oo.parts.json') : [{ dir: `${WORK}/oo/${L}`, ids }]
+  if (B.ooPartMax) { const all = parts.flatMap(p => p.ids); if (all.length !== ids.length || new Set(all).size !== ids.length || !all.every(i => key[i])) die(`${L}: oo parts do not cover the key exactly`); for (const p of parts) if (sha(`${p.dir}/oo.blind.json`) !== p.sha) die(`${p.dir}/oo.blind.json changed since render`) }
+  const sol = ['a', 'b', 'c'].map(x => { const m = {}; for (const p of parts) { const j = rd(`${p.dir}/solver-${x}.json`), mm = j.items ?? j; const got = p.ids.filter(i => mm[i]?.pick).length; if (got !== p.ids.length) die(`${L} ${p.dir.split('/').pop()} solver ${x} answered ${got} of ${p.ids.length}`); for (const i of p.ids) m[i] = mm[i] } return m })
   const arm = kind => { const s = ids.filter(i => key[i].kind === kind); let hits = 0, unan = 0; for (const i of s) { const h = sol.filter(m => String(m[i].pick).trim().toUpperCase() === key[i].letter).length; hits += h; if (h === 3) unan++ } return { n: s.length, picks: 3 * s.length, hits, unan } }
   const c = arm('candidate'), k = arm('live-control')
   const dist = {}; for (const i of ids) dist[key[i].letter] = (dist[key[i].letter] ?? 0) + 1
@@ -749,7 +878,7 @@ function cmdScore(L) {
   out.coldOnKey = frozen.reduce((s, it) => s + ['d', 'e'].filter(g => val(G[g][it.id].my_answer) === val(it.correct_answer) || String(G[g][it.id].my_answer).trim() === String(it.correct_answer)).length, 0)
   const F = loadF(L), items = {}, needs = []
   frozen.forEach((it, i) => {
-    const earlier = new Set(frozen.slice(0, i).map(x => x.id))
+    const earlier = earlierSet(frozen, i)
     const inTb = F && F.key.items?.[it.id]
     const v = itemVerdict(it, G.d[it.id], G.e[it.id], inTb ? (F.rows[it.id] ?? {}) : undefined, earlier)
     items[it.id] = { ...v, difficulty: bankedDifficulty(G.d[it.id], G.e[it.id]) }
@@ -765,14 +894,20 @@ function cmdScore(L) {
     wj(areaDir(L) + 'stages.json', { ...out, verdict: 'INCOMPLETE' }); process.exit(1)
   }
   const kept = frozen.filter(i => items[i.id].keep)
-  const as = areaStatus(kept, oo.status); out.areaResult = { ...as, kept: kept.length, keptIds: kept.map(i => i.id) }
+  const as = areaStatus(kept, oo.status, RL, SEED.cPrime?.[L] ?? null)
+  const { inserted: insIt, deferred: defIt, ...asRest } = as
+  out.areaResult = { ...asRest, kept: kept.length, keptIds: kept.map(i => i.id), insertedIds: insIt.map(i => i.id), deferredIds: defIt.map(i => i.id) }
+  if (defIt.length) {
+    wj(areaDir(L) + 'deferred.json', { prereg: PREREG, rule: 'C-prime', seed: SEED.cPrime[L], ...as.cprime, items: defIt.map(it => ({ id: it.id, item: it, stage: { ...items[it.id], graderD: G.d[it.id], graderE: G.e[it.id] } })) })
+    console.log(`  C-prime deferred ${defIt.length} (not inserted; eligible for the next MAP maths insert batch): ${defIt.map(i => i.id).join(' ')} -> ${areaDir(L)}deferred.json`)
+  }
   const flags = existsSync(areaDir(L) + 'screen-flags.json') ? rd(areaDir(L) + 'screen-flags.json') : {}
   out.screenFlagsRecorded = Object.fromEntries(Object.entries(flags).map(([id, f]) => [id, { ...f, kept: items[id]?.keep ?? null }]))
   for (const it of frozen.filter(i => !items[i.id].keep)) console.log(`  DROP/HOLD ${it.id} g${it.grade_target} ${it.tier}: ${[...items[it.id].drop, ...items[it.id].hold].join('; ')}`)
   for (const it of frozen) if (items[it.id].rec.length) console.log(`  (recorded) ${it.id}: ${items[it.id].rec.join('; ')}`)
   const sf = Object.entries(out.screenFlagsRecorded); if (sf.length) console.log(`  screen-flagged items: ${sf.length}, kept by the graders ${sf.filter(([, f]) => f.kept).length}${sf.filter(([, f]) => f.p2).length ? `; still failing pass 2: ${sf.filter(([, f]) => f.p2).map(([id, f]) => id + (f.kept ? ' (kept)' : '')).join(' ')}` : ''}`)
   console.log(`AREA ${L} ${AREAS[L].key} frozen ${frozen.length} kept ${kept.length}  extremity ${as.extremity.status} (${as.extremity.reason})  oo ${oo.status}  => ${as.status.toUpperCase()}${as.reasons.length ? ' - ' + as.reasons.join('; ') : ''}${as.notes.length ? ' | ' + as.notes.join('; ') : ''}`)
-  out.passIds = as.status === 'pass' ? kept.map(i => i.id) : []
+  out.passIds = as.status === 'pass' ? insIt.map(i => i.id) : []
   out.verdict = out.passIds.length ? 'PASS' : 'HELD'
   console.log(`cold answers on key ${out.coldOnKey}/${2 * frozen.length}; VERDICT ${out.verdict}; insertable ${out.passIds.length} (cohort ${AREAS[L].cohort})`)
   wj(areaDir(L) + 'stages.json', out)
@@ -790,7 +925,7 @@ function cmdTiebreak(L) {
   for (const it of part) md += coldBlock(it, keys[it.id].choices)
   writeFileSync(areaDir(L) + 'tb.md', md)
   wj(areaDir(L) + 'tb.key.json', { items: Object.fromEntries(needs.map(n => [n.id, n.codes])), context: [...ids].filter(x => !needs.find(n => n.id === x)) })
-  const dir = `${WORK}/grade/${L}-f-tb`; mkdirSync(dir, { recursive: true }); copyFileSync(areaDir(L) + 'tb.md', dir + '/grade.md')
+  const dir = `${WORK}/grade/${L}-f-tb`; mkdirSync(dir, { recursive: true }); copyFileSync(areaDir(L) + 'tb.md', dir + '/grade.md'); writeEarlier(dir)
   console.log(`tie-break render ${L}: ${part.length} items (${needs.length} flagged) -> ${dir}/grade.md, sha ${sha(dir + '/grade.md').slice(0, 16)}`)
 }
 
@@ -801,7 +936,7 @@ function cmdTiebreak(L) {
  * exact file written. The ledger entry is bound to that file's sha256 (gate.mjs refuses any other bytes). No DB write:
  * gateBatch reads the live bank for stem duplicates only. math-bank-helper.mjs has no dry run, so it is NOT run. */
 const TIER_TO_DIFF = { low: 'easy', mid: 'medium', high: 'hard' }
-export const insertFiles = L => ({ batch: `${D}map-math-v2-${AREAS[L].key}.inserted.batch.json`, qc: `${D}map-math-v2-${AREAS[L].key}.qc.json` })
+export const insertFiles = L => ({ batch: `${D}${B.cohortStem}-${AREAS[L].key}.inserted.batch.json`, qc: `${D}${B.cohortStem}-${AREAS[L].key}.qc.json` })
 export function toInsertRow(it, choices) {
   if (!choices || new Set(choices).size !== 4 || !choices.includes(String(it.correct_answer))) die(`${it.id}: rendered choices do not hold the key`)
   return {
@@ -843,9 +978,14 @@ async function cmdInsertPrep(L) {
   if (oo.status !== 'pass' || oo.status !== st.optionsOnly.status) die(`${L}: options-only re-derived ${oo.status}, stages.json says ${st.optionsOnly.status}`)
   const G = { d: {}, e: {} }; for (const k of partsOf(L)) for (const g of ['d', 'e']) { const { s2 } = loadGrader(`${L}-p${k}-${g}`); for (const [id, row] of Object.entries(s2)) if (ID_RE.test(id)) G[g][id] = row }
   const F = loadF(L), keepIds = [], dropped = []
-  frozen.forEach((it, i) => { const inTb = F && F.key.items?.[it.id]; const v = itemVerdict(it, G.d[it.id], G.e[it.id], inTb ? (F.rows[it.id] ?? {}) : undefined, new Set(frozen.slice(0, i).map(x => x.id))); if (v.need.length && !v.drop.length && !v.hold.length) die(`${it.id} still needs the tie-break`); if (v.keep) keepIds.push(it.id); else dropped.push(`${it.id} (${[...v.drop, ...v.hold].join('; ')})`) })
-  if (keepIds.join() !== st.passIds.join()) die(`${L}: re-derived survivors [${keepIds.join(' ')}] != stages.json passIds [${st.passIds.join(' ')}]`)
-  const survivors = frozen.filter(i => keepIds.includes(i.id))
+  frozen.forEach((it, i) => { const inTb = F && F.key.items?.[it.id]; const v = itemVerdict(it, G.d[it.id], G.e[it.id], inTb ? (F.rows[it.id] ?? {}) : undefined, earlierSet(frozen, i)); if (v.need.length && !v.drop.length && !v.hold.length) die(`${it.id} still needs the tie-break`); if (v.keep) keepIds.push(it.id); else dropped.push(`${it.id} (${[...v.drop, ...v.hold].join('; ')})`) })
+  const keptItems = frozen.filter(i => keepIds.includes(i.id))
+  const as = areaStatus(keptItems, oo.status, RL, SEED.cPrime?.[L] ?? null)
+  if (as.status !== 'pass') die(`${L}: re-derived area status ${as.status}: ${as.reasons.join('; ')}`, 1)
+  const insIds = as.inserted.map(i => i.id), defIds = as.deferred.map(i => i.id)
+  if (insIds.join() !== st.passIds.join()) die(`${L}: re-derived inserted set [${insIds.join(' ')}] != stages.json passIds [${st.passIds.join(' ')}]`)
+  if (defIds.length) { const dj = rd(areaDir(L) + 'deferred.json'); if (dj.items.map(x => x.id).join() !== defIds.join()) die(`${L}: deferred.json does not match the re-derived C-prime draw`) }
+  const survivors = as.inserted
   // math-check on the survivors as frozen (full author fields)
   mkdirSync(WORK + '/tmp', { recursive: true })
   const by = {}; for (const it of survivors) (by[it.id.split('-')[1]] ??= []).push(it)
@@ -885,12 +1025,12 @@ async function cmdInsertPrep(L) {
   const entry = {
     id: `${A.cohort}-${today}`, createdAt: today, targetTest: 'map', section: 'math', task: 'multiple_choice', family: 'mc_stem_source',
     cohort: A.cohort, contentSha: bsha, status: 'qc',
-    note: `map-v2 Math batch 1, ${A.domain} (${PREREG}; MAP-PLAN-2026-10-23 §3.1). Assembled ${assembledN} from ${A.authors.join(' + ')}; frozen ${frozen.length} as this area's own batch (sha ${st.frozenSha.slice(0, 16)}); ${survivors.length} survivors after the graders. contentSha = sha256 of ${out.batch.replace(ROOT + '/', '')}; qc ${out.qc.replace(ROOT + '/', '')}. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.`,
+    note: `${B.name}, ${A.domain} (${PREREG}; MAP-PLAN-2026-10-23 §3.1). Assembled ${assembledN} from ${A.authors.filter(a => existsSync(`${AUTHORED}/${a}/items.json`)).join(' + ')}; frozen ${frozen.length} as this area's own batch (sha ${st.frozenSha.slice(0, 16)}); ${keepIds.length} kept by the graders${defIds.length ? `, ${defIds.length} deferred by C-prime (seed ${SEED.cPrime[L]}; ${defIds.join(' ')})` : ''}; ${survivors.length} in this file. contentSha = sha256 of ${out.batch.replace(ROOT + '/', '')}; qc ${out.qc.replace(ROOT + '/', '')}. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.`,
     stages: {
       shape: { passed: true, contentSha: bsha, n: batch.length, verdict: `Stage 0: ${assembledN}/${assembledN} PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item${L === 'N' ? ', FORM and SLIP refusing' : ''}). Cold screen pass 1: ${p1f.length} of ${assembledN} failed, returned once (revised ${revN}, withdrawn ${wd.length}, stood ${standN}); pass 2: ${p2f.length} still failed, recorded and not dropped (the screen never drops on one screener). Frozen ${frozen.length}, no per-area minimum. Survivors: math-check ${checked}/${survivors.length} PART OK; math-bank-helper verify on this file Sandbox ${sb[1]}/${sb[2]}; ${distr}.` },
       nosource: { passed: true, contentSha: bsha, n: oo.cand.n, candidatePct: +f1(oo.cr), control: +f1(oo.kr), controlN: oo.ctrl.n, margin: +f1(oo.margin), verdict: `Options-only, three samples of one Claude solver, ${oo.cand.n} frozen candidates vs ${oo.ctrl.n} live ISEE ${A.key} controls matched 1:1 by tier (low->easy, mid/high->medium${subst ? `; ${subst} control row(s) drawn one difficulty up under the pre-registered substitution` : ''}), blind sha ${sha(areaDir(L) + 'oo.blind.json').slice(0, 16)}: ${oo.cand.hits}/${oo.cand.picks} = ${f1(oo.cr)}% vs ${oo.ctrl.hits}/${oo.ctrl.picks} = ${f1(oo.kr)}%, margin ${f1(oo.margin)} (bar +10; control under the 90% ceiling); unanimous-correct rate ${f1(oo.cu)}% vs ${f1(oo.ku)}% (${f1(oo.umar)}, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'.` },
-      withsource: { passed: true, contentSha: bsha, n: frozen.length, coldOnKey: st.coldOnKey, kept: survivors.length, verdict: `Two Claude graders per part (${partsOf(L).length} part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here ${rows} cold rows, 0 changed. ${st.coldOnKey}/${2 * frozen.length} cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (${tbN} item(s) to F, 2 of 3, tie -> drop). Dropped ${dropped.length}: ${dropped.join('; ') || 'none'}. Grade fit recorded, not a drop rule: too_easy ${fd.tooEasy}/${fd.judgments}, too_hard ${fd.tooHard}/${fd.judgments}, offsets ${fd.offA?.toFixed(2)}/${fd.offB?.toFixed(2)}, tier spreads ${fd.spreadA?.toFixed(2)}/${fd.spreadB?.toFixed(2)}.` },
-      tells: { passed: true, contentSha: bsha, verdict: `Kept-set key at an extreme on this file: ${kx.reason} (${kx.status}). Key letters in this file (with-source deal) ${JSON.stringify(letters)}. Banked difficulty (graders' tier_assigned) ${diffs}. Unanimity compared to the control at batch level only. Screen-flagged survivors: ${keepIds.filter(id => st.screenFlagsRecorded?.[id]).length}.` },
+      withsource: { passed: true, contentSha: bsha, n: frozen.length, coldOnKey: st.coldOnKey, kept: keepIds.length, verdict: `Two Claude graders per part (${partsOf(L).length} part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here ${rows} cold rows, 0 changed. ${st.coldOnKey}/${2 * frozen.length} cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (${tbN} item(s) to F, 2 of 3, tie -> drop). Dropped ${dropped.length}: ${dropped.join('; ') || 'none'}. Grade fit recorded, not a drop rule: too_easy ${fd.tooEasy}/${fd.judgments}, too_hard ${fd.tooHard}/${fd.judgments}, offsets ${fd.offA?.toFixed(2)}/${fd.offB?.toFixed(2)}, tier spreads ${fd.spreadA?.toFixed(2)}/${fd.spreadB?.toFixed(2)}.` },
+      tells: { passed: true, contentSha: bsha, verdict: `${as.cprime ? `C-prime: ${as.cprime.why}; deferred items are not in this file. ` : ''}Key at an extreme on this file: ${kx.reason} (${kx.status}). Key letters in this file (with-source deal) ${JSON.stringify(letters)}. Banked difficulty (graders' tier_assigned) ${diffs}. Unanimity compared to the control at batch level only. Screen-flagged survivors: ${keepIds.filter(id => st.screenFlagsRecorded?.[id]).length}.` },
     },
   }
   const wrote = ledgerInsert(entry)
