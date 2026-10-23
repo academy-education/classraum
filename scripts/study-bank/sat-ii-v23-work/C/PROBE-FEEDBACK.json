@@ -1,0 +1,529 @@
+{
+ "II23C-08": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader",
+   "template pair with II23A-08 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On two-condition table items, options cite only one condition's columns and the strongest distractor meets that cited condition but fails the uncited one: P08, ",
+   "named in reader r1's tell: On two-condition filter items the most tempting distractor passes the quoted condition and fails on the column the options never quote: P10, P17, P30, P31."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Quillow's graduates earned $17.40 an hour before the course and $21.60 after it.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "B (Prestley, 84% finish, +$3.90) meets the completion bar and nearly the wage bar; C (Nanbury, +$4.50) clears the wage bar but fails completion. Options cite wages only, so completion must be read from an uncited column; same template as P13."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Quillow's graduates earned $17.40 an hour before the course and $21.60 after it.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Orwen's graduates earned $16.60 an hour before the course and $20.15 after it."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Two-condition filter with only one row passing both; the same template as P30, and Orwen's $3.55 gain is visibly short.",
+    "note": "B (Prestley) is tempting: 84% completion but only a $3.90 gain. A (Orwen) fails both. Options show only wages, so completion must be read from the table."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-08",
+    "readers": 2,
+    "why": [
+     "two thresholds, options cite only one, near-miss fails the uncited one",
+     "two-condition filter where only one row passes both"
+    ]
+   }
+  ]
+ },
+ "II23C-03": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23A-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with II23A-05 named by 1 of 2",
+   "template partner of II23D-05 (the later slot revises)",
+   "named in reader r0's tell: On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always",
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Residents of Nethercote could name more of their neighbors than residents of Quellin could.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Residents of Ottersby could name more of their neighbors than residents of Morwen could."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The passage states a full 2x2, and a strong student only needs the pair that differs in porches alone on the same street type; C is the only such pair offered.",
+    "note": "B (Morwen vs Quellin) is most tempting because it favors porches but confounds both factors. D has the no-porch neighborhood beating the both-features one, which helps nobody."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Residents of Nethercote could name more of their neighbors than residents of Quellin could.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Residents of Ottersby could name more of their neighbors than residents of Nethercote could.",
+     "Residents of Ottersby could name more of their neighbors than residents of Morwen could."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "2x2 template identical to P02 and P09: the single-factor pair (porch, through street vs none) is the key.",
+    "note": "B (Morwen vs Quellin) is tempting but Morwen has both features. A supports Nakagawa, D runs against porches."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-05",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   },
+   {
+    "with": "II23A-01",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   },
+   {
+    "with": "II23D-05",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   }
+  ]
+ },
+ "II23C-02": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with II23D-04 named by 1 of 2",
+   "template pair with II23B-01 named by 1 of 2",
+   "template pair with II23A-03 named by 1 of 2",
+   "template pair with II23D-03 named by 1 of 2",
+   "template pair with II23A-02 named by 1 of 2",
+   "template pair with II23B-05 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "There was less car traffic in Mellick on weekdays than in Pasterby on weekdays.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "There was less car traffic in Norrance on weekends than in Mellick on weekends."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Mellick weekends vs Pasterby weekdays) is tempting since it sets charge-only against bus-only, but it crosses the weekday/weekend control. Requires tracking that bus lanes differ by day of week, which genuinely combines facts."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "There was less car traffic in Mellick on weekdays than in Pasterby on weekdays.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "There was less car traffic in Mellick on weekends than in Pasterby on weekdays.",
+     "There was less car traffic in Pasterby on weekends than in Mellick on weekdays."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Mixed weekday/weekend options are struck on sight; the weekday pair Mellick vs Pasterby differs only in the charge, as the passage's 'like Mellick' signposts.",
+    "note": "B (Norrance vs Mellick weekends) is same-day but points against the charge. A and C mix weekdays and weekends."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-04",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-05",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23C-05": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Residents of Quorley spent less on sugary drinks in 2020 than residents of Ravelle did in 2020.",
+    "confidence": "medium",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Residents of Mistlow spent less on sugary drinks in 2020 than residents of Pendry did in 2020."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The pre-existing decline sentence directly disqualifies D, and A and C both turn on Mistlow (campaign only), so the student just picks the one Quorley-vs-control option.",
+    "note": "D (Quorley 2020 below Quorley 2015) is the most tempting, but the passage says spending was already falling everywhere, so it shows nothing. B lacks a 2015 baseline, which weakens it slightly, but it is the only tax-only vs neither comparison."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Residents of Quorley spent less on sugary drinks in 2020 than residents of Ravelle did in 2020.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Residents of Mistlow spent less on sugary drinks in 2020 than residents of Ravelle did in 2020.",
+     "Residents of Mistlow spent less on sugary drinks in 2020 than residents of Pendry did in 2020."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "D is the trap: Quorley fell from 2015 to 2020, but spending was falling everywhere anyway. A and C bear on the campaign. B compares the tax-only town with the untouched neighbour, though only in 2020 levels."
+   }
+  ],
+  "template_partners": []
+ },
+ "II23C-01": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Residents of Nettleford commuted by bicycle more often than residents of Mossgate did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Residents of Quenby commuted by bicycle more often than residents of Ramsell did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The passage flags Orrinby as the only hilly district, killing B on sight; C fits both hypotheses and D concerns stations, leaving A by elimination.",
+    "note": "B (Pellam beats Orrinby, which has more lanes) is tempting but Orrinby is the only hilly district. C has the lanes-plus-stations district beating the bare one, consistent with Pazos."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Residents of Nettleford commuted by bicycle more often than residents of Mossgate did.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Residents of Quenby commuted by bicycle more often than residents of Ramsell did.",
+     "Residents of Ramsell commuted by bicycle more often than residents of Nettleford did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "B is tempting (6 km beats 12 km) but Orrinby is hilly. The key A is confounded by Nettleford's stations, and the clean Pellam-vs-Mossgate test is absent, so the student must accept a rival-factor comparison."
+   }
+  ],
+  "template_partners": []
+ },
+ "II23C-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23B-06 (named by all 2 readers)",
+   "template pair with II23B-07 (named by all 2 readers)",
+   "template pair with II23A-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-07 (the later slot revises)",
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Mavisford's store sold 31,500 books in a year, and the town has 9,000 residents.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Ollerby's store sold 14,400 books in a year, and the town has 4,000 residents."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The College column strikes Ollerby on sight, and the three remaining ratios against 3 are easy mental arithmetic (31,500 vs 27,000 for Mavisford).",
+    "note": "D (Pembray, 2.94 per resident) is the near miss; B (Ollerby, 3.6) clears the bar but has a college. Shares the template where the wrong-category row has the best ratio."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Mavisford's store sold 31,500 books in a year, and the town has 9,000 residents.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Ollerby's store sold 14,400 books in a year, and the town has 4,000 residents."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Same template as P04, P07, P26, P27: the highest-ratio row is excluded by the category column, leaving one division per option.",
+    "note": "B (Ollerby, 3.6) clears the bar but has a college, struck on sight. D (2.94) is the near miss."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23A-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   }
+  ]
+ },
+ "II23C-06": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23B-08 (named by all 2 readers)",
+   "template pair with II23A-07 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On straddle-the-line comparison items, only two options straddle the stated threshold and one of those runs the wrong way: P22, P24, P30."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "the Moxley station sold 56,000 gallons a week, compared with 44,000 at the Rindell station.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "the Oberwick station sold 38,000 gallons a week, compared with 34,000 at the Padstone station.",
+     "the Nydell station sold 50,000 gallons a week, compared with 38,000 at the Oberwick station."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Only two options straddle the 12 km line, and of those only A has the outside station selling more; it is one two-row comparison with no arithmetic.",
+    "note": "B (Quelling vs Padstone) straddles the line but the inside station wins; C compares two outside stations. A test-wise student notes the 12 km line and checks which option straddles it with the outside station winning."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "the Moxley station sold 56,000 gallons a week, compared with 44,000 at the Rindell station.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "the Quelling station sold 62,000 gallons a week, compared with 34,000 at the Padstone station.",
+     "the Oberwick station sold 38,000 gallons a week, compared with 34,000 at the Padstone station."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Only one option has the farther station outside the line and the nearer inside with the farther selling more; read off the distance column.",
+    "note": "D tempts as a cross-line pair but runs the wrong way (inside outsells outside). B and C do not straddle the line in the claimed direction."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23B-08",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   },
+   {
+    "with": "II23A-07",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   }
+  ]
+ },
+ "II23C-04": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Small farms in Ruskett adopted the variety earlier than small farms in Merrigal did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Small farms in Merrigal adopted the variety earlier than small farms in Prandle did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The planted 'Ruskett also contains several large estates' sentence telegraphs that C is the trap, leaving B as the only small-vs-small option where the no-office village wins.",
+    "note": "C (large Ruskett farms beat small Merrigal farms) is tempting as a no-office village winning, but it crosses the farm-size control the passage plants with Ruskett's estates. A supports Okoro."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Small farms in Ruskett adopted the variety earlier than small farms in Merrigal did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Small farms in Merrigal adopted the variety earlier than small farms in Prandle did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The passage flags farm size and Ruskett's estates, so every 'large farms' option is dead; the small-vs-small pair with the no-office village winning is the key.",
+    "note": "C tempts but uses Ruskett's large farms, which adopt early anyway. A supports Okoro; D is the rival's test."
+   }
+  ],
+  "template_partners": []
+ }
+}

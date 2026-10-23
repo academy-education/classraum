@@ -1,0 +1,841 @@
+{
+ "P01": {
+  "passage": "In the 1830s, diaries kept by merchant families recorded the hour at which each household sat down to dinner, and over the decade the hour was drifting later. The social historian Ursula Tennant hypothesizes that gas lighting let families dine later, since a gaslit room stayed bright long after dark. Simon Vasquez attributes later dinners instead to a long commercial day: where the exchange closed late, merchants came home late. Both historians accept that families dined somewhat later in summer than in winter, whatever lit their homes. In Tenlow, the exchange stayed open until six o'clock, but no house had gas. Sudmere's houses were gaslit and Verrow's were not, yet in both towns the exchange closed at three.",
+  "prompt": "Which finding, if true, would most directly weaken Tennant's hypothesis?",
+  "options": {
+   "A": "Households in Tenlow dined later in summer than households in Sudmere did in winter.",
+   "B": "Households in Sudmere dined later in summer than households in Verrow did in summer.",
+   "C": "Households in Verrow dined later in winter than households in Tenlow did in winter.",
+   "D": "Households in Tenlow dined later in winter than households in Sudmere did in winter."
+  }
+ },
+ "P02": {
+  "passage": "Eelgrass meadows in Cadmere Bay have thinned over the past decade. Botanist Bettina Achterberg hypothesizes that channel dredging is responsible: the sediment it stirs up clouds the water and blocks the light that eelgrass needs for photosynthesis. Her colleague Dorian Faulk suspects warm water discharged by the Elsby power plant instead, since prolonged heat also stresses eelgrass. The bay has four coves. Brackwell Cove lies beside the dredged channel, but currents carry the plant's warm discharge away from it, and Dellow Cove is far from both the channel and the discharge. Aldmoss Cove lies beside the dredged channel and also receives the warm discharge, while Cadfield Cove receives just as much of the discharge but lies far from any dredging.",
+  "prompt": "Which finding, if true, would most directly support Achterberg's hypothesis?",
+  "options": {
+   "A": "Eelgrass thinned more in Aldmoss Cove than in Dellow Cove.",
+   "B": "Eelgrass thinned more in Aldmoss Cove than in Cadfield Cove.",
+   "C": "Eelgrass thinned more in Cadfield Cove than in Dellow Cove.",
+   "D": "Eelgrass thinned more in Dellow Cove than in Brackwell Cove."
+  }
+ },
+ "P03": {
+  "passage": "In the lowlands around Lake Kanrow, the first frost of autumn tends to arrive late. Climatologist Ingrid Lowry hypothesizes that the lake is responsible: a large body of water stores summer heat and releases it slowly, warming nearby air on autumn nights. Climatologist Henrik Jarnell argues instead that the cause is heat that pavement and buildings absorb by day and give off after dark. Galmby is a city on the lakeshore, and Lisby is a farming village on the same shore. Kirrow is a city of about the same size as Galmby, but it lies far inland, as does Ilvard, a farming village. All four places sit at about the same elevation and receive similar rainfall.",
+  "prompt": "Which finding, if true, would most directly support Lowry's hypothesis?",
+  "options": {
+   "A": "The first autumn frost came later in Lisby than in Kirrow.",
+   "B": "The first autumn frost came later in Galmby than in Lisby.",
+   "C": "The first autumn frost came later in Galmby than in Ilvard.",
+   "D": "The first autumn frost came later in Kirrow than in Galmby."
+  }
+ },
+ "P04": {
+  "passage": "Introduced rats prey on the eggs and chicks of ground-nesting seabirds, and many conservationists assume that a colony on an island where rats remain cannot raise more than about 0.6 chicks per nest in a season. Ornithologist Cordelia Faye studied colonies of a burrow-nesting petrel on five islands of the Brannoch chain, some of which have been cleared of rats. She argues that the assumption is too pessimistic: on at least one island where rats remain, a colony raised more than 0.6 chicks per nest. ______",
+  "table": {
+   "type": "table",
+   "title": "Petrel colonies on five Brannoch islands in one breeding season",
+   "colLabels": [
+    "Nests",
+    "Chicks raised",
+    "Rats present?"
+   ],
+   "rowLabels": [
+    "Ardvane",
+    "Benvoray",
+    "Caillin",
+    "Dunvarra",
+    "Eskaig"
+   ],
+   "cells": [
+    [
+     "200",
+     "150",
+     "No"
+    ],
+    [
+     "420",
+     "273",
+     "Yes"
+    ],
+    [
+     "590",
+     "341",
+     "Yes"
+    ],
+    [
+     "960",
+     "528",
+     "Yes"
+    ],
+    [
+     "380",
+     "266",
+     "No"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "On Ardvane, the colony raised 150 chicks from 200 nests.",
+   "B": "On Dunvarra, the colony raised 528 chicks from 960 nests.",
+   "C": "On Caillin, the colony raised 341 chicks from 590 nests.",
+   "D": "On Benvoray, the colony raised 273 chicks from 420 nests."
+  }
+ },
+ "P05": {
+  "passage": "In the nineteenth century, hawkers in the towns of the Yarrowmere district sold printed ballads on single sheets. The historian Sanne Vollmer hypothesizes that railways raised these sales, since trains carried cheap sheets from city presses. Tobias Wendt contends instead that sales followed literacy, which grew wherever a free school opened. Both historians agree that war news sold ballads by itself, and the district's regiments were at war throughout the 1830s but not in the 1820s or 1840s. The railway reached Sellwick in 1840, and Sellwick had no free school until 1860. Ulsby, which no railway ever reached, opened a free school in 1830, while Wrexley, which likewise had no free school until 1860, was reached by the railway in 1840.",
+  "prompt": "Which finding, if true, would most directly weaken Vollmer's hypothesis?",
+  "options": {
+   "A": "More ballad sheets per household were sold in Wrexley in the 1840s than in Ulsby in the 1820s.",
+   "B": "More ballad sheets per household were sold in Sellwick in the 1830s than in Wrexley in the 1820s.",
+   "C": "More ballad sheets per household were sold in Sellwick in the 1820s than in Sellwick in the 1840s.",
+   "D": "More ballad sheets per household were sold in Ulsby in the 1830s than in Wrexley in the 1840s."
+  }
+ },
+ "P06": {
+  "passage": "In the city of Redlowe, the share of residents who commute by bicycle varies widely from district to district. Urban economist Mirela Pazos hypothesizes that protected bike lanes are what draw commuters onto bicycles. Transportation planner Oren Ruddock contends instead that the decisive factor is bike-share stations, which let people ride without owning a bicycle. Both accept that steep streets discourage cycling whatever a district offers. Of six similar districts, only Orrinby is hilly; it has 12 kilometers of protected lanes but no stations. Ramsell has neither lanes nor stations. Quenby has 6 kilometers of lanes plus stations, while Pellam has 6 kilometers of lanes and no stations. Nettleford has stations but no lanes, and Mossgate has 12 kilometers of lanes but no stations.",
+  "prompt": "Which finding, if true, would most directly weaken Pazos's hypothesis?",
+  "options": {
+   "A": "Residents of Nettleford commuted by bicycle more often than residents of Mossgate did.",
+   "B": "Residents of Pellam commuted by bicycle more often than residents of Orrinby did.",
+   "C": "Residents of Quenby commuted by bicycle more often than residents of Ramsell did.",
+   "D": "Residents of Ramsell commuted by bicycle more often than residents of Nettleford did."
+  }
+ },
+ "P07": {
+  "passage": "In 1884, five provincial art societies in the Wyndmoor region held exhibitions at which visitors could buy the paintings on show. Many dealers of the time believed that an exhibition sold well only if it charged admission, which kept idle browsers away from serious buyers. The art historian Valeska Sorrell disputes this, pointing to an exhibition that admitted visitors free of charge and still sold more than a quarter of the paintings it showed. ______",
+  "table": {
+   "type": "table",
+   "title": "Five Wyndmoor art exhibitions, 1884",
+   "colLabels": [
+    "Paintings shown",
+    "Paintings sold",
+    "Admission"
+   ],
+   "rowLabels": [
+    "Uxley",
+    "Tarnside",
+    "Velmont",
+    "Yoxholt",
+    "Sandmoor"
+   ],
+   "cells": [
+    [
+     "320",
+     "96",
+     "Charged"
+    ],
+    [
+     "210",
+     "58",
+     "Free"
+    ],
+    [
+     "180",
+     "39",
+     "Charged"
+    ],
+    [
+     "290",
+     "71",
+     "Free"
+    ],
+    [
+     "600",
+     "120",
+     "Free"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "The Tarnside exhibition sold 58 of the paintings it showed.",
+   "B": "The Yoxholt exhibition sold 71 of the paintings it showed.",
+   "C": "The Uxley exhibition sold 96 of the paintings it showed.",
+   "D": "The Velmont exhibition sold 39 of the paintings it showed."
+  }
+ },
+ "P08": {
+  "passage": "Spending on sugary soft drinks had been falling across the Ombrey region for years before 2017, as tastes shifted toward water and tea. Economist Noemi Ramsden compared spending per resident on such drinks in 2015 and 2020 in four of the region's towns. Quorley and Pendry began taxing sugary drinks in 2017, and Ramsden hypothesizes that the tax itself cut consumption. Public health scholar Matthias Quarrie suspects instead an advertising campaign warning about sugar, which began in 2017 in Mistlow and Pendry but nowhere else in the region. Neither the tax nor the campaign reached Ravelle, which lies just north of Quorley.",
+  "prompt": "Which finding, if true, would most directly support Ramsden's hypothesis?",
+  "options": {
+   "A": "Residents of Mistlow spent less on sugary drinks in 2020 than residents of Ravelle did in 2020.",
+   "B": "Residents of Quorley spent less on sugary drinks in 2020 than residents of Ravelle did in 2020.",
+   "C": "Residents of Mistlow spent less on sugary drinks in 2020 than residents of Pendry did in 2020.",
+   "D": "Residents of Quorley spent less on sugary drinks in 2020 than residents of Quorley did in 2015."
+  }
+ },
+ "P09": {
+  "passage": "During the 1880s, upright pianos became common in the parlors of shopkeepers and clerks in the towns of the Westervale region. The music historian Yvette Sandoval hypothesizes that installment plans, which let a family pay for a piano over three years, drove the spread. Walter Szabo contends instead that demand came from conservatories, whose students needed an instrument to practice on at home. Sarnby and Thursk each had a dealer who sold pianos on installment plans; of those two towns, only Sarnby also had a conservatory. Ulmeston had a conservatory but no dealer offering installment plans, and Yarnholt had neither.",
+  "prompt": "Which finding, if true, would most directly support Sandoval's hypothesis?",
+  "options": {
+   "A": "More households per hundred owned a piano in Sarnby than in Yarnholt.",
+   "B": "More households per hundred owned a piano in Ulmeston than in Thursk.",
+   "C": "More households per hundred owned a piano in Ulmeston than in Yarnholt.",
+   "D": "More households per hundred owned a piano in Sarnby than in Ulmeston."
+  }
+ },
+ "P10": {
+  "passage": "A state program pays for job-training courses only if they meet two conditions: graduates must earn at least $4.00 more per hour after the course than they did before it, and at least 75 percent of enrollees must finish. Labor economist Marguerite Oyelaran reviewed five courses offered by community colleges in one region and found that just one of them met both conditions: ______",
+  "table": {
+   "type": "table",
+   "title": "Five job-training courses: graduates' average hourly wages and completion rates",
+   "colLabels": [
+    "Hourly wage before course ($)",
+    "Hourly wage after course ($)",
+    "Enrollees who finished (%)"
+   ],
+   "rowLabels": [
+    "Milbray",
+    "Nanbury",
+    "Orwen",
+    "Prestley",
+    "Quillow"
+   ],
+   "cells": [
+    [
+     "13.20",
+     "18.00",
+     "58"
+    ],
+    [
+     "15.80",
+     "20.30",
+     "62"
+    ],
+    [
+     "16.60",
+     "20.15",
+     "70"
+    ],
+    [
+     "14.90",
+     "18.80",
+     "84"
+    ],
+    [
+     "17.40",
+     "21.60",
+     "81"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Orwen's graduates earned $16.60 an hour before the course and $20.15 after it.",
+   "B": "Prestley's graduates earned $14.90 an hour before the course and $18.80 after it.",
+   "C": "Nanbury's graduates earned $15.80 an hour before the course and $20.30 after it.",
+   "D": "Quillow's graduates earned $17.40 an hour before the course and $21.60 after it."
+  }
+ },
+ "P11": {
+  "passage": "A haze of fine particles often hangs over the towns around Lunsford Bay. Atmospheric chemist Gemma Haldane hypothesizes that exhaust from diesel-burning ships is the main source of the particles, while chemist Ivo Kestner argues that wood smoke is. Both researchers accept that winter worsens haze by itself, since cold, still air traps particles near the ground. Jessop, an inland village with no mill, burns wood in household stoves only during the winter. Ships call year-round at Garrow, the bay's only port, where homes are heated by piped hot water rather than wood, while inland Hollin burns sawmill waste in open furnaces in every season.",
+  "prompt": "Which finding, if true, would most directly support Haldane's hypothesis?",
+  "options": {
+   "A": "The air at Jessop in summer held more fine particles than the air at Garrow in summer did.",
+   "B": "The air at Garrow in winter held more fine particles than the air at Hollin in summer did.",
+   "C": "The air at Jessop in winter held more fine particles than the air at Hollin in summer did.",
+   "D": "The air at Garrow in winter held more fine particles than the air at Jessop in winter did."
+  }
+ },
+ "P12": {
+  "passage": "Car traffic in the centers of three similar towns in the Quarne region has fallen in recent years. Economist Malia Renshaw attributes the decline to congestion charges, fees that drivers must pay to enter a town center. Planner Pavel Ormsby credits bus lanes instead, arguing that buses speeding past stalled cars lure drivers out of them. Both agree that town centers carry less car traffic on weekends than on weekdays, when commuters drive in. Norrance has neither a charge nor bus lanes. Mellick charges drivers every day of the week, but its bus lanes operate only on weekdays. Pasterby has no charge, but like Mellick it runs bus lanes on weekdays, and it keeps them running on weekends as well.",
+  "prompt": "Which finding, if true, would most directly support Renshaw's hypothesis?",
+  "options": {
+   "A": "There was less car traffic in Mellick on weekends than in Pasterby on weekdays.",
+   "B": "There was less car traffic in Norrance on weekends than in Mellick on weekends.",
+   "C": "There was less car traffic in Pasterby on weekends than in Mellick on weekdays.",
+   "D": "There was less car traffic in Mellick on weekdays than in Pasterby on weekdays."
+  }
+ },
+ "P13": {
+  "passage": "Oak seedlings in the Carvel Hills now survive their first years at higher rates than they did in the 1980s. Forest ecologist Daphne Abernell credits deer fences, which keep browsing deer away from young oaks. Fabian Cole credits prescribed burns instead, which clear out the shade-tolerant saplings that crowd oaks. Both agree that a run of wet summers beginning in 2010 raised seedling survival in every tract. Survival has been tracked by decade in three tracts. The Eldwick tract has never been fenced or burned. The Carbery tract was burned every few years during the 1990s, but the burns then stopped, and it has been fenced since 2000. The Daleford tract has been burned every few years since 2000 but, unlike the Carbery tract, has never been fenced.",
+  "prompt": "Which finding, if true, would most directly weaken Abernell's hypothesis?",
+  "options": {
+   "A": "More of the oak seedlings survived in the Daleford tract in the 2000s than in the Carbery tract in the 2000s.",
+   "B": "More of the oak seedlings survived in the Carbery tract in the 2000s than in the Carbery tract in the 1990s.",
+   "C": "More of the oak seedlings survived in the Daleford tract in the 2010s than in the Carbery tract in the 2000s.",
+   "D": "More of the oak seedlings survived in the Daleford tract in the 2010s than in the Eldwick tract in the 2010s."
+  }
+ },
+ "P14": {
+  "passage": "In the early solar system, water could freeze into ice only beyond a distance from the sun known as the snow line, which many models place at about 2.7 astronomical units (AU). Asteroids orbiting beyond that distance are therefore thought to hold more water, which survives today in hydrated minerals on their surfaces. Planetary scientist Gisela Haugen claims the difference can be large: an asteroid orbiting beyond the snow line can carry at least twice the share of hydrated minerals found on an asteroid orbiting inside it. ______",
+  "table": {
+   "type": "table",
+   "title": "Six asteroids: orbit and surface composition",
+   "colLabels": [
+    "Average distance from the sun (AU)",
+    "Hydrated minerals (% of surface)"
+   ],
+   "rowLabels": [
+    "Gyllen",
+    "Hennick",
+    "Ivra",
+    "Jassel",
+    "Kolbeck",
+    "Lisvold"
+   ],
+   "cells": [
+    [
+     "2.31",
+     "1.6"
+    ],
+    [
+     "2.44",
+     "3.5"
+    ],
+    [
+     "2.63",
+     "8.2"
+    ],
+    [
+     "2.88",
+     "3.4"
+    ],
+    [
+     "3.07",
+     "6.3"
+    ],
+    [
+     "3.24",
+     "5.0"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "On Hennick, hydrated minerals made up 3.5% of the surface, compared with 1.6% on Gyllen.",
+   "B": "On Ivra, hydrated minerals made up 8.2% of the surface, compared with 5.0% on Lisvold.",
+   "C": "On Kolbeck, hydrated minerals made up 6.3% of the surface, compared with 3.5% on Hennick.",
+   "D": "On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen."
+  }
+ },
+ "P15": {
+  "passage": "Honeybee colonies in the Dorran Valley stored less honey last summer than in earlier years. Apiarist Beatrix Fenn hypothesizes that varroa mites, parasites that weaken worker bees, are mainly to blame. Emil Dacosta suspects that pesticide drifting from sprayed orchards is mainly to blame instead. Both agree that colonies at high elevation tend to store less honey, because their flowering season is shorter. Researchers measured mite loads at four apiaries. Bramel, a lowland apiary far from any orchard, had a heavy load, and Cromby, an upland apiary also far from orchards, had a moderate one. Ardane and Elvey, two lowland apiaries with light loads, differ in one respect: Ardane borders sprayed orchards, while Elvey lies far from any.",
+  "prompt": "Which finding, if true, would most directly support Fenn's hypothesis?",
+  "options": {
+   "A": "Colonies at Bramel stored less honey than colonies at Ardane.",
+   "B": "Colonies at Ardane stored less honey than colonies at Elvey.",
+   "C": "Colonies at Elvey stored less honey than colonies at Bramel.",
+   "D": "Colonies at Cromby stored less honey than colonies at Ardane."
+  }
+ },
+ "P16": {
+  "passage": "Merrand County adds a tax of 25 cents to the price of every gallon of gasoline sold within its borders; the neighboring county levies no such tax. Route 9 runs east from the county seat and crosses the county line 12 kilometers from the city center, and traffic on the road thins steadily with distance from the city. Economist Petra Mulvane claims that the tax nonetheless lets a station just beyond the line outsell a station that is nearer the city but inside the county. Data from six stations on Route 9 support her claim: ______",
+  "table": {
+   "type": "table",
+   "title": "Gasoline sales at six stations on Route 9",
+   "colLabels": [
+    "Distance from city center (km)",
+    "Average weekly sales (thousands of gallons)"
+   ],
+   "rowLabels": [
+    "Quelling",
+    "Nydell",
+    "Rindell",
+    "Moxley",
+    "Padstone",
+    "Oberwick"
+   ],
+   "cells": [
+    [
+     "3",
+     "62"
+    ],
+    [
+     "6",
+     "50"
+    ],
+    [
+     "9",
+     "44"
+    ],
+    [
+     "13",
+     "56"
+    ],
+    [
+     "17",
+     "34"
+    ],
+    [
+     "22",
+     "38"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "the Moxley station sold 56,000 gallons a week, compared with 44,000 at the Rindell station.",
+   "B": "the Quelling station sold 62,000 gallons a week, compared with 34,000 at the Padstone station.",
+   "C": "the Oberwick station sold 38,000 gallons a week, compared with 34,000 at the Padstone station.",
+   "D": "the Nydell station sold 50,000 gallons a week, compared with 38,000 at the Oberwick station."
+  }
+ },
+ "P17": {
+  "passage": "In the 1890s, touring theater companies began traveling by rail to the towns of the Sorvane circuit, bringing plays that local stock companies could not stage. The theater historian Tove Westergaard argues that these tours mattered most to small playhouses. She claims that at least one playhouse with fewer than 400 seats more than doubled its annual attendance between 1890 and 1900. Westergaard's claim is supported by the fact that ______",
+  "table": {
+   "type": "table",
+   "title": "Five Sorvane circuit playhouses",
+   "colLabels": [
+    "Seats",
+    "Annual attendance, 1890",
+    "Annual attendance, 1900"
+   ],
+   "rowLabels": [
+    "Ulvercote",
+    "Varrick",
+    "Stennard",
+    "Wendham",
+    "Tavisholm"
+   ],
+   "cells": [
+    [
+     "380",
+     "17,900",
+     "33,400"
+    ],
+    [
+     "350",
+     "24,600",
+     "41,800"
+    ],
+    [
+     "320",
+     "9,800",
+     "21,500"
+    ],
+    [
+     "840",
+     "40,000",
+     "52,000"
+    ],
+    [
+     "610",
+     "11,200",
+     "26,300"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "the playhouse in Ulvercote drew 33,400 patrons in 1900.",
+   "B": "the playhouse in Stennard drew 21,500 patrons in 1900.",
+   "C": "the playhouse in Varrick drew 41,800 patrons in 1900.",
+   "D": "the playhouse in Tavisholm drew 26,300 patrons in 1900."
+  }
+ },
+ "P18": {
+  "passage": "When a drought-tolerant sorghum variety reached three farming villages, farms there took it up at very different times. Agricultural economist Monique Okoro hypothesizes that extension offices, which send advisers to demonstrate new seeds in farmers' own fields, led farms to adopt the variety sooner. Economist Rashid Pemberton argues instead that access to credit was decisive, since a farm must buy seed before it can plant it. Both note that large farms, which can risk a trial plot, generally adopt new crops before small ones. Merrigal has an extension office but no bank branch, Prandle has a bank branch but no extension office, and Ruskett has neither. Small farms predominate in all three villages, although Ruskett also contains several large estates. Okoro recorded the season in which each farm first planted the variety.",
+  "prompt": "Which finding, if true, would most directly weaken Okoro's hypothesis?",
+  "options": {
+   "A": "Small farms in Merrigal adopted the variety earlier than small farms in Prandle did.",
+   "B": "Small farms in Ruskett adopted the variety earlier than small farms in Merrigal did.",
+   "C": "Large farms in Ruskett adopted the variety earlier than small farms in Merrigal did.",
+   "D": "Small farms in Prandle adopted the variety earlier than small farms in Ruskett did."
+  }
+ },
+ "P19": {
+  "passage": "On rocky shores, two barnacle species often compete for space. The larger species grows faster and crowds out the smaller one wherever both can live, but it dies from drying out where low tides leave the rock exposed for long periods. On Calderwick Point, ecologist Edwina Brack found that the larger species cannot survive more than 1.1 meters above the low-tide line. Brack claims that, freed from its competitor, the smaller species can be more crowded at a site above that level than at a site below it, even though higher sites spend longer exposed to air. Brack's claim is supported by the fact that ______",
+  "table": {
+   "type": "table",
+   "title": "The smaller barnacle species at six sites on Calderwick Point",
+   "colLabels": [
+    "Height above low tide (m)",
+    "Barnacles per 100 cm²"
+   ],
+   "rowLabels": [
+    "Arrel",
+    "Brockel",
+    "Cendry",
+    "Dovell",
+    "Eskett",
+    "Fenlow"
+   ],
+   "cells": [
+    [
+     "0.3",
+     "9"
+    ],
+    [
+     "0.6",
+     "21"
+    ],
+    [
+     "0.9",
+     "15"
+    ],
+    [
+     "1.3",
+     "34"
+    ],
+    [
+     "1.6",
+     "52"
+    ],
+    [
+     "2.0",
+     "12"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "the smaller barnacle numbered 15 per 100 cm² at Cendry, compared with 12 at Fenlow.",
+   "B": "the smaller barnacle numbered 34 per 100 cm² at Dovell, compared with 21 at Brockel.",
+   "C": "the smaller barnacle numbered 21 per 100 cm² at Brockel, compared with 15 at Cendry.",
+   "D": "the smaller barnacle numbered 52 per 100 cm² at Eskett, compared with 34 at Dovell."
+  }
+ },
+ "P20": {
+  "passage": "Sociologist Odessa Marchand hypothesizes that front porches help residents get to know their neighbors, since people sitting outside are easily drawn into conversation with passersby. Urban planner Remy Nakagawa contends instead that what matters is the cul-de-sac, a dead-end street whose lack of through traffic lets residents linger outdoors. Four neighborhoods built in the same decade, with similar household incomes, offer a test. Most houses in Nethercote have front porches but stand on through streets, and most in Ottersby lack porches but line cul-de-sacs. Morwen's houses have porches and line cul-de-sacs, while Quellin's have no porches and stand on through streets.",
+  "prompt": "Which finding, if true, would most directly support Marchand's hypothesis?",
+  "options": {
+   "A": "Residents of Ottersby could name more of their neighbors than residents of Nethercote could.",
+   "B": "Residents of Morwen could name more of their neighbors than residents of Quellin could.",
+   "C": "Residents of Nethercote could name more of their neighbors than residents of Quellin could.",
+   "D": "Residents of Ottersby could name more of their neighbors than residents of Morwen could."
+  }
+ },
+ "P21": {
+  "passage": "Blue tits in many woodlands now lay their eggs earlier in spring than they once did. Ornithologist Felicia Dalgren hypothesizes that bird feeders, which some forests now host, are responsible, because well-fed females reach breeding condition sooner. Ansel Corby suggests instead that oak trees are the key, since their young leaves support early swarms of caterpillars that females eat before laying. Both agree that tits in any forest lay earlier in a warm spring than in a cold one. Researchers recorded laying dates in three forests during one cold spring and one warm spring. Coppling Forest has feeders among its beech trees, Dinsmore Forest is a beech forest without feeders, and Esterholm Forest has feeders among its oaks.",
+  "prompt": "Which finding, if true, would most directly support Dalgren's hypothesis?",
+  "options": {
+   "A": "Tits laid earlier in Esterholm Forest in the warm spring than in Dinsmore Forest in the warm spring.",
+   "B": "Tits laid earlier in Dinsmore Forest in the warm spring than in Coppling Forest in the warm spring.",
+   "C": "Tits laid earlier in Coppling Forest in the cold spring than in Dinsmore Forest in the cold spring.",
+   "D": "Tits laid earlier in Coppling Forest in the warm spring than in Dinsmore Forest in the cold spring."
+  }
+ },
+ "P22": {
+  "passage": "Silt in the creeks that drain the Gaddby hills into a city reservoir has increased in recent years. Hydrologist Greta Ilves attributes the rise to gravel mining, which began along Holt and Lanner Creeks in 2010. Forester Lars Kirby blames logging, which began in the watersheds of Kell and Lanner Creeks that same year. Both agree that heavy rain in a wet year, such as 2012, washes extra silt into every creek, that 2008, 2016, and 2018 were all dry years, and that otherwise a creek's silt changes little from one dry year to the next. No trees have been cut along Holt Creek, and no gravel has been mined along Kell Creek.",
+  "prompt": "Which finding, if true, would most directly support Ilves's hypothesis?",
+  "options": {
+   "A": "Water sampled from Lanner Creek in 2016 carried more silt than water sampled from Kell Creek in 2008.",
+   "B": "Water sampled from Holt Creek in 2018 carried more silt than water sampled from Kell Creek in 2016.",
+   "C": "Water sampled from Holt Creek in 2008 carried more silt than water sampled from Holt Creek in 2016.",
+   "D": "Water sampled from Holt Creek in 2012 carried more silt than water sampled from Kell Creek in 2018."
+  }
+ },
+ "P23": {
+  "passage": "Ski areas in the Lisken Range store snow through the summer in large heaps covered with wood chips, which insulate the snow from warm air. Engineer Lise Gundersen hypothesizes that the thicker the chip layer, the less snow a heap loses. Engineer Kari Hjelm argues instead that what matters is a white plastic sheet laid over the chips to reflect sunlight. Both agree that a heap at a higher elevation loses less snow by itself, because the air there is cooler. At Ilmer, a heap sits under 25 centimeters of chips with no sheet; at Kaltby, a heap sits under 10 centimeters of chips with a sheet. Ilmer, Gessing, and Holvard lie at about the same elevation, while Kaltby lies far higher. Gessing and Holvard each cover their heaps with 40 centimeters of chips, but only Gessing adds a sheet.",
+  "prompt": "Which finding, if true, would most directly weaken Gundersen's hypothesis?",
+  "options": {
+   "A": "The heap at Gessing lost less of its snow over the summer than the heap at Ilmer did.",
+   "B": "The heap at Holvard lost less of its snow over the summer than the heap at Gessing did.",
+   "C": "The heap at Ilmer lost less of its snow over the summer than the heap at Holvard did.",
+   "D": "The heap at Kaltby lost less of its snow over the summer than the heap at Ilmer did."
+  }
+ },
+ "P24": {
+  "passage": "A regional development fund lends money to independent bookstores in small towns, but only where a store sells more than three books per resident each year. Economist Rhea Montague notes that stores in towns without a college are often assumed to fall short of that bar, since students and faculty buy books in large numbers. She reports, however, that a store in a town with no college of its own has cleared it: ______",
+  "table": {
+   "type": "table",
+   "title": "Annual sales at the only bookstore in six small towns",
+   "colLabels": [
+    "Residents",
+    "Books sold in a year",
+    "College in town"
+   ],
+   "rowLabels": [
+    "Mavisford",
+    "Norwold",
+    "Ollerby",
+    "Pembray",
+    "Quintard",
+    "Rosswick"
+   ],
+   "cells": [
+    [
+     "9,000",
+     "31,500",
+     "No"
+    ],
+    [
+     "6,500",
+     "13,000",
+     "Yes"
+    ],
+    [
+     "4,000",
+     "14,400",
+     "Yes"
+    ],
+    [
+     "9,600",
+     "28,200",
+     "No"
+    ],
+    [
+     "10,500",
+     "27,300",
+     "No"
+    ],
+    [
+     "12,000",
+     "45,600",
+     "Yes"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Quintard's store sold 27,300 books in a year, and the town has 10,500 residents.",
+   "B": "Ollerby's store sold 14,400 books in a year, and the town has 4,000 residents.",
+   "C": "Mavisford's store sold 31,500 books in a year, and the town has 9,000 residents.",
+   "D": "Pembray's store sold 28,200 books in a year, and the town has 9,600 residents."
+  }
+ },
+ "P25": {
+  "passage": "During the 1700s, fires regularly swept through the timber towns of the Vardholm coast. The historian Signe Ulvang hypothesizes that a town lost less property to fire if it kept a paid fire company equipped with hand pumps. Wouter Zell argues instead that what mattered was a building ordinance requiring tile rather than thatch on roofs. Sallowby kept a fire company but never passed such an ordinance; Tesmond passed the ordinance but never kept a fire company; Ulverholm had neither. Both historians accept that, whatever a town's defenses, fires spread farther in dry years than in wet ones, and the town records of the period mark each year as dry or wet.",
+  "prompt": "Which finding, if true, would most directly support Ulvang's hypothesis?",
+  "options": {
+   "A": "Less property per household was lost to fire in Sallowby in dry years than in Tesmond in dry years.",
+   "B": "Less property per household was lost to fire in Ulverholm in wet years than in Sallowby in dry years.",
+   "C": "Less property per household was lost to fire in Ulverholm in wet years than in Sallowby in wet years.",
+   "D": "Less property per household was lost to fire in Sallowby in wet years than in Tesmond in dry years."
+  }
+ },
+ "P26": {
+  "passage": "Solar farms are often compared by their annual output per megawatt (MW) of panel capacity. Panels mounted on trackers, which tilt to follow the sun across the sky, usually outperform fixed panels on this measure, so some developers regard fixed mounting as a poor choice for new farms. Engineer Gunnar Lidell argues that fixed panels can still perform well in a sunny location: at one farm on the Hjarta plateau whose panels are fixed, a year's output exceeded 1,700 megawatt-hours (MWh) per MW of capacity. ______",
+  "table": {
+   "type": "table",
+   "title": "Five solar farms on the Hjarta plateau in one year",
+   "colLabels": [
+    "Panel capacity (MW)",
+    "Annual output (MWh)",
+    "Panel mounting"
+   ],
+   "rowLabels": [
+    "Gavrin",
+    "Haverud",
+    "Islaug",
+    "Kelsing",
+    "Lindholt"
+   ],
+   "cells": [
+    [
+     "20",
+     "29,000",
+     "Fixed"
+    ],
+    [
+     "17",
+     "34,900",
+     "Tracking"
+    ],
+    [
+     "24",
+     "40,300",
+     "Fixed"
+    ],
+    [
+     "28",
+     "49,800",
+     "Fixed"
+    ],
+    [
+     "32",
+     "56,000",
+     "Tracking"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Haverud produced 34,900 MWh in the year from 17 MW of panels.",
+   "B": "Islaug produced 40,300 MWh in the year from 24 MW of panels.",
+   "C": "Kelsing produced 49,800 MWh in the year from 28 MW of panels.",
+   "D": "Gavrin produced 29,000 MWh in the year from 20 MW of panels."
+  }
+ },
+ "P27": {
+  "passage": "Groynes, low walls built out from the shore, trap sand carried along the coast, so beaches with groynes are generally expected to hold their width better than beaches without them. Studying the Kessholm coast, coastal geologist Hedda Lunde argues that a beach can widen substantially even without groynes: at one beach that has none, the width grew by more than 15 percent from 2004 to 2022. ______",
+  "table": {
+   "type": "table",
+   "title": "Width of five beaches on the Kessholm coast",
+   "colLabels": [
+    "Width in 2004 (m)",
+    "Width in 2022 (m)",
+    "Groynes"
+   ],
+   "rowLabels": [
+    "Gimlund",
+    "Hestrand",
+    "Ingvaldby",
+    "Jorsand",
+    "Lauvholm"
+   ],
+   "cells": [
+    [
+     "32",
+     "35",
+     "Yes"
+    ],
+    [
+     "90",
+     "101",
+     "No"
+    ],
+    [
+     "64",
+     "59",
+     "No"
+    ],
+    [
+     "40",
+     "48",
+     "No"
+    ],
+    [
+     "55",
+     "65",
+     "Yes"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Jorsand widened from 40 meters in 2004 to 48 meters in 2022.",
+   "B": "Lauvholm widened from 55 meters in 2004 to 65 meters in 2022.",
+   "C": "Hestrand widened from 90 meters in 2004 to 101 meters in 2022.",
+   "D": "Gimlund widened from 32 meters in 2004 to 35 meters in 2022."
+  }
+ },
+ "P28": {
+  "passage": "Red-backed salamanders in Belvane Forest weigh less, on average, than they did thirty years ago. Herpetologist Annika Brevard hypothesizes that the main cause is invasive earthworms, which devour the leaf litter where the salamanders' insect prey live. Cyrus Elling suspects that the main cause is recent logging instead, because opening the canopy dries the forest floor and keeps salamanders from foraging. Both agree that salamanders everywhere weigh less in August than in May, since dry summer nights keep them under cover. Researchers weighed salamanders in both months in three kinds of stands. The Corlett stands were logged recently but have no earthworms. The Ambersley stands were never logged but are now full of earthworms, and the Fenwold stands, also never logged, have no earthworms.",
+  "prompt": "Which finding, if true, would most directly weaken Brevard's hypothesis?",
+  "options": {
+   "A": "Salamanders weighed less in the Ambersley stands in August than in the Fenwold stands in August.",
+   "B": "Salamanders weighed less in the Fenwold stands in August than in the Ambersley stands in May.",
+   "C": "Salamanders weighed less in the Fenwold stands in May than in the Corlett stands in May.",
+   "D": "Salamanders weighed less in the Corlett stands in May than in the Ambersley stands in May."
+  }
+ },
+ "P29": {
+  "passage": "In the parishes of the Wenlow uplands, marriage registers from 1780 to 1800 record whether each bride and groom signed or made a mark. The historian Solveig Yarde hypothesizes that signing rose with the number of years a parish had employed a schoolmaster. Teodor Sjoberg contends instead that signing spread along the turnpike road, where peddlers sold primers and almanacs. Both scholars accept that, in this period, grooms signed more often than brides wherever they lived. Stavely and Vintrell had each employed a schoolmaster for forty years, and Tessaby had never had one; of these three, only Stavely lay away from the turnpike road. Wrayburn, which also lay away from the road, had employed a schoolmaster for fifteen years, while Upthorne, on the road, had never had one.",
+  "prompt": "Which finding, if true, would most directly support Yarde's hypothesis?",
+  "options": {
+   "A": "Brides in Vintrell signed their names more often than brides in Wrayburn did.",
+   "B": "Grooms in Upthorne signed their names more often than brides in Tessaby did.",
+   "C": "Brides in Stavely signed their names more often than brides in Tessaby did.",
+   "D": "Grooms in Wrayburn signed their names more often than brides in Upthorne did."
+  }
+ },
+ "P30": {
+  "passage": "Tomato plants can shed their flowers in hot weather before any fruit forms, so breeders look for varieties whose fruit set (the share of flowers that become fruit) holds up in heat. In a greenhouse trial, breeder Ada Faircloth grew five varieties at 25°C and at 35°C. She wanted a variety whose fruit set at 35°C was no more than 10 percentage points below its fruit set at 25°C and that also produced its first ripe fruit within 70 days of planting. Faircloth reports that just one variety met both requirements: ______",
+  "table": {
+   "type": "table",
+   "title": "Five tomato varieties in a greenhouse heat trial",
+   "colLabels": [
+    "Fruit set at 25°C (%)",
+    "Fruit set at 35°C (%)",
+    "Days to first ripe fruit"
+   ],
+   "rowLabels": [
+    "Amberlee",
+    "Birchtop",
+    "Copperhill",
+    "Dawnlight",
+    "Emberglow"
+   ],
+   "cells": [
+    [
+     "76",
+     "60",
+     "81"
+    ],
+    [
+     "71",
+     "64",
+     "78"
+    ],
+    [
+     "58",
+     "49",
+     "66"
+    ],
+    [
+     "64",
+     "52",
+     "63"
+    ],
+    [
+     "83",
+     "69",
+     "68"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Birchtop set fruit on 71% of its flowers at 25°C and on 64% at 35°C.",
+   "B": "Emberglow set fruit on 83% of its flowers at 25°C and on 69% at 35°C.",
+   "C": "Copperhill set fruit on 58% of its flowers at 25°C and on 49% at 35°C.",
+   "D": "Dawnlight set fruit on 64% of its flowers at 25°C and on 52% at 35°C."
+  }
+ },
+ "P31": {
+  "passage": "Historians have often linked a thriving book trade to widespread literacy. The historian Zofia Thorne argues that in the market towns of the Thrandle district, bookshops served a narrow circle of readers, so even a town where fewer than half of adults could sign their names might support a dense trade. As an example, she points to a town of that kind that had at least one bookshop for every 1,500 residents: ______",
+  "table": {
+   "type": "table",
+   "title": "Five Thrandle district market towns, 1795",
+   "colLabels": [
+    "Population",
+    "Bookshops",
+    "Adults able to sign their names (%)"
+   ],
+   "rowLabels": [
+    "Wickerby",
+    "Sedgeholm",
+    "Tolbridge",
+    "Vardleigh",
+    "Ulsworth"
+   ],
+   "cells": [
+    [
+     "19,800",
+     "11",
+     "38"
+    ],
+    [
+     "5,200",
+     "4",
+     "61"
+    ],
+    [
+     "11,700",
+     "9",
+     "55"
+    ],
+    [
+     "9,800",
+     "7",
+     "42"
+    ],
+    [
+     "8,600",
+     "5",
+     "45"
+    ]
+   ]
+  },
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "options": {
+   "A": "Ulsworth, where 5 bookshops were trading in 1795.",
+   "B": "Vardleigh, where 7 bookshops were trading in 1795.",
+   "C": "Sedgeholm, where 4 bookshops were trading in 1795.",
+   "D": "Wickerby, where 11 bookshops were trading in 1795."
+  }
+ },
+ "P32": {
+  "passage": "Seismometers at three stations in the Lorrin uplands record more background vibration than their designers expected. Seismologist Helga Lindqvist hypothesizes that the vibration comes from a wind farm whose turbines turn year-round beside the station at Gorsby. Seismologist Joel Ingvarsson argues instead that it comes from heavy road traffic. The station at Hamnell stands beside a highway that carries trucks all year, and the station at Jeltby stands beside a mountain road that is open in summer but closed by snow in winter. No turbine stands near Hamnell or Jeltby, and Gorsby is far from any busy road. Both researchers agree that winter storms over the distant ocean raise background vibration at every station on their own.",
+  "prompt": "Which finding, if true, would most directly weaken Lindqvist's hypothesis?",
+  "options": {
+   "A": "Readings taken at Jeltby in winter showed more background vibration than readings taken at Gorsby in summer.",
+   "B": "Readings taken at Hamnell in winter showed more background vibration than readings taken at Gorsby in winter.",
+   "C": "Readings taken at Gorsby in winter showed more background vibration than readings taken at Jeltby in winter.",
+   "D": "Readings taken at Hamnell in winter showed more background vibration than readings taken at Jeltby in summer."
+  }
+ }
+}

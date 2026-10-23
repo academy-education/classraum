@@ -1,0 +1,613 @@
+{
+ "reader": "r0",
+ "items": {
+  "P01": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "B",
+    "C"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Sallowby wet vs Tesmond dry) is most tempting since it favors the fire-company town but crosses the dry/wet control. B and C both have the defenseless town losing less, a reversed pair a student strikes on sight.",
+   "not_hard_because": "B and C both name Ulverholm (no defenses) winning, so the set halves to A vs D, and D is struck as soon as one sees it mixes dry with wet years."
+  },
+  "P02": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Holvard beats Gessing) is tempting but varies only the sheet, so it bears on Hjelm, not Gundersen; D crosses the elevation control. A is consistent with the hypothesis and struck immediately on a weaken stem.",
+   "not_hard_because": "Only Ilmer and Holvard are sheetless, same-elevation sites with different chip depths, and C is the only option pairing them; D is dropped on sight because the passage flags Kaltby as far higher."
+  },
+  "P03": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "C"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Ardane vs Elvey) is the most tempting because it is the cleanest matched pair in the passage, but it isolates pesticide, not mites. C has the light-load site storing less, the reverse of what Fenn predicts.",
+   "not_hard_because": "D is dropped because the passage marks Cromby as upland, and C runs the wrong way, leaving A vs B, which is decided by asking which variable the Ardane/Elvey pair isolates."
+  },
+  "P04": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (lakeshore city vs inland village) is the strongest distractor: it favors Lowry but both factors point the same way. D has the inland city frost later than the lake city, struck on a support stem.",
+   "not_hard_because": "The passage lays out a clean 2x2 (lake/inland x city/village) and the only off-diagonal pair that pits lake against city heat is Lisby vs Kirrow, which a strong student builds in seconds."
+  },
+  "P05": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "C",
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Yoxholt, 71/290 = 24.5%) is the near-miss free exhibition; C (Uxley, 30%) has the best ratio but charged admission. Same template as P06/P19/P20/P27: the best ratio belongs to the wrong-category row.",
+   "not_hard_because": "Checking the Admission column strikes two of four options at once, and then only two divisions remain against a round threshold of one quarter."
+  },
+  "P06": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Islaug, 1,679 MWh/MW) is the near miss; A (Haverud, 2,053) has the best ratio but is tracking. Shares the wrong-category-has-best-ratio template with P05/P19/P20/P27.",
+   "not_hard_because": "The Mounting column strikes A on sight, D is visibly low (29,000/20 under 1,500), and only B vs C needs a division against a stated 1,700 threshold."
+  },
+  "P07": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "D"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Ulvercote, 1.87x) is the near miss among small playhouses; D (Tavisholm, 2.35x) more than doubled but has 610 seats. Options cite only 1900 attendance, so the student must pull the 1890 cell and seat count.",
+   "not_hard_because": "The seats column removes Tavisholm on sight, and among the three small houses Stennard's 9,800 to 21,500 is visibly more than double while the others are visibly under."
+  },
+  "P08": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 0,
+   "struck": [],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Prestley, 84% finish, +$3.90) meets the completion bar and nearly the wage bar; C (Nanbury, +$4.50) clears the wage bar but fails completion. Options cite wages only, so completion must be read from an uncited column; same template as P13.",
+   "not_hard_because": null
+  },
+  "P09": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "C"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Jeltby winter vs Gorsby summer) is tempting because a turbine-free site beats Gorsby, but it crosses the winter-storm control. C supports Lindqvist and is struck on a weaken stem.",
+   "not_hard_because": "Of the two same-season options, C runs in Lindqvist's favor, so the season-matched one left (B) is the key; the cross-season options A and D fall to the stated storm control."
+  },
+  "P10": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Morwen vs Quellin) is most tempting because it favors porches but confounds both factors. D has the no-porch neighborhood beating the both-features one, which helps nobody.",
+   "not_hard_because": "The passage states a full 2x2, and a strong student only needs the pair that differs in porches alone on the same street type; C is the only such pair offered."
+  },
+  "P11": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Aldmoss vs Dellow) is the classic confounded distractor: it favors dredging but Aldmoss also gets the discharge. D has the untouched cove thinning more than the dredged one, the wrong way.",
+   "not_hard_because": "Same isolate-one-factor 2x2 as P03/P10/P21: the only option whose two coves share discharge status and differ in dredging is B."
+  },
+  "P12": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Mellick weekends vs Pasterby weekdays) is tempting since it sets charge-only against bus-only, but it crosses the weekday/weekend control. Requires tracking that bus lanes differ by day of week, which genuinely combines facts.",
+   "not_hard_because": null
+  },
+  "P13": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 0,
+   "struck": [],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Birchtop, 7-point drop) meets the cited condition but takes 78 days, an uncited column. Same two-condition, one-condition-cited template as P08; a student who has seen one checks the uncited column immediately.",
+   "not_hard_because": null
+  },
+  "P14": {
+   "my_answer": "D",
+   "confidence": "medium",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (Verrow vs Tenlow winter) is tempting as season-matched but bears on Vasquez, not Tennant. D weakens gas as the explanation only by showing a stronger rival factor; the cleanest weakener (Verrow at least as late as Sudmere) is not offered, so D's force is somewhat indirect.",
+   "not_hard_because": null
+  },
+  "P15": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "B",
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Vintrell brides vs Wrayburn brides) is the strong distractor: more schoolmaster years wins, but Vintrell also has the road. B and D compare grooms with brides across the stated sex control and fall on sight.",
+   "not_hard_because": null
+  },
+  "P16": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Ulsby 1830s vs Wrexley 1840s) is tempting as no-rail beating rail, but the 1830s were war years. A favors railways and is struck on a weaken stem.",
+   "not_hard_because": "C is the only option that compares one town with itself across two non-war decades, before and after the railway, a structure a strong student recognizes as the clean test immediately; B and D carry an 1830s war decade."
+  },
+  "P17": {
+   "my_answer": "B",
+   "confidence": "medium",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "C"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Quorley 2020 below Quorley 2015) is the most tempting, but the passage says spending was already falling everywhere, so it shows nothing. B lacks a 2015 baseline, which weakens it slightly, but it is the only tax-only vs neither comparison.",
+   "not_hard_because": "The pre-existing decline sentence directly disqualifies D, and A and C both turn on Mistlow (campaign only), so the student just picks the one Quorley-vs-control option."
+  },
+  "P18": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "C"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Pellam beats Orrinby, which has more lanes) is tempting but Orrinby is the only hilly district. C has the lanes-plus-stations district beating the bare one, consistent with Pazos.",
+   "not_hard_because": "The passage flags Orrinby as the only hilly district, killing B on sight; C fits both hypotheses and D concerns stations, leaving A by elimination."
+  },
+  "P19": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "B",
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (Hestrand, +12.2%) is the near miss without groynes; B (Lauvholm, +18%) clears 15% but has groynes. Same wrong-category template as P05/P06/P20/P27.",
+   "not_hard_because": "The Groynes column removes B and D at once, and A vs C needs one rough percentage each; Jorsand's 40 to 48 is a visibly round 20%."
+  },
+  "P20": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Pembray, 2.94 per resident) is the near miss; B (Ollerby, 3.6) clears the bar but has a college. Shares the template where the wrong-category row has the best ratio.",
+   "not_hard_because": "The College column strikes Ollerby on sight, and the three remaining ratios against 3 are easy mental arithmetic (31,500 vs 27,000 for Mavisford)."
+  },
+  "P21": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Sarnby vs Yarnholt) is the confounded distractor: Sarnby has both factors. B has the installment-free town beating the installment town, the wrong direction.",
+   "not_hard_because": "Same isolate-one-factor 2x2 as P03/P10/P11: D is the only pair sharing conservatory status and differing in installment plans."
+  },
+  "P22": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "C",
+    "D"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Quelling vs Padstone) straddles the line but the inside station wins; C compares two outside stations. A test-wise student notes the 12 km line and checks which option straddles it with the outside station winning.",
+   "not_hard_because": "Only two options straddle the 12 km line, and of those only A has the outside station selling more; it is one two-row comparison with no arithmetic."
+  },
+  "P23": {
+   "my_answer": "C",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Esterholm vs Dinsmore, warm) is tempting but Esterholm also has oaks; D crosses warm/cold. B has the feeder-less forest laying earlier.",
+   "not_hard_because": "Of the season-matched options, B runs the wrong way and A carries the oak confound, so C is the only same-season, beech-vs-beech pair; same matched-control template as P01/P09/P29/P32."
+  },
+  "P24": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "A",
+    "B"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (Kolbeck 6.3 vs Hennick 3.5, 1.8x) is the strong distractor: it straddles the snow line correctly but falls just short of twice. A pairs two inside asteroids and B has the inside asteroid higher, both struck once the 2.7 AU line is applied.",
+   "not_hard_because": null
+  },
+  "P25": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (large Ruskett farms beat small Merrigal farms) is tempting as a no-office village winning, but it crosses the farm-size control the passage plants with Ruskett's estates. A supports Okoro.",
+   "not_hard_because": "The planted 'Ruskett also contains several large estates' sentence telegraphs that C is the trap, leaving B as the only small-vs-small option where the no-office village wins."
+  },
+  "P26": {
+   "my_answer": "A",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "B"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Daleford beats Eldwick in the 2010s) is tempting as decade-matched but supports Cole without touching fences. C crosses into the wet-summer decade. Requires tracking Carbery's change from burned to fenced at 2000.",
+   "not_hard_because": null
+  },
+  "P27": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (Caillin, 0.578) is the near miss; A (Ardvane, 0.75) has the best ratio but no rats. Same template as P05/P06/P19/P20.",
+   "not_hard_because": "The Rats column strikes Ardvane on sight; Dunvarra's 528/960 is visibly under 0.6, so it is one division between Benvoray and Caillin."
+  },
+  "P28": {
+   "my_answer": "B",
+   "confidence": "medium",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 2,
+   "struck": [
+    "C",
+    "D"
+   ],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A (Lanner 2016 vs Kell 2008) is tempting as post-mining beating pre-mining in dry years, but Lanner has both mining and logging. B compares creeks without a baseline, so its support is indirect; the cleanest test (Holt 2016 vs Holt 2008) is not offered.",
+   "not_hard_because": null
+  },
+  "P29": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "C (Fenwold vs Corlett, May) is season-matched but bears on Elling. B crosses months. A supports Brevard. Same template as P14: the key weakens by showing the rival factor outweighs it, same season.",
+   "not_hard_because": "B is the only cross-month option and A supports Brevard, leaving C vs D, decided by asking which compares the logged stand with the earthworm stand; identical structure to P14 and P32."
+  },
+  "P30": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 3,
+   "struck": [
+    "A",
+    "C",
+    "D"
+   ],
+   "distractor_quality": "weak",
+   "key_from_one_sentence": false,
+   "difficulty": "easy",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "A straddles the 1.1 m line but the lower site wins; C and D compare two sites on the same side. No option is tempting once the line is applied.",
+   "not_hard_because": "Only B and A straddle the 1.1 m line and A runs the wrong way, so the stem's threshold alone decides it with no arithmetic; same straddle-the-line template as P22 and P24."
+  },
+  "P31": {
+   "my_answer": "B",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 0,
+   "struck": [],
+   "distractor_quality": "strong",
+   "key_from_one_sentence": false,
+   "difficulty": "hard",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "D (Wickerby, lowest literacy, most bookshops) is the tempting extreme but 19,800/11 = 1,800 fails; C (Sedgeholm, 1,300 per shop) clears the shop bar but has 61% literacy. Options cite only bookshop counts.",
+   "not_hard_because": null
+  },
+  "P32": {
+   "my_answer": "D",
+   "confidence": "high",
+   "exclusive": true,
+   "second_defensible": null,
+   "n_struck": 1,
+   "struck": [
+    "A"
+   ],
+   "distractor_quality": "plausible",
+   "key_from_one_sentence": false,
+   "difficulty": "medium",
+   "off_blueprint": false,
+   "world_knowledge": false,
+   "note": "B (Garrow winter vs Hollin summer) is tempting as port beating wood smoke but crosses the winter control. A has the inland village beating the port, the wrong way.",
+   "not_hard_because": "B and C cross seasons and fall to the stated winter control, A runs the wrong way, so D is the only season-matched option favoring the port."
+  }
+ },
+ "summary": {
+  "tells": [
+   "On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/winter, weekday/weekend, May/August, cold/warm spring, war decade, grooms/brides, large/small farms) is never the key, so a student can strike one or two options by reading only the 'Both agree' sentence: P01, P09, P12, P14, P15, P16, P23, P25, P26, P28, P29, P32.",
+   "On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction is the only competitor, so the key is the single control-matched option running in the stem's direction: P01, P09, P23, P29, P32.",
+   "On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 610 seats), and the key is the row that just clears the threshold beside a near-miss distractor: P05, P06, P07, P19, P20, P27.",
+   "On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always the confounded both-factors-vs-neither pair: P03, P04, P10, P11, P21.",
+   "On straddle-the-line comparison items, only two options straddle the stated threshold and one of those runs the wrong way: P22, P24, P30.",
+   "On two-condition table items, options cite only one condition's columns and the strongest distractor meets that cited condition but fails the uncited one: P08, P13, P31."
+  ],
+  "near_duplicates": [
+   [
+    "P05",
+    "P06",
+    "P19",
+    "P20",
+    "P27",
+    "wrong-category row has the best ratio, key just clears a stated threshold"
+   ],
+   [
+    "P08",
+    "P13",
+    "two thresholds, options cite only one, near-miss fails the uncited one"
+   ],
+   [
+    "P07",
+    "P31",
+    "category filter plus a ratio computed from an uncited column"
+   ],
+   [
+    "P22",
+    "P24",
+    "P30",
+    "pairwise comparison that must straddle a stated threshold line"
+   ],
+   [
+    "P03",
+    "P10",
+    "P11",
+    "P21",
+    "clean 2x2 of two factors, key isolates the hypothesized factor"
+   ],
+   [
+    "P01",
+    "P09",
+    "P23",
+    "P32",
+    "2x2 of sites plus an accepted seasonal control, key is the season-matched pair"
+   ],
+   [
+    "P14",
+    "P29",
+    "weaken by showing the rival factor's site is more extreme, same season"
+   ],
+   [
+    "P16",
+    "P26",
+    "P28",
+    "before/after a dated intervention with an accepted period confound"
+   ]
+  ]
+ }
+}

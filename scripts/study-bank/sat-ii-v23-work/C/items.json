@@ -1,0 +1,922 @@
+[
+  {
+    "id": "II23C-01",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "In the city of Redlowe, the share of residents who commute by bicycle varies widely from district to district. Urban economist Mirela Pazos hypothesizes that protected bike lanes are what draw commuters onto bicycles; transportation planner Oren Ruddock contends instead that bike-share stations, which let people ride without owning a bicycle, are the decisive factor. Both accept that steep streets discourage cycling whatever a district offers. Of the six districts studied, Orrinby, Quenby, and Ramsell climb a steep ridge, while the other three lie on the flat river plain. On the ridge, Orrinby has 12 kilometers of protected lanes but no stations, Quenby has 6 kilometers of lanes and several stations, and Ramsell has neither. On the plain, Pellam likewise has neither, Mossgate has 12 kilometers of lanes but no stations, and Nettleford has stations but no lanes.",
+    "prompt": "Which finding, if true, would most directly weaken Pazos's hypothesis?",
+    "choices": [
+      "Residents of Nettleford commuted by bicycle more often than residents of Mossgate did.",
+      "Residents of Pellam commuted by bicycle more often than residents of Orrinby did.",
+      "Residents of Quenby commuted by bicycle more often than residents of Ramsell did.",
+      "Residents of Pellam commuted by bicycle more often than residents of Nettleford did."
+    ],
+    "correct_answer": "Residents of Nettleford commuted by bicycle more often than residents of Mossgate did.",
+    "explanation": "Pazos holds that \"protected bike lanes are what draw commuters onto bicycles,\" while Ruddock \"contends instead that bike-share stations\" are decisive. Mossgate and Nettleford both lie on the plain, where \"Mossgate has 12 kilometers of lanes but no stations, and Nettleford has stations but no lanes.\" If \"Residents of Nettleford commuted by bicycle more often than residents of Mossgate did,\" then an equally flat district with stations and no lanes outdid the district with the most lanes, the reverse of what Pazos predicts and just what Ruddock predicts, so this most directly weakens her hypothesis. \"Residents of Pellam commuted by bicycle more often than residents of Orrinby did\" also sets a district without lanes ahead of one with 12 kilometers of them, but Orrinby is on the ridge and Pellam on the plain, and both accept \"that steep streets discourage cycling whatever a district offers,\" so the slope could explain the gap. \"Residents of Quenby commuted by bicycle more often than residents of Ramsell did\" compares two ridge districts, but Quenby has both lanes and stations and Ramsell \"has neither,\" so both accounts expect it. \"Residents of Pellam commuted by bicycle more often than residents of Nettleford did\" compares two plain districts without lanes that differ only in stations; it weakens Ruddock's account, not Pazos's.",
+    "topic_tag": "bike-commuting-lanes-vs-bikeshare-stations",
+    "meta": {
+      "design": "DOSE",
+      "stem": "weaken",
+      "dir": "more",
+      "roles": [
+        "K-CROSS-W",
+        "CONF-CW",
+        "CONF-R",
+        "WKR"
+      ],
+      "compare": [
+        [
+          "Nettleford",
+          "Mossgate"
+        ],
+        [
+          "Pellam",
+          "Orrinby"
+        ],
+        [
+          "Quenby",
+          "Ramsell"
+        ],
+        [
+          "Pellam",
+          "Nettleford"
+        ]
+      ],
+      "profiles": [
+        {
+          "win": [
+            0,
+            1,
+            0
+          ],
+          "lose": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            0
+          ],
+          "lose": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "win": [
+            1,
+            1,
+            1
+          ],
+          "lose": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            0
+          ],
+          "lose": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "last": "K-CROSS-W",
+      "su": [],
+      "names": [
+        "Redlowe",
+        "Mirela Pazos",
+        "Oren Ruddock",
+        "Orrinby",
+        "Ramsell",
+        "Quenby",
+        "Pellam",
+        "Nettleford",
+        "Mossgate"
+      ],
+      "distractor_pulls": {
+        "Residents of Pellam commuted by bicycle more often than residents of Orrinby": "A district with no lanes beats one with 12 kilometers of them, which reads as the cleanest blow to Pazos; only placing Orrinby on the ridge and Pellam on the plain exposes the slope confound.",
+        "Residents of Quenby": "Both districts are on the ridge, so the slope is held equal and the lanes-versus-no-lanes contrast looks controlled; the student must notice Quenby also has stations.",
+        "Residents of Pellam commuted by bicycle more often than residents of Nettleford": "Two flat districts with no lanes, so it is perfectly controlled; a student who loses track of which planner holds which factor reads the no-station district winning as bearing on Pazos."
+      },
+      "why_hard": "Slope is assigned by a list sentence and lanes and stations by two further sentences grouped by slope, so every option needs three attributes per district. Two options are slope-matched comparisons, and the slope-crossed option is not marked out by any 'only' signpost; the key is the one flat pair pitting stations alone against lanes alone."
+    }
+  },
+  {
+    "id": "II23C-02",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Car traffic in the centers of three towns in the Quarne region has fallen in recent years. Economist Malia Renshaw attributes the decline to congestion charges, fees that drivers must pay to enter a town center. Planner Pavel Ormsby credits bus lanes instead, arguing that buses speeding past stalled cars lure drivers out of them. Both agree that a town on a rail line carries less car traffic, since many visitors arrive by train. Mellick and Pasterby are rail towns; Norrance is not. Pasterby charges drivers only on weekends and has no bus lanes. Norrance also charges only on weekends, and it runs bus lanes on weekdays. Mellick charges drivers only on weekdays, and unlike Norrance it has no bus lanes at all.",
+    "prompt": "Which finding, if true, would most directly support Renshaw's hypothesis?",
+    "choices": [
+      "There was less car traffic in Mellick on weekdays than in Norrance on weekdays.",
+      "There was less car traffic in Mellick on weekends than in Pasterby on weekends.",
+      "There was less car traffic in Mellick on weekends than in Norrance on weekends.",
+      "There was less car traffic in Mellick on weekdays than in Pasterby on weekdays."
+    ],
+    "correct_answer": "There was less car traffic in Mellick on weekdays than in Pasterby on weekdays.",
+    "explanation": "Renshaw credits congestion charges, and Ormsby \"credits bus lanes instead.\" On weekdays Mellick charges drivers and Pasterby, which \"charges drivers only on weekends and has no bus lanes,\" does not; both are rail towns and neither runs bus lanes. So \"There was less car traffic in Mellick on weekdays than in Pasterby on weekdays\" compares two towns that differ only in the charge, and it most directly supports Renshaw. \"There was less car traffic in Mellick on weekdays than in Norrance on weekdays\" looks like a direct contest between a charge and bus lanes, since Norrance \"runs bus lanes on weekdays,\" but Mellick is on a rail line and Norrance is not, and both agree that \"a town on a rail line carries less car traffic,\" so the railway could explain it. \"There was less car traffic in Mellick on weekends than in Pasterby on weekends\" compares two rail towns without bus lanes on a day when only Pasterby charges, and the uncharged town has less traffic, which weakens Renshaw. \"There was less car traffic in Mellick on weekends than in Norrance on weekends\" also has the uncharged town ahead, since \"Norrance also charges only on weekends,\" so it cannot support Renshaw, and the railway could explain it in any case.",
+    "topic_tag": "town-traffic-congestion-charge-vs-bus-lanes",
+    "meta": {
+      "design": "3x2",
+      "stem": "support",
+      "dir": "less",
+      "roles": [
+        "CONF-CX",
+        "WKN",
+        "CONF-CW",
+        "K-ISO"
+      ],
+      "compare": [
+        [
+          "Mellick on weekdays",
+          "Norrance on weekdays"
+        ],
+        [
+          "Mellick on weekends",
+          "Pasterby on weekends"
+        ],
+        [
+          "Mellick on weekends",
+          "Norrance on weekends"
+        ],
+        [
+          "Mellick on weekdays",
+          "Pasterby on weekdays"
+        ]
+      ],
+      "profiles": [
+        {
+          "win": [
+            1,
+            0,
+            1
+          ],
+          "lose": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            1
+          ],
+          "lose": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            1
+          ],
+          "lose": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            1,
+            0,
+            1
+          ],
+          "lose": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "last": "CONF-CX",
+      "su": [],
+      "names": [
+        "Quarne",
+        "Malia Renshaw",
+        "Pavel Ormsby",
+        "Norrance",
+        "Mellick",
+        "Pasterby"
+      ],
+      "distractor_pulls": {
+        "There was less car traffic in Mellick on weekdays than in Norrance": "It is the crossed test a strong student looks for, the charged town against the bus-lane town on the same day with the charged town ahead; only the rail-line sentence kills it.",
+        "There was less car traffic in Mellick on weekends than in Pasterby": "Same day, two rail towns, no bus lanes on either side: perfectly controlled, and a student who remembers Mellick as the charging town without checking its weekday-only schedule takes it as support.",
+        "There was less car traffic in Mellick on weekends than in Norrance": "Mellick is the town the passage ends on as the one without bus lanes, so a student reading Norrance as the bus-lane town sees the lanes failing, which looks like indirect support for the charge."
+      },
+      "why_hard": "Every option compares two towns on the same kind of day with Mellick ahead, so no option can be struck for mixing conditions; the student must work out each town's charge and bus lanes separately for weekdays and weekends from three schedule sentences and bring in the rail-line fact, which separates the two weekday options."
+    }
+  },
+  {
+    "id": "II23C-03",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Sociologist Odessa Marchand hypothesizes that front porches help residents get to know their neighbors, since people sitting outside are drawn into conversation with passersby. Urban planner Remy Nakagawa contends instead that what matters is the cul-de-sac, a dead-end street whose lack of through traffic lets residents linger outdoors. Four neighborhoods in one town, all built during the 1990s for buyers of similar means, were developed by two firms: the Rennard firm gave every house a front porch, and the Mabley firm gave none of its houses one. Nethercote and Morwen are Rennard developments; Ottersby and Quellin are Mabley's. A 1994 town rule required every new street to end in a cul-de-sac, and Nethercote, finished in 1992, predates it, while Ottersby, begun in 1997, does not. Morwen was begun after the rule took effect, and Quellin before it.",
+    "prompt": "Which finding, if true, would most directly support Marchand's hypothesis?",
+    "choices": [
+      "Residents of Ottersby could name more of their neighbors than residents of Nethercote could.",
+      "Residents of Morwen could name more of their neighbors than residents of Quellin could.",
+      "Residents of Nethercote could name more of their neighbors than residents of Quellin could.",
+      "Residents of Ottersby could name more of their neighbors than residents of Morwen could."
+    ],
+    "correct_answer": "Residents of Nethercote could name more of their neighbors than residents of Quellin could.",
+    "explanation": "Marchand credits front porches, while Nakagawa \"contends instead that what matters is the cul-de-sac.\" Nethercote is a Rennard development, so its houses have porches, and because it was \"finished in 1992,\" before the 1994 rule, its streets run through. Quellin is Mabley's, so it has no porches, and it was begun \"before\" the rule, so it too lacks cul-de-sacs. \"Residents of Nethercote could name more of their neighbors than residents of Quellin could\" therefore holds street layout constant and varies only porches, which most directly supports Marchand. \"Residents of Morwen could name more of their neighbors than residents of Quellin could\" is expected under both accounts, because Morwen is a Rennard development \"begun after the rule took effect\" and so has both porches and cul-de-sacs, while Quellin has neither. \"Residents of Ottersby could name more of their neighbors than residents of Nethercote could\" favors Ottersby, a Mabley development with cul-de-sacs, over the porch neighborhood without them, which supports Nakagawa. \"Residents of Ottersby could name more of their neighbors than residents of Morwen could\" compares two cul-de-sac neighborhoods of which only Morwen has porches, and the porch neighborhood does worse, which weakens Marchand.",
+    "topic_tag": "neighbor-acquaintance-porches-vs-cul-de-sacs",
+    "meta": {
+      "design": "4G",
+      "stem": "support",
+      "dir": "more",
+      "roles": [
+        "WKNX",
+        "CONF-R",
+        "K-ISO",
+        "WKN"
+      ],
+      "compare": [
+        [
+          "Ottersby",
+          "Nethercote"
+        ],
+        [
+          "Morwen",
+          "Quellin"
+        ],
+        [
+          "Nethercote",
+          "Quellin"
+        ],
+        [
+          "Ottersby",
+          "Morwen"
+        ]
+      ],
+      "profiles": [
+        {
+          "win": [
+            0,
+            1,
+            0
+          ],
+          "lose": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            1,
+            1,
+            0
+          ],
+          "lose": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            1,
+            0,
+            0
+          ],
+          "lose": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            0,
+            1,
+            0
+          ],
+          "lose": [
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "last": "CONF-R",
+      "su": [],
+      "names": [
+        "Odessa Marchand",
+        "Remy Nakagawa",
+        "Rennard",
+        "Mabley",
+        "Nethercote",
+        "Morwen",
+        "Ottersby",
+        "Quellin"
+      ],
+      "distractor_pulls": {
+        "Residents of Ottersby could name more of their neighbors than residents of Nethercote": "Ottersby and Nethercote are the two neighborhoods the passage dates explicitly, so a student who misassigns the firms or reverses the rule's dates reads it as porches winning.",
+        "Residents of Morwen": "Morwen is a porch development and Quellin is not, which a student who resolves only the firm sentence takes as a clean porch effect; the cul-de-sac dates for these two come last.",
+        "Residents of Ottersby could name more of their neighbors than residents of Morwen": "A student who decodes the dates but not the firms sees two neighborhoods begun after 1994, a matched pair, and may misread which one has porches."
+      },
+      "why_hard": "Neither factor is stated per neighborhood: porches follow from which firm built each one, and cul-de-sacs follow from build dates set against a 1994 rule. The student must derive all four profiles from three sentences before any option can be judged; nothing signposts a matched pair."
+    }
+  },
+  {
+    "id": "II23C-04",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "When a drought-tolerant sorghum variety reached the Quaile valley, its farms took it up at very different times. Agricultural economist Monique Okoro hypothesizes that extension offices, which send advisers to demonstrate new seeds in farmers' own fields, led farms to adopt the variety sooner. Economist Rashid Pemberton argues instead that access to credit was decisive, since a farm must buy seed before it can plant it. Both note that farms far from a market, where seed is sold, tend to take up new crops later. The extension office in Merrigal also serves Nolby, a hamlet two days' travel up the valley, and neither place has a bank branch. Prandle has a bank branch but no extension office, and Ruskett has neither; like Merrigal, both stand beside the valley's market town. Okoro recorded the season in which each farm first planted the variety.",
+    "prompt": "Which finding, if true, would most directly weaken Okoro's hypothesis?",
+    "choices": [
+      "Farms around Merrigal adopted the variety earlier than farms around Prandle did.",
+      "Farms around Ruskett adopted the variety earlier than farms around Merrigal did.",
+      "Farms around Ruskett adopted the variety earlier than farms around Nolby did.",
+      "Farms around Prandle adopted the variety earlier than farms around Ruskett did."
+    ],
+    "correct_answer": "Farms around Ruskett adopted the variety earlier than farms around Merrigal did.",
+    "explanation": "Okoro credits extension offices, and Pemberton \"argues instead that access to credit was decisive.\" Merrigal has an extension office and no bank branch, Ruskett \"has neither,\" and both \"stand beside the valley's market town.\" So \"Farms around Ruskett adopted the variety earlier than farms around Merrigal did\" compares two places equally close to market, both without a bank, that differ only in the extension office; the place without the office adopted first, which most directly weakens Okoro's hypothesis. \"Farms around Ruskett adopted the variety earlier than farms around Nolby did\" also puts Ruskett ahead of a place the office serves, but Nolby is \"a hamlet two days' travel up the valley,\" and both note that \"farms far from a market, where seed is sold, tend to take up new crops later,\" so distance could explain the result. \"Farms around Merrigal adopted the variety earlier than farms around Prandle did\" puts the place with an extension office ahead of the place with a bank, which supports Okoro. \"Farms around Prandle adopted the variety earlier than farms around Ruskett did\" compares places that differ only in having a bank branch, so it supports Pemberton and says nothing against Okoro.",
+    "topic_tag": "sorghum-adoption-extension-vs-credit",
+    "meta": {
+      "design": "3G",
+      "stem": "weaken",
+      "dir": "earlier",
+      "roles": [
+        "SUPX",
+        "K-ISO-W",
+        "CONF-CW",
+        "RIV"
+      ],
+      "compare": [
+        [
+          "Merrigal",
+          "Prandle"
+        ],
+        [
+          "Ruskett",
+          "Merrigal"
+        ],
+        [
+          "Ruskett",
+          "Nolby"
+        ],
+        [
+          "Prandle",
+          "Ruskett"
+        ]
+      ],
+      "profiles": [
+        {
+          "win": [
+            1,
+            0,
+            1
+          ],
+          "lose": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            1
+          ],
+          "lose": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            1
+          ],
+          "lose": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            0,
+            1,
+            1
+          ],
+          "lose": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "last": null,
+      "su": [],
+      "names": [
+        "Quaile",
+        "Monique Okoro",
+        "Rashid Pemberton",
+        "Merrigal",
+        "Nolby",
+        "Prandle",
+        "Ruskett"
+      ],
+      "distractor_pulls": {
+        "Farms around Merrigal": "It is the crossed office-versus-bank comparison between two places beside the market town, the most rigorous-looking option, and a student who loses the weaken direction picks it.",
+        "Farms around Ruskett adopted the variety earlier than farms around Nolby": "Nolby is served by the extension office, so a place without an office beating it reads as a direct blow to Okoro; the distance fact sits in a different sentence from the market-access principle.",
+        "Farms around Prandle": "A place without an extension office adopting early looks like evidence that offices are unnecessary, which tempts a student who forgets that Ruskett also lacks an office."
+      },
+      "why_hard": "No option names a condition: distance to market is a property of the places, given in two sentences apart from the principle, and the office's reach to Nolby must be carried over from the Merrigal sentence. Two options put Ruskett ahead of an office-served place, and only the market-matched one isolates the office."
+    }
+  },
+  {
+    "id": "II23C-05",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Textual Evidence",
+    "difficulty": "hard",
+    "passage": "Spending on sugary soft drinks had been falling across the Ombrey region for years, as tastes shifted toward water and tea. Economist Noemi Ramsden compared spending per resident on such drinks in 2017 and 2021 in four of the region's towns. Quorley began taxing sugary drinks in 2016 and Pendry in 2019, and Ramsden hypothesizes that the tax itself cut consumption. Public health scholar Matthias Quarrie suspects instead an advertising campaign warning about sugar, which Pendry launched in 2016. Ravelle has had neither a tax nor a campaign. Quorley has never run the campaign, and Mistlow, which has no tax, adopted it only in 2019.",
+    "prompt": "Which finding, if true, would most directly support Ramsden's hypothesis?",
+    "choices": [
+      "Residents of Pendry spent less on sugary drinks in 2017 than residents of Ravelle did in 2017.",
+      "Residents of Quorley spent less on sugary drinks in 2017 than residents of Mistlow did in 2017.",
+      "Residents of Ravelle spent less on sugary drinks in 2021 than residents of Quorley did in 2021.",
+      "Residents of Pendry spent less on sugary drinks in 2021 than residents of Pendry did in 2017."
+    ],
+    "correct_answer": "Residents of Quorley spent less on sugary drinks in 2017 than residents of Mistlow did in 2017.",
+    "explanation": "Ramsden credits the tax, while Quarrie suspects \"an advertising campaign warning about sugar.\" In 2017 Quorley, which \"began taxing sugary drinks in 2016,\" had the tax, and it \"has never run the campaign\"; Mistlow, \"which has no tax, adopted it only in 2019,\" so in 2017 it had neither. \"Residents of Quorley spent less on sugary drinks in 2017 than residents of Mistlow did in 2017\" therefore compares two towns in the same year that differ only in the tax, which most directly supports Ramsden. \"Residents of Pendry spent less on sugary drinks in 2017 than residents of Ravelle did in 2017\" looks like a taxed town beating an untouched one, but Pendry's tax began only \"in 2019\"; in 2017 Pendry had only the campaign, \"which Pendry launched in 2016,\" so the finding supports Quarrie. \"Residents of Pendry spent less on sugary drinks in 2021 than residents of Pendry did in 2017\" is tempting because Pendry gained the tax between those years, but spending \"had been falling across the Ombrey region for years,\" so the drop could have happened without the tax. \"Residents of Ravelle spent less on sugary drinks in 2021 than residents of Quorley did in 2021\" has the untaxed town ahead of the taxed one, with no campaign in either, which weakens Ramsden.",
+    "topic_tag": "sugary-drink-spending-tax-vs-ad-campaign",
+    "meta": {
+      "design": "TIME",
+      "stem": "support",
+      "dir": "less",
+      "roles": [
+        "RIV",
+        "K-ISO",
+        "WKN",
+        "CONF-C"
+      ],
+      "compare": [
+        [
+          "Pendry",
+          "Ravelle"
+        ],
+        [
+          "Quorley",
+          "Mistlow"
+        ],
+        [
+          "Ravelle",
+          "Quorley"
+        ],
+        [
+          "Pendry"
+        ]
+      ],
+      "profiles": [
+        {
+          "win": [
+            0,
+            1,
+            0
+          ],
+          "lose": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            1,
+            0,
+            0
+          ],
+          "lose": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "win": [
+            0,
+            0,
+            1
+          ],
+          "lose": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "win": [
+            1,
+            1,
+            1
+          ],
+          "lose": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "last": "K-ISO",
+      "su": [
+        "CONF-C"
+      ],
+      "names": [
+        "Ombrey",
+        "Noemi Ramsden",
+        "Matthias Quarrie",
+        "Quorley",
+        "Pendry",
+        "Mistlow",
+        "Ravelle"
+      ],
+      "distractor_pulls": {
+        "Residents of Pendry spent less on sugary drinks in 2017": "Pendry is one of the two taxing towns and Ravelle has nothing, so on a surface read this is the tax beating a control in the same year; only the 2019 start date shows Pendry had just the campaign in 2017.",
+        "Residents of Ravelle": "Same year and both towns lack the campaign, so it is controlled; a student who confuses which of the 'neither' and 'tax' towns is which reads it as support.",
+        "Residents of Pendry spent less on sugary drinks in 2021": "Pendry acquired the tax between the two years and its campaign ran throughout, so the drop looks like the tax's effect with the rival factor held fixed; only the region-wide decline undermines it."
+      },
+      "why_hard": "Treatment depends on the year: Pendry's tax and Mistlow's campaign begin in 2019, between the two observation years, so every option requires checking start dates against the year it names. The key names a town the rival's factor later reached, and the strongest lure names a taxing town before its tax began."
+    }
+  },
+  {
+    "id": "II23C-06",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "Merrand County adds a tax of 25 cents to the price of every gallon of gasoline sold within its borders; the neighboring county to the east levies no such tax. Route 9 runs east from the county seat, crosses the Nessel River on a bridge, and reaches the county line 4 kilometers beyond the bridge. Traffic on the road thins steadily with distance from the city. Economist Petra Mulvane claims that the tax nonetheless lets a station just past the county line outsell a station that is nearer the city but inside the county. Data from six stations on Route 9 support her claim: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Gasoline sales at six stations on Route 9",
+      "colLabels": [
+        "Distance east of the Nessel River bridge (km; negative = west of it)",
+        "Average weekly sales (thousands of gallons)"
+      ],
+      "rowLabels": [
+        "Quelling",
+        "Nydell",
+        "Rindell",
+        "Padstone",
+        "Moxley",
+        "Oberwick"
+      ],
+      "cells": [
+        [
+          "−6",
+          "64"
+        ],
+        [
+          "−3",
+          "38"
+        ],
+        [
+          "1",
+          "42"
+        ],
+        [
+          "3",
+          "49"
+        ],
+        [
+          "6",
+          "55"
+        ],
+        [
+          "11",
+          "33"
+        ]
+      ]
+    },
+    "choices": [
+      "the Moxley station sold 55,000 gallons a week, compared with 42,000 at the Rindell station.",
+      "the Padstone station sold 49,000 gallons a week, compared with 33,000 at the Oberwick station.",
+      "the Rindell station sold 42,000 gallons a week, compared with 38,000 at the Nydell station.",
+      "the Quelling station sold 64,000 gallons a week, compared with 55,000 at the Moxley station."
+    ],
+    "correct_answer": "the Moxley station sold 55,000 gallons a week, compared with 42,000 at the Rindell station.",
+    "explanation": "The road \"reaches the county line 4 kilometers beyond the bridge,\" so a station is outside the county only if it lies more than 4 kilometers east of the bridge. Moxley, 6 kilometers east, is outside, and Rindell, 1 kilometer east, is still inside, so \"the Moxley station sold 55,000 gallons a week, compared with 42,000 at the Rindell station\" shows a station just past the line outselling one nearer the city. All four choices read the table accurately. \"the Rindell station sold 42,000 gallons a week, compared with 38,000 at the Nydell station\" shows a farther station outselling a nearer one, and the two lie on opposite sides of the bridge, but both are inside the county (1 kilometer east and 3 kilometers west of the bridge), so the tax cannot explain it. \"the Padstone station sold 49,000 gallons a week, compared with 33,000 at the Oberwick station\" compares a station inside the county (3 kilometers east of the bridge) with one outside it (11 kilometers), but the station inside sells more, the opposite of the claim. \"the Quelling station sold 64,000 gallons a week, compared with 55,000 at the Moxley station\" has the largest figure, but Quelling, west of the bridge, is inside the county and Moxley is outside, so it too shows the nearer, taxed station selling more.",
+    "topic_tag": "gasoline-sales-county-tax-line",
+    "meta": {
+      "design": "threshold-text",
+      "table_design": "threshold-text",
+      "roles": [
+        "QK",
+        "Q-REV",
+        "Q-WITHIN",
+        "Q-RAW"
+      ],
+      "compare": [
+        [
+          "Moxley",
+          "Rindell"
+        ],
+        [
+          "Padstone",
+          "Oberwick"
+        ],
+        [
+          "Rindell",
+          "Nydell"
+        ],
+        [
+          "Quelling",
+          "Moxley"
+        ]
+      ],
+      "ranks": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "derived": [
+        13,
+        -16,
+        4,
+        -9
+      ],
+      "visible_fail": 0,
+      "names": [
+        "Merrand County",
+        "Nessel",
+        "Petra Mulvane",
+        "Quelling",
+        "Nydell",
+        "Rindell",
+        "Padstone",
+        "Moxley",
+        "Oberwick"
+      ],
+      "distractor_pulls": {
+        "the Padstone station": "Padstone lies east of the bridge, so a student who takes the bridge itself as the county line treats Padstone and Oberwick as both outside and reads the pair as irrelevant rather than reversed; one who places the line correctly still has to check direction.",
+        "the Rindell station": "Rindell is east of the bridge and Nydell west of it, so a student who mistakes the bridge for the county line sees a station across the line outselling a nearer one, exactly the claim.",
+        "the Quelling station": "It has the largest figures and names Moxley, the key's station, so a student matching on Moxley or on size without placing Quelling west of the bridge is drawn in."
+      },
+      "why_hard": "The table measures distance from the bridge, not from the city, and the passage puts the county line 4 kilometers past that bridge, so the student must derive the boundary and classify six signed distances before comparing; the bridge itself is a false boundary that makes the within-county pair look like the claim and the key look like an outside-only pair."
+    }
+  },
+  {
+    "id": "II23C-07",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "A regional development fund lends money to independent bookstores in small towns, but only where a store sells more than three books per resident each year. Economist Rhea Montague notes that stores far from any college are often assumed to fall short of that bar, since students and faculty buy books in large numbers. She reports, however, that a store more than 40 kilometers from the nearest college has cleared it: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Annual sales at the only bookstore in six small towns",
+      "colLabels": [
+        "Residents",
+        "Books sold in a year",
+        "Distance to nearest college (km)"
+      ],
+      "rowLabels": [
+        "Mavisford",
+        "Norwold",
+        "Ollerby",
+        "Pembray",
+        "Quintard",
+        "Rosswick"
+      ],
+      "cells": [
+        [
+          "9,000",
+          "33,300",
+          "52"
+        ],
+        [
+          "6,500",
+          "17,550",
+          "33"
+        ],
+        [
+          "4,000",
+          "13,200",
+          "18"
+        ],
+        [
+          "9,600",
+          "28,200",
+          "61"
+        ],
+        [
+          "10,500",
+          "27,300",
+          "45"
+        ],
+        [
+          "12,000",
+          "38,400",
+          "9"
+        ]
+      ]
+    },
+    "choices": [
+      "Quintard's store sold 27,300 books in a year, and the town has 10,500 residents.",
+      "Ollerby's store sold 13,200 books in a year, and the town has 4,000 residents.",
+      "Mavisford's store sold 33,300 books in a year, and the town has 9,000 residents.",
+      "Pembray's store sold 28,200 books in a year, and the town has 9,600 residents."
+    ],
+    "correct_answer": "Mavisford's store sold 33,300 books in a year, and the town has 9,000 residents.",
+    "explanation": "The fund requires a store to sell \"more than three books per resident each year,\" and Montague's claim concerns \"a store more than 40 kilometers from the nearest college.\" Mavisford is 52 kilometers from the nearest college, and 33,300 books for 9,000 residents is 3.7 books per resident, so \"Mavisford's store sold 33,300 books in a year, and the town has 9,000 residents\" completes the text. All four choices read the table accurately. \"Ollerby's store sold 13,200 books in a year, and the town has 4,000 residents\" clears the bar at 3.3 books per resident, but the table puts Ollerby only 18 kilometers from a college. \"Pembray's store sold 28,200 books in a year, and the town has 9,600 residents\" concerns a town 61 kilometers from a college, but 28,200 divided by 9,600 is about 2.94, just short of three. \"Quintard's store sold 27,300 books in a year, and the town has 10,500 residents\" concerns a town 45 kilometers from a college, but its sales come to only 2.6 books per resident.",
+    "topic_tag": "bookstore-sales-per-resident-college-distance",
+    "meta": {
+      "design": "ratio",
+      "table_design": "ratio",
+      "roles": [
+        "Q-REV",
+        "Q-C1",
+        "QK",
+        "Q-NEAR"
+      ],
+      "compare": [
+        [
+          "Quintard"
+        ],
+        [
+          "Ollerby"
+        ],
+        [
+          "Mavisford"
+        ],
+        [
+          "Pembray"
+        ]
+      ],
+      "ranks": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "derived": [
+        2.6,
+        3.3,
+        3.7,
+        2.9375
+      ],
+      "visible_fail": 0,
+      "names": [
+        "Rhea Montague",
+        "Mavisford",
+        "Norwold",
+        "Ollerby",
+        "Pembray",
+        "Quintard",
+        "Rosswick"
+      ],
+      "distractor_pulls": {
+        "Quintard's store": "Quintard is the largest town among the options and lies beyond 40 kilometers, and its sales total is high; only dividing shows it falls well short of three per resident.",
+        "Ollerby's store": "It clears three books per resident, so a student who divides correctly but reads the college column as a yes/no or skips it accepts it; the distance cutoff is stated only in the passage.",
+        "Pembray's store": "It is the farthest town from any college and its total is close to the key's; the rate of about 2.94 looks like three on a rough estimate."
+      },
+      "why_hard": "The options print only sales and population, so every option needs a division and a separate lookup of the distance column against a 40-kilometer cutoff given only in the passage. Two options clear the ratio, two clear the distance, and they overlap in one; the table's highest ratio is the key itself, so 'the best ratio is excluded' does not apply."
+    }
+  },
+  {
+    "id": "II23C-08",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence",
+    "difficulty": "hard",
+    "passage": "A state program pays for job-training courses only if they meet two conditions: graduates must earn at least $4.00 more per hour after the course than they did before it, and at least 75 percent of enrollees must finish. Labor economist Marguerite Oyelaran reviewed five courses offered by community colleges in one region and found that just one of them met both conditions: ______",
+    "prompt": "Which choice most effectively uses data from the table to complete the text?",
+    "graphic": {
+      "type": "table",
+      "title": "Five job-training courses: enrollment, graduates, and graduates' average hourly wages",
+      "colLabels": [
+        "Enrollees",
+        "Graduates",
+        "Wage before course ($)",
+        "Wage after course ($)"
+      ],
+      "rowLabels": [
+        "Milbray",
+        "Nanbury",
+        "Orwen",
+        "Prestley",
+        "Quillow"
+      ],
+      "cells": [
+        [
+          "30",
+          "17",
+          "13.20",
+          "18.00"
+        ],
+        [
+          "40",
+          "26",
+          "15.80",
+          "20.30"
+        ],
+        [
+          "45",
+          "31",
+          "16.60",
+          "20.15"
+        ],
+        [
+          "24",
+          "20",
+          "14.90",
+          "18.80"
+        ],
+        [
+          "44",
+          "36",
+          "17.40",
+          "21.60"
+        ]
+      ]
+    },
+    "choices": [
+      "Orwen's course graduated 31 students, who went on to earn $20.15 an hour.",
+      "Prestley's course graduated 20 students, who went on to earn $18.80 an hour.",
+      "Nanbury's course graduated 26 students, who went on to earn $20.30 an hour.",
+      "Quillow's course graduated 36 students, who went on to earn $21.60 an hour."
+    ],
+    "correct_answer": "Quillow's course graduated 36 students, who went on to earn $21.60 an hour.",
+    "explanation": "A course qualifies only if graduates \"earn at least $4.00 more per hour after the course than they did before it\" and \"at least 75 percent of enrollees must finish.\" Quillow's 36 graduates came from 44 enrollees, about 82 percent, and their wage rose from $17.40 to $21.60, a gain of $4.20, so \"Quillow's course graduated 36 students, who went on to earn $21.60 an hour\" identifies the one course meeting both conditions. All four choices read the table accurately. \"Nanbury's course graduated 26 students, who went on to earn $20.30 an hour\" describes a wage gain of $4.50 (from $15.80), but 26 of 40 enrollees is only 65 percent. \"Prestley's course graduated 20 students, who went on to earn $18.80 an hour\" describes a course that 20 of 24 enrollees, about 83 percent, finished, but the gain from $14.90 is $3.90, just under $4.00. \"Orwen's course graduated 31 students, who went on to earn $20.15 an hour\" fails both conditions: 31 of 45 is about 69 percent, and the gain from $16.60 is $3.55.",
+    "topic_tag": "job-training-wage-gain-and-completion",
+    "meta": {
+      "design": "two-condition",
+      "table_design": "two-condition",
+      "roles": [
+        "Q-NONE",
+        "Q-NEAR",
+        "Q-C1",
+        "QK"
+      ],
+      "compare": [
+        [
+          "Orwen"
+        ],
+        [
+          "Prestley"
+        ],
+        [
+          "Nanbury"
+        ],
+        [
+          "Quillow"
+        ]
+      ],
+      "ranks": [
+        3,
+        1,
+        2,
+        4
+      ],
+      "derived": [
+        3.55,
+        3.9,
+        4.5,
+        4.2
+      ],
+      "visible_fail": 0,
+      "names": [
+        "Marguerite Oyelaran",
+        "Milbray",
+        "Nanbury",
+        "Orwen",
+        "Prestley",
+        "Quillow"
+      ],
+      "distractor_pulls": {
+        "Orwen's course": "It has a large graduating class and a high wage after the course; both conditions need a lookup, and each fails only by arithmetic (about 69 percent, a $3.55 gain).",
+        "Prestley's course": "It has the best completion rate of any course, and its $3.90 gain rounds to four dollars, so a student who estimates rather than subtracts accepts it.",
+        "Nanbury's course": "Its wage gain is the largest of the four options; a student who checks the wage condition first and then misjudges 26 of 40 picks it."
+      },
+      "why_hard": "Each option prints one number from each condition, the graduate count and the after-course wage, and neither condition can be decided from it: completion needs the unprinted enrollee column and a division, and the wage gain needs the unprinted before-course wage and a subtraction. No condition is 'the quoted one', so the student must do four lookups and two calculations per option."
+    }
+  }
+]

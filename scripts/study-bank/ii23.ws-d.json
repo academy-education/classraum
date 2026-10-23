@@ -1,0 +1,199 @@
+{
+ "grader": "d",
+ "phase": 2,
+ "batch_note": "Yes. The 16 textual items (A/B/C/D 01-05) are all one template: a 2x2-plus-confound design of named sites, where the key is the single comparison varying only the hypothesis's factor in the predicted direction (or, for weaken, the rival-only site beating the hypothesis-only site). The three distractors are always drawn from the same menu: a reversed comparison, the comparison that isolates the rival factor, and a comparison carrying the shared confound (slope, elevation, rail, fault, slump year, wet summers, market town). A student who has seen two of these can solve the rest by tagging sites and striking the reversed, rival-only and confounded options, without engaging the specific science or history. The 'weaken' items additionally lean repeatedly on the 'rival-only beats hypothesis-only' move. The 16 table items are likewise one template: a two-condition threshold filter (ratio or difference plus a categorical gate), with the option text printing only some of the needed cells, one near-miss failing each condition, and one 'biggest/most extreme' lure. Keys do not track letter position, but the structural recipe is predictable across items.",
+ "items": {
+  "II23A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; 'rival-only site beats hypothesis-only site in the same year' weakens a 'credits X' claim, which is defensible at SAT level."
+  },
+  "II23A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23A-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the cross-year comparison (2017 vs 2015) is licensed by the passage's 'change little from year to year' clause."
+  },
+  "II23B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-05": {
+   "key_ok": false,
+   "path_coherent": false,
+   "recommend_drop": true,
+   "note2": "The explanation's step 'because the seepage is steady, the year of the Gullhaven sample does not matter' is backwards: steady seepage means Gullhaven gets saltier every year, so Kelstad 2022 beating Gullhaven 2018 says nothing about Gullhaven 2022, and irrigation salting Kelstad does not refute seepage at Gullhaven anyway. No option cleanly weakens Hagelin."
+  },
+  "II23B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23B-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23C-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; same 'rival-only beats hypothesis-only, same year' logic as A-04, with the 1858 slump as the cross-year trap."
+  },
+  "II23D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  },
+  "II23D-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly isolates the discriminating factor or cells."
+  }
+ }
+}

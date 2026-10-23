@@ -1,0 +1,635 @@
+{
+ "II23A-05": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with II23C-03 named by 1 of 2",
+   "template pair with II23A-01 named by 1 of 2",
+   "template pair with II23D-05 named by 1 of 2",
+   "named in reader r0's tell: On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Colonies at Bramel stored less honey than colonies at Ardane.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Colonies at Elvey stored less honey than colonies at Bramel."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "D is dropped because the passage marks Cromby as upland, and C runs the wrong way, leaving A vs B, which is decided by asking which variable the Ardane/Elvey pair isolates.",
+    "note": "B (Ardane vs Elvey) is the most tempting because it is the cleanest matched pair in the passage, but it isolates pesticide, not mites. C has the light-load site storing less, the reverse of what Fenn predicts."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Colonies at Bramel stored less honey than colonies at Ardane.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Colonies at Ardane stored less honey than colonies at Elvey.",
+     "Colonies at Elvey stored less honey than colonies at Bramel."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "D tempts but Cromby is upland. B supports pesticide, C reverses mites. A pits heavy mites against light mites plus pesticide, both lowland."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23C-03",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   },
+   {
+    "with": "II23A-01",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   },
+   {
+    "with": "II23D-05",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   }
+  ]
+ },
+ "II23A-01": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with II23A-05 named by 1 of 2",
+   "template partner of II23C-03 (the later slot revises)",
+   "template partner of II23D-05 (the later slot revises)",
+   "named in reader r0's tell: On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always",
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Eelgrass thinned more in Aldmoss Cove than in Cadfield Cove.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Eelgrass thinned more in Dellow Cove than in Brackwell Cove."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Same isolate-one-factor 2x2 as P03/P10/P21: the only option whose two coves share discharge status and differ in dredging is B.",
+    "note": "A (Aldmoss vs Dellow) is the classic confounded distractor: it favors dredging but Aldmoss also gets the discharge. D has the untouched cove thinning more than the dredged one, the wrong way."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Eelgrass thinned more in Aldmoss Cove than in Cadfield Cove.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Eelgrass thinned more in Cadfield Cove than in Dellow Cove.",
+     "Eelgrass thinned more in Dellow Cove than in Brackwell Cove."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Aldmoss and Cadfield are described in one sentence as differing only in dredging ('receives just as much of the discharge'), which hands over the controlled pair.",
+    "note": "A is tempting (Aldmoss thinned more than Dellow) but carries both factors. C is the rival's clean test and D reverses dredging, both strikable as pointing the wrong way."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-05",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   },
+   {
+    "with": "II23C-03",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   },
+   {
+    "with": "II23D-05",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   }
+  ]
+ },
+ "II23A-08": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23C-08 (the later slot revises)",
+   "named in reader r0's tell: On two-condition table items, options cite only one condition's columns and the strongest distractor meets that cited condition but fails the uncited one: P08, ",
+   "named in reader r1's tell: On two-condition filter items the most tempting distractor passes the quoted condition and fails on the column the options never quote: P10, P17, P30, P31."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Copperhill set fruit on 58% of its flowers at 25°C and on 49% at 35°C.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Birchtop, 7-point drop) meets the cited condition but takes 78 days, an uncited column. Same two-condition, one-condition-cited template as P08; a student who has seen one checks the uncited column immediately."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Copperhill set fruit on 58% of its flowers at 25°C and on 49% at 35°C.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Emberglow set fruit on 83% of its flowers at 25°C and on 69% at 35°C."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Two-condition filter like P10; the tempting option fails on the unquoted column, the same trick used there.",
+    "note": "A (Birchtop, 7-point drop) is tempting but takes 78 days, a column the options never quote. B and D drop more than 10 points."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23C-08",
+    "readers": 2,
+    "why": [
+     "two thresholds, options cite only one, near-miss fails the uncited one",
+     "two-condition filter where only one row passes both"
+    ]
+   }
+  ]
+ },
+ "II23A-03": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23D-03 (the later slot revises)",
+   "template partner of II23B-05 (the later slot revises)",
+   "template partner of II23B-01 (the later slot revises)",
+   "template pair with II23D-04 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-02 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r0's tell: On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction i",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Tits laid earlier in Coppling Forest in the cold spring than in Dinsmore Forest in the cold spring.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Tits laid earlier in Dinsmore Forest in the warm spring than in Coppling Forest in the warm spring."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Of the season-matched options, B runs the wrong way and A carries the oak confound, so C is the only same-season, beech-vs-beech pair; same matched-control template as P01/P09/P29/P32.",
+    "note": "A (Esterholm vs Dinsmore, warm) is tempting but Esterholm also has oaks; D crosses warm/cold. B has the feeder-less forest laying earlier."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Tits laid earlier in Coppling Forest in the cold spring than in Dinsmore Forest in the cold spring.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Tits laid earlier in Dinsmore Forest in the warm spring than in Coppling Forest in the warm spring.",
+     "Tits laid earlier in Coppling Forest in the warm spring than in Dinsmore Forest in the cold spring."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Mixed-spring option struck on sight; Coppling vs Dinsmore are explicitly both beech, differing only in feeders.",
+    "note": "A tempts (Esterholm earlier) but Esterholm has oaks too. D mixes springs, B reverses feeders."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-05",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-04",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23A-04": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23D-01 (the later slot revises)",
+   "template partner of II23B-03 (the later slot revises)",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "More of the oak seedlings survived in the Daleford tract in the 2000s than in the Carbery tract in the 2000s.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "More of the oak seedlings survived in the Carbery tract in the 2000s than in the Carbery tract in the 1990s."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "D (Daleford beats Eldwick in the 2010s) is tempting as decade-matched but supports Cole without touching fences. C crosses into the wet-summer decade. Requires tracking Carbery's change from burned to fenced at 2000."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "More of the oak seedlings survived in the Daleford tract in the 2000s than in the Carbery tract in the 2000s.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "More of the oak seedlings survived in the Daleford tract in the 2010s than in the Carbery tract in the 2000s."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "B is tempting but supports fencing (and confounds burning's end). D supports burning without bearing on fences. A pits burned-unfenced against fenced in the same decade."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-01",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   },
+   {
+    "with": "II23B-03",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   }
+  ]
+ },
+ "II23A-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23D-07 (the later slot revises)",
+   "template partner of II23B-06 (the later slot revises)",
+   "template partner of II23B-07 (the later slot revises)",
+   "template partner of II23C-07 (the later slot revises)",
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "On Benvoray, the colony raised 273 chicks from 420 nests.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "On Ardvane, the colony raised 150 chicks from 200 nests."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The Rats column strikes Ardvane on sight; Dunvarra's 528/960 is visibly under 0.6, so it is one division between Benvoray and Caillin.",
+    "note": "C (Caillin, 0.578) is the near miss; A (Ardvane, 0.75) has the best ratio but no rats. Same template as P05/P06/P19/P20."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "On Benvoray, the colony raised 273 chicks from 420 nests.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "On Ardvane, the colony raised 150 chicks from 200 nests."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Only one division per option and the rats column removes the most tempting option immediately; three yes-rats rows, one clears 0.6.",
+    "note": "A (Ardvane, 0.75) is the highest ratio but a rat-free island, struck by the Rats column on sight. C (0.578) and B (0.55) are near misses below 0.6."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23C-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   }
+  ]
+ },
+ "II23A-02": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23D-04 (the later slot revises)",
+   "template pair with II23B-01 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-03 named by 1 of 2",
+   "template pair with II23D-03 named by 1 of 2",
+   "template pair with II23B-05 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r0's tell: On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction i",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Salamanders weighed less in the Corlett stands in May than in the Ambersley stands in May.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Salamanders weighed less in the Ambersley stands in August than in the Fenwold stands in August."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "B is the only cross-month option and A supports Brevard, leaving C vs D, decided by asking which compares the logged stand with the earthworm stand; identical structure to P14 and P32.",
+    "note": "C (Fenwold vs Corlett, May) is season-matched but bears on Elling. B crosses months. A supports Brevard. Same template as P14: the key weakens by showing the rival factor outweighs it, same season."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Salamanders weighed less in the Corlett stands in May than in the Ambersley stands in May.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "Salamanders weighed less in the Fenwold stands in August than in the Ambersley stands in May."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "C tempts as a same-month comparison but bears on logging. A supports Brevard. D pits logged-no-worms against worms-unlogged in the same month."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-04",
+    "readers": 2,
+    "why": [
+     "weaken by showing the rival factor's site is more extreme, same season",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-05",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23A-07": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 3",
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of II23C-06 (the later slot revises)",
+   "template partner of II23B-08 (the later slot revises)",
+   "named in reader r0's tell: On straddle-the-line comparison items, only two options straddle the stated threshold and one of those runs the wrong way: P22, P24, P30."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "the smaller barnacle numbered 34 per 100 cm² at Dovell, compared with 21 at Brockel.",
+    "confidence": "high",
+    "difficulty": "easy",
+    "n_struck": 3,
+    "struck_options": [
+     "the smaller barnacle numbered 15 per 100 cm² at Cendry, compared with 12 at Fenlow.",
+     "the smaller barnacle numbered 21 per 100 cm² at Brockel, compared with 15 at Cendry.",
+     "the smaller barnacle numbered 52 per 100 cm² at Eskett, compared with 34 at Dovell."
+    ],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Only B and A straddle the 1.1 m line and A runs the wrong way, so the stem's threshold alone decides it with no arithmetic; same straddle-the-line template as P22 and P24.",
+    "note": "A straddles the 1.1 m line but the lower site wins; C and D compare two sites on the same side. No option is tempting once the line is applied."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "the smaller barnacle numbered 34 per 100 cm² at Dovell, compared with 21 at Brockel.",
+    "confidence": "high",
+    "difficulty": "easy",
+    "n_struck": 2,
+    "struck_options": [
+     "the smaller barnacle numbered 21 per 100 cm² at Brockel, compared with 15 at Cendry.",
+     "the smaller barnacle numbered 52 per 100 cm² at Eskett, compared with 34 at Dovell."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Height column against 1.1 m strikes two options instantly; of the two straddling options, only one has the higher site more crowded, readable directly.",
+    "note": "A is the only cross-threshold distractor and runs the wrong way. C has both sites below 1.1 m, D both above."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23C-06",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   },
+   {
+    "with": "II23B-08",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   }
+  ]
+ }
+}

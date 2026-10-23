@@ -1,0 +1,615 @@
+{
+ "II23B-04": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "The heap at Ilmer lost less of its snow over the summer than the heap at Holvard did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "The heap at Gessing lost less of its snow over the summer than the heap at Ilmer did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Only Ilmer and Holvard are sheetless, same-elevation sites with different chip depths, and C is the only option pairing them; D is dropped on sight because the passage flags Kaltby as far higher.",
+    "note": "B (Holvard beats Gessing) is tempting but varies only the sheet, so it bears on Hjelm, not Gundersen; D crosses the elevation control. A is consistent with the hypothesis and struck immediately on a weaken stem."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "The heap at Ilmer lost less of its snow over the summer than the heap at Holvard did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "The heap at Kaltby lost less of its snow over the summer than the heap at Ilmer did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Ilmer and Holvard share elevation and lack a sheet, so a thinner layer losing less directly refutes; passage signposts 'only Gessing adds a sheet'.",
+    "note": "B tempts but Gessing has a sheet; A supports both factors; D uses high Kaltby."
+   }
+  ],
+  "template_partners": []
+ },
+ "II23B-02": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "The first autumn frost came later in Lisby than in Kirrow.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "The first autumn frost came later in Kirrow than in Galmby."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The passage lays out a clean 2x2 (lake/inland x city/village) and the only off-diagonal pair that pits lake against city heat is Lisby vs Kirrow, which a strong student builds in seconds.",
+    "note": "C (lakeshore city vs inland village) is the strongest distractor: it favors Lowry but both factors point the same way. D has the inland city frost later than the lake city, struck on a support stem."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "The first autumn frost came later in Lisby than in Kirrow.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "The first autumn frost came later in Galmby than in Lisby.",
+     "The first autumn frost came later in Kirrow than in Galmby."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "C (Galmby vs Ilvard) is tempting but the lakeshore city also has pavement heat. A pits a lake village against an inland city, so the lake effect wins against the rival's factor; a student looking for the 'matched' pair (city vs city) will not find it."
+   }
+  ],
+  "template_partners": []
+ },
+ "II23B-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23A-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-07 (the later slot revises)",
+   "template partner of II23B-07 (the later slot revises)",
+   "template partner of II23C-07 (the later slot revises)",
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Kelsing produced 49,800 MWh in the year from 28 MW of panels.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Haverud produced 34,900 MWh in the year from 17 MW of panels."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The Mounting column strikes A on sight, D is visibly low (29,000/20 under 1,500), and only B vs C needs a division against a stated 1,700 threshold.",
+    "note": "B (Islaug, 1,679 MWh/MW) is the near miss; A (Haverud, 2,053) has the best ratio but is tracking. Shares the wrong-category-has-best-ratio template with P05/P19/P20/P27."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Kelsing produced 49,800 MWh in the year from 28 MW of panels.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Haverud produced 34,900 MWh in the year from 17 MW of panels."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Category column removes the top-ratio option; one division per fixed row decides it; same template as P04, P07, P24, P27.",
+    "note": "A (Haverud, 2,053 per MW) is highest but tracking, struck by the mounting column. B (Islaug, 1,679) is the near miss just below 1,700."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23C-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23A-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   }
+  ]
+ },
+ "II23B-05": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23A-03 (named by all 2 readers)",
+   "template pair with II23B-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-03 (the later slot revises)",
+   "template pair with II23D-04 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-02 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r0's tell: On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction i",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Readings taken at Hamnell in winter showed more background vibration than readings taken at Gorsby in winter.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Readings taken at Gorsby in winter showed more background vibration than readings taken at Jeltby in winter."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Of the two same-season options, C runs in Lindqvist's favor, so the season-matched one left (B) is the key; the cross-season options A and D fall to the stated storm control.",
+    "note": "A (Jeltby winter vs Gorsby summer) is tempting because a turbine-free site beats Gorsby, but it crosses the winter-storm control. C supports Lindqvist and is struck on a weaken stem."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Readings taken at Hamnell in winter showed more background vibration than readings taken at Gorsby in winter.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Readings taken at Jeltby in winter showed more background vibration than readings taken at Gorsby in summer.",
+     "Readings taken at Hamnell in winter showed more background vibration than readings taken at Jeltby in summer."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Mixed-season options struck on sight given the stated storm effect; same template as P01, P11, P12, P21, P25, P28.",
+    "note": "C is same-season but supports turbines. A and D mix winter and summer."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-04",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23B-07": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23B-06 (named by all 2 readers)",
+   "template pair with II23A-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-07 (the later slot revises)",
+   "template partner of II23C-07 (the later slot revises)",
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Jorsand widened from 40 meters in 2004 to 48 meters in 2022.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Lauvholm widened from 55 meters in 2004 to 65 meters in 2022.",
+     "Gimlund widened from 32 meters in 2004 to 35 meters in 2022."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The Groynes column removes B and D at once, and A vs C needs one rough percentage each; Jorsand's 40 to 48 is a visibly round 20%.",
+    "note": "C (Hestrand, +12.2%) is the near miss without groynes; B (Lauvholm, +18%) clears 15% but has groynes. Same wrong-category template as P05/P06/P20/P27."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Jorsand widened from 40 meters in 2004 to 48 meters in 2022.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "Lauvholm widened from 55 meters in 2004 to 65 meters in 2022."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Groynes column strikes the only other qualifying row; Hestrand's 11 m gain is the only real trap.",
+    "note": "B (Lauvholm, 18%) clears 15% but has groynes. C (Hestrand, 12%) is the near miss with the largest absolute gain, which tempts students who read meters not percent."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23C-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23A-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   }
+  ]
+ },
+ "II23B-08": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader",
+   "template pair with II23A-07 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23C-06 (the later slot revises)",
+   "named in reader r0's tell: On straddle-the-line comparison items, only two options straddle the stated threshold and one of those runs the wrong way: P22, P24, P30."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "On Hennick, hydrated minerals made up 3.5% of the surface, compared with 1.6% on Gyllen.",
+     "On Ivra, hydrated minerals made up 8.2% of the surface, compared with 5.0% on Lisvold."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "C (Kolbeck 6.3 vs Hennick 3.5, 1.8x) is the strong distractor: it straddles the snow line correctly but falls just short of twice. A pairs two inside asteroids and B has the inside asteroid higher, both struck once the 2.7 AU line is applied."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "On Hennick, hydrated minerals made up 3.5% of the surface, compared with 1.6% on Gyllen.",
+     "On Ivra, hydrated minerals made up 8.2% of the surface, compared with 5.0% on Lisvold."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Distance column against 2.7 strikes two options at once; only a single ratio check separates C from D.",
+    "note": "C (Kolbeck 6.3 vs Hennick 3.5) is the trap at 1.8x. A has both inside; B has the inner asteroid higher, reversed."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23C-06",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   },
+   {
+    "with": "II23A-07",
+    "readers": 2,
+    "why": [
+     "pairwise comparison that must straddle a stated threshold line",
+     "pairs straddling a numeric cutoff, one cross-cutoff option in the right direction"
+    ]
+   }
+  ]
+ },
+ "II23B-03": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "template pair with II23A-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-01 (the later slot revises)",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Water sampled from Holt Creek in 2018 carried more silt than water sampled from Kell Creek in 2016.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Water sampled from Holt Creek in 2008 carried more silt than water sampled from Holt Creek in 2016.",
+     "Water sampled from Holt Creek in 2012 carried more silt than water sampled from Kell Creek in 2018."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Lanner 2016 vs Kell 2008) is tempting as post-mining beating pre-mining in dry years, but Lanner has both mining and logging. B compares creeks without a baseline, so its support is indirect; the cleanest test (Holt 2016 vs Holt 2008) is not offered."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Water sampled from Holt Creek in 2018 carried more silt than water sampled from Kell Creek in 2016.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Water sampled from Holt Creek in 2008 carried more silt than water sampled from Holt Creek in 2016.",
+     "Water sampled from Holt Creek in 2012 carried more silt than water sampled from Kell Creek in 2018."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A tempts (Lanner rose) but Lanner has logging too. D uses the wet year 2012. C reverses the gravel effect. B pits gravel-only Holt against logging-only Kell in two dry post-2010 years, requiring the student to track four dated conditions."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-01",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   },
+   {
+    "with": "II23A-04",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   }
+  ]
+ },
+ "II23B-01": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23A-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of II23D-03 (the later slot revises)",
+   "template partner of II23B-05 (the later slot revises)",
+   "template pair with II23D-04 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-02 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r0's tell: On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction i",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "The air at Garrow in winter held more fine particles than the air at Jessop in winter did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "The air at Jessop in summer held more fine particles than the air at Garrow in summer did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "B and C cross seasons and fall to the stated winter control, A runs the wrong way, so D is the only season-matched option favoring the port.",
+    "note": "B (Garrow winter vs Hollin summer) is tempting as port beating wood smoke but crosses the winter control. A has the inland village beating the port, the wrong way."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "The air at Garrow in winter held more fine particles than the air at Jessop in winter did.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "The air at Garrow in winter held more fine particles than the air at Hollin in summer did.",
+     "The air at Jessop in winter held more fine particles than the air at Hollin in summer did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Mixed-season options are dead on arrival, leaving a same-season pair where one is reversed; same template as P01, P12, P21, P25, P28, P32.",
+    "note": "A is same-season but reversed. B and C mix seasons and are struck on sight because both historians accept winter worsens haze."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-05",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-04",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ }
+}

@@ -44,6 +44,11 @@ const qc = {}, hist = {}
 for (const it of kept) {
   const rows = G.map(g => g[it.id])
   if (rows.some(r => !r)) { console.error(`REFUSING: ${it.id} missing from a grader file`); process.exit(2) }
+  /* A phase-2-only grader file carries no difficulty or distractor_quality; the
+   * old `?? 1` default then banked every item as medium without a word (ii23,
+   * 2026-10-23). A missing field is a refusal, never a default. */
+  const absent = rows.findIndex(r => !(r.difficulty in RANK) || !(r.distractor_quality in QR))
+  if (absent >= 0) { console.error(`REFUSING: ${it.id} has no difficulty/distractor_quality in ${files[absent]} (phase-2-only file? use the gate's qc.json)`); process.exit(2) }
   const key_votes = rows.filter(r => r.key_ok === true).length
   const difficulty = DNAME[med(rows.map(r => RANK[r.difficulty] ?? 1))]
   const distractor_quality = QNAME[med(rows.map(r => QR[r.distractor_quality] ?? 1))]

@@ -1,0 +1,913 @@
+[
+ {
+  "id": "II23A-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Eelgrass meadows in Cadmere Bay have thinned over the past decade. Seagrass ecologist Bettina Achterberg hypothesizes that channel dredging is responsible: the sediment it stirs up clouds the water and blocks the light that eelgrass needs. Her colleague Dorian Faulk suspects warm water discharged by the Elsby power plant instead, since prolonged heat also stresses eelgrass. The dredged channel runs along the bay's eastern shore, while currents carry the plant's warm discharge only along its northern shore. The bay has a cove in each corner, with Brackwell Cove in the southeast and Dellow Cove in the southwest. Aldmoss Cove is in the northeast, and Cadfield Cove is in the northwest.",
+  "prompt": "Which finding, if true, would most directly support Achterberg's hypothesis?",
+  "choices": [
+   "More eelgrass survived in Dellow Cove than in Aldmoss Cove.",
+   "More eelgrass survived in Cadfield Cove than in Aldmoss Cove.",
+   "More eelgrass survived in Dellow Cove than in Cadfield Cove.",
+   "More eelgrass survived in Brackwell Cove than in Dellow Cove."
+  ],
+  "correct_answer": "More eelgrass survived in Cadfield Cove than in Aldmoss Cove.",
+  "explanation": "Achterberg blames \"channel dredging,\" and Faulk blames \"warm water discharged by the Elsby power plant instead.\" The channel \"runs along the bay's eastern shore\" and the discharge reaches \"only\" the \"northern shore,\" so Aldmoss Cove (\"in the northeast\") gets both, Cadfield Cove (\"in the northwest\") gets only the discharge, Brackwell Cove (\"in the southeast\") gets only the dredging, and Dellow Cove (\"in the southwest\") gets neither. The finding that \"More eelgrass survived in Cadfield Cove than in Aldmoss Cove.\" means Aldmoss thinned more than Cadfield; both receive the discharge and only Aldmoss is beside the channel, so the difference isolates dredging and supports Achterberg. The finding that \"More eelgrass survived in Dellow Cove than in Aldmoss Cove.\" sets the cove with both factors against the cove with neither, so both accounts predict it. The finding that \"More eelgrass survived in Dellow Cove than in Cadfield Cove.\" means Cadfield thinned more than Dellow; neither is beside the channel, so it supports Faulk and says nothing about dredging. The finding that \"More eelgrass survived in Brackwell Cove than in Dellow Cove.\" means the cove with neither factor thinned more than Brackwell, which is beside the channel, so it weakens Achterberg's hypothesis.",
+  "topic_tag": "eelgrass-thinning-dredging-vs-warm-discharge",
+  "meta": {
+   "design": "4G",
+   "stem": "support",
+   "dir": "more",
+   "roles": [
+    "CONF-R",
+    "K-ISO",
+    "RIV",
+    "WKN"
+   ],
+   "compare": [
+    [
+     "Aldmoss Cove",
+     "Dellow Cove"
+    ],
+    [
+     "Aldmoss Cove",
+     "Cadfield Cove"
+    ],
+    [
+     "Cadfield Cove",
+     "Dellow Cove"
+    ],
+    [
+     "Dellow Cove",
+     "Brackwell Cove"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    }
+   ],
+   "last": "K-ISO",
+   "su": [],
+   "names": [
+    "Cadmere Bay",
+    "Bettina Achterberg",
+    "Dorian Faulk",
+    "Elsby",
+    "Brackwell Cove",
+    "Dellow Cove",
+    "Aldmoss Cove",
+    "Cadfield Cove"
+   ],
+   "distractor_pulls": {
+    "More eelgrass survived in Dellow Cove than in Aldmoss Cove.": "Aldmoss is on the dredged eastern shore and lost more eelgrass than Dellow, the surface signature of dredging damage; only placing Aldmoss on the northern shore too shows it also gets the discharge.",
+    "More eelgrass survived in Dellow Cove than in Cadfield Cove.": "Read quickly, \"more survived in Dellow\" looks like the undisturbed cove doing better, which a reader takes as evidence that disturbance (dredging) hurts; it needs the shore map to see Cadfield is not dredged.",
+    "More eelgrass survived in Brackwell Cove than in Dellow Cove.": "Brackwell is the dredged cove and the sentence is about how it fared, so a reader who flips the survival wording into \"thinning\" the wrong way reads it as dredging damage."
+   },
+   "why_hard": "No sentence pairs the coves; the student must assign each corner cove its factors from two shore statements, then convert \"more survived\" into which cove thinned more before testing whether the pair isolates dredging."
+  }
+ },
+ {
+  "id": "II23A-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Red-backed salamanders in Belvane Forest weigh less, on average, than they did thirty years ago. Herpetologist Annika Brevard attributes the decline mainly to invasive earthworms, which devour the leaf litter that shelters the salamanders' insect prey. Cyrus Elling attributes it mainly to logging, arguing that opening the canopy dries the forest floor. Both agree that salamanders on steep, sun-baked slopes weigh less than those on level ground, wherever they live. Researchers weighed salamanders in four stands. Corlett, on level valley ground, was logged recently, but earthworms have not reached it. Dace Ridge, a steep and sunny slope, has never been logged or invaded by earthworms. Ambersley and Fenwold, both unlogged stands on level valley ground, differ in that earthworms now fill Ambersley but are absent from Fenwold.",
+  "prompt": "Which finding, if true, would most directly weaken Brevard's hypothesis?",
+  "choices": [
+   "Salamanders from Ambersley weighed less than salamanders from Fenwold.",
+   "Salamanders from Dace Ridge weighed less than salamanders from Ambersley.",
+   "Salamanders from Fenwold weighed less than salamanders from Corlett.",
+   "Salamanders from Corlett weighed less than salamanders from Ambersley."
+  ],
+  "correct_answer": "Salamanders from Corlett weighed less than salamanders from Ambersley.",
+  "explanation": "Brevard attributes the decline \"mainly to invasive earthworms,\" and Elling \"mainly to logging.\" Corlett \"was logged recently, but earthworms have not reached it,\" while earthworms \"now fill Ambersley,\" which is \"unlogged,\" and both lie on \"level valley ground.\" The finding that \"Salamanders from Corlett weighed less than salamanders from Ambersley.\" therefore shows the logged, worm-free stand faring worse than the worm-filled, unlogged one on the same kind of ground, the opposite of what Brevard's hypothesis predicts, so it most directly weakens it. The finding that \"Salamanders from Dace Ridge weighed less than salamanders from Ambersley.\" also has a worm-free stand lighter than Ambersley, but Dace Ridge is \"a steep and sunny slope,\" and both agree that salamanders \"on steep, sun-baked slopes weigh less than those on level ground,\" so the slope could explain it. The finding that \"Salamanders from Ambersley weighed less than salamanders from Fenwold.\" compares two unlogged level stands that differ only in earthworms, with the worm-filled one lighter, so it supports Brevard. The finding that \"Salamanders from Fenwold weighed less than salamanders from Corlett.\" compares two worm-free level stands that differ only in logging, with the unlogged one lighter; it weakens Elling's account, not Brevard's.",
+  "topic_tag": "salamander-weight-earthworms-vs-logging",
+  "meta": {
+   "design": "3G",
+   "stem": "weaken",
+   "dir": "less",
+   "roles": [
+    "SUP",
+    "CONF-CW",
+    "WKR",
+    "K-CROSS-W"
+   ],
+   "compare": [
+    [
+     "Ambersley",
+     "Fenwold"
+    ],
+    [
+     "Dace Ridge",
+     "Ambersley"
+    ],
+    [
+     "Fenwold",
+     "Corlett"
+    ],
+    [
+     "Corlett",
+     "Ambersley"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      1
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    }
+   ],
+   "last": "SUP",
+   "su": [],
+   "names": [
+    "Belvane Forest",
+    "Annika Brevard",
+    "Cyrus Elling",
+    "Corlett",
+    "Dace Ridge",
+    "Ambersley",
+    "Fenwold"
+   ],
+   "distractor_pulls": {
+    "Salamanders from Ambersley weighed less than salamanders from Fenwold.": "Ambersley and Fenwold are the pair the passage explicitly matches, so a reader who equates the signposted comparison with the answer takes it without checking that it favours Brevard.",
+    "Salamanders from Dace Ridge weighed less than salamanders from Ambersley.": "A worm-free, unlogged stand lighter than the worm-filled one looks like the cleanest possible blow to Brevard; nothing in the option shows that Dace Ridge is the steep slope.",
+    "Salamanders from Fenwold weighed less than salamanders from Corlett.": "It is a clean comparison on level ground that cuts against one of the two accounts; a reader who forgets whose hypothesis the stem names picks it."
+   },
+   "why_hard": "The slope condition is hidden inside a stand name, so the student must recall each of four stands' worms, logging and ground from separate sentences; the passage's one explicitly matched pair is a distractor."
+  }
+ },
+ {
+  "id": "II23A-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "In many regions, a wild mustard growing in vacant city lots flowers earlier in spring than the same species does in the countryside. Botanist Felicia Dalgren hypothesizes that city populations have evolved to flower early. Ansel Corby suggests instead that the warmth of cities simply speeds the plants along. Both agree that plants grown from unusually heavy seeds tend to flower sooner, whatever their origin. To test the two ideas, researchers sowed seeds from three sources in two gardens, one in a warm city center and one in the cool countryside. Coppling seeds came from a city lot and Dinsmore seeds from a rural meadow, and both were of ordinary weight. Esterholm seeds, also gathered from a city lot, were unusually heavy.",
+  "prompt": "Which finding, if true, would most directly support Dalgren's hypothesis?",
+  "choices": [
+   "Coppling plants in the city garden flowered earlier than Dinsmore plants in the rural garden.",
+   "Dinsmore plants in the city garden flowered earlier than Coppling plants in the city garden.",
+   "Coppling plants in the rural garden flowered earlier than Dinsmore plants in the rural garden.",
+   "Esterholm plants in the rural garden flowered earlier than Dinsmore plants in the rural garden."
+  ],
+  "correct_answer": "Coppling plants in the rural garden flowered earlier than Dinsmore plants in the rural garden.",
+  "explanation": "Dalgren holds that \"city populations have evolved to flower early,\" while Corby holds that \"the warmth of cities simply speeds the plants along.\" \"Coppling seeds came from a city lot and Dinsmore seeds from a rural meadow, and both were of ordinary weight,\" so plants from the two sources grown side by side in the same garden differ only in origin. The finding that \"Coppling plants in the rural garden flowered earlier than Dinsmore plants in the rural garden.\" shows city-origin plants flowering first without any city warmth, which supports Dalgren. The finding that \"Esterholm plants in the rural garden flowered earlier than Dinsmore plants in the rural garden.\" also compares city-origin and rural plants in the same garden, but \"Esterholm seeds ... were unusually heavy,\" and both agree that \"plants grown from unusually heavy seeds tend to flower sooner,\" so seed weight could explain it. The finding that \"Coppling plants in the city garden flowered earlier than Dinsmore plants in the rural garden.\" gives the city-origin plants the warm garden as well, so both accounts predict it. The finding that \"Dinsmore plants in the city garden flowered earlier than Coppling plants in the city garden.\" has rural-origin plants flowering before city-origin plants in the same garden, which weakens Dalgren's hypothesis.",
+  "topic_tag": "mustard-flowering-common-garden-origin-vs-warmth",
+  "meta": {
+   "design": "3x2",
+   "stem": "support",
+   "dir": "earlier",
+   "roles": [
+    "CONF-R",
+    "WKN",
+    "K-ISO",
+    "CONF-C"
+   ],
+   "compare": [
+    [
+     "Coppling plants in the city garden",
+     "Dinsmore plants in the rural garden"
+    ],
+    [
+     "Dinsmore plants in the city garden",
+     "Coppling plants in the city garden"
+    ],
+    [
+     "Coppling plants in the rural garden",
+     "Dinsmore plants in the rural garden"
+    ],
+    [
+     "Esterholm plants in the rural garden",
+     "Dinsmore plants in the rural garden"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      1
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "last": null,
+   "su": [],
+   "names": [
+    "Felicia Dalgren",
+    "Ansel Corby",
+    "Coppling",
+    "Dinsmore",
+    "Esterholm"
+   ],
+   "distractor_pulls": {
+    "Coppling plants in the city garden flowered earlier than Dinsmore plants in the rural garden.": "City-origin plants flowered first, the pattern Dalgren predicts; a reader must notice that they also had the warm garden, which Corby's account explains just as well.",
+    "Dinsmore plants in the city garden flowered earlier than Coppling plants in the city garden.": "Same garden, two sources, the controlled form of the key; a reader who has not fixed which source is the city one cannot tell it runs against Dalgren.",
+    "Esterholm plants in the rural garden flowered earlier than Dinsmore plants in the rural garden.": "Esterholm is a city-lot source flowering ahead of a rural one in the same garden, word for word the shape of the key; only the seed-weight sentence rules it out."
+   },
+   "why_hard": "The rival's factor is the garden and the confound is seed weight, a property of one source given in the last sentence; the strongest lure is a same-garden, city-versus-rural comparison indistinguishable from the key on its surface."
+  }
+ },
+ {
+  "id": "II23A-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Oak seedlings in the Carvel Hills now survive their first years at higher rates than they did in the 1980s. Forest ecologist Daphne Abernell credits deer fences, which keep browsing deer away from young oaks. Fabian Cole credits prescribed burns instead, which clear out the shade-tolerant saplings that crowd oaks. Both agree that the run of wet summers that began in 2010 raised seedling survival in every tract, and that survival was otherwise steady from year to year. Records survive for three tracts. The Eldwick tract has never been fenced or burned. Fences went up around the Carbery tract in 2000, when the burning it had received through the 1990s ended. The Daleford tract, never fenced, took over the Carbery tract's burning schedule that year and has been burned every few years since.",
+  "prompt": "Which finding, if true, would most directly weaken Abernell's hypothesis?",
+  "choices": [
+   "More of the oak seedlings survived in the Daleford tract in 2006 than in the Carbery tract in 2006.",
+   "More of the oak seedlings survived in the Carbery tract in 2004 than in the Carbery tract in 1997.",
+   "More of the oak seedlings survived in the Daleford tract in 2012 than in the Carbery tract in 2007.",
+   "More of the oak seedlings survived in the Daleford tract in 2013 than in the Eldwick tract in 2013."
+  ],
+  "correct_answer": "More of the oak seedlings survived in the Daleford tract in 2006 than in the Carbery tract in 2006.",
+  "explanation": "Abernell \"credits deer fences,\" while Cole \"credits prescribed burns instead.\" From 2000 on, the Carbery tract was fenced and no longer burned (\"Fences went up around the Carbery tract in 2000, when the burning it had received through the 1990s ended\"), while the Daleford tract was burned but \"never fenced.\" In the same year, the finding that \"More of the oak seedlings survived in the Daleford tract in 2006 than in the Carbery tract in 2006.\" shows the burned, unfenced tract outdoing the fenced, unburned one, the opposite of what Abernell's hypothesis predicts, so it most directly weakens it. The finding that \"More of the oak seedlings survived in the Carbery tract in 2004 than in the Carbery tract in 1997.\" compares the Carbery tract when fenced with the same tract when it was only burned; both years fall before 2010, when survival \"was otherwise steady from year to year,\" so it supports Abernell. The finding that \"More of the oak seedlings survived in the Daleford tract in 2012 than in the Carbery tract in 2007.\" also has Daleford ahead, but 2012 falls in \"the run of wet summers that began in 2010\" and 2007 does not, so the weather could explain it. The finding that \"More of the oak seedlings survived in the Daleford tract in 2013 than in the Eldwick tract in 2013.\" compares two unfenced tracts in the same year that differ only in burning, so it supports Cole and says nothing against fences.",
+  "topic_tag": "oak-seedling-survival-fences-vs-burns",
+  "meta": {
+   "design": "TIME",
+   "stem": "weaken",
+   "dir": "more",
+   "roles": [
+    "K-CROSS-W",
+    "SUPX",
+    "CONF-CXW",
+    "RIV"
+   ],
+   "compare": [
+    [
+     "Daleford tract in 2006",
+     "Carbery tract in 2006"
+    ],
+    [
+     "Carbery tract in 2004",
+     "Carbery tract in 1997"
+    ],
+    [
+     "Daleford tract in 2012",
+     "Carbery tract in 2007"
+    ],
+    [
+     "Daleford tract in 2013",
+     "Eldwick tract in 2013"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      1
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      1
+     ],
+     "lose": [
+      0,
+      0,
+      1
+     ]
+    }
+   ],
+   "last": "K-CROSS-W",
+   "su": [
+    "SUPX"
+   ],
+   "names": [
+    "Carvel Hills",
+    "Daphne Abernell",
+    "Fabian Cole",
+    "Eldwick",
+    "Carbery",
+    "Daleford"
+   ],
+   "distractor_pulls": {
+    "More of the oak seedlings survived in the Carbery tract in 2004 than in the Carbery tract in 1997.": "Its two years differ, as do the years in one other option, so \"strike the mismatched years\" fails; a before-and-after test within one tract looks rigorous, and the reader must work out that it favours the fences.",
+    "More of the oak seedlings survived in the Daleford tract in 2012 than in the Carbery tract in 2007.": "The unfenced tract beats the fenced one, exactly the pattern that hurts Abernell; 2007 and 2012 look close, and only the 2010 wet-summer break shows the years are not comparable.",
+    "More of the oak seedlings survived in the Daleford tract in 2013 than in the Eldwick tract in 2013.": "Same year, burned beating unburned: a clean win for the rival that a reader takes as a blow to Abernell, though it never touches fences."
+   },
+   "why_hard": "Two options compare different years, one legitimately (both before 2010) and one across the 2010 break, so the student must check each year against the break and reconstruct Carbery's switch from burning to fencing in 2000."
+  }
+ },
+ {
+  "id": "II23A-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Honeybee colonies in the Dorran Valley have stored less honey in recent summers. Apiarist Beatrix Fenn hypothesizes that varroa mites, parasites that weaken worker bees, are mainly responsible: the heavier an apiary's infestation, the less honey its colonies store. Emil Dacosta suspects pesticide drifting from sprayed orchards instead. Both agree that colonies at high elevation tend to store less honey, because their flowering season is shorter. Of five apiaries surveyed, Cromby is the only one in the uplands, and two, Elvey and Ardane, border sprayed orchards. Mite counts per 100 bees were 8 at Cromby, 7 at Bramel, and 5 at Elvey. The lightest loads, 3 mites per 100 bees, were found at Ardane and Dunholt.",
+  "prompt": "Which finding, if true, would most directly support Fenn's hypothesis?",
+  "choices": [
+   "Colonies at Bramel stored less honey than colonies at Ardane.",
+   "Colonies at Ardane stored less honey than colonies at Dunholt.",
+   "Colonies at Ardane stored less honey than colonies at Elvey.",
+   "Colonies at Cromby stored less honey than colonies at Ardane."
+  ],
+  "correct_answer": "Colonies at Bramel stored less honey than colonies at Ardane.",
+  "explanation": "Fenn holds that \"the heavier an apiary's infestation, the less honey its colonies store,\" while Dacosta blames \"pesticide drifting from sprayed orchards.\" Bramel, a lowland apiary not among those that \"border sprayed orchards,\" had 7 mites per 100 bees, while Ardane, also in the lowlands, borders orchards and had only 3. The finding that \"Colonies at Bramel stored less honey than colonies at Ardane.\" therefore has the more heavily infested, unsprayed apiary doing worse than the lightly infested, sprayed one at the same elevation, which supports Fenn over Dacosta. The finding that \"Colonies at Cromby stored less honey than colonies at Ardane.\" also has a heavily infested, unsprayed apiary doing worse than Ardane, but \"Cromby is the only one in the uplands,\" and both agree \"that colonies at high elevation tend to store less honey,\" so elevation could explain it. The finding that \"Colonies at Ardane stored less honey than colonies at Dunholt.\" compares two lowland apiaries with the same load of 3 mites that differ only in orchard spray, so it supports Dacosta and says nothing about mites. The finding that \"Colonies at Ardane stored less honey than colonies at Elvey.\" compares two lowland apiaries that both border orchards, and the one with fewer mites (Ardane, 3, against Elvey, 5) stored less, which weakens Fenn's hypothesis.",
+  "topic_tag": "honeybee-honey-stores-mites-vs-pesticide",
+  "meta": {
+   "design": "DOSE",
+   "stem": "support",
+   "dir": "less",
+   "roles": [
+    "K-CROSS",
+    "RIV",
+    "WKN",
+    "CONF-CX"
+   ],
+   "compare": [
+    [
+     "Bramel",
+     "Ardane"
+    ],
+    [
+     "Ardane",
+     "Dunholt"
+    ],
+    [
+     "Ardane",
+     "Elvey"
+    ],
+    [
+     "Cromby",
+     "Ardane"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      1
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    }
+   ],
+   "last": "RIV",
+   "su": [],
+   "names": [
+    "Dorran Valley",
+    "Beatrix Fenn",
+    "Emil Dacosta",
+    "Cromby",
+    "Elvey",
+    "Ardane",
+    "Bramel",
+    "Dunholt"
+   ],
+   "distractor_pulls": {
+    "Colonies at Ardane stored less honey than colonies at Dunholt.": "Ardane and Dunholt share the lightest load, named together in the last sentence, so a reader who looks for the matched pair takes it without asking which factor it varies.",
+    "Colonies at Ardane stored less honey than colonies at Elvey.": "On its surface it reads as two orchard apiaries; only by recalling that Elvey carries more mites than Ardane does a reader see that the less-infested colonies did worse.",
+    "Colonies at Cromby stored less honey than colonies at Ardane.": "Cromby has the heaviest load of all and stored less than the lightly infested Ardane, the strongest-looking dose contrast; only the uplands sentence spoils it."
+   },
+   "why_hard": "Mite loads, orchard exposure and elevation are each given in a separate sentence by factor rather than by apiary, so the student must build a five-apiary table and compare graded loads before any option can be judged."
+  }
+ },
+ {
+  "id": "II23A-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "passage": "Introduced rats prey on the eggs and chicks of ground-nesting seabirds. Many conservationists assume that on an island holding more than 5 rats per hectare, a seabird colony cannot raise more than 0.6 chicks per nest in a season. Ornithologist Cordelia Faye surveyed colonies of a burrow-nesting petrel on five islands of the Brannoch chain, where rat numbers vary widely. She argues that the assumption is too pessimistic: on at least one island with more than 5 rats per hectare, the colony raised more than 0.6 chicks per nest. ______",
+  "graphic": {
+   "type": "table",
+   "title": "Petrel colonies and rats on five Brannoch islands in one breeding season",
+   "colLabels": [
+    "Nests",
+    "Chicks raised",
+    "Estimated rats",
+    "Island area (hectares)"
+   ],
+   "rowLabels": [
+    "Ardvane",
+    "Benvoray",
+    "Caillin",
+    "Dunvarra",
+    "Eskaig"
+   ],
+   "cells": [
+    [
+     "200",
+     "146",
+     "168",
+     "42"
+    ],
+    [
+     "420",
+     "273",
+     "310",
+     "50"
+    ],
+    [
+     "590",
+     "341",
+     "238",
+     "34"
+    ],
+    [
+     "880",
+     "487",
+     "540",
+     "90"
+    ],
+    [
+     "380",
+     "247",
+     "95",
+     "38"
+    ]
+   ]
+  },
+  "choices": [
+   "On Ardvane, the colony raised 146 chicks from 200 nests.",
+   "On Dunvarra, the colony raised 487 chicks from 880 nests.",
+   "On Caillin, the colony raised 341 chicks from 590 nests.",
+   "On Benvoray, the colony raised 273 chicks from 420 nests."
+  ],
+  "correct_answer": "On Benvoray, the colony raised 273 chicks from 420 nests.",
+  "explanation": "Faye argues that \"on at least one island with more than 5 rats per hectare, the colony raised more than 0.6 chicks per nest.\" Benvoray holds an estimated 310 rats on 50 hectares, or 6.2 per hectare, and \"On Benvoray, the colony raised 273 chicks from 420 nests.\" works out to 0.65 chicks per nest, so it meets both conditions. \"On Ardvane, the colony raised 146 chicks from 200 nests.\" gives the best rate of the four, 0.73 chicks per nest, but Ardvane's 168 rats on 42 hectares come to only 4.0 per hectare, not more than 5. \"On Dunvarra, the colony raised 487 chicks from 880 nests.\" is the largest number of chicks, and Dunvarra has 6.0 rats per hectare (540 on 90), but 487 chicks from 880 nests is only about 0.55 per nest. \"On Caillin, the colony raised 341 chicks from 590 nests.\" comes from an island with 7.0 rats per hectare (238 on 34), but 341 chicks from 590 nests is about 0.58 per nest, just short of 0.6. All four choices read the table accurately.",
+  "topic_tag": "petrel-chicks-per-nest-rat-density",
+  "meta": {
+   "design": "ratio",
+   "table_design": "ratio",
+   "roles": [
+    "Q-C1",
+    "Q-RAW",
+    "Q-NEAR",
+    "QK"
+   ],
+   "ranks": [
+    1,
+    4,
+    3,
+    2
+   ],
+   "derived": [
+    0.73,
+    0.553,
+    0.578,
+    0.65
+   ],
+   "visible_fail": 0,
+   "compare": [
+    [
+     "Ardvane"
+    ],
+    [
+     "Dunvarra"
+    ],
+    [
+     "Caillin"
+    ],
+    [
+     "Benvoray"
+    ]
+   ],
+   "names": [
+    "Cordelia Faye",
+    "Brannoch",
+    "Ardvane",
+    "Benvoray",
+    "Caillin",
+    "Dunvarra",
+    "Eskaig"
+   ],
+   "distractor_pulls": {
+    "On Ardvane, the colony raised 146 chicks from 200 nests.": "It has the best chicks-per-nest rate, and Ardvane holds a sizable rat population (168); only dividing by its 42 hectares shows the density is under 5.",
+    "On Dunvarra, the colony raised 487 chicks from 880 nests.": "Dunvarra has the most rats and by far the most chicks, so a raw-count reader takes it as the strongest case of birds thriving among rats.",
+    "On Caillin, the colony raised 341 chicks from 590 nests.": "Caillin has the densest rats of the four and 341 out of 590 looks like roughly 0.6; only the division shows it falls just short."
+   },
+   "why_hard": "Both criteria are derived: the chick rate from the printed numbers and the rat density from two columns no option mentions, so no single cell or category label strikes any option; the best rate and the largest count each fail one division."
+  }
+ },
+ {
+  "id": "II23A-07",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "passage": "On rocky shores, two barnacle species often compete for space. The larger species crowds out the smaller one wherever both can live, but it dries out and dies where low tides leave rock exposed too long. On Calderwick Point, ecologist Edwina Brack found that the larger species cannot survive more than 1.1 meters above the low-tide line. She recorded each site's height from a survey bolt set 0.4 meter below that line. Brack claims that, freed from its competitor, the smaller species can be more crowded at a site above the larger species' limit than at a site below it. Her claim is supported by the fact that ______",
+  "graphic": {
+   "type": "table",
+   "title": "The smaller barnacle species at six sites on Calderwick Point",
+   "colLabels": [
+    "Height above survey bolt (m)",
+    "Barnacles per 100 cm²"
+   ],
+   "rowLabels": [
+    "Arrel",
+    "Brockel",
+    "Cendry",
+    "Dovell",
+    "Eskett",
+    "Fenlow"
+   ],
+   "cells": [
+    [
+     "0.6",
+     "8"
+    ],
+    [
+     "1.0",
+     "17"
+    ],
+    [
+     "1.3",
+     "38"
+    ],
+    [
+     "1.7",
+     "33"
+    ],
+    [
+     "2.1",
+     "24"
+    ],
+    [
+     "2.4",
+     "11"
+    ]
+   ]
+  },
+  "choices": [
+   "the smaller barnacle numbered 17 per 100 cm² at Brockel, compared with 11 at Fenlow.",
+   "the smaller barnacle numbered 33 per 100 cm² at Dovell, compared with 17 at Brockel.",
+   "the smaller barnacle numbered 24 per 100 cm² at Eskett, compared with 11 at Fenlow.",
+   "the smaller barnacle numbered 38 per 100 cm² at Cendry, compared with 17 at Brockel."
+  ],
+  "correct_answer": "the smaller barnacle numbered 33 per 100 cm² at Dovell, compared with 17 at Brockel.",
+  "explanation": "The larger species \"cannot survive more than 1.1 meters above the low-tide line,\" and heights were recorded \"from a survey bolt set 0.4 meter below that line,\" so the limit lies 1.5 meters above the bolt in the table. Dovell (1.7 meters) is above the limit and Brockel (1.0 meter) below it, so \"the smaller barnacle numbered 33 per 100 cm² at Dovell, compared with 17 at Brockel.\" shows a site above the limit more crowded than one below it, as Brack claims. \"the smaller barnacle numbered 38 per 100 cm² at Cendry, compared with 17 at Brockel.\" shows the largest density, and Cendry (1.3 meters) is higher than Brockel, but 1.3 meters above the bolt is only 0.9 meter above the low-tide line, so both sites are below the limit. \"the smaller barnacle numbered 17 per 100 cm² at Brockel, compared with 11 at Fenlow.\" does compare a site below the limit (Brockel) with one above it (Fenlow, 2.4 meters), but the lower site is the more crowded one, the opposite of the claim. \"the smaller barnacle numbered 24 per 100 cm² at Eskett, compared with 11 at Fenlow.\" compares Eskett (2.1 meters) and Fenlow (2.4 meters), both above the limit, and the lower of the two is more crowded, so it bears on neither part of the claim.",
+  "topic_tag": "barnacle-zonation-survey-datum-limit",
+  "meta": {
+   "design": "threshold-text",
+   "table_design": "threshold-text",
+   "roles": [
+    "Q-REV",
+    "QK",
+    "Q-NONE",
+    "Q-WITHIN"
+   ],
+   "ranks": [
+    1,
+    3,
+    2,
+    4
+   ],
+   "derived": [
+    6,
+    16,
+    13,
+    21
+   ],
+   "visible_fail": 0,
+   "compare": [
+    [
+     "Brockel",
+     "Fenlow"
+    ],
+    [
+     "Dovell",
+     "Brockel"
+    ],
+    [
+     "Eskett",
+     "Fenlow"
+    ],
+    [
+     "Cendry",
+     "Brockel"
+    ]
+   ],
+   "names": [
+    "Calderwick Point",
+    "Edwina Brack",
+    "Arrel",
+    "Brockel",
+    "Cendry",
+    "Dovell",
+    "Eskett",
+    "Fenlow"
+   ],
+   "distractor_pulls": {
+    "the smaller barnacle numbered 17 per 100 cm² at Brockel, compared with 11 at Fenlow.": "It is one of two options whose sites straddle the limit under either reading of the heights, so a reader who checks heights but not which site is denser takes it.",
+    "the smaller barnacle numbered 24 per 100 cm² at Eskett, compared with 11 at Fenlow.": "Eskett and Fenlow are both high on the shore, and a reader who assumes the first-named site is the higher one sees the upper site winning, as the claim describes.",
+    "the smaller barnacle numbered 38 per 100 cm² at Cendry, compared with 17 at Brockel.": "Read against 1.1 meters as printed, Cendry (1.3) is above the limit and Brockel (1.0) below it, the higher site is more crowded, and its densities are the largest: it looks like the answer until the 0.4-meter offset is applied."
+   },
+   "why_hard": "The limit is stated relative to the low-tide line but the table measures from a bolt 0.4 meter lower, so the student must convert 1.1 to 1.5 before classifying sites; under the unconverted reading the largest-density distractor straddles the line in the right direction."
+  }
+ },
+ {
+  "id": "II23A-08",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "passage": "Tomato plants can shed their flowers in hot weather before any fruit forms. In a greenhouse trial, breeder Ada Faircloth compared four new varieties with Amberlee, the variety most local growers plant. She wanted a new variety that met two requirements: its fruit set (the share of flowers that become fruit) could fall by no more than 10 percentage points between 25°C and 35°C, and it had to ripen its first fruit sooner than Amberlee does. Faircloth reports that only one new variety met both requirements: ______",
+  "graphic": {
+   "type": "table",
+   "title": "Amberlee and four new tomato varieties in a greenhouse heat trial",
+   "colLabels": [
+    "Fruit set at 25°C (%)",
+    "Fruit set at 35°C (%)",
+    "Days to first ripe fruit"
+   ],
+   "rowLabels": [
+    "Amberlee",
+    "Birchtop",
+    "Copperhill",
+    "Dawnlight",
+    "Emberglow"
+   ],
+   "cells": [
+    [
+     "74",
+     "61",
+     "71"
+    ],
+    [
+     "73",
+     "60",
+     "64"
+    ],
+    [
+     "58",
+     "50",
+     "66"
+    ],
+    [
+     "62",
+     "55",
+     "74"
+    ],
+    [
+     "76",
+     "68",
+     "76"
+    ]
+   ]
+  },
+  "choices": [
+   "Birchtop set fruit on 60% of its flowers at 35°C and ripened its first fruit in 64 days.",
+   "Emberglow set fruit on 68% of its flowers at 35°C and ripened its first fruit in 76 days.",
+   "Copperhill set fruit on 50% of its flowers at 35°C and ripened its first fruit in 66 days.",
+   "Dawnlight set fruit on 55% of its flowers at 35°C and ripened its first fruit in 74 days."
+  ],
+  "correct_answer": "Copperhill set fruit on 50% of its flowers at 35°C and ripened its first fruit in 66 days.",
+  "explanation": "Faircloth required that fruit set \"fall by no more than 10 percentage points between 25°C and 35°C\" and that the variety \"ripen its first fruit sooner than Amberlee does\"; the table gives Amberlee 71 days. \"Copperhill set fruit on 50% of its flowers at 35°C and ripened its first fruit in 66 days.\" describes a variety that ripens in 66 days, sooner than 71, and whose fruit set falls from 58% at 25°C to 50%, a drop of 8 points, so it meets both requirements. \"Birchtop set fruit on 60% of its flowers at 35°C and ripened its first fruit in 64 days.\" ripens in 64 days, but Birchtop's fruit set falls from 73% to 60%, a drop of 13 points. \"Emberglow set fruit on 68% of its flowers at 35°C and ripened its first fruit in 76 days.\" has the highest fruit set at 35°C, and its drop is only 8 points (76% to 68%), but at 76 days it ripens later than Amberlee. \"Dawnlight set fruit on 55% of its flowers at 35°C and ripened its first fruit in 74 days.\" drops only 7 points (62% to 55%), but at 74 days it also ripens later than Amberlee. All four choices read the table accurately.",
+  "topic_tag": "tomato-heat-fruit-set-vs-standard-variety",
+  "meta": {
+   "design": "two-condition",
+   "table_design": "two-condition",
+   "roles": [
+    "Q-C1",
+    "Q-RAW",
+    "QK",
+    "Q-C2"
+   ],
+   "ranks": [
+    3,
+    4,
+    1,
+    2
+   ],
+   "derived": [
+    -7,
+    5,
+    -5,
+    3
+   ],
+   "visible_fail": 0,
+   "compare": [
+    [
+     "Birchtop"
+    ],
+    [
+     "Emberglow"
+    ],
+    [
+     "Copperhill"
+    ],
+    [
+     "Dawnlight"
+    ]
+   ],
+   "names": [
+    "Ada Faircloth",
+    "Amberlee",
+    "Birchtop",
+    "Copperhill",
+    "Dawnlight",
+    "Emberglow"
+   ],
+   "distractor_pulls": {
+    "Birchtop set fruit on 60% of its flowers at 35°C and ripened its first fruit in 64 days.": "It ripens fastest of the four and holds a solid 60% at 35°C; only looking up its 25°C figure shows a 13-point drop.",
+    "Emberglow set fruit on 68% of its flowers at 35°C and ripened its first fruit in 76 days.": "It sets the most fruit at 35°C and holds up well in heat (an 8-point drop), so a raw-value reader treats it as the obvious heat-tolerant pick; only Amberlee's 71 days rules it out.",
+    "Dawnlight set fruit on 55% of its flowers at 35°C and ripened its first fruit in 74 days.": "It loses the least fruit set in heat of all four, and 74 days sounds quick; only the reference row shows it is slower than Amberlee."
+   },
+   "why_hard": "Each option prints the 35°C figure and ripening days, but one condition needs the unprinted 25°C column and the other needs the Amberlee reference row, so every option takes two lookups; the option with the most fruit and the one with the smallest drop each fail on the reference row."
+  }
+ }
+]

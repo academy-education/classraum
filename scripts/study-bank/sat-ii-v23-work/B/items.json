@@ -1,0 +1,913 @@
+[
+ {
+  "id": "II23B-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Sinkholes have been opening in four districts of Gaverholt, a town built on limestone. Geologist Lotta Granlund hypothesizes that leaking water mains are washing soil down into cracks in the rock. Engineer Hamish Ivers argues instead that a nearby quarry, by pumping out groundwater to keep its pit dry, has left the soil above the rock unsupported. Both agree that sinkholes open more readily wherever the soil over the limestone is thin, whatever triggers them. Ingold and Jorvenn sit on thick soil far from the quarry, but Ingold still has its original cast-iron mains, which leak badly, while Jorvenn's were replaced with sealed plastic pipe. Lammert, far from the quarry but on thin soil, also keeps its old cast-iron mains, whereas Harrowfield, on thick soil, has new plastic pipe but lies beside the quarry.",
+  "prompt": "Which finding, if true, would most directly support Granlund's hypothesis?",
+  "choices": [
+   "More sinkholes opened in Jorvenn over the past decade than in Ingold.",
+   "More sinkholes opened in Lammert over the past decade than in Harrowfield.",
+   "More sinkholes opened in Lammert over the past decade than in Ingold.",
+   "More sinkholes opened in Ingold over the past decade than in Harrowfield."
+  ],
+  "correct_answer": "More sinkholes opened in Ingold over the past decade than in Harrowfield.",
+  "explanation": "Granlund blames \"leaking water mains\"; Ivers blames the quarry's pumping. Ingold \"still has its original cast-iron mains, which leak badly\" and sits \"on thick soil far from the quarry,\" while Harrowfield, also \"on thick soil,\" \"has new plastic pipe but lies beside the quarry.\" With soil thickness equal, Ingold has only leaking mains and Harrowfield has only the quarry, so \"More sinkholes opened in Ingold over the past decade than in Harrowfield\" favors Granlund's account over Ivers's and most directly supports it. \"More sinkholes opened in Lammert over the past decade than in Harrowfield\" also sets leaking mains against the quarry, but Lammert is \"on thin soil,\" and both researchers agree that sinkholes \"open more readily wherever the soil over the limestone is thin,\" so the soil could explain the result. \"More sinkholes opened in Lammert over the past decade than in Ingold\" compares two districts that both have leaking mains and neither of which is near the quarry; both accounts expect thin-soiled Lammert to fare worse. \"More sinkholes opened in Jorvenn over the past decade than in Ingold\" would weaken Granlund's hypothesis, since Jorvenn, with sealed pipe, would outdo Ingold, which differs from it only in its leaking mains.",
+  "topic_tag": "karst-sinkholes-leaking-mains-vs-quarry-dewatering",
+  "meta": {
+   "design": "3G",
+   "stem": "support",
+   "dir": "more",
+   "roles": [
+    "WKN",
+    "CONF-CX",
+    "NEUT-C",
+    "K-CROSS"
+   ],
+   "compare": [
+    [
+     "Jorvenn",
+     "Ingold"
+    ],
+    [
+     "Lammert",
+     "Harrowfield"
+    ],
+    [
+     "Lammert",
+     "Ingold"
+    ],
+    [
+     "Ingold",
+     "Harrowfield"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      0,
+      0,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      1
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      1
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    }
+   ],
+   "last": "CONF-CX",
+   "su": [],
+   "names": [
+    "Gaverholt",
+    "Lotta Granlund",
+    "Hamish Ivers",
+    "Ingold",
+    "Jorvenn",
+    "Lammert",
+    "Harrowfield"
+   ],
+   "distractor_pulls": {
+    "More sinkholes opened in Jorvenn": "Jorvenn and Ingold are the one tightly matched pair in the passage (same soil, both far from the quarry), so a student who notices the match but loses track of which one leaks reads it as the controlled test of Granlund.",
+    "More sinkholes opened in Lammert over the past decade than in Harrowfield": "A leaking-main district beats the quarry district, the exact contest Granlund needs; nothing in the option shows that Lammert's soil is thin.",
+    "More sinkholes opened in Lammert over the past decade than in Ingold": "Lammert keeps its leaking mains and is far from the quarry, so its sinkholes look like Granlund's mechanism at work; only the soil sentence shows both districts share the mains."
+   },
+   "why_hard": "The options print only district names, so every district's pipes, quarry distance and soil must be read from three sentences; the soil difference that ruins the Lammert options never appears in an option."
+  }
+ },
+ {
+  "id": "II23B-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "In the Lindberg Range, the ice on some small mountain lakes breaks up weeks later in spring than the ice on others. Limnologist Lena Hovik hypothesizes that meltwater from glaciers keeps those lakes cold. Hydrologist Gustav Kalland argues instead that the late lakes lie in the shadow of cliffs, which keep sunlight off the ice. Hamrin and Kjelda both still receive meltwater from glaciers on the peaks above them, whereas the glaciers that once fed Isel and Garma have vanished. Steep cliffs shade the ice on Isel for most of the day, as they shade the ice on Kjelda; Hamrin and Garma lie in open basins. The four lakes are of similar size and depth and sit at about the same elevation.",
+  "prompt": "Which finding, if true, would most directly support Hovik's hypothesis?",
+  "choices": [
+   "The ice broke up later in spring on Hamrin than on Isel.",
+   "The ice broke up later in spring on Kjelda than on Hamrin.",
+   "The ice broke up later in spring on Kjelda than on Garma.",
+   "The ice broke up later in spring on Isel than on Kjelda."
+  ],
+  "correct_answer": "The ice broke up later in spring on Hamrin than on Isel.",
+  "explanation": "Hovik credits \"meltwater from glaciers\"; Kalland credits \"the shadow of cliffs.\" Hamrin still receives glacial meltwater but lies \"in open basins,\" while Isel's glacier has \"vanished\" and \"Steep cliffs shade the ice on Isel.\" The finding that \"The ice broke up later in spring on Hamrin than on Isel\" therefore has the lake with only meltwater outlasting the lake with only shade, which supports Hovik over Kalland. \"The ice broke up later in spring on Kjelda than on Hamrin\" compares two lakes that both receive meltwater; Kjelda differs only in being shaded, so the finding supports Kalland. \"The ice broke up later in spring on Kjelda than on Garma\" compares a lake with both meltwater and shade against an open lake with no glacier, so both accounts predict it. \"The ice broke up later in spring on Isel than on Kjelda\" compares two shaded lakes that differ only in that Kjelda receives meltwater, so it would weaken Hovik's hypothesis.",
+  "topic_tag": "lake-ice-breakup-glacial-meltwater-vs-cliff-shade",
+  "meta": {
+   "design": "4G",
+   "stem": "support",
+   "dir": "later",
+   "roles": [
+    "K-CROSS",
+    "RIV",
+    "CONF-R",
+    "WKN"
+   ],
+   "compare": [
+    [
+     "Hamrin",
+     "Isel"
+    ],
+    [
+     "Kjelda",
+     "Hamrin"
+    ],
+    [
+     "Kjelda",
+     "Garma"
+    ],
+    [
+     "Isel",
+     "Kjelda"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      1,
+      0
+     ]
+    }
+   ],
+   "last": null,
+   "su": [],
+   "names": [
+    "Lindberg Range",
+    "Lena Hovik",
+    "Gustav Kalland",
+    "Hamrin",
+    "Kjelda",
+    "Isel",
+    "Garma"
+   ],
+   "distractor_pulls": {
+    "The ice broke up later in spring on Kjelda than on Hamrin": "Both lakes are glacier-fed, the pairing the meltwater sentence itself makes, so it looks like a test of Hovik; only the shade sentence shows that Kjelda alone is shaded.",
+    "The ice broke up later in spring on Kjelda than on Garma": "A glacier-fed lake beats a lake whose glacier has vanished, which reads as meltwater at work; the student must notice Kjelda is also shaded.",
+    "The ice broke up later in spring on Isel than on Kjelda": "Isel and Kjelda are paired in the shade sentence, so they look comparable; a student who maps Isel as 'the cold lake' can misread which way this cuts."
+   },
+   "why_hard": "Meltwater and shade are given in two separate sentences that each pair the lakes differently, so the student must build the 2x2 from scattered clauses; each distractor names two lakes that one of those sentences presents as alike."
+  }
+ },
+ {
+  "id": "II23B-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Small earthquakes have become more common across four districts of a farming region. Seismologist Kirsten Lagerholm blames wastewater injection, in which oil companies pump salty water from their wells deep underground; injection began in Gisler, Hollis, and Jessenby in 2012. Geologist Isak Gerhardsen blames hydraulic fracturing, which began in Hollis and Kvamby in 2014. Both agree that Jessenby, which sits on an old fault zone, has more earthquakes than the other districts by itself, and that apart from these causes the region's earthquake counts change little from year to year. Gisler has never been fracked, and Kvamby has never received injected wastewater.",
+  "prompt": "Which finding, if true, would most directly support Lagerholm's hypothesis?",
+  "choices": [
+   "Seismometers recorded more small earthquakes in Hollis in 2016 than in Gisler in 2010.",
+   "Seismometers recorded more small earthquakes in Gisler in 2017 than in Kvamby in 2015.",
+   "Seismometers recorded more small earthquakes in Gisler in 2011 than in Gisler in 2015.",
+   "Seismometers recorded more small earthquakes in Jessenby in 2016 than in Kvamby in 2017."
+  ],
+  "correct_answer": "Seismometers recorded more small earthquakes in Gisler in 2017 than in Kvamby in 2015.",
+  "explanation": "Lagerholm blames wastewater injection, which \"began in Gisler, Hollis, and Jessenby in 2012\"; Gerhardsen blames hydraulic fracturing, which \"began in Hollis and Kvamby in 2014.\" \"Gisler has never been fracked, and Kvamby has never received injected wastewater,\" and neither is described as sitting on the fault zone. In 2017 Gisler had injection only, and in 2015 Kvamby had fracturing only; since earthquake counts otherwise \"change little from year to year,\" \"Seismometers recorded more small earthquakes in Gisler in 2017 than in Kvamby in 2015\" sets injection alone against fracturing alone and most directly supports Lagerholm. \"Seismometers recorded more small earthquakes in Jessenby in 2016 than in Kvamby in 2017\" also sets an injection district against a fracturing district, but Jessenby \"sits on an old fault zone\" and has more earthquakes \"by itself,\" so the fault could explain the result. \"Seismometers recorded more small earthquakes in Hollis in 2016 than in Gisler in 2010\" compares a district with both injection and fracturing against a district that in 2010 had neither, so both accounts predict it. \"Seismometers recorded more small earthquakes in Gisler in 2011 than in Gisler in 2015\" would weaken Lagerholm's hypothesis, since Gisler had fewer earthquakes after injection began than before.",
+  "topic_tag": "induced-earthquakes-wastewater-injection-vs-fracking",
+  "meta": {
+   "design": "TIME",
+   "stem": "support",
+   "dir": "more",
+   "roles": [
+    "CONF-R",
+    "K-CROSS",
+    "WKN",
+    "CONF-CX"
+   ],
+   "compare": [
+    [
+     "Hollis in 2016",
+     "Gisler in 2010"
+    ],
+    [
+     "Gisler in 2017",
+     "Kvamby in 2015"
+    ],
+    [
+     "Gisler in 2011",
+     "Gisler in 2015"
+    ],
+    [
+     "Jessenby in 2016",
+     "Kvamby in 2017"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      1
+     ],
+     "lose": [
+      0,
+      1,
+      0
+     ]
+    }
+   ],
+   "last": "K-CROSS",
+   "su": [
+    "WKN"
+   ],
+   "names": [
+    "Kirsten Lagerholm",
+    "Isak Gerhardsen",
+    "Gisler",
+    "Hollis",
+    "Jessenby",
+    "Kvamby"
+   ],
+   "distractor_pulls": {
+    "Seismometers recorded more small earthquakes in Hollis": "After against before, with injection arriving in between: it looks like injection at work unless the student notices Hollis was also fracked from 2014.",
+    "Seismometers recorded more small earthquakes in Gisler in 2011": "A single district before and after looks like the cleanest possible test; the student must recall that injection began in 2012 to see it runs against Lagerholm.",
+    "Seismometers recorded more small earthquakes in Jessenby": "Injection district against fracturing district, both years after the starts, injection wins: the right contest, and the option gives no hint of the fault."
+   },
+   "why_hard": "Each district-year's status comes from two start dates, a district list per activity, the fault sentence and the last sentence; the fault is a fixed property of one district rather than a printed year or season, so the confounded option looks exactly like the key."
+  }
+ },
+ {
+  "id": "II23B-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Trails in the Lyngvald hills are losing soil to erosion. Soil scientist Gro Kalvik hypothesizes that the main cause is foot traffic: the more hikers a trail carries, the faster it wears down. Ranger Lukas Hennum argues instead that horses, whose hooves churn the surface, are to blame. Both agree that a trail on a steeper slope loses more soil by itself, because rain runs down it faster. Gorrel carries about 120 hikers a day and Ingle about 40, though Ingle, unlike Gorrel, is open to horses and climbs a slope twice as steep as the other three trails, which all cross gentle ground. Kvist and Halder each carry about 300 hikers a day, and riders use Halder but are barred from Kvist.",
+  "prompt": "Which finding, if true, would most directly weaken Kalvik's hypothesis?",
+  "choices": [
+   "Gorrel lost less soil over the study period than Halder did.",
+   "Halder lost less soil over the study period than Kvist did.",
+   "Kvist lost less soil over the study period than Gorrel did.",
+   "Kvist lost less soil over the study period than Ingle did."
+  ],
+  "correct_answer": "Kvist lost less soil over the study period than Gorrel did.",
+  "explanation": "Kalvik predicts that \"the more hikers a trail carries, the faster it wears down\"; Hennum blames horses. Kvist carries \"about 300 hikers a day\" and Gorrel \"about 120,\" neither is open to horses (riders \"are barred from Kvist,\" and Ingle, \"unlike Gorrel, is open to horses\"), and both cross \"gentle ground.\" They differ only in foot traffic, so \"Kvist lost less soil over the study period than Gorrel did\" has the busier trail wearing less, which most directly weakens Kalvik's hypothesis. \"Kvist lost less soil over the study period than Ingle did\" also has the busier trail losing less, but Ingle carries horses and \"climbs a slope twice as steep,\" and both researchers agree a steeper trail \"loses more soil by itself,\" so the slope could explain the result. \"Gorrel lost less soil over the study period than Halder did\" sets a quieter trail without horses against a busier trail with horses, so both accounts predict it. \"Halder lost less soil over the study period than Kvist did\" compares two trails with the same 300 hikers that differ only in horses, so it weakens Hennum's account, not Kalvik's.",
+  "topic_tag": "trail-erosion-hiker-traffic-vs-horses",
+  "meta": {
+   "design": "DOSE",
+   "stem": "weaken",
+   "dir": "less",
+   "roles": [
+    "CONF-R",
+    "WKR",
+    "K-ISO-W",
+    "CONF-CXW"
+   ],
+   "compare": [
+    [
+     "Halder",
+     "Gorrel"
+    ],
+    [
+     "Kvist",
+     "Halder"
+    ],
+    [
+     "Gorrel",
+     "Kvist"
+    ],
+    [
+     "Ingle",
+     "Kvist"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      1,
+      1,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      1,
+      1,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      1
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    }
+   ],
+   "last": "WKR",
+   "su": [],
+   "names": [
+    "Lyngvald",
+    "Gro Kalvik",
+    "Lukas Hennum",
+    "Gorrel",
+    "Ingle",
+    "Kvist",
+    "Halder"
+   ],
+   "distractor_pulls": {
+    "Gorrel lost less soil": "The quieter trail eroding less fits Kalvik, but a student reading 'lost less' as the weakening direction, or forgetting Halder's horses, can take it as the controlled foot-traffic comparison.",
+    "Halder lost less soil": "Two 300-hiker trails on gentle ground with opposite results: a perfectly controlled weakening finding, aimed at the wrong researcher.",
+    "Kvist lost less soil over the study period than Ingle": "The busiest trail outlasting the quietest is the most dramatic blow to Kalvik on its face; only the slope and horse clauses expose it."
+   },
+   "why_hard": "Kalvik's factor raises erosion while the options are worded as 'lost less', so every option has to be inverted before it can be scored; three graded traffic levels, horses on two trails and a steep slope on one are spread over two sentences."
+  }
+ },
+ {
+  "id": "II23B-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Water from three village wells on the Holmlund plain has grown salty, and each well was sampled in 2018 and again in 2022. Hydrogeologist Ida Hagelin hypothesizes that seawater has been seeping inland underground, steadily and for decades, which would affect Gullhaven, the one village on the coast. Agronomist Jens Laukvik argues instead that salt is carried down by irrigation water, which farms around Kelstad, an inland village, began drawing from a brackish canal in 2020; no fields near the other two villages are irrigated. Both agree that the well at Ljorn, also inland, passes through a layer of salty marine clay, which by itself makes its water saltier.",
+  "prompt": "Which finding, if true, would most directly weaken Hagelin's hypothesis?",
+  "choices": [
+   "Water from the Ljorn well in 2022 contained more salt than water from the Gullhaven well in 2022.",
+   "Water from the Kelstad well in 2022 contained more salt than water from the Gullhaven well in 2018.",
+   "Water from the Gullhaven well in 2018 contained more salt than water from the Kelstad well in 2018.",
+   "Water from the Ljorn well in 2022 contained more salt than water from the Kelstad well in 2018."
+  ],
+  "correct_answer": "Water from the Kelstad well in 2022 contained more salt than water from the Gullhaven well in 2018.",
+  "explanation": "Hagelin blames seawater seeping inland \"steadily and for decades,\" which would affect only coastal Gullhaven; Laukvik blames irrigation water, which farms around Kelstad \"began drawing from a brackish canal in 2020.\" In 2022 Kelstad had irrigation but no seawater, and Gullhaven had seawater but no irrigation in any year; neither well passes through the clay at Ljorn. Because the seepage is steady, the year of the Gullhaven sample does not matter, so \"Water from the Kelstad well in 2022 contained more salt than water from the Gullhaven well in 2018\" has irrigation alone outdoing seawater alone, which most directly weakens Hagelin's hypothesis. \"Water from the Ljorn well in 2022 contained more salt than water from the Gullhaven well in 2022\" also has an inland well outdoing the coastal one, but Ljorn's \"layer of salty marine clay\" \"by itself makes its water saltier,\" so the clay could explain the result. \"Water from the Gullhaven well in 2018 contained more salt than water from the Kelstad well in 2018\" sets the coastal well against an inland well in a year before its farms began irrigating, so it supports Hagelin. \"Water from the Ljorn well in 2022 contained more salt than water from the Kelstad well in 2018\" compares two inland wells, neither of them irrigated (Kelstad in 2018 had not yet begun); both accounts expect the clay well to be saltier, whatever the year.",
+  "topic_tag": "well-salinity-seawater-intrusion-vs-irrigation",
+  "meta": {
+   "design": "3x2",
+   "stem": "weaken",
+   "dir": "more",
+   "roles": [
+    "CONF-CW",
+    "K-CROSS-W",
+    "SUP",
+    "NEUT-C"
+   ],
+   "compare": [
+    [
+     "Ljorn well in 2022",
+     "Gullhaven well in 2022"
+    ],
+    [
+     "Kelstad well in 2022",
+     "Gullhaven well in 2018"
+    ],
+    [
+     "Gullhaven well in 2018",
+     "Kelstad well in 2018"
+    ],
+    [
+     "Ljorn well in 2022",
+     "Kelstad well in 2018"
+    ]
+   ],
+   "profiles": [
+    {
+     "win": [
+      0,
+      0,
+      1
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      1,
+      0
+     ],
+     "lose": [
+      1,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      1,
+      0,
+      0
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "win": [
+      0,
+      0,
+      1
+     ],
+     "lose": [
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "last": null,
+   "su": [],
+   "names": [
+    "Holmlund",
+    "Ida Hagelin",
+    "Jens Laukvik",
+    "Gullhaven",
+    "Kelstad",
+    "Ljorn"
+   ],
+   "distractor_pulls": {
+    "Water from the Ljorn well in 2022": "An inland well saltier than the coastal well in the same year is, on its face, the cleanest blow to the seawater account; only the clay sentence spoils it.",
+    "Water from the Gullhaven well in 2018": "A same-year comparison of the coastal well with the irrigation village looks like the controlled seawater-versus-irrigation test; it is controlled, but Kelstad was not irrigated until 2020 and the result runs Hagelin's way.",
+    "Water from the Ljorn well in 2022 contained more salt than water from the Kelstad": "Ljorn beating the irrigation village reads as evidence against irrigation and so as relevant; the student must see Kelstad was unirrigated in 2018 and Ljorn has the clay."
+   },
+   "why_hard": "Irrigation reaches Kelstad only in the second sampling year, the clay is a fixed property of Ljorn, and seepage is stated to be steady, so the year mismatch in the key is harmless while the same-year comparisons are the confounded or irrelevant ones; a 'reject mixed years' rule picks wrong."
+  }
+ },
+ {
+  "id": "II23B-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "In the fractured granite beneath the Lauvas plateau, deeper wells usually meet fewer open cracks, so they tend to yield less water for each meter that pumping lowers the water level in the well, a measure called specific capacity. Hydrogeologist Henning Larsgard argues that depth need not mean a poor well: at one well deeper than 80 meters, the specific capacity exceeded 2 liters per second for each meter of drawdown. ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Pumping tests at five wells on the Lauvas plateau",
+   "colLabels": [
+    "Well depth (m)",
+    "Pumping rate (liters per second)",
+    "Drawdown (m)"
+   ],
+   "rowLabels": [
+    "Grinde",
+    "Hallum",
+    "Ivesk",
+    "Jaren",
+    "Kollen"
+   ],
+   "cells": [
+    [
+     "60",
+     "9.0",
+     "4.2"
+    ],
+    [
+     "110",
+     "12.0",
+     "6.2"
+    ],
+    [
+     "95",
+     "18.0",
+     "8.0"
+    ],
+    [
+     "88",
+     "6.0",
+     "3.6"
+    ],
+    [
+     "70",
+     "7.0",
+     "5.5"
+    ]
+   ]
+  },
+  "choices": [
+   "The Grinde well was pumped at 9.0 liters per second, lowering its water level by 4.2 meters.",
+   "The Hallum well was pumped at 12.0 liters per second, lowering its water level by 6.2 meters.",
+   "The Ivesk well was pumped at 18.0 liters per second, lowering its water level by 8.0 meters.",
+   "The Jaren well was pumped at 6.0 liters per second, lowering its water level by 3.6 meters."
+  ],
+  "correct_answer": "The Ivesk well was pumped at 18.0 liters per second, lowering its water level by 8.0 meters.",
+  "explanation": "Larsgard's claim needs a well \"deeper than 80 meters\" whose specific capacity \"exceeded 2 liters per second for each meter of drawdown.\" The table gives Ivesk a depth of 95 meters, and 18.0 liters per second over 8.0 meters of drawdown is 2.25 liters per second per meter, so \"The Ivesk well was pumped at 18.0 liters per second, lowering its water level by 8.0 meters\" completes the claim. All four choices read the table accurately. \"The Grinde well was pumped at 9.0 liters per second, lowering its water level by 4.2 meters\" gives about 2.14 liters per second per meter, above 2, but Grinde is only 60 meters deep. \"The Hallum well was pumped at 12.0 liters per second, lowering its water level by 6.2 meters\" describes a 110-meter well, but its specific capacity is about 1.94, just short of 2. \"The Jaren well was pumped at 6.0 liters per second, lowering its water level by 3.6 meters\" describes an 88-meter well whose specific capacity is about 1.67.",
+  "topic_tag": "granite-well-specific-capacity-depth",
+  "meta": {
+   "design": "two-condition",
+   "table_design": "two-condition",
+   "roles": [
+    "Q-C1",
+    "Q-NEAR",
+    "QK",
+    "Q-C2"
+   ],
+   "compare": [
+    [
+     "Grinde"
+    ],
+    [
+     "Hallum"
+    ],
+    [
+     "Ivesk"
+    ],
+    [
+     "Jaren"
+    ]
+   ],
+   "ranks": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "derived": [
+    2.143,
+    1.935,
+    2.25,
+    1.667
+   ],
+   "visible_fail": 0,
+   "names": [
+    "Lauvas",
+    "Henning Larsgard",
+    "Grinde",
+    "Hallum",
+    "Ivesk",
+    "Jaren",
+    "Kollen"
+   ],
+   "distractor_pulls": {
+    "The Grinde well": "It clears the 2-per-meter bar (about 2.14) and its depth is a number, not a label, so nothing in the option or a quick scan flags it; only reading 60 against 80 rules it out.",
+    "The Hallum well": "The deepest well and a ratio that looks like 2 on a rough estimate (12 over about 6); only exact division gives 1.94.",
+    "The Jaren well": "Deep enough (88 m) and a small drawdown that reads as an efficient well; the division gives only 1.67."
+   },
+   "why_hard": "Both conditions are numeric: the depth column the options omit must be read against 80 meters, and the specific capacity must be computed from two printed numbers; two options pass the ratio and three the depth, and only one passes both."
+  }
+ },
+ {
+  "id": "II23B-07",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Through the 1990s, quarries in the Lauvnes hills pumped groundwater from their pits, and the flow of many nearby springs fell; the last quarry closed in 2005. Some hydrologists doubt that a spring weakened in this way can fully recover. Hydrologist Liv Haraldsen argues that recovery can be strong: at one spring whose flow fell between 1990 and 2005, the flow then rose by more than 20 percent from 2005 to 2020. ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Flow of five springs in the Lauvnes hills (liters per second)",
+   "colLabels": [
+    "1990",
+    "2005",
+    "2020"
+   ],
+   "rowLabels": [
+    "Granberg",
+    "Hjelset",
+    "Iskilde",
+    "Kvennes",
+    "Ludal"
+   ],
+   "cells": [
+    [
+     "40",
+     "45",
+     "56"
+    ],
+    [
+     "20",
+     "22",
+     "25"
+    ],
+    [
+     "41",
+     "30",
+     "38"
+    ],
+    [
+     "70",
+     "60",
+     "58"
+    ],
+    [
+     "95",
+     "80",
+     "92"
+    ]
+   ]
+  },
+  "choices": [
+   "Flow at Iskilde rose from 30 liters per second in 2005 to 38 liters per second in 2020.",
+   "Flow at Granberg rose from 45 liters per second in 2005 to 56 liters per second in 2020.",
+   "Flow at Ludal rose from 80 liters per second in 2005 to 92 liters per second in 2020.",
+   "Flow at Hjelset rose from 22 liters per second in 2005 to 25 liters per second in 2020."
+  ],
+  "correct_answer": "Flow at Iskilde rose from 30 liters per second in 2005 to 38 liters per second in 2020.",
+  "explanation": "Haraldsen's claim needs a spring \"whose flow fell between 1990 and 2005\" and whose flow then \"rose by more than 20 percent from 2005 to 2020.\" The table shows Iskilde falling from 41 to 30 liters per second between 1990 and 2005, and a rise from 30 to 38 is about 27 percent, so \"Flow at Iskilde rose from 30 liters per second in 2005 to 38 liters per second in 2020\" completes the claim. All four choices read the table accurately. \"Flow at Granberg rose from 45 liters per second in 2005 to 56 liters per second in 2020\" is a rise of about 24 percent, but Granberg's flow went up, from 40 to 45, between 1990 and 2005, so it is not a spring that had weakened. \"Flow at Ludal rose from 80 liters per second in 2005 to 92 liters per second in 2020\" describes a spring that did fall (from 95) and the largest gain in liters per second, but 12 on 80 is a rise of only 15 percent. \"Flow at Hjelset rose from 22 liters per second in 2005 to 25 liters per second in 2020\" is a rise of about 14 percent, and Hjelset's flow had risen, not fallen, before 2005.",
+  "topic_tag": "spring-flow-recovery-after-quarry-pumping",
+  "meta": {
+   "design": "change",
+   "table_design": "change",
+   "roles": [
+    "QK",
+    "Q-C1",
+    "Q-RAW",
+    "Q-NONE"
+   ],
+   "compare": [
+    [
+     "Iskilde"
+    ],
+    [
+     "Granberg"
+    ],
+    [
+     "Ludal"
+    ],
+    [
+     "Hjelset"
+    ]
+   ],
+   "ranks": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "derived": [
+    0.267,
+    0.244,
+    0.15,
+    0.136
+   ],
+   "visible_fail": 0,
+   "names": [
+    "Lauvnes",
+    "Liv Haraldsen",
+    "Granberg",
+    "Hjelset",
+    "Iskilde",
+    "Kvennes",
+    "Ludal"
+   ],
+   "distractor_pulls": {
+    "Flow at Granberg": "A rise of about 24 percent clears the bar, and the 1990 value that disqualifies it is in a column the option never mentions.",
+    "Flow at Ludal": "The biggest spring with the biggest gain (12 liters per second) and a genuine 1990-2005 decline; a student who reads raw gain rather than percent picks it.",
+    "Flow at Hjelset": "It rose after 2005 as the claim requires; rejecting it needs both a percent calculation and the 1990 column."
+   },
+   "why_hard": "The options print only the 2005 and 2020 values, so the earlier decline the claim requires must be checked in a third column, and the percent rise must be computed; the largest gain in liters per second fails the percent test."
+  }
+ },
+ {
+  "id": "II23B-08",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "In the early solar system, water could freeze into ice only beyond the snow line, which many models place about 2.7 astronomical units (AU) from the sun, so asteroids out there are thought to carry more hydrated minerals. Because asteroid orbits are elongated, planetary scientist Gisela Haugen classes an asteroid as beyond the line only if even its closest approach to the sun lies beyond 2.7 AU, and as inside it otherwise. She claims the difference can be large: an asteroid beyond the line can carry at least twice the share of hydrated minerals of one inside it. ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Six asteroids: orbit and surface composition",
+   "colLabels": [
+    "Closest approach to the sun (AU)",
+    "Farthest distance from the sun (AU)",
+    "Hydrated minerals (% of surface)"
+   ],
+   "rowLabels": [
+    "Gyllen",
+    "Hennick",
+    "Ivra",
+    "Jassel",
+    "Kolbeck",
+    "Lisvold"
+   ],
+   "cells": [
+    [
+     "2.10",
+     "2.55",
+     "1.6"
+    ],
+    [
+     "2.20",
+     "2.68",
+     "3.5"
+    ],
+    [
+     "2.55",
+     "3.40",
+     "8.2"
+    ],
+    [
+     "2.85",
+     "3.30",
+     "3.4"
+    ],
+    [
+     "2.95",
+     "3.60",
+     "6.3"
+    ],
+    [
+     "2.40",
+     "3.10",
+     "3.8"
+    ]
+   ]
+  },
+  "choices": [
+   "On Lisvold, hydrated minerals made up 3.8% of the surface, compared with 1.6% on Gyllen.",
+   "On Ivra, hydrated minerals made up 8.2% of the surface, compared with 6.3% on Kolbeck.",
+   "On Kolbeck, hydrated minerals made up 6.3% of the surface, compared with 3.5% on Hennick.",
+   "On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen."
+  ],
+  "correct_answer": "On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen.",
+  "explanation": "Haugen classes an asteroid as beyond the snow line \"only if even its closest approach to the sun lies beyond 2.7 AU,\" and claims one beyond the line \"can carry at least twice the share of hydrated minerals of one inside it.\" Jassel's closest approach is 2.85 AU, so it is beyond the line, while Gyllen never goes past 2.55 AU; 3.4% is more than twice 1.6%, so \"On Jassel, hydrated minerals made up 3.4% of the surface, compared with 1.6% on Gyllen\" completes the claim. All four choices read the table accurately. \"On Lisvold, hydrated minerals made up 3.8% of the surface, compared with 1.6% on Gyllen\" also shows more than a doubling, and Lisvold's orbit reaches 3.10 AU, but its closest approach is 2.40 AU, so under Haugen's rule both asteroids are inside the line. \"On Kolbeck, hydrated minerals made up 6.3% of the surface, compared with 3.5% on Hennick\" does pair an asteroid beyond the line (closest approach 2.95 AU) with one inside it, but 6.3% is less than twice 3.5%. \"On Ivra, hydrated minerals made up 8.2% of the surface, compared with 6.3% on Kolbeck\" runs the wrong way: Ivra's closest approach is 2.55 AU, so the richer asteroid is the one inside the line.",
+  "topic_tag": "asteroid-hydrated-minerals-snow-line-perihelion",
+  "meta": {
+   "design": "threshold-text",
+   "table_design": "threshold-text",
+   "roles": [
+    "Q-WITHIN",
+    "Q-REV",
+    "Q-C2",
+    "QK"
+   ],
+   "compare": [
+    [
+     "Lisvold",
+     "Gyllen"
+    ],
+    [
+     "Ivra",
+     "Kolbeck"
+    ],
+    [
+     "Kolbeck",
+     "Hennick"
+    ],
+    [
+     "Jassel",
+     "Gyllen"
+    ]
+   ],
+   "ranks": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "derived": [
+    2.375,
+    1.302,
+    1.8,
+    2.125
+   ],
+   "visible_fail": 0,
+   "names": [
+    "Gisela Haugen",
+    "Gyllen",
+    "Hennick",
+    "Ivra",
+    "Jassel",
+    "Kolbeck",
+    "Lisvold"
+   ],
+   "distractor_pulls": {
+    "On Lisvold": "More than a doubling, and Lisvold's orbit swings out to 3.10 AU, so a reader who checks the farthest distance or an average puts it beyond the line.",
+    "On Ivra": "Both asteroids reach well past 2.7 AU (3.40 and 3.60), so on a farthest-distance reading this looks like a beyond-the-line pair; only the closest-approach column shows Ivra is inside, which makes it a reversal.",
+    "On Kolbeck": "A genuine beyond-versus-inside pair with the larger values; only the arithmetic shows 6.3 is short of twice 3.5."
+   },
+   "why_hard": "The classing rule uses the closest-approach column, while two of the asteroids that the rule puts inside the line travel well beyond 2.7 AU at their farthest; the student must apply the passage's rule rather than the more intuitive column, then check the doubling."
+  }
+ }
+]

@@ -1,0 +1,199 @@
+{
+ "grader": "e",
+ "phase": 2,
+ "batch_note": "Yes. In all 20 text items (5 per letter block) the same template is used: a two-factor (sometimes three-factor) design with one shared confound that both researchers accept, four named sites, and the key as the only option comparing two sites that differ in exactly the target factor, with the confound and the rival held equal. The three distractors almost always come from the same cast: (1) a reversal of a clean comparison, or a clean comparison that tests the rival; (2) a comparison carrying the shared confound (slope, elevation, valley, market, rail line, wet years or slump year); (3) one that both accounts predict, or that supports the rival. A test-wise student who learns to ask 'which pair differs only in the named factor, with no confound site, and runs in the predicted direction' can solve these mechanically, and the cast is identical across items. The 'both agree that X' sentence also flags the confound site in every passage, so any option naming that site can be struck on sight. The 12 table items (items 6-8 in each block) follow a second template: a claim with two thresholds, plus a near-miss on each threshold and one option that wins only on raw size. They are less exploitable because each still needs two calculations. The order is predictable too: the keys are placed independently, but every block runs 5 text items and then 3 tables.",
+ "items": {
+  "II23A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23A-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-05": {
+   "key_ok": true,
+   "path_coherent": false,
+   "recommend_drop": true,
+   "note2": "The explanation rests on 'steady seepage, so the Gullhaven sample year does not matter'. Steady seepage over decades means salt accumulates, so Gullhaven 2018 understates Gullhaven 2022 and the key is a cross-year comparison. That is the same confound the other items in the batch train students to reject. I reached B only by elimination in phase 1."
+  },
+  "II23B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23B-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23C-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; the explanation computes both conditions for every option. The options omit before-wages and enrollees, so the table must be read. That is acceptable."
+  },
+  "II23D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct and explanation sound. Minor: the options give only the 1900 figure, so the option text alone does not show a doubling. That is weaker phrasing than real SAT items, but not a reason to drop."
+  },
+  "II23D-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  },
+  "II23D-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my phase-1 answer. The explanation correctly names the controlled contrast or computation and why each distractor fails."
+  }
+ }
+}

@@ -1,0 +1,199 @@
+{
+ "grader": "f",
+ "phase": 2,
+ "batch_note": "Yes. All 24 'finding, if true' items share one template: four sites laid out as a factor grid (hypothesis factor, rival factor, one shared confound such as slope, elevation, soil, rail, wealth, a wet/slump year or a fault), and the four options are always (1) the key, isolating the factor with the confound held fixed, (2) a comparison that crosses the confound, (3) a comparison that bears on the rival, and (4) a reversed or both-predict comparison. A student who learns 'eliminate any option that crosses the named shared confound, then any that only bears on the rival' gets most of them without weighing evidence. For weaken items the key is repeatedly the rival-only site beating the hypothesis-only site head to head (A-02, A-04, B-05, C-01, D-04), with the cleaner within-factor weakener present only in its supporting form. All 8 table items share a second template: two thresholds, the key is the only option that clears both, and the main trap clears one threshold narrowly (often the most extreme value); options print only part of the needed cells. Keys are spread across letters, so this is a structural tell, not a positional one.",
+ "items": {
+  "II23A-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23A-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct as logging-only beating worms-only on level ground; the clean Ambersley-vs-Fenwold weakener appears only in its supporting form A."
+  },
+  "II23A-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23A-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct; same-year pre-2010 burned-only vs fenced-only comparison, and the explanation correctly flags C's wet-summer crossing."
+  },
+  "II23A-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23A-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23A-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23A-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-05": {
+   "key_ok": false,
+   "path_coherent": false,
+   "recommend_drop": true,
+   "note2": "The explanation claims that because seepage is 'steady' the Gullhaven sample year does not matter, but steady seepage means Gullhaven grew saltier from 2018 to 2022, so Kelstad 2022 beating Gullhaven 2018 is not seawater-vs-irrigation on equal terms; no option cleanly weakens Hagelin (the clean test appears only as supporting C)."
+  },
+  "II23B-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23B-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23C-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-01": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-02": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-03": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-04": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key correct as rival-beats-hypothesis head-to-head in 1851; the cleaner weakener (Sudmere not ahead of Verrow) exists only as supporting B."
+  },
+  "II23D-05": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-06": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-07": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  },
+  "II23D-08": {
+   "key_ok": true,
+   "path_coherent": true,
+   "recommend_drop": false,
+   "note2": "Key matches my cold answer and the explanation correctly maps each option to its factor and confound."
+  }
+ }
+}

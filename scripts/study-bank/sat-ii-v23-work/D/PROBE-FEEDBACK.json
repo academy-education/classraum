@@ -1,0 +1,600 @@
+{
+ "II23D-03": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23B-05 (named by all 2 readers)",
+   "template pair with II23A-03 (named by all 2 readers)",
+   "template pair with II23B-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with II23D-04 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-02 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r0's tell: On the same two-hypothesis items, among the remaining options the one whose direction favors the rival researcher's factor or contradicts the stem's direction i",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Less property per household was lost to fire in Sallowby in dry years than in Tesmond in dry years.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Less property per household was lost to fire in Ulverholm in wet years than in Sallowby in dry years.",
+     "Less property per household was lost to fire in Ulverholm in wet years than in Sallowby in wet years."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "B and C both name Ulverholm (no defenses) winning, so the set halves to A vs D, and D is struck as soon as one sees it mixes dry with wet years.",
+    "note": "D (Sallowby wet vs Tesmond dry) is most tempting since it favors the fire-company town but crosses the dry/wet control. B and C both have the defenseless town losing less, a reversed pair a student strikes on sight."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Less property per household was lost to fire in Sallowby in dry years than in Tesmond in dry years.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "Less property per household was lost to fire in Ulverholm in wet years than in Sallowby in dry years.",
+     "Less property per household was lost to fire in Sallowby in wet years than in Tesmond in dry years."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Mixed dry/wet options struck on sight; the remaining same-year pair where the fire-company town wins is the key; same seasonal template as P11 and P32.",
+    "note": "C (Ulverholm wet vs Sallowby wet) is same-condition but reversed. B and D mix dry and wet years."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23B-05",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 2,
+    "why": [
+     "2x2 of sites plus an accepted seasonal control, key is the season-matched pair",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-04",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23D-07": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23B-06 (named by all 2 readers)",
+   "template pair with II23B-07 (named by all 2 readers)",
+   "template pair with II23C-07 (named by all 2 readers)",
+   "template pair with II23A-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "The Tarnside exhibition sold 58 of the paintings it showed.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "The Uxley exhibition sold 96 of the paintings it showed.",
+     "The Velmont exhibition sold 39 of the paintings it showed."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Checking the Admission column strikes two of four options at once, and then only two divisions remain against a round threshold of one quarter.",
+    "note": "B (Yoxholt, 71/290 = 24.5%) is the near-miss free exhibition; C (Uxley, 30%) has the best ratio but charged admission. Same template as P06/P19/P20/P27: the best ratio belongs to the wrong-category row."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "The Tarnside exhibition sold 58 of the paintings it showed.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "The Uxley exhibition sold 96 of the paintings it showed."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "One division per free row; the charged row is the only one above a quarter besides the key, so the Admission column does most of the work.",
+    "note": "C (Uxley, 30%) is the highest share but charged admission, struck on sight. B (Yoxholt 24.5%) is the near miss."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23B-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23B-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23C-07",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   },
+   {
+    "with": "II23A-06",
+    "readers": 2,
+    "why": [
+     "wrong-category row has the best ratio, key just clears a stated threshold",
+     "ratio threshold with a category column excluding the top row"
+    ]
+   }
+  ]
+ },
+ "II23D-06": {
+  "must_revise": false,
+  "named_for": [],
+  "listed_for": [
+   "template partner of II23D-08 (the later slot revises)",
+   "named in reader r0's tell: On the threshold table items, the row with the best ratio always belongs to the wrong category (charged admission, tracking mounts, groynes, college, no rats, 6",
+   "named in reader r1's tell: On two-condition filter items the most tempting distractor passes the quoted condition and fails on the column the options never quote: P10, P17, P30, P31."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "the playhouse in Stennard drew 21,500 patrons in 1900.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "the playhouse in Tavisholm drew 26,300 patrons in 1900."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The seats column removes Tavisholm on sight, and among the three small houses Stennard's 9,800 to 21,500 is visibly more than double while the others are visibly under.",
+    "note": "A (Ulvercote, 1.87x) is the near miss among small playhouses; D (Tavisholm, 2.35x) more than doubled but has 610 seats. Options cite only 1900 attendance, so the student must pull the 1890 cell and seat count."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "the playhouse in Stennard drew 21,500 patrons in 1900.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "the playhouse in Tavisholm drew 26,300 patrons in 1900."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Ulvercote, 1.87x) and C (Varrick, 1.7x) are tempting large gains; D (Tavisholm, 2.35x) more than doubled but has 610 seats. Options quote only the 1900 figure, forcing a 1890 lookup and a ratio."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-08",
+    "readers": 2,
+    "why": [
+     "category filter plus a ratio computed from an uncited column",
+     "options quote one cell and the key needs further columns plus a ratio"
+    ]
+   }
+  ]
+ },
+ "II23D-04": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader",
+   "template pair with II23A-02 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with II23B-01 named by 1 of 2",
+   "template pair with II23C-02 named by 1 of 2",
+   "template pair with II23A-03 named by 1 of 2",
+   "template pair with II23D-03 named by 1 of 2",
+   "template pair with II23B-05 named by 1 of 2",
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Households in Tenlow dined later in winter than households in Sudmere did in winter.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "Households in Sudmere dined later in summer than households in Verrow did in summer."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "C (Verrow vs Tenlow winter) is tempting as season-matched but bears on Vasquez, not Tennant. D weakens gas as the explanation only by showing a stronger rival factor; the cleanest weakener (Verrow at least as late as Sudmere) is not offered, so D's force is somewhat indirect."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Households in Tenlow dined later in winter than households in Sudmere did in winter.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Households in Tenlow dined later in summer than households in Sudmere did in winter.",
+     "Households in Sudmere dined later in summer than households in Verrow did in summer."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "Most tempting is C (Verrow vs Tenlow, same season), but both lack gas so it bears only on Vasquez. The key itself is confounded: Tenlow's late exchange could explain its later dinners, so D weakens Tennant only partially; the cleaner Verrow-later-than-Sudmere comparison is absent."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-02",
+    "readers": 2,
+    "why": [
+     "weaken by showing the rival factor's site is more extreme, same season",
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-01",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23C-02",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23A-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23D-03",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   },
+   {
+    "with": "II23B-05",
+    "readers": 1,
+    "why": [
+     "two hypotheses, three or four locations, one shared seasonal confound, same option shape"
+    ]
+   }
+  ]
+ },
+ "II23D-02": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev",
+   "named in reader r1's tell: On hypothesis items the key's 'winning' location has the hypothesized factor and lacks the rival's (or the losing location has only the rival's factor); options"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Brides in Stavely signed their names more often than brides in Tessaby did.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Grooms in Upthorne signed their names more often than brides in Tessaby did.",
+     "Grooms in Wrayburn signed their names more often than brides in Upthorne did."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Vintrell brides vs Wrayburn brides) is the strong distractor: more schoolmaster years wins, but Vintrell also has the road. B and D compare grooms with brides across the stated sex control and fall on sight."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Brides in Stavely signed their names more often than brides in Tessaby did.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "Grooms in Upthorne signed their names more often than brides in Tessaby did.",
+     "Grooms in Wrayburn signed their names more often than brides in Upthorne did."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "A (Vintrell vs Wrayburn brides) tempts as 40 vs 15 years but Vintrell is on the turnpike. B and D compare grooms with brides. C has the schoolmaster parish winning despite lacking the road."
+   }
+  ],
+  "template_partners": []
+ },
+ "II23D-01": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "distractors not strong for every reader",
+   "template pair with II23A-04 (named by all 2 readers)",
+   "template pair with II23B-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On the two-hypothesis 'finding, if true' items, any option comparing across the background factor the passage says both researchers accept (dry/wet, summer/wint",
+   "named in reader r1's tell: On every item with a stated nuisance factor (season, weekday/weekend, dry/wet year, decade, groom/bride), options that mix the two levels of that factor are nev"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "More ballad sheets per household were sold in Sellwick in the 1820s than in Sellwick in the 1840s.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "More ballad sheets per household were sold in Wrexley in the 1840s than in Ulsby in the 1820s."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "C is the only option that compares one town with itself across two non-war decades, before and after the railway, a structure a strong student recognizes as the clean test immediately; B and D carry an 1830s war decade.",
+    "note": "D (Ulsby 1830s vs Wrexley 1840s) is tempting as no-rail beating rail, but the 1830s were war years. A favors railways and is struck on a weaken stem."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "More ballad sheets per household were sold in Sellwick in the 1820s than in Sellwick in the 1840s.",
+    "confidence": "medium",
+    "difficulty": "hard",
+    "n_struck": 2,
+    "struck_options": [
+     "More ballad sheets per household were sold in Wrexley in the 1840s than in Ulsby in the 1820s.",
+     "More ballad sheets per household were sold in Ulsby in the 1830s than in Wrexley in the 1840s."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "D and B are tempting but straddle the war decade; A actually supports Vollmer. C is a within-town before/after comparison across two peacetime decades, which most students will not look for first."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-04",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   },
+   {
+    "with": "II23B-03",
+    "readers": 2,
+    "why": [
+     "before/after a dated intervention with an accepted period confound",
+     "time-series factor onset with a confounding period, within-site or cross-site decade comparison"
+    ]
+   }
+  ]
+ },
+ "II23D-05": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with II23C-03 (named by all 2 readers)",
+   "template pair with II23A-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with II23A-05 named by 1 of 2",
+   "named in reader r0's tell: On the 2x2 'isolate one factor' items, the key is always the pair that shares the rival factor and differs on the hypothesized one, and one distractor is always",
+   "named in reader r1's tell: On the four-location 2x2 items the key is always the pair the passage signposts as differing in one factor only ('just as much', 'only Sarnby also', 'like Melli"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "More households per hundred owned a piano in Sarnby than in Ulmeston.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "More households per hundred owned a piano in Ulmeston than in Thursk."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "Same isolate-one-factor 2x2 as P03/P10/P11: D is the only pair sharing conservatory status and differing in installment plans.",
+    "note": "A (Sarnby vs Yarnholt) is the confounded distractor: Sarnby has both factors. B has the installment-free town beating the installment town, the wrong direction."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "More households per hundred owned a piano in Sarnby than in Ulmeston.",
+    "confidence": "high",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "More households per hundred owned a piano in Ulmeston than in Thursk.",
+     "More households per hundred owned a piano in Ulmeston than in Yarnholt."
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": "The passage sentence 'of those two towns, only Sarnby also had a conservatory' sets up the Sarnby/Ulmeston controlled pair; same 2x2 template as P02 and P20.",
+    "note": "A (Sarnby vs Yarnholt) is tempting but Sarnby has both factors. B reverses installment, C is the rival's test."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23A-05",
+    "readers": 1,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor"
+    ]
+   },
+   {
+    "with": "II23C-03",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   },
+   {
+    "with": "II23A-01",
+    "readers": 2,
+    "why": [
+     "clean 2x2 of two factors, key isolates the hypothesized factor",
+     "2x2 factorial towns, key is the single-factor controlled pair"
+    ]
+   }
+  ]
+ },
+ "II23D-08": {
+  "must_revise": true,
+  "named_for": [
+   "template pair with II23D-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: On two-condition table items, options cite only one condition's columns and the strongest distractor meets that cited condition but fails the uncited one: P08, ",
+   "named in reader r1's tell: On threshold-ratio table items the highest-ratio row is always excluded by the yes/no category column, and the key is the only in-category row just over the bar",
+   "named in reader r1's tell: On two-condition filter items the most tempting distractor passes the quoted condition and fails on the column the options never quote: P10, P17, P30, P31."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "Vardleigh, where 7 bookshops were trading in 1795.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "D (Wickerby, lowest literacy, most bookshops) is the tempting extreme but 19,800/11 = 1,800 fails; C (Sedgeholm, 1,300 per shop) clears the shop bar but has 61% literacy. Options cite only bookshop counts."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "Vardleigh, where 7 bookshops were trading in 1795.",
+    "confidence": "high",
+    "difficulty": "hard",
+    "n_struck": 1,
+    "struck_options": [
+     "Sedgeholm, where 4 bookshops were trading in 1795."
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "key_from_one_sentence": false,
+    "world_knowledge": false,
+    "not_hard_because": null,
+    "note": "C (Sedgeholm, 1 per 1,300) is the densest trade but 61% literacy. D (Wickerby, 38%) and A (Ulsworth) fail on 1,800 and 1,720. Options quote only bookshops, forcing two more column lookups and a division."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "II23D-06",
+    "readers": 2,
+    "why": [
+     "category filter plus a ratio computed from an uncited column",
+     "options quote one cell and the key needs further columns plus a ratio"
+    ]
+   }
+  ]
+ }
+}
