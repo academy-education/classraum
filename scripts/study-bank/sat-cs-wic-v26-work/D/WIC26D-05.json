@@ -1,0 +1,64 @@
+{
+  "id": "WIC26D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a pamphlet and a tenants' movement",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["handbook", "gospel", "foil", "fundraiser"],
+  "antonym_pairs": [],
+  "rarity_order": ["handbook", "fundraiser", "gospel", "foil"],
+  "pos": "noun",
+  "after_blank": "in",
+  "blank_sentence": "Looking back, one historian called the pamphlet the movement's ______ in its first decade.",
+  "worlds": [
+    {
+      "key": "handbook",
+      "passage": "In 1882 a forty-page pamphlet on the rights of tenant farmers appeared in one rural province, the same year a tenants' movement formed there. Its chapters set out, step by step, how to call a meeting, word a petition to a landlord, and file a complaint with the county court. Branches of the movement kept copies on the table at every meeting, and members wrote corrections into the margins wherever a court's procedure had changed, mailing them to the printer for the next edition. Looking back, one historian called the pamphlet the movement's ______ in its first decade.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The pamphlet gave practical step-by-step procedures, branches kept it at hand during meetings, and members updated it as procedures changed, so it served as the movement's \"handbook.\" \"Gospel\" fails because members corrected it freely rather than treating it as beyond question. \"Foil\" fails because the movement used the pamphlet rather than defining itself against it. \"Fundraiser\" fails because its value lay in being consulted, not in money raised from it.",
+      "kills": {
+        "gospel": {"type": "logic", "quote": "members wrote corrections into the margins", "why": "a text that members routinely correct is not treated as unquestionable doctrine"},
+        "foil": {"type": "logic", "quote": "kept copies on the table at every meeting", "why": "the movement relied on the pamphlet, so it was not a contrasting text to argue against"},
+        "fundraiser": {"type": "logic", "quote": "how to call a meeting, word a petition", "why": "what mattered was its practical content in use, not any income it produced"}
+      }
+    },
+    {
+      "key": "gospel",
+      "passage": "In 1882 a forty-page pamphlet on the rights of tenant farmers appeared in one rural province, the same year a tenants' movement formed there. Its author, a village schoolteacher, argued that land belongs by right to those who work it, and the movement's speakers quoted its chapters to settle every dispute over aims. When a branch secretary published an essay in 1887 questioning one chapter, his branch expelled him within the month, and no member criticized the pamphlet in print again before 1892. Looking back, one historian called the pamphlet the movement's ______ in its first decade.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Its text settled every dispute, and questioning it got a member expelled and silenced all later criticism, so the pamphlet was the movement's \"gospel,\" a doctrine accepted without question. \"Handbook\" fails because it offered a principle to be quoted, not practical procedures. \"Foil\" fails because the movement embraced the pamphlet instead of defining itself against it. \"Fundraiser\" fails because it was valued for its authority, not for money.",
+      "kills": {
+        "handbook": {"type": "logic", "quote": "land belongs by right to those who work it", "why": "the pamphlet's content is a principle, not step-by-step practical guidance"},
+        "foil": {"type": "logic", "quote": "quoted its chapters to settle every dispute", "why": "the movement drew on the pamphlet as its authority, the reverse of a text it opposed"},
+        "fundraiser": {"type": "logic", "quote": "his branch expelled him within the month", "why": "the pamphlet's importance was as untouchable doctrine, not as a source of income"}
+      }
+    },
+    {
+      "key": "foil",
+      "passage": "In 1882 a forty-page pamphlet on the rights of tenant farmers appeared in one rural province, the same year a tenants' movement formed there. Its author, a landowner, argued that tenants already held every right they could fairly claim. The movement's speakers read its sentences aloud at rallies before setting out their own demands against them, and the movement's first written program was arranged under the pamphlet's own chapter headings, each one answered in turn. Looking back, one historian called the pamphlet the movement's ______ in its first decade.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Written by a landowner against tenants' claims, the pamphlet gave the movement something to set its own demands against, chapter by chapter, so it was the movement's \"foil,\" the contrast that defined it. \"Handbook\" fails because the movement answered the pamphlet rather than following it as a guide. \"Gospel\" fails because the movement rejected its argument. \"Fundraiser\" fails because nothing suggests it raised money for the movement.",
+      "kills": {
+        "handbook": {"type": "logic", "quote": "each one answered in turn", "why": "the movement rebutted the pamphlet section by section instead of following its instructions"},
+        "gospel": {"type": "logic", "quote": "setting out their own demands against them", "why": "the movement's speakers opposed its sentences, so it was not their accepted doctrine"},
+        "fundraiser": {"type": "logic", "quote": "Its author, a landowner", "why": "it was an opponent's argument, used for contrast, not something the movement sold for funds"}
+      }
+    },
+    {
+      "key": "fundraiser",
+      "passage": "In 1882 a forty-page pamphlet on the rights of tenant farmers appeared in one rural province, the same year a tenants' movement formed there. Few members read past its first pages, which repeated arguments made in every newspaper in the province. The movement printed it in runs of twenty thousand, members sold copies for a penny at fairs and markets, and the proceeds paid the rent of the halls where its branches met and the fees of lawyers who defended evicted tenants. Looking back, one historian called the pamphlet the movement's ______ in its first decade.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Its arguments were familiar and barely read, but huge print runs sold at a penny paid for halls and lawyers, so the pamphlet was the movement's \"fundraiser.\" \"Handbook\" and \"gospel\" fail because members rarely read past its opening, so it neither guided their work nor served as their doctrine. \"Foil\" fails because the movement printed and spread the pamphlet itself rather than arguing against it.",
+      "kills": {
+        "handbook": {"type": "logic", "quote": "Few members read past its first pages", "why": "a text hardly anyone read could not have served as a working guide"},
+        "gospel": {"type": "logic", "quote": "repeated arguments made in every newspaper", "why": "its content was commonplace and largely unread, not a revered authority"},
+        "foil": {"type": "logic", "quote": "The movement printed it in runs", "why": "the movement produced and sold the pamphlet itself, so it was not a text it defined itself against"}
+      }
+    }
+  ]
+}

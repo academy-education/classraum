@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a marsh above a harbor town",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sponge",
+    "sieve",
+    "spillway",
+    "seedbed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "sponge",
+    "sieve",
+    "spillway",
+    "seedbed"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One hydrologist has concluded that the marsh serves the lower river as a kind of ______.",
+  "worlds": [
+    {
+      "key": "sponge",
+      "passage": "Above a harbor town, a river crosses six miles of reedy marsh, and below the marsh the lower river runs past the town's quays to the bay. In wet springs the river soaks into the marsh's deep peat, and gauges below the marsh rise only half as far as gauges above it. Through the dry summer the peat lets the water out again a little at a time. The lower river keeps flowing past the quays in months when the river above the marsh shrinks to a chain of pools. One hydrologist has concluded that the marsh serves the lower river as a kind of ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The marsh's peat takes in spring floodwater and releases it slowly through the summer, so the lower river runs low in floods and full in droughts: the marsh is \"a kind of sponge.\" \"Sieve\" fails because the passage concerns how much water reaches the lower river and when, not anything removed from it. \"Spillway\" fails because the marsh holds the floodwater rather than carrying it off. \"Seedbed\" fails because nothing in the passage starts life in the marsh.",
+      "kills": {
+        "sieve": {
+          "type": "logic",
+          "quote": "lets the water out again a little at a time",
+          "why": "what the marsh changes is the timing of the water, not its contents"
+        },
+        "spillway": {
+          "type": "explicit",
+          "quote": "the river soaks into the marsh's deep peat",
+          "why": "the floodwater is held in the marsh, not shunted away"
+        },
+        "seedbed": {
+          "type": "logic",
+          "quote": "keeps flowing past the quays",
+          "why": "the marsh's contribution to the lower river is water in dry months, not young life"
+        }
+      }
+    },
+    {
+      "key": "sieve",
+      "passage": "Above a harbor town, a river crosses six miles of reedy marsh, and below the marsh the lower river runs past the town's quays to the bay. Water from the river enters the marsh brown with silt and with dye from the mill ditches upstream. The reeds slow it to a crawl, the silt settles among their stems, and the dye binds to the mud. Gauges show as much water leaving the marsh as entering it in every season, and samples taken below the marsh run clear past the quays. One hydrologist has concluded that the marsh serves the lower river as a kind of ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Water passes through the marsh in undiminished volume while the silt and dye are left behind, so the marsh is \"a kind of sieve.\" \"Sponge\" fails because the marsh does not hold water back: as much leaves as enters. \"Spillway\" fails because the marsh does not divert any water away from the lower river. \"Seedbed\" fails because what the marsh does is strip material out, not raise anything.",
+      "kills": {
+        "sponge": {
+          "type": "logic",
+          "quote": "as much water leaving the marsh as entering it",
+          "why": "the marsh stores no water, so it is not absorbing and releasing it"
+        },
+        "spillway": {
+          "type": "logic",
+          "quote": "samples taken below the marsh run clear",
+          "why": "the same water continues into the lower river, cleaned, rather than being carried off elsewhere"
+        },
+        "seedbed": {
+          "type": "logic",
+          "quote": "the silt settles among their stems",
+          "why": "the marsh's role is to take material out of the water, not to start anything growing"
+        }
+      }
+    },
+    {
+      "key": "spillway",
+      "passage": "Above a harbor town, a river crosses six miles of reedy marsh, and below the marsh the lower river runs past the town's quays to the bay. When the river rises past a certain height, the water above that level pours over a low gravel bank into the marsh. Gauges show it crossing the marsh within a day through a chain of tidal creeks that empty straight into the bay a mile from the town. In floods the lower river runs no higher past the quays than in an ordinary spring. One hydrologist has concluded that the marsh serves the lower river as a kind of ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Only the water above a set level leaves the river, crosses the marsh quickly, and reaches the bay by another route, so the lower river is spared the flood: the marsh is \"a kind of spillway.\" \"Sponge\" fails because the marsh passes the water on within a day instead of holding it. \"Sieve\" fails because the marsh changes how much water reaches the lower river, not what is in it. \"Seedbed\" fails because nothing in the passage begins life in the marsh.",
+      "kills": {
+        "sponge": {
+          "type": "logic",
+          "quote": "crossing the marsh within a day",
+          "why": "the marsh does not hold the water to release later"
+        },
+        "sieve": {
+          "type": "logic",
+          "quote": "the water above that level",
+          "why": "the marsh takes off a volume of water, not material from the water"
+        },
+        "seedbed": {
+          "type": "logic",
+          "quote": "empty straight into the bay",
+          "why": "the marsh's role is moving floodwater, not starting life"
+        }
+      }
+    },
+    {
+      "key": "seedbed",
+      "passage": "Above a harbor town, a river crosses six miles of reedy marsh, and below the marsh the lower river runs past the town's quays to the bay. Each spring herring that have come up the river lay their eggs in the marsh's warm, shallow pools, where reeds hide the young from larger fish. The young stay until autumn and then swim down into the lower river. Netting surveys below the marsh find that nearly every young herring caught past the quays hatched in those pools, and the river above the marsh holds almost none. One hydrologist has concluded that the marsh serves the lower river as a kind of ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The herring of the lower river begin their lives in the marsh and leave it once grown, so the marsh is \"a kind of seedbed.\" \"Sponge\" fails because the passage is not about water being stored and released. \"Sieve\" fails because the marsh does not strain anything out of the water; it raises young fish that later leave. \"Spillway\" fails because the marsh does not carry water away from the lower river.",
+      "kills": {
+        "sponge": {
+          "type": "logic",
+          "quote": "lay their eggs in the marsh's warm, shallow pools",
+          "why": "the marsh matters here as the place the fish start, not as a store of water"
+        },
+        "sieve": {
+          "type": "logic",
+          "quote": "then swim down into the lower river",
+          "why": "the young leave the marsh for the lower river; nothing is held back or strained out"
+        },
+        "spillway": {
+          "type": "logic",
+          "quote": "hatched in those pools",
+          "why": "the marsh supplies the lower river with fish, not a route for excess water"
+        }
+      }
+    }
+  ]
+}

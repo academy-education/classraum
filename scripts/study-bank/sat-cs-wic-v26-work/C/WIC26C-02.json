@@ -1,0 +1,122 @@
+{
+  "id": "WIC26C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "regional health board and an old county hospital",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "certified",
+    "cloned",
+    "bartered",
+    "cannibalized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "certified",
+    "cloned",
+    "bartered",
+    "cannibalized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+  "worlds": [
+    {
+      "key": "cannibalized",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board was also building a large hospital in the city forty miles away and had little money to equip it. Over the next ten years the county hospital's X-ray machine, its operating tables, and most of its surgeons were moved to the city one by one, as the new building needed them, until the stone building held only a clinic open two days a week. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The board stripped the county hospital's equipment and staff piece by piece to supply a new hospital it could not otherwise equip, so it \"cannibalized\" the county hospital. \"Certified\" fails because no judgment that the hospital met a standard is described, only its gradual emptying; \"cloned\" fails because the city hospital was supplied with the county hospital's own machines and surgeons, not built as a copy of it; \"bartered\" fails because the board moved its own property between its own hospitals and received nothing in exchange from anyone.",
+      "kills": {
+        "certified": {
+          "type": "logic",
+          "quote": "held only a clinic open two days a week",
+          "why": "The hospital ends almost empty; nothing is said of its being judged to meet any standard."
+        },
+        "cloned": {
+          "type": "logic",
+          "quote": "moved to the city one by one",
+          "why": "The original's own parts were taken away to the new hospital; no copy of it was made."
+        },
+        "bartered": {
+          "type": "logic",
+          "quote": "had little money to equip it",
+          "why": "The board shifted its own equipment to fill its own new building; nothing was traded with another party."
+        }
+      }
+    },
+    {
+      "key": "cloned",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board's own records showed that patients there died after surgery less often than anywhere else in the county. Over the next ten years the board built three new hospitals in other towns from the stone building's floor plan, staffed each with its number of nurses per ward, and gave each its rules for washing and for visiting, while the county hospital went on as before. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The board reproduced the county hospital's plan, staffing, and rules in three new buildings, so it \"cloned\" the county hospital. \"Certified\" fails because the board read its own records and copied what worked; no test or standard the hospital had to pass is described; \"bartered\" fails because the hospital stayed with the board and nothing was exchanged; \"cannibalized\" fails because nothing was taken from the original, which went on unchanged.",
+      "kills": {
+        "certified": {
+          "type": "logic",
+          "quote": "board's own records showed",
+          "why": "The board used its records to find a model to copy; no formal test or approval of the hospital is described."
+        },
+        "bartered": {
+          "type": "logic",
+          "quote": "built three new hospitals in other towns",
+          "why": "The board built new hospitals itself; the county hospital was not given to anyone in exchange for anything."
+        },
+        "cannibalized": {
+          "type": "logic",
+          "quote": "the county hospital went on as before",
+          "why": "Only its plan and practices were reproduced; none of its equipment or staff was taken away."
+        }
+      }
+    },
+    {
+      "key": "bartered",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board needed land beside its new city hospital, and the state university, which owned the plot there, had a medical school that wanted a teaching building in the county. In 1952 the board signed the county hospital over to the medical school, and its accounts for that year record no payment received. That same month the university's plot passed to the board. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Each side held what the other needed, and the hospital went to the medical school for no money in the same month the university's plot went to the board, so the board \"bartered\" the county hospital. \"Certified\" fails because the hospital changed hands as a whole, with no inspection or standard involved; \"cloned\" fails because the school wanted the existing building and no copy was built; \"cannibalized\" fails because the hospital passed whole to the school rather than being stripped for parts.",
+      "kills": {
+        "certified": {
+          "type": "logic",
+          "quote": "That same month the university's plot passed",
+          "why": "The hospital is exchanged for land; nothing judges it against a standard."
+        },
+        "cloned": {
+          "type": "logic",
+          "quote": "wanted a teaching building in the county",
+          "why": "The school wanted the existing building itself, and no copy of it is made anywhere."
+        },
+        "cannibalized": {
+          "type": "logic",
+          "quote": "signed the county hospital over to the medical school",
+          "why": "The hospital passes intact to the school; its parts are not taken to supply another hospital."
+        }
+      }
+    },
+    {
+      "key": "certified",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board had been told to enforce new national standards for wards, staff, and records, and over the next four years its inspectors visited each hospital and closed any that fell short. By 1952 the county hospital, which had kept careful records since 1890, was the only one of the county's five still open, its wards and staff unchanged. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The board closed every hospital that failed its inspection, and the county hospital alone was still open and unchanged afterward, so it must have passed: the board \"certified\" it. \"Cloned\" fails because the hospital survived as the single one left, not as the model for new ones; \"bartered\" fails because the board kept it and traded it to no one; \"cannibalized\" fails because its wards and staff stayed as they were.",
+      "kills": {
+        "cloned": {
+          "type": "logic",
+          "quote": "the only one of the county's five still open",
+          "why": "It is the one hospital left standing as it was; no other hospital is built on its model."
+        },
+        "bartered": {
+          "type": "logic",
+          "quote": "its inspectors visited each hospital",
+          "why": "The board's dealing with its hospitals is inspection, not an exchange with another party."
+        },
+        "cannibalized": {
+          "type": "logic",
+          "quote": "its wards and staff unchanged",
+          "why": "Nothing is stripped from it; it keeps everything it had."
+        }
+      }
+    }
+  ]
+}

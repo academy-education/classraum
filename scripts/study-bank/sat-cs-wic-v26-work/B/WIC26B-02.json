@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a truce between two river towns",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "tacit",
+    "tactical",
+    "token",
+    "unilateral"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "token",
+    "tactical",
+    "unilateral",
+    "tacit"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Writing a century later, one historian called the truce between the towns from 1790 to 1815 ______.",
+  "worlds": [
+    {
+      "key": "tacit",
+      "passage": "For most of the eighteenth century, two towns on opposite banks of a salmon river tore down each other's fish weirs whenever the run was good. By 1790 most families on each bank had a married son or daughter on the other, and the magistrates' books for 1790 to 1815 record almost no cut weirs. Each town's boats kept to their own half of the river, and each council fined any of its own men caught on the far bank. No agreement appears in either town's minutes or letters. Writing a century later, one historian called the truce between the towns from 1790 to 1815 ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The fighting stopped on both sides and each town policed its own men, though no agreement was ever written down, so the truce was \"tacit.\" \"Tactical\" fails because the peace grew out of lasting family ties between the banks, not out of a short-term aim that, once met, would end it. \"Token\" fails because the truce was real: cut weirs almost disappeared. \"Unilateral\" fails because both councils restrained their own men.",
+      "kills": {
+        "tactical": {
+          "type": "logic",
+          "quote": "had a married son or daughter on the other",
+          "why": "the restraint rests on kinship between the towns, a lasting tie, not on a calculated move toward a passing goal"
+        },
+        "token": {
+          "type": "logic",
+          "quote": "record almost no cut weirs",
+          "why": "the truce changed behavior, so it was not a truce in name only"
+        },
+        "unilateral": {
+          "type": "logic",
+          "quote": "each council fined any of its own men",
+          "why": "both towns held back, so the restraint was not one-sided"
+        }
+      }
+    },
+    {
+      "key": "tactical",
+      "passage": "For most of the eighteenth century, two towns on opposite banks of a salmon river tore down each other's fish weirs whenever the run was good. In 1790 a canal company petitioned to buy the fishing rights of both banks, and the two councils signed a truce and hired one lawyer between them to fight the petition. While the case dragged on, the magistrates' books record almost no cut weirs. The company withdrew its petition in 1815, and within a season each town was cutting the other's weirs again. Writing a century later, one historian called the truce between the towns from 1790 to 1815 ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The towns made peace to fight a common threat and returned to fighting as soon as the threat was gone, so the truce was \"tactical.\" \"Tacit\" fails because the truce was signed. \"Token\" fails because weir-cutting almost stopped while the case ran. \"Unilateral\" fails because both councils signed and both towns held back.",
+      "kills": {
+        "tacit": {
+          "type": "explicit",
+          "quote": "the two councils signed a truce",
+          "why": "a signed truce was stated outright, not unspoken"
+        },
+        "token": {
+          "type": "logic",
+          "quote": "record almost no cut weirs",
+          "why": "the truce changed behavior while it lasted, so it was not in name only"
+        },
+        "unilateral": {
+          "type": "logic",
+          "quote": "hired one lawyer between them",
+          "why": "both towns acted together, so the truce was not one-sided"
+        }
+      }
+    },
+    {
+      "key": "token",
+      "passage": "For most of the eighteenth century, two towns on opposite banks of a salmon river tore down each other's fish weirs whenever the run was good. In 1790 the two councils signed a truce at a feast on the bridge, and they renewed it with the same toasts every spring until 1815. The magistrates' books for those years record cut weirs on both banks at about the rate of the decades before. Neither council fined a single man for crossing to the far bank, and the feast grew larger every year. Writing a century later, one historian called the truce between the towns from 1790 to 1815 ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The truce was signed and celebrated every year while weir-cutting went on as before and no one was punished, so it existed in name only and was \"token.\" \"Tacit\" fails because the truce was signed and toasted openly. \"Tactical\" fails because the passage gives no aim the truce served. \"Unilateral\" fails because both councils signed it and neither side kept it.",
+      "kills": {
+        "tacit": {
+          "type": "explicit",
+          "quote": "signed a truce at a feast",
+          "why": "the truce was openly made and celebrated, not unspoken"
+        },
+        "tactical": {
+          "type": "logic",
+          "quote": "renewed it with the same toasts every spring",
+          "why": "the truce was a ritual repeated for twenty-five years, not a means to any passing end the passage names"
+        },
+        "unilateral": {
+          "type": "logic",
+          "quote": "cut weirs on both banks",
+          "why": "neither side held back, so there was no one-sided restraint"
+        }
+      }
+    },
+    {
+      "key": "unilateral",
+      "passage": "For most of the eighteenth century, two towns on opposite banks of a salmon river tore down each other's fish weirs whenever the run was good. In 1790, after two of its boys drowned in a fight on the river, the upstream council declared that its men would cut no more weirs and fined every man who did. The magistrates' books record no weirs cut by upstream men from then until 1815. The downstream council never answered the declaration, and its men went on cutting upstream weirs in most years. Writing a century later, one historian called the truce between the towns from 1790 to 1815 ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Only the upstream town held back, and the downstream town neither agreed nor stopped, so the truce was \"unilateral.\" \"Tacit\" fails because the upstream town announced its restraint openly. \"Tactical\" fails because the restraint followed a drowning and served no aim of advantage. \"Token\" fails because the upstream town really did stop cutting weirs.",
+      "kills": {
+        "tacit": {
+          "type": "explicit",
+          "quote": "the upstream council declared",
+          "why": "the restraint was announced, not unspoken"
+        },
+        "tactical": {
+          "type": "logic",
+          "quote": "after two of its boys drowned",
+          "why": "the passage gives grief, not any short-term advantage, as the reason for the restraint"
+        },
+        "token": {
+          "type": "logic",
+          "quote": "record no weirs cut by upstream men",
+          "why": "the upstream town kept its word, so the truce was not in name only"
+        }
+      }
+    }
+  ]
+}

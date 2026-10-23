@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a mining valley's weekly newspaper",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ladder",
+    "jury",
+    "lens",
+    "megaphone"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "ladder",
+    "jury",
+    "lens",
+    "megaphone"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Writing a century later, one historian called the weekly the miners' ______.",
+  "worlds": [
+    {
+      "key": "ladder",
+      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. Each issue printed a lesson in arithmetic, bookkeeping, or letter writing, and a miner who mailed in the exercises had them corrected and returned the following week. Mine records show that men who finished the full course were made weighmen, clerks, and foremen far more often than other miners, and several of their sons went on to the state university. Writing a century later, one historian called the weekly the miners' ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The weekly's lessons let miners qualify for better posts and their sons rise further, so it served as the miners' \"ladder.\" \"Jury\" fails because the weekly corrected exercises and settled no disputes; \"lens\" fails because the lessons taught skills, not a way of interpreting events; \"megaphone\" fails because nothing the miners sent in was carried to any wider audience: their work came back to them corrected.",
+      "kills": {
+        "jury": {
+          "type": "logic",
+          "quote": "had them corrected and returned",
+          "why": "the paper checks lessons; it is not weighing two sides of any dispute"
+        },
+        "lens": {
+          "type": "logic",
+          "quote": "were made weighmen, clerks, and foremen",
+          "why": "the effect of the weekly is promotion through skills, not a changed view of the world"
+        },
+        "megaphone": {
+          "type": "logic",
+          "quote": "mailed in the exercises",
+          "why": "what miners sent the paper went back to them, not out to a larger audience"
+        }
+      }
+    },
+    {
+      "key": "jury",
+      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. A miner who believed a foreman had cheated him on the weight of his coal could bring the matter to the paper, whose editor heard the miner and the foreman together and printed in the next issue a short finding that went against the miner about as often as for him. By the 1890s both the miners and the company usually accepted the paper's finding as final, and the valley's courts heard almost none of these disputes. Writing a century later, one historian called the weekly the miners' ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The weekly heard both sides of a dispute and issued a finding that both parties accepted, so it acted as the miners' \"jury.\" \"Megaphone\" fails because the paper printed not the miners' complaints but its own ruling, which went against them about as often as for them; \"lens\" fails because the paper settled particular disputes rather than shaping how miners saw events; \"ladder\" fails because nothing helped miners rise to better positions.",
+      "kills": {
+        "megaphone": {
+          "type": "logic",
+          "quote": "heard the miner and the foreman together",
+          "why": "the paper hears both sides and prints only its own ruling, often against the miner, so it is not carrying the miners' voice to anyone"
+        },
+        "lens": {
+          "type": "logic",
+          "quote": "accepted the paper's finding as final",
+          "why": "the paper's role is deciding disputes, not providing a way of seeing the world"
+        },
+        "ladder": {
+          "type": "logic",
+          "quote": "courts heard almost none of these disputes",
+          "why": "the paper's effect is on how disputes are settled, not on miners' advancement"
+        }
+      }
+    },
+    {
+      "key": "lens",
+      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. For most miners it was the only news they saw, and each issue printed reports of distant strikes, tariffs, and elections, each followed by a column explaining what it would mean for men working underground. Diaries and union minutes from the valley in those years discuss faraway events almost always in that column's own terms and examples. Writing a century later, one historian called the weekly the miners' ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The miners saw distant events only through the weekly's explanations and later described them in its terms, so it was the miners' \"lens.\" \"Megaphone\" fails because news traveled inward to the miners, not outward from them; \"jury\" fails because the paper explained events and settled no disputes; \"ladder\" fails because nothing is said about miners rising to better positions.",
+      "kills": {
+        "megaphone": {
+          "type": "logic",
+          "quote": "printed reports of distant strikes",
+          "why": "the flow runs from the outside world to the miners, the reverse of amplifying their voice"
+        },
+        "jury": {
+          "type": "logic",
+          "quote": "explaining what it would mean",
+          "why": "the column interprets events; it does not decide between parties"
+        },
+        "ladder": {
+          "type": "logic",
+          "quote": "in that column's own terms and examples",
+          "why": "the paper's effect is on how miners understood events, not on their careers"
+        }
+      }
+    },
+    {
+      "key": "megaphone",
+      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. Miners who believed a foreman had cheated them on the weight of their coal wrote to the paper, which printed every letter as written and mailed bundles of each issue to the state capital and to city dailies. Reporters there reprinted the letters, and in 1893 a legislative committee held hearings on weighing practices, reading several of them aloud. Writing a century later, one historian called the weekly the miners' ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The weekly carried the miners' own complaints, unchanged, to audiences far beyond the valley, so it served as the miners' \"megaphone.\" \"Jury\" fails because the paper printed the letters as written and passed no judgment on them; \"lens\" fails because the flow runs outward from the miners, not from the world to them; \"ladder\" fails because nothing helped miners rise to better positions.",
+      "kills": {
+        "jury": {
+          "type": "logic",
+          "quote": "printed every letter as written",
+          "why": "the paper relays complaints without weighing them, so it is not judging"
+        },
+        "lens": {
+          "type": "logic",
+          "quote": "mailed bundles of each issue to the state capital",
+          "why": "the paper sends the miners' words out to others rather than shaping how the miners see"
+        },
+        "ladder": {
+          "type": "logic",
+          "quote": "held hearings on weighing practices",
+          "why": "the result is public attention to a grievance, not advancement for miners"
+        }
+      }
+    }
+  ]
+}

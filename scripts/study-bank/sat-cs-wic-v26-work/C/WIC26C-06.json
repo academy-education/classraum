@@ -1,0 +1,64 @@
+{
+  "id": "WIC26C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a city's new central library building",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["airy", "austere", "adaptable", "accessible"],
+  "antonym_pairs": [],
+  "rarity_order": ["accessible", "adaptable", "airy", "austere"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Reviewing it that year, one critic called the building, above all, ______.",
+  "worlds": [
+    {
+      "key": "austere",
+      "passage": "In 1968 a city opened a new central library, designed by a young architect, on the site of an old train station. Its walls were bare concrete inside and out, its low reading rooms were lit by plain rows of bulbs, and its only furniture was long oak tables and straight chairs. The architect had struck every carving, mural, and carpet from the plans, saying that a library should hold nothing to draw the eye from the page. Reviewing it that year, one critic called the building, above all, ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Bare surfaces and plain furnishings, plus the architect's deliberate removal of every ornament, make the building \"austere.\" \"Airy\" fails because its reading rooms are low and lit by bulbs rather than spacious and full of daylight; \"adaptable\" fails because nothing is said of rearranging it, only of stripping it bare; \"accessible\" fails because the architect's aim concerns what the eye meets inside, not how easily readers reach or use it.",
+      "kills": {
+        "airy": {"type": "logic", "quote": "low reading rooms were lit by plain rows of bulbs", "why": "The rooms are low and artificially lit, not open and full of light."},
+        "adaptable": {"type": "logic", "quote": "struck every carving, mural, and carpet", "why": "The design choice described is removal of ornament, not a plan that can be changed to new uses."},
+        "accessible": {"type": "logic", "quote": "nothing to draw the eye from the page", "why": "The governing idea is plainness for the reader's attention, not ease of entry or use."}
+      }
+    },
+    {
+      "key": "accessible",
+      "passage": "In 1968 a city opened a new central library, designed by a young architect, on the site of an old train station. The old library had stood at the top of forty steps on a hill, and readers there had filled out slips for clerks to fetch books from closed stacks. The new one stood beside the main bus terminal with ramps at every door and a ground floor level with the street, and its shelves stood open to anyone who walked in. Reviewing it that year, one critic called the building, above all, ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Set against an old library that was hard to reach and closed to browsing, the new one sits by the buses, at street level with ramps, with open shelves, so it is \"accessible.\" \"Airy\" fails because nothing describes its space or light, only how readers get in and get books; \"austere\" fails because nothing describes bare or plain interiors; \"adaptable\" fails because the changes are about reaching books, not a layout that can be rearranged.",
+      "kills": {
+        "airy": {"type": "logic", "quote": "ground floor level with the street", "why": "The building is described by its entrances and location, not by spacious or light-filled rooms."},
+        "austere": {"type": "logic", "quote": "shelves stood open to anyone", "why": "What is new is openness to readers, not plainness of decoration."},
+        "adaptable": {"type": "logic", "quote": "top of forty steps on a hill", "why": "The comparison with the old library is about difficulty of reaching books, not flexibility of the space."}
+      }
+    },
+    {
+      "key": "adaptable",
+      "passage": "In 1968 a city opened a new central library, designed by a young architect, on the site of an old train station. The architect had given its reading rooms no fixed walls in the plans: the shelves ran on floor tracks, and the partitions hung from ceiling rails. Before the year was out, the staff had turned the music room into a children's library and then into an exhibition hall, each time over a single weekend and without calling in builders. Reviewing it that year, one critic called the building, above all, ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Movable shelves and hanging partitions let the staff remake rooms for new uses in a weekend, so the building is \"adaptable.\" \"Airy\" fails because the partitions divide the space and nothing describes height or daylight; \"austere\" fails because nothing is said about bare or plain decoration; \"accessible\" fails because the changes concern what the rooms are used for, not how easily readers reach them.",
+      "kills": {
+        "airy": {"type": "logic", "quote": "partitions hung from ceiling rails", "why": "The space is divided by partitions; the passage describes its flexibility, not light or openness."},
+        "austere": {"type": "logic", "quote": "shelves ran on floor tracks", "why": "The design is about movable parts, not plainness of finish."},
+        "accessible": {"type": "logic", "quote": "turned the music room into a children's library", "why": "The point is repeated change of use, not ease of entry for readers."}
+      }
+    },
+    {
+      "key": "airy",
+      "passage": "In 1968 a city opened a new central library, designed by a young architect, on the site of an old train station. The architect placed the main reading room on the top floor, three stories high, under a roof of glass panels set among tiled murals and potted trees. The outer walls were glass from floor to ceiling, and on most days the staff switched on no lamps at all. Reviewing it that year, one critic called the building, above all, ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "A three-story room under a glass roof, walled in glass and lit by daylight alone, makes the building \"airy.\" \"Austere\" fails because the room has tiled murals and potted trees, not bare surfaces; \"adaptable\" fails because nothing about the space can be moved or changed; \"accessible\" fails because the reading room sits on the top floor, and nothing is said of ease of entry.",
+      "kills": {
+        "austere": {"type": "logic", "quote": "tiled murals and potted trees", "why": "The room is decorated, not stripped bare."},
+        "adaptable": {"type": "logic", "quote": "three stories high, under a roof", "why": "The room's quality is its fixed height and glass roof, not a layout that changes."},
+        "accessible": {"type": "explicit", "quote": "main reading room on the top floor", "why": "Placing the main room at the top is the reverse of easy entry; the design is about light."}
+      }
+    }
+  ]
+}

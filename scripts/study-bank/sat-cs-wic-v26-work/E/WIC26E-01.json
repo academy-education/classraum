@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a village boatyard's role on its coast",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "memory",
+    "lender",
+    "insurer",
+    "incubator"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "memory",
+    "lender",
+    "insurer",
+    "incubator"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+  "worlds": [
+    {
+      "key": "memory",
+      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. From its first keel, the yard wrote down each hull's timber, builder, and buyer, and added every later repair, sale, and wreck. When two families quarreled over a boat, or a buyer wanted to know what a secondhand hull had been through, they walked to the yard to look it up. By 1921 its books held the life of nearly every boat on that coast. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The yard recorded each boat's whole history and the coast came to it to recall that history, so it served as the coast's \"memory.\" \"Lender\" fails because buyers came to consult records, not to borrow; \"insurer\" fails because the yard only recorded wrecks and is never said to replace a lost boat; \"incubator\" fails because nothing new grows out of the yard and leaves it: the passage describes stored records, not people or businesses it nurtured.",
+      "kills": {
+        "lender": {
+          "type": "logic",
+          "quote": "walked to the yard to look it up",
+          "why": "what people came to the yard for was information about a hull's past, not money or credit"
+        },
+        "insurer": {
+          "type": "logic",
+          "quote": "added every later repair, sale, and wreck",
+          "why": "wrecks are entered as part of a hull's record; nothing says the yard paid for or replaced a lost boat"
+        },
+        "incubator": {
+          "type": "logic",
+          "quote": "its books held the life of nearly every boat",
+          "why": "the yard's role is to hold the coast's past, not to raise up new yards or trades that then go out on their own"
+        }
+      }
+    },
+    {
+      "key": "lender",
+      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. Few fishermen there had cash, and the nearest bank lay two days inland. A buyer could launch his boat at once and hand the yard a fifth of every season's catch. The yard's accounts show those shares stopping in the season the hull's price had been reached, often eight or ten years after its launch, and by 1921 most boats on that coast had been launched this way. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Fishermen without cash took their boats at once and paid the yard from their catch only until each hull's price was covered, so the yard was acting as the coast's \"lender.\" \"Memory\" fails because the accounts are the yard's own record of what it was owed, not a store of the coast's past that others consulted; \"insurer\" fails because the shares repaid a boat's price and covered no losses; \"incubator\" fails because the yard sold boats on credit and did not raise up new enterprises that went off on their own.",
+      "kills": {
+        "memory": {
+          "type": "logic",
+          "quote": "the season the hull's price had been reached",
+          "why": "the accounts track a debt until it is paid off; nothing is kept for the coast to remember"
+        },
+        "insurer": {
+          "type": "logic",
+          "quote": "a fifth of every season's catch",
+          "why": "the shares pay for the buyer's own boat over time; no loss is being covered"
+        },
+        "incubator": {
+          "type": "logic",
+          "quote": "most boats on that coast had been launched this way",
+          "why": "what spread along the coast was boats bought on credit, not enterprises that began at the yard and left it"
+        }
+      }
+    },
+    {
+      "key": "insurer",
+      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. Every hull it sold cost a little more than its timber and labor, and the yard kept the difference apart from its own profits. After the storm of 1893 sank fourteen boats, it paid for fourteen new hulls, each handed at no charge to a family that had lost one, and by 1921 every boat lost on that coast had been rebuilt this way. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Every buyer paid a little extra into a sum the yard kept apart, and that sum rebuilt the boats of whoever suffered a loss, so the yard served as the coast's \"insurer.\" \"Lender\" fails because the new hulls were handed over at no charge and were never repaid; \"memory\" fails because the passage describes money held against losses, not a record of the coast's past; \"incubator\" fails because the yard restored existing fishing families rather than raising up new enterprises that went off on their own.",
+      "kills": {
+        "lender": {
+          "type": "logic",
+          "quote": "handed at no charge",
+          "why": "the replacement hulls are not advanced to be repaid, so nothing is lent"
+        },
+        "memory": {
+          "type": "logic",
+          "quote": "kept the difference apart from its own profits",
+          "why": "what the yard held for the coast was money against losses, not a record of its past"
+        },
+        "incubator": {
+          "type": "logic",
+          "quote": "a family that had lost one",
+          "why": "the fund restores what existing families lost; it starts no new enterprises"
+        }
+      }
+    },
+    {
+      "key": "incubator",
+      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. Each year it took on two of the village's boys as apprentices, and after five years it let them go, since its own orders never grew. Most carried their tools to other harbors along that coast and built boats of their own. A survey of 1921 counted eleven yards on that coast, nine of them run by men born in the village. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The yard trained boys, released them, and they founded most of the coast's other yards, so it served as the coast's \"incubator.\" \"Lender\" fails because what the yard gave its apprentices was training, not money for their new yards; \"insurer\" fails because nothing is said about covering anyone's losses; \"memory\" fails because the yard's importance lies in the yards that grew from it, not in any record of the past it kept.",
+      "kills": {
+        "lender": {
+          "type": "logic",
+          "quote": "carried their tools to other harbors",
+          "why": "the apprentices took skills and tools from the yard, not credit; nothing is lent"
+        },
+        "insurer": {
+          "type": "logic",
+          "quote": "since its own orders never grew",
+          "why": "the mechanism is a small yard training and releasing builders; no losses are covered"
+        },
+        "memory": {
+          "type": "logic",
+          "quote": "nine of them run by men born in the village",
+          "why": "the yard's legacy is the new yards its trainees founded, not a store of records"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "WIC26A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a minor character's function in a novel",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["prism", "pivot", "pawn", "puzzle"],
+  "antonym_pairs": [],
+  "rarity_order": ["puzzle", "pivot", "pawn", "prism"],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In an often-cited essay, one critic calls the gardener the novel's ______.",
+  "worlds": [
+    {
+      "key": "prism",
+      "passage": "A nineteenth-century novel follows two sisters who inherit a country estate, and the family's gardener speaks fewer lines than any other recurring character. The novel is told entirely through his letters to a brother overseas, so readers meet the sisters only as he describes them. Critics have noted that the elder sister, whom the letters treat warmly, comes across as generous, while the younger, whom he distrusts, seems grasping in scenes where the two behave almost identically. In an often-cited essay, one critic calls the gardener the novel's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every scene reaches the reader through the gardener's letters, and his feelings color how each sister appears even when they act alike, so he is the novel's \"prism.\" \"Pivot\" fails because no single act of his turns the plot. \"Pawn\" fails because no one is described as using him for their ends. \"Puzzle\" fails because his attitudes are plain; it is the sisters who are seen through them.",
+      "kills": {
+        "pivot": {"type": "logic", "quote": "told entirely through his letters", "why": "his role runs through the whole book as its medium, not as one turning point"},
+        "pawn": {"type": "logic", "quote": "readers meet the sisters only as he describes them", "why": "he shapes how others are seen rather than being moved about by them"},
+        "puzzle": {"type": "logic", "quote": "whom the letters treat warmly", "why": "his likes and distrusts are stated openly, so his attitudes are not a mystery"}
+      }
+    },
+    {
+      "key": "pivot",
+      "passage": "A nineteenth-century novel follows two sisters who inherit a country estate, and the family's gardener speaks fewer lines than any other recurring character. He appears in only one chapter, the eleventh of twenty-two, when he tells the magistrate that the old master signed a later will. In the ten chapters before it, the sisters' fortunes rise as their claim to the estate gains support; in the eleven after it, a cousin's lawsuit built on that later will strips them of nearly everything. In an often-cited essay, one critic calls the gardener the novel's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The gardener's single appearance sits at the exact middle of the book, and the sisters' fortunes rise before it and collapse after it, so he is the novel's \"pivot.\" \"Prism\" fails because he appears in one chapter and the story is not seen through him. \"Pawn\" fails because no character is shown steering him; he gives his own testimony. \"Puzzle\" fails because nothing about his act is left unexplained.",
+      "kills": {
+        "prism": {"type": "logic", "quote": "He appears in only one chapter", "why": "a character present in one chapter cannot be the lens through which the whole story is viewed"},
+        "pawn": {"type": "logic", "quote": "he tells the magistrate that the old master signed", "why": "he acts by giving testimony himself; no one is shown moving him for their own purposes"},
+        "puzzle": {"type": "logic", "quote": "a cousin's lawsuit built on that later will", "why": "the consequences of his testimony are laid out plainly, with no unexplained mystery about him"}
+      }
+    },
+    {
+      "key": "pawn",
+      "passage": "A nineteenth-century novel follows two sisters who inherit a country estate, and the family's gardener speaks fewer lines than any other recurring character. Each sister in turn persuades him to carry messages, move boundary stones, or repeat stories to the neighbors that serve her side of their quarrel. He does whatever the last sister to speak with him asks, and the narrator describes him as content to oblige whoever is paying his wages that week. In an often-cited essay, one critic calls the gardener the novel's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Both sisters move the gardener about for their own ends in their quarrel, and he simply obliges whoever spoke to him last, so he is the novel's \"pawn.\" \"Prism\" fails because the story is not told through his view. \"Pivot\" fails because his errands serve both sides by turns rather than turning the plot once. \"Puzzle\" fails because the narrator explains his behavior: he obliges whoever pays him.",
+      "kills": {
+        "prism": {"type": "logic", "quote": "Each sister in turn persuades him", "why": "the sisters act on him; the passage gives no sign that events are seen through his eyes"},
+        "pivot": {"type": "logic", "quote": "serve her side of their quarrel", "why": "his acts help each side in turn, so no single act of his turns the story"},
+        "puzzle": {"type": "explicit", "quote": "content to oblige whoever is paying his wages", "why": "the narrator states his motive, so there is nothing unexplained about him"}
+      }
+    },
+    {
+      "key": "puzzle",
+      "passage": "A nineteenth-century novel follows two sisters who inherit a country estate, and the family's gardener speaks fewer lines than any other recurring character. In the early chapters he hides the elder sister's lost locket, months later returns it to her doorstep without a word, and near the end tells the younger sister where it had been. The narrator, who explains every other character's motives at length, offers no motive for any of these acts. In an often-cited essay, one critic calls the gardener the novel's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The gardener's acts pull against one another, and the narrator, who explains everyone else, never explains him, so he is the novel's \"puzzle.\" \"Prism\" fails because the story is not told from his point of view. \"Pivot\" fails because his small acts with a locket do not turn the plot. \"Pawn\" fails because no one directs him; he acts on his own, for reasons no one gives.",
+      "kills": {
+        "prism": {"type": "logic", "quote": "explains every other character's motives at length", "why": "the narrator, not the gardener, is the one through whom the characters are presented"},
+        "pivot": {"type": "logic", "quote": "hides the elder sister's lost locket", "why": "his acts concern a small object, and none is shown changing the course of the plot"},
+        "pawn": {"type": "logic", "quote": "returns it to her doorstep without a word", "why": "he acts secretly and on his own, not at anyone's direction"}
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "WIC26C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a ministry's response to a river flood",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["crude", "covert", "complacent", "bureaucratic"],
+  "antonym_pairs": [],
+  "rarity_order": ["crude", "complacent", "covert", "bureaucratic"],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "In a later account, one reporter described the national ministry's response to the flood as ______.",
+  "worlds": [
+    {
+      "key": "bureaucratic",
+      "passage": "In the spring of 1974 a river broke through its levees and flooded some four hundred homes in a farming district. Within a week the ministry had set aside enough money to rebuild every damaged home. To receive any of it, a family had to file a separate claim for each room, attach an estimate from a licensed surveyor, and wait for a regional office to approve the claim, which came back unread if one box was blank; most families were paid the following spring. In a later account, one reporter described the national ministry's response to the flood as ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The money was ready within a week, and what held it back for a year was a chain of forms, estimates, and office approvals, so the response was \"bureaucratic.\" \"Crude\" fails because claims were assessed room by room, the opposite of a rough one-size measure; \"covert\" fails because the aid ran through a public claims office with nothing hidden; \"complacent\" fails because the ministry moved quickly to fund every home rather than resting on past success.",
+      "kills": {
+        "crude": {"type": "logic", "quote": "a separate claim for each room", "why": "Payments were measured to each room's damage, which is careful, not rough or unrefined."},
+        "covert": {"type": "logic", "quote": "wait for a regional office to approve", "why": "Families dealt openly with the ministry's own offices; nothing about the aid was concealed."},
+        "complacent": {"type": "logic", "quote": "Within a week the ministry had set aside", "why": "The ministry acted promptly and funded full rebuilding; it did not treat the flood as needing no action."}
+      }
+    },
+    {
+      "key": "complacent",
+      "passage": "In the spring of 1974 a river broke through its levees and flooded some four hundred homes in a farming district. The ministry's engineers noted that the same levees had held through three higher floods in the previous forty years. On that record the ministry judged the break a freak event, turned down the district's request to raise the levees, and paid only to close the gap where the water had come through and nothing more. In a later account, one reporter described the national ministry's response to the flood as ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Reassured by the levees' past record, the ministry treated the break as a fluke and saw no need to do more, so its response was \"complacent.\" \"Crude\" fails because the ministry did very little, not something rough; the one repair is not described as clumsy; \"covert\" fails because its judgment and its refusal were stated to the district openly; \"bureaucratic\" fails because no forms, claims, or approvals stood between anyone and aid: the request was simply refused.",
+      "kills": {
+        "crude": {"type": "logic", "quote": "paid only to close the gap", "why": "The fault is how little was done, not that what was done was rough or unrefined."},
+        "covert": {"type": "logic", "quote": "turned down the district's request", "why": "The ministry answered the district directly; its decision was not hidden."},
+        "bureaucratic": {"type": "logic", "quote": "On that record the ministry judged", "why": "The response turned on a judgment drawn from the levees' record, not on procedures or paperwork."}
+      }
+    },
+    {
+      "key": "covert",
+      "passage": "In the spring of 1974 a river broke through its levees and flooded some four hundred homes in a farming district. Engineers at the ministry knew that a drainage canal it had dug the year before had weakened the levee at the very point where it broke. Rather than admit this, the ministry paid each family through a church charity that did not name its source, and reporters learned where the money had come from only twelve years later. In a later account, one reporter described the national ministry's response to the flood as ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Because its own canal had caused the break, the ministry hid its role by sending the money through a charity that never named it, so the response was \"covert.\" \"Crude\" fails because nothing is said of the aid being rough or poorly judged, only of its source being hidden; \"complacent\" fails because the ministry knew it was at fault and acted; \"bureaucratic\" fails because the money reached families directly through the charity without forms or approvals.",
+      "kills": {
+        "crude": {"type": "logic", "quote": "paid each family through a church charity", "why": "The point of the arrangement is concealment of the source, not a rough or unrefined method of aid."},
+        "complacent": {"type": "logic", "quote": "had weakened the levee", "why": "The ministry knew its own canal caused the break and paid for it; it was not resting easy on a good record."},
+        "bureaucratic": {"type": "logic", "quote": "did not name its source", "why": "The ministry routed aid quietly through a charity, which is the opposite of an official procedure families had to work through."}
+      }
+    },
+    {
+      "key": "crude",
+      "passage": "In the spring of 1974 a river broke through its levees and flooded some four hundred homes in a farming district. The ministry acted within a day, sending trucks of sandbags and a check for one fixed sum to every household. A family whose cellar had taken a foot of water received what a family whose house had washed away received, and the sandbags were tipped out at the roadside, unfilled and unstacked, for each household to place itself. In a later account, one reporter described the national ministry's response to the flood as ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The ministry acted fast and openly, with one flat payment regardless of loss and sandbags simply dumped, so the response was \"crude\": rough and unrefined. \"Covert\" fails because the trucks and checks came openly from the ministry; \"complacent\" fails because it acted within a day; \"bureaucratic\" fails because every household was paid at once with no claims or approvals.",
+      "kills": {
+        "covert": {"type": "logic", "quote": "sending trucks of sandbags", "why": "The aid arrived openly from the ministry itself, with nothing hidden about its source."},
+        "complacent": {"type": "explicit", "quote": "acted within a day", "why": "An immediate response rules out a ministry satisfied that nothing needed doing."},
+        "bureaucratic": {"type": "logic", "quote": "one fixed sum to every household", "why": "Every household received the same check without filing or assessment, so no procedure slowed the aid."}
+      }
+    }
+  ]
+}

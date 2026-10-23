@@ -1,0 +1,122 @@
+{
+  "id": "WIC26A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "island basket weaving and a marketing board",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "rekindled",
+    "professionalized",
+    "petrified",
+    "repurposed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "repurposed",
+    "rekindled",
+    "professionalized",
+    "petrified"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+  "worlds": [
+    {
+      "key": "rekindled",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. By then only a handful of elderly islanders still wove, since the fishing crews had gone over to cheap tin pails in the 1930s. The board paid a fixed price for every basket and shipped them to mainland fish markets. Through the 1950s younger islanders sat with those elders to learn the stitches, and by 1975 most households again kept a basket on the frame through the winter evenings. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Weaving had nearly died out after the crews switched to tin pails, and the board's steady price brought it back into most households, so the purchases \"rekindled\" the craft. \"Professionalized\" fails because the weaving returned to ordinary households rather than passing to trained, paid specialists. \"Repurposed\" fails because the baskets still went to fish markets, the use they always had. \"Petrified\" fails because nothing in the passage fixes the baskets' form; what changed is how many people wove.",
+      "kills": {
+        "professionalized": {
+          "type": "logic",
+          "quote": "most households again kept a basket on the frame",
+          "why": "the craft went back to ordinary households in the evenings, not to a trained paid trade"
+        },
+        "repurposed": {
+          "type": "logic",
+          "quote": "shipped them to mainland fish markets",
+          "why": "the baskets kept their old use, carrying fish"
+        },
+        "petrified": {
+          "type": "logic",
+          "quote": "only a handful of elderly islanders still wove",
+          "why": "the change the passage traces is in the number of weavers, from a handful to most households; it reports no freezing of the baskets' form"
+        }
+      }
+    },
+    {
+      "key": "professionalized",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then nearly every household had woven its own baskets on winter evenings for its own boats. The board bought only from weavers who held its certificate, which took two years of full-time training at its workshop, and it paid them a monthly wage. By 1975 the island's baskets came from about thirty weavers, and the crews bought theirs at the board's depot. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A household skill practiced by nearly everyone became the salaried work of about thirty certified, trained weavers, so the purchases \"professionalized\" the craft. \"Rekindled\" fails because the craft was flourishing in nearly every household before the board arrived. \"Repurposed\" fails because the crews still used the baskets on their boats. \"Petrified\" fails because what changed is who weaves, not whether the baskets' designs were fixed.",
+      "kills": {
+        "rekindled": {
+          "type": "logic",
+          "quote": "nearly every household had woven its own baskets",
+          "why": "the craft was thriving before the board, so it was not revived"
+        },
+        "repurposed": {
+          "type": "logic",
+          "quote": "the crews bought theirs at the board's depot",
+          "why": "the baskets still went to the fishing crews, their old use"
+        },
+        "petrified": {
+          "type": "logic",
+          "quote": "two years of full-time training at its workshop",
+          "why": "the board's rule governs who may weave, through training and certificates, and says nothing about fixing the baskets' form"
+        }
+      }
+    },
+    {
+      "key": "petrified",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then each generation of weavers had varied the patterns its parents taught it, so that baskets from 1900 and 1950 look plainly different. The board paid only for baskets that matched, stitch for stitch, the samples in its 1952 pattern book. Households, which still wove for their own boats too, found it simplest to weave every basket to the book, and baskets from 1975 cannot be told from those of 1952. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A craft whose patterns had changed with every generation stopped changing once the board paid only for copies of its 1952 book, so the purchases \"petrified\" it, fixing it in one form. \"Rekindled\" fails because the craft was alive and changing before 1952. \"Professionalized\" fails because ordinary households went on doing the weaving. \"Repurposed\" fails because the baskets still served the islanders' own boats.",
+      "kills": {
+        "rekindled": {
+          "type": "logic",
+          "quote": "each generation of weavers had varied the patterns",
+          "why": "the craft was active and developing before the board, so nothing was revived"
+        },
+        "professionalized": {
+          "type": "logic",
+          "quote": "Households, which still wove",
+          "why": "the weaving stayed with ordinary households rather than passing to trained specialists"
+        },
+        "repurposed": {
+          "type": "explicit",
+          "quote": "wove for their own boats",
+          "why": "the baskets kept their use on the fishing boats"
+        }
+      }
+    },
+    {
+      "key": "repurposed",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then the baskets had carried the catch from the boats up to the island's smokehouses. The board's buyers sent them to city department stores, which displayed them beside lamps and flowerpots in their furnishing departments and priced one at five times what a fish basket cost on the quay. By 1975 the same households were weaving more baskets than ever, while the crews had gone over to plastic crates. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Baskets made to carry fish ended up as household furnishings in the city while the crews switched to crates, so the purchases \"repurposed\" the craft, turning it to a new use. \"Rekindled\" fails because households were weaving more than ever and the craft had never lapsed. \"Professionalized\" fails because the same households did the weaving. \"Petrified\" fails because the passage reports a change in what the baskets were for, not a freezing of their form.",
+      "kills": {
+        "rekindled": {
+          "type": "logic",
+          "quote": "more baskets than ever",
+          "why": "the craft had not died out, so it could not be revived"
+        },
+        "professionalized": {
+          "type": "logic",
+          "quote": "the same households were weaving",
+          "why": "the work stayed with the same households instead of moving to trained specialists"
+        },
+        "petrified": {
+          "type": "logic",
+          "quote": "beside lamps and flowerpots in their furnishing departments",
+          "why": "the change described is in the baskets' use, from fish carriers to furnishings, not in whether their designs were frozen"
+        }
+      }
+    }
+  ]
+}

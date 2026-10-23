@@ -1,0 +1,64 @@
+{
+  "id": "WIC26C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a coastal trading house and a river town's grain trade",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["cornered", "awakened", "bankrolled", "coordinated"],
+  "antonym_pairs": [],
+  "rarity_order": ["coordinated", "awakened", "cornered", "bankrolled"],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One economic historian has argued that by 1800 the house had ______ the town's grain trade.",
+  "worlds": [
+    {
+      "key": "cornered",
+      "passage": "In 1782 a trading house from the coast opened an office in a river town where farmers from the surrounding district had long sold their grain. Over the next decade it bought the harvest of nearly every farm in the district at the town's scales and leased both of the town's warehouses. By the late 1790s the millers downriver could buy grain from no one else, and each autumn they paid whatever price the house named. One economic historian has argued that by 1800 the house had ______ the town's grain trade.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The house bought up almost all the grain and the storage, leaving buyers no other seller and letting it name the price, so it \"cornered\" the town's grain trade. \"Awakened\" fails because farmers had long sold grain in the town before the house arrived; \"bankrolled\" fails because the house traded the grain itself rather than funding others who did; \"coordinated\" fails because it did not organize other dealers but displaced them, becoming the only seller.",
+      "kills": {
+        "awakened": {"type": "logic", "quote": "had long sold their grain", "why": "The trade was already active when the house came, so there was nothing dormant to revive."},
+        "bankrolled": {"type": "logic", "quote": "bought the harvest of nearly every farm", "why": "The house did the buying itself; it was not lending money to others who traded."},
+        "coordinated": {"type": "logic", "quote": "could buy grain from no one else", "why": "There were no other sellers left to organize; the house had taken the trade over."}
+      }
+    },
+    {
+      "key": "bankrolled",
+      "passage": "In 1782 a trading house from the coast opened an office in a river town where farmers from the surrounding district had long sold their grain. The house never bought or sold a sack of grain itself. Each spring the forty small dealers who bought from the farmers borrowed from it, and they repaid it with interest after the millers downriver had paid them. In 1794, when the house shut its office for one season, half of the dealers could not buy a harvest at all. One economic historian has argued that by 1800 the house had ______ the town's grain trade.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The house traded nothing, the dealers who did the trading borrowed from it each season, and the trade stalled the one year its office closed, so it \"bankrolled\" the town's grain trade. \"Cornered\" fails because forty dealers kept buying and selling while the house held no grain; \"awakened\" fails because farmers had long sold grain there; \"coordinated\" fails because the house's tie to each dealer was a loan, not any arrangement among the dealers.",
+      "kills": {
+        "cornered": {"type": "logic", "quote": "never bought or sold a sack", "why": "The house held no grain at all, so it could not control the supply."},
+        "awakened": {"type": "logic", "quote": "had long sold their grain", "why": "The trade was already going when the house arrived."},
+        "coordinated": {"type": "logic", "quote": "borrowed from it", "why": "Each dealer dealt with the house separately for money; nothing organizes the dealers' activity together."}
+      }
+    },
+    {
+      "key": "coordinated",
+      "passage": "In 1782 a trading house from the coast opened an office in a river town where farmers from the surrounding district had long sold their grain. The house never bought or sold a sack of grain itself. At its urging, the forty small dealers who bought from the farmers agreed to bring grain to market on set days in turn, to store it in one shared warehouse, and to send it downriver in a single convoy each month, while every dealer still set his own prices. One economic historian has argued that by 1800 the house had ______ the town's grain trade.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Without trading itself, the house got the many dealers to fit their market days, storage, and shipping into one schedule, so it \"coordinated\" the town's grain trade. \"Cornered\" fails because the house held no grain and each dealer kept setting his own prices; \"awakened\" fails because the trade was long established; \"bankrolled\" fails because the house arranged the dealers' timing and storage, and no money passes from it to them.",
+      "kills": {
+        "cornered": {"type": "logic", "quote": "every dealer still set his own prices", "why": "Prices stayed in many hands, and the house held no grain, so it controlled no supply."},
+        "awakened": {"type": "logic", "quote": "had long sold their grain", "why": "The trade was already active; nothing was revived."},
+        "bankrolled": {"type": "logic", "quote": "on set days in turn", "why": "What the house supplied was a shared schedule for the dealers, not funds."}
+      }
+    },
+    {
+      "key": "awakened",
+      "passage": "In 1782 a trading house from the coast opened an office in a river town where farmers from the surrounding district had sold their grain until the 1740s. The river had then silted up, the millers downriver had turned to other towns, and the market square had stood empty for forty years. The house dredged the channel, sent one barge of grain downriver that autumn, and closed its office the next spring, and within a decade thirty local dealers were shipping grain from the town again. One economic historian has argued that by 1800 the house had ______ the town's grain trade.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A trade that had lain dead for forty years came back to life after the house reopened the river and sent one cargo, so it \"awakened\" the town's grain trade. \"Cornered\" fails because the house left after one season and thirty local dealers took up the trade; \"bankrolled\" fails because the house cleared the channel rather than funding the dealers; \"coordinated\" fails because it was gone before the dealers returned, so it organized none of them.",
+      "kills": {
+        "cornered": {"type": "logic", "quote": "closed its office the next spring", "why": "The house left the trade almost at once; it never controlled the supply."},
+        "bankrolled": {"type": "logic", "quote": "dredged the channel", "why": "Its contribution was reopening the river, not lending to the dealers who later traded."},
+        "coordinated": {"type": "logic", "quote": "within a decade thirty local dealers", "why": "The dealers returned after the house had gone, so it arranged nothing among them."}
+      }
+    }
+  ]
+}

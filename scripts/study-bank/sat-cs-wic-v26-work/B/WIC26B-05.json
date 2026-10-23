@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a county football rule of 1868",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "tamed",
+    "unbalanced",
+    "splintered",
+    "urbanized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "tamed",
+    "unbalanced",
+    "splintered",
+    "urbanized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Looking back, one sports historian argued that the rule of 1868 had ______ the game.",
+  "worlds": [
+    {
+      "key": "tamed",
+      "passage": "In 1868 the twenty-four football clubs of a northern county's league, from its towns and villages alike, adopted a new rule for their matches. Before it, a scrum could hold forty players kicking at one another's shins. The rule ended a scrum as soon as the ball was held and barred any kick that missed the ball. The county papers, which had listed dozens of broken legs a season, listed four in 1870. Scores and crowds stayed much as they had been, and the scrum, now brief, remained the heart of every match. Looking back, one sports historian argued that the rule of 1868 had ______ the game.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "By ending long scrums and banning kicks at players, the rule cut injuries sharply while leaving the game's shape and following intact, so it \"tamed\" the game. \"Unbalanced\" fails because the rule limited rough play for every side alike. \"Splintered\" fails because every match was still played in the same form. \"Urbanized\" fails because the rule changed how the game was played, not where or by whom.",
+      "kills": {
+        "unbalanced": {
+          "type": "logic",
+          "quote": "barred any kick that missed the ball",
+          "why": "the rule limited violence for every side equally; nothing in it favors one kind of club"
+        },
+        "splintered": {
+          "type": "logic",
+          "quote": "remained the heart of every match",
+          "why": "every match was still played in the same form under the rule, so the game did not divide"
+        },
+        "urbanized": {
+          "type": "logic",
+          "quote": "Scores and crowds stayed much as they had been",
+          "why": "the rule changed how roughly the game was played, not where or by whom"
+        }
+      }
+    },
+    {
+      "key": "unbalanced",
+      "passage": "In 1868 the twenty-four football clubs of a northern county's league, from its towns and villages alike, adopted a new rule for their matches. It let a side that caught the ball keep it for as long as its forwards could hold off a tackle. Clubs from the colliery villages, whose forwards were the heaviest men in the county, won fifty-one of their next sixty matches. A title that had changed hands nearly every year went to one of three colliery clubs in each of the next twelve seasons. Looking back, one sports historian argued that the rule of 1868 had ______ the game.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The rule rewarded sheer weight in the forwards, so the colliery clubs, with the heaviest men, began winning almost every match and every title: the rule \"unbalanced\" the game. \"Tamed\" fails because the rule did nothing to make play less rough; it made strength decisive. \"Splintered\" fails because the clubs stayed in one league competing for one title. \"Urbanized\" fails because the clubs that rose were village clubs that already belonged to the league.",
+      "kills": {
+        "tamed": {
+          "type": "logic",
+          "quote": "as long as its forwards could hold off a tackle",
+          "why": "the rule made physical strength count for more, the opposite of reining in rough play"
+        },
+        "splintered": {
+          "type": "logic",
+          "quote": "went to one of three colliery clubs",
+          "why": "there was still a single title in a single league"
+        },
+        "urbanized": {
+          "type": "logic",
+          "quote": "Clubs from the colliery villages",
+          "why": "the winners were village clubs, so the game did not shift to the towns"
+        }
+      }
+    },
+    {
+      "key": "splintered",
+      "passage": "In 1868 the twenty-four football clubs of a northern county's league, from its towns and villages alike, adopted a new rule for their matches. It forbade carrying the ball in the hands. Eleven of the clubs refused to play under it, left the league, and set up an association of their own that kept the old handling game. By 1880 the county had two codes of football, with separate fixtures, referees, and rulebooks, and a club from one never met a club from the other. Looking back, one sports historian argued that the rule of 1868 had ______ the game.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The rule drove nearly half the clubs to leave and found a rival association, leaving the county with two separate games, so it \"splintered\" the game. \"Tamed\" fails because the rule's effect was division, not less rough play. \"Unbalanced\" fails because the clubs stopped competing against each other at all, so no side gained an edge over the other. \"Urbanized\" fails because the same clubs went on playing, in two codes, where they always had.",
+      "kills": {
+        "tamed": {
+          "type": "logic",
+          "quote": "kept the old handling game",
+          "why": "the outcome of the rule was a split over handling, not a gentler game"
+        },
+        "unbalanced": {
+          "type": "logic",
+          "quote": "a club from one never met",
+          "why": "the two groups no longer played each other, so neither was favored against the other"
+        },
+        "urbanized": {
+          "type": "logic",
+          "quote": "Eleven of the clubs",
+          "why": "the existing clubs simply divided; nothing moved the game into towns"
+        }
+      }
+    },
+    {
+      "key": "urbanized",
+      "passage": "In 1868 the twenty-four football clubs of a northern county's league, from its towns and villages alike, adopted a new rule for their matches. It required every match to be played on an enclosed ground with marked boundaries and a gate. The village clubs, which had played across open common land, could not afford such a ground, and most disbanded within five years. By 1875 nearly every club in the league belonged to a mill or market town where a fenced ground could be rented, and crowds paid at the gate to watch. Looking back, one sports historian argued that the rule of 1868 had ______ the game.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The rule demanded fenced grounds that only towns could supply, so the village clubs folded and the league became a league of town clubs: the rule \"urbanized\" the game. \"Tamed\" fails because the rule governed grounds, not how roughly the game was played. \"Unbalanced\" fails because the league was emptied of village clubs rather than tilted toward one side. \"Splintered\" fails because the village clubs disbanded instead of forming a rival game.",
+      "kills": {
+        "tamed": {
+          "type": "logic",
+          "quote": "enclosed ground with marked boundaries",
+          "why": "the rule set conditions for the ground, not limits on play"
+        },
+        "unbalanced": {
+          "type": "logic",
+          "quote": "nearly every club in the league belonged",
+          "why": "the league's whole membership changed; no side was given an edge within it"
+        },
+        "splintered": {
+          "type": "explicit",
+          "quote": "most disbanded within five years",
+          "why": "the village clubs ceased to exist instead of breaking off into a rival code"
+        }
+      }
+    }
+  ]
+}

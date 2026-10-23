@@ -1,0 +1,122 @@
+{
+  "id": "WIC26D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "the prose of a farmer's memoir",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "didactic",
+    "deadpan",
+    "digressive",
+    "florid"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "deadpan",
+    "digressive",
+    "didactic",
+    "florid"
+  ],
+  "pos": "adjective",
+  "after_blank": "from",
+  "blank_sentence": "Critics who reviewed the book found its prose ______ from first chapter to last.",
+  "worlds": [
+    {
+      "key": "didactic",
+      "passage": "In 1958 a retired wheat farmer published a memoir of his forty years on the plains, with a chapter for each season of the farm year. Each chapter recounts that season's work, a dry summer or a hard winter, and then closes with several paragraphs telling the reader what the season should teach about thrift, patience, or debt. A chapter about a runaway mule ends the same way, spelling out its lesson for \"the young man starting out,\" whom the author addresses directly throughout the book. Critics who reviewed the book found its prose ______ from first chapter to last.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every chapter, even one about a runaway mule, ends by spelling out a lesson for a young reader addressed directly, so the prose is \"didactic,\" written to instruct. \"Deadpan\" fails because the author does not report events flatly and leave them; he comments on each one to draw its moral. \"Digressive\" fails because each chapter moves straight from the season's work to its lesson. \"Florid\" fails because nothing is said about ornate language; the prose is marked by its lessons.",
+      "kills": {
+        "deadpan": {
+          "type": "logic",
+          "quote": "spelling out its lesson",
+          "why": "an author who explains the meaning of each episode is the opposite of one who reports without comment"
+        },
+        "digressive": {
+          "type": "logic",
+          "quote": "recounts that season's work",
+          "why": "each chapter keeps to its season and then states the lesson, so it does not wander off its subject"
+        },
+        "florid": {
+          "type": "logic",
+          "quote": "telling the reader what the season should teach",
+          "why": "the distinctive feature is moral instruction, not elaborate figures of speech"
+        }
+      }
+    },
+    {
+      "key": "deadpan",
+      "passage": "In 1958 a retired wheat farmer published a memoir of his forty years on the plains, with a chapter for each season of the farm year. In the chapter on one hard winter he reports a barn fire, a hailstorm that killed his only cow, and a banker who fled with his savings in short, plain sentences, and he never remarks on any of them. Readers laughed hardest at details he set down as though they were routine, such as the cow's having been insured \"that same morning, for slightly less than she was worth.\" Critics who reviewed the book found its prose ______ from first chapter to last.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Disasters are reported in short, plain sentences without comment, and the humor comes from absurd details delivered as if ordinary, so the prose is \"deadpan.\" \"Didactic\" fails because he never remarks on events, let alone draws lessons from them. \"Digressive\" fails because he reports one event after another without wandering from them. \"Florid\" fails because the sentences are short and plain, not ornate.",
+      "kills": {
+        "didactic": {
+          "type": "logic",
+          "quote": "he never remarks on any of them",
+          "why": "an author who offers no comment draws no lessons for the reader"
+        },
+        "digressive": {
+          "type": "logic",
+          "quote": "short, plain sentences",
+          "why": "the events are set down briefly one after another, not interrupted by wandering asides"
+        },
+        "florid": {
+          "type": "logic",
+          "quote": "set down as though they were routine",
+          "why": "flat, matter-of-fact reporting is the reverse of ornate, elaborate language"
+        }
+      }
+    },
+    {
+      "key": "digressive",
+      "passage": "In 1958 a retired wheat farmer published a memoir of his forty years on the plains, with a chapter for each season of the farm year. The chapter on planting winter wheat spends two pages on the wheat and then moves on to his grandfather's violin, the history of the county road, and a recipe for plum jam, returning to the wheat in its final paragraph. Nearly every chapter follows that pattern, so a reader can lose track of which season the book has reached. Critics who reviewed the book found its prose ______ from first chapter to last.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Chapters leave their subject for violins, roads, and jam and come back only at the end, so often that readers lose their place in the year: the prose is \"digressive.\" \"Didactic\" fails because the chapters wander among stories rather than delivering lessons. \"Deadpan\" fails because the passage describes the prose's structure, not a flat comic delivery. \"Florid\" fails because the problem is where the prose goes, not how ornate its wording is.",
+      "kills": {
+        "didactic": {
+          "type": "logic",
+          "quote": "a recipe for plum jam",
+          "why": "the chapters drift into unrelated material, not into instruction for the reader"
+        },
+        "deadpan": {
+          "type": "logic",
+          "quote": "lose track of which season",
+          "why": "the effect described is confusion from wandering, not humor from flat delivery"
+        },
+        "florid": {
+          "type": "logic",
+          "quote": "returning to the wheat in its final paragraph",
+          "why": "the feature is a departure from and return to the subject, not ornamented language"
+        }
+      }
+    },
+    {
+      "key": "florid",
+      "passage": "In 1958 a retired wheat farmer published a memoir of his forty years on the plains, with a chapter for each season of the farm year. In his pages a summer sunrise over the stubble is \"a blaze of molten brass poured upon a tapestry of gold,\" and milking a cow becomes \"the patient summoning of a pale and foaming fountain.\" Every other chore of the farm year, from mending fences to hauling grain to market, is dressed in the same heaped adjectives and metaphors. Critics who reviewed the book found its prose ______ from first chapter to last.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Even plain chores such as milking and mending fences are wrapped in piled-up adjectives and grand metaphors, so the prose is \"florid,\" excessively ornate. \"Didactic\" fails because the chores are decorated, not turned into lessons. \"Deadpan\" fails because heaped figures of speech are the reverse of flat, plain reporting. \"Digressive\" fails because each description stays on its chore; the excess is in the wording, not in wandering from the subject.",
+      "kills": {
+        "didactic": {
+          "type": "logic",
+          "quote": "dressed in the same heaped adjectives",
+          "why": "the chores are embellished, not used to teach the reader anything"
+        },
+        "deadpan": {
+          "type": "logic",
+          "quote": "a blaze of molten brass",
+          "why": "lavish metaphor is the opposite of a flat, unadorned delivery"
+        },
+        "digressive": {
+          "type": "logic",
+          "quote": "Every other chore of the farm year",
+          "why": "the prose describes each chore itself, elaborately, rather than leaving it for unrelated topics"
+        }
+      }
+    }
+  ]
+}

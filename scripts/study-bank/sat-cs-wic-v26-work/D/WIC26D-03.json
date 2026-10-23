@@ -1,0 +1,122 @@
+{
+  "id": "WIC26D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "enforcing a street-vending ordinance",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "haphazard",
+    "furtive",
+    "evenhanded",
+    "drastic"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "drastic",
+    "haphazard",
+    "evenhanded",
+    "furtive"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Asked about its first year, most of the vendors interviewed for one study described the city's enforcement of the ordinance as ______.",
+  "worlds": [
+    {
+      "key": "haphazard",
+      "passage": "In 2015 a city passed an ordinance limiting where street vendors could park their carts. The city gave its four inspectors no routes or schedules, and they checked carts wherever their other duties happened to take them. Some corners saw an inspector several times a week while others never saw one, and a cart parked in the same spot might be fined on a Tuesday and passed without comment on Friday. Asked about its first year, most of the vendors interviewed for one study described the city's enforcement of the ordinance as ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "With no routes or schedules, inspections depended on where inspectors happened to be, so some corners were checked constantly and others never, and the same cart could be fined one day and ignored another: the enforcement was \"haphazard.\" \"Evenhanded\" fails because that same randomness meant vendors in identical situations were treated differently. \"Furtive\" fails because nothing suggests the inspectors hid what they were doing. \"Drastic\" fails because the problem described is inconsistency, not severity.",
+      "kills": {
+        "evenhanded": {
+          "type": "logic",
+          "quote": "fined on a Tuesday and passed without comment",
+          "why": "the same cart in the same spot got different treatment, so enforcement was not equal"
+        },
+        "furtive": {
+          "type": "logic",
+          "quote": "wherever their other duties happened to take them",
+          "why": "inspections followed chance, not concealment; nothing secret is described"
+        },
+        "drastic": {
+          "type": "logic",
+          "quote": "no routes or schedules",
+          "why": "the mechanism is a lack of plan, which bears on consistency, not on harsh penalties"
+        }
+      }
+    },
+    {
+      "key": "furtive",
+      "passage": "In 2015 a city passed an ordinance limiting where street vendors could park their carts. Rather than patrol in uniform, the city's inspectors dressed as ordinary customers, bought a snack or a drink at each cart they checked, and left without a word. Weeks later a vendor might receive a fine by mail naming a date and a corner, and many could not recall which of that day's buyers had been the inspector. Asked about its first year, most of the vendors interviewed for one study described the city's enforcement of the ordinance as ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Inspectors disguised themselves as customers, said nothing, and let fines arrive weeks later by mail, so vendors never knew when they had been checked: the enforcement was \"furtive,\" done by stealth. \"Haphazard\" fails because the passage describes concealment, not a lack of system in where inspectors went. \"Evenhanded\" fails because nothing indicates vendors were treated alike; the point is that they could not see the enforcement at all. \"Drastic\" fails because a fine by mail is described, not a severe penalty.",
+      "kills": {
+        "haphazard": {
+          "type": "logic",
+          "quote": "dressed as ordinary customers",
+          "why": "the defining feature is a deliberate disguise, a method rather than an absence of one"
+        },
+        "evenhanded": {
+          "type": "logic",
+          "quote": "could not recall which of that day's buyers",
+          "why": "what vendors report is that they could not tell when or by whom they were checked, not equal treatment"
+        },
+        "drastic": {
+          "type": "logic",
+          "quote": "receive a fine by mail",
+          "why": "the penalty described is an ordinary mailed fine; the striking feature is secrecy, not severity"
+        }
+      }
+    },
+    {
+      "key": "evenhanded",
+      "passage": "In 2015 a city passed an ordinance limiting where street vendors could park their carts. The city's inspectors worked through a list of every licensed cart, block by block, checking each one once a month, and a vendor found in a restricted zone received a written warning and, on a second offense, a fine. In the first year's records, single-cart owners and the city's largest fleet of food trucks show the same number of checks per cart and the same share of warnings that became fines. Asked about its first year, most of the vendors interviewed for one study described the city's enforcement of the ordinance as ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Every cart was on one monthly list under one warning-then-fine procedure, and the records show a lone owner and the largest fleet checked and fined at the same rates, so the enforcement was \"evenhanded.\" \"Haphazard\" fails because the inspectors followed a complete list block by block. \"Furtive\" fails because a written warning before any fine is the opposite of stealth. \"Drastic\" fails because the procedure began with a warning and reached a fine only on a second offense.",
+      "kills": {
+        "haphazard": {
+          "type": "logic",
+          "quote": "a list of every licensed cart, block by block",
+          "why": "a full list worked through in order is systematic, not random"
+        },
+        "furtive": {
+          "type": "logic",
+          "quote": "received a written warning",
+          "why": "vendors were told openly before any penalty, so the enforcement was not secret"
+        },
+        "drastic": {
+          "type": "logic",
+          "quote": "on a second offense, a fine",
+          "why": "a first offense brought only a warning and a second a fine, a graduated response rather than a severe one"
+        }
+      }
+    },
+    {
+      "key": "drastic",
+      "passage": "In 2015 a city passed an ordinance limiting where street vendors could park their carts. Under the earlier rules, an inspector who found a cart in the wrong place had simply asked its owner to move along. The ordinance let inspectors choose among a warning, a fine, and towing, and in the first year they towed in nine of every ten cases, holding each cart for thirty days; by year's end about a third of the city's licensed vendors had left the trade. Asked about its first year, most of the vendors interviewed for one study described the city's enforcement of the ordinance as ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Given a choice among a warning, a fine, and towing, inspectors towed and impounded in nine cases of ten, where they had once just asked vendors to move, and a third of vendors quit within the year, so the enforcement was \"drastic.\" \"Haphazard\" fails because inspectors made the same harsh choice almost every time. \"Furtive\" fails because towing a cart is as visible as enforcement gets. \"Evenhanded\" fails because the passage measures how severe the response was, and it left the penalty to each inspector's choice rather than to one standard.",
+      "kills": {
+        "haphazard": {
+          "type": "logic",
+          "quote": "towed in nine of every ten cases",
+          "why": "inspectors chose the harshest option almost uniformly, a consistent pattern rather than chance"
+        },
+        "furtive": {
+          "type": "logic",
+          "quote": "holding each cart for thirty days",
+          "why": "impounding carts is open and visible, the reverse of secret"
+        },
+        "evenhanded": {
+          "type": "logic",
+          "quote": "let inspectors choose among a warning",
+          "why": "penalties were left to each inspector's discretion, and the passage's contrast is between a mild old response and a severe new one, a change in severity, not in fairness"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a posthumous novel and its editor",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "salvaged",
+    "sanitized",
+    "shelved",
+    "updated"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "updated",
+    "shelved",
+    "salvaged",
+    "sanitized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a study published decades later, one scholar argued that this editor had ______ the book.",
+  "worlds": [
+    {
+      "key": "salvaged",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. A burst pipe had soaked the trunk it lay in, and many pages had run into gray, blurred sheets. The editor dried and separated them one at a time, had the faded lines photographed under ultraviolet light, and copied out nearly every word. The novel was printed in 1934, with the few lines that could not be read marked by gaps. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The manuscript had been badly water-damaged, and the editor recovered almost every word before printing it, so the editor \"salvaged\" the book. \"Sanitized\" fails because the editor removed nothing by choice; only unreadable lines are missing. \"Shelved\" fails because the editor spent the three years recovering the text and then printed it. \"Updated\" fails because the editor's work was to recover what the novelist wrote, not to change it.",
+      "kills": {
+        "sanitized": {
+          "type": "logic",
+          "quote": "copied out nearly every word",
+          "why": "the editor tried to keep every word, so nothing was cut to make the book more respectable"
+        },
+        "shelved": {
+          "type": "logic",
+          "quote": "dried and separated them one at a time",
+          "why": "the gap before printing was spent recovering the text, not setting the book aside"
+        },
+        "updated": {
+          "type": "logic",
+          "quote": "the few lines that could not be read",
+          "why": "the only differences from the manuscript are losses from damage, not changes to bring the book up to date"
+        }
+      }
+    },
+    {
+      "key": "sanitized",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. In the manuscript, which survives intact among the editor's papers, a daughter runs up card debts, the strikers curse their foreman at every meeting, and one chapter is set in a tavern. The book the editor printed in 1932 keeps every chapter in order; in it the daughter owes a dressmaker, the strikers call their foreman \"sir,\" and that chapter is set in a tea shop. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Only by setting the manuscript beside the book does the pattern appear: every change swaps something a reader of the time might find improper (gambling, cursing, a tavern) for something respectable, so the editor \"sanitized\" the book. \"Salvaged\" fails because the manuscript was intact and needed no rescue. \"Shelved\" fails because the book was printed the year after the novelist died. \"Updated\" fails because the replacements belong to the same period as the originals; nothing was moved closer to the present.",
+      "kills": {
+        "salvaged": {
+          "type": "logic",
+          "quote": "survives intact among the editor's papers",
+          "why": "the manuscript was intact, so the editor's work was altering it, not rescuing it"
+        },
+        "shelved": {
+          "type": "logic",
+          "quote": "printed in 1932",
+          "why": "the book was published at once rather than set aside"
+        },
+        "updated": {
+          "type": "logic",
+          "quote": "the daughter owes a dressmaker",
+          "why": "a dressmaker and a tea shop are as much of the 1880s as a card table and a tavern; the changes alter propriety, not period"
+        }
+      }
+    },
+    {
+      "key": "shelved",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor wrote to her family that it was the best book she had written, and over the next twenty years told everyone who asked about it that it needed more time. The editor's press printed four other dockside novels in those years. The manuscript turned up in a desk drawer after the editor's death, without a single pencil mark, and was printed in 1953. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The editor praised the novel, kept it unprinted and untouched for twenty years, and published rival books meanwhile, so the editor \"shelved\" the book. \"Salvaged\" fails because the manuscript faced no danger the editor rescued it from. \"Sanitized\" fails because the editor never marked a word of it. \"Updated\" fails for the same reason: the text was printed exactly as the novelist left it.",
+      "kills": {
+        "salvaged": {
+          "type": "logic",
+          "quote": "turned up in a desk drawer",
+          "why": "the manuscript was simply kept out of sight, not rescued from anything"
+        },
+        "sanitized": {
+          "type": "explicit",
+          "quote": "without a single pencil mark",
+          "why": "the editor made no cuts at all"
+        },
+        "updated": {
+          "type": "logic",
+          "quote": "told everyone who asked about it that it needed more time",
+          "why": "the editor did no work on the book in those years, so it was never brought up to date"
+        }
+      }
+    },
+    {
+      "key": "updated",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor printed it in 1932. In that edition horse carts have become trucks, the dockers earn the wages of 1932, and the closing strike follows the course of the great strike that readers still remembered. Every chapter of the manuscript is present in the printed book, which reviewers praised as a portrait of the present-day waterfront. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Compared with a manuscript set in the 1880s, the printed book carries the trucks, wages, and strike of the 1930s, so the editor \"updated\" the book. \"Salvaged\" fails because nothing was lost or damaged that needed rescuing. \"Sanitized\" fails because every chapter was kept and only period details were changed. \"Shelved\" fails because the book was printed the year after the novelist died.",
+      "kills": {
+        "salvaged": {
+          "type": "logic",
+          "quote": "horse carts have become trucks",
+          "why": "the editor's work was changing the details of an intact text, not rescuing a damaged one"
+        },
+        "sanitized": {
+          "type": "logic",
+          "quote": "Every chapter of the manuscript is present",
+          "why": "the editor changed details but removed no chapter or subject, so nothing was cleaned out"
+        },
+        "shelved": {
+          "type": "logic",
+          "quote": "printed it in 1932",
+          "why": "the editor published the book within a year rather than setting it aside"
+        }
+      }
+    }
+  ]
+}

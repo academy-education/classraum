@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "the first recording of a ballad",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "standardized",
+    "sweetened",
+    "secularized",
+    "unearthed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "unearthed",
+    "standardized",
+    "sweetened",
+    "secularized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One folklorist has argued that the 1928 recording had ______ the ballad.",
+  "worlds": [
+    {
+      "key": "standardized",
+      "passage": "In 1928 a record company made the first recording of an old ballad from the hill counties, about a ferryman drowned in a flood. Before then, collectors had written down more than thirty versions of it across the hill counties, with different verses, tunes, and endings. The record sold in every county store. When collectors returned to the same counties in the 1950s, nearly every singer, young or old, sang the record's seven verses to the record's tune, and some apologized that their grandmothers had sung it wrong. One folklorist has argued that the 1928 recording had ______ the ballad.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Thirty-odd local versions gave way, within a generation, to the record's single set of verses and single tune, so the recording \"standardized\" the ballad. \"Sweetened\" fails because what changed was how many versions survived, not how pleasant the song sounded. \"Secularized\" fails because nothing in the passage concerns a religious use of the ballad. \"Unearthed\" fails because the ballad was already widely sung.",
+      "kills": {
+        "sweetened": {
+          "type": "logic",
+          "quote": "the record's seven verses to the record's tune",
+          "why": "the change was toward one version, not toward a smoother sound"
+        },
+        "secularized": {
+          "type": "logic",
+          "quote": "with different verses, tunes, and endings",
+          "why": "the variety that disappeared was local variation, not sacred use"
+        },
+        "unearthed": {
+          "type": "explicit",
+          "quote": "more than thirty versions",
+          "why": "the ballad was well known before the record, so it was not rediscovered"
+        }
+      }
+    },
+    {
+      "key": "sweetened",
+      "passage": "In 1928 a record company made the first recording of an old ballad from the hill counties, about a ferryman drowned in a flood. In the hill counties singers had always performed it without accompaniment, in a hard, nasal voice. On the record a studio orchestra played softly under a tenor trained for the concert hall, who sang every verse slowly and smoothly. City reviewers praised how much easier on the ear the old song had become, and the company arranged two more hill ballads the same way. One folklorist has argued that the 1928 recording had ______ the ballad.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The record replaced the hill singers' harsh, bare sound with a soft orchestra and a smooth trained voice, and city listeners found it easier on the ear, so the recording \"sweetened\" the ballad. \"Standardized\" fails because the passage concerns the ballad's sound, not whether its many versions became one. \"Secularized\" fails because nothing sacred was removed; every verse was kept and only the sound changed. \"Unearthed\" fails because the ballad was already sung throughout the hill counties.",
+      "kills": {
+        "standardized": {
+          "type": "logic",
+          "quote": "a studio orchestra played softly under a tenor",
+          "why": "the record changed the ballad's sound, not the number of versions people sang"
+        },
+        "secularized": {
+          "type": "logic",
+          "quote": "sang every verse slowly and smoothly",
+          "why": "the words were kept whole; the change was to the sound"
+        },
+        "unearthed": {
+          "type": "logic",
+          "quote": "had always performed it",
+          "why": "the ballad was a living song before the record, not a lost one"
+        }
+      }
+    },
+    {
+      "key": "secularized",
+      "passage": "In 1928 a record company made the first recording of an old ballad from the hill counties, about a ferryman drowned in a flood. In the hill counties it had been sung only in church at funerals, and its last verse was a prayer for the ferryman's soul. The record kept the hill singers' hard voices and fiddle, replaced the prayer with a verse naming the river and the year of the flood, and was sold to the dance halls, where it was played between reels. One folklorist has argued that the 1928 recording had ______ the ballad.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The record took a funeral hymn, removed its prayer, and sent it to the dance halls, so the recording \"secularized\" the ballad. \"Standardized\" fails because the passage concerns where and why the ballad was sung, not the number of versions. \"Sweetened\" fails because the record kept the hill singers' hard sound. \"Unearthed\" fails because the ballad was already sung at every funeral in the hill counties.",
+      "kills": {
+        "standardized": {
+          "type": "logic",
+          "quote": "sung only in church at funerals",
+          "why": "the change was from sacred to worldly use, not from many versions to one"
+        },
+        "sweetened": {
+          "type": "explicit",
+          "quote": "kept the hill singers' hard voices",
+          "why": "the sound was not smoothed"
+        },
+        "unearthed": {
+          "type": "logic",
+          "quote": "its last verse was a prayer",
+          "why": "the ballad had an established place in church life, so it was not lost"
+        }
+      }
+    },
+    {
+      "key": "unearthed",
+      "passage": "In 1928 a record company made the first recording of an old ballad from the hill counties, about a ferryman drowned in a flood. No collector in the hill counties had found it before 1928. The singer on the record had learned it as a child from an aunt, the last person in her valley who knew it, and sang every verse to the aunt's tune in the aunt's hard, plain style. Within two years singers at fairs and churches across the state had taken it up. One folklorist has argued that the 1928 recording had ______ the ballad.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "A ballad no collector had found, kept alive by one old woman, was recorded as she sang it and then spread widely, so the recording \"unearthed\" the ballad. \"Standardized\" fails because there was only one version to begin with. \"Sweetened\" fails because the singer kept the aunt's hard, plain style. \"Secularized\" fails because the record changed nothing in the ballad, and churches took it up afterward.",
+      "kills": {
+        "standardized": {
+          "type": "logic",
+          "quote": "the last person in her valley who knew it",
+          "why": "a single surviving version leaves nothing to make uniform"
+        },
+        "sweetened": {
+          "type": "explicit",
+          "quote": "the aunt's hard, plain style",
+          "why": "the singer kept the old sound"
+        },
+        "secularized": {
+          "type": "logic",
+          "quote": "at fairs and churches across the state",
+          "why": "the ballad was taken up in church as well as at fairs, and the record altered none of its verses"
+        }
+      }
+    }
+  ]
+}

@@ -709,6 +709,16 @@
       "group": "iseedraft14-IR14-P01",
       "route": "spot",
       "runId": "isee-draft14-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-verbal-draft-5",
+      "tool": "item",
+      "domain": "Verbal",
+      "size": 12,
+      "family": "ssat",
+      "upTo": 2,
+      "route": "spot",
+      "runId": "ssatvd5-spot{n}-cofounder-{date}"
     }
   ]
 }

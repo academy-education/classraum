@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an island port held by an empire",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "storehouse",
+    "tollgate",
+    "watchtower",
+    "trophy"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "trophy",
+    "storehouse",
+    "watchtower",
+    "tollgate"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "For the next century, one historian has argued, the empire valued the island chiefly as its ______.",
+  "worlds": [
+    {
+      "key": "storehouse",
+      "passage": "In 1560 an empire seized a small island port at the mouth of a strait, a place with thin soil and almost no trade of its own. The empire's fleets on the long ocean crossing could carry only a few weeks of water and grain. In the calm months merchants shipped grain, salted meat, and spare timber to the island, where they were stacked in warehouses built along the harbor. In the storm months, when no merchant ship could reach the island, the fleets put in there and loaded what had been gathered. For the next century, one historian has argued, the empire valued the island chiefly as its ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Supplies were brought to the island in good weather and drawn on by the fleets in bad weather, so the empire valued it as its \"storehouse.\" \"Tollgate\" fails because the island collected nothing from passing ships; it supplied them. \"Watchtower\" fails because the island's use was stockpiling supplies, not watching for anything. \"Trophy\" fails because the island was put to hard practical use, not kept for display.",
+      "kills": {
+        "tollgate": {
+          "type": "logic",
+          "quote": "the fleets put in there and loaded",
+          "why": "ships took goods away from the island rather than paying to pass it"
+        },
+        "watchtower": {
+          "type": "logic",
+          "quote": "stacked in warehouses built along the harbor",
+          "why": "the island's buildings held supplies; nothing in the passage watches the strait"
+        },
+        "trophy": {
+          "type": "logic",
+          "quote": "could carry only a few weeks of water",
+          "why": "the island mattered because the fleets needed it, a working use rather than a symbolic one"
+        }
+      }
+    },
+    {
+      "key": "tollgate",
+      "passage": "In 1560 an empire seized a small island port at the mouth of a strait, a place with thin soil and almost no trade of its own. Every merchant ship passing through the strait had to anchor under the port's guns and pay a duty on its cargo before going on. The duties, the treasury's ledgers show, paid for the whole of the empire's navy in those waters for most of the century. For the next century, one historian has argued, the empire valued the island chiefly as its ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Ships could pass the strait only by stopping at the island and paying, and the payments funded a navy, so the empire valued the island as its \"tollgate.\" \"Storehouse\" fails because ships paid and sailed on with their cargo, leaving nothing to be kept. \"Watchtower\" fails because the island's role was charging ships, not watching for them. \"Trophy\" fails because the island earned large sums rather than serving only as a symbol.",
+      "kills": {
+        "storehouse": {
+          "type": "logic",
+          "quote": "pay a duty on its cargo before going on",
+          "why": "ships kept their cargo and sailed on; the island took money, not goods to keep"
+        },
+        "watchtower": {
+          "type": "logic",
+          "quote": "pay a duty on its cargo",
+          "why": "the island's purpose was collecting money from passing ships, not observing them"
+        },
+        "trophy": {
+          "type": "logic",
+          "quote": "paid for the whole of the empire's navy",
+          "why": "the island was valuable for its revenue, not for prestige"
+        }
+      }
+    },
+    {
+      "key": "watchtower",
+      "passage": "In 1560 an empire seized a small island port at the mouth of a strait, a place with thin soil and almost no trade of its own. From the island's single hill a lookout could see forty miles of the strait in either direction. When an enemy fleet came into view, the garrison lit a fire that was answered by fires along the mainland coast, and the news reached the capital within a day. Twice in the century that warning let the capital gather its ships before an invasion fleet arrived. For the next century, one historian has argued, the empire valued the island chiefly as its ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The island's view of the strait and its chain of signal fires gave the capital early warning of invasions, so the empire valued the island as its \"watchtower.\" \"Storehouse\" fails because the island held no supplies in the passage. \"Tollgate\" fails because the island watched ships rather than charging them. \"Trophy\" fails because the island did vital practical work.",
+      "kills": {
+        "storehouse": {
+          "type": "logic",
+          "quote": "a lookout could see forty miles",
+          "why": "the island's value lay in what could be seen from it, not in anything kept there"
+        },
+        "tollgate": {
+          "type": "logic",
+          "quote": "When an enemy fleet came into view",
+          "why": "the island's task was spotting fleets and passing on the alarm, not stopping ships to pay"
+        },
+        "trophy": {
+          "type": "logic",
+          "quote": "let the capital gather its ships",
+          "why": "the island's warning had real military use, so it was not kept merely as a symbol"
+        }
+      }
+    },
+    {
+      "key": "trophy",
+      "passage": "In 1560 an empire seized a small island port at the mouth of a strait, a place with thin soil and almost no trade of its own. The strait's merchants soon moved their route to a deeper channel thirty miles south, and for decades only the garrison's supply ship called. The empire still spent more each year on the island's garrison than on any province, its keys were carried in procession on the anniversary of its capture, and a painting of its harbor hung behind the throne. For the next century, one historian has argued, the empire valued the island chiefly as its ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The island had lost all practical use, yet the empire paid heavily to keep it and celebrated its capture, so the empire valued it as its \"trophy.\" \"Storehouse\" fails because almost no ships called to supply or be supplied. \"Tollgate\" fails because trade had moved to another channel. \"Watchtower\" fails because the passage gives the island no role in watching or warning.",
+      "kills": {
+        "storehouse": {
+          "type": "logic",
+          "quote": "only the garrison's supply ship called",
+          "why": "with no ships calling but its own, the island served no one as a store"
+        },
+        "tollgate": {
+          "type": "explicit",
+          "quote": "moved their route to a deeper channel",
+          "why": "ships no longer passed the island, so there was nothing to charge"
+        },
+        "watchtower": {
+          "type": "logic",
+          "quote": "its keys were carried in procession",
+          "why": "what the empire made of the island was ceremony, not a lookout's work"
+        }
+      }
+    }
+  ]
+}

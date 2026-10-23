@@ -1,0 +1,358 @@
+{
+ "WIC26B-02": {
+  "world 1 (key tactical)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tactical",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Needs the petition-start and withdrawal-end sentences together, but each distractor is killed by a planted phrase (\"two councils signed\", \"almost no cut weirs\")."
+  },
+  "world 2 (key token)": {
+   "named_for": [
+    "explicit kills 2",
+    "second defensible"
+   ],
+   "reader_pick_word": "token",
+   "reader_difficulty": "hard",
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "tactical",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Token requires combining the renewed feasts with weirs cut at the old rate and no fines; 'signed a truce' kills tacit and 'two councils signed' kills unilateral, tactical is defensible."
+  },
+  "world 0 (key tacit)": {
+   "named_for": [
+    "easy",
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "tacit",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'No agreement appears in either town's minutes or letters' gives tacit almost alone; 'almost no cut weirs' kills token and both towns acting kills unilateral."
+  }
+ },
+ "WIC26B-03": {
+  "world 2 (key shelved)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "shelved",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Needs \"needed more time\" over twenty years plus \"without a single pencil mark\"; the pencil-mark line kills updated and sanitized."
+  },
+  "world 3 (key updated)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "updated",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Easy: 'horse carts have become trucks, the dockers earn the wages of 1932' says updated outright; 'every chapter is present' kills sanitized."
+  },
+  "world 0 (key salvaged)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "salvaged",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"dried and separated them one at a time ... copied out nearly every word\" gives salvaged outright."
+  },
+  "world 1 (key sanitized)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "sanitized",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Debts/cursing/tavern softened to dressmaker/'sir'/tea shop; 'printed' kills shelved and the unchanged 1880s setting kills updated."
+  }
+ },
+ "WIC26B-08": {
+  "world 3 (key trophy)": {
+   "named_for": [
+    "explicit kills 2",
+    "second defensible"
+   ],
+   "reader_pick_word": "trophy",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "watchtower",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Keys in procession and painting behind the throne point to trophy; heavy garrison spending at a strait mouth keeps watchtower partly alive."
+  },
+  "world 0 (key storehouse)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "storehouse",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Easy: 'stacked in warehouses built along the harbor' names the key almost literally; 'almost no trade of its own' kills tollgate."
+  },
+  "world 1 (key tollgate)": {
+   "named_for": [
+    "easy",
+    "one sentence",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "tollgate",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "watchtower",
+   "presupposes_absent": null,
+   "reader_note": "\"had to anchor under the port's guns and pay a duty on its cargo\" gives tollgate outright."
+  },
+  "world 2 (key watchtower)": {
+   "named_for": [
+    "easy",
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "watchtower",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'From the island's single hill a lookout could see forty miles of the strait' gives watchtower; 'thin soil and almost no trade' kills storehouse and tollgate."
+  }
+ },
+ "WIC26B-01": {
+  "world 0 (key stronghold)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "stronghold",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"the one title in town they could not acquire, and inside its walls the old price agreement ... still held\" gives stronghold."
+  },
+  "world 1 (key springboard)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "springboard",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'most who finished them leaving the looms within a few years for city offices' gives springboard; falling membership kills stronghold."
+  },
+  "world 2 (key showpiece)": {
+   "named_for": [
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "showpiece",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "stronghold",
+   "presupposes_absent": null,
+   "reader_note": "Buyers walked through before prices plus meetings held elsewhere so nothing looked worn gives showpiece; stone hall tempts stronghold."
+  }
+ },
+ "WIC26B-06": {
+  "world 1 (key watchdog)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "watchdog",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"read aloud ... every payment the council had made without a vote\" plus members repaying gives watchdog; distractors are weak."
+  },
+  "world 3 (key tiebreaker)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "tiebreaker",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 0,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"gave the secretary a vote only when the members were evenly divided\" gives tiebreaker outright."
+  }
+ },
+ "WIC26B-05": {
+  "world 0 (key tamed)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tamed",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Broken legs fell while scrum and crowds stayed; \"towns and villages alike\" kills urbanized and \"remained the heart of every match\" kills splintered/unbalanced."
+  },
+  "world 2 (key splintered)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "splintered",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"By 1880 the county had two codes of football ... a club from one never met a club from the other\" gives splintered directly."
+  },
+  "world 3 (key urbanized)": {
+   "named_for": [
+    "second defensible"
+   ],
+   "reader_pick_word": "urbanized",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 0,
+   "second_defensible_word": "unbalanced",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Village clubs disband and survivors are in mill or market towns gives urbanized; tamed and unbalanced are plausible near-misses."
+  }
+ },
+ "WIC26B-04": {
+  "world 3 (key seedbed)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "seedbed",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": true,
+   "explicit_kills": 0,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"nearly every young herring caught past the quays hatched in those pools\" gives seedbed; the hydrology terms are surface lures only."
+  },
+  "world 1 (key sieve)": {
+   "named_for": [
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "sieve",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "sponge",
+   "literal_fit_word": "sponge",
+   "presupposes_absent": null,
+   "reader_note": "Silt settling and dye binding plus gauges showing equal flow in and out (kills sponge) gives sieve/filter."
+  },
+  "world 2 (key spillway)": {
+   "named_for": [
+    "second defensible"
+   ],
+   "reader_pick_word": "spillway",
+   "reader_difficulty": "hard",
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "sponge",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Overflow over a bank and passed to the bay within a day gives spillway; sponge is the near-miss, killed only by 'within a day' and the creeks emptying into the bay."
+  }
+ },
+ "WIC26B-07": {
+  "world 3 (key unearthed)": {
+   "named_for": [
+    "second defensible"
+   ],
+   "reader_pick_word": "unearthed",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "standardized",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "No collector had found it and the aunt was the last who knew it, so unearthed; 'hard, plain style' kills sweetened, but standardized is defensible since the record fixed one version others took up."
+  },
+  "world 0 (key standardized)": {
+   "named_for": [
+    "easy",
+    "one sentence"
+   ],
+   "reader_pick_word": "standardized",
+   "reader_difficulty": "easy",
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "\"nearly every singer ... sang the record's seven verses to the record's tune\" gives standardized outright."
+  },
+  "world 1 (key sweetened)": {
+   "named_for": [
+    "second defensible"
+   ],
+   "reader_pick_word": "sweetened",
+   "reader_difficulty": "medium",
+   "key_from_one_sentence": false,
+   "explicit_kills": 0,
+   "second_defensible_word": "standardized",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Soft orchestra, smooth tenor, 'easier on the ear' give sweetened; 'arranged two more hill ballads the same way' makes standardized a near-miss."
+  }
+ }
+}

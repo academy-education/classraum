@@ -1,0 +1,122 @@
+{
+  "id": "WIC26A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a valley's role in an early forestry service",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "prototype",
+    "proxy",
+    "outpost",
+    "reservoir"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "reservoir",
+    "prototype",
+    "outpost",
+    "proxy"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One historian argues that, from 1911 to 1940, the valley was above all the service's ______.",
+  "worlds": [
+    {
+      "key": "prototype",
+      "passage": "A state forestry service founded in 1911 managed the timber of a mountainous province, and one of its fourteen districts was a narrow valley in the eastern hills. The service laid out its first terraced plantation there in 1913. Over six years its foresters rebuilt what failed, widening the terraces and switching from pine to larch on the wetter ground, and in 1920 the service printed the valley's revised plan as its standard drawing, from which the terraces of nine other districts were then built. One historian argues that, from 1911 to 1940, the valley was above all the service's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The valley held the service's first plantation, which was rebuilt there until it worked and then printed as the drawing other districts were built from, so it was the service's \"prototype.\" \"Proxy\" fails because nothing measured in the valley was taken to stand for other places; its design was built again elsewhere. \"Outpost\" fails because nothing marks the valley as a remote station of the service. \"Reservoir\" fails because the service drew no supply from the valley; it took a design from it.",
+      "kills": {
+        "proxy": {
+          "type": "logic",
+          "quote": "from which the terraces of nine other districts were then built",
+          "why": "the valley's plan was a pattern for building, not a sample whose figures were taken to represent other districts"
+        },
+        "outpost": {
+          "type": "logic",
+          "quote": "its first terraced plantation",
+          "why": "the valley's role is as the place the design was first tried, not as a distant station at the edge of the service's reach"
+        },
+        "reservoir": {
+          "type": "logic",
+          "quote": "rebuilt what failed",
+          "why": "the valley was worked on until the design was right, not kept as a supply the service drew from when needed"
+        }
+      }
+    },
+    {
+      "key": "proxy",
+      "passage": "A state forestry service founded in 1911 managed the timber of a mountainous province, and one of its fourteen districts was a narrow valley in the eastern hills. The service had money to survey only one district, and in 1912 its foresters counted and measured every tree on the valley's slopes. For the next thirty years it set the yearly cutting limit for all fourteen districts by multiplying the valley's figures by each district's area, on the assumption that the other slopes grew timber at the same rate. One historian argues that, from 1911 to 1940, the valley was above all the service's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The service measured only the valley and treated its figures as standing for every district, so the valley was the service's \"proxy.\" \"Prototype\" fails because nothing was built in the valley and then copied; only its numbers were used. \"Outpost\" fails because the passage describes a survey, not a remote station staffed by the service. \"Reservoir\" fails because the service took figures from the valley, not a supply of timber or workers it held back and drew on.",
+      "kills": {
+        "prototype": {
+          "type": "logic",
+          "quote": "multiplying the valley's figures by each district's area",
+          "why": "the valley's measurements were applied to other districts; no scheme from it was copied"
+        },
+        "outpost": {
+          "type": "logic",
+          "quote": "counted and measured every tree",
+          "why": "the valley's role is as a measured sample, not as a distant station of the service"
+        },
+        "reservoir": {
+          "type": "logic",
+          "quote": "on the assumption that the other slopes grew timber at the same rate",
+          "why": "the valley's figures stood in for the others; nothing was stored in the valley to be drawn down"
+        }
+      }
+    },
+    {
+      "key": "outpost",
+      "passage": "A state forestry service founded in 1911 managed the timber of a mountainous province, and one of its fourteen districts was a narrow valley in the eastern hills. Every other district lay west of a river that had no bridge until 1940, and the valley was the only one beyond it. The service kept a small station there, staffed by foresters sent from the capital for two years at a time, who issued cutting permits for the whole eastern hills and sent their reports back by courier. One historian argues that, from 1911 to 1940, the valley was above all the service's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The valley was the one district beyond an unbridged river, where a small station of rotating staff from the capital acted for the service across the eastern hills, so it was the service's \"outpost.\" \"Prototype\" fails because nothing done in the valley was copied elsewhere. \"Proxy\" fails because the valley's own figures were not taken to stand for other districts. \"Reservoir\" fails because the service sent people into the valley rather than drawing a supply out of it.",
+      "kills": {
+        "prototype": {
+          "type": "logic",
+          "quote": "issued cutting permits for the whole eastern hills",
+          "why": "the station administered the far district; no model built there was copied"
+        },
+        "proxy": {
+          "type": "logic",
+          "quote": "sent their reports back by courier",
+          "why": "the reports concern the eastern hills themselves, not readings taken to represent other districts"
+        },
+        "reservoir": {
+          "type": "logic",
+          "quote": "staffed by foresters sent from the capital",
+          "why": "people flowed into the valley from the center, the reverse of a supply held there and drawn on"
+        }
+      }
+    },
+    {
+      "key": "reservoir",
+      "passage": "A state forestry service founded in 1911 managed the timber of a mountainous province, and one of its fourteen districts was a narrow valley in the eastern hills. Its farmers had little to do between harvest and spring sowing, the months when felling in other districts most often ran short of hands. Whenever a district fell behind, the service sent to the valley for crews, who were paid by the day and went home when the work was done, and for thirty years most of the province's winter work gangs came from there. One historian argues that, from 1911 to 1940, the valley was above all the service's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Idle in winter, the valley's farmers were a supply of labor the service drew on whenever another district fell behind and released when the work was done, so the valley was the service's \"reservoir.\" \"Prototype\" fails because no scheme tried in the valley was copied elsewhere. \"Proxy\" fails because the valley's men worked in other districts rather than the valley's figures standing for them. \"Outpost\" fails because the service kept no station in the valley; it called crews out of it.",
+      "kills": {
+        "prototype": {
+          "type": "logic",
+          "quote": "Whenever a district fell behind",
+          "why": "the valley supplied workers on demand; no model developed there was reproduced"
+        },
+        "proxy": {
+          "type": "logic",
+          "quote": "went home when the work was done",
+          "why": "the valley's people did real work in other districts and returned; nothing about the valley stood in for anywhere else"
+        },
+        "outpost": {
+          "type": "logic",
+          "quote": "sent to the valley for crews",
+          "why": "the movement is of workers out of the valley on call, not of a service station kept at a distant edge"
+        }
+      }
+    }
+  ]
+}

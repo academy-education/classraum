@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a state report on removing a river dam",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "launched",
+    "jolted",
+    "legitimized",
+    "muddied"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "launched",
+    "muddied",
+    "jolted",
+    "legitimized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+  "worlds": [
+    {
+      "key": "launched",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. No legislator, newspaper, or fishing club had ever proposed removing it, and the commission had been asked only to price repairs. Its final chapter went further and recommended taking the dam down. Within a year the legislature had held two hearings on removal, and the state's papers had printed hundreds of letters on both sides. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "No one had proposed removal before the report recommended it, and argument on both sides followed, so the report \"launched\" the debate. \"Jolted\" fails because there was no existing, stalled debate to shake; \"legitimized\" fails because there was no dismissed position for the report to lend standing to, since no one had held one; \"muddied\" fails because the report made a single clear recommendation.",
+      "kills": {
+        "jolted": {
+          "type": "logic",
+          "quote": "had ever proposed removing it",
+          "why": "a debate can be jolted only if it already exists; before the report there was none"
+        },
+        "legitimized": {
+          "type": "logic",
+          "quote": "asked only to price repairs",
+          "why": "removal was not a fringe view awaiting respect; it was not a view anyone held until the report raised it"
+        },
+        "muddied": {
+          "type": "logic",
+          "quote": "recommended taking the dam down",
+          "why": "the report gave one plain recommendation, which clarifies rather than confuses"
+        }
+      }
+    },
+    {
+      "key": "jolted",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. Removal had been before the legislature for a decade, backed by the governor and opposed by the power company, and each year the vote was put off while both sides waited for firmer cost figures. The report supplied them, putting removal at a third of the cost of repairs, and within three months the legislature voted. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A decade-old debate stalled by repeated postponement moved to a vote within months of the report, so the report \"jolted\" it. \"Launched\" fails because the debate had been before the legislature for ten years; \"legitimized\" fails because removal already had the governor's backing and needed no added standing; \"muddied\" fails because the report gave the clear figures both sides had been waiting for.",
+      "kills": {
+        "launched": {
+          "type": "logic",
+          "quote": "before the legislature for a decade",
+          "why": "the debate began long before the report"
+        },
+        "legitimized": {
+          "type": "logic",
+          "quote": "backed by the governor",
+          "why": "removal was already a mainstream position, so the report did not give it standing"
+        },
+        "muddied": {
+          "type": "logic",
+          "quote": "putting removal at a third of the cost",
+          "why": "the report settled the cost question that had stalled the vote rather than confusing it"
+        }
+      }
+    },
+    {
+      "key": "legitimized",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. For a decade a small anglers' club had argued for removal against the power company at county meetings, while the state's papers seldom printed its letters and legislators declined to hear its speakers. The commission, chaired by a retired judge, found removal both affordable and lawful. Over the following years the state's largest papers and several legislators came to treat removal as one serious option among others. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A position that papers and legislators had ignored became, after a respected commission endorsed it, a serious option, so the report \"legitimized\" the debate. \"Launched\" fails because the anglers and the power company had been arguing the question for a decade; \"jolted\" fails because the change came gradually over the following years, as acceptance, not as a sudden shock to a stalled process; \"muddied\" fails because the commission reached a clear finding.",
+      "kills": {
+        "launched": {
+          "type": "logic",
+          "quote": "had argued for removal against the power company",
+          "why": "the two sides were already arguing the question for a decade before the report, so the debate was not begun by it"
+        },
+        "jolted": {
+          "type": "logic",
+          "quote": "Over the following years",
+          "why": "the change is slow and is a change in how seriously removal was taken, not a sudden shake of a stalled debate"
+        },
+        "muddied": {
+          "type": "logic",
+          "quote": "found removal both affordable and lawful",
+          "why": "a clear finding makes the question plainer, not murkier"
+        }
+      }
+    },
+    {
+      "key": "muddied",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. Removal had been argued for a decade, with both sides citing a single engineering estimate of its cost. The commission offered three new estimates that differed tenfold and two incompatible counts of the salmon the river could support. Afterward each side quoted in the state's papers whichever figure suited it, and legislators, saying they could no longer tell what removal would cost, put off the vote they had scheduled. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The report replaced one shared estimate with conflicting figures, leaving legislators unable to judge the cost, so it \"muddied\" the debate. \"Launched\" fails because removal had been argued for a decade; \"legitimized\" fails because both sides were already arguing in the open from an official estimate; \"jolted\" fails because the report led to a postponed vote, not to sudden movement.",
+      "kills": {
+        "launched": {
+          "type": "logic",
+          "quote": "Removal had been argued for a decade",
+          "why": "the debate predates the report"
+        },
+        "legitimized": {
+          "type": "logic",
+          "quote": "both sides citing a single engineering estimate",
+          "why": "removal was already argued on equal official terms, so there was no ignored position to raise up"
+        },
+        "jolted": {
+          "type": "logic",
+          "quote": "put off the vote they had scheduled",
+          "why": "the report slowed the process down instead of shaking it into motion"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a newspaper theater critic's record",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "insistent",
+    "jaded",
+    "judicious",
+    "mercurial"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "insistent",
+    "jaded",
+    "judicious",
+    "mercurial"
+  ],
+  "pos": "adjective",
+  "after_blank": "",
+  "blank_sentence": "Having read the full run of her reviews, one theater historian described the critic as ______.",
+  "worlds": [
+    {
+      "key": "insistent",
+      "passage": "For thirty-one years a single critic wrote the weekly theater column of a city newspaper. Starting in 1920, her reviews of comedies, tragedies, and musicals alike ended with a sentence about what standing room cost the city's clerks and shopgirls. A later index of her columns finds that sentence in all but a handful of the reviews she wrote over the next eleven years. Theater managers' letters from 1931 name her column when the three largest theaters halved standing-room prices, and the closing sentences stopped the following week. Having read the full run of her reviews, one theater historian described the critic as ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "She closed nearly every review for eleven years with the same point about standing-room prices, and stopped only once the theaters cut them, so she was \"insistent.\" \"Mercurial\" fails because she held to one point in all but a handful of reviews; \"jaded\" fails because she kept the campaign going season after season rather than growing weary; \"judicious\" fails because the closing sentence appeared whatever the play, so the passage shows persistence, not careful weighing of plays.",
+      "kills": {
+        "mercurial": {
+          "type": "logic",
+          "quote": "in all but a handful of the reviews",
+          "why": "returning to one point in nearly every review for years is the reverse of changeable"
+        },
+        "jaded": {
+          "type": "logic",
+          "quote": "over the next eleven years",
+          "why": "keeping up a campaign for over a decade shows energy, not weariness"
+        },
+        "judicious": {
+          "type": "logic",
+          "quote": "comedies, tragedies, and musicals alike",
+          "why": "the sentence ended her reviews regardless of the play, so it shows persistence about prices, not discernment about plays"
+        }
+      }
+    },
+    {
+      "key": "jaded",
+      "passage": "For thirty-one years a single critic wrote the weekly theater column of a city newspaper. In her last decade, she wrote that almost every new play reminded her of one she had already seen, and her reviews shrank to a paragraph that praised only the rare play she called unlike anything before it. Several plays she dismissed as familiar were praised by younger critics that same season and ran for years. Having read the full run of her reviews, one theater historian described the critic as ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "After decades of reviewing, she found nearly every play a repeat and her reviews dwindled, so she had become \"jaded.\" \"Judicious\" fails because the plays she dismissed as familiar were praised by others and ran for years, so her verdicts did not show sound judgment; \"mercurial\" fails because her dismissals were steady, not changeable; \"insistent\" fails because she was pressing no demand, only losing interest.",
+      "kills": {
+        "judicious": {
+          "type": "logic",
+          "quote": "ran for years",
+          "why": "plays she waved off as familiar succeeded, so her verdicts reflect weariness, not good judgment"
+        },
+        "mercurial": {
+          "type": "logic",
+          "quote": "almost every new play reminded her",
+          "why": "her response was the same to nearly every play, which is consistency, not changeability"
+        },
+        "insistent": {
+          "type": "logic",
+          "quote": "shrank to a paragraph",
+          "why": "her reviews dwindled; she was withdrawing effort, not pressing a point"
+        }
+      }
+    },
+    {
+      "key": "judicious",
+      "passage": "For thirty-one years a single critic wrote the weekly theater column of a city newspaper. Her reviews weighed each play's strengths against its faults, and she rarely called a play either a masterpiece or a disaster. When a later scholar compared her verdicts with what became of the plays over the following fifty years, the plays she had praised were largely the ones still being staged, and those she had faulted had mostly been forgotten. Having read the full run of her reviews, one theater historian described the critic as ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "She weighed merits against faults, avoided extremes, and her verdicts held up for fifty years, so she was \"judicious.\" \"Jaded\" fails because she continued to find plays worth praising; \"mercurial\" fails because her verdicts were measured and borne out over time rather than swinging; \"insistent\" fails because nothing shows her pressing any demand.",
+      "kills": {
+        "jaded": {
+          "type": "logic",
+          "quote": "the plays she had praised",
+          "why": "she praised plays throughout, so she had not grown weary of the stage"
+        },
+        "mercurial": {
+          "type": "logic",
+          "quote": "rarely called a play either a masterpiece or a disaster",
+          "why": "she avoided extremes, the opposite of swinging between them"
+        },
+        "insistent": {
+          "type": "logic",
+          "quote": "weighed each play's strengths against its faults",
+          "why": "her reviews balanced considerations; nothing is pressed again and again"
+        }
+      }
+    },
+    {
+      "key": "mercurial",
+      "passage": "For thirty-one years a single critic wrote the weekly theater column of a city newspaper. In one season she called a play the finest of the year in March and, after seeing it again, tedious in April. The stage manager's logs show that the cast, the staging, and even the running time were unchanged between her two visits, and a later scholar found her reviews in other seasons reversing themselves about as often. Having read the full run of her reviews, one theater historian described the critic as ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "She reversed her verdicts on unchanged plays, and did so often, so she was \"mercurial.\" \"Jaded\" fails because she was capable of calling a play the finest of the year; \"judicious\" fails because verdicts that flip while the play stays the same do not reflect careful judgment; \"insistent\" fails because she held no position steadily.",
+      "kills": {
+        "jaded": {
+          "type": "logic",
+          "quote": "the finest of the year",
+          "why": "a critic who can call a play the year's best has not grown weary of the stage"
+        },
+        "judicious": {
+          "type": "logic",
+          "quote": "were unchanged between her two visits",
+          "why": "her verdict changed though the play did not, so the change came from her, not from careful weighing of the play"
+        },
+        "insistent": {
+          "type": "logic",
+          "quote": "reversing themselves about as often",
+          "why": "she kept changing positions rather than pressing one"
+        }
+      }
+    }
+  ]
+}

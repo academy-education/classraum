@@ -1,0 +1,122 @@
+{
+  "id": "WIC26A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a small city's newspaper column",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "portal",
+    "rudder",
+    "ritual",
+    "rampart"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "ritual",
+    "portal",
+    "rudder",
+    "rampart"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+  "worlds": [
+    {
+      "key": "portal",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. The city had no railway until 1928, and the column's author read the foreign newspapers that reached the river port by steamer, weeks late. Each week he summarized wars, elections and inventions abroad, and diaries from the period show families learning of the telephone, the deaths of distant kings and the outbreak of war in Europe from his column before any other source. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "In a city cut off from the railway, the column carried news of the wider world in before anything else did, so it was the city's \"portal.\" \"Rudder\" fails because the column reported on events abroad rather than steering the city's own decisions. \"Ritual\" fails because the column was read for its news, which changed every week. \"Rampart\" fails because the column let the outside world in rather than defending the city against it.",
+      "kills": {
+        "rudder": {
+          "type": "logic",
+          "quote": "summarized wars, elections and inventions abroad",
+          "why": "its content concerned distant events, not the direction of the city's own affairs"
+        },
+        "ritual": {
+          "type": "logic",
+          "quote": "learning of the telephone",
+          "why": "readers came to it for new information, not for a repeated custom"
+        },
+        "rampart": {
+          "type": "logic",
+          "quote": "had no railway until 1928",
+          "why": "the column made up for the city's isolation by bringing news in, the reverse of keeping something out"
+        }
+      }
+    },
+    {
+      "key": "rudder",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Its author reviewed each measure on the city council's agenda in the week before the vote, ending every review with a recommendation. Council minutes show that of the roughly six hundred measures he reviewed in those years, all but a few dozen passed or failed as he had advised, among them the bridge, the waterworks and the new school. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The council's votes on nearly every measure followed the column's advice, from the bridge to the school, so the column was the city's \"rudder,\" steering its course. \"Portal\" fails because the column dealt with the city's own business, not news from outside. \"Ritual\" fails because its reviews changed with each agenda and had real effects. \"Rampart\" fails because the column directed the city's choices rather than defending it from an outside threat.",
+      "kills": {
+        "portal": {
+          "type": "logic",
+          "quote": "each measure on the city council's agenda",
+          "why": "the column dealt with local decisions, not with bringing in news of the wider world"
+        },
+        "ritual": {
+          "type": "logic",
+          "quote": "passed or failed as he had advised",
+          "why": "the column mattered for its effect on votes, not as a repeated custom"
+        },
+        "rampart": {
+          "type": "logic",
+          "quote": "the bridge, the waterworks and the new school",
+          "why": "these are projects the city chose and built, not attacks it was protected against"
+        }
+      }
+    },
+    {
+      "key": "ritual",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Every weekend after the midday meal, families across the city read it aloud, the eldest at the table reading and the others listening from fixed seats. Its contents changed little from week to week, mostly tide tables, church notices and the same few proverbs, and diaries from the period mention the weekend reading far more often than anything the column said. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Families read the column aloud every weekend in a fixed way, even though it said almost the same thing each week, so it was the city's \"ritual,\" valued for the practice rather than the content. \"Portal\" fails because the column brought in no news of the outside world. \"Rudder\" fails because it offered nothing that steered the city's decisions. \"Rampart\" fails because nothing threatened the city that the column defended against.",
+      "kills": {
+        "portal": {
+          "type": "logic",
+          "quote": "tide tables, church notices and the same few proverbs",
+          "why": "its contents were local and repetitive, with no news from beyond the city"
+        },
+        "rudder": {
+          "type": "logic",
+          "quote": "Its contents changed little from week to week",
+          "why": "an unchanging column of notices and proverbs could not steer the city's decisions"
+        },
+        "rampart": {
+          "type": "logic",
+          "quote": "far more often than anything the column said",
+          "why": "what mattered was the act of reading, not any stand the column took against a threat"
+        }
+      }
+    },
+    {
+      "key": "rampart",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Three times in those years the provincial government proposed merging the city into the larger town across the river, and each time the column printed weekly attacks on the plan along with the names of residents who had signed petitions against it, and diaries from the period show whole families signing together. Each proposal was withdrawn within a year, and the city kept its own council until 1931. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Each time the province tried to absorb the city, the column led the resistance until the plan was dropped, and the city lost its council only after the column ended, so the column was the city's \"rampart.\" \"Portal\" fails because the column worked to keep an outside power out, not to bring the world in. \"Ritual\" fails because its attacks responded to specific threats rather than repeating a custom. \"Rudder\" fails because the column is shown resisting a plan imposed from outside, not guiding the city's own choices.",
+      "kills": {
+        "portal": {
+          "type": "logic",
+          "quote": "proposed merging the city into the larger town",
+          "why": "the column opposed an outside power coming in, the reverse of opening the city to the world"
+        },
+        "ritual": {
+          "type": "logic",
+          "quote": "Each proposal was withdrawn within a year",
+          "why": "the column's campaigns had concrete effects on real threats, not the empty repetition of a custom"
+        },
+        "rudder": {
+          "type": "logic",
+          "quote": "printed weekly attacks on the plan",
+          "why": "the column's role was to repel a plan from outside, not to set the direction of the city's own affairs"
+        }
+      }
+    }
+  ]
+}

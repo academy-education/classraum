@@ -1,0 +1,64 @@
+{
+  "id": "WIC26C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a composer's use of a folk tune in a symphony",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["clipped", "braided", "animated", "cleansed"],
+  "antonym_pairs": [],
+  "rarity_order": ["animated", "clipped", "cleansed", "braided"],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Comparing the symphony with the village version, one critic observed that the composer had ______ the tune.",
+  "worlds": [
+    {
+      "key": "braided",
+      "passage": "In 1907 a composer built one movement of his first symphony on a folk tune he had heard in a fishing village. In the village a single fiddler played it, with nothing beneath it. In the symphony the violins carry it note for note from start to finish while the cellos play a second village tune below, and the two lines cross and recross so that each is heard more clearly against the other. Comparing the symphony with the village version, one critic observed that the composer had ______ the tune.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A tune once played alone is now woven together with a second tune, the two lines crossing throughout, so the composer \"braided\" the tune. \"Clipped\" fails because the violins play it from start to finish; \"animated\" fails because nothing about its speed or rhythm changes, only what sounds beside it; \"cleansed\" fails because it is kept note for note, with nothing removed or corrected.",
+      "kills": {
+        "clipped": {"type": "logic", "quote": "from start to finish", "why": "The whole tune is played, so none of it is cut off."},
+        "animated": {"type": "logic", "quote": "the two lines cross and recross", "why": "The change is a second line interwoven with it, not a livelier pace or rhythm."},
+        "cleansed": {"type": "logic", "quote": "carry it note for note", "why": "The tune's own notes are untouched, so nothing in it was removed as rough."}
+      }
+    },
+    {
+      "key": "clipped",
+      "passage": "In 1907 a composer built one movement of his first symphony on a folk tune he had heard in a fishing village. The village fiddlers played it as thirty-two bars, repeated for as long as the dancing lasted. The composer kept only the first eight bars, note for note and at the fiddlers' own speed, so that the movement returns again and again to a phrase that never reaches its end. Comparing the symphony with the village version, one critic observed that the composer had ______ the tune.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Of thirty-two bars, only the first eight survive, unchanged, so the composer \"clipped\" the tune: he cut it short. \"Braided\" fails because nothing else is woven with it; the movement simply repeats the phrase; \"animated\" fails because it keeps the fiddlers' own speed; \"cleansed\" fails because the eight bars keep every note, so nothing was smoothed away.",
+      "kills": {
+        "braided": {"type": "logic", "quote": "returns again and again to a phrase", "why": "The movement repeats the one fragment; no second line is combined with it."},
+        "animated": {"type": "explicit", "quote": "at the fiddlers' own speed", "why": "Its pace is unchanged, so it was not made livelier."},
+        "cleansed": {"type": "logic", "quote": "note for note", "why": "What remains is exactly the village notes; the change is in length only."}
+      }
+    },
+    {
+      "key": "cleansed",
+      "passage": "In 1907 a composer built one movement of his first symphony on a folk tune he had heard in a fishing village. The village fiddlers played it with sliding notes, a sharpened fourth, and a rough drone, all of which the composer's teachers had taught him to call errors. In the symphony the tune keeps its full length and its speed; every slide is gone, the fourth sits back in the ordinary scale, and smooth chords stand where the drone was. Comparing the symphony with the village version, one critic observed that the composer had ______ the tune.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Everything his training counted as an error is taken out, leaving the tune smooth and regular, so the composer \"cleansed\" the tune. \"Clipped\" fails because it keeps its full length; \"braided\" fails because the chords replace the drone as harmony, not as a second tune woven with it; \"animated\" fails because its speed is unchanged.",
+      "kills": {
+        "clipped": {"type": "logic", "quote": "keeps its full length", "why": "Nothing is cut from the tune's length; only its rough features are removed."},
+        "braided": {"type": "logic", "quote": "smooth chords stand where the drone was", "why": "The chords are accompaniment replacing the drone, not a second melody interwoven with the tune."},
+        "animated": {"type": "logic", "quote": "taught him to call errors", "why": "The changes remove what he was trained to see as faults; they give the tune no new liveliness."}
+      }
+    },
+    {
+      "key": "animated",
+      "passage": "In 1907 a composer built one movement of his first symphony on a folk tune he had heard in a fishing village. In the village it was a slow lament, sung at funerals with each note held long. The composer kept every note and gave the tune to the full orchestra at twice the speed, over a quick, skipping rhythm in the drums, so that audiences at the premiere tapped their feet to it. Comparing the symphony with the village version, one critic observed that the composer had ______ the tune.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A slow funeral lament becomes quick and dancing, enough to set feet tapping, so the composer \"animated\" the tune. \"Clipped\" fails because every note is kept; \"braided\" fails because the drums supply a rhythm, not a second tune woven with it; \"cleansed\" fails because nothing is removed as a fault; the notes stay and only the pace and rhythm change.",
+      "kills": {
+        "clipped": {"type": "logic", "quote": "kept every note", "why": "No part of the tune is cut off."},
+        "braided": {"type": "logic", "quote": "skipping rhythm in the drums", "why": "The added part is a rhythm beneath the tune, not another melody interwoven with it."},
+        "cleansed": {"type": "logic", "quote": "slow lament, sung at funerals", "why": "The change is from mournful to lively; nothing rough in the tune is stripped out."}
+      }
+    }
+  ]
+}

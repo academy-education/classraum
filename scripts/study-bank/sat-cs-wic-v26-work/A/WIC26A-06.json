@@ -1,0 +1,122 @@
+{
+  "id": "WIC26A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a geological hypothesis about hot springs",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "rehabilitated",
+    "pruned",
+    "overshadowed",
+    "orphaned"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "overshadowed",
+    "orphaned",
+    "pruned",
+    "rehabilitated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One historian of geology writes that the 1931 survey ______ the ridge hypothesis.",
+  "worlds": [
+    {
+      "key": "rehabilitated",
+      "passage": "In 1880 a geologist proposed that the hot springs of a mountain basin were fed by rain falling on a ridge to the north. By 1900 most geologists had set the idea aside, because core samples showed the ridge's surface rock to be nearly watertight. The 1931 survey poured dye into fissures along the ridge and found it in the springs within three weeks, and textbooks of the following decade again presented the ridge as the springs' source. One historian of geology writes that the 1931 survey ______ the ridge hypothesis.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The hypothesis had been dismissed by 1900, and the survey's dye tracing restored it to the textbooks, so the survey \"rehabilitated\" it. \"Pruned\" fails because the hypothesis came back whole, with no part cut away. \"Overshadowed\" fails because the survey drew attention to the hypothesis rather than away from it. \"Orphaned\" fails because the hypothesis is not described as resting on a larger theory that the survey removed.",
+      "kills": {
+        "pruned": {
+          "type": "logic",
+          "quote": "again presented the ridge as the springs' source",
+          "why": "the textbooks restored the claim in full; nothing was trimmed from it"
+        },
+        "overshadowed": {
+          "type": "logic",
+          "quote": "found it in the springs within three weeks",
+          "why": "the survey's main finding bore directly on the hypothesis, so it did not draw attention elsewhere"
+        },
+        "orphaned": {
+          "type": "logic",
+          "quote": "most geologists had set the idea aside",
+          "why": "the hypothesis had lost standing on its own and regained it; no parent theory was removed from under it"
+        }
+      }
+    },
+    {
+      "key": "pruned",
+      "passage": "In 1880 a geologist proposed that the hot springs of a mountain basin were fed by rain falling on a ridge to the north. The proposal covered all twelve of the basin's springs, and geologists generally accepted it. The 1931 survey poured dye into fissures along the ridge and found it, weeks later, in four of the springs and in none of the other eight, and textbooks of the following decade name the ridge as the source of those four alone. One historian of geology writes that the 1931 survey ______ the ridge hypothesis.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "An accepted claim about all twelve springs came out of the survey covering only four, so the survey \"pruned\" the hypothesis, cutting it back to the part that held. \"Rehabilitated\" fails because the hypothesis was already accepted, not discredited. \"Overshadowed\" fails because the survey's findings were about the hypothesis itself. \"Orphaned\" fails because no theory behind the hypothesis is said to have fallen.",
+      "kills": {
+        "rehabilitated": {
+          "type": "logic",
+          "quote": "geologists generally accepted it",
+          "why": "the hypothesis was in good standing before 1931, so it had no reputation to restore"
+        },
+        "overshadowed": {
+          "type": "logic",
+          "quote": "in four of the springs and in none of the other eight",
+          "why": "the survey's result was a direct test of the hypothesis, keeping attention on it"
+        },
+        "orphaned": {
+          "type": "logic",
+          "quote": "name the ridge as the source of those four alone",
+          "why": "what changed is how far the claim reaches, not whether a supporting theory survived"
+        }
+      }
+    },
+    {
+      "key": "overshadowed",
+      "passage": "In 1880 a geologist proposed that the hot springs of a mountain basin were fed by rain falling on a ridge to the north. The 1931 survey set out to test the idea, and its first borehole struck a body of molten rock less than two miles down, far shallower than anyone had thought possible. The papers that followed over the next decade concerned the molten rock, and the dye tests planned for the ridge were never carried out. One historian of geology writes that the 1931 survey ______ the ridge hypothesis.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The survey's unexpected discovery of shallow molten rock drew all later work toward itself, and the planned test of the hypothesis was dropped, so the survey \"overshadowed\" the ridge hypothesis. \"Rehabilitated\" fails because the hypothesis was neither discredited before nor confirmed after. \"Pruned\" fails because nothing was cut from the hypothesis; it went untested. \"Orphaned\" fails because no theory beneath the hypothesis was overturned.",
+      "kills": {
+        "rehabilitated": {
+          "type": "logic",
+          "quote": "were never carried out",
+          "why": "the hypothesis received no new support, so its standing was not restored"
+        },
+        "pruned": {
+          "type": "logic",
+          "quote": "set out to test the idea",
+          "why": "the intended test never happened, so no part of the claim was shown wrong and cut away"
+        },
+        "orphaned": {
+          "type": "logic",
+          "quote": "concerned the molten rock",
+          "why": "attention moved to a new discovery; nothing the hypothesis depended on was refuted"
+        }
+      }
+    },
+    {
+      "key": "orphaned",
+      "passage": "In 1880 a geologist proposed that the hot springs of a mountain basin were fed by rain falling on a ridge to the north. He had reached the idea through a broader theory that the ridge was an old volcano, still warm inside, that heated the rain as it sank. The 1931 survey poured dye into fissures along the ridge and found it in the springs within three weeks. Its boreholes showed the ridge to be cold sandstone throughout, and later textbooks name the ridge as the springs' source without explaining why the water is hot. One historian of geology writes that the 1931 survey ______ the ridge hypothesis.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The survey confirmed that rain on the ridge feeds the springs while destroying the volcanic theory the idea had come from, leaving the hypothesis standing without the theory that produced it, so the survey \"orphaned\" it. \"Rehabilitated\" fails because the hypothesis is not described as discredited before 1931. \"Pruned\" fails because the claim about the ridge feeding the springs survived whole; what fell was the separate theory behind it. \"Overshadowed\" fails because the survey's findings concerned the ridge directly.",
+      "kills": {
+        "rehabilitated": {
+          "type": "logic",
+          "quote": "He had reached the idea through a broader theory",
+          "why": "the passage reports no period in which the hypothesis was rejected, so there was no lost standing to restore"
+        },
+        "pruned": {
+          "type": "logic",
+          "quote": "name the ridge as the springs' source",
+          "why": "the claim about the ridge feeding the springs survived intact rather than being cut back"
+        },
+        "overshadowed": {
+          "type": "logic",
+          "quote": "poured dye into fissures along the ridge",
+          "why": "the survey worked on the ridge itself, keeping attention on the hypothesis"
+        }
+      }
+    }
+  ]
+}

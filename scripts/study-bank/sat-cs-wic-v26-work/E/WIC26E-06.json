@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a clause in a river-water treaty",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "loophole",
+    "keystone",
+    "lever",
+    "lottery"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lottery",
+    "lever",
+    "loophole",
+    "keystone"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Writing in 1980, one legal historian called the seventh clause the treaty's ______.",
+  "worlds": [
+    {
+      "key": "loophole",
+      "passage": "In 1922 two neighboring states signed a treaty dividing the water of a river that crossed both, and much of its later history turned on its seventh clause. That clause let the upstream state take more than its share in an emergency and left the upstream state's own governor to declare when one existed. Its governors declared emergencies in thirty-one of the next forty summers, and in those summers the downstream state received about half the water the treaty promised it. Writing in 1980, one legal historian called the seventh clause the treaty's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The clause let one party decide for itself when it could exceed its share, and that party used it to take water the treaty otherwise promised the other, so the clause was the treaty's \"loophole.\" \"Lever\" fails because the upstream state used the clause to take water directly, not as a threat to win something else; \"keystone\" fails because nothing says the rest of the treaty depended on the clause; \"lottery\" fails because the shortfalls followed the governors' declarations, not chance.",
+      "kills": {
+        "lever": {
+          "type": "logic",
+          "quote": "received about half the water",
+          "why": "the clause is used to take water outright, not to pressure the other state into concessions"
+        },
+        "keystone": {
+          "type": "logic",
+          "quote": "take more than its share in an emergency",
+          "why": "the clause is an exception to the other terms, not the piece they all rest on"
+        },
+        "lottery": {
+          "type": "logic",
+          "quote": "left the upstream state's own governor to declare",
+          "why": "the outcome was decided by one party's choice, not by chance"
+        }
+      }
+    },
+    {
+      "key": "keystone",
+      "passage": "In 1922 two neighboring states signed a treaty dividing the water of a river that crossed both, and much of its later history turned on its seventh clause. That clause set the method for measuring the river's yearly flow, and every other clause stated each state's share as a fraction of the flow so measured. When a court struck the method down in 1961 because the gauge it named had been removed, none of the other clauses could be applied, and the two states had to negotiate a new treaty from the beginning. Writing in 1980, one legal historian called the seventh clause the treaty's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Every other clause depended on the seventh, and once it fell the whole treaty could not stand, so it was the treaty's \"keystone.\" \"Loophole\" fails because the clause let no party escape its obligations; \"lever\" fails because no state used it to pressure the other; \"lottery\" fails because the measurement was a fixed method, and it failed because its gauge was gone, not because of chance.",
+      "kills": {
+        "loophole": {
+          "type": "logic",
+          "quote": "every other clause stated each state's share",
+          "why": "the clause underlies the obligations rather than offering a way around them"
+        },
+        "lever": {
+          "type": "logic",
+          "quote": "none of the other clauses could be applied",
+          "why": "the clause matters because the structure rests on it, not because a state wielded it"
+        },
+        "lottery": {
+          "type": "logic",
+          "quote": "because the gauge it named had been removed",
+          "why": "the clause failed for a concrete reason, not through any element of chance"
+        }
+      }
+    },
+    {
+      "key": "lever",
+      "passage": "In 1922 two neighboring states signed a treaty dividing the water of a river that crossed both, and much of its later history turned on its seventh clause. That clause let the downstream state stop its yearly payment toward the upstream state's dam in any year the river ran short. The river seldom ran short. In forty years the downstream state never stopped a payment, and its officials raised the clause whenever they wanted a highway link, a share of a power plant, or fishing rights, and the upstream state gave way each time. Writing in 1980, one legal historian called the seventh clause the treaty's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The downstream state used the mere threat of the clause to win unrelated concessions, so it served as the treaty's \"lever.\" \"Loophole\" fails because the downstream state never used the clause to escape a payment it owed; \"keystone\" fails because nothing says the other clauses depended on it; \"lottery\" fails because each outcome came from deliberate pressure, not chance.",
+      "kills": {
+        "loophole": {
+          "type": "logic",
+          "quote": "never stopped a payment",
+          "why": "the clause was never used to get out of an obligation, only held over the other state"
+        },
+        "keystone": {
+          "type": "logic",
+          "quote": "raised the clause whenever they wanted",
+          "why": "the clause matters as a tool one side used, not as the piece the treaty rests on"
+        },
+        "lottery": {
+          "type": "logic",
+          "quote": "the upstream state gave way each time",
+          "why": "the results were won by pressure, not left to chance"
+        }
+      }
+    },
+    {
+      "key": "lottery",
+      "passage": "In 1922 two neighboring states signed a treaty dividing the water of a river that crossed both, and much of its later history turned on its seventh clause. That clause fixed each year's shares by the depth of snow at a single mountain stake on one fixed day each spring. A late storm or an early thaw in the days around that date could double or halve a state's share for the whole year, and farmers in both states learned not to plant until that day's reading was announced. Writing in 1980, one legal historian called the seventh clause the treaty's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Each year's shares turned on the weather at one stake on one day, so the clause made the division a matter of chance: the treaty's \"lottery.\" \"Loophole\" fails because no party used the clause to escape its obligations; \"lever\" fails because neither state used it to press the other; \"keystone\" fails because nothing says the other clauses depended on it.",
+      "kills": {
+        "loophole": {
+          "type": "logic",
+          "quote": "farmers in both states learned not to plant",
+          "why": "both states were equally at the mercy of the reading; neither exploited it"
+        },
+        "lever": {
+          "type": "logic",
+          "quote": "a late storm or an early thaw",
+          "why": "the outcome came from the weather, not from either state's pressure"
+        },
+        "keystone": {
+          "type": "logic",
+          "quote": "depth of snow at a single mountain stake",
+          "why": "what makes the clause notable is its dependence on one chance reading, not that the treaty rests on it"
+        }
+      }
+    }
+  ]
+}

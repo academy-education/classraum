@@ -1,0 +1,122 @@
+{
+  "id": "WIC26C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a rural poet and her brother in the city",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "critic",
+    "courier",
+    "confidant",
+    "benefactor"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "critic",
+    "courier",
+    "benefactor",
+    "confidant"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Her biographer describes the brother, in the end, as the poet's ______.",
+  "worlds": [
+    {
+      "key": "benefactor",
+      "passage": "For forty years a poet lived on her family's farm, two days' ride from the city where her younger brother lived and where her books were printed. When the farm failed in 1880, he paid off its debts and sent her a fixed sum every month for the rest of her life. With that money she gave up the village teaching that had left her no hours to write, and nearly all of her published poems date from after 1880. Her biographer describes the brother, in the end, as the poet's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "His money freed her from teaching, and the poems followed, so he was the poet's \"benefactor.\" \"Critic\" fails because what he gave was money and time, and nothing says he read or judged a line; \"courier\" fails because he sent money, not her manuscripts, and nothing is said of carrying poems; \"confidant\" fails because the tie described is financial support, with no private matters shared between them.",
+      "kills": {
+        "critic": {
+          "type": "logic",
+          "quote": "gave up the village teaching",
+          "why": "His effect on the poems is through freeing her time to write, not through judging what she wrote."
+        },
+        "courier": {
+          "type": "logic",
+          "quote": "sent her a fixed sum every month",
+          "why": "What travels between them is his money to her, not her poems to the city."
+        },
+        "confidant": {
+          "type": "logic",
+          "quote": "paid off its debts",
+          "why": "His role is paying for her life and time, not hearing what she told no one else."
+        }
+      }
+    },
+    {
+      "key": "confidant",
+      "passage": "For forty years a poet lived on her family's farm, two days' ride from the city where her younger brother lived and where her books were printed. The letters she wrote him every week held what her diaries and her other letters leave out: her doubts about her marriage, and in 1885 her decision to stop publishing. He told no one of either until after her death. Her biographer describes the brother, in the end, as the poet's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "She told him, and only him, the private matters she kept from everyone else, and he kept them secret, so he was the poet's \"confidant.\" \"Critic\" fails because what reached him was her private life, not her poems, and nothing says he judged her work; \"courier\" fails because the letters came to him and stayed with him, carried nowhere; \"benefactor\" fails because nothing passes from him to her but his silence, with no money or support described.",
+      "kills": {
+        "critic": {
+          "type": "logic",
+          "quote": "her doubts about her marriage",
+          "why": "What he hears is private matters, not poems to judge."
+        },
+        "courier": {
+          "type": "logic",
+          "quote": "He told no one of either",
+          "why": "What reaches him goes no further, so he carries nothing on to anyone."
+        },
+        "benefactor": {
+          "type": "logic",
+          "quote": "what her diaries and her other letters leave out",
+          "why": "His place in her life is as the one she tells things to, not one who supports her materially."
+        }
+      }
+    },
+    {
+      "key": "courier",
+      "passage": "For forty years a poet lived on her family's farm, two days' ride from the city where her younger brother lived and where her books were printed. She would not travel and distrusted the mail. Every spring he rode out to the farm, took the year's poems back to her printer in a sealed packet he never opened, and returned in the summer with the printed proofs, which she corrected alone. Her biographer describes the brother, in the end, as the poet's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Because she would neither travel nor trust the mail, her poems reached the printer, and the proofs reached her, only by his hand, so he was the poet's \"courier.\" \"Critic\" fails because the packet stayed sealed and she corrected the proofs alone; \"confidant\" fails because what he carried was her finished work, unread, not anything she told him; \"benefactor\" fails because no money or support is described.",
+      "kills": {
+        "critic": {
+          "type": "logic",
+          "quote": "which she corrected alone",
+          "why": "He passed no judgment on the poems; she revised them by herself."
+        },
+        "confidant": {
+          "type": "logic",
+          "quote": "a sealed packet he never opened",
+          "why": "He carried what she wrote without knowing it, so nothing private passed to him."
+        },
+        "benefactor": {
+          "type": "logic",
+          "quote": "took the year's poems back to her printer",
+          "why": "His service is delivery of her work, not financial help."
+        }
+      }
+    },
+    {
+      "key": "critic",
+      "passage": "For forty years a poet lived on her family's farm, two days' ride from the city where her younger brother lived and where her books were printed. He edited a literary weekly there and reviewed each of her books in it when it appeared, naming the weak lines and the forced rhymes. Her later notebooks show her reworking exactly the poems he had faulted, and the second editions differ from the first at the lines his reviews had quoted. Her biographer describes the brother, in the end, as the poet's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "He judged her published work in print, and she revised exactly where he found fault, so he was the poet's \"critic.\" \"Courier\" fails because her books were already printed when he reviewed them; he carried nothing; \"confidant\" fails because his judgments were public reviews, not private matters she told him; \"benefactor\" fails because no money or support passes between them.",
+      "kills": {
+        "courier": {
+          "type": "logic",
+          "quote": "reviewed each of her books in it when it appeared",
+          "why": "He meets her work only after publication, so he is not the one delivering it."
+        },
+        "confidant": {
+          "type": "logic",
+          "quote": "edited a literary weekly",
+          "why": "His comments were printed for the public, not private confidences between them."
+        },
+        "benefactor": {
+          "type": "logic",
+          "quote": "naming the weak lines",
+          "why": "What he offers is judgment of her poems, not material support."
+        }
+      }
+    }
+  ]
+}

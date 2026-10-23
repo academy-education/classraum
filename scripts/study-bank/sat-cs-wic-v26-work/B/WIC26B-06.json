@@ -1,0 +1,122 @@
+{
+  "id": "WIC26B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a village council's secretary",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "scapegoat",
+    "watchdog",
+    "understudy",
+    "tiebreaker"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "watchdog",
+    "scapegoat",
+    "understudy",
+    "tiebreaker"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In the village's records, one historian has argued, the secretary appears above all as the council's ______.",
+  "worlds": [
+    {
+      "key": "scapegoat",
+      "passage": "From 1820 to 1860 a mountain village was governed by a council of four elected members, who appointed a secretary to keep the minutes of their meetings. Each time a council decision went badly, as when a grain levy left families short or a new road washed out, the members voted to censure the secretary for an error in the minutes. The minutes in question record the members' own votes, each in the member's hand. The secretary was dismissed three times and rehired each time, and no member was ever censured. In the village's records, one historian has argued, the secretary appears above all as the council's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The members' failed decisions were repeatedly blamed on the secretary, whose minutes merely recorded their own votes, and the secretary was punished while they never were: the secretary was the council's \"scapegoat.\" \"Watchdog\" fails because the secretary was the one censured, not the one exposing the members. \"Understudy\" fails because the secretary never took over any member's role. \"Tiebreaker\" fails because the votes in question were the members' own, with no deciding vote by the secretary.",
+      "kills": {
+        "watchdog": {
+          "type": "logic",
+          "quote": "voted to censure the secretary",
+          "why": "the members turned on the secretary; the secretary did not hold them to account"
+        },
+        "understudy": {
+          "type": "logic",
+          "quote": "dismissed three times and rehired",
+          "why": "the secretary's position never changed except to be removed and restored; no one's place was taken"
+        },
+        "tiebreaker": {
+          "type": "logic",
+          "quote": "record the members' own votes",
+          "why": "the decisions were the members' alone, so the secretary decided nothing"
+        }
+      }
+    },
+    {
+      "key": "watchdog",
+      "passage": "From 1820 to 1860 a mountain village was governed by a council of four elected members, who appointed a secretary to keep the minutes of their meetings. The secretary also kept the council's accounts, and each spring read aloud to the village assembly every payment the council had made without a vote of the members. After two such readings, members repaid sums they had taken for fencing their own fields. In 1841 the members moved to end the yearly reading, and the assembly refused to let them. In the village's records, one historian has argued, the secretary appears above all as the council's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The secretary checked the council's spending and exposed unvoted payments to the village, which made members repay what they had taken and which they tried in vain to stop: the secretary was the council's \"watchdog.\" \"Scapegoat\" fails because the secretary exposed the members' faults rather than bearing blame for them. \"Understudy\" fails because the secretary never stood in for a member. \"Tiebreaker\" fails because the secretary's power lay in reporting, not in voting.",
+      "kills": {
+        "scapegoat": {
+          "type": "logic",
+          "quote": "members repaid sums they had taken",
+          "why": "blame fell on the members because of the secretary's report, not on the secretary"
+        },
+        "understudy": {
+          "type": "logic",
+          "quote": "read aloud to the village assembly",
+          "why": "the secretary's role was reporting on the members, not preparing to replace one"
+        },
+        "tiebreaker": {
+          "type": "logic",
+          "quote": "without a vote of the members",
+          "why": "the secretary checked whether votes had been taken; the secretary did not cast one"
+        }
+      }
+    },
+    {
+      "key": "understudy",
+      "passage": "From 1820 to 1860 a mountain village was governed by a council of four elected members, who appointed a secretary to keep the minutes of their meetings. The secretary sat beside the chairman at every meeting, drafted the chairman's letters, and kept the chairman's seal. When the chairman fell ill in 1838 and again in 1845, the secretary ran the council's meetings for months at a time. When the chairman died in 1851, the members made the secretary chairman without a contest. In the village's records, one historian has argued, the secretary appears above all as the council's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The secretary learned the chairman's work, filled in whenever the chairman was ill, and finally succeeded to the chair, so the secretary was the council's \"understudy.\" \"Scapegoat\" fails because nothing in the passage shows the secretary being blamed. \"Watchdog\" fails because the secretary worked alongside the chairman rather than checking the members. \"Tiebreaker\" fails because the secretary's role was to take the chairman's place, not to decide divided votes.",
+      "kills": {
+        "scapegoat": {
+          "type": "logic",
+          "quote": "made the secretary chairman without a contest",
+          "why": "the members trusted the secretary enough to promote the secretary, the reverse of blaming"
+        },
+        "watchdog": {
+          "type": "logic",
+          "quote": "drafted the chairman's letters",
+          "why": "the secretary served the chairman's work rather than guarding against the members"
+        },
+        "tiebreaker": {
+          "type": "logic",
+          "quote": "ran the council's meetings for months",
+          "why": "the secretary stood in for the chairman; the passage says nothing of deciding split votes"
+        }
+      }
+    },
+    {
+      "key": "tiebreaker",
+      "passage": "From 1820 to 1860 a mountain village was governed by a council of four elected members, who appointed a secretary to keep the minutes of their meetings. Two members came from the upper hamlet and two from the lower, and on any question that divided the hamlets the council split two to two. The village charter gave the secretary a vote only when the members were evenly divided. The minutes record forty such votes, on the mill, the school, and the new road, and each one settled the matter. In the village's records, one historian has argued, the secretary appears above all as the council's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The council was built to deadlock between the two hamlets, and the secretary's vote, allowed only when the members split evenly, decided forty such questions: the secretary was the council's \"tiebreaker.\" \"Scapegoat\" fails because the secretary's votes decided matters rather than drawing blame. \"Watchdog\" fails because the secretary acted only when the members were divided, not to check their conduct. \"Understudy\" fails because the secretary never replaced any member.",
+      "kills": {
+        "scapegoat": {
+          "type": "logic",
+          "quote": "each one settled the matter",
+          "why": "the secretary's role was deciding questions, not taking blame for them"
+        },
+        "watchdog": {
+          "type": "logic",
+          "quote": "only when the members were evenly divided",
+          "why": "the secretary's power came into play on split votes, not as oversight of the members"
+        },
+        "understudy": {
+          "type": "logic",
+          "quote": "Two members came from the upper hamlet",
+          "why": "the four seats stayed with the members; the secretary added a vote rather than standing in for anyone"
+        }
+      }
+    }
+  ]
+}

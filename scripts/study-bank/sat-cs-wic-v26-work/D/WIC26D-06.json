@@ -1,0 +1,122 @@
+{
+  "id": "WIC26D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a flood in a farming valley",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "dammed",
+    "gouged",
+    "emptied",
+    "flattened"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "emptied",
+    "flattened",
+    "dammed",
+    "gouged"
+  ],
+  "pos": "verb",
+  "after_blank": "it",
+  "blank_sentence": "Revisiting the valley a decade later, one geographer wrote that the flood had ______ it.",
+  "worlds": [
+    {
+      "key": "dammed",
+      "passage": "In the spring of 1936 a flood swept the length of a narrow farming valley, where a river had run for centuries between orchards and cornfields to a rocky gorge at the valley's lower end. Its waters tore loose thousands of logs from a lumber camp upstream and carried them, with boulders from the banks, into that gorge, where they jammed tight. The river behind the jam rose into a lake that covered the lower fields for nine years, until engineers blasted a channel through it in 1945. Revisiting the valley a decade later, one geographer wrote that the flood had ______ it.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The flood packed logs and boulders into the gorge at the valley's outlet, and the river backed up behind them into a lake, so the flood had \"dammed\" the valley, blocking its outflow. \"Gouged\" fails because the flood's effect was to plug the outlet and hold water, not to cut into the valley floor. \"Emptied\" fails because the result was a valley filling with water, not one losing its people or contents. \"Flattened\" fails because what the flood did was block the river; nothing is described as knocked down.",
+      "kills": {
+        "gouged": {
+          "type": "logic",
+          "quote": "where they jammed tight",
+          "why": "the flood deposited debris that blocked the outlet; it did not cut channels into the ground"
+        },
+        "emptied": {
+          "type": "logic",
+          "quote": "rose into a lake that covered",
+          "why": "the valley filled up behind the jam rather than being emptied"
+        },
+        "flattened": {
+          "type": "logic",
+          "quote": "The river behind the jam rose",
+          "why": "the effect described is blocked, rising water, not crops or buildings laid flat"
+        }
+      }
+    },
+    {
+      "key": "gouged",
+      "passage": "In the spring of 1936 a flood swept the length of a narrow farming valley, where a river had run for centuries between orchards and cornfields to a rocky gorge at the valley's lower end. Swollen by snowmelt, the river left its winding bed for a straight course down the valley floor, and the fast water cut into the soft soil wherever it ran. When it fell back, it left a ravine some twenty feet deep along the valley's full length, with the old riverbed lying dry beside it. Revisiting the valley a decade later, one geographer wrote that the flood had ______ it.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Taking a straight course through soft soil, the fast water cut a twenty-foot ravine the length of the valley, so the flood had \"gouged\" it. \"Dammed\" fails because the river kept flowing out along its new course; nothing blocked it. \"Emptied\" fails because the change was a deep cut in the land, not the valley losing its people or contents. \"Flattened\" fails because the flood carved a deep channel rather than laying anything level.",
+      "kills": {
+        "dammed": {
+          "type": "logic",
+          "quote": "a straight course down the valley floor",
+          "why": "the water ran freely down a new course, so nothing held it back"
+        },
+        "emptied": {
+          "type": "logic",
+          "quote": "cut into the soft soil",
+          "why": "the flood's lasting effect was to cut the ground, not to drain the valley of anything"
+        },
+        "flattened": {
+          "type": "logic",
+          "quote": "a ravine some twenty feet deep",
+          "why": "a deep ravine is a cut into the land, the reverse of laying it flat"
+        }
+      }
+    },
+    {
+      "key": "emptied",
+      "passage": "In the spring of 1936 a flood swept the length of a narrow farming valley, where a river had run for centuries between orchards and cornfields to a rocky gorge at the valley's lower end. The water rose slowly, leaving nearly every barn and house standing, and it lay on the fields for six weeks, leaving behind a crust of salt carried up from the coastal marshes. Nothing planted in the next three springs would grow, and by 1946 the census counted twelve families in the valley where there had been ninety. Revisiting the valley a decade later, one geographer wrote that the flood had ______ it.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The salt the water left ruined the fields for years, and the valley's families fell from ninety to twelve, so the flood had \"emptied\" it of its people. \"Dammed\" fails because the water drained off after six weeks rather than being held back. \"Gouged\" fails because the water rose slowly and left a crust on the land instead of cutting into it. \"Flattened\" fails because barns and houses were left standing.",
+      "kills": {
+        "dammed": {
+          "type": "logic",
+          "quote": "lay on the fields for six weeks",
+          "why": "the water stood and then went, with nothing blocking the river's outflow"
+        },
+        "gouged": {
+          "type": "logic",
+          "quote": "The water rose slowly",
+          "why": "slowly rising water that left a salt crust did not carve the ground"
+        },
+        "flattened": {
+          "type": "explicit",
+          "quote": "leaving nearly every barn and house standing",
+          "why": "the buildings stood, so nothing was knocked flat"
+        }
+      }
+    },
+    {
+      "key": "flattened",
+      "passage": "In the spring of 1936 a flood swept the length of a narrow farming valley, where a river had run for centuries between orchards and cornfields to a rocky gorge at the valley's lower end. Driven by a gale, a wall of water a few feet high crossed the valley in less than an hour and drained away by evening, the river back in its old bed by the next morning. Surveyors afterward found every orchard tree and cornstalk lying in the same direction, pointing downstream, still rooted in soil the water had barely disturbed. Revisiting the valley a decade later, one geographer wrote that the flood had ______ it.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "A fast, shallow wall of water pushed every tree and stalk over in one direction while barely touching the soil, so the flood had \"flattened\" the valley's growth. \"Dammed\" fails because the water drained away within hours and the river returned to its bed. \"Gouged\" fails because the soil was barely disturbed. \"Emptied\" fails because the trees and crops stayed rooted where they stood; nothing was removed from the valley.",
+      "kills": {
+        "dammed": {
+          "type": "logic",
+          "quote": "drained away by evening",
+          "why": "the water ran off within hours, so nothing held it back"
+        },
+        "gouged": {
+          "type": "logic",
+          "quote": "soil the water had barely disturbed",
+          "why": "the ground was not cut into; only what grew on it was pushed over"
+        },
+        "emptied": {
+          "type": "logic",
+          "quote": "still rooted in soil",
+          "why": "the crops and trees stayed in place, so the valley was not emptied of anything"
+        }
+      }
+    }
+  ]
+}

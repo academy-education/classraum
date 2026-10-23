@@ -1,0 +1,122 @@
+{
+  "id": "WIC26C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a chemist and his laboratory technician",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "audience",
+    "apprentice",
+    "ambassador",
+    "accomplice"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "audience",
+    "ambassador",
+    "apprentice",
+    "accomplice"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One biographer has described the technician as, more than anything, the chemist's ______.",
+  "worlds": [
+    {
+      "key": "apprentice",
+      "passage": "From 1951 to 1966 a chemist at a small university laboratory worked with a single technician, a young woman hired straight out of high school. For her first year she only washed glassware. The chemist then had her run each step of his syntheses while he corrected her hands, and repeat them until she could work without him; when he retired, she took over the laboratory and went on using his methods. One biographer has described the technician as, more than anything, the chemist's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "She began with menial work, learned his craft by doing it under his correction until she could do it alone, and succeeded him, so she was the chemist's \"apprentice.\" \"Audience\" fails because she learned by working at the bench herself, not by listening; \"ambassador\" fails because she never represents him to anyone outside the laboratory; \"accomplice\" fails because what she shares with him is a method she carries on openly, not any wrongdoing.",
+      "kills": {
+        "audience": {
+          "type": "logic",
+          "quote": "run each step of his syntheses",
+          "why": "Her role is to perform the work herself, not to listen while he explains it."
+        },
+        "ambassador": {
+          "type": "logic",
+          "quote": "took over the laboratory",
+          "why": "Everything she does is inside the laboratory, learning and then inheriting it; she speaks for him to no one outside."
+        },
+        "accomplice": {
+          "type": "logic",
+          "quote": "went on using his methods",
+          "why": "What she takes from him is his craft, carried on in the open, not a part in any wrongdoing."
+        }
+      }
+    },
+    {
+      "key": "audience",
+      "passage": "From 1951 to 1966 a chemist at a small university laboratory worked with a single technician, a young woman hired straight out of high school. She never touched the apparatus and understood little chemistry. Each evening the chemist described the day's experiments aloud to her as she typed his notes, often stopping mid-sentence to cross out a plan, and he said that only when he explained a step to someone could he see where it would fail. One biographer has described the technician as, more than anything, the chemist's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Her role was to be someone the chemist could talk to: explaining his plans aloud to her let him find their flaws, though she followed little of it, so she was the chemist's \"audience.\" \"Apprentice\" fails because she never did the work and never learned the science; \"ambassador\" fails because she spoke for him to no one; \"accomplice\" fails because nothing wrong is being done, only his own thinking clarified.",
+      "kills": {
+        "apprentice": {
+          "type": "logic",
+          "quote": "never touched the apparatus",
+          "why": "She never practiced the craft and never learned it, so she was not being trained to do his work."
+        },
+        "ambassador": {
+          "type": "logic",
+          "quote": "described the day's experiments aloud to her",
+          "why": "The talk runs from him to her inside the laboratory; she carries none of it to anyone else."
+        },
+        "accomplice": {
+          "type": "logic",
+          "quote": "see where it would fail",
+          "why": "The purpose is honest self-correction of his plans, with no wrongdoing to take part in."
+        }
+      }
+    },
+    {
+      "key": "accomplice",
+      "passage": "From 1951 to 1966 a chemist at a small university laboratory worked with a single technician, a young woman hired straight out of high school. In 1964 he published yields that no other laboratory could reproduce, and the agency that funded him announced that its inspectors would examine his notebooks and samples. The week before they came, at his request, she copied every notebook out afresh with figures that matched his papers and emptied the remaining samples down the drain. One biographer has described the technician as, more than anything, the chemist's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "His results could not be reproduced and inspectors were coming, and in the week before they arrived she rewrote the records to match his claims and destroyed the samples that could have been tested, so she helped him hide wrongdoing: she was the chemist's \"accomplice.\" \"Audience\" fails because she acts rather than listens; \"apprentice\" fails because nothing is taught or learned, only figures copied to match his papers; \"ambassador\" fails because she keeps his work from outsiders rather than presenting it to them.",
+      "kills": {
+        "audience": {
+          "type": "logic",
+          "quote": "emptied the remaining samples down the drain",
+          "why": "Her part is active, destroying evidence, not listening to him."
+        },
+        "apprentice": {
+          "type": "logic",
+          "quote": "with figures that matched his papers",
+          "why": "She alters records to fit his papers; she is not being trained in his craft."
+        },
+        "ambassador": {
+          "type": "logic",
+          "quote": "The week before they came",
+          "why": "Facing outsiders, she prepares to keep his work from being examined rather than representing it."
+        }
+      }
+    },
+    {
+      "key": "ambassador",
+      "passage": "From 1951 to 1966 a chemist at a small university laboratory worked with a single technician, a young woman hired straight out of high school. The chemist disliked travel, never once attended a meeting, and answered letters from other scientists only through her. Each spring she spent a month visiting laboratories across the country, where she presented the year's results, took other chemists' questions, and settled the exchanges of samples on which his later papers depended. One biographer has described the technician as, more than anything, the chemist's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "He would not travel, meet, or write to other scientists himself, and she was the one who went out, presented the laboratory's results, and settled exchanges, so she represented him: she was the chemist's \"ambassador.\" \"Audience\" fails because she does the speaking, to others, rather than listening to him; \"apprentice\" fails because she presents finished results rather than learning to produce them; \"accomplice\" fails because the work is presented openly, with nothing wrong concealed.",
+      "kills": {
+        "audience": {
+          "type": "logic",
+          "quote": "took other chemists' questions",
+          "why": "She speaks for the laboratory to outsiders; she is not the listener to his explanations."
+        },
+        "apprentice": {
+          "type": "logic",
+          "quote": "presented the year's results",
+          "why": "She carries finished work to others; nothing describes her learning to do it."
+        },
+        "accomplice": {
+          "type": "logic",
+          "quote": "visiting laboratories across the country",
+          "why": "She brings the work openly before other scientists; there is no wrongdoing to share in."
+        }
+      }
+    }
+  ]
+}

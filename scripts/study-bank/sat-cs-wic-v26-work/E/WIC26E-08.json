@@ -1,0 +1,122 @@
+{
+  "id": "WIC26E-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a printed ballad passed on by ear",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "merged",
+    "mellowed",
+    "mangled",
+    "moralized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "merged",
+    "mellowed",
+    "mangled",
+    "moralized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Comparing the versions, one folklorist concluded that a hundred years of singing had ______ the ballad.",
+  "worlds": [
+    {
+      "key": "mellowed",
+      "passage": "In 1790 a port-town printer sold a ballad about a young sailor who deserts his ship and drowns in a storm on his way home. A century later, folklorists collected it from singers who had learned it by ear. In nearly every version the storm still rises and the sailor is washed ashore alive, walking home to his mother's door. The verse in which his body is found appears in none of them, and the closing verse, once a curse on the sea, now thanks it for sparing him. Comparing the versions, one folklorist concluded that a hundred years of singing had ______ the ballad.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The singers kept the story but softened its harshest parts, sparing the sailor and turning the curse into thanks, so singing had \"mellowed\" the ballad. \"Moralized\" fails because no lesson is added: the change removes the punishment rather than drawing a warning from it; \"merged\" fails because no other song is joined to it; \"mangled\" fails because the new version is a coherent story, not garbled.",
+      "kills": {
+        "moralized": {
+          "type": "logic",
+          "quote": "now thanks it for sparing him",
+          "why": "the deserter escapes his fate, so the song no longer teaches the consequence of desertion"
+        },
+        "merged": {
+          "type": "logic",
+          "quote": "walking home to his mother's door",
+          "why": "the change is to the ballad's own ending, not a joining with another song"
+        },
+        "mangled": {
+          "type": "logic",
+          "quote": "once a curse on the sea",
+          "why": "the closing verse was deliberately reworked into its opposite sense, which is a coherent change, not damage"
+        }
+      }
+    },
+    {
+      "key": "moralized",
+      "passage": "In 1790 a port-town printer sold a ballad about a young sailor who deserts his ship and drowns in a storm on his way home. A century later, folklorists collected it from singers who had learned it by ear. In nearly every version the sailor still drowns, and the singers add a closing verse, absent from the printed copies, telling young men that a broken oath will find them out at sea. Several singers told the collectors that this verse was the reason the song was worth singing. Comparing the versions, one folklorist concluded that a hundred years of singing had ______ the ballad.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The singers added a verse that draws a lesson from the sailor's fate and valued the song for it, so singing had \"moralized\" the ballad. \"Mellowed\" fails because the sailor still drowns and the new verse is a warning, not a softening; \"merged\" fails because the added verse addresses this sailor's broken oath and comes from no other song; \"mangled\" fails because the addition is clear and purposeful.",
+      "kills": {
+        "mellowed": {
+          "type": "logic",
+          "quote": "the sailor still drowns",
+          "why": "the harsh ending is kept and even sharpened by a warning, so nothing has been softened"
+        },
+        "merged": {
+          "type": "logic",
+          "quote": "a broken oath will find them out at sea",
+          "why": "the new verse comments on this ballad's own story rather than bringing in another song"
+        },
+        "mangled": {
+          "type": "logic",
+          "quote": "the reason the song was worth singing",
+          "why": "the singers understood and valued the new verse, so the song was not garbled"
+        }
+      }
+    },
+    {
+      "key": "merged",
+      "passage": "In 1790 a port-town printer sold a ballad about a young sailor who deserts his ship and drowns in a storm on his way home. A century later, folklorists collected it from singers who had learned it by ear. In nearly every version the sailor deserts and the storm rises, and then the song goes on with the verses of a farm girl's lament sold by the same printer, now sung as his sweetheart's grief. Singers treated the twenty verses as one song and knew no other title for it. Comparing the versions, one folklorist concluded that a hundred years of singing had ______ the ballad.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The singers joined the ballad to a second printed song and sang the two as one, so singing had \"merged\" the ballad with another. \"Mangled\" fails because the combined song makes sense, the lament now serving as the sweetheart's grief; \"mellowed\" fails because the sailor's fate is not softened: grief is added to it; \"moralized\" fails because the added verses mourn rather than teach a lesson.",
+      "kills": {
+        "mangled": {
+          "type": "logic",
+          "quote": "now sung as his sweetheart's grief",
+          "why": "the lament was fitted sensibly into the story, so the result is coherent, not garbled"
+        },
+        "mellowed": {
+          "type": "logic",
+          "quote": "a farm girl's lament",
+          "why": "adding a lament keeps the song sorrowful rather than softening it"
+        },
+        "moralized": {
+          "type": "logic",
+          "quote": "knew no other title for it",
+          "why": "what the singers did was join two songs into one, not attach a lesson"
+        }
+      }
+    },
+    {
+      "key": "mangled",
+      "passage": "In 1790 a port-town printer sold a ballad about a young sailor who deserts his ship and drowns in a storm on his way home. A century later, folklorists collected it from singers who had learned it by ear. In nearly every version the ship's name and its sailing terms have become sounds without meaning: the topsail is now \"the top of the hill,\" and the home port a name found on no map. Several verses no longer make sense, and the singers who sang them could not say what they meant. Comparing the versions, one folklorist concluded that a hundred years of singing had ______ the ballad.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Words passed on by ear had turned into meaningless sounds until verses no longer made sense, so singing had \"mangled\" the ballad. \"Merged\" fails because nothing from another song was joined to it; \"mellowed\" fails because the story is not softened, only garbled; \"moralized\" fails because the singers could not even say what the verses meant, let alone draw a lesson from them.",
+      "kills": {
+        "merged": {
+          "type": "logic",
+          "quote": "a name found on no map",
+          "why": "the strange words come from mishearing, not from another song"
+        },
+        "mellowed": {
+          "type": "logic",
+          "quote": "no longer make sense",
+          "why": "the change is loss of sense, not a gentler story"
+        },
+        "moralized": {
+          "type": "logic",
+          "quote": "could not say what they meant",
+          "why": "a lesson requires meaning, and the singers had lost it"
+        }
+      }
+    }
+  ]
+}
