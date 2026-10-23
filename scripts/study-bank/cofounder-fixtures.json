@@ -1,0 +1,1837 @@
+{
+ "built_at": "2026-10-23T09:55:21.189Z",
+ "seed": "cofounder-fixtures-2026-10-23",
+ "counts": {
+  "positives": 33,
+  "negatives": 33,
+  "pool": 834,
+  "match": {
+   "stratum": 33,
+   "family": 0,
+   "any": 0,
+   "short": 0
+  },
+  "excluded": {
+   "stale": 23,
+   "notItemScope": 3,
+   "noItem": 0
+  }
+ },
+ "excluded": {
+  "stale": [
+   "08899878-e266-4605-8cbc-5d368a0b6248",
+   "22a8e0cd-28ca-47d1-b865-df84ec2c4ce4",
+   "237a4f2f-55bb-4e13-b9a3-0f09f8418663",
+   "2d1e1f50-5845-4370-a2a6-cba2f54fa4c6",
+   "2dca0772-23bc-4c8a-91fc-5ab2243a2166",
+   "2f3a84af-826e-497f-9c4f-9b5301268983",
+   "4cec146d-9112-4eb0-9a0e-defe084385b2",
+   "4eca5525-3a6f-4ed4-8ce0-7578bb2cfd50",
+   "7757e53a-5cb8-4c24-8426-985657046c61",
+   "7a855f62-063a-410e-a2ad-6f7012b7a3bf",
+   "7bb73ce6-2125-4256-839e-2f33ea71507d",
+   "80a73085-4610-4f76-9b13-77448ce88950",
+   "8dd87249-815e-44f4-b838-2e3ee4156d13",
+   "9ff7eec2-cde3-43f7-b476-930c3bfd1ef7",
+   "ab6624f9-227d-4443-9d08-ac68462527d1",
+   "c1307ad6-0089-4ec8-b810-a3f1c7e41a07",
+   "d2cfedbb-fe2e-42ee-9cef-f3f32cc092b4",
+   "d5936d06-a0df-42b5-ac70-0e1ec9221c0a",
+   "db99e468-ed2d-40eb-a050-4cd31424694f",
+   "e5496a76-a38a-4ef7-b582-4096675d74a4",
+   "eb494e08-61b9-46b7-89e5-9b4f8d98bc85",
+   "eced1255-036f-4462-a432-3fd097a9eca0",
+   "f707fce7-d196-411c-87ee-469b431580ea"
+  ],
+  "notItemScope": [
+   "120b33a2-2cd8-46eb-8525-0d3a861acaa5",
+   "4d2b87e1-be9a-4232-bd48-2078e6fea6a6",
+   "d3fd0c01-b881-42b4-a057-3c2c6466d16f"
+  ],
+  "noItem": []
+ },
+ "fixtures": [
+  {
+   "id": "Fbabd061d",
+   "item_id": "04cbf5ea-ca55-4fea-bfde-d6f2d2a54550",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "e871ccf6-ad14-4cf1-bf43-d152b1cb3101"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "a46845ba8c9f5b9e193e801cc976893b",
+   "item": {
+    "passage": "Transcript: \"You've been at that catalogue terminal a while — the subject headings in that field are a bit unusual.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I am most grateful to you for your kind solicitude in this matter.",
+     "No, the terminal itself seems to be working perfectly well, thanks for asking.",
+     "Yes, I've been sitting at it about forty minutes now, maybe a little longer.",
+     "They really are — could you show me which heading covers coastal ecology?"
+    ],
+    "correct_answer": "They really are — could you show me which heading covers coastal ecology?"
+   }
+  },
+  {
+   "id": "Fd9a3d7e1",
+   "item_id": "07a286bc-abd2-4825-85fc-8597546395d5",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "909cebb2-86e2-440e-a4ec-d9202d122b3d"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": true,
+   "content_sha": "2b76fc9a146785905c024a07b1ce9f70",
+   "item": {
+    "passage": "Transcript: \"Biscuit can go out, but keep him off the field till his stitches settle.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "He'll be glad to see the back of that cone.",
+     "Great, he'll love a run round the field.",
+     "Is the towpath alright for him, or just the lane?",
+     "I'll take Pebble instead and see him next week."
+    ],
+    "correct_answer": "Is the towpath alright for him, or just the lane?"
+   }
+  },
+  {
+   "id": "F97a576dd",
+   "item_id": "173d4215-41fa-4825-b424-726490e7c286",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "498f029b-bd44-4b56-81ac-7f418f853343"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "9db1d5607151620ffb1e5de3b4de64a0",
+   "item": {
+    "passage": "Transcript: \"New heels take a couple of days to set.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll go with whatever you'd use on them.",
+     "I'll leave them with you until midweek.",
+     "That's a shame, I'll look for a new pair.",
+     "Black, to match the rest of the pair."
+    ],
+    "correct_answer": "I'll leave them with you until midweek."
+   }
+  },
+  {
+   "id": "F52431205",
+   "item_id": "212b5f42-0a27-425a-80cb-885595083159",
+   "label": "positive",
+   "defect_type": "source_underspecified",
+   "defect_types": [
+    "source_underspecified"
+   ],
+   "review_ids": [
+    "eacf3e55-e543-4138-8022-e1047d7f0853"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "9a2c689011a694d97c0ee6d3cd1827d8",
+   "item": {
+    "passage": "Transcript: \"Your job's stuck behind a huge one that keeps failing.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll grab them and get out of everyone's way.",
+     "My laptop, I joined the wireless queue this morning.",
+     "I'll fix the margins, that must be what keeps failing.",
+     "I'll cancel mine and send it to the lab upstairs."
+    ],
+    "correct_answer": "I'll cancel mine and send it to the lab upstairs."
+   }
+  },
+  {
+   "id": "F73facf16",
+   "item_id": "21ba74ea-a2ea-4a79-b8df-eebfe1867da1",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "281fddea-3f21-47cb-85f9-de8a3eea87e0"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "fada2ff7871a75050213e91451c3cff1",
+   "item": {
+    "passage": "Transcript: \"The archives placement is yours if you still want it.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Good to know — I'll stop chasing it for now.",
+     "That's a shame — I'll see what else is still posted.",
+     "I do — I'll email them about a start date.",
+     "Afternoons mostly — my mornings are all lectures."
+    ],
+    "correct_answer": "I do — I'll email them about a start date."
+   }
+  },
+  {
+   "id": "F7c59b067",
+   "item_id": "24fd0aa2-a95f-4fbd-acb3-ed48d4367d9a",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "2a4f6a32-3c9c-4d44-af4f-31dc5c2101d0"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "0215456522a6dca1022e05569903c4cc",
+   "item": {
+    "passage": "Transcript: \"You're down for the Brahms this term, not the Schubert.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll have it up to tempo by then.",
+     "I'll swap the music in my folder tonight.",
+     "I'll get rehearsal times sorted with them this week.",
+     "Then I can sit in on the earlier ones."
+    ],
+    "correct_answer": "I'll swap the music in my folder tonight."
+   }
+  },
+  {
+   "id": "F7d26a3ed",
+   "item_id": "2e779adc-ea9e-4246-9880-adf9e13fb2b1",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "a94de1c6-7a0a-4353-96d9-b506c87dfbb9"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": true,
+   "content_sha": "ca48c065b2f7d437141237729463cb43",
+   "item": {
+    "passage": "Transcript: \"A spot opened in the morning swim class you wanted.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Can I get my class fee back, then?",
+     "Okay, can I renew it right now?",
+     "Then put my name on the list, please.",
+     "Great, please sign me up for it."
+    ],
+    "correct_answer": "Great, please sign me up for it."
+   }
+  },
+  {
+   "id": "F17467ae0",
+   "item_id": "2f404ae1-7b3a-4b4a-b6d6-65c5f80c7e34",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "c4c44652-44ba-4d2b-a939-2bb46960ba99"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "cb3d2312ce38defa34632430be33d6c2",
+   "item": {
+    "passage": "Transcript: \"The group rooms are meant for four or more — I notice you've had this one to yourself since nine.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sorry about that. I'll move to a carrel and free the room up.",
+     "How long is a group allowed to keep one of these rooms — once they have signed in?",
+     "Yes, I booked it at nine this morning, so the room is reserved under my name.",
+     "Oh sorry — two friends are joining me at eleven, so we’ll be four by then."
+    ],
+    "correct_answer": "Sorry about that. I'll move to a carrel and free the room up."
+   }
+  },
+  {
+   "id": "Fbe36b516",
+   "item_id": "33c17fe1-0a39-4181-8242-a26a7ffed259",
+   "label": "positive",
+   "defect_type": "source_underspecified",
+   "defect_types": [
+    "source_underspecified"
+   ],
+   "review_ids": [
+    "9d0f956a-ebe0-4bf1-943a-bd50929f48f3"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "97d686812b409b8f7624084cc2027664",
+   "item": {
+    "passage": "Transcript: \"The north route's suspended while they resurface the access road.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll take the van — where do I catch it?",
+     "I'll wait for the express, if it's still due.",
+     "I'll ride it round — I'm not in a hurry.",
+     "I'll walk up from the science building instead."
+    ],
+    "correct_answer": "I'll walk up from the science building instead."
+   }
+  },
+  {
+   "id": "F22e88188",
+   "item_id": "3c7f5fb5-7fef-4caa-be20-71dee6d4741a",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "d2f360ae-65f6-47d9-9483-aacbd3ac7485"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "13379dbfd76332170ce93645495d742b",
+   "item": {
+    "passage": "Transcript: \"Our match against the college is called off.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Then I'd better dust off my openings.",
+     "So we're hosting them here instead.",
+     "Well, the new date suits me better anyway.",
+     "I'll tell the others not to travel."
+    ],
+    "correct_answer": "I'll tell the others not to travel."
+   }
+  },
+  {
+   "id": "F1f9dfe32",
+   "item_id": "3dabde66-bd21-4e5b-ab7f-995f8accb34c",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "c9578484-26da-47ac-b821-7434105340c7"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "27fe11ec18fe97adc4394fed8db1ada9",
+   "item": {
+    "passage": "Transcript: \"The room itself is fine — it's just that the window looks straight out onto the loading bay.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes, the deliveries down there usually finish by about six in the morning, at the latest.",
+     "Let me see what we have free on the quieter side of the building, one moment.",
+     "I'm sorry the room isn't up to standard — I'll refund tonight's stay in full for you.",
+     "Yeah, that side of the building is pretty grim, isn't it? I wouldn't want it either."
+    ],
+    "correct_answer": "Let me see what we have free on the quieter side of the building, one moment."
+   }
+  },
+  {
+   "id": "F6303c9eb",
+   "item_id": "45428475-5c1e-44f6-bae1-6eb86a4949bc",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "2c7311fb-8251-4349-af24-0079378b9bd1"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v2",
+   "archived": true,
+   "content_sha": "eca5b72c139b9e69dea7a98dd8dc0202",
+   "item": {
+    "passage": "Transcript: \"That module only runs in their spring term, and you're out there for the spring, so I've had to cross it off your study plan.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Their spring term runs late, doesn't it — right through into June, I gather.",
+     "Fine. I'll pick another module and send you a new plan tonight.",
+     "I'd sooner drop the whole exchange — that module was the point.",
+     "But spring is exactly when I'm out there, so shouldn't that one work?"
+    ],
+    "correct_answer": "But spring is exactly when I'm out there, so shouldn't that one work?"
+   }
+  },
+  {
+   "id": "Fa8efcbf1",
+   "item_id": "4730ad1c-afb6-4658-ac7a-7e7f469ba4f9",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "a47c2924-3400-4bce-b7ce-82bb06f1e807"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "5d126d055df3f763e0831697f0f9dfe8",
+   "item": {
+    "passage": "Transcript: \"I'd be glad to write for you, but I only taught you in one large lecture, so the letter would be fairly thin.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "That's honest of you, thank you — could I send you my transcript to give you more to work with?",
+     "Could you remind me of the exact date when the reference letters need to be turned in?",
+     "Thank you for offering—I’ll put you down as my primary referee on the application form.",
+     "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead."
+    ],
+    "correct_answer": "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead."
+   }
+  },
+  {
+   "id": "Fbdf82721",
+   "item_id": "4b1a8044-3adb-4b93-8cef-aa24f4cc7bdb",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "87fede75-3c10-41fc-ba8d-bbf16f01edfc"
+   ],
+   "stratum": "toefl/listening/conversation",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "orphan-v1",
+   "archived": true,
+   "content_sha": "55fdabf61b9d55ff56f13930a68ba54d",
+   "item": {
+    "passage": "Transcript: A: Did you hear about the new recycling policy in the dorms? B: No, what’s changed? A: They’re asking everyone to separate plastics, paper, and metal now. B: That sounds like more work. A: Maybe, but they say it’ll help reduce waste on campus. B: I guess it’s worth it if it makes a difference.",
+    "prompt": "[Conversation — Residence hall] What are the speakers mainly discussing?",
+    "choices": [
+     "A campus-wide ban on plastic containers.",
+     "A volunteer program for cleaning up the campus grounds.",
+     "A change in how waste has to be sorted in the dormitories.",
+     "Whether the dormitories produce more waste than other campus buildings."
+    ],
+    "correct_answer": "A change in how waste has to be sorted in the dormitories."
+   }
+  },
+  {
+   "id": "Ff6f38c56",
+   "item_id": "523b20cf-1209-4765-8881-f73ca5418c34",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "060ee8a3-6566-42e3-a451-91894f1974b9"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": true,
+   "content_sha": "0ee97c248caead3315fb8ee273dd3cd0",
+   "item": {
+    "passage": "Transcript: \"Your insurance didn't cover it, so it's forty dollars.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Forty? Could you check whether there's a cheaper version?",
+     "Okay, I'll ask the clinic to call you today.",
+     "Then I'll come back tomorrow after class.",
+     "Great, I'll take it now, then."
+    ],
+    "correct_answer": "Forty? Could you check whether there's a cheaper version?"
+   }
+  },
+  {
+   "id": "Fc54a7d22",
+   "item_id": "5e14bf29-fbb8-4465-baef-31b77e1d1edc",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "f06f8573-f9eb-4891-9e49-7b55d6f66f22"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "1c7624efea985fabc7ad515dc8c45581",
+   "item": {
+    "passage": "Transcript: \"I hold extra hours before the midterm — most people who come don't strictly need to, but they say it helps.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "So the midterm is scheduled before you start your extra study sessions?",
+     "I don't need any more help, so I'll leave the spot open for someone who really does.",
+     "Then I'll come along, even if it's only to check I'm on the right track.",
+     "Can you remind me exactly what time the midterm itself is supposed to begin?"
+    ],
+    "correct_answer": "Then I'll come along, even if it's only to check I'm on the right track."
+   }
+  },
+  {
+   "id": "F0b9e9b7a",
+   "item_id": "670f8291-49f2-4605-b7e7-5c5c7c8a39de",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "e01317fe-ca59-47e8-9b74-503a67898f5c"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v2",
+   "archived": true,
+   "content_sha": "e69279cf7d32e9da189c084ca0955805",
+   "item": {
+    "passage": "Transcript: \"Trials are six on Tuesdays — that's your compulsory seminar, and I'm not moving them, so tell me now if you're out.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'm out for Tuesdays. I'd still train with the seconds if that's open.",
+     "I'll be there at six Tuesday, no problem — where do we meet?",
+     "That's a pretty unreasonable way to run a trial, if you don't mind my saying.",
+     "Could you push the trials back to seven on Tuesdays, though, just for a fortnight?"
+    ],
+    "correct_answer": "I'm out for Tuesdays. I'd still train with the seconds if that's open."
+   }
+  },
+  {
+   "id": "Fa21d11e1",
+   "item_id": "6994d1d9-525c-495f-a50f-098e961db880",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "a82a66d4-b53a-43be-a9d8-f60d0ea9f438"
+   ],
+   "stratum": "act/english/multiple_choice",
+   "family": "act",
+   "section": "english",
+   "cohort": "act-english-v7",
+   "archived": true,
+   "content_sha": "1c0bfa8cc9024abbc7ea1dbd839e62f4",
+   "item": {
+    "passage": "[1] The summer I turned fifteen, my parents sent me to stay with my uncle Teodor, who ran a sign shop out of a garage in Marlow Falls. I had pictured computers and vinyl cutters. What I found instead was a long wooden bench a radio tuned to baseball, and rows of brushes standing in coffee cans like bouquets.\n\n[2] Teodor painted every letter by hand, and at first I could not see why anyone paid him to. His customers could have bought printed banners for half the price: the bakery on Main Street, a family of beekeepers, a dentist who wanted his name in gold leaf. On my first morning I noticed that the jars of paint on the shelf above his bench was labeled in his own careful capitals, as if even his supplies deserved good lettering.\n\n[3] He started me on the alphabet, I painted capital A's for three days. My first A's leaned like tired fence posts. Teodor would choose the least terrible in each row and circle it with a grease pencil. For two days I could not tell his circled letters from the rest. In other words, I began to see what he was choosing: the letters whose two strokes met cleanly at the peak and stood evenly on the line. A letter, he told me, stands the way a building does: if their base is crooked, nothing above it will look straight.\n\n[4] By August, Teodor trusted me to repaint the bakery's front window, where the old gold letters had faded in the sun until they were barely visible and could hardly be seen. I traced their faint outlines onto paper before scraping the glass clean. Then I worked so slowly that the baker came out twice to ask whether I was still alive.\n\n[5] By the end of the summer, I had lettered three customers' signs on my own: a truck door for the beekeepers, a price board for the hardware store, and a brass plaque for the dentist. Not one of them is perfect. Now, whenever I pass a hand-painted sign, I look first at the bottom of the letters. Checking, the way Teodor taught me, whether they stand evenly on the line. Usually I can tell which painters had someone circling the good ones.",
+    "prompt": "In paragraph 3, in the sentence \"He started me on the alphabet, I painted capital A's for three days,\" which choice makes the sentence most grammatically acceptable in place of \"alphabet, I painted\"?",
+    "choices": [
+     "No Change",
+     "alphabet, and I painted",
+     "alphabet I painted",
+     "alphabet, then I painted"
+    ],
+    "correct_answer": "alphabet, and I painted"
+   }
+  },
+  {
+   "id": "Fc66ab5ab",
+   "item_id": "80c22a05-48f8-4730-93c1-b08a162f1abf",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "1e5efd79-0bfc-4faa-b4d8-049de7f75458"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": true,
+   "content_sha": "92a88504df2ce11c57786ceaf1bf98d9",
+   "item": {
+    "passage": "Transcript: \"Rain wrecked my black shoes, only brown left.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "There's a spare folder in the vestry cupboard.",
+     "Dry it out near the radiator before warm-up.",
+     "Nobody sees feet from the risers anyway.",
+     "Take them off between pieces, nobody minds."
+    ],
+    "correct_answer": "Nobody sees feet from the risers anyway."
+   }
+  },
+  {
+   "id": "Fa0b90207",
+   "item_id": "82821034-97bb-44f3-b4d0-b4f99d06ced4",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "85439f3e-000d-4025-b45a-f84c0f31f6be"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": true,
+   "content_sha": "c02646ec97822793dbc355a7105c32d8",
+   "item": {
+    "passage": "Transcript: \"New members have to audition, so prepare one short piece.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sounds great. Where do you meet?",
+     "Okay, how long should the piece be?",
+     "Could you add my name to it?",
+     "That's fine. I'll bring the money Tuesday."
+    ],
+    "correct_answer": "Okay, how long should the piece be?"
+   }
+  },
+  {
+   "id": "Fe18573a9",
+   "item_id": "83731983-a4a1-41a6-9ff2-8aa5452b2393",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "9dc86ebd-9ca9-4e20-ab6a-d1a23a5ea1b8"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": true,
+   "content_sha": "4c14cb7a86e7970a543b1437d190e401",
+   "item": {
+    "passage": "Transcript: \"Gown's ready, but the hood's for the wrong faculty.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll leave the spare one with you then.",
+     "Could I try the next size up instead?",
+     "How long would the right one take to arrive?",
+     "I'll come back for it on Friday afternoon then."
+    ],
+    "correct_answer": "How long would the right one take to arrive?"
+   }
+  },
+  {
+   "id": "Fc78d7a42",
+   "item_id": "9d723c14-3c53-4f9b-9fce-d2288f254eda",
+   "label": "positive",
+   "defect_type": "source_underspecified",
+   "defect_types": [
+    "source_underspecified"
+   ],
+   "review_ids": [
+    "25cbdd60-4df0-48d2-9174-b23957017b3c"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "2251f99f12d20b855ca1bcb659860273",
+   "item": {
+    "passage": "Transcript: \"I don't want to be unfair to Emeka — he did show up to the meeting, just, you know, at the very end.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "He got in at around four-fifteen, I think — or perhaps a little later than that.",
+     "I noticed that too. Should one of us say something before the next meeting?",
+     "Right, so he was there in the end. That's really the thing that counts, isn't it?",
+     "You're being completely unfair to him there, honestly — he did turn up in the end."
+    ],
+    "correct_answer": "I noticed that too. Should one of us say something before the next meeting?"
+   }
+  },
+  {
+   "id": "F88de0db5",
+   "item_id": "9df5a1cd-b9b0-479a-a518-95f53d4b7f40",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "700bf834-e697-4948-ace8-a4327bdfd3ec"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v2",
+   "archived": true,
+   "content_sha": "0deffa8b623f80bf97040aea4f3d4aed",
+   "item": {
+    "passage": "Transcript: \"Pre-departure's Thursday at two, clashing with your Arabic seminar — and your tutor's already said no more absences there.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'd better stay in the seminar — can I get the briefing another way?",
+     "I'd skip the Arabic seminar that once, honestly, and go to the briefing.",
+     "My tutor's being quite unreasonable about those absences, though.",
+     "Two o'clock suits me. I'll bring the forms to the main hall Thursday."
+    ],
+    "correct_answer": "I'd better stay in the seminar — can I get the briefing another way?"
+   }
+  },
+  {
+   "id": "Fb171d34b",
+   "item_id": "acca0551-837b-4a30-8213-a9f50de07cf6",
+   "label": "positive",
+   "defect_type": "source_underspecified",
+   "defect_types": [
+    "source_underspecified"
+   ],
+   "review_ids": [
+    "a4674f2b-1711-40c9-8af2-1138924b5b94"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "2eca0ba0826d287d1efa64b05f486226",
+   "item": {
+    "passage": "Transcript: \"It was just the charging port, it's working again.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Can you at least get the photos off it?",
+     "Yes please, I'd be lost without one this week.",
+     "I'll plan on picking it up later in the week.",
+     "That's a relief, I'll pay at the counter."
+    ],
+    "correct_answer": "That's a relief, I'll pay at the counter."
+   }
+  },
+  {
+   "id": "F49ef3e3b",
+   "item_id": "b6fd4436-ba8b-414d-bb26-d5e28ff58e46",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "21880d19-7436-453a-9854-b07ba61bc2e2"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v1",
+   "archived": true,
+   "content_sha": "7aa91a2dfb80d545c3e78dcdf22bf34a",
+   "item": {
+    "passage": "Transcript: \"I could sign the late-add form for you, but the registrar stopped accepting them on Friday, I'm afraid.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Great — I'll bring the late-add form by this afternoon.",
+     "You have got to be kidding me. Somebody needs to fix that system.",
+     "Then I'll look at what's still open for next term instead.",
+     "Friday works for me. Should I come in the morning or the afternoon?"
+    ],
+    "correct_answer": "Then I'll look at what's still open for next term instead."
+   }
+  },
+  {
+   "id": "F9850b107",
+   "item_id": "c6ab5238-d770-408a-8b49-4d1226e19e08",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "5eb65d24-8059-4a2c-9368-c6fa1bddbddc"
+   ],
+   "stratum": "toefl/listening/academic_talk",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "orphan-v1",
+   "archived": true,
+   "content_sha": "0d82bbe9bca63d275dfb50afed461d8c",
+   "item": {
+    "passage": "Transcript: Today, we’re going to discuss the concept of plate tectonics and its significance in geology. Why does this matter? Well, understanding plate tectonics helps us predict natural disasters and explains the distribution of continents and oceans. But it also provides insight into Earth’s history and the processes that shape our planet’s surface over millions of years. The theory of plate tectonics proposes that Earth’s outer shell, called the lithosphere, is divided into several large and small plates that move over the semi-fluid asthenosphere beneath them. These plates are constantly shifting, although usually at rates of just a few centimeters per year. For example, the Pacific Plate is moving northwest at about 7 centimeters per year, which is why the San Andreas Fault in California experiences frequent earthquakes. This movement isn’t just theoretical—what researchers have found is that GPS measurements can now track these shifts with remarkable accuracy, sometimes down to a few millimeters per year. The interesting thing here is that this technology has confirmed what geologists had hypothesized long before such precise tools were available. Now, let’s talk about plate boundaries. There are three main types: divergent, convergent, and transform.\n\nAt divergent boundaries, like the Mid-Atlantic Ridge, plates move apart and new crust forms as magma rises from below. This is known as a constructive boundary. For instance, Iceland sits atop the Mid-Atlantic Ridge and is actually growing a little bit each year as new land is created. On the other hand, convergent boundaries are where plates move toward each other. A key process here is subduction, where one plate slides beneath another. In the Andes Mountains, the Nazca Plate is subducting under the South American Plate, leading to volcanic activity, earthquakes, and mountain formation. I should clarify—not all plate boundaries are destructive. Some, like the Himalayas, are formed when two continental plates collide, crumpling up rather than subducting, which leads to the creation of massive mountain ranges. As an aside, it’s important to note that plate tectonics also helps explain phenomena like the distribution of fossils and minerals, as well as the occurrence of tsunamis and volcanic eruptions. So, in conclusion, plate tectonics is not just a theoretical model—it’s a comprehensive framework that helps us understand, and even anticipate, geological events. This is crucial for public safety, urban planning, and ongoing scientific research, allowing us to better prepare for and respond to natural hazards.",
+    "prompt": "[Academic Talk — Plate Tectonics] What can be inferred about Iceland from the lecture?",
+    "choices": [
+     "It formed where two continental plates crumpled together",
+     "Its land area increases because new crust is being created beneath it",
+     "It sits above a subduction zone, which accounts for its volcanic activity",
+     "It is at risk because the Pacific Plate is moving northwest beneath it"
+    ],
+    "correct_answer": "Its land area increases because new crust is being created beneath it"
+   }
+  },
+  {
+   "id": "Feb4a7954",
+   "item_id": "d7bebf1f-501b-4d44-8219-dee730ce0cdd",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "5dd5b771-95fc-440c-9a35-9ff42dc6c094"
+   ],
+   "stratum": "toefl/reading/academic_passage",
+   "family": "toefl",
+   "section": "reading",
+   "cohort": "harvest-v1",
+   "archived": true,
+   "content_sha": "f5ba8228d8373ef983b81020786512ed",
+   "item": {
+    "passage": "The Renaissance, spanning the 14th to the 17th century, was a period of great cultural and artistic growth in Europe. This era saw the revival of classical learning and wisdom, significantly influencing art, architecture, and literature. Artists like Leonardo da Vinci and Michelangelo exemplified the Renaissance's ideals through their innovative techniques and humanistic themes.\n\nThe invention of the printing press by Johannes Gutenberg around 1440 played a crucial role in disseminating knowledge, making literature more accessible. This cultural movement laid the foundation for the modern age, bridging the gap between the Middle Ages and contemporary history.",
+    "prompt": "[Academic — Art History] According to the passage, which of the following is true about the printing press?",
+    "choices": [
+     "It was first used in the 17th century.",
+     "It was primarily used by Michelangelo.",
+     "It made art more accessible.",
+     "It was invented by Johannes Gutenberg."
+    ],
+    "correct_answer": "It was invented by Johannes Gutenberg."
+   }
+  },
+  {
+   "id": "F72b08ba5",
+   "item_id": "d7c3eb67-35b4-454e-9e4b-1f45e65c16e3",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "0960a9d7-8b39-4d83-8907-d3e2e3fc1b8c"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "188c9f53d2a507199ad17b0cb4af4c85",
+   "item": {
+    "passage": "Transcript: \"Can you drop the key back before Friday?\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll ask at the union desk tomorrow.",
+     "The dance group borrowed it on Tuesday.",
+     "I'll post it through the office door.",
+     "I'll keep the spare in my bag."
+    ],
+    "correct_answer": "I'll post it through the office door."
+   }
+  },
+  {
+   "id": "F16dbd007",
+   "item_id": "dffad341-a295-404b-a642-af0e1ddabc65",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "d4cd8d1a-3357-4586-b138-97bba56489e4"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "804aad05043f6b4687c7a8e5458d8d9d",
+   "item": {
+    "passage": "Transcript: \"The porters agreed to move the desks for us.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure — give me a few minutes to clear them.",
+     "I'll put the desk back where it was.",
+     "Then we just need to be in when they come.",
+     "That'd make it much easier — after dinner?"
+    ],
+    "correct_answer": "Then we just need to be in when they come."
+   }
+  },
+  {
+   "id": "Fbb3522c2",
+   "item_id": "ee8303c2-25b6-45c8-ad48-756897fc6161",
+   "label": "positive",
+   "defect_type": "source_underspecified",
+   "defect_types": [
+    "source_underspecified"
+   ],
+   "review_ids": [
+    "6a5163ed-256c-4d4d-9a25-c5a24627ba6b"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": true,
+   "content_sha": "73578673ec97c7cdd7d25abfa7168947",
+   "item": {
+    "passage": "Transcript: \"Your check-ins move to the sponsor's office from now on.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll move the team onto the final report.",
+     "I'll go back through the meeting minutes.",
+     "I'll sort out travel for the whole team.",
+     "Could we build on the work we've already done?"
+    ],
+    "correct_answer": "I'll sort out travel for the whole team."
+   }
+  },
+  {
+   "id": "Fd060ad45",
+   "item_id": "f26e6bae-918f-42f2-a8af-a38c82479465",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "e8b61004-dd23-494f-805d-765390cd8094"
+   ],
+   "stratum": "toefl/reading/academic_passage",
+   "family": "toefl",
+   "section": "reading",
+   "cohort": "orphan-v1",
+   "archived": true,
+   "content_sha": "ab0d2e30aa9966e966a2f9d513904b14",
+   "item": {
+    "passage": "Photosynthesis is the process by which green plants convert sunlight into chemical energy. This process occurs in the chloroplasts of plant cells, where chlorophyll captures light energy. The energy is then used to convert carbon dioxide and water into glucose and oxygen. This process is essential for plant growth and provides oxygen for other living organisms.",
+    "prompt": "[Academic — Biology] In the passage, the word \"captures\" is closest in meaning to",
+    "choices": [
+     "gives off",
+     "absorbs",
+     "takes prisoner",
+     "photographs"
+    ],
+    "correct_answer": "absorbs"
+   }
+  },
+  {
+   "id": "Fbf4d8ea1",
+   "item_id": "f3135e0d-4137-42d2-94ad-a169424e0638",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "e7bc3545-bf31-4fbf-aa08-392a2a012b7c"
+   ],
+   "stratum": "sat/reading_writing/multiple_choice",
+   "family": "sat",
+   "section": "reading_writing",
+   "cohort": "v2",
+   "archived": true,
+   "content_sha": "64c8e997217f8bff40361ea1c938d6b7",
+   "item": {
+    "passage": "Popular accounts credit the reformer Aldous Vane with unyielding moral certainty, and his public speeches encourage the impression. Privately, though, Vane distrusted conviction that never wavered. His journals return repeatedly to a single anxiety: that a cause pursued without doubt hardens into the very tyranny it opposes. He therefore made a discipline of second-guessing his own aims, soliciting objections he had no intention of accepting merely to keep his judgment supple. What his admirers took for the granite of principle, Vane understood as something more fragile and more valuable—a resolve he had to ______ continually against the temptation of its own righteousness.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+     "harden",
+     "publicize",
+     "restrain",
+     "abandon"
+    ],
+    "correct_answer": "restrain"
+   }
+  },
+  {
+   "id": "Ff38b73eb",
+   "item_id": "ffbf53f6-7836-4b48-9a0e-9a2c1fb3006e",
+   "label": "positive",
+   "defect_type": "second_defensible",
+   "defect_types": [
+    "second_defensible"
+   ],
+   "review_ids": [
+    "fb6c616e-c06a-4bf5-a0e0-d2f47dafbfe8"
+   ],
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": true,
+   "content_sha": "ccef658c63f1f5c23d9b2e7c1423b2d9",
+   "item": {
+    "passage": "Transcript: \"Actually, the room code changed to 4471 this morning.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Perfect, I won't have to chain it outside.",
+     "I brought my own, thanks, a heavy chain.",
+     "Oh, that's why the door wouldn't open.",
+     "Ugh, then it stays out in the rain."
+    ],
+    "correct_answer": "Oh, that's why the door wouldn't open."
+   }
+  },
+  {
+   "id": "Fcc10a6dd",
+   "item_id": "7dc39f22-0080-4196-8af0-71422a315a94",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "04cbf5ea-ca55-4fea-bfde-d6f2d2a54550",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "de1c6b19b96ec4c33aa3e50b7a82a4d1",
+   "item": {
+    "passage": "Transcript: \"Could you take your gear out of the common room?\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll clear that corner out this evening.",
+     "That's handy, my closet's been full for weeks.",
+     "I'll take my reading down there tonight.",
+     "We'll have to meet in someone's room instead."
+    ],
+    "correct_answer": "I'll clear that corner out this evening."
+   }
+  },
+  {
+   "id": "F7174f1ee",
+   "item_id": "ab0d25fc-b7d2-47ad-80b7-58644c0a8bd6",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "dffad341-a295-404b-a642-af0e1ddabc65",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": false,
+   "content_sha": "0dbe05b56cdae99c9c48f592f66953ef",
+   "item": {
+    "passage": "Transcript: \"Your transfer credits were all accepted.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Monday at ten works for me.",
+     "Great, so I can register for the next course.",
+     "Okay, I'll add statistics to my schedule.",
+     "I'll email it to you this afternoon."
+    ],
+    "correct_answer": "Great, so I can register for the next course."
+   }
+  },
+  {
+   "id": "Fd158f3bf",
+   "item_id": "9e93ef72-4a0e-48f0-a14d-82a0ff0dcd7d",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "f26e6bae-918f-42f2-a8af-a38c82479465",
+   "match": "stratum",
+   "stratum": "toefl/reading/academic_passage",
+   "family": "toefl",
+   "section": "reading",
+   "cohort": "orphan-v1",
+   "archived": false,
+   "content_sha": "626722c1dbdf09290fae27e114bf2643",
+   "item": {
+    "passage": "[Academic — Biology] Mangroves are unique coastal ecosystems found in tropical and subtropical regions. They serve as vital nurseries for many marine species and protect shorelines from erosion. Mangroves have specialized roots that filter salt and allow them to thrive in saline environments. These roots also stabilize the sediment, reducing coastal erosion. Despite their importance, mangroves face threats from deforestation and climate change, which can lead to habitat loss and decreased biodiversity.",
+    "prompt": "[Academic — Biology] It can be inferred that the loss of a mangrove forest would most directly affect:",
+    "choices": [
+     "the rate at which inland forests are cleared",
+     "only those plants adapted to growing in salty soil",
+     "the overall salinity of the open ocean",
+     "both the young marine species it shelters and the stability of the nearby shoreline"
+    ],
+    "correct_answer": "both the young marine species it shelters and the stability of the nearby shoreline"
+   }
+  },
+  {
+   "id": "F7c0be802",
+   "item_id": "f4b48eb2-ecaf-4507-8a21-38014809eb7a",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "2f404ae1-7b3a-4b4a-b6d6-65c5f80c7e34",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "5c01d8e74c0b17ac21ac99699785b34d",
+   "item": {
+    "passage": "Transcript: \"They've cut the evening shelving shift for the rest of term.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll ask about weekend work instead.",
+     "I'll keep an eye on the pile up front.",
+     "An earlier start would suit me much better.",
+     "I'll run it up to the top floor."
+    ],
+    "correct_answer": "I'll ask about weekend work instead."
+   }
+  },
+  {
+   "id": "F943d7bbd",
+   "item_id": "1e7d5cf6-7124-49de-af88-5dfb940f23db",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "24fd0aa2-a95f-4fbd-acb3-ed48d4367d9a",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "893439b09aedad6b739b3f28016d2881",
+   "item": {
+    "passage": "Transcript: \"What drew you to working in an office like this?\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll send those across tonight.",
+     "I'll wait to hear from you then.",
+     "I like work where the day has shape.",
+     "I'd be very glad to take it on."
+    ],
+    "correct_answer": "I like work where the day has shape."
+   }
+  },
+  {
+   "id": "Ff623d93b",
+   "item_id": "a4820863-aebc-4cd8-a4a2-5ce10b304eeb",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "3c7f5fb5-7fef-4caa-be20-71dee6d4741a",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "d574a07cc1de4c8387972fdc11fd497a",
+   "item": {
+    "passage": "Transcript: \"Your reimbursement cleared — it'll show up on next payroll.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll walk it over there this afternoon, then.",
+     "Fair enough — I'll pull those receipts and resubmit.",
+     "Sure — do scans work, or does it have to be paper?",
+     "That's a relief; I'd been carrying it on my card."
+    ],
+    "correct_answer": "That's a relief; I'd been carrying it on my card."
+   }
+  },
+  {
+   "id": "F76d3e635",
+   "item_id": "4e257893-b7af-4006-8438-51327410a632",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "f3135e0d-4137-42d2-94ad-a169424e0638",
+   "match": "stratum",
+   "stratum": "sat/reading_writing/multiple_choice",
+   "family": "sat",
+   "section": "reading_writing",
+   "cohort": "v2",
+   "archived": false,
+   "content_sha": "ff60933e6b81c08da1da471cf9f0c7e1",
+   "item": {
+    "passage": "Text 1: Restoring a wetland, one guide argues, means returning it to the state it held before human interference: the same water levels, the same native plants, the same seasonal flooding recorded in old surveys.\n\nText 2: Ecologist Ortega questions whether any fixed past state is the right target. Climates have shifted, she notes, and a marsh rebuilt to nineteenth-century conditions may be poorly suited to the temperatures and rainfall it will actually face. Restoration, she argues, should aim at what can thrive now, not at a vanished baseline.",
+    "prompt": "Which choice best describes a difference in how the two texts approach wetland restoration?",
+    "choices": [
+     "Text 1 grounds its recommendation in scientific survey data, whereas Text 2 rests only on one ecologist’s personal opinion.",
+     "Text 1 opposes wetland restoration efforts altogether, whereas Text 2 supports them enthusiastically and urges more of them.",
+     "Text 1 treats a historical baseline as the goal, whereas Text 2 favors a target suited to present and future conditions.",
+     "Text 1 focuses on the native plants of a restored marsh, whereas Text 2 concerns itself exclusively with historical water levels."
+    ],
+    "correct_answer": "Text 1 treats a historical baseline as the goal, whereas Text 2 favors a target suited to present and future conditions."
+   }
+  },
+  {
+   "id": "F9b73a3c7",
+   "item_id": "e6b171d5-b431-40fa-9e49-77c91c37d590",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "4b1a8044-3adb-4b93-8cef-aa24f4cc7bdb",
+   "match": "stratum",
+   "stratum": "toefl/listening/conversation",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "toefl-conv-draft-1",
+   "archived": false,
+   "content_sha": "9cc4dca9aae6b425932e913764c9a446",
+   "item": {
+    "passage": "Transcript: A: Does the college store things over the winter break? B: We do — two boxes per student, and there's no charge. A: Only two? I assumed there'd be a fee and no limit. B: It's the other way round. Free, but tight. And the room is off campus, on Delaney Street. A: How do I get boxes out there? B: The shuttle runs on Thursdays. You can drive them yourself if you have a car. A: What about my bicycle? It won't go in a box. B: Bikes aren't accepted at Delaney. Leave it locked in the hall rack — those stay open all break. A: Is the rack covered? B: Half of it is. Get there early if you want the covered end.",
+    "prompt": "[Conversation — Break storage] What will the student most likely do with her bicycle?",
+    "choices": [
+     "Take it home with her, since the racks are closed over the break",
+     "Take it out to Delaney Street on the Thursday shuttle",
+     "Lock it at the hall rack, which is open through the break",
+     "Ask whether the covered half of the rack can be reserved"
+    ],
+    "correct_answer": "Lock it at the hall rack, which is open through the break"
+   }
+  },
+  {
+   "id": "Fca1e402c",
+   "item_id": "823e1411-2ce1-4729-9952-26aa26e0f369",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "c6ab5238-d770-408a-8b49-4d1226e19e08",
+   "match": "stratum",
+   "stratum": "toefl/listening/academic_talk",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "v3-claude",
+   "archived": false,
+   "content_sha": "e73786f8d00119c616991d88e197a2c6",
+   "item": {
+    "passage": "Transcript: Okay, so today I want to talk about the Impressionists, and I want you to set aside the idea that they were just, you know, painters of pretty gardens. What was actually radical about them was a shift in what a painting was supposed to be for. Before them, the studio was king. You'd sketch outside, sure, but the real picture got built indoors, layer by layer, smoothed down until the brushstrokes disappeared. The Impressionists basically inverted that. What researchers of the period found is that they treated the finished-looking, blended surface as almost a lie about how we actually see. So Monet, Pissarro, they'd haul their paints outdoors and try to get the whole thing down in one session, chasing a particular quality of light before it changed. That's why you get those loose, visible dabs of color — not sloppiness, but a record of speed. And here's an aside: this only became practical because paint started being sold in metal tubes, so you could carry it. Now, the critics hated it at first. The very name 'Impressionism' was an insult — a reviewer sneering that these were mere impressions, not real paintings. But that's exactly the point. They weren't after the permanent thing; they were after the moment.",
+    "prompt": "[Academic Talk — Art History] What can be inferred about the origin of the term 'Impressionism'?",
+    "choices": [
+     "It was chosen by the painters themselves as a proud label.",
+     "It began as a critic's insult that captured what the movement valued.",
+     "It referred to the metal tubes the painters carried.",
+     "It was coined decades after the movement had ended."
+    ],
+    "correct_answer": "It began as a critic's insult that captured what the movement valued."
+   }
+  },
+  {
+   "id": "F9ea8b002",
+   "item_id": "8eb84909-5f0a-4ea1-840b-0d5534bce7ae",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "4730ad1c-afb6-4658-ac7a-7e7f469ba4f9",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "04efb498d0a762f39754090e43109e55",
+   "item": {
+    "passage": "Transcript: \"Has anything else of yours arrived since Friday?\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Nothing that I've been told about since then.",
+     "I'll book a redelivery on their site tonight.",
+     "I'll ask her to come down with her ID.",
+     "I'll sign for it before the desk closes."
+    ],
+    "correct_answer": "Nothing that I've been told about since then."
+   }
+  },
+  {
+   "id": "F6c16959d",
+   "item_id": "bb788c0b-874b-4406-9675-24a0f8c02c3c",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "83731983-a4a1-41a6-9ff2-8aa5452b2393",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "d5af7e92b974fe71b755aea02e7dbbc0",
+   "item": {
+    "passage": "Transcript: \"A used copy just came in on trade.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The seminar, Professor Vance's group on Tuesdays.",
+     "An order works, I can manage a week without it.",
+     "I'll take that one, my budget will thank me.",
+     "I'll check the student swap group before I buy new."
+    ],
+    "correct_answer": "I'll take that one, my budget will thank me."
+   }
+  },
+  {
+   "id": "Fb5f643a9",
+   "item_id": "cf5d8fcb-a8c4-475a-9098-ba5a8efee9f2",
+   "label": "negative",
+   "matched_type": "source_underspecified",
+   "matched_to": "212b5f42-0a27-425a-80cb-885595083159",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": false,
+   "content_sha": "028942635a508e82d431b2dce840256a",
+   "item": {
+    "passage": "Transcript: \"Nobody can swap shifts this week, manager says.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Then I'll ask her about the week after.",
+     "I paid him back with the Sunday brunch shift.",
+     "Sure, as long as I'm out of here by eleven.",
+     "Good, I was about to offer to take it."
+    ],
+    "correct_answer": "Then I'll ask her about the week after."
+   }
+  },
+  {
+   "id": "F5dcc2afd",
+   "item_id": "37ea61bc-1f78-4f8f-9e44-fe1d63d8ed81",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "45428475-5c1e-44f6-bae1-6eb86a4949bc",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": false,
+   "content_sha": "8e422b3947f11b68bbbf93e88933fa8c",
+   "item": {
+    "passage": "Transcript: \"Please fill out this health form before your visit.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Can you tell me how to get there?",
+     "Great, I'll wait right here.",
+     "Then please put me down for nine tomorrow.",
+     "Sure, can I borrow a pen?"
+    ],
+    "correct_answer": "Sure, can I borrow a pen?"
+   }
+  },
+  {
+   "id": "Ff2578028",
+   "item_id": "d74459f3-aab4-40ef-9f04-5c553b6d8f43",
+   "label": "negative",
+   "matched_type": "source_underspecified",
+   "matched_to": "9d723c14-3c53-4f9b-9fce-d2288f254eda",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "c2947e5aac4cfacb51a7ea14e29fecdc",
+   "item": {
+    "passage": "Transcript: \"You've failed on the fire door being propped open.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Then the shelves can stay where they are.",
+     "Does taking the wedge out clear it on its own?",
+     "Tuesday it is — I'll have the room straight.",
+     "That's ours, and we'll move it back inside."
+    ],
+    "correct_answer": "Does taking the wedge out clear it on its own?"
+   }
+  },
+  {
+   "id": "F9d959628",
+   "item_id": "8665f51d-5a6d-481d-8c3a-35a0e834b927",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "670f8291-49f2-4605-b7e7-5c5c7c8a39de",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "82202a2f9231cc975c4f6f9e37494cb3",
+   "item": {
+    "passage": "Transcript: \"Come back with your ID card so I can verify you.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Oh good, I've been looking for that since Friday.",
+     "It's definitely me in the photo — you can look again.",
+     "I'd rather not leave it here overnight — I need it tomorrow.",
+     "It's in my bag downstairs — give me a moment."
+    ],
+    "correct_answer": "It's in my bag downstairs — give me a moment."
+   }
+  },
+  {
+   "id": "Fbe7bd71d",
+   "item_id": "68e66289-1870-4e1c-9923-9c88508700d3",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "21ba74ea-a2ea-4a79-b8df-eebfe1867da1",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "4fe1de069799d381c4cb1c0f133119e6",
+   "item": {
+    "passage": "Transcript: \"Would you like the matinee or the evening performance?\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "The matinee, I've got rehearsal later that day.",
+     "I'll take a balcony seat while they're still there.",
+     "I'll watch for returns and check back on the website.",
+     "I'll bring it, it lives in my coat pocket anyway."
+    ],
+    "correct_answer": "The matinee, I've got rehearsal later that day."
+   }
+  },
+  {
+   "id": "F3fde25dd",
+   "item_id": "01dae35e-7ac8-464e-95e7-1516b57e05a5",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "07a286bc-abd2-4825-85fc-8597546395d5",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": false,
+   "content_sha": "4ad850db3936dcf2c34b64c1d9f80d4c",
+   "item": {
+    "passage": "Transcript: \"You passed the belay test, so you can climb without staff now.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Awesome, so no more waiting for an instructor.",
+     "The bigger pair, my feet are a bit wide.",
+     "Oh no, I came all this way for nothing.",
+     "Sure, could I borrow a pen for that?"
+    ],
+    "correct_answer": "Awesome, so no more waiting for an instructor."
+   }
+  },
+  {
+   "id": "F267be2b4",
+   "item_id": "d7f15f1a-e12f-4be7-a484-c7798994ce59",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "9df5a1cd-b9b0-479a-a518-95f53d4b7f40",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": false,
+   "content_sha": "7ec6f9e98dd0f3e362163962666019fd",
+   "item": {
+    "passage": "Transcript: \"Anything over fifty needs your director's sign-off first.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Her signature's already on the second page.",
+     "The hotel emailed it the day after checkout.",
+     "Perfect, that's a lot sooner than I expected.",
+     "I used the rate the bank actually charged me."
+    ],
+    "correct_answer": "Her signature's already on the second page."
+   }
+  },
+  {
+   "id": "F995aa763",
+   "item_id": "f864d124-ac26-47ba-9386-1ab5c39a386f",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "3dabde66-bd21-4e5b-ab7f-995f8accb34c",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "e0bec2ac8bf463db912c5a6a32c0fef1",
+   "item": {
+    "passage": "Transcript: \"Students are appealing the midterm curve in your section.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll start with his; anything I change I'll flag.",
+     "I'll pull their scripts and write up my reasoning.",
+     "Then I'll only need the rubric for mine.",
+     "That'd clear my weekend — I'll forward the folder."
+    ],
+    "correct_answer": "I'll pull their scripts and write up my reasoning."
+   }
+  },
+  {
+   "id": "Ff480f4ad",
+   "item_id": "57e3616d-3b0b-4b12-b6b3-c55d05ef5b72",
+   "label": "negative",
+   "matched_type": "source_underspecified",
+   "matched_to": "acca0551-837b-4a30-8213-a9f50de07cf6",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": false,
+   "content_sha": "58358a1bfebe935a2d22f8b07125c2c7",
+   "item": {
+    "passage": "Transcript: \"I can book you a computer for tomorrow morning if you'd like.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Okay, can you show me how to reset it?",
+     "Yes, please book me one for nine.",
+     "Thanks. I'll try logging in right now.",
+     "I'll wait by the door until one opens."
+    ],
+    "correct_answer": "Yes, please book me one for nine."
+   }
+  },
+  {
+   "id": "Fec6a0e68",
+   "item_id": "e064f455-8193-4537-abf5-b9348c2f6e09",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "d7bebf1f-501b-4d44-8219-dee730ce0cdd",
+   "match": "stratum",
+   "stratum": "toefl/reading/academic_passage",
+   "family": "toefl",
+   "section": "reading",
+   "cohort": "harvest-v1",
+   "archived": false,
+   "content_sha": "e5876e212ee800afb0e7d3a1014cc63b",
+   "item": {
+    "passage": "The Impressionist movement in art history, which emerged in France during the late nineteenth century, is often celebrated for its innovative use of light and color. Many artists of this movement, such as Monet and Renoir, sought to capture fleeting moments and the transient effects of sunlight on their subjects. However, some critics at the time dismissed Impressionism as unfinished or overly spontaneous, arguing that its loose brushwork lacked the discipline of traditional academic painting. Paradoxically, this very spontaneity became a hallmark of the movement, influencing generations of artists.\n\nIn most cases, Impressionists painted outdoors, a practice known as 'en plein air,' to better observe natural light. This approach contrasted sharply with the studio-based methods favored by earlier artists. The cause-effect relationship between technological advances—such as the invention of portable paint tubes—and the rise of outdoor painting is widely acknowledged. While many Impressionists focused on landscapes, others explored urban scenes, reflecting the rapidly changing environment of modern Paris. Despite initial resistance, Impressionism eventually gained acceptance and is now regarded as a pivotal development in the history of Western art.",
+    "prompt": "[Academic — Art History] What is the author's central claim about the Impressionist movement?",
+    "choices": [
+     "Impressionism was universally accepted by critics from the moment its paintings were first shown in Paris.",
+     "Traditional academic painting was superior to Impressionist technique, which critics rightly dismissed as undisciplined and unfinished.",
+     "The Impressionist movement focused only on rural landscapes painted outdoors, away from the changing city.",
+     "Impressionism's innovative techniques and focus on spontaneity ultimately transformed Western art despite initial criticism."
+    ],
+    "correct_answer": "Impressionism's innovative techniques and focus on spontaneity ultimately transformed Western art despite initial criticism."
+   }
+  },
+  {
+   "id": "Ffc310e30",
+   "item_id": "87232143-2bf7-4658-ae59-c4547412b89c",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "2e779adc-ea9e-4246-9880-adf9e13fb2b1",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": false,
+   "content_sha": "89513f69924de85c0ab0d0b50e1ae8e0",
+   "item": {
+    "passage": "Transcript: \"Room four is free now, so you can start early.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Sure, do I need a coin for that?",
+     "No, the standard ninety minutes is plenty.",
+     "So I'd need another date? How annoying.",
+     "Perfect, the sooner I'm done the better."
+    ],
+    "correct_answer": "Perfect, the sooner I'm done the better."
+   }
+  },
+  {
+   "id": "Fbe028478",
+   "item_id": "3153a2da-d4f1-4014-86f7-3533465d558b",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "82821034-97bb-44f3-b4d0-b4f99d06ced4",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v11",
+   "archived": false,
+   "content_sha": "34407cd7034a54dd219f687ba2f515c6",
+   "item": {
+    "passage": "Transcript: \"We still need one recommendation letter before we can decide.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll remind my professor to send it this week.",
+     "Could you tell me what other programs still have space?",
+     "Is there another round I could apply for?",
+     "That's wonderful. What do I need to do next?"
+    ],
+    "correct_answer": "I'll remind my professor to send it this week."
+   }
+  },
+  {
+   "id": "Ff75a186b",
+   "item_id": "fd3d701c-89e9-4fa3-9abe-7d7aa5b04653",
+   "label": "negative",
+   "matched_type": "source_underspecified",
+   "matched_to": "33c17fe1-0a39-4181-8242-a26a7ffed259",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": false,
+   "content_sha": "1d810b579fbee12c6cef153daf1663ff",
+   "item": {
+    "passage": "Transcript: \"Two of your mugs exploded in the firing, I'm sorry.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Amazing, I was sure the thin one would break.",
+     "The color, please, it'll match my kitchen.",
+     "Oh no, I must have left air bubbles inside.",
+     "That's fine, I'm not in any rush."
+    ],
+    "correct_answer": "Oh no, I must have left air bubbles inside."
+   }
+  },
+  {
+   "id": "F2d5d6d03",
+   "item_id": "b8f0c7ec-4992-4760-941e-77351f587b2d",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "6994d1d9-525c-495f-a50f-098e961db880",
+   "match": "stratum",
+   "stratum": "act/english/multiple_choice",
+   "family": "act",
+   "section": "english",
+   "cohort": "act-english-v7",
+   "archived": false,
+   "content_sha": "b81b418815e804689f47991ccfa7f053",
+   "item": {
+    "passage": "[1] Most flowering plants bloom on a calendar set by the seasons. A few bamboo species keep a different clock. One timber bamboo grown across East Asia flowers roughly once every 120 years, and when it does, nearly every plant in the world's scattered stands flower within a year or two of the others, whether it grows on a hillside in China or in a botanical garden on another continent.\n\n[2] For centuries the pattern puzzled botanists, because the plants seem to have no way of signaling one another across oceans. Most researchers now think the timing is internal: each plant carries a kind of counter that began running when its parent stand last flowered. Bamboo spreads mainly through underground stems, so the plants in a forest are often clones of a single ancestor. They share a starting date. Nevertheless, they reach the end of the count together.\n\n[3] What follows the flowering is as dramatic as the flowering itself. A stand produces an enormous crop of seed then it dies, often across hundreds of square miles at once. In northeastern India, one species flowers about every 48 years, and the flood of seed sets off a population explosion among rats. When the seed is gone, the rats turn to the farmers rice fields, and famine has followed several of these flowerings.\n\n[4] Why would a plant wait so long and then spend everything at once? The most widely accepted explanation, first proposed by an ecologist in the 1970s, is that the strategy overwhelms the animals that eat seeds. If a bamboo released a little seed every year, mice, birds, and wild pigs could scarf down pretty much all of it. By flooding the ground with more seed than any population of seed-eaters can consume the plants ensure that some seeds survive to sprout.\n\n[5] The long gap does its own work. Waiting decades kept the seed-eaters scarce between flowerings, so no large population is standing ready when the next crop arrives. A bamboo that flowered every few years would be feeding its enemies; one that waits a century is ambushing them.",
+    "prompt": "In paragraph 2, in the sentence \"Most researchers now think the timing is internal: each plant carries a kind of counter that began running when its parent stand last flowered,\" which choice is correctly punctuated in place of \"internal: each\"?",
+    "choices": [
+     "No Change",
+     "internal, each",
+     "internal each",
+     "internal, with each"
+    ],
+    "correct_answer": "No Change"
+   }
+  },
+  {
+   "id": "F8c190f7d",
+   "item_id": "5e4b986a-027d-4ebb-8da5-882e209f3a52",
+   "label": "negative",
+   "matched_type": "source_underspecified",
+   "matched_to": "ee8303c2-25b6-45c8-ad48-756897fc6161",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": false,
+   "content_sha": "837d3939e225431a8f4df7c6e0677fcf",
+   "item": {
+    "passage": "Transcript: \"Please spell your last name so I can book the ride.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Perfect, I'll wait right outside then.",
+     "Ugh, then I'll have to call a cab.",
+     "The first one, it's nearer my dorm.",
+     "Sure, it's L-O-P-E-Z, with a Z."
+    ],
+    "correct_answer": "Sure, it's L-O-P-E-Z, with a Z."
+   }
+  },
+  {
+   "id": "F85f0a2ca",
+   "item_id": "ac21a1eb-628b-49bb-b878-370240ed2c8f",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "ffbf53f6-7836-4b48-9a0e-9a2c1fb3006e",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v14",
+   "archived": false,
+   "content_sha": "acd190c031ef8bcb4d5c53a3705fdabd",
+   "item": {
+    "passage": "Transcript: \"Actually, you were billed twice last month, so we'll refund one.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Nice, that adds up over a year.",
+     "I'll work from the library today, then.",
+     "The cheaper tier is plenty for me.",
+     "So that's why my bank balance looked low."
+    ],
+    "correct_answer": "So that's why my bank balance looked low."
+   }
+  },
+  {
+   "id": "Fd383cfd7",
+   "item_id": "c184656e-56f8-4af7-b855-b7ede99ba0db",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "b6fd4436-ba8b-414d-bb26-d5e28ff58e46",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "59a259b35a6bdb6e9e8aad4d7fba7902",
+   "item": {
+    "passage": "Transcript: \"There's a spare seat if your roommate wants to come.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll use the weekend for the reading instead.",
+     "She'll jump at that — I'll ask her tonight.",
+     "Mine are at home, so I'll borrow a pair.",
+     "I'll pass that on to the people I'm riding with."
+    ],
+    "correct_answer": "She'll jump at that — I'll ask her tonight."
+   }
+  },
+  {
+   "id": "F4a82be2b",
+   "item_id": "5832fe4a-680d-4f26-b6fc-9bf94876ab93",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "5e14bf29-fbb8-4465-baef-31b77e1d1edc",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": false,
+   "content_sha": "43608ad60f352c9ea5cef8a543cb416f",
+   "item": {
+    "passage": "Transcript: \"Your profile's moving to the new server over the weekend.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Then can someone look at this fan noise meanwhile?",
+     "It's wiped already, I did it this morning.",
+     "That's fine, I mostly use the external monitor.",
+     "Do I need to back anything up first?"
+    ],
+    "correct_answer": "Do I need to back anything up first?"
+   }
+  },
+  {
+   "id": "F384d6251",
+   "item_id": "66b97294-1ed7-4d73-b357-16c396c54ade",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "d7c3eb67-35b4-454e-9e4b-1f45e65c16e3",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "6e5fdd8faa65d50584c5688bd360b936",
+   "item": {
+    "passage": "Transcript: \"It's not a monthly fee, it's charged once a year.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Perfect, let's do that while I'm here.",
+     "Twelve charges a year would really add up, though.",
+     "Just the checking, I'd like to keep the savings.",
+     "Then I'll leave the account open after all."
+    ],
+    "correct_answer": "Then I'll leave the account open after all."
+   }
+  },
+  {
+   "id": "F26131ab0",
+   "item_id": "a5ee7ccf-b97e-4f73-b201-4d7ace4f61e5",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "80c22a05-48f8-4730-93c1-b08a162f1abf",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v10",
+   "archived": false,
+   "content_sha": "e0e45d74a11e87971812cdb7cd3a1096",
+   "item": {
+    "passage": "Transcript: \"We're getting the floors done next week.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Don't worry about it, we're away till the twentieth.",
+     "No problem, I'm not going anywhere till noon.",
+     "A crew from Lakeside, I'll text you the number.",
+     "That was the movers, not the floor guys."
+    ],
+    "correct_answer": "Don't worry about it, we're away till the twentieth."
+   }
+  },
+  {
+   "id": "Fb6dac3fd",
+   "item_id": "7f612915-b9de-4cc0-994c-8b47c78c4cd6",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "523b20cf-1209-4765-8881-f73ca5418c34",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "a2ae9cf260f69fa2324633b81a5d5732",
+   "item": {
+    "passage": "Transcript: \"We need your supervisor's signature on the costing page.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll send it over Friday — that'll help a lot.",
+     "Then I've filled in the wrong one — I'll start again.",
+     "He's back tomorrow — I'll catch him then.",
+     "I'll use the wait — the methods section could be tidier."
+    ],
+    "correct_answer": "He's back tomorrow — I'll catch him then."
+   }
+  },
+  {
+   "id": "F7620761b",
+   "item_id": "a2728c1c-1935-45ed-ac02-bd13b31c1507",
+   "label": "negative",
+   "matched_type": "second_defensible",
+   "matched_to": "173d4215-41fa-4825-b424-726490e7c286",
+   "match": "stratum",
+   "stratum": "toefl/listening/choose_response",
+   "family": "toefl",
+   "section": "listening",
+   "cohort": "cr-v7",
+   "archived": false,
+   "content_sha": "0e1e4356c72bbd6e9ca4161d9054bd28",
+   "item": {
+    "passage": "Transcript: \"I'm moving office hours to Thursdays for the rest of term.\"",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll come by after my Thursday seminar, then.",
+     "I'll send you one by the end of next week.",
+     "I'd still like comments on it, if that's possible.",
+     "I'll drop by again once they start up next term."
+    ],
+    "correct_answer": "I'll come by after my Thursday seminar, then."
+   }
+  }
+ ]
+}

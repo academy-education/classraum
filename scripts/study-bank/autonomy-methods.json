@@ -1,0 +1,795 @@
+{
+  "_note": "Method per cohort for the trust-level tracker (Amendment 3, COFOUNDER-GRADER-2026-10-22.PREREG.md). A method is authoring brief + construction + author type (in-session / agent / model) + grader brief version; ANY change is a new method. 'unknown' is a legal value and is treated as a method of its own (a new method, so the batch gets a bridge spot). A cohort the tracker meets with no entry here and no verify_meta.method_id makes autonomy-state.mjs exit 2. New batches declare `verify_meta.method_id` on every row at insert; the tracker refuses if that disagrees with this table. Derived 2026-10-23 from verify_meta, the RELEASE preregs and REGISTER; `source` says where, `conflict` says where they disagree.",
+  "graderBriefs": {
+    "cfg-v1": {
+      "cofounder-grader/COFOUNDER-BRIEF-A.md": "6a9236f7d3bc2303e09b4f4c05185e61",
+      "cofounder-grader/COFOUNDER-BRIEF-B.md": "810172191656dd6f5db334e9f5136057"
+    },
+    "cfg-v2": {
+      "cofounder-grader/COFOUNDER-BRIEF-v2.md": "4f9cfca42498edc5d767554e45d44307"
+    },
+    "_note": "cfg-v1 graded every batch staged so far. cfg-v2 was promoted to production by the feedback loop on 2026-10-23 (cofounder-loop-state.json validated_version v2): a batch pre-screened with it is a NEW method (method_id ending +cfg-v2), so its first batch in each stratum is a bridge spot."
+  },
+  "screenFlaggedKept": {
+    "_note": "Items the co-founder-standard grader flagged that were kept for his sitting on purpose (fixes/cofounder-standard-prescreen-2026-10-22.mjs: 22 flags, 13 dropped, 4 fixed, these 5 left in crv11-release1). A verdict on them measures the screen, not its miss rate: excluded from n and x.",
+    "ids": [
+      "2e779adc-ea9e-4246-9880-adf9e13fb2b1",
+      "37ea61bc-1f78-4f8f-9e44-fe1d63d8ed81",
+      "523b20cf-1209-4765-8881-f73ca5418c34",
+      "82821034-97bb-44f3-b4d0-b4f99d06ced4",
+      "ab0d25fc-b7d2-47ad-80b7-58644c0a8bd6"
+    ]
+  },
+  "cohorts": {
+    "act-english-v1": {
+      "method_id": "act-en-v1-claude+agent-rewrite",
+      "author": "in-session",
+      "grader": "other",
+      "source": "feasibility 1.1"
+    },
+    "act-english-v7": {
+      "method_id": "act-en-agent-v7",
+      "author": "agent",
+      "grader": "other",
+      "source": "feasibility 1.5: 'English v7-v9 stable'; verify_meta.method"
+    },
+    "act-english-v8": {
+      "method_id": "act-en-agent-v7",
+      "author": "agent",
+      "grader": "other",
+      "source": "feasibility 1.5: 'English v7-v9 stable'; verify_meta.method"
+    },
+    "act-english-v9": {
+      "method_id": "act-en-agent-v7",
+      "author": "agent",
+      "grader": "other",
+      "source": "feasibility 1.5: 'English v7-v9 stable'; verify_meta.method"
+    },
+    "act-reading-v1": {
+      "method_id": "act-rd-v1-claude+agent-rewrite",
+      "author": "in-session",
+      "grader": "other",
+      "source": "feasibility 1.1: ACT round 1, agent distractor rewrite, human sitting B7"
+    },
+    "act-reading-v10a": {
+      "method_id": "act-rd-agent-brief-v10+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v11 'wrote to the v10 brief' (so v10 introduced a brief)"
+    },
+    "act-reading-v10b": {
+      "method_id": "act-rd-agent-brief-v10+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v11 'wrote to the v10 brief' (so v10 introduced a brief)"
+    },
+    "act-reading-v11a": {
+      "method_id": "act-rd-agent-brief-v10+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v11 'wrote to the v10 brief' (so v10 introduced a brief)"
+    },
+    "act-reading-v11b": {
+      "method_id": "act-rd-agent-brief-v10+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v11 'wrote to the v10 brief' (so v10 introduced a brief)"
+    },
+    "act-reading-v12a": {
+      "method_id": "unknown",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "wave7.RELEASE.PREREG.md does not name the brief version"
+    },
+    "act-reading-v12b": {
+      "method_id": "unknown",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "wave7.RELEASE.PREREG.md does not name the brief version"
+    },
+    "act-reading-v4": {
+      "method_id": "unknown",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored; structure-checked'; brief not recorded"
+    },
+    "act-reading-v7": {
+      "method_id": "unknown",
+      "author": "in-session",
+      "grader": "other",
+      "source": "REGISTER 09-11 (staged, tells FAIL recorded); brief not recorded"
+    },
+    "act-reading-v8a": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-reading-v8b": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-reading-v8c": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-reading-v8d": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-reading-v9a": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-reading-v9b": {
+      "method_id": "act-rd-agent-brief-v8+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-reading-v8.RELEASE.PREREG.md (four agents to act-reading-v8-work/BRIEF); act-v9-v6.RELEASE.PREREG.md: 'to the v8 and v5 briefs'"
+    },
+    "act-science-v1": {
+      "method_id": "act-sci-v1-claude+agent-rewrite",
+      "author": "in-session",
+      "grader": "other",
+      "source": "feasibility 1.1: ACT round 1"
+    },
+    "act-science-v2": {
+      "method_id": "act-sci-v1-claude+agent-rewrite",
+      "author": "in-session",
+      "grader": "other",
+      "source": "feasibility 1.1: ACT round 1"
+    },
+    "act-science-v5a": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v5b": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v5c": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v5d": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v6a": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v6b": {
+      "method_id": "act-sci-agent-brief-v5+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "REGISTER 10-23 v5 staged; act-v9-v6.RELEASE.PREREG.md: v6 'to the v8 and v5 briefs'"
+    },
+    "act-science-v7a": {
+      "method_id": "act-sci-agent-brief-v7+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v8 'wrote to the v7 brief'"
+    },
+    "act-science-v7b": {
+      "method_id": "act-sci-agent-brief-v7+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v8 'wrote to the v7 brief'"
+    },
+    "act-science-v8a": {
+      "method_id": "act-sci-agent-brief-v7+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v8 'wrote to the v7 brief'"
+    },
+    "act-science-v8b": {
+      "method_id": "act-sci-agent-brief-v7+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "act-v11-v8-isee13.RELEASE.PREREG.md: v8 'wrote to the v7 brief'"
+    },
+    "act-science-v9a": {
+      "method_id": "unknown",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "wave7.RELEASE.PREREG.md does not name the brief version"
+    },
+    "act-science-v9b": {
+      "method_id": "unknown",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "wave7.RELEASE.PREREG.md does not name the brief version"
+    },
+    "announcement-v6": {
+      "method_id": "toefl-ann-v6",
+      "author": "in-session",
+      "grader": "other",
+      "source": "PREREG-ANNOUNCEMENT-V6-2026-10-09.md"
+    },
+    "cr-v1": {
+      "method_id": "cr-four-slot",
+      "author": "in-session",
+      "grader": "other",
+      "source": "REGISTER \u00a70 CR table (four-slot distractor roster)"
+    },
+    "cr-v10": {
+      "method_id": "unknown",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-blind-grade' conflicts with REGISTER \u00a70 (crv7 worlds)"
+    },
+    "cr-v11": {
+      "method_id": "crv7-b7-insession+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "crv7-b7.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method"
+    },
+    "cr-v12": {
+      "method_id": "crv7-b8-insession+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "crv7-b8.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method"
+    },
+    "cr-v13": {
+      "method_id": "crv7-b9-insession+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "crv7-b9.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method"
+    },
+    "cr-v14": {
+      "method_id": "crv7-b10-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b10.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v15": {
+      "method_id": "crv7-b11-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b11.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v16": {
+      "method_id": "crv7-b12-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b12.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v17": {
+      "method_id": "crv7-b13-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b13.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v18": {
+      "method_id": "crv7-b14-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b14.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v19": {
+      "method_id": "crv7-b15-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b15.RELEASE.PREREG.md (no prereg file found; crv7-b15.batch.json; REGISTER wave 5): each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method",
+      "conflict": "verify_meta.draft.note says 'crv7 batch 9 ... in-session (no agents)'; the batch preregs say agents and a new brief. Preregs followed."
+    },
+    "cr-v2": {
+      "method_id": "cr-four-slot",
+      "author": "in-session",
+      "grader": "other",
+      "source": "REGISTER \u00a70 CR table (four-slot distractor roster)"
+    },
+    "cr-v20": {
+      "method_id": "crv7-b16-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b16.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method"
+    },
+    "cr-v21": {
+      "method_id": "crv7-b17-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "crv7-b17.RELEASE.PREREG.md: each batch from b10 adds the previous batch's drop patterns to the brief, so each is its own method"
+    },
+    "cr-v7": {
+      "method_id": "crv7-worlds-insession+attack",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'crv7-symmetric-worlds+seeded-key+blind-attack'"
+    },
+    "harvest-v1": {
+      "method_id": "harvest-v1-import",
+      "author": "model",
+      "grader": "none",
+      "source": "feasibility 1.1: earlier generated TOEFL bank imported (source='generated')"
+    },
+    "isee-reading-draft-1": {
+      "method_id": "isee-rd-insession-d1brief",
+      "author": "in-session",
+      "grader": "none",
+      "source": "verify_meta.draft.qc.note; released before Amendment 1"
+    },
+    "isee-reading-draft-10": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-11": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-12": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-13": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-14": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-15": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-16": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-2": {
+      "method_id": "isee-rd-insession-d1brief+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "isee-reading-draft-2/3.RELEASE.PREREG.md: 'to the draft-1/2 brief (no agents)'; REGISTER 10-22: Amendment 1 pre-screen covered ISEE d2-d3"
+    },
+    "isee-reading-draft-3": {
+      "method_id": "isee-rd-insession-d1brief+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "isee-reading-draft-2/3.RELEASE.PREREG.md: 'to the draft-1/2 brief (no agents)'; REGISTER 10-22: Amendment 1 pre-screen covered ISEE d2-d3"
+    },
+    "isee-reading-draft-4": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-5": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-6": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-7": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-8": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "isee-reading-draft-9": {
+      "method_id": "isee-rd-agent-brief@350d3265-isee+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md (ISEE variant)",
+      "source": "verify_meta.draft.qc.note; isee-reading-draft-4/5 preregs; reading-drafts-wave3; wave7"
+    },
+    "map-reading-draft-1": {
+      "method_id": "map-rd-insession-d1",
+      "author": "in-session",
+      "grader": "none",
+      "source": "MAP-READING-DRAFT-1-AUTHOR-BRIEF.md"
+    },
+    "orphan-v1": {
+      "method_id": "toefl-orphan-claude",
+      "author": "in-session",
+      "grader": "other",
+      "source": "feasibility 1.1"
+    },
+    "ssat-reading-draft-1": {
+      "method_id": "ssat-rd-insession-d1brief",
+      "author": "in-session",
+      "grader": "none",
+      "source": "REGISTER 10-21: d2 'written in-session by Claude to draft 1's author brief'; d3 same route; verify_meta.draft.qc.note 'no AI grader'"
+    },
+    "ssat-reading-draft-10": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-11": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-12": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-13": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-14": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-15": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-16": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-17": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-18": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-2": {
+      "method_id": "ssat-rd-insession-d1brief",
+      "author": "in-session",
+      "grader": "none",
+      "source": "REGISTER 10-21: d2 'written in-session by Claude to draft 1's author brief'; d3 same route; verify_meta.draft.qc.note 'no AI grader'"
+    },
+    "ssat-reading-draft-3": {
+      "method_id": "ssat-rd-insession-d1brief",
+      "author": "in-session",
+      "grader": "none",
+      "source": "REGISTER 10-21: d2 'written in-session by Claude to draft 1's author brief'; d3 same route; verify_meta.draft.qc.note 'no AI grader'"
+    },
+    "ssat-reading-draft-4": {
+      "method_id": "ssat-rd-insession-notes-v1",
+      "author": "in-session",
+      "grader": "none",
+      "source": "REGISTER 10-22: 'the first batch written to the co-founder's notes'"
+    },
+    "ssat-reading-draft-5": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-6": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-7": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-8": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-draft-9": {
+      "method_id": "ssat-rd-agent-brief@350d3265+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "authoring_brief": "SSAT-READING-AGENT-BRIEF.md md5 350d3265 (one commit, c7863bf4)",
+      "source": "ssat-reading-drafts-5-8.RELEASE.PREREG.md, reading-drafts-wave3.RELEASE.PREREG.md, wave7; REGISTER 10-22 fan-out",
+      "conflict": "d5-d8 verify_meta.draft.qc.note says 'Written in-session by Claude (no agents)'; the prereg and REGISTER say six agents wrote them to SSAT-READING-AGENT-BRIEF.md. Prereg followed. d5-d8 were pre-screened after staging (Amendment 1 pass), d9-d18 before; timing is not a method component."
+    },
+    "ssat-reading-worlds-s2": {
+      "method_id": "ssat-rd-worlds-claude-qc",
+      "author": "in-session",
+      "grader": "none",
+      "source": "verify_meta.method 'claude-authored+claude-qc' (Aug 28 - Sep 1 worlds pilots)"
+    },
+    "ssat-reading-worlds-s3": {
+      "method_id": "ssat-rd-worlds-claude-qc",
+      "author": "in-session",
+      "grader": "none",
+      "source": "verify_meta.method 'claude-authored+claude-qc' (Aug 28 - Sep 1 worlds pilots)"
+    },
+    "ssat-reading-worlds-s4": {
+      "method_id": "ssat-rd-worlds-claude-qc",
+      "author": "in-session",
+      "grader": "none",
+      "source": "verify_meta.method 'claude-authored+claude-qc' (Aug 28 - Sep 1 worlds pilots)"
+    },
+    "ssat-reading-wv6": {
+      "method_id": "ssat-rd-wv6-five-version",
+      "author": "agent",
+      "grader": "none",
+      "source": "verify_meta.method (whole-passage five-version WV6 + NAEP lure brief)"
+    },
+    "ssat-verbal-draft-1": {
+      "method_id": "ssat-vb-insession-livewords+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "ssat-verbal-draft-1.RELEASE.PREREG.md; REGISTER 10-22: Amendment 1 pre-screen covered 'SSAT verbal d1-d2 (226)'"
+    },
+    "ssat-verbal-draft-2": {
+      "method_id": "ssat-vb-agents-v2+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "ssat-verbal-draft-2.RELEASE.PREREG.md (two agents, no grader at insert; screened by the Amendment 1 pass)"
+    },
+    "ssat-verbal-draft-3": {
+      "method_id": "ssat-vb-agents-v3+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "ssat-verbal-draft-3/4.RELEASE.PREREG.md (two agents, refreshed exclusion lists, A+B pre-screen); d5 is the first to name a brief change",
+      "conflict": "d4 does not state whether its brief carried draft-3 drop patterns; d5 says it carried draft-3 AND draft-4 patterns, read as d4 unchanged"
+    },
+    "ssat-verbal-draft-4": {
+      "method_id": "ssat-vb-agents-v3+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "ssat-verbal-draft-3/4.RELEASE.PREREG.md (two agents, refreshed exclusion lists, A+B pre-screen); d5 is the first to name a brief change",
+      "conflict": "d4 does not state whether its brief carried draft-3 drop patterns; d5 says it carried draft-3 AND draft-4 patterns, read as d4 unchanged"
+    },
+    "ssat-verbal-draft-5": {
+      "method_id": "ssat-vb-agents-v5-droppatterns+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "ssat-verbal-draft-5.RELEASE.PREREG.md: 'the author brief carried the draft-3 and draft-4 drop patterns'"
+    },
+    "ssat-verbal-s2": {
+      "method_id": "ssat-vb-claude-qc-aug",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-qc'"
+    },
+    "ssat-verbal-s3": {
+      "method_id": "ssat-vb-claude-qc-aug",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-qc'"
+    },
+    "ssat-verbal-s5": {
+      "method_id": "ssat-vb-claude-qc-aug",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-qc'"
+    },
+    "ssat-verbal-s6": {
+      "method_id": "ssat-vb-bijective-s6",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method (bijective set)"
+    },
+    "ssat-verbal-v1": {
+      "method_id": "ssat-vb-claude-qc-aug",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-qc'"
+    },
+    "talk-c1": {
+      "method_id": "toefl-claude-jul",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-blind-grade' (Jul 21-28)"
+    },
+    "talk-c2": {
+      "method_id": "toefl-claude-jul",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-blind-grade' (Jul 21-28)"
+    },
+    "toefl-conv-draft-1": {
+      "method_id": "toefl-conv-sept-v5v6",
+      "author": "in-session",
+      "grader": "none",
+      "source": "verify_meta.draft.note: 'Authored Sept 2026 (toefl-conv-v5/v6), never gated or banked'"
+    },
+    "toefl-conv-draft-2": {
+      "method_id": "toefl-conv-insession-convhardv2+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "toefl-conv-draft-2.RELEASE.PREREG.md ('to the conv-hard-v2 brief'); Amendment 1 pass covered conv d2"
+    },
+    "toefl-passage-draft-1": {
+      "method_id": "toefl-passage-insession-d1+cfg-v1",
+      "author": "in-session",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-1.RELEASE.PREREG.md; REGISTER 10-22: Amendment 1 pass covered TOEFL passage d1"
+    },
+    "toefl-passage-draft-2": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-passage-draft-3": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-passage-draft-4": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-passage-draft-5": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-passage-draft-6": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-passage-draft-7": {
+      "method_id": "toefl-passage-agent+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-passage-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7"
+    },
+    "toefl-talk-draft-1": {
+      "method_id": "toefl-talk-insession-d1",
+      "author": "in-session",
+      "grader": "none",
+      "source": "toefl-talk-draft-1.RELEASE.PREREG.md; not in the 552-item Amendment 1 pass"
+    },
+    "toefl-talk-draft-2": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "toefl-talk-draft-3": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "toefl-talk-draft-4": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "toefl-talk-draft-5": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "toefl-talk-draft-6": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "toefl-talk-draft-7": {
+      "method_id": "toefl-talk-agents+cfg-v1",
+      "author": "agent",
+      "grader": "cfg-v1",
+      "source": "toefl-talk-draft-2..4.RELEASE.PREREG.md, toefl-wave5/6, wave7 (two agents each, A+B 0/48); no brief change recorded until wave7's \"Next talk brief\""
+    },
+    "v2": {
+      "method_id": "sat-rw-v2",
+      "author": "model",
+      "grader": "other",
+      "source": "feasibility 1.1 (GPT-era v2); verify_meta.method says 'claude-authored+claude-qc'",
+      "conflict": "generation source disputed between verify_meta and the feasibility audit; irrelevant to any queued stratum"
+    },
+    "v3-claude": {
+      "method_id": "toefl-claude-jul",
+      "author": "in-session",
+      "grader": "other",
+      "source": "verify_meta.method 'claude-authored+claude-blind-grade' (Jul 21-28)"
+    }
+  }
+}

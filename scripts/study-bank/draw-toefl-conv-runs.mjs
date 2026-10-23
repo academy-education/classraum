@@ -33,7 +33,11 @@ const label = g => (groups.get(g)[0].verify_meta?.draft?.origin ?? g).replace('t
 const pref = ORDER[COHORT] ?? []
 const ranked = [...groups.keys()].filter(g => groups.get(g).every(i => !seen.has(i.id)))
   .sort((a, b) => { const ia = pref.indexOf(label(a)), ib = pref.indexOf(label(b)); return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib) || label(a).localeCompare(label(b)) })
-const { sets: NSETS, size: SIZE } = SHAPE[COHORT] ?? { sets: 6, size: 2 }
+const { sets: SHAPE_SETS, size: SIZE } = SHAPE[COHORT] ?? { sets: 6, size: 2 }
+// DRAW_SETS=<k> (2026-10-23, Amendment 3): k whole sets instead of the cohort's default, so draw-next can ask for a
+// 12-item spot of 5-item passages (3 sets) or an L0 full sitting capped at 36 items. Same set rules otherwise.
+const NSETS = process.env.DRAW_SETS ? Number(process.env.DRAW_SETS) : SHAPE_SETS
+if (!Number.isInteger(NSETS) || NSETS < 1) refuse(`DRAW_SETS must be a positive integer, got ${process.env.DRAW_SETS}`)
 const chosen = ranked.slice(0, NSETS)
 // the LAST run of a cohort may be short (e.g. 5 lectures = 3 + 2); never pad from another cohort
 if (!chosen.length) refuse('no undrawn sets left')

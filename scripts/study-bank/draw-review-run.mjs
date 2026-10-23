@@ -31,6 +31,7 @@
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
+import { dealSlots, dealSegments, parseDrawCohort, SLOTS } from './review-deal.mjs'
 
 const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
 /* Cohorts are drawn in the order given, and that order IS the sitting's
@@ -50,13 +51,24 @@ const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
  * items, and the drawer refused (correctly). That domain was un-drawable by
  * this tool for as long as it has existed. '|' cannot occur in a domain
  * name; ',' can — so if the argument contains a '|', that is the separator. */
-const entries = (domainArg || '').split((domainArg || '').includes('|') ? '|' : ',').map(d => d.trim()).filter(Boolean)
-  .map(e => { const m = e.match(/^(.*?):(\d+)$/); return m ? { domain: m[1].trim(), size: Number(m[2]) } : { domain: e, size: Number(sizeArg) } })
+/* POOLED RUNS, added 2026-10-23 (Amendment 3, L2): DRAW_COHORT='a:3,b:3,c:2' draws that many items from EACH named
+ * cohort into one run (one entry per cohort, in the order given), instead of one cohort. <domain> is then a single
+ * domain or '*', and <size> is ignored. The one-open-run guard below is unchanged.
+ * DOMAIN '*': no domain filter. Allowed only with DRAW_COHORT, so the pool is always bounded by a cohort.
+ * DRAW_GROUP may list several passage groups, comma-separated (a 12-item spot is two passages). */
+let cohortSpec
+try { cohortSpec = parseDrawCohort(process.env.DRAW_COHORT) } catch (e) { console.error(e.message); process.exit(1) }
+const domainList = (domainArg || '').split((domainArg || '').includes('|') ? '|' : ',').map(d => d.trim()).filter(Boolean)
+const entries = cohortSpec.pooled
+  ? (domainList.length === 1 && !/:\d+$/.test(domainList[0]) ? cohortSpec.quotas.map(q => ({ domain: domainList[0], size: q.size, cohort: q.cohort })) : (console.error('a pooled DRAW_COHORT takes exactly one <domain> (or *) with no :n'), process.exit(1)))
+  : domainList.map(e => { const m = e.match(/^(.*?):(\d+)$/); return m ? { domain: m[1].trim(), size: Number(m[2]), cohort: cohortSpec.cohort } : { domain: e, size: Number(sizeArg), cohort: cohortSpec.cohort } })
 const domains = entries.map(e => e.domain)
 const sizes = entries.map(e => e.size)
 if (!domains.length || !reviewerId || sizes.some(n => !Number.isFinite(n) || n <= 0)) {
-  console.error('usage: draw-review-run.mjs <domain[:n][,domain2[:n],...]> <size> <reviewerId> [runId]   (DRAW_FAMILY=act to restrict)'); process.exit(1)
+  console.error('usage: draw-review-run.mjs <domain[:n][,domain2[:n],...]|*> <size> <reviewerId> [runId]   (DRAW_FAMILY=act to restrict; DRAW_COHORT=c or a:3,b:3 for a pooled run)'); process.exit(1)
 }
+if (domains.includes('*') && !entries.every(e => e.cohort)) { console.error("REFUSING: domain '*' needs DRAW_COHORT (an unbounded pool is never drawn)"); process.exit(1) }
+const GROUPS = (process.env.DRAW_GROUP || '').split(',').map(g => g.trim()).filter(Boolean)
 const FAMILY = process.env.DRAW_FAMILY || null
 const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0])
 /* The full slot alphabet, mirroring src/lib/study/item-review.ts. The
@@ -64,7 +76,7 @@ const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc
  * every one of the 536 SSAT items, are five-choice or non-MC, and this
  * script's `=== 4` filter silently excluded all of them from human
  * review. Measured 2026-09-12. */
-const L = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+const L = SLOTS
 
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
@@ -106,15 +118,19 @@ for (const [di, domain] of domains.entries()) {
   const pool = []
   for (let f = 0; ; f += 1000) {
     let q = db.from('study_item_bank').select('id, item, verified')
-      .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
+      .neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
+    if (domain !== '*') q = q.eq('domain', domain)
     if (FAMILY) q = q.eq('family', FAMILY)
     // DRAW_COHORT=cr-v10 restricts to one cohort: "Choose a Response" is a
     // domain shared by cr-v7 (human-tested) and cr-v10 (not), and a sitting
     // that mixes them cannot answer the question about the new one.
-    if (process.env.DRAW_COHORT) q = q.eq('cohort', process.env.DRAW_COHORT)
+    if (entries[di].cohort) q = q.eq('cohort', entries[di].cohort)
     // DRAW_GROUP=<passage_group_id>: one passage only (2026-10-22 spot-check route: the co-founder reads one passage
     // of a pre-screened batch instead of all of it; COFOUNDER-GRADER-2026-10-22.PREREG.md, owner option 2).
-    if (process.env.DRAW_GROUP) q = q.eq('passage_group_id', process.env.DRAW_GROUP)
+    // DRAW_VERIFIED=1 (2026-10-23, Amendment 3 audit of AI-only releases): live rows only, never a staged batch
+    if (process.env.DRAW_VERIFIED === '1') q = q.eq('verified', true)
+    if (GROUPS.length === 1) q = q.eq('passage_group_id', GROUPS[0])
+    else if (GROUPS.length > 1) q = q.in('passage_group_id', GROUPS)
     const { data, error } = await q
     if (error) throw new Error(error.message)
     pool.push(...data); if (data.length < 1000) break
@@ -137,7 +153,7 @@ for (const [di, domain] of domains.entries()) {
    * touching to sit it. The review route and study_item_reviews_fresh
    * do not filter it either. Printed so a draw says which it got. */
   const nStaged = usable.filter(r => r.verified !== true).length
-  console.log(`${domain}: ${pool.length} unarchived, ${usable.length} reviewable (unseen) — ${usable.length - nStaged} verified, ${nStaged} staged`)
+  console.log(`${domain}${entries[di].cohort && cohortSpec.pooled ? ` [${entries[di].cohort}]` : ''}: ${pool.length} unarchived, ${usable.length} reviewable (unseen) — ${usable.length - nStaged} verified, ${nStaged} staged`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
   let picked = sh(usable).slice(0, size)
   /* DRAW_FIRST=<item id>, added 2026-10-07 (ssat-wv6 sitting): that item, if it is in this cohort's pool,
@@ -176,20 +192,8 @@ function die0() { console.error('DRAW_FIRST: sample shorter than size'); process
  * mis-states the control: the best fixed-slot strategy is 1/4 on
  * four-wide rows and 1/5 on five-wide ones, so they are different
  * instruments and must be dealt -- and later scored -- apart. */
-const slots = new Array(sample.length)
-for (const [ci] of domains.entries()) {
-  const lo = offsets[ci], hi = offsets[ci + 1]
-  const byWidth = new Map()
-  for (let i = lo; i < hi; i++) {
-    const w = sample[i].item.choices.length
-    if (!byWidth.has(w)) byWidth.set(w, [])
-    byWidth.get(w).push(i)
-  }
-  for (const [w, idxs] of byWidth) {
-    const dealt = sh(idxs.map((_, i) => L[i % w]))
-    idxs.forEach((sampleIdx, k) => { slots[sampleIdx] = dealt[k] })
-  }
-}
+// (the deal now lives in review-deal.mjs so it is tested; a pooled run is dealt as one segment, see there)
+const slots = dealSlots(sample.map(r => r.item.choices.length), dealSegments(sizes, cohortSpec.pooled), sh)
 
 const runId = runIdArg || `${domains[0].toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
 const rows = sample.map((r, i) => {
@@ -205,6 +209,15 @@ const rows = sample.map((r, i) => {
   return { item_id: r.id, run_id: runId, reviewer_id: reviewerId, shown_order: shown, key_slot: slots[i] }
 })
 
+/* DRAW_DRY=1, added 2026-10-23: print the sample and the deal, insert nothing (the open-run guard has still run).
+ * The only way to check a pooled or multi-group draw against the live bank without creating a run. */
+if (process.env.DRAW_DRY === '1') {
+  const byCohortWidth = {}
+  for (const [i, r] of rows.entries()) { const k = `${entries.findIndex((_, ci) => i >= offsets[ci] && i < offsets[ci + 1])}`; byCohortWidth[k] = (byCohortWidth[k] ?? 0) + 1 }
+  console.log(`DRY RUN (DRAW_DRY=1): would insert ${rows.length} rows into "${runId}"; per entry ${entries.map((e, ci) => `${e.cohort ?? e.domain}:${byCohortWidth[ci] ?? 0}`).join(' ')}`)
+  console.log(`  key letters ${L.map(x => `${x}:${rows.filter(r => r.key_slot === x).length}`).join(' ')}`)
+  process.exit(0)
+}
 // insert the DRAW_FIRST row on its own first (see above), then the rest in order
 const firstIdx = process.env.DRAW_FIRST ? rows.findIndex(r => r.item_id === process.env.DRAW_FIRST) : -1
 for (const batch of firstIdx === 0 ? [rows.slice(0, 1), rows.slice(1)] : [rows]) {

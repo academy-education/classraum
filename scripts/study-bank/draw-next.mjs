@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * draw-next.mjs [--commit]
+ * draw-next.mjs [--commit] [--ignore-open] [--old-rule]
  *
  * Draws the co-founder's NEXT release run from cofounder-queue.json, so a closed run is followed by the right
  * next one without anyone re-deciding the order. Dry run by default: prints the queue state and the exact
@@ -12,12 +12,21 @@
  * been served, or when the cohort already has `upTo` runs. The final run of a cohort may be short.
  */
 import { createClient } from '@supabase/supabase-js'
-import { readFileSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 const COMMIT = process.argv.includes('--commit')
 const here = new URL('.', import.meta.url).pathname
 const Q = JSON.parse(readFileSync(process.env.QUEUE_FILE || here + 'cofounder-queue.json', 'utf8')) // QUEUE_FILE: test queues
 const refuse = m => { console.error('REFUSING: ' + m); process.exit(2) }
+/* LEVEL-AWARE MODE (Amendment 3, 2026-10-23): when autonomy-state.json exists (written by autonomy-state.mjs;
+ * AUTONOMY_STATE_FILE overrides the path), runs are ordered by the five-test floor and shaped by each batch's trust
+ * level — see draw-next-levels.mjs. With no state file, or with --old-rule, everything below runs unchanged. */
+const STATE_FILE = process.env.AUTONOMY_STATE_FILE || here + 'autonomy-state.json'
+if (existsSync(STATE_FILE) && !process.argv.includes('--old-rule')) {
+  if (process.argv.includes('--ignore-open') && COMMIT) refuse('--ignore-open is for dry runs only')
+  const { levelAwareDraw } = await import('./draw-next-levels.mjs')
+  try { process.exit(await levelAwareDraw({ Q, stateFile: STATE_FILE, commit: COMMIT })) } catch (e) { if (e?.name === 'RefusalError') refuse(e.message); throw e }
+}
 const env = Object.fromEntries(readFileSync(here + '../../.env.local', 'utf8').split('\n').filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const { data: open } = await db.from('study_item_reviews').select('run_id').eq('reviewer_id', Q.reviewer).is('blind_at', null).limit(1).maybeSingle()
