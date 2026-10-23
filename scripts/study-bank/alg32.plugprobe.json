@@ -1,0 +1,278 @@
+{
+ "p1": {
+  "valid": true,
+  "positives": 5,
+  "negatives": 1,
+  "plant_disagree": 0,
+  "plants": {
+   "SM26L-B6": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "-16",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "One linear back-solve from y gives a valid integer k; smallest option attainable."
+   },
+   "SM26L-C6": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "17",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "Substitute k, count integers, compare with printed 6."
+   },
+   "SM27F-D13": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "159",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "Forward distance from each option compared with printed 53."
+   },
+   "SM26L-B5": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "21",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "One linear back-solve for k."
+   },
+   "SM26L-C8": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "37",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "Substitute k into both inequalities and inspect the interval."
+   },
+   "SM26L-B1": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Count-of-values question; plug-back cannot reach it."
+   },
+   "SM26L-D4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Option is an objective value with two free unknowns; no single substitution decides it."
+   },
+   "SM26L-D3": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Requires solving both budget cases."
+   },
+   "SM26L-B7": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "40",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "Backward run is coefficient matching; about as short as the forward solve."
+   },
+   "SM26L-C1": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Count-of-values question; plug-back cannot reach it."
+   },
+   "SM26L-C4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Option is derived from two unknown endpoints; no substitution."
+   },
+   "SM26L-D7": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Only the out-of-range option is refutable by plug-back; the rest need the full comparison."
+   },
+   "SM26L-D2": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "Needs both optimisations."
+   }
+  }
+ },
+ "p2": {
+  "valid": true,
+  "positives": 5,
+  "negatives": 1,
+  "plant_disagree": 0,
+  "plants": {
+   "SM27F-D13": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "159",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "forward distance from each option against 53; first passing in ascending order"
+   },
+   "SM26L-C6": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "17",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "slope from table then one count per option"
+   },
+   "SM26L-B6": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "-16",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "one linear back-solve for k"
+   },
+   "SM26L-B5": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "21",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "one linear back-solve for k"
+   },
+   "SM26L-C8": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "37",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "substitute k, read the x interval"
+   },
+   "SM26L-B1": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "counting question; plug-back has nothing to substitute"
+   },
+   "SM26L-D3": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "requires solving both optimizations"
+   },
+   "SM26L-D7": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "only 18 is routinely refutable; the rest need the full optimization"
+   },
+   "SM26L-C1": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "counting question"
+   },
+   "SM26L-D2": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "needs both optima"
+   },
+   "SM26L-B7": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "40",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "assume difference, check consistency with A's form"
+   },
+   "SM26L-D4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "attainability of a target value is a search, not one check; refuting 75 needs exhausting candidates"
+   },
+   "SM26L-C4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "difference of range endpoints"
+   }
+  }
+ }
+}

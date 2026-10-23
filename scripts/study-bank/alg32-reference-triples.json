@@ -1,0 +1,888 @@
+[
+ {
+  "id": "SM23L-A1",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in two coefficients",
+  "ii": "solution lies on a third stated line",
+  "iii": "y-coordinate of the solution"
+ },
+ {
+  "id": "SM23L-A2",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in two coefficients",
+  "ii": "intersection lies on a third stated line",
+  "iii": "y-coordinate of the intersection"
+ },
+ {
+  "id": "SM23L-A3",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a line through a fixed point",
+  "ii": "x-intercept and y-intercept conditions",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-A4",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a line through a fixed point",
+  "ii": "graph meets a fixed segment",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-A5",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope and intercept both unknown",
+  "ii": "image of an interval given exactly",
+  "iii": "a value of f"
+ },
+ {
+  "id": "SM23L-A6",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope, pivot inside interval",
+  "ii": "two-sided",
+  "iii": "spread of f(t), t outside interval"
+ },
+ {
+  "id": "SM23L-A7",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "coefficient of x in an inequality",
+  "ii": "given solution set",
+  "iii": "value of k"
+ },
+ {
+  "id": "SM23L-B1",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in a coefficient",
+  "ii": "quadrant / sign condition",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-B2",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in a coefficient",
+  "ii": "quadrant / sign condition",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM23L-B3",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slopes written in k",
+  "ii": "perpendicular, meeting on the y-axis",
+  "iii": "value of a second constant"
+ },
+ {
+  "id": "SM23L-B4",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope written in k",
+  "ii": "parallel to a line through two points, through a point",
+  "iii": "value of a second constant"
+ },
+ {
+  "id": "SM23L-B5",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a half-plane boundary",
+  "ii": "contains two points, excludes one",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-B6",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a half-plane boundary",
+  "ii": "contains a segment, excludes a point",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM23L-B7",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "solution of a one-variable equation",
+  "ii": "compared with k itself",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-A1",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "two-sided",
+  "iii": "width of k-range"
+ },
+ {
+  "id": "SM24L-A2",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "lower only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM24L-A3",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot inside interval",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A4",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot inside interval",
+  "ii": "between two fixed lines",
+  "iii": "greatest or least f(t)"
+ },
+ {
+  "id": "SM24L-A5",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot outside interval",
+  "ii": "two-sided",
+  "iii": "spread of f(t), t outside interval"
+ },
+ {
+  "id": "SM24L-A6",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot outside interval",
+  "ii": "between two fixed lines",
+  "iii": "width of k-range"
+ },
+ {
+  "id": "SM24L-A7",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "function value at a point",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM24L-A8",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "function value at a point",
+  "ii": "upper only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A9",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope of a combination",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A10",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope of a combination",
+  "ii": "upper only",
+  "iii": "other: sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM24L-B1",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution of a one-variable equation",
+  "ii": "range on a second derived quantity",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B2",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "x-coordinate of intersection",
+  "ii": "quadrant / sign condition",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B3",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "compared with k itself",
+  "iii": "greatest or least value of k"
+ },
+ {
+  "id": "SM24L-B4",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "intercept of a line with k",
+  "ii": "range only",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B5",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "function value f(t)",
+  "ii": "range on a second derived quantity",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B6",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution where k is the x-coefficient",
+  "ii": "range only",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B7",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution of a one-variable equation",
+  "ii": "range only",
+  "iii": "other: difference between greatest and least k"
+ },
+ {
+  "id": "SM24L-B8",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "x-coordinate of intersection",
+  "ii": "range on a second derived quantity",
+  "iii": "greatest or least value of k"
+ },
+ {
+  "id": "SM24L-B9",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "quadrant / sign condition",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B10",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "intercept of a line with k",
+  "ii": "range on a second derived quantity",
+  "iii": "other: mean (average) of all values of k"
+ },
+ {
+  "id": "SM25L-P1",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P2",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "upper only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P3",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P4",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "lower only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P5",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P6",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P7",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "between two fixed lines",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-P8",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "lower only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P9",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P10",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "upper only",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P11",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-Q1",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-Q2",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-Q3",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "other: Q number of integer slopes"
+ },
+ {
+  "id": "SM25L-Q4",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-Q5",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "lower only",
+  "iii": "other: Q sum of greatest and least y-intercept"
+ },
+ {
+  "id": "SM25L-Q6",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-Q7",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "between two fixed lines",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-Q8",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "other: Q spread of f(t) for t inside the interval"
+ },
+ {
+  "id": "SM25L-Q9",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "between two fixed lines",
+  "iii": "other: Q mean of the greatest and least k"
+ },
+ {
+  "id": "SM25L-Q10",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "upper only",
+  "iii": "other: Q number of integers f(s) can equal, s inside the interval"
+ },
+ {
+  "id": "SM25L-Q11",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "lower only",
+  "iii": "other: Q width of the slope range"
+ },
+ {
+  "id": "SM25L-R1",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-R2",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "lower only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-R3",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "upper only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-R4",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-R5",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "two-sided",
+  "iii": "number of integer k"
+ },
+ {
+  "id": "SM25L-R6",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "two-sided",
+  "iii": "other: R number of integers the bounding line can equal at a stated x"
+ },
+ {
+  "id": "SM25L-R7",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "lower only",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-R8",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "two-sided",
+  "iii": "other: R sum of all integer k"
+ },
+ {
+  "id": "SM25L-R9",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "range only",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM25L-R10",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "function value f(t)",
+  "ii": "compared with k itself",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM26L-A1",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM26L-A2",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "a function value at a stated point",
+  "ii": "upper only",
+  "iii": "number of integers f can equal at a stated point outside the interval"
+ },
+ {
+  "id": "SM26L-A3",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "upper only",
+  "iii": "sum of greatest and least y-intercept of the bounding line"
+ },
+ {
+  "id": "SM26L-A4",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "upper only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM26L-A5",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "between two fixed lines",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM26L-A6",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "slope, pivot point inside the interval",
+  "ii": "upper only",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM26L-A7",
+  "source": "sat-math-v26-alg-a.batch.json (LIVE, kept)",
+  "mech": "interval-bound",
+  "i": "slope, fixed y-intercept",
+  "ii": "two-sided",
+  "iii": "greatest value of f(x) over a wider stated interval"
+ },
+ {
+  "id": "SM26L-A8",
+  "source": "sat-math-v26-alg-a.batch.json (dropped, not live)",
+  "mech": "interval-bound",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "least value of f(x) over a wider stated interval"
+ },
+ {
+  "id": "SM26L-B1",
+  "source": "sat-math-v26-alg-b.batch.json (LIVE, kept)",
+  "mech": "degenerate-parameter",
+  "i": "k is the weekly deposit in one of two linear savings models",
+  "ii": "the balances become equal at a time at least a fixed bound",
+  "iii": "number of whole-number k in a stated range"
+ },
+ {
+  "id": "SM26L-B2",
+  "source": "sat-math-v26-alg-b.batch.json (LIVE, kept)",
+  "mech": "degenerate-parameter",
+  "i": "k is the x-coefficient of one equation in a 2x2 system with fixed constants",
+  "ii": "solution satisfies x > y",
+  "iii": "number of integer k in a stated range"
+ },
+ {
+  "id": "SM26L-B3",
+  "source": "sat-math-v26-alg-b.batch.json (dropped, not live)",
+  "mech": "degenerate-parameter",
+  "i": "k in the x-coefficient and the constant of a one-variable equation",
+  "ii": "unique solution is negative",
+  "iii": "sum of integer k in a stated range"
+ },
+ {
+  "id": "SM26L-B4",
+  "source": "sat-math-v26-alg-b.batch.json (LIVE, kept)",
+  "mech": "degenerate-parameter",
+  "i": "k is the slope of one line and the intercept of the other (two linear functions)",
+  "ii": "graphs share no point with x > 0",
+  "iii": "sum of all integer k satisfying it"
+ },
+ {
+  "id": "SM26L-B5",
+  "source": "sat-math-v26-alg-b.batch.json (dropped, not live)",
+  "mech": "degenerate-parameter",
+  "i": "k multiplies a binomial in x in a one-variable equation, k over integers in a range",
+  "ii": "the equation has a solution (the coefficient of x is not zero)",
+  "iii": "greatest possible value of the solution"
+ },
+ {
+  "id": "SM26L-B6",
+  "source": "sat-math-v26-alg-b.batch.json (dropped, not live)",
+  "mech": "degenerate-parameter",
+  "i": "k is the x-coefficient of one equation in a 2x2 system, k over integers in a range",
+  "ii": "the system has a solution (determinant not zero)",
+  "iii": "least possible y-coordinate of the solution"
+ },
+ {
+  "id": "SM26L-B7",
+  "source": "sat-math-v26-alg-b.batch.json (LIVE, kept)",
+  "mech": "degenerate-parameter",
+  "i": "k is the per-unit price in one of two linear cost models",
+  "ii": "the costs are never equal",
+  "iii": "constant difference between the two costs"
+ },
+ {
+  "id": "SM26L-B8",
+  "source": "sat-math-v26-alg-b.batch.json (LIVE, kept)",
+  "mech": "degenerate-parameter",
+  "i": "line through a fixed point with slope k versus a function given by a table with one unknown entry",
+  "ii": "at least one solution for every k",
+  "iii": "value of the unknown table entry"
+ },
+ {
+  "id": "SM26L-C1",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k is the per-class price in a fee-plus-price budget model",
+  "ii": "exactly 3 possible whole-number class counts, with a minimum of 2 classes",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM26L-C2",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k multiplies x; x ranges over a fixed set of integers spanning negative and positive values",
+  "ii": "exactly 4 integers in the set satisfy the inequality",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM26L-C3",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k in the constant of the strict upper bound; the other inequality (after a flip) fixes an attained negative lower bound",
+  "ii": "the integer solutions sum to a given negative number",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM26L-C4",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k in both the x-coefficient and the constant of one inequality (x-coefficient k - 3)",
+  "ii": "exactly 5 positive integer solutions",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ {
+  "id": "SM26L-C5",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k multiplies the middle of a compound inequality whose ends are constants",
+  "ii": "exactly 3 integer solutions",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ {
+  "id": "SM26L-C6",
+  "source": "sat-math-v26-alg-c.batch.json (dropped, not live)",
+  "mech": "integer-count-condition",
+  "i": "k is the constant compared with a decreasing linear function given by a table; x ranges over a fixed set of integers",
+  "ii": "exactly 6 integers in the set satisfy the inequality",
+  "iii": "greatest integer value of k"
+ },
+ {
+  "id": "SM26L-C7",
+  "source": "sat-math-v26-alg-c.batch.json (LIVE, kept)",
+  "mech": "integer-count-condition",
+  "i": "k in both ends of a compound inequality with different multipliers",
+  "ii": "exactly 5 integer solutions",
+  "iii": "greatest possible value of k (k need not be an integer)"
+ },
+ {
+  "id": "SM26L-C8",
+  "source": "sat-math-v26-alg-c.batch.json (dropped, not live)",
+  "mech": "integer-count-condition",
+  "i": "k in both inequalities of a system, with the bounds moving at different rates",
+  "ii": "no integer solution",
+  "iii": "least integer value of k"
+ },
+ {
+  "id": "SM26L-D1",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "budget + a minimum for each kind",
+  "ii": "objective proportional to the budget (many plans tie)",
+  "iii": "number of plans attaining the greatest objective"
+ },
+ {
+  "id": "SM26L-D2",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "budget + minimum total count + minimum of one kind",
+  "ii": "both the maximum and the minimum of one objective",
+  "iii": "sum of the greatest and least objective"
+ },
+ {
+  "id": "SM26L-D3",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "budget + ratio cap",
+  "ii": "budget raised; both optima compared",
+  "iii": "increase in the greatest objective"
+ },
+ {
+  "id": "SM26L-D4",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "bare system of three inequalities",
+  "ii": "maximise a linear objective over integer points",
+  "iii": "greatest objective value"
+ },
+ {
+  "id": "SM26L-D5",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "two covering minimums",
+  "ii": "minimise cost",
+  "iii": "least total cost"
+ },
+ {
+  "id": "SM26L-D6",
+  "source": "sat-math-v26-alg-d.batch.json (dropped, not live)",
+  "mech": "integer-optimum",
+  "i": "one covering minimum + vehicle-count cap",
+  "ii": "minimise cost where the cheaper-per-unit option is capped",
+  "iii": "least rental cost"
+ },
+ {
+  "id": "SM26L-D7",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "single time limit + demand cap on one product",
+  "ii": "maximise profit",
+  "iii": "value of x in the unique optimal plan"
+ },
+ {
+  "id": "SM26L-D8",
+  "source": "sat-math-v26-alg-d.batch.json (LIVE, kept)",
+  "mech": "integer-optimum",
+  "i": "minimum served + labour-hour cap",
+  "ii": "maximise donation",
+  "iii": "value of y in the unique optimal plan"
+ },
+ {
+  "id": "SM31L-B1",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is the x-coefficient in both equations of a 2x2 system, so elimination fixes y and x = c/k",
+  "ii": "the solution satisfies x + y greater than a stated number",
+  "iii": "number of integer values of k in a stated range"
+ },
+ {
+  "id": "SM31L-B2",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k multiplies a binomial in x on one side of a one-variable linear equation, so the x-coefficient k - 2 vanishes at one k",
+  "ii": "the solution is less than a stated number",
+  "iii": "number of integers k in a stated range"
+ },
+ {
+  "id": "SM31L-B3",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "f is a linear function given only by a table; g(x) = kx - 37 with slope k, so the intersection x-coefficient k - 4 vanishes at one k",
+  "ii": "the graphs of f and g intersect at a point above the x-axis",
+  "iii": "number of integer values of k in a stated range"
+ },
+ {
+  "id": "SM31L-B4",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is the x-coefficient of one equation and the constant term of the other, so the two lines coincide at one k and the generic solution has a fixed x",
+  "ii": "the system has at least one solution with y greater than a stated number",
+  "iii": "sum of the integer values of k in a stated range"
+ },
+ {
+  "id": "SM31L-B5",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is the y-coefficient of one equation in a 2x2 system whose other coefficients and constants are fixed",
+  "ii": "the solution has y-coordinate less than a stated number",
+  "iii": "sum of the integers k in a stated range"
+ },
+ {
+  "id": "SM31L-B6",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is the per-item price of one plan and also multiplies the other plan's fixed fee, so at one k the two cost models are identical",
+  "ii": "the plans charge the same total for some whole-number order, with that total in a stated band",
+  "iii": "difference between the greatest and least qualifying k"
+ },
+ {
+  "id": "SM31L-B7",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is in the slope of one linear function and the intercept of the other, so the two graphs coincide at one k and otherwise always meet at x = 1",
+  "ii": "the graphs share a point whose y-coordinate lies in a stated closed band",
+  "iii": "greatest integer k in a stated range"
+ },
+ {
+  "id": "SM31L-B8",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k multiplies a binomial in x, so as an equation in k (for a given x) its coefficient vanishes at one x",
+  "ii": "exactly one real number is never a solution, for any value of k",
+  "iii": "value of that number"
+ },
+ {
+  "id": "SM31L-C1",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "3k in the strict lower end of a compound inequality whose middle has a negative x-coefficient; the other end is a fixed attained bound",
+  "ii": "at least 3 negative integer solutions and more negative than positive integer solutions",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM31L-C2",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is the upper end of the range of positive integers tested; the compound inequality (negative x-coefficient) has no constant",
+  "ii": "at least one-third of the positive integers up to k are solutions",
+  "iii": "number of positive integer values of k"
+ },
+ {
+  "id": "SM31L-C3",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k is a gift added to two budgets with different unit prices, one strict (less than) and one non-strict (at most)",
+  "ii": "one budget allows exactly 5 more positive whole-number quantities than the other",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM31L-C4",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k in the non-strict end of the second of two compound inequalities (negative x-coefficient); the first compound inequality is fixed",
+  "ii": "the two inequalities have the same number of integer solutions",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM31L-C5",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "2k in the strict lower end of a compound inequality with positive x-coefficient; the other end is a fixed attained bound",
+  "ii": "at least 5 negative integer solutions and at most 16 integer solutions in all",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ {
+  "id": "SM31L-C6",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k in both ends of the second inequality of a system at the same rate (a sliding window of fixed width); the first inequality is a fixed compound",
+  "ii": "exactly two integers satisfy both inequalities",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ {
+  "id": "SM31L-C7",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k sets the lowest height an elevator serves in a building whose floors are numbered with integers (height 5x); the top is a fixed strict height",
+  "ii": "the elevator stops at street level and at no more than 16 floors in all",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ {
+  "id": "SM31L-C8",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "k in the constant of a second, one-sided inequality; the first inequality is a fixed compound with a negative x-coefficient",
+  "ii": "exactly 4 integers satisfy the first inequality but not the second",
+  "iii": "least integer value of k"
+ },
+ {
+  "id": "SM31L-D1",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "two resource caps (time and material), profit not parallel to either cap",
+  "ii": "the greatest profit is shared by several whole-number plans (lattice tie, no parallel edge)",
+  "iii": "number of plans that earn the greatest profit"
+ },
+ {
+  "id": "SM31L-D2",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "mass cap and volume cap given in a table, two box types",
+  "ii": "total number of boxes (unweighted x + y) as large as possible; several lattice plans tie",
+  "iii": "number of combinations that hold the most boxes"
+ },
+ {
+  "id": "SM31L-D3",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "spending cap plus a minimum number of the cheaper item; profit per dollar nearly equal for the two items",
+  "ii": "the best whole-number order spends the cap exactly, far from the rounded corner",
+  "iii": "total number of items (x + y) in the order with the greatest profit"
+ },
+ {
+  "id": "SM31L-D4",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "two capacity limits printed as inequalities in a short workshop model (labor and machine hours)",
+  "ii": "unique best whole-number plan lies two steps off the rounded corner",
+  "iii": "difference x - y of the coordinates of the best plan"
+ },
+ {
+  "id": "SM31L-D5",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "one covering requirement plus a required minimum of the slightly less cost-efficient item; minimise cost",
+  "ii": "the cheapest whole-number purchase covers the requirement exactly, several trades away from the rounded corner",
+  "iii": "difference x - y in the least expensive purchase"
+ },
+ {
+  "id": "SM31L-D6",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "materials budget plus a cap on the total number of items displayed",
+  "ii": "several whole-number plans tie for the greatest profit, none of them the rounded corner",
+  "iii": "greatest number of the second item among the tied best plans"
+ },
+ {
+  "id": "SM31L-D7",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "two covering requirements (pencils and erasers per kit) with no costs; minimise the total number of kits",
+  "ii": "several whole-number combinations tie for the fewest kits, and the rounded-up corner is not one of them",
+  "iii": "least number of the first item among the fewest-item combinations"
+ },
+ {
+  "id": "SM31L-D8",
+  "source": "v31 (alg31 part, authored 2026-10-23, seen by two probe readers, never a candidate; PREREG-MATH-ALG32 rule 4a)",
+  "i": "weight cap plus a minimum total number of cases; maximise a weighted total (meals)",
+  "ii": "the best whole-number load fills the weight cap exactly, away from the rounded corner on the minimum-count line",
+  "iii": "number of the second item in the best load"
+ }
+]
