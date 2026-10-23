@@ -810,6 +810,16 @@
       "group": "iseedraft15-IR15-P02",
       "route": "spot",
       "runId": "isee-draft15-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "cr-v14",
+      "tool": "item",
+      "domain": "Choose a Response",
+      "size": 12,
+      "family": "toefl",
+      "upTo": 3,
+      "route": "full",
+      "runId": "crv14-full{n}-cofounder-{date}"
     }
   ]
 }
